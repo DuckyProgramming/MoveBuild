@@ -1,10 +1,38 @@
 types={
-    combatant:[
+    card:[
+        {
+            name:'',
+            stats:[
+                {},
+            ],
+        },{
+            name:'Strike',
+            stats:[
+                {},
+            ],
+        },{
+            name:'Defend',
+            stats:[
+                {},
+            ],
+        },{
+            name:'Step',
+            stats:[
+                {},
+            ],
+        },
+    ],combatant:[
         {life:0},
         {life:60},
-    ]
+    ],color:[
+        {
+            fill:[150,200,150],
+            stroke:[125,175,125],
+        },
+    ],
 }
-stage={scale:0,scene:'battle',timer:0}
+stage={scale:0,scene:'battle'}
+game={player:1,id:0,timer:0}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},keys:[[false,false,false,false],[false,false,false,false]]}

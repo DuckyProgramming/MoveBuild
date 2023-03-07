@@ -13,5 +13,5 @@ function draw(){
     displayTransition(graphics.main,transition)
     image(graphics.main,width/2-stage.scale*graphics.main.width/2,height/2-stage.scale*graphics.main.height/2,stage.scale*graphics.main.width,stage.scale*graphics.main.height)
     updateMouse(graphics.main)
-    stage.timer++
+    game.timer++
 }

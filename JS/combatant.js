@@ -205,6 +205,16 @@ class combatant{
                         this.layer.pop()
                     break
                     case 1:
+                        this.layer.stroke(this.color.band[1][0],this.color.band[1][1],this.color.band[1][2],this.fade*this.fades.band[0])
+                        this.layer.strokeWeight(0.6)
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*sin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*cos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*sin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*cos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                        this.layer.stroke(this.color.band[2][0],this.color.band[2][1],this.color.band[2][2],this.fade*this.fades.band[0])
+                        this.layer.strokeWeight(0.8)
+                        this.layer.point(this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9,this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9)
                     break
                 }
             break
@@ -285,7 +295,7 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
-                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)<=-0.6&&h==0){
+                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)<=-0.6&&g==0){
                             this.minorDisplay(1,g)
                         }
                     }
@@ -337,7 +347,7 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
-                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)<0.4&&cos(this.spin.arms[g].top+this.anim.direction)>-0.6&&h==0){
+                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)<0.4&&cos(this.spin.arms[g].top+this.anim.direction)>-0.6&&g==0){
                             this.minorDisplay(1,g)
                         }
                         for(let h=0;h<2;h++){
@@ -370,7 +380,7 @@ class combatant{
                                     this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                     this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
                                 }
-                                if(this.trigger.display.band[0]&&h==0){
+                                if(this.trigger.display.band[0]&&h==1){
                                     this.layer.noFill()
                                     this.layer.stroke(this.color.band[0][0],this.color.band[0][1],this.color.band[0][2],this.fade*this.fades.band[0])
                                     this.layer.strokeWeight(0.45)
@@ -721,7 +731,7 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                         }
-                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)>-0.4&&cos(this.spin.arms[g].top+this.anim.direction)<0.6&&h==0){
+                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)>-0.4&&cos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==0){
                             this.minorDisplay(1,g)
                         }
                     }
@@ -748,7 +758,7 @@ class combatant{
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
-                        if(this.trigger.display.band[1]&&(cos(this.spin.arms[g].top+this.anim.direction)>=0.6||cos(this.spin.arms[g].bottom+this.anim.direction)>=0.2)&&h==0){
+                        if(this.trigger.display.band[1]&&(cos(this.spin.arms[g].top+this.anim.direction)>=0.6||cos(this.spin.arms[g].bottom+this.anim.direction)>=0.2)&&g==0){
                             this.minorDisplay(1,g)
                         }
                         if(this.trigger.display.eye[g]){
