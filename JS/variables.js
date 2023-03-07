@@ -5,7 +5,7 @@ types={
     ]
 }
 stage={scale:0,scene:'battle',timer:0}
-graphics={main:0,minor:[]}
+graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},keys:[[false,false,false,false],[false,false,false,false]]}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

@@ -6,12 +6,12 @@ class battle{
 
         this.calc={position:{x:0,y:0}}
 
-        this.addCombatant({x:2,y:2},1)
+        this.addCombatant({x:2,y:2},1,0)
         
     }
-    addCombatant(position,type){
+    addCombatant(position,type,team){
         this.calc.position=this.tileManager.getTilePosition(position.x,position.y)
-        this.combatantManager.addCombatant(type,this.calc.position.x,this.calc.position.y,position.x,position.y)
+        this.combatantManager.addCombatant(this.calc.position.x,this.calc.position.y,position.x,position.y,type,team)
     }
     display(){
         switch(stage.scene){
