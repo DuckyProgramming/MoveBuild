@@ -1,7 +1,8 @@
 class tile{
-    constructor(layer,x,y,tileX,tileY){
+    constructor(layer,x,y,relativeX,relativeY,tileX,tileY){
         this.layer=layer
         this.position={x:x,y:y}
+        this.relativePosition={x:relativeX,y:relativeY}
         this.tilePosition={x:tileX,y:tileY}
     }
     display(){

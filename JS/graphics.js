@@ -161,15 +161,15 @@ function generateSprite(layer,type,direction){
 	switch(type){
 		case 0:
 			controlSpin(graphics.combatant[0].parts.hair.inside,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[0].parts.hair.inside,direction,0,33,1,0.1,graphics.combatant[0].color.hair.insideFront,1)
+			this.displayTrianglesFront(layer,graphics.combatant[0].parts.hair.inside,direction,0,33,1,-0.05,graphics.combatant[0].color.hair.insideFront,1)
 			controlSpin(graphics.combatant[0].parts.hair.main,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[0].parts.hair.main,direction,0,35,1,0.1,graphics.combatant[0].color.hair.front,1)
+			this.displayTrianglesFront(layer,graphics.combatant[0].parts.hair.main,direction,0,35,1,-0.05,graphics.combatant[0].color.hair.front,1)
 			layer.arc(0,0,35,34,-180,0)
 			layer.line(-17.5,0,17.5,0)
 		break
 		case 1:
-			this.displayTrianglesBack(layer,graphics.combatant[0].parts.hair.main,direction,0,35,1,0.1,graphics.combatant[0].color.hair.back,1)
-			this.displayTrianglesBack(layer,graphics.combatant[0].parts.hair.inside,direction,0,33,1,0.1,graphics.combatant[0].color.hair.insideBack,1)
+			this.displayTrianglesBack(layer,graphics.combatant[0].parts.hair.main,direction,0,35,1,-0.05,graphics.combatant[0].color.hair.back,1)
+			this.displayTrianglesBack(layer,graphics.combatant[0].parts.hair.inside,direction,0,33,1,-0.05,graphics.combatant[0].color.hair.insideBack,1)
 		break
 		case 2:
 			controlSpin(graphics.combatant[0].parts.kimono.outside,direction,1)
@@ -220,7 +220,7 @@ function setupGraphics(){
 			kimono:{main:{start:[90,110,105],end:[150,170,165]},mainBack:{start:[30,60,40],end:[70,100,80]},decoration:[[75,175,75],[100,250,100]],
 			outside:{start:[110,180,120],end:[115,215,180]},outsideBack:{start:[70,120,80],end:[75,155,140]},
 			bow:[125,225,175]},
-			band:[100,165,100],mouth:{in:[225,125,125],out:[0,0,0]},
+			band:[[100,165,100],[200,225,200]],mouth:{in:[225,125,125],out:[0,0,0]},
 		}
 	})
 

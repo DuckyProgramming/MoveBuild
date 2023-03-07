@@ -47,6 +47,9 @@ function pointInsideBox(point,box){
 		return false
 	}
 }
+function vectorAtan(point1,point2){
+	return atan2(point2.x-point1.x,point2.y-point1.y)
+}
 function updateMouse(layer){
 	inputs.mouse.x=mouseX
 	inputs.mouse.y=mouseY

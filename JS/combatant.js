@@ -18,8 +18,8 @@ class combatant{
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
                     kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
                     legs:[
-                        {top:12,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-                        {top:12,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+                        {top:9,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+                        {top:9,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
                     ],arms:[
                         {top:24,bottom:9,length:{top:16,bottom:16}},
                         {top:24,bottom:9,length:{top:16,bottom:16}}
@@ -33,11 +33,11 @@ class combatant{
                     bow:{center:0,loop:[-24,24]},
                     under:{top:[],bottom:[],tanga:24,piece:36,under:{top:[-40,40],button:[-39,39],bottom:[0,-15,15,-9,9]}},
                     underBow:{top:{center:0,end:[-4,4],loop:[-12,12]},bottom:{center:0,end:[-5,5],loop:[-15,15]}},
-                    sandal:[10,-10],eye:[-18,18],flower:[54],button:0,mouth:36}
+                    sandal:[10,-10],eye:[-18,18],flower:[54],button:0,mouth:216}
 
                 this.color=graphics.combatant[0].color
 
-                this.parts={eyeLevel:-72,flowerLevel:-77.5,mouth:-69,
+                this.parts={eyeLevel:-72,flowerLevel:-77.5,mouth:-65,
                     under:{top:-51,bottom:-31,bow:{top:2.75,bottom:-5}},
                     kimono:{main:-58,outside:-59,bow:-53},
                     legs:[
@@ -57,7 +57,7 @@ class combatant{
                         {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}
                     ]}
 
-                this.fades={flower:1,eye:[1,1],band:1,mouth:1,
+                this.fades={flower:1,eye:[1,1],band:[1,1],mouth:1,
                     sandal:{back:[1,1],front:[1,1]},
                     skin:{legs:1,arms:1,body:1,head:1,button:1},
                     kimono:{decoration:{fade:1,position:{x:1,y:1},size:{x:1,y:1}},
@@ -65,7 +65,7 @@ class combatant{
                     under:{top:1,bottom:1,tanga:1,bow:{top:1,bottom:1},under:{top:1,button:1,bottom:1}},
                 }
 
-                this.trigger={display:{flower:true,band:true,mouth:true,
+                this.trigger={display:{flower:true,band:[true,true],mouth:true,
                     hair:{back:true,front:true,glow:true},eye:[true,true],sandal:{back:[true,true],front:[true,true]},
                     skin:{legs:true,arms:true,body:true,head:true,button:true},
                     kimono:{main:{back:true,front:true},outside:{back:true,front:true},bow:true,decoration:true},
@@ -189,18 +189,22 @@ class combatant{
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
                         this.layer.rotate(-atan2(this.graphics.arms[key].bottom.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].bottom.y-this.graphics.arms[key].middle.y)+90)
-                        this.layer.scale(1,sin(this.anim.direction))
+                        this.layer.scale(1,constrain(sin(this.anim.direction)*2,-1,1))
                         this.layer.fill(235,245,255,this.fade)
                         this.layer.noStroke()
-                        this.layer.rect(0,-25,3,50)
-                        this.layer.triangle(-3/2,-50,3/2,-50,0,-65)
+                        this.layer.rect(0,-20,3,40)
+                        this.layer.triangle(-3/2,-40,3/2,-40,0,-55)
                         this.layer.fill(160,170,180,this.fade)
-                        this.layer.rect(3/4,-25,3/2,50)
-                        this.layer.triangle(3/2,-50,0,-65,0,-50)
-                        this.layer.stroke(125,70,80,this.fade)
-                        this.layer.strokeWeight(4)
-                        this.layer.line(0,-4,0,4)
+                        this.layer.rect(3/4,-20,3/2,40)
+                        this.layer.triangle(3/2,-40,0,-55,0,-40)
+                        for(let g=0;g<4;g++){
+                            this.layer.stroke(125+g*10,70+g*10,80+g*10,this.fade)
+                            this.layer.strokeWeight(4-g)
+                            this.layer.line(0,-3+g/2,0,3-g/2)
+                        }
                         this.layer.pop()
+                    break
+                    case 1:
                     break
                 }
             break
@@ -281,6 +285,9 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
+                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)<=-0.6&&h==0){
+                            this.minorDisplay(1,g)
+                        }
                     }
                     if(this.trigger.display.kimono.outside.back){
                         this.layer.image(graphics.combatant[0].sprites.kimono.outside.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.outside.back.x,this.parts.kimono.outside-15*this.fades.kimono.outside.back.y,30*this.fade*this.fades.kimono.outside.back.x,66*this.fade*this.fades.kimono.outside.back.y)
@@ -330,6 +337,9 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
+                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)<0.4&&cos(this.spin.arms[g].top+this.anim.direction)>-0.6&&h==0){
+                            this.minorDisplay(1,g)
+                        }
                         for(let h=0;h<2;h++){
                             if((g==0&&h==0||g==1&&h==1)&&cos(this.spin.legs[0].bottom+this.anim.direction)<=cos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&cos(this.spin.legs[0].bottom+this.anim.direction)>cos(this.spin.legs[1].bottom+this.anim.direction)){
                                 if(this.fades.sandal.back[h]>0&&this.trigger.display.sandal.back[h]){
@@ -360,9 +370,9 @@ class combatant{
                                     this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                     this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
                                 }
-                                if(this.trigger.display.band&&h==0){
+                                if(this.trigger.display.band[0]&&h==0){
                                     this.layer.noFill()
-                                    this.layer.stroke(this.color.band[0],this.color.band[1],this.color.band[2],this.fade*this.fades.band)
+                                    this.layer.stroke(this.color.band[0][0],this.color.band[0][1],this.color.band[0][2],this.fade*this.fades.band[0])
                                     this.layer.strokeWeight(0.45)
                                     this.layer.line(
                                         this.graphics.legs[h].top.x*0.5+this.graphics.legs[h].middle.x*0.5+1.9*sin(atan2(this.graphics.legs[h].top.x-this.graphics.legs[h].middle.x,this.graphics.legs[h].top.y-this.graphics.legs[h].middle.y)+90),
@@ -711,6 +721,9 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                         }
+                        if(this.trigger.display.band[1]&&cos(this.spin.arms[g].top+this.anim.direction)>-0.4&&cos(this.spin.arms[g].top+this.anim.direction)<0.6&&h==0){
+                            this.minorDisplay(1,g)
+                        }
                     }
                     if(this.trigger.display.skin.head){
                         this.layer.fill(this.color.skin.head[0],this.color.skin.head[1],this.color.skin.head[2],this.fade*this.fades.skin.head)
@@ -734,6 +747,9 @@ class combatant{
                             this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                        if(this.trigger.display.band[1]&&(cos(this.spin.arms[g].top+this.anim.direction)>=0.6||cos(this.spin.arms[g].bottom+this.anim.direction)>=0.2)&&h==0){
+                            this.minorDisplay(1,g)
                         }
                         if(this.trigger.display.eye[g]){
                             this.minorDisplayGeneral(0,g)

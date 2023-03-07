@@ -3,8 +3,8 @@ class combatantManager{
         this.layer=layer
         this.combatants=[]
     }
-    addCombatant(x,y,tileX,tileY,type,team){
-        this.combatants.push(new combatant(this.layer,x,y,tileX,tileY,type,team,-30))
+    addCombatant(x,y,tileX,tileY,type,team,direction){
+        this.combatants.push(new combatant(this.layer,x,y,tileX,tileY,type,team,direction))
     }
     display(){
         for(let a=0,la=this.combatants.length;a<la;a++){
