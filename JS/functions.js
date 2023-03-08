@@ -57,6 +57,16 @@ function findName(name,list){
 		}
 	}
 }
+function multiplyString(base,multiply){
+	let string=''
+	for(let a=0;a<multiply;a++){
+		string+=base
+	}
+	return string
+}
+function copyCard(base){
+	return new card(base.layer,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
+}
 function updateMouse(layer){
 	inputs.mouse.x=mouseX
 	inputs.mouse.y=mouseY

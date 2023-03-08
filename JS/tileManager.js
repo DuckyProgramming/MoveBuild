@@ -5,11 +5,11 @@ class tileManager{
         this.tiles=[]
         this.generateTiles(this.size)
     }
-    generateTiles(size){
-        for(let a=0;a<size;a++){
-            for(let b=0;b<size;b++){
-                if(abs(size-1-a)+abs(b)>size/2-1&&abs(a)+abs(size-1-b)>size/2-1){
-                    this.tiles.push(new tile(this.layer,this.layer.width/2-(size-1)*30+a*120-b*60,this.layer.height/2-(size-1)*25+b*50,this.layer.width/2-(size-1)*30+a*120-b*60,this.layer.height/2-(size-1)*30*sqrt(3)+b*60*sqrt(3),a,b))
+    generateTiles(level){
+        for(let a=0,la=level.map.length;a<la;a++){
+            for(let b=0,lb=level.map[a].length;b<lb;b++){
+                if(level.map[a][b].type>=0){
+                    this.tiles.push(new tile(this.layer,this.layer.width/2-(lb-1)*60+(la-1)*30+b*120-a*60,this.layer.height/2-(la-1)*25+a*50,this.layer.width/2-(lb-1)*30+b*120-a*60,this.layer.height/2-(la-1)*30*sqrt(3)+a*60*sqrt(3),b,a))
                 }
             }
         }

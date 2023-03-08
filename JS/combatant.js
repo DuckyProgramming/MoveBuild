@@ -33,11 +33,11 @@ class combatant{
                     bow:{center:0,loop:[-24,24]},
                     under:{top:[],bottom:[],tanga:24,piece:36,under:{top:[-40,40],button:[-39,39],bottom:[0,-15,15,-9,9]}},
                     underBow:{top:{center:0,end:[-4,4],loop:[-12,12]},bottom:{center:0,end:[-5,5],loop:[-15,15]}},
-                    sandal:[10,-10],eye:[-18,18],flower:[54],button:0,mouth:216}
+                    sandal:[6,-6],eye:[-18,18],flower:[54,48,56],button:0,mouth:216}
 
                 this.color=graphics.combatant[0].color
 
-                this.parts={eyeLevel:-72,flowerLevel:-77.5,mouth:-65,
+                this.parts={eyeLevel:-72,flowerLevel:[-77.5,-75,-71.5],mouth:-65,
                     under:{top:-51,bottom:-31,bow:{top:2.75,bottom:-5}},
                     kimono:{main:-58,outside:-59,bow:-53},
                     legs:[
@@ -57,7 +57,7 @@ class combatant{
                         {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}
                     ]}
 
-                this.fades={flower:1,eye:[1,1],band:[1,1],mouth:1,
+                this.fades={flower:[1,1,1],eye:[1,1],band:[1,1],mouth:1,
                     sandal:{back:[1,1],front:[1,1]},
                     skin:{legs:1,arms:1,body:1,head:1,button:1},
                     kimono:{decoration:{fade:1,position:{x:1,y:1},size:{x:1,y:1}},
@@ -65,7 +65,7 @@ class combatant{
                     under:{top:1,bottom:1,tanga:1,bow:{top:1,bottom:1},under:{top:1,button:1,bottom:1}},
                 }
 
-                this.trigger={display:{flower:true,band:[true,true],mouth:true,
+                this.trigger={display:{flower:[true,true,true],band:[true,true],mouth:true,
                     hair:{back:true,front:true,glow:true},eye:[true,true],sandal:{back:[true,true],front:[true,true]},
                     skin:{legs:true,arms:true,body:true,head:true,button:true},
                     kimono:{main:{back:true,front:true},outside:{back:true,front:true},bow:true,decoration:true},
@@ -206,15 +206,19 @@ class combatant{
                     break
                     case 1:
                         this.layer.stroke(this.color.band[1][0],this.color.band[1][1],this.color.band[1][2],this.fade*this.fades.band[0])
-                        this.layer.strokeWeight(0.6)
+                        this.layer.strokeWeight(0.5)
                         this.layer.line(
                             this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+1.925*sin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
                             this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+1.925*cos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
                             this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9-1.925*sin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
                             this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9-1.925*cos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
                         this.layer.stroke(this.color.band[2][0],this.color.band[2][1],this.color.band[2][2],this.fade*this.fades.band[0])
-                        this.layer.strokeWeight(0.8)
-                        this.layer.point(this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9,this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9)
+                        this.layer.strokeWeight(0.6)
+                        for(let g=0;g<4;g++){
+                            this.layer.point(
+                                this.graphics.arms[key].middle.x*0.1+this.graphics.arms[key].bottom.x*0.9+(-1.8+g*1.2)*sin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                                this.graphics.arms[key].middle.y*0.1+this.graphics.arms[key].bottom.y*0.9+(-1.8+g*1.2)*cos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90))
+                        }
                     break
                 }
             break
@@ -776,9 +780,19 @@ class combatant{
                             this.layer.arc(0,-75,30+g,30+g,-72+g*6,-12-g*6)
                         }
                     }
-                    if(this.trigger.display.flower&&this.fades.flower>0){
+                    if(this.trigger.display.flower[2]&&this.fades.flower[2]>0){
+                        if(constrain((pow(cos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1)>0){
+                            this.layer.image(graphics.minor[19],sin(this.spin.flower[2]+this.anim.head)*18.5-5*this.fade*this.fades.flower[2]*constrain((pow(cos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[2]-5*this.fade*this.fades.flower[2],10*this.fade*this.fades.flower[2]*constrain((pow(cos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),10*this.fade*this.fades.flower[2])
+                        }
+                    }
+                    if(this.trigger.display.flower[1]&&this.fades.flower[1]>0){
+                        if(constrain((pow(cos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1)>0){
+                            this.layer.image(graphics.minor[18],sin(this.spin.flower[1]+this.anim.head)*18.5-8*this.fade*this.fades.flower[1]*constrain((pow(cos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[1]-8*this.fade*this.fades.flower[1],16*this.fade*this.fades.flower[1]*constrain((pow(cos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),16*this.fade*this.fades.flower[1])
+                        }
+                    }
+                    if(this.trigger.display.flower[0]&&this.fades.flower[0]>0){
                         if(constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1)>0){
-                            this.layer.image(graphics.minor[0],sin(this.spin.flower[0]+this.anim.head)*18.5-10*this.fade*this.fades.flower*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel-10*this.fade*this.fades.flower,20*this.fade*this.fades.flower*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),20*this.fade*this.fades.flower)
+                            this.layer.image(graphics.minor[0],sin(this.spin.flower[0]+this.anim.head)*18.5-10*this.fade*this.fades.flower[0]*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[0]-10*this.fade*this.fades.flower[0],20*this.fade*this.fades.flower[0]*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),20*this.fade*this.fades.flower[0])
                         }
                     }
                 break

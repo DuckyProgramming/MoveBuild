@@ -2,13 +2,18 @@ class battle{
     constructor(layer,player){
         this.layer=layer
         this.player=player
-        this.tileManager=new tileManager(this.layer,5)
+
+        this.tileManager=new tileManager(this.layer,types.level[0])
         this.combatantManager=new combatantManager(this.layer)
         this.cardManager=new cardManager(this.layer,this.player)
 
         this.calc={position:{x:0,y:0}}
 
-        //this.addCombatant({x:2,y:2},this.player,0)
+        this.cardManager.initialDeck()
+        this.cardManager.copy(0,1)
+        this.cardManager.draw(this.cardManager.drawAmount)
+
+        //this.addCombatant({x:2,y:1},this.player,0)
     }
     addCombatant(position,type,team){
         this.calc.position=this.tileManager.getTilePosition(position.x,position.y)
@@ -28,6 +33,7 @@ class battle{
         switch(stage.scene){
             case 'battle':
                 this.combatantManager.update()
+                this.cardManager.update(stage.scene)
             break
         }
     }

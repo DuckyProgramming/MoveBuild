@@ -2,34 +2,60 @@ types={
     card:[
         {
             name:'',
-            stats:[
-                {},
+            levels:[
+                {effect:[0],attack:0,cost:0},
+                {effect:[0],attack:0,cost:0},
             ],
         },{
             name:'Strike',
-            stats:[
-                {},
+            levels:[
+                {effect:[6],attack:1,cost:1},
+                {effect:[9],attack:1,cost:1},
             ],
         },{
             name:'Defend',
-            stats:[
-                {},
+            levels:[
+                {effect:[8],attack:2,cost:1},
+                {effect:[12],attack:2,cost:1},
             ],
         },{
             name:'Step',
-            stats:[
-                {},
+            levels:[
+                {effect:[1],attack:3,cost:1},
+                {effect:[1],attack:3,cost:0},
             ],
         },
     ],combatant:[
         {life:0},
         {life:60},
-    ],color:[
+    ],color:{
+        card:[
+            {
+                fill:[200,200,200],
+                stroke:[175,175,175],
+                text:[50,50,50],
+            },{
+                fill:[150,200,150],
+                stroke:[125,175,125],
+                text:[0,100,0],
+            },
+        ],
+    },deck:{
+        start:[
+            [],
+            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+        ]
+    },level:[
         {
-            fill:[150,200,150],
-            stroke:[125,175,125],
+            map:[
+                [{type:0},{type:0},{type:0},{type:-1},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:-1},{type:0},{type:0},{type:0}],
+            ],
         },
-    ],
+    ]
 }
 stage={scale:0,scene:'battle'}
 game={player:1,id:0,timer:0}

@@ -203,7 +203,7 @@ function setupCombatantGraphics(type){
 					kimono:{main:{start:[90,110,105],end:[150,170,165]},mainBack:{start:[30,60,40],end:[70,100,80]},decoration:[[75,175,75],[100,250,100]],
 					outside:{start:[110,180,120],end:[115,215,180]},outsideBack:{start:[70,120,80],end:[75,155,140]},
 					bow:[125,225,175]},
-					band:[[100,165,100],[200,210,200],[100,225,100]],mouth:{in:[225,125,125],out:[0,0,0]},
+					band:[[100,165,100],[150,200,150],[100,225,100]],mouth:{in:[225,125,125],out:[0,0,0]},
 				}
 			})
 		
@@ -259,6 +259,26 @@ function setupCombatantGraphics(type){
 				graphics.minor[g*2+3].stroke(95,55,65)
 				graphics.minor[g*2+3].strokeWeight(20)
 				graphics.minor[g*2+3].line(136-g*7,46+g*13,129-g*7,59+g*13)
+			}
+
+			graphics.minor[18].translate(80,80)
+			for(let g=0,lg=8;g<lg;g++){
+				graphics.minor[18].rotate(19-g)
+				graphics.minor[18].fill(100+g*20,50+g*15,150+g*5)
+				for(let h=0;h<12;h++){
+					graphics.minor[18].rotate(30)
+					graphics.minor[18].ellipse(0,(24-g)*(1-g/lg),15*(1-g/lg),30*(1-g/lg))
+				}
+			}
+
+			graphics.minor[19].translate(80,80)
+			for(let g=0,lg=8;g<lg;g++){
+				graphics.minor[19].rotate(26-g)
+				graphics.minor[19].fill(125+g*15,50+g*15,125+g*10)
+				for(let h=0;h<8;h++){
+					graphics.minor[19].rotate(45)
+					graphics.minor[19].ellipse(0,(24-g)*(1-g/lg),18*(1-g/lg),30*(1-g/lg))
+				}
 			}
 		
 			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
@@ -370,7 +390,7 @@ function setupGraphics(){
 		setupLayer(graphics.backgrounds[a])
 	}
 	graphics.minor=[]
-    for(let g=0;g<86;g++){
+    for(let g=0;g<20;g++){
 		graphics.minor.push(createGraphics(160,160))
 	}
 	for(let a=0,la=graphics.minor.length;a<la;a++){
