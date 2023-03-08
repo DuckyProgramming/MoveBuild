@@ -8,7 +8,7 @@ class card{
         this.id=id
         this.width=90
         this.height=120
-        this.size=1
+        this.size=0
         this.fade=1
         this.deSize=false
         this.deFade=false
@@ -44,13 +44,13 @@ class card{
             this.layer.noStroke()
             this.layer.textSize(12)
             this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
-            this.layer.textSize(8)
+            this.layer.textSize(10)
             this.layer.text(this.description(),0,5)
             this.layer.pop()
         }
     }
     update(){
-        if(this.deSize&&this.size>0){
+        if(this.deSize&&this.size>0||!this.upSize&&this.size>1){
             this.size=round(this.size*10-1)/10
         }else if(!this.deSize&&(this.size<1||this.upSize&&this.size<1.5)){
             this.size=round(this.size*10+1)/10

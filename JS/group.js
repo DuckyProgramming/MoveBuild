@@ -15,7 +15,7 @@ class group{
     }
     add(type,level,color){
         game.id++
-        this.cards.push(new card(this.layer,1200,520,type,level,color,game.id))
+        this.cards.push(new card(this.layer,1200,500,type,level,color,game.id))
     }
     send(list,firstIndex,lastIndex){
         if(lastIndex==-1){
@@ -41,17 +41,34 @@ class group{
             }
         }
     }
-    display(){
-        for(let a=0,la=this.cards.length;a<la;a++){
-            this.cards[a].display()
+    display(scene){
+        switch(scene){
+            case 'battle':
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    if(this.cards[a].size<=1){
+                        this.cards[a].display()
+                    }
+                }
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    if(this.cards[a].size>1){
+                        this.cards[a].display()
+                    }
+                }
+            break
         }
     }
     update(scene){
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].update()
                     if(this.cards[a].position.x>a*100+120&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+100||a==0)){
                         this.cards[a].position.x-=10
+                    }
+                    if(pointInsideBox({position:inputs.rel},this.cards[a])){
+                        this.cards[a].upSize=true
+                    }else{
+                        this.cards[a].upSize=false
                     }
                 }
             break
