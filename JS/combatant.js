@@ -1,7 +1,8 @@
 class combatant{
-    constructor(layer,x,y,tileX,tileY,type,team,direction){
+    constructor(layer,x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
         this.layer=layer
         this.position={x:x,y:y}
+        this.relativePosition={x:relativeX,y:relativeY}
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
         this.team=team
@@ -21,6 +22,10 @@ class combatant{
         this.size=1.25
 
         switch(this.type){
+            case 0:
+                this.anim={direction:direction}
+                this.goal={anim:{direction:this.anim.direction}}
+            break
             case 1:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
@@ -202,6 +207,14 @@ class combatant{
     addBlock(value){
         this.block+=value
     }
+    moveTile(direction,speed){
+        this.position.x+=sin(direction)*speed
+        this.position.y+=cos(direction)*speed
+    }
+    moveRelativeTile(direction,speed){
+        this.relativePosition.x+=sin(direction)*speed
+        this.relativePosition.y+=cos(direction)*speed
+    }
     minorDisplay(type,key){
         switch(this.type){
             case 1:
@@ -309,9 +322,10 @@ class combatant{
             this.layer.scale(this.size)
             switch(this.type){
                 case 0:
+                    this.layer.rotate(-this.anim.direction)
                     this.layer.fill(255,255-this.team*255,255-this.team*255,this.fade)
                     this.layer.noStroke()
-                    this.layer.ellipse(0,0,16,16)
+                    this.layer.triangle(-6,-8,6,-8,0,12)
                 break
                 case 1:
                     if(this.trigger.display.hair.back){
@@ -902,6 +916,25 @@ class combatant{
         }else if(!this.infoAnim.upSize&&this.infoAnim.size>1){
             this.infoAnim.size=round(this.infoAnim.size*5-1)/5
         }
+        if(abs(this.anim.direction-this.goal.anim.direction)<=12){
+            this.anim.direction=this.goal.anim.direction
+        }else if(
+            this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
+            this.anim.direction>this.goal.anim.direction-360&&this.anim.direction<this.goal.anim.direction-180||
+            this.anim.direction>this.goal.anim.direction+360&&this.anim.direction<this.goal.anim.direction+540||
+            this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
+            this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900
+        ){
+            this.anim.direction-=12
+        }else if(
+            this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
+            this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
+            this.anim.direction<this.goal.anim.direction-360&&this.anim.direction>this.goal.anim.direction-540||
+            this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
+            this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900
+        ){
+            this.anim.direction+=12
+        }
         switch(this.type){
             case 1:
                 this.animSet.active=false
@@ -911,12 +944,6 @@ class combatant{
                         this.animSet.loop-=20
                         this.animSet.flip=1-this.animSet.flip
                     }
-                }
-                if(this.anim.direction>this.goal.anim.direction+3){
-                    this.anim.direction-=6
-                }
-                if(this.anim.direction<this.goal.anim.direction-3){
-                    this.anim.direction+=6
                 }
                 this.anim.head=this.anim.direction
                 this.animSet.start=round(this.animSet.start)

@@ -29,7 +29,7 @@ class cardManager{
     }
     draw(amount){
         if(this.reserve.cards.length>0){
-            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length-1))
+            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length))
         }
     }
     clearBattle(){
@@ -54,7 +54,7 @@ class cardManager{
     onClick(scene,args){
         switch(scene){
             case 'battle':
-                this.hand.onClick('battle',[args[0],args[1],args[2]])
+                this.hand.onClick('battle',[args[0],args[1],args[2],args[3]])
             break
         }
     }

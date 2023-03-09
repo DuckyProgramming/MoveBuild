@@ -77,7 +77,7 @@ function copyArray(base){
 function legalTarget(type,length,x,y){
 	switch(type){
 		case 0:
-			if(x==y&&abs(x)<=length||y==0&&abs(x)<=length||x==0&&abs(y)<=length){
+			if((x==y&&abs(x)<=length||y==0&&abs(x)<=length||x==0&&abs(y)<=length)&&(x!=0||y!=0)){
 				return true
 			}
 		break

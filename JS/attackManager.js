@@ -9,18 +9,21 @@ class attackManager{
 
         this.cost=0
         this.targetInfo=[0,0,0]
+        this.position={x:0,y:0}
+        this.relativePosition={x:0,y:0}
+        this.tilePosition={x:0,y:0}
     }
-    execute(combatantManager){
-        this.attacks.push(new attack(this.type,this.effect,this.user,this.target))
+    execute(combatantManager,tileManager){
+        this.attacks.push(new attack(this.type,this.effect,this.user,this.target,this.position,this.relativePosition,this.tilePosition))
         switch(this.type){
             case 1:
             break
         }
     }
-    update(combatantManager){
+    update(combatantManager,tileManager){
         for(let a=0;a<game.animRate;a++){
             if(this.attacks.length>0){
-                this.attacks[0].update(combatantManager)
+                this.attacks[0].update(combatantManager,tileManager)
                 if(this.attacks[0].remove){
                     this.attacks.splice(0,1)
                 }

@@ -104,9 +104,15 @@ class group{
                             }
                             args[1].type=this.cards[a].attack
                             args[1].effect=this.cards[a].effect
+                            args[1].position.x=args[0].combatants[args[1].user].position.x
+                            args[1].position.y=args[0].combatants[args[1].user].position.y
+                            args[1].relativePosition.x=args[0].combatants[args[1].user].relativePosition.x
+                            args[1].relativePosition.y=args[0].combatants[args[1].user].relativePosition.y
+                            args[1].tilePosition.x=args[0].combatants[args[1].user].tilePosition.x
+                            args[1].tilePosition.y=args[0].combatants[args[1].user].tilePosition.y
                             this.cards[a].usable=false
                             if(this.cards[a].target[0]==0){
-                                args[1].execute(args[0])
+                                args[1].execute(args[0],args[3])
                                 this.cards[a].deSize=true
                                 args[2].main-=this.cards[a].cost
                             }else{
@@ -118,12 +124,28 @@ class group{
                     }
                 break
             }
-        }else if(args[1].targetInfo[0]==2){
-            for(let a=0,la=args[0].combatants.length;a<la;a++){
-                if(args[0].combatants[a].life>0&&args[0].combatants[a].team!=args[0].combatants[args[1].user].team&&legalTargetCombatant(0,args[1].targetInfo[1],args[0].combatants[a],args[0].combatants[args[1].user])&&dist(inputs.rel.x,inputs.rel.y,args[0].combatants[a].position.x,args[0].combatants[a].position.y)<36){
+        }else if(args[1].targetInfo[0]==1){
+            for(let a=0,la=args[3].tiles.length;a<la;a++){
+                if(!args[3].tiles[a].occupied&&legalTargetCombatant(0,args[1].targetInfo[1],args[3].tiles[a],args[1])&&dist(inputs.rel.x,inputs.rel.y,args[3].tiles[a].position.x,args[3].tiles[a].position.y)<36){
+                    args[0].combatants[args[1].user].goal.anim.direction=atan2(args[3].tiles[a].relativePosition.x-args[1].relativePosition.x,args[3].tiles[a].relativePosition.y-args[1].relativePosition.y)
                     args[1].targetInfo[0]=0
                     args[1].target[0]=a
-                    args[1].execute(args[0])
+                    args[1].execute(args[0],args[3])
+                    args[2].main-=args[1].cost
+                    for(let b=0,lb=this.cards.length;b<lb;b++){
+                        if(!this.cards[b].usable){
+                            this.cards[b].deSize=true
+                        }
+                    }
+                }
+            }
+        }else if(args[1].targetInfo[0]==2){
+            for(let a=0,la=args[0].combatants.length;a<la;a++){
+                if(args[0].combatants[a].life>0&&args[0].combatants[a].team!=args[0].combatants[args[1].user].team&&legalTargetCombatant(0,args[1].targetInfo[1],args[0].combatants[a],args[1])&&dist(inputs.rel.x,inputs.rel.y,args[0].combatants[a].position.x,args[0].combatants[a].position.y)<36){
+                    args[0].combatants[args[1].user].goal.anim.direction=atan2(args[0].combatants[a].relativePosition.x-args[1].relativePosition.x,args[0].combatants[a].relativePosition.y-args[1].relativePosition.y)
+                    args[1].targetInfo[0]=0
+                    args[1].target[0]=a
+                    args[1].execute(args[0],args[3])
                     args[2].main-=args[1].cost
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){

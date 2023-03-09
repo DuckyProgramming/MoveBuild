@@ -27,8 +27,14 @@ types={
         },{
             name:'Twin\nStrike',
             levels:[
-                {effect:[5,2],attack:4,cost:1,target:[2],spec:[]},
-                {effect:[7,2],attack:4,cost:1,target:[2],spec:[]},
+                {effect:[5,2],attack:4,cost:1,target:[2,1],spec:[]},
+                {effect:[7,2],attack:4,cost:1,target:[2,1],spec:[]},
+            ],
+        },{
+            name:'Long\nStrike',
+            levels:[
+                {effect:[7],attack:1,cost:1,target:[2,2],spec:[]},
+                {effect:[10],attack:1,cost:1,target:[2,2],spec:[]},
             ],
         },
     ],combatant:[
@@ -48,8 +54,10 @@ types={
         ],
     },deck:{
         start:[
-            [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
+            [['Strike',0,0],['Defend',0,0],['Step',0,0],['Twin\nStrike',0,0],['Long\nStrike',0,0]],
+            /*[['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],*/
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+           
         ]
     },level:[
         {
@@ -66,7 +74,7 @@ types={
     ]
 }
 stage={scale:0,scene:'battle'}
-game={player:0,id:0,timer:0,animRate:5}
+game={player:0,id:0,timer:0,animRate:1}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},keys:[[false,false,false,false],[false,false,false,false]]}
