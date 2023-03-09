@@ -67,6 +67,25 @@ function multiplyString(base,multiply){
 function copyCard(base){
 	return new card(base.layer,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
 }
+function copyArray(base){
+	let list=[]
+	for(let a=0,la=base.length;a<la;a++){
+		list.push(base[a])
+	}
+	return list
+}
+function legalTarget(type,length,x,y){
+	switch(type){
+		case 0:
+			if(x==y&&abs(x)<=length||y==0&&abs(x)<=length||x==0&&abs(y)<=length){
+				return true
+			}
+		break
+	}
+}
+function legalTargetCombatant(type,length,combatant1,combatant2){
+	return legalTarget(type,length,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
+}
 function updateMouse(layer){
 	inputs.mouse.x=mouseX
 	inputs.mouse.y=mouseY

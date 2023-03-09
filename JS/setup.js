@@ -7,3 +7,8 @@ function setup(){
 function windowResized(){
     resizeCanvas(windowWidth-50,windowHeight-50)
 }
+/*
+Display Possible Targets
+Make Step
+Make Twin Strike
+*/

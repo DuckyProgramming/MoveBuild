@@ -32,17 +32,29 @@ class cardManager{
             this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length-1))
         }
     }
-    display(scene){
+    clearBattle(){
+        this.reserve.cards=[]
+        this.hand.cards=[]
+        this.discard.cards=[]
+    }
+    display(scene,args){
         switch(scene){
             case 'battle':
                 this.hand.display('battle')
             break
         }
     }
-    update(scene){
+    update(scene,args){
         switch(scene){
             case 'battle':
-                this.hand.update('battle')
+                this.hand.update('battle',[this.discard.cards,args[0]])
+            break
+        }
+    }
+    onClick(scene,args){
+        switch(scene){
+            case 'battle':
+                this.hand.onClick('battle',[args[0],args[1],args[2]])
             break
         }
     }

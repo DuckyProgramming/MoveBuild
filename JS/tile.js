@@ -8,9 +8,9 @@ class tile{
     display(){
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
-        this.layer.fill(150)
+        this.layer.fill(100)
         this.layer.noStroke()
-        regPoly(this.layer,0,0,6,44,20,0)
+        regPoly(this.layer,0,0,6,40,18,0)
         this.layer.fill(0)
         this.layer.textSize(10)
         this.layer.text(this.tilePosition.x+','+this.tilePosition.y,0,0)

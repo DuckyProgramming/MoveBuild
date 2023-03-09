@@ -3,30 +3,36 @@ types={
         {
             name:'',
             levels:[
-                {effect:[0],attack:0,cost:0},
-                {effect:[0],attack:0,cost:0},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[]},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[]},
             ],
         },{
             name:'Strike',
             levels:[
-                {effect:[6],attack:1,cost:1},
-                {effect:[9],attack:1,cost:1},
+                {effect:[6],attack:1,cost:1,target:[2,1],spec:[]},
+                {effect:[9],attack:1,cost:1,target:[2,1],spec:[]},
             ],
         },{
             name:'Defend',
             levels:[
-                {effect:[8],attack:2,cost:1},
-                {effect:[12],attack:2,cost:1},
+                {effect:[8],attack:2,cost:1,target:[0],spec:[]},
+                {effect:[12],attack:2,cost:1,target:[0],spec:[]},
             ],
         },{
             name:'Step',
             levels:[
-                {effect:[1],attack:3,cost:1},
-                {effect:[1],attack:3,cost:0},
+                {effect:[1],attack:3,cost:1,target:[1,1],spec:[]},
+                {effect:[1],attack:3,cost:0,target:[1,1],spec:[]},
+            ],
+        },{
+            name:'Twin\nStrike',
+            levels:[
+                {effect:[5,2],attack:4,cost:1,target:[2],spec:[]},
+                {effect:[7,2],attack:4,cost:1,target:[2],spec:[]},
             ],
         },
     ],combatant:[
-        {life:0},
+        {life:20},
         {life:60},
     ],color:{
         card:[
@@ -42,23 +48,25 @@ types={
         ],
     },deck:{
         start:[
-            [],
+            [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
         ]
     },level:[
         {
             map:[
-                [{type:0},{type:0},{type:0},{type:-1},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:-1},{type:0},{type:0},{type:0}],
+                [{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0}],
             ],
         },
     ]
 }
 stage={scale:0,scene:'battle'}
-game={player:1,id:0,timer:0}
+game={player:0,id:0,timer:0,animRate:5}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},keys:[[false,false,false,false],[false,false,false,false]]}

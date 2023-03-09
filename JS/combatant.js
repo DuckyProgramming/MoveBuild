@@ -5,13 +5,21 @@ class combatant{
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
         this.team=team
-        this.offset={position:{x:0,y:0}}
+        this.offset={position:{x:0,y:0},life:{x:0,y:25}}
         this.fade=0
 
         this.life=types.combatant[this.type].life
 
-        this.base={life:this.life}
+        this.block=0
+
+        this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
+        this.collect={life:this.life}
         
+        this.infoAnim={life:1,block:0,size:1,upSize:false,target:[0]}
+
+        this.direction=0
+        this.size=1.25
+
         switch(this.type){
             case 1:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},
@@ -128,8 +136,6 @@ class combatant{
             break
 
         }
-
-        this.size=2
     }
     calculateParts(){
         switch(this.type){
@@ -180,6 +186,21 @@ class combatant{
             break
 
         }
+    }
+    takeDamage(value,spec){
+        let damage=value
+        if(this.block>=damage){
+           this.block-=damage
+        }else if(this.block>0){
+            let damageLeft=damage-this.block
+            this.block=0
+            this.life-=damageLeft
+        }else{
+            this.life-=damage
+        }
+    }
+    addBlock(value){
+        this.block+=value
     }
     minorDisplay(type,key){
         switch(this.type){
@@ -280,11 +301,18 @@ class combatant{
         }
     }
     display(){
-        this.calculateParts()
-        this.layer.translate(this.position.x+this.offset.position.x,this.position.y+this.offset.position.y)
-        this.layer.scale(this.size)
         if(this.fade>0&&this.size>0){
+            this.calculateParts()
+            this.layer.push()
+            this.layer.translate(this.position.x+this.offset.position.x,this.position.y+this.offset.position.y)
+            this.layer.rotate(this.direction)
+            this.layer.scale(this.size)
             switch(this.type){
+                case 0:
+                    this.layer.fill(255,255-this.team*255,255-this.team*255,this.fade)
+                    this.layer.noStroke()
+                    this.layer.ellipse(0,0,16,16)
+                break
                 case 1:
                     if(this.trigger.display.hair.back){
                         this.layer.image(graphics.combatant[0].sprites.hair.back[this.sprites.spinDetailHead],-25*this.fade,-75-20*this.fade,50*this.fade,100*this.fade)
@@ -796,21 +824,83 @@ class combatant{
                         }
                     }
                 break
-                
             }
+            this.layer.pop()
         }
-        this.layer.scale(1/this.size)
-        this.layer.translate(-this.position.x-this.offset.position.x,-this.position.y-this.offset.position.y)
+    }
+    displayInfo(){
+        if(this.fade>0&&this.infoAnim.size){
+            this.layer.push()
+            this.layer.translate(this.position.x+this.offset.life.x,this.position.y+this.offset.life.y)
+            this.layer.scale(this.infoAnim.size)
+            this.layer.noStroke()
+            this.layer.fill(150,this.fade)
+            this.layer.rect(0,0,50,6,3)
+            if(this.collect.life>=this.life){
+                this.layer.fill(240,0,0,this.fade)
+                this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
+                this.layer.fill(min(255,510-max(0,this.life)/this.base.life*510)-max(0,5-max(0,this.life)/this.base.life*30)*25,max(0,this.life)/this.base.life*510,0,this.fade)
+                this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
+            }else if(this.collect.life<this.life){
+                this.layer.fill(240,0,0,this.fade)
+                this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
+                this.layer.fill(min(255,510-max(0,this.collect.life)/this.base.life*510)-max(0,5-max(0,this.collect.life)/this.base.life*30)*25,max(0,this.collect.life)/this.base.life*510,0,this.fade)
+                this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
+            }
+            this.layer.noFill()
+            this.layer.stroke(0,this.fade)
+            this.layer.strokeWeight(0.75)
+            this.layer.rect(0,0,51,6.75,3.75)
+            this.layer.noStroke()
+            if(this.infoAnim.block>0){
+                this.layer.fill(0,this.fade*this.infoAnim.block)
+                this.layer.ellipse(-25,0,11.5,11.5)
+                this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
+                this.layer.ellipse(-25,0,10,10)
+            }
+            this.layer.fill(0,this.fade)
+            this.layer.textSize(6)
+            this.layer.text(max(0,ceil(this.life*10)/10)+"/"+max(0,ceil(this.base.life*10)/10),0,0.5)
+            if(this.infoAnim.block>0){
+                this.layer.fill(0,this.fade*this.infoAnim.block)
+                this.layer.text(ceil(this.block*10)/10,-25,0.5)
+            }
+            this.layer.scale(1/this.infoAnim.size)
+            this.layer.translate(-this.offset.life.x,-this.offset.life.y)
+            if(this.infoAnim.target[0]>0){
+                this.layer.noFill()
+                this.layer.stroke(200,this.fade*this.infoAnim.target[0])
+                this.layer.strokeWeight(2)
+                this.layer.ellipse(0,0,72,72)
+            }
+            this.layer.pop()
+        }
     }
     update(){
+        this.collect.life=this.collect.life*0.9+this.life*0.1
         if(this.team==0){
             this.fade=1
         }else{
             if(this.life>0&&this.fade<1){
                 this.fade=round(this.fade*15+1)/15
-            }else{if(this.life<=0&&this.fade>0){
+            }else if(this.life<=0&&this.fade>0){
                 this.fade=round(this.fade*15-1)/15
-            }}
+            }
+            if(this.life>0&&this.infoAnim.life<1){
+                this.infoAnim.life=round(this.infoAnim.life*5+1)/5
+            }else if(this.life<=0&&this.infoAnim.life>0){
+                this.infoAnim.life=round(this.infoAnim.life*5-1)/5
+            }
+        }
+        if(this.block>0&&this.infoAnim.block<1){
+            this.infoAnim.block=round(this.infoAnim.block*5+1)/5
+        }else if(this.block<=0&&this.infoAnim.block>0){
+            this.infoAnim.block=round(this.infoAnim.block*5-1)/5
+        }
+        if(this.infoAnim.upSize&&this.infoAnim.size<1.5){
+            this.infoAnim.size=min(round(this.infoAnim.size*5+1)/5,1.5)
+        }else if(!this.infoAnim.upSize&&this.infoAnim.size>1){
+            this.infoAnim.size=round(this.infoAnim.size*5-1)/5
         }
         switch(this.type){
             case 1:
