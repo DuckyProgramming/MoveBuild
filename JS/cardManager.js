@@ -1,17 +1,17 @@
 class cardManager{
-    constructor(layer,player){
+    constructor(layer,battle){
         this.layer=layer
-        this.player=player
+        this.battle=battle
 
-        this.deck=new group(this.layer,0)
-        this.reserve=new group(this.layer,1)
-        this.hand=new group(this.layer,2)
-        this.discard=new group(this.layer,3)
+        this.deck=new group(this.layer,this.battle,0)
+        this.reserve=new group(this.layer,this.battle,1)
+        this.hand=new group(this.layer,this.battle,2)
+        this.discard=new group(this.layer,this.battle,3)
 
         this.drawAmount=6
     }
     initialDeck(){
-        this.deck.initialCards(0,this.player)
+        this.deck.initialCards(0,this.battle.player)
     }
     getList(type){
         switch(type){
@@ -37,24 +37,24 @@ class cardManager{
         this.hand.cards=[]
         this.discard.cards=[]
     }
-    display(scene,args){
+    display(scene){
         switch(scene){
             case 'battle':
                 this.hand.display('battle')
             break
         }
     }
-    update(scene,args){
+    update(scene){
         switch(scene){
             case 'battle':
-                this.hand.update('battle',[this.discard.cards,args[0]])
+                this.hand.update('battle')
             break
         }
     }
-    onClick(scene,args){
+    onClick(scene){
         switch(scene){
             case 'battle':
-                this.hand.onClick('battle',[args[0],args[1],args[2],args[3]])
+                this.hand.onClick('battle')
             break
         }
     }

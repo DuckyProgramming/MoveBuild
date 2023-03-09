@@ -1,6 +1,7 @@
 class card{
-    constructor(layer,x,y,type,level,color,id){
+    constructor(layer,battle,x,y,type,level,color,id){
         this.layer=layer
+        this.battle=battle
         this.position={x:x,y:y}
         this.type=type
         this.level=level
@@ -36,9 +37,10 @@ class card{
             string+='Innate\n'
         }
         switch(this.attack){
-            case 1: string+='Deal '+this.effect[0]+'\nDamage'; break
-            case 2: string+='Add '+this.effect[0]+ '\nBlock'; break
-            case 3: string+='Move '+this.effect[0]+'\nTiles'; break
+            case 1: string+='Deal '+this.effect[0]+' Damage\nRange 1-'+this.target[1]+''; break
+            case 2: string+='Add '+this.effect[0]+ ' Block'; break
+            case 3: string+='Move '+this.effect[0]; break
+            case 4: string+='Deal '+this.effect[0]+' Damage\n2 Times\nRange 1-'+this.target[1]+''; break
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
@@ -75,7 +77,7 @@ class card{
             this.layer.textSize(14)
             this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
             this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
-            this.layer.textSize(12)
+            this.layer.textSize(10)
             this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
             this.layer.fill(0,this.fade)
             this.layer.textSize(9)
@@ -83,11 +85,11 @@ class card{
             this.layer.pop()
         }
     }
-    update(energy){
+    update(){
         if(this.select){
             this.upSize=true
         }
-        if(energy.main>=this.cost){
+        if(this.battle.energy.main>=this.cost){
             this.afford=true
         }else{
             this.afford=false

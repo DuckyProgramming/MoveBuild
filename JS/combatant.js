@@ -885,7 +885,7 @@ class combatant{
                 this.layer.noFill()
                 this.layer.stroke(200,this.fade*this.infoAnim.target[0])
                 this.layer.strokeWeight(2)
-                this.layer.ellipse(0,0,72,72)
+                this.layer.ellipse(0,0,game.targetRadius*2)
             }
             this.layer.pop()
         }
@@ -916,7 +916,7 @@ class combatant{
         }else if(!this.infoAnim.upSize&&this.infoAnim.size>1){
             this.infoAnim.size=round(this.infoAnim.size*5-1)/5
         }
-        if(abs(this.anim.direction-this.goal.anim.direction)<=12){
+        if(abs(this.anim.direction-this.goal.anim.direction)<=18){
             this.anim.direction=this.goal.anim.direction
         }else if(
             this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
@@ -925,7 +925,7 @@ class combatant{
             this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
             this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900
         ){
-            this.anim.direction-=12
+            this.anim.direction-=18
         }else if(
             this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
             this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
@@ -933,7 +933,15 @@ class combatant{
             this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
             this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900
         ){
-            this.anim.direction+=12
+            this.anim.direction+=18
+        }else{
+            this.anim.direction+=18*(floor(random(0,2)*2-1))
+        }
+        if(this.anim.direction>180){
+            this.anim.direction-=360
+        }
+        if(this.anim.direction<-180){
+            this.anim.direction+=360
         }
         switch(this.type){
             case 1:

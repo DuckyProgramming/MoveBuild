@@ -23,7 +23,7 @@ class tile{
             this.layer.noFill()
             this.layer.stroke(200,this.fade*this.anim.target[0])
             this.layer.strokeWeight(2)
-            this.layer.ellipse(0,0,72,72)
+            this.layer.ellipse(0,0,game.targetRadius*2)
         }
         this.layer.pop()
     }

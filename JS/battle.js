@@ -3,10 +3,10 @@ class battle{
         this.layer=layer
         this.player=player
 
-        this.tileManager=new tileManager(this.layer,types.level[0])
-        this.combatantManager=new combatantManager(this.layer)
-        this.cardManager=new cardManager(this.layer,this.player)
-        this.attackManager=new attackManager(this.layer)
+        this.tileManager=new tileManager(this.layer,this)
+        this.combatantManager=new combatantManager(this.layer,this)
+        this.cardManager=new cardManager(this.layer,this)
+        this.attackManager=new attackManager(this.layer,this)
 
         this.energy={main:0,base:3}
 
@@ -23,6 +23,8 @@ class battle{
     }
     setupBattle(){
         this.energy.main=this.energy.base
+
+        this.tileManager.generateTiles(types.level[0])
 
         this.cardManager.clearBattle()
         this.cardManager.copy(0,1)
@@ -45,8 +47,8 @@ class battle{
         this.layer.text(this.energy.main+'/'+this.energy.base,26,454)
         switch(stage.scene){
             case 'battle':
-                this.tileManager.display(stage.scene,[this.attackManager])
-                this.combatantManager.display(stage.scene,this.tileManager.height,[this.attackManager])
+                this.tileManager.display(stage.scene)
+                this.combatantManager.display(stage.scene)
                 this.cardManager.display(stage.scene)
                 this.combatantManager.displayInfo()
             break
@@ -55,17 +57,17 @@ class battle{
     update(){
         switch(stage.scene){
             case 'battle':
-                this.tileManager.update(stage.scene,[this.combatantManager])
+                this.tileManager.update(stage.scene)
                 this.combatantManager.update()
-                this.cardManager.update(stage.scene,[this.energy])
-                this.attackManager.update(this.combatantManager,this.tileManager)
+                this.cardManager.update(stage.scene)
+                this.attackManager.update()
             break
         }
     }
     onClick(){
         switch(stage.scene){
             case 'battle':
-                this.cardManager.onClick(stage.scene,[this.combatantManager,this.attackManager,this.energy,this.tileManager])
+                this.cardManager.onClick(stage.scene)
             break
         }
     }

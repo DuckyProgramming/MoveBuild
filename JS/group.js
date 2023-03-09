@@ -1,6 +1,7 @@
 class group{
-    constructor(layer,id){
+    constructor(layer,battle,id){
         this.layer=layer
+        this.battle=battle
         this.id=id
         this.cards=[]
     }
@@ -15,7 +16,7 @@ class group{
     }
     add(type,level,color){
         game.id++
-        this.cards.push(new card(this.layer,1200,500,type,level,color,game.id))
+        this.cards.push(new card(this.layer,this.battle,1200,500,type,level,color,game.id))
     }
     send(list,firstIndex,lastIndex){
         if(lastIndex==-1){
@@ -57,7 +58,7 @@ class group{
             break
         }
     }
-    update(scene,args){
+    update(scene){
         switch(scene){
             case 'battle':
                 let selected=false
@@ -67,7 +68,7 @@ class group{
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].update(args[1])
+                    this.cards[a].update()
                     if(this.cards[a].position.x>a*100+100&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+100||a==0)){
                         this.cards[a].position.x-=20
                     }
@@ -82,7 +83,7 @@ class group{
                             a--
                             la--
                         }else{
-                            this.send(args[0],a,a+1)
+                            this.send(this.battle.cardManager.discard.cards,a,a+1)
                             a--
                             la--
                         }
@@ -91,47 +92,49 @@ class group{
             break
         }
     }
-    onClick(scene,args){
-        if(args[1].targetInfo[0]==0){
+    onClick(scene){
+        if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},this.cards[a])&&this.cards[a].usable&&this.cards[a].afford){
-                            for(let b=0,lb=args[0].combatants.length;b<lb;b++){
-                                if(args[0].combatants[b].team==0){
-                                    args[1].user=b
+                            for(let b=0,lb=this.battle.combatantManager.combatants.length;b<lb;b++){
+                                if(this.battle.combatantManager.combatants[b].team==0){
+                                    this.battle.attackManager.user=b
                                 }
                             }
-                            args[1].type=this.cards[a].attack
-                            args[1].effect=this.cards[a].effect
-                            args[1].position.x=args[0].combatants[args[1].user].position.x
-                            args[1].position.y=args[0].combatants[args[1].user].position.y
-                            args[1].relativePosition.x=args[0].combatants[args[1].user].relativePosition.x
-                            args[1].relativePosition.y=args[0].combatants[args[1].user].relativePosition.y
-                            args[1].tilePosition.x=args[0].combatants[args[1].user].tilePosition.x
-                            args[1].tilePosition.y=args[0].combatants[args[1].user].tilePosition.y
+                            this.battle.attackManager.type=this.cards[a].attack
+                            this.battle.attackManager.effect=this.cards[a].effect
+                            this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
+                            this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
+                            this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
+                            this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
+                            this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
+                            this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
                             this.cards[a].usable=false
                             if(this.cards[a].target[0]==0){
-                                args[1].execute(args[0],args[3])
+                                this.battle.attackManager.execute()
                                 this.cards[a].deSize=true
-                                args[2].main-=this.cards[a].cost
+                                this.battle.energy.main-=this.cards[a].cost
                             }else{
-                                args[1].targetInfo=copyArray(this.cards[a].target)
-                                args[1].cost=this.cards[a].cost
+                                this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
+                                this.battle.attackManager.targetDistance=0
+                                this.battle.attackManager.cost=this.cards[a].cost
                                 this.cards[a].select=true
                             }
                         }
                     }
                 break
             }
-        }else if(args[1].targetInfo[0]==1){
-            for(let a=0,la=args[3].tiles.length;a<la;a++){
-                if(!args[3].tiles[a].occupied&&legalTargetCombatant(0,args[1].targetInfo[1],args[3].tiles[a],args[1])&&dist(inputs.rel.x,inputs.rel.y,args[3].tiles[a].position.x,args[3].tiles[a].position.y)<36){
-                    args[0].combatants[args[1].user].goal.anim.direction=atan2(args[3].tiles[a].relativePosition.x-args[1].relativePosition.x,args[3].tiles[a].relativePosition.y-args[1].relativePosition.y)
-                    args[1].targetInfo[0]=0
-                    args[1].target[0]=a
-                    args[1].execute(args[0],args[3])
-                    args[2].main-=args[1].cost
+        }else if(this.battle.attackManager.targetInfo[0]==1){
+            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                if(!this.battle.tileManager.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=atan2(this.battle.tileManager.tiles[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.tileManager.tiles[a].relativePosition.y-this.battle.attackManager.relativePosition.y)
+                    this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.tileManager.tiles[a],this.battle.attackManager)
+                    this.battle.attackManager.targetInfo[0]=0
+                    this.battle.attackManager.target[0]=a
+                    this.battle.attackManager.execute()
+                    this.battle.energy.main-=this.battle.attackManager.cost
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
                             this.cards[b].deSize=true
@@ -139,14 +142,15 @@ class group{
                     }
                 }
             }
-        }else if(args[1].targetInfo[0]==2){
-            for(let a=0,la=args[0].combatants.length;a<la;a++){
-                if(args[0].combatants[a].life>0&&args[0].combatants[a].team!=args[0].combatants[args[1].user].team&&legalTargetCombatant(0,args[1].targetInfo[1],args[0].combatants[a],args[1])&&dist(inputs.rel.x,inputs.rel.y,args[0].combatants[a].position.x,args[0].combatants[a].position.y)<36){
-                    args[0].combatants[args[1].user].goal.anim.direction=atan2(args[0].combatants[a].relativePosition.x-args[1].relativePosition.x,args[0].combatants[a].relativePosition.y-args[1].relativePosition.y)
-                    args[1].targetInfo[0]=0
-                    args[1].target[0]=a
-                    args[1].execute(args[0],args[3])
-                    args[2].main-=args[1].cost
+        }else if(this.battle.attackManager.targetInfo[0]==2){
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
+                    this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)
+                    this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)
+                    this.battle.attackManager.targetInfo[0]=0
+                    this.battle.attackManager.target[0]=a
+                    this.battle.attackManager.execute()
+                    this.battle.energy.main-=this.battle.attackManager.cost
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
                             this.cards[b].deSize=true

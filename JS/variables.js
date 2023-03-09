@@ -27,8 +27,8 @@ types={
         },{
             name:'Twin\nStrike',
             levels:[
-                {effect:[5,2],attack:4,cost:1,target:[2,1],spec:[]},
-                {effect:[7,2],attack:4,cost:1,target:[2,1],spec:[]},
+                {effect:[5],attack:4,cost:1,target:[2,1],spec:[]},
+                {effect:[7],attack:4,cost:1,target:[2,1],spec:[]},
             ],
         },{
             name:'Long\nStrike',
@@ -74,7 +74,7 @@ types={
     ]
 }
 stage={scale:0,scene:'battle'}
-game={player:0,id:0,timer:0,animRate:1}
+game={player:0,id:0,timer:0,animRate:1,targetRadius:30}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},keys:[[false,false,false,false],[false,false,false,false]]}

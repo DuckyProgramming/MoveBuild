@@ -65,7 +65,7 @@ function multiplyString(base,multiply){
 	return string
 }
 function copyCard(base){
-	return new card(base.layer,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
+	return new card(base.layer,base.battle,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
 }
 function copyArray(base){
 	let list=[]
@@ -80,11 +80,38 @@ function legalTarget(type,length,x,y){
 			if((x==y&&abs(x)<=length||y==0&&abs(x)<=length||x==0&&abs(y)<=length)&&(x!=0||y!=0)){
 				return true
 			}
-		break
+			return false
 	}
 }
-function legalTargetCombatant(type,length,combatant1,combatant2){
-	return legalTarget(type,length,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
+function distTarget(type,x,y){
+	switch(type){
+		case 0:
+			if(x==y&&(x!=0||y!=0)){
+				return abs(x)
+			}
+			if(y==0&&(x!=0||y!=0)){
+				return abs(x)
+			}
+			if(x==0&&(x!=0||y!=0)){
+				return abs(y)
+			}
+			return -1
+	}
+}
+function legalTargetCombatant(type,length,combatant1,combatant2,tiles){
+	if(legalTarget(type,length,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
+		let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
+		for(a=0,la=tiles.length;a<la;a++){
+			if(tiles[a].occupied&&legalTarget(type,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+				return false
+			}
+		}
+		return true
+	}
+	return false
+}
+function distTargetCombatant(type,combatant1,combatant2){
+	return distTarget(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
 }
 function updateMouse(layer){
 	inputs.mouse.x=mouseX
