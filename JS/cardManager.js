@@ -7,6 +7,7 @@ class cardManager{
         this.reserve=new group(this.layer,this.battle,1)
         this.hand=new group(this.layer,this.battle,2)
         this.discard=new group(this.layer,this.battle,3)
+        this.drop=new group(this.layer,this.battle,4)
 
         this.drawAmount=6
     }
@@ -19,6 +20,7 @@ class cardManager{
             case 1: return this.reserve
             case 2: return this.hand
             case 3: return this.discard
+            case 4: return this.drop
         }
     }
     send(group1,group2){
@@ -37,6 +39,7 @@ class cardManager{
     }
     fatigue(){
         this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
+        this.drop.addDrop(findName('Fatigue',types.card),0,game.playerNumber+1)
     }
     clearBattle(){
         this.reserve.cards=[]
@@ -46,6 +49,7 @@ class cardManager{
     display(scene){
         switch(scene){
             case 'battle':
+                this.drop.display('drop')
                 this.hand.display('battle')
             break
         }
@@ -54,6 +58,7 @@ class cardManager{
         switch(scene){
             case 'battle':
                 this.hand.update('battle')
+                this.drop.update('drop')
             break
         }
     }
@@ -61,6 +66,13 @@ class cardManager{
         switch(scene){
             case 'battle':
                 this.hand.onClick('battle')
+            break
+        }
+    }
+    onKey(scene,key,code){
+        switch(scene){
+            case 'battle':
+                this.hand.onKey('battle',key,code)
             break
         }
     }

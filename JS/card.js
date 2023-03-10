@@ -13,6 +13,7 @@ class card{
         this.fade=1
         this.deSize=false
         this.deFade=false
+        this.downSize=false
         this.upSize=false
         this.usable=true
         this.exhaust=false
@@ -37,14 +38,17 @@ class card{
             string+='Innate\n'
         }
         switch(this.attack){
-            case 1: string+='Deal '+this.effect[0]+' Damage\nRange 1-'+this.target[1]+''; break
+            case 1: string+='Deal '+this.effect[0]+' Damage'; break
             case 2: string+='Add '+this.effect[0]+ ' Block'; break
-            case 3: string+='Move '+this.effect[0]; break
-            case 4: string+='Deal '+this.effect[0]+' Damage\n2 Times\nRange 1-'+this.target[1]+''; break
+            case 3: string+='Move '+this.effect[0]+' Tiles'; break
+            case 4: string+='Deal '+this.effect[0]+' Damage\n2 Times'; break
             case 5: if(this.effect[0]>0){string+='Deal '+this.effect[0]+' Damage'} string+='Push 1 Tile'; break
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
+        }
+        if(this.target[0]==2){
+            string+='\nRange '+this.target[1]+'-'+this.target[2]
         }
         if(this.spec.includes(0)){
             string+='\nFatigue'
@@ -98,9 +102,9 @@ class card{
         }else{
             this.afford=false
         }
-        if(this.deSize&&this.size>0||!this.upSize&&this.size>1){
+        if(this.deSize&&this.size>0||this.downSize&&this.size>0.6||!this.upSize&&this.size>1){
             this.size=round(this.size*5-1)/5
-        }else if(!this.deSize&&(this.size<1||this.upSize&&this.size<1.5)){
+        }else if(!this.deSize&&(!this.downSize&&this.size<1||this.size<0.6||this.upSize&&this.size<1.5)){
             this.size=min(round(this.size*5+1)/5,1.5)
         }
         if(this.deFade&&this.fade>0){

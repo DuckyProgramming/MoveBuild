@@ -74,10 +74,10 @@ function copyArray(base){
 	}
 	return list
 }
-function legalTarget(type,length,x,y){
+function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){
 		case 0:
-			if((x==y&&abs(x)<=length||y==0&&abs(x)<=length||x==0&&abs(y)<=length)&&(x!=0||y!=0)){
+			if((x==y&&abs(x)>=lengthStart&&abs(x)<=lengthEnd||y==0&&abs(x)>=lengthStart&&abs(x)<=lengthEnd||x==0&&abs(y)>=lengthStart&&abs(y)<=lengthEnd)&&(x!=0||y!=0)){
 				return true
 			}
 			return false
@@ -122,11 +122,11 @@ function targetDirection(type,x,y){
 			return -1
 	}
 }
-function legalTargetCombatant(type,length,combatant1,combatant2,tiles){
-	if(legalTarget(type,length,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
+function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,tiles){
+	if(legalTarget(type,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
 		let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
 		for(a=0,la=tiles.length;a<la;a++){
-			if(tiles[a].occupied&&legalTarget(type,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(type,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+			if(tiles[a].occupied&&legalTarget(type,0,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(type,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
 				return false
 			}
 		}

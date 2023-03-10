@@ -29,9 +29,9 @@ class combatantManager{
                 this.layer.stroke(255)
                 this.layer.strokeWeight(3)
                 for(let a=0,la=this.combatants.length;a<la;a++){
-                    if((this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles))&&this.combatants[a].infoAnim.target[0]<1){
+                    if((this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles))&&this.combatants[a].infoAnim.target[0]<1){
                         this.combatants[a].infoAnim.target[0]=round(this.combatants[a].infoAnim.target[0]*5+1)/5
-                    }else if(!(this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles))&&this.combatants[a].infoAnim.target[0]>0){
+                    }else if(!(this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles))&&this.combatants[a].infoAnim.target[0]>0){
                         this.combatants[a].infoAnim.target[0]=round(this.combatants[a].infoAnim.target[0]*5-1)/5
                     }
                 }

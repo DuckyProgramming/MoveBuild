@@ -72,9 +72,9 @@ class attack{
                 }
             break
             case 3:
-                this.userCombatant.moveTile(this.direction,this.distance/30)
-                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/30)
-                if(this.timer>=30){
+                this.userCombatant.moveTile(this.direction,this.distance/(30*distTargetCombatant(0,this,this.targetTile)))
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(30*distTargetCombatant(0,this,this.targetTile)))
+                if(this.timer>=30*distTargetCombatant(0,this,this.targetTile)){
                     this.userCombatant.tilePosition.x=this.targetTile.tilePosition.x
                     this.userCombatant.tilePosition.y=this.targetTile.tilePosition.y
                     this.remove=true

@@ -18,6 +18,11 @@ class group{
         game.id++
         this.cards.push(new card(this.layer,this.battle,1200,500,type,level,color,game.id))
     }
+    addDrop(type,level,color){
+        game.id++
+        this.cards.push(new card(this.layer,this.battle,40,-100,type,level,color,game.id))
+        this.cards[this.cards.length-1].downSize=true
+    }
     shuffle(){
         let cards=[]
         while(this.cards.length>0){
@@ -68,6 +73,11 @@ class group{
                     }
                 }
             break
+            case 'drop':
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].display()
+                }
+            break
         }
     }
     update(scene){
@@ -90,7 +100,7 @@ class group{
                         this.cards[a].upSize=false
                     }
                     if(this.cards[a].size<=0&&!this.cards[a].usable){
-                        if(this.cards[a].exhaust){
+                        if(this.cards[a].spec.includes(1)){
                             this.cards.splice(a,1)
                             a--
                             la--
@@ -98,6 +108,88 @@ class group{
                             this.send(this.battle.cardManager.discard.cards,a,a+1)
                             a--
                             la--
+                        }
+                    }
+                }
+            break
+            case 'drop':
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].update()
+                    this.cards[a].position.y+=20
+                    if(this.cards[a].position.y>this.layer.height+100){
+                        this.cards.splice(a,1)
+                        a--
+                        la--
+                    }
+                }
+            break
+        }
+    }
+    callInput(type,a){
+        switch(type){
+            case 0:
+                for(let b=0,lb=this.battle.combatantManager.combatants.length;b<lb;b++){
+                    if(this.battle.combatantManager.combatants[b].team==0){
+                        this.battle.attackManager.user=b
+                    }
+                }
+                this.battle.attackManager.type=this.cards[a].attack
+                this.battle.attackManager.effect=this.cards[a].effect
+                this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
+                this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
+                this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
+                this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
+                this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
+                this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
+                this.cards[a].usable=false
+                if(this.cards[a].target[0]==0){
+                    this.battle.attackManager.execute()
+                    this.cards[a].deSize=true
+                    this.battle.energy.main-=this.cards[a].cost
+                    if(this.cards[a].spec.includes(0)){
+                        this.battle.cardManager.fatigue()
+                    }
+                }else{
+                    this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
+                    this.battle.attackManager.targetDistance=0
+                    this.battle.attackManager.cost=this.cards[a].cost
+                    this.cards[a].select=true
+                }
+            break
+            case 1:
+                this.battle.attackManager.targetInfo[0]=0
+                this.cards[a].deSize=true
+                this.battle.attackManager.targetInfo[0]=0
+                this.cards[a].deSize=true
+            break
+            case 2:
+                this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=atan2(this.battle.tileManager.tiles[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.tileManager.tiles[a].relativePosition.y-this.battle.attackManager.relativePosition.y)
+                this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.tileManager.tiles[a],this.battle.attackManager)
+                this.battle.attackManager.targetInfo[0]=0
+                this.battle.attackManager.target[0]=a
+                this.battle.attackManager.execute()
+                this.battle.energy.main-=this.battle.attackManager.cost
+                for(let b=0,lb=this.cards.length;b<lb;b++){
+                    if(!this.cards[b].usable){
+                        this.cards[b].deSize=true
+                        if(this.cards[b].spec.includes(0)){
+                            this.battle.cardManager.fatigue()
+                        }
+                    }
+                }
+            break
+            case 3:
+                this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)
+                this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)
+                this.battle.attackManager.targetInfo[0]=0
+                this.battle.attackManager.target[0]=a
+                this.battle.attackManager.execute()
+                this.battle.energy.main-=this.battle.attackManager.cost
+                for(let b=0,lb=this.cards.length;b<lb;b++){
+                    if(!this.cards[b].usable){
+                        this.cards[b].deSize=true
+                        if(this.cards[b].spec.includes(0)){
+                            this.battle.cardManager.fatigue()
                         }
                     }
                 }
@@ -110,73 +202,69 @@ class group{
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},this.cards[a])&&this.cards[a].usable&&this.cards[a].afford){
-                            for(let b=0,lb=this.battle.combatantManager.combatants.length;b<lb;b++){
-                                if(this.battle.combatantManager.combatants[b].team==0){
-                                    this.battle.attackManager.user=b
-                                }
-                            }
-                            this.battle.attackManager.type=this.cards[a].attack
-                            this.battle.attackManager.effect=this.cards[a].effect
-                            this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
-                            this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
-                            this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
-                            this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
-                            this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
-                            this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
-                            this.cards[a].usable=false
-                            if(this.cards[a].target[0]==0){
-                                this.battle.attackManager.execute()
-                                this.cards[a].deSize=true
-                                this.battle.energy.main-=this.cards[a].cost
-                                if(this.cards[a].spec.includes(0)){
-                                    this.battle.cardManager.fatigue()
-                                }
-                            }else{
-                                this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
-                                this.battle.attackManager.targetDistance=0
-                                this.battle.attackManager.cost=this.cards[a].cost
-                                this.cards[a].select=true
-                            }
+                            this.callInput(0,a)
                         }
                     }
                 break
             }
         }else if(this.battle.attackManager.targetInfo[0]==1){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
-                if(!this.battle.tileManager.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
-                    this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=atan2(this.battle.tileManager.tiles[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.tileManager.tiles[a].relativePosition.y-this.battle.attackManager.relativePosition.y)
-                    this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.tileManager.tiles[a],this.battle.attackManager)
-                    this.battle.attackManager.targetInfo[0]=0
-                    this.battle.attackManager.target[0]=a
-                    this.battle.attackManager.execute()
-                    this.battle.energy.main-=this.battle.attackManager.cost
-                    for(let b=0,lb=this.cards.length;b<lb;b++){
-                        if(!this.cards[b].usable){
-                            this.cards[b].deSize=true
-                            if(this.cards[b].spec.includes(0)){
-                                this.battle.cardManager.fatigue()
-                            }
-                        }
-                    }
+                if(!this.battle.tileManager.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.callInput(2,a)
+                }
+            }
+            for(let a=0,la=this.cards.length;a<la;a++){
+                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable&&this.cards[a].afford){
+                    this.callInput(1,a)
                 }
             }
         }else if(this.battle.attackManager.targetInfo[0]==2){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
-                    this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)
-                    this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)
-                    this.battle.attackManager.targetInfo[0]=0
-                    this.battle.attackManager.target[0]=a
-                    this.battle.attackManager.execute()
-                    this.battle.energy.main-=this.battle.attackManager.cost
-                    for(let b=0,lb=this.cards.length;b<lb;b++){
-                        if(!this.cards[b].usable){
-                            this.cards[b].deSize=true
-                            if(this.cards[b].spec.includes(0)){
-                                this.battle.cardManager.fatigue()
-                            }
+                if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
+                    this.callInput(3,a)
+                }
+            }
+            for(let a=0,la=this.cards.length;a<la;a++){
+                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable&&this.cards[a].afford){
+                    this.callInput(1,a)
+                }
+            }
+        }
+    }
+    onKey(scene,key,code){
+        if(this.battle.attackManager.targetInfo[0]==0){
+            switch(scene){
+                case 'battle':
+                    for(let a=0,la=this.cards.length;a<la;a++){
+                        if((int(key)+9)%10+1==(a+1)&&this.cards[a].usable&&this.cards[a].afford){
+                            this.callInput(0,a)
                         }
                     }
+                break
+            }
+        }else if(this.battle.attackManager.targetInfo[0]==1){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1,int(inputs.lastKey[1])-1)>=0&&key==' '){
+                let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1,int(inputs.lastKey[1])-1)
+                if(!this.battle.tileManager.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
+                    this.callInput(2,a)
+                }
+            }
+            for(let a=0,la=this.cards.length;a<la;a++){
+                if(!this.cards[a].usable&&this.cards[a].afford&&code==BACKSPACE){
+                    this.callInput(1,a)
+                }
+            }
+        }else if(this.battle.attackManager.targetInfo[0]==2){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.combatantManager.combatants)&&this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1){
+                        this.callInput(3,a)
+                    }
+                }
+            }
+            for(let a=0,la=this.cards.length;a<la;a++){
+                if(!this.cards[a].usable&&this.cards[a].afford&&code==BACKSPACE){
+                    this.callInput(1,a)
                 }
             }
         }

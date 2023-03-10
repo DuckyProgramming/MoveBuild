@@ -7,10 +7,3 @@ function setup(){
 function windowResized(){
     resizeCanvas(windowWidth-50,windowHeight-50)
 }
-/*
-Display Size of Decks
-Animations
-EndTurn
-Hotkey Merging
-Damage Numbers
-*/

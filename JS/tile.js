@@ -20,9 +20,6 @@ class tile{
         }
         this.layer.noStroke()
         regPoly(this.layer,0,0,6,40,18,0)
-        this.layer.fill(0)
-        this.layer.textSize(10)
-        this.layer.text(this.tilePosition.x+','+this.tilePosition.y,0,0)
         if(this.anim.target[0]>0){
             this.layer.noFill()
             this.layer.stroke(200,this.fade*this.anim.target[0])
@@ -30,5 +27,11 @@ class tile{
             this.layer.ellipse(0,0,game.targetRadius*2)
         }
         this.layer.pop()
+    }
+    displayCoordinate(coordinateAnim){
+        this.layer.fill(0,this.fade*coordinateAnim)
+        this.layer.noStroke()
+        this.layer.textSize(12)
+        this.layer.text((this.tilePosition.x+1)+','+(this.tilePosition.y+1),this.position.x,this.position.y)
     }
 }

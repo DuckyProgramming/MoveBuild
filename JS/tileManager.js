@@ -5,6 +5,8 @@ class tileManager{
         this.width=0
         this.height=0
         this.tiles=[]
+
+        this.anim={coordinate:0}
     }
     generateTiles(level){
         this.tiles=[]
@@ -55,13 +57,18 @@ class tileManager{
                     this.tiles[a].display()
                 }
                 for(let a=0,la=this.tiles.length;a<la;a++){
-                    if((this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.tiles[a],this.battle.attackManager,this.tiles))&&this.tiles[a].anim.target[0]<1){
+                    if((this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles))&&this.tiles[a].anim.target[0]<1){
                         this.tiles[a].anim.target[0]=round(this.tiles[a].anim.target[0]*5+1)/5
-                    }else if(!(this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.tiles[a],this.battle.attackManager,this.tiles))&&this.tiles[a].anim.target[0]>0){
+                    }else if(!(this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles))&&this.tiles[a].anim.target[0]>0){
                         this.tiles[a].anim.target[0]=round(this.tiles[a].anim.target[0]*5-1)/5
                     }
                 }
             break
+        }
+    }
+    displayCoordinate(){
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            this.tiles[a].displayCoordinate(this.anim.coordinate)
         }
     }
     update(scene){
@@ -78,6 +85,11 @@ class tileManager{
                             }
                         }
                     }
+                }
+                if(this.battle.attackManager.targetInfo[0]!=0&&this.anim.coordinate<1){
+                    this.anim.coordinate=round(this.anim.coordinate*5+1)/5
+                }else if(this.battle.attackManager.targetInfo[0]==0&&this.anim.coordinate>0){
+                    this.anim.coordinate=round(this.anim.coordinate*5-1)/5
                 }
             break
         }
