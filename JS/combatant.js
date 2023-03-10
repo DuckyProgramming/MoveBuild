@@ -27,7 +27,7 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
             break
             case 1:
-                this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},
+                this.anim={direction:direction,head:direction,sword:75,mouth:{x:8,y:5,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
                     kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
                     legs:[
@@ -217,6 +217,25 @@ class combatant{
         this.relativePosition.x+=sin(direction)*speed
         this.relativePosition.y+=cos(direction)*speed
     }
+    startAnimation(){
+        switch(this.type){
+            case 1:
+                this.animSet.loop=0
+                this.animSet.flip=floor(random(0,2))
+            break
+        }
+    }
+    runAnimation(rate){
+        switch(this.type){
+            case 1:
+                this.animSet.loop+=rate
+                if(this.animSet.loop>=1){
+                    this.animSet.loop-=1
+                    this.animSet.flip=1-this.animSet.flip
+                }
+            break
+        }
+    }
     minorDisplay(type,key){
         switch(this.type){
             case 1:
@@ -224,7 +243,7 @@ class combatant{
                     case 0:
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
-                        this.layer.rotate(-atan2(this.graphics.arms[key].bottom.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].bottom.y-this.graphics.arms[key].middle.y)+90)
+                        this.layer.rotate(-atan2(this.graphics.arms[key].bottom.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].bottom.y-this.graphics.arms[key].middle.y)+this.anim.sword)
                         this.layer.scale(1,constrain(sin(this.anim.direction)*2,-1,1))
                         this.layer.fill(235,245,255,this.fade)
                         this.layer.noStroke()
@@ -299,17 +318,17 @@ class combatant{
                     this.sprites.temp.arc(50,10,this.anim.mouth.x*cos(this.anim.direction)*5,this.anim.mouth.y*(0.5+cos(this.anim.direction)*0.5)*5,this.spin.mouth,180-this.spin.mouth)
                     this.sprites.temp.erase()
                     this.sprites.temp.rect(50,0,100,19+sin((this.spin.mouth/90)**(1/this.calc.int)*90)*5*this.anim.mouth.x*cos(this.anim.direction)/this.calc.int)
-                    this.layer.image(this.sprites.temp,sin(this.anim.direction)*13.5-10,this.parts.mouth-2,20,10)
+                    this.layer.image(this.sprites.temp,sin(this.anim.direction)*13-10,this.parts.mouth-2,20,10)
                 }
                 this.layer.noFill()
                 this.layer.stroke(this.color.mouth.out[0],this.color.mouth.out[1],this.color.mouth.out[2],this.fade*this.fades.mouth)
                 this.layer.strokeWeight(0.5-this.anim.mouth.open*0.25)
-                this.layer.arc(sin(this.anim.direction)*13.5,this.parts.mouth,this.anim.mouth.x*cos(this.anim.direction),this.anim.mouth.y*(0.5+cos(this.anim.direction)*0.5),this.spin.mouth,180-this.spin.mouth)
+                this.layer.arc(sin(this.anim.direction)*13,this.parts.mouth,this.anim.mouth.x*cos(this.anim.direction),this.anim.mouth.y*(0.5+cos(this.anim.direction)*0.5),this.spin.mouth,180-this.spin.mouth)
                 this.layer.strokeWeight(0.25*this.anim.mouth.open)
                 this.layer.line(
-                    sin(this.anim.direction)*13.5+cos((this.spin.mouth/90)**(1/this.calc.int)*90)*0.5*this.anim.mouth.x*cos(this.anim.direction),
+                    sin(this.anim.direction)*13+cos((this.spin.mouth/90)**(1/this.calc.int)*90)*0.5*this.anim.mouth.x*cos(this.anim.direction),
                     (this.parts.mouth-0.1)+sin((this.spin.mouth/90)**(1/this.calc.int)*90)*0.5*this.anim.mouth.x*cos(this.anim.direction)/this.calc.int,
-                    sin(this.anim.direction)*13.5-cos((this.spin.mouth/90)**(1/this.calc.int)*90)*0.5*this.anim.mouth.x*cos(this.anim.direction),
+                    sin(this.anim.direction)*13-cos((this.spin.mouth/90)**(1/this.calc.int)*90)*0.5*this.anim.mouth.x*cos(this.anim.direction),
                     (this.parts.mouth-0.1)+sin((this.spin.mouth/90)**(1/this.calc.int)*90)*0.5*this.anim.mouth.x*cos(this.anim.direction)/this.calc.int
                 )
             break
@@ -770,7 +789,7 @@ class combatant{
                         }
                     }
                     for(let g=0;g<2;g++){
-                        if(this.trigger.display.extra.sword&&cos(this.spin.arms[g].top+this.anim.direction)>=0.4&&cos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==1){
+                        if(this.trigger.display.extra.sword&&(cos(this.spin.arms[g].top+this.anim.direction)>=0.4&&cos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==1){
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)>-0.4&&cos(this.spin.arms[g].top+this.anim.direction)<0.6){
@@ -792,7 +811,7 @@ class combatant{
                         this.minorDisplayGeneral(1,0)
                     }
                     for(let g=0;g<2;g++){
-                        if(this.trigger.display.extra.sword&&(cos(this.spin.arms[g].top+this.anim.direction)>=0.6||cos(this.spin.arms[g].bottom+this.anim.direction)>=0.2)&&g==1){
+                        if(this.trigger.display.extra.sword&&(cos(this.spin.arms[g].top+this.anim.direction)>=0.6||cos(this.spin.arms[g].bottom+this.anim.direction)>=0.3)&&g==1){
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)>=0.6){
@@ -801,7 +820,7 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                         }
-                        if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].bottom+this.anim.direction)>=0.2){
+                        if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
                             this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
@@ -918,7 +937,7 @@ class combatant{
         }else if(!this.infoAnim.upSize&&this.infoAnim.size>1){
             this.infoAnim.size=round(this.infoAnim.size*5-1)/5
         }
-        if(abs(this.anim.direction-this.goal.anim.direction)<=18){
+        if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-180)<=18||abs(this.anim.direction-this.goal.anim.direction+180)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18){
             this.anim.direction=this.goal.anim.direction
         }else if(
             this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
@@ -947,41 +966,43 @@ class combatant{
         }
         switch(this.type){
             case 1:
+                if(abs(this.goal.anim.direction+90)<1){
+                    this.goal.anim.direction=-60
+                }
+                if(abs(this.goal.anim.direction-90)<1){
+                    this.goal.anim.direction=60
+                }
                 this.anim.head=this.anim.direction
-                this.animSet.start=round(this.animSet.start)
-                this.animSet.loop=round(this.animSet.loop)
                 this.animSet.flip=round(this.animSet.flip)
-                this.fades.kimono.main.back.x=1+abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.1
-                this.fades.kimono.main.front.x=1+abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.1
-                this.fades.kimono.main.back.y=1-abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.05
-                this.fades.kimono.main.front.y=1-abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.05
-                this.fades.kimono.outside.back.x=1+abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.1
-                this.fades.kimono.outside.front.x=1+abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.1
-                this.fades.kimono.outside.back.y=1-abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.05
-                this.fades.kimono.outside.front.y=1-abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.05
-                this.fades.kimono.decoration.position.x=1+abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.1
-                this.fades.kimono.decoration.position.y=1-abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.05
+                this.fades.kimono.main.back.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
+                this.fades.kimono.main.front.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
+                this.fades.kimono.main.back.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
+                this.fades.kimono.main.front.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
+                this.fades.kimono.outside.back.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
+                this.fades.kimono.outside.front.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
+                this.fades.kimono.outside.back.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
+                this.fades.kimono.outside.front.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
+                this.fades.kimono.decoration.position.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
+                this.fades.kimono.decoration.position.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
                 for(let g=0;g<2;g++){
-                    if(sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)>0){
-                        this.anim.legs[g].top=24+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*30
-                        this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-12
-                        this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-36)*(g*2-1)
-                        this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-72)*(g*2-1)
-                        this.anim.arms[g].top=27+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*3
-                        this.anim.arms[g].bottom=9+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*9
-                        this.spin.arms[g].top=(93+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*48)*(g*2-1)
-                        this.spin.arms[g].bottom=(75+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*45)*(g*2-1)
-                        this.spin.arms[g].lock=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*48
+                    if(sin((this.animSet.loop+this.animSet.flip+g)*180)>0){
+                        this.anim.legs[g].top=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*36
+                        this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip+g)*180)*24
+                        this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip+g)*180)*-30)*(g*2-1)
+                        this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip+g)*180)*-90)*(g*2-1)
+                        this.anim.arms[g].top=24+sin((this.animSet.loop+this.animSet.flip+g)*180)*6
+                        this.anim.arms[g].bottom=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*9
+                        this.spin.arms[g].top=(93+sin((this.animSet.loop+this.animSet.flip+g)*180)*24)*(g*2-1)
+                        this.spin.arms[g].bottom=(75+sin((this.animSet.loop+this.animSet.flip+g)*180)*36)*(g*2-1)
                     }else{
-                        this.anim.legs[g].top=24+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*12
-                        this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-48
-                        this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-60)*(g*2-1)
-                        this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-60)*(g*2-1)
-                        this.anim.arms[g].top=27-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*9
-                        this.anim.arms[g].bottom=9-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*18
-                        this.spin.arms[g].top=(93-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-33)*(g*2-1)
-                        this.spin.arms[g].bottom=(75-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-27)*(g*2-1)
-                        this.spin.arms[g].lock=-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-33
+                        this.anim.legs[g].top=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*-12
+                        this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip+g)*180)*-36
+                        this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip+g)*180)*-60)*(g*2-1)
+                        this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip+g)*180)*-30)*(g*2-1)
+                        this.anim.arms[g].top=24-sin((this.animSet.loop+this.animSet.flip+g)*180)*3
+                        this.anim.arms[g].bottom=9-sin((this.animSet.loop+this.animSet.flip+g)*180)*18
+                        this.spin.arms[g].top=(93-sin((this.animSet.loop+this.animSet.flip+g)*180)*-24)*(g*2-1)
+                        this.spin.arms[g].bottom=(75-sin((this.animSet.loop+this.animSet.flip+g)*180)*-18)*(g*2-1)
                     }
                 }
                 if(this.anim.direction>180){
