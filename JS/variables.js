@@ -3,50 +3,50 @@ types={
         {
             name:'',
             levels:[
-                {effect:[0],attack:0,cost:0,target:[0],spec:[]},
-                {effect:[0],attack:0,cost:0,target:[0],spec:[]},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
             ],
         },{
             name:'Strike',
             levels:[
-                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0]},
-                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0]},
+                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Defend',
             levels:[
-                {effect:[8],attack:2,cost:1,target:[0],spec:[]},
-                {effect:[12],attack:2,cost:1,target:[0],spec:[]},
+                {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
+                {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Step',
             levels:[
-                {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[]},
-                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[]},
+                {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
             ],
         },{
             name:'Twin\nStrike',
             levels:[
-                {effect:[5],attack:4,cost:1,target:[2,1,1],spec:[0]},
-                {effect:[7],attack:4,cost:1,target:[2,1,1],spec:[0]},
+                {effect:[5],attack:4,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:4,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Long\nStrike',
             levels:[
-                {effect:[7],attack:1,cost:1,target:[2,2,2],spec:[0]},
-                {effect:[10],attack:1,cost:1,target:[2,2,2],spec:[0]},
+                {effect:[7],attack:1,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[10],attack:1,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
             name:'Dash',
             levels:[
-                {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[]},
-                {effect:[3],attack:3,cost:1,target:[1,1,3],spec:[]},
+                {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[],class:3},
+                {effect:[3],attack:3,cost:1,target:[1,1,3],spec:[],class:3},
             ],
         },{
             name:'Push',
             levels:[
-                {effect:[0],attack:5,cost:0,target:[2,1,1],spec:[]},
-                {effect:[4],attack:5,cost:0,target:[2,1,1],spec:[]},
+                {effect:[0],attack:5,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4],attack:5,cost:0,target:[2,1,1],spec:[],class:1},
             ],
         },
 
@@ -102,6 +102,6 @@ game={player:0,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30}
 constants={collisionDamage:4}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
-inputs={mouse:{x:0,y:0},rel:{x:0,y:0},lastKey:''}
+inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:''}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
 la=0;lb=0;lc=0;ld=0;le=0;lf=0;lg=0;lh=0;li=0;lj=0;lk=0;ll=0;lm=0;ln=0;lo=0;lp=0

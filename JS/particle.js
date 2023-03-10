@@ -1,0 +1,49 @@
+class particle{
+    constructor(layer,x,y,type,value){
+        this.layer=layer
+        this.position={x:x,y:y}
+        this.type=type
+        this.value=value
+        this.remove=false
+        switch(this.type){
+            case 0:
+                this.direction=random(0,360)
+                this.speed=2.5
+                this.fade=0
+                this.trigger=false
+            break
+        }
+    }
+    display(){
+        this.layer.push()
+        this.layer.translate(this.position.x,this.position.y)
+        switch(this.type){
+            case 0:
+                this.layer.fill(255,100,100,this.fade)
+                this.layer.noStroke()
+                this.layer.textSize(20)
+                this.layer.text('-'+this.value,0,0)
+            break
+        }
+        this.layer.pop()
+    }
+    update(){
+        switch(this.type){
+            case 0:
+                this.position.x+=sin(this.direction)*this.speed
+                this.position.y+=cos(this.direction)*this.speed
+                if(!this.trigger){
+                    this.fade+=0.2
+                    if(this.fade>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.2
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+        }
+    }
+}

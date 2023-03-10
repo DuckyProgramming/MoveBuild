@@ -377,6 +377,90 @@ function setupCombatantGraphics(type){
 		break
 	}
 }
+function setupBackground(type,layer){
+	switch(type){
+		case 0:
+			layer.noStroke()
+            for(let a=0,la=layer.height*4/5;a<la;a++){
+                layer.fill(130-50*a/la,195-50*a/la,230-50*a/la)
+                layer.rect(layer.width/2,a+0.5,layer.width,2)
+            }
+            for(let a=0,la=height/50;a<la;a++){
+                c=random(1,1.2)
+                d=250
+                e=random(0,d)
+                f=a+random(0,1)
+                layer.fill(90-30*f/la,150-30*f/la,180-30*f/la)
+                for(let b=0,lb=width/d;b<lb;b++){
+                    f=random(-50,50)
+                    g=random(0,10)
+                    layer.triangle(layer.width*b/lb+e+f-30*c,layer.height,layer.width*b/lb+e+f+30*c,layer.height,layer.width*b/lb+e+f,layer.height*0.7+layer.height*2/5*a/la+g-400*random(0.8,1.2)*c)
+                }
+            }
+            for(let a=0;a<1000;a++){
+                b=random(0,2)
+                c=random(15,20)
+                d=random(layer.height*0.65+sin((-50+(a*12)%(layer.width+100))*1.2)*50,layer.height*0.8)
+                e=random(0,360)
+                f=random(b/4,b)
+				layer.push()
+                layer.translate(-50+(a*12)%(layer.width+100),d)
+                layer.rotate(e)
+                for(h=0;h<5;h++){
+                    for(g=0;g<5;g++){
+                        layer.rotate(72)
+                        layer.fill(105+b*70-h*10,170+f*65-h*10,170+f*95-h*10)
+                        layer.ellipse(c*(1-h/5)*0.9,0,c*1.8*(1-h/5),c*0.6*(1-h/5))
+                    }
+                }
+                layer.rotate(-e)
+                layer.pop()
+            }
+            for(a=0,la=layer.width/100+1;a<la;a++){
+                for(b=0,lb=layer.height/100+1;b<lb;b++){
+                    let c=random(0,2)
+                    let d=a*100+random(20,80)
+                    let e=b*100+random(20,80)
+                    let f=random(0,360)
+                	let g=random(c/4,c)
+                    let h=random(10,15)
+                    layer.fill(125+c*70,190+g*65,190+g*95,0.25)
+                    layer.quad(d+sin(f)*h,e+cos(f)*h,d+sin(f+90)*h*3,e+cos(f+90)*h*3,d+sin(f+180)*h,e+cos(f+180)*h,d+sin(f+270)*h*3,e+cos(f+270)*h*3)
+                }
+            }
+            for(let a=0,la=layer.height/5+30;a<la;a++){
+                layer.fill(130-100*a/la,155-100*a/la,175-100*a/la)
+                for(let b=0,lb=20;b<lb;b++){
+                    layer.quad(layer.width*(b+b%2)/lb,a+0.5+layer.height*4/5,layer.width*(b+b%2)/lb,a+0.5+layer.height*4/5+30,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*4/5,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*4/5-30)
+                }
+            }
+            for(let a=0,la=layer.height*0.1+30;a<la;a++){
+                layer.fill(70-50*a/la,95-50*a/la,115-50*a/la)
+                for(let b=0,lb=20;b<lb;b++){
+                    layer.quad(layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9+30,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9-30)
+                }
+            }
+			let p1=new combatant(layer,new battle(layer,1),1200,1070,0,0,0,0,1,0,-36)
+			p1.parts.mouth-=4
+			p1.spin.mouth-=180
+			p1.size=5
+			p1.fade=1
+			p1.anim.sword=72
+			p1.trigger.display.extra.sword=true
+            p1.anim.legs=[
+                {top:24,bottom:12,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+                {top:12,bottom:36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+            ]
+            p1.anim.arms=[
+                {top:36,bottom:-6,length:{top:16,bottom:16}},
+                {top:27,bottom:108,length:{top:16,bottom:16}}
+            ]
+            p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+            p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:120,lock:0}]
+			p1.display()
+		break
+	}
+}
 function setupGraphics(){
 	angleMode(DEGREES)
 	textAlign(CENTER,CENTER)
@@ -398,4 +482,6 @@ function setupGraphics(){
 	}
 
 	//setupCombatantGraphics(0)
+
+	//setupBackground(0,graphics.backgrounds[0])
 }

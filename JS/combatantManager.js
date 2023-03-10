@@ -5,7 +5,7 @@ class combatantManager{
         this.combatants=[]
     }
     addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
-        this.combatants.push(new combatant(this.layer,x,y,relativeX,relativeY,tileX,tileY,type,team,direction))
+        this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,direction))
     }
     getCombatantIndex(tileX,tileY){
         for(let a=0,la=this.combatants.length;a<la;a++){

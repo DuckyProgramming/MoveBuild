@@ -158,9 +158,9 @@ class group{
             break
             case 1:
                 this.battle.attackManager.targetInfo[0]=0
-                this.cards[a].deSize=true
-                this.battle.attackManager.targetInfo[0]=0
-                this.cards[a].deSize=true
+                this.cards[a].upSize=false
+                this.cards[a].select=false
+                this.cards[a].usable=true
             break
             case 2:
                 this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=atan2(this.battle.tileManager.tiles[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.tileManager.tiles[a].relativePosition.y-this.battle.attackManager.relativePosition.y)
@@ -236,7 +236,7 @@ class group{
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((int(key)+9)%10+1==(a+1)&&this.cards[a].usable&&this.cards[a].afford){
+                        if((int(key)+9)%10==a&&this.cards[a].usable&&this.cards[a].afford){
                             this.callInput(0,a)
                         }
                     }
@@ -250,7 +250,7 @@ class group{
                 }
             }
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(!this.cards[a].usable&&this.cards[a].afford&&code==BACKSPACE){
+                if(!this.cards[a].usable&&this.cards[a].afford&&(code==BACKSPACE||key==inputs.above[a])){
                     this.callInput(1,a)
                 }
             }
@@ -263,7 +263,7 @@ class group{
                 }
             }
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(!this.cards[a].usable&&this.cards[a].afford&&code==BACKSPACE){
+                if(!this.cards[a].usable&&this.cards[a].afford&&(code==BACKSPACE||key==inputs.above[a])){
                     this.callInput(1,a)
                 }
             }

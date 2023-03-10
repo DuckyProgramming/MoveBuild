@@ -1,8 +1,12 @@
 Animations
+Strike
+Defend
+Twin Strike
+Long Strike
+Push
+
 EndTurn
-Damage Numbers
 Buff System Eventually
-Card Classifications
 
 Hurt Self For Energy
 Double Next Hit

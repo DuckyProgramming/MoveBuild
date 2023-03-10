@@ -1,6 +1,7 @@
 class combatant{
-    constructor(layer,x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
+    constructor(layer,battle,x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
         this.layer=layer
+        this.battle=battle
         this.position={x:x,y:y}
         this.relativePosition={x:relativeX,y:relativeY}
         this.tilePosition={x:tileX,y:tileY}
@@ -195,6 +196,7 @@ class combatant{
     takeDamage(value,spec){
         if(value>0){
             let damage=value
+            
             if(this.block>=damage){
             this.block-=damage
             }else if(this.block>0){
@@ -204,6 +206,7 @@ class combatant{
             }else{
                 this.life-=damage
             }
+            this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
         }
     }
     addBlock(value){

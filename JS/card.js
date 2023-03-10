@@ -30,6 +30,7 @@ class card{
         this.cost=types.card[this.type].levels[this.level].cost
         this.target=types.card[this.type].levels[this.level].target
         this.spec=types.card[this.type].levels[this.level].spec
+        this.class=types.card[this.type].levels[this.level].class
         this.levels=types.card[this.type].levels.length
     }
     description(){
@@ -90,6 +91,21 @@ class card{
             this.layer.fill(0,this.fade)
             this.layer.textSize(8)
             this.layer.text(this.description(),0,5)
+            this.layer.textSize(6)
+            switch(this.class){
+                case 1:
+                    this.layer.text('Attack',0,this.height/2-6)
+                break
+                case 2:
+                    this.layer.text('Defense',0,this.height/2-6)
+                break
+                case 3:
+                    this.layer.text('Movement',0,this.height/2-6)
+                break
+                case 4:
+                    this.layer.text('Power',0,this.height/2-6)
+                break
+            }
             this.layer.pop()
         }
     }

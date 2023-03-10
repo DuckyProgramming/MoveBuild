@@ -7,6 +7,7 @@ class battle{
         this.combatantManager=new combatantManager(this.layer,this)
         this.cardManager=new cardManager(this.layer,this)
         this.attackManager=new attackManager(this.layer,this)
+        this.particleManager=new particleManager(this.layer,this)
 
         this.energy={main:0,base:3}
         this.anim={discard:1}
@@ -69,6 +70,7 @@ class battle{
                 this.cardManager.display(stage.scene)
                 this.combatantManager.displayInfo()
                 this.tileManager.displayCoordinate()
+                this.particleManager.display()
             break
         }
     }
@@ -79,6 +81,7 @@ class battle{
                 this.combatantManager.update()
                 this.cardManager.update(stage.scene)
                 this.attackManager.update()
+                this.particleManager.update()
                 if(pointInsideBox({position:inputs.rel},{position:{x:26,y:528},width:32,height:24})&&this.anim.discard<1.5){
                     this.anim.discard=min(round(this.anim.discard*5+1)/5,1.5)
                 }
