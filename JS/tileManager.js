@@ -18,12 +18,21 @@ class tileManager{
             }
         }
     }
+    getTileIndex(tileX,tileY){
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            if(this.tiles[a].tilePosition.x==tileX&&this.tiles[a].tilePosition.y==tileY){
+                return a
+            }
+        }
+        return -1
+    }
     getTilePosition(tileX,tileY){
         for(let a=0,la=this.tiles.length;a<la;a++){
             if(this.tiles[a].tilePosition.x==tileX&&this.tiles[a].tilePosition.y==tileY){
                 return this.tiles[a].position
             }
         }
+        return {x:0,y:0}
     }
     getTileDirection(tile1X,tile1Y,tile2X,tile2Y){
         return vectorAtan(this.getTilePosition(tile1X,tile1Y),this.getTilePosition(tile2X,tile2Y))
@@ -34,6 +43,7 @@ class tileManager{
                 return this.tiles[a].relativePosition
             }
         }
+        return {x:0,y:0}
     }
     getTileRelativeDirection(tile1X,tile1Y,tile2X,tile2Y){
         return vectorAtan(this.getTileRelativePosition(tile1X,tile1Y),this.getTileRelativePosition(tile2X,tile2Y))

@@ -95,7 +95,7 @@ class combatant{
 
                 this.sprites={spin:0,detail:3,spinDetail:0,spinDetailHead:0,temp:0}
 
-                this.animSet={active:false,loop:0,flip:0}
+                this.animSet={loop:0,flip:0}
 
                 this.goal={anim:{direction:this.anim.direction}}
 
@@ -193,15 +193,17 @@ class combatant{
         }
     }
     takeDamage(value,spec){
-        let damage=value
-        if(this.block>=damage){
-           this.block-=damage
-        }else if(this.block>0){
-            let damageLeft=damage-this.block
-            this.block=0
-            this.life-=damageLeft
-        }else{
-            this.life-=damage
+        if(value>0){
+            let damage=value
+            if(this.block>=damage){
+            this.block-=damage
+            }else if(this.block>0){
+                let damageLeft=damage-this.block
+                this.block=0
+                this.life-=damageLeft
+            }else{
+                this.life-=damage
+            }
         }
     }
     addBlock(value){
@@ -945,14 +947,6 @@ class combatant{
         }
         switch(this.type){
             case 1:
-                this.animSet.active=false
-                if(this.animSet.active||this.animSet.loop>0){
-                    this.animSet.loop++
-                    if(this.animSet.loop>=20){
-                        this.animSet.loop-=20
-                        this.animSet.flip=1-this.animSet.flip
-                    }
-                }
                 this.anim.head=this.anim.direction
                 this.animSet.start=round(this.animSet.start)
                 this.animSet.loop=round(this.animSet.loop)
@@ -967,29 +961,27 @@ class combatant{
                 this.fades.kimono.outside.front.y=1-abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.05
                 this.fades.kimono.decoration.position.x=1+abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.1
                 this.fades.kimono.decoration.position.y=1-abs(sin((this.animSet.loop+this.animSet.flip*20)*9))*0.05
-                if(this.trigger.animate){
-                    for(let g=0;g<2;g++){
-                        if(sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)>0){
-                            this.anim.legs[g].top=24+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*30
-                            this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-12
-                            this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-36)*(g*2-1)
-                            this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-72)*(g*2-1)
-                            this.anim.arms[g].top=27+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*3
-                            this.anim.arms[g].bottom=9+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*9
-                            this.spin.arms[g].top=(93+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*48)*(g*2-1)
-                            this.spin.arms[g].bottom=(75+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*45)*(g*2-1)
-                            this.spin.arms[g].lock=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*48
-                        }else{
-                            this.anim.legs[g].top=24+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*12
-                            this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-48
-                            this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-60)*(g*2-1)
-                            this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-60)*(g*2-1)
-                            this.anim.arms[g].top=27-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*9
-                            this.anim.arms[g].bottom=9-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*18
-                            this.spin.arms[g].top=(93-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-33)*(g*2-1)
-                            this.spin.arms[g].bottom=(75-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-27)*(g*2-1)
-                            this.spin.arms[g].lock=-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-33
-                        }
+                for(let g=0;g<2;g++){
+                    if(sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)>0){
+                        this.anim.legs[g].top=24+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*30
+                        this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-12
+                        this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-36)*(g*2-1)
+                        this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-72)*(g*2-1)
+                        this.anim.arms[g].top=27+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*3
+                        this.anim.arms[g].bottom=9+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*9
+                        this.spin.arms[g].top=(93+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*48)*(g*2-1)
+                        this.spin.arms[g].bottom=(75+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*45)*(g*2-1)
+                        this.spin.arms[g].lock=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*48
+                    }else{
+                        this.anim.legs[g].top=24+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*12
+                        this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-48
+                        this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-60)*(g*2-1)
+                        this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-60)*(g*2-1)
+                        this.anim.arms[g].top=27-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*9
+                        this.anim.arms[g].bottom=9-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*18
+                        this.spin.arms[g].top=(93-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-33)*(g*2-1)
+                        this.spin.arms[g].bottom=(75-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-27)*(g*2-1)
+                        this.spin.arms[g].lock=-sin((this.animSet.loop+this.animSet.flip*20+g*20)*9)*-33
                     }
                 }
                 if(this.anim.direction>180){

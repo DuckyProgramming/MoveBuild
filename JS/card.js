@@ -33,7 +33,7 @@ class card{
     }
     description(){
         let string=''
-        if(this.spec.includes(2)){
+        if(this.spec.includes(3)){
             string+='Innate\n'
         }
         switch(this.attack){
@@ -41,17 +41,21 @@ class card{
             case 2: string+='Add '+this.effect[0]+ ' Block'; break
             case 3: string+='Move '+this.effect[0]; break
             case 4: string+='Deal '+this.effect[0]+' Damage\n2 Times\nRange 1-'+this.target[1]+''; break
+            case 5: if(this.effect[0]>0){string+='Deal '+this.effect[0]+' Damage'} string+='Push 1 Tile'; break
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
         }
-        if(this.spec.includes(1)){
+        if(this.spec.includes(0)){
+            string+='\nFatigue'
+        }
+        if(this.spec.includes(2)){
             string+='\nRetain'
         }
-        if(this.spec.includes(0)){
+        if(this.spec.includes(1)){
             string+='\nExhaust'
         }
-        if(this.spec.includes(3)){
+        if(this.spec.includes(4)){
             string+='\nEthereal'
         }
         return string
@@ -80,7 +84,7 @@ class card{
             this.layer.textSize(10)
             this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
             this.layer.fill(0,this.fade)
-            this.layer.textSize(9)
+            this.layer.textSize(8)
             this.layer.text(this.description(),0,5)
             this.layer.pop()
         }

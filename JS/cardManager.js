@@ -27,10 +27,16 @@ class cardManager{
     copy(group1,group2){
         this.getList(group1).copy(this.getList(group2).cards,0,-1)
     }
+    shuffle(group){
+        this.getList(group).shuffle()
+    }
     draw(amount){
         if(this.reserve.cards.length>0){
             this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length))
         }
+    }
+    fatigue(){
+        this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
     }
     clearBattle(){
         this.reserve.cards=[]

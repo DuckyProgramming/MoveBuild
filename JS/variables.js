@@ -9,8 +9,8 @@ types={
         },{
             name:'Strike',
             levels:[
-                {effect:[6],attack:1,cost:1,target:[2,1],spec:[]},
-                {effect:[9],attack:1,cost:1,target:[2,1],spec:[]},
+                {effect:[6],attack:1,cost:1,target:[2,1],spec:[0]},
+                {effect:[9],attack:1,cost:1,target:[2,1],spec:[0]},
             ],
         },{
             name:'Defend',
@@ -27,14 +27,34 @@ types={
         },{
             name:'Twin\nStrike',
             levels:[
-                {effect:[5],attack:4,cost:1,target:[2,1],spec:[]},
-                {effect:[7],attack:4,cost:1,target:[2,1],spec:[]},
+                {effect:[5],attack:4,cost:1,target:[2,1],spec:[0]},
+                {effect:[7],attack:4,cost:1,target:[2,1],spec:[0]},
             ],
         },{
             name:'Long\nStrike',
             levels:[
-                {effect:[7],attack:1,cost:1,target:[2,2],spec:[]},
-                {effect:[10],attack:1,cost:1,target:[2,2],spec:[]},
+                {effect:[7],attack:1,cost:1,target:[2,2],spec:[0]},
+                {effect:[10],attack:1,cost:1,target:[2,2],spec:[0]},
+            ],
+        },{
+            name:'Dash',
+            levels:[
+                {effect:[2],attack:3,cost:1,target:[1,2],spec:[]},
+                {effect:[3],attack:3,cost:1,target:[1,3],spec:[]},
+            ],
+        },{
+            name:'Push',
+            levels:[
+                {effect:[0],attack:5,cost:0,target:[2,1],spec:[]},
+                {effect:[4],attack:5,cost:0,target:[2,1],spec:[]},
+            ],
+        },
+
+        {
+            name:'Fatigue',
+            levels:[
+                {effect:[],attack:0,cost:1,target:[0],spec:[1]},
+                {effect:[],attack:0,cost:1,target:[0],spec:[1]},
             ],
         },
     ],combatant:[
@@ -50,12 +70,16 @@ types={
                 fill:[150,200,150],
                 stroke:[125,175,125],
                 text:[0,100,0],
+            },{
+                fill:[125,125,125],
+                stroke:[100,100,100],
+                text:[40,40,40],
             },
         ],
     },deck:{
         start:[
-            [['Strike',0,0],['Defend',0,0],['Step',0,0],['Twin\nStrike',0,0],['Long\nStrike',0,0]],
-            /*[['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],*/
+            [['Push',0,0]],
+            //[['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
            
         ]
@@ -74,7 +98,8 @@ types={
     ]
 }
 stage={scale:0,scene:'battle'}
-game={player:0,id:0,timer:0,animRate:1,targetRadius:30}
+game={player:0,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30}
+constants={collisionDamage:4}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},keys:[[false,false,false,false],[false,false,false,false]]}

@@ -18,6 +18,18 @@ class group{
         game.id++
         this.cards.push(new card(this.layer,this.battle,1200,500,type,level,color,game.id))
     }
+    shuffle(){
+        let cards=[]
+        while(this.cards.length>0){
+            cards.push(copyCard(this.cards[0]))
+            this.cards.splice(0,1)
+        }
+        while(cards.length>0){
+            let index=floor(random(0,cards.length))
+            this.cards.push(copyCard(cards[index]))
+            cards.splice(index,1)
+        }
+    }
     send(list,firstIndex,lastIndex){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
@@ -116,6 +128,9 @@ class group{
                                 this.battle.attackManager.execute()
                                 this.cards[a].deSize=true
                                 this.battle.energy.main-=this.cards[a].cost
+                                if(this.cards[a].spec.includes(0)){
+                                    this.battle.cardManager.fatigue()
+                                }
                             }else{
                                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                                 this.battle.attackManager.targetDistance=0
@@ -138,6 +153,9 @@ class group{
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
                             this.cards[b].deSize=true
+                            if(this.cards[b].spec.includes(0)){
+                                this.battle.cardManager.fatigue()
+                            }
                         }
                     }
                 }
@@ -154,6 +172,9 @@ class group{
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
                             this.cards[b].deSize=true
+                            if(this.cards[b].spec.includes(0)){
+                                this.battle.cardManager.fatigue()
+                            }
                         }
                     }
                 }

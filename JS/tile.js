@@ -13,7 +13,11 @@ class tile{
     display(){
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
-        this.layer.fill(100,this.fade)
+        if(this.occupied){
+            this.layer.fill(80,this.fade)
+        }else{
+            this.layer.fill(100,this.fade)
+        }
         this.layer.noStroke()
         regPoly(this.layer,0,0,6,40,18,0)
         this.layer.fill(0)

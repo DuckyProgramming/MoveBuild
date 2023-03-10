@@ -20,6 +20,7 @@ class battle{
         this.addCombatant({x:2,y:2},0,1)
         this.addCombatant({x:1,y:1},0,1)
         this.addCombatant({x:3,y:3},0,1)
+        this.addCombatant({x:3,y:0},0,1)
     }
     setupBattle(){
         this.energy.main=this.energy.base
@@ -28,6 +29,7 @@ class battle{
 
         this.cardManager.clearBattle()
         this.cardManager.copy(0,1)
+        this.cardManager.shuffle(1)
         this.cardManager.draw(this.cardManager.drawAmount)
     }
     addCombatant(position,type,team){

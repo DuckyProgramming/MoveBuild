@@ -8,5 +8,9 @@ function windowResized(){
     resizeCanvas(windowWidth-50,windowHeight-50)
 }
 /*
-Make Twin Strike
+Display Size of Decks
+Animations
+EndTurn
+Hotkey Merging
+Damage Numbers
 */

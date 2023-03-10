@@ -7,6 +7,14 @@ class combatantManager{
     addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
         this.combatants.push(new combatant(this.layer,x,y,relativeX,relativeY,tileX,tileY,type,team,direction))
     }
+    getCombatantIndex(tileX,tileY){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].tilePosition.x==tileX&&this.combatants[a].tilePosition.y==tileY){
+                return a
+            }
+        }
+        return -1
+    }
     display(scene){
         switch(scene){
             case 'battle':

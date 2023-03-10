@@ -86,14 +86,38 @@ function legalTarget(type,length,x,y){
 function distTarget(type,x,y){
 	switch(type){
 		case 0:
-			if(x==y&&(x!=0||y!=0)){
+			if(x==y&&x!=0){
 				return abs(x)
 			}
-			if(y==0&&(x!=0||y!=0)){
+			if(y==0&&x!=0){
 				return abs(x)
 			}
-			if(x==0&&(x!=0||y!=0)){
+			if(x==0&&y!=0){
 				return abs(y)
+			}
+			return -1
+	}
+}
+function targetDirection(type,x,y){
+	switch(type){
+		case 0:
+			if(y==0&&x<0){
+				return 0
+			}
+			if(x==y&&x<0){
+				return 1
+			}
+			if(x==0&&y<0){
+				return 2
+			}
+			if(y==0&&x>0){
+				return 3
+			}
+			if(x==y&&x>0){
+				return 4
+			}
+			if(x==0&&y>0){
+				return 2
 			}
 			return -1
 	}
@@ -102,7 +126,7 @@ function legalTargetCombatant(type,length,combatant1,combatant2,tiles){
 	if(legalTarget(type,length,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
 		let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
 		for(a=0,la=tiles.length;a<la;a++){
-			if(tiles[a].occupied&&legalTarget(type,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+			if(tiles[a].occupied&&legalTarget(type,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(type,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
 				return false
 			}
 		}
@@ -112,6 +136,9 @@ function legalTargetCombatant(type,length,combatant1,combatant2,tiles){
 }
 function distTargetCombatant(type,combatant1,combatant2){
 	return distTarget(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
+}
+function quickAdd(name){
+	current.cardManager.hand.add(findName(name,types.card),0,0)
 }
 function updateMouse(layer){
 	inputs.mouse.x=mouseX
