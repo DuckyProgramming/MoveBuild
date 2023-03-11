@@ -6,14 +6,11 @@ Long Strike
 Push
 
 EndTurn
-Buff System Eventually
 
 Hurt Self For Energy
-Double Next Hit
 Swap
 Only Hits at Range 2
 Heal Self (Exhaust)
-Basic Draw
 Pull (Range 2)
 Knee (Push, Move to Previous Location of Target)
 2-8 Range Throwing Knife?

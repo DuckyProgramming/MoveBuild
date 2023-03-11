@@ -11,13 +11,20 @@ class combatant{
         this.fade=0
 
         this.life=types.combatant[this.type].life
-
         this.block=0
-
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
-        
         this.infoAnim={life:1,block:0,size:1,upSize:false,target:[0]}
+
+        this.status={main:[],name:['Double Damage'],display:[],active:[],position:[],size:[],
+            behavior:[0],
+            class:[0]}
+        for(let a=0;a<1;a++){
+            this.status.main.push(0)
+            this.status.active.push(false)
+            this.status.position.push(0)
+            this.status.size.push(0)
+        }
 
         this.direction=0
         this.size=1.25
@@ -96,7 +103,7 @@ class combatant{
 
                 this.sprites={spin:0,detail:3,spinDetail:0,spinDetailHead:0,temp:0}
 
-                this.animSet={loop:0,flip:0}
+                this.animSet=[{loop:0,flip:0},{loop:0}]
 
                 this.goal={anim:{direction:this.anim.direction}}
 
@@ -193,9 +200,13 @@ class combatant{
 
         }
     }
-    takeDamage(value,spec){
+    takeDamage(value,user,spec){
         if(value>0){
             let damage=value
+            if(this.battle.combatantManager.combatants[user].status.main[0]>0){
+                this.battle.combatantManager.combatants[user].status.main[0]--
+                damage*=2
+            }
             
             if(this.block>=damage){
             this.block-=damage
@@ -220,21 +231,36 @@ class combatant{
         this.relativePosition.x+=sin(direction)*speed
         this.relativePosition.y+=cos(direction)*speed
     }
-    startAnimation(){
+    statusEffect(name,value){
+        if(findList(name,this.status.name)>=0){
+            this.status.main[findList(name,this.status.name)]+=value
+        }
+    }
+    startAnimation(type){
         switch(this.type){
             case 1:
-                this.animSet.loop=0
-                this.animSet.flip=floor(random(0,2))
+                switch(type){
+                    case 0:
+                        this.animSet[0].loop=0
+                        this.animSet[1].loop=0
+                        this.animSet[0].flip=floor(random(0,2))
+                    break
+                }
             break
         }
     }
-    runAnimation(rate){
+    runAnimation(rate,type){
         switch(this.type){
             case 1:
-                this.animSet.loop+=rate
-                if(this.animSet.loop>=1){
-                    this.animSet.loop-=1
-                    this.animSet.flip=1-this.animSet.flip
+                switch(type){
+                    case 0:
+                        this.animSet[0].loop+=rate
+                        this.animSet[1].loop+rate
+                        if(this.animSet[0].loop>=1){
+                            this.animSet[0].loop-=1
+                            this.animSet[0].flip=1-this.animSet[0].flip
+                        }
+                    break
                 }
             break
         }
@@ -896,12 +922,20 @@ class combatant{
                 this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
                 this.layer.ellipse(-25,0,10,10)
             }
+            for(let a=0,la=this.status.display.length;a<la;a++){
+                displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade)
+            }
             this.layer.fill(0,this.fade)
             this.layer.textSize(6)
             this.layer.text(max(0,ceil(this.life*10)/10)+"/"+max(0,ceil(this.base.life*10)/10),0,0.5)
             if(this.infoAnim.block>0){
                 this.layer.fill(0,this.fade*this.infoAnim.block)
                 this.layer.text(ceil(this.block*10)/10,-25,0.5)
+            }
+            this.layer.fill(0,this.fade)
+            for(let a=0,la=this.status.display.length;a<la;a++){
+                this.layer.textSize(8*this.status.size[this.status.display[a]])
+                this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
             }
             this.layer.scale(1/this.infoAnim.size)
             this.layer.translate(-this.offset.life.x,-this.offset.life.y)
@@ -967,6 +1001,60 @@ class combatant{
         if(this.anim.direction<-180){
             this.anim.direction+=360
         }
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            if(this.status.main[a]!=0&&!this.status.active[a]){
+                this.status.active[a]=true
+                this.status.size[a]=0
+                this.status.position[a]=this.status.display.length*6
+                this.status.display.push(a)
+            }
+            if(this.status.active[a]){
+                if(this.status.main[a]!=0&&this.status.size[a]<1){
+                    this.status.size[a]=round(this.status.size[a]*10+1)/10
+                }else if(this.status.main[a]==0&&this.status.size[a]>0){
+                    this.status.size[a]=round(this.status.size[a]*10-1)/10
+                }
+            }
+        }
+        for(let a=0,la=this.status.display.length;a<la;a++){
+            if(abs(this.status.position[this.status.display[a]]-(a*12-(la-1)*6))<2){
+                this.status.position[this.status.display[a]]=a*12-(la-1)*6
+            }else if(abs(this.status.position[this.status.display[a]]<a*12-(la-1)*6)){
+                this.status.position[this.status.display[a]]+=2
+            }else if(abs(this.status.position[this.status.display[a]]>a*12-(la-1)*6)){
+                this.status.position[this.status.display[a]]-=2
+            }
+            if(this.status.main[this.status.display[a]]==0&&this.status.size[this.status.display[a]]<=0){
+                this.status.active[this.status.display[a]]=false
+                this.status.display.splice(a,1)
+            }
+        }
+        switch(this.type){
+            case 1:
+                this.animSet[0].flip=round(this.animSet[0].flip)
+                for(let g=0;g<2;g++){
+                    if(sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)>0){
+                        this.anim.legs[g].top=9+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*27
+                        this.anim.legs[g].bottom=sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*21
+                        this.spin.legs[g].top=(60+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*-30)*(g*2-1)
+                        this.spin.legs[g].bottom=(120+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*-90)*(g*2-1)
+                        this.anim.arms[g].top=24+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*6
+                        this.anim.arms[g].bottom=9+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*9
+                        this.spin.arms[g].top=(93+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*24)*(g*2-1)
+                        this.spin.arms[g].bottom=(75+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*36)*(g*2-1)
+                    }else{
+                        this.anim.legs[g].top=9+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*-9
+                        this.anim.legs[g].bottom=sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*-30
+                        this.spin.legs[g].top=(60+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*-60)*(g*2-1)
+                        this.spin.legs[g].bottom=(120+sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*-30)*(g*2-1)
+                        this.anim.arms[g].top=24-sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*3
+                        this.anim.arms[g].bottom=9-sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*18
+                        this.spin.arms[g].top=(93-sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*-24)*(g*2-1)
+                        this.spin.arms[g].bottom=(75-sin((this.animSet[0].loop+this.animSet[0].flip+g)*180)*-18)*(g*2-1)
+                    }
+                }
+            break
+        }
         switch(this.type){
             case 1:
                 if(abs(this.goal.anim.direction+90)<1){
@@ -976,38 +1064,16 @@ class combatant{
                     this.goal.anim.direction=60
                 }
                 this.anim.head=this.anim.direction
-                this.animSet.flip=round(this.animSet.flip)
-                this.fades.kimono.main.back.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
-                this.fades.kimono.main.front.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
-                this.fades.kimono.main.back.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
-                this.fades.kimono.main.front.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
-                this.fades.kimono.outside.back.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
-                this.fades.kimono.outside.front.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
-                this.fades.kimono.outside.back.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
-                this.fades.kimono.outside.front.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
-                this.fades.kimono.decoration.position.x=1+abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.1
-                this.fades.kimono.decoration.position.y=1-abs(sin((this.animSet.loop+this.animSet.flip)*180))*0.05
-                for(let g=0;g<2;g++){
-                    if(sin((this.animSet.loop+this.animSet.flip+g)*180)>0){
-                        this.anim.legs[g].top=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*36
-                        this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip+g)*180)*24
-                        this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip+g)*180)*-30)*(g*2-1)
-                        this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip+g)*180)*-90)*(g*2-1)
-                        this.anim.arms[g].top=24+sin((this.animSet.loop+this.animSet.flip+g)*180)*6
-                        this.anim.arms[g].bottom=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*9
-                        this.spin.arms[g].top=(93+sin((this.animSet.loop+this.animSet.flip+g)*180)*24)*(g*2-1)
-                        this.spin.arms[g].bottom=(75+sin((this.animSet.loop+this.animSet.flip+g)*180)*36)*(g*2-1)
-                    }else{
-                        this.anim.legs[g].top=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*-12
-                        this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip+g)*180)*-36
-                        this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip+g)*180)*-60)*(g*2-1)
-                        this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip+g)*180)*-30)*(g*2-1)
-                        this.anim.arms[g].top=24-sin((this.animSet.loop+this.animSet.flip+g)*180)*3
-                        this.anim.arms[g].bottom=9-sin((this.animSet.loop+this.animSet.flip+g)*180)*18
-                        this.spin.arms[g].top=(93-sin((this.animSet.loop+this.animSet.flip+g)*180)*-24)*(g*2-1)
-                        this.spin.arms[g].bottom=(75-sin((this.animSet.loop+this.animSet.flip+g)*180)*-18)*(g*2-1)
-                    }
-                }
+                this.fades.kimono.main.back.x=1+abs(sin(this.animSet[1].loop*180))*0.1
+                this.fades.kimono.main.front.x=1+abs(sin(this.animSet[1].loop*180))*0.1
+                this.fades.kimono.main.back.y=1-abs(sin(this.animSet[1].loop*180))*0.05
+                this.fades.kimono.main.front.y=1-abs(sin(this.animSet[1].loop*180))*0.05
+                this.fades.kimono.outside.back.x=1+abs(sin(this.animSet[1].loop*180))*0.1
+                this.fades.kimono.outside.front.x=1+abs(sin(this.animSet[1].loop*180))*0.1
+                this.fades.kimono.outside.back.y=1-abs(sin(this.animSet[1].loop*180))*0.05
+                this.fades.kimono.outside.front.y=1-abs(sin(this.animSet[1].loop*180))*0.05
+                this.fades.kimono.decoration.position.x=1+abs(sin(this.animSet[1].loop*180))*0.1
+                this.fades.kimono.decoration.position.y=1-abs(sin(this.animSet[1].loop*180))*0.05
                 if(this.anim.direction>180){
                     this.anim.direction-=360
                 }else if(this.anim.direction<-180){

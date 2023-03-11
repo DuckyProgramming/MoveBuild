@@ -35,15 +35,23 @@ class group{
             cards.splice(index,1)
         }
     }
-    send(list,firstIndex,lastIndex){
+    send(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
+                if(spec==1){
+                    list[list.length-1].position.x=1200
+                    list[list.length-1].position.y=500
+                }
                 this.cards.splice(firstIndex,1)
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
+                if(spec==1){
+                    list[list.length-1].position.x=1200
+                    list[list.length-1].position.y=500
+                }
                 this.cards.splice(firstIndex,1)
             }
         }
@@ -128,11 +136,7 @@ class group{
     callInput(type,a){
         switch(type){
             case 0:
-                for(let b=0,lb=this.battle.combatantManager.combatants.length;b<lb;b++){
-                    if(this.battle.combatantManager.combatants[b].team==0){
-                        this.battle.attackManager.user=b
-                    }
-                }
+                this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatant()
                 this.battle.attackManager.type=this.cards[a].attack
                 this.battle.attackManager.effect=this.cards[a].effect
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x

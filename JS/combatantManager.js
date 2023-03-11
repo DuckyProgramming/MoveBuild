@@ -15,6 +15,13 @@ class combatantManager{
         }
         return -1
     }
+    getPlayerCombatant(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                return a
+            }
+        }
+    }
     display(scene){
         switch(scene){
             case 'battle':

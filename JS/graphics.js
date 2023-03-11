@@ -270,6 +270,13 @@ function setupCombatantGraphics(type){
 					graphics.minor[18].ellipse(0,(24-g)*(1-g/lg),15*(1-g/lg),30*(1-g/lg))
 				}
 			}
+			graphics.minor[18].rotate(12)
+			graphics.minor[18].fill(50,0,100)
+			for(let h=0;h<5;h++){
+				graphics.minor[18].rotate(72)
+				graphics.minor[18].rect(0,-6,2,12)
+				graphics.minor[18].ellipse(0,-12,4,4)
+			}
 
 			graphics.minor[19].translate(80,80)
 			for(let g=0,lg=8;g<lg;g++){
@@ -279,6 +286,13 @@ function setupCombatantGraphics(type){
 					graphics.minor[19].rotate(45)
 					graphics.minor[19].ellipse(0,(24-g)*(1-g/lg),18*(1-g/lg),30*(1-g/lg))
 				}
+			}
+			graphics.minor[19].rotate(48)
+			graphics.minor[19].fill(75,0,75)
+			for(let h=0;h<5;h++){
+				graphics.minor[19].rotate(72)
+				graphics.minor[19].rect(0,-6,2,12)
+				graphics.minor[19].ellipse(0,-12,4,4)
 			}
 		
 			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail

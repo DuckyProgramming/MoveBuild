@@ -33,17 +33,35 @@ class card{
         this.class=types.card[this.type].levels[this.level].class
         this.levels=types.card[this.type].levels.length
     }
+    calculateEffect(effect,type){
+        switch(type){
+            case 0:
+                let damage=effect
+                let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatant()]
+                if(user.status.main[0]>0){
+                    damage*=2
+                }
+                if(damage==effect){
+                    return effect
+                }else{
+                    return effect+' ('+damage+')'
+                }
+        }
+    }
     description(){
         let string=''
         if(this.spec.includes(3)){
             string+='Innate\n'
         }
         switch(this.attack){
-            case 1: string+='Deal '+this.effect[0]+' Damage'; break
+            case 1: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
             case 2: string+='Add '+this.effect[0]+ ' Block'; break
             case 3: string+='Move '+this.effect[0]+' Tiles'; break
-            case 4: string+='Deal '+this.effect[0]+' Damage\n2 Times'; break
+            case 4: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n2 Times'; break
             case 5: if(this.effect[0]>0){string+='Deal '+this.effect[0]+' Damage'} string+='Push 1 Tile'; break
+            case 6: string+='Next '+this.effect[0]+' Hit'; if(this.effect[0]!=1){string+='s'} string+='\nDeal Double\nDamage'; break
+            case 7: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Fatal, Gain\n'+this.effect[1]+' Energy'; break
+            case 8: string+='Draw '+this.effect[0]+' Cards'; break
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)

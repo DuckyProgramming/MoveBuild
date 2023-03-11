@@ -50,6 +50,13 @@ function pointInsideBox(point,box){
 function vectorAtan(point1,point2){
 	return atan2(point2.x-point1.x,point2.y-point1.y)
 }
+function findList(entry,list){
+	for(let a=0,la=list.length;a<la;a++){
+		if(list[a]==entry){
+			return a
+		}
+	}
+}
 function findName(name,list){
 	for(let a=0,la=list.length;a<la;a++){
 		if(list[a].name==name){

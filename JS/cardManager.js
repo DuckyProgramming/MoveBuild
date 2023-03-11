@@ -33,8 +33,16 @@ class cardManager{
         this.getList(group).shuffle()
     }
     draw(amount){
+        let amountLeft=amount-this.reserve.cards.length
         if(this.reserve.cards.length>0){
-            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length))
+            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),1)
+        }
+        if(amountLeft>0&&this.discard.cards.length>0){
+            this.discard.send(this.reserve.cards,0,min(amountLeft,this.discard.cards.length))
+            this.reserve.shuffle()
+            if(this.reserve.cards.length>0){
+                this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),1)
+            }
         }
     }
     fatigue(){
