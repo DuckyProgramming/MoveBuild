@@ -144,6 +144,14 @@ function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,t
 function distTargetCombatant(type,combatant1,combatant2){
 	return distTarget(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
 }
+function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
+	if(trigger&&anim<maxPoint){
+		return min(round(anim*speed+1)/speed,maxPoint)
+	}else if(!trigger&&anim>minPoint){
+		return max(round(anim*speed-1)/speed,minPoint)
+	}
+	return anim
+}
 function quickAdd(name){
 	current.cardManager.hand.add(findName(name,types.card),0,0)
 }

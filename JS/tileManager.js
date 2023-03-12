@@ -57,11 +57,7 @@ class tileManager{
                     this.tiles[a].display()
                 }
                 for(let a=0,la=this.tiles.length;a<la;a++){
-                    if((this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles))&&this.tiles[a].anim.target[0]<1){
-                        this.tiles[a].anim.target[0]=round(this.tiles[a].anim.target[0]*5+1)/5
-                    }else if(!(this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles))&&this.tiles[a].anim.target[0]>0){
-                        this.tiles[a].anim.target[0]=round(this.tiles[a].anim.target[0]*5-1)/5
-                    }
+                    this.tiles[a].anim.target[0]=smoothAnim(this.tiles[a].anim.target[0],this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles),0,1,5)
                 }
             break
         }
@@ -86,11 +82,7 @@ class tileManager{
                         }
                     }
                 }
-                if(this.battle.attackManager.targetInfo[0]!=0&&this.anim.coordinate<1){
-                    this.anim.coordinate=round(this.anim.coordinate*5+1)/5
-                }else if(this.battle.attackManager.targetInfo[0]==0&&this.anim.coordinate>0){
-                    this.anim.coordinate=round(this.anim.coordinate*5-1)/5
-                }
+                this.anim.coordinate=smoothAnim(this.anim.coordinate,this.battle.attackManager.targetInfo[0]!=0,0,1,5)
             break
         }
     }

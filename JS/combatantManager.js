@@ -2,10 +2,22 @@ class combatantManager{
     constructor(layer,battle){
         this.layer=layer
         this.battle=battle
+
+        this.id=0
+
         this.combatants=[]
     }
+    resetCombatants(){
+        this.id=0
+        for(let a=1,la=this.combatants.length;a<la;a++){
+            this.combatants.splice(a,1)
+            a--
+            la--
+        }
+    }
     addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
-        this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,direction))
+        this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30))
+        this.id++
     }
     getCombatantIndex(tileX,tileY){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -36,11 +48,7 @@ class combatantManager{
                 this.layer.stroke(255)
                 this.layer.strokeWeight(3)
                 for(let a=0,la=this.combatants.length;a<la;a++){
-                    if((this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles))&&this.combatants[a].infoAnim.target[0]<1){
-                        this.combatants[a].infoAnim.target[0]=round(this.combatants[a].infoAnim.target[0]*5+1)/5
-                    }else if(!(this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles))&&this.combatants[a].infoAnim.target[0]>0){
-                        this.combatants[a].infoAnim.target[0]=round(this.combatants[a].infoAnim.target[0]*5-1)/5
-                    }
+                    this.combatants[a].infoAnim.target[0]=smoothAnim(this.combatants[a].infoAnim.target[0],this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles),0,1,5)
                 }
             break
         }

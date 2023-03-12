@@ -96,8 +96,8 @@ types={
         ],
     },deck:{
         start:[
-            [['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Step',0,0],['Dash',0,0]],
-            //[['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
+            //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Step',0,0],['Dash',0,0]],
+            [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
            
         ]

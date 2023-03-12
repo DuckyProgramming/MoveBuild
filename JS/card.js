@@ -141,20 +141,8 @@ class card{
         }else if(!this.deSize&&(!this.downSize&&this.size<1||this.size<0.6||this.upSize&&this.size<1.5)){
             this.size=min(round(this.size*5+1)/5,1.5)
         }
-        if(this.deFade&&this.fade>0){
-            this.fade=round(this.fade*10-1)/10
-        }else if(!this.deFade&&this.fade<1){
-            this.fade=round(this.fade*10+1)/10
-        }
-        if(this.select&&this.anim.select<1){
-            this.anim.select=round(this.anim.select*10+1)/10
-        }else if(!this.select&&this.anim.select>0){
-            this.anim.select=round(this.anim.select*10-1)/10
-        }
-        if(this.afford&&this.anim.afford<1){
-            this.anim.afford=round(this.anim.afford*10+1)/10
-        }else if(!this.afford&&this.anim.afford>0){
-            this.anim.afford=round(this.anim.afford*10-1)/10
-        }
+        this.fade=smoothAnim(this.fade,!this.deFade,0,1,5)
+        this.anim.select=smoothAnim(this.anim.select,this.select,0,1,5)
+        this.anim.afford=smoothAnim(this.anim.afford,this.afford,0,1,5)
     }
 }

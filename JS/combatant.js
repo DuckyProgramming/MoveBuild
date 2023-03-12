@@ -1,5 +1,5 @@
 class combatant{
-    constructor(layer,battle,x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
+    constructor(layer,battle,x,y,relativeX,relativeY,tileX,tileY,type,team,id,direction){
         this.layer=layer
         this.battle=battle
         this.position={x:x,y:y}
@@ -7,6 +7,7 @@ class combatant{
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
         this.team=team
+        this.id=id
         this.offset={position:{x:0,y:0},life:{x:0,y:25}}
         this.fade=0
 
@@ -898,41 +899,51 @@ class combatant{
             this.layer.translate(this.position.x+this.offset.life.x,this.position.y+this.offset.life.y)
             this.layer.scale(this.infoAnim.size)
             this.layer.noStroke()
-            this.layer.fill(150,this.fade)
+            this.layer.fill(150,this.fade*this.infoAnim.life)
             this.layer.rect(0,0,50,6,3)
             if(this.collect.life>=this.life){
-                this.layer.fill(240,0,0,this.fade)
+                this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
                 this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
-                this.layer.fill(min(255,510-max(0,this.life)/this.base.life*510)-max(0,5-max(0,this.life)/this.base.life*30)*25,max(0,this.life)/this.base.life*510,0,this.fade)
+                this.layer.fill(min(255,510-max(0,this.life)/this.base.life*510)-max(0,5-max(0,this.life)/this.base.life*30)*25,max(0,this.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
                 this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
             }else if(this.collect.life<this.life){
-                this.layer.fill(240,0,0,this.fade)
+                this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
                 this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
-                this.layer.fill(min(255,510-max(0,this.collect.life)/this.base.life*510)-max(0,5-max(0,this.collect.life)/this.base.life*30)*25,max(0,this.collect.life)/this.base.life*510,0,this.fade)
+                this.layer.fill(min(255,510-max(0,this.collect.life)/this.base.life*510)-max(0,5-max(0,this.collect.life)/this.base.life*30)*25,max(0,this.collect.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
                 this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
             }
             this.layer.noFill()
-            this.layer.stroke(0,this.fade)
+            this.layer.stroke(0,this.fade*this.infoAnim.life)
             this.layer.strokeWeight(0.75)
             this.layer.rect(0,0,51,6.75,3.75)
             this.layer.noStroke()
             if(this.infoAnim.block>0){
                 this.layer.fill(0,this.fade*this.infoAnim.block)
-                this.layer.ellipse(-25,0,11.5,11.5)
+                this.layer.ellipse(-28,0,11.5,11.5)
                 this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
-                this.layer.ellipse(-25,0,10,10)
+                this.layer.ellipse(-28,0,10,10)
+            }
+            if(this.team==1){
+                this.layer.fill(0,this.fade*this.infoAnim.life)
+                this.layer.ellipse(28,0,11.5,11.5)
+                this.layer.fill(200,100,100,this.fade*this.infoAnim.life)
+                this.layer.ellipse(28,0,10,10)
             }
             for(let a=0,la=this.status.display.length;a<la;a++){
-                displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade)
+                displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade*this.infoAnim.life)
             }
-            this.layer.fill(0,this.fade)
+            this.layer.fill(0,this.fade*this.infoAnim.life)
             this.layer.textSize(6)
             this.layer.text(max(0,ceil(this.life*10)/10)+"/"+max(0,ceil(this.base.life*10)/10),0,0.5)
             if(this.infoAnim.block>0){
                 this.layer.fill(0,this.fade*this.infoAnim.block)
-                this.layer.text(ceil(this.block*10)/10,-25,0.5)
+                this.layer.text(ceil(this.block*10)/10,-28,0.5)
             }
-            this.layer.fill(0,this.fade)
+            if(this.team==1){
+                this.layer.fill(0,this.fade*this.infoAnim.life)
+                this.layer.text(this.id,28,0.5)
+            }
+            this.layer.fill(0,this.fade*this.infoAnim.life)
             for(let a=0,la=this.status.display.length;a<la;a++){
                 this.layer.textSize(8*this.status.size[this.status.display[a]])
                 this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
@@ -953,27 +964,11 @@ class combatant{
         if(this.team==0){
             this.fade=1
         }else{
-            if(this.life>0&&this.fade<1){
-                this.fade=round(this.fade*15+1)/15
-            }else if(this.life<=0&&this.fade>0){
-                this.fade=round(this.fade*15-1)/15
-            }
-            if(this.life>0&&this.infoAnim.life<1){
-                this.infoAnim.life=round(this.infoAnim.life*5+1)/5
-            }else if(this.life<=0&&this.infoAnim.life>0){
-                this.infoAnim.life=round(this.infoAnim.life*5-1)/5
-            }
+            this.fade=smoothAnim(this.fade,this.life>0,0,1,15)
+            this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
         }
-        if(this.block>0&&this.infoAnim.block<1){
-            this.infoAnim.block=round(this.infoAnim.block*5+1)/5
-        }else if(this.block<=0&&this.infoAnim.block>0){
-            this.infoAnim.block=round(this.infoAnim.block*5-1)/5
-        }
-        if(this.infoAnim.upSize&&this.infoAnim.size<1.5){
-            this.infoAnim.size=min(round(this.infoAnim.size*5+1)/5,1.5)
-        }else if(!this.infoAnim.upSize&&this.infoAnim.size>1){
-            this.infoAnim.size=round(this.infoAnim.size*5-1)/5
-        }
+        this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)
+        this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)
         if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-180)<=18||abs(this.anim.direction-this.goal.anim.direction+180)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18){
             this.anim.direction=this.goal.anim.direction
         }else if(
@@ -1009,11 +1004,7 @@ class combatant{
                 this.status.display.push(a)
             }
             if(this.status.active[a]){
-                if(this.status.main[a]!=0&&this.status.size[a]<1){
-                    this.status.size[a]=round(this.status.size[a]*10+1)/10
-                }else if(this.status.main[a]==0&&this.status.size[a]>0){
-                    this.status.size[a]=round(this.status.size[a]*10-1)/10
-                }
+                this.status.size[a]=smoothAnim(this.status.size[a],this.status.main[a]!=0,0,1,5)
             }
         }
         for(let a=0,la=this.status.display.length;a<la;a++){
