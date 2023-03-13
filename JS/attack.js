@@ -1,18 +1,19 @@
 class attack{
-    constructor(type,battle,effect,user,target,targetDistance,position,relativePosition,tilePosition){
+    constructor(type,battle,effect,user,target,targetDistance){
         this.type=type
         this.battle=battle
         this.effect=effect
         this.user=user
         this.target=target
         this.targetDistance=targetDistance
-        this.position={x:position.x,y:position.y}
-        this.relativePosition={x:relativePosition.x,y:relativePosition.y}
-        this.tilePosition={x:tilePosition.x,y:tilePosition.y}
 
         this.procedure=[]
 
         this.userCombatant=this.battle.combatantManager.combatants[this.user]
+        
+        this.position={x:this.userCombatant.position.x,y:this.userCombatant.position.y}
+        this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
+        this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
 
         switch(this.type){
             case 1: case 4: case 5: case 7:

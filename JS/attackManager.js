@@ -19,7 +19,7 @@ class attackManager{
         this.tilePosition={x:0,y:0}
     }
     execute(){
-        this.attacks.push(new attack(this.type,this.battle,this.effect,this.user,this.target,this.targetDistance,this.position,this.relativePosition,this.tilePosition))
+        this.attacks.push(new attack(this.type,this.battle,this.effect,this.user,this.target,this.targetDistance))
         switch(this.type){
             case 1:
             break

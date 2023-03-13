@@ -76,8 +76,9 @@ types={
             ],
         },
     ],combatant:[
-        {life:20},
-        {life:60},
+        {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}]},
+        {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[]},
+        {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[10]}]},
     ],color:{
         card:[
             {

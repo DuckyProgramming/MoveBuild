@@ -9,10 +9,26 @@ class combatantManager{
     }
     resetCombatants(){
         this.id=0
-        for(let a=1,la=this.combatants.length;a<la;a++){
-            this.combatants.splice(a,1)
-            a--
-            la--
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==1){
+                this.combatants.splice(a,1)
+                a--
+                la--
+            }
+        }
+    }
+    setupCombatants(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==1){
+                this.combatants[a].setIntent(0)
+            }
+        }
+    }
+    unmoveCombatants(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==1){
+                this.combatants[a].moved=false
+            }
         }
     }
     addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
@@ -21,7 +37,7 @@ class combatantManager{
     }
     getCombatantIndex(tileX,tileY){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].tilePosition.x==tileX&&this.combatants[a].tilePosition.y==tileY){
+            if(this.combatants[a].tilePosition.x==tileX&&this.combatants[a].tilePosition.y==tileY&&this.combatants[a].life>0){
                 return a
             }
         }
@@ -31,6 +47,30 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){
                 return a
+            }
+        }
+    }
+    reorder(){
+        let order=1
+        let left=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==1&&this.combatants[a].life>0){
+                left.push(a)
+            }
+        }
+        while(left.length>0){
+            let minimum=this.combatants[left[0]].id
+            for(let a=1,la=left.length;a<la;a++){
+                minimum=min(minimum,this.combatants[left[a]].id)
+            }
+            for(let a=0,la=left.length;a<la;a++){
+                if(this.combatants[left[a]].id==minimum){
+                    this.combatants[left[a]].order=order
+                    left.splice(a,1)
+                    a--
+                    la--
+                    order++
+                }
             }
         }
     }
@@ -48,7 +88,9 @@ class combatantManager{
                 this.layer.stroke(255)
                 this.layer.strokeWeight(3)
                 for(let a=0,la=this.combatants.length;a<la;a++){
-                    this.combatants[a].infoAnim.target[0]=smoothAnim(this.combatants[a].infoAnim.target[0],this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles),0,1,5)
+                    if(this.battle.attackManager.targetInfo[0]==2&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)){
+                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].targetted[0]=true
+                    }
                 }
             break
         }

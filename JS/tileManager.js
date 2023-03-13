@@ -57,7 +57,9 @@ class tileManager{
                     this.tiles[a].display()
                 }
                 for(let a=0,la=this.tiles.length;a<la;a++){
-                    this.tiles[a].anim.target[0]=smoothAnim(this.tiles[a].anim.target[0],this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles),0,1,5)
+                    if(this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)){
+                        this.tiles[a].targetted[0]=true
+                    }
                 }
             break
         }
@@ -71,6 +73,7 @@ class tileManager{
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.tiles.length;a<la;a++){
+                    this.tiles[a].update()
                     this.tiles[a].occupied=false
                 }
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
@@ -82,7 +85,7 @@ class tileManager{
                         }
                     }
                 }
-                this.anim.coordinate=smoothAnim(this.anim.coordinate,this.battle.attackManager.targetInfo[0]!=0,0,1,5)
+                this.anim.coordinate=smoothAnim(this.anim.coordinate,this.battle.attackManager.targetInfo[0]!=0||true,0,1,5)
             break
         }
     }

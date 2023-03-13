@@ -12,10 +12,19 @@ class combatant{
         this.fade=0
 
         this.life=types.combatant[this.type].life
+        this.behavior=types.combatant[this.type].behavior
+        this.move=types.combatant[this.type].move
+        this.attack=copyArray(types.combatant[this.type].attack)
+
+        this.order=this.id
         this.block=0
+        this.intent=0
+        this.activated=true
+        this.moved=false
+        this.dead=false
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,upSize:false,target:[0]}
+        this.infoAnim={life:1,block:0,size:1,upSize:false}
 
         this.status={main:[],name:['Double Damage'],display:[],active:[],position:[],size:[],
             behavior:[0],
@@ -31,10 +40,6 @@ class combatant{
         this.size=1.25
 
         switch(this.type){
-            case 0:
-                this.anim={direction:direction}
-                this.goal={anim:{direction:this.anim.direction}}
-            break
             case 1:
                 this.anim={direction:direction,head:direction,sword:75,mouth:{x:8,y:5,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
@@ -148,7 +153,10 @@ class combatant{
             
                 this.kimono.decoration.push({spin:218,rotate:random(0,360),y:24,width:0.2,height:1,type:0})
             break
-
+            default:
+                this.anim={direction:direction}
+                this.goal={anim:{direction:this.anim.direction}}
+            break
         }
     }
     calculateParts(){
@@ -199,6 +207,17 @@ class combatant{
                 this.sprites.spinDetailHead=floor((((this.anim.head%360)+360)%360)/this.sprites.detail)
             break
 
+        }
+    }
+    setIntent(type){
+        switch(type){
+            case 0:
+                switch(this.behavior){
+                    case 0:
+                        this.intent=(this.battle.turn.main-1)%this.attack.length
+                    break
+                }
+            break
         }
     }
     takeDamage(value,user,spec){
@@ -374,7 +393,7 @@ class combatant{
             switch(this.type){
                 case 0:
                     this.layer.rotate(-this.anim.direction)
-                    this.layer.fill(255,255-this.team*255,255-this.team*255,this.fade)
+                    this.layer.fill(200,this.fade)
                     this.layer.noStroke()
                     this.layer.triangle(-6,-8,6,-8,0,12)
                 break
@@ -889,6 +908,12 @@ class combatant{
                         }
                     }
                 break
+                default:
+                    this.layer.rotate(-this.anim.direction)
+                    this.layer.fill(255,255-this.team*255,255-this.team*255,this.fade)
+                    this.layer.noStroke()
+                    this.layer.triangle(-6,-8,6,-8,0,12)
+                break
             }
             this.layer.pop()
         }
@@ -941,20 +966,12 @@ class combatant{
             }
             if(this.team==1){
                 this.layer.fill(0,this.fade*this.infoAnim.life)
-                this.layer.text(this.id,28,0.5)
+                this.layer.text(this.order,28,0.5)
             }
             this.layer.fill(0,this.fade*this.infoAnim.life)
             for(let a=0,la=this.status.display.length;a<la;a++){
                 this.layer.textSize(8*this.status.size[this.status.display[a]])
                 this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
-            }
-            this.layer.scale(1/this.infoAnim.size)
-            this.layer.translate(-this.offset.life.x,-this.offset.life.y)
-            if(this.infoAnim.target[0]>0){
-                this.layer.noFill()
-                this.layer.stroke(200,this.fade*this.infoAnim.target[0])
-                this.layer.strokeWeight(2)
-                this.layer.ellipse(0,0,game.targetRadius*2)
             }
             this.layer.pop()
         }
@@ -966,7 +983,19 @@ class combatant{
         }else{
             this.fade=smoothAnim(this.fade,this.life>0,0,1,15)
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
+            if(this.life<=0&&!this.dead){
+                this.dead=true
+                this.battle.combatantManager.reorder()
+            }
         }
+        if(this.team==1&&this.life>0&&!this.moved){
+            switch(this.attack[this.intent].type){
+                case 1:
+                    this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])].targetted[1]=true
+                break
+            }
+        }
+        
         this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)
         this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)
         if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-180)<=18||abs(this.anim.direction-this.goal.anim.direction+180)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18){

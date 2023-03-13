@@ -144,6 +144,27 @@ function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,t
 function distTargetCombatant(type,combatant1,combatant2){
 	return distTarget(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
 }
+function transformDirection(type,direction){
+	switch(type){
+		case 0:
+			let actualDirection=(direction%360+180)%360-180
+			if(abs(actualDirection+30)<=30){
+				return [0,1]
+			}else if(abs(actualDirection-30)<=30){
+				return [1,1]
+			}else if(abs(actualDirection+90)<=30){
+				return [1,0]
+			}else if(abs(actualDirection-90)<=30){
+				return [-1,0]
+			}else if(abs(actualDirection+150)<=30){
+				return [0,-1]
+			}else if(abs(actualDirection-150)<=30){
+				return [-1,-1]
+			}else{
+				return [0,0]
+			}
+	}
+}
 function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
 	if(trigger&&anim<maxPoint){
 		return min(round(anim*speed+1)/speed,maxPoint)

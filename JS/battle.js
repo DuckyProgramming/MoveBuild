@@ -20,22 +20,25 @@ class battle{
         this.cardManager.initialDeck()
         
         this.setupBattle()
-
-        this.addCombatant({x:3,y:1},this.player,0)
-        this.addCombatant({x:3,y:2},0,1)
-        this.addCombatant({x:2,y:1},0,1)
-        this.addCombatant({x:2,y:2},0,1)
-        this.addCombatant({x:1,y:1},0,1)
-        this.addCombatant({x:3,y:3},0,1)
-        this.addCombatant({x:3,y:0},0,1)
     }
     setupBattle(){
         this.energy.main=this.energy.base
+        this.turn.main=0
         this.turn.total=1
 
         this.tileManager.generateTiles(types.level[0])
 
         this.combatantManager.resetCombatants()
+
+        this.addCombatant({x:3,y:1},this.player,0)
+        this.addCombatant({x:3,y:2},2,1)
+        this.addCombatant({x:2,y:1},2,1)
+        this.addCombatant({x:2,y:2},2,1)
+        this.addCombatant({x:1,y:1},2,1)
+        this.addCombatant({x:3,y:3},2,1)
+        this.addCombatant({x:3,y:0},2,1)
+
+        this.combatantManager.setupCombatants()
 
         this.cardManager.clearBattle()
         this.cardManager.copy(0,1)
@@ -47,12 +50,21 @@ class battle{
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
         this.combatantManager.addCombatant(tilePosition.x,tilePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2)))
     }
+    endTurn(){
+        this.turnManager.loadEnemyTurns()
+        this.cardManager.allEffect(2,0)
+    }
+    startTurn(){
+        this.turn.main=0
+        this.combatantManager.unmoveCombatants()
+        this.cardManager.draw(this.cardManager.drawAmount)
+    }
     display(){
         this.layer.background(120)
         this.layer.fill(225,255,255)
         this.layer.stroke(200,255,255)
         this.layer.strokeWeight(3)
-        this.layer.quad(10,454,26,434,42,454,26,474)
+        this.layer.quad(-90+this.anim.turn*100,454,-74+this.anim.turn*100,434,-58+this.anim.turn*100,454,-74+this.anim.turn*100,474)
         this.layer.fill(this.colorDetail.fill)
         this.layer.stroke(this.colorDetail.stroke)
         this.layer.strokeWeight(3*this.anim.reserve)
@@ -73,7 +85,7 @@ class battle{
         this.layer.text('End Turn',-74+this.anim.turn*100,560-4*this.anim.endTurn)
         this.layer.text('('+this.turn.total+')',-74+this.anim.turn*100,560+4*this.anim.endTurn)
         this.layer.textSize(14-min(floor(max(this.energy.main,this.energy.base)/10)*2,3))
-        this.layer.text(this.energy.main+'/'+this.energy.base,26,454)
+        this.layer.text(this.energy.main+'/'+this.energy.base,-74+this.anim.turn*100,454)
         switch(stage.scene){
             case 'battle':
                 this.tileManager.display(stage.scene)
@@ -104,14 +116,28 @@ class battle{
     onClick(){
         switch(stage.scene){
             case 'battle':
-                this.cardManager.onClick(stage.scene)
+                if(this.turn.main==0){
+                    this.cardManager.onClick(stage.scene)
+                    if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:496},width:32,height:24})){
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:528},width:32,height:24})){
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:560},width:32,height:24})){
+                        this.endTurn()
+                    }
+                }
             break
         }
     }
     onKey(key,code){
         switch(stage.scene){
             case 'battle':
-                this.cardManager.onKey(stage.scene,key,code)
+                if(this.turn.main==0){
+                    this.cardManager.onKey(stage.scene,key,code)
+                    if(key=='r'||key=='R'){
+                    }else if(key=='d'||key=='D'){
+                    }else if(code==ENTER){
+                        this.endTurn()
+                    }
+                }
             break
         }
     }

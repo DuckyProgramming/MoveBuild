@@ -35,6 +35,15 @@ class group{
             cards.splice(index,1)
         }
     }
+    allEffect(effect){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            switch(effect){
+                case 0:
+                    this.cards[a].deSize=true
+                break
+            }
+        }
+    }
     send(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
@@ -107,7 +116,7 @@ class group{
                     }else{
                         this.cards[a].upSize=false
                     }
-                    if(this.cards[a].size<=0&&!this.cards[a].usable){
+                    if(this.cards[a].size<=0){
                         if(this.cards[a].spec.includes(1)){
                             this.cards.splice(a,1)
                             a--

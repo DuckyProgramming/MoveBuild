@@ -5,7 +5,14 @@ Twin Strike
 Long Strike
 Push
 
-EndTurn
+Animate Enemies Too
+
+EnemyActivate
+EnemyMove
+EnemyRetarget
+StartTurn
+EnemyDescription
+DisplayIntent
 
 Hurt Self For Energy
 Swap
