@@ -215,6 +215,12 @@ class combatant{
 
         }
     }
+    getTarget(){
+        switch(this.attack[this.intent].type){
+            case 1:
+                return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
+        }
+    }
     setIntent(type){
         switch(type){
             case 0:
@@ -228,9 +234,14 @@ class combatant{
     }
     activate(type,id){
         if(this.life>0&&!this.moved){
+            let target=this.getTarget()
             switch(this.attack[this.intent].type){
                 case 1:
-                    this.targetTile=this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])].tilePosition
+                    if(target==-1){
+                        this.targetTile={x:-1,y:-1}
+                    }else{
+                        this.targetTile=this.battle.tileManager.tiles[target].tilePosition
+                    }
                 break
             }
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
@@ -1057,12 +1068,15 @@ class combatant{
             }
         }
         if(this.team==1&&this.life>0&&!this.moved){
+            let target=this.getTarget()
             switch(this.attack[this.intent].type){
                 case 1:
-                    if(this.activated){
-                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])].targetted[2]=true
-                    }else{
-                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])].targetted[1]=true
+                    if(target!=-1){
+                        if(this.activated){
+                            this.battle.tileManager.tiles[target].targetted[2]=true
+                        }else{
+                            this.battle.tileManager.tiles[target].targetted[1]=true
+                        }
                     }
                 break
             }

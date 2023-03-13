@@ -18,8 +18,18 @@ class turnManager{
                 this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
             }
         }
+        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+            if(this.battle.combatantManager.combatants[a].team==1){
+                this.turns.push(new turn(2,this.battle,0,0,a))
+            }
+        }
     }
     update(){
+        if(game.turnTime>0&&this.battle.turn.time<=0&&this.battle.turn.main==0&&this.battle.attackManager.attacks.length==0&&this.turns.length==0){
+            this.battle.endTurn()
+        }else{
+            this.battle.turn.time--
+        }
         for(let a=0;a<game.animRate;a++){
             if(this.turns.length>0){
                 this.battle.turn.main=this.turns[0].user

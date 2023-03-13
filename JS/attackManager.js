@@ -18,6 +18,10 @@ class attackManager{
         this.relativePosition={x:0,y:0}
         this.tilePosition={x:0,y:0}
     }
+    clear(){
+        this.attacks=[]
+        this.targetInfo[0]=0
+    }
     execute(){
         this.attacks.push(new attack(this.type,this.battle,this.effect,this.user,this.target,this.targetDistance))
         switch(this.type){

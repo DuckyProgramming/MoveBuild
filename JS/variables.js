@@ -76,23 +76,26 @@ types={
             ],
         },
     ],combatant:[
-        {name:'asdf',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"asdf\nasdf\nasdf\nasdf"},
+        {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
-        {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[4]}],description:"asdf\nasdf\nasdf\nasdf"},
+        {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[4]}],description:""},
     ],color:{
         card:[
             {
                 fill:[200,200,200],
                 stroke:[175,175,175],
                 text:[50,50,50],
+                active:[255,255,255],
             },{
                 fill:[150,200,150],
                 stroke:[125,175,125],
                 text:[0,100,0],
+                active:[200,255,200],
             },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
                 text:[40,40,40],
+                active:[200,200,200],
             },
         ],
     },deck:{
@@ -117,7 +120,7 @@ types={
     ]
 }
 stage={scale:0,scene:'battle'}
-game={player:0,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30}
+game={player:0,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0}
 constants={collisionDamage:4}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}

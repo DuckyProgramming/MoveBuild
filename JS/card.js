@@ -37,7 +37,7 @@ class card{
         switch(type){
             case 0:
                 let damage=effect
-                let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatant()]
+                let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex()]
                 if(user.status.main[0]>0){
                     damage*=2
                 }
@@ -80,6 +80,9 @@ class card{
         }
         if(this.spec.includes(4)){
             string+='\nEthereal'
+        }
+        if(string[0]=='\n'){
+            string=string.substring(1,string.length)
         }
         return string
     }

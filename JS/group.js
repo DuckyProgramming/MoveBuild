@@ -145,7 +145,7 @@ class group{
     callInput(type,a){
         switch(type){
             case 0:
-                this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatant()
+                this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex()
                 this.battle.attackManager.type=this.cards[a].attack
                 this.battle.attackManager.effect=this.cards[a].effect
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x

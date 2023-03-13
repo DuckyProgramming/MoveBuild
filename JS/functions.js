@@ -49,7 +49,7 @@ function pointInsideBox(point,box){
 }
 function intentDescription(attack){
 	switch(attack.type){
-		case 1: return 'Deals '+attack.effect[0]+' Damage\nRange 1-1'
+		case 1: return 'Deal '+attack.effect[0]+' Damage\nRange 1-1'
 	}
 }
 function vectorAtan(point1,point2){
@@ -158,13 +158,13 @@ function transformDirection(type,direction){
 			}else if(abs(actualDirection-30)<=30){
 				return [1,1]
 			}else if(abs(actualDirection+90)<=30){
-				return [1,0]
-			}else if(abs(actualDirection-90)<=30){
 				return [-1,0]
+			}else if(abs(actualDirection-90)<=30){
+				return [1,0]
 			}else if(abs(actualDirection+150)<=30){
-				return [0,-1]
-			}else if(abs(actualDirection-150)<=30){
 				return [-1,-1]
+			}else if(abs(actualDirection-150)<=30){
+				return [0,-1]
 			}else{
 				return [0,0]
 			}

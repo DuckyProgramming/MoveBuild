@@ -11,7 +11,7 @@ class battle{
         this.particleManager=new particleManager(this.layer,this)
 
         this.energy={main:0,gen:0,base:3}
-        this.turn={main:0,total:1}
+        this.turn={main:0,total:1,time:0}
         this.anim={reserve:1,discard:1,endTurn:1,turn:0}
         this.counter={id:0}
 
@@ -29,13 +29,25 @@ class battle{
 
         this.combatantManager.resetCombatants()
 
-        this.addCombatant({x:3,y:1},this.player,0)
-        this.addCombatant({x:3,y:2},2,1)
-        this.addCombatant({x:2,y:1},2,1)
-        this.addCombatant({x:2,y:2},2,1)
-        this.addCombatant({x:1,y:1},2,1)
-        this.addCombatant({x:3,y:3},2,1)
+        this.addCombatant({x:3,y:3},this.player,0)
+        this.addCombatant({x:0,y:0},2,1)
+        this.addCombatant({x:1,y:0},2,1)
+        this.addCombatant({x:2,y:0},2,1)
         this.addCombatant({x:3,y:0},2,1)
+        /*this.addCombatant({x:4,y:1},2,1)
+        this.addCombatant({x:5,y:2},2,1)
+        this.addCombatant({x:6,y:3},2,1)
+        this.addCombatant({x:6,y:4},2,1)
+        this.addCombatant({x:6,y:5},2,1)
+        this.addCombatant({x:6,y:6},2,1)
+        this.addCombatant({x:5,y:6},2,1)
+        this.addCombatant({x:4,y:6},2,1)
+        this.addCombatant({x:3,y:6},2,1)
+        this.addCombatant({x:2,y:5},2,1)
+        this.addCombatant({x:1,y:4},2,1)
+        this.addCombatant({x:0,y:3},2,1)
+        this.addCombatant({x:0,y:2},2,1)
+        this.addCombatant({x:0,y:1},2,1)*/
 
         this.cardManager.clearBattle()
         this.cardManager.copy(0,1)
@@ -51,10 +63,12 @@ class battle{
     endTurn(){
         this.turnManager.loadEnemyTurns()
         this.cardManager.allEffect(2,0)
+        this.attackManager.clear()
     }
     startTurn(){
         this.turn.main=0
         this.turn.total++
+        this.turn.time=game.turnTime
         this.energy.main=this.energy.gen
         this.combatantManager.setupCombatants()
         this.combatantManager.unmoveCombatants()
@@ -75,6 +89,14 @@ class battle{
         this.layer.rect(-74+this.anim.turn*100,528,32*this.anim.discard,24*this.anim.discard,5*this.anim.discard)
         this.layer.strokeWeight(3*this.anim.endTurn)
         this.layer.rect(-74+this.anim.turn*100,560,32*this.anim.endTurn,24*this.anim.endTurn,5*this.anim.endTurn)
+        if(game.turnTime>0){
+            this.layer.rect(58+game.turnTime/6,680-this.anim.turn*100,game.turnTime/3+12,16,5)
+            this.layer.fill(0)
+            this.layer.noStroke()
+            this.layer.rect(58+game.turnTime/6,680-this.anim.turn*100,game.turnTime/3,4,2)
+            this.layer.fill(this.colorDetail.active)
+            this.layer.rect(58+this.turn.time/6,680-this.anim.turn*100,this.turn.time/3,4,2)
+        }
         this.layer.fill(0)
         this.layer.noStroke()
         this.layer.textSize(8*this.anim.reserve)
@@ -122,7 +144,7 @@ class battle{
                     this.cardManager.onClick(stage.scene)
                     if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:496},width:32,height:24})){
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:528},width:32,height:24})){
-                    }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:560},width:32,height:24})){
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:560},width:32,height:24})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0){
                         this.endTurn()
                     }
                 }
@@ -136,7 +158,7 @@ class battle{
                     this.cardManager.onKey(stage.scene,key,code)
                     if(key=='r'||key=='R'){
                     }else if(key=='d'||key=='D'){
-                    }else if(code==ENTER){
+                    }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0){
                         this.endTurn()
                     }
                 }

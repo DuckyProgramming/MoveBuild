@@ -7,9 +7,8 @@ Push
 
 Animate Enemies Too
 
-EnemyMove
-EnemyRetarget
-StartTurn
+Win
+Lose
 
 Hurt Self For Energy
 Swap

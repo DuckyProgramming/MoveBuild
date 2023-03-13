@@ -19,6 +19,7 @@ class combatantManager{
     }
     setupCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
+            this.combatants[a].block=0
             if(this.combatants[a].team==1){
                 this.combatants[a].setIntent(0)
             }
@@ -51,7 +52,7 @@ class combatantManager{
         }
         return -1
     }
-    getPlayerCombatant(){
+    getPlayerCombatantIndex(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){
                 return a
