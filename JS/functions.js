@@ -47,6 +47,11 @@ function pointInsideBox(point,box){
 		return false
 	}
 }
+function intentDescription(attack){
+	switch(attack.type){
+		case 1: return 'Deals '+attack.effect[0]+' Damage\nRange 1-1'
+	}
+}
 function vectorAtan(point1,point2){
 	return atan2(point2.x-point1.x,point2.y-point1.y)
 }

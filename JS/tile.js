@@ -8,9 +8,9 @@ class tile{
         this.fade=1
         this.occupied=false
 
-        this.anim={target:[0,0]}
+        this.anim={target:[0,0,0]}
 
-        this.targetted=[false,false]
+        this.targetted=[false,false,false]
     }
     display(){
         this.layer.push()
@@ -32,9 +32,16 @@ class tile{
         }
         if(this.anim.target[1]>0){
             this.layer.noFill()
-            this.layer.stroke(250,0,0,this.fade*this.anim.target[1])
+            this.layer.stroke(255,50,50,this.fade*this.anim.target[1])
             this.layer.strokeWeight(2)
-            this.layer.ellipse(0,0,game.targetRadius*2+stack*2)
+            this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
+            stack++
+        }
+        if(this.anim.target[2]>0){
+            this.layer.noFill()
+            this.layer.stroke(200,0,0,this.fade*this.anim.target[2])
+            this.layer.strokeWeight(2)
+            this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
         }
         this.layer.pop()
     }

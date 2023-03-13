@@ -10,7 +10,7 @@ class battle{
         this.turnManager=new turnManager(this.layer,this)
         this.particleManager=new particleManager(this.layer,this)
 
-        this.energy={main:0,base:3}
+        this.energy={main:0,gen:0,base:3}
         this.turn={main:0,total:1}
         this.anim={reserve:1,discard:1,endTurn:1,turn:0}
         this.counter={id:0}
@@ -22,9 +22,8 @@ class battle{
         this.setupBattle()
     }
     setupBattle(){
-        this.energy.main=this.energy.base
-        this.turn.main=0
-        this.turn.total=1
+        this.energy.gen=this.energy.base
+        this.turn.total=0
 
         this.tileManager.generateTiles(types.level[0])
 
@@ -38,12 +37,11 @@ class battle{
         this.addCombatant({x:3,y:3},2,1)
         this.addCombatant({x:3,y:0},2,1)
 
-        this.combatantManager.setupCombatants()
-
         this.cardManager.clearBattle()
         this.cardManager.copy(0,1)
         this.cardManager.shuffle(1)
-        this.cardManager.draw(this.cardManager.drawAmount)
+
+        this.startTurn()
     }
     addCombatant(position,type,team){
         let tilePosition=this.tileManager.getTilePosition(position.x,position.y)
@@ -56,7 +54,11 @@ class battle{
     }
     startTurn(){
         this.turn.main=0
+        this.turn.total++
+        this.energy.main=this.energy.gen
+        this.combatantManager.setupCombatants()
         this.combatantManager.unmoveCombatants()
+        this.combatantManager.activateCombatants(0,0)
         this.cardManager.draw(this.cardManager.drawAmount)
     }
     display(){
@@ -85,14 +87,14 @@ class battle{
         this.layer.text('End Turn',-74+this.anim.turn*100,560-4*this.anim.endTurn)
         this.layer.text('('+this.turn.total+')',-74+this.anim.turn*100,560+4*this.anim.endTurn)
         this.layer.textSize(14-min(floor(max(this.energy.main,this.energy.base)/10)*2,3))
-        this.layer.text(this.energy.main+'/'+this.energy.base,-74+this.anim.turn*100,454)
+        this.layer.text(this.energy.main+'/'+this.energy.gen,-74+this.anim.turn*100,454)
         switch(stage.scene){
             case 'battle':
                 this.tileManager.display(stage.scene)
                 this.combatantManager.display(stage.scene)
                 this.cardManager.display(stage.scene)
-                this.combatantManager.displayInfo()
                 this.tileManager.displayCoordinate()
+                this.combatantManager.displayInfo()
                 this.particleManager.display()
             break
         }

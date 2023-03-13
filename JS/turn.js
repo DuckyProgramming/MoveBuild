@@ -58,6 +58,7 @@ class turn{
             case 1:
                 switch(this.type){
                     case 0:
+                        this.remove=true
                         if(this.effect[0]==1){
                             //move 1 space
                         }

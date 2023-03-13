@@ -123,6 +123,9 @@ class card{
                 case 4:
                     this.layer.text('Power',0,this.height/2-6)
                 break
+                case 5:
+                    this.layer.text('Status',0,this.height/2-6)
+                break
             }
             this.layer.pop()
         }

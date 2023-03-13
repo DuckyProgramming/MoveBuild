@@ -71,14 +71,14 @@ types={
         {
             name:'Fatigue',
             levels:[
-                {effect:[],attack:0,cost:1,target:[0],spec:[1]},
-                {effect:[],attack:0,cost:1,target:[0],spec:[1]},
+                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
             ],
         },
     ],combatant:[
-        {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}]},
-        {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[]},
-        {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[10]}]},
+        {name:'asdf',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"asdf\nasdf\nasdf\nasdf"},
+        {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
+        {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[4]}],description:"asdf\nasdf\nasdf\nasdf"},
     ],color:{
         card:[
             {

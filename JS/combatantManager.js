@@ -28,6 +28,14 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==1){
                 this.combatants[a].moved=false
+                this.combatants[a].activated=false
+            }
+        }
+    }
+    activateCombatants(type,id){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==1){
+                this.combatants[a].activate(type,id)
             }
         }
     }
@@ -105,7 +113,7 @@ class combatantManager{
             for(let b=0;b<game.animRate;b++){
                 this.combatants[a].update()
             }
-            if(dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<40){
+            if(dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius){
                 this.combatants[a].infoAnim.upSize=true
             }else{
                 this.combatants[a].infoAnim.upSize=false

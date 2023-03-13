@@ -42,6 +42,9 @@ class attack{
     update(){
         this.timer++
         switch(this.type){
+            case 0:
+                this.remove=true
+            break
             case 1:
                 if(this.targetDistance==1){
                     if(this.timer==15){
@@ -82,6 +85,7 @@ class attack{
                 if(this.timer>=15*distTargetCombatant(0,this,this.targetTile)){
                     this.userCombatant.tilePosition.x=this.targetTile.tilePosition.x
                     this.userCombatant.tilePosition.y=this.targetTile.tilePosition.y
+                    this.battle.combatantManager.activateCombatants(1,this.userCombatant.id)
                     this.remove=true
                 }
             break
@@ -131,6 +135,7 @@ class attack{
                     if(this.timer>=20){
                         this.targetCombatant.tilePosition.x=this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x
                         this.targetCombatant.tilePosition.y=this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y
+                        this.battle.combatantManager.activateCombatants(1,this.targetCombatant.id)
                         this.remove=true
                     }
                 }

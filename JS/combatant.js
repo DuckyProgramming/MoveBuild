@@ -11,20 +11,22 @@ class combatant{
         this.offset={position:{x:0,y:0},life:{x:0,y:25}}
         this.fade=0
 
+        this.name=types.combatant[this.type].name
         this.life=types.combatant[this.type].life
         this.behavior=types.combatant[this.type].behavior
         this.move=types.combatant[this.type].move
         this.attack=copyArray(types.combatant[this.type].attack)
+        this.description=types.combatant[this.type].description
 
         this.order=this.id
         this.block=0
         this.intent=0
-        this.activated=true
+        this.activated=false
         this.moved=false
         this.dead=false
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,upSize:false}
+        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[]}
 
         this.status={main:[],name:['Double Damage'],display:[],active:[],position:[],size:[],
             behavior:[0],
@@ -34,6 +36,10 @@ class combatant{
             this.status.active.push(false)
             this.status.position.push(0)
             this.status.size.push(0)
+        }
+
+        for(let a=0,la=this.attack.length;a<la;a++){
+            this.infoAnim.intent.push(0)
         }
 
         this.direction=0
@@ -214,10 +220,32 @@ class combatant{
             case 0:
                 switch(this.behavior){
                     case 0:
-                        this.intent=(this.battle.turn.main-1)%this.attack.length
+                        this.intent=(this.battle.turn.total-1)%this.attack.length
                     break
                 }
             break
+        }
+    }
+    activate(type,id){
+        if(this.life>0&&!this.moved){
+            switch(this.attack[this.intent].type){
+                case 1:
+                    this.targetTile=this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])].tilePosition
+                break
+            }
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].team==0&&type==0||this.battle.combatantManager.combatants[a].id==id){
+                    switch(this.attack[this.intent].type){
+                        case 1:
+                            if(
+                                this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile.x&&
+                                this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile.y){
+                                    this.activated=true
+                            }
+                        break
+                    }
+                }
+            }
         }
     }
     takeDamage(value,user,spec){
@@ -919,7 +947,7 @@ class combatant{
         }
     }
     displayInfo(){
-        if(this.fade>0&&this.infoAnim.size){
+        if(this.fade>0&&this.infoAnim.size>0){
             this.layer.push()
             this.layer.translate(this.position.x+this.offset.life.x,this.position.y+this.offset.life.y)
             this.layer.scale(this.infoAnim.size)
@@ -957,6 +985,9 @@ class combatant{
             for(let a=0,la=this.status.display.length;a<la;a++){
                 displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade*this.infoAnim.life)
             }
+            for(let a=0,la=this.attack.length;a<la;a++){
+                displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a])
+            }
             this.layer.fill(0,this.fade*this.infoAnim.life)
             this.layer.textSize(6)
             this.layer.text(max(0,ceil(this.life*10)/10)+"/"+max(0,ceil(this.base.life*10)/10),0,0.5)
@@ -975,6 +1006,43 @@ class combatant{
             }
             this.layer.pop()
         }
+        if(this.fade>0&&this.infoAnim.description>0){
+            if(this.team==0){
+                this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5),this.fade*this.infoAnim.description)
+            }else{
+                this.layer.fill(150,this.fade*this.infoAnim.description)
+            }
+            this.layer.noStroke()
+            this.layer.rect(100,300,160,240,10)
+            this.layer.fill(0,this.fade*this.infoAnim.description)
+            this.layer.textSize(16)
+            this.layer.text(this.name,100,200)
+            this.layer.textSize(8)
+            this.layer.text(this.description,100,240)
+            this.layer.textSize(9)
+            for(let a=0,la=min(6,this.status.display.length);a<la;a++){
+                this.layer.text(this.status.main[this.status.display[a]],40,305+a*20)
+            }
+            this.layer.textSize(6)
+            this.layer.textAlign(LEFT,CENTER)
+            for(let a=0,la=min(6,this.status.display.length);a<la;a++){
+                this.layer.text(this.status.name[this.status.display[a]],50,305+a*20)
+            }
+            if(this.team==1){
+                for(let a=0,la=this.attack.length;a<la;a++){
+                    this.layer.text(intentDescription(this.attack[g]),50,280)
+                }
+            }
+            this.layer.textAlign(CENTER,CENTER)
+            for(let a=0,la=min(6,this.status.display.length);a<la;a++){
+                displayStatusSymbol(this.layer,40,305+a*20,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
+            }
+            if(this.team==1){
+                for(let a=0,la=this.attack.length;a<la;a++){
+                    displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a])
+                }
+            }
+        }
     }
     update(){
         this.collect.life=this.collect.life*0.9+this.life*0.1
@@ -991,13 +1059,18 @@ class combatant{
         if(this.team==1&&this.life>0&&!this.moved){
             switch(this.attack[this.intent].type){
                 case 1:
-                    this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])].targetted[1]=true
+                    if(this.activated){
+                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])].targetted[2]=true
+                    }else{
+                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])].targetted[1]=true
+                    }
                 break
             }
         }
         
         this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)
         this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)
+        this.infoAnim.description=smoothAnim(this.infoAnim.description,this.infoAnim.upSize,0,1,5)
         if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-180)<=18||abs(this.anim.direction-this.goal.anim.direction+180)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18){
             this.anim.direction=this.goal.anim.direction
         }else if(
@@ -1048,6 +1121,9 @@ class combatant{
                 this.status.active[this.status.display[a]]=false
                 this.status.display.splice(a,1)
             }
+        }
+        for(let a=0,la=this.infoAnim.intent.length;a<la;a++){
+            this.infoAnim.intent[a]=smoothAnim(this.infoAnim.intent[a],a==this.intent,0,1,5)
         }
         switch(this.type){
             case 1:
