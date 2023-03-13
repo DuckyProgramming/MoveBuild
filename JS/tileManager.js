@@ -57,7 +57,7 @@ class tileManager{
                     this.tiles[a].display()
                 }
                 for(let a=0,la=this.tiles.length;a<la;a++){
-                    if(this.battle.attackManager.targetInfo[0]==1&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)){
+                    if((this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3)&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)){
                         this.tiles[a].targetted[0]=true
                     }
                 }

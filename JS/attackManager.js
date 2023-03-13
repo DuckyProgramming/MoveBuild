@@ -12,6 +12,7 @@ class attackManager{
 
         this.cost=0
         this.targetInfo=[0,0,0]
+        this.targetClass=0
 
         this.targetDistance=0
         this.position={x:0,y:0}
@@ -23,7 +24,7 @@ class attackManager{
         this.targetInfo[0]=0
     }
     execute(){
-        this.attacks.push(new attack(this.type,this.battle,this.effect,this.user,this.target,this.targetDistance))
+        this.attacks.push(new attack(this.type,this.battle,this.effect,this.user,this.target,this.targetDistance,this.targetClass))
         switch(this.type){
             case 1:
             break

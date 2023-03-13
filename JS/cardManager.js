@@ -8,6 +8,7 @@ class cardManager{
         this.hand=new group(this.layer,this.battle,2)
         this.discard=new group(this.layer,this.battle,3)
         this.drop=new group(this.layer,this.battle,4)
+        this.exhaust=new group(this.layer,this.battle,5)
 
         this.drawAmount=6
     }
@@ -21,6 +22,7 @@ class cardManager{
             case 2: return this.hand
             case 3: return this.discard
             case 4: return this.drop
+            case 5: return this.exhaust
         }
     }
     send(group1,group2){

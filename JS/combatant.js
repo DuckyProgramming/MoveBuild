@@ -295,6 +295,9 @@ class combatant{
             this.status.main[findList(name,this.status.name)]+=value
         }
     }
+    heal(amount){
+        this.life=min(this.life+amount,this.base.life)
+    }
     startAnimation(type){
         switch(this.type){
             case 1:
@@ -1019,7 +1022,7 @@ class combatant{
         }
         if(this.fade>0&&this.infoAnim.description>0){
             if(this.team==0){
-                this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5),this.fade*this.infoAnim.description)
+                this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[0],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[1],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[2],this.fade*this.infoAnim.description)
             }else{
                 this.layer.fill(150,this.fade*this.infoAnim.description)
             }

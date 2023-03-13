@@ -4,16 +4,19 @@ Defend
 Twin Strike
 Long Strike
 Push
+Think
+Bandage
+Pull
+Wind Up
 
 Animate Enemies Too
 
 Win
 Lose
+View Draw
+View Discard
 
 Hurt Self For Energy
-Swap
 Only Hits at Range 2
-Heal Self (Exhaust)
-Pull (Range 2)
 Knee (Push, Move to Previous Location of Target)
 2-8 Range Throwing Knife?

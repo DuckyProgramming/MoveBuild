@@ -66,6 +66,24 @@ types={
                 {effect:[3],attack:8,cost:1,target:[0],spec:[],class:4},
                 {effect:[4],attack:8,cost:1,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Swap',
+            levels:[
+                {effect:[1],attack:9,cost:1,target:[3,1,1],spec:[],class:3},
+                {effect:[1],attack:9,cost:0,target:[3,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Bandage',
+            levels:[
+                {effect:[4],attack:10,cost:0,target:[0],spec:[1],class:4},
+                {effect:[6],attack:10,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Pull',
+            levels:[
+                {effect:[0],attack:11,cost:0,target:[2,2,2],spec:[],class:1},
+                {effect:[4],attack:11,cost:0,target:[2,2,2],spec:[],class:1},
+            ],
         },
 
         {
@@ -100,8 +118,8 @@ types={
         ],
     },deck:{
         start:[
-            //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Step',0,0],['Dash',0,0]],
-            [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
+            [['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
+            //[['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
            
         ]
