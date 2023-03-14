@@ -113,7 +113,7 @@ class turn{
                         if(this.timer==1){
                             this.userCombatant.startAnimation(2)
                         }
-                        this.userCombatant.runAnimation(1/15,2)
+                        this.userCombatant.runAnimation(1/30,2)
                         if(this.timer==15){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=30){

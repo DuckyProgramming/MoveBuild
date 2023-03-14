@@ -6,6 +6,7 @@ class turnManager{
         this.turns=[]
     }
     loadEnemyTurns(){
+        this.turns=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==1&&this.battle.combatantManager.combatants[a].activated){
                 this.turns.push(new turn(0,this.battle,

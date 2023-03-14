@@ -231,7 +231,7 @@ function setupCombatantGraphics(type){
 	switch(type){
 		case 0:
 			graphics.combatant.push({
-				sprites:{detail:3,genAmount:0,animDirection:0,hair:{back:[],front:[],tail:[]},kimono:{main:{back:[],front:[]},outside:{back:[],front:[]},mainDamage:{back:[],front:[]},outsideDamage:{back:[],front:[]}}},
+				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[],tail:[]},kimono:{main:{back:[],front:[]},outside:{back:[],front:[]},mainDamage:{back:[],front:[]},outsideDamage:{back:[],front:[]}}},
 				parts:{tail:[],kimono:{main:[],outside:[],outsideTop:[],mainDamage:[],outsideDamage:[],mainAnti:[],outsideAnti:[]}},
 				color:{
 					hair:{back:[30,70,40],front:[40,90,50],insideBack:[25,60,35],insideFront:[35,80,45],glow:[50,110,60]},

@@ -7,10 +7,10 @@ class tile{
 
         this.fade=1
         this.occupied=false
-
-        this.anim={target:[0,0,0]}
-
         this.targetted=[false,false,false]
+        this.reinforce=false
+
+        this.anim={target:[0,0,0],reinforce:0}
     }
     display(){
         this.layer.push()
@@ -23,6 +23,12 @@ class tile{
         this.layer.noStroke()
         regPoly(this.layer,0,0,6,40,18,0)
         let stack=0
+        if(this.anim.reinforce>0){
+            this.layer.stroke(255,50,50,this.fade*this.anim.reinforce)
+            this.layer.strokeWeight(2)
+            this.layer.line(-game.targetRadius/4,-game.targetRadius/4,game.targetRadius/4,game.targetRadius/4)
+            this.layer.line(-game.targetRadius/4,game.targetRadius/4,game.targetRadius/4,-game.targetRadius/4)
+        }
         if(this.anim.target[0]>0){
             this.layer.noFill()
             this.layer.stroke(200,this.fade*this.anim.target[0])
@@ -50,6 +56,7 @@ class tile{
             this.anim.target[g]=smoothAnim(this.anim.target[g],this.targetted[g],0,1,5)
             this.targetted[g]=false
         }
+        this.anim.reinforce=smoothAnim(this.anim.reinforce,this.reinforce,0,1,5)
     }
     displayCoordinate(coordinateAnim){
         this.layer.fill(0,this.fade*coordinateAnim)

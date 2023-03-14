@@ -113,7 +113,7 @@ class combatant{
 
                 this.calc={int:[0,0,0,0]}
 
-                this.sprites={spin:0,detail:3,spinDetail:0,spinDetailHead:0,temp:0}
+                this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
                 this.animSet={loop:0,flip:0}
 
@@ -334,7 +334,7 @@ class combatant{
                 break
             }
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(this.battle.combatantManager.combatants[a].team==0&&type==0||this.battle.combatantManager.combatants[a].id==id){
+                if(this.battle.combatantManager.combatants[a].team==0&&type==0||this.battle.combatantManager.combatants[a].id==id&&type==1){
                     switch(this.attack[this.intent].type){
                         case 1:
                             if(
@@ -411,12 +411,14 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
-                    case 4:
-                        this.goal.anim.sword=false
-                    break
                     case 5:
                         this.animSet.loop=0
                         this.anim.eyeStyle=[2,2]
+                    break
+                    case 7:
+                        this.animSet.loop=0
+                        this.goal.anim.sword=false
+                        this.trigger.display.mode.sandal.edge=2
                     break
                 }
             break
@@ -517,6 +519,20 @@ class combatant{
                         this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*36
                         this.spin.arms[1].top=93+sin(this.animSet.loop*90)*-63
                         this.spin.arms[1].bottom=75+sin(this.animSet.loop*90)*-120
+                    break
+                    case 7:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.arms[g].top=24-constrain(this.animSet.loop,0,1)*6
+                            this.anim.arms[g].bottom=9+constrain(this.animSet.loop,0,1)*27
+                            this.anim.legs[g].top=9+constrain(this.animSet.loop,0,1)*9
+                            this.anim.legs[g].bottom=constrain(this.animSet.loop,0,1)*96
+                            this.spin.legs[g].top=(60+constrain(this.animSet.loop,0,1)*30)*(g*2-1)
+                            this.anim.eye[g]=constrain(this.animSet.loop,0,1)
+                            this.anim.legs[g].length.sandal.back=15.5+constrain(this.animSet.loop,0,1)*0.5
+                            this.anim.legs[g].length.sandal.front=14.5+constrain(this.animSet.loop,0,1)*1.5
+                        }
+                        this.offset.position.y=constrain(this.animSet.loop,0,1)*20
                     break
 
                 }
@@ -1442,6 +1458,13 @@ class combatant{
         this.collect.life=this.collect.life*0.9+this.life*0.1
         if(this.team==0){
             this.fade=1
+            if(this.life<=0&&!this.dead){
+                this.dead=true
+                this.battle.result.defeat=true
+                this.startAnimation(7)
+            }else if(this.life<=0){
+                this.runAnimation(1/15,7)
+            }
         }else{
             this.fade=smoothAnim(this.fade,this.life>0,0,1,15)
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
@@ -1477,7 +1500,7 @@ class combatant{
             this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
             this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900
         ){
-            this.anim.direction-=18
+            this.anim.direction-=15
         }else if(
             this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
             this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
@@ -1485,9 +1508,9 @@ class combatant{
             this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
             this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900
         ){
-            this.anim.direction+=18
+            this.anim.direction+=15
         }else{
-            this.anim.direction+=18*(floor(random(0,2)*2-1))
+            this.anim.direction+=15*(floor(random(0,2)*2-1))
         }
         if(this.anim.direction>180){
             this.anim.direction-=360
@@ -1532,12 +1555,6 @@ class combatant{
             case 1:
                 this.anim.head=this.anim.direction
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
-                if(abs(this.goal.anim.direction+90)<1){
-                    this.goal.anim.direction=-75
-                }
-                if(abs(this.goal.anim.direction-90)<1){
-                    this.goal.anim.direction=75
-                }
                 if(this.anim.direction>180){
                     this.anim.direction-=360
                 }else if(this.anim.direction<-180){

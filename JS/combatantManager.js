@@ -8,7 +8,6 @@ class combatantManager{
         this.combatants=[]
     }
     resetCombatants(){
-        this.id=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==1){
                 this.combatants.splice(a,1)
@@ -16,6 +15,10 @@ class combatantManager{
                 la--
             }
         }
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            this.combatants[a].id=a
+        }
+        this.id=this.combatants.length
     }
     setupCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){

@@ -270,7 +270,7 @@ class attack{
                     this.userCombatant.runAnimation(1/10,3)
                 }
                 if(this.timer==10){
-                    this.targetCombatant.goal.anim.direction=this.direction+180
+                    this.targetCombatant.goal.anim.direction=this.relativeDirection+180
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                 }
                 if(this.timer<=10){
@@ -285,6 +285,7 @@ class attack{
                 if(this.timer>=30){
                     this.targetCombatant.tilePosition.x=round(this.targetCombatant.tilePosition.x/2+this.userCombatant.tilePosition.x/2)
                     this.targetCombatant.tilePosition.y=round(this.targetCombatant.tilePosition.y/2+this.userCombatant.tilePosition.y/2)
+                    this.battle.combatantManager.activateCombatants(1,this.userCombatant.id)
                     this.battle.combatantManager.activateCombatants(1,this.targetCombatant.id)
                     this.remove=true
                 }

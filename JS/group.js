@@ -11,6 +11,8 @@ class group{
                 for(let a=0,la=types.deck.start[player].length;a<la;a++){
                     this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
                 }
+                this.add(floor(random(4,types.card.length-1)),types.deck.start[player][a][1],types.deck.start[player][a][2])
+                this.add(floor(random(4,types.card.length-1)),types.deck.start[player][a][1],types.deck.start[player][a][2])
             break
         }
     }
@@ -212,17 +214,6 @@ class group{
         }
     }
     onClick(scene){
-        if(this.battle.attackManager.targetInfo[0]==0){
-            switch(scene){
-                case 'battle':
-                    for(let a=0,la=this.cards.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&this.cards[a].usable&&this.cards[a].afford){
-                            this.callInput(0,a)
-                        }
-                    }
-                break
-            }
-        }
         if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(!this.battle.tileManager.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
@@ -247,19 +238,19 @@ class group{
                 }
             }
         }
-    }
-    onKey(scene,key,code){
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((int(key)+9)%10==a&&this.cards[a].usable&&this.cards[a].afford){
+                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&this.cards[a].usable&&this.cards[a].afford&&this.battle.attackManager.attacks.length<=0){
                             this.callInput(0,a)
                         }
                     }
                 break
             }
         }
+    }
+    onKey(scene,key,code){
         if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1,int(inputs.lastKey[1])-1)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1,int(inputs.lastKey[1])-1)
@@ -285,6 +276,17 @@ class group{
                 if(!this.cards[a].usable&&this.cards[a].afford&&(code==BACKSPACE||key==inputs.above[a])){
                     this.callInput(1,a)
                 }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==0){
+            switch(scene){
+                case 'battle':
+                    for(let a=0,la=this.cards.length;a<la;a++){
+                        if((int(key)+9)%10==a&&this.cards[a].usable&&this.cards[a].afford&&this.battle.attackManager.attacks.length<=0){
+                            this.callInput(0,a)
+                        }
+                    }
+                break
             }
         }
     }
