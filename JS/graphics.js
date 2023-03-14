@@ -633,7 +633,7 @@ function setupBackground(type,layer){
 			p1.spin.mouth-=180
 			p1.size=5
 			p1.fade=1
-			p1.anim.sword=36
+			p1.spin.sword=36
 			p1.trigger.display.extra.sword=true
             p1.anim.legs=[
                 {top:24,bottom:12,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},

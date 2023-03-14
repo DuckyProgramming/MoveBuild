@@ -1,11 +1,4 @@
 Animations
-Twin Strike
-Long Strike
-Push
-Think
-Bandage
-Pull
-Wind Up
 
 Animate Enemies Too
 
@@ -14,9 +7,6 @@ Lose
 Reinforce
 View Draw
 View Discard
-
-DamageTakenIndicator
-ClothingDamage
 
 Hurt Self For Energy
 Only Hits at Range 2

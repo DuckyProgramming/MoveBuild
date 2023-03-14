@@ -26,7 +26,7 @@ class combatant{
         this.dead=false
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[]}
+        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0],upFlash:[false,false]}
 
         this.status={main:[],name:['Double Damage'],display:[],active:[],position:[],size:[],
             behavior:[0],
@@ -47,7 +47,7 @@ class combatant{
 
         switch(this.type){
             case 1:
-                this.anim={direction:direction,head:direction,sword:75,mouth:{x:8,y:5,open:0},
+                this.anim={direction:direction,head:direction,sword:1,mouth:{x:8,y:5,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
                     kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
                     legs:[
@@ -66,7 +66,7 @@ class combatant{
                     bow:{center:0,loop:[-24,24]},
                     under:{top:[],bottom:[],tanga:24,piece:36,under:{top:[-40,40],button:[-39,39],bottom:[0,-15,15,-9,9]}},
                     underBow:{top:{center:0,end:[-4,4],loop:[-12,12]},bottom:{center:0,end:[-5,5],loop:[-15,15]}},
-                    sandal:[6,-6],eye:[-18,18],flower:[54,48,56],button:0,mouth:216}
+                    sandal:[6,-6],eye:[-18,18],flower:[54,48,56],button:0,sword:75,mouth:216}
 
                 this.color=graphics.combatant[0].color
 
@@ -117,7 +117,7 @@ class combatant{
 
                 this.animSet={loop:0,flip:0}
 
-                this.goal={anim:{direction:this.anim.direction}}
+                this.goal={anim:{direction:this.anim.direction,sword:true}}
 
                 for(let g=0;g<25;g++){
                     this.spin.under.top.push(g*72/5)
@@ -260,21 +260,26 @@ class combatant{
         }
     }
     takeDamage(value,user,spec){
-        if(value>0){
+        if(value>0&&this.life>0){
             let damage=value
-            if(this.battle.combatantManager.combatants[user].status.main[0]>0){
-                this.battle.combatantManager.combatants[user].status.main[0]--
-                damage*=2
+            if(user>=0&&user<this.battle.combatantManager.combatants.length){
+                if(this.battle.combatantManager.combatants[user].status.main[0]>0){
+                    this.battle.combatantManager.combatants[user].status.main[0]--
+                    damage*=2
+                }
             }
             
             if(this.block>=damage){
-            this.block-=damage
+                this.block-=damage
+                this.infoAnim.upFlash[1]=true
             }else if(this.block>0){
                 let damageLeft=damage-this.block
                 this.block=0
                 this.life-=damageLeft
+                this.infoAnim.upFlash[0]=true
             }else{
                 this.life-=damage
+                this.infoAnim.upFlash[0]=true
             }
             this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
         }
@@ -298,6 +303,9 @@ class combatant{
     heal(amount){
         this.life=min(this.life+amount,this.base.life)
     }
+    flashColor(color){
+        return mergeColor(mergeColor(color,[150,150,150],this.infoAnim.flash[1]),[200,0,0],this.infoAnim.flash[0])
+    }
     startAnimation(type){
         switch(this.type){
             case 1:
@@ -305,9 +313,22 @@ class combatant{
                     case 0:
                         this.animSetloop=0
                         this.animSet.flip=floor(random(0,2))
+                        this.goal.anim.sword=true
                     break
                     case 1: case 2:
                         this.animSet.loop=0
+                        this.goal.anim.sword=true
+                    break
+                    case 3: case 6:
+                        this.animSet.loop=0
+                        this.goal.anim.sword=false
+                    break
+                    case 4:
+                        this.goal.anim.sword=false
+                    break
+                    case 5:
+                        this.animSet.loop=0
+                        this.anim.eyeStyle=[2,2]
                     break
                 }
             break
@@ -362,7 +383,7 @@ class combatant{
                         this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*45
                         this.spin.arms[1].top=93-sin(this.animSet.loop*90)*72
                         this.spin.arms[1].bottom=75-sin(this.animSet.loop*90)*105
-                        this.anim.sword=75+sin(this.animSet.loop*90)*30
+                        this.spin.sword=75+sin(this.animSet.loop*90)*30
                     break
                     case 2:
                         this.animSet.loop+=rate
@@ -370,7 +391,36 @@ class combatant{
                         this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*96
                         this.spin.arms[1].top=93-sin(this.animSet.loop*90)*63
                         this.spin.arms[1].bottom=75-sin(this.animSet.loop*90)*90
-                        this.anim.sword=75+sin(this.animSet.loop*90)*45
+                        this.spin.sword=75+sin(this.animSet.loop*90)*45
+                    break
+                    case 3:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.arms[g].top=24+sin(this.animSet.loop*90)*24
+                            this.anim.arms[g].bottom=9+sin(this.animSet.loop*90)*87
+                            this.spin.arms[g].top=(93+sin(this.animSet.loop*90)*-63)*(g*2-1)
+                            this.spin.arms[g].bottom=(75+sin(this.animSet.loop*90)*-60)*(g*2-1)
+                        }
+                    break
+                    case 4:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.arms[g].top=24+abs(sin(this.animSet.loop*90))*12
+                            this.anim.arms[g].bottom=9+abs(sin(this.animSet.loop*90))*15
+                        }
+                    break
+                    case 5:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.eye[g]=constrain(abs(sin(this.animSet.loop*90))*1.5,0,1)
+                        }
+                    break
+                    case 6:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*6
+                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*36
+                        this.spin.arms[1].top=93+sin(this.animSet.loop*90)*-63
+                        this.spin.arms[1].bottom=75+sin(this.animSet.loop*90)*-120
                     break
                 }
             break
@@ -383,8 +433,8 @@ class combatant{
                     case 0:
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
-                        this.layer.rotate(90+90*sign(sin(this.anim.direction+this.spin.arms[1].bottom-75))-this.anim.sword*sign(sin(this.anim.direction+this.spin.arms[1].bottom-75)))
-                        this.layer.scale(1,constrain(sin(this.anim.direction+this.spin.arms[1].bottom-75)*2,-1,1))
+                        this.layer.rotate(90+90*sign(sin(this.anim.direction+this.spin.arms[1].bottom-75))-this.spin.sword*sign(sin(this.anim.direction+this.spin.arms[1].bottom-75)))
+                        this.layer.scale(1,constrain(sin(this.anim.direction+this.spin.arms[1].bottom-75)*2,-1,1)*this.anim.sword)
                         this.layer.fill(235,245,255,this.fade)
                         this.layer.noStroke()
                         this.layer.rect(0,-20,3,40)
@@ -505,7 +555,7 @@ class combatant{
             switch(this.type){
                 case 0:
                     this.layer.rotate(-this.anim.direction)
-                    this.layer.fill(200,this.fade)
+                    this.layer.fill(this.flashColor([200,200,200])[0],this.flashColor([200,200,200])[1],this.flashColor([200,200,200])[2],this.fade)
                     this.layer.noStroke()
                     this.layer.triangle(-6,-8,6,-8,0,12)
                 break
@@ -518,7 +568,7 @@ class combatant{
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)<=-0.6){
-                            this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
@@ -543,33 +593,33 @@ class combatant{
                     }
                     if(this.trigger.display.under.under.button&&cos(this.spin.under.under.button[0]+this.anim.direction)<=0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.button,-cos(this.spin.under.under.button[0]+this.anim.direction)/4+0.75),this.fade*this.fades.under.under.button)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,-cos(this.spin.under.under.button[0]+this.anim.direction)/4+0.75))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,-cos(this.spin.under.under.button[0]+this.anim.direction)/4+0.75))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,-cos(this.spin.under.under.button[0]+this.anim.direction)/4+0.75))[2],this.fade*this.fades.under.under.button)
                         this.layer.ellipse(sin(this.spin.under.under.button[0]+this.anim.direction)*5.5,-49.5,cos(this.spin.under.under.button[0]+this.anim.direction)*0.25+1,1.25)
                     }
                     if(this.trigger.display.under.under.button&&cos(this.spin.under.under.button[1]+this.anim.direction)<=0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.button,-cos(this.spin.under.under.button[1]+this.anim.direction)/4+0.75),this.fade*this.fades.under.under.button)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,-cos(this.spin.under.under.button[1]+this.anim.direction)/4+0.75))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,-cos(this.spin.under.under.button[1]+this.anim.direction)/4+0.75))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,-cos(this.spin.under.under.button[1]+this.anim.direction)/4+0.75))[2],this.fade*this.fades.under.under.button)
                         this.layer.ellipse(sin(this.spin.under.under.button[1]+this.anim.direction)*5.5,-49.5,cos(this.spin.under.under.button[1]+this.anim.direction)*0.25+1,1.25)
                     }
                     if(this.trigger.display.under.under.top&&cos(this.spin.under.under.top[0]+this.anim.direction)<=0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.top,-cos(this.spin.under.under.top[0]+this.anim.direction)),this.fade*this.fades.under.under.top)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-cos(this.spin.under.under.top[0]+this.anim.direction)))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-cos(this.spin.under.under.top[0]+this.anim.direction)))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-cos(this.spin.under.under.top[0]+this.anim.direction)))[2],this.fade*this.fades.under.under.top)
                         this.layer.ellipse(sin(this.spin.under.under.top[0]+this.anim.direction)*4.2,-50,cos(this.spin.under.under.top[0]+this.anim.direction)*2.5+3.5,6)
                     }
                     if(this.trigger.display.under.under.top&&cos(this.spin.under.under.top[1]+this.anim.direction)<=0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.top,-cos(this.spin.under.under.top[1]+this.anim.direction)),this.fade*this.fades.under.under.top)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-cos(this.spin.under.under.top[1]+this.anim.direction)))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-cos(this.spin.under.under.top[1]+this.anim.direction)))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,-cos(this.spin.under.under.top[1]+this.anim.direction)))[2],this.fade*this.fades.under.under.top)
                         this.layer.ellipse(sin(this.spin.under.under.top[1]+this.anim.direction)*4.2,-50,cos(this.spin.under.under.top[1]+this.anim.direction)*2.5+3.5,6)
                     }
                     if(this.trigger.display.skin.body){
                         this.layer.noStroke()
-                        this.layer.fill(this.color.skin.body[0],this.color.skin.body[1],this.color.skin.body[2],this.fade*this.fades.skin.body)
+                        this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                         this.layer.ellipse(0,-46,11,30)
                     }
                     if(this.trigger.display.skin.button){
                         if(cos(this.spin.button+this.anim.direction)>0){
                             this.layer.noStroke()
-                            this.layer.fill(this.color.skin.button[0],this.color.skin.button[1],this.color.skin.button[2],this.fade*this.fades.skin.button)
+                            this.layer.fill(this.flashColor(this.color.skin.button)[0],this.flashColor(this.color.skin.button)[1],this.flashColor(this.color.skin.button)[2],this.fade*this.fades.skin.button)
                             this.layer.ellipse(sin(this.spin.button+this.anim.direction)*5.2,-42,1*cos(this.spin.button+this.anim.direction),2)
                         }
                     }
@@ -578,7 +628,7 @@ class combatant{
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)<0.4&&cos(this.spin.arms[g].top+this.anim.direction)>-0.6){
-                            this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
@@ -615,7 +665,7 @@ class combatant{
                                     this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                                 }
                                 if(this.trigger.display.skin.legs){
-                                    this.layer.stroke(this.color.skin.legs[0],this.color.skin.legs[1],this.color.skin.legs[2],this.fade*this.fades.skin.legs)
+                                    this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
                                     this.layer.strokeWeight(4)
                                     this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                     this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -680,22 +730,22 @@ class combatant{
                     }
                     if(this.trigger.display.under.under.top&&cos(this.spin.under.under.top[0]+this.anim.direction)>0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.top,cos(this.spin.under.under.top[0]+this.anim.direction)),this.fade*this.fades.under.under.top)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,cos(this.spin.under.under.top[0]+this.anim.direction)))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,cos(this.spin.under.under.top[0]+this.anim.direction)))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,cos(this.spin.under.under.top[0]+this.anim.direction)))[2],this.fade*this.fades.under.under.top)
                         this.layer.ellipse(sin(this.spin.under.under.top[0]+this.anim.direction)*4.2,-50,cos(this.spin.under.under.top[0]+this.anim.direction)*2.5+3.5,6)
                     }
                     if(this.trigger.display.under.under.top&&cos(this.spin.under.under.top[1]+this.anim.direction)>0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.top,cos(this.spin.under.under.top[1]+this.anim.direction)),this.fade*this.fades.under.under.top)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,cos(this.spin.under.under.top[1]+this.anim.direction)))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,cos(this.spin.under.under.top[1]+this.anim.direction)))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.top,cos(this.spin.under.under.top[1]+this.anim.direction)))[2],this.fade*this.fades.under.under.top)
                         this.layer.ellipse(sin(this.spin.under.under.top[1]+this.anim.direction)*4.2,-50,cos(this.spin.under.under.top[1]+this.anim.direction)*2.5+3.5,6)
                     }
                     if(this.trigger.display.under.under.button&&cos(this.spin.under.under.button[0]+this.anim.direction)>0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.button,cos(this.spin.under.under.button[0]+this.anim.direction)/4+0.75),this.fade*this.fades.under.under.button)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,cos(this.spin.under.under.button[0]+this.anim.direction)/4+0.75))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,cos(this.spin.under.under.button[0]+this.anim.direction)/4+0.75))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,cos(this.spin.under.under.button[0]+this.anim.direction)/4+0.75))[2],this.fade*this.fades.under.under.button)
                         this.layer.ellipse(sin(this.spin.under.under.button[0]+this.anim.direction)*5.5,-49.5,cos(this.spin.under.under.button[0]+this.anim.direction)*0.25+1,1.25)
                     }
                     if(this.trigger.display.under.under.button&&cos(this.spin.under.under.button[1]+this.anim.direction)>0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.button,cos(this.spin.under.under.button[1]+this.anim.direction)/4+0.75),this.fade*this.fades.under.under.button)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,cos(this.spin.under.under.button[1]+this.anim.direction)/4+0.75))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,cos(this.spin.under.under.button[1]+this.anim.direction)/4+0.75))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.button,cos(this.spin.under.under.button[1]+this.anim.direction)/4+0.75))[2],this.fade*this.fades.under.under.button)
                         this.layer.ellipse(sin(this.spin.under.under.button[1]+this.anim.direction)*5.5,-49.5,cos(this.spin.under.under.button[1]+this.anim.direction)*0.25+1,1.25)
                     }
                     if(this.trigger.display.under.top){
@@ -752,7 +802,7 @@ class combatant{
                     }
                     if(this.trigger.display.under.under.bottom&&cos(this.spin.under.under.bottom[0]+this.anim.direction)>0){
                         this.layer.noStroke()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.bottom[0],cos(this.spin.under.under.bottom[0]+this.anim.direction)),this.fade*this.fades.under.under.bottom)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.bottom[0],cos(this.spin.under.under.bottom[0]+this.anim.direction)))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.bottom[0],cos(this.spin.under.under.bottom[0]+this.anim.direction)))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.bottom[0],cos(this.spin.under.under.bottom[0]+this.anim.direction)))[2],this.fade*this.fades.under.under.bottom)
                         this.layer.beginShape()
                         this.layer.vertex(sin(this.spin.under.under.bottom[0]+this.anim.direction)*3.5,-35)
                         this.layer.bezierVertex(sin(this.spin.under.under.bottom[0]+this.anim.direction)*2.75,-33.5,sin(this.spin.under.under.bottom[1]*this.anim.under.under.bottom+this.anim.direction)*2.75,-34,sin(this.spin.under.under.bottom[1]*this.anim.under.under.bottom+this.anim.direction)*2.5,-33)
@@ -760,7 +810,7 @@ class combatant{
                         this.layer.bezierVertex(sin(this.spin.under.under.bottom[0]+this.anim.direction)*2.25,-32.5,sin(this.spin.under.under.bottom[2]*this.anim.under.under.bottom+this.anim.direction)*2.25,-32,sin(this.spin.under.under.bottom[2]*this.anim.under.under.bottom+this.anim.direction)*2.5,-33)
                         this.layer.bezierVertex(sin(this.spin.under.under.bottom[2]*this.anim.under.under.bottom+this.anim.direction)*2.75,-34,sin(this.spin.under.under.bottom[0]+this.anim.direction)*2.75,-33.5,sin(this.spin.under.under.bottom[0]+this.anim.direction)*3.5,-35)
                         this.layer.endShape()
-                        this.layer.fill(mergeColor(this.color.skin.body,this.color.under.under.bottom[1],cos(this.spin.under.under.bottom[0]+this.anim.direction)),this.fade*this.fades.under.under.bottom)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.bottom[1],cos(this.spin.under.under.bottom[0]+this.anim.direction)))[0],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.bottom[1],cos(this.spin.under.under.bottom[0]+this.anim.direction)))[1],this.flashColor(mergeColor(this.color.skin.body,this.color.under.under.bottom[1],cos(this.spin.under.under.bottom[0]+this.anim.direction)))[2],this.fade*this.fades.under.under.bottom)
                         this.layer.beginShape()
                         this.layer.vertex(sin(this.spin.under.under.bottom[0]+this.anim.direction)*3.5,-35)
                         this.layer.bezierVertex(sin(this.spin.under.under.bottom[0]+this.anim.direction)*2.75,-33.5,sin(this.spin.under.under.bottom[3]*this.anim.under.under.bottom+this.anim.direction)*2.75,-34,sin(this.spin.under.under.bottom[3]*this.anim.under.under.bottom+this.anim.direction)*2.5,-33)
@@ -1003,7 +1053,7 @@ class combatant{
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)>-0.4&&cos(this.spin.arms[g].top+this.anim.direction)<0.6){
-                            this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(min(4,cos(this.spin.arms[g].top+this.anim.direction)*5+2))
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
@@ -1013,7 +1063,7 @@ class combatant{
                         }
                     }
                     if(this.trigger.display.skin.head){
-                        this.layer.fill(this.color.skin.head[0],this.color.skin.head[1],this.color.skin.head[2],this.fade*this.fades.skin.head)
+                        this.layer.fill(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
                         this.layer.noStroke()
                         this.layer.ellipse(0,-75,30,30)
                     }
@@ -1025,13 +1075,13 @@ class combatant{
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)>=0.6){
-                            this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(min(4,cos(this.spin.arms[g].top+this.anim.direction)*5+2))
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                         }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
-                            this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
@@ -1265,9 +1315,16 @@ class combatant{
         for(let a=0,la=this.infoAnim.intent.length;a<la;a++){
             this.infoAnim.intent[a]=smoothAnim(this.infoAnim.intent[a],a==this.intent,0,1,5)
         }
+        for(let a=0,la=this.infoAnim.flash.length;a<la;a++){
+            this.infoAnim.flash[a]=smoothAnim(this.infoAnim.flash[a],this.infoAnim.upFlash[a],0,1,5)
+            if(this.infoAnim.flash[a]>=1&&this.infoAnim.upFlash[a]){
+                this.infoAnim.upFlash[a]=false
+            }
+        }
         switch(this.type){
             case 1:
                 this.anim.head=this.anim.direction
+                this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
                 if(abs(this.goal.anim.direction+90)<1){
                     this.goal.anim.direction=-75
                 }
