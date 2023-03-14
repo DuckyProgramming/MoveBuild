@@ -1,7 +1,5 @@
 Animations
 
-Animate Enemies Too
-
 Win
 Lose
 Reinforce

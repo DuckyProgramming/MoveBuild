@@ -79,7 +79,7 @@ class battle{
         this.cardManager.draw(this.cardManager.drawAmount)
     }
     display(){
-        this.layer.background(120)
+        this.layer.background(120,110,100)
         this.layer.fill(225,255,255)
         this.layer.stroke(200,255,255)
         this.layer.strokeWeight(3)

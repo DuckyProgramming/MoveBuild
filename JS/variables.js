@@ -96,6 +96,7 @@ types={
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
+        {name:'Human',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:"Just a guy"},
         {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[4]}],description:""},
     ],color:{
         card:[
