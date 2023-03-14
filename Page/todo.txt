@@ -1,6 +1,4 @@
 Animations
-Strike
-Defend
 Twin Strike
 Long Strike
 Push
@@ -13,8 +11,12 @@ Animate Enemies Too
 
 Win
 Lose
+Reinforce
 View Draw
 View Discard
+
+DamageTakenIndicator
+ClothingDamage
 
 Hurt Self For Energy
 Only Hits at Range 2

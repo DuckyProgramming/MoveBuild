@@ -68,12 +68,22 @@ class attack{
             break
             case 1:
                 if(this.targetDistance==1){
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(2)
+                    }
+                    this.userCombatant.runAnimation(1/15,2)
                     if(this.timer==15){
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     }else if(this.timer>=30){
                         this.remove=true
                     }
                 }else if(this.targetDistance==2){
+                    if(this.timer==5){
+                        this.userCombatant.startAnimation(2)
+                    }
+                    if(this.timer>5&&this.timer<=25){
+                        this.userCombatant.runAnimation(1/10,2)
+                    }
                     if(this.timer<=5){
                         this.userCombatant.moveTile(this.direction,this.distance/15)
                         this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/15)
@@ -90,6 +100,10 @@ class attack{
                 }
             break
             case 2:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(1)
+                }
+                this.userCombatant.runAnimation(1/15,1)
                 if(this.timer==15){
                     this.userCombatant.addBlock(this.effect[0])
                 }else if(this.timer>=30){

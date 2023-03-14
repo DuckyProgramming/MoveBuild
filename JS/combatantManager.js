@@ -93,14 +93,6 @@ class combatantManager{
                         }
                     }
                 }
-                this.layer.noFill()
-                this.layer.stroke(255)
-                this.layer.strokeWeight(3)
-                for(let a=0,la=this.combatants.length;a<la;a++){
-                    if((this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3)&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)){
-                        this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].targetted[0]=true
-                    }
-                }
             break
         }
     }
@@ -118,6 +110,9 @@ class combatantManager{
                 this.combatants[a].infoAnim.upSize=true
             }else{
                 this.combatants[a].infoAnim.upSize=false
+            }
+            if((this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3)&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)){
+                this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].targetted[0]=true
             }
         }
     }

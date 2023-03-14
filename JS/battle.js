@@ -34,16 +34,19 @@ class battle{
         this.addCombatant({x:1,y:0},2,1)
         this.addCombatant({x:2,y:0},2,1)
         this.addCombatant({x:3,y:0},2,1)
+
         /*this.addCombatant({x:4,y:1},2,1)
         this.addCombatant({x:5,y:2},2,1)
         this.addCombatant({x:6,y:3},2,1)
         this.addCombatant({x:6,y:4},2,1)
-        this.addCombatant({x:6,y:5},2,1)
+        this.addCombatant({x:6,y:5},2,1)*/
+
         this.addCombatant({x:6,y:6},2,1)
         this.addCombatant({x:5,y:6},2,1)
         this.addCombatant({x:4,y:6},2,1)
         this.addCombatant({x:3,y:6},2,1)
-        this.addCombatant({x:2,y:5},2,1)
+
+        /*this.addCombatant({x:2,y:5},2,1)
         this.addCombatant({x:1,y:4},2,1)
         this.addCombatant({x:0,y:3},2,1)
         this.addCombatant({x:0,y:2},2,1)
