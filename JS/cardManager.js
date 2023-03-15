@@ -62,8 +62,8 @@ class cardManager{
     display(scene){
         switch(scene){
             case 'battle':
-                this.drop.display('drop')
-                this.hand.display('battle')
+                this.drop.display('drop',[])
+                this.hand.display('battle',[])
             break
         }
     }

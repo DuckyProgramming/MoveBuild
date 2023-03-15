@@ -70,6 +70,10 @@ class combatantManager{
                 left.push(a)
             }
         }
+        while(left.length<=0&&this.battle.reinforce.front.length==0&&this.battle.reinforce.back.length>0){
+            this.battle.turn.accelerate++
+            this.battle.loadReinforce()
+        }
         while(left.length>0){
             let minimum=this.combatants[left[0]].id
             for(let a=1,la=left.length;a<la;a++){

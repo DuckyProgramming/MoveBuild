@@ -264,8 +264,8 @@ class combatant{
                     this.graphics.arms[g].bottomStack.y=this.parts.arms[g].bottom.y
                 }
                 this.sprites.spin=(((this.anim.direction%360)+360)%360)
-                this.sprites.spinDetail=floor((((this.anim.direction%360)+360)%360)/this.sprites.detail)
-                this.sprites.spinDetailHead=floor((((this.anim.head%360)+360)%360)/this.sprites.detail)
+                this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
+                this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
             case 2:
                 for(let g=0;g<2;g++){
@@ -814,7 +814,7 @@ class combatant{
                                     this.layer.scale(1.2,0.6)
                                     this.layer.rotate(-this.anim.direction+this.spin.sandal[h])
                                     for(let i=0;i<16;i++){
-                                        if((cos(this.anim.direction+(65-floor(i/2)*5*this.trigger.display.mode.sandal.edge)*((i%2)*2-1)-this.spin.sandal[h])<=0.1&&this.trigger.display.mode.sandal.edge<=1||i%2!=h&&this.trigger.display.mode.sandal.edge==2)&&!(this.trigger.display.extra.damage&&floor(i/2)%2==1)){
+                                        if((cos(this.anim.direction+(65-floor(i/2)*5*this.trigger.display.mode.sandal.edge)*((i%2)*2-1)-this.spin.sandal[h])<=0.2&&this.trigger.display.mode.sandal.edge<=1||i%2!=h&&this.trigger.display.mode.sandal.edge==2)&&!(this.trigger.display.extra.damage&&floor(i/2)%2==1)){
                                             this.layer.image(graphics.minor[i+2],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
                                         }
                                     }
@@ -875,7 +875,7 @@ class combatant{
                                     this.layer.scale(1.2,0.6)
                                     this.layer.rotate(-this.anim.direction+this.spin.sandal[h])
                                     for(let i=0;i<16;i++){
-                                        if((cos(this.anim.direction+(65-floor(i/2)*5*this.trigger.display.mode.sandal.edge)*((i%2)*2-1)-this.spin.sandal[h])>0.1&&this.trigger.display.mode.sandal.edge<=1||i%2==h&&this.trigger.display.mode.sandal.edge==2)&&!(this.trigger.display.extra.damage&&floor(i/2)%2==1)){
+                                        if((cos(this.anim.direction+(65-floor(i/2)*5*this.trigger.display.mode.sandal.edge)*((i%2)*2-1)-this.spin.sandal[h])>0.2&&this.trigger.display.mode.sandal.edge<=1||i%2==h&&this.trigger.display.mode.sandal.edge==2)&&!(this.trigger.display.extra.damage&&floor(i/2)%2==1)){
                                             this.layer.image(graphics.minor[i+2],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
                                         }
                                     }
@@ -1225,7 +1225,7 @@ class combatant{
                         this.layer.noStroke()
                         this.layer.ellipse(0,-75,30,30)
                     }
-                    if(this.trigger.display.mouth&&cos(this.anim.direction)>0){
+                    if(this.trigger.display.mouth&&cos(this.anim.direction)>0.1){
                         this.minorDisplayGeneral(1,0)
                     }
                     for(let g=0;g<2;g++){
@@ -1326,7 +1326,7 @@ class combatant{
                         this.layer.noStroke()
                         this.layer.ellipse(0,-81,30,30)
                     }
-                    if(this.trigger.display.mouth&&cos(this.anim.direction)>0){
+                    if(this.trigger.display.mouth&&cos(this.anim.direction)>0.1){
                         this.minorDisplayGeneral(1,0)
                     }
                     for(let g=0;g<2;g++){
@@ -1470,6 +1470,7 @@ class combatant{
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
             if(this.life<=0&&!this.dead){
                 this.dead=true
+                this.battle.counter.killed++
                 this.battle.combatantManager.reorder()
             }
         }

@@ -121,7 +121,8 @@ types={
         start:[
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
-            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1],
+            ['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Think',0,1],['Swap',0,1],['Bandage',0,1],['Pull',0,1],['Wind\nUp',0,1],['Chain',0,1]],
            
         ]
@@ -152,14 +153,14 @@ types={
                 {position:{x:6,y:6},type:2},
             ],
             reinforce:[
-                {position:{x:0,y:3},type:2,turn:2},
-                {position:{x:6,y:3},type:2,turn:2},
+                /*{position:{x:0,y:3},type:2,turn:2},
+                {position:{x:6,y:3},type:2,turn:2},*/
             ],
         },
     ],
 }
 stage={scale:0,scene:'battle'}
-game={player:1,playerNumber:1,id:0,timer:0,animRate:2,targetRadius:30,turnTime:0,scene:0}
+game={player:1,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}

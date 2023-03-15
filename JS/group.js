@@ -4,6 +4,7 @@ class group{
         this.battle=battle
         this.id=id
         this.cards=[]
+        this.sorted=[]
     }
     initialCards(type,player){
         switch(type){
@@ -50,6 +51,7 @@ class group{
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
+                list[list.length-1].size=0
                 if(spec==1){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
@@ -59,6 +61,7 @@ class group{
         }else{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
+                list[list.length-1].size=0
                 if(spec==1){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
@@ -78,7 +81,16 @@ class group{
             }
         }
     }
-    display(scene){
+    sort(){
+        let names=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(!names.includes(this.cards[a].name)){
+                names.push(this.cards[a].name)
+            }
+        }
+        this.sorted=names.sort()
+    }
+    display(scene,args){
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.cards.length;a<la;a++){
@@ -97,48 +109,35 @@ class group{
                     this.cards[a].display()
                 }
             break
-        }
-    }
-    update(scene){
-        switch(scene){
-            case 'battle':
-                let selected=false
-                for(let a=0,la=this.cards.length;a<la;a++){
-                    if(this.cards[a].select){
-                        selected=true
-                    }
-                }
-                for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].update()
-                    if(this.cards[a].position.x>a*100+100&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+100||a==0)){
-                        this.cards[a].position.x-=20
-                    }
-                    if(pointInsideBox({position:inputs.rel},this.cards[a])&&!selected){
-                        this.cards[a].upSize=true
-                    }else{
-                        this.cards[a].upSize=false
-                    }
-                    if(this.cards[a].size<=0){
-                        if(this.cards[a].spec.includes(1)&&!this.cards[a].usable){
-                            this.send(this.battle.cardManager.exhaust.cards,a,a+1)
-                            a--
-                            la--
-                        }else{
-                            this.send(this.battle.cardManager.discard.cards,a,a+1)
-                            a--
-                            la--
+            case 'overlay':
+                this.sort()
+                if(args[0]==0){
+                    let position=0
+                    for(let a=0,la=this.sorted.length;a<la;a++){
+                        for(let b=0,lb=this.cards.length;b<lb;b++){
+                            if(this.cards[b].name==this.sorted[a]){
+                                this.cards[b].size=smoothAnim(this.cards[b].size,position>=args[1]*15&&position<args[1]*15+15,0,1,5)
+                                this.cards[b].fade=1
+                                this.cards[b].position.x=this.layer.width/2-200+position%5*100
+                                this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                this.cards[b].anim={select:0,afford:1}
+                                if(this.cards[b].size>=0){
+                                    this.cards[b].display()
+                                }
+                                position++
+                            }
                         }
                     }
-                }
-            break
-            case 'drop':
-                for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].update()
-                    this.cards[a].position.y+=20
-                    if(this.cards[a].position.y>this.layer.height+100){
-                        this.cards.splice(a,1)
-                        a--
-                        la--
+                }else{
+                    for(let a=0,la=this.cards.length;a<la;a++){
+                        this.cards[a].size=smoothAnim(this.cards[a].size,a>=args[1]*15&&a<args[1]*15+15,0,1,5)
+                        this.cards[a].fade=1
+                        this.cards[a].position.x=this.layer.width/2-200+a%5*100
+                        this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
+                        this.cards[a].anim={select:0,afford:1}
+                        if(this.cards[a].size>=0){
+                            this.cards[a].display()
+                        }
                     }
                 }
             break
@@ -208,6 +207,51 @@ class group{
                         if(this.cards[b].spec.includes(0)){
                             this.battle.cardManager.fatigue()
                         }
+                    }
+                }
+            break
+        }
+    }
+    update(scene){
+        switch(scene){
+            case 'battle':
+                let selected=false
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    if(this.cards[a].select){
+                        selected=true
+                    }
+                }
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].update()
+                    if(this.cards[a].position.x>a*100+100&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+100||a==0)){
+                        this.cards[a].position.x-=20
+                    }
+                    if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected){
+                        this.cards[a].upSize=true
+                    }else{
+                        this.cards[a].upSize=false
+                    }
+                    if(this.cards[a].size<=0){
+                        if(this.cards[a].spec.includes(1)&&!this.cards[a].usable){
+                            this.send(this.battle.cardManager.exhaust.cards,a,a+1)
+                            a--
+                            la--
+                        }else{
+                            this.send(this.battle.cardManager.discard.cards,a,a+1)
+                            a--
+                            la--
+                        }
+                    }
+                }
+            break
+            case 'drop':
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].update()
+                    this.cards[a].position.y+=20
+                    if(this.cards[a].position.y>this.layer.height+100){
+                        this.cards.splice(a,1)
+                        a--
+                        la--
                     }
                 }
             break

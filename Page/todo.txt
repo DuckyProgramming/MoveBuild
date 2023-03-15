@@ -1,10 +1,21 @@
-Animations
+Animations:
 
-Win
+Mechanics:
+Rewards Screen
+Card Choice Screen
+Map (New Generation System)
+Rest (2 Types Perhaps?)
+Shop
 Lose-Scene
-View Draw
-View Discard
+Menu
+Perk
 
+Battle Content:
+Weak Enemy
+Duck
+Spiked Floor
+
+Cards:
 Hurt Self For Energy
 Only Hits at Range 2
 Knee (Push, Move to Previous Location of Target)
