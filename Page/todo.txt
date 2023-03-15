@@ -1,6 +1,7 @@
 Animations:
 
 Mechanics:
+Card Listing
 Rewards Screen
 Card Choice Screen
 Map (New Generation System)
@@ -13,10 +14,25 @@ Perk
 Battle Content:
 Weak Enemy
 Duck
-Spiked Floor
+Retain Cards
+Innate Cards
+Enemy Can Push You
+2 Range Enemy
 
 Cards:
 Hurt Self For Energy
 Only Hits at Range 2
 Knee (Push, Move to Previous Location of Target)
 2-8 Range Throwing Knife?
+X Cost Attack and Defense
+Circular Shockwave
+Counter? (Once/All)
+Dodge?
+Hit and Move Away
+Shift Through Enemy
+Quick Kick
+Hook Strike
+Big Strike/ Block
+Deal Damage and Gain Energy? (Jab?)
+Recall a Discarded Card
+Taunt

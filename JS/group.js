@@ -12,8 +12,10 @@ class group{
                 for(let a=0,la=types.deck.start[player].length;a<la;a++){
                     this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
                 }
-                this.add(floor(random(4,types.card.length-1)),types.deck.start[player][a][1],types.deck.start[player][a][2])
-                this.add(floor(random(4,types.card.length-1)),types.deck.start[player][a][1],types.deck.start[player][a][2])
+                for(let a=0;a<4;a++){
+                    this.add(floor(random(4,types.card.length-1)),types.deck.start[player][a][1],types.deck.start[player][a][2])
+                }
+                /**/
             break
         }
     }

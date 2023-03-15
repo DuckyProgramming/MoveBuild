@@ -123,7 +123,7 @@ class attack{
                 if(this.timer>=15*distTargetCombatant(0,this,this.targetTile)){
                     this.userCombatant.tilePosition.x=this.targetTile.tilePosition.x
                     this.userCombatant.tilePosition.y=this.targetTile.tilePosition.y
-                    this.battle.combatantManager.activateCombatants(1,this.userCombatant.id)
+                    this.battle.activate(1,this.userCombatant.id)
                     this.remove=true
                 }
             break
@@ -181,7 +181,7 @@ class attack{
                     if(this.timer>=20){
                         this.targetCombatant.tilePosition.x=this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x
                         this.targetCombatant.tilePosition.y=this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y
-                        this.battle.combatantManager.activateCombatants(1,this.targetCombatant.id)
+                        this.battle.activate(1,this.targetCombatant.id)
                         this.remove=true
                     }
                 }
@@ -243,7 +243,7 @@ class attack{
                         this.targetCombatant.tilePosition.x=this.tilePosition.x
                         this.targetCombatant.tilePosition.y=this.tilePosition.y
                     }
-                    this.battle.combatantManager.activateCombatants(1,this.userCombatant.id)
+                    this.battle.activate(1,this.userCombatant.id)
                     this.remove=true
                 }
             break
@@ -285,8 +285,8 @@ class attack{
                 if(this.timer>=30){
                     this.targetCombatant.tilePosition.x=round(this.targetCombatant.tilePosition.x/2+this.userCombatant.tilePosition.x/2)
                     this.targetCombatant.tilePosition.y=round(this.targetCombatant.tilePosition.y/2+this.userCombatant.tilePosition.y/2)
-                    this.battle.combatantManager.activateCombatants(1,this.userCombatant.id)
-                    this.battle.combatantManager.activateCombatants(1,this.targetCombatant.id)
+                    this.battle.activate(1,this.userCombatant.id)
+                    this.battle.activate(1,this.targetCombatant.id)
                     this.remove=true
                 }
             break

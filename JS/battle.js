@@ -92,6 +92,16 @@ class battle{
             }
         }
     }
+    activate(type,id){
+        this.combatantManager.activateCombatants(type,id)
+        this.tileManager.activateTiles(type,id)
+    }
+    activateCombatant(type,id){
+        this.combatantManager.activateCombatants(type,id)
+    }
+    activateTile(type,id){
+        this.tileManager.activateTiles(type,id)
+    }
     endTurn(){
         this.sendReinforce()
         this.turnManager.loadEnemyTurns()

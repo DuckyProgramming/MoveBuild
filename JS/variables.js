@@ -96,7 +96,8 @@ types={
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
-        {name:'Human',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:"Just a guy"},
+        {name:'Human',life:30,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:"Just a guy"},
+        {name:'Duck',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:"Ducks you"},
         {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[4]}],description:""},
     ],color:{
         card:[
@@ -121,13 +122,13 @@ types={
         start:[
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
-            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1],
-            ['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Think',0,1],['Swap',0,1],['Bandage',0,1],['Pull',0,1],['Wind\nUp',0,1],['Chain',0,1]],
            
         ]
     },level:[
         {
+            name:'Basic 7',
             map:[
                 [{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1},{type:-1}],
                 [{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1}],
@@ -137,24 +138,35 @@ types={
                 [{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0}],
                 [{type:-1},{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0}],
             ],
+        },{
+            name:'Spiky 7',
+            map:[
+                [{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1},{type:-1}],
+                [{type:0},{type:1},{type:0},{type:1},{type:0},{type:-1},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1}],
+                [{type:0},{type:1},{type:0},{type:0},{type:0},{type:1},{type:0}],
+                [{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:-1},{type:0},{type:1},{type:0},{type:1},{type:0}],
+                [{type:-1},{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0}],
+            ],
         },
     ],encounter:[
         {
             level:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:2},
-                /*{position:{x:1,y:0},type:2},
-                {position:{x:2,y:0},type:2},
-                {position:{x:3,y:0},type:2},
-                {position:{x:3,y:6},type:2},
-                {position:{x:4,y:6},type:2},
-                {position:{x:5,y:6},type:2},*/
-                {position:{x:6,y:6},type:2},
+                {position:{x:0,y:0},type:3},
+                {position:{x:1,y:0},type:3},
+                {position:{x:2,y:0},type:3},
+                {position:{x:3,y:0},type:3},
+                {position:{x:3,y:6},type:3},
+                {position:{x:4,y:6},type:3},
+                {position:{x:5,y:6},type:3},
+                {position:{x:6,y:6},type:3},
             ],
             reinforce:[
-                /*{position:{x:0,y:3},type:2,turn:2},
-                {position:{x:6,y:3},type:2,turn:2},*/
+                //{position:{x:0,y:3},type:2,turn:2},
+                //{position:{x:6,y:3},type:2,turn:2},
             ],
         },
     ],

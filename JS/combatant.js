@@ -214,6 +214,18 @@ class combatant{
 
                 this.goal={anim:{direction:this.anim.direction}}
             break
+            case 3:
+                this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
+                this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
+                this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
+                this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
+                this.parts={eyeLevel:-40,beakLevel:-33,legs:[{top:{x:3,y:-15},middle:{x:0,y:0}},{top:{x:3,y:-15},middle:{x:0,y:0}}],arms:[{top:{x:3.5,y:-25},middle:{x:0,y:0}},{top:{x:3.5,y:-25},middle:{x:0,y:0}}]}
+                this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
+                this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true}}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+            break
             default:
                 this.anim={direction:direction}
                 this.goal={anim:{direction:this.anim.direction}}
@@ -301,13 +313,31 @@ class combatant{
                     this.graphics.arms[g].bottomStack.y=this.parts.arms[g].bottom.y
                 }
             break
+            case 3:
+                for(let g=0;g<2;g++){
+                    this.parts.legs[g].middle.x=this.parts.legs[g].top.x+sin(this.anim.legs[g].top)*this.anim.legs[g].length.top
+                    this.parts.legs[g].middle.y=this.parts.legs[g].top.y+cos(this.anim.legs[g].top)*this.anim.legs[g].length.top
+
+                    this.graphics.legs[g].top.x=this.parts.legs[g].top.x*sin(this.spin.legs[g].top+this.anim.direction),
+                    this.graphics.legs[g].top.y=this.parts.legs[g].top.y
+                    this.graphics.legs[g].middle.x=this.parts.legs[g].middle.x*sin(this.spin.legs[g].top+this.anim.direction),
+                    this.graphics.legs[g].middle.y=this.parts.legs[g].middle.y
+
+                    this.parts.arms[g].middle.x=this.parts.arms[g].top.x+sin(this.anim.arms[g].top)*this.anim.arms[g].length.top
+                    this.parts.arms[g].middle.y=this.parts.arms[g].top.y+cos(this.anim.arms[g].top)*this.anim.arms[g].length.top
+
+                    this.graphics.arms[g].top.x=this.parts.arms[g].top.x*sin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].top.y=this.parts.arms[g].top.y
+                    this.graphics.arms[g].middle.x=this.parts.arms[g].middle.x*sin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
+                }
+            break
 
         }
     }
     getTarget(){
         switch(this.attack[this.intent].type){
-            case 1:
-                return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
+            case 1: case 2: return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
         }
     }
     setIntent(type){
@@ -325,7 +355,7 @@ class combatant{
         if(this.life>0&&!this.moved){
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
-                case 1:
+                case 1: case 2:
                     if(target==-1){
                         this.targetTile={x:-1,y:-1}
                     }else{
@@ -336,7 +366,7 @@ class combatant{
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].team==0&&type==0||this.battle.combatantManager.combatants[a].id==id&&type==1){
                     switch(this.attack[this.intent].type){
-                        case 1:
+                        case 1: case 2:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile.y){
@@ -427,6 +457,17 @@ class combatant{
                     case 0: case 2:
                         this.animSetloop=0
                         this.animSet.flip=floor(random(0,2))
+                    break
+                }
+            break
+            case 3:
+                switch(type){
+                    case 0:
+                        this.animSetloop=0
+                        this.animSet.flip=floor(random(0,2))
+                    break
+                    case 2:
+                        this.animSetloop=0
                     break
                 }
             break
@@ -525,9 +566,12 @@ class combatant{
                         for(let g=0;g<2;g++){
                             this.anim.arms[g].top=24-constrain(this.animSet.loop,0,1)*6
                             this.anim.arms[g].bottom=9+constrain(this.animSet.loop,0,1)*27
+                            this.spin.arms[g].top=(93+constrain(this.animSet.loop,0,1)*27)*(g*2-1)
+                            this.spin.arms[g].bottom=(75+constrain(this.animSet.loop,0,1)*45)*(g*2-1)
                             this.anim.legs[g].top=9+constrain(this.animSet.loop,0,1)*9
-                            this.anim.legs[g].bottom=constrain(this.animSet.loop,0,1)*96
+                            this.anim.legs[g].bottom=constrain(this.animSet.loop,0,1)*90
                             this.spin.legs[g].top=(60+constrain(this.animSet.loop,0,1)*30)*(g*2-1)
+                            this.spin.legs[g].bottom=(120+constrain(this.animSet.loop,0,1)*30)*(g*2-1)
                             this.anim.eye[g]=constrain(this.animSet.loop,0,1)
                             this.anim.legs[g].length.sandal.back=15.5+constrain(this.animSet.loop,0,1)*0.5
                             this.anim.legs[g].length.sandal.front=14.5+constrain(this.animSet.loop,0,1)*1.5
@@ -580,6 +624,24 @@ class combatant{
                         }
                     break
 
+                }
+            break
+            case 3:
+                switch(type){
+                    case 0:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.spin.legs[g].top=(-90+sin((this.animSet.loop+this.animSet.flip)*180)*75)*(g*2-1)
+                            this.spin.arms[g].top=(-90+sin((this.animSet.loop+this.animSet.flip)*180)*60)*(g*2-1)
+                        }
+                    break
+                    case 2:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.spin.arms[g].top=(-90+abs(sin(this.animSet.loop*540)*75))*(g*2-1)
+                            this.anim.arms[g].top=54+abs(sin(this.animSet.loop*540))*30
+                        }
+                    break
                 }
             break
         }
@@ -1346,6 +1408,98 @@ class combatant{
                         }
                     }
                 break
+                case 3:
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&cos(this.anim.direction+this.spin.arms[g].top)<=0){
+                            this.layer.fill(upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[0],upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[1],upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[2],this.fade*this.fades.skin.arms)
+                            this.layer.noStroke()
+                            this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,12,12)
+                        }
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.legs&&cos(this.anim.direction+this.spin.legs[g].top)<=0){
+                            this.layer.fill(upColor(this.color.skin.legs,cos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1])[0],upColor(this.color.skin.legs,cos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1])[1],upColor(this.color.skin.legs,cos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                            this.layer.noStroke()
+                            this.layer.ellipse(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,12,12)
+                        }
+                    }
+                    if(this.trigger.display.skin.body){
+                        this.layer.fill(this.color.skin.body[0],this.color.skin.body[1],this.color.skin.body[2],this.fade*this.fades.skin.body)
+                        this.layer.noStroke()
+                        this.layer.ellipse(0,-19,14,24)
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.legs&&cos(this.anim.direction+this.spin.legs[g].top)>0){
+                            this.layer.fill(upColor(this.color.skin.legs,cos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1])[0],upColor(this.color.skin.legs,cos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1])[1],upColor(this.color.skin.legs,cos(this.spin.legs[g].top+this.anim.direction)*20,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                            this.layer.noStroke()
+                            this.layer.ellipse(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,12,12)
+                        }
+                    }
+                    if(this.trigger.display.beak.main){
+                        this.layer.fill(this.color.beak.main[0],this.color.beak.main[1],this.color.beak.main[2],this.fade*this.fades.beak.main)
+                        this.layer.noStroke()
+                        this.layer.ellipse(sin(this.anim.direction)*13,this.parts.beakLevel,12+2*cos(this.anim.direction),8)
+                    }
+                    if(this.trigger.display.beak.mouth){
+                        this.layer.noFill()
+                        this.layer.stroke(this.color.beak.mouth[0],this.color.beak.mouth[1],this.color.beak.mouth[2],this.fade*this.fades.beak.mouth)
+                        this.layer.strokeWeight(0.5)
+                        this.layer.arc(sin(this.anim.direction)*13,this.parts.beakLevel,12+2*cos(this.anim.direction),1,0,180)
+                    }
+                    if(this.trigger.display.beak.nostril){
+                        this.layer.noFill()
+                        this.layer.stroke(this.color.beak.nostril[0],this.color.beak.nostril[1],this.color.beak.nostril[2],this.fade*this.fades.beak.nostril)
+                        this.layer.strokeWeight(0.5)
+                        for(let g=0;g<2;g++){
+                            this.layer.line(sin(this.anim.direction-6+g*12)*16,this.parts.beakLevel-1.5,sin(this.anim.direction-6+g*12)*16,this.parts.beakLevel-1)
+                        }
+                    }
+                    if(this.trigger.display.skin.head){
+                        this.layer.fill(this.color.skin.head[0],this.color.skin.head[1],this.color.skin.head[2],this.fade*this.fades.skin.head)
+                        this.layer.noStroke()
+                        this.layer.ellipse(0,-38,27,27)
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&cos(this.anim.direction+this.spin.arms[g].top)>0){
+                            this.layer.fill(upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[0],upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[1],upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[2],this.fade*this.fades.skin.arms)
+                            this.layer.noStroke()
+                            this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,12,12)
+                        }
+                        if(this.trigger.display.eye[g]){
+                            this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[g])
+                            this.layer.strokeWeight((2.5-this.anim.eye[g]*1.5)*constrain(cos(this.spin.eye[g]+this.anim.direction)*5,0,1))
+                            this.layer.line(sin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*cos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,sin(this.spin.eye[g]+this.anim.direction)*13+(g*2-1)*cos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
+                            this.layer.line(sin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*cos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,sin(this.spin.eye[g]+this.anim.direction)*13+(g*2-1)*cos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                        }
+                    }
+                    if(this.trigger.display.beak.main&&cos(this.anim.direction)>0){
+                        this.layer.fill(this.color.beak.main[0],this.color.beak.main[1],this.color.beak.main[2],this.fade*this.fades.beak.main)
+                        this.layer.noStroke()
+                        this.layer.arc(sin(this.anim.direction)*13,this.parts.beakLevel,12+2*cos(this.anim.direction)-max(0,sin(this.anim.direction)-0.5)*24,8,-270,-90)
+                        this.layer.arc(sin(this.anim.direction)*13,this.parts.beakLevel,12+2*cos(this.anim.direction)+min(0,sin(this.anim.direction)+0.5)*24,8,-90,90)
+                    }
+                    if(this.trigger.display.beak.mouth&&cos(this.anim.direction)>0){
+                        this.layer.noFill()
+                        this.layer.stroke(this.color.beak.mouth[0],this.color.beak.mouth[1],this.color.beak.mouth[2],this.fade*this.fades.beak.mouth)
+                        this.layer.strokeWeight(0.5)
+                        this.layer.arc(sin(this.anim.direction)*13+max(0,sin(this.anim.direction)-0.5)*6+min(0,sin(this.anim.direction)+0.5)*6,this.parts.beakLevel,12+2*cos(this.anim.direction)-max(0,sin(this.anim.direction)-0.5)*12+min(0,sin(this.anim.direction)+0.5)*12,1,0,180)
+                    }
+                    if(this.trigger.display.beak.nostril&&cos(this.anim.direction)>0){
+                        this.layer.noFill()
+                        this.layer.stroke(this.color.beak.nostril[0],this.color.beak.nostril[1],this.color.beak.nostril[2],this.fade*this.fades.beak.nostril)
+                        this.layer.strokeWeight(0.5)
+                        for(let g=0;g<2;g++){
+                            this.layer.line(sin(this.anim.direction-6+g*12)*16,this.parts.beakLevel-1.5,sin(this.anim.direction-6+g*12)*16,this.parts.beakLevel-1)
+                        }
+                    }
+                    if(this.jumps>0){
+                        this.layer.noStroke()
+                        this.layer.fill(255)
+                        for(let g=0;g<this.jumps;g++){
+                            this.layer.ellipse(16,-48-g*8,4)
+                        }
+                    }
+                break
                 default:
                     this.layer.rotate(-this.anim.direction)
                     this.layer.fill(255,255-this.team*255,255-this.team*255,this.fade)
@@ -1477,7 +1631,7 @@ class combatant{
         if(this.team==1&&this.life>0&&!this.moved){
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
-                case 1:
+                case 1: case 2:
                     if(target!=-1){
                         if(this.activated){
                             this.battle.tileManager.tiles[target].targetted[2]=true
@@ -1567,7 +1721,7 @@ class combatant{
                     this.trigger.display.extra.damage=false
                 }
             break
-            case 2:
+            case 2: case 3:
                 this.anim.head=this.anim.direction
             break
         }

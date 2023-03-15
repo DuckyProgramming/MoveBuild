@@ -15,7 +15,7 @@ class tileManager{
         for(let a=0,la=level.map.length;a<la;a++){
             for(let b=0,lb=level.map[a].length;b<lb;b++){
                 if(level.map[a][b].type>=0){
-                    this.tiles.push(new tile(this.layer,this.layer.width/2-(lb-1)*60+(la-1)*30+b*120-a*60,this.layer.height/2-60-(la-1)*25+a*50,this.layer.width/2-(lb-1)*25+b*100-a*50,this.layer.height/2-50-(la-1)*25*sqrt(3)+a*50*sqrt(3),b,a))
+                    this.tiles.push(new tile(this.layer,this.battle,this.layer.width/2-(lb-1)*60+(la-1)*30+b*120-a*60,this.layer.height/2-60-(la-1)*25+a*50,this.layer.width/2-(lb-1)*25+b*100-a*50,this.layer.height/2-50-(la-1)*25*sqrt(3)+a*50*sqrt(3),b,a,level.map[a][b].type))
                 }
             }
         }
@@ -49,6 +49,11 @@ class tileManager{
     }
     getTileRelativeDirection(tile1X,tile1Y,tile2X,tile2Y){
         return vectorAtan(this.getTileRelativePosition(tile1X,tile1Y),this.getTileRelativePosition(tile2X,tile2Y))
+    }
+    activateTiles(type,id){
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            this.tiles[a].activate(type,id)
+        }
     }
     display(scene){
         switch(scene){
