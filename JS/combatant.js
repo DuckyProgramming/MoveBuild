@@ -448,7 +448,6 @@ class combatant{
                     case 7:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
-                        this.trigger.display.mode.sandal.edge=2
                     break
                 }
             break

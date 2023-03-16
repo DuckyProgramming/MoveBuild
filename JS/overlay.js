@@ -26,6 +26,34 @@ class overlay{
                     break
                 }
             break
+            case 3:
+                this.cards=[]
+            break
+        }
+    }
+    activate(args){
+        switch(this.type){
+            case 1:
+                this.rewards.push({type:args.type,value:args.value,fade:1,position:this.rewards.length*50,usable:true})
+            break
+            case 3:
+                //args[level, rarity]
+            break
+        }
+    }
+    execute(args){
+        switch(this.type){
+            case 1:
+                switch(args.type){
+                    case 0:
+                        this.battle.currency.money+=args.value[0]
+                    break
+                    case 1:
+                        this.battle.overlayManager.overlays[3].active=true
+                        this.battle.overlayManager.overlays[3].activate(args.value)
+                    break
+                }
+            break
         }
     }
     display(){
@@ -33,17 +61,53 @@ class overlay{
         switch(this.type){
             case 1:
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2,this.layer.height/2,240,360,10)
+                if(this.rewards.length==0){
+                    this.layer.rect(this.layer.width/2,this.layer.height/2,240,360,10)
+                }else{
+                    this.layer.rect(this.layer.width/2,this.layer.height/2+max(0,this.rewards[this.rewards.length-1].position-250)/2,240,360+max(0,this.rewards[this.rewards.length-1].position-250),10)
+                }
+                this.layer.rect(this.layer.width/2,this.layer.height/2-205,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 this.layer.text('Rewards',this.layer.width/2,this.layer.height/2-150)
+                this.layer.textSize(20)
+                this.layer.text('Close',this.layer.width/2,this.layer.height/2-205)
+                for(let a=0,la=this.rewards.length;a<la;a++){
+                    this.layer.noStroke()
+                    this.layer.fill(120,this.fade*this.rewards[a].fade)
+                    switch(this.rewards[a].type){
+                        case 0:
+                            this.layer.rect(this.layer.width/2,this.layer.height/2-105+this.rewards[a].position,60,40,10)
+                            this.layer.fill(240,240,220,this.fade*this.rewards[a].fade)
+                            this.layer.ellipse(this.layer.width/2-10,this.layer.height/2-105+this.rewards[a].position,16,16)
+                            this.layer.fill(220,220,200,this.fade*this.rewards[a].fade)
+                            this.layer.ellipse(this.layer.width/2-10,this.layer.height/2-105+this.rewards[a].position,10,10)
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.textSize(16)
+                            this.layer.textAlign(LEFT,CENTER)
+                            this.layer.text(this.rewards[a].value[0],this.layer.width/2,this.layer.height/2-103+this.rewards[a].position)
+                            this.layer.textAlign(CENTER,CENTER)
+                        break
+                        case 1:
+                            this.layer.rect(this.layer.width/2,this.layer.height/2-105+this.rewards[a].position,120,40,10)
+                            this.layer.fill(this.battle.colorDetail.fill)
+                            this.layer.stroke(this.battle.colorDetail.stroke)
+                            this.layer.strokeWeight(3)
+                            this.layer.rect(this.layer.width/2-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.noStroke()
+                            this.layer.textSize(16)
+                            this.layer.text('New Card',this.layer.width/2+15,this.layer.height/2-103+this.rewards[a].position)
+                        break
+                    }
+                }
             break
             case 2:
                 this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2,510,400,10)
                 this.layer.rect(this.layer.width/2-285,this.layer.height/2,40,40,10)
                 this.layer.rect(this.layer.width/2+285,this.layer.height/2,40,40,10)
                 this.layer.rect(this.layer.width/2,this.layer.height/2+225,120,40,10)
-                this.layer.rect(this.layer.width/2,this.layer.height/2,510,400,10)
                 this.layer.fill(0,this.fade*0.8)
                 regTriangle(this.layer,this.layer.width/2-282.5,this.layer.height/2,15,15,30)
                 regTriangle(this.layer,this.layer.width/2+282.5,this.layer.height/2,15,15,-30)
@@ -60,12 +124,33 @@ class overlay{
                     case 1: this.battle.cardManager.discard.display('overlay',[1,this.page]); break
                 }
             break
+            case 3:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2,400,240,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                switch(this.args[0]){
+                    case 0: this.layer.text('Add a Card',this.layer.width/2,this.layer.height/2-90); break
+                }
+            break
         }
     }
     update(primary){
         this.fade=smoothAnim(this.fade,this.active&&primary,0,1,5)
         switch(this.type){
             case 1:
+                for(let a=0,la=this.rewards.length;a<la;a++){
+                    if(!this.rewards[a].usable){
+                        this.rewards[a].fade-=0.2
+                        if(this.rewards[a].fade<=0){
+                            this.rewards.splice(a,1)
+                            a--
+                            la--
+                        }
+                    }else if(this.rewards[a].position>a*50){
+                        this.rewards[a].position-=10
+                    }
+                }
             break
             case 2:
                 switch(this.args[0]){
@@ -87,6 +172,16 @@ class overlay{
         if(this.active){
             switch(this.type){
                 case 1:
+                    for(let a=0,la=this.rewards.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-105+this.rewards[a].position},width:200,height:40})&&this.rewards[a].usable){
+                            this.rewards[a].usable=false
+                            this.execute(this.rewards[a])
+                        }
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-205},width:120,height:40})){
+                        transition.trigger=true
+                        transition.scene='map'
+                    }
                 break
                 case 2:
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-285,y:this.layer.height/2},width:40,height:40})&&this.page>0){
@@ -106,6 +201,16 @@ class overlay{
         if(this.active){
             switch(this.type){
                 case 1:
+                    for(let a=0,la=this.rewards.length;a<la;a++){
+                        if((int(key)+9)%10==a&&this.rewards[a].usable){
+                            this.rewards[a].usable=false
+                            this.execute(this.rewards[a])
+                        }
+                    }
+                    if(code==ENTER){
+                        transition.trigger=true
+                        transition.scene='map'
+                    }
                 break
                 case 2:
                     if(code==LEFT_ARROW&&this.page>0){

@@ -1,8 +1,7 @@
 Animations:
 
 Mechanics:
-Card Listing
-Rewards Screen
+Card Listing (Rarity)
 Card Choice Screen
 Map (New Generation System)
 Rest (2 Types Perhaps?)

@@ -120,7 +120,7 @@ class combatantManager{
             for(let b=0;b<game.animRate;b++){
                 this.combatants[a].update()
             }
-            if(dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius){
+            if(dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius&&!this.battle.overlayManager.anyActive){
                 this.combatants[a].infoAnim.upSize=true
             }else{
                 this.combatants[a].infoAnim.upSize=false

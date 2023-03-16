@@ -93,8 +93,8 @@ types={
         },{
             name:'Charge\nBlock',
             levels:[
-                {effect:[6],attack:13,cost:-1,target:[0],spec:[],class:2},
                 {effect:[9],attack:13,cost:-1,target:[0],spec:[],class:2},
+                {effect:[14],attack:13,cost:-1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Shift',
@@ -106,7 +106,7 @@ types={
             name:'Knee',
             levels:[
                 {effect:[8],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
-                {effect:[14],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[12],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
             ],
         },
 
@@ -152,6 +152,22 @@ types={
         ]
     },level:[
         {
+            name:'Basic 3',
+            map:[
+                [{type:0},{type:0},{type:-1}],
+                [{type:0},{type:0},{type:0}],
+                [{type:-1},{type:0},{type:0}],
+            ],
+        },{
+            name:'Basic 5',
+            map:[
+                [{type:0},{type:0},{type:0},{type:-1},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:-1},{type:0},{type:0},{type:0}],
+            ],
+        },{
             name:'Basic 7',
             map:[
                 [{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1},{type:-1}],
@@ -176,8 +192,8 @@ types={
         },
     ],encounter:[
         {
-            level:0,
-            player:{position:{x:3,y:3}},
+            level:0,class:0,
+            player:{position:{x:1,y:1}},
             enemy:[
                 {position:{x:0,y:0},type:3},
                 /*{position:{x:1,y:0},type:3},

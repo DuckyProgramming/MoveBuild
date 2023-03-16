@@ -11,12 +11,13 @@ class battle{
         this.particleManager=new particleManager(this.layer,this)
         this.overlayManager=new overlayManager(this.layer,this)
 
+        this.encounter={class:0}
         this.currency={money:100}
         this.energy={main:0,gen:0,base:3}
         this.turn={main:0,total:1,time:0,accelerate:0}
         this.anim={reserve:1,discard:1,endTurn:1,turn:0,defeat:0}
         this.counter={enemy:0,killed:0}
-        this.result={defeat:false}
+        this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
         this.rewards=[]
 
@@ -29,6 +30,7 @@ class battle{
         this.setupBattle(types.encounter[0])
     }
     setupBattle(encounter){
+        this.encounter.class=encounter.class
         this.energy.gen=this.energy.base
         this.turn.total=0
 
@@ -65,7 +67,8 @@ class battle{
         combatant.position={x:this.tileManager.getTilePosition(position.x,position.y).x,y:this.tileManager.getTilePosition(position.x,position.y).y}
         combatant.relativePosition={x:this.tileManager.getTileRelativePosition(position.x,position.y).x,y:this.tileManager.getTileRelativePosition(position.x,position.y).y}
         combatant.tilePosition={x:position.x,y:position.y}
-        combatant.direction=this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))
+        combatant.anim.direction=round(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))/60-1/2)*60+30
+        combatant.goal.anim.direction=combatant.anim.direction
     }
     loadReinforce(){
         for(let a=0,la=this.reinforce.back.length;a<la;a++){
@@ -125,7 +128,7 @@ class battle{
         this.layer.ellipse(20,16,16,16)
         this.layer.fill(220,220,200)
         this.layer.ellipse(20,16,10,10)
-        this.layer.fill(230,230,210)
+        this.layer.fill(0)
         this.layer.textSize(16)
         this.layer.textAlign(LEFT,CENTER)
         this.layer.text(this.currency.money,30,18)
@@ -176,7 +179,7 @@ class battle{
                 this.particleManager.display()
                 this.overlayManager.display()
                 this.displayCurrency()
-                if(this.anim.defeat){
+                if(this.anim.defeat>0){
                     this.layer.fill(0,this.anim.defeat)
                     this.layer.noStroke()
                     this.layer.rect(this.layer.width/2,this.layer.height/2,this.layer.width,this.layer.height)
@@ -205,8 +208,16 @@ class battle{
                     transition.trigger=true
                     transition.scene='defeat'
                 }
-                if(this.counter.killed>=this.counter.enemy){
+                if(this.counter.killed>=this.counter.enemy&&!this.result.victory){
+                    this.result.victory=true
+                    this.overlayManager.closeAll()
                     this.overlayManager.overlays[0].active=true
+                    switch(this.encounter.class){
+                        case 0:
+                            this.overlayManager.overlays[0].activate({type:1,value:[0,0]})
+                            this.overlayManager.overlays[0].activate({type:0,value:[floor(random(40,81))]})
+                        break
+                    }
                 }
             break
         }
