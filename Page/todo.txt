@@ -13,7 +13,6 @@ Perk
 
 Battle Content:
 Weak Enemy
-Duck
 Retain Cards
 Innate Cards
 Enemy Can Push You
@@ -22,14 +21,11 @@ Enemy Can Push You
 Cards:
 Hurt Self For Energy
 Only Hits at Range 2
-Knee (Push, Move to Previous Location of Target)
 2-8 Range Throwing Knife?
-X Cost Attack and Defense
-Circular Shockwave
+Circular Shockwave (Spin Strike)
 Counter? (Once/All)
 Dodge?
 Hit and Move Away
-Shift Through Enemy
 Quick Kick
 Hook Strike
 Big Strike/ Block

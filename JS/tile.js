@@ -8,7 +8,7 @@ class tile{
         this.type=type
 
         this.fade=1
-        this.occupied=false
+        this.occupied=0
         this.targetted=[false,false,false]
         this.reinforce=false
 
@@ -74,6 +74,8 @@ class tile{
         this.layer.pop()
     }
     update(){
+        this.tilePosition.x=round(this.tilePosition.x)
+        this.tilePosition.y=round(this.tilePosition.y)
         for(let g=0,lg=this.anim.target.length;g<lg;g++){
             this.anim.target[g]=smoothAnim(this.anim.target[g],this.targetted[g],0,1,5)
             this.targetted[g]=false

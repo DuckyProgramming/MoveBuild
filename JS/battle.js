@@ -80,7 +80,7 @@ class battle{
     }
     sendReinforce(){
         for(let a=0,la=this.reinforce.front.length;a<la;a++){
-            if(!this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].occupied){
+            if(this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].occupied==0){
                 this.addCombatant(this.reinforce.front[a].position,this.reinforce.front[a].type,1,1)
                 this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
                 this.reinforce.front.splice(a,1)

@@ -93,9 +93,16 @@ class combatantManager{
     display(scene){
         switch(scene){
             case 'battle':
-                for(let a=0;a<this.battle.tileManager.height;a++){
+                let list=[]
+                for(let a=0,la=this.combatants.length;a<la;a++){
+                    if(!list.includes(this.combatants[a].position.y)){
+                        list.push(this.combatants[a].position.y)
+                    }
+                }
+                let sorted=list.sort()
+                for(let a=0,la=sorted.length;a<la;a++){
                     for(let b=0,lb=this.combatants.length;b<lb;b++){
-                        if(this.combatants[b].tilePosition.y==a){
+                        if(this.combatants[b].position.y==sorted[a]){
                             this.combatants[b].display()
                         }
                     }

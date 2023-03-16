@@ -57,6 +57,7 @@ function pointInsideBox(point,box){
 function intentDescription(attack){
 	switch(attack.type){
 		case 1: return 'Deal '+attack.effect[0]+' Damage\nRange 1-1'
+		case 2: return 'Deal '+attack.effect[0]+' Damage\n3 Times\nRange 1-1'
 	}
 }
 function vectorAtan(point1,point2){
@@ -142,14 +143,29 @@ function targetDirection(type,x,y){
 	}
 }
 function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,tiles){
-	if(legalTarget(type,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
-		let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
-		for(a=0,la=tiles.length;a<la;a++){
-			if(tiles[a].occupied&&legalTarget(type,0,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(type,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+	switch(type){
+		case 0:
+			if(legalTarget(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
+				let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
+				for(a=0,la=tiles.length;a<la;a++){
+					if(tiles[a].occupied>0&&legalTarget(0,0,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(0,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+						return false
+					}
+				}
+				return true
+			}
+		break
+		case 1:
+			if(legalTarget(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
+				let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
+				for(a=0,la=tiles.length;a<la;a++){
+					if(tiles[a].occupied==1&&legalTarget(0,0,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(0,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+						return true
+					}
+				}
 				return false
 			}
-		}
-		return true
+		break
 	}
 	return false
 }

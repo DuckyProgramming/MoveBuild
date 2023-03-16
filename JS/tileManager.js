@@ -62,7 +62,9 @@ class tileManager{
                     this.tiles[a].display()
                 }
                 for(let a=0,la=this.tiles.length;a<la;a++){
-                    if((this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3)&&!this.tiles[a].occupied&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)){
+                    if((this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4)&&this.tiles[a].occupied==0&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)){
+                        this.tiles[a].targetted[0]=true
+                    }else if((this.battle.attackManager.targetInfo[0]==4)&&this.tiles[a].occupied==0&&legalTargetCombatant(1,this.battle.attackManager.targetInfo[1]+1,this.battle.attackManager.targetInfo[2]+1,this.tiles[a],this.battle.attackManager,this.tiles)){
                         this.tiles[a].targetted[0]=true
                     }
                 }
@@ -79,13 +81,13 @@ class tileManager{
             case 'battle':
                 for(let a=0,la=this.tiles.length;a<la;a++){
                     this.tiles[a].update()
-                    this.tiles[a].occupied=false
+                    this.tiles[a].occupied=0
                 }
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(this.battle.combatantManager.combatants[a].life>0){
                         for(let b=0,lb=this.tiles.length;b<lb;b++){
                             if(this.tiles[b].tilePosition.x==this.battle.combatantManager.combatants[a].tilePosition.x&&this.tiles[b].tilePosition.y==this.battle.combatantManager.combatants[a].tilePosition.y){
-                                this.tiles[b].occupied=true
+                                this.tiles[b].occupied=1
                             }
                         }
                     }

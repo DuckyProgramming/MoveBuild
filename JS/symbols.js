@@ -22,12 +22,21 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade){
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
         break
+        case 2:
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,0,-2,0,2)
+            layer.triangle(3,-3,-6,-5,-6,-1)
+            layer.triangle(3,3,-6,1,-6,5)
+        break
     }
     layer.fill(0,fade)
     layer.textSize(8)
     switch(type){
         case 1:
             layer.text(effect[0],0,0)
+        break
+        case 2:
+            layer.text(effect[0]+'x3',0,0)
         break
     }
     layer.pop()

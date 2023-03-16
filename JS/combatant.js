@@ -437,7 +437,7 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=true
                     break
-                    case 3: case 6:
+                    case 3: case 6: case 8:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -577,6 +577,12 @@ class combatant{
                             this.anim.legs[g].length.sandal.front=14.5+constrain(this.animSet.loop,0,1)*1.5
                         }
                         this.offset.position.y=constrain(this.animSet.loop,0,1)*20
+                    break
+                    case 8:
+                        this.animSet.loop+=rate
+                        this.anim.legs[1].top=9+sin(this.animSet.loop*180)*63
+                        this.anim.legs[1].bottom=-sin(this.animSet.loop*180)*12
+                        this.spin.legs[1].bottom=120-sin(this.animSet.loop*180)*60
                     break
 
                 }
@@ -1609,6 +1615,8 @@ class combatant{
         }
     }
     update(){
+        this.tilePosition.x=round(this.tilePosition.x)
+        this.tilePosition.y=round(this.tilePosition.y)
         this.collect.life=this.collect.life*0.9+this.life*0.1
         if(this.team==0){
             this.fade=1

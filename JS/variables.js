@@ -84,6 +84,30 @@ types={
                 {effect:[0],attack:11,cost:0,target:[2,2,2],spec:[],class:1},
                 {effect:[4],attack:11,cost:0,target:[2,2,2],spec:[],class:1},
             ],
+        },{
+            name:'Charge\nStrike',
+            levels:[
+                {effect:[7],attack:12,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:12,cost:-1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Charge\nBlock',
+            levels:[
+                {effect:[6],attack:13,cost:-1,target:[0],spec:[],class:2},
+                {effect:[9],attack:13,cost:-1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Shift',
+            levels:[
+                {effect:[1],attack:14,cost:1,target:[4,1,1],spec:[],class:3},
+                {effect:[1],attack:14,cost:0,target:[4,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Knee',
+            levels:[
+                {effect:[8],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[14],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
         },
 
         {
@@ -123,7 +147,7 @@ types={
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            //[['Think',0,1],['Swap',0,1],['Bandage',0,1],['Pull',0,1],['Wind\nUp',0,1],['Chain',0,1]],
+            //[['Charge\nStrike',0,1],['Charge\nBlock',0,1],['Shift',0,1],['Knee',0,1]],
            
         ]
     },level:[
@@ -156,17 +180,17 @@ types={
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},type:3},
-                {position:{x:1,y:0},type:3},
+                /*{position:{x:1,y:0},type:3},
                 {position:{x:2,y:0},type:3},
                 {position:{x:3,y:0},type:3},
                 {position:{x:3,y:6},type:3},
                 {position:{x:4,y:6},type:3},
                 {position:{x:5,y:6},type:3},
-                {position:{x:6,y:6},type:3},
+                {position:{x:6,y:6},type:3},*/
             ],
             reinforce:[
-                //{position:{x:0,y:3},type:2,turn:2},
-                //{position:{x:6,y:3},type:2,turn:2},
+                /*{position:{x:0,y:3},type:2,turn:2},
+                {position:{x:6,y:3},type:2,turn:2},*/
             ],
         },
     ],

@@ -65,6 +65,10 @@ class card{
             case 9: string+='Swap With an\nAdjacent Enemy\nTarget Will Face User\nor\nMove '+this.effect[0]+' Tiles'; break
             case 10: string+='Heal '+this.effect+' Health'; break
             case 11: if(this.effect[0]>0){string+='Deal '+this.effect[0]+' Damage\n'} string+='Pull 1 Tile\nTarget Will Face User'; break
+            case 12: string+='Deal '+this.calculateEffect(this.effect[0],0)+'X Damage'; break
+            case 13: string+='Add '+this.effect[0]+ 'X Block'; break
+            case 14: string+='Pass Through an\nAdjacent Enemy\nor\nMove '+this.effect[0]+' Tiles'; break
+            case 15: string+='Deal '+this.effect[0]+' Damage\nPush 1 Tile\nMove Forward 1 Tile'; break
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
@@ -108,7 +112,11 @@ class card{
             this.layer.noStroke()
             this.layer.fill(mergeColor([255,0,0],[0,0,0],this.anim.afford),this.level/2,this.fade)
             this.layer.textSize(14)
-            this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
+            if(this.cost==-1){
+                this.layer.text('X',-this.width/2+10,-this.height/2+13)
+            }else{
+                this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
+            }
             this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
             this.layer.textSize(10)
             this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
