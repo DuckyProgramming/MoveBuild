@@ -1,9 +1,8 @@
 Animations:
 
 Mechanics:
-Card Listing (Rarity)
-Card Choice Screen
 Map (New Generation System)
+View Deck
 Rest (2 Types Perhaps?)
 Shop
 Lose-Scene
@@ -21,7 +20,8 @@ Cards:
 Hurt Self For Energy
 Only Hits at Range 2
 2-8 Range Throwing Knife?
-Circular Shockwave (Spin Strike)
+6 Direction Attack
+6 Direction Push
 Counter? (Once/All)
 Dodge?
 Hit and Move Away

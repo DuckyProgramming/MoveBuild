@@ -159,6 +159,7 @@ class group{
                 this.battle.attackManager.energy=this.battle.energy.main
                 this.battle.attackManager.type=this.cards[a].attack
                 this.battle.attackManager.effect=this.cards[a].effect
+                this.battle.attackManager.attackClass=this.cards[a].class
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
                 this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
                 this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x

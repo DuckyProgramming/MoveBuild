@@ -383,7 +383,6 @@ class combatant{
             let damage=value
             if(user>=0&&user<this.battle.combatantManager.combatants.length){
                 if(this.battle.combatantManager.combatants[user].status.main[0]>0){
-                    this.battle.combatantManager.combatants[user].status.main[0]--
                     damage*=2
                 }
             }

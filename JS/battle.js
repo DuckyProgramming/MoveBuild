@@ -214,7 +214,7 @@ class battle{
                     this.overlayManager.overlays[0].active=true
                     switch(this.encounter.class){
                         case 0:
-                            this.overlayManager.overlays[0].activate({type:1,value:[0,0]})
+                            this.overlayManager.overlays[0].activate({type:1,value:[0,floor(random(0,1.5))]})
                             this.overlayManager.overlays[0].activate({type:0,value:[floor(random(40,81))]})
                         break
                     }

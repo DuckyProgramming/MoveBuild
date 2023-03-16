@@ -94,6 +94,16 @@ function copyArray(base){
 	}
 	return list
 }
+function copyArrayStack(base){
+	let list=[]
+	for(let a=0,la=base.length;a<la;a++){
+		list.push([])
+		for(let b=0,lb=base[a].length;b<lb;b++){
+			list[a].push(base[a][b])
+		}
+	}
+	return list
+}
 function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){
 		case 0:

@@ -1,8 +1,9 @@
 class attack{
-    constructor(type,battle,effect,user,energy,target,targetDistance,targetClass){
+    constructor(type,battle,effect,attackClass,user,energy,target,targetDistance,targetClass){
         this.type=type
         this.battle=battle
         this.effect=effect
+        this.attackClass=attackClass
         this.user=user
         this.energy=energy
         this.target=target
@@ -426,6 +427,15 @@ class attack{
             default:
                 this.remove=true
             break
+        }
+        if(this.remove){
+            switch(this.attackClass){
+                case 1:
+                    if(this.userCombatant.status.main[0]>0){
+                        this.userCombatant.status.main[0]--
+                    }
+                break
+            }
         }
     }
 }

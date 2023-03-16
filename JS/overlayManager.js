@@ -41,13 +41,19 @@ class overlayManager{
         }
     }
     onClick(){
-        for(let a=0,la=this.overlays.length;a<la;a++){
-            this.overlays[a].onClick()
+        for(let a=0,la=this.priority.length;a<la;a++){
+            if(this.overlays[this.priority[a]].active){
+                this.overlays[this.priority[a]].onClick()
+                break
+            }
         }
     }
     onKey(key,code){
-        for(let a=0,la=this.overlays.length;a<la;a++){
-            this.overlays[a].onKey(key,code)
+        for(let a=0,la=this.priority.length;a<la;a++){
+            if(this.overlays[this.priority[a]].active){
+                this.overlays[this.priority[a]].onKey(key,code)
+                break
+            }
         }
     }
 }

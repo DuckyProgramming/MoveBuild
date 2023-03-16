@@ -3,6 +3,8 @@ class cardManager{
         this.layer=layer
         this.battle=battle
 
+        this.listing={card:[[],[],[]]}
+
         this.deck=new group(this.layer,this.battle,0)
         this.reserve=new group(this.layer,this.battle,1)
         this.hand=new group(this.layer,this.battle,2)
@@ -10,7 +12,16 @@ class cardManager{
         this.drop=new group(this.layer,this.battle,4)
         this.exhaust=new group(this.layer,this.battle,5)
 
+        this.initialListing()
+
         this.drawAmount=6
+    }
+    initialListing(){
+        for(let a=0,la=types.card.length;a<la;a++){
+            if(types.card[a].rarity>=0){
+                this.listing.card[types.card[a].rarity].push(a)
+            }
+        }
     }
     initialDeck(){
         this.deck.initialCards(0,this.battle.player)

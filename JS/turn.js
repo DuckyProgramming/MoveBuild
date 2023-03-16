@@ -5,6 +5,7 @@ class turn{
         this.type=type
         this.effect=effect
         this.user=user
+        this.attackClass=types.attack[this.type].class
 
         this.procedure=[]
 
@@ -133,6 +134,15 @@ class turn{
                             this.remove=true
                         }
                     break
+                }
+                if(this.remove){
+                    switch(this.attackClass){
+                        case 1:
+                            if(this.userCombatant.status.main[0]>0){
+                                this.userCombatant.status.main[0]--
+                            }
+                        break
+                    }
                 }
             break
             case 1:
