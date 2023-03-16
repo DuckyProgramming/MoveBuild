@@ -10,6 +10,7 @@ class battle{
         this.turnManager=new turnManager(this.layer,this)
         this.particleManager=new particleManager(this.layer,this)
         this.overlayManager=new overlayManager(this.layer,this)
+        this.nodeManager=new nodeManager(this.layer,this)
 
         this.encounter={class:0}
         this.currency={money:100}
@@ -22,12 +23,18 @@ class battle{
         this.rewards=[]
 
         this.colorDetail=types.color.card[this.player]
+        
+        this.initial()
+        this.setupBattle(types.encounter[0])
+    }
+    initial(){
+        this.combatantManager.clearCombatants()
+
+        this.nodeManager.setupMap()
 
         this.addCombatant({x:0,y:0},this.player,0,0)
         
         this.cardManager.initialDeck()
-        
-        this.setupBattle(types.encounter[0])
     }
     setupBattle(encounter){
         this.encounter.class=encounter.class
@@ -90,8 +97,11 @@ class battle{
                 a--
                 la--
             }else{
-                let tile=floor(random(0,this.tileManager.tiles.length))
-                this.reinforce.front[a].position={x:this.tileManager.tiles[tile].x,y:this.tileManager.tiles[tile].y}
+                this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
+                let empty=this.tileManager.getEmptyTiles()
+                let tile=empty[floor(random(0,empty.length))]
+                this.reinforce.front[a].position={x:this.tileManager.tiles[tile].tilePosition.x,y:this.tileManager.tiles[tile].tilePosition.y}
+                this.tileManager.tiles[tile].reinforce=true
             }
         }
     }
@@ -185,6 +195,10 @@ class battle{
                     this.layer.rect(this.layer.width/2,this.layer.height/2,this.layer.width,this.layer.height)
                 }
             break
+            case 'map':
+                this.layer.background(70,75,80)
+                this.nodeManager.display()
+            break
         }
     }
     update(){
@@ -219,6 +233,9 @@ class battle{
                         break
                     }
                 }
+            break
+            case 'map':
+                this.nodeManager.update()
             break
         }
     }

@@ -50,6 +50,15 @@ class tileManager{
     getTileRelativeDirection(tile1X,tile1Y,tile2X,tile2Y){
         return vectorAtan(this.getTileRelativePosition(tile1X,tile1Y),this.getTileRelativePosition(tile2X,tile2Y))
     }
+    getEmptyTiles(){
+        let list=[]
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            if(this.tiles[a].occupied==0&&!this.tiles[a].reinforce){
+                list.push(a)
+            }
+        }
+        return list
+    }
     activateTiles(type,id){
         for(let a=0,la=this.tiles.length;a<la;a++){
             this.tiles[a].activate(type,id)

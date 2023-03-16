@@ -43,7 +43,7 @@ class overlay{
                     let index=floor(random(0,list[args[1]].length))
                     this.cards.push(new card(this.layer,this.battle,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],1,-1))
                     this.cards[a].upSize=true
-                    list.splice(index,1)
+                    list[args[1]].splice(index,1)
                 }
             break
         }

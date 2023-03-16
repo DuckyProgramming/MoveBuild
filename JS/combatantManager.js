@@ -7,6 +7,9 @@ class combatantManager{
 
         this.combatants=[]
     }
+    clearCombatants(){
+        this.combatants=[]
+    }
     resetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==1){

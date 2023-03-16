@@ -1,7 +1,9 @@
 Animations:
 
+Bugs:
+
 Mechanics:
-Map (New Generation System)
+Map
 View Deck
 Rest (2 Types Perhaps?)
 Shop

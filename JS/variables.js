@@ -121,7 +121,7 @@ types={
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
         {name:'Human',life:30,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:"Just a guy"},
-        {name:'Duck',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:"Ducks you"},
+        {name:'Duck',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:"Typical duck"},
         {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[4]}],description:""},
     ],attack:[
         {name:'',ckass:0},
@@ -196,8 +196,8 @@ types={
         },
     ],encounter:[
         {
-            level:0,class:0,
-            player:{position:{x:1,y:1}},
+            level:3,class:0,
+            player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},type:3},
                 /*{position:{x:1,y:0},type:3},
@@ -207,15 +207,25 @@ types={
                 {position:{x:4,y:6},type:3},
                 {position:{x:5,y:6},type:3},
                 {position:{x:6,y:6},type:3},*/
+
+                /*{position:{x:0,y:1},type:3},
+                {position:{x:0,y:2},type:3},
+                {position:{x:4,y:1},type:3},
+                {position:{x:5,y:2},type:3},
+                {position:{x:1,y:4},type:3},
+                {position:{x:2,y:5},type:3},
+                {position:{x:6,y:4},type:3},
+                {position:{x:6,y:5},type:3},*/
+                
             ],
             reinforce:[
-                /*{position:{x:0,y:3},type:2,turn:2},
-                {position:{x:6,y:3},type:2,turn:2},*/
+                //{position:{x:0,y:3},type:2,turn:2},
+                //{position:{x:6,y:3},type:2,turn:2},
             ],
         },
     ],
 }
-stage={scale:0,scene:'battle'}
+stage={scale:0,scene:'map'}
 game={player:1,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 graphics={main:0,minor:[],combatant:[]}

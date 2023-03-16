@@ -334,7 +334,7 @@ class attack{
                 }
                 this.userCombatant.runAnimation(1/15,1)
                 if(this.timer==15){
-                    this.userCombatant.addBlock(this.effect[0])
+                    this.userCombatant.addBlock(this.effect[0]*this.energy)
                 }else if(this.timer>=30){
                     this.remove=true
                 }
