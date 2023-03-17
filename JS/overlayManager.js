@@ -8,9 +8,10 @@ class overlayManager{
             new overlay(this.layer,this.battle,1,[]),//rewards
             new overlay(this.layer,this.battle,2,[0]),//view reserve
             new overlay(this.layer,this.battle,2,[1]),//view discard
-            new overlay(this.layer,this.battle,3,[0])//new card to deck
+            new overlay(this.layer,this.battle,3,[0]),//new card to deck
+            new overlay(this.layer,this.battle,2,[2]),//view deck
         )
-        this.priority=[3,0,1,2]
+        this.priority=[3,0,1,4,2]
         this.anyActive=false
     }
     closeAll(){

@@ -12,9 +12,9 @@ class cardManager{
         this.drop=new group(this.layer,this.battle,4)
         this.exhaust=new group(this.layer,this.battle,5)
 
-        this.initialListing()
-
         this.drawAmount=6
+
+        this.initialListing()
     }
     initialListing(){
         for(let a=0,la=types.card.length;a<la;a++){

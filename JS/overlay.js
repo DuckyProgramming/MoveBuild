@@ -24,6 +24,11 @@ class overlay{
                             this.battle.cardManager.discard.cards[a].size=0
                         }
                     break
+                    case 2:
+                        for(let a=0,la=this.battle.cardManager.deck.cards.length;a<la;a++){
+                            this.battle.cardManager.deck.cards[a].size=0
+                        }
+                    break
                 }
             break
             case 3:
@@ -34,7 +39,10 @@ class overlay{
     activate(args){
         switch(this.type){
             case 1:
-                this.rewards.push({type:args.type,value:args.value,fade:1,position:this.rewards.length*50,usable:true})
+                this.rewards=[]
+                for(let a=0,la=args.length;a<la;a++){
+                    this.rewards.push({type:args[a].type,value:args[a].value,fade:1,position:this.rewards.length*50,usable:true})
+                }
             break
             case 3:
                 this.cards=[]
@@ -124,11 +132,12 @@ class overlay{
                 }
                 this.layer.textSize(20)
                 switch(this.args[0]){
-                    case 0: case 1: this.layer.text('Close',this.layer.width/2,this.layer.height/2+225); break
+                    case 0: case 1: case 2: this.layer.text('Close',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
                     case 0: this.battle.cardManager.reserve.display('overlay',[0,this.page]); break
                     case 1: this.battle.cardManager.discard.display('overlay',[1,this.page]); break
+                    case 2: this.battle.cardManager.deck.display('overlay',[1,this.page]); break
                 }
             break
             case 3:
@@ -211,6 +220,7 @@ class overlay{
                         }
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-205},width:120,height:40})){
+                        this.active=false
                         transition.trigger=true
                         transition.scene='map'
                     }
@@ -220,7 +230,8 @@ class overlay{
                         this.page--
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+285,y:this.layer.height/2},width:40,height:40})&&(
                     this.page<ceil((this.battle.cardManager.reserve.cards.length-1)/15)-1&&this.args[0]==0||
-                    this.page<ceil((this.battle.cardManager.discard.cards.length-1)/15)-1&&this.args[0]==1)){
+                    this.page<ceil((this.battle.cardManager.discard.cards.length-1)/15)-1&&this.args[0]==1||
+                    this.page<ceil((this.battle.cardManager.deck.cards.length-1)/15)-1&&this.args[0]==2)){
                         this.page++
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+225},width:120,height:40})){
                         this.active=false
@@ -255,6 +266,7 @@ class overlay{
                         }
                     }
                     if(code==ENTER){
+                        this.active=false
                         transition.trigger=true
                         transition.scene='map'
                     }
@@ -264,7 +276,8 @@ class overlay{
                         this.page--
                     }else if(code==RIGHT_ARROW&&(
                     this.page<ceil((this.battle.cardManager.reserve.cards.length-1)/15)-1&&this.args[0]==0||
-                    this.page<ceil((this.battle.cardManager.discard.cards.length-1)/15)-1&&this.args[0]==1)){
+                    this.page<ceil((this.battle.cardManager.discard.cards.length-1)/15)-1&&this.args[0]==1||
+                    this.page<ceil((this.battle.cardManager.deck.cards.length-1)/15)-1&&this.args[0]==2)){
                         this.page++
                     }else if(code==ENTER){
                         this.active=false
@@ -281,7 +294,7 @@ class overlay{
                             this.active=false
                         }
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125},width:120,height:40})){
+                    if(code==ENTER){
                         this.active=false
                     }
                 break

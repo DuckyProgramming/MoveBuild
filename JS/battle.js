@@ -15,17 +15,17 @@ class battle{
         this.encounter={class:0}
         this.currency={money:100}
         this.energy={main:0,gen:0,base:3}
+        
         this.turn={main:0,total:1,time:0,accelerate:0}
-        this.anim={reserve:1,discard:1,endTurn:1,turn:0,defeat:0}
+        this.anim={reserve:1,discard:1,endTurn:1,turn:0,defeat:0,deck:1}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
-        this.rewards=[]
 
         this.colorDetail=types.color.card[this.player]
         
         this.initial()
-        this.setupBattle(types.encounter[0])
+        //this.setupBattle(types.encounter[0])
     }
     initial(){
         this.combatantManager.clearCombatants()
@@ -39,7 +39,11 @@ class battle{
     setupBattle(encounter){
         this.encounter.class=encounter.class
         this.energy.gen=this.energy.base
-        this.turn.total=0
+        this.turn={main:0,total:1,time:0,accelerate:0}
+        this.anim={reserve:1,discard:1,endTurn:1,turn:0,defeat:0,deck:1}
+        this.counter={enemy:0,killed:0}
+        this.result={defeat:false,victory:false}
+        this.reinforce={back:[],front:[]}
 
         this.tileManager.generateTiles(types.level[encounter.level])
         
@@ -196,8 +200,19 @@ class battle{
                 }
             break
             case 'map':
-                this.layer.background(70,75,80)
+                this.layer.background(50,55,60)
+                this.layer.fill(this.colorDetail.fill)
+                this.layer.stroke(this.colorDetail.stroke)
+                this.layer.strokeWeight(3*this.anim.reserve)
+                this.layer.rect(26,496,32*this.anim.deck,24*this.anim.deck,5*this.anim.deck)
+                this.layer.fill(0)
+                this.layer.noStroke()
+                this.layer.textSize(8*this.anim.deck)
+                this.layer.text('Draw',26,496-4*this.anim.deck)
+                this.layer.text('('+this.cardManager.deck.cards.length+')',26,496+4*this.anim.deck)
                 this.nodeManager.display()
+                this.overlayManager.display()
+                this.displayCurrency()
             break
         }
     }
@@ -228,14 +243,17 @@ class battle{
                     this.overlayManager.overlays[0].active=true
                     switch(this.encounter.class){
                         case 0:
-                            this.overlayManager.overlays[0].activate({type:1,value:[0,floor(random(0,1.5))]})
-                            this.overlayManager.overlays[0].activate({type:0,value:[floor(random(40,81))]})
+                            this.overlayManager.overlays[0].activate([
+                                {type:1,value:[0,floor(random(0,1.5))]},
+                                {type:0,value:[floor(random(40,81))]}])
                         break
                     }
                 }
             break
             case 'map':
                 this.nodeManager.update()
+                this.overlayManager.update()
+                this.anim.deck=smoothAnim(this.anim.deck,pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
             break
         }
     }
@@ -257,6 +275,16 @@ class battle{
                     }
                 }
             break
+            case 'map':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onClick()
+                }else{
+                    this.nodeManager.onClick()
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})){
+                        this.overlayManager.overlays[4].active=true
+                    }
+                }
+            break
         }
     }
     onKey(key,code){
@@ -274,6 +302,16 @@ class battle{
                         }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0){
                             this.endTurn()
                         }
+                    }
+                }
+            break
+            case 'map':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
+                }else{
+                    this.nodeManager.onKey(key,code)
+                    if(key=='d'||key=='D'){
+                        this.overlayManager.overlays[4].active=true
                     }
                 }
             break

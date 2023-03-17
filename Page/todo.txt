@@ -3,8 +3,7 @@ Animations:
 Bugs:
 
 Mechanics:
-Map
-View Deck
+Prize
 Rest (2 Types Perhaps?)
 Shop
 Lose-Scene

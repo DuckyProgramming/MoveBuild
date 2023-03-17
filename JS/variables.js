@@ -156,6 +156,10 @@ types={
         ]
     },level:[
         {
+            name:'',
+            map:[
+            ],
+        },{
             name:'Basic 3',
             map:[
                 [{type:0},{type:0},{type:-1}],
@@ -196,7 +200,13 @@ types={
         },
     ],encounter:[
         {
-            level:3,class:0,
+            level:1,class:0,world:-1,
+            player:{position:{x:0,y:0}},
+            enemy:[
+            ],reinforce:[
+            ],
+        },{
+            level:4,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},type:3},
@@ -216,11 +226,29 @@ types={
                 {position:{x:2,y:5},type:3},
                 {position:{x:6,y:4},type:3},
                 {position:{x:6,y:5},type:3},*/
-                
-            ],
-            reinforce:[
+            ],reinforce:[
                 //{position:{x:0,y:3},type:2,turn:2},
                 //{position:{x:6,y:3},type:2,turn:2},
+            ],
+        },{
+            level:4,class:1,world:0,
+            player:{position:{x:3,y:3}},
+            enemy:[
+                {position:{x:0,y:0},type:3},
+                {position:{x:3,y:0},type:3},
+                {position:{x:3,y:6},type:3},
+                {position:{x:6,y:6},type:3},
+            ],reinforce:[
+            ],
+        },{
+            level:4,class:2,world:0,
+            player:{position:{x:3,y:3}},
+            enemy:[
+                {position:{x:0,y:0},type:2},
+                {position:{x:3,y:0},type:2},
+                {position:{x:3,y:6},type:2},
+                {position:{x:6,y:6},type:2},
+            ],reinforce:[
             ],
         },
     ],
