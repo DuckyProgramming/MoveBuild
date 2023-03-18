@@ -628,13 +628,12 @@ function setupBackground(type,layer){
                     layer.quad(layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9+30,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9-30)
                 }
             }
-			let p1=new combatant(layer,new battle(layer,1),1200,1070,0,0,0,0,1,0,0,-36)
+			p1=new combatant(layer,new battle(layer,1),1200,1070,0,0,0,0,1,0,0,-30)
 			p1.parts.mouth-=4
 			p1.spin.mouth-=180
 			p1.size=5
 			p1.fade=1
 			p1.spin.sword=36
-			p1.trigger.display.extra.sword=true
             p1.anim.legs=[
                 {top:24,bottom:12,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
                 {top:12,bottom:36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
@@ -646,6 +645,82 @@ function setupBackground(type,layer){
             p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
             p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141,lock:0}]
 			p1.display()
+		break
+		case 1:
+			/**/
+		break
+		case 2:
+			/**/
+		break
+		case 3: case 4:
+			layer.noStroke()
+			for(let a=0,la=layer.height*4/5;a<la;a++){
+                layer.fill(50-20*a/la,40-20*a/la,50-20*a/la)
+                layer.rect(layer.width/2,a+0.5,layer.width,2)
+            }
+			for(let a=0,la=layer.height/5;a<la;a++){
+                layer.fill(90-40*a/la,95-40*a/la,100-40*a/la)
+                layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
+            }
+			for(let a=0,la=layer.height*0.1;a<la;a++){
+				layer.fill(random(200,255),random(200,255),255,1-0.6*a/la)
+				layer.ellipse(random(0,layer.width),a*8,4)
+			}
+			layer.stroke(125,75,25)
+			layer.strokeWeight(20)
+			layer.line(780,940,1020,1020)
+            layer.line(1020,940,780,1020)
+			layer.strokeWeight(10)
+			layer.line(810,970,990,990)
+            layer.line(960,930,840,1030)
+			layer.noStroke()
+			layer.fill(255,125,0,0.025)
+			for(let a=0,la=10;a<la;a++){
+            	layer.arc(900,920,(240-a*10),(240-a*10),-20,200)
+            	layer.quad(900+cos(20)*(120-a*5),920-sin(20)*(120-a*5),900,920,900-cos(20)*(120-a*5),920-sin(20)*(120-a*5),900,600+a*12.5)
+			}
+			for(let a=0,la=20;a<la;a++){
+            	layer.fill(255,125+a*5,0,0.15)
+				layer.arc(900,920,(120-a*5),(120-a*5),-20,200)
+            	layer.quad(900+cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,920,900-cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,760+a*6.25)
+			}
+
+			p1=new combatant(layer,new battle(layer,1),700,1040,0,0,0,0,1,0,0,30)
+			p1.parts.mouth-=4
+			p1.spin.mouth-=180
+			p1.anim.eye=[1,1]
+			p1.anim.eyeStyle=[2,2]
+			p1.size=5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+            p1.anim.legs=[
+                {top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+                {top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+            ]
+            p1.anim.arms=[
+                {top:24,bottom:60,length:{top:16,bottom:16}},
+                {top:24,bottom:60,length:{top:16,bottom:16}}
+            ]
+            p1.spin.legs=[{top:-60,bottom:-150,lock:0},{top:60,bottom:150,lock:0}]
+            p1.spin.arms=[{top:-75,bottom:-12,lock:0},{top:75,bottom:-30,lock:0}]
+			if(type==4){
+				p1.trigger.display.extra.damage=true
+			}
+			p1.display()
+
+			graphic=createGraphics(layer.width,layer.height)
+			setupLayer(graphic)
+			graphic.fill(0)
+			graphic.rect(graphic.width/2,graphic.height/2,graphic.width,graphic.height)
+			graphic.erase(0.2)
+			graphic.rect(graphic.width/2,graphic.height/2,graphic.width,graphic.height)
+			graphic.noErase()
+			graphic.erase(0.025)
+			for(let a=0,la=100;a<la;a++){
+				graphic.arc(900,920,1440-a*24,1080-a*18,-180,0)
+				graphic.arc(900,920,1440-a*24,360-a*6,0,180)
+			}
+			layer.image(graphic,0,0,layer.width,layer.height)
 		break
 	}
 }
@@ -666,4 +741,11 @@ function setupGraphics(){
 	setupCombatantGraphics(0)
 
 	//setupBackground(0,graphics.backgrounds[0])
+	setupBackground(3,graphics.backgrounds[3])
+	/*
+	0-Title
+	1-Loss
+	2-Win
+	3-Rest
+	*/
 }

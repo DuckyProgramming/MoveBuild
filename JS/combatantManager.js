@@ -16,6 +16,8 @@ class combatantManager{
                 this.combatants.splice(a,1)
                 a--
                 la--
+            }else{
+                this.combatants[a].reset()
             }
         }
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -113,9 +115,20 @@ class combatantManager{
             break
         }
     }
-    displayInfo(){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            this.combatants[a].displayInfo()
+    displayInfo(scene){
+        switch(scene){
+            case 'battle':
+                for(let a=0,la=this.combatants.length;a<la;a++){
+                    this.combatants[a].displayInfo('battle')
+                }
+            break
+            case 'rest':
+                for(let a=0,la=this.combatants.length;a<la;a++){
+                    if(this.combatants[a].team==0){
+                        this.combatants[a].displayInfo('rest')
+                    }
+                }
+            break
         }
     }
     update(){

@@ -206,7 +206,7 @@ types={
             ],reinforce:[
             ],
         },{
-            level:4,class:0,world:0,
+            level:3,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},type:3},
@@ -231,7 +231,7 @@ types={
                 //{position:{x:6,y:3},type:2,turn:2},
             ],
         },{
-            level:4,class:1,world:0,
+            level:3,class:1,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},type:3},
@@ -241,7 +241,7 @@ types={
             ],reinforce:[
             ],
         },{
-            level:4,class:2,world:0,
+            level:3,class:2,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},type:2},

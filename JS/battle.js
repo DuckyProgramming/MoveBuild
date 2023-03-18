@@ -11,6 +11,7 @@ class battle{
         this.particleManager=new particleManager(this.layer,this)
         this.overlayManager=new overlayManager(this.layer,this)
         this.nodeManager=new nodeManager(this.layer,this)
+        this.optionManager=new optionManager(this.layer,this)
 
         this.encounter={class:0}
         this.currency={money:100}
@@ -64,6 +65,9 @@ class battle{
         this.cardManager.shuffle(1)
 
         this.startTurn()
+    }
+    setupRest(){
+        this.optionManager.reset()
     }
     addCombatant(position,type,team,direction){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
@@ -189,7 +193,7 @@ class battle{
                 this.combatantManager.display(stage.scene)
                 this.cardManager.display(stage.scene)
                 this.tileManager.displayCoordinate()
-                this.combatantManager.displayInfo()
+                this.combatantManager.displayInfo(stage.scene)
                 this.particleManager.display()
                 this.overlayManager.display()
                 this.displayCurrency()
@@ -200,7 +204,7 @@ class battle{
                 }
             break
             case 'map':
-                this.layer.background(50,55,60)
+                this.layer.background(70,75,80)
                 this.layer.fill(this.colorDetail.fill)
                 this.layer.stroke(this.colorDetail.stroke)
                 this.layer.strokeWeight(3*this.anim.reserve)
@@ -213,6 +217,12 @@ class battle{
                 this.nodeManager.display()
                 this.overlayManager.display()
                 this.displayCurrency()
+            break
+            case 'rest':
+                this.layer.image(graphics.backgrounds[3],0,0,this.layer.width,this.layer.height)
+                this.combatantManager.displayInfo(stage.scene)
+                this.optionManager.display()
+                this.overlayManager.display()
             break
         }
     }
@@ -247,6 +257,11 @@ class battle{
                                 {type:1,value:[0,floor(random(0,1.5))]},
                                 {type:0,value:[floor(random(40,81))]}])
                         break
+                        case 1:
+                            this.overlayManager.overlays[0].activate([
+                                {type:1,value:[1,floor(random(0,2))]},
+                                {type:0,value:[floor(random(120,201))]}])
+                        break
                     }
                 }
             break
@@ -254,6 +269,10 @@ class battle{
                 this.nodeManager.update()
                 this.overlayManager.update()
                 this.anim.deck=smoothAnim(this.anim.deck,pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+            break
+            case 'rest':
+                this.optionManager.update()
+                this.overlayManager.update()
             break
         }
     }
@@ -285,6 +304,9 @@ class battle{
                     }
                 }
             break
+            case 'rest':
+                this.optionManager.onClick()
+            break
         }
     }
     onKey(key,code){
@@ -313,6 +335,13 @@ class battle{
                     if(key=='d'||key=='D'){
                         this.overlayManager.overlays[4].active=true
                     }
+                }
+            break
+            case 'rest':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
+                }else{
+                    this.optionManager.onKey(key,code)
                 }
             break
         }

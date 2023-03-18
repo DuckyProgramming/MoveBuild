@@ -19,7 +19,6 @@ class combatant{
         this.description=types.combatant[this.type].description
 
         this.order=this.id
-        this.block=0
         this.intent=0
         this.activated=false
         this.moved=false
@@ -28,6 +27,7 @@ class combatant{
         this.collect={life:this.life}
         this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0],upFlash:[false,false]}
 
+        this.block=0
         this.status={main:[],name:['Double Damage'],display:[],active:[],position:[],size:[],
             behavior:[0],
             class:[0]}
@@ -231,6 +231,19 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
             break
         }
+        if(this.team==0){
+            this.fade=1
+        }
+    }
+    reset(){
+        this.block=0
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            this.status.main[a]=0
+            this.status.active[a]=false
+            this.status.position[a]=0
+            this.status.size[a]=0
+        }
+        this.display=[]
     }
     calculateParts(){
         switch(this.type){
@@ -1514,102 +1527,116 @@ class combatant{
             this.layer.pop()
         }
     }
-    displayInfo(){
-        if(this.fade>0&&this.infoAnim.size>0){
-            this.layer.push()
-            this.layer.translate(this.position.x+this.offset.life.x,this.position.y+this.offset.life.y)
-            this.layer.scale(this.infoAnim.size)
-            this.layer.noStroke()
-            this.layer.fill(150,this.fade*this.infoAnim.life)
-            this.layer.rect(0,0,50,6,3)
-            if(this.collect.life>=this.life){
-                this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
-                this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
-                this.layer.fill(min(255,510-max(0,this.life)/this.base.life*510)-max(0,5-max(0,this.life)/this.base.life*30)*25,max(0,this.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
-                this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
-            }else if(this.collect.life<this.life){
-                this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
-                this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
-                this.layer.fill(min(255,510-max(0,this.collect.life)/this.base.life*510)-max(0,5-max(0,this.collect.life)/this.base.life*30)*25,max(0,this.collect.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
-                this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
-            }
-            this.layer.noFill()
-            this.layer.stroke(0,this.fade*this.infoAnim.life)
-            this.layer.strokeWeight(0.75)
-            this.layer.rect(0,0,51,6.75,3.75)
-            this.layer.noStroke()
-            if(this.infoAnim.block>0){
-                this.layer.fill(0,this.fade*this.infoAnim.block)
-                this.layer.ellipse(-28,0,11.5,11.5)
-                this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
-                this.layer.ellipse(-28,0,10,10)
-            }
-            if(this.team==1){
-                this.layer.fill(0,this.fade*this.infoAnim.life)
-                this.layer.ellipse(28,0,11.5,11.5)
-                this.layer.fill(200,100,100,this.fade*this.infoAnim.life)
-                this.layer.ellipse(28,0,10,10)
-            }
-            for(let a=0,la=this.status.display.length;a<la;a++){
-                displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade*this.infoAnim.life)
-            }
-            for(let a=0,la=this.attack.length;a<la;a++){
-                displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a])
-            }
-            this.layer.fill(0,this.fade*this.infoAnim.life)
-            this.layer.textSize(6)
-            this.layer.text(max(0,ceil(this.life*10)/10)+"/"+max(0,ceil(this.base.life*10)/10),0,0.5)
-            if(this.infoAnim.block>0){
-                this.layer.fill(0,this.fade*this.infoAnim.block)
-                this.layer.text(ceil(this.block*10)/10,-28,0.5)
-            }
-            if(this.team==1){
-                this.layer.fill(0,this.fade*this.infoAnim.life)
-                this.layer.text(this.order,28,0.5)
-            }
-            this.layer.fill(0,this.fade*this.infoAnim.life)
-            for(let a=0,la=this.status.display.length;a<la;a++){
-                this.layer.textSize(8*this.status.size[this.status.display[a]])
-                this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
-            }
-            this.layer.pop()
+    displayInfoInternal(){
+        this.layer.noStroke()
+        this.layer.fill(150,this.fade*this.infoAnim.life)
+        this.layer.rect(0,0,50,6,3)
+        if(this.collect.life>=this.life){
+            this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
+            this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
+            this.layer.fill(min(255,510-max(0,this.life)/this.base.life*510)-max(0,5-max(0,this.life)/this.base.life*30)*25,max(0,this.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
+            this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
+        }else if(this.collect.life<this.life){
+            this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
+            this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
+            this.layer.fill(min(255,510-max(0,this.collect.life)/this.base.life*510)-max(0,5-max(0,this.collect.life)/this.base.life*30)*25,max(0,this.collect.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
+            this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
         }
-        if(this.fade>0&&this.infoAnim.description>0){
-            if(this.team==0){
-                this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[0],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[1],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[2],this.fade*this.infoAnim.description)
-            }else{
-                this.layer.fill(150,this.fade*this.infoAnim.description)
-            }
-            this.layer.noStroke()
-            this.layer.rect(100,300,160,240,10)
-            this.layer.fill(0,this.fade*this.infoAnim.description)
-            this.layer.textSize(16)
-            this.layer.text(this.name,100,200)
-            this.layer.textSize(8)
-            this.layer.text(this.description,100,240)
-            this.layer.textSize(9)
-            for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                this.layer.text(this.status.main[this.status.display[a]],40,305+a*20)
-            }
-            this.layer.textSize(6)
-            this.layer.textAlign(LEFT,CENTER)
-            for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                this.layer.text(this.status.name[this.status.display[a]],50,305+a*20)
-            }
-            if(this.team==1){
-                for(let a=0,la=this.attack.length;a<la;a++){
-                    this.layer.text(intentDescription(this.attack[g]),50,280)
+        this.layer.noFill()
+        this.layer.stroke(0,this.fade*this.infoAnim.life)
+        this.layer.strokeWeight(0.75)
+        this.layer.rect(0,0,51,6.75,3.75)
+        this.layer.noStroke()
+        if(this.infoAnim.block>0){
+            this.layer.fill(0,this.fade*this.infoAnim.block)
+            this.layer.ellipse(-28,0,11.5,11.5)
+            this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
+            this.layer.ellipse(-28,0,10,10)
+        }
+        if(this.team==1){
+            this.layer.fill(0,this.fade*this.infoAnim.life)
+            this.layer.ellipse(28,0,11.5,11.5)
+            this.layer.fill(200,100,100,this.fade*this.infoAnim.life)
+            this.layer.ellipse(28,0,10,10)
+        }
+        for(let a=0,la=this.status.display.length;a<la;a++){
+            displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade*this.infoAnim.life)
+        }
+        for(let a=0,la=this.attack.length;a<la;a++){
+            displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a])
+        }
+        this.layer.fill(0,this.fade*this.infoAnim.life)
+        this.layer.textSize(6)
+        this.layer.text(max(0,ceil(this.life*10)/10)+"/"+max(0,ceil(this.base.life*10)/10),0,0.5)
+        if(this.infoAnim.block>0){
+            this.layer.fill(0,this.fade*this.infoAnim.block)
+            this.layer.text(ceil(this.block*10)/10,-28,0.5)
+        }
+        if(this.team==1){
+            this.layer.fill(0,this.fade*this.infoAnim.life)
+            this.layer.text(this.order,28,0.5)
+        }
+        this.layer.fill(0,this.fade*this.infoAnim.life)
+        for(let a=0,la=this.status.display.length;a<la;a++){
+            this.layer.textSize(8*this.status.size[this.status.display[a]])
+            this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
+        }
+    }
+    displayInfo(scene){
+        switch(scene){
+            case 'battle':
+                if(this.fade>0&&this.infoAnim.size>0){
+                    this.layer.push()
+                    this.layer.translate(this.position.x+this.offset.life.x,this.position.y+this.offset.life.y)
+                    this.layer.scale(this.infoAnim.size)
+                    this.displayInfoInternal()
+                    this.layer.pop()
                 }
-            }
-            this.layer.textAlign(CENTER,CENTER)
-            for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                displayStatusSymbol(this.layer,40,305+a*20,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
-            }
-            if(this.team==1){
-                for(let a=0,la=this.attack.length;a<la;a++){
-                    displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a])
+                if(this.fade>0&&this.infoAnim.description>0){
+                    if(this.team==0){
+                        this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[0],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[1],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[2],this.fade*this.infoAnim.description)
+                    }else{
+                        this.layer.fill(150,this.fade*this.infoAnim.description)
+                    }
+                    this.layer.noStroke()
+                    this.layer.rect(100,300,160,240,10)
+                    this.layer.fill(0,this.fade*this.infoAnim.description)
+                    this.layer.textSize(16)
+                    this.layer.text(this.name,100,200)
+                    this.layer.textSize(8)
+                    this.layer.text(this.description,100,240)
+                    this.layer.textSize(9)
+                    for(let a=0,la=min(6,this.status.display.length);a<la;a++){
+                        this.layer.text(this.status.main[this.status.display[a]],40,305+a*20)
+                    }
+                    this.layer.textSize(6)
+                    this.layer.textAlign(LEFT,CENTER)
+                    for(let a=0,la=min(6,this.status.display.length);a<la;a++){
+                        this.layer.text(this.status.name[this.status.display[a]],50,305+a*20)
+                    }
+                    if(this.team==1){
+                        for(let a=0,la=this.attack.length;a<la;a++){
+                            this.layer.text(intentDescription(this.attack[g]),50,280)
+                        }
+                    }
+                    this.layer.textAlign(CENTER,CENTER)
+                    for(let a=0,la=min(6,this.status.display.length);a<la;a++){
+                        displayStatusSymbol(this.layer,40,305+a*20,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
+                    }
+                    if(this.team==1){
+                        for(let a=0,la=this.attack.length;a<la;a++){
+                            displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a])
+                        }
+                    }
                 }
-            }
+            break
+            case 'rest':
+                this.layer.push()
+                this.layer.translate(350,495)
+                this.layer.scale(1.5)
+                this.displayInfoInternal()
+                this.layer.pop()
+            break
         }
     }
     update(){

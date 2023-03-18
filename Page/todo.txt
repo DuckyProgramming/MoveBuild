@@ -9,6 +9,8 @@ Shop
 Lose-Scene
 Menu
 Perk
+Relics
+Items
 
 Battle Content:
 Weak Enemy
