@@ -7,7 +7,7 @@ class nodeManager{
         this.listing={encounter:[[[],[],[]],[[],[],[]],[[],[],[]]]}
 
         this.tilePosition={x:0,y:-1}
-        this.scroll=0
+        this.scroll=this.layer.height-150
         this.world=0
 
         this.initialListing()
@@ -28,7 +28,7 @@ class nodeManager{
         return -1
     }
     setupMap(){
-        let possibilities=[/*0,0,0,1,3*/3]
+        let possibilities=[/*0,0,0,1,3,4*/4]
         for(let a=0,la=20;a<la;a++){
             for(let b=0,lb=min(min(a+1,4),20-a);b<lb;b++){
                 if(a<2&&false){
@@ -79,6 +79,10 @@ class nodeManager{
                 transition.scene='rest'
                 this.battle.setupRest()
             break
+            case 4:
+                transition.scene='shop'
+                this.battle.setupShop()
+            break
         }
     }
     display(){
@@ -101,7 +105,7 @@ class nodeManager{
                 this.tilePosition.y=this.nodes[a].tilePosition.y
                 this.nodes[a].complete=true
                 transition.trigger=true
-                this.scrollDown(this.nodes[a].position.y)
+                this.scrollDown(this.nodes[a].base.position.y)
                 this.enterNode(this.nodes[a].type)
                 break
             }
@@ -114,7 +118,7 @@ class nodeManager{
                 this.tilePosition.y=this.nodes[a].tilePosition.y
                 this.nodes[a].complete=true
                 transition.trigger=true
-                this.scrollDown(this.nodes[a].position.y)
+                this.scrollDown(this.nodes[a].base.position.y)
                 this.enterNode(this.nodes[a].type)
                 break
             }

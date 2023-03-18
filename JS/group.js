@@ -28,6 +28,12 @@ class group{
         this.cards.push(new card(this.layer,this.battle,40,-100,type,level,color,game.id))
         this.cards[this.cards.length-1].downSize=true
     }
+    resetAnim(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            this.cards[a].select=false
+            this.cards[a].anim.select=0
+        }
+    }
     shuffle(){
         let cards=[]
         while(this.cards.length>0){
@@ -129,7 +135,7 @@ class group{
                                 this.cards[b].fade=1
                                 this.cards[b].position.x=this.layer.width/2-200+position%5*100
                                 this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
-                                this.cards[b].anim={select:0,afford:1}
+                                this.cards[b].anim.afford=1
                                 if(this.cards[b].size>=0){
                                     this.cards[b].display()
                                 }
@@ -143,7 +149,7 @@ class group{
                         this.cards[a].fade=1
                         this.cards[a].position.x=this.layer.width/2-200+a%5*100
                         this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
-                        this.cards[a].anim={select:0,afford:1}
+                        this.cards[a].anim.afford=1
                         if(this.cards[a].size>=0){
                             this.cards[a].display()
                         }
@@ -223,7 +229,7 @@ class group{
             break
         }
     }
-    update(scene){
+    update(scene,args){
         switch(scene){
             case 'battle':
                 let selected=false
@@ -264,6 +270,12 @@ class group{
                         a--
                         la--
                     }
+                }
+            break
+            case 'overlay':
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].size=smoothAnim(this.cards[a].size,a>=args[0]*15&&a<args[0]*15+15,0,1,5)
+                    this.cards[a].update()
                 }
             break
         }

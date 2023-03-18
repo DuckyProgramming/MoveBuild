@@ -8,7 +8,7 @@ class optionManager{
         this.scroll=0
         this.world=0
 
-        this.selected=false
+        this.selected=-1
 
         this.addOption(0)
         this.addOption(1)
@@ -35,9 +35,14 @@ class optionManager{
                     }
                 }
             break
+            case 2:
+                this.battle.overlayManager.overlays[5].active=true
+                this.battle.overlayManager.overlays[5].activate()
+            break
         }
     }
     reset(){
+        this.selected=-1
         for(let a=0,la=this.options.length;a<la;a++){
             this.options[a].complete=false
             this.options[a].anim.complete=0
@@ -52,22 +57,26 @@ class optionManager{
         for(let a=0,la=this.options.length;a<la;a++){
             this.options[a].update()
         }
+        if(this.selected==2&&!this.battle.overlayManager.overlays[5].active){
+            transition.trigger=true
+            transition.scene='map'
+        }
     }
     onClick(){
         for(let a=0,la=this.options.length;a<la;a++){
-            if(dist(inputs.rel.x,inputs.rel.y,this.options[a].position.x,this.options[a].position.y)<50&&!this.selected){
+            if(dist(inputs.rel.x,inputs.rel.y,this.options[a].position.x,this.options[a].position.y)<50&&this.selected==-1){
                 this.options[a].complete=true
                 this.triggerOption(this.options[a].type)
-                this.selected=true
+                this.selected=this.options[a].type
             }
         }
     }
     onKey(key,code){
         for(let a=0,la=this.options.length;a<la;a++){
-            if((int(key)+9)%10==a&&!this.selected){
+            if((int(key)+9)%10==a&&this.selected==-1){
                 this.options[a].complete=true
                 this.triggerOption(this.options[a].type)
-                this.selected=true
+                this.selected=this.options[a].type
             }
         }
     }

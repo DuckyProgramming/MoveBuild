@@ -87,6 +87,9 @@ function multiplyString(base,multiply){
 function copyCard(base){
 	return new card(base.layer,base.battle,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
 }
+function upgradeCard(base){
+	return new card(base.layer,base.battle,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length,base.level+1),base.color,base.id)
+}
 function copyArray(base){
 	let list=[]
 	for(let a=0,la=base.length;a<la;a++){

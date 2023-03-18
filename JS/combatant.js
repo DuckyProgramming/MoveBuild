@@ -243,7 +243,7 @@ class combatant{
             this.status.position[a]=0
             this.status.size[a]=0
         }
-        this.display=[]
+        this.status.display=[]
     }
     calculateParts(){
         switch(this.type){

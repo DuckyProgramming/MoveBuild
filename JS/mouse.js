@@ -1,6 +1,6 @@
 function mouseClicked(){
     updateMouse(graphics.main)
     if(!transition.trigger){
-        current.onClick()
+        current.onClick(stage.scene)
     }
 }

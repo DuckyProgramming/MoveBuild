@@ -4,13 +4,16 @@ Bugs:
 
 Mechanics:
 Prize
-Rest (2 Types Perhaps?)
 Shop
-Lose-Scene
+Lose-Stats(Same stats as win though)
 Menu
 Perk
 Relics
 Items
+Unknown
+Event-Off Unknown
+Boss rewards
+Next World
 
 Battle Content:
 Weak Enemy

@@ -6,6 +6,8 @@ class node{
         this.tilePosition={x:tileX,y:tileY}
         this.type=type
 
+        this.base={position:{x:this.position.x,y:this.position.y}}
+
         this.connections=[]
 
         this.size=1
@@ -96,6 +98,24 @@ class node{
                 this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
                 this.layer.textSize(12)
                 this.layer.text('Rest',0,25)
+            break
+            case 4:
+                this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,40,24,2)
+                this.layer.strokeWeight(2)
+                this.layer.line(0,-8,0,8)
+                this.layer.arc(0,-3,8,6,90,270)
+                this.layer.arc(0,3,8,6,-90,90)
+                this.layer.line(0,-6,3.5,-6)
+                this.layer.line(0,6,-3.5,6)
+                this.layer.noStroke()
+                this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.rect(0,24,28,14,3)
+                this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(12)
+                this.layer.text('Shop',0,25)
             break
         }
         this.layer.pop()

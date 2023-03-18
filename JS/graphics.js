@@ -647,7 +647,47 @@ function setupBackground(type,layer){
 			p1.display()
 		break
 		case 1:
-			/**/
+			layer.noStroke()
+            for(let a=0,la=layer.height*4/5;a<la;a++){
+                layer.fill(120-75*a/la)
+                layer.rect(layer.width/2,a+0.5,layer.width,2)
+            }
+			for(let a=0,la=layer.height*4/5;a<la;a++){
+                layer.fill(105-75*a/la)
+				for(let b=0,lb=12;b<lb;b++){
+                	layer.rect(layer.width*(b+0.5)/lb,a+0.5,30,2)
+				}
+            }
+			for(let a=0,la=layer.height*4/5;a<la;a++){
+                layer.fill(135-45*a/la)
+				if(floor(a/60+0.5)%2==1){
+					for(let b=0,lb=13;b<lb;b++){
+              			layer.rect(layer.width*b/(lb-1),a+0.5,20,2)
+					}
+				}
+            }
+			for(let a=0,la=layer.height/5;a<la;a++){
+                layer.fill(90-60*a/la)
+                layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
+            }
+			p1=new combatant(layer,new battle(layer,1),950,940,0,0,0,0,1,0,0,-45)
+			p1.anim.eye=[1,1]
+			p1.anim.mouth.y++
+			p1.size=5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+        	p1.anim.legs=[
+                {top:30,bottom:-60,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+                {top:6,bottom:-24,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+            ]
+            p1.anim.arms=[
+                {top:36,bottom:12,length:{top:16,bottom:16}},
+                {top:36,bottom:60,length:{top:16,bottom:16}}
+            ]
+            p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+            p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+			p1.direction=84
+			p1.display()
 		break
 		case 2:
 			/**/
@@ -690,6 +730,8 @@ function setupBackground(type,layer){
 			p1.spin.mouth-=180
 			p1.anim.eye=[1,1]
 			p1.anim.eyeStyle=[2,2]
+			p1.fades.kimono.main.front={x:1,y:0.975}
+			p1.fades.kimono.main.back={x:1,y:0.975}
 			p1.size=5
 			p1.fade=1
 			p1.trigger.display.extra.sword=false
@@ -741,6 +783,7 @@ function setupGraphics(){
 	setupCombatantGraphics(0)
 
 	//setupBackground(0,graphics.backgrounds[0])
+	setupBackground(1,graphics.backgrounds[1])
 	setupBackground(3,graphics.backgrounds[3])
 	/*
 	0-Title
