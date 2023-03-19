@@ -11,8 +11,9 @@ class overlayManager{
             new overlay(this.layer,this.battle,3,[0]),//new card to deck
             new overlay(this.layer,this.battle,2,[2]),//view deck
             new overlay(this.layer,this.battle,2,[3]),//upgrade card, no return
+            new overlay(this.layer,this.battle,2,[4]),//remove card, no return
         )
-        this.priority=[3,0,1,4,5,2]
+        this.priority=[3,0,1,2,4,5,6]
         this.anyActive=false
     }
     closeAll(){

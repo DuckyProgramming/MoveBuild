@@ -113,10 +113,10 @@ types={
         {
             name:'Fatigue',rarity:-1,
             levels:[
-                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
-                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:0,target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:0,target:[0],spec:[1],class:5},
             ],
-        },
+        },{name:'-',rarity:2,levels:[{effect:[],attack:0,cost:1,target:[],spec:[],class:0}]},
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},

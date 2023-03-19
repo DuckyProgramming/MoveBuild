@@ -4,7 +4,7 @@ Bugs:
 
 Mechanics:
 Prize
-Shop
+Shop (Relics, Items)
 Lose-Stats(Same stats as win though)
 Menu
 Perk
@@ -21,6 +21,8 @@ Retain Cards
 Innate Cards
 Enemy Can Push You
 2 Range Enemy
+Other Statuses
+Curses
 
 Cards:
 Hurt Self For Energy
@@ -37,3 +39,4 @@ Big Strike/ Block
 Deal Damage and Gain Energy? (Jab?)
 Recall a Discarded Card
 Taunt
+Rare Card

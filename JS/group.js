@@ -98,6 +98,10 @@ class group{
         }
         this.sorted=names.sort()
     }
+    remove(index){
+        this.cards.splice(index,1)
+        return true
+    }
     cost(cost){
         if(cost==-1){
             this.battle.energy.main=0
