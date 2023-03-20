@@ -65,10 +65,12 @@ class cardManager{
         this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
         this.drop.addDrop(findName('Fatigue',types.card),0,game.playerNumber+1)
     }
-    clearBattle(){
+    clear(){
         this.reserve.cards=[]
         this.hand.cards=[]
         this.discard.cards=[]
+        this.drop.cards=[]
+        this.exhaust.cards=[]
     }
     display(scene){
         switch(scene){

@@ -5,10 +5,18 @@ class turnManager{
 
         this.turns=[]
     }
+    clear(){
+        this.turns=[]
+    }
+    loadEnemyAttack(enemy){
+        this.turns.push(new turn(0,this.battle,
+            this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
+            this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
+    }
     loadEnemyTurns(){
         this.turns=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team==1&&this.battle.combatantManager.combatants[a].activated){
+            if(this.battle.combatantManager.combatants[a].team==1&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].moved){
                 this.turns.push(new turn(0,this.battle,
                     this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
                     this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
@@ -33,7 +41,9 @@ class turnManager{
         }
         for(let a=0;a<game.animRate;a++){
             if(this.turns.length>0){
-                this.battle.turn.main=this.turns[0].user
+                if(this.battle.combatantManager.combatants[this.turns[0].user].team==1){
+                    this.battle.turn.main=this.turns[0].user
+                }
                 if(this.turns[0].timer==0){
                     this.turns[0].set()
                 }

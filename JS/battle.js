@@ -61,9 +61,12 @@ class battle{
             this.counter.enemy++
         }
 
-        this.cardManager.clearBattle()
+        this.cardManager.clear()
         this.cardManager.copy(0,1)
         this.cardManager.shuffle(1)
+        this.attackManager.clear()
+        this.turnManager.clear()
+        this.particleManager.clear()
 
         this.startTurn()
     }
@@ -139,8 +142,10 @@ class battle{
         this.turn.time=game.turnTime
         this.energy.main=this.energy.gen
         this.combatantManager.setupCombatants()
+        this.combatantManager.tick()
         this.combatantManager.unmoveCombatants()
         this.combatantManager.activateCombatants(0,0)
+        this.turnManager.clear()
         this.cardManager.draw(this.cardManager.drawAmount)
         this.loadReinforce()
     }

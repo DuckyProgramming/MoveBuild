@@ -72,8 +72,13 @@ class card{
             case 16: if(this.effect[0]>0){string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n'} string+='Push 1 Tile'; break
             case 17: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nMove 1 Tile Away'; break
             case 18: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nin All Directions'; break
-            case 19: string+='Swap With an\nAdjacent Enemy\nDeal '+this.calculateEffect(this.effect[0],0)+'Damage\nPush 1 Tile'; break
-            
+            case 19: string+='Swap With an\nAdjacent Enemy\nDeal '+this.calculateEffect(this.effect[0],0)+' Damage\nPush 1 Tile'; break
+            case 20: string+='Move '+this.effect[0]+' Tiles\nDiscard 1\nRandom Card'; break
+            case 21: string+='Advance up to\n'+this.effect[0]+' Tiles Toward\nan Enemy'; break
+            case 22: string+='Gain '+this.effect[0]+' Energy\nTake '+this.effect[1]+' Damage'; break
+            case 23: string+='Add '+this.effect[0]+ ' Block\nCounter '+this.effect[1]; break
+            case 24: string+='Make an Enemy Attack\nThey Will Not Attack\non Their Turn'; break
+
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)

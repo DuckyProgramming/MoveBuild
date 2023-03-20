@@ -5,6 +5,9 @@ class particleManager{
         
         this.particles=[]
     }
+    clear(){
+        this.particles=[]
+    }
     createDamageNumber(x,y,value){
         this.particles.push(new particle(this.layer,x,y,0,value))
     }

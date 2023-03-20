@@ -40,7 +40,7 @@ types={
             name:'Dash',rarity:0,
             levels:[
                 {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[],class:3},
-                {effect:[3],attack:3,cost:1,target:[1,1,3],spec:[],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[],class:3},
             ],
         },{
             name:'Push',rarity:0,
@@ -121,7 +121,7 @@ types={
                 {effect:[10],attack:17,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Spin\nStrike',rarity:1,
+            name:'Spin\nStrike',rarity:0,
             levels:[
                 {effect:[4],attack:18,cost:1,target:[0],spec:[0],class:1},
                 {effect:[6],attack:18,cost:1,target:[0],spec:[0],class:1},
@@ -131,6 +131,36 @@ types={
             levels:[
                 {effect:[5],attack:19,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[7],attack:19,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Panic',rarity:1,
+            levels:[
+                {effect:[2],attack:20,cost:0,target:[1,1,2],spec:[],class:3},
+                {effect:[3],attack:20,cost:0,target:[1,1,3],spec:[],class:3},
+            ],
+        },{
+            name:'Close\nIn',rarity:1,
+            levels:[
+                {effect:[3],attack:21,cost:1,target:[2,2,4],spec:[],class:3},
+                {effect:[5],attack:21,cost:0,target:[2,2,6],spec:[],class:3},
+            ],
+        },{
+            name:'Bloodletting',rarity:1,
+            levels:[
+                {effect:[1,4],attack:22,cost:0,target:[0],spec:[],class:4},
+                {effect:[2,4],attack:22,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Counter',rarity:0,
+            levels:[
+                {effect:[8,6],attack:23,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,8],attack:23,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Taunt',rarity:1,
+            levels:[
+                {effect:[],attack:24,cost:0,target:[5],spec:[],class:4},
+                {effect:[],attack:24,cost:0,target:[5],spec:[2],class:4},
             ],
         },
 
@@ -175,7 +205,7 @@ types={
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Push',1,1],['Pull',1,1],['Quick\nKick',0,1],['Hit and\nRun',0,1],['Spin\nStrike',0,1],['Back\nSlam',0,1]],
+            [['Panic',0,1],['Close\nIn',0,1],['Bloodletting',0,1],['Counter',0,1],['Taunt',0,1],['Back\nSlam',0,1]],
            
         ]
     },level:[

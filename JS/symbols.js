@@ -9,6 +9,11 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-3,-6,-5,3,-1,3)
             layer.triangle(3,-6,5,3,1,3)
         break
+        case 1:
+            layer.fill(255,50,50,this.fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+        break
     }
     layer.pop()
 }

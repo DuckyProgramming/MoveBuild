@@ -28,10 +28,12 @@ class combatant{
         this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0],upFlash:[false,false]}
 
         this.block=0
-        this.status={main:[],name:['Double Damage'],display:[],active:[],position:[],size:[],
-            behavior:[0],
-            class:[0]}
-        for(let a=0;a<1;a++){
+        this.status={main:[],name:[
+            'Double Damage','Counter'
+            ],display:[],active:[],position:[],size:[],
+            behavior:[0,2],
+            class:[0,0]}
+        for(let a=0;a<2;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -395,15 +397,15 @@ class combatant{
         if(value>0&&this.life>0){
             let damage=value
             if(user>=0&&user<this.battle.combatantManager.combatants.length){
-                if(this.battle.combatantManager.combatants[user].status.main[0]>0){
+                let userCombatant=this.battle.combatantManager.combatants[user]
+                if(userCombatant.status.main[0]>0){
                     damage*=2
                 }
             }
-            
-            if(this.block>=damage){
+            if(this.block>=damage&&spec!=1){
                 this.block-=damage
                 this.infoAnim.upFlash[1]=true
-            }else if(this.block>0){
+            }else if(this.block>0&&spec!=1){
                 let damageLeft=damage-this.block
                 this.block=0
                 this.life-=damageLeft
@@ -413,6 +415,14 @@ class combatant{
                 this.infoAnim.upFlash[0]=true
             }
             this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
+            if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
+                let userCombatant=this.battle.combatantManager.combatants[user]
+                if(this.status.main[1]>0){
+                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                    this.battle.turnManager.turns[1].target=[user]
+                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id))
+                }
+            }
         }
     }
     addBlock(value){
@@ -433,6 +443,22 @@ class combatant{
     }
     heal(amount){
         this.life=min(this.life+amount,this.base.life)
+    }
+    tick(){
+        this.block=0
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            if(this.status.main[a]!=0){
+                if(this.status.behavior[a]==1){
+                    if(this.status.main[a]>0){
+                        this.status.main[a]--
+                    }else if(this.status.main[a]<0){
+                        this.status.main[a]++
+                    }
+                }else if(this.status.behavior[a]==2){
+                    this.status.main[a]=0
+                }
+            }
+        }
     }
     flashColor(color){
         return mergeColor(mergeColor(color,[150,150,150],this.infoAnim.flash[1]),[200,0,0],this.infoAnim.flash[0])
@@ -460,6 +486,15 @@ class combatant{
                     case 7:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
+                        this.anim.eyeStyle=[0,0]
+                    break
+                    case 11:
+                        this.animSet.loop=0
+                        this.goal.anim.sword=false
+                        this.anim.eyeStyle=[0,0]
+                    break
+                    case 12:
+                        this.animSet.loop=0
                     break
                 }
             break
@@ -529,19 +564,19 @@ class combatant{
                     break
                     case 1:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*27
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*45
-                        this.spin.arms[1].top=93-sin(this.animSet.loop*90)*72
-                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*90)*105
-                        this.spin.sword=75+sin(this.animSet.loop*90)*30
+                        this.anim.arms[1].top=24+sin(this.animSet.loop*180)*27
+                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*180)*45
+                        this.spin.arms[1].top=93-sin(this.animSet.loop*180)*72
+                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*180)*105
+                        this.spin.sword=75+sin(this.animSet.loop*180)*30
                     break
                     case 2:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*36
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*96
-                        this.spin.arms[1].top=93-sin(this.animSet.loop*90)*63
-                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*90)*90
-                        this.spin.sword=75+sin(this.animSet.loop*90)*45
+                        this.anim.arms[1].top=24+sin(this.animSet.loop*180)*36
+                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*180)*96
+                        this.spin.arms[1].top=93-sin(this.animSet.loop*180)*63
+                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*180)*90
+                        this.spin.sword=75+sin(this.animSet.loop*180)*45
                     break
                     case 3:
                         this.animSet.loop+=rate
@@ -608,6 +643,23 @@ class combatant{
                         this.anim.arms[1].top=24+sin(this.animSet.loop*90)*60
                         this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*63
                         this.spin.sword=75+sin(this.animSet.loop*90)*15
+                    break
+                    case 11:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*3
+                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*63
+                        this.spin.arms[1].top=93+sin(this.animSet.loop*90)*-57
+                        this.spin.arms[1].bottom=75+sin(this.animSet.loop*90)*-135
+                        for(let g=0;g<2;g++){
+                            this.anim.eye[g]=constrain(abs(sin(this.animSet.loop*90))*1.5,0,1)
+                        }
+                    break
+                    case 12:
+                        this.animSet.loop+=rate
+                        this.anim.arms[0].top=24+sin(this.animSet.loop*90)*21
+                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*90)*66
+                        this.spin.arms[0].top=-93+sin(this.animSet.loop*90)*48
+                        this.spin.arms[0].bottom=-75+sin(this.animSet.loop*90)*60
                     break
 
                 }
@@ -1689,11 +1741,10 @@ class combatant{
                 break
             }
         }
-        
         this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)
         this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)
         this.infoAnim.description=smoothAnim(this.infoAnim.description,this.infoAnim.upSize,0,1,5)
-        if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-180)<=18||abs(this.anim.direction-this.goal.anim.direction+180)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18){
+        if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18||abs(this.anim.direction-this.goal.anim.direction-720)<=18||abs(this.anim.direction-this.goal.anim.direction+720)<=18){
             this.anim.direction=this.goal.anim.direction
         }else if(
             this.anim.direction>this.goal.anim.direction&&this.anim.direction<this.goal.anim.direction+180||
@@ -1725,6 +1776,7 @@ class combatant{
             this.goal.anim.direction+=360
         }
         for(let a=0,la=this.status.main.length;a<la;a++){
+            this.status.main[a]=round(this.status.main[a])
             if(this.status.main[a]!=0&&!this.status.active[a]){
                 this.status.active[a]=true
                 this.status.size[a]=0

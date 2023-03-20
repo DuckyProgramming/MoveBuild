@@ -81,6 +81,9 @@ class turn{
                                     this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
                                     this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
                                 }
+                                if(!this.remove){
+                                    this.userCombatant.goal.anim.direction=this.relativeDirection
+                                }
                             }
                         break
                     }
@@ -102,6 +105,11 @@ class turn{
                     }
                     this.remove=true
                 break
+                case 3:
+                    this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                    this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                    this.remove=true
+                break
             }
         }
     }
@@ -118,7 +126,6 @@ class turn{
                         if(this.timer==15){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=30){
-                            this.userCombatant.moved=true
                             this.remove=true
                         }
                     break
@@ -130,12 +137,12 @@ class turn{
                         if(this.timer==10||this.timer==15||this.timer==20){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=30){
-                            this.userCombatant.moved=true
                             this.remove=true
                         }
                     break
                 }
                 if(this.remove){
+                    this.userCombatant.moved=true
                     switch(this.attackClass){
                         case 1:
                             if(this.userCombatant.status.main[0]>0){
