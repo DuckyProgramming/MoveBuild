@@ -3,6 +3,8 @@ function setup(){
     setupGraphics()
 
     current=new battle(graphics.main,game.player)
+
+    current.setupBattle(types.encounter[1])
 }
 function windowResized(){
     resizeCanvas(windowWidth-50,windowHeight-50)

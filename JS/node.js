@@ -117,6 +117,21 @@ class node{
                 this.layer.textSize(12)
                 this.layer.text('Shop',0,25)
             break
+            case 5:
+                this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.arc(0,-6,16,16,-180,90)
+                this.layer.line(0,2,0,7)
+                this.layer.strokeWeight(5)
+                this.layer.point(0,14)
+                this.layer.noStroke()
+                this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.rect(0,24,48,14,3)
+                this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(12)
+                this.layer.text('Unknown',0,25)
+            break
         }
         this.layer.pop()
     }

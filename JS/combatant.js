@@ -445,11 +445,11 @@ class combatant{
                         this.animSetloop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 1: case 2:
+                    case 1: case 2: case 10:
                         this.animSet.loop=0
                         this.goal.anim.sword=true
                     break
-                    case 3: case 6: case 8:
+                    case 3: case 6: case 8: case 9:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -594,6 +594,20 @@ class combatant{
                         this.anim.legs[1].top=9+sin(this.animSet.loop*180)*63
                         this.anim.legs[1].bottom=-sin(this.animSet.loop*180)*12
                         this.spin.legs[1].bottom=120-sin(this.animSet.loop*180)*60
+                    break
+                    case 9:
+                        this.animSet.loop+=rate
+                        this.anim.legs[1].top=9+sin(this.animSet.loop*90)*81
+                        this.anim.legs[1].bottom=sin(this.animSet.loop*90)*75
+                        this.spin.legs[1].top=60-sin(this.animSet.loop*90)*45
+                        this.spin.legs[1].bottom=120-sin(this.animSet.loop*90)*105
+                    break
+                    case 10:
+                        this.animSet.loop+=rate
+                        this.goal.anim.direction+=rate*360
+                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*60
+                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*63
+                        this.spin.sword=75+sin(this.animSet.loop*90)*15
                     break
 
                 }
@@ -1702,9 +1716,13 @@ class combatant{
         }
         if(this.anim.direction>180){
             this.anim.direction-=360
-        }
-        if(this.anim.direction<-180){
+        }else if(this.anim.direction<-180){
             this.anim.direction+=360
+        }
+        if(this.goal.anim.direction>180){
+            this.goal.anim.direction-=360
+        }else if(this.goal.anim.direction<-180){
+            this.goal.anim.direction+=360
         }
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0&&!this.status.active[a]){
@@ -1743,11 +1761,6 @@ class combatant{
             case 1:
                 this.anim.head=this.anim.direction
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
-                if(this.anim.direction>180){
-                    this.anim.direction-=360
-                }else if(this.anim.direction<-180){
-                    this.anim.direction+=360
-                }
                 if(this.life<=this.base.life*0.2){
                     this.trigger.display.extra.damage=true
                 }else{

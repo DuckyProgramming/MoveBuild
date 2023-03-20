@@ -10,9 +10,8 @@ Menu
 Perk
 Relics
 Items
-Unknown
 Event-Off Unknown
-Boss rewards
+Boss Rewards
 Next World
 
 Battle Content:
@@ -28,15 +27,20 @@ Cards:
 Hurt Self For Energy
 Only Hits at Range 2
 2-8 Range Throwing Knife?
-6 Direction Attack
 6 Direction Push
 Counter? (Once/All)
 Dodge?
-Hit and Move Away
-Quick Kick
 Hook Strike
 Big Strike/ Block
 Deal Damage and Gain Energy? (Jab?)
 Recall a Discarded Card
 Taunt
+Advance and Deal Damage (Charge?)
+Close In
+Panic Dash
+Separate?
+Redirect?
+
 Rare Card
+
+MULTIPLAYER:

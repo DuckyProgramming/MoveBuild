@@ -45,8 +45,8 @@ types={
         },{
             name:'Push',rarity:0,
             levels:[
-                {effect:[0],attack:5,cost:0,target:[2,1,1],spec:[],class:1},
-                {effect:[4],attack:5,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[],attack:5,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[],attack:5,cost:0,target:[2,1,1],spec:[2],class:1},
             ],
         },{
             name:'Wind\nUp',rarity:0,
@@ -81,8 +81,8 @@ types={
         },{
             name:'Pull',rarity:0,
             levels:[
-                {effect:[0],attack:11,cost:0,target:[2,2,2],spec:[],class:1},
-                {effect:[4],attack:11,cost:0,target:[2,2,2],spec:[],class:1},
+                {effect:[],attack:11,cost:0,target:[2,2,2],spec:[],class:1},
+                {effect:[],attack:11,cost:0,target:[2,2,2],spec:[2],class:1},
             ],
         },{
             name:'Charge\nStrike',rarity:1,
@@ -108,15 +108,39 @@ types={
                 {effect:[8],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
                 {effect:[12],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
             ],
+        },{
+            name:'Quick\nKick',rarity:0,
+            levels:[
+                {effect:[6],attack:16,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:16,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Hit and\nRun',rarity:1,
+            levels:[
+                {effect:[7],attack:17,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:17,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Spin\nStrike',rarity:1,
+            levels:[
+                {effect:[4],attack:18,cost:1,target:[0],spec:[0],class:1},
+                {effect:[6],attack:18,cost:1,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Back\nSlam',rarity:1,
+            levels:[
+                {effect:[5],attack:19,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:19,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
         {
             name:'Fatigue',rarity:-1,
             levels:[
-                {effect:[],attack:0,cost:0,target:[0],spec:[1],class:5},
-                {effect:[],attack:0,cost:0,target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
             ],
-        },{name:'-',rarity:2,levels:[{effect:[],attack:0,cost:1,target:[],spec:[],class:0}]},
+        },{name:'-',rarity:2,levels:[{effect:[],attack:0,cost:0,target:[],spec:[],class:0}]},
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
@@ -150,8 +174,8 @@ types={
         start:[
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
-            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            //[['Charge\nStrike',0,1],['Charge\nBlock',0,1],['Shift',0,1],['Knee',0,1]],
+            //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+            [['Push',1,1],['Pull',1,1],['Quick\nKick',0,1],['Hit and\nRun',0,1],['Spin\nStrike',0,1],['Back\nSlam',0,1]],
            
         ]
     },level:[
@@ -210,13 +234,13 @@ types={
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},type:3},
-                /*{position:{x:1,y:0},type:3},
+                {position:{x:1,y:0},type:3},
                 {position:{x:2,y:0},type:3},
                 {position:{x:3,y:0},type:3},
                 {position:{x:3,y:6},type:3},
                 {position:{x:4,y:6},type:3},
                 {position:{x:5,y:6},type:3},
-                {position:{x:6,y:6},type:3},*/
+                {position:{x:6,y:6},type:3},
 
                 /*{position:{x:0,y:1},type:3},
                 {position:{x:0,y:2},type:3},
@@ -253,7 +277,7 @@ types={
         },
     ],
 }
-stage={scale:0,scene:'map'}
+stage={scale:0,scene:'battle'}
 game={player:1,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 graphics={main:0,minor:[],combatant:[]}

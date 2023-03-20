@@ -28,10 +28,10 @@ class nodeManager{
         return -1
     }
     setupMap(){
-        let possibilities=[/*0,0,0,1,3,4*/4]
+        let possibilities=[0,0,0,1,3,4,5,5]
         for(let a=0,la=20;a<la;a++){
             for(let b=0,lb=min(min(a+1,4),20-a);b<lb;b++){
-                if(a<2&&false){
+                if(a<2){
                     this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,0))
                 }else if(a==la-1){
                     this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,2))
@@ -82,6 +82,13 @@ class nodeManager{
             case 4:
                 transition.scene='shop'
                 this.battle.setupShop()
+            break
+            case 5:
+                let send=[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,10))]
+                if(send==5){
+                }else{
+                    this.enterNode(send)
+                }
             break
         }
     }
