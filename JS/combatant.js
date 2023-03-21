@@ -28,12 +28,15 @@ class combatant{
         this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0],upFlash:[false,false]}
 
         this.block=0
+        this.dodges=[]
         this.status={main:[],name:[
-            'Double Damage','Counter','Cannot be Pushed'
+            'Double Damage','Counter','Cannot be Pushed','Dodge'
             ],display:[],active:[],position:[],size:[],
-            behavior:[0,2,1],
-            class:[0,0,0]}
-        for(let a=0;a<3;a++){
+            behavior:[0,2,1,0],
+            class:[0,0,0,0]}
+        //0-none, 1-end turn, 2-decrement
+        //0-good, 1-bad
+        for(let a=0;a<4;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -375,31 +378,39 @@ class combatant{
     takeDamage(value,user,spec){
         if(value>0&&this.life>0){
             let damage=value
+            let hit=true
             if(user>=0&&user<this.battle.combatantManager.combatants.length){
                 let userCombatant=this.battle.combatantManager.combatants[user]
                 if(userCombatant.status.main[0]>0){
                     damage*=2
                 }
+                if(this.status.main[3]>0){
+                    this.status.main[3]--
+                    hit=false
+                    this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
+                }
             }
-            if(this.block>=damage&&spec!=1){
-                this.block-=damage
-                this.infoAnim.upFlash[1]=true
-            }else if(this.block>0&&spec!=1){
-                let damageLeft=damage-this.block
-                this.block=0
-                this.life-=damageLeft
-                this.infoAnim.upFlash[0]=true
-            }else{
-                this.life-=damage
-                this.infoAnim.upFlash[0]=true
-            }
-            this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
-            if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
-                let userCombatant=this.battle.combatantManager.combatants[user]
-                if(this.status.main[1]>0){
-                    this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
-                    this.battle.turnManager.turns[1].target=[user]
-                    this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id))
+            if(hit){
+                if(this.block>=damage&&spec!=1){
+                    this.block-=damage
+                    this.infoAnim.upFlash[1]=true
+                }else if(this.block>0&&spec!=1){
+                    let damageLeft=damage-this.block
+                    this.block=0
+                    this.life-=damageLeft
+                    this.infoAnim.upFlash[0]=true
+                }else{
+                    this.life-=damage
+                    this.infoAnim.upFlash[0]=true
+                }
+                this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
+                if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
+                    let userCombatant=this.battle.combatantManager.combatants[user]
+                    if(this.status.main[1]>0){
+                        this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                        this.battle.turnManager.turns[1].target=[user]
+                        this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id))
+                    }
                 }
             }
         }
@@ -1822,6 +1833,20 @@ class combatant{
             this.infoAnim.flash[a]=smoothAnim(this.infoAnim.flash[a],this.infoAnim.upFlash[a],0,1,5)
             if(this.infoAnim.flash[a]>=1&&this.infoAnim.upFlash[a]){
                 this.infoAnim.upFlash[a]=false
+            }
+        }
+        for(let a=0,la=this.dodges.length;a<la;a++){
+            this.dodges[a].timer++
+            if(this.dodges[a].timer<=8){
+                this.moveTile(this.dodges[a].direction,5)
+                this.moveRelativeTile(this.dodges[a].direction,5)
+            }else if(this.dodges[a].timer<=16){
+                this.moveTile(this.dodges[a].direction,-5)
+                this.moveRelativeTile(this.dodges[a].direction,-5)
+            }else{
+                this.dodges.splice(a,1)
+                a--
+                la--
             }
         }
         switch(this.type){

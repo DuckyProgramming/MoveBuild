@@ -24,6 +24,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.line(-5/sqrt(2),-5/sqrt(2),5/sqrt(2),5/sqrt(2))
             layer.ellipse(0,0,10,10)
         break
+        case 3:
+            layer.stroke(255,fade)
+            layer.strokeWeight(0.8)
+            layer.arc(0,0,10,10,-165,-105)
+            layer.arc(0,0,10,10,-75,-15)
+            layer.arc(0,0,10,10,15,75)
+            layer.arc(0,0,10,10,105,165)
+        break
     }
     layer.pop()
 }

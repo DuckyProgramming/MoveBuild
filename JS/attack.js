@@ -19,7 +19,8 @@ class attack{
         this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
 
         switch(this.type){
-            case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19: case 21: case 24: case 25:
+            case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
+            case 21: case 24: case 25: case 27:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -685,6 +686,63 @@ class attack{
                 if(this.timer==18){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                 }else if(this.timer>=36){
+                    this.remove=true
+                }
+            break
+            case 27:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(0)
+                }else if(this.timer==15*distTargetCombatant(0,this,this.targetCombatant)-14){
+                    this.userCombatant.startAnimation(2)
+                }
+                if(this.timer>=15*distTargetCombatant(0,this,this.targetCombatant)-14){
+                    this.userCombatant.runAnimation(1/30,2)
+                }else{
+                    this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetCombatant)))
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetCombatant)))
+                    this.userCombatant.runAnimation(1/15,0)
+                }
+                if(this.timer==15*distTargetCombatant(0,this,this.targetCombatant)){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                }else if(this.timer>=15*distTargetCombatant(0,this,this.targetCombatant)+15){
+                    let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                    this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                    this.battle.activate(1,this.userCombatant.id)
+                    this.remove=true
+                }
+            break
+            case 28:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(5)
+                }
+                this.userCombatant.runAnimation(1/10,5)
+                if(this.timer==10){
+                    this.battle.overlayManager.overlays[7].active=true
+                    this.battle.overlayManager.overlays[7].activate()
+                }else if(this.timer>=20){
+                    this.remove=true
+                }
+            break
+            case 29:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(5)
+                }
+                this.userCombatant.runAnimation(1/10,5)
+                if(this.timer==10){
+                    this.battle.overlayManager.overlays[8].active=true
+                    this.battle.overlayManager.overlays[8].activate()
+                }else if(this.timer>=20){
+                    this.remove=true
+                }
+            break
+            case 30:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(4)
+                }
+                this.userCombatant.runAnimation(1/10,4)
+                if(this.timer==10){
+                    this.userCombatant.statusEffect('Dodge',this.effect[0])
+                }else if(this.timer>=20){
                     this.remove=true
                 }
             break

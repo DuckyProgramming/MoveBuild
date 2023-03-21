@@ -25,12 +25,9 @@ Curses
 Cards:
 2-8 Range Throwing Knife?
 6 Direction Push
-Dodge?
 Hook Strike
 Big Strike/ Block
 Deal Damage and Gain Energy? (Jab?)
-Recall a Discarded Card
-Advance and Deal Damage (Charge?)
 Separate?
 Redirect?
 Entertainment

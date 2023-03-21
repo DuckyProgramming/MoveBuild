@@ -74,11 +74,15 @@ class card{
             case 18: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nin All Directions'; break
             case 19: string+='Swap With an\nAdjacent Enemy\nDeal '+this.calculateEffect(this.effect[0],0)+' Damage\nPush 1 Tile'; break
             case 20: string+='Move '+this.effect[0]+' Tiles\nDiscard 1\nRandom Card'; break
-            case 21: string+='Advance up to\n'+this.effect[0]+' Tiles Toward\nan Enemy'; break
+            case 21: string+='Advance up to '+this.effect[0]+' Tiles\nToward an Enemy'; break
             case 22: string+='Gain '+this.effect[0]+' Energy\nTake '+this.effect[1]+' Damage'; break
             case 23: string+='Add '+this.effect[0]+ ' Block\nCounter '+this.effect[1]; break
             case 24: string+='Make an Enemy Attack\nThey Will Not Attack\non Their Turn'; break
             case 26: string+='Add '+this.effect[0]+' Block\nCannot be Pushed\nThis Turn'; break
+            case 27: string+='Advance up to '+this.effect[1]+' Tiles\nToward an Enemy\nDeal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
+            case 28: string+='Put a Card in Discard\nPile in Your Hand'; break
+            case 29: string+='Put a Card in Draw\nPile in Your Hand'; break
+            case 30: string+='Add '+this.effect[0]+' Dodge'; break
 
         }
         if(string[string.length-1]=='\n'){

@@ -115,7 +115,7 @@ types={
                 {effect:[10],attack:16,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Hit and\nRun',rarity:1,
+            name:'Hit and\nRun',rarity:0,
             levels:[
                 {effect:[7],attack:17,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[10],attack:17,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -145,7 +145,7 @@ types={
                 {effect:[5],attack:21,cost:0,target:[2,2,6],spec:[],class:3},
             ],
         },{
-            name:'Bloodletting',rarity:1,
+            name:'Bloodletting',rarity:0,
             levels:[
                 {effect:[1,4],attack:22,cost:0,target:[0],spec:[],class:4},
                 {effect:[2,4],attack:22,cost:0,target:[0],spec:[],class:4},
@@ -174,13 +174,31 @@ types={
                 {effect:[10],attack:26,cost:1,target:[0],spec:[],class:2},
                 {effect:[15],attack:26,cost:1,target:[0],spec:[],class:2},
             ],
-        },/*{
+        },{
+            name:'Charge',rarity:2,
+            levels:[
+                {effect:[8,3],attack:27,cost:2,target:[2,1,4],spec:[0],class:1},
+                {effect:[12,5],attack:27,cost:2,target:[2,1,6],spec:[0],class:1},
+            ],
+        },{
+            name:'Recall',rarity:1,
+            levels:[
+                {effect:[],attack:28,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:28,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Impatient',rarity:1,
+            levels:[
+                {effect:[],attack:29,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:29,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
             name:'Dodge',rarity:0,
             levels:[
-                {effect:[14],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
-                {effect:[20],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
+                {effect:[1],attack:30,cost:2,target:[0],spec:[],class:2},
+                {effect:[1],attack:30,cost:1,target:[0],spec:[],class:2},
             ],
-        },*/
+        },
 
         {
             name:'Fatigue',rarity:-1,
@@ -188,7 +206,7 @@ types={
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
             ],
-        },{name:'-',rarity:2,levels:[{effect:[],attack:0,cost:0,target:[],spec:[],class:0}]},
+        },
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
@@ -225,7 +243,7 @@ types={
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Stand\nFast',0,1],['Close\nIn',0,1],['Bloodletting',0,1],['Counter',0,1],['Taunt',0,1],['Spear',0,1]],
+            [['Stand\nFast',0,1],['Charge',0,1],['Recall',0,1],['Impatient',0,1],['Dodge',0,1],['Spear',0,1]],
            
         ]
     },level:[
@@ -283,8 +301,8 @@ types={
             level:3,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:4},
-                {position:{x:1,y:0},type:4},
+                {position:{x:0,y:0},type:2},
+                {position:{x:1,y:0},type:2},
                 /*{position:{x:2,y:0},type:3},
                 {position:{x:3,y:0},type:3},
                 {position:{x:3,y:6},type:3},
