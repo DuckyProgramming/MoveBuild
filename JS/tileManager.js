@@ -81,8 +81,10 @@ class tileManager{
         }
     }
     displayCoordinate(){
-        for(let a=0,la=this.tiles.length;a<la;a++){
-            this.tiles[a].displayCoordinate(this.anim.coordinate)
+        if(this.anim.coordinate>0){
+            for(let a=0,la=this.tiles.length;a<la;a++){
+                this.tiles[a].displayCoordinate(this.anim.coordinate)
+            }
         }
     }
     update(scene){

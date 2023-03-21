@@ -58,6 +58,8 @@ function intentDescription(attack){
 	switch(attack.type){
 		case 1: return 'Deal '+attack.effect[0]+' Damage\nRange 1-1'
 		case 2: return 'Deal '+attack.effect[0]+' Damage\n3 Times\nRange 1-1'
+		case 3: return 'Deal '+attack.effect[0]+' Damage\nPush 1 Tile\nRange 1-1'
+		case 4: return 'Add '+attack.effect[0]+' Block'
 	}
 }
 function vectorAtan(point1,point2){
@@ -88,7 +90,7 @@ function copyCard(base){
 	return new card(base.layer,base.battle,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
 }
 function upgradeCard(base){
-	return new card(base.layer,base.battle,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length,base.level+1),base.color,base.id)
+	return new card(base.layer,base.battle,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id)
 }
 function copyArray(base){
 	let list=[]

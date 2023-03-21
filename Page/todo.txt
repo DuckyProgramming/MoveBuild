@@ -16,17 +16,13 @@ Next World
 
 Battle Content:
 Weak Enemy
-Retain Cards
 Innate Cards
-Enemy Can Push You
 2 Range Enemy
-Enemy Block
 Enemy Do Nothing
 Other Statuses
 Curses
 
 Cards:
-Only Hits at Range 2
 2-8 Range Throwing Knife?
 6 Direction Push
 Dodge?
@@ -37,6 +33,7 @@ Recall a Discarded Card
 Advance and Deal Damage (Charge?)
 Separate?
 Redirect?
+Entertainment
 
 Rare Card
 

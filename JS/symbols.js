@@ -14,6 +14,16 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
         break
+        case 2:
+            layer.fill(255,50,50,fade)
+            layer.rect(-3,0,4,3)
+            layer.triangle(6,0,-1,-4,-1,4)
+            layer.stroke(255,fade)
+            layer.strokeWeight(0.8)
+            layer.noFill()
+            layer.line(-5/sqrt(2),-5/sqrt(2),5/sqrt(2),5/sqrt(2))
+            layer.ellipse(0,0,10,10)
+        break
     }
     layer.pop()
 }
@@ -33,11 +43,21 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade){
             layer.triangle(3,-3,-6,-5,-6,-1)
             layer.triangle(3,3,-6,1,-6,5)
         break
+        case 3:
+            layer.fill(255,50,50,fade)
+            layer.rect(-3,0,4,3)
+            layer.triangle(6,0,-1,-4,-1,4)
+        break
+        case 4:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+        break
     }
     layer.fill(0,fade)
     layer.textSize(8)
     switch(type){
-        case 1:
+        case 1: case 3: case 4:
             layer.text(effect[0],0,0)
         break
         case 2:

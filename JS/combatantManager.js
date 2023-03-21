@@ -29,6 +29,15 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==1){
                 this.combatants[a].setIntent(0)
+            }else{
+                this.combatants[a].block=0
+            }
+        }
+    }
+    enableCombatants(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==1){
+                this.combatants[a].block=0
             }
         }
     }
@@ -36,7 +45,11 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==1){
                 this.combatants[a].moved=false
-                this.combatants[a].activated=false
+                if(types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2){
+                    this.combatants[a].activated=true
+                }else{
+                    this.combatants[a].activated=false
+                }
             }
         }
     }

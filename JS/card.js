@@ -54,7 +54,7 @@ class card{
             string+='Innate\n'
         }
         switch(this.attack){
-            case 1: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
+            case 1: case 25: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
             case 2: string+='Add '+this.effect[0]+ ' Block'; break
             case 3: string+='Move '+this.effect[0]+' Tiles'; break
             case 4: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n2 Times'; break
@@ -78,6 +78,7 @@ class card{
             case 22: string+='Gain '+this.effect[0]+' Energy\nTake '+this.effect[1]+' Damage'; break
             case 23: string+='Add '+this.effect[0]+ ' Block\nCounter '+this.effect[1]; break
             case 24: string+='Make an Enemy Attack\nThey Will Not Attack\non Their Turn'; break
+            case 26: string+='Add '+this.effect[0]+' Block\nCannot be Pushed\nThis Turn'; break
 
         }
         if(string[string.length-1]=='\n'){

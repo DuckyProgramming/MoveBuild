@@ -671,6 +671,7 @@ function setupBackground(type,layer){
                 layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
             }
 			p1=new combatant(layer,new battle(layer,1),950,940,0,0,0,0,1,0,0,-45)
+			p1.trigger.display.extra.damage=true
 			p1.anim.eye=[1,1]
 			p1.anim.mouth.y++
 			p1.size=5

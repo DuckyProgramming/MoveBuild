@@ -159,10 +159,28 @@ types={
         },{
             name:'Taunt',rarity:1,
             levels:[
+                {effect:[],attack:24,cost:1,target:[5],spec:[],class:4},
                 {effect:[],attack:24,cost:0,target:[5],spec:[],class:4},
-                {effect:[],attack:24,cost:0,target:[5],spec:[2],class:4},
             ],
-        },
+        },{
+            name:'Spear',rarity:0,
+            levels:[
+                {effect:[14],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
+                {effect:[20],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Stand\nFast',rarity:1,
+            levels:[
+                {effect:[10],attack:26,cost:1,target:[0],spec:[],class:2},
+                {effect:[15],attack:26,cost:1,target:[0],spec:[],class:2},
+            ],
+        },/*{
+            name:'Dodge',rarity:0,
+            levels:[
+                {effect:[14],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
+                {effect:[20],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
+            ],
+        },*/
 
         {
             name:'Fatigue',rarity:-1,
@@ -176,11 +194,13 @@ types={
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
         {name:'Human',life:30,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:"Just a guy"},
         {name:'Duck',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:"Typical duck"},
-        {name:'Rat',life:10,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[4]}],description:""},
+        {name:'Bouncer',life:24,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
     ],attack:[
-        {name:'',ckass:0},
-        {name:'Strike',ckass:1},
-        {name:'Triple Strike',ckass:1},
+        {name:'',class:0},
+        {name:'Strike',class:1},
+        {name:'Triple Strike',class:1},
+        {name:'Push',class:1},
+        {name:'Block',class:2},
     ],color:{
         card:[
             {
@@ -205,7 +225,7 @@ types={
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Panic',0,1],['Close\nIn',0,1],['Bloodletting',0,1],['Counter',0,1],['Taunt',0,1],['Back\nSlam',0,1]],
+            [['Stand\nFast',0,1],['Close\nIn',0,1],['Bloodletting',0,1],['Counter',0,1],['Taunt',0,1],['Spear',0,1]],
            
         ]
     },level:[
@@ -263,14 +283,14 @@ types={
             level:3,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:3},
-                {position:{x:1,y:0},type:3},
-                {position:{x:2,y:0},type:3},
+                {position:{x:0,y:0},type:4},
+                {position:{x:1,y:0},type:4},
+                /*{position:{x:2,y:0},type:3},
                 {position:{x:3,y:0},type:3},
                 {position:{x:3,y:6},type:3},
                 {position:{x:4,y:6},type:3},
                 {position:{x:5,y:6},type:3},
-                {position:{x:6,y:6},type:3},
+                {position:{x:6,y:6},type:3},*/
 
                 /*{position:{x:0,y:1},type:3},
                 {position:{x:0,y:2},type:3},
@@ -288,10 +308,16 @@ types={
             level:3,class:1,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:3},
-                {position:{x:3,y:0},type:3},
-                {position:{x:3,y:6},type:3},
-                {position:{x:6,y:6},type:3},
+                {position:{x:0,y:0},type:2},
+                {position:{x:6,y:6},type:2},
+                {position:{x:0,y:1},type:3},
+                {position:{x:0,y:2},type:3},
+                {position:{x:4,y:1},type:3},
+                {position:{x:5,y:2},type:3},
+                {position:{x:1,y:4},type:3},
+                {position:{x:2,y:5},type:3},
+                {position:{x:6,y:4},type:3},
+                {position:{x:6,y:5},type:3},
             ],reinforce:[
             ],
         },{
@@ -299,15 +325,19 @@ types={
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},type:2},
+                {position:{x:1,y:0},type:2},
+                {position:{x:2,y:0},type:2},
                 {position:{x:3,y:0},type:2},
                 {position:{x:3,y:6},type:2},
+                {position:{x:4,y:6},type:2},
+                {position:{x:5,y:6},type:2},
                 {position:{x:6,y:6},type:2},
             ],reinforce:[
             ],
         },
     ],
 }
-stage={scale:0,scene:'battle'}
+stage={scale:0,scene:'map'}
 game={player:1,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 graphics={main:0,minor:[],combatant:[]}

@@ -10,7 +10,7 @@ class purchaseManager{
         let group=[0,0,0,0,1,1,1,2]
         let cost=[[80,100],[120,150],[200,250]]
         for(let a=0,la=8;a<la;a++){
-            let index=floor(random(0,list[0].length))
+            let index=floor(random(0,list[group[a]].length))
             this.purchases.push(new purchase(this.layer,this.battle,100+a%4*150,100+floor(a/4)*200,1,round(random(cost[group[a]][0],cost[group[a]][1])),[list[group[a]][index],0,this.battle.player]))
             list[0].splice(index,1)
         }

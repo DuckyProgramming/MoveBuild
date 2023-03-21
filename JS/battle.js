@@ -18,8 +18,8 @@ class battle{
         this.currency={money:100}
         this.energy={main:0,gen:0,base:3}
         
-        this.turn={main:0,total:1,time:0,accelerate:0}
-        this.anim={reserve:1,discard:1,endTurn:1,turn:0,defeat:0,deck:1,exit:1}
+        this.turn={main:0,total:0,time:0,accelerate:0}
+        this.anim={reserve:1,discard:1,endTurn:1,turn:0,defeat:0,deck:1,exit:1,afford:0,upAfford:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
@@ -41,8 +41,8 @@ class battle{
     setupBattle(encounter){
         this.encounter.class=encounter.class
         this.energy.gen=this.energy.base
-        this.turn={main:0,total:1,time:0,accelerate:0}
-        this.anim={reserve:1,discard:1,endTurn:1,turn:0,defeat:0,deck:1}
+        this.turn={main:0,total:0,time:0,accelerate:0}
+        this.anim={reserve:1,discard:1,endTurn:1,turn:0,defeat:0,deck:1,exit:1,afford:0,upAfford:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
@@ -72,6 +72,7 @@ class battle{
     }
     setupRest(){
         this.optionManager.reset()
+        this.combatantManager.reset()
     }
     setupShop(){
         this.purchaseManager.setup()
@@ -133,6 +134,7 @@ class battle{
     endTurn(){
         this.sendReinforce()
         this.turnManager.loadEnemyTurns()
+        this.combatantManager.enableCombatants()
         this.cardManager.allEffect(2,0)
         this.attackManager.clear()
     }
@@ -165,8 +167,8 @@ class battle{
         switch(scene){
             case 'battle':
                 this.layer.background(110,115,120)
-                this.layer.fill(225,255,255)
-                this.layer.stroke(200,255,255)
+                this.layer.fill(mergeColor([225,255,255],[255,0,0],this.anim.afford))
+                this.layer.stroke(mergeColor([200,255,255],[255,0,0],this.anim.afford))
                 this.layer.strokeWeight(3)
                 this.layer.quad(-90+this.anim.turn*100,454,-74+this.anim.turn*100,434,-58+this.anim.turn*100,454,-74+this.anim.turn*100,474)
                 this.layer.fill(this.colorDetail.fill)
@@ -283,9 +285,13 @@ class battle{
                 this.anim.discard=smoothAnim(this.anim.discard,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:528},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.endTurn=smoothAnim(this.anim.endTurn,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:560},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.defeat=smoothAnim(this.anim.defeat,this.result.defeat,0,1,240)
+                this.anim.afford=smoothAnim(this.anim.afford,this.anim.upAfford,0,1,30)
                 if(this.result.defeat&&this.anim.defeat>=1){
                     transition.trigger=true
                     transition.scene='defeat'
+                }
+                if(this.anim.upAfford&&this.anim.afford>=1){
+                    this.anim.upAfford=false
                 }
                 if(this.counter.killed>=this.counter.enemy&&!this.result.victory){
                     this.result.victory=true

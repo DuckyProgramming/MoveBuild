@@ -2,6 +2,8 @@ class turnManager{
     constructor(layer,battle){
         this.layer=layer
         this.battle=battle
+        
+        this.auxiliary=false
 
         this.turns=[]
     }
@@ -9,11 +11,13 @@ class turnManager{
         this.turns=[]
     }
     loadEnemyAttack(enemy){
+        this.auxiliary=true
         this.turns.push(new turn(0,this.battle,
             this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
             this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
     }
     loadEnemyTurns(){
+        this.auxiliary=false
         this.turns=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==1&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].moved){
@@ -56,7 +60,11 @@ class turnManager{
                     }
                 }
             }else if(this.battle.turn.main!=0){
-                this.battle.startTurn()
+                if(this.auxiliary){
+                    this.battle.turn.main=0
+                }else{
+                    this.battle.startTurn()
+                }
             }
         }
     }

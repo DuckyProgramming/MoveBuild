@@ -312,7 +312,7 @@ class group{
                 }
             }
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable&&this.cards[a].afford){
+                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable){
                     this.callInput(1,a)
                 }
             }
@@ -326,7 +326,7 @@ class group{
                 }
             }
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable&&this.cards[a].afford){
+                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable){
                     this.callInput(1,a)
                 }
             }
@@ -338,7 +338,7 @@ class group{
                 }
             }
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable&&this.cards[a].afford){
+                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable){
                     this.callInput(1,a)
                 }
             }
@@ -348,7 +348,11 @@ class group{
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},this.cards[a])&&this.cards[a].usable&&this.cards[a].afford&&this.battle.attackManager.attacks.length<=0){
-                            this.callInput(0,a)
+                            if(this.cards[a].afford){
+                                this.callInput(0,a)
+                            }else{
+                                this.battle.anim.upAfford=true
+                            }
                         }
                     }
                 break
@@ -364,7 +368,7 @@ class group{
                 }
             }
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(!this.cards[a].usable&&this.cards[a].afford&&(code==BACKSPACE||key==inputs.above[a])){
+                if(!this.cards[a].usable&&(code==BACKSPACE||key==inputs.above[a])){
                     this.callInput(1,a)
                 }
             }
@@ -380,7 +384,7 @@ class group{
                 }
             }
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(!this.cards[a].usable&&this.cards[a].afford&&(code==BACKSPACE||key==inputs.above[a])){
+                if(!this.cards[a].usable&&(code==BACKSPACE||key==inputs.above[a])){
                     this.callInput(1,a)
                 }
             }
@@ -393,7 +397,7 @@ class group{
                 }
             }
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(!this.cards[a].usable&&this.cards[a].afford&&(code==BACKSPACE||key==inputs.above[a])){
+                if(!this.cards[a].usable&&(code==BACKSPACE||key==inputs.above[a])){
                     this.callInput(1,a)
                 }
             }
@@ -403,7 +407,11 @@ class group{
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if((int(key)+9)%10==a&&this.cards[a].usable&&this.cards[a].afford&&this.battle.attackManager.attacks.length<=0){
-                            this.callInput(0,a)
+                            if(this.cards[a].afford){
+                                this.callInput(0,a)
+                            }else{
+                                this.battle.anim.upAfford=true
+                            }
                         }
                     }
                 break

@@ -4,6 +4,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
+    stage.scene='battle'
     current.setupBattle(types.encounter[1])
 }
 function windowResized(){
