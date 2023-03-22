@@ -9,7 +9,7 @@ class particleManager{
         this.particles=[]
     }
     createDamageNumber(x,y,value){
-        this.particles.push(new particle(this.layer,x,y,0,value))
+        this.particles.push(new particle(this.layer,x,y,0,[value]))
     }
     display(){
         for(let a=0,la=this.particles.length;a<la;a++){

@@ -347,7 +347,7 @@ class group{
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&this.cards[a].usable&&this.cards[a].afford&&this.battle.attackManager.attacks.length<=0){
+                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&this.cards[a].usable&&this.battle.attackManager.attacks.length<=0){
                             if(this.cards[a].afford){
                                 this.callInput(0,a)
                             }else{
@@ -406,7 +406,7 @@ class group{
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((int(key)+9)%10==a&&this.cards[a].usable&&this.cards[a].afford&&this.battle.attackManager.attacks.length<=0){
+                        if((int(key)+9)%10==a&&this.cards[a].usable&&this.battle.attackManager.attacks.length<=0){
                             if(this.cards[a].afford){
                                 this.callInput(0,a)
                             }else{

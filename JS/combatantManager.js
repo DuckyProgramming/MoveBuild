@@ -87,6 +87,16 @@ class combatantManager{
             }
         }
     }
+    getArea(team,tilePosition){
+        let combatants=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].team!=team&&distance>=0&&distance<=1){
+                combatants.push(this.combatants[a])
+            }
+        }
+        return combatants
+    }
     tick(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             this.combatants[a].tick()

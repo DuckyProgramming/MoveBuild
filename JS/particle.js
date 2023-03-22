@@ -1,28 +1,53 @@
 class particle{
-    constructor(layer,x,y,type,value){
+    constructor(layer,x,y,type,args){
         this.layer=layer
         this.position={x:x,y:y}
         this.type=type
-        this.value=value
         this.remove=false
         switch(this.type){
             case 0:
+                this.value=args[0]
                 this.direction=random(0,360)
                 this.speed=2.5
                 this.fade=0
                 this.trigger=false
+                this.size=1
+            break
+            case 1:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.speed=8
+                this.fade=0
+                this.trigger=false
+                this.size=1
             break
         }
     }
     display(){
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
+        this.layer.scale(this.size)
+        this.layer.noStroke()
         switch(this.type){
             case 0:
                 this.layer.fill(255,100,100,this.fade)
-                this.layer.noStroke()
                 this.layer.textSize(20)
                 this.layer.text('-'+this.value,0,0)
+            break
+            case 1:
+                this.layer.rotate(this.direction)
+                this.layer.fill(235,245,255,this.fade)
+                this.layer.noStroke()
+                this.layer.rect(0,-5,3,10)
+                this.layer.triangle(-3/2,-10,3/2,-10,0,-20)
+                this.layer.fill(160,170,180,this.fade)
+                this.layer.rect(3/4,-5,3/2,10)
+                this.layer.triangle(3/2,-10,0,-20,0,-10)
+                for(let g=0;g<4;g++){
+                    this.layer.stroke(125+g*10,70+g*10,80+g*10,this.fade)
+                    this.layer.strokeWeight(4-g)
+                    this.layer.line(0,-2+g/2,0,2-g/2)
+                }
             break
         }
         this.layer.pop()
@@ -31,7 +56,7 @@ class particle{
         switch(this.type){
             case 0:
                 this.position.x+=sin(this.direction)*this.speed
-                this.position.y+=cos(this.direction)*this.speed
+                this.position.y-=cos(this.direction)*this.speed
                 if(!this.trigger){
                     this.fade+=0.2
                     if(this.fade>=2){
@@ -39,6 +64,21 @@ class particle{
                     }
                 }else{
                     this.fade-=0.2
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
+            case 1:
+                this.position.x+=sin(this.direction)*this.speed
+                this.position.y-=cos(this.direction)*this.speed-10/this.timer
+                if(!this.trigger){
+                    this.fade+=2/this.timer
+                    if(this.fade>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=2/this.timer
                     if(this.fade<=0){
                         this.remove=true
                     }

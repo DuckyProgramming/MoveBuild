@@ -32,6 +32,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.arc(0,0,10,10,15,75)
             layer.arc(0,0,10,10,105,165)
         break
+        case 4:
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+        break
     }
     layer.pop()
 }

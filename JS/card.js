@@ -50,11 +50,14 @@ class card{
     }
     description(){
         let string=''
+        if(this.spec.includes(5)){
+            string+='Unplayable\n'
+        }
         if(this.spec.includes(3)){
             string+='Innate\n'
         }
         switch(this.attack){
-            case 1: case 25: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
+            case 1: case 25: case 32: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
             case 2: string+='Add '+this.effect[0]+ ' Block'; break
             case 3: string+='Move '+this.effect[0]+' Tiles'; break
             case 4: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n2 Times'; break
@@ -83,7 +86,11 @@ class card{
             case 28: string+='Put a Card in Discard\nPile in Your Hand'; break
             case 29: string+='Put a Card in Draw\nPile in Your Hand'; break
             case 30: string+='Add '+this.effect[0]+' Dodge'; break
-
+            case 31: string+='Push 1 Tile\nin All Directions'; break
+            case 33: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nAdvance'; break
+            case 34: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nGain '+this.effect[1]+' Energy\nNext Turn'; break
+            case 35: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Target is Undamaged,\nGain '+this.effect[1]+' Energy'; break
+            
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)

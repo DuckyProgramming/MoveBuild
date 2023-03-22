@@ -19,14 +19,10 @@ Weak Enemy
 Innate Cards
 2 Range Enemy
 Enemy Do Nothing
-Other Statuses
+Other Statuses (Enemy Dazes You)
 Curses
 
 Cards:
-2-8 Range Throwing Knife?
-6 Direction Push
-Hook Strike
-Big Strike/ Block
 Deal Damage and Gain Energy? (Jab?)
 Separate?
 Redirect?
@@ -35,3 +31,15 @@ Entertainment
 Rare Card
 
 MULTIPLAYER:
+First Character Gimmick
+Second Character Model (Creation!)
+Second Character Gimmick
+Second Character Customization
+Second Character Base Cards
+Second Character Art Versions
+Split Screen
+Dual Control Schema
+Double Card Choice
+Double Defeat
+
+Character 3?

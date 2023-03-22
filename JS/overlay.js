@@ -59,7 +59,7 @@ class overlay{
             break
             case 3:
                 this.cards=[]
-                let list=copyArrayStack(this.battle.cardManager.listing.card)
+                let list=copyArrayStack(this.battle.cardManager.listing.card[this.battle.player])
                 for(let a=0,la=3;a<la;a++){
                     let index=floor(random(0,list[args[1]].length))
                     this.cards.push(new card(this.layer,this.battle,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],1,-1))

@@ -1,217 +1,265 @@
 types={
     card:[
         {
-            name:'',rarity:-1,
+            name:'',rarity:-1,list:0,
             levels:[
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
             ],
         },{
-            name:'Strike',rarity:-1,
+            name:'Strike',rarity:-1,list:0,
             levels:[
                 {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Defend',rarity:-1,
+            name:'Defend',rarity:-1,list:0,
             levels:[
                 {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
                 {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Step',rarity:-1,
+            name:'Step',rarity:-1,list:0,
             levels:[
                 {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
             ],
         },{
-            name:'Twin\nStrike',rarity:0,
+            name:'Twin\nStrike',rarity:0,list:1,
             levels:[
                 {effect:[5],attack:4,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[7],attack:4,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Long\nStrike',rarity:0,
+            name:'Long\nStrike',rarity:0,list:1,
             levels:[
                 {effect:[7],attack:1,cost:1,target:[2,1,2],spec:[0],class:1},
                 {effect:[10],attack:1,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
-            name:'Dash',rarity:0,
+            name:'Dash',rarity:0,list:1,
             levels:[
                 {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[],class:3},
                 {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[],class:3},
             ],
         },{
-            name:'Push',rarity:0,
+            name:'Push',rarity:0,list:1,
             levels:[
                 {effect:[],attack:5,cost:0,target:[2,1,1],spec:[],class:1},
                 {effect:[],attack:5,cost:0,target:[2,1,1],spec:[2],class:1},
             ],
         },{
-            name:'Wind\nUp',rarity:0,
+            name:'Wind\nUp',rarity:0,list:1,
             levels:[
                 {effect:[1],attack:6,cost:1,target:[0],spec:[],class:4},
                 {effect:[2],attack:6,cost:1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Chain',rarity:0,
+            name:'Chain\nStrike',rarity:0,list:1,
             levels:[
                 {effect:[8,1],attack:7,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12,1],attack:7,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Think',rarity:0,
+            name:'Think',rarity:0,list:1,
             levels:[
                 {effect:[3],attack:8,cost:1,target:[0],spec:[],class:4},
                 {effect:[4],attack:8,cost:1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Swap',rarity:1,
+            name:'Swap',rarity:1,list:1,
             levels:[
                 {effect:[1],attack:9,cost:1,target:[3,1,1],spec:[],class:3},
                 {effect:[1],attack:9,cost:0,target:[3,1,1],spec:[],class:3},
             ],
         },{
-            name:'Bandage',rarity:1,
+            name:'Bandage',rarity:1,list:1,
             levels:[
                 {effect:[4],attack:10,cost:0,target:[0],spec:[1],class:4},
                 {effect:[6],attack:10,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Pull',rarity:0,
+            name:'Pull',rarity:0,list:1,
             levels:[
                 {effect:[],attack:11,cost:0,target:[2,2,2],spec:[],class:1},
                 {effect:[],attack:11,cost:0,target:[2,2,2],spec:[2],class:1},
             ],
         },{
-            name:'Charge\nStrike',rarity:1,
+            name:'Charge\nStrike',rarity:1,list:1,
             levels:[
                 {effect:[7],attack:12,cost:-1,target:[2,1,1],spec:[0],class:1},
                 {effect:[10],attack:12,cost:-1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Charge\nBlock',rarity:1,
+            name:'Charge\nBlock',rarity:1,list:1,
             levels:[
                 {effect:[9],attack:13,cost:-1,target:[0],spec:[],class:2},
                 {effect:[14],attack:13,cost:-1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Shift',rarity:1,
+            name:'Shift',rarity:1,list:1,
             levels:[
                 {effect:[1],attack:14,cost:1,target:[4,1,1],spec:[],class:3},
                 {effect:[1],attack:14,cost:0,target:[4,1,1],spec:[],class:3},
             ],
         },{
-            name:'Knee',rarity:1,
+            name:'Knee',rarity:1,list:1,
             levels:[
                 {effect:[8],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
                 {effect:[12],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
             ],
         },{
-            name:'Quick\nKick',rarity:0,
+            name:'Quick\nKick',rarity:0,list:1,
             levels:[
                 {effect:[6],attack:16,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[10],attack:16,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Hit and\nRun',rarity:0,
+            name:'Hit and\nRun',rarity:0,list:1,
             levels:[
                 {effect:[7],attack:17,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[10],attack:17,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Spin\nStrike',rarity:0,
+            name:'Spin\nStrike',rarity:0,list:1,
             levels:[
                 {effect:[4],attack:18,cost:1,target:[0],spec:[0],class:1},
                 {effect:[6],attack:18,cost:1,target:[0],spec:[0],class:1},
             ],
         },{
-            name:'Back\nSlam',rarity:1,
+            name:'Back\nSlam',rarity:1,list:1,
             levels:[
                 {effect:[5],attack:19,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[7],attack:19,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Panic',rarity:1,
+            name:'Panic',rarity:1,list:1,
             levels:[
                 {effect:[2],attack:20,cost:0,target:[1,1,2],spec:[],class:3},
                 {effect:[3],attack:20,cost:0,target:[1,1,3],spec:[],class:3},
             ],
         },{
-            name:'Close\nIn',rarity:1,
+            name:'Close\nIn',rarity:1,list:1,
             levels:[
                 {effect:[3],attack:21,cost:1,target:[2,2,4],spec:[],class:3},
                 {effect:[5],attack:21,cost:0,target:[2,2,6],spec:[],class:3},
             ],
         },{
-            name:'Bloodletting',rarity:0,
+            name:'Bloodletting',rarity:0,list:1,
             levels:[
                 {effect:[1,4],attack:22,cost:0,target:[0],spec:[],class:4},
                 {effect:[2,4],attack:22,cost:0,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Counter',rarity:0,
+            name:'Counter',rarity:0,list:1,
             levels:[
                 {effect:[8,6],attack:23,cost:1,target:[0],spec:[],class:2},
                 {effect:[12,8],attack:23,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Taunt',rarity:1,
+            name:'Taunt',rarity:1,list:1,
             levels:[
                 {effect:[],attack:24,cost:1,target:[5],spec:[],class:4},
                 {effect:[],attack:24,cost:0,target:[5],spec:[],class:4},
             ],
         },{
-            name:'Spear',rarity:0,
+            name:'Spear',rarity:0,list:1,
             levels:[
                 {effect:[14],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
                 {effect:[20],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
             ],
         },{
-            name:'Stand\nFast',rarity:1,
+            name:'Stand\nFast',rarity:1,list:1,
             levels:[
                 {effect:[10],attack:26,cost:1,target:[0],spec:[],class:2},
                 {effect:[15],attack:26,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Charge',rarity:2,
+            name:'Assault',rarity:2,list:1,
             levels:[
                 {effect:[8,3],attack:27,cost:2,target:[2,1,4],spec:[0],class:1},
                 {effect:[12,5],attack:27,cost:2,target:[2,1,6],spec:[0],class:1},
             ],
         },{
-            name:'Recall',rarity:1,
+            name:'Recall',rarity:1,list:1,
             levels:[
                 {effect:[],attack:28,cost:1,target:[0],spec:[1],class:4},
                 {effect:[],attack:28,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Impatient',rarity:1,
+            name:'Impatient',rarity:1,list:1,
             levels:[
                 {effect:[],attack:29,cost:1,target:[0],spec:[1],class:4},
                 {effect:[],attack:29,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Dodge',rarity:0,
+            name:'Dodge',rarity:0,list:1,
             levels:[
                 {effect:[1],attack:30,cost:2,target:[0],spec:[],class:2},
                 {effect:[1],attack:30,cost:1,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Shockwave',rarity:2,list:1,
+            levels:[
+                {effect:[],attack:31,cost:1,target:[0],spec:[1],class:1},
+                {effect:[],attack:31,cost:1,target:[0],spec:[1],class:1},
+            ],
+        },{
+            name:'Throw\nKnife',rarity:1,list:1,
+            levels:[
+                {effect:[8],attack:32,cost:2,target:[2,2,6],spec:[0],class:1},
+                {effect:[12],attack:32,cost:2,target:[2,2,6],spec:[0],class:1},
+            ],
+        },{
+            name:'Heavy\nStrike',rarity:0,list:1,
+            levels:[
+                {effect:[14],attack:33,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[20],attack:33,cost:2,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Heavy\nDefend',rarity:0,list:1,
+            levels:[
+                {effect:[18],attack:2,cost:2,target:[0],spec:[],class:2},
+                {effect:[25],attack:2,cost:2,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Hook\nStrike',rarity:0,list:1,
+            levels:[
+                {effect:[7,1],attack:34,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,2],attack:34,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Starter',rarity:0,list:1,
+            levels:[
+                {effect:[8,1],attack:35,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:35,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Light\nStrike',rarity:0,list:1,
+            levels:[
+                {effect:[5],attack:1,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[8],attack:1,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
         },
 
         {
-            name:'Fatigue',rarity:-1,
+            name:'Fatigue',rarity:-1,list:2,
             levels:[
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
+            ],
+        },{
+            name:'Dazed',rarity:-1,list:2,
+            levels:[
+                {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
             ],
         },
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
         {name:'Human',life:30,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:"Just a guy"},
-        {name:'Duck',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:2,effect:[2]}],description:"Typical duck"},
+        {name:'Duck',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:"Typical duck"},
         {name:'Bouncer',life:24,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
     ],attack:[
         {name:'',class:0},
@@ -219,6 +267,7 @@ types={
         {name:'Triple Strike',class:1},
         {name:'Push',class:1},
         {name:'Block',class:2},
+        {name:'Daze',class:4},
     ],color:{
         card:[
             {
@@ -243,7 +292,7 @@ types={
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Stand\nFast',0,1],['Charge',0,1],['Recall',0,1],['Impatient',0,1],['Dodge',0,1],['Spear',0,1]],
+            [['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
            
         ]
     },level:[
@@ -301,9 +350,9 @@ types={
             level:3,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:2},
-                {position:{x:1,y:0},type:2},
-                /*{position:{x:2,y:0},type:3},
+                {position:{x:0,y:0},type:3},
+                /*{position:{x:1,y:0},type:3},
+                {position:{x:2,y:0},type:3},
                 {position:{x:3,y:0},type:3},
                 {position:{x:3,y:6},type:3},
                 {position:{x:4,y:6},type:3},

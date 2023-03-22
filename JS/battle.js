@@ -285,7 +285,7 @@ class battle{
                 this.anim.discard=smoothAnim(this.anim.discard,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:528},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.endTurn=smoothAnim(this.anim.endTurn,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn*100,y:560},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.defeat=smoothAnim(this.anim.defeat,this.result.defeat,0,1,240)
-                this.anim.afford=smoothAnim(this.anim.afford,this.anim.upAfford,0,1,30)
+                this.anim.afford=smoothAnim(this.anim.afford,this.anim.upAfford,0,1,10)
                 if(this.result.defeat&&this.anim.defeat>=1){
                     transition.trigger=true
                     transition.scene='defeat'

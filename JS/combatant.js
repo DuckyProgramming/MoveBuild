@@ -30,13 +30,13 @@ class combatant{
         this.block=0
         this.dodges=[]
         this.status={main:[],name:[
-            'Double Damage','Counter','Cannot be Pushed','Dodge'
+            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn',
             ],display:[],active:[],position:[],size:[],
-            behavior:[0,2,1,0],
-            class:[0,0,0,0]}
+            behavior:[0,2,1,0,1],
+            class:[0,0,0,0,2]}
         //0-none, 1-end turn, 2-decrement
-        //0-good, 1-bad
-        for(let a=0;a<4;a++){
+        //0-good, 1-bad, 2-nonclassified good
+        for(let a=0;a<5;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -50,8 +50,8 @@ class combatant{
         this.direction=0
         this.size=1
 
-        switch(this.type){
-            case 1:
+        switch(this.name){
+            case 'Lira':
                 this.anim={direction:direction,head:direction,sword:1,mouth:{x:8,y:5,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
                     kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
@@ -164,7 +164,7 @@ class combatant{
             
                 this.kimono.decoration.push({spin:218,rotate:random(0,360),y:24,width:0.2,height:1,type:0})
             break
-            case 2: case 4:
+            case 'Human': case 'Bouncer':
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                     arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
@@ -191,7 +191,7 @@ class combatant{
                     break
                 }
             break
-            case 3:
+            case 'Duck':
                 this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
                 this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
                 this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
@@ -223,8 +223,8 @@ class combatant{
         this.status.display=[]
     }
     calculateParts(){
-        switch(this.type){
-            case 1:
+        switch(this.name){
+            case 'Lira':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+sin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+cos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -269,7 +269,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 2: case 4:
+            case 'Human': case 'Bouncer':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+sin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+cos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -303,7 +303,7 @@ class combatant{
                     this.graphics.arms[g].bottomStack.y=this.parts.arms[g].bottom.y
                 }
             break
-            case 3:
+            case 'Duck':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+sin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+cos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -441,6 +441,9 @@ class combatant{
     tick(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
+                switch(a){
+                    case 4: this.battle.energy.main+=this.status.main[a]; break
+                }
                 if(this.status.behavior[a]==1){
                     if(this.status.main[a]>0){
                         this.status.main[a]--
@@ -457,8 +460,8 @@ class combatant{
         return mergeColor(mergeColor(color,[150,150,150],this.infoAnim.flash[1]),[200,0,0],this.infoAnim.flash[0])
     }
     startAnimation(type){
-        switch(this.type){
-            case 1:
+        switch(this.name){
+            case 'Lira':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -471,6 +474,9 @@ class combatant{
                     case 3: case 6: case 8: case 9:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
+                    break
+                    case 4: case 12: case 14: case 15:
+                        this.animSet.loop=0
                     break
                     case 5:
                         this.animSet.loop=0
@@ -486,12 +492,9 @@ class combatant{
                         this.goal.anim.sword=false
                         this.anim.eyeStyle=[0,0]
                     break
-                    case 12:
-                        this.animSet.loop=0
-                    break
                 }
             break
-            case 2: case 4:
+            case 'Human': case 'Bouncer':
                 switch(type){
                     case 0: case 2:
                         this.animSet.loop=0
@@ -502,7 +505,7 @@ class combatant{
                     break
                 }
             break
-            case 3:
+            case 'Duck':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -516,8 +519,8 @@ class combatant{
         }
     }
     runAnimation(rate,type){
-        switch(this.type){
-            case 1:
+        switch(this.name){
+            case 'Lira':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -665,10 +668,26 @@ class combatant{
                         this.spin.arms[1].bottom=75-sin(this.animSet.loop*180)*30
                         this.spin.sword=75+sin(this.animSet.loop*180)*21
                     break
-
+                    case 14:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.legs[g].top=9+sin(this.animSet.loop*180)*27
+                            this.anim.legs[g].bottom=sin(this.animSet.loop*180)*12
+                            this.spin.legs[g].top=(60+sin(this.animSet.loop*180)*15)*(g*2-1)
+                            this.spin.legs[g].bottom=(120-sin(this.animSet.loop*180)*45)*(g*2-1)
+                        }
+                        this.offset.position.y=sin(this.animSet.loop*180)*-20
+                    break
+                    case 15:
+                        this.animSet.loop+=rate
+                        this.anim.arms[0].top=24+sin(this.animSet.loop*90)*36
+                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*90)*87
+                        this.spin.arms[0].top=-93+sin(this.animSet.loop*90)*48
+                        this.spin.arms[0].bottom=-75+sin(this.animSet.loop*90)*60
+                    break
                 }
             break
-            case 2: case 4:
+            case 'Human': case 'Bouncer':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -729,7 +748,7 @@ class combatant{
 
                 }
             break
-            case 3:
+            case 'Duck':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -750,8 +769,8 @@ class combatant{
         }
     }
     minorDisplay(type,key){
-        switch(this.type){
-            case 1:
+        switch(this.name){
+            case 'Lira':
                 switch(type){
                     case 0:
                         this.layer.push()
@@ -814,31 +833,31 @@ class combatant{
                 this.layer.noFill()
                 if(this.anim.eyeStyle[key]==2&&this.anim.eye[key]>0){
                     this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
-                    this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(cos(this.spin.eye[key]+this.anim.direction)*5,0,1))
-                    this.layer.arc(sin(this.spin.eye[key]+this.anim.direction)*15,this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
+                    this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(cos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.arc(sin(this.spin.eye[key]+this.anim.head)*15,this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
                     this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
-                    this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(cos(this.spin.eye[key]+this.anim.direction)*5,0,1))
-                    this.layer.arc(sin(this.spin.eye[key]+this.anim.direction)*(15.5-this.anim.eye[key]*0.5),this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
+                    this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(cos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.arc(sin(this.spin.eye[key]+this.anim.head)*(15.5-this.anim.eye[key]*0.5),this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
                 }else if(this.anim.eyeStyle[key]==1&&this.anim.eye[key]>0){
                     this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
-                    this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(cos(this.spin.eye[key]+this.anim.direction)*5,0,1))
-                    this.layer.arc(sin(this.spin.eye[key]+this.anim.direction)*15,this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
+                    this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(cos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.arc(sin(this.spin.eye[key]+this.anim.head)*15,this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
                     this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
-                    this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(cos(this.spin.eye[key]+this.anim.direction)*5,0,1))
-                    this.layer.arc(sin(this.spin.eye[key]+this.anim.direction)*(15.5-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
+                    this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(cos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.arc(sin(this.spin.eye[key]+this.anim.head)*(15.5-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
                 }else{
                     this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
-                    this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(cos(this.spin.eye[key]+this.anim.direction)*5,0,1))
-                    this.layer.line(sin(this.spin.eye[key]+this.anim.direction)*15-(key*2-1)*cos(this.spin.eye[key]+this.anim.direction)*this.anim.eye[key]*2,this.parts.eyeLevel,sin(this.spin.eye[key]+this.anim.direction)*15+(key*2-1)*cos(this.spin.eye[key]+this.anim.direction)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
-                    this.layer.line(sin(this.spin.eye[key]+this.anim.direction)*15-(key*2-1)*cos(this.spin.eye[key]+this.anim.direction)*this.anim.eye[key]*2,this.parts.eyeLevel,sin(this.spin.eye[key]+this.anim.direction)*15+(key*2-1)*cos(this.spin.eye[key]+this.anim.direction)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
+                    this.layer.strokeWeight((4-this.anim.eye[key]*3)*constrain(cos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.line(sin(this.spin.eye[key]+this.anim.head)*15-(key*2-1)*cos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,sin(this.spin.eye[key]+this.anim.head)*15+(key*2-1)*cos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
+                    this.layer.line(sin(this.spin.eye[key]+this.anim.head)*15-(key*2-1)*cos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,sin(this.spin.eye[key]+this.anim.head)*15+(key*2-1)*cos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
                     this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
-                    this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(cos(this.spin.eye[key]+this.anim.direction)*5,0,1))
-                    this.layer.line(sin(this.spin.eye[key]+this.anim.direction)*(15.5-this.anim.eye[key]*0.5)-(key*2-1)*cos(this.spin.eye[key]+this.anim.direction)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,sin(this.spin.eye[key]+this.anim.direction)*(15.5-this.anim.eye[key]*0.5)+(key*2-1)*cos(this.spin.eye[key]+this.anim.direction)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
-                    this.layer.line(sin(this.spin.eye[key]+this.anim.direction)*(15.5-this.anim.eye[key]*0.5)-(key*2-1)*cos(this.spin.eye[key]+this.anim.direction)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,sin(this.spin.eye[key]+this.anim.direction)*(15.5-this.anim.eye[key]*0.5)+(key*2-1)*cos(this.spin.eye[key]+this.anim.direction)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
+                    this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(cos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.line(sin(this.spin.eye[key]+this.anim.head)*(15.5-this.anim.eye[key]*0.5)-(key*2-1)*cos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,sin(this.spin.eye[key]+this.anim.head)*(15.5-this.anim.eye[key]*0.5)+(key*2-1)*cos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
+                    this.layer.line(sin(this.spin.eye[key]+this.anim.head)*(15.5-this.anim.eye[key]*0.5)-(key*2-1)*cos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,sin(this.spin.eye[key]+this.anim.head)*(15.5-this.anim.eye[key]*0.5)+(key*2-1)*cos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                     if(this.anim.eye[key]==0){
                         this.layer.stroke(this.color.eye.glow[0],this.color.eye.glow[1],this.color.eye.glow[2],this.fade*this.fades.eye[key]/4)
                         this.layer.strokeWeight(0.6)
-                        this.layer.arc(sin(this.spin.eye[key]+this.anim.direction)*15.5,this.parts.eyeLevel,1.8,1.8,-72,-12)
+                        this.layer.arc(sin(this.spin.eye[key]+this.anim.head)*15.5,this.parts.eyeLevel,1.8,1.8,-72,-12)
                     }
                 }
             break
@@ -875,14 +894,14 @@ class combatant{
             this.layer.translate(this.position.x+this.offset.position.x,this.position.y+this.offset.position.y)
             this.layer.rotate(this.direction)
             this.layer.scale(this.size)
-            switch(this.type){
-                case 0:
+            switch(this.name){
+                case '':
                     this.layer.rotate(-this.anim.direction)
                     this.layer.fill(this.flashColor([200,200,200])[0],this.flashColor([200,200,200])[1],this.flashColor([200,200,200])[2],this.fade)
                     this.layer.noStroke()
                     this.layer.triangle(-6,-8,6,-8,0,12)
                 break
-                case 1:
+                case 'Lira':
                     if(this.trigger.display.hair.back){
                         this.layer.image(graphics.combatant[0].sprites.hair.back[this.sprites.spinDetailHead],-25*this.fade,-75-20*this.fade,50*this.fade,100*this.fade)
                     }
@@ -1446,7 +1465,7 @@ class combatant{
                         }
                     }
                 break
-                case 2: case 4:
+                case 'Human': case 'Bouncer':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -1516,7 +1535,7 @@ class combatant{
                         }
                     }
                 break
-                case 3:
+                case 'Duck':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&cos(this.anim.direction+this.spin.arms[g].top)<=0){
                             this.layer.fill(upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[0],upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[1],upColor(this.color.skin.arms,cos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1])[2],this.fade*this.fades.skin.arms)
@@ -1849,8 +1868,8 @@ class combatant{
                 la--
             }
         }
-        switch(this.type){
-            case 1:
+        switch(this.name){
+            case 'Lira':
                 this.anim.head=this.anim.direction
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
                 if(this.life<=this.base.life*0.2){
@@ -1859,7 +1878,7 @@ class combatant{
                     this.trigger.display.extra.damage=false
                 }
             break
-            case 2: case 3:
+            case 'Human': case 'Duck': case 'Bouncer':
                 this.anim.head=this.anim.direction
             break
         }
