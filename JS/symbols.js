@@ -67,11 +67,18 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade){
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)
         break
+        case 5:
+            layer.fill(125,125,125,fade)
+            layer.stroke(100,100,100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
+        break
     }
     layer.fill(0,fade)
+    layer.noStroke()
     layer.textSize(8)
     switch(type){
-        case 1: case 3: case 4:
+        case 1: case 3: case 4: case 5:
             layer.text(effect[0],0,0)
         break
         case 2:

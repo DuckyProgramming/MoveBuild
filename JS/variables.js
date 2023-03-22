@@ -258,9 +258,13 @@ types={
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
-        {name:'Human',life:30,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:"Just a guy"},
-        {name:'Duck',life:20,behavior:0,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:"Typical duck"},
-        {name:'Bouncer',life:24,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
+        {name:'Human',life:25,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:"Just a guy"},
+        {name:'Duck',life:20,behavior:1,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:"Typical duck"},
+        {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
+        {name:'Thug',life:32,behavior:0,move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:"Beats people up"},
+        //biker
+        //fast boy
+
     ],attack:[
         {name:'',class:0},
         {name:'Strike',class:1},
@@ -268,6 +272,8 @@ types={
         {name:'Push',class:1},
         {name:'Block',class:2},
         {name:'Daze',class:4},
+        {name:'2 Tile Strike (Nonpenetrative) (Advance)',class:1},
+        {name:'2 Tile Push (Advance)',class:1},
     ],color:{
         card:[
             {
@@ -338,10 +344,21 @@ types={
                 [{type:-1},{type:-1},{type:0},{type:1},{type:0},{type:1},{type:0}],
                 [{type:-1},{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0}],
             ],
+        },{
+            name:'Landmine 7',
+            map:[
+                [{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1},{type:-1}],
+                [{type:0},{type:2},{type:0},{type:2},{type:0},{type:-1},{type:-1}],
+                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1}],
+                [{type:0},{type:2},{type:0},{type:0},{type:0},{type:2},{type:0}],
+                [{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0},{type:0}],
+                [{type:-1},{type:-1},{type:0},{type:2},{type:0},{type:2},{type:0}],
+                [{type:-1},{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0}],
+            ],
         },
     ],encounter:[
         {
-            level:1,class:0,world:-1,
+            level:0,class:0,world:-1,
             player:{position:{x:0,y:0}},
             enemy:[
             ],reinforce:[
@@ -350,7 +367,7 @@ types={
             level:3,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:3},
+                {position:{x:0,y:0},type:5},
                 /*{position:{x:1,y:0},type:3},
                 {position:{x:2,y:0},type:3},
                 {position:{x:3,y:0},type:3},

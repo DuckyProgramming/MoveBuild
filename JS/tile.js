@@ -11,15 +11,25 @@ class tile{
         this.occupied=0
         this.targetted=[false,false,false]
         this.reinforce=false
+        this.target=0
 
-        this.anim={target:[0,0,0],reinforce:0}
+        this.anim={target:[0,0,0],reinforce:0,part:1,upPart:true}
     }
     activate(type,id){
         switch(this.type){
             case 1:
-                let target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                if(target>=0&&(this.battle.combatantManager.combatants[target].team==0&&type==0||this.battle.combatantManager.combatants[target].id==id&&type==1)){
-                    this.battle.combatantManager.combatants[target].takeDamage(5,-1,0)
+                this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)){
+                    this.battle.combatantManager.combatants[this.target].takeDamage(5,-1,0)
+                }
+            break
+            case 2:
+                this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)){
+                    this.battle.combatantManager.combatants[this.target].takeDamage(20,-1,0)
+                    this.battle.combatantManager.damageArea(20,-1,this.tilePosition)
+                    this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
+                    this.anim.upPart=false
                 }
             break
         }
@@ -36,12 +46,22 @@ class tile{
         regPoly(this.layer,0,0,6,40,18,0)
         switch(this.type){
             case 1:
-                this.layer.fill(190,195,200,this.fade)
+                this.layer.fill(190,195,200,this.fade*this.anim.part)
                 for(let a=0,la=9;a<la;a++){
                     for(let b=0,lb=9-a%2-max(3,abs(a-4))*2;b<lb;b++){
                         this.layer.triangle(-2+10-lb*10+b*20,2+3/2-la*3/2+a*3,2+10-lb*10+b*20,2+3/2-la*3/2+a*3,10-lb*10+b*20,-3+3/2-la*3/2+a*3)
                     }
                 }
+            break
+            case 2:
+                this.layer.fill(60,this.fade*this.anim.part)
+                this.layer.rect(0,-2,24,4)
+                this.layer.ellipse(0,-4,24,8)
+                this.layer.ellipse(0,0,24,8)
+                this.layer.fill(150,50,50,this.fade*this.anim.part)
+                this.layer.rect(0,-5,12,2)
+                this.layer.ellipse(0,-6,12,4)
+                this.layer.ellipse(0,-4,12,4)
             break
         }
         let stack=0
@@ -81,6 +101,10 @@ class tile{
             this.targetted[g]=false
         }
         this.anim.reinforce=smoothAnim(this.anim.reinforce,this.reinforce,0,1,5)
+        this.anim.part=smoothAnim(this.anim.part,this.anim.upPart,0,1,5)
+        if(this.anim.part<=0&&!this.anim.upPart){
+            this.type=0
+        }
     }
     displayCoordinate(coordinateAnim){
         this.layer.fill(0,this.fade*coordinateAnim)

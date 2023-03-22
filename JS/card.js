@@ -127,17 +127,21 @@ class card{
             this.layer.stroke(this.colorDetail.stroke,this.fade)
             this.layer.strokeWeight(5)
             this.layer.rect(0,0,this.width,this.height,5)
-            this.layer.fill(225,255,255,this.fade)
-            this.layer.stroke(200,255,255,this.fade)
-            this.layer.strokeWeight(2)
-            this.layer.quad(-this.width/2+2,-this.height/2+12,-this.width/2+10,-this.height/2+2,-this.width/2+18,-this.height/2+12,-this.width/2+10,-this.height/2+22)
+            if(!this.spec.includes(5)){
+                this.layer.fill(225,255,255,this.fade)
+                this.layer.stroke(200,255,255,this.fade)
+                this.layer.strokeWeight(2)
+                this.layer.quad(-this.width/2+2,-this.height/2+12,-this.width/2+10,-this.height/2+2,-this.width/2+18,-this.height/2+12,-this.width/2+10,-this.height/2+22)
+            }
             this.layer.noStroke()
-            this.layer.fill(mergeColor([255,0,0],[0,0,0],this.anim.afford),this.level/2,this.fade)
-            this.layer.textSize(14)
-            if(this.cost==-1){
-                this.layer.text('X',-this.width/2+10,-this.height/2+13)
-            }else{
-                this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
+            if(!this.spec.includes(5)){
+                this.layer.fill(mergeColor([255,0,0],[0,0,0],this.anim.afford),this.level/2,this.fade)
+                this.layer.textSize(14)
+                if(this.cost==-1){
+                    this.layer.text('X',-this.width/2+10,-this.height/2+13)
+                }else{
+                    this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
+                }
             }
             this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
             this.layer.textSize(10)

@@ -22,25 +22,54 @@ class turn{
         }else{
             switch(this.action){
                 case 0:
-                    if(this.attackClass==2){
+                    if(this.attackClass==2||this.attackClass==4){
                         this.userCombatant.moved=true
                     }else{
                         switch(this.type){
                             case 1: case 2: case 3:
                                 this.target=[this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
                             break
+                            case 6:
+                                this.target=[
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2)
+                                ]
+                            break
                         }
-                        if(this.target[0]==-1){
-                            this.userCombatant.moved=true
-                            this.remove=true
+                        if(this.target.length<=1){
+                            if(this.target[0]==-1){
+                                this.userCombatant.moved=true
+                                this.remove=true
+                            }else{
+                                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+
+                                this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+
+                                this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                            }
                         }else{
-                            this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                            this.targetCombatant=-1
+                            for(let a=0,la=this.target.length;a<la;a++){
+                                if(this.target[a]==-1){
+                                    this.userCombatant.moved=true
+                                }else{
+                                    this.targetCombatant=this.battle.combatantManager.combatants[this.target[a]]
 
-                            this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
-                            this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                    this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                    this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
 
-                            this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
-                            this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                                    this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                    this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+
+                                    this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
+                                    break
+                                }
+                            }
+                            if(this.targetCombatant==-1){
+                                this.remove=true
+                            }
                         }
                     }
                 break
@@ -212,6 +241,55 @@ class turn{
                             this.userCombatant.addBlock(this.effect[0])
                         }else if(this.timer>=30){
                             this.remove=true
+                        }
+                    break
+                    case 5:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(3)
+                        }
+                        this.userCombatant.runAnimation(1/15,3)
+                        if(this.timer>=15){
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.cardManager.discard.add(findName('Dazed',types.card),0,game.playerNumber+1)
+                                this.battle.cardManager.drop.addDrop(findName('Dazed',types.card),0,game.playerNumber+1)
+                            }
+                            this.remove=true
+                        }
+                    break
+                    case 6:
+                        if(this.targetDistance==1){
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(2)
+                            }
+                            this.userCombatant.runAnimation(1/30,2)
+                            if(this.timer==15){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            }else if(this.timer>=30){
+                                this.remove=true
+                            }
+                        }else if(this.targetDistance==2){
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(0)
+                            }else if(this.timer==16){
+                                this.userCombatant.startAnimation(2)
+                            }
+                            if(this.timer<=15){
+                                this.userCombatant.runAnimation(1/15,0)
+                            }else if(this.timer<=45){
+                                this.userCombatant.runAnimation(1/30,2)
+                            }
+                            if(this.timer<=15){
+                                this.userCombatant.moveTile(this.direction,this.distance/30)
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/30)
+                            }
+                            if(this.timer==15){
+                                this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x/2+this.targetCombatant.tilePosition.x/2,this.userCombatant.tilePosition.y/2+this.targetCombatant.tilePosition.y/2)
+                            }else if(this.timer==30){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                this.battle.activate(1,this.userCombatant.id)
+                            }else if(this.timer>=45){
+                                this.remove=true
+                            }
                         }
                     break
                 }

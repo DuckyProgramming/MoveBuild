@@ -112,11 +112,11 @@ class attack{
                         this.userCombatant.runAnimation(1/20,2)
                     }
                     if(this.timer<=10){
-                        this.userCombatant.moveTile(this.direction,this.distance/25)
-                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/25)
+                        this.userCombatant.moveTile(this.direction,this.distance/30)
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/30)
                     }else if(this.timer>30){
-                        this.userCombatant.moveTile(this.direction,-this.distance/25)
-                        this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/25)
+                        this.userCombatant.moveTile(this.direction,-this.distance/30)
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/30)
                     }
                     if(this.timer==20){
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -145,13 +145,13 @@ class attack{
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
-                this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
-                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                 this.userCombatant.runAnimation(1/15,0)
-                if(this.timer==10*distTargetCombatant(0,this,this.targetTile)&&this.type==20){
+                if(this.timer==10*this.targetDistance&&this.type==20){
                     this.battle.cardManager.hand.randomEffect(0)
                 }
-                if(this.timer>=15*distTargetCombatant(0,this,this.targetTile)){
+                if(this.timer>=15*this.targetDistance){
                     this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                     this.battle.activate(1,this.userCombatant.id)
                     this.remove=true
@@ -255,14 +255,14 @@ class attack{
                         this.targetCombatant.goal.anim.direction=this.direction
                     }
                 }
-                this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
-                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                 this.userCombatant.runAnimation(1/15,0)
                 if(this.targetClass==2){
-                    this.targetCombatant.moveTile(this.direction,-this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
-                    this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                    this.targetCombatant.moveTile(this.direction,-this.distance/(15*this.targetDistance))
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/(15*this.targetDistance))
                 }
-                if(this.timer>=15*distTargetCombatant(0,this,this.targetTile)){
+                if(this.timer>=15*this.targetDistance){
                     this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                     this.battle.activate(1,this.userCombatant.id)
                     if(this.targetClass==2){
@@ -336,11 +336,11 @@ class attack{
                         this.userCombatant.runAnimation(1/10,2)
                     }
                     if(this.timer<=10){
-                        this.userCombatant.moveTile(this.direction,this.distance/25)
-                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/25)
+                        this.userCombatant.moveTile(this.direction,this.distance/30)
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/30)
                     }else if(this.timer>30){
-                        this.userCombatant.moveTile(this.direction,-this.distance/25)
-                        this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/25)
+                        this.userCombatant.moveTile(this.direction,-this.distance/30)
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/30)
                     }
                     if(this.timer==20){
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
@@ -364,26 +364,26 @@ class attack{
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
-                this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
-                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                 this.userCombatant.runAnimation(1/15,0)
-                if(this.timer<=8&&distTargetCombatant(0,this,this.targetTile)==2){
+                if(this.timer<=8&&this.targetDistance==2){
                     if(this.timer==1){
                         this.procedure[0]=floor(random(0,2))
                     }
                     let middle=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x/2+this.tilePosition.x/2,this.targetTile.tilePosition.y/2+this.tilePosition.y/2)
                     if(middle>=0){
-                        this.battle.combatantManager.combatants[middle].moveTile(this.direction+90*(this.procedure[0]*2-1),this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
-                        this.battle.combatantManager.combatants[middle].moveRelativeTile(this.relativeDirection+90*(this.procedure[0]*2-1),this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                        this.battle.combatantManager.combatants[middle].moveTile(this.direction+90*(this.procedure[0]*2-1),this.distance/(15*this.targetDistance))
+                        this.battle.combatantManager.combatants[middle].moveRelativeTile(this.relativeDirection+90*(this.procedure[0]*2-1),this.relativeDistance/(15*this.targetDistance))
                     }
-                }else if(this.timer>22&&distTargetCombatant(0,this,this.targetTile)==2){
+                }else if(this.timer>22&&this.targetDistance==2){
                     let middle=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x/2+this.tilePosition.x/2,this.targetTile.tilePosition.y/2+this.tilePosition.y/2)
                     if(middle>=0){
-                        this.battle.combatantManager.combatants[middle].moveTile(this.direction-90*(this.procedure[0]*2-1),this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
-                        this.battle.combatantManager.combatants[middle].moveRelativeTile(this.relativeDirection-90*(this.procedure[0]*2-1),this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                        this.battle.combatantManager.combatants[middle].moveTile(this.direction-90*(this.procedure[0]*2-1),this.distance/(15*this.targetDistance))
+                        this.battle.combatantManager.combatants[middle].moveRelativeTile(this.relativeDirection-90*(this.procedure[0]*2-1),this.relativeDistance/(15*this.targetDistance))
                     }
                 }
-                if(this.timer>=15*distTargetCombatant(0,this,this.targetTile)){
+                if(this.timer>=15*this.targetDistance){
                     this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                     this.battle.activate(1,this.userCombatant.id)
                     this.remove=true
@@ -638,10 +638,10 @@ class attack{
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
-                this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetCombatant)))
-                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetCombatant)))
+                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                 this.userCombatant.runAnimation(1/15,0)
-                if(this.timer>=15*distTargetCombatant(0,this,this.targetCombatant)-15){
+                if(this.timer>=15*this.targetDistance-15){
                     let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
                     this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                     this.battle.activate(1,this.userCombatant.id)
@@ -683,11 +683,11 @@ class attack{
                     this.userCombatant.runAnimation(1/20,13)
                 }
                 if(this.timer<=8){
-                    this.userCombatant.moveTile(this.direction,this.distance/25)
-                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/25)
+                    this.userCombatant.moveTile(this.direction,this.distance/30)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/30)
                 }else if(this.timer>28){
-                    this.userCombatant.moveTile(this.direction,-this.distance/25)
-                    this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/25)
+                    this.userCombatant.moveTile(this.direction,-this.distance/30)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/30)
                 }
                 if(this.timer==18){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -698,21 +698,23 @@ class attack{
             case 27:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
-                }else if(this.timer==15*distTargetCombatant(0,this,this.targetCombatant)-14){
+                }else if(this.timer==15*this.targetDistance-14){
                     this.userCombatant.startAnimation(2)
                 }
-                if(this.timer>=15*distTargetCombatant(0,this,this.targetCombatant)-14){
+                if(this.timer>=15*this.targetDistance-14){
                     this.userCombatant.runAnimation(1/30,2)
                 }else{
-                    this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetCombatant)))
-                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetCombatant)))
+                    this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                     this.userCombatant.runAnimation(1/15,0)
                 }
-                if(this.timer==15*distTargetCombatant(0,this,this.targetCombatant)){
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
-                }else if(this.timer>=15*distTargetCombatant(0,this,this.targetCombatant)+15){
+                if(this.timer==15*this.targetDistance-15){
                     let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
                     this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                    
+                }else if(this.timer==15*this.targetDistance){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                }else if(this.timer>=15*this.targetDistance+15){
                     this.battle.activate(1,this.userCombatant.id)
                     this.remove=true
                 }
@@ -817,10 +819,10 @@ class attack{
                     this.userCombatant.runAnimation(1/15,15)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,1,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*distTargetCombatant(0,this,this.targetCombatant)-2]))
-                }else if(this.timer==10*distTargetCombatant(0,this,this.targetCombatant)+15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,1,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
+                }else if(this.timer==10*this.targetDistance+15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
-                }else if(this.timer>=10*distTargetCombatant(0,this,this.targetCombatant)+25){
+                }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true
                 }
             break

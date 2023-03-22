@@ -135,7 +135,7 @@ class battle{
         this.sendReinforce()
         this.turnManager.loadEnemyTurns()
         this.combatantManager.enableCombatants()
-        this.cardManager.allEffect(2,0)
+        this.cardManager.allEffect(2,1)
         this.attackManager.clear()
     }
     startTurn(){

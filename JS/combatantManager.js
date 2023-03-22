@@ -45,7 +45,7 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==1){
                 this.combatants[a].moved=false
-                if(types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2){
+                if(types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4){
                     this.combatants[a].activated=true
                 }else{
                     this.combatants[a].activated=false

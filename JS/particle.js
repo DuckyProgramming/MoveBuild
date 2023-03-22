@@ -12,6 +12,7 @@ class particle{
                 this.fade=0
                 this.trigger=false
                 this.size=1
+                this.scale=1
             break
             case 1:
                 this.direction=args[0]
@@ -20,37 +21,54 @@ class particle{
                 this.fade=0
                 this.trigger=false
                 this.size=1
+                this.scale=1
+            break
+            case 2:
+                this.size=args[0]
+                this.fade=1
+                this.scale=0
             break
         }
     }
     display(){
-        this.layer.push()
-        this.layer.translate(this.position.x,this.position.y)
-        this.layer.scale(this.size)
-        this.layer.noStroke()
-        switch(this.type){
-            case 0:
-                this.layer.fill(255,100,100,this.fade)
-                this.layer.textSize(20)
-                this.layer.text('-'+this.value,0,0)
-            break
-            case 1:
-                this.layer.rotate(this.direction)
-                this.layer.fill(235,245,255,this.fade)
-                this.layer.noStroke()
-                this.layer.rect(0,-5,3,10)
-                this.layer.triangle(-3/2,-10,3/2,-10,0,-20)
-                this.layer.fill(160,170,180,this.fade)
-                this.layer.rect(3/4,-5,3/2,10)
-                this.layer.triangle(3/2,-10,0,-20,0,-10)
-                for(let g=0;g<4;g++){
-                    this.layer.stroke(125+g*10,70+g*10,80+g*10,this.fade)
-                    this.layer.strokeWeight(4-g)
-                    this.layer.line(0,-2+g/2,0,2-g/2)
-                }
-            break
+        if(this.size>0&&this.scale>0){
+            this.layer.push()
+            this.layer.translate(this.position.x,this.position.y)
+            this.layer.scale(this.size*this.scale)
+            this.layer.noStroke()
+            switch(this.type){
+                case 0:
+                    this.layer.fill(255,100,100,this.fade)
+                    this.layer.textSize(20)
+                    this.layer.text('-'+this.value,0,0)
+                break
+                case 1:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(235,245,255,this.fade)
+                    this.layer.rect(0,-5,3,10)
+                    this.layer.triangle(-3/2,-10,3/2,-10,0,-20)
+                    this.layer.fill(160,170,180,this.fade)
+                    this.layer.rect(3/4,-5,3/2,10)
+                    this.layer.triangle(3/2,-10,0,-20,0,-10)
+                    for(let g=0;g<4;g++){
+                        this.layer.stroke(125+g*10,70+g*10,80+g*10,this.fade)
+                        this.layer.strokeWeight(4-g)
+                        this.layer.line(0,-2+g/2,0,2-g/2)
+                    }
+                break
+                case 2:
+                    this.layer.fill(255,180,0,this.fade)
+                    this.layer.ellipse(0,0,12,12)
+                    this.layer.fill(255,150,0,this.fade)
+                    this.layer.ellipse(0,0,9,9)
+                    this.layer.fill(255,120,0,this.fade)
+                    this.layer.ellipse(0,0,6,6)
+                    this.layer.fill(255,90,0,this.fade)
+                    this.layer.ellipse(0,0,3,3)
+                break
+            }
+            this.layer.pop()
         }
-        this.layer.pop()
     }
     update(){
         switch(this.type){
@@ -82,6 +100,13 @@ class particle{
                     if(this.fade<=0){
                         this.remove=true
                     }
+                }
+            break
+            case 2:
+                this.fade-=0.1
+                this.scale+=0.1
+                if(this.fade<=0){
+                    this.remove=true
                 }
             break
         }

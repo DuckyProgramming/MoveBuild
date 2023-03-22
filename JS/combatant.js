@@ -164,7 +164,7 @@ class combatant{
             
                 this.kimono.decoration.push({spin:218,rotate:random(0,360),y:24,width:0.2,height:1,type:0})
             break
-            case 'Human': case 'Bouncer':
+            case 'Human': case 'Bouncer': case 'Thug': case 'Biker':
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                     arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
@@ -180,14 +180,21 @@ class combatant{
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
-                switch(this.type){
-                    case 2:
+                switch(this.name){
+                    case 'Human':
                         this.color={skin:{head:[255,235,215],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
-                    case 4:
+                    case 'Bouncer':
                         this.color={skin:{head:[240,220,180],body:[200,200,200],legs:[195,195,195],arms:[205,205,205]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},belt:[255,50,50]}
                         this.fades.belt=1
                         this.trigger.display.belt=true
+                    break
+                    case 'Thug':
+                        this.color={skin:{head:[160,60,60],body:[150,50,50],legs:[145,45,45],arms:[155,55,55]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.eyeHole=[235,210,160]
+                    break
+                    case 'Biker':
+                        this.color={skin:{head:[250,230,200],body:[225,25,25],legs:[220,20,20],arms:[230,30,30]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
                 }
             break
@@ -269,7 +276,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Human': case 'Bouncer':
+            case 'Human': case 'Bouncer': case 'Thug': case 'Biker':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+sin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+cos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -328,7 +335,13 @@ class combatant{
     getTarget(){
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
-            case 4: return -1
+            case 4: case 5: return -1
+            case 6:
+                return [
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
+                ]
+            break
         }
     }
     setIntent(type){
@@ -356,8 +369,15 @@ class combatant{
                         this.targetTile=this.battle.tileManager.tiles[target].tilePosition
                     }
                 break
-                case 4:
-                    this.targetTIle={x:-1,y:-1}
+                case 6:
+                    this.targetTile=[]
+                    for(let a=0,la=target.length;a<la;a++){
+                        if(target[a]==-1){
+                            this.targetTile.push({x:-1,y:-1})
+                        }else{
+                            this.targetTile.push(this.battle.tileManager.tiles[target[a]].tilePosition)
+                        }
+                    }
                 break
             }
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
@@ -368,6 +388,15 @@ class combatant{
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile.y){
                                     this.activated=true
+                            }
+                        break
+                        case 6:
+                            for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                                if(
+                                    this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
+                                    this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].y){
+                                        this.activated=true
+                                }
                             }
                         break
                     }
@@ -494,7 +523,7 @@ class combatant{
                     break
                 }
             break
-            case 'Human': case 'Bouncer':
+            case 'Human': case 'Bouncer': case 'Thug': case 'Biker':
                 switch(type){
                     case 0: case 2:
                         this.animSet.loop=0
@@ -511,7 +540,7 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2:
+                    case 2: case 3:
                         this.animSet.loop=0
                     break
                 }
@@ -687,7 +716,7 @@ class combatant{
                     break
                 }
             break
-            case 'Human': case 'Bouncer':
+            case 'Human': case 'Bouncer': case 'Thug': case 'Biker':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -763,6 +792,10 @@ class combatant{
                             this.spin.arms[g].top=(-90+abs(sin(this.animSet.loop*540)*75))*(g*2-1)
                             this.anim.arms[g].top=54+abs(sin(this.animSet.loop*540))*30
                         }
+                    break
+                    case 3:
+                        this.animSet.loop+=rate
+                        this.offset.position.y=sin(this.animSet.loop*180)*-10
                     break
                 }
             break
@@ -1465,7 +1498,7 @@ class combatant{
                         }
                     }
                 break
-                case 'Human': case 'Bouncer':
+                case 'Human': case 'Bouncer': case 'Thug': case 'Biker':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -1479,7 +1512,7 @@ class combatant{
                         this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                         this.layer.ellipse(0,-48,13,39)
                     }
-                    if(this.type==4&&this.trigger.display.belt){
+                    if(this.name=='Bouncer'&&this.trigger.display.belt){
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
                         this.layer.rect(0,-48,14,3)
@@ -1529,6 +1562,12 @@ class combatant{
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                        if(this.name=='Thug'&&this.trigger.display.eye[g]){
+                            this.layer.stroke(this.color.eyeHole[0],this.color.eyeHole[1],this.color.eyeHole[2],this.fade*this.fades.eye[g])
+                            this.layer.strokeWeight((6-this.anim.eye[g]*3)*constrain(cos(this.spin.eye[g]+this.anim.head)*5,0,1))
+                            this.layer.line(sin(this.spin.eye[g]+this.anim.head)*14-(g*2-1)*cos(this.spin.eye[g]+this.anim.head)*this.anim.eye[g]*2,this.parts.eyeLevel-0.5,sin(this.spin.eye[g]+this.anim.head)*14+(g*2-1)*cos(this.spin.eye[g]+this.anim.head)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2-0.5)
+                            this.layer.line(sin(this.spin.eye[g]+this.anim.head)*14-(g*2-1)*cos(this.spin.eye[g]+this.anim.head)*this.anim.eye[g]*2,this.parts.eyeLevel-0.5,sin(this.spin.eye[g]+this.anim.head)*14+(g*2-1)*cos(this.spin.eye[g]+this.anim.head)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2-0.5)
                         }
                         if(this.trigger.display.eye[g]){
                             this.minorDisplayGeneral(0,g)
@@ -1784,6 +1823,19 @@ class combatant{
                         }
                     }
                 break
+                case 6:
+                    if(target.length>0){
+                        for(let a=0,la=target.length;a<la;a++){
+                            if(target[a]!=-1){
+                                if(this.activated){
+                                    this.battle.tileManager.tiles[target[a]].targetted[2]=true
+                                }else{
+                                    this.battle.tileManager.tiles[target[a]].targetted[1]=true
+                                }
+                            }
+                        }
+                    }
+                break
             }
         }
         this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)
@@ -1878,7 +1930,7 @@ class combatant{
                     this.trigger.display.extra.damage=false
                 }
             break
-            case 'Human': case 'Duck': case 'Bouncer':
+            case 'Human': case 'Duck': case 'Bouncer': case 'Thug': case 'Biker':
                 this.anim.head=this.anim.direction
             break
         }

@@ -17,9 +17,9 @@ Next World
 Battle Content:
 Weak Enemy
 Innate Cards
-2 Range Enemy
+2 Range Push
+2 Tile Move
 Enemy Do Nothing
-Other Statuses (Enemy Dazes You)
 Curses
 
 Cards:
