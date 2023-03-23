@@ -1,6 +1,7 @@
 Animations:
 
 Bugs:
+General performance issues
 
 Mechanics:
 Prize
@@ -17,7 +18,6 @@ Next World
 Battle Content:
 Weak Enemy
 Innate Cards
-2 Range Push
 2 Tile Move
 Enemy Do Nothing
 Curses
@@ -33,6 +33,9 @@ Rare Card
 MULTIPLAYER:
 First Character Gimmick
 Second Character Model (Creation!)
+-
+Damage Model
+-
 Second Character Gimmick
 Second Character Customization
 Second Character Base Cards
@@ -42,4 +45,4 @@ Dual Control Schema
 Double Card Choice
 Double Defeat
 
-Character 3?
+Character 3? (Usagi?)

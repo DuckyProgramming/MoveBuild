@@ -33,6 +33,9 @@ function regPoly(layer,x,y,sides,radiusX,radiusY,direction){
 	}
 	layer.endShape(CLOSE)
 }
+function diamond(layer,x,y,width,height,direction){
+	layer.quad(x-width*cos(direction),y-width*sin(direction),x-height*sin(direction),y-height*cos(direction),x+width*cos(direction),y+width*sin(direction),x+height*sin(direction),y+height*cos(direction))
+}
 function mergeColor(color1,color2,value){
 	return [color1[0]*(1-value)+color2[0]*value,color1[1]*(1-value)+color2[1]*value,color1[2]*(1-value)+color2[2]*value]
 }
@@ -62,6 +65,8 @@ function intentDescription(attack){
 		case 4: return 'Add '+attack.effect[0]+' Block'
 		case 5: return 'Shuffle in '+attack.effect[0]+' Dazed'
 		case 6: return 'Deal '+attack.effect[0]+' Damage\nRange 1-2'
+		case 7: return 'Deal '+attack.effect[0]+' Damage\nPush 1 Tile\nRange 1-2'
+
 	}
 }
 function vectorAtan(point1,point2){

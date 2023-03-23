@@ -47,7 +47,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade){
     layer.rotate(direction)
     layer.scale(size)
     switch(type){
-        case 1:
+        case 1: case 6:
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
         break
@@ -57,7 +57,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade){
             layer.triangle(3,-3,-6,-5,-6,-1)
             layer.triangle(3,3,-6,1,-6,5)
         break
-        case 3:
+        case 3: case 7:
             layer.fill(255,50,50,fade)
             layer.rect(-3,0,4,3)
             layer.triangle(6,0,-1,-4,-1,4)
@@ -78,7 +78,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade){
     layer.noStroke()
     layer.textSize(8)
     switch(type){
-        case 1: case 3: case 4: case 5:
+        case 1: case 3: case 4: case 5: case 6: case 7:
             layer.text(effect[0],0,0)
         break
         case 2:

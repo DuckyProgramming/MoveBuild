@@ -260,9 +260,9 @@ class overlay{
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-285,y:this.layer.height/2},width:40,height:40})&&this.page>0){
                         this.page--
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+285,y:this.layer.height/2},width:40,height:40})&&(
-                    this.page<ceil((this.battle.cardManager.reserve.cards.length-1)/15)-1&&this.args[0]==0||
-                    this.page<ceil((this.battle.cardManager.discard.cards.length-1)/15)-1&&this.args[0]==1||
-                    this.page<ceil((this.battle.cardManager.deck.cards.length-1)/15)-1&&(this.args[0]==2||this.args[0]==3))){
+                    this.page<ceil((this.battle.cardManager.reserve.cards.length-1)/15)-1&&(this.args[0]==0||this.args[0]==6)||
+                    this.page<ceil((this.battle.cardManager.discard.cards.length-1)/15)-1&&(this.args[0]==1||this.args[0]==5)||
+                    this.page<ceil((this.battle.cardManager.deck.cards.length-1)/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4))){
                         this.page++
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+225},width:120,height:40})){
                         this.active=false
@@ -383,9 +383,9 @@ class overlay{
                     if(code==LEFT_ARROW&&this.page>0){
                         this.page--
                     }else if(code==RIGHT_ARROW&&(
-                    this.page<ceil((this.battle.cardManager.reserve.cards.length-1)/15)-1&&this.args[0]==0||
-                    this.page<ceil((this.battle.cardManager.discard.cards.length-1)/15)-1&&this.args[0]==1||
-                    this.page<ceil((this.battle.cardManager.deck.cards.length-1)/15)-1&&(this.args[0]==2||this.args[0]==3))){
+                    this.page<ceil((this.battle.cardManager.reserve.cards.length-1)/15)-1&&(this.args[0]==0||this.args[0]==6)||
+                    this.page<ceil((this.battle.cardManager.discard.cards.length-1)/15)-1&&(this.args[0]==1||this.args[0]==5)||
+                    this.page<ceil((this.battle.cardManager.deck.cards.length-1)/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4))){
                         this.page++
                     }else if(code==ENTER){
                         this.active=false

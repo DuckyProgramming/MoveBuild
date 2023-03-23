@@ -258,10 +258,12 @@ types={
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
+        {name:'Sakura',life:50,behavior:0,move:{type:0,speed:0},attack:[],description:""},
         {name:'Human',life:25,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:"Just a guy"},
         {name:'Duck',life:20,behavior:1,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:"Typical duck"},
         {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
         {name:'Thug',life:32,behavior:0,move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:"Beats people up"},
+        {name:'Biker',life:40,behavior:0,move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:"Now bikeless"},
         //biker
         //fast boy
 
@@ -287,6 +289,11 @@ types={
                 text:[0,100,0],
                 active:[200,255,200],
             },{
+                fill:[220,200,240],
+                stroke:[180,160,200],
+                text:[100,0,100],
+                active:[255,200,255],
+            },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
                 text:[40,40,40],
@@ -299,6 +306,8 @@ types={
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             [['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
+            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
+            
            
         ]
     },level:[
@@ -367,62 +376,62 @@ types={
             level:3,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:5},
-                /*{position:{x:1,y:0},type:3},
-                {position:{x:2,y:0},type:3},
-                {position:{x:3,y:0},type:3},
-                {position:{x:3,y:6},type:3},
-                {position:{x:4,y:6},type:3},
-                {position:{x:5,y:6},type:3},
-                {position:{x:6,y:6},type:3},*/
+                {position:{x:0,y:0},name:'Duck'},
+                //{position:{x:1,y:0},name:'Duck'},
+                //{position:{x:2,y:0},name:'Duck'},
+                //{position:{x:3,y:0},name:'Thug'},
+                //{position:{x:3,y:6},name:'Thug'},
+                //{position:{x:4,y:6},name:'Duck'},
+                //{position:{x:5,y:6},name:'Duck'},
+                //{position:{x:6,y:6},name:'Biker'},
 
-                /*{position:{x:0,y:1},type:3},
-                {position:{x:0,y:2},type:3},
-                {position:{x:4,y:1},type:3},
-                {position:{x:5,y:2},type:3},
-                {position:{x:1,y:4},type:3},
-                {position:{x:2,y:5},type:3},
-                {position:{x:6,y:4},type:3},
-                {position:{x:6,y:5},type:3},*/
+                /*{position:{x:0,y:1},name:'Duck'},
+                {position:{x:0,y:2},name:'Duck'},
+                {position:{x:4,y:1},name:'Duck'},
+                {position:{x:5,y:2},name:'Duck'},
+                {position:{x:1,y:4},name:'Duck'},
+                {position:{x:2,y:5},name:'Duck'},
+                {position:{x:6,y:4},name:'Duck'},
+                {position:{x:6,y:5},name:'Duck'},*/
             ],reinforce:[
-                //{position:{x:0,y:3},type:2,turn:2},
-                //{position:{x:6,y:3},type:2,turn:2},
+                //{position:{x:0,y:3},name:'Human',turn:2},
+                //{position:{x:6,y:3},name:'Human',turn:2},
             ],
         },{
             level:3,class:1,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:2},
-                {position:{x:6,y:6},type:2},
-                {position:{x:0,y:1},type:3},
-                {position:{x:0,y:2},type:3},
-                {position:{x:4,y:1},type:3},
-                {position:{x:5,y:2},type:3},
-                {position:{x:1,y:4},type:3},
-                {position:{x:2,y:5},type:3},
-                {position:{x:6,y:4},type:3},
-                {position:{x:6,y:5},type:3},
+                {position:{x:0,y:0},name:'Human'},
+                {position:{x:6,y:6},name:'Human'},
+                {position:{x:0,y:1},name:'Duck'},
+                {position:{x:0,y:2},name:'Duck'},
+                {position:{x:4,y:1},name:'Duck'},
+                {position:{x:5,y:2},name:'Duck'},
+                {position:{x:1,y:4},name:'Duck'},
+                {position:{x:2,y:5},name:'Duck'},
+                {position:{x:6,y:4},name:'Duck'},
+                {position:{x:6,y:5},name:'Duck'},
             ],reinforce:[
             ],
         },{
             level:3,class:2,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},type:2},
-                {position:{x:1,y:0},type:2},
-                {position:{x:2,y:0},type:2},
-                {position:{x:3,y:0},type:2},
-                {position:{x:3,y:6},type:2},
-                {position:{x:4,y:6},type:2},
-                {position:{x:5,y:6},type:2},
-                {position:{x:6,y:6},type:2},
+                {position:{x:0,y:0},name:'Human'},
+                {position:{x:1,y:0},name:'Human'},
+                {position:{x:2,y:0},name:'Human'},
+                {position:{x:3,y:0},name:'Human'},
+                {position:{x:3,y:6},name:'Human'},
+                {position:{x:4,y:6},name:'Human'},
+                {position:{x:5,y:6},name:'Human'},
+                {position:{x:6,y:6},name:'Human'},
             ],reinforce:[
             ],
         },
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:1,playerNumber:1,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:2,playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 graphics={main:0,minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}

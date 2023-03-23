@@ -10,13 +10,13 @@ class group{
         switch(type){
             case 0:
                 for(let a=0,la=types.deck.start[player].length;a<la;a++){
-                    //this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
+                    this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
                 }
                 for(let a=0;a<12;a++){
                     //this.add(floor(random(4,types.card.length-2)),types.deck.start[player][0][1],types.deck.start[player][0][2])
                 }
                 for(let a=1,la=types.card.length-2;a<la;a++){
-                    this.add(a,0,0)
+                    //this.add(a,0,0)
                 }
                 /**/
             break
@@ -166,7 +166,7 @@ class group{
                     for(let a=0,la=this.sorted.length;a<la;a++){
                         for(let b=0,lb=this.cards.length;b<lb;b++){
                             if(this.cards[b].name==this.sorted[a]){
-                                this.cards[b].size=smoothAnim(this.cards[b].size,position>=args[1]*15&&position<args[1]*15+15,0,1,5)
+                                this.cards[b].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
                                 this.cards[b].fade=1
                                 this.cards[b].position.x=this.layer.width/2-200+position%5*100
                                 this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
@@ -180,7 +180,7 @@ class group{
                     }
                 }else{
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        this.cards[a].size=smoothAnim(this.cards[a].size,a>=args[1]*15&&a<args[1]*15+15,0,1,5)
+                        this.cards[a].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
                         this.cards[a].fade=1
                         this.cards[a].position.x=this.layer.width/2-200+a%5*100
                         this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
@@ -318,7 +318,7 @@ class group{
             break
             case 'overlay':
                 for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].size=smoothAnim(this.cards[a].size,a>=args[0]*15&&a<args[0]*15+15,0,1,5)
+                    //this.cards[a].size=smoothAnim(this.cards[a].size,a>=args[0]*15&&a<args[0]*15+15,0,1,5)
                     this.cards[a].update()
                 }
             break

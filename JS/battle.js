@@ -53,7 +53,7 @@ class battle{
 
         this.positionCombatant(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex()],encounter.player.position)
         for(let a=0,la=encounter.enemy.length;a<la;a++){
-            this.addCombatant(encounter.enemy[a].position,encounter.enemy[a].type,1,0)
+            this.addCombatant(encounter.enemy[a].position,findName(encounter.enemy[a].name,types.combatant),1,0)
             this.counter.enemy++
         }
         for(let a=0,la=encounter.reinforce.length;a<la;a++){
