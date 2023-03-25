@@ -407,7 +407,7 @@ function generateSprite(layer,type,direction){
 	}
 }
 function setupGeneralGraphics(){
-	for(let g=0;g<61;g++){
+	for(let g=0;g<62;g++){
 		if(g==56||g==58){
 			graphics.minor.push(createGraphics(160,240))
 		}else{
@@ -758,6 +758,32 @@ function setupGeneralGraphics(){
 	graphics.minor[60].erase()
 	graphics.minor[60].triangle(70,50,25,20,115,20)
 	graphics.minor[60].triangle(95,85,75,140,115,140)
+
+	graphics.minor[61].noStroke()
+	graphics.minor[61].translate(80,80)
+	graphics.minor[61].scale(-0.9,0.9)
+	graphics.minor[61].rotate(-90)
+	graphics.minor[61].fill(138,141,207)
+	graphics.minor[61].arc(0,0,150,180,0,30)
+	graphics.minor[61].fill(111,114,178)
+	graphics.minor[61].arc(0,0,150,180,30,60)
+	graphics.minor[61].fill(88,82,128)
+	graphics.minor[61].arc(0,0,150,180,60,90)
+	graphics.minor[61].fill(161,168,222)
+	graphics.minor[61].arc(0,0,135,180,0,15)
+	graphics.minor[61].fill(121,124,188)
+	graphics.minor[61].arc(0,0,135,180,15,45)
+	graphics.minor[61].fill(98,92,138)
+	graphics.minor[61].arc(0,0,135,180,45,75)
+	graphics.minor[61].fill(77,65,108)
+	graphics.minor[61].arc(0,0,135,180,75,90)
+	graphics.minor[61].erase()
+	graphics.minor[61].arc(0,0,120,180,0,90)
+	graphics.minor[61].noErase()
+	graphics.minor[61].fill(189,187,237)
+	graphics.minor[61].rect(0,0,160,8,3)
+	graphics.minor[61].fill(149,134,184)
+	graphics.minor[61].rect(0,-2,160,4,3)
 }
 function setupCombatantGraphics(type){
 	switch(type){

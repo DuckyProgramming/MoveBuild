@@ -4,6 +4,7 @@ class particle{
         this.position={x:x,y:y}
         this.type=type
         this.remove=false
+        this.time=0
         switch(this.type){
             case 0:
                 this.value=args[0]
@@ -27,6 +28,16 @@ class particle{
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
+            break
+            case 3:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.speed=8
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+                this.size=0
             break
         }
     }
@@ -66,11 +77,18 @@ class particle{
                     this.layer.fill(255,90,0,this.fade)
                     this.layer.ellipse(0,0,3,3)
                 break
+                case 3:
+                    if(this.size>0){
+                        this.layer.rotate(this.time*6)
+                        this.layer.image(graphics.minor[61],-30*this.size,-30*this.size,60*this.size,60*this.size)
+                    }
+                break
             }
             this.layer.pop()
         }
     }
     update(){
+        this.time++
         switch(this.type){
             case 0:
                 this.position.x+=sin(this.direction)*this.speed
@@ -107,6 +125,28 @@ class particle{
                 this.scale+=0.1
                 if(this.fade<=0){
                     this.remove=true
+                }
+            break
+            case 3:
+                this.position.x+=sin(this.direction)*this.speed
+                this.position.y-=cos(this.direction)*this.speed-10/this.timer
+                if(!this.trigger){
+                    this.fade+=1/this.timer
+                    if(this.fade>=1){
+                        this.trigger=true
+                    }
+                    if(this.size<1){
+                        this.size=round(this.size*5+1)/5
+                    }
+                }else{
+                    this.fade-=1/this.timer
+                    if(this.fade<=0){
+                        if(this.size>0){
+                            this.size=round(this.size*5-1)/5
+                        }else{
+                            this.remove=true
+                        }
+                    }
                 }
             break
         }

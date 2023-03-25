@@ -20,7 +20,8 @@ class attack{
 
         switch(this.type){
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
-            case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35:
+            case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
+            case 38:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -81,12 +82,19 @@ class attack{
     update(){
         this.timer++
         switch(this.type){
-            case 1: case 7: case 34: case 35:
+            case 1: case 7: case 34: case 35: case 36:
                 if(this.targetDistance==1){
-                    if(this.timer==1){
-                        this.userCombatant.startAnimation(2)
+                    if(this.type==36){
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(3)
+                        }
+                        this.userCombatant.runAnimation(1/30,3)
+                    }else{
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(2)
+                        }
+                        this.userCombatant.runAnimation(1/30,2)
                     }
-                    this.userCombatant.runAnimation(1/30,2)
                     if(this.timer==15){
                         if(this.type==35&&this.targetCombatant.life==this.targetCombatant.base.life){
                             this.battle.energy.main++
@@ -860,6 +868,37 @@ class attack{
                     }else if(this.timer>=45){
                         this.remove=true
                     }
+                }
+            break
+            case 37:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(15)
+                }
+                if(this.timer<=30){
+                    this.userCombatant.runAnimation(1/15,15)
+                }
+                if(this.timer==15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,3,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
+                    this.userCombatant.armed=false
+                }else if(this.timer==10*this.targetDistance+15){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)].addType(3)
+                }else if(this.timer>=10*this.targetDistance+25){
+                    this.remove=true
+                }
+            break
+            case 38:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(4)
+                }
+                this.userCombatant.runAnimation(1/30,4)
+                if(this.timer==15){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                        this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
+                    }
+                }else if(this.timer>=30){
+                    this.remove=true
                 }
             break
             default:

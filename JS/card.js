@@ -57,7 +57,7 @@ class card{
             string+='Innate\n'
         }
         switch(this.attack){
-            case 1: case 25: case 32: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
+            case 1: case 25: case 32: case 36: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
             case 2: string+='Add '+this.effect[0]+ ' Block'; break
             case 3: string+='Move '+this.effect[0]+' Tiles'; break
             case 4: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n2 Times'; break
@@ -90,6 +90,8 @@ class card{
             case 33: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nAdvance'; break
             case 34: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nGain '+this.effect[1]+' Energy\nNext Turn'; break
             case 35: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Target is Undamaged,\nGain '+this.effect[1]+' Energy'; break
+            case 37: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDisarm'; break
+            case 38: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Target Will Attack,\nReduce Damage by '+this.effect[1]; break
             
         }
         if(string[string.length-1]=='\n'){
@@ -127,6 +129,12 @@ class card{
             this.layer.stroke(this.colorDetail.stroke,this.fade)
             this.layer.strokeWeight(5)
             this.layer.rect(0,0,this.width,this.height,5)
+            if(this.spec.includes(6)){
+                this.layer.fill(138,141,207,this.fade)
+                this.layer.stroke(111,114,178,this.fade)
+                this.layer.strokeWeight(2)
+                this.layer.ellipse(-this.width/2+10,-this.height/2+12,20,20)
+            }
             if(!this.spec.includes(5)){
                 this.layer.fill(225,255,255,this.fade)
                 this.layer.stroke(200,255,255,this.fade)
@@ -174,7 +182,7 @@ class card{
         if(this.select){
             this.upSize=true
         }
-        if(this.battle.energy.main>=this.cost){
+        if(this.battle.energy.main>=this.cost&&!(this.spec.includes(6)&&!this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex()].armed)){
             this.afford=true
         }else{
             this.afford=false

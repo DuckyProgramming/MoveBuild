@@ -242,7 +242,25 @@ types={
             ],
         },
 
-        
+        {
+            name:'Stab',rarity:0,list:2,
+            levels:[
+                {effect:[7],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[10],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Throw\nScythe',rarity:0,list:2,
+            levels:[
+                {effect:[15],attack:37,cost:1,target:[2,1,6],spec:[0,6],class:1},
+                {effect:[20],attack:37,cost:1,target:[2,1,6],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Lament',rarity:0,list:2,
+            levels:[
+                {effect:[8,2],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,3],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },
 
         {
             name:'Fatigue',rarity:-1,list:2,
@@ -308,8 +326,8 @@ types={
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             [['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2]],
-            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
+            [['Stab',0,2],['Throw\nScythe',0,2],['Lament',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2]],
+            //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             
            
         ]
@@ -321,51 +339,51 @@ types={
         },{
             name:'Basic 3',
             map:[
-                [{type:0},{type:0},{type:-1}],
-                [{type:0},{type:0},{type:0}],
-                [{type:-1},{type:0},{type:0}],
+                [{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]}],
             ],
         },{
             name:'Basic 5',
             map:[
-                [{type:0},{type:0},{type:0},{type:-1},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:-1},{type:0},{type:0},{type:0}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Basic 7',
             map:[
-                [{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Spiky 7',
             map:[
-                [{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1},{type:-1}],
-                [{type:0},{type:1},{type:0},{type:1},{type:0},{type:-1},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1}],
-                [{type:0},{type:1},{type:0},{type:0},{type:0},{type:1},{type:0}],
-                [{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:-1},{type:0},{type:1},{type:0},{type:1},{type:0}],
-                [{type:-1},{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[1]},{type:[]},{type:[1]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[1]},{type:[]},{type:[]},{type:[]},{type:1},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[1]},{type:[]},{type:[1]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Landmine 7',
             map:[
-                [{type:0},{type:0},{type:0},{type:0},{type:-1},{type:-1},{type:-1}],
-                [{type:0},{type:2},{type:0},{type:2},{type:0},{type:-1},{type:-1}],
-                [{type:0},{type:0},{type:0},{type:0},{type:0},{type:0},{type:-1}],
-                [{type:0},{type:2},{type:0},{type:0},{type:0},{type:2},{type:0}],
-                [{type:-1},{type:0},{type:0},{type:0},{type:0},{type:0},{type:0}],
-                [{type:-1},{type:-1},{type:0},{type:2},{type:0},{type:2},{type:0}],
-                [{type:-1},{type:-1},{type:-1},{type:0},{type:0},{type:0},{type:0}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[2]},{type:[]},{type:[2]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[2]},{type:[]},{type:[]},{type:[]},{type:[2]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[2]},{type:[]},{type:[2]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },
     ],encounter:[
