@@ -1,7 +1,8 @@
 class attack{
-    constructor(type,battle,effect,attackClass,user,energy,target,targetDistance,targetClass){
+    constructor(type,battle,player,effect,attackClass,user,energy,target,targetDistance,targetClass){
         this.type=type
         this.battle=battle
+        this.player=player
         this.effect=effect
         this.attackClass=attackClass
         this.user=user
@@ -21,7 +22,7 @@ class attack{
         switch(this.type){
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
             case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
-            case 38:
+            case 38: case 39:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -82,26 +83,19 @@ class attack{
     update(){
         this.timer++
         switch(this.type){
-            case 1: case 7: case 34: case 35: case 36:
+            case 1: case 7: case 34: case 35:
                 if(this.targetDistance==1){
-                    if(this.type==36){
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(3)
-                        }
-                        this.userCombatant.runAnimation(1/30,3)
-                    }else{
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(2)
-                        }
-                        this.userCombatant.runAnimation(1/30,2)
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(2)
                     }
+                    this.userCombatant.runAnimation(1/30,2)
                     if(this.timer==15){
                         if(this.type==35&&this.targetCombatant.life==this.targetCombatant.base.life){
-                            this.battle.energy.main++
+                            this.battle.energy.main[this.player]++
                         }
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.type==7&&this.targetCombatant.life<=0){
-                            this.battle.energy.main++
+                            this.battle.energy.main[this.player]++
                         }else if(this.type==34){
                             this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
                         }
@@ -662,7 +656,7 @@ class attack{
                 }
                 this.userCombatant.runAnimation(1/10,11)
                 if(this.timer==10){
-                    this.battle.energy.main+=this.effect[0]
+                    this.battle.energy.main[this.player]+=this.effect[0]
                     this.userCombatant.takeDamage(this.effect[1],-1,1)
                 }else if(this.timer>=20){
                     this.remove=true
@@ -870,6 +864,21 @@ class attack{
                     }
                 }
             break
+            case 36: case 39:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(16)
+                }
+                this.userCombatant.runAnimation(1/30,16)
+                if(this.timer==15){
+                    if(this.type==39){
+                        this.targetCombatant.statusEffect('Bleed',this.effect[0])
+                    }else{
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    }
+                }else if(this.timer>=30){
+                    this.remove=true
+                }
+            break
             case 37:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(15)
@@ -889,9 +898,9 @@ class attack{
             break
             case 38:
                 if(this.timer==1){
-                    this.userCombatant.startAnimation(4)
+                    this.userCombatant.startAnimation(17)
                 }
-                this.userCombatant.runAnimation(1/30,4)
+                this.userCombatant.runAnimation(1/30,17)
                 if(this.timer==15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                     if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){

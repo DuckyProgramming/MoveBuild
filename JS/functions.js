@@ -94,10 +94,10 @@ function multiplyString(base,multiply){
 	return string
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
 }
 function upgradeCard(base){
-	return new card(base.layer,base.battle,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id)
 }
 function copyArray(base){
 	let list=[]
@@ -218,7 +218,8 @@ function transformDirection(type,direction){
 function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
 	if(trigger&&anim<maxPoint){
 		return min(round(anim*speed+1)/speed,maxPoint)
-	}else if(!trigger&&anim>minPoint){
+	}
+	if(!trigger&&anim>minPoint){
 		return max(round(anim*speed-1)/speed,minPoint)
 	}
 	return anim

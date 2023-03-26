@@ -30,18 +30,13 @@ Entertainment
 
 Rare Card
 
-MULTIPLAYER:
+Generality:
 First Character Gimmick
-Second Character Model (Creation!)
--
-Damage Model
--
 Second Character Gimmick
-Second Character Customization
-Second Character Base Cards
-Second Character Art Versions
-Split Screen
-Dual Control Schema
+Merge Animations
+
+MULTIPLAYER:
+Double Overlay Control
 Double Card Choice
 Double Defeat
 

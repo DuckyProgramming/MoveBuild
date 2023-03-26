@@ -76,7 +76,7 @@ class turn{
                 case 1:
                     switch(this.type){
                         case 0:
-                            this.target=[this.battle.combatantManager.getPlayerCombatantIndex()]
+                            this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
                             this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                             this.direction=round(atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)/60-random(0.4,0.6))*60+30
@@ -122,7 +122,7 @@ class turn{
                     }
                 break
                 case 2:
-                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex()]
+                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
                     this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
                     this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
                     let target=this.userCombatant.getTarget()
@@ -250,8 +250,7 @@ class turn{
                         this.userCombatant.runAnimation(1/15,3)
                         if(this.timer>=15){
                             for(let a=0,la=this.effect[0];a<la;a++){
-                                this.battle.cardManager.discard.add(findName('Dazed',types.card),0,game.playerNumber+1)
-                                this.battle.cardManager.drop.addDrop(findName('Dazed',types.card),0,game.playerNumber+1)
+                                this.battle.drop(findName('Dazed',types.card),0,game.playerNumber+1)
                             }
                             this.remove=true
                         }

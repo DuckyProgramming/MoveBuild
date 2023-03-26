@@ -1,16 +1,17 @@
 class cardManager{
-    constructor(layer,battle){
+    constructor(layer,battle,player){
         this.layer=layer
         this.battle=battle
+        this.player=player
 
         this.listing={card:[]}
 
-        this.deck=new group(this.layer,this.battle,0)
-        this.reserve=new group(this.layer,this.battle,1)
-        this.hand=new group(this.layer,this.battle,2)
-        this.discard=new group(this.layer,this.battle,3)
-        this.drop=new group(this.layer,this.battle,4)
-        this.exhaust=new group(this.layer,this.battle,5)
+        this.deck=new group(this.layer,this.battle,this.player,0)
+        this.reserve=new group(this.layer,this.battle,this.player,1)
+        this.hand=new group(this.layer,this.battle,this.player,2)
+        this.discard=new group(this.layer,this.battle,this.player,3)
+        this.drop=new group(this.layer,this.battle,this.player,4)
+        this.exhaust=new group(this.layer,this.battle,this.player,5)
 
         this.drawAmount=6
 
@@ -32,7 +33,7 @@ class cardManager{
         }
     }
     initialDeck(){
-        this.deck.initialCards(0,this.battle.player)
+        this.deck.initialCards(0,this.battle.player[this.player])
     }
     getList(type){
         switch(type){
@@ -69,6 +70,9 @@ class cardManager{
             }
         }
     }
+    turnDraw(){
+        this.draw(this.drawAmount)
+    }
     fatigue(){
         this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
         this.drop.addDrop(findName('Fatigue',types.card),0,game.playerNumber+1)
@@ -80,11 +84,14 @@ class cardManager{
         this.drop.cards=[]
         this.exhaust.cards=[]
     }
-    display(scene){
+    display(scene,args){
         switch(scene){
             case 'battle':
                 this.drop.display('drop',[])
+                this.layer.push()
+                this.layer.translate(0,200-args[0]*200)
                 this.hand.display('battle',[])
+                this.layer.pop()
             break
         }
     }

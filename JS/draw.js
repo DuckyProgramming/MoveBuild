@@ -9,7 +9,7 @@ function draw(){
         break
     }
 
-    //graphics.main.image(graphics.backgrounds[0],0,0,graphics.main.width,graphics.main.height)
+    //graphics.main.image(graphics.backgrounds[0][0],0,0,graphics.main.width,graphics.main.height)
     
     graphics.main.pop()
     stage.scale=min(width/graphics.main.width,height/graphics.main.height)

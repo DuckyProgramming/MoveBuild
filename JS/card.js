@@ -1,7 +1,8 @@
 class card{
-    constructor(layer,battle,x,y,type,level,color,id){
+    constructor(layer,battle,player,x,y,type,level,color,id){
         this.layer=layer
         this.battle=battle
+        this.player=player
         this.position={x:x,y:y}
         this.type=type
         this.level=level
@@ -37,7 +38,7 @@ class card{
         switch(type){
             case 0:
                 let damage=effect
-                let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex()]
+                let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                 if(user.status.main[0]>0){
                     damage*=2
                 }
@@ -92,6 +93,7 @@ class card{
             case 35: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Target is Undamaged,\nGain '+this.effect[1]+' Energy'; break
             case 37: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDisarm'; break
             case 38: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Target Will Attack,\nReduce Damage by '+this.effect[1]; break
+            case 39: string+='Apply '+this.effect[0]+' Bleed'; break
             
         }
         if(string[string.length-1]=='\n'){
@@ -182,7 +184,7 @@ class card{
         if(this.select){
             this.upSize=true
         }
-        if(this.battle.energy.main>=this.cost&&!(this.spec.includes(6)&&!this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex()].armed)){
+        if(this.battle.energy.main[this.player]>=this.cost&&!(this.spec.includes(6)&&!this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].armed)){
             this.afford=true
         }else{
             this.afford=false

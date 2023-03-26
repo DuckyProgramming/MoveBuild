@@ -6,6 +6,7 @@ class attackManager{
         this.attacks=[]
 
         this.type=0
+        this.player=0
         this.effect=0
         this.attackClass=0
         this.user=0
@@ -26,17 +27,14 @@ class attackManager{
         this.targetInfo[0]=0
     }
     execute(){
-        this.attacks.push(new attack(this.type,this.battle,this.effect,this.attackClass,this.user,this.energy,this.target,this.targetDistance,this.targetClass))
-        switch(this.type){
-            case 1:
-            break
-        }
+        this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.energy,this.target,this.targetDistance,this.targetClass))
     }
     update(){
         for(let a=0;a<game.animRate;a++){
             if(this.attacks.length>0){
                 this.attacks[0].update()
                 if(this.attacks[0].remove){
+                    delete this.attacks[0]
                     this.attacks.splice(0,1)
                 }
             }

@@ -942,13 +942,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(125,100)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],0,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-HF-'+(g+1))
+				//print('Generated L-HF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(250,500))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(125,100)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],1,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-HB-'+(g+1))
+				//print('Generated L-HB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
 			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
@@ -957,13 +957,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],2,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-KMF-'+(g+1))
+				//print('Generated L-KMF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(150,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],3,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-KMB-'+(g+1))
+				//print('Generated L-KMB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside={front:[],back:[]}
 			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
@@ -972,13 +972,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],4,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-KOF-'+(g+1))
+				//print('Generated L-KOF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back.push(createGraphics(150,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],5,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-KOB-'+(g+1))
+				//print('Generated L-KOB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage={front:[],back:[]}
 			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
@@ -987,13 +987,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],6,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-DMF-'+(g+1))
+				//print('Generated L-DMF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back.push(createGraphics(150,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],7,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-DMB-'+(g+1))
+				//print('Generated L-DMB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage={front:[],back:[]}
 			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
@@ -1002,13 +1002,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],8,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-DOF-'+(g+1))
+				//print('Generated L-DOF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back.push(createGraphics(150,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],9,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated L-DOB-'+(g+1))
+				//print('Generated L-DOB-'+(g+1))
 			}
 		break
 		case 1:
@@ -1167,13 +1167,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],10,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-HF-'+(g+1))
+				//print('Generated S-HF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],11,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-HB-'+(g+1))
+				//print('Generated S-HB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
 			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
@@ -1182,13 +1182,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(100,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],12,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-KMF-'+(g+1))
+				//print('Generated S-KMF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(200,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(100,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],13,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-KMB-'+(g+1))
+				//print('Generated S-KMB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside={front:[],back:[]}
 			for(let g=0;g<24;g++){
@@ -1197,13 +1197,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],14,g)
-				print('Generated S-KOF-'+(g+1))
+				//print('Generated S-KOF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back.push(createGraphics(150,200))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],15,g)
-				print('Generated S-KOB-'+(g+1))
+				//print('Generated S-KOB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe={front:[],back:[]}
 			for(let g=0;g<12;g++){
@@ -1212,13 +1212,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g].translate(75,25)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g],16,g)
-				print('Generated S-KFF-'+(g+1))
+				//print('Generated S-KFF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back.push(createGraphics(150,50))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g].translate(75,25)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g],17,g)
-				print('Generated S-KFB-'+(g+1))
+				//print('Generated S-KFB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.hair.tail=[]
 			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
@@ -1227,7 +1227,7 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].translate(60,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g],18,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-HT-'+(g+1))
+				//print('Generated S-HT-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.under.dress={front:[],back:[]}
 			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
@@ -1236,13 +1236,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g],19,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-UDF-'+(g+1))
+				//print('Generated S-UDF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back.push(createGraphics(150,250))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g],20,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-UDB-'+(g+1))
+				//print('Generated S-UDB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow=[]
 			for(let g=0;g<24;g++){
@@ -1251,7 +1251,7 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g],21,g)
-				print('Generated S-KS-'+(g+1))
+				//print('Generated S-KS-'+(g+1))
 			}
 
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage={front:[],back:[]}
@@ -1261,13 +1261,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].translate(100,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],22,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-DMF-'+(g+1))
+				//print('Generated S-DMF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back.push(createGraphics(200,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].translate(100,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],23,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
-				print('Generated S-DMB-'+(g+1))
+				//print('Generated S-DMB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage={front:[],back:[]}
 			for(let g=0;g<24;g++){
@@ -1276,13 +1276,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],24,g)
-				print('Generated S-DOF-'+(g+1))
+				//print('Generated S-DOF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back.push(createGraphics(150,200))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],25,g)
-				print('Generated S-DOB-'+(g+1))
+				//print('Generated S-DOB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage={front:[],back:[]}
 			for(let g=0;g<12;g++){
@@ -1291,13 +1291,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g].translate(75,25)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g],26,g)
-				print('Generated S-DFF-'+(g+1))
+				//print('Generated S-DFF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back.push(createGraphics(150,50))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g].translate(75,25)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g],27,g)
-				print('Generated S-DFB-'+(g+1))
+				//print('Generated S-DFB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage=[]
 			for(let g=0;g<24;g++){
@@ -1306,13 +1306,13 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g].scale(5)
 				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g],28,g)
-				print('Generated S-DS-'+(g+1))
+				//print('Generated S-DS-'+(g+1))
 			}
 		break
 	
 	}
 }
-function setupBackground(type,layer){
+function setupBackground(type,player,layer){
 	switch(type){
 		case 0:
 			layer.noStroke()
@@ -1375,7 +1375,7 @@ function setupBackground(type,layer){
                     layer.quad(layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9+30,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9-30)
                 }
             }
-			p1=new combatant(layer,new battle(layer,1),1200,1070,0,0,0,0,1,0,0,-30)
+			p1=new combatant(layer,new battle(layer,[0]),1200,1070,0,0,0,0,player+1,0,0,-30)
 			p1.parts.mouth-=4
 			p1.spin.mouth-=180
 			p1.size=5
@@ -1417,7 +1417,11 @@ function setupBackground(type,layer){
                 layer.fill(90-60*a/la)
                 layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
             }
-			p1=new combatant(layer,new battle(layer,1),950,940,0,0,0,0,1,0,0,-45)
+			p1=new combatant(layer,new battle(layer,[0]),950,940,0,0,0,0,player+1,0,0,-45)
+			if(player==1){
+				p1.parts.mouth+=4
+				p1.spin.mouth+=180
+			}
 			p1.trigger.display.extra.damage=true
 			p1.anim.eye=[1,1]
 			p1.anim.mouth.y++
@@ -1473,9 +1477,13 @@ function setupBackground(type,layer){
             	layer.quad(900+cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,920,900-cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,760+a*6.25)
 			}
 
-			p1=new combatant(layer,new battle(layer,1),700,1040,0,0,0,0,1,0,0,30)
-			p1.parts.mouth-=4
-			p1.spin.mouth-=180
+			p1=new combatant(layer,new battle(layer,[0]),700,1040,0,0,0,0,player+1,0,0,30)
+			if(player==0){
+				p1.parts.mouth-=4
+				p1.spin.mouth-=180
+			}else if(player==1){
+				p1.anim.mouth.y++
+			}
 			p1.anim.eye=[1,1]
 			p1.anim.eyeStyle=[2,2]
 			p1.fades.kimono.main.front={x:1,y:0.975}
@@ -1523,8 +1531,11 @@ function setupGraphics(){
 	setupLayer(graphics.main)
 	graphics.backgrounds=[]
 	for(let a=0;a<10;a++){
-		graphics.backgrounds.push(createGraphics(1800,1200))
-		setupLayer(graphics.backgrounds[a])
+		graphics.backgrounds.push([])
+		for(let b=0;b<game.playerNumber;b++){
+			graphics.backgrounds[a].push(createGraphics(1800,1200))
+			setupLayer(graphics.backgrounds[a][b])
+		}
 	}
 	graphics.minor=[]
 
@@ -1532,13 +1543,15 @@ function setupGraphics(){
 	setupCombatantGraphics(0)
 	setupCombatantGraphics(1)
 
-	//setupBackground(0,graphics.backgrounds[0])
-	setupBackground(1,graphics.backgrounds[1])
-	setupBackground(3,graphics.backgrounds[3])
+	for(let a=0;a<game.playerNumber;a++){
+		setupBackground(0,a,graphics.backgrounds[0][a])
+		setupBackground(1,a,graphics.backgrounds[1][a])
+		setupBackground(3,a,graphics.backgrounds[3][a])
+	}
 	/*
-	0-Title (L)
-	1-Loss (L)
-	2-Win (L) //
-	3-Rest (L)
+	0-Title
+	1-Loss
+	2-Win //
+	3-Rest
 	*/
 }

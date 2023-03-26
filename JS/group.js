@@ -1,7 +1,8 @@
 class group{
-    constructor(layer,battle,id){
+    constructor(layer,battle,player,id){
         this.layer=layer
         this.battle=battle
+        this.player=player
         this.id=id
         this.cards=[]
         this.sorted=[]
@@ -24,11 +25,11 @@ class group{
     }
     add(type,level,color){
         game.id++
-        this.cards.push(new card(this.layer,this.battle,1200,500,type,level,color,game.id))
+        this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
     }
     addDrop(type,level,color){
         game.id++
-        this.cards.push(new card(this.layer,this.battle,40,-100-this.cards.length*200,type,level,color,game.id))
+        this.cards.push(new card(this.layer,this.battle,this.player,40,-100-this.cards.length*200,type,level,color,game.id))
         this.cards[this.cards.length-1].downSize=true
     }
     resetAnim(){
@@ -95,6 +96,7 @@ class group{
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                 }
+                delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
             }
         }else{
@@ -105,6 +107,7 @@ class group{
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                 }
+                delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
             }
         }
@@ -135,9 +138,9 @@ class group{
     }
     cost(cost){
         if(cost==-1){
-            this.battle.energy.main=0
+            this.battle.energy.main[this.player]=0
         }else{
-            this.battle.energy.main-=cost
+            this.battle.energy.main[this.player]-=cost
         }
     }
     display(scene,args){
@@ -196,9 +199,10 @@ class group{
     callInput(type,a){
         switch(type){
             case 0:
-                this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex()
-                this.battle.attackManager.energy=this.battle.energy.main
+                this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
+                this.battle.attackManager.energy=this.battle.energy.main[this.player]
                 this.battle.attackManager.type=this.cards[a].attack
+                this.battle.attackManager.player=this.player
                 this.battle.attackManager.effect=this.cards[a].effect
                 this.battle.attackManager.attackClass=this.cards[a].class
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
@@ -263,7 +267,7 @@ class group{
                     if(!this.cards[b].usable){
                         this.cards[b].deSize=true
                         if(this.cards[b].spec.includes(0)){
-                            this.battle.cardManager.fatigue()
+                            this.battle.cardManagers[this.player].fatigue()
                         }
                         if(this.cards[b].spec.includes(1)){
                             this.cards[b].exhaust=true
@@ -294,11 +298,11 @@ class group{
                     }
                     if(this.cards[a].size<=0){
                         if(this.cards[a].exhaust){
-                            this.send(this.battle.cardManager.exhaust.cards,a,a+1)
+                            this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
                             a--
                             la--
                         }else{
-                            this.send(this.battle.cardManager.discard.cards,a,a+1)
+                            this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                             a--
                             la--
                         }
@@ -310,6 +314,7 @@ class group{
                     this.cards[a].update()
                     this.cards[a].position.y+=20
                     if(this.cards[a].position.y>this.layer.height+100){
+                        delete this.cards[a]
                         this.cards.splice(a,1)
                         a--
                         la--

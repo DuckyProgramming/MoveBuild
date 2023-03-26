@@ -12,7 +12,7 @@ class combatantManager{
     }
     resetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==1){
+            if(this.combatants[a].team==0){
                 this.combatants.splice(a,1)
                 a--
                 la--
@@ -27,7 +27,7 @@ class combatantManager{
     }
     setupCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==1){
+            if(this.combatants[a].team==0){
                 this.combatants[a].setIntent(0)
             }else{
                 this.combatants[a].block=0
@@ -36,14 +36,14 @@ class combatantManager{
     }
     enableCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==1){
+            if(this.combatants[a].team==0){
                 this.combatants[a].block=0
             }
         }
     }
     unmoveCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==1){
+            if(this.combatants[a].team==0){
                 this.combatants[a].moved=false
                 if(types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4){
                     this.combatants[a].activated=true
@@ -55,7 +55,7 @@ class combatantManager{
     }
     activateCombatants(type,id){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==1){
+            if(this.combatants[a].team==0){
                 this.combatants[a].activate(type,id)
             }
         }
@@ -72,9 +72,9 @@ class combatantManager{
         }
         return -1
     }
-    getPlayerCombatantIndex(){
+    getPlayerCombatantIndex(id){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team>0&&this.combatants[a].id==id){
                 return a
             }
         }

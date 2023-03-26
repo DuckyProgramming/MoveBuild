@@ -18,9 +18,16 @@ class combatant{
         this.attack=copyArray(types.combatant[this.type].attack)
         this.description=types.combatant[this.type].description
 
+        if(this.team==0&&this.battle.player.length>1){
+            this.life*=1.5
+            for(let a=0,la=this.attack.length;a<la;a++){
+                if(types.attack[this.attack[a].type].class==0){
+                    this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.5)
+                }
+            }
+        }
+
         this.order=this.id
-        this.intent=0
-        this.activated=false
         this.moved=false
         this.dead=false
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
@@ -30,13 +37,13 @@ class combatant{
         this.block=0
         this.dodges=[]
         this.status={main:[],name:[
-            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn',
+            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed',
             ],display:[],active:[],position:[],size:[],
-            behavior:[0,2,1,0,1],
-            class:[0,0,0,0,2]}
-        //0-none, 1-end turn, 2-decrement
+            behavior:[0,2,1,0,2,1],
+            class:[0,0,0,0,2,1]}
+        //0-none, 1-decrement, 2-remove
         //0-good, 1-bad, 2-nonclassified good
-        for(let a=0;a<5;a++){
+        for(let a=0;a<6;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -51,6 +58,10 @@ class combatant{
         this.size=1
 
         this.armed=true
+
+        this.intent=0
+        this.activated=false
+        this.target=floor(random(0,this.battle.player.length))
 
         switch(this.name){
             case 'Lira':
@@ -192,7 +203,7 @@ class combatant{
                     necklaceBow:{center:180,end:[172,-172],loop:[160,-160]},
                     wrap:{bow:180,bar:33,center:0},
                     sleeve:{decoration:[]},
-                    sandal:[10,-10],eye:[-18,18],flower:[-45,-30],necklace:[-45,45,0],button:0,tail:108,sword:75,mouth:36}
+                    sandal:[10,-10],eye:[-18,18],flower:[-48,-30],necklace:[-45,45,0],button:0,tail:108,sword:75,mouth:36}
 
                 this.color=graphics.combatant[1].color
 
@@ -521,7 +532,7 @@ class combatant{
                 break
             }
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(this.battle.combatantManager.combatants[a].team==0&&type==0||this.battle.combatantManager.combatants[a].id==id&&type==1){
+                if(this.battle.combatantManager.combatants[a].team>0&&type==0||this.battle.combatantManager.combatants[a].id==id&&type==1){
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3:
                             if(
@@ -612,7 +623,8 @@ class combatant{
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
                 switch(a){
-                    case 4: this.battle.energy.main+=this.status.main[a]; break
+                    case 4: this.battle.energy.main[this.team]+=this.status.main[a]; break
+                    case 5: this.takeDamage(this.status.main[a],-1); break
                 }
                 if(this.status.behavior[a]==1){
                     if(this.status.main[a]>0){
@@ -631,17 +643,20 @@ class combatant{
     }
     startAnimation(type){
         switch(this.name){
-            case 'Lira':
+            case 'Lira': case 'Sakura':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
+                        if(this.name=='Sakura'){
+                            this.goal.anim.sword=true
+                        }
                     break
-                    case 1: case 2: case 10: case 13:
+                    case 1: case 2: case 10: case 13: case 16:
                         this.animSet.loop=0
                         this.goal.anim.sword=true
                     break
-                    case 3: case 6: case 8: case 9:
+                    case 3: case 6: case 8: case 9: case 17:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -661,23 +676,6 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                         this.anim.eyeStyle=[0,0]
-                    break
-                }
-            break
-            case 'Sakura':
-                switch(type){
-                    case 0:
-                        this.animSet.loop=0
-                        this.goal.anim.sword=true
-                        this.animSet.flip=floor(random(0,2))
-                    break
-                    case 1: case 2: case 4:
-                        this.animSet.loop=0
-                        this.goal.anim.sword=false
-                    break
-                    case 3:
-                        this.animSet.loop=0
-                        this.goal.anim.sword=true
                     break
                 }
             break
@@ -707,7 +705,7 @@ class combatant{
     }
     runAnimation(rate,type){
         switch(this.name){
-            case 'Lira':
+            case 'Lira': case 'Sakura':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -872,74 +870,15 @@ class combatant{
                         this.spin.arms[0].top=-93+sin(this.animSet.loop*90)*48
                         this.spin.arms[0].bottom=-75+sin(this.animSet.loop*90)*60
                     break
-                }
-            break
-            case 'Sakura':
-                switch(type){
-                    case 0:
+                    case 16:
                         this.animSet.loop+=rate
-                        if(this.animSet.loop>=1){
-                            this.animSet.loop-=1
-                            this.animSet.flip=1-this.animSet.flip
-                        }
-                        this.animSet.flip=round(this.animSet.flip)
-                        for(let g=0;g<2;g++){
-                            if(sin((this.animSet.loop+this.animSet.flip+g)*180)>0){
-                                this.anim.legs[g].top=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*27
-                                this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip+g)*180)*21
-                                this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip+g)*180)*-30)*(g*2-1)
-                                this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip+g)*180)*-90)*(g*2-1)
-                                this.anim.arms[g].top=24+sin((this.animSet.loop+this.animSet.flip+g)*180)*6
-                                this.anim.arms[g].bottom=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*9
-                                this.spin.arms[g].top=(93+sin((this.animSet.loop+this.animSet.flip+g)*180)*24)*(g*2-1)
-                                this.spin.arms[g].bottom=(75+sin((this.animSet.loop+this.animSet.flip+g)*180)*36)*(g*2-1)
-                            }else{
-                                this.anim.legs[g].top=9+sin((this.animSet.loop+this.animSet.flip+g)*180)*-9
-                                this.anim.legs[g].bottom=sin((this.animSet.loop+this.animSet.flip+g)*180)*-30
-                                this.spin.legs[g].top=(60+sin((this.animSet.loop+this.animSet.flip+g)*180)*-60)*(g*2-1)
-                                this.spin.legs[g].bottom=(120+sin((this.animSet.loop+this.animSet.flip+g)*180)*-30)*(g*2-1)
-                                this.anim.arms[g].top=24-sin((this.animSet.loop+this.animSet.flip+g)*180)*3
-                                this.anim.arms[g].bottom=9-sin((this.animSet.loop+this.animSet.flip+g)*180)*18
-                                this.spin.arms[g].top=(93-sin((this.animSet.loop+this.animSet.flip+g)*180)*-24)*(g*2-1)
-                                this.spin.arms[g].bottom=(75-sin((this.animSet.loop+this.animSet.flip+g)*180)*-18)*(g*2-1)
-                            }
-                        }
-                        this.fades.kimono.main.back.x=1+abs(sin(this.animSet.loop*180))*0.1
-                        this.fades.kimono.main.front.x=1+abs(sin(this.animSet.loop*180))*0.1
-                        this.fades.kimono.main.back.y=1-abs(sin(this.animSet.loop*180))*0.05
-                        this.fades.kimono.main.front.y=1-abs(sin(this.animSet.loop*180))*0.05
-                        this.fades.kimono.outside.back.x=1+abs(sin(this.animSet.loop*180))*0.1
-                        this.fades.kimono.outside.front.x=1+abs(sin(this.animSet.loop*180))*0.1
-                        this.fades.kimono.outside.back.y=1-abs(sin(this.animSet.loop*180))*0.05
-                        this.fades.kimono.outside.front.y=1-abs(sin(this.animSet.loop*180))*0.05
-                        this.fades.kimono.decoration.position.x=1+abs(sin(this.animSet.loop*180))*0.1
-                        this.fades.kimono.decoration.position.y=1-abs(sin(this.animSet.loop*180))*0.05
-                    break
-                    case 1:
-                        this.animSet.loop+=rate
-                        this.anim.arms[0].top=24+sin(this.animSet.loop*180)*42
-                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*180)*66
-                        this.spin.arms[0].top=-93+sin(this.animSet.loop*180)*72
-                        this.spin.arms[0].bottom=-75+sin(this.animSet.loop*180)*105
-                        this.spin.sword=75+sin(this.animSet.loop*180)*30
-                    break
-                    case 2:
-                        this.animSet.loop+=rate
-                        this.anim.arms[0].top=24+sin(this.animSet.loop*180)*51
-                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*180)*126
+                        this.anim.arms[0].top=24+sin(this.animSet.loop*180)*48
+                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*180)*111
                         this.spin.arms[0].top=-93+sin(this.animSet.loop*180)*63
                         this.spin.arms[0].bottom=-75+sin(this.animSet.loop*180)*90
                         this.spin.sword=75+sin(this.animSet.loop*180)*45
                     break
-                    case 3:
-                        this.animSet.loop+=rate
-                        this.anim.arms[0].top=24+sin(this.animSet.loop*180)*36
-                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*180)*96
-                        this.spin.arms[0].top=-93+sin(this.animSet.loop*180)*63
-                        this.spin.arms[0].bottom=-75+sin(this.animSet.loop*180)*90
-                        this.spin.sword=75+sin(this.animSet.loop*180)*45
-                    break
-                    case 4:
+                    case 17:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
                             this.anim.arms[g].top=24+sin(this.animSet.loop*180)*12
@@ -3152,7 +3091,11 @@ class combatant{
                 break
                 default:
                     this.layer.rotate(-this.anim.direction)
-                    this.layer.fill(255,255-this.team*255,255-this.team*255,this.fade)
+                    if(this.team==0){
+                        this.layer.fill(255,0,0,this.fade)
+                    }else{
+                        this.layer.fill(255,255,255,this.fade)
+                    }
                     this.layer.noStroke()
                     this.layer.triangle(-6,-8,6,-8,0,12)
                 break
@@ -3186,7 +3129,7 @@ class combatant{
             this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
             this.layer.ellipse(-28,0,10,10)
         }
-        if(this.team==1){
+        if(this.team==0){
             this.layer.fill(0,this.fade*this.infoAnim.life)
             this.layer.ellipse(28,0,11.5,11.5)
             this.layer.fill(200,100,100,this.fade*this.infoAnim.life)
@@ -3206,7 +3149,7 @@ class combatant{
             this.layer.text(ceil(this.block*10)/10,-28,0.5)
         }
         this.layer.fill(0,this.fade*this.infoAnim.life)
-        if(this.team==1){
+        if(this.team==0){
             this.layer.text(this.order,28,0.5)
         }
         for(let a=0,la=this.status.display.length;a<la;a++){
@@ -3225,7 +3168,7 @@ class combatant{
                     this.layer.pop()
                 }
                 if(this.fade>0&&this.infoAnim.description>0){
-                    if(this.team==0){
+                    if(this.team>0){
                         this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[0],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[1],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[2],this.fade*this.infoAnim.description)
                     }else{
                         this.layer.fill(150,this.fade*this.infoAnim.description)
@@ -3242,7 +3185,7 @@ class combatant{
                     for(let a=0,la=min(6,this.status.display.length);a<la;a++){
                         this.layer.text(this.status.name[this.status.display[a]],50,305+a*20)
                     }
-                    if(this.team==1){
+                    if(this.team==0){
                         for(let a=0,la=this.attack.length;a<la;a++){
                             this.layer.fill(0,this.fade*this.infoAnim.description*this.infoAnim.intent[a])
                             this.layer.text(intentDescription(this.attack[a]),50,280)
@@ -3257,7 +3200,7 @@ class combatant{
                     for(let a=0,la=min(6,this.status.display.length);a<la;a++){
                         this.layer.text(this.status.main[this.status.display[a]],40,305+a*20)
                     }
-                    if(this.team==1){
+                    if(this.team==0){
                         for(let a=0,la=this.attack.length;a<la;a++){
                             displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a])
                         }
@@ -3277,7 +3220,7 @@ class combatant{
         this.tilePosition.x=round(this.tilePosition.x)
         this.tilePosition.y=round(this.tilePosition.y)
         this.collect.life=this.collect.life*0.9+this.life*0.1
-        if(this.team==0){
+        if(this.team>0){
             this.fade=1
             if(this.life<=0&&!this.dead){
                 this.dead=true
@@ -3295,7 +3238,7 @@ class combatant{
                 this.battle.combatantManager.reorder()
             }
         }
-        if(this.team==1&&this.life>0&&!this.moved){
+        if(this.team==0&&this.life>0&&!this.moved){
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3:
@@ -3415,7 +3358,7 @@ class combatant{
                 }
                 if(this.name=='Sakura'&&!this.armed){
                     this.goal.anim.sword=false
-                }else if(this.name=='Sakura'&&this.battle.attackManager.attacks.length<=0){
+                }else if(this.name=='Sakura'&&this.battle.attackManager.attacks.length<=0&&this.life>0){
                     this.goal.anim.sword=true
                 }
             break

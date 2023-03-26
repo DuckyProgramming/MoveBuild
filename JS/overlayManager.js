@@ -5,59 +5,79 @@ class overlayManager{
 
         this.overlays=[]
         this.overlays.push(
-            new overlay(this.layer,this.battle,1,[]),//rewards,0
-            new overlay(this.layer,this.battle,2,[0]),//view reserve
-            new overlay(this.layer,this.battle,2,[1]),//view discard
-            new overlay(this.layer,this.battle,3,[0]),//new card to deck
-            new overlay(this.layer,this.battle,2,[2]),//view deck
-            new overlay(this.layer,this.battle,2,[3]),//upgrade card, no return
-            new overlay(this.layer,this.battle,2,[4]),//remove card, no return
-            new overlay(this.layer,this.battle,2,[5]),//bring in discard card, no return
-            new overlay(this.layer,this.battle,2,[6]),//bring in draw card, no return
+            [new overlay(this.layer,this.battle,0,1,[])],//rewards,0
+            [new overlay(this.layer,this.battle,0,2,[0])],//view reserve
+            [new overlay(this.layer,this.battle,0,2,[1])],//view discard
+            [new overlay(this.layer,this.battle,0,3,[0])],//new card to deck
+            [new overlay(this.layer,this.battle,0,2,[2])],//view deck
+            [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return
+            [new overlay(this.layer,this.battle,0,2,[4])],//remove card, no return
+            [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
+            [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
         )
+        if(this.battle.player.length==2){
+            this.copyOverlays()
+        }
         this.priority=[3,0,1,2,4,5,6,7,8]
         this.anyActive=false
     }
+    copyOverlays(){
+        for(let a=0,la=this.overlays.length;a<la;a++){
+            this.overlays[a].push(new overlay(this.overlays[a][0].layer,this.overlays[a][0].battle,this.overlays[a][0].player+1,this.overlays[a][0].type,this.overlays[a][0].args))
+        }
+    }
     closeAll(){
         for(let a=0,la=this.overlays.length;a<la;a++){
-            this.overlays[a].active=false
+            for(let b=0,lb=this.overlays[a].length;b<lb;b++){
+                this.overlays[a][b].active=false
+            }
         }
     }
     display(){
         for(let a=0,la=this.overlays.length;a<la;a++){
-            if(this.overlays[a].fade>0){
-                this.overlays[a].display()
+            for(let b=0,lb=this.overlays[a].length;b<lb;b++){
+                if(this.overlays[a][b].fade>0){
+                    this.overlays[a][b].display()
+                }
             }
         }
     }
     update(){
         let first=true
         for(let a=0,la=this.priority.length;a<la;a++){
-            this.overlays[this.priority[a]].update(first)
-            if(this.overlays[this.priority[a]].fade>0){
-                first=false
+            for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
+                this.overlays[this.priority[a]][b].update(first)
+                if(this.overlays[this.priority[a]][b].fade>0){
+                    first=false
+                }
             }
         }
         this.anyActive=false
         for(let a=0,la=this.overlays.length;a<la;a++){
-            if(this.overlays[a].active){
-                this.anyActive=true
+            for(let b=0,lb=this.overlays[a].length;b<lb;b++){
+                if(this.overlays[a][b].active){
+                    this.anyActive=true
+                }
             }
         }
     }
     onClick(){
         for(let a=0,la=this.priority.length;a<la;a++){
-            if(this.overlays[this.priority[a]].active){
-                this.overlays[this.priority[a]].onClick()
-                break
+            for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
+                if(this.overlays[this.priority[a]][b].active){
+                    this.overlays[this.priority[a]][b].onClick()
+                    break
+                }
             }
         }
     }
     onKey(key,code){
         for(let a=0,la=this.priority.length;a<la;a++){
-            if(this.overlays[this.priority[a]].active){
-                this.overlays[this.priority[a]].onKey(key,code)
-                break
+            for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
+                if(this.overlays[this.priority[a]][b].active){
+                    this.overlays[this.priority[a]][b].onKey(key,code)
+                    break
+                }
             }
         }
     }
