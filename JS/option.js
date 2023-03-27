@@ -1,6 +1,7 @@
 class option{
-    constructor(layer,x,y,type){
+    constructor(layer,player,x,y,type){
         this.layer=layer
+        this.player=player
         this.position={x:x,y:y}
         this.type=type
 
@@ -31,7 +32,7 @@ class option{
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
                 this.layer.textSize(24)
-                this.layer.text('Skip',0,60)
+                this.layer.text('Skip',0,60-this.player*120)
             break
             case 1:
                 this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
@@ -52,7 +53,7 @@ class option{
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
                 this.layer.textSize(24)
-                this.layer.text('Heal',0,60)
+                this.layer.text('Heal',0,60-this.player*120)
             break
             case 2:
                 this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
@@ -64,7 +65,7 @@ class option{
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
                 this.layer.textSize(24)
-                this.layer.text('Upgrade',0,60)
+                this.layer.text('Upgrade',0,60-this.player*120)
             break
         }
         this.layer.pop()

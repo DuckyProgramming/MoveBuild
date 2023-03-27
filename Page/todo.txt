@@ -36,8 +36,6 @@ Second Character Gimmick
 Merge Animations
 
 MULTIPLAYER:
-Double Overlay Control
-Double Card Choice
 Double Defeat
 
 Character 3? (Usagi?)

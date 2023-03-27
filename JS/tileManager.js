@@ -9,6 +9,12 @@ class tileManager{
         this.anim={coordinate:0}
     }
     generateTiles(level){
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            delete this.tiles[a]
+            this.tiles.splice(a,1)
+            a--
+            la--
+        }
         this.tiles=[]
         this.width=level.map[0].length
         this.height=level.map.length

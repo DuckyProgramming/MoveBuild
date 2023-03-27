@@ -8,11 +8,18 @@ class combatantManager{
         this.combatants=[]
     }
     clearCombatants(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            delete this.combatants[a]
+            this.combatants.splice(a,1)
+            a--
+            la--
+        }
         this.combatants=[]
     }
     resetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){
+                delete this.combatants[a]
                 this.combatants.splice(a,1)
                 a--
                 la--
@@ -159,7 +166,7 @@ class combatantManager{
             break
             case 'rest':
                 for(let a=0,la=this.combatants.length;a<la;a++){
-                    if(this.combatants[a].team==0){
+                    if(this.combatants[a].team>0){
                         this.combatants[a].displayInfo('rest')
                     }
                 }

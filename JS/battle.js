@@ -3,7 +3,7 @@ class battle{
         this.layer=layer
         this.player=player
 
-        this.initialCards()
+        this.initialManagers()
         this.tileManager=new tileManager(this.layer,this)
         this.combatantManager=new combatantManager(this.layer,this)
         this.attackManager=new attackManager(this.layer,this)
@@ -11,15 +11,14 @@ class battle{
         this.particleManager=new particleManager(this.layer,this)
         this.overlayManager=new overlayManager(this.layer,this)
         this.nodeManager=new nodeManager(this.layer,this)
-        this.optionManager=new optionManager(this.layer,this)
         this.purchaseManager=new purchaseManager(this.layer,this)
 
         this.encounter={class:0}
-        this.currency={money:100}
+        this.currency={money:[]}
         this.energy={main:[],gen:[],base:[]}
         
         this.turn={main:0,total:0,time:0,accelerate:0}
-        this.anim={reserve:1,discard:1,endTurn:1,turn:[],defeat:0,deck:1,exit:1,afford:0,upAfford:false}
+        this.anim={reserve:1,discard:1,endTurn:1,turn:[],defeat:0,deck:[],exit:1,afford:0,upAfford:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
@@ -29,11 +28,18 @@ class battle{
         this.initial()
         //this.setupBattle(types.encounter[0])
     }
-    initialCards(){
+    initialManagers(){
         this.cardManagers=[]
         for(let a=0,la=this.player.length;a<la;a++){
             this.cardManagers.push(new cardManager(this.layer,this,a))
             this.cardManagers[a].initialDeck()
+        }
+        this.optionManagers=[]
+        for(let a=0,la=this.player.length;a<la;a++){
+            this.optionManagers.push(new optionManager(this.layer,this,a))
+        }
+        for(let a=0,la=this.optionManagers.length;a<la;a++){
+            this.optionManagers[a].assemble()
         }
     }
     initial(){
@@ -42,9 +48,16 @@ class battle{
         for(let a=0,la=this.player.length;a<la;a++){
             this.addCombatant({x:0,y:0},this.player[a],a+1,0)
             this.colorDetail.push(types.color.card[this.player[a]])
+            this.currency.money.push(100)
             this.energy.main.push(0)
             this.energy.gen.push(0)
             this.energy.base.push(3)
+            this.anim.deck.push(1)
+        }
+        if(this.player.length==1){
+            this.playerKey=this.player[0]-1
+        }else{
+            this.playerKey=this.player[0]+1
         }
     }
     setupBattle(encounter){
@@ -87,7 +100,9 @@ class battle{
         this.startTurn()
     }
     setupRest(){
-        this.optionManager.reset()
+        for(let a=0,la=this.optionManagers.length;a<la;a++){
+            this.optionManagers[a].reset()
+        }
         this.combatantManager.resetCombatants()
     }
     setupShop(){
@@ -184,12 +199,22 @@ class battle{
         this.layer.fill(240,240,220)
         this.layer.noStroke()
         this.layer.ellipse(20,16,16,16)
+        if(this.currency.money.length>1){
+            this.layer.ellipse(this.layer.width-20,16,16,16)
+        }
         this.layer.fill(220,220,200)
         this.layer.ellipse(20,16,10,10)
+        if(this.currency.money.length>1){
+            this.layer.ellipse(this.layer.width-20,16,10,10)
+        }
         this.layer.fill(230,230,210)
         this.layer.textSize(16)
         this.layer.textAlign(LEFT,CENTER)
-        this.layer.text(this.currency.money,30,18)
+        this.layer.text(this.currency.money[0],30,18)
+        if(this.currency.money.length>1){
+            this.layer.textAlign(RIGHT,CENTER)
+            this.layer.text(this.currency.money[1],this.layer.width-30,18)
+        }
         this.layer.textAlign(CENTER,CENTER)
     }
     display(scene){
@@ -249,32 +274,38 @@ class battle{
             break
             case 'map':
                 this.layer.background(70,75,80)
-                this.layer.fill(this.colorDetail.fill)
-                this.layer.stroke(this.colorDetail.stroke)
-                this.layer.strokeWeight(3*this.anim.deck)
-                this.layer.rect(26,496,32*this.anim.deck,24*this.anim.deck,5*this.anim.deck)
-                this.layer.fill(0)
-                this.layer.noStroke()
-                this.layer.textSize(8*this.anim.deck)
-                this.layer.text('Deck',26,496-4*this.anim.deck)
-                this.layer.text('('+this.cardManager.deck.cards.length+')',26,496+4*this.anim.deck)
+                for(let a=0,la=this.colorDetail.length;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    this.layer.strokeWeight(3*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),496,32*this.anim.deck[a],24*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.fill(0)
+                    this.layer.noStroke()
+                    this.layer.textSize(8*this.anim.deck[a])
+                    this.layer.text('Deck',26+a*(this.layer.width-52),496-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),496+4*this.anim.deck[a])
+                }
                 this.nodeManager.display()
                 this.overlayManager.display()
                 this.displayCurrency()
             break
             case 'rest':
-                this.layer.image(graphics.backgrounds[3][this.player-1],0,0,this.layer.width,this.layer.height)
-                this.layer.fill(this.colorDetail.fill)
-                this.layer.stroke(this.colorDetail.stroke)
-                this.layer.strokeWeight(3*this.anim.deck)
-                this.layer.rect(26,496,32*this.anim.deck,24*this.anim.deck,5*this.anim.deck)
-                this.layer.fill(0)
-                this.layer.noStroke()
-                this.layer.textSize(8*this.anim.deck)
-                this.layer.text('Deck',26,496-4*this.anim.deck)
-                this.layer.text('('+this.cardManager.deck.cards.length+')',26,496+4*this.anim.deck)
+                this.layer.image(graphics.backgrounds[3][this.playerKey],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.colorDetail.length;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    this.layer.strokeWeight(3*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),496,32*this.anim.deck[a],24*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.fill(0)
+                    this.layer.noStroke()
+                    this.layer.textSize(8*this.anim.deck[a])
+                    this.layer.text('Deck',26+a*(this.layer.width-52),496-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),496+4*this.anim.deck[a])
+                }
                 this.combatantManager.displayInfo(stage.scene)
-                this.optionManager.display()
+                for(let a=0,la=this.optionManagers.length;a<la;a++){
+                    this.optionManagers[a].display()
+                }
                 this.overlayManager.display()
             break
             case 'shop':
@@ -297,7 +328,10 @@ class battle{
                 this.displayCurrency()
             break
             case 'defeat':
-                this.layer.image(graphics.backgrounds[0][this.player-1],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.backgrounds[1][this.playerKey],0,0,this.layer.width,this.layer.height)
+            break
+            case 'perk':
+                this.layer.image(graphics.backgrounds[0][this.playerKey],0,0,this.layer.width,this.layer.height)
             break
         }
     }
@@ -330,33 +364,64 @@ class battle{
                 if(this.anim.upAfford&&this.anim.afford>=1){
                     this.anim.upAfford=false
                 }
-                if(this.counter.killed>=this.counter.enemy&&!this.result.victory){
-                    this.result.victory=true
-                    this.overlayManager.closeAll()
-                    this.overlayManager.overlays[0].active=true
-                    switch(this.encounter.class){
-                        case 0:
-                            this.overlayManager.overlays[0].activate([
-                                {type:1,value:[0,floor(random(0,1.5))]},
-                                {type:0,value:[floor(random(40,81))]}])
-                        break
-                        case 1:
-                            this.overlayManager.overlays[0].activate([
-                                {type:1,value:[1,floor(random(0,2))]},
-                                {type:0,value:[floor(random(120,201))]}])
-                        break
+                if(this.counter.killed>=this.counter.enemy){
+                    if(this.result.victory){
+                        let allClosed=true
+                        for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
+                            if(this.overlayManager.overlays[0][a].active){
+                                allClosed=false
+                            }
+                        }
+                        if(allClosed){
+                            transition.trigger=true
+                            transition.scene='map'
+                        }
+                    }else{
+                        this.result.victory=true
+                        this.overlayManager.closeAll()
+                        for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
+                            this.overlayManager.overlays[0][a].active=true
+                            switch(this.encounter.class){
+                                case 0:
+                                    this.overlayManager.overlays[0][a].activate([
+                                        {type:1,value:[0,floor(random(0,1.5))]},
+                                        {type:0,value:[floor(random(40,81))]}])
+                                break
+                                case 1:
+                                    this.overlayManager.overlays[0][a].activate([
+                                        {type:1,value:[1,floor(random(0,2))]},
+                                        {type:0,value:[floor(random(120,201))]}])
+                                break
+                            }
+                        }
                     }
                 }
             break
             case 'map':
                 this.nodeManager.update()
                 this.overlayManager.update()
-                this.anim.deck=smoothAnim(this.anim.deck,pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                for(let a=0,la=this.anim.deck.length;a<la;a++){
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                }
             break
             case 'rest':
-                this.optionManager.update()
+                for(let a=0,la=this.optionManagers.length;a<la;a++){
+                    this.optionManagers[a].update()
+                }
                 this.overlayManager.update()
-                this.anim.deck=smoothAnim(this.anim.deck,pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                for(let a=0,la=this.anim.deck.length;a<la;a++){
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                }
+                let allComplete=true
+                for(let a=0,la=this.optionManagers.length;a<la;a++){
+                    if(!this.optionManagers[a].complete){
+                        allComplete=false
+                    }
+                }
+                if(allComplete){
+                    transition.trigger=true
+                    transition.scene='map'
+                }
             break
             case 'shop':
                 this.purchaseManager.update()
@@ -375,11 +440,11 @@ class battle{
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:24})){
-                            this.overlayManager.overlays[1].active=true
-                            this.overlayManager.overlays[1].activate()
+                            this.overlayManager.overlays[1][this.turn.main].active=true
+                            this.overlayManager.overlays[1][this.turn.main].activate()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:528},width:32,height:24})){
-                            this.overlayManager.overlays[2].active=true
-                            this.overlayManager.overlays[2].activate()
+                            this.overlayManager.overlays[2][this.turn.main].active=true
+                            this.overlayManager.overlays[2][this.turn.main].activate()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:560},width:32,height:24})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0){
                             this.endTurn()
                         }
@@ -391,9 +456,11 @@ class battle{
                     this.overlayManager.onClick()
                 }else{
                     this.nodeManager.onClick()
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})){
-                        this.overlayManager.overlays[4].active=true
-                        this.overlayManager.overlays[4].activate()
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})){
+                            this.overlayManager.overlays[4][a].active=true
+                            this.overlayManager.overlays[4][a].activate()
+                        }
                     }
                 }
             break
@@ -401,10 +468,14 @@ class battle{
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onClick()
                 }else{
-                    this.optionManager.onClick()
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})){
-                        this.overlayManager.overlays[4].active=true
-                        this.overlayManager.overlays[4].activate()
+                    for(let a=0,la=this.optionManagers.length;a<la;a++){
+                        this.optionManagers[a].onClick()
+                    }
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})){
+                            this.overlayManager.overlays[4][a].active=true
+                            this.overlayManager.overlays[4][a].activate()
+                        }
                     }
                 }
             break
@@ -433,11 +504,11 @@ class battle{
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
                         if(key=='r'||key=='R'){
-                            this.overlayManager.overlays[1].active=true
-                            this.overlayManager.overlays[1].activate()
+                            this.overlayManager.overlays[1][this.turn.main].active=true
+                            this.overlayManager.overlays[1][this.turn.main].activate()
                         }else if(key=='d'||key=='D'){
-                            this.overlayManager.overlays[2].active=true
-                            this.overlayManager.overlays[2].activate()
+                            this.overlayManager.overlays[2][this.turn.main].active=true
+                            this.overlayManager.overlays[2][this.turn.main].activate()
                         }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0){
                             this.endTurn()
                         }
@@ -449,9 +520,11 @@ class battle{
                     this.overlayManager.onKey(key,code)
                 }else{
                     this.nodeManager.onKey(key,code)
-                    if(key=='d'||key=='D'){
-                        this.overlayManager.overlays[4].active=true
-                        this.overlayManager.overlays[4].activate()
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                            this.overlayManager.overlays[4][a].active=true
+                            this.overlayManager.overlays[4][a].activate()
+                        }
                     }
                 }
             break
@@ -459,10 +532,14 @@ class battle{
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onKey(key,code)
                 }else{
-                    this.optionManager.onKey(key,code)
-                    if(key=='d'||key=='D'){
-                        this.overlayManager.overlays[4].active=true
-                        this.overlayManager.overlays[4].activate()
+                    for(let a=0,la=this.optionManagers.length;a<la;a++){
+                        this.optionManagers[a].onKey(key,code)
+                    }
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                            this.overlayManager.overlays[4][a].active=true
+                            this.overlayManager.overlays[4][a].activate()
+                        }
                     }
                 }
             break

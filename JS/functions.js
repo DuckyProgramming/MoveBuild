@@ -225,7 +225,7 @@ function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
 	return anim
 }
 function quickAdd(name){
-	current.cardManager.hand.add(findName(name,types.card),0,0)
+	current.cardManagers[constrain(current.turn.main,0,current.cardManagers.length-1)].hand.add(findName(name,types.card),0,0)
 }
 function updateMouse(layer){
 	inputs.mouse.x=mouseX

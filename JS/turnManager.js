@@ -8,6 +8,12 @@ class turnManager{
         this.turns=[]
     }
     clear(){
+        for(let a=0,la=this.turns.length;a<la;a++){
+            delete this.turns[a]
+            this.turns.splice(a,1)
+            a--
+            la--
+        }
         this.turns=[]
     }
     loadEnemyAttack(enemy){

@@ -18,12 +18,20 @@ class overlayManager{
         if(this.battle.player.length==2){
             this.copyOverlays()
         }
+        this.positionOverlays()
         this.priority=[3,0,1,2,4,5,6,7,8]
         this.anyActive=false
     }
     copyOverlays(){
         for(let a=0,la=this.overlays.length;a<la;a++){
             this.overlays[a].push(new overlay(this.overlays[a][0].layer,this.overlays[a][0].battle,this.overlays[a][0].player+1,this.overlays[a][0].type,this.overlays[a][0].args))
+        }
+    }
+    positionOverlays(){
+        for(let a=0,la=this.overlays.length;a<la;a++){
+            for(let b=0,lb=this.overlays[a].length;b<lb;b++){
+                this.overlays[a][b].getPosKey()
+            }
         }
     }
     closeAll(){
@@ -43,12 +51,12 @@ class overlayManager{
         }
     }
     update(){
-        let first=true
+        let first=-1
         for(let a=0,la=this.priority.length;a<la;a++){
             for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
                 this.overlays[this.priority[a]][b].update(first)
                 if(this.overlays[this.priority[a]][b].fade>0){
-                    first=false
+                    first=this.overlays[this.priority[a]][b].type
                 }
             }
         }
@@ -64,9 +72,8 @@ class overlayManager{
     onClick(){
         for(let a=0,la=this.priority.length;a<la;a++){
             for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
-                if(this.overlays[this.priority[a]][b].active){
+                if(this.overlays[this.priority[a]][b].active&&this.overlays[this.priority[a]][b].fade>0.5){
                     this.overlays[this.priority[a]][b].onClick()
-                    break
                 }
             }
         }
@@ -74,9 +81,8 @@ class overlayManager{
     onKey(key,code){
         for(let a=0,la=this.priority.length;a<la;a++){
             for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
-                if(this.overlays[this.priority[a]][b].active){
+                if(this.overlays[this.priority[a]][b].active&&this.overlays[this.priority[a]][b].fade>0.5){
                     this.overlays[this.priority[a]][b].onKey(key,code)
-                    break
                 }
             }
         }

@@ -40,6 +40,9 @@ class overlay{
             break
         }
     }
+    getPosKey(){
+        this.posKey=1-this.battle.player.length+this.player*2
+    }
     activate(args){
         switch(this.type){
             case 1:
@@ -60,10 +63,10 @@ class overlay{
             break
             case 3:
                 this.cards=[]
-                let list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player])
+                let list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                 for(let a=0,la=3;a<la;a++){
                     let index=floor(random(0,list[args[1]].length))
-                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],1,-1))
+                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],this.battle.player[this.player],-1))
                     this.cards[a].upSize=true
                     list[args[1]].splice(index,1)
                 }
@@ -75,11 +78,11 @@ class overlay{
             case 1:
                 switch(args.type){
                     case 0:
-                        this.battle.currency.money+=args.value[0]
+                        this.battle.currency.money[this.player]+=args.value[0]
                     break
                     case 1:
-                        this.battle.overlayManager.overlays[3].active=true
-                        this.battle.overlayManager.overlays[3].activate(args.value)
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate(args.value)
                     break
                 }
             break
@@ -91,42 +94,42 @@ class overlay{
             case 1:
                 this.layer.fill(160,this.fade*0.8)
                 if(this.rewards.length==0){
-                    this.layer.rect(this.layer.width/2,this.layer.height/2,240,360,10)
+                    this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2,240,360,10)
                 }else{
-                    this.layer.rect(this.layer.width/2,this.layer.height/2+max(0,this.rewards[this.rewards.length-1].position-250)/2,240,360+max(0,this.rewards[this.rewards.length-1].position-250),10)
+                    this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+max(0,this.rewards[this.rewards.length-1].position-250)/2,240,360+max(0,this.rewards[this.rewards.length-1].position-250),10)
                 }
-                this.layer.rect(this.layer.width/2,this.layer.height/2-205,120,40,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-205,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
-                this.layer.text('Rewards',this.layer.width/2,this.layer.height/2-150)
+                this.layer.text('Rewards',this.layer.width/2+225*this.posKey,this.layer.height/2-150)
                 this.layer.textSize(20)
-                this.layer.text('Close',this.layer.width/2,this.layer.height/2-205)
+                this.layer.text('Close',this.layer.width/2+225*this.posKey,this.layer.height/2-205)
                 for(let a=0,la=this.rewards.length;a<la;a++){
                     this.layer.noStroke()
                     this.layer.fill(120,this.fade*this.rewards[a].fade)
                     switch(this.rewards[a].type){
                         case 0:
-                            this.layer.rect(this.layer.width/2,this.layer.height/2-105+this.rewards[a].position,60,40,10)
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,60,40,10)
                             this.layer.fill(240,240,220,this.fade*this.rewards[a].fade)
-                            this.layer.ellipse(this.layer.width/2-10,this.layer.height/2-105+this.rewards[a].position,16,16)
+                            this.layer.ellipse(this.layer.width/2+225*this.posKey-10,this.layer.height/2-105+this.rewards[a].position,16,16)
                             this.layer.fill(220,220,200,this.fade*this.rewards[a].fade)
-                            this.layer.ellipse(this.layer.width/2-10,this.layer.height/2-105+this.rewards[a].position,10,10)
+                            this.layer.ellipse(this.layer.width/2+225*this.posKey-10,this.layer.height/2-105+this.rewards[a].position,10,10)
                             this.layer.fill(0,this.fade*this.rewards[a].fade)
                             this.layer.textSize(16)
                             this.layer.textAlign(LEFT,CENTER)
-                            this.layer.text(this.rewards[a].value[0],this.layer.width/2,this.layer.height/2-103+this.rewards[a].position)
+                            this.layer.text(this.rewards[a].value[0],this.layer.width/2+225*this.posKey,this.layer.height/2-103+this.rewards[a].position)
                             this.layer.textAlign(CENTER,CENTER)
                         break
                         case 1:
-                            this.layer.rect(this.layer.width/2,this.layer.height/2-105+this.rewards[a].position,120,40,10)
-                            this.layer.fill(this.battle.colorDetail.fill)
-                            this.layer.stroke(this.battle.colorDetail.stroke)
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
+                            this.layer.fill(this.battle.colorDetail[this.player].fill)
+                            this.layer.stroke(this.battle.colorDetail[this.player].stroke)
                             this.layer.strokeWeight(3)
-                            this.layer.rect(this.layer.width/2-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
                             this.layer.fill(0,this.fade*this.rewards[a].fade)
                             this.layer.noStroke()
                             this.layer.textSize(16)
-                            this.layer.text('New Card',this.layer.width/2+15,this.layer.height/2-103+this.rewards[a].position)
+                            this.layer.text('New Card',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
                         break
                     }
                 }
@@ -179,8 +182,8 @@ class overlay{
             break
         }
     }
-    update(primary){
-        this.fade=smoothAnim(this.fade,this.active&&primary,0,1,5)
+    update(first){
+        this.fade=smoothAnim(this.fade,this.active&&(first==-1||first==this.type),0,1,5)
         if(this.fade>0){
             switch(this.type){
                 case 1:
@@ -198,8 +201,6 @@ class overlay{
                     }
                     if(this.rewards.length<=0&&this.active&&!this.battle.overlayManager.overlays[3].active&&this.active){
                         this.active=false
-                        transition.trigger=true
-                        transition.scene='map'
                     }
                 break
                 case 2:
@@ -246,15 +247,13 @@ class overlay{
             switch(this.type){
                 case 1:
                     for(let a=0,la=this.rewards.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-105+this.rewards[a].position},width:200,height:40})&&this.rewards[a].usable){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-105+this.rewards[a].position},width:200,height:40})&&this.rewards[a].usable){
                             this.rewards[a].usable=false
                             this.execute(this.rewards[a])
                         }
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-205},width:120,height:40})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-205},width:120,height:40})){
                         this.active=false
-                        transition.trigger=true
-                        transition.scene='map'
                     }
                 break
                 case 2:
@@ -376,8 +375,6 @@ class overlay{
                     }
                     if(code==ENTER){
                         this.active=false
-                        transition.trigger=true
-                        transition.scene='map'
                     }
                 break
                 case 2:

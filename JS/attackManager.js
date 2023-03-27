@@ -23,6 +23,12 @@ class attackManager{
         this.tilePosition={x:0,y:0}
     }
     clear(){
+        for(let a=0,la=this.attacks.length;a<la;a++){
+            delete this.attacks[a]
+            this.attacks.splice(a,1)
+            a--
+            la--
+        }
         this.attacks=[]
         this.targetInfo[0]=0
     }

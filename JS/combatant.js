@@ -366,7 +366,7 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
             break
         }
-        if(this.team==0){
+        if(this.team>0){
             this.fade=1
         }
     }
@@ -623,7 +623,7 @@ class combatant{
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
                 switch(a){
-                    case 4: this.battle.energy.main[this.team]+=this.status.main[a]; break
+                    case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
                     case 5: this.takeDamage(this.status.main[a],-1); break
                 }
                 if(this.status.behavior[a]==1){
@@ -3209,7 +3209,7 @@ class combatant{
             break
             case 'rest':
                 this.layer.push()
-                this.layer.translate(350,495)
+                this.layer.translate(350-this.id*100,495)
                 this.layer.scale(1.5)
                 this.displayInfoInternal()
                 this.layer.pop()
