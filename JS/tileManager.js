@@ -101,7 +101,7 @@ class tileManager{
                     this.tiles[a].occupied=0
                 }
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                    if(this.battle.combatantManager.combatants[a].life>0){
+                    if(this.battle.combatantManager.combatants[a].life>0||this.battle.combatantManager.combatants[a].team>0){
                         for(let b=0,lb=this.tiles.length;b<lb;b++){
                             if(this.tiles[b].tilePosition.x==this.battle.combatantManager.combatants[a].tilePosition.x&&this.tiles[b].tilePosition.y==this.battle.combatantManager.combatants[a].tilePosition.y){
                                 this.tiles[b].occupied=1

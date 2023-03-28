@@ -5,7 +5,7 @@ class tile{
         this.position={x:x,y:y}
         this.relativePosition={x:relativeX,y:relativeY}
         this.tilePosition={x:tileX,y:tileY}
-        this.type=type
+        this.type=copyArray(type)
 
         this.fade=1
         this.occupied=0

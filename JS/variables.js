@@ -255,13 +255,13 @@ types={
                 {effect:[20],attack:37,cost:1,target:[2,1,6],spec:[0,6],class:1},
             ],
         },{
-            name:'Lament',rarity:0,list:2,
+            name:'Lament',rarity:1,list:2,
             levels:[
                 {effect:[8,2],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12,3],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Scratch',rarity:0,list:2,
+            name:'Scratch',rarity:2,list:2,
             levels:[
                 {effect:[6],attack:39,cost:1,target:[2,1,1],spec:[0,6],class:1},
                 {effect:[9],attack:39,cost:1,target:[2,1,1],spec:[0,6],class:1},

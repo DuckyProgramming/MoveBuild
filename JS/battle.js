@@ -77,7 +77,15 @@ class battle{
 
         for(let a=0,la=this.player.length;a<la;a++){
             this.anim.turn.push(0)
-            this.positionCombatant(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)],{x:encounter.player.position.x+a-la+1,y:encounter.player.position.y-la+1})
+            let playerCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
+            if(playerCombatant.life<=0){
+                this.positionCombatant(playerCombatant,{x:-1,y:-1})
+            }else{
+                if(playerCombatant.dead){
+                    playerCombatant.revive()
+                }
+                this.positionCombatant(playerCombatant,{x:encounter.player.position.x+a-la+1,y:encounter.player.position.y-la+1})
+            }
         }
         for(let a=0,la=encounter.enemy.length;a<la;a++){
             this.addCombatant(encounter.enemy[a].position,findName(encounter.enemy[a].name,types.combatant),0,0)
@@ -87,12 +95,13 @@ class battle{
             this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},type:encounter.reinforce[a].type,turn:encounter.reinforce[a].turn})
             this.counter.enemy++
         }
-
+        
         for(let a=0,la=this.cardManagers.length;a<la;a++){
             this.cardManagers[a].clear()
             this.cardManagers[a].copy(0,1)
             this.cardManagers[a].shuffle(1)
         }
+        this.combatantManager.deTargetCombatants()
         this.attackManager.clear()
         this.turnManager.clear()
         this.particleManager.clear()
@@ -118,10 +127,16 @@ class battle{
         }
     }
     positionCombatant(combatant,position){
-        combatant.position={x:this.tileManager.getTilePosition(position.x,position.y).x,y:this.tileManager.getTilePosition(position.x,position.y).y}
-        combatant.relativePosition={x:this.tileManager.getTileRelativePosition(position.x,position.y).x,y:this.tileManager.getTileRelativePosition(position.x,position.y).y}
+        if(position.x==-1){
+            combatant.position={x:-100,y:-100}
+            combatant.relativePosition={x:-100,y:-100}
+            combatant.anim.direction=30
+        }else{
+            combatant.position={x:this.tileManager.getTilePosition(position.x,position.y).x,y:this.tileManager.getTilePosition(position.x,position.y).y}
+            combatant.relativePosition={x:this.tileManager.getTileRelativePosition(position.x,position.y).x,y:this.tileManager.getTileRelativePosition(position.x,position.y).y}
+            combatant.anim.direction=round(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))/60-1/2)*60+30
+        }
         combatant.tilePosition={x:position.x,y:position.y}
-        combatant.anim.direction=round(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))/60-1/2)*60+30
         combatant.goal.anim.direction=combatant.anim.direction
     }
     loadReinforce(){
@@ -177,8 +192,12 @@ class battle{
             this.combatantManager.enableCombatants()
         }else{
             this.cardManagers[this.turn.main].turnDraw()
+            this.turn.time=game.turnTime
         }
         this.attackManager.clear()
+        if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
+            this.endTurn()
+        }
     }
     startTurn(){
         this.turn.main=0
@@ -194,6 +213,9 @@ class battle{
         this.turnManager.clear()
         this.cardManagers[0].turnDraw()
         this.loadReinforce()
+        if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
+            this.endTurn()
+        }
     }
     displayCurrency(){
         this.layer.fill(240,240,220)
@@ -310,17 +332,28 @@ class battle{
             break
             case 'shop':
                 this.layer.background(110,115,120)
-                this.layer.fill(this.colorDetail.fill)
-                this.layer.stroke(this.colorDetail.stroke)
-                this.layer.strokeWeight(3*this.anim.deck)
-                this.layer.rect(26,496,32*this.anim.deck,24*this.anim.deck,5*this.anim.deck)
+                for(let a=0,la=this.colorDetail.length;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    this.layer.strokeWeight(3*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),496,32*this.anim.deck[a],24*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.fill(0)
+                    this.layer.noStroke()
+                    this.layer.textSize(8*this.anim.deck[a])
+                    this.layer.text('Deck',26+a*(this.layer.width-52),496-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),496+4*this.anim.deck[a])
+                }
+                if(this.player.length==1){
+                    this.layer.fill(this.colorDetail[0].fill)
+                    this.layer.stroke(this.colorDetail[0].stroke)
+                }else{
+                    this.layer.fill(types.color.card[0].fill)
+                    this.layer.stroke(types.color.card[0].stroke)
+                }
                 this.layer.strokeWeight(3*this.anim.exit)
                 this.layer.rect(26,528,32*this.anim.exit,24*this.anim.exit,5*this.anim.exit)
                 this.layer.fill(0)
                 this.layer.noStroke()
-                this.layer.textSize(8*this.anim.deck)
-                this.layer.text('Deck',26,496-4*this.anim.deck)
-                this.layer.text('('+this.cardManager.deck.cards.length+')',26,496+4*this.anim.deck)
                 this.layer.textSize(8*this.anim.exit)
                 this.layer.text('Exit',26,528)
                 this.purchaseManager.display()
@@ -339,7 +372,7 @@ class battle{
         switch(scene){
             case 'battle':
                 this.tileManager.update(scene)
-                this.combatantManager.update()
+                this.combatantManager.update(scene)
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
                     this.cardManagers[a].update(scene)
                 }
@@ -408,6 +441,7 @@ class battle{
                 for(let a=0,la=this.optionManagers.length;a<la;a++){
                     this.optionManagers[a].update()
                 }
+                this.combatantManager.update(scene)
                 this.overlayManager.update()
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
                     this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
@@ -426,7 +460,9 @@ class battle{
             case 'shop':
                 this.purchaseManager.update()
                 this.overlayManager.update()
-                this.anim.deck=smoothAnim(this.anim.deck,pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                for(let a=0,la=this.anim.deck.length;a<la;a++){
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                }
                 this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:528},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
             break
         }
@@ -484,10 +520,13 @@ class battle{
                     this.overlayManager.onClick()
                 }else{
                     this.purchaseManager.onClick()
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:496},width:32,height:24})){
-                        this.overlayManager.overlays[4].active=true
-                        this.overlayManager.overlays[4].activate()
-                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26,y:528},width:32,height:24})){
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})){
+                            this.overlayManager.overlays[4][a].active=true
+                            this.overlayManager.overlays[4][a].activate()
+                        }
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:528},width:32,height:24})){
                         transition.trigger=true
                         transition.scene='map'
                     }
@@ -548,10 +587,13 @@ class battle{
                     this.overlayManager.onKey(key,code)
                 }else{
                     this.purchaseManager.onKey(key,code)
-                    if(key=='d'||key=='D'){
-                        this.overlayManager.overlays[4].active=true
-                        this.overlayManager.overlays[4].activate()
-                    }else if(code==ENTER){
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                            this.overlayManager.overlays[4][a].active=true
+                            this.overlayManager.overlays[4][a].activate()
+                        }
+                    }
+                    if(code==ENTER){
                         transition.trigger=true
                         transition.scene='map'
                     }

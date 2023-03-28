@@ -227,7 +227,7 @@ class overlay{
                         break
                     }
                     switch(this.args[0]){
-                        case 3: this.card.size=smoothAnim(this.card.size,this.card.page==this.page,0,this.fade,5); break
+                        case 3: this.card.size=constrain(smoothAnim(this.card.size,this.card.page==this.page,0,this.fade,5),0,this.fade); break
                     }
                 break
                 case 3:

@@ -1,7 +1,8 @@
 class purchase{
-    constructor(layer,battle,x,y,type,cost,args){
+    constructor(layer,battle,player,x,y,type,cost,args){
         this.layer=layer
         this.battle=battle
+        this.player=player
         this.position={x:x,y:y}
         this.type=type
         this.cost=cost
@@ -13,22 +14,22 @@ class purchase{
         this.anim={usable:1,afford:0}
         switch(this.type){
             case 1:
-                this.card=new card(this.layer,this.battle,0,0,this.args[0],this.args[1],this.args[2],0)
+                this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
             break
         }
     }
     buy(){
-        if(this.battle.currency.money>=this.cost&&this.usable){
-            this.battle.currency.money-=this.cost
+        if(this.battle.currency.money[this.player]>=this.cost&&this.usable){
+            this.battle.currency.money[this.player]-=this.cost
             this.usable=false
             this.deSize=true
             switch(this.type){
                 case 1:
-                    this.battle.cardManager.deck.add(this.card.type,this.card.level,this.card.color)
+                    this.battle.cardManagers[this.player].deck.add(this.card.type,this.card.level,this.card.color)
                 break
                 case 2:
-                    this.battle.overlayManager.overlays[6].active=true
-                    this.battle.overlayManager.overlays[6].activate()
+                    this.battle.overlayManager.overlays[6][this.player].active=true
+                    this.battle.overlayManager.overlays[6][this.player].activate()
                 break
             }
         }
@@ -60,10 +61,10 @@ class purchase{
             case 1: case 2:
                 this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                 this.layer.textSize(16)
-                this.layer.text(this.cost,0,75)
+                this.layer.text(this.cost,0,72.5)
                 this.layer.fill(255,0,0,1-this.anim.usable)
                 this.layer.textSize(16)
-                this.layer.text('Sold Out',0,75)
+                this.layer.text('Sold Out',0,72.5)
             break
         }
         this.layer.pop()
@@ -75,7 +76,7 @@ class purchase{
             this.size=min(round(this.size*5+1)/5,1.5)
         }
         this.anim.usable=smoothAnim(this.anim.usable,this.usable,0,1,5)
-        this.anim.afford=smoothAnim(this.anim.afford,this.battle.currency.money>=this.cost,0,1,5)
+        this.anim.afford=smoothAnim(this.anim.afford,this.battle.currency.money[this.player]>=this.cost,0,1,5)
         switch(this.type){
             case 1:
                 this.card.anim.afford=1

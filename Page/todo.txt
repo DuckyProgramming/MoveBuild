@@ -1,7 +1,7 @@
 Animations:
 
 Bugs:
-General performance issues
+General performance issues (?)
 
 Mechanics:
 Prize
@@ -33,9 +33,7 @@ Rare Card
 Generality:
 First Character Gimmick
 Second Character Gimmick
-Merge Animations
 
 MULTIPLAYER:
-Double Defeat
 
 Character 3? (Usagi?)

@@ -34,11 +34,7 @@ class optionManager{
             break
             case 1:
                 this.complete=true
-                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                    if(this.battle.combatantManager.combatants[a].team==0){
-                        this.battle.combatantManager.combatants[a].heal(round(this.battle.combatantManager.combatants[a].base.life)*0.4)
-                    }
-                }
+                this.battle.combatantManager.combatants[this.player].heal(round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
             break
             case 2:
                 this.battle.overlayManager.overlays[5][this.player].active=true

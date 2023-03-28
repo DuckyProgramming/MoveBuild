@@ -224,12 +224,12 @@ function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
 	}
 	return anim
 }
-function quickAdd(name){
-	current.cardManagers[constrain(current.turn.main,0,current.cardManagers.length-1)].hand.add(findName(name,types.card),0,0)
-}
 function updateMouse(layer){
 	inputs.mouse.x=mouseX
 	inputs.mouse.y=mouseY
 	inputs.rel.x=(inputs.mouse.x-width/2)/stage.scale+layer.width/2
 	inputs.rel.y=(inputs.mouse.y-height/2)/stage.scale+layer.height/2
+}
+function kill(index){
+	current.combatantManager.combatants[index].life=0
 }
