@@ -13,8 +13,11 @@ class group{
                 for(let a=0,la=types.deck.start[player].length;a<la;a++){
                     this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
                 }
-                for(let a=0;a<12;a++){
-                    //this.add(floor(random(4,types.card.length-2)),types.deck.start[player][0][1],types.deck.start[player][0][2])
+                for(let a=0;a<8;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
+                }
+                for(let a=0;a<4;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
                 }
                 for(let a=1,la=types.card.length-2;a<la;a++){
                     //this.add(a,0,0)
@@ -65,6 +68,9 @@ class group{
                     }else if(!this.cards[a].spec.includes(2)){
                         this.cards[a].deSize=true
                     }
+                break
+                case 2:
+                    this.cards[a].deSize=true
                 break
             }
         }
@@ -163,13 +169,13 @@ class group{
                 }
             break
             case 'overlay':
-                this.sort()
                 if(args[0]==0){
+                    this.sort()
                     let position=0
                     for(let a=0,la=this.sorted.length;a<la;a++){
                         for(let b=0,lb=this.cards.length;b<lb;b++){
                             if(this.cards[b].name==this.sorted[a]){
-                                this.cards[b].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
+                                this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
                                 this.cards[b].fade=1
                                 this.cards[b].position.x=this.layer.width/2-200+position%5*100
                                 this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
@@ -217,7 +223,7 @@ class group{
                     this.cards[a].deSize=true
                     this.cost(this.cards[a].cost)
                     if(this.cards[a].spec.includes(0)){
-                        this.battle.cardManager.fatigue()
+                        this.battle.cardManagers[this.player].fatigue()
                     }
                     if(this.cards[a].spec.includes(1)){
                         this.cards[a].exhaust=true
@@ -247,7 +253,7 @@ class group{
                     if(!this.cards[b].usable){
                         this.cards[b].deSize=true
                         if(this.cards[b].spec.includes(0)){
-                            this.battle.cardManager.fatigue()
+                            this.battle.cardManagers[this.player].fatigue()
                         }
                         if(this.cards[b].spec.includes(1)){
                             this.cards[b].exhaust=true
@@ -330,7 +336,7 @@ class group{
         }
     }
     onClick(scene){
-        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3){
+        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)

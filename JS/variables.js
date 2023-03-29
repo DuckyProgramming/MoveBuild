@@ -269,6 +269,26 @@ types={
         },
 
         {
+            name:'Emergency\nMove',rarity:-1,list:0,
+            levels:[
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[1,2],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[1,2],class:3},
+            ],
+        },{
+            name:'Redraw',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:40,cost:0,target:[0],spec:[1,4],class:5},
+                {effect:[],attack:40,cost:0,target:[0],spec:[1,4],class:5},
+            ],
+        },{
+            name:'Miracle',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:41,cost:0,target:[0],spec:[1,4],class:5},
+                {effect:[2],attack:41,cost:0,target:[0],spec:[1,4],class:5},
+            ],
+        },
+
+        {
             name:'Fatigue',rarity:-1,list:2,
             levels:[
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
@@ -290,7 +310,6 @@ types={
         {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
         {name:'Thug',life:32,behavior:0,move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:"Beats people up"},
         {name:'Biker',life:40,behavior:0,move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:"Now bikeless"},
-        //biker
         //fast boy
 
     ],attack:[
@@ -302,6 +321,29 @@ types={
         {name:'Daze',class:4},
         {name:'2 Tile Strike (Nonpenetrative) (Advance)',class:1},
         {name:'2 Tile Push (Advance)',class:1},
+    ],relic:[
+        {name:'',id:0,rarity:-1,list:-1,description:''},
+        {name:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 2 HP at\nthe End of Combat'},
+        {name:'Extra Draw',id:2,rarity:0,list:0,description:'Draw 2 More Cards\nat the Start of Combat'},
+        {name:'First Turn Energy',id:3,rarity:0,list:0,description:'Gain 1 Energy at\nthe Start of Combat'},
+        {name:'3 Turn Energy',id:4,rarity:0,list:0,description:'Gain 1 Energy\nEvery 3rd Turn'},
+        {name:'7 Max HP',id:5,rarity:0,list:0,description:'When Taken, Gain 7 Max HP'},
+        {name:'First Turn Strength',id:6,rarity:0,list:0,description:'Gain 1 Strength\nat the Start of Combat'},
+        {name:'First Turn Dexterity',id:7,rarity:0,list:0,description:'Gain 1 Dexterity\nat the Start of Combat'},
+        {name:'Emergency Move',id:8,rarity:0,list:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
+        {name:'Redraw',id:9,rarity:0,list:0,description:'Add 1 Redraw at\nthe Start of Combat'},
+        {name:'Miracle',id:10,rarity:0,list:0,description:'Add 1 Miracle at\nthe Start of Combat'},
+        {name:'',id:11,rarity:0,list:0,description:''},
+        {name:'',id:12,rarity:0,list:0,description:''},
+        {name:'',id:13,rarity:0,list:0,description:''},
+        {name:'',id:14,rarity:0,list:0,description:''},
+        {name:'',id:15,rarity:0,list:0,description:''},
+        {name:'',id:16,rarity:0,list:0,description:''},
+        {name:'',id:17,rarity:0,list:0,description:''},
+        {name:'',id:18,rarity:0,list:0,description:''},
+        {name:'',id:19,rarity:0,list:0,description:''},
+        {name:'',id:20,rarity:0,list:0,description:''},
+        //blessed shiny rock?
     ],color:{
         card:[
             {
@@ -330,10 +372,10 @@ types={
         start:[
             //[['Wind\nUp',0,0],['Chain',0,0],['Think',0,0],['Swap',0,0],['Bandage',0,0],['Pull',0,0]],
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
-            //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            [['Stab',0,2],['Throw\nScythe',0,2],['Lament',0,2],['Scratch',0,2],['Defend',0,2],['Defend',0,2]],
-            //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
+            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+            //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
+            //[['Stab',0,2],['Throw\nScythe',0,2],['Lament',0,2],['Scratch',0,2],['Defend',0,2],['Defend',0,2]],
+            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             
            
         ]
@@ -397,13 +439,13 @@ types={
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},name:'Duck'},
-                //{position:{x:1,y:0},name:'Duck'},
-                //{position:{x:2,y:0},name:'Duck'},
-                //{position:{x:3,y:0},name:'Thug'},
-                //{position:{x:3,y:6},name:'Thug'},
-                //{position:{x:4,y:6},name:'Duck'},
-                //{position:{x:5,y:6},name:'Duck'},
-                //{position:{x:6,y:6},name:'Biker'},
+                /*{position:{x:1,y:0},name:'Biker'},
+                {position:{x:2,y:0},name:'Thug'},
+                {position:{x:3,y:0},name:'Thug'},
+                {position:{x:3,y:6},name:'Thug'},
+                {position:{x:4,y:6},name:'Thug'},
+                {position:{x:5,y:6},name:'Biker'},
+                {position:{x:6,y:6},name:'Biker'},*/
 
                 /*{position:{x:0,y:1},name:'Duck'},
                 {position:{x:0,y:2},name:'Duck'},
@@ -451,9 +493,9 @@ types={
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1,2],playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:[1],playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
-graphics={main:0,minor:[],combatant:[],combatantGen:0}
+graphics={main:0,backgrounds:[],combatantBackgrounds:[],minor:[],combatant:[],combatantGen:0}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

@@ -12,6 +12,7 @@ class battle{
         this.overlayManager=new overlayManager(this.layer,this)
         this.nodeManager=new nodeManager(this.layer,this)
         this.purchaseManager=new purchaseManager(this.layer,this)
+        this.relicManager=new relicManager(this.layer,this)
 
         this.encounter={class:0}
         this.currency={money:[]}
@@ -212,6 +213,7 @@ class battle{
         this.combatantManager.activateCombatants(0,0)
         this.turnManager.clear()
         this.cardManagers[0].turnDraw()
+        this.relicManager.activate(0,[this.turn.total])
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
             this.endTurn()
@@ -287,6 +289,7 @@ class battle{
                 this.combatantManager.displayInfo(scene)
                 this.particleManager.display()
                 this.overlayManager.display()
+                this.relicManager.display()
                 this.displayCurrency()
                 if(this.anim.defeat>0){
                     this.layer.fill(0,this.anim.defeat)
@@ -312,7 +315,7 @@ class battle{
                 this.displayCurrency()
             break
             case 'rest':
-                this.layer.image(graphics.backgrounds[3][this.playerKey],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.combatantBackgrounds[3][this.playerKey],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
@@ -361,10 +364,10 @@ class battle{
                 this.displayCurrency()
             break
             case 'defeat':
-                this.layer.image(graphics.backgrounds[1][this.playerKey],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.combatantBackgrounds[1][this.playerKey],0,0,this.layer.width,this.layer.height)
             break
             case 'perk':
-                this.layer.image(graphics.backgrounds[0][this.playerKey],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.combatantBackgrounds[0][this.playerKey],0,0,this.layer.width,this.layer.height)
             break
         }
     }
@@ -382,6 +385,7 @@ class battle{
                 }
                 this.particleManager.update()
                 this.overlayManager.update()
+                this.relicManager.update()
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                 }
@@ -427,6 +431,7 @@ class battle{
                                 break
                             }
                         }
+                        this.relicManager.activate(1,[])
                     }
                 }
             break

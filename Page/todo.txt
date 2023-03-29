@@ -5,7 +5,7 @@ General performance issues (?)
 
 Mechanics:
 Prize
-Shop (Relics, Items)
+Shop (Relics, Items) (Double as Well)
 Lose-Stats(Same stats as win though)
 Menu
 Perk
@@ -22,6 +22,8 @@ Innate Cards
 Enemy Do Nothing
 Curses
 
+More Fights:
+
 Cards:
 Deal Damage and Gain Energy? (Jab?)
 Separate?
@@ -35,5 +37,6 @@ First Character Gimmick
 Second Character Gimmick
 
 MULTIPLAYER:
+Done! (For now)
 
 Character 3? (Usagi?)

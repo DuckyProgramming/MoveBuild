@@ -37,13 +37,13 @@ class combatant{
         this.block=0
         this.dodges=[]
         this.status={main:[],name:[
-            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed',
+            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity',
             ],display:[],active:[],position:[],size:[],
-            behavior:[0,2,1,0,2,1],
-            class:[0,0,0,0,2,1]}
+            behavior:[0,2,1,0,2,1,0,0],
+            class:[0,0,0,0,2,1,0,0]}
         //0-none, 1-decrement, 2-remove
         //0-good, 1-bad, 2-nonclassified good
-        for(let a=0;a<6;a++){
+        for(let a=0;a<8;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -577,10 +577,16 @@ class combatant{
         }
     }
     takeDamage(value,user,spec){
+        let damage=value
+        if(value>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
+            let userCombatant=this.battle.combatantManager.combatants[user]
+            if(userCombatant.status.main[6]>0){
+                damage+=userCombatant.status.main[6]
+            }
+        }
         if(value>0&&this.life>0){
-            let damage=value
             let hit=true
-            if(user>=0&&user<this.battle.combatantManager.combatants.length){
+            if(user>=0&&user<this.battle.combatantManager.combatants.length&&spec==0){
                 let userCombatant=this.battle.combatantManager.combatants[user]
                 if(userCombatant.status.main[0]>0){
                     damage*=2
@@ -605,7 +611,7 @@ class combatant{
                     this.infoAnim.upFlash[0]=true
                 }
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
-                if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
+                if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length&&spec==0){
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     if(this.status.main[1]>0){
                         this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
@@ -617,7 +623,7 @@ class combatant{
         }
     }
     addBlock(value){
-        this.block+=value
+        this.block+=max(0,value+this.status.main[7])
     }
     moveTile(direction,speed){
         this.position.x+=sin(direction)*speed
@@ -638,6 +644,10 @@ class combatant{
     }
     heal(amount){
         this.life=min(this.life+amount,this.base.life)
+    }
+    gainMaxHP(amount){
+        this.base.life+=amount
+        this.life+=amount
     }
     tick(){
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -3077,7 +3087,7 @@ class combatant{
                         this.layer.fill(this.flashColor(this.color.hat)[0],this.flashColor(this.color.hat)[1],this.flashColor(this.color.hat)[2],this.fade*this.fades.hat)
                         this.layer.noStroke()
 	    				this.layer.arc(0,-81,32,32,-180,0)
-    					this.layer.rect(sin(this.anim.direction+180)*15,-83,22+cos(this.anim.direction+180)*8,4)
+    					this.layer.rect(sin(this.anim.direction+180)*16,-83,20+abs(cos(this.anim.direction+180))*8,4)
                     }
                     if(this.name=='Biker'&&this.trigger.display.goggles&&cos(this.anim.direction)>0){
                         this.layer.fill(this.flashColor(this.color.goggles)[0],this.flashColor(this.color.goggles)[1],this.flashColor(this.color.goggles)[2],this.fade*this.fades.goggles)

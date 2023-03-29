@@ -1312,7 +1312,7 @@ function setupCombatantGraphics(type){
 	
 	}
 }
-function setupBackground(type,player,layer){
+function setupBackground(type,layer){
 	switch(type){
 		case 0:
 			layer.noStroke()
@@ -1375,29 +1375,6 @@ function setupBackground(type,player,layer){
                     layer.quad(layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9+30,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9-30)
                 }
             }
-			for(let a=0,la=player.length;a<la;a++){
-				p1=new combatant(layer,{player:[0]},1200-la*175+a*525,1070,0,0,0,0,player[a],0,0,-30)
-				if(player[a]==1){
-					p1.parts.mouth-=4
-					p1.spin.mouth-=180
-				}else if(player[a]==2){
-					p1.anim.mouth.y++
-				}
-				p1.size=5
-				p1.fade=1
-				p1.spin.sword=36-(player[a]-1)*24
-				p1.anim.legs=[
-					{top:24-(player[a]-1)*12,bottom:12-(player[a]-1)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-					{top:12-(player[a]-1)*6,bottom:36-(player[a]-1)*6,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-				]
-				p1.anim.arms=[
-					{top:36-(player[a]-1)*9,bottom:-6+(player[a]-1)*87,length:{top:16,bottom:16}},
-					{top:27-(player[a]-1)*3,bottom:108-(player[a]-1)*90,length:{top:16,bottom:16}}
-				]
-				p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
-				p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-1)*45,lock:0}]
-				p1.display()
-			}
 		break
 		case 1:
 			layer.noStroke()
@@ -1423,31 +1400,6 @@ function setupBackground(type,player,layer){
                 layer.fill(90-60*a/la)
                 layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
             }
-			for(let a=0,la=player.length;a<la;a++){
-				p1=new combatant(layer,{player:[0]},950-la*100+a*400,940+a*40,0,0,0,0,player[a],0,0,-45)
-				if(player[a]==2){
-					p1.parts.mouth+=4
-					p1.spin.mouth+=180
-				}
-				p1.trigger.display.extra.damage=true
-				p1.anim.eye=[1,1]
-				p1.anim.mouth.y++
-				p1.size=5
-				p1.fade=1
-				p1.trigger.display.extra.sword=false
-				p1.anim.legs=[
-					{top:30-a*6,bottom:-60-a*36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-					{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-				]
-				p1.anim.arms=[
-					{top:36,bottom:12,length:{top:16,bottom:16}},
-					{top:36+a*12,bottom:60-a*42,length:{top:16,bottom:16}}
-				]
-				p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
-				p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
-				p1.direction=84
-				p1.display()
-			}
 		break
 		case 2:
 			/**/
@@ -1484,6 +1436,68 @@ function setupBackground(type,player,layer){
 				layer.arc(900,920,(120-a*5),(120-a*5),-20,200)
             	layer.quad(900+cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,920,900-cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,760+a*6.25)
 			}
+		break
+	}
+}
+function setupCombatantBackground(type,player,layer){
+	layer.image(graphics.backgrounds[type],0,0,layer.width,layer.height)
+	switch(type){
+		case 0:
+			for(let a=0,la=player.length;a<la;a++){
+				p1=new combatant(layer,{player:[0]},1200-la*175+a*525,1070,0,0,0,0,player[a],0,0,-30)
+				if(player[a]==1){
+					p1.parts.mouth-=4
+					p1.spin.mouth-=180
+				}else if(player[a]==2){
+					p1.anim.mouth.y++
+				}
+				p1.size=5
+				p1.fade=1
+				p1.spin.sword=36-(player[a]-1)*24
+				p1.anim.legs=[
+					{top:24-(player[a]-1)*12,bottom:12-(player[a]-1)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+					{top:12-(player[a]-1)*6,bottom:36-(player[a]-1)*6,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+				]
+				p1.anim.arms=[
+					{top:36-(player[a]-1)*9,bottom:-6+(player[a]-1)*87,length:{top:16,bottom:16}},
+					{top:27-(player[a]-1)*3,bottom:108-(player[a]-1)*90,length:{top:16,bottom:16}}
+				]
+				p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+				p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-1)*45,lock:0}]
+				p1.display()
+			}
+		break
+		case 1:
+			for(let a=0,la=player.length;a<la;a++){
+				p1=new combatant(layer,{player:[0]},950-la*100+a*400,940+a*40,0,0,0,0,player[a],0,0,-45)
+				if(player[a]==2){
+					p1.parts.mouth+=4
+					p1.spin.mouth+=180
+				}
+				p1.trigger.display.extra.damage=true
+				p1.anim.eye=[1,1]
+				p1.anim.mouth.y++
+				p1.size=5
+				p1.fade=1
+				p1.trigger.display.extra.sword=false
+				p1.anim.legs=[
+					{top:30-a*6,bottom:-60-a*36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+					{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+				]
+				p1.anim.arms=[
+					{top:36,bottom:12,length:{top:16,bottom:16}},
+					{top:36+a*12,bottom:60-a*42,length:{top:16,bottom:16}}
+				]
+				p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+				p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				p1.direction=84
+				p1.display()
+			}
+		break
+		case 2:
+			/**/
+		break
+		case 3: case 4:
 			for(let a=0,la=player.length;a<la;a++){
 				p1=new combatant(layer,{player:[0]},700-a*200,1040,0,0,0,0,player[a],0,0,30+a*3)
 				if(player[a]==1){
@@ -1539,23 +1553,29 @@ function setupGraphics(){
 	setupLayer(graphics.main)
 	graphics.combatantGen=[[1],[2],[1,2],[2,1]]
 	graphics.backgrounds=[]
+	graphics.combatantBackgrounds=[]
 	for(let a=0;a<10;a++){
-		graphics.backgrounds.push([])
+		graphics.backgrounds.push(createGraphics(1800,1200))
+		setupLayer(graphics.backgrounds[a])
+		graphics.combatantBackgrounds.push([])
 		for(let b=0;b<graphics.combatantGen.length;b++){
-			graphics.backgrounds[a].push(createGraphics(1800,1200))
-			setupLayer(graphics.backgrounds[a][b])
+			graphics.combatantBackgrounds[a].push(createGraphics(1800,1200))
+			setupLayer(graphics.combatantBackgrounds[a][b])
 		}
 	}
 	graphics.minor=[]
 
 	setupGeneralGraphics()
 	setupCombatantGraphics(0)
-	setupCombatantGraphics(1)
+	//setupCombatantGraphics(1)
 
+	//setupBackground(0,graphics.backgrounds[0])
+	//setupBackground(1,graphics.backgrounds[1])
+	//setupBackground(3,graphics.backgrounds[3])
 	for(let a=0,la=graphics.combatantGen.length;a<la;a++){
-		setupBackground(0,graphics.combatantGen[a],graphics.backgrounds[0][a])
-		setupBackground(1,graphics.combatantGen[a],graphics.backgrounds[1][a])
-		setupBackground(3,graphics.combatantGen[a],graphics.backgrounds[3][a])
+		//setupCombatantBackground(0,graphics.combatantGen[a],graphics.combatantBackgrounds[0][a])
+		//setupCombatantBackground(1,graphics.combatantGen[a],graphics.combatantBackgrounds[1][a])
+		//setupCombatantBackground(3,graphics.combatantGen[a],graphics.combatantBackgrounds[3][a])
 	}
 	/*
 	0-Title

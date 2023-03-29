@@ -230,6 +230,9 @@ function updateMouse(layer){
 	inputs.rel.x=(inputs.mouse.x-width/2)/stage.scale+layer.width/2
 	inputs.rel.y=(inputs.mouse.y-height/2)/stage.scale+layer.height/2
 }
+function quickAdd(name){
+	current.cardManagers[constrain(current.turn.main,0,current.player.length-1)].hand.add(findName(name,types.card),0,0)
+}
 function kill(index){
 	current.combatantManager.combatants[index].life=0
 }

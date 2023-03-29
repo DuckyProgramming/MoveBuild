@@ -151,7 +151,7 @@ class attack{
                 this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                 this.userCombatant.runAnimation(1/15,0)
                 if(this.timer==10*this.targetDistance&&this.type==20){
-                    this.battle.cardManager.hand.randomEffect(0)
+                    this.battle.cardManagers[this.player].hand.randomEffect(0)
                 }
                 if(this.timer>=15*this.targetDistance){
                     this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
@@ -164,7 +164,7 @@ class attack{
                     this.userCombatant.startAnimation(2)
                 }
                 if(this.timer>10&&this.timer<=20||this.timer>25&&this.timer<=35){
-                    this.userCombatant.runAnimation(1/10,2)
+                    this.userCombatant.runAnimation(1/20,2)
                 }
                 if(this.timer==15||this.timer==30){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -228,24 +228,40 @@ class attack{
                     }
                 }
             break
-            case 6:
+            case 6: case 41:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
                 this.userCombatant.runAnimation(1/10,4)
                 if(this.timer==10){
-                    this.userCombatant.statusEffect('Double Damage',this.effect[0])
+                    switch(this.type){
+                        case 6:
+                            this.userCombatant.statusEffect('Double Damage',this.effect[0])
+                        break
+                        case 41:
+                            this.battle.energy.main[this.player]+=this.effect[0]
+                        break
+                    }
                 }else if(this.timer>=20){
                     this.remove=true
                 }
             break
-            case 8:
+            case 8: case 40:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
                 this.userCombatant.runAnimation(1/10,5)
                 if(this.timer==10){
-                    this.battle.cardManager.draw(this.effect[0])
+                    switch(this.type){
+                        case 8:
+                            this.battle.cardManagers[this.player].draw(this.effect[0])
+                        break
+                        case 40:
+                            let amount=this.battle.cardManagers[this.player].hand.cards.length
+                            this.battle.cardManagers[this.player].allEffect(2,2)
+                            this.battle.cardManagers[this.player].draw(amount)
+                        break
+                    }
                 }else if(this.timer>=20){
                     this.remove=true
                 }
@@ -727,8 +743,8 @@ class attack{
                 }
                 this.userCombatant.runAnimation(1/10,5)
                 if(this.timer==10){
-                    this.battle.overlayManager.overlays[7].active=true
-                    this.battle.overlayManager.overlays[7].activate()
+                    this.battle.overlayManager.overlays[7][this.player].active=true
+                    this.battle.overlayManager.overlays[7][this.player].activate()
                 }else if(this.timer>=20){
                     this.remove=true
                 }
@@ -739,8 +755,8 @@ class attack{
                 }
                 this.userCombatant.runAnimation(1/10,5)
                 if(this.timer==10){
-                    this.battle.overlayManager.overlays[8].active=true
-                    this.battle.overlayManager.overlays[8].activate()
+                    this.battle.overlayManager.overlays[8][this.player].active=true
+                    this.battle.overlayManager.overlays[8][this.player].activate()
                 }else if(this.timer>=20){
                     this.remove=true
                 }

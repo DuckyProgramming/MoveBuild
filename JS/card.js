@@ -67,7 +67,7 @@ class card{
             case 7: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Fatal, Gain\n'+this.effect[1]+' Energy'; break
             case 8: string+='Draw '+this.effect[0]+' Cards'; break
             case 9: string+='Swap With an\nAdjacent Enemy\nTarget Will Face User\nor\nMove '+this.effect[0]+' Tiles'; break
-            case 10: string+='Heal '+this.effect+' Health'; break
+            case 10: string+='Heal '+this.effect[0]+' Health'; break
             case 11: string+='Pull 1 Tile\nTarget Will Face User'; break
             case 12: string+='Deal '+this.calculateEffect(this.effect[0],0)+'X Damage'; break
             case 13: string+='Add '+this.effect[0]+ 'X Block'; break
@@ -94,6 +94,8 @@ class card{
             case 37: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDisarm'; break
             case 38: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Target Will Attack,\nReduce Damage by '+this.effect[1]; break
             case 39: string+='Apply '+this.effect[0]+' Bleed'; break
+            case 40: string+='Discard Your Hand\nDraw That Many Cards'; break
+            case 41: string+='Gain '+this.effect[0]+' Energy'; break
             
         }
         if(string[string.length-1]=='\n'){
