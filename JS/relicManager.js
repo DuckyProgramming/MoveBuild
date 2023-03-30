@@ -9,6 +9,8 @@ class relicManager{
 
         this.relics=[]
         this.position=0
+        this.total=0
+        this.up=false
 
         this.initialListing()
         this.addRelic(0,0)
@@ -27,6 +29,7 @@ class relicManager{
         this.active[types.relic[type].id]+=1
         this.relics.push(new relic(this.layer,25+(this.position%18)*50,50+floor(this.position/18)*50,types.relic[type].id))
         this.position++
+        this.total++
         this.get(types.relic[type].id,player)
     }
     get(type,player){
@@ -88,7 +91,17 @@ class relicManager{
     }
     update(){
         for(let a=0,la=this.relics.length;a<la;a++){
-            this.relics[a].update()
+            this.relics[a].update(this.up,this.total)
+        }
+    }
+    onClick(){
+        if(dist(inputs.rel.x,inputs.rel.y,25,50)<20){
+            this.up=toggle(this.up)
+        }
+    }
+    onKey(key,code){
+        if(key=='i'){
+            this.up=toggle(this.up)
         }
     }
 }

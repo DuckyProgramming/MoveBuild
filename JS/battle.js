@@ -480,6 +480,7 @@ class battle{
                         this.overlayManager.onClick()
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
+                        this.relicManager.onClick()
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:24})){
                             this.overlayManager.overlays[1][this.turn.main].active=true
                             this.overlayManager.overlays[1][this.turn.main].activate()
@@ -547,6 +548,7 @@ class battle{
                         this.overlayManager.onKey(key,code)
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
+                        this.relicManager.onKey(key,code)
                         if(key=='r'||key=='R'){
                             this.overlayManager.overlays[1][this.turn.main].active=true
                             this.overlayManager.overlays[1][this.turn.main].activate()

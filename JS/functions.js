@@ -42,6 +42,13 @@ function mergeColor(color1,color2,value){
 function upColor(color,value,key){
 	return [color[0]+value*key[0],color[1]+value*key[1],color[2]+value*key[2]]
 }
+function toggle(bool){
+	if(bool){
+		return false
+	}else{
+		return true
+	}
+}
 function sign(value){
 	if(value<0){
 		return -1
