@@ -170,6 +170,9 @@ class combatantManager{
                 for(let a=0,la=this.combatants.length;a<la;a++){
                     this.combatants[a].displayInfo('battle')
                 }
+                for(let a=0,la=this.combatants.length;a<la;a++){
+                    this.combatants[a].displayInfo('overlay')
+                }
             break
             case 'rest':
                 for(let a=0,la=this.combatants.length;a<la;a++){

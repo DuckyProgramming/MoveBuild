@@ -84,6 +84,9 @@ class overlay{
                         this.battle.overlayManager.overlays[3][this.player].active=true
                         this.battle.overlayManager.overlays[3][this.player].activate(args.value)
                     break
+                    case 2:
+                        this.battle.relicManager.addRandomRelic(this.player)
+                    break
                 }
             break
         }
@@ -130,6 +133,21 @@ class overlay{
                             this.layer.noStroke()
                             this.layer.textSize(16)
                             this.layer.text('New Card',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
+                        break
+                        case 2:
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
+                            this.layer.fill(200,this.fade)
+                            this.layer.noStroke()
+                            this.layer.ellipse(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,30,30)
+                            this.layer.stroke(100,this.fade)
+                            this.layer.noFill()
+                            this.layer.strokeWeight(1)
+                            this.layer.ellipse(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,12,12)
+                            this.layer.ellipse(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,18,18)
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.noStroke()
+                            this.layer.textSize(16)
+                            this.layer.text('New Relic',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
                         break
                     }
                 }

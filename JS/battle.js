@@ -61,6 +61,29 @@ class battle{
             this.playerKey=this.player[0]+1
         }
     }
+    calculatePlayerKeyDamage(){
+        if(this.player.length==1){
+            if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(0)].trigger.display.extra.damage){
+                this.playerKeyDamage=1
+            }else{
+                this.playerKeyDamage=0
+            }
+        }else if(this.player.length==2){
+            if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(0)].trigger.display.extra.damage){
+                if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(1)].trigger.display.extra.damage){
+                    this.playerKeyDamage=3
+                }else{
+                    this.playerKeyDamage=2
+                }
+            }else{
+                if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(1)].trigger.display.extra.damage){
+                    this.playerKeyDamage=1
+                }else{
+                    this.playerKeyDamage=0
+                }
+            }
+        }
+    }
     setupBattle(encounter){
         this.encounter.class=encounter.class
         for(let a=0,la=this.energy.base.length;a<la;a++){
@@ -117,6 +140,9 @@ class battle{
     }
     setupShop(){
         this.purchaseManager.setup()
+    }
+    setupStash(){
+        this.relicManager.setupStash()
     }
     addCombatant(position,type,team,direction){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
@@ -289,7 +315,7 @@ class battle{
                 this.combatantManager.displayInfo(scene)
                 this.particleManager.display()
                 this.overlayManager.display()
-                this.relicManager.display()
+                this.relicManager.display(stage.scene)
                 this.displayCurrency()
                 if(this.anim.defeat>0){
                     this.layer.fill(0,this.anim.defeat)
@@ -315,7 +341,8 @@ class battle{
                 this.displayCurrency()
             break
             case 'rest':
-                this.layer.image(graphics.combatantBackgrounds[3][this.playerKey],0,0,this.layer.width,this.layer.height)
+                this.calculatePlayerKeyDamage()
+                this.layer.image(graphics.combatantBackgrounds[3][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
@@ -364,10 +391,17 @@ class battle{
                 this.displayCurrency()
             break
             case 'defeat':
-                this.layer.image(graphics.combatantBackgrounds[1][this.playerKey],0,0,this.layer.width,this.layer.height)
+                this.calculatePlayerKeyDamage()
+                this.layer.image(graphics.combatantBackgrounds[1][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
+            break
+            case 'stash':
+                this.calculatePlayerKeyDamage()
+                this.layer.image(graphics.combatantBackgrounds[4][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
+                this.relicManager.display(stage.scene)
             break
             case 'perk':
-                this.layer.image(graphics.combatantBackgrounds[0][this.playerKey],0,0,this.layer.width,this.layer.height)
+                this.calculatePlayerKeyDamage()
+                this.layer.image(graphics.combatantBackgrounds[0][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
             break
         }
     }
@@ -385,7 +419,7 @@ class battle{
                 }
                 this.particleManager.update()
                 this.overlayManager.update()
-                this.relicManager.update()
+                this.relicManager.update(stage.scene)
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                 }
@@ -427,6 +461,7 @@ class battle{
                                 case 1:
                                     this.overlayManager.overlays[0][a].activate([
                                         {type:1,value:[1,floor(random(0,2))]},
+                                        {type:2,value:[]},
                                         {type:0,value:[floor(random(120,201))]}])
                                 break
                             }
@@ -470,6 +505,9 @@ class battle{
                 }
                 this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:528},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
             break
+            case 'stash':
+                this.relicManager.update(stage.scene)
+            break
         }
     }
     onClick(scene){
@@ -480,7 +518,7 @@ class battle{
                         this.overlayManager.onClick()
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
-                        this.relicManager.onClick()
+                        this.relicManager.onClick(stage.scene)
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:24})){
                             this.overlayManager.overlays[1][this.turn.main].active=true
                             this.overlayManager.overlays[1][this.turn.main].activate()
@@ -538,6 +576,9 @@ class battle{
                     }
                 }
             break
+            case 'stash':
+                this.relicManager.onClick(stage.scene)
+            break
         }
     }
     onKey(scene,key,code){
@@ -548,7 +589,7 @@ class battle{
                         this.overlayManager.onKey(key,code)
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
-                        this.relicManager.onKey(key,code)
+                        this.relicManager.onKey(stage.scene,key,code)
                         if(key=='r'||key=='R'){
                             this.overlayManager.overlays[1][this.turn.main].active=true
                             this.overlayManager.overlays[1][this.turn.main].activate()
@@ -579,7 +620,10 @@ class battle{
                     this.overlayManager.onKey(key,code)
                 }else{
                     for(let a=0,la=this.optionManagers.length;a<la;a++){
-                        this.optionManagers[a].onKey(key,code)
+                        if(!this.optionManagers[a].complete){
+                            this.optionManagers[a].onKey(key,code)
+                            break
+                        }
                     }
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
@@ -605,6 +649,9 @@ class battle{
                         transition.scene='map'
                     }
                 }
+            break
+            case 'stash':
+                this.relicManager.onKey(stage.scene,key,code)
             break
         }
     }

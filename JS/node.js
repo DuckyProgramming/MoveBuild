@@ -132,6 +132,20 @@ class node{
                 this.layer.textSize(12)
                 this.layer.text('Unknown',0,25)
             break
+            case 6:
+                this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,-7,32,12)
+                this.layer.rect(0,7,28,16)
+                this.layer.rect(0,-4,6,4)
+                this.layer.noStroke()
+                this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.rect(0,24,36,14,3)
+                this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(12)
+                this.layer.text('Stash',0,25)
+            break
         }
         this.layer.pop()
     }

@@ -1,8 +1,9 @@
 class relic{
-    constructor(layer,x,y,type){
+    constructor(layer,x,y,type,size){
         this.layer=layer
         this.position={x:x,y:y}
         this.type=type
+        this.size=size
 
         this.name=types.relic[this.type].name
         this.description=types.relic[this.type].description
@@ -10,14 +11,20 @@ class relic{
 
         this.fade=0
         this.infoFade=0
+        this.deFade=false
     }
-    display(){
+    display(scene){
         if(this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
+            this.layer.scale(this.size)
             this.layer.fill(200,this.fade)
             this.layer.noStroke()
             this.layer.ellipse(0,0,40,40)
+            if(scene=='stash'){
+                this.layer.fill(150,this.fade)
+                this.layer.rect(0,0,2,40)
+            }
             switch(this.name){
                 case '':
                     displaySymbol(this.layer,0,0,1,0,1,this.fade)
@@ -136,7 +143,7 @@ class relic{
         }
     }
     update(up,total){
-        this.fade=smoothAnim(this.fade,up||this.type==0&&total>0,0,1,5)
-        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20&&this.type!=0,0,1,5)
+        this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
+        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.size&&this.type!=0,0,1,5)
     }
 }

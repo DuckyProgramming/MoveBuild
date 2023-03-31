@@ -1856,12 +1856,12 @@ class combatant{
                                         this.graphics.arms[g].middle.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)))
                                     this.layer.vertex(this.graphics.arms[g].middle.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)),
                                         this.graphics.arms[g].middle.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.25+(0.2+g*0.05)*h/lh),
-                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.25+(0.2+g*0.05)*h/lh))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.45+g*0.05),
-                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.45+g*0.05))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.25+(0.2+g*0.05)*h/lh),
-                                        this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.25+(0.2+g*0.05)*h/lh))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.45+(0.2+g*0.05)*h/lh),
+                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.45+(0.2+g*0.05)*h/lh))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.65+g*0.05),
+                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.65+g*0.05))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.45+(0.2+g*0.05)*h/lh),
+                                        this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.45+(0.2+g*0.05)*h/lh))
                                     this.layer.endShape()
                                 }else{
                                     this.layer.quad(
@@ -2105,12 +2105,12 @@ class combatant{
                                         this.graphics.arms[g].middle.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)))
                                     this.layer.vertex(this.graphics.arms[g].middle.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)),
                                         this.graphics.arms[g].middle.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.25+(0.2+g*0.05)*h/lh),
-                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.25+(0.2+g*0.05)*h/lh))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.45+g*0.05),
-                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.45+g*0.05))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.25+(0.2+g*0.05)*h/lh),
-                                        this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.25+(0.2+g*0.05)*h/lh))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.45+(0.2+g*0.05)*h/lh),
+                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.45+(0.2+g*0.05)*h/lh))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.65+g*0.05),
+                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.65+g*0.05))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.24+(0.2+g*0.05)*h/lh),
+                                        this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.24+(0.2+g*0.05)*h/lh))
                                     this.layer.endShape()
                                 }else{
                                     this.layer.quad(
@@ -2189,7 +2189,7 @@ class combatant{
                     if(this.trigger.display.sleeveDecoration){
                         this.layer.noStroke()
                         for(let g=0,lg=this.spin.sleeve.decoration.length;g<lg;g++){
-                            if(cos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0.2&&cos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)<=-0.3){
+                            if(cos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0.2&&cos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)<=-0.3&&!(this.spin.sleeve.decoration[g].length>1.5&&this.trigger.display.extra.damage)){
                                 h=this.spin.sleeve.decoration[g].part
                                 this.layer.push()
                                 if(this.spin.sleeve.decoration[g].length>1){
@@ -2824,12 +2824,12 @@ class combatant{
                                         this.graphics.arms[g].middle.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)))
                                     this.layer.vertex(this.graphics.arms[g].middle.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)),
                                         this.graphics.arms[g].middle.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.165-0.12*h/lh)*(g*2-1)*sign(cos(this.anim.direction)))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.25+(0.2+g*0.05)*h/lh),
-                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.25+(0.2+g*0.05)*h/lh))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.45+g*0.05),
-                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.45+g*0.05))
-                                    this.layer.vertex(this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.25+(0.2+g*0.05)*h/lh),
-                                        this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.25+(0.2+g*0.05)*h/lh))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.45+(0.2+g*0.05)*h/lh),
+                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.45+(0.2+g*0.05)*h/lh))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x-(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.65+g*0.05),
+                                        this.graphics.arms[g].bottom.y+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(-0.1+g*0.175)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.65+g*0.05))
+                                    this.layer.vertex(this.graphics.arms[g].bottom.x+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.45+(0.2+g*0.05)*h/lh),
+                                        this.graphics.arms[g].bottom.y-(this.graphics.arms[g].middle.x-this.graphics.arms[g].bottom.x)*(0.27-0.18*h/lh)*(g*2-1)*sign(cos(this.anim.direction))+(this.graphics.arms[g].middle.y-this.graphics.arms[g].bottom.y)*(0.45+(0.2+g*0.05)*h/lh))
                                     this.layer.endShape()
                                 }else{
                                     this.layer.quad(
@@ -2882,7 +2882,7 @@ class combatant{
                     if(this.trigger.display.sleeveDecoration){
                         this.layer.noStroke()
                         for(let g=0,lg=this.spin.sleeve.decoration.length;g<lg;g++){
-                            if(cos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0.2&&cos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)>-0.3){
+                            if(cos(this.spin.sleeve.decoration[g].spin+this.anim.direction)>=0.2&&cos(this.spin.arms[this.spin.sleeve.decoration[g].part].top+this.anim.direction)>-0.3&&!(this.spin.sleeve.decoration[g].length>1.5&&this.trigger.display.extra.damage)){
                                 h=this.spin.sleeve.decoration[g].part
                                 this.layer.push()
                                 if(this.spin.sleeve.decoration[g].length>1){
@@ -3266,6 +3266,8 @@ class combatant{
                     this.displayInfoInternal()
                     this.layer.pop()
                 }
+            break
+            case 'overlay':
                 if(this.fade>0&&this.infoAnim.description>0){
                     if(this.team>0){
                         this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[0],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[1],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[2],this.fade*this.infoAnim.description)

@@ -4,12 +4,11 @@ Bugs:
 General performance issues (?)
 
 Mechanics:
-Prize
 Shop (Relics, Items) (Double as Well)
+Battle Reward (Items)
 Lose-Stats(Same stats as win though)
 Menu
 Perk
-Relics
 Items
 Event-Off Unknown
 Boss Rewards

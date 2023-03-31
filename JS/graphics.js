@@ -1404,7 +1404,7 @@ function setupBackground(type,layer){
 		case 2:
 			/**/
 		break
-		case 3: case 4:
+		case 3:
 			layer.noStroke()
 			for(let a=0,la=layer.height*4/5;a<la;a++){
                 layer.fill(50-20*a/la,40-20*a/la,50-20*a/la)
@@ -1437,9 +1437,34 @@ function setupBackground(type,layer){
             	layer.quad(900+cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,920,900-cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,760+a*6.25)
 			}
 		break
+		case 4:
+			layer.noStroke()
+			for(let a=0,la=layer.height*4/5;a<la;a++){
+                layer.fill(200-50*a/la,225-50*a/la,250-50*a/la)
+                layer.rect(layer.width/2,a+0.5,layer.width,2)
+            }
+			for(let a=0,la=400;a<la;a++){
+				b=random(0,180)
+				c=sqrt(random(0,600**2))
+				layer.push()
+				layer.translate(layer.width*0.7+cos(b)*c,layer.height*0.825-sin(b)*c*0.5)
+				layer.rotate(random(0,360))
+				layer.fill(random(100,120),random(100,120),random(90,100))
+				layer.rect(0,0,random(60,80))
+				layer.pop()
+			}
+			for(let a=0,la=50;a<la;a++){
+				layer.fill(random(100,120),120,120)
+				layer.ellipse(random(0,layer.width),layer.height*0.8+random(-5,5),random(20,40))
+			}
+			for(let a=0,la=layer.height/5;a<la;a++){
+                layer.fill(125-25*a/la,115-25*a/la,105-25*a/la)
+                layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
+            }
+		break
 	}
 }
-function setupCombatantBackground(type,player,layer){
+function setupCombatantBackground(type,player,damage,layer){
 	layer.image(graphics.backgrounds[type],0,0,layer.width,layer.height)
 	switch(type){
 		case 0:
@@ -1464,6 +1489,9 @@ function setupCombatantBackground(type,player,layer){
 				]
 				p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
 				p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-1)*45,lock:0}]
+				if(damage[a]==1){
+					p1.trigger.display.extra.damage=true
+				}
 				p1.display()
 			}
 		break
@@ -1474,7 +1502,6 @@ function setupCombatantBackground(type,player,layer){
 					p1.parts.mouth+=4
 					p1.spin.mouth+=180
 				}
-				p1.trigger.display.extra.damage=true
 				p1.anim.eye=[1,1]
 				p1.anim.mouth.y++
 				p1.size=5
@@ -1491,13 +1518,16 @@ function setupCombatantBackground(type,player,layer){
 				p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
 				p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				p1.direction=84
+				if(damage[a]==1){
+					p1.trigger.display.extra.damage=true
+				}
 				p1.display()
 			}
 		break
 		case 2:
 			/**/
 		break
-		case 3: case 4:
+		case 3:
 			for(let a=0,la=player.length;a<la;a++){
 				p1=new combatant(layer,{player:[0]},700-a*200,1040,0,0,0,0,player[a],0,0,30+a*3)
 				if(player[a]==1){
@@ -1523,7 +1553,7 @@ function setupCombatantBackground(type,player,layer){
 				]
 				p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:150,lock:0}]
 				p1.spin.arms=[{top:-75-a*15,bottom:-12-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
-				if(type==4){
+				if(damage[a]==1){
 					p1.trigger.display.extra.damage=true
 				}
 				p1.display()
@@ -1542,6 +1572,35 @@ function setupCombatantBackground(type,player,layer){
 			}
 			layer.image(graphic,0,0,layer.width,layer.height)
 		break
+		case 4:
+			for(let a=0,la=player.length;a<la;a++){
+				p1=new combatant(layer,{player:[0]},1100-a*600,955+a*65,0,0,0,0,player[a],0,0,30-a*60)
+				if(player[a]==1){
+					p1.parts.mouth-=3
+					p1.spin.mouth-=180
+					p1.anim.mouth.y-=2
+				}else if(player[a]==2){
+					p1.anim.mouth.y--
+				}
+				p1.size=5
+				p1.fade=1
+				p1.trigger.display.extra.sword=false
+				p1.anim.legs=[
+					{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}},
+					{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}}
+				]
+				p1.anim.arms=[
+					{top:18+a*36,bottom:12+a*96,length:{top:16,bottom:16}},
+					{top:27-a*3,bottom:60-a*42,length:{top:16,bottom:16}}
+				]
+				p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+				p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				if(damage[a]==1){
+					p1.trigger.display.extra.damage=true
+				}
+				p1.display()
+			}
+		break
 	}
 }
 function setupGraphics(){
@@ -1552,15 +1611,24 @@ function setupGraphics(){
 	graphics.main=createGraphics(900,600)
 	setupLayer(graphics.main)
 	graphics.combatantGen=[[1],[2],[1,2],[2,1]]
+	graphics.combatantDamageGen=[
+		[[0],[1]],
+		[[0],[1]],
+		[[0,0],[0,1],[1,0],[1,1]],
+		[[0,0],[0,1],[1,0],[1,1]]
+	]
 	graphics.backgrounds=[]
 	graphics.combatantBackgrounds=[]
-	for(let a=0;a<10;a++){
+	for(let a=0;a<5;a++){
 		graphics.backgrounds.push(createGraphics(1800,1200))
 		setupLayer(graphics.backgrounds[a])
 		graphics.combatantBackgrounds.push([])
 		for(let b=0;b<graphics.combatantGen.length;b++){
-			graphics.combatantBackgrounds[a].push(createGraphics(1800,1200))
-			setupLayer(graphics.combatantBackgrounds[a][b])
+			graphics.combatantBackgrounds[a].push([])
+			for(let c=0,lc=graphics.combatantDamageGen[b].length;c<lc;c++){
+				graphics.combatantBackgrounds[a][b].push(createGraphics(1800,1200))
+				setupLayer(graphics.combatantBackgrounds[a][b][c])
+			}
 		}
 	}
 	graphics.minor=[]
@@ -1572,15 +1640,18 @@ function setupGraphics(){
 	//setupBackground(0,graphics.backgrounds[0])
 	//setupBackground(1,graphics.backgrounds[1])
 	//setupBackground(3,graphics.backgrounds[3])
+	//setupBackground(4,graphics.backgrounds[4])
 	for(let a=0,la=graphics.combatantGen.length;a<la;a++){
-		//setupCombatantBackground(0,graphics.combatantGen[a],graphics.combatantBackgrounds[0][a])
-		//setupCombatantBackground(1,graphics.combatantGen[a],graphics.combatantBackgrounds[1][a])
-		//setupCombatantBackground(3,graphics.combatantGen[a],graphics.combatantBackgrounds[3][a])
+		//for(let b=0,lb=graphics.combatantBackgrounds[0][a].length;b<lb;b++){setupCombatantBackground(0,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[0][a][b])}
+		//for(let b=0,lb=graphics.combatantBackgrounds[1][a].length;b<lb;b++){setupCombatantBackground(1,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[1][a][b])}
+		//for(let b=0,lb=graphics.combatantBackgrounds[3][a].length;b<lb;b++){setupCombatantBackground(3,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[3][a][b])}
+		//for(let b=0,lb=graphics.combatantBackgrounds[4][a].length;b<lb;b++){setupCombatantBackground(4,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[4][a][b])}
 	}
 	/*
 	0-Title
 	1-Loss
 	2-Win //
 	3-Rest
+	4-Prize
 	*/
 }

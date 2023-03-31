@@ -3,7 +3,7 @@ function draw(){
     background(125)
     graphics.main.push()
     switch(stage.scene){
-        case 'battle': case 'map': case 'rest': case 'shop': case 'defeat': case 'perk':
+        case 'battle': case 'map': case 'rest': case 'shop': case 'defeat': case 'stash': case 'perk':
             current.display(stage.scene)
             current.update(stage.scene)
         break

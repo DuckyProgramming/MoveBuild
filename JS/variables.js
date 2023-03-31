@@ -105,8 +105,8 @@ types={
         },{
             name:'Knee',rarity:1,list:1,
             levels:[
-                {effect:[8],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
-                {effect:[12],attack:15,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[8],attack:15,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:15,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Quick\nKick',rarity:0,list:1,
@@ -333,7 +333,7 @@ types={
         {name:'Emergency Move',id:8,rarity:0,list:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
         {name:'Redraw',id:9,rarity:0,list:0,description:'Add 1 Redraw at\nthe Start of Combat'},
         {name:'Miracle',id:10,rarity:0,list:0,description:'Add 1 Miracle at\nthe Start of Combat'},
-        {name:'',id:11,rarity:0,list:0,description:''},
+        /*{name:'',id:11,rarity:0,list:0,description:''},
         {name:'',id:12,rarity:0,list:0,description:''},
         {name:'',id:13,rarity:0,list:0,description:''},
         {name:'',id:14,rarity:0,list:0,description:''},
@@ -342,7 +342,7 @@ types={
         {name:'',id:17,rarity:0,list:0,description:''},
         {name:'',id:18,rarity:0,list:0,description:''},
         {name:'',id:19,rarity:0,list:0,description:''},
-        {name:'',id:20,rarity:0,list:0,description:''},
+        {name:'',id:20,rarity:0,list:0,description:''},*/
         //blessed shiny rock?
     ],color:{
         card:[
@@ -464,7 +464,7 @@ types={
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},name:'Human'},
-                {position:{x:6,y:6},name:'Human'},
+                /*{position:{x:6,y:6},name:'Human'},
                 {position:{x:0,y:1},name:'Duck'},
                 {position:{x:0,y:2},name:'Duck'},
                 {position:{x:4,y:1},name:'Duck'},
@@ -472,7 +472,7 @@ types={
                 {position:{x:1,y:4},name:'Duck'},
                 {position:{x:2,y:5},name:'Duck'},
                 {position:{x:6,y:4},name:'Duck'},
-                {position:{x:6,y:5},name:'Duck'},
+                {position:{x:6,y:5},name:'Duck'},*/
             ],reinforce:[
             ],
         },{
