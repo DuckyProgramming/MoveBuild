@@ -8,6 +8,7 @@ class card{
         this.level=level
         this.color=color
         this.id=id
+
         this.width=90
         this.height=120
         this.size=0
@@ -20,9 +21,9 @@ class card{
         this.exhaust=false
         this.select=false
         this.afford=false
+        this.discardEffect=[]
 
         this.anim={select:0,afford:0}
-
         this.colorDetail=types.color.card[this.color]
 
         this.name=types.card[this.type].name
@@ -96,6 +97,13 @@ class card{
             case 39: string+='Apply '+this.effect[0]+' Bleed'; break
             case 40: string+='Discard Your Hand\nDraw That Many Cards'; break
             case 41: string+='Gain '+this.effect[0]+' Energy'; break
+            case 42: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDraw '+this.effect[1]+' Cards'; break
+            case 43: string+='Add '+this.effect[0]+ ' Block\nDraw '+this.effect[1]+' Cards'; break
+            case 44: string+='Shuffle Discard Pile\nInto Draw Pile\nDraw '+this.effect[0]+' Cards'; break
+            case 45: string+='Upgrade All Cards\nTemporarily'; break
+            case 46: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDeals Double Damage\nif Target Has Bleed'; break
+            case 47: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nApply '+this.effect[1]+' Bleed'; break
+            
             
         }
         if(string[string.length-1]=='\n'){

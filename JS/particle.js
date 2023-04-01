@@ -80,7 +80,7 @@ class particle{
                 case 3:
                     if(this.size>0){
                         this.layer.rotate(this.time*6)
-                        this.layer.image(graphics.minor[61],-30*this.size,-30*this.size,60*this.size,60*this.size)
+                        this.layer.image(graphics.minor[19],-30*this.size,-30*this.size,60*this.size,60*this.size)
                     }
                 break
             }

@@ -16,6 +16,10 @@ class purchase{
             case 1:
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
             break
+            case 3:
+                this.relic=new relic(this.layer,0,0,this.args[0],1.5)
+                this.relic.fade=1
+            break
         }
     }
     buy(){
@@ -30,6 +34,9 @@ class purchase{
                 case 2:
                     this.battle.overlayManager.overlays[6][this.player].active=true
                     this.battle.overlayManager.overlays[6][this.player].activate()
+                break
+                case 3:
+                    this.battle.relicManager.addRelic(this.relic.type,this.player)
                 break
             }
         }
@@ -54,6 +61,9 @@ class purchase{
                     this.layer.textSize(10)
                     this.layer.text('Remove Card',0,0)
                 break
+                case 3:
+                    this.relic.display()
+                break
             }
             this.layer.scale(1/min(this.size,1))
         }
@@ -66,8 +76,21 @@ class purchase{
                 this.layer.textSize(16)
                 this.layer.text('Sold Out',0,72.5)
             break
+            case 3:
+                this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
+                this.layer.textSize(16)
+                this.layer.text(this.cost,0,40)
+                this.layer.fill(255,0,0,1-this.anim.usable)
+                this.layer.textSize(16)
+                this.layer.text('Sold Out',0,40)
+            break
         }
         this.layer.pop()
+        switch(this.type){
+            case 3:
+                this.relic.displayInfo()
+            break
+        }
     }
     update(){
         if(this.deSize&&this.size>0||!this.upSize&&this.size>1){
@@ -83,15 +106,22 @@ class purchase{
             break
         }
         if(this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width,height:this.card.height})||
-        this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90,height:120})){
+        this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90,height:120})||
+        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size){
             this.upSize=true
         }else{
             this.upSize=false
         }
+        switch(this.type){
+            case 3:
+                this.relic.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}})
+            break
+        }
     }
     onClick(){
         if(this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width,height:this.card.height})||
-        this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90,height:120})){
+        this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90,height:120})||
+        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size){
             this.buy()
         }
     }

@@ -14,10 +14,10 @@ class group{
                     this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
                 }
                 for(let a=0;a<8;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
+                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
                 }
                 for(let a=0;a<4;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
+                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
                 }
                 for(let a=1,la=types.card.length-2;a<la;a++){
                     //this.add(a,0,0)
@@ -71,6 +71,13 @@ class group{
                 break
                 case 2:
                     this.cards[a].deSize=true
+                break
+                case 3:
+                    this.cards[a].deSize=true
+                    this.cards[a].discardEffect.push(0)
+                break
+                case 4:
+                    this.cards[a]=upgradeCard(this.cards[a])
                 break
             }
         }
@@ -303,7 +310,13 @@ class group{
                         this.cards[a].upSize=false
                     }
                     if(this.cards[a].size<=0){
-                        if(this.cards[a].exhaust){
+                        if(this.cards[a].discardEffect.length>0){
+                            this.cards[a].deSize=false
+                            if(this.cards[a].discardEffect.includes(0)){
+                                this.cards[a]=upgradeCard(this.cards[a])
+                            }
+                            this.cards[a].discardEffect=[]
+                        }else if(this.cards[a].exhaust){
                             this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
                             a--
                             la--

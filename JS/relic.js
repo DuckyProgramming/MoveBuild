@@ -115,34 +115,36 @@ class relic{
                 break
             }
             this.layer.pop()
-            if(this.infoFade>0){
-                this.layer.fill(150,this.infoFade)
-                this.layer.noStroke()
-                this.layer.rect(100,240,160,120,10)
-                this.layer.fill(0,this.infoFade)
-                this.layer.textSize(16)
-                this.layer.text(this.name,100,200)
-                this.layer.textSize(8)
-                this.layer.text(this.description,100,245)
-                this.layer.textSize(10)
-                switch(this.rarity){
-                    case 0:
-                        this.layer.text('Common',100,290)
-                    break
-                    case 1:
-                        this.layer.text('Uncommon',100,290)
-                    break
-                    case 2:
-                        this.layer.text('Rare',100,290)
-                    break
-                    case 3:
-                        this.layer.text('Boss',100,290)
-                    break
-                }
+        }
+    }
+    displayInfo(){
+        if(this.infoFade>0){
+            this.layer.fill(150,this.infoFade)
+            this.layer.noStroke()
+            this.layer.rect(100,240,160,120,10)
+            this.layer.fill(0,this.infoFade)
+            this.layer.textSize(16)
+            this.layer.text(this.name,100,200)
+            this.layer.textSize(8)
+            this.layer.text(this.description,100,245)
+            this.layer.textSize(10)
+            switch(this.rarity){
+                case 0:
+                    this.layer.text('Common',100,290)
+                break
+                case 1:
+                    this.layer.text('Uncommon',100,290)
+                break
+                case 2:
+                    this.layer.text('Rare',100,290)
+                break
+                case 3:
+                    this.layer.text('Boss',100,290)
+                break
             }
         }
     }
-    update(up,total){
+    update(up,total,inputs){
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
         this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.size&&this.type!=0,0,1,5)
     }

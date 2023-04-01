@@ -407,8 +407,8 @@ function generateSprite(layer,type,direction){
 	}
 }
 function setupGeneralGraphics(){
-	for(let g=0;g<62;g++){
-		if(g==56||g==58){
+	for(let g=0;g<21;g++){
+		if(g==14||g==16){
 			graphics.minor.push(createGraphics(160,240))
 		}else{
 			graphics.minor.push(createGraphics(160,160))
@@ -435,355 +435,369 @@ function setupGeneralGraphics(){
 	graphics.minor[1].quad(54,27,106,27,114,33,46,33)
 	graphics.minor[1].quad(54,133,106,133,114,127,46,127)
 
-	for(let g=0;g<8;g++){
-		graphics.minor[g*2+2].stroke(95,55,65)
-		graphics.minor[g*2+2].strokeWeight(20)
-		graphics.minor[g*2+2].line(24+g*7,46+g*13,31+g*7,59+g*13)
-		graphics.minor[g*2+3].stroke(95,55,65)
-		graphics.minor[g*2+3].strokeWeight(20)
-		graphics.minor[g*2+3].line(136-g*7,46+g*13,129-g*7,59+g*13)
-	}
+	graphics.minor[2].stroke(95,55,65)
+	graphics.minor[2].strokeWeight(20)
+	graphics.minor[2].line(24,46,80,150)
+	
+	graphics.minor[3].stroke(95,55,65)
+	graphics.minor[3].strokeWeight(20)
+	graphics.minor[3].line(136,46,80,150)
 
-	graphics.minor[18].translate(80,80)
+	graphics.minor[4].translate(80,80)
 	for(let g=0,lg=8;g<lg;g++){
-		graphics.minor[18].rotate(19-g)
-		graphics.minor[18].fill(100+g*20,50+g*15,150+g*5)
+		graphics.minor[4].rotate(19-g)
+		graphics.minor[4].fill(100+g*20,50+g*15,150+g*5)
 		for(let h=0;h<12;h++){
-			graphics.minor[18].rotate(30)
-			graphics.minor[18].ellipse(0,(24-g)*(1-g/lg),15*(1-g/lg),30*(1-g/lg))
+			graphics.minor[4].rotate(30)
+			graphics.minor[4].ellipse(0,(24-g)*(1-g/lg),15*(1-g/lg),30*(1-g/lg))
 		}
 	}
-	graphics.minor[18].rotate(12)
-	graphics.minor[18].fill(50,0,100)
+	graphics.minor[4].rotate(12)
+	graphics.minor[4].fill(50,0,100)
 	for(let h=0;h<5;h++){
-		graphics.minor[18].rotate(72)
-		graphics.minor[18].rect(0,-6,2,12)
-		graphics.minor[18].ellipse(0,-12,4,4)
+		graphics.minor[4].rotate(72)
+		graphics.minor[4].rect(0,-6,2,12)
+		graphics.minor[4].ellipse(0,-12,4,4)
 	}
 
-	graphics.minor[19].translate(80,80)
+	graphics.minor[5].translate(80,80)
 	for(let g=0,lg=8;g<lg;g++){
-		graphics.minor[19].rotate(26-g)
-		graphics.minor[19].fill(125+g*15,50+g*15,125+g*10)
+		graphics.minor[5].rotate(26-g)
+		graphics.minor[5].fill(125+g*15,50+g*15,125+g*10)
 		for(let h=0;h<8;h++){
-			graphics.minor[19].rotate(45)
-			graphics.minor[19].ellipse(0,(24-g)*(1-g/lg),18*(1-g/lg),30*(1-g/lg))
+			graphics.minor[5].rotate(45)
+			graphics.minor[5].ellipse(0,(24-g)*(1-g/lg),18*(1-g/lg),30*(1-g/lg))
 		}
 	}
-	graphics.minor[19].rotate(48)
-	graphics.minor[19].fill(75,0,75)
+	graphics.minor[5].rotate(48)
+	graphics.minor[5].fill(75,0,75)
 	for(let h=0;h<5;h++){
-		graphics.minor[19].rotate(72)
-		graphics.minor[19].rect(0,-6,2,12)
-		graphics.minor[19].ellipse(0,-12,4,4)
+		graphics.minor[5].rotate(72)
+		graphics.minor[5].rect(0,-6,2,12)
+		graphics.minor[5].ellipse(0,-12,4,4)
 	}
+
+	graphics.minor[6].translate(80,80)
+	for(let g=0;g<4;g+=0.25){
+		graphics.minor[6].fill(80+g*32,200+g*20,80+g*32)
+		graphics.minor[6].triangle(0,0,15+g*2,45-g*5,45-g*5,15+g*2)
+		graphics.minor[6].triangle(0,0,-15-g*2,-45+g*5,-45+g*5,-15-g*2)
+	}
+	graphics.minor[6].erase()
+	graphics.minor[6].triangle(15,20,40,30,20,55)
+	graphics.minor[6].triangle(-15,-60,-40,-20,-20,-25)
+
+	graphics.minor[7].fill(150,160,196)
+	graphics.minor[7].rect(80,80,100,20)
+	graphics.minor[7].ellipse(80,70,100,100)
+	graphics.minor[7].ellipse(80,90,100,100)
+	graphics.minor[7].fill(105,112,137)
+	graphics.minor[7].rect(80,70,100,6)
+	graphics.minor[7].rect(80,90,100,6)
+	graphics.minor[7].quad(36,47,124,47,127,53,33,53)
+	graphics.minor[7].quad(36,113,124,113,127,107,33,107)
+	graphics.minor[7].quad(54,27,106,27,114,33,46,33)
+	graphics.minor[7].quad(54,133,106,133,114,127,46,127)
+	graphics.minor[7].erase()
+	graphics.minor[7].triangle(90,70,65,20,115,20)
+	graphics.minor[7].triangle(65,100,95,140,35,140)
+
+	graphics.minor[8].fill(150,160,196)
+	graphics.minor[8].rect(80,80,100,20)
+	graphics.minor[8].ellipse(80,70,100,100)
+	graphics.minor[8].ellipse(80,90,100,100)
+	graphics.minor[8].fill(105,112,137)
+	graphics.minor[8].rect(80,70,100,6)
+	graphics.minor[8].rect(80,90,100,6)
+	graphics.minor[8].quad(36,47,124,47,127,53,33,53)
+	graphics.minor[8].quad(36,113,124,113,127,107,33,107)
+	graphics.minor[8].quad(54,27,106,27,114,33,46,33)
+	graphics.minor[8].quad(54,133,106,133,114,127,46,127)
+	graphics.minor[8].erase()
+	graphics.minor[8].triangle(70,50,25,20,115,20)
+	graphics.minor[8].triangle(95,85,75,140,115,140)
+
+	graphics.minor[9].fill(151,119,103)
+	graphics.minor[9].rect(80,80,100,20)
+	graphics.minor[9].ellipse(80,70,100,100)
+	graphics.minor[9].ellipse(80,90,100,100)
+	graphics.minor[9].fill(122,94,90)
+	graphics.minor[9].rect(80,70,100,6)
+	graphics.minor[9].rect(80,90,100,6)
+	graphics.minor[9].quad(36,47,124,47,127,53,33,53)
+	graphics.minor[9].quad(36,113,124,113,127,107,33,107)
+	graphics.minor[9].quad(54,27,106,27,114,33,46,33)
+	graphics.minor[9].quad(54,133,106,133,114,127,46,127)
+
+	graphics.minor[10].stroke(201,61,96)
+	graphics.minor[10].strokeWeight(20)
+	graphics.minor[10].line(24,46,80,150)
+	graphics.minor[11].stroke(201,61,96)
+	graphics.minor[11].strokeWeight(20)
+	graphics.minor[11].line(136,46,80,150)
+
+	graphics.minor[12].stroke(233,216,194)
+	graphics.minor[12].strokeWeight(8)
+	for(let a=0,la=4;a<la;a++){
+		graphics.minor[12].point(29+a*14,56+a*26)
+	}
+	graphics.minor[13].stroke(233,216,194)
+	graphics.minor[13].strokeWeight(8)
+	for(let a=0,la=4;a<la;a++){
+		graphics.minor[13].point(131-a*14,56+a*26)
+	}
+
+	graphics.minor[14].translate(80,140)
+	graphics.minor[14].scale(0.4)
+	graphics.minor[14].strokeWeight(0.6)
+	graphics.minor[14].strokeJoin(ROUND)
+	for(let a=0,la=100;a<la;a++){
+		for(let b=0;b<5;b++){
+			graphics.minor[14].fill(136+59*a/la,61+7*a/la,92-5*a/la)
+			graphics.minor[14].stroke(136+59*a/la,61+7*a/la,92-5*a/la)
+			if(a<la/2){
+				graphics.minor[14].beginShape()
+				graphics.minor[14].vertex(0,0)
+				graphics.minor[14].bezierVertex(-21*(1-a/la*2),-20,-28*(1-a/la*2),-50,-3,-70)
+				graphics.minor[14].vertex(-7*(1-(a+1)/la*2),-64)
+				graphics.minor[14].endShape()
+			}
+			graphics.minor[14].rotate(-72)
+			graphics.minor[14].beginShape()
+			graphics.minor[14].vertex(0,0)
+			graphics.minor[14].bezierVertex(21,-20,28,-50,3,-70)
+			if(a>=la/2){
+				graphics.minor[14].vertex(7*(-1+a/la*2),-64)
+				graphics.minor[14].bezierVertex(7*(-1+a/la*2),-50,28*(-1+a/la*2),-14,0,0)
+			}else{
+				graphics.minor[14].vertex(0,-64)
+			}
+			graphics.minor[14].endShape(CLOSE)
+		}
+	}
+	graphics.minor[14].noStroke()
+		graphics.minor[14].fill(124,41,51)
+		for(let a=0;a<5;a++){
+		graphics.minor[14].rotate(72)
+		graphics.minor[14].rotate(-12)
+		graphics.minor[14].quad(0,-4,3,-16,0,-24,-3,-16)
+		graphics.minor[14].rotate(12)
+	}
+	graphics.minor[14].fill(211,153,120)
+	graphics.minor[14].ellipse(0,0,12,12)
+	graphics.minor[14].scale(2.5)
+	graphics.minor[14].translate(0,-30)
+	graphics.minor[14].scale(0.5)
+	graphics.minor[14].strokeWeight(0.6)
+	graphics.minor[14].strokeJoin(ROUND)
+	for(let a=0,la=100;a<la;a++){
+		for(let b=0;b<5;b++){
+			graphics.minor[14].fill(136+59*a/la,61+7*a/la,92-5*a/la)
+			graphics.minor[14].stroke(136+59*a/la,61+7*a/la,92-5*a/la)
+			if(a<la/2){
+				graphics.minor[14].beginShape()
+				graphics.minor[14].vertex(0,0)
+				graphics.minor[14].bezierVertex(-21*(1-a/la*2),-30,-28*(1-a/la*2),-40,-6,-70)
+				graphics.minor[14].vertex(-7*(1-(a+1)/la*2),-56)
+				graphics.minor[14].endShape()
+			}
+			graphics.minor[14].rotate(-72)
+			graphics.minor[14].beginShape()
+			graphics.minor[14].vertex(0,0)
+			graphics.minor[14].bezierVertex(21,-30,28,-40,6,-70)
+			if(a>=la/2){
+				graphics.minor[14].vertex(7*(-1+a/la*2),-56)
+				graphics.minor[14].bezierVertex(7*(-1+a/la*2),-40,28*(-1+a/la*2),-14,0,0)
+			}else{
+				graphics.minor[14].vertex(0,-60)
+			}
+			graphics.minor[14].endShape(CLOSE)
+		}
+	}
+	graphics.minor[14].noStroke()
+	graphics.minor[14].fill(124,41,51)
+	for(let a=0;a<5;a++){
+		graphics.minor[14].rotate(72)
+		graphics.minor[14].rotate(-12)
+		graphics.minor[14].quad(0,-4,3,-16,0,-24,-3,-16)
+		graphics.minor[14].rotate(12)
+	}
+	graphics.minor[14].fill(211,153,120)
+	graphics.minor[14].ellipse(0,0,12,12)
+
+	graphics.minor[15].translate(80,80)
+	graphics.minor[15].scale(0.5)
+	graphics.minor[15].strokeWeight(0.6)
+	graphics.minor[15].strokeJoin(ROUND)
+	for(let a=0,la=100;a<la;a++){
+		for(let b=0;b<5;b++){
+			graphics.minor[15].fill(241+9*a/la,170+52*a/la,189+37*a/la)
+			graphics.minor[15].stroke(241+9*a/la,170+52*a/la,189+37*a/la)
+			if(a<la/2){
+				graphics.minor[15].beginShape()
+				graphics.minor[15].vertex(0,0)
+				graphics.minor[15].bezierVertex(-20*(1-a/la*2),-30,-40*(1-a/la*2),-40,-12,-70)
+				graphics.minor[15].vertex(-12*(1-(a+1)/la*2),-54)
+				graphics.minor[15].endShape()
+			}
+			graphics.minor[15].rotate(-72)
+			graphics.minor[15].beginShape()
+			graphics.minor[15].vertex(0,0)
+			graphics.minor[15].bezierVertex(20,-30,40,-40,12,-70)
+			if(a>=la/2){
+				graphics.minor[15].vertex(12*(-1+a/la*2),-54)
+				graphics.minor[15].bezierVertex(40*(-1+a/la*2),-40,20*(-1+a/la*2),-30,0,0)
+			}else{
+				graphics.minor[15].vertex(0,-54)
+			}
+			graphics.minor[15].endShape(CLOSE)
+		}
+	}
+	graphics.minor[15].noStroke()
+	graphics.minor[15].fill(240,207,211)
+	for(let a=0;a<5;a++){
+		graphics.minor[15].rotate(72)
+		graphics.minor[15].rotate(-12)
+		graphics.minor[15].quad(0,-4,4,-16,0,-24,-4,-16)
+		graphics.minor[15].rotate(12)
+	}
+	graphics.minor[15].fill(254,228,232)
+	graphics.minor[15].ellipse(0,0,12,12)
+
+	graphics.minor[16].translate(80,160)
+	graphics.minor[16].scale(0.3)
+    graphics.minor[16].rotate(36)
+    for(let a=0;a<5;a++){
+        for(let b=0,lb=100;b<lb;b++){
+            graphics.minor[16].fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
+            graphics.minor[16].beginShape()
+            graphics.minor[16].vertex(0,0)
+            graphics.minor[16].bezierVertex(-30*(1-b/lb),-15*(1-b/lb),-30*(1-b/lb),-55*(1-b/lb),-4*(1-b/lb),-70*(1-b/lb))
+            graphics.minor[16].vertex(0,-62*(1-0.75*b/lb))
+            graphics.minor[16].endShape(CLOSE)
+        }
+        graphics.minor[16].rotate(-72)
+        for(let b=0,lb=100;b<lb;b++){
+            graphics.minor[16].fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
+            graphics.minor[16].beginShape()
+            graphics.minor[16].vertex(0,0)
+            graphics.minor[16].bezierVertex(30*(1-b/lb),-15*(1-b/lb),30*(1-b/lb),-55*(1-b/lb),4*(1-b/lb),-70*(1-b/lb))
+            graphics.minor[16].vertex(0,-62*(1-0.75*b/lb))
+            graphics.minor[16].endShape(CLOSE)
+        }
+    }
+    graphics.minor[16].fill(220,160,180)
+    for(let a=0;a<5;a++){
+        graphics.minor[16].rotate(72)
+        graphics.minor[16].rotate(-12)
+        graphics.minor[16].quad(0,-4,4,-16,0,-24,-4,-16)
+        graphics.minor[16].rotate(12)
+    }
+    graphics.minor[16].fill(240,180,200)
+    graphics.minor[16].ellipse(0,0,12,12)
+    graphics.minor[16].rotate(-36)
+    graphics.minor[16].scale(10/3)
+	graphics.minor[16].translate(0,-30)
+	graphics.minor[16].scale(0.5)
+    for(let a=0;a<5;a++){
+        for(let b=0,lb=100;b<lb;b++){
+            graphics.minor[16].fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
+            graphics.minor[16].beginShape()
+            graphics.minor[16].vertex(0,0)
+            graphics.minor[16].bezierVertex(-30*(1-b/lb),-15*(1-b/lb),-30*(1-b/lb),-55*(1-b/lb),-4*(1-b/lb),-70*(1-b/lb))
+            graphics.minor[16].vertex(0,-62*(1-0.75*b/lb))
+            graphics.minor[16].endShape(CLOSE)
+        }
+        graphics.minor[16].rotate(-72)
+        for(let b=0,lb=100;b<lb;b++){
+            graphics.minor[16].fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
+            graphics.minor[16].beginShape()
+            graphics.minor[16].vertex(0,0)
+            graphics.minor[16].bezierVertex(30*(1-b/lb),-15*(1-b/lb),30*(1-b/lb),-55*(1-b/lb),4*(1-b/lb),-70*(1-b/lb))
+            graphics.minor[16].vertex(0,-62*(1-0.75*b/lb))
+            graphics.minor[16].endShape(CLOSE)
+        }
+    }
+    for(let a=0;a<5;a++){
+        graphics.minor[16].rotate(72)
+        graphics.minor[16].rotate(-12)
+        graphics.minor[16].noStroke()
+        graphics.minor[16].fill(255,200,220)
+        graphics.minor[16].quad(0,-4,4,-16,0,-24,-4,-16)
+        graphics.minor[16].rotate(12)
+    }
+    graphics.minor[16].fill(240,180,200)
+    graphics.minor[16].ellipse(0,0,12,12)
+
+	graphics.minor[17].fill(151,119,103)
+	graphics.minor[17].rect(80,80,100,20)
+	graphics.minor[17].ellipse(80,70,100,100)
+	graphics.minor[17].ellipse(80,90,100,100)
+	graphics.minor[17].fill(122,94,90)
+	graphics.minor[17].rect(80,70,100,6)
+	graphics.minor[17].rect(80,90,100,6)
+	graphics.minor[17].quad(36,47,124,47,127,53,33,53)
+	graphics.minor[17].quad(36,113,124,113,127,107,33,107)
+	graphics.minor[17].quad(54,27,106,27,114,33,46,33)
+	graphics.minor[17].quad(54,133,106,133,114,127,46,127)
+	graphics.minor[17].erase()
+	graphics.minor[17].triangle(90,70,65,20,115,20)
+	graphics.minor[17].triangle(65,100,95,140,35,140)
+
+	graphics.minor[18].fill(151,119,103)
+	graphics.minor[18].rect(80,80,100,20)
+	graphics.minor[18].ellipse(80,70,100,100)
+	graphics.minor[18].ellipse(80,90,100,100)
+	graphics.minor[18].fill(122,94,90)
+	graphics.minor[18].rect(80,70,100,6)
+	graphics.minor[18].rect(80,90,100,6)
+	graphics.minor[18].quad(36,47,124,47,127,53,33,53)
+	graphics.minor[18].quad(36,113,124,113,127,107,33,107)
+	graphics.minor[18].quad(54,27,106,27,114,33,46,33)
+	graphics.minor[18].quad(54,133,106,133,114,127,46,127)
+	graphics.minor[18].erase()
+	graphics.minor[18].triangle(70,50,25,20,115,20)
+	graphics.minor[18].triangle(95,85,75,140,115,140)
+
+	graphics.minor[19].noStroke()
+	graphics.minor[19].translate(80,80)
+	graphics.minor[19].scale(-0.9,0.9)
+	graphics.minor[19].rotate(-90)
+	graphics.minor[19].fill(138,141,207)
+	graphics.minor[19].arc(0,0,150,180,0,30)
+	graphics.minor[19].fill(111,114,178)
+	graphics.minor[19].arc(0,0,150,180,30,60)
+	graphics.minor[19].fill(88,82,128)
+	graphics.minor[19].arc(0,0,150,180,60,90)
+	graphics.minor[19].fill(161,168,222)
+	graphics.minor[19].arc(0,0,135,180,0,15)
+	graphics.minor[19].fill(121,124,188)
+	graphics.minor[19].arc(0,0,135,180,15,45)
+	graphics.minor[19].fill(98,92,138)
+	graphics.minor[19].arc(0,0,135,180,45,75)
+	graphics.minor[19].fill(77,65,108)
+	graphics.minor[19].arc(0,0,135,180,75,90)
+	graphics.minor[19].erase()
+	graphics.minor[19].arc(0,0,120,180,0,90)
+	graphics.minor[19].noErase()
+	graphics.minor[19].fill(189,187,237)
+	graphics.minor[19].rect(0,0,160,8,3)
+	graphics.minor[19].fill(149,134,184)
+	graphics.minor[19].rect(0,-2,160,4,3)
 
 	graphics.minor[20].translate(80,80)
-	for(let g=0;g<4;g+=0.25){
-		graphics.minor[20].fill(80+g*32,200+g*20,80+g*32)
-		graphics.minor[20].triangle(0,0,15+g*2,45-g*5,45-g*5,15+g*2)
-		graphics.minor[20].triangle(0,0,-15-g*2,-45+g*5,-45+g*5,-15-g*2)
-	}
-	graphics.minor[20].erase()
-	graphics.minor[20].triangle(15,20,40,30,20,55)
-	graphics.minor[20].triangle(-15,-60,-40,-20,-20,-25)
-
-	graphics.minor[21].fill(150,160,196)
-	graphics.minor[21].rect(80,80,100,20)
-	graphics.minor[21].ellipse(80,70,100,100)
-	graphics.minor[21].ellipse(80,90,100,100)
-	graphics.minor[21].fill(105,112,137)
-	graphics.minor[21].rect(80,70,100,6)
-	graphics.minor[21].rect(80,90,100,6)
-	graphics.minor[21].quad(36,47,124,47,127,53,33,53)
-	graphics.minor[21].quad(36,113,124,113,127,107,33,107)
-	graphics.minor[21].quad(54,27,106,27,114,33,46,33)
-	graphics.minor[21].quad(54,133,106,133,114,127,46,127)
-	graphics.minor[21].erase()
-	graphics.minor[21].triangle(90,70,65,20,115,20)
-	graphics.minor[21].triangle(65,100,95,140,35,140)
-
-	graphics.minor[22].fill(150,160,196)
-	graphics.minor[22].rect(80,80,100,20)
-	graphics.minor[22].ellipse(80,70,100,100)
-	graphics.minor[22].ellipse(80,90,100,100)
-	graphics.minor[22].fill(105,112,137)
-	graphics.minor[22].rect(80,70,100,6)
-	graphics.minor[22].rect(80,90,100,6)
-	graphics.minor[22].quad(36,47,124,47,127,53,33,53)
-	graphics.minor[22].quad(36,113,124,113,127,107,33,107)
-	graphics.minor[22].quad(54,27,106,27,114,33,46,33)
-	graphics.minor[22].quad(54,133,106,133,114,127,46,127)
-	graphics.minor[22].erase()
-	graphics.minor[22].triangle(70,50,25,20,115,20)
-	graphics.minor[22].triangle(95,85,75,140,115,140)
-
-	graphics.minor[23].fill(151,119,103)
-	graphics.minor[23].rect(80,80,100,20)
-	graphics.minor[23].ellipse(80,70,100,100)
-	graphics.minor[23].ellipse(80,90,100,100)
-	graphics.minor[23].fill(122,94,90)
-	graphics.minor[23].rect(80,70,100,6)
-	graphics.minor[23].rect(80,90,100,6)
-	graphics.minor[23].quad(36,47,124,47,127,53,33,53)
-	graphics.minor[23].quad(36,113,124,113,127,107,33,107)
-	graphics.minor[23].quad(54,27,106,27,114,33,46,33)
-	graphics.minor[23].quad(54,133,106,133,114,127,46,127)
-
-	for(let g=0;g<8;g++){
-		graphics.minor[g*2+24].stroke(201,61,96)
-		graphics.minor[g*2+24].strokeWeight(20)
-		graphics.minor[g*2+24].line(24+g*7,46+g*13,31+g*7,59+g*13)
-		graphics.minor[g*2+25].stroke(201,61,96)
-		graphics.minor[g*2+25].strokeWeight(20)
-		graphics.minor[g*2+25].line(136-g*7,46+g*13,129-g*7,59+g*13)
-		if(g%2==1){
-			graphics.minor[g*2+40].stroke(233,216,194)
-			graphics.minor[g*2+40].strokeWeight(8)
-			graphics.minor[g*2+40].point(31+g*7,53+g*13)
-			graphics.minor[g*2+41].stroke(233,216,194)
-			graphics.minor[g*2+41].strokeWeight(8)
-			graphics.minor[g*2+41].point(129-g*7,53+g*13)
-		}
-	}
-
-	graphics.minor[56].translate(80,140)
-	graphics.minor[56].scale(0.4)
-	graphics.minor[56].strokeWeight(0.6)
-	graphics.minor[56].strokeJoin(ROUND)
-	for(let a=0,la=100;a<la;a++){
-		for(let b=0;b<5;b++){
-			graphics.minor[56].fill(136+59*a/la,61+7*a/la,92-5*a/la)
-			graphics.minor[56].stroke(136+59*a/la,61+7*a/la,92-5*a/la)
-			if(a<la/2){
-				graphics.minor[56].beginShape()
-				graphics.minor[56].vertex(0,0)
-				graphics.minor[56].bezierVertex(-21*(1-a/la*2),-20,-28*(1-a/la*2),-50,-3,-70)
-				graphics.minor[56].vertex(-7*(1-(a+1)/la*2),-64)
-				graphics.minor[56].endShape()
-			}
-			graphics.minor[56].rotate(-72)
-			graphics.minor[56].beginShape()
-			graphics.minor[56].vertex(0,0)
-			graphics.minor[56].bezierVertex(21,-20,28,-50,3,-70)
-			if(a>=la/2){
-				graphics.minor[56].vertex(7*(-1+a/la*2),-64)
-				graphics.minor[56].bezierVertex(7*(-1+a/la*2),-50,28*(-1+a/la*2),-14,0,0)
-			}else{
-				graphics.minor[56].vertex(0,-64)
-			}
-			graphics.minor[56].endShape(CLOSE)
-		}
-	}
-	graphics.minor[56].noStroke()
-		graphics.minor[56].fill(124,41,51)
-		for(let a=0;a<5;a++){
-		graphics.minor[56].rotate(72)
-		graphics.minor[56].rotate(-12)
-		graphics.minor[56].quad(0,-4,3,-16,0,-24,-3,-16)
-		graphics.minor[56].rotate(12)
-	}
-	graphics.minor[56].fill(211,153,120)
-	graphics.minor[56].ellipse(0,0,12,12)
-	graphics.minor[56].scale(2.5)
-	graphics.minor[56].translate(0,-30)
-	graphics.minor[56].scale(0.5)
-	graphics.minor[56].strokeWeight(0.6)
-	graphics.minor[56].strokeJoin(ROUND)
-	for(let a=0,la=100;a<la;a++){
-		for(let b=0;b<5;b++){
-			graphics.minor[56].fill(136+59*a/la,61+7*a/la,92-5*a/la)
-			graphics.minor[56].stroke(136+59*a/la,61+7*a/la,92-5*a/la)
-			if(a<la/2){
-				graphics.minor[56].beginShape()
-				graphics.minor[56].vertex(0,0)
-				graphics.minor[56].bezierVertex(-21*(1-a/la*2),-30,-28*(1-a/la*2),-40,-6,-70)
-				graphics.minor[56].vertex(-7*(1-(a+1)/la*2),-56)
-				graphics.minor[56].endShape()
-			}
-			graphics.minor[56].rotate(-72)
-			graphics.minor[56].beginShape()
-			graphics.minor[56].vertex(0,0)
-			graphics.minor[56].bezierVertex(21,-30,28,-40,6,-70)
-			if(a>=la/2){
-				graphics.minor[56].vertex(7*(-1+a/la*2),-56)
-				graphics.minor[56].bezierVertex(7*(-1+a/la*2),-40,28*(-1+a/la*2),-14,0,0)
-			}else{
-				graphics.minor[56].vertex(0,-60)
-			}
-			graphics.minor[56].endShape(CLOSE)
-		}
-	}
-	graphics.minor[56].noStroke()
-	graphics.minor[56].fill(124,41,51)
-	for(let a=0;a<5;a++){
-		graphics.minor[56].rotate(72)
-		graphics.minor[56].rotate(-12)
-		graphics.minor[56].quad(0,-4,3,-16,0,-24,-3,-16)
-		graphics.minor[56].rotate(12)
-	}
-	graphics.minor[56].fill(211,153,120)
-	graphics.minor[56].ellipse(0,0,12,12)
-
-	graphics.minor[57].translate(80,80)
-	graphics.minor[57].scale(0.5)
-	graphics.minor[57].strokeWeight(0.6)
-	graphics.minor[57].strokeJoin(ROUND)
-	for(let a=0,la=100;a<la;a++){
-		for(let b=0;b<5;b++){
-			graphics.minor[57].fill(241+9*a/la,170+52*a/la,189+37*a/la)
-			graphics.minor[57].stroke(241+9*a/la,170+52*a/la,189+37*a/la)
-			if(a<la/2){
-				graphics.minor[57].beginShape()
-				graphics.minor[57].vertex(0,0)
-				graphics.minor[57].bezierVertex(-20*(1-a/la*2),-30,-40*(1-a/la*2),-40,-12,-70)
-				graphics.minor[57].vertex(-12*(1-(a+1)/la*2),-54)
-				graphics.minor[57].endShape()
-			}
-			graphics.minor[57].rotate(-72)
-			graphics.minor[57].beginShape()
-			graphics.minor[57].vertex(0,0)
-			graphics.minor[57].bezierVertex(20,-30,40,-40,12,-70)
-			if(a>=la/2){
-				graphics.minor[57].vertex(12*(-1+a/la*2),-54)
-				graphics.minor[57].bezierVertex(40*(-1+a/la*2),-40,20*(-1+a/la*2),-30,0,0)
-			}else{
-				graphics.minor[57].vertex(0,-54)
-			}
-			graphics.minor[57].endShape(CLOSE)
-		}
-	}
-	graphics.minor[57].noStroke()
-	graphics.minor[57].fill(240,207,211)
-	for(let a=0;a<5;a++){
-		graphics.minor[57].rotate(72)
-		graphics.minor[57].rotate(-12)
-		graphics.minor[57].quad(0,-4,4,-16,0,-24,-4,-16)
-		graphics.minor[57].rotate(12)
-	}
-	graphics.minor[57].fill(254,228,232)
-	graphics.minor[57].ellipse(0,0,12,12)
-
-	graphics.minor[58].translate(80,160)
-	graphics.minor[58].scale(0.3)
-    graphics.minor[58].rotate(36)
+    graphics.minor[20].fill(255,123,205)
+    graphics.minor[20].noStroke()
     for(let a=0;a<5;a++){
-        for(let b=0,lb=100;b<lb;b++){
-            graphics.minor[58].fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
-            graphics.minor[58].beginShape()
-            graphics.minor[58].vertex(0,0)
-            graphics.minor[58].bezierVertex(-30*(1-b/lb),-15*(1-b/lb),-30*(1-b/lb),-55*(1-b/lb),-4*(1-b/lb),-70*(1-b/lb))
-            graphics.minor[58].vertex(0,-62*(1-0.75*b/lb))
-            graphics.minor[58].endShape(CLOSE)
-        }
-        graphics.minor[58].rotate(-72)
-        for(let b=0,lb=100;b<lb;b++){
-            graphics.minor[58].fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
-            graphics.minor[58].beginShape()
-            graphics.minor[58].vertex(0,0)
-            graphics.minor[58].bezierVertex(30*(1-b/lb),-15*(1-b/lb),30*(1-b/lb),-55*(1-b/lb),4*(1-b/lb),-70*(1-b/lb))
-            graphics.minor[58].vertex(0,-62*(1-0.75*b/lb))
-            graphics.minor[58].endShape(CLOSE)
-        }
+        graphics.minor[20].beginShape()
+        graphics.minor[20].vertex(0,0)
+        graphics.minor[20].bezierVertex(-18,-20,-16,-45,0,-45)
+        graphics.minor[20].bezierVertex(16,-45,18,-20,0,0)
+        graphics.minor[20].endShape()
+        graphics.minor[20].rotate(72)
     }
-    graphics.minor[58].fill(220,160,180)
-    for(let a=0;a<5;a++){
-        graphics.minor[58].rotate(72)
-        graphics.minor[58].rotate(-12)
-        graphics.minor[58].quad(0,-4,4,-16,0,-24,-4,-16)
-        graphics.minor[58].rotate(12)
-    }
-    graphics.minor[58].fill(240,180,200)
-    graphics.minor[58].ellipse(0,0,12,12)
-    graphics.minor[58].rotate(-36)
-    graphics.minor[58].scale(10/3)
-	graphics.minor[58].translate(0,-30)
-	graphics.minor[58].scale(0.5)
-    for(let a=0;a<5;a++){
-        for(let b=0,lb=100;b<lb;b++){
-            graphics.minor[58].fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
-            graphics.minor[58].beginShape()
-            graphics.minor[58].vertex(0,0)
-            graphics.minor[58].bezierVertex(-30*(1-b/lb),-15*(1-b/lb),-30*(1-b/lb),-55*(1-b/lb),-4*(1-b/lb),-70*(1-b/lb))
-            graphics.minor[58].vertex(0,-62*(1-0.75*b/lb))
-            graphics.minor[58].endShape(CLOSE)
-        }
-        graphics.minor[58].rotate(-72)
-        for(let b=0,lb=100;b<lb;b++){
-            graphics.minor[58].fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
-            graphics.minor[58].beginShape()
-            graphics.minor[58].vertex(0,0)
-            graphics.minor[58].bezierVertex(30*(1-b/lb),-15*(1-b/lb),30*(1-b/lb),-55*(1-b/lb),4*(1-b/lb),-70*(1-b/lb))
-            graphics.minor[58].vertex(0,-62*(1-0.75*b/lb))
-            graphics.minor[58].endShape(CLOSE)
-        }
-    }
-    for(let a=0;a<5;a++){
-        graphics.minor[58].rotate(72)
-        graphics.minor[58].rotate(-12)
-        graphics.minor[58].noStroke()
-        graphics.minor[58].fill(255,200,220)
-        graphics.minor[58].quad(0,-4,4,-16,0,-24,-4,-16)
-        graphics.minor[58].rotate(12)
-    }
-    graphics.minor[58].fill(240,180,200)
-    graphics.minor[58].ellipse(0,0,12,12)
-
-	graphics.minor[59].fill(151,119,103)
-	graphics.minor[59].rect(80,80,100,20)
-	graphics.minor[59].ellipse(80,70,100,100)
-	graphics.minor[59].ellipse(80,90,100,100)
-	graphics.minor[59].fill(122,94,90)
-	graphics.minor[59].rect(80,70,100,6)
-	graphics.minor[59].rect(80,90,100,6)
-	graphics.minor[59].quad(36,47,124,47,127,53,33,53)
-	graphics.minor[59].quad(36,113,124,113,127,107,33,107)
-	graphics.minor[59].quad(54,27,106,27,114,33,46,33)
-	graphics.minor[59].quad(54,133,106,133,114,127,46,127)
-	graphics.minor[59].erase()
-	graphics.minor[59].triangle(90,70,65,20,115,20)
-	graphics.minor[59].triangle(65,100,95,140,35,140)
-
-	graphics.minor[60].fill(151,119,103)
-	graphics.minor[60].rect(80,80,100,20)
-	graphics.minor[60].ellipse(80,70,100,100)
-	graphics.minor[60].ellipse(80,90,100,100)
-	graphics.minor[60].fill(122,94,90)
-	graphics.minor[60].rect(80,70,100,6)
-	graphics.minor[60].rect(80,90,100,6)
-	graphics.minor[60].quad(36,47,124,47,127,53,33,53)
-	graphics.minor[60].quad(36,113,124,113,127,107,33,107)
-	graphics.minor[60].quad(54,27,106,27,114,33,46,33)
-	graphics.minor[60].quad(54,133,106,133,114,127,46,127)
-	graphics.minor[60].erase()
-	graphics.minor[60].triangle(70,50,25,20,115,20)
-	graphics.minor[60].triangle(95,85,75,140,115,140)
-
-	graphics.minor[61].noStroke()
-	graphics.minor[61].translate(80,80)
-	graphics.minor[61].scale(-0.9,0.9)
-	graphics.minor[61].rotate(-90)
-	graphics.minor[61].fill(138,141,207)
-	graphics.minor[61].arc(0,0,150,180,0,30)
-	graphics.minor[61].fill(111,114,178)
-	graphics.minor[61].arc(0,0,150,180,30,60)
-	graphics.minor[61].fill(88,82,128)
-	graphics.minor[61].arc(0,0,150,180,60,90)
-	graphics.minor[61].fill(161,168,222)
-	graphics.minor[61].arc(0,0,135,180,0,15)
-	graphics.minor[61].fill(121,124,188)
-	graphics.minor[61].arc(0,0,135,180,15,45)
-	graphics.minor[61].fill(98,92,138)
-	graphics.minor[61].arc(0,0,135,180,45,75)
-	graphics.minor[61].fill(77,65,108)
-	graphics.minor[61].arc(0,0,135,180,75,90)
-	graphics.minor[61].erase()
-	graphics.minor[61].arc(0,0,120,180,0,90)
-	graphics.minor[61].noErase()
-	graphics.minor[61].fill(189,187,237)
-	graphics.minor[61].rect(0,0,160,8,3)
-	graphics.minor[61].fill(149,134,184)
-	graphics.minor[61].rect(0,-2,160,4,3)
+    graphics.minor[20].erase()
+    graphics.minor[20].ellipse(0,0,20,20)
 }
 function setupCombatantGraphics(type){
 	switch(type){
@@ -1635,7 +1649,7 @@ function setupGraphics(){
 
 	setupGeneralGraphics()
 	setupCombatantGraphics(0)
-	//setupCombatantGraphics(1)
+	setupCombatantGraphics(1)
 
 	//setupBackground(0,graphics.backgrounds[0])
 	//setupBackground(1,graphics.backgrounds[1])

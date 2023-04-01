@@ -58,6 +58,20 @@ class relicManager{
         this.addRelic(this.listing.relic[rarity][index],player)
         this.listing.relic[rarity].splice(index,1)
     }
+    makeRelicSelection(rarity){
+        this.displayRelics=[]
+        for(let a=0,la=this.complete.length;a<la;a++){
+            this.complete[a]=false
+        }
+        let list=[]
+        let relics=copyArrayStack(this.listing.relic)
+        for(let a=0,la=rarity.length;a<la;a++){
+            let index=floor(random(0,relics[rarity[a]].length))
+            list.push(relics[rarity[a]][index])
+            relics[rarity[a]].splice(index,1)
+        }
+        return list
+    }
     get(type,player){
         switch(type){
             case 5:
@@ -116,6 +130,9 @@ class relicManager{
                 for(let a=0,la=this.relics.length;a<la;a++){
                     this.relics[a].display(scene)
                 }
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    this.relics[a].displayInfo(scene)
+                }
             break
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
@@ -123,6 +140,9 @@ class relicManager{
                         this.displayRelics[a].display('battle')
                     }else{
                         this.displayRelics[a].display(scene)
+                    }
+                    for(let a=0,la=this.displayRelics.length;a<la;a++){
+                        this.displayRelics[a].displayInfo(scene)
                     }
                 }
             break
@@ -132,12 +152,12 @@ class relicManager{
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].update(this.up,this.total)
+                    this.relics[a].update(this.up,this.total,inputs)
                 }
             break
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    this.displayRelics[a].update(true,0)
+                    this.displayRelics[a].update(true,0,inputs)
                 }
             break
         }

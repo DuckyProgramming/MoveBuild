@@ -22,7 +22,7 @@ class attack{
         switch(this.type){
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
             case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
-            case 38: case 39:
+            case 38: case 39: case 42: case 46: case 47:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -83,7 +83,7 @@ class attack{
     update(){
         this.timer++
         switch(this.type){
-            case 1: case 7: case 34: case 35:
+            case 1: case 7: case 34: case 35: case 42: case 46:
                 if(this.targetDistance==1){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(2)
@@ -93,11 +93,17 @@ class attack{
                         if(this.type==35&&this.targetCombatant.life==this.targetCombatant.base.life){
                             this.battle.energy.main[this.player]++
                         }
-                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.type==46&&this.targetCombatant.getStatus('Bleed')>0){
+                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
+                        }else{
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }
                         if(this.type==7&&this.targetCombatant.life<=0){
                             this.battle.energy.main[this.player]++
                         }else if(this.type==34){
                             this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                        }else if(this.type==42){
+                            this.battle.cardManagers[this.player].draw(this.effect[1])
                         }
                     }else if(this.timer>=30){
                         this.remove=true
@@ -127,7 +133,7 @@ class attack{
                     }
                 }
             break
-            case 2: case 23: case 26:
+            case 2: case 23: case 26: case 43:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -138,6 +144,8 @@ class attack{
                         this.userCombatant.statusEffect('Counter',this.effect[1])
                     }else  if(this.type==26){
                         this.userCombatant.statusEffect('Cannot be Pushed',1)
+                    }else if(this.type==43){
+                        this.battle.cardManagers[this.player].draw(this.effect[1])
                     }
                 }else if(this.timer>=30){
                     this.remove=true
@@ -246,7 +254,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 8: case 40:
+            case 8: case 40: case 44: case 45:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -260,6 +268,16 @@ class attack{
                             let amount=this.battle.cardManagers[this.player].hand.cards.length
                             this.battle.cardManagers[this.player].allEffect(2,2)
                             this.battle.cardManagers[this.player].draw(amount)
+                        break
+                        case 44:
+                            this.battle.cardManagers[this.player].send(3,1)
+                            this.battle.cardManagers[this.player].shuffle(1)
+                            this.battle.draw(this.effect[0])
+                        break
+                        case 45:
+                            this.battle.cardManagers[this.player].allEffect(1,4)
+                            this.battle.cardManagers[this.player].allEffect(2,3)
+                            this.battle.cardManagers[this.player].allEffect(3,4)
                         break
                     }
                 }else if(this.timer>=20){
@@ -880,7 +898,7 @@ class attack{
                     }
                 }
             break
-            case 36: case 39:
+            case 36: case 39: case 47:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(16)
                 }
@@ -888,6 +906,9 @@ class attack{
                 if(this.timer==15){
                     if(this.type==39){
                         this.targetCombatant.statusEffect('Bleed',this.effect[0])
+                    }else if(this.type==47){
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Bleed',this.effect[1])
                     }else{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     }

@@ -24,11 +24,6 @@ class cardManager{
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity>=0&&types.card[a].list>=0){
                 this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
-                if(types.card[a].list==0){
-                    for(let b=0,lb=game.playerNumber;b<lb;b++){
-                        this.listing.card[b+1][types.card[a].rarity].push(a)
-                    }
-                }
             }
         }
     }

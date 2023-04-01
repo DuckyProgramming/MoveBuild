@@ -24,7 +24,9 @@ types={
                 {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
             ],
-        },{
+        },
+        
+        {
             name:'Twin\nStrike',rarity:0,list:1,
             levels:[
                 {effect:[5],attack:4,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -71,12 +73,6 @@ types={
             levels:[
                 {effect:[1],attack:9,cost:1,target:[3,1,1],spec:[],class:3},
                 {effect:[1],attack:9,cost:0,target:[3,1,1],spec:[],class:3},
-            ],
-        },{
-            name:'Bandage',rarity:1,list:1,
-            levels:[
-                {effect:[4],attack:10,cost:0,target:[0],spec:[1],class:4},
-                {effect:[6],attack:10,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Pull',rarity:0,list:1,
@@ -243,28 +239,84 @@ types={
         },
 
         {
-            name:'Stab',rarity:0,list:2,
+            name:'Cut',rarity:0,list:2,
             levels:[
                 {effect:[7],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
                 {effect:[10],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
             ],
         },{
-            name:'Throw\nScythe',rarity:0,list:2,
+            name:'Throw\nScythe',rarity:1,list:2,
             levels:[
                 {effect:[15],attack:37,cost:1,target:[2,1,6],spec:[0,6],class:1},
                 {effect:[20],attack:37,cost:1,target:[2,1,6],spec:[0,6],class:1},
             ],
         },{
-            name:'Lament',rarity:1,list:2,
+            name:'Lament',rarity:0,list:2,
             levels:[
                 {effect:[8,2],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12,3],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Scratch',rarity:2,list:2,
+            name:'Scratch',rarity:0,list:2,
             levels:[
                 {effect:[6],attack:39,cost:1,target:[2,1,1],spec:[0,6],class:1},
                 {effect:[9],attack:39,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Open\nWounds',rarity:0,list:2,
+            levels:[
+                {effect:[7],attack:46,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:46,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Quick\nStab',rarity:0,list:2,
+            levels:[
+                {effect:[2,3],attack:47,cost:0,target:[2,1,1],spec:[6],class:1},
+                {effect:[3,4],attack:47,cost:0,target:[2,1,1],spec:[6],class:1},
+            ],
+        },
+
+        {
+            name:'Swift\nStrike',rarity:1,list:0,
+            levels:[
+                {effect:[7],attack:1,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:1,cost:0,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Instincts',rarity:1,list:0,
+            levels:[
+                {effect:[9],attack:2,cost:0,target:[0],spec:[],class:2},
+                {effect:[14],attack:2,cost:0,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Flash\nStrike',rarity:1,list:0,
+            levels:[
+                {effect:[3,1],attack:42,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[6,1],attack:42,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Finesse',rarity:1,list:0,
+            levels:[
+                {effect:[2,1],attack:43,cost:0,target:[0],spec:[],class:2},
+                {effect:[4,1],attack:43,cost:0,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Bandage',rarity:1,list:0,
+            levels:[
+                {effect:[4],attack:10,cost:0,target:[0],spec:[1],class:4},
+                {effect:[6],attack:10,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Breath',rarity:1,list:0,
+            levels:[
+                {effect:[1],attack:44,cost:0,target:[0],spec:[],class:4},
+                {effect:[2],attack:44,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Apotheosis',rarity:2,list:0,
+            levels:[
+                {effect:[],attack:45,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:45,cost:1,target:[0],spec:[1],class:4},
             ],
         },
 
@@ -333,6 +385,12 @@ types={
         {name:'Emergency Move',id:8,rarity:0,list:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
         {name:'Redraw',id:9,rarity:0,list:0,description:'Add 1 Redraw at\nthe Start of Combat'},
         {name:'Miracle',id:10,rarity:0,list:0,description:'Add 1 Miracle at\nthe Start of Combat'},
+
+        {name:'',id:0,rarity:1,list:0,description:''},
+        {name:'',id:0,rarity:1,list:0,description:''},
+        {name:'',id:0,rarity:1,list:0,description:''},
+        {name:'',id:0,rarity:2,list:0,description:''},
+        {name:'',id:0,rarity:2,list:0,description:''},
         /*{name:'',id:11,rarity:0,list:0,description:''},
         {name:'',id:12,rarity:0,list:0,description:''},
         {name:'',id:13,rarity:0,list:0,description:''},
@@ -374,8 +432,8 @@ types={
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            //[['Stab',0,2],['Throw\nScythe',0,2],['Lament',0,2],['Scratch',0,2],['Defend',0,2],['Defend',0,2]],
-            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
+            [['Cut',0,2],['Throw\nScythe',0,2],['Lament',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
+            //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             
            
         ]
@@ -493,7 +551,7 @@ types={
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:[2],playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 graphics={main:0,backgrounds:[],combatantBackgrounds:[],minor:[],combatant:[],combatantGen:0}
 transition={trigger:false,anim:0,scene:stage.scene}

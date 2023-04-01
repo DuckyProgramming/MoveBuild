@@ -1,10 +1,10 @@
 Animations:
 
 Bugs:
-General performance issues (?)
+
 
 Mechanics:
-Shop (Relics, Items) (Double as Well)
+Shop (Items) (Double as Well)
 Battle Reward (Items)
 Lose-Stats(Same stats as win though)
 Menu
@@ -28,8 +28,6 @@ Deal Damage and Gain Energy? (Jab?)
 Separate?
 Redirect?
 Entertainment
-
-Rare Card
 
 Generality:
 First Character Gimmick
