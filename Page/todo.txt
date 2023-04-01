@@ -2,7 +2,6 @@ Animations:
 
 Bugs:
 
-
 Mechanics:
 Shop (Items) (Double as Well)
 Battle Reward (Items)
@@ -22,6 +21,8 @@ Enemy Do Nothing
 Curses
 
 More Fights:
+
+More Relics:
 
 Cards:
 Deal Damage and Gain Energy? (Jab?)

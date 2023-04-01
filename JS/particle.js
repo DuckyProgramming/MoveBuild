@@ -15,7 +15,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 1:
+            case 1: case 4:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=8
@@ -83,6 +83,15 @@ class particle{
                         this.layer.image(graphics.minor[19],-30*this.size,-30*this.size,60*this.size,60*this.size)
                     }
                 break
+                case 4:
+                    this.layer.rotate(this.time*10)
+                    this.layer.fill(200,this.fade)
+                    for(let a=0,la=4;a<la;a++){
+                        this.layer.rotate(90)
+                        this.layer.rect(0,-2,5,1)
+                        this.layer.triangle(-1,-2,1,-2,0,-8)
+                    }
+                break
             }
             this.layer.pop()
         }
@@ -105,7 +114,7 @@ class particle{
                     }
                 }
             break
-            case 1:
+            case 1: case 4:
                 this.position.x+=sin(this.direction)*this.speed
                 this.position.y-=cos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){

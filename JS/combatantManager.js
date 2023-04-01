@@ -37,14 +37,14 @@ class combatantManager{
             if(this.combatants[a].team==0){
                 this.combatants[a].setIntent(0)
             }else{
-                this.combatants[a].block=0
+                this.combatants[a].endBlock()
             }
         }
     }
     enableCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){
-                this.combatants[a].block=0
+                this.combatants[a].endBlock()
             }
         }
     }

@@ -36,18 +36,22 @@ class card{
         this.levels=types.card[this.type].levels.length
     }
     calculateEffect(effect,type){
-        switch(type){
-            case 0:
-                let damage=effect
-                let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                if(user.status.main[0]>0){
-                    damage*=2
-                }
-                if(damage==effect){
-                    return effect
-                }else{
-                    return effect+' ('+damage+')'
-                }
+        if(stage.scene=='battle'){
+            switch(type){
+                case 0:
+                    let damage=effect
+                    let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    if(user.status.main[0]>0){
+                        damage*=2
+                    }
+                    if(damage==effect){
+                        return effect
+                    }else{
+                        return effect+' ('+damage+')'
+                    }
+            }
+        }else{
+            return effect
         }
     }
     description(){
@@ -94,7 +98,7 @@ class card{
             case 35: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Target is Undamaged,\nGain '+this.effect[1]+' Energy'; break
             case 37: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDisarm'; break
             case 38: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Target Will Attack,\nReduce Damage by '+this.effect[1]; break
-            case 39: string+='Apply '+this.effect[0]+' Bleed'; break
+            case 39: case 49: string+='Apply '+this.effect[0]+' Bleed'; break
             case 40: string+='Discard Your Hand\nDraw That Many Cards'; break
             case 41: string+='Gain '+this.effect[0]+' Energy'; break
             case 42: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDraw '+this.effect[1]+' Cards'; break
@@ -103,8 +107,9 @@ class card{
             case 45: string+='Upgrade All Cards\nTemporarily'; break
             case 46: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDeals Double Damage\nif Target Has Bleed'; break
             case 47: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nApply '+this.effect[1]+' Bleed'; break
-            
-            
+            case 48: if(this.effect[0]>0){string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n'} string+='Push 2 Tiles'; break
+            case 50: string+='Add '+this.effect[0]+ ' Block\nRetain Block\nfor '+this.effect[1]+' Turns'; break
+     
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
@@ -141,6 +146,11 @@ class card{
             this.layer.stroke(this.colorDetail.stroke,this.fade)
             this.layer.strokeWeight(5)
             this.layer.rect(0,0,this.width,this.height,5)
+            if(this.player==-1){
+                this.layer.noStroke()
+                this.layer.fill(150,this.fade)
+                this.layer.rect(0,0,3,this.height+5)
+            }
             if(this.spec.includes(6)){
                 this.layer.fill(138,141,207,this.fade)
                 this.layer.stroke(111,114,178,this.fade)

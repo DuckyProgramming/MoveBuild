@@ -274,6 +274,24 @@ types={
                 {effect:[2,3],attack:47,cost:0,target:[2,1,1],spec:[6],class:1},
                 {effect:[3,4],attack:47,cost:0,target:[2,1,1],spec:[6],class:1},
             ],
+        },{
+            name:'Spartan\nKick',rarity:2,list:2,
+            levels:[
+                {effect:[24],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
+                {effect:[32],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Throw\nShuriken',rarity:1,list:2,
+            levels:[
+                {effect:[4],attack:49,cost:1,target:[2,2,6],spec:[0],class:1},
+                {effect:[6],attack:49,cost:1,target:[2,2,6],spec:[0],class:1},
+            ],
+        },{
+            name:'Safeguard',rarity:1,list:2,
+            levels:[
+                {effect:[9,1],attack:50,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,1],attack:50,cost:1,target:[0],spec:[],class:2},
+            ],
         },
 
         {
@@ -432,7 +450,7 @@ types={
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            [['Cut',0,2],['Throw\nScythe',0,2],['Lament',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
+            [['Spartan\nKick',0,2],['Throw\nShuriken',0,2],['Safeguard',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             
            
@@ -496,7 +514,7 @@ types={
             level:2,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},name:'Duck'},
+                {position:{x:0,y:0},name:'Human'},
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},
                 {position:{x:3,y:0},name:'Thug'},
@@ -551,7 +569,7 @@ types={
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[2],playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:[1,2],playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 graphics={main:0,backgrounds:[],combatantBackgrounds:[],minor:[],combatant:[],combatantGen:0}
 transition={trigger:false,anim:0,scene:stage.scene}

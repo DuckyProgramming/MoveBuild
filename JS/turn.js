@@ -216,7 +216,6 @@ class turn{
                                 if(index>=0){
                                     this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
                                 }
-        
                             }else if(this.timer>=26){
                                 this.remove=true
                             }
@@ -334,7 +333,6 @@ class turn{
                                     if(index>=0){
                                         this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
                                     }
-            
                                 }else if(this.timer>=26){
                                     this.remove=true
                                 }
@@ -402,7 +400,6 @@ class turn{
                                     if(index>=0){
                                         this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
                                     }
-            
                                 }else if(this.timer>=41){
                                     this.remove=true
                                 }

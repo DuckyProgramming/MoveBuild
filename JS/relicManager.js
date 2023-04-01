@@ -9,13 +9,15 @@ class relicManager{
 
         this.relics=[]
         this.displayRelics=[]
-        this.position=0
-        this.total=0
-        this.up=false
+        this.position=[]
+        this.total=[]
+        this.up=[]
         this.complete=[]
 
         this.initialListing()
-        this.addRelic(0,0)
+        for(let a=0,la=this.battle.player.length;a<la;a++){
+            this.addRelic(0,a)
+        }
     }
     initialListing(){
         for(let a=0,la=types.relic.length;a<la;a++){
@@ -27,6 +29,9 @@ class relicManager{
         }
         for(let a=0,la=this.battle.player.length;a<la;a++){
             this.complete.push(false)
+            this.position.push(0)
+            this.total.push(0)
+            this.up.push(false)
         }
     }
     setupStash(){
@@ -46,9 +51,13 @@ class relicManager{
     addRelic(type,player){
         this.player[types.relic[type].id]=player
         this.active[types.relic[type].id]+=1
-        this.relics.push(new relic(this.layer,25+(this.position%18)*50,50+floor(this.position/18)*50,types.relic[type].id,1))
-        this.position++
-        this.total++
+        if(this.battle.player.length==2){
+            this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),50+floor(this.position[player]/8)*50,types.relic[type].id,1))
+        }else{
+            this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,50+floor(this.position[player]/18)*50,types.relic[type].id,1))
+        }
+        this.position[player]++
+        this.total[player]++
         this.get(types.relic[type].id,player)
     }
     addRandomRelic(player){
@@ -152,7 +161,7 @@ class relicManager{
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].update(this.up,this.total,inputs)
+                    this.relics[a].update(this.up[this.relics[a].player],this.total[this.relics[a].player],inputs)
                 }
             break
             case 'stash':
@@ -166,7 +175,10 @@ class relicManager{
         switch(scene){
             case 'battle':
                 if(dist(inputs.rel.x,inputs.rel.y,25,50)<20){
-                    this.up=toggle(this.up)
+                    this.up[0]=toggle(this.up[0])
+                }
+                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20){
+                    this.up[1]=toggle(this.up[1])
                 }
             break
             case 'stash':
@@ -211,7 +223,10 @@ class relicManager{
         switch(scene){
             case 'battle':
                 if(key=='i'){
-                    this.up=toggle(this.up)
+                    this.up[0]=toggle(this.up[0])
+                }
+                if(this.battle.player.length==2&&key=='I'){
+                    this.up[1]=toggle(this.up[1])
                 }
             break
             case 'stash':

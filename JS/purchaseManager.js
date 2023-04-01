@@ -37,12 +37,26 @@ class purchaseManager{
                 let cost=[[80,100],[120,150],[200,250]]
                 for(let b=0,lb=group.length;b<lb;b++){
                     let index=floor(random(0,list[group[b]].length))
-                    this.purchases.push(new purchase(this.layer,this.battle,a,this.layer.width*a+(100+(9-b)%3*100)*(1-a*2),125+floor(b/3)*175+floor(b%3/2)*87.5,1,round(random(cost[group[b]][0],cost[group[b]][1])),[list[group[b]][index],0,this.battle.player[a]]))
+                    this.purchases.push(new purchase(this.layer,this.battle,a,this.layer.width*a+(100+(b%4*100))*(1-a*2),350+floor(b/4)*150,1,round(random(cost[group[b]][0],cost[group[b]][1])),[list[group[b]][index],0,this.battle.player[a]]))
                     list[group[b]].splice(index,1)
                 }
             }
-            this.purchases.push(new purchase(this.layer,this.battle,0,400,212.5,2,100,[]))
-            this.purchases.push(new purchase(this.layer,this.battle,1,500,387.5,2,100,[]))
+            let list=copyArrayStack(this.battle.cardManagers[0].listing.card[0])
+            let group=[1,2,1]
+            let cost=[[120,150],[180,225],[300,375]]
+            for(let a=0,la=group.length;a<la;a++){
+                let index=floor(random(0,list[group[a]].length))
+                this.purchases.push(new purchase(this.layer,this.battle,-1,350+a*100,200,1,round(random(cost[group[a]][0],cost[group[a]][1])),[list[group[a]][index],0,0]))
+                list[group[a]].splice(index,1)
+            }
+            group=[0,0,0,1,1,1,2,2]
+            cost=[[160,200],[280,350],[400,500]]
+            list=this.battle.relicManager.makeRelicSelection(group)
+            for(let a=0,la=group.length;a<la;a++){
+                this.purchases.push(new purchase(this.layer,this.battle,-1,100+a*100,75,3,round(random(cost[group[a]][0],cost[group[a]][1])),[list[a]]))
+            }
+            this.purchases.push(new purchase(this.layer,this.battle,0,150,200,2,100,[]))
+            this.purchases.push(new purchase(this.layer,this.battle,1,750,200,2,100,[]))
         }
     }
     display(){

@@ -21,22 +21,38 @@ class purchase{
                 this.relic.fade=1
             break
         }
+        if(this.player==-1){
+            this.anim.afford=[]
+            for(let a=0,la=this.battle.player.length;a<la;a++){
+                this.anim.afford.push(0)
+            }
+        }
     }
     buy(){
-        if(this.battle.currency.money[this.player]>=this.cost&&this.usable){
-            this.battle.currency.money[this.player]-=this.cost
+        if((this.player==-1&&(this.battle.currency.money[0]>=this.cost&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=this.cost&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=this.cost)&&this.usable){
+            let purchaser=0
+            if(this.player==-1){
+                if(inputs.rel.x<this.position.x){
+                    purchaser=0
+                }else if(inputs.rel.x>this.position.x){
+                    purchaser=1
+                }
+            }else{
+                purchaser=this.player
+            }
+            this.battle.currency.money[purchaser]-=this.cost
             this.usable=false
             this.deSize=true
             switch(this.type){
                 case 1:
-                    this.battle.cardManagers[this.player].deck.add(this.card.type,this.card.level,this.card.color)
+                    this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color)
                 break
                 case 2:
-                    this.battle.overlayManager.overlays[6][this.player].active=true
-                    this.battle.overlayManager.overlays[6][this.player].activate()
+                    this.battle.overlayManager.overlays[6][purchaser].active=true
+                    this.battle.overlayManager.overlays[6][purchaser].activate()
                 break
                 case 3:
-                    this.battle.relicManager.addRelic(this.relic.type,this.player)
+                    this.battle.relicManager.addRelic(this.relic.type,purchaser)
                 break
             }
         }
@@ -62,28 +78,57 @@ class purchase{
                     this.layer.text('Remove Card',0,0)
                 break
                 case 3:
-                    this.relic.display()
+                    if(this.player==-1){
+                        this.relic.display('stash')
+                    }else{
+                        this.relic.display('battle')
+                    }
                 break
             }
             this.layer.scale(1/min(this.size,1))
         }
-        switch(this.type){
-            case 1: case 2:
-                this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
-                this.layer.textSize(16)
-                this.layer.text(this.cost,0,72.5)
-                this.layer.fill(255,0,0,1-this.anim.usable)
-                this.layer.textSize(16)
-                this.layer.text('Sold Out',0,72.5)
-            break
-            case 3:
-                this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
-                this.layer.textSize(16)
-                this.layer.text(this.cost,0,40)
-                this.layer.fill(255,0,0,1-this.anim.usable)
-                this.layer.textSize(16)
-                this.layer.text('Sold Out',0,40)
-            break
+        if(this.player==-1){
+            switch(this.type){
+                case 1: case 2:
+                    this.layer.textSize(16)
+                    for(let a=0,la=this.battle.player.length;a<la;a++){
+                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
+                        this.layer.text(this.cost,20-la*20+a*40,72.5)
+                    }
+                    this.layer.fill(255,0,0,1-this.anim.usable)
+                    this.layer.textSize(16)
+                    this.layer.text('Sold Out',0,72.5)
+                break
+                case 3:
+                    this.layer.textSize(16)
+                    for(let a=0,la=this.battle.player.length;a<la;a++){
+                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
+                        this.layer.text(this.cost,20-la*20+a*40,40)
+                    }
+                    this.layer.fill(255,0,0,1-this.anim.usable)
+                    this.layer.textSize(16)
+                    this.layer.text('Sold Out',0,40)
+                break
+            }
+        }else{
+            switch(this.type){
+                case 1: case 2:
+                    this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
+                    this.layer.textSize(16)
+                    this.layer.text(this.cost,0,72.5)
+                    this.layer.fill(255,0,0,1-this.anim.usable)
+                    this.layer.textSize(16)
+                    this.layer.text('Sold Out',0,72.5)
+                break
+                case 3:
+                    this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
+                    this.layer.textSize(16)
+                    this.layer.text(this.cost,0,40)
+                    this.layer.fill(255,0,0,1-this.anim.usable)
+                    this.layer.textSize(16)
+                    this.layer.text('Sold Out',0,40)
+                break
+            }
         }
         this.layer.pop()
         switch(this.type){
@@ -99,7 +144,13 @@ class purchase{
             this.size=min(round(this.size*5+1)/5,1.5)
         }
         this.anim.usable=smoothAnim(this.anim.usable,this.usable,0,1,5)
-        this.anim.afford=smoothAnim(this.anim.afford,this.battle.currency.money[this.player]>=this.cost,0,1,5)
+        if(this.player==-1){
+            for(let a=0,la=this.battle.player.length;a<la;a++){
+                this.anim.afford[a]=smoothAnim(this.anim.afford[a],this.battle.currency.money[a]>=this.cost,0,1,5)
+            }
+        }else{
+            this.anim.afford=smoothAnim(this.anim.afford,this.battle.currency.money[this.player]>=this.cost,0,1,5)
+        }
         switch(this.type){
             case 1:
                 this.card.anim.afford=1

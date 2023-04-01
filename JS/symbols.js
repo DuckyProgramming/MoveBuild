@@ -51,6 +51,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,175,200,fade)
             layer.triangle(0,-6,-3,3,3,3)
         break
+        case 8:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(225,fade)
+            layer.rect(-3,0,9,3)
+            layer.triangle(1.5,-4.5,1.5,4.5,7.5,0)
+        break
     }
     layer.pop()
 }

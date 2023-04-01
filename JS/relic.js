@@ -1,6 +1,7 @@
 class relic{
-    constructor(layer,x,y,type,size){
+    constructor(layer,player,x,y,type,size){
         this.layer=layer
+        this.player=player
         this.position={x:x,y:y}
         this.type=type
         this.size=size

@@ -37,13 +37,13 @@ class combatant{
         this.block=0
         this.dodges=[]
         this.status={main:[],name:[
-            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity',
+            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Retain Block',
             ],display:[],active:[],position:[],size:[],
-            behavior:[0,2,1,0,2,1,0,0],
-            class:[0,0,0,0,2,1,0,0]}
+            behavior:[0,2,1,0,2,1,0,0,1],
+            class:[0,0,0,0,2,1,0,0,0]}
         //0-none, 1-decrement, 2-remove
         //0-good, 1-bad, 2-nonclassified good
-        for(let a=0;a<8;a++){
+        for(let a=0;a<10;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -625,6 +625,11 @@ class combatant{
     addBlock(value){
         this.block+=max(0,value+this.status.main[7])
     }
+    endBlock(){
+        if(this.status.main[8]<=0){
+            this.block=0
+        }
+    }
     moveTile(direction,speed){
         this.position.x+=sin(direction)*speed
         this.position.y+=cos(direction)*speed
@@ -693,7 +698,7 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
-                    case 4: case 12: case 14: case 15:
+                    case 4: case 12: case 14: case 15: case 18:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -919,6 +924,13 @@ class combatant{
                             this.spin.arms[g].top=(93-sin(this.animSet.loop*180)*33)*(g*2-1)
                             this.spin.arms[g].bottom=(75-sin(this.animSet.loop*180)*30)*(g*2-1)
                         }
+                    break
+                    case 18:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*36
+                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*87
+                        this.spin.arms[1].top=93-sin(this.animSet.loop*90)*48
+                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*90)*60
                     break
                 }
             break
