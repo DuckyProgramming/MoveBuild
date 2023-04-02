@@ -1,25 +1,25 @@
 types={
     card:[
         {
-            name:'',rarity:-1,list:0,
+            name:'',rarity:-1,list:-1,
             levels:[
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
             ],
         },{
-            name:'Strike',rarity:-1,list:0,
+            name:'Strike',rarity:-1,list:-1,
             levels:[
                 {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Defend',rarity:-1,list:0,
+            name:'Defend',rarity:-1,list:-1,
             levels:[
                 {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
                 {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Step',rarity:-1,list:0,
+            name:'Step',rarity:-1,list:-1,
             levels:[
                 {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
@@ -293,6 +293,7 @@ types={
                 {effect:[13,1],attack:50,cost:1,target:[0],spec:[],class:2},
             ],
         },
+        //get me some movement cards!
 
         {
             name:'Swift\nStrike',rarity:1,list:0,
@@ -337,6 +338,7 @@ types={
                 {effect:[],attack:45,cost:1,target:[0],spec:[1],class:4},
             ],
         },
+        //you know how it is
 
         {
             name:'Emergency\nMove',rarity:-1,list:0,
@@ -359,22 +361,36 @@ types={
         },
 
         {
-            name:'Fatigue',rarity:-1,list:2,
+            name:'Fatigue',rarity:0,list:3,
             levels:[
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
             ],
         },{
-            name:'Dazed',rarity:-1,list:2,
+            name:'Dazed',rarity:0,list:3,
             levels:[
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
             ],
         },
+
+        {
+            name:'Doubt',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:-1,cost:0,target:[0],spec:[5],class:5},
+                {effect:[],attack:-1,cost:0,target:[0],spec:[5],class:5},
+            ],
+        },{
+            name:'Shame',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:-2,cost:0,target:[0],spec:[5],class:5},
+                {effect:[],attack:-2,cost:0,target:[0],spec:[5],class:5},
+            ],
+        },
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
-        {name:'Sakura',life:50,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
+        {name:'Sakura',life:50,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her."},
         {name:'Human',life:25,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:"Just a guy"},
         {name:'Duck',life:20,behavior:1,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:"Typical duck"},
         {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
@@ -404,11 +420,11 @@ types={
         {name:'Redraw',id:9,rarity:0,list:0,description:'Add 1 Redraw at\nthe Start of Combat'},
         {name:'Miracle',id:10,rarity:0,list:0,description:'Add 1 Miracle at\nthe Start of Combat'},
 
-        {name:'',id:0,rarity:1,list:0,description:''},
-        {name:'',id:0,rarity:1,list:0,description:''},
-        {name:'',id:0,rarity:1,list:0,description:''},
-        {name:'',id:0,rarity:2,list:0,description:''},
-        {name:'',id:0,rarity:2,list:0,description:''},
+        {name:'',id:11,rarity:1,list:0,description:''},
+        {name:'',id:12,rarity:1,list:0,description:''},
+        {name:'',id:13,rarity:1,list:0,description:''},
+        {name:'duck',id:14,rarity:2,list:0,description:''},
+        {name:'goose',id:15,rarity:2,list:0,description:''},
         /*{name:'',id:11,rarity:0,list:0,description:''},
         {name:'',id:12,rarity:0,list:0,description:''},
         {name:'',id:13,rarity:0,list:0,description:''},
@@ -442,6 +458,11 @@ types={
                 stroke:[100,100,100],
                 text:[40,40,40],
                 active:[200,200,200],
+            },{
+                fill:[75,75,75],
+                stroke:[60,60,60],
+                text:[20,20,20],
+                active:[150,150,150],
             },
         ],
     },deck:{
@@ -450,7 +471,7 @@ types={
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            [['Spartan\nKick',0,2],['Throw\nShuriken',0,2],['Safeguard',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
+            [['Doubt',0,4],['Shame',0,4],['Spartan\nKick',0,2],['Throw\nShuriken',0,2],['Safeguard',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             
            

@@ -1651,15 +1651,15 @@ function setupGraphics(){
 	setupCombatantGraphics(0)
 	setupCombatantGraphics(1)
 
-	//setupBackground(0,graphics.backgrounds[0])
-	//setupBackground(1,graphics.backgrounds[1])
-	//setupBackground(3,graphics.backgrounds[3])
-	//setupBackground(4,graphics.backgrounds[4])
+	setupBackground(0,graphics.backgrounds[0])
+	setupBackground(1,graphics.backgrounds[1])
+	setupBackground(3,graphics.backgrounds[3])
+	setupBackground(4,graphics.backgrounds[4])
 	for(let a=0,la=graphics.combatantGen.length;a<la;a++){
-		//for(let b=0,lb=graphics.combatantBackgrounds[0][a].length;b<lb;b++){setupCombatantBackground(0,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[0][a][b])}
-		//for(let b=0,lb=graphics.combatantBackgrounds[1][a].length;b<lb;b++){setupCombatantBackground(1,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[1][a][b])}
-		//for(let b=0,lb=graphics.combatantBackgrounds[3][a].length;b<lb;b++){setupCombatantBackground(3,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[3][a][b])}
-		//for(let b=0,lb=graphics.combatantBackgrounds[4][a].length;b<lb;b++){setupCombatantBackground(4,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[4][a][b])}
+		for(let b=0,lb=graphics.combatantBackgrounds[0][a].length;b<lb;b++){setupCombatantBackground(0,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[0][a][b])}
+		for(let b=0,lb=graphics.combatantBackgrounds[1][a].length;b<lb;b++){setupCombatantBackground(1,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[1][a][b])}
+		for(let b=0,lb=graphics.combatantBackgrounds[3][a].length;b<lb;b++){setupCombatantBackground(3,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[3][a][b])}
+		for(let b=0,lb=graphics.combatantBackgrounds[4][a].length;b<lb;b++){setupCombatantBackground(4,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[4][a][b])}
 	}
 	/*
 	0-Title

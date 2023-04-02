@@ -5,8 +5,6 @@ class option{
         this.position={x:x,y:y}
         this.type=type
 
-        this.connections=[]
-
         this.size=1
         this.fade=1
         this.complete=false
@@ -38,18 +36,7 @@ class option{
                 this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
                 this.layer.strokeWeight(3)
                 this.layer.noFill()
-                this.layer.line(-10,-40,10,-40)
-                this.layer.line(-10,-40,-10,-10)
-                this.layer.line(10,-40,10,-10)
-                this.layer.line(-10,40,10,40)
-                this.layer.line(-10,40,-10,10)
-                this.layer.line(10,40,10,10)
-                this.layer.line(-40,-10,-40,10)
-                this.layer.line(-40,-10,-10,-10)
-                this.layer.line(-40,10,-10,10)
-                this.layer.line(40,-10,40,10)
-                this.layer.line(40,-10,10,-10)
-                this.layer.line(40,10,10,10)
+                plus(this.layer,10)
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
                 this.layer.textSize(24)

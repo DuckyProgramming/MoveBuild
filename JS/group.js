@@ -62,6 +62,7 @@ class group{
                     }
                 break
                 case 1:
+                    this.cards[a].callDiscardEffect()
                     if(this.cards[a].spec.includes(4)){
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true

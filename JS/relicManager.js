@@ -44,7 +44,7 @@ class relicManager{
         for(let a=0,la=3;a<la;a++){
             let rarity=possible[floor(random(0,possible.length))]
             let index=floor(random(0,relics[rarity].length))
-            this.displayRelics.push(new relic(this.layer,this.layer.width/2,this.layer.height/2-100+a*100,relics[rarity][index],2))
+            this.displayRelics.push(new relic(this.layer,1-this.battle.player.length,this.layer.width/2,this.layer.height/2-100+a*100,relics[rarity][index],2))
             relics[rarity].splice(index,1)
         }
     }
@@ -63,6 +63,11 @@ class relicManager{
     addRandomRelic(player){
         let possible=[0,0,0/*,1,1,2*/]
         let rarity=possible[floor(random(0,possible.length))]
+        let index=floor(random(0,this.listing.relic[rarity].length))
+        this.addRelic(this.listing.relic[rarity][index],player)
+        this.listing.relic[rarity].splice(index,1)
+    }
+    addSetRelic(rarity,player){
         let index=floor(random(0,this.listing.relic[rarity].length))
         this.addRelic(this.listing.relic[rarity][index],player)
         this.listing.relic[rarity].splice(index,1)
@@ -104,21 +109,6 @@ class relicManager{
                     if(this.active[7]>0){
                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[7])].statusEffect('Dexterity',this.active[7])
                     }
-                    if(this.active[8]>0){
-                        for(let a=0,la=this.active[8];a<la;a++){
-                            this.battle.cardManagers[this.player[8]].hand.add(findName('Emergency\nMove',types.card),0,0)
-                        }
-                    }
-                    if(this.active[9]>0){
-                        for(let a=0,la=this.active[9];a<la;a++){
-                            this.battle.cardManagers[this.player[9]].hand.add(findName('Redraw',types.card),0,0)
-                        }
-                    }
-                    if(this.active[10]>0){
-                        for(let a=0,la=this.active[10];a<la;a++){
-                            this.battle.cardManagers[this.player[10]].hand.add(findName('Miracle',types.card),0,0)
-                        }
-                    }
                 }
                 if(args[0]%3==0){
                     if(this.active[4]>0){
@@ -131,27 +121,42 @@ class relicManager{
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[1])].heal(2*this.active[1])
                 }
             break
+            case 2:
+                if(args[0]==1){
+                    if(this.active[8]>0&&args[1]==this.player[8]){
+                        for(let a=0,la=this.active[8];a<la;a++){
+                            this.battle.cardManagers[this.player[8]].hand.add(findName('Emergency\nMove',types.card),0,0)
+                        }
+                    }
+                    if(this.active[9]>0&&args[1]==this.player[9]){
+                        for(let a=0,la=this.active[9];a<la;a++){
+                            this.battle.cardManagers[this.player[9]].hand.add(findName('Redraw',types.card),0,0)
+                        }
+                    }
+                    if(this.active[10]>0&&args[1]==this.player[10]){
+                        for(let a=0,la=this.active[10];a<la;a++){
+                            this.battle.cardManagers[this.player[10]].hand.add(findName('Miracle',types.card),0,0)
+                        }
+                    }
+                }
+            break
         }
     }
     display(scene){
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].display(scene)
+                    this.relics[a].display()
                 }
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].displayInfo(scene)
+                    this.relics[a].displayInfo()
                 }
             break
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if(this.battle.player.length==1){
-                        this.displayRelics[a].display('battle')
-                    }else{
-                        this.displayRelics[a].display(scene)
-                    }
+                    this.displayRelics[a].display()
                     for(let a=0,la=this.displayRelics.length;a<la;a++){
-                        this.displayRelics[a].displayInfo(scene)
+                        this.displayRelics[a].displayInfo()
                     }
                 }
             break

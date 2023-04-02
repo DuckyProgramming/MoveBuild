@@ -27,6 +27,7 @@ class card{
         this.colorDetail=types.color.card[this.color]
 
         this.name=types.card[this.type].name
+        this.list=types.card[this.type].list
         this.effect=types.card[this.type].levels[this.level].effect
         this.attack=types.card[this.type].levels[this.level].attack
         this.cost=types.card[this.type].levels[this.level].cost
@@ -34,20 +35,60 @@ class card{
         this.spec=types.card[this.type].levels[this.level].spec
         this.class=types.card[this.type].levels[this.level].class
         this.levels=types.card[this.type].levels.length
+        if(this.list==-1){
+            this.list=this.color
+        }
     }
     calculateEffect(effect,type){
         if(stage.scene=='battle'){
+            let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             switch(type){
-                case 0:
+                case 0: case 2:
                     let damage=effect
-                    let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    if(user.status.main[6]>0){
+                        damage+=user.status.main[6]
+                    }
+                    if(user.status.main[8]>0){
+                        damage*=0.75
+                    }
                     if(user.status.main[0]>0){
                         damage*=2
                     }
-                    if(damage==effect){
-                        return effect
-                    }else{
-                        return effect+' ('+damage+')'
+                    damage=floor(damage)
+                    if(type==0){
+                        if(damage==effect){
+                            return effect
+                        }else{
+                            return effect+' ('+damage+')'
+                        }
+                    }else if(type==2){
+                        if(damage==effect){
+                            return effect+'X'
+                        }else{
+                            return effect+'X (+'+damage+')'
+                        }
+                    }
+                case 1: case 3:
+                    let block=effect
+                    if(user.status.main[7]>0){
+                        block+=user.status.main[7]
+                    }
+                    if(user.status.main[9]>0){
+                        block*=0.75
+                    }
+                    block=floor(block)
+                    if(type==1){
+                        if(block==effect){
+                            return effect
+                        }else{
+                            return effect+' ('+block+')'
+                        }
+                    }else if(type==2){
+                        if(block==effect){
+                            return effect+'X'
+                        }else{
+                            return effect+'X (+'+block+')'
+                        }
                     }
             }
         }else{
@@ -63,8 +104,10 @@ class card{
             string+='Innate\n'
         }
         switch(this.attack){
+            case -1: string+='Gain 1 Weak at\nthe End of Your Turn'; break
+            case -2: string+='Gain 1 Vulnerable at\nthe End of Your Turn'; break
             case 1: case 25: case 32: case 36: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
-            case 2: string+='Add '+this.effect[0]+ ' Block'; break
+            case 2: string+='Add '+this.calculateEffect(this.effect[0],1)+' Block'; break
             case 3: string+='Move '+this.effect[0]+' Tiles'; break
             case 4: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n2 Times'; break
             case 5: string+='Push 1 Tile'; break
@@ -74,8 +117,8 @@ class card{
             case 9: string+='Swap With an\nAdjacent Enemy\nTarget Will Face User\nor\nMove '+this.effect[0]+' Tiles'; break
             case 10: string+='Heal '+this.effect[0]+' Health'; break
             case 11: string+='Pull 1 Tile\nTarget Will Face User'; break
-            case 12: string+='Deal '+this.calculateEffect(this.effect[0],0)+'X Damage'; break
-            case 13: string+='Add '+this.effect[0]+ 'X Block'; break
+            case 12: string+='Deal '+this.calculateEffect(this.effect[0],2)+' Damage'; break
+            case 13: string+='Add '+this.calculateEffect(this.effect[0],3)+' Block'; break
             case 14: string+='Pass Through an\nAdjacent Enemy\nor\nMove '+this.effect[0]+' Tiles'; break
             case 15: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nPush 1 Tile\nMove Forward 1 Tile'; break
             case 16: if(this.effect[0]>0){string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n'} string+='Push 1 Tile'; break
@@ -85,13 +128,13 @@ class card{
             case 20: string+='Move '+this.effect[0]+' Tiles\nDiscard 1\nRandom Card'; break
             case 21: string+='Advance up to '+this.effect[0]+' Tiles\nToward an Enemy'; break
             case 22: string+='Gain '+this.effect[0]+' Energy\nTake '+this.effect[1]+' Damage'; break
-            case 23: string+='Add '+this.effect[0]+ ' Block\nCounter '+this.effect[1]; break
+            case 23: string+='Add '+this.calculateEffect(this.effect[0],1)+' Block\nCounter '+this.effect[1]; break
             case 24: string+='Make an Enemy Attack\nThey Will Not Attack\non Their Turn'; break
-            case 26: string+='Add '+this.effect[0]+' Block\nCannot be Pushed\nThis Turn'; break
+            case 26: string+='Add '+this.calculateEffect(this.effect[0],1)+' Block\nCannot be Pushed\nThis Turn'; break
             case 27: string+='Advance up to '+this.effect[1]+' Tiles\nToward an Enemy\nDeal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
             case 28: string+='Put a Card in Discard\nPile in Your Hand'; break
             case 29: string+='Put a Card in Draw\nPile in Your Hand'; break
-            case 30: string+='Add '+this.effect[0]+' Dodge'; break
+            case 30: string+='Add '+thish.calculateEffect(this.effect[0],1)+' Dodge'; break
             case 31: string+='Push 1 Tile\nin All Directions'; break
             case 33: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nAdvance'; break
             case 34: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nGain '+this.effect[1]+' Energy\nNext Turn'; break
@@ -102,13 +145,13 @@ class card{
             case 40: string+='Discard Your Hand\nDraw That Many Cards'; break
             case 41: string+='Gain '+this.effect[0]+' Energy'; break
             case 42: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDraw '+this.effect[1]+' Cards'; break
-            case 43: string+='Add '+this.effect[0]+ ' Block\nDraw '+this.effect[1]+' Cards'; break
+            case 43: string+='Add '+this.calculateEffect(this.effect[0],1)+' Block\nDraw '+this.effect[1]+' Cards'; break
             case 44: string+='Shuffle Discard Pile\nInto Draw Pile\nDraw '+this.effect[0]+' Cards'; break
             case 45: string+='Upgrade All Cards\nTemporarily'; break
             case 46: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nDeals Double Damage\nif Target Has Bleed'; break
             case 47: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nApply '+this.effect[1]+' Bleed'; break
             case 48: if(this.effect[0]>0){string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n'} string+='Push 2 Tiles'; break
-            case 50: string+='Add '+this.effect[0]+ ' Block\nRetain Block\nfor '+this.effect[1]+' Turns'; break
+            case 50: string+='Add '+this.calculateEffect(+this.effect[0],1)+' Block\nRetain Block\nfor '+this.effect[1]+' Turns'; break
      
         }
         if(string[string.length-1]=='\n'){
@@ -133,6 +176,16 @@ class card{
             string=string.substring(1,string.length)
         }
         return string
+    }
+    callDiscardEffect(){
+        switch(this.attack){
+            case -1:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[8]++
+            break
+            case -2:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[9]++
+            break
+        }
     }
     display(){
         if(this.size>0&&this.fade>0){

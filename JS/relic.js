@@ -14,7 +14,7 @@ class relic{
         this.infoFade=0
         this.deFade=false
     }
-    display(scene){
+    display(){
         if(this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
@@ -22,7 +22,7 @@ class relic{
             this.layer.fill(200,this.fade)
             this.layer.noStroke()
             this.layer.ellipse(0,0,40,40)
-            if(scene=='stash'){
+            if(this.player==-1){
                 this.layer.fill(150,this.fade)
                 this.layer.rect(0,0,2,40)
             }

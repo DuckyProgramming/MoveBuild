@@ -17,7 +17,7 @@ class purchase{
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
             break
             case 3:
-                this.relic=new relic(this.layer,0,0,this.args[0],1.5)
+                this.relic=new relic(this.layer,this.player,0,0,this.args[0],1.5)
                 this.relic.fade=1
             break
         }
@@ -78,11 +78,7 @@ class purchase{
                     this.layer.text('Remove Card',0,0)
                 break
                 case 3:
-                    if(this.player==-1){
-                        this.relic.display('stash')
-                    }else{
-                        this.relic.display('battle')
-                    }
+                    this.relic.display()
                 break
             }
             this.layer.scale(1/min(this.size,1))

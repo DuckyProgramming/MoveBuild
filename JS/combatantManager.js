@@ -116,6 +116,11 @@ class combatantManager{
             this.combatants[a].tick()
         }
     }
+    tickEarly(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            this.combatants[a].tickEarly()
+        }
+    }
     reorder(){
         let order=1
         let left=[]

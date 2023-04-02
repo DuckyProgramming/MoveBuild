@@ -25,7 +25,7 @@ class overlay{
                             this.battle.cardManagers[this.player].discard.cards[a].size=0
                         }
                     break
-                    case 2: case 3: case 4:
+                    case 2: case 3: case 4: case 7:
                         for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                             this.battle.cardManagers[this.player].deck.cards[a].size=0
                         }
@@ -55,7 +55,7 @@ class overlay{
                 switch(this.args[0]){
                     case 0: this.battle.cardManagers[this.player].reserve.resetAnim(); break
                     case 1: case 7: this.battle.cardManagers[this.player].discard.resetAnim(); break
-                    case 2: case 3: case 4: this.battle.cardManagers[this.player].deck.resetAnim(); break
+                    case 2: case 3: case 4: case 7: this.battle.cardManagers[this.player].deck.resetAnim(); break
                 }
                 switch(this.args[0]){
                     case 3: this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0); break
@@ -63,12 +63,26 @@ class overlay{
             break
             case 3:
                 this.cards=[]
-                let list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                for(let a=0,la=3;a<la;a++){
-                    let index=floor(random(0,list[args[1]].length))
-                    this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],this.battle.player[this.player],-1))
-                    this.cards[a].upSize=true
-                    list[args[1]].splice(index,1)
+                let list=[]
+                switch(args[2]){
+                    case 0:
+                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        for(let a=0,la=3;a<la;a++){
+                            let index=floor(random(0,list[args[1]].length))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],this.battle.player[this.player],-1))
+                            this.cards[a].upSize=true
+                            list[args[1]].splice(index,1)
+                        }
+                    break
+                    case 1:
+                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
+                        for(let a=0,la=3;a<la;a++){
+                            let index=floor(random(0,list[args[1]].length))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],0,-1))
+                            this.cards[a].upSize=true
+                            list[args[1]].splice(index,1)
+                        }
+                    break
                 }
             break
         }
@@ -168,12 +182,12 @@ class overlay{
                 this.layer.textSize(20)
                 switch(this.args[0]){
                     case 0: case 1: case 2: this.layer.text('Close',this.layer.width/2,this.layer.height/2+225); break
-                    case 3: case 4: case 5: case 6: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
+                    case 3: case 4: case 5: case 6: case 7: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
                     case 0: case 6: this.battle.cardManagers[this.player].reserve.display('overlay',[0,this.page]); break
                     case 1: case 5: this.battle.cardManagers[this.player].discard.display('overlay',[1,this.page]); break
-                    case 2: case 3: case 4: this.battle.cardManagers[this.player].deck.display('overlay',[1,this.page]); break
+                    case 2: case 3: case 4: case 7: this.battle.cardManagers[this.player].deck.display('overlay',[1,this.page]); break
                 }
                 switch(this.args[0]){
                     case 3: this.card.fade=1; this.card.anim.afford=1; this.card.display(); break
@@ -225,7 +239,7 @@ class overlay{
                     switch(this.args[0]){
                         case 0: case 6: this.battle.cardManagers[this.player].reserve.update('overlay',[this.page]); break
                         case 1: case 5: this.battle.cardManagers[this.player].discard.update('overlay',[this.page]); break
-                        case 2: case 3: case 4: this.battle.cardManagers[this.player].deck.update('overlay',[this.page]); break
+                        case 2: case 3: case 4: case 7: this.battle.cardManagers[this.player].deck.update('overlay',[this.page]); break
                     }
                     switch(this.args[0]){
                         case 0: case 6:
@@ -238,7 +252,7 @@ class overlay{
                                 this.battle.cardManagers[this.player].discard.cards[a].size=constrain(this.battle.cardManagers[this.player].discard.cards[a].size,0,this.fade)
                             }
                         break
-                        case 2: case 3: case 4:
+                        case 2: case 3: case 4: case 7:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 this.battle.cardManagers[this.player].deck.cards[a].size=constrain(this.battle.cardManagers[this.player].deck.cards[a].size,0,this.fade)
                             }
@@ -286,14 +300,14 @@ class overlay{
                         this.active=false
                     }
                     switch(this.args[0]){
-                        case 3: case 4:
+                        case 3: case 4: case 7:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].deck.cards[a])&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
                                 !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=types.card[this.battle.cardManagers[this.player].deck.cards[a].type].levels.length-1)){
                                     this.battle.cardManagers[this.player].deck.cards[a].select=false
+                                    let size=this.battle.cardManagers[this.player].deck.cards[a].size
                                     switch(this.args[0]){
                                         case 3:
-                                            let size=this.battle.cardManagers[this.player].deck.cards[a].size
                                             this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
                                             this.battle.cardManagers[this.player].deck.cards[a].size=size
                                         break
@@ -303,7 +317,11 @@ class overlay{
                                                 la--
                                             }
                                         break
+                                        case 7:
+                                            this.battle.cardManagers[this.player].deck.cards[a]=this.battle.cardManagers[this.player].transformCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                        break
                                     }
+                                    this.battle.cardManagers[this.player].deck.cards[a].size=size
                                     this.active=false
                                 }
                                 this.battle.cardManagers[this.player].deck.cards[a].select=false
@@ -407,7 +425,7 @@ class overlay{
                         this.active=false
                     }
                     switch(this.args[0]){
-                        case 3: case 4:
+                        case 3: case 4: case 7:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select){
                                     this.battle.cardManagers[this.player].deck.cards[a].select=false
@@ -421,6 +439,9 @@ class overlay{
                                                 a--
                                                 la--
                                             }
+                                        break
+                                        case 7:
+                                            this.battle.cardManagers[this.player].deck.cards[a]=this.battle.cardManagers[this.player].transformCard(this.battle.cardManagers[this.player].deck.cards[a])
                                         break
                                     }
                                     this.battle.cardManagers[this.player].deck.cards[a].size=size

@@ -18,12 +18,13 @@ class cardManager{
         this.initialListing()
     }
     initialListing(){
-        for(let a=0;a<game.playerNumber+1;a++){
-            this.listing.card.push([[],[],[]])
+        for(let a=0;a<game.playerNumber+3;a++){
+            this.listing.card.push([[],[],[],[]])
         }
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity>=0&&types.card[a].list>=0){
                 this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
+                this.listing.card[types.card[a].list][3].push(a)
             }
         }
     }
@@ -71,6 +72,9 @@ class cardManager{
     fatigue(){
         this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
         this.drop.addDrop(findName('Fatigue',types.card),0,game.playerNumber+1)
+    }
+    transformCard(base){
+        return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][floor(random(0,this.listing.card[base.list][3].length))],base.level,base.color,base.id)
     }
     clear(){
         this.reserve.cards=[]

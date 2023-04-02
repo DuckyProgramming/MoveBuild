@@ -52,6 +52,18 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,-6,-3,3,3,3)
         break
         case 8:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+        break
+        case 9:
+            layer.fill(150,175,200,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+        break
+        case 10:
+            layer.fill(0,150,255,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+        break
+        case 11:
             layer.fill(150,175,200,fade)
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)

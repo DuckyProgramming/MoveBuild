@@ -42,6 +42,13 @@ class battle{
         for(let a=0,la=this.optionManagers.length;a<la;a++){
             this.optionManagers[a].assemble()
         }
+        this.perkManagers=[]
+        for(let a=0,la=this.player.length;a<la;a++){
+            this.perkManagers.push(new perkManager(this.layer,this,a))
+        }
+        for(let a=0,la=this.optionManagers.length;a<la;a++){
+            this.perkManagers[a].assemble()
+        }
     }
     initial(){
         this.combatantManager.clearCombatants()
@@ -211,6 +218,7 @@ class battle{
         }
     }
     endTurn(){
+        this.combatantManager.tickEarly()
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.turn.main++
         if(this.turn.main>=this.player.length){
@@ -219,6 +227,7 @@ class battle{
             this.combatantManager.enableCombatants()
         }else{
             this.cardManagers[this.turn.main].turnDraw()
+            this.relicManager.activate(2,[this.turn.total,this.turn.main])
             this.turn.time=game.turnTime
         }
         this.attackManager.clear()
@@ -239,6 +248,7 @@ class battle{
         this.combatantManager.activateCombatants(0,0)
         this.turnManager.clear()
         this.cardManagers[0].turnDraw()
+        this.relicManager.activate(2,[this.turn.total,this.turn.main])
         this.relicManager.activate(0,[this.turn.total])
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
@@ -402,6 +412,10 @@ class battle{
             case 'perk':
                 this.calculatePlayerKeyDamage()
                 this.layer.image(graphics.combatantBackgrounds[0][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.perkManagers.length;a<la;a++){
+                    this.perkManagers[a].display()
+                }
+                this.overlayManager.display()
             break
         }
     }
@@ -455,12 +469,12 @@ class battle{
                             switch(this.encounter.class){
                                 case 0:
                                     this.overlayManager.overlays[0][a].activate([
-                                        {type:1,value:[0,floor(random(0,1.5))]},
+                                        {type:1,value:[0,floor(random(0,1.5)),0]},
                                         {type:0,value:[floor(random(40,81))]}])
                                 break
                                 case 1:
                                     this.overlayManager.overlays[0][a].activate([
-                                        {type:1,value:[1,floor(random(0,2))]},
+                                        {type:1,value:[1,floor(random(0,2)),0]},
                                         {type:2,value:[]},
                                         {type:0,value:[floor(random(120,201))]}])
                                 break
@@ -486,13 +500,13 @@ class battle{
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
                     this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
                 }
-                let allComplete=true
+                let allOptionsComplete=true
                 for(let a=0,la=this.optionManagers.length;a<la;a++){
                     if(!this.optionManagers[a].complete){
-                        allComplete=false
+                        allOptionsComplete=false
                     }
                 }
-                if(allComplete){
+                if(allOptionsComplete){
                     transition.trigger=true
                     transition.scene='map'
                 }
@@ -507,6 +521,23 @@ class battle{
             break
             case 'stash':
                 this.relicManager.update(stage.scene)
+            break
+            case 'perk':
+                for(let a=0,la=this.perkManagers.length;a<la;a++){
+                    this.perkManagers[a].update()
+                }
+                this.combatantManager.update(scene)
+                this.overlayManager.update()
+                let allPerkComplete=true
+                for(let a=0,la=this.perkManagers.length;a<la;a++){
+                    if(!this.perkManagers[a].complete){
+                        allPerkComplete=false
+                    }
+                }
+                if(allPerkComplete){
+                    transition.trigger=true
+                    transition.scene='map'
+                }
             break
         }
     }
@@ -578,6 +609,15 @@ class battle{
             break
             case 'stash':
                 this.relicManager.onClick(stage.scene)
+            break
+            case 'perk':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onClick()
+                }else{
+                    for(let a=0,la=this.perkManagers.length;a<la;a++){
+                        this.perkManagers[a].onClick()
+                    }
+                }
             break
         }
     }
@@ -652,6 +692,18 @@ class battle{
             break
             case 'stash':
                 this.relicManager.onKey(stage.scene,key,code)
+            break
+            case 'perk':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
+                }else{
+                    for(let a=0,la=this.perkManagers.length;a<la;a++){
+                        if(!this.perkManagers[a].complete){
+                            this.perkManagers[a].onKey(key,code)
+                            break
+                        }
+                    }
+                }
             break
         }
     }

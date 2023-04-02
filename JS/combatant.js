@@ -37,11 +37,18 @@ class combatant{
         this.block=0
         this.dodges=[]
         this.status={main:[],name:[
-            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Retain Block',
+            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
+            'Vulnerable','Retain Block',
             ],display:[],active:[],position:[],size:[],
-            behavior:[0,2,1,0,2,1,0,0,1],
-            class:[0,0,0,0,2,1,0,0,0]}
-        //0-none, 1-decrement, 2-remove
+            behavior:[
+                0,2,1,0,2,1,0,0,3,1,
+                1,1,
+            ],
+            class:[
+                0,0,0,0,2,1,0,0,1,1,
+                0,0,
+            ]}
+        //0-none, 1-decrement, 2-remove, 3-early decrement
         //0-good, 1-bad, 2-nonclassified good
         for(let a=0;a<10;a++){
             this.status.main.push(0)
@@ -583,7 +590,14 @@ class combatant{
             if(userCombatant.status.main[6]>0){
                 damage+=userCombatant.status.main[6]
             }
+            if(userCombatant.status.main[8]>0){
+                damage*=0.75
+            }
+            if(this.status.main[10]>0){
+                damage*=1.5
+            }
         }
+        damage=floor(damage)
         if(value>0&&this.life>0){
             let hit=true
             if(user>=0&&user<this.battle.combatantManager.combatants.length){
@@ -623,10 +637,20 @@ class combatant{
         }
     }
     addBlock(value){
-        this.block+=max(0,value+this.status.main[7])
+        let block=value
+        if(this.status.main[7]>0){
+            block+=this.status.main[7]
+        }
+        if(this.status.main[9]>0){
+            block*=0.75
+        }
+        block=floor(block)
+        if(block>=0){
+            this.block+=block
+        }
     }
     endBlock(){
-        if(this.status.main[8]<=0){
+        if(this.status.main[11]<=0){
             this.block=0
         }
     }
@@ -657,6 +681,10 @@ class combatant{
         this.base.life+=amount
         this.life+=amount
     }
+    loseMaxHP(amount){
+        this.base.life-=amount
+        this.life=min(this.life,this.base.life)
+    }
     tick(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
@@ -672,6 +700,19 @@ class combatant{
                     }
                 }else if(this.status.behavior[a]==2){
                     this.status.main[a]=0
+                }
+            }
+        }
+    }
+    tickEarly(){
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            if(this.status.main[a]!=0){
+                if(this.status.behavior[a]==3){
+                    if(this.status.main[a]>0){
+                        this.status.main[a]--
+                    }else if(this.status.main[a]<0){
+                        this.status.main[a]++
+                    }
                 }
             }
         }
@@ -3269,8 +3310,10 @@ class combatant{
             this.layer.text(this.order,28,0.5)
         }
         for(let a=0,la=this.status.display.length;a<la;a++){
-            this.layer.textSize(8*this.status.size[this.status.display[a]])
-            this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
+            if(this.status.size[this.status.display[a]]>0){
+                this.layer.textSize(8*this.status.size[this.status.display[a]])
+                this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
+            }
         }
     }
     displayInfo(scene){

@@ -7,7 +7,7 @@ Shop (Items) (Double as Well)
 Battle Reward (Items)
 Lose-Stats(Same stats as win though)
 Menu
-Perk
+Perk (Item)
 Items
 Event-Off Unknown
 Boss Rewards
@@ -18,7 +18,6 @@ Weak Enemy
 Innate Cards
 2 Tile Move
 Enemy Do Nothing
-Curses
 
 More Fights:
 
@@ -34,7 +33,7 @@ Generality:
 First Character Gimmick
 Second Character Gimmick
 
+Character 3? (Ume)
+
 MULTIPLAYER:
 Done! (For now)
-
-Character 3? (Usagi?)

@@ -36,6 +36,20 @@ function regPoly(layer,x,y,sides,radiusX,radiusY,direction){
 function diamond(layer,x,y,width,height,direction){
 	layer.quad(x-width*cos(direction),y-width*sin(direction),x-height*sin(direction),y-height*cos(direction),x+width*cos(direction),y+width*sin(direction),x+height*sin(direction),y+height*cos(direction))
 }
+function plus(layer,size){
+	layer.line(-size,-size*4,size,-size*4)
+	layer.line(-size,-size*4,-size,-size)
+	layer.line(size,-size*4,size,-size)
+	layer.line(-size,size*4,size,size*4)
+	layer.line(-size,size*4,-size,size)
+	layer.line(size,size*4,size,size)
+	layer.line(-size*4,-size,-size*4,size)
+	layer.line(-size*4,-size,-size,-size)
+	layer.line(-size*4,size,-size,size)
+	layer.line(size*4,-size,size*4,size)
+	layer.line(size*4,-size,size,-size)
+	layer.line(size*4,size,size,size)
+}
 function mergeColor(color1,color2,value){
 	return [color1[0]*(1-value)+color2[0]*value,color1[1]*(1-value)+color2[1]*value,color1[2]*(1-value)+color2[2]*value]
 }
