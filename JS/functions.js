@@ -50,6 +50,79 @@ function plus(layer,size){
 	layer.line(size*4,-size,size,-size)
 	layer.line(size*4,size,size,size)
 }
+function flower(layer,size,color,width,height){
+	layer.push()
+	layer.scale(size)
+	layer.strokeWeight(0.6)
+	layer.strokeJoin(ROUND)
+	for(let a=0,la=100;a<la;a++){
+		for(let b=0,lb=5;b<lb;b++){
+			layer.fill(mergeColor(color[0],color[1],a/la))
+			layer.stroke(mergeColor(color[0],color[1],a/la))
+			if(a<la/2){
+				layer.beginShape()
+				layer.vertex(0,0)
+				layer.bezierVertex(-width[0]*(1-a/la*2),-30,-width[1]*(1-a/la*2),-40,-width[2],-70)
+				layer.vertex(-width[2]*(1-(a+1)/la*2),-height[0])
+				layer.endShape()
+			}
+			layer.rotate(-72)
+			layer.beginShape()
+			layer.vertex(0,0)
+			layer.bezierVertex(width[0],-30,width[1],-40,width[2],-70)
+			if(a>=la/2){
+				layer.vertex(width[2]*(-1+a/la*2),-height[0])
+				layer.bezierVertex(width[1]*(-1+a/la*2),-40,width[0]*(-1+a/la*2),-30,0,0)
+			}else{
+				layer.vertex(0,-height[0])
+			}
+			layer.endShape(CLOSE)
+		}
+	}
+	layer.noStroke()
+	layer.fill(color[2])
+	for(let a=0,la=5;a<la;a++){
+		layer.rotate(60)
+		layer.quad(0,-4,width[3],-16,0,-24,-width[3],-16)
+		layer.rotate(12)
+	}
+	layer.fill(color[3])
+	layer.ellipse(0,0,12,12)
+	layer.pop()
+}
+function crystalFlower(layer,size,direction,color,width,height){
+	layer.push()
+	layer.scale(size)
+    layer.rotate(direction)
+    for(let a=0,la=5;a<la;a++){
+        for(let b=0,lb=100;b<lb;b++){
+            layer.fill(mergeColor(color[0],color[1],1-b/lb))
+            layer.beginShape()
+            layer.vertex(0,0)
+            layer.bezierVertex(-width[0]*(1-b/lb),-15*(1-b/lb),-width[0]*(1-b/lb),-55*(1-b/lb),-width[1]*(1-b/lb),-70*(1-b/lb))
+            layer.vertex(0,-height[0]*(1-0.75*b/lb))
+            layer.endShape(CLOSE)
+        }
+        layer.rotate(-72)
+        for(let b=0,lb=100;b<lb;b++){
+            layer.fill(mergeColor([216,112,124],[247,225,225],1-b/lb))
+            layer.beginShape()
+            layer.vertex(0,0)
+            layer.bezierVertex(width[0]*(1-b/lb),-15*(1-b/lb),width[0]*(1-b/lb),-55*(1-b/lb),width[1]*(1-b/lb),-70*(1-b/lb))
+            layer.vertex(0,-height[0]*(1-0.75*b/lb))
+            layer.endShape(CLOSE)
+        }
+    }
+    layer.fill(color[2])
+    for(let a=0;a<5;a++){
+        layer.rotate(60)
+        layer.quad(0,-4,width[2],-16,0,-24,-width[2],-16)
+        layer.rotate(12)
+    }
+    layer.fill(color[3])
+    layer.ellipse(0,0,12,12)
+    layer.pop()
+}
 function mergeColor(color1,color2,value){
 	return [color1[0]*(1-value)+color2[0]*value,color1[1]*(1-value)+color2[1]*value,color1[2]*(1-value)+color2[2]*value]
 }

@@ -134,7 +134,7 @@ class card{
             case 27: string+='Advance up to '+this.effect[1]+' Tiles\nToward an Enemy\nDeal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
             case 28: string+='Put a Card in Discard\nPile in Your Hand'; break
             case 29: string+='Put a Card in Draw\nPile in Your Hand'; break
-            case 30: string+='Add '+thish.calculateEffect(this.effect[0],1)+' Dodge'; break
+            case 30: string+='Add '+this.effect[0]+' Dodge'; break
             case 31: string+='Push 1 Tile\nin All Directions'; break
             case 33: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nAdvance'; break
             case 34: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nGain '+this.effect[1]+' Energy\nNext Turn'; break
@@ -152,7 +152,10 @@ class card{
             case 47: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nApply '+this.effect[1]+' Bleed'; break
             case 48: if(this.effect[0]>0){string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n'} string+='Push 2 Tiles'; break
             case 50: string+='Add '+this.calculateEffect(+this.effect[0],1)+' Block\nRetain Block\nfor '+this.effect[1]+' Turns'; break
-     
+            case 51: string+='Move '+this.effect[0]+' Tiles\nAdd '+this.effect[1]+' Dodge'; break
+            case 52: string+='Move '+this.effect[0]+' Tiles\nDiscard When Another\nCard is Played'; break
+            case 53: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nAdd '+this.effect[1]+' Dodge'; break
+            
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
@@ -184,6 +187,13 @@ class card{
             break
             case -2:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[9]++
+            break
+        }
+    }
+    anotherPlayed(){
+        switch(this.attack){
+            case 52:
+                this.deSize=true
             break
         }
     }

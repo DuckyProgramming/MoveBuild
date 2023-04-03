@@ -189,12 +189,6 @@ types={
                 {effect:[],attack:29,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Dodge',rarity:0,list:1,
-            levels:[
-                {effect:[1],attack:30,cost:2,target:[0],spec:[],class:2},
-                {effect:[1],attack:30,cost:1,target:[0],spec:[],class:2},
-            ],
-        },{
             name:'Shockwave',rarity:2,list:1,
             levels:[
                 {effect:[],attack:31,cost:1,target:[0],spec:[1],class:1},
@@ -281,7 +275,7 @@ types={
                 {effect:[32],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
             ],
         },{
-            name:'Throw\nShuriken',rarity:1,list:2,
+            name:'Throwing\nStar',rarity:1,list:2,
             levels:[
                 {effect:[4],attack:49,cost:1,target:[2,2,6],spec:[0],class:1},
                 {effect:[6],attack:49,cost:1,target:[2,2,6],spec:[0],class:1},
@@ -292,8 +286,32 @@ types={
                 {effect:[9,1],attack:50,cost:1,target:[0],spec:[],class:2},
                 {effect:[13,1],attack:50,cost:1,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Dodge',rarity:0,list:2,
+            levels:[
+                {effect:[1],attack:30,cost:2,target:[0],spec:[],class:2},
+                {effect:[1],attack:30,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Bob and\nWeave',rarity:1,list:2,
+            levels:[
+                {effect:[1,1],attack:51,cost:2,target:[1,1,1],spec:[],class:3},
+                {effect:[2,1],attack:51,cost:2,target:[1,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'Positioning\nMove',rarity:0,list:2,
+            levels:[
+                {effect:[2],attack:52,cost:0,target:[1,1,2],spec:[],class:3},
+                {effect:[3],attack:52,cost:0,target:[1,1,3],spec:[],class:3},
+            ],
+        },{
+            name:'No Take\nBacks',rarity:1,list:2,
+            levels:[
+                {effect:[6,1],attack:53,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[12,1],attack:53,cost:2,target:[2,1,1],spec:[],class:1},
+            ],
         },
-        //get me some movement cards!
+        //some bleed
 
         {
             name:'Swift\nStrike',rarity:1,list:0,
@@ -391,6 +409,7 @@ types={
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
         {name:'Sakura',life:50,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her."},
+        {name:'Ume',life:40,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Human',life:25,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:"Just a guy"},
         {name:'Duck',life:20,behavior:1,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:"Typical duck"},
         {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
@@ -471,7 +490,7 @@ types={
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            [['Doubt',0,4],['Shame',0,4],['Spartan\nKick',0,2],['Throw\nShuriken',0,2],['Safeguard',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
+            [['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             
            
@@ -590,7 +609,7 @@ types={
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1,2],playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:[1],playerNumber:2,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 graphics={main:0,backgrounds:[],combatantBackgrounds:[],minor:[],combatant:[],combatantGen:0}
 transition={trigger:false,anim:0,scene:stage.scene}

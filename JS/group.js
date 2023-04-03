@@ -236,6 +236,9 @@ class group{
                     if(this.cards[a].spec.includes(1)){
                         this.cards[a].exhaust=true
                     }
+                    for(let c=0,lc=this.cards.length;c<lc;c++){
+                        this.cards[c].anotherPlayed()
+                    }
                 }else{
                     this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                     this.battle.attackManager.targetDistance=0
@@ -266,6 +269,9 @@ class group{
                         if(this.cards[b].spec.includes(1)){
                             this.cards[b].exhaust=true
                         }
+                        for(let c=0,lc=this.cards.length;c<lc;c++){
+                            this.cards[c].anotherPlayed()
+                        }
                     }
                 }
             break
@@ -285,6 +291,9 @@ class group{
                         }
                         if(this.cards[b].spec.includes(1)){
                             this.cards[b].exhaust=true
+                        }
+                        for(let c=0,lc=this.cards.length;c<lc;c++){
+                            this.cards[c].anotherPlayed()
                         }
                     }
                 }

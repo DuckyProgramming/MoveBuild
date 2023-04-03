@@ -22,7 +22,7 @@ class attack{
         switch(this.type){
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
             case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
-            case 38: case 39: case 42: case 46: case 47: case 48: case 49:
+            case 38: case 39: case 42: case 46: case 47: case 48: case 49: case 53:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -31,7 +31,7 @@ class attack{
                 this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
             break
-            case 3: case 14: case 20:
+            case 3: case 14: case 20: case 51: case 52:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -83,7 +83,7 @@ class attack{
     update(){
         this.timer++
         switch(this.type){
-            case 1: case 7: case 34: case 35: case 42: case 46:
+            case 1: case 7: case 34: case 35: case 42: case 46: case 53:
                 if(this.targetDistance==1){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(2)
@@ -104,6 +104,8 @@ class attack{
                             this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
                         }else if(this.type==42){
                             this.battle.cardManagers[this.player].draw(this.effect[1])
+                        }else if(this.type==53){
+                            this.userCombatant.statusEffect('Dodge',this.effect[1])
                         }
                     }else if(this.timer>=30){
                         this.remove=true
@@ -153,7 +155,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 3: case 20:
+            case 3: case 20: case 51: case 52:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -162,6 +164,8 @@ class attack{
                 this.userCombatant.runAnimation(1/15,0)
                 if(this.timer==10*this.targetDistance&&this.type==20){
                     this.battle.cardManagers[this.player].hand.randomEffect(0)
+                }else if(this.timer==10*this.targetDistance&&this.type==51){
+                    this.userCombatant.statusEffect('Dodge',this.effect[1])
                 }
                 if(this.timer>=15*this.targetDistance){
                     this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)

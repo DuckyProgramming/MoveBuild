@@ -50,7 +50,7 @@ class combatant{
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement
         //0-good, 1-bad, 2-nonclassified good
-        for(let a=0;a<10;a++){
+        for(let a=0;a<20;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -246,7 +246,7 @@ class combatant{
 
                 this.trigger={display:{flower:true,flower2:false,mouth:true,
                     hair:{back:true,front:true,tail:true,glow:true},eye:[true,true],sandal:{back:[true,true],front:[true,true]},sleeve:true,sleeveDecoration:true,necklace:{back:true,front:true},
-                    skin:{legs:true,arms:true,body:true,head:true,button:true},
+                    skin:{legs:true,arms:true,body:true,head:true,button:false},
                     kimono:{main:{back:true,front:true},outside:{back:true,front:true},fringe:{back:true,front:true},decoration:{large:true,small:true},shadow:true,bow:true,string:true,flower:true},
                     wrap:{round:true,bow:true,bar:true,sleeve:true},
                     under:{dress:{back:false,front:false,decoration:{large:false}},towel:false,top:false,bottom:false,tanga:true,bow:{top:false,bottom:false},under:{top:true,button:false,bottom:false}},
@@ -667,8 +667,9 @@ class combatant{
         this.tilePosition.y=y
     }
     statusEffect(name,value){
-        if(findList(name,this.status.name)>=0){
-            this.status.main[findList(name,this.status.name)]+=value
+        let status=findList(name,this.status.name)
+        if(status>=0){
+            this.status.main[status]+=value
         }
     }
     getStatus(name){
@@ -1123,7 +1124,7 @@ class combatant{
                         this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
                         this.layer.rotate(90+90*sign(sin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(sin(this.anim.direction+this.spin.arms[key].bottom+75)))
                         this.layer.scale(-1,constrain(sin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
-                        this.layer.image(graphics.minor[19],-27,-42,54,54)
+                        this.layer.image(graphics.minor[17],-27,-42,54,54)
                         this.layer.pop()
                     break
                 }
@@ -1312,9 +1313,9 @@ class combatant{
                                     this.layer.scale(1.2,0.6)
                                     this.layer.rotate(-this.anim.direction+this.spin.sandal[h])
                                     if(this.trigger.display.extra.damage){
-                                        this.layer.image(graphics.minor[7+h],-4*this.fades.sandal.back[h]*this.fade,-4*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade)
+                                        this.layer.image(graphics.minor[5+h],-4*this.fades.sandal.back[h]*this.fade,-4*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade)
                                     }else{
-                                        this.layer.image(graphics.minor[1],-4*this.fades.sandal.back[h]*this.fade,-4*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade)
+                                        this.layer.image(graphics.minor[4],-4*this.fades.sandal.back[h]*this.fade,-4*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade)
                                     }
                                     this.layer.rotate(this.anim.direction-this.spin.sandal[h])
                                     this.layer.scale(5/6,5/3)
@@ -1326,7 +1327,7 @@ class combatant{
                                     this.layer.rotate(-this.anim.direction+this.spin.sandal[h])
                                     for(let i=0;i<2;i++){
                                         if((cos(this.anim.direction+65*(i*2-1)-this.spin.sandal[h])<=0.2&&this.trigger.display.mode.sandal.edge==0||i%2!=h&&this.trigger.display.mode.sandal.edge==1)){
-                                            this.layer.image(graphics.minor[i+2],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
+                                            this.layer.image(graphics.minor[7+i],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
                                         }
                                     }
                                     this.layer.rotate(this.anim.direction-this.spin.sandal[h])
@@ -1387,7 +1388,7 @@ class combatant{
                                     this.layer.rotate(-this.anim.direction+this.spin.sandal[h])
                                     for(let i=0;i<2;i++){
                                         if((cos(this.anim.direction+65*(i*2-1)-this.spin.sandal[h])>0.2&&this.trigger.display.mode.sandal.edge==0||i%2==h&&this.trigger.display.mode.sandal.edge==1)){
-                                            this.layer.image(graphics.minor[i+2],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
+                                            this.layer.image(graphics.minor[7+i],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
                                         }
                                     }
                                     this.layer.rotate(this.anim.direction-this.spin.sandal[h])
@@ -1775,18 +1776,18 @@ class combatant{
                     }
                     if(this.trigger.display.flower[2]&&this.fades.flower[2]>0){
                         if(constrain((pow(cos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1)>0){
-                            this.layer.image(graphics.minor[5],sin(this.spin.flower[2]+this.anim.head)*18.5-5*this.fade*this.fades.flower[2]*constrain((pow(cos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[2]-5*this.fade*this.fades.flower[2],10*this.fade*this.fades.flower[2]*constrain((pow(cos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),10*this.fade*this.fades.flower[2])
+                            this.layer.image(graphics.minor[3],sin(this.spin.flower[2]+this.anim.head)*18.5-5*this.fade*this.fades.flower[2]*constrain((pow(cos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[2]-5*this.fade*this.fades.flower[2],10*this.fade*this.fades.flower[2]*constrain((pow(cos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),10*this.fade*this.fades.flower[2])
                         }
                     }
                     if(this.trigger.display.flower[1]&&this.fades.flower[1]>0){
                         if(constrain((pow(cos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1)>0){
-                            this.layer.image(graphics.minor[4],sin(this.spin.flower[1]+this.anim.head)*18.5-8*this.fade*this.fades.flower[1]*constrain((pow(cos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[1]-8*this.fade*this.fades.flower[1],16*this.fade*this.fades.flower[1]*constrain((pow(cos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),16*this.fade*this.fades.flower[1])
+                            this.layer.image(graphics.minor[2],sin(this.spin.flower[1]+this.anim.head)*18.5-8*this.fade*this.fades.flower[1]*constrain((pow(cos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[1]-8*this.fade*this.fades.flower[1],16*this.fade*this.fades.flower[1]*constrain((pow(cos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),16*this.fade*this.fades.flower[1])
                         }
                     }
                     if(this.trigger.display.flower[0]&&this.fades.flower[0]>0){
                         if(constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1)>0){
                             if(this.trigger.display.extra.damage){
-                                this.layer.image(graphics.minor[6],sin(this.spin.flower[0]+this.anim.head)*18.5-10*this.fade*this.fades.flower[0]*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[0]-10*this.fade*this.fades.flower[0],20*this.fade*this.fades.flower[0]*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),20*this.fade*this.fades.flower[0])
+                                this.layer.image(graphics.minor[1],sin(this.spin.flower[0]+this.anim.head)*18.5-10*this.fade*this.fades.flower[0]*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[0]-10*this.fade*this.fades.flower[0],20*this.fade*this.fades.flower[0]*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),20*this.fade*this.fades.flower[0])
                             }else{
                                 this.layer.image(graphics.minor[0],sin(this.spin.flower[0]+this.anim.head)*18.5-10*this.fade*this.fades.flower[0]*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[0]-10*this.fade*this.fades.flower[0],20*this.fade*this.fades.flower[0]*constrain((pow(cos(this.spin.flower[0]+this.anim.head),1.5)*2-0.2),0,1),20*this.fade*this.fades.flower[0])
                             }
@@ -2191,9 +2192,9 @@ class combatant{
                                     this.layer.scale(1.2,0.6)
                                     this.layer.rotate(-this.anim.direction+this.spin.sandal[h])
                                     if(this.trigger.display.extra.damage){
-                                        this.layer.image(graphics.minor[17+h],-4*this.fades.sandal.back[h]*this.fade,-4*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade)
+                                        this.layer.image(graphics.minor[13+h],-4*this.fades.sandal.back[h]*this.fade,-4*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade)
                                     }else{
-                                        this.layer.image(graphics.minor[9],-4*this.fades.sandal.back[h]*this.fade,-4*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade)
+                                        this.layer.image(graphics.minor[12],-4*this.fades.sandal.back[h]*this.fade,-4*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade,8*this.fades.sandal.back[h]*this.fade)
                                     }
                                     this.layer.rotate(this.anim.direction-this.spin.sandal[h])
                                     this.layer.scale(5/6,5/3)
@@ -2205,12 +2206,7 @@ class combatant{
                                     this.layer.rotate(-this.anim.direction+this.spin.sandal[h])
                                     for(let i=0;i<2;i++){
                                         if((cos(this.anim.direction+65*(i*2-1)-this.spin.sandal[h])<=0.2&&this.trigger.display.mode.sandal.edge==0||i%2!=h&&this.trigger.display.mode.sandal.edge==1)){
-                                            this.layer.image(graphics.minor[i+10],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
-                                        }
-                                    }
-                                    for(let i=0;i<2;i++){
-                                        if(cos(this.anim.direction+65*(i*2-1)-this.spin.sandal[h])<=0.2&&this.trigger.display.mode.sandal.edge==0||i%2!=h&&this.trigger.display.mode.sandal.edge==1){
-                                            this.layer.image(graphics.minor[i+12],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
+                                            this.layer.image(graphics.minor[15+i],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
                                         }
                                     }
                                     this.layer.rotate(this.anim.direction-this.spin.sandal[h])
@@ -2229,12 +2225,7 @@ class combatant{
                                     this.layer.rotate(-this.anim.direction+this.spin.sandal[h])
                                     for(let i=0;i<2;i++){
                                         if((cos(this.anim.direction+65*(i*2-1)-this.spin.sandal[h])>0.2&&this.trigger.display.mode.sandal.edge==0||i%2==h&&this.trigger.display.mode.sandal.edge==1)){
-                                            this.layer.image(graphics.minor[i+10],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
-                                        }
-                                    }
-                                    for(let i=0;i<2;i++){
-                                        if(cos(this.anim.direction+65*(i*2-1)-this.spin.sandal[h])>0.2&&this.trigger.display.mode.sandal.edge==0||i%2==h&&this.trigger.display.mode.sandal.edge==1){
-                                            this.layer.image(graphics.minor[i+12],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
+                                            this.layer.image(graphics.minor[15+i],-4*this.fades.sandal.front[h]*this.fade,-4*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade,8*this.fades.sandal.front[h]*this.fade)
                                         }
                                     }
                                     this.layer.rotate(this.anim.direction-this.spin.sandal[h])
@@ -2414,7 +2405,7 @@ class combatant{
                                 this.layer.push()
                                 this.layer.translate(4*sin(360*g/lg+this.anim.direction),-35)
                                 this.layer.rotate(30*sin(360*g/lg+this.anim.direction))
-                                this.layer.image(graphics.minor[20],-1.5*cos(360*g/lg+this.anim.direction)*this.fade*this.fades.under.bottom,-1.5*this.fade*this.fades.under.bottom,3*cos(360*g/lg+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
+                                this.layer.image(graphics.minor[18],-1.5*cos(360*g/lg+this.anim.direction)*this.fade*this.fades.under.bottom,-1.5*this.fade*this.fades.under.bottom,3*cos(360*g/lg+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
                                 this.layer.pop()
                             }
                         }
@@ -2423,7 +2414,7 @@ class combatant{
                                 this.layer.push()
                                 this.layer.translate(2.5*sin(360*(g+0.25)/lg+this.anim.direction),-33)
                                 this.layer.rotate(30*sin(360*(g+0.25)/lg+this.anim.direction))
-                                this.layer.image(graphics.minor[20],-1.5*cos(360*(g+0.25)/lg+this.anim.direction)*this.fade*this.fades.under.bottom,-1.5*this.fade*this.fades.under.bottom,3*cos(360*(g+0.25)/lg+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
+                                this.layer.image(graphics.minor[18],-1.5*cos(360*(g+0.25)/lg+this.anim.direction)*this.fade*this.fades.under.bottom,-1.5*this.fade*this.fades.under.bottom,3*cos(360*(g+0.25)/lg+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
                                 this.layer.pop()
                             }
                         }
@@ -2474,7 +2465,7 @@ class combatant{
                                 this.layer.push()
                                 this.layer.translate(5*sin(this.spin.under.under.top[g]+this.anim.direction),-51)
                                 this.layer.rotate(-15*sin(this.spin.under.under.top[g]+this.anim.direction))
-                                this.layer.image(graphics.minor[20],-1.5*cos(this.spin.under.under.top[g]+this.anim.direction)*this.fade*this.fades.under.bottom,-1.5*this.fade*this.fades.under.bottom,3*cos(this.spin.under.under.top[g]+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
+                                this.layer.image(graphics.minor[18],-1.5*cos(this.spin.under.under.top[g]+this.anim.direction)*this.fade*this.fades.under.bottom,-1.5*this.fade*this.fades.under.bottom,3*cos(this.spin.under.under.top[g]+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
                                 this.layer.pop()
                             }
                             for(let h=0;h<2;h++){
@@ -2482,7 +2473,7 @@ class combatant{
                                     this.layer.push()
                                     this.layer.translate(5*sin(this.spin.under.under.top[g]-12+h*24+this.anim.direction),-49)
                                     this.layer.rotate(-15*sin(this.spin.under.under.top[g]-12+h*24+this.anim.direction))
-                                    this.layer.image(graphics.minor[20],-1.5*cos(this.spin.under.under.top[g]-12+h*24+this.anim.direction)*this.fade*this.fades.under.bottom,
+                                    this.layer.image(graphics.minor[18],-1.5*cos(this.spin.under.under.top[g]-12+h*24+this.anim.direction)*this.fade*this.fades.under.bottom,
                                     -1.5*this.fade*this.fades.under.bottom,3*cos(this.spin.under.under.top[g]-12+h*24+this.anim.direction)*this.fade*this.fades.under.bottom,3*this.fade*this.fades.under.bottom)
                                     this.layer.pop()
                                 }
@@ -3032,7 +3023,7 @@ class combatant{
                     }
                     if(this.trigger.display.kimono.flower&&this.fades.kimono.flower>0){
                         if(constrain((pow(cos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1)>0){
-                            this.layer.image(graphics.minor[15],sin(this.spin.flower[1]+this.anim.direction)*8*this.fades.kimono.outside.front.x-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(cos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.kimono.outside+(this.parts.kimono.flowerLevel-this.parts.kimono.outside)*this.fades.kimono.outside.front.y-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x,30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(cos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.y)
+                            this.layer.image(graphics.minor[10],sin(this.spin.flower[1]+this.anim.direction)*8*this.fades.kimono.outside.front.x-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(cos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.kimono.outside+(this.parts.kimono.flowerLevel-this.parts.kimono.outside)*this.fades.kimono.outside.front.y-15*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x,30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.x*constrain((pow(cos(this.spin.flower[1]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.kimono.flower*this.fades.kimono.outside.front.y)
                         }
                     }
                     if(this.trigger.display.hair.tail&&cos(this.spin.tail+this.anim.direction)>0){
@@ -3051,12 +3042,12 @@ class combatant{
                     }
                     if(this.trigger.display.flower&&this.fades.flower>0){
                         if(constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1)>0){
-                            this.layer.image(graphics.minor[14],sin(this.spin.flower[0]+this.anim.direction)*18-10*this.fade*this.fades.flower*constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.flowerLevel-15*this.fade*this.fades.flower,20*this.fade*this.fades.flower*constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.flower)
+                            this.layer.image(graphics.minor[9],sin(this.spin.flower[0]+this.anim.direction)*18-10*this.fade*this.fades.flower*constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.flowerLevel-15*this.fade*this.fades.flower,20*this.fade*this.fades.flower*constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.flower)
                         }
                     }
                     if(this.trigger.display.flower2&&this.fades.flower2>0){
                         if(constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1)>0){
-                            this.layer.image(graphics.minor[16],sin(this.spin.flower[0]+this.anim.direction)*18-10*this.fade*this.fades.flower2*constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.flowerLevel-15*this.fade*this.fades.flower2,20*this.fade*this.fades.flower2*constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.flower2)
+                            this.layer.image(graphics.minor[11],sin(this.spin.flower[0]+this.anim.direction)*18-10*this.fade*this.fades.flower2*constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),this.parts.flowerLevel-15*this.fade*this.fades.flower2,20*this.fade*this.fades.flower2*constrain((pow(cos(this.spin.flower[0]+this.anim.direction),1.5)*2-0.2),0,1),30*this.fade*this.fades.flower2)
                         }
                     }
                 break
