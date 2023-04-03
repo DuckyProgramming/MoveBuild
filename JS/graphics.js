@@ -175,61 +175,544 @@ function controlSpin(set,direction,spec){
 		}
 	}
 }
+function minorGraphicDisplay(layer,type){
+	layer.noStroke()
+	switch(type){
+		case 0:
+			layer.fill(251,172,180)
+			for(let h=0;h<6;h++){
+				layer.rotate(60)
+				layer.ellipse(0,1.4,2,3)
+			}
+			layer.fill(237,109,167)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,1.4,1.6,2.6)
+			}
+			layer.fill(252,158,191)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,1,1.2,1.8)
+			}
+			layer.fill(178,20,116)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,-1.4,1.6,2.6)
+			}
+			layer.fill(213,54,146)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,-1,1.2,1.8)
+			}
+			layer.fill(251,166,172)
+			layer.ellipse(0,0,1.2,1.2)
+			layer.fill(166,48,35)
+			layer.ellipse(0,0,0.8,0.8)
+		break
+		case 1:
+			layer.fill(255,230,217)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.5,2.2,3)
+			}
+			layer.fill(245,113,150)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.5,1.8,2.6)
+			}
+			layer.fill(249,144,184)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.2,1.2,2)
+			}
+			layer.fill(255,255,244)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.2,0.3,0.8)
+			}
+			layer.ellipse(0,0,0.5,0.5)
+		break
+		case 2:
+			layer.fill(255,217,218)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.5,2.4,2.8)
+			}
+			layer.fill(210,28,53)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.5,2.1,2.5)
+			}
+			layer.fill(241,80,52)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.5,1.8,2.2)
+			}
+			layer.fill(254,145,80)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.2,1.4,1.8)
+			}
+			layer.fill(255,240,211)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1,0.2,0.7)
+			}
+			layer.ellipse(0,0,0.4,0.4)
+		break
+		case 3:
+			layer.fill(255,224,215)
+			for(let h=0;h<4;h++){
+				layer.rotate(90)
+				layer.ellipse(0,1.375,2.75,2.75)
+			}
+			layer.fill(23,165,189)
+			for(let h=0;h<4;h++){
+				layer.rotate(90)
+				layer.ellipse(0,1.375,2.25,2.25)
+			}
+			layer.fill(108,215,222)
+			for(let h=0;h<4;h++){
+				layer.rotate(90)
+				layer.ellipse(0,1.375,1.75,1.75)
+			}
+			layer.rotate(45)
+			layer.fill(255,224,215)
+			for(let h=0;h<4;h++){
+				layer.rotate(90)
+				layer.ellipse(0,1.375,2.75,2.75)
+			}
+			layer.fill(186,54,77)
+			for(let h=0;h<4;h++){
+				layer.rotate(90)
+				layer.ellipse(0,1.375,2.25,2.25)
+			}
+			layer.fill(255,210,207)
+			for(let h=0;h<4;h++){
+				layer.rotate(90)
+				layer.ellipse(-0.375,-1.75,0.25,0.25)
+				layer.ellipse(0.375,-1.75,0.25,0.25)
+				layer.ellipse(-0.375,-1,0.25,0.25)
+				layer.ellipse(0.375,-1,0.25,0.25)
+			}
+		break
+		case 4:
+			layer.strokeJoin(ROUND)
+			layer.stroke(231,208,210)
+			layer.strokeWeight(0.6)
+			for(let h=0;h<6;h++){
+				layer.rotate(45+(h%2)*30)
+				layer.triangle(0,0,-0.65,1.2,0.65,1.2)
+				layer.arc(0,1.5,1.5,1.5,0,360)
+			}
+			layer.noStroke()
+			for(let g=0,lg=10;g<lg;g++){
+				layer.fill(161+82*g/lg,1+123*g/lg,19+143*g/lg)
+				for(let h=0;h<6;h++){
+					layer.rotate(45+(h%2)*30)
+					layer.triangle(0,0,-0.65*(1-g/lg),1.2*(1-0.8*g/lg),0.65*(1-g/lg),1.2*(1-0.8*g/lg))
+					layer.arc(0,1.5*(1-0.8*g/lg),1.5*(1-g/lg),1.5,0,360)
+				}
+			}
+			layer.rotate(22.5)
+			layer.fill(166,58,30)
+			layer.stroke(214,185,132)
+			layer.strokeWeight(0.1)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.bezier(0,0,-0.4,1.6,0.4,1.6,0,0)
+			}
+			layer.strokeJoin(MITER)
+		break
+		case 5:
+			layer.fill(242,232,231)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,1.25,3.25,3)
+			}
+			layer.fill(189,42,26)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,1.125,2.25,2.25)
+			}
+			layer.stroke(224,142,139)
+			layer.strokeWeight(0.15)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(-0.45,1.4,0.5,0.5)
+				layer.ellipse(0.45,1.4,0.5,0.5)
+				layer.ellipse(0,0.65,0.5,0.5)
+			}
+		break
+		case 6:
+			layer.fill(241,212,226)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.1,2.1,2.7)
+			}
+			layer.fill(143,90,141)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.1,1.7,2.3)
+			}
+			layer.rotate(36)
+			layer.fill(229,201,211)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.05,2.4,2.7)
+			}
+			layer.fill(247,132,76)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.05,1.8,2.1)
+			}
+			layer.fill(237,163,170)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,0.5,0.5,4/3)
+			}
+			layer.fill(128,59,148)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,0.5,1/6,1)
+			}
+			layer.rotate(36)
+			layer.fill(255,197,164)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1/3,0.5,1)
+			}
+			layer.fill(210,23,61)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1/3,1/6,2/3)
+			}
+		break
+		case 7:
+			layer.fill(255,246,236)
+			for(let h=0;h<10;h++){
+				layer.rotate(27+(h%2)*18)
+				layer.arc(0,1.6,1.3,1.3,0,360)
+			}
+			layer.ellipse(0,0,3,3)
+			for(let g=0,lg=10;g<lg;g++){
+				layer.fill(162+59*abs(4-g)/5,40+117*abs(4-g)/5,61+72*abs(4-g)/5)
+				for(let h=0;h<10;h++){
+					layer.rotate(27+(h%2)*18)
+					layer.triangle(0,0,-0.5*(1-g/lg),1.5*(1-g/lg),0.5*(1-g/lg),1.5*(1-g/lg))
+					layer.arc(0,1.6*(1-g/lg),1*(1-g/lg),1*(1-g/lg),0,360)
+				}
+			}
+			layer.rotate(13.5)
+			layer.fill(254,242,237)
+			layer.ellipse(0,0,0.6,0.6)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.rect(0,-0.8,0.15,1.6)
+			}
+			layer.fill(211,95,159)
+			layer.ellipse(0,0,0.4,0.4)
+		break
+		case 8:
+			layer.fill(233,197,220)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,2,0.8,2)
+			}
+			layer.fill(157,78,128)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,2,0.6,1.8)
+			}
+			layer.fill(123,64,107)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.85,0.5,1.5)
+			}
+			layer.fill(79,29,75)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.7,0.4,1.2)
+			}
+			layer.rotate(48)
+			layer.fill(249,212,237)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.2,1.2,2.4)
+			}
+			layer.fill(172,5,65)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.2,1,2.2)
+			}
+			layer.fill(193,15,82)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,0.8,0.6,1.4)
+			}
+			layer.rotate(36)
+			layer.fill(252,206,219)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.2,1.2,2.4)
+			}
+			layer.fill(222,84,132)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.2,1,2.2)
+			}
+			layer.fill(252,130,170)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,0.8,0.6,1.4)
+			}
+			layer.fill(236,137,109)
+			layer.ellipse(0,0,0.6,0.6)
+			layer.fill(253,213,132)
+			layer.ellipse(0,0,0.4,0.4)
+		break
+		case 9:
+			layer.fill(253,233,237)
+			for(let h=0;h<8;h++){
+				layer.rotate(45+cos(h*90+45)*10)
+				layer.ellipse(0,sin(h*90)*0.4+1.6,1,2)
+				layer.rect(0,-1,0.16,2)
+			}
+			for(let g=0,lg=5;g<lg;g++){
+				layer.fill(217-38*g/lg,224-63*g/lg,137-66*g/lg)
+				for(let h=0;h<8;h++){
+					layer.rotate(45+cos(h*90+45)*10)
+					layer.ellipse(0,sin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+					layer.rect(0,-(sin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,sin(h*90)*0.4+1.6-0.9*g/lg)
+				}
+			}
+			layer.rotate(18)
+			layer.scale(0.8)
+			layer.fill(235,201,215)
+			for(let h=0;h<8;h++){
+				layer.rotate(45+cos(h*90+45)*10)
+				layer.ellipse(0,sin(h*90)*0.4+1.6,1,2)
+				layer.rect(0,-1,0.16,2)
+			}
+			for(let g=0,lg=5;g<lg;g++){
+				layer.fill(173-51*g/lg,113-68*g/lg,180-42*g/lg)
+				for(let h=0;h<8;h++){
+					layer.rotate(45+cos(h*90+45)*10)
+					layer.ellipse(0,sin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+					layer.rect(0,-(sin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,sin(h*90)*0.4+1.6-0.9*g/lg)
+				}
+			}
+		break
+		case 10:
+			layer.fill(254,180,202)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,1.8,1.2,2)
+			}
+			layer.fill(169,91,129)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,1.8,1,1.8)
+			}
+			layer.fill(106,48,88)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,1.65,0.7,1.5)
+			}
+			layer.fill(69,24,68)
+			for(let h=0;h<3;h++){
+				layer.rotate(120)
+				layer.ellipse(0,1.5,0.4,1.2)
+			}
+			layer.rotate(48)
+			for(let h=0,lh=16;h<lh;h++){
+				layer.rotate(72)
+				layer.fill(248+6*h/lh,215-21*h/lh,232-19*h/lh)
+				layer.ellipse(0,-1.2+h*0.05,2.2-h*0.1,2-h*0.1)
+				layer.ellipse(0,1.2-h*0.05,2.2-h*0.1,2-h*0.1)
+				layer.fill(255-52*h/lh,170-103*h/lh,192-80*h/lh)
+				layer.ellipse(0,-1.2+h*0.05,2-h*0.1,1.8-h*0.1)
+				layer.ellipse(0,1.2-h*0.05,2-h*0.1,1.8-h*0.1)
+			}
+			layer.fill(239,177,106)
+			layer.ellipse(0,0,0.8,0.8)
+			layer.fill(250,210,145)
+			layer.ellipse(0,0,0.6,0.6)
+		break
+		case 11:
+			layer.fill(246,136,164)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.4,1.4,2.4)
+			}
+			layer.fill(188,10,69)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.4,1,2)
+			}
+			layer.rotate(36)
+			layer.fill(244,139,177)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.4,1.4,2.4)
+			}
+			layer.fill(181,3,65)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.4,1,2)
+			}
+			layer.fill(230,118,138)
+			layer.ellipse(0,0,1,1)
+			layer.fill(167,61,48)
+			layer.ellipse(0,0,0.6,0.6)
+		break
+		case 12:
+			layer.fill(243,186,203)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.4,1,2.8)
+			}
+			layer.fill(231,97,124)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.4,0.6,2.4)
+			}
+			layer.fill(225,51,100)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1,0.4,1.6)
+			}
+			layer.rotate(36)
+			layer.fill(232,169,191)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.4,1,2.8)
+			}
+			layer.fill(232,112,133)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.4,0.6,2.4)
+			}
+			layer.fill(223,55,101)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1,0.4,1.6)
+			}
+			layer.fill(248,167,196)
+			layer.ellipse(0,0,0.8,0.8)
+			layer.fill(193,80,113)
+			layer.ellipse(0,0,0.4,0.4)
+		break
+		case 13:
+			layer.fill(231,108,217)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.beginShape()
+				layer.vertex(0,-0.3)
+				layer.bezierVertex(-1,0.9,-1,1.8,0,3)
+				layer.bezierVertex(1,1.8,1,0.9,0,-0.3)
+				layer.endShape()
+			}
+			layer.fill(125,3,44)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.beginShape()
+				layer.vertex(0,0)
+				layer.bezierVertex(-0.8,1.2,-0.8,1.5,0,2.7)
+				layer.bezierVertex(0.8,1.5,0.8,1.2,0,0)
+				layer.endShape()
+			}
+			layer.fill(194,92,132)
+			layer.ellipse(0,0,1,1)
+			layer.fill(141,37,74)
+			layer.ellipse(0,0,0.6,0.6)
+		break
+		case 14:
+			layer.fill(245,171,177)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.5,1.1,2.1)
+				layer.rect(0,0.8,0.15,1.6)
+			}
+			for(let g=0,lg=5;g<lg;g++){
+				layer.fill(179-22*g/lg,125-51*g/lg,179)
+				for(let h=0;h<5;h++){
+					layer.rotate(72)
+					layer.ellipse(0,1.5-0.95*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+				}
+			}
+			layer.rotate(30)
+			layer.fill(246,185,195)
+			for(let h=0;h<5;h++){
+				layer.rotate(72)
+				layer.ellipse(0,1.8,1.3,2.5)
+				layer.rect(0,1,0.15,2)
+			}
+			for(let g=0,lg=5;g<lg;g++){
+				layer.fill(190-76*g/lg,147-133*g/lg,183-42*g/lg)
+				for(let h=0;h<5;h++){
+					layer.rotate(72)
+					layer.ellipse(0,1.8-1.1*g/lg,1*(1-g/lg),2.2*(1-g/lg))
+				}
+			}
+		break
+	}
+}
 function generateSprite(layer,type,direction){
 	switch(type){
 		case 0:
 			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,33,1,-0.05,graphics.combatant[graphics.combatant.length-1].color.hair.insideFront,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,33,1,-0.05,graphics.combatant[graphics.combatant.length-1].color.hair.insideFront,1)
 			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,35,1,-0.05,graphics.combatant[graphics.combatant.length-1].color.hair.front,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,35,1,-0.05,graphics.combatant[graphics.combatant.length-1].color.hair.front,1)
 			layer.arc(0,0,35,34,-180,0)
 			layer.line(-17.5,0,17.5,0)
 		break
 		case 1:
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,35,1,-0.05,graphics.combatant[graphics.combatant.length-1].color.hair.back,1)
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,33,1,-0.05,graphics.combatant[graphics.combatant.length-1].color.hair.insideBack,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,35,1,-0.05,graphics.combatant[graphics.combatant.length-1].color.hair.back,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,33,1,-0.05,graphics.combatant[graphics.combatant.length-1].color.hair.insideBack,1)
 		break
 		case 2:
 			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,20,9.25,0.5,0.16,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,20,9.25,0.5,0.16,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
 		break
 		case 3:
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,20,9.25,0.5,0.16,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,20,9.25,0.5,0.16,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
 		break
 		case 4:
 			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
 			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
 		break
 		case 5:
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.end,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.end,1)
 		break
 		case 6:
 			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,20,9.25,0.5,0.16,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,20,9.25,0.5,0.16,-1,-1,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,20,9.25,0.5,0.16,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,20,9.25,0.5,0.16,-1,-1,1)
 		break
 		case 7:
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,20,9.25,0.5,0.16,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,20,9.25,0.5,0.16,-1,-1,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,20,9.25,0.5,0.16,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,20,9.25,0.5,0.16,-1,-1,1)
 		break
 		case 8:
 			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
 			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,20,9,0.5,0.2,-1,-1,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,20,9,0.5,0.2,-1,-1,1)
 		break
 		case 9:
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.end,1)
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,20,9,0.5,0.2,-1,-1,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,20,9,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.end,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,20,9,0.5,0.2,-1,-1,1)
 		break
 		case 10:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,33,1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.insideFront,1)
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,35,1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.front,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,33,1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.insideFront,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,35,1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.front,1)
 			layer.arc(0,0,35,34,-180,0)
 			layer.line(-17.5,0,17.5,0)
 			layer.strokeWeight(0.75)
@@ -243,18 +726,18 @@ function generateSprite(layer,type,direction){
 			layer.arc(cos(direction+graphics.combatant[graphics.combatant.length-1].parts.hair.top)*-5,-10,16*cos(direction+graphics.combatant[graphics.combatant.length-1].parts.hair.top),12,-180,0)
 		break
 		case 11:
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,35,1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.back,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,35,1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.back,1)
 			layer.strokeWeight(0.75)
 			for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.hair.strand.length;g<lg;g++){
 				if(cos(graphics.combatant[graphics.combatant.length-1].parts.hair.strand[g]+direction)<=0){
 					layer.line(sin(graphics.combatant[graphics.combatant.length-1].parts.hair.strand[g]+direction)*15.5,0,sin(graphics.combatant[graphics.combatant.length-1].parts.hair.strand[g]+direction)*14,18)
 				}
 			}
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,33,1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.insideBack,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,33,1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.insideBack,1)
 		break
 		case 12:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,20,9,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,20,9,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
 			layer.erase()
 			layer.fill(0)
 			layer.rect(0,layer.height*0.825/5,layer.width/5,layer.height*0.35/5)
@@ -262,13 +745,13 @@ function generateSprite(layer,type,direction){
 			setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.temp)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.translate(100,0)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.scale(5,2)
-			this.displayTrianglesFrontMerge(graphics.combatant[graphics.combatant.length-1].sprites.temp,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,87,3,0.5,0.36,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
+			displayTrianglesFrontMerge(graphics.combatant[graphics.combatant.length-1].sprites.temp,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,87,3,0.5,0.36,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.erase()
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.rect(0,52,40,104)
 			layer.image(graphics.combatant[graphics.combatant.length-1].sprites.temp,-layer.width/10,0,layer.width/5,layer.height/5)
 		break
 		case 13:
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,20,9,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,20,9,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
 			layer.erase()
 			layer.fill(0)
 			layer.rect(0,layer.height*0.825/5,layer.width/5,layer.height*0.35/5)
@@ -276,43 +759,43 @@ function generateSprite(layer,type,direction){
 			setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.temp)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.translate(100,0)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.scale(5,2)
-			this.displayTrianglesBackMerge(graphics.combatant[graphics.combatant.length-1].sprites.temp,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,87,3,0.5,0.36,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(graphics.combatant[graphics.combatant.length-1].sprites.temp,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,87,3,0.5,0.36,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.erase()
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.rect(0,52,40,104)
 			layer.image(graphics.combatant[graphics.combatant.length-1].sprites.temp,-layer.width/10,0,layer.width/5,layer.height/5)
 		break
 		case 14:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,27,18,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,27,18,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
 			for(let g=0;g<36;g++){
 				layer.fill(mergeColor(graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,g/36))
 				layer.stroke(mergeColor(graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,g/36))
 				layer.quad(-5-g/9,9+g/2,5+g/9,9+g/2,5+(g+1)/9,9.5+g/2,-5-(g+1)/9,9.5+g/2)
 			}
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,9,10,0.25,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,9,10,0.25,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,1)
 		break
 		case 15:
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,27,18,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.end,1)
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,9,10,0.25,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.start,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outside,direction,27,18,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.end,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop,direction,9,10,0.25,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.start,1)
 		break
 		case 16:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.fringe,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.fringe,direction,0,18,0.3,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.fringe,1)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringe,direction,0,18,0.15,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideFringe,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.fringe,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.fringe,direction,0,18,0.3,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.fringe,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringe,direction,0,18,0.15,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideFringe,1)
 		break
 		case 17:
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.fringe,direction,0,18,0.3,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.fringeBack,1)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringe,direction,0,18,0.15,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideFringeBack,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.fringe,direction,0,18,0.3,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.fringeBack,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringe,direction,0,18,0.15,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideFringeBack,1)
 		break
 		case 18:
 			for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.tail.length;g<lg;g++){
-				this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.tail[g][0],direction,0)
-				this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.tail[g][1],direction,0)
+				controlSpin(graphics.combatant[graphics.combatant.length-1].parts.tail[g][0],direction,0)
+				controlSpin(graphics.combatant[graphics.combatant.length-1].parts.tail[g][1],direction,0)
 				layer.translate(sin(direction*6+g*135)*0.6,0)
-				this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.tail[g][0],direction,30-g*5,3.2+min(g,4)*1.2,1,0.4*(0.8+min(g,4)*0.3),
+				displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.tail[g][0],direction,30-g*5,3.2+min(g,4)*1.2,1,0.4*(0.8+min(g,4)*0.3),
 					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,g/lg),cos(direction+graphics.combatant[graphics.combatant.length-1].spin.tail)*20,[0,1,1]),
 					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,(g+1)/lg),cos(direction+graphics.combatant[graphics.combatant.length-1].spin.tail)*20,[0,1,1]),1),
-				this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.tail[g][1],direction,30-g*5,3.2+min(g,4)*1.2,1,-0.4*(0.8+min(g,4)*0.3),
+				displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.tail[g][1],direction,30-g*5,3.2+min(g,4)*1.2,1,-0.4*(0.8+min(g,4)*0.3),
 					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,g/lg),cos(direction+graphics.combatant[graphics.combatant.length-1].spin.tail)*20,[0,1,1]),
 					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,(g+1)/lg),cos(direction+graphics.combatant[graphics.combatant.length-1].spin.tail)*20,[0,1,1]),1)
 				layer.translate(sin(direction*6+g*135)*-0.6,0)
@@ -323,22 +806,22 @@ function generateSprite(layer,type,direction){
 			layer.rect(sin(direction*6)*0.3+sin(direction*6+135)*0.3,27.9,abs(sin(direction*6)*0.57-sin(direction*6+135)*0.57)+3.8,0.3)
 		break
 		case 19:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.under.dress,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.under.dress,direction,41,16,0.5,0.5,graphics.combatant[graphics.combatant.length-1].color.under.dress,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.under.dress,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.under.dress,direction,41,16,0.5,0.5,graphics.combatant[graphics.combatant.length-1].color.under.dress,1)
 			layer.quad(-5,21,5,21,8,41,-8,41)
 		break
 		case 20:
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.under.dress,direction,41,16,0.5,0.5,graphics.combatant[graphics.combatant.length-1].color.under.dressBack,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.under.dress,direction,41,16,0.5,0.5,graphics.combatant[graphics.combatant.length-1].color.under.dressBack,1)
 		break
 		case 21:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.shadow,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.shadow,direction,3,15,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.shadow,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.shadow,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.shadow,direction,3,15,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.shadow,1)
 		break
 		case 22:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,1)
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,0)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,20,9,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
-			this.displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,20,9,0.5,0.15,-1,-1,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,0)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,20,9,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,20,9,0.5,0.15,-1,-1,1)
 			layer.erase()
 			layer.fill(0)
 			layer.rect(0,layer.height*0.825/5,layer.width/5,layer.height*0.35/5)
@@ -346,14 +829,14 @@ function generateSprite(layer,type,direction){
 			setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.temp)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.translate(100,0)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.scale(5,2)
-			this.displayTrianglesFrontMerge(graphics.combatant[graphics.combatant.length-1].sprites.temp,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,87,3,0.5,0.36,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
+			displayTrianglesFrontMerge(graphics.combatant[graphics.combatant.length-1].sprites.temp,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,87,3,0.5,0.36,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.erase()
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.rect(0,52,40,104)
 			layer.image(graphics.combatant[graphics.combatant.length-1].sprites.temp,-layer.width/10,0,layer.width/5,layer.height/5)
 		break
 		case 23:
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,20,9,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
-			this.displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,20,9,0.5,0.15,-1,-1,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,20,9,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti,direction,20,9,0.5,0.15,-1,-1,1)
 			layer.erase()
 			layer.fill(0)
 			layer.rect(0,layer.height*0.825/5,layer.width/5,layer.height*0.35/5)
@@ -361,48 +844,118 @@ function generateSprite(layer,type,direction){
 			setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.temp)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.translate(100,0)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.scale(5,2)
-			this.displayTrianglesBackMerge(graphics.combatant[graphics.combatant.length-1].sprites.temp,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,87,3,0.5,0.36,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(graphics.combatant[graphics.combatant.length-1].sprites.temp,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainDamage,direction,87,3,0.5,0.36,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.erase()
 			graphics.combatant[graphics.combatant.length-1].sprites.temp.rect(0,52,40,104)
 			layer.image(graphics.combatant[graphics.combatant.length-1].sprites.temp,-layer.width/10,0,layer.width/5,layer.height/5)
 		break
 		case 24:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,0)
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,0)
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTopAnti,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,27,18,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,0)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,0)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTopAnti,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,27,18,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,1)
 			for(let g=0;g<36;g++){
 				layer.fill(mergeColor(graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,g/36))
 				layer.stroke(mergeColor(graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,g/36))
 				layer.quad(-5-g/9,9+g/2,5+g/9,9+g/2,5+(g+1)/9,9.5+g/2,-5-(g+1)/9,9.5+g/2)
 			}
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,31,20,0.5,0.2,-1,1)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTopAnti,direction,7,9.5,0.25,0.2,-1,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,31,20,0.5,0.2,-1,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTopAnti,direction,7,9.5,0.25,0.2,-1,1)
 		break
 		case 25:
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,27,18,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.end,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideDamage,direction,27,18,0.5,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideBack.end,1)
 			for(let g=0;g<36;g++){
 				layer.fill(mergeColor(graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,g/36))
 				layer.stroke(mergeColor(graphics.combatant[graphics.combatant.length-1].color.kimono.outside.start,graphics.combatant[graphics.combatant.length-1].color.kimono.outside.end,g/36))
 				layer.quad(-5-g/9,9+g/2,5+g/9,9+g/2,5+(g+1)/9,9.5+g/2,-5-(g+1)/9,9.5+g/2)
 			}
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,31,20,0.5,0.2,-1,1)
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTopAnti,direction,7,9.5,0.25,0.2,-1,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti,direction,31,20,0.5,0.2,-1,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTopAnti,direction,7,9.5,0.25,0.2,-1,1)
 		break
 		case 26:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.fringeDamage,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.fringeDamage,direction,0,18,0.3,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.fringe,1)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringeDamage,direction,0,18,0.15,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideFringe,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.fringeDamage,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.fringeDamage,direction,0,18,0.3,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.fringe,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringeDamage,direction,0,18,0.15,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideFringe,1)
 		break
 		case 27:
-			this.displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.fringeDamage,direction,0,18,0.3,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.fringeBack,1)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringeDamage,direction,0,18,0.15,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideFringeBack,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.fringeDamage,direction,0,18,0.3,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.fringeBack,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideFringeDamage,direction,0,18,0.15,0.2,graphics.combatant[graphics.combatant.length-1].color.kimono.outsideFringeBack,1)
 		break
 		case 28:
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowDamage,direction,0)
-			this.controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowAnti,direction,0)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowDamage,direction,3,15,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.shadow,1)
-			this.displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowAnti,direction,7,19,0.5,0.15,-1,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowDamage,direction,0)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowAnti,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowDamage,direction,3,15,0.5,0.15,graphics.combatant[graphics.combatant.length-1].color.kimono.shadow,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.shadowAnti,direction,7,19,0.5,0.15,-1,1)
+		break
+		case 29:
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,30,1,-0.2,graphics.combatant[graphics.combatant.length-1].color.hair.insideFront,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,32,1,-0.15,graphics.combatant[graphics.combatant.length-1].color.hair.front,1)
+			layer.arc(0,0,32,32,-180,0)
+			layer.line(-16,0,16,0)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.hair.reverse,direction,0)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.reverse,direction,0.5,33,0.1,0.1,-1,1)
+		break
+		case 30:
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.main,direction,0,32,1,-0.2,graphics.combatant[graphics.combatant.length-1].color.hair.back,1)
+			displayTrianglesFront(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.reverse,direction,0.5,33,0.1,0.1,graphics.combatant[graphics.combatant.length-1].color.hair.back,1)
+			displayTrianglesBack(layer,graphics.combatant[graphics.combatant.length-1].parts.hair.inside,direction,0,30,1,-0.15,graphics.combatant[graphics.combatant.length-1].color.hair.insideBack,1)
+		break
+		case 31:
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,24.5,10.5,0.5,0.18,graphics.combatant[graphics.combatant.length-1].color.kimono.under.start,graphics.combatant[graphics.combatant.length-1].color.kimono.under.end,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,23,10.5,0.5,0.18,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
+			controlSpin(graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop,direction,1)
+			displayTrianglesFrontMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop,direction,23,10.5,0.5,0.18,graphics.combatant[graphics.combatant.length-1].color.kimono.main.start,graphics.combatant[graphics.combatant.length-1].color.kimono.main.end,1)
+
+			layer.noStroke()
+			for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.length;g<lg;g++){
+				if(cos(graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large[g].spin+direction)>0){
+					layer.push()
+					layer.translate((1.5+graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large[g].y*0.18)*sin(graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large[g].spin+direction),-71+graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large[g].y+73)
+					layer.rotate(-12*sin(graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large[g].spin+direction))
+					layer.scale(cos(graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large[g].spin+direction),1)
+					layer.rotate(graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large[g].rotate)
+					minorGraphicDisplay(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large[g].type)
+					layer.pop()
+				}
+			}
+		break
+		case 32:
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,24.5,10.5,0.5,0.18,graphics.combatant[graphics.combatant.length-1].color.kimono.underBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.underBack.end,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.main,direction,23,10.5,0.5,0.18,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(layer,graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop,direction,23,10.5,0.5,0.18,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.start,graphics.combatant[graphics.combatant.length-1].color.kimono.mainBack.end,1)
+		break
+		case 33:
+			for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.tail[0].length;g<lg;g++){
+				controlSpin(graphics.combatant[graphics.combatant.length-1].parts.tail[0][g][0],direction,0)
+				controlSpin(graphics.combatant[graphics.combatant.length-1].parts.tail[0][g][1],direction,0)
+				layer[g].push()
+				layer[g].translate(sin(direction*6+g*135)*0.3,0)
+				displayTrianglesFrontMerge(layer[g],graphics.combatant[graphics.combatant.length-1].parts.tail[0][g][0],direction,0,2.5,1,0.4,
+					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,g/lg),cos(direction)*20,[1,1,1]),
+					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,(g+1)/lg),cos(direction)*20,[1,1,1]),1)
+				displayTrianglesFrontMerge(layer[g],graphics.combatant[graphics.combatant.length-1].parts.tail[0][g][1],direction,0,2.5,1,-0.4,
+					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,g/lg),cos(direction)*20,[1,1,1]),
+					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,(g+1)/lg),cos(direction)*20,[1,1,1]),1)
+				layer[g].pop()
+			}
+		break
+		case 34:
+			for(let g=0,lg=graphics.combatant[graphics.combatant.length-1].parts.tail[0].length;g<lg;g++){
+				controlSpin(graphics.combatant[graphics.combatant.length-1].parts.tail[1][g][0],direction,0)
+				controlSpin(graphics.combatant[graphics.combatant.length-1].parts.tail[1][g][1],direction,0)
+				layer[g].push()
+				layer[g].translate(sin(direction*6+g*135)*0.3,0)
+				displayTrianglesFrontMerge(layer[g],graphics.combatant[graphics.combatant.length-1].parts.tail[1][g][0],direction,0,2.5,1,0.4,
+					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,g/lg),cos(direction)*20,[1,1,1]),
+					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,(g+1)/lg),cos(direction)*20,[1,1,1]),1)
+				displayTrianglesFrontMerge(layer[g],graphics.combatant[graphics.combatant.length-1].parts.tail[1][g][1],direction,0,2.5,1,-0.4,
+					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,g/lg),cos(direction)*20,[1,1,1]),
+					upColor(mergeColor(graphics.combatant[graphics.combatant.length-1].color.hair.tail.start,graphics.combatant[graphics.combatant.length-1].color.hair.tail.end,(g+1)/lg),cos(direction)*20,[1,1,1]),1)
+				layer[g].pop()
+			}
 		break
 	}
 }
@@ -415,8 +968,12 @@ function setupGeneralGraphics(){
 	9-11 Sakura Flower
 	12-14 Sakura Sandal Bottom
 	15-16 Sakura Sandal Top
+	17 Sakura Scythe
+	18 Sakura Floral Print
+	19-21 Ume Sandal Bottom
+	22-23 Ume Sandal Top
 	*/
-	for(let a=0,la=26;a<la;a++){
+	for(let a=0,la=24;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -510,7 +1067,6 @@ function setupGeneralGraphics(){
 	graphics.minor[14].erase()
 	graphics.minor[14].triangle(70,50,25,20,115,20)
 	graphics.minor[14].triangle(95,85,75,140,115,140)
-
 	for(let a=0,la=2;a<la;a++){
 		graphics.minor[15+a].stroke(201,61,96)
 		graphics.minor[15+a].strokeWeight(20)
@@ -558,30 +1114,35 @@ function setupGeneralGraphics(){
     }
     graphics.minor[18].erase()
     graphics.minor[18].ellipse(0,0,20,20)
-	/*for(let a=0,la=3;a<la;a++){
-		graphics.minor[21+a].fill(183,157,196)
-		graphics.minor[21+a].rect(80,80,100,20)
-		graphics.minor[21+a].ellipse(80,70,100,100)
-		graphics.minor[21+a].ellipse(80,90,100,100)
-		graphics.minor[21+a].fill(116,109,166)
-		graphics.minor[21+a].rect(80,70,100,6)
-		graphics.minor[21+a].rect(80,90,100,6)
-		graphics.minor[21+a].quad(36,47,124,47,127,53,33,53)
-		graphics.minor[21+a].quad(36,113,124,113,127,107,33,107)
-		graphics.minor[21+a].quad(54,27,106,27,114,33,46,33)
-		graphics.minor[21+a].quad(54,133,106,133,114,127,46,127)
+	for(let a=0,la=3;a<la;a++){
+		graphics.minor[19+a].fill(183,157,196)
+		graphics.minor[19+a].rect(80,80,100,20)
+		graphics.minor[19+a].ellipse(80,70,100,100)
+		graphics.minor[19+a].ellipse(80,90,100,100)
+		graphics.minor[19+a].fill(116,109,166)
+		graphics.minor[19+a].rect(80,70,100,6)
+		graphics.minor[19+a].rect(80,90,100,6)
+		graphics.minor[19+a].quad(36,47,124,47,127,53,33,53)
+		graphics.minor[19+a].quad(36,113,124,113,127,107,33,107)
+		graphics.minor[19+a].quad(54,27,106,27,114,33,46,33)
+		graphics.minor[19+a].quad(54,133,106,133,114,127,46,127)
 	}
-
+	graphics.minor[20].erase()
+	graphics.minor[20].triangle(90,70,65,20,115,20)
+	graphics.minor[20].triangle(65,100,95,140,35,140)
+	graphics.minor[21].erase()
+	graphics.minor[21].triangle(70,50,25,20,115,20)
+	graphics.minor[21].triangle(95,85,75,140,115,140)
 	for(let a=0,la=2;a<la;a++){
-		graphics.minor[24+a].stroke(200,233,226)
-		graphics.minor[24+a].strokeWeight(20)
-		graphics.minor[24+a].line(80+56*(a*2-1),46,80,150)
-		graphics.minor[25+a].stroke(107,200,215)
-		graphics.minor[25+a].strokeWeight(8)
+		graphics.minor[22+a].stroke(200,233,226)
+		graphics.minor[22+a].strokeWeight(20)
+		graphics.minor[22+a].line(80+56*(a*2-1),46,80,150)
+		graphics.minor[22+a].stroke(107,200,215)
+		graphics.minor[22+a].strokeWeight(8)
 		for(let b=0,lb=4;b<lb;b++){
-			graphics.minor[25+a].point(80+(58-b*7)*(a*2-1),53.5+b*13,80+(48-b*7)*(a*2-1),53.5+b*13)
+			graphics.minor[22+a].line(80+(58-b*7)*(a*2-1),53.5+b*13,80+(48-b*7)*(a*2-1),53.5+b*13)
 		}
-	}*///fix this one!
+	}
 }
 function setupCombatantGraphics(type){
 	switch(type){
@@ -964,13 +1525,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],10,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],10,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-HF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],11,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],11,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-HB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
@@ -979,13 +1540,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(100,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],12,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],12,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-KMF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(200,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(100,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],13,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],13,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-KMB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside={front:[],back:[]}
@@ -994,13 +1555,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],14,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],14,g)
 				//print('Generated S-KOF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back.push(createGraphics(150,200))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],15,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],15,g)
 				//print('Generated S-KOB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe={front:[],back:[]}
@@ -1009,13 +1570,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g].translate(75,25)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g],16,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.front[g],16,g)
 				//print('Generated S-KFF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back.push(createGraphics(150,50))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g].translate(75,25)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g],17,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringe.back[g],17,g)
 				//print('Generated S-KFB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.hair.tail=[]
@@ -1024,7 +1585,7 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].translate(60,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g],18,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g],18,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-HT-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.under.dress={front:[],back:[]}
@@ -1033,13 +1594,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g],19,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.front[g],19,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-UDF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back.push(createGraphics(150,250))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g],20,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g],20,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-UDB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow=[]
@@ -1048,7 +1609,7 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g],21,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadow[g],21,g)
 				//print('Generated S-KS-'+(g+1))
 			}
 
@@ -1058,13 +1619,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].translate(100,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],22,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],22,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-DMF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back.push(createGraphics(200,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].translate(100,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],23,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],23,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-DMB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage={front:[],back:[]}
@@ -1073,13 +1634,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],24,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],24,g)
 				//print('Generated S-DOF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back.push(createGraphics(150,200))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],25,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],25,g)
 				//print('Generated S-DOB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage={front:[],back:[]}
@@ -1088,13 +1649,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g].translate(75,25)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g],26,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.front[g],26,g)
 				//print('Generated S-DFF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back.push(createGraphics(150,50))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g].translate(75,25)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g],27,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.fringeDamage.back[g],27,g)
 				//print('Generated S-DFB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage=[]
@@ -1103,11 +1664,166 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g].scale(5)
-				this.generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g],28,g)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.shadowDamage[g],28,g)
 				//print('Generated S-DS-'+(g+1))
 			}
 		break
-	
+		case 2:
+			graphics.combatant.push({
+				spin:{tail:108},
+				sprites:{detail:15,genAmount:0,animDirection:0,temp:0,hair:{back:[],front:[],tail:[[],[]]},kimono:{main:{back:[],front:[]}}},
+				parts:{tail:[[],[]],kimono:{main:[],mainTop:[],decoration:{large:[]},mainDamage:[],mainTopDamage:[],mainAnti:[],mainTopAnti:[]}},
+				color:{
+					hair:{back:[227,133,149],front:[255,198,205],insideBack:[213,111,133],insideFront:[253,167,178],tail:{start:[255,198,206],end:[241,167,182]},pin:[[241,240,246],[198,137,171],[106,106,116]],glow:[255,255,255]},
+					skin:{head:[253,235,223],body:[248,218,210],legs:[254,225,220],arms:[252,224,220],button:[228,163,159],blush:[229,176,162]},
+					eye:{back:[184,125,153],front:[41,20,54],glow:[255,222,239]},
+					sleeve:{back:[201,30,82],front:[235,84,115]},
+					under:{tanga:[219,210,218],under:{top:[246,200,195],button:[221,139,143],bottom:[[242,158,152],[224,135,137]]}},
+					kimono:{bow:[141,43,51],main:{start:[205,35,64],end:[250,149,163]},mainBack:{start:[143,9,36],end:[211,41,68]},under:{start:[254,254,254],end:[239,242,251]},underBack:{start:[235,228,236],end:[239,242,251]}},
+					wrap:{in:[210,182,75],out:[158,109,51],decoration:[255,247,176],center:[183,49,60],bow:{in:[132,223,214],out:[71,168,174]},sleeveIn:[255,255,255],sleeveOut:[201,176,215]},
+					mouth:{in:[255,169,177],out:[0,0,0]},
+				}
+			})
+
+			graphics.combatant[graphics.combatant.length-1].parts.hair={
+				main:[
+                    {spin:[-48,-18,-30],height:2},
+                    {spin:[18,48,30],height:2},
+                    {spin:[-54,-24,-36],height:3},
+                    {spin:[24,54,36],height:3},
+                    {spin:[-84,-36,-60],height:6},
+                    {spin:[36,84,60],height:6},
+                    {spin:[-90,-72,-78],height:14},
+                    {spin:[72,90,78],height:14},
+                    {spin:[-132,-78,-102],height:10},
+                    {spin:[78,132,102],height:10},
+                    {spin:[-180,-102,-144],height:11},
+                    {spin:[102,180,144],height:11},
+                    {spin:[132,-132,180],height:12},
+                ],inside:[
+					{spin:[-60,-30,-48],height:4},
+                    {spin:[30,60,48],height:4},
+                    {spin:[-81,-66,-75],height:8},
+                    {spin:[66,81,75],height:8},
+                    {spin:[-108,-75,-93],height:9},
+                    {spin:[75,108,93],height:9},
+                    {spin:[-150,-90,-120],height:10},
+                    {spin:[90,150,120],height:10},
+                    {spin:[-180,-132,-162],height:11},
+                    {spin:[132,180,162],height:11},
+                ],reverse:[
+                    {spin:[-18,0,-12],height:-1},
+                    {spin:[0,18,12],height:-1},
+                    {spin:[-9,9,0],height:-2.5},
+                    {spin:[0,9,6],height:-6},
+                ]
+			}
+			
+			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+
+			for(let g=0;g<9;g++){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-108+g*24,-84+g*24,-96+g*24],y:[0,0,10.5+g*1.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-96+g*24,-84+g*24,-84+g*24],y:[10.5+g*1.5,0,12.5+g*1.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-84+g*24,-72+g*24,-84+g*24],y:[12.5+g*1.5,12+g*1.5,0]})
+			}
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[96,120,120],y:[0,0,24]})
+			for(let g=0;g<5;g++){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[120+g*24,132+g*24,120+g*24],y:[0,26,24+min(g,1)]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[114+g*24,150+g*24,132+g*24],y:[0,0,26]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*24,144+g*24,144+g*24],y:[26,0,28-max(g,3)]})
+			}
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[240,264,240],y:[0,0,24]})
+			for(let g=8;g>=-7;g--){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[84-g*24,72-g*24,84-g*24],y:[12.5+g*1.5,12+g*1.5,0]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[96-g*24,84-g*24,84-g*24],y:[max(0,10.5+g*1.5),0,12.5+g*1.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[108-g*24,84-g*24,96-g*24],y:[0,0,max(0,10.5+g*1.5)]})
+			}
+			for(let g=-15;g<15;g++){
+				if(g>=0){
+					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop.push({spin:[-84+g*24,-66+g*24,-75+g*24],y:[0,0,-0.75]})
+				}else{
+					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop.push({spin:[0,0,0],y:[-999,-999,-999]})
+				}
+			}
+			
+			for(let g=0;g<2;g++){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:100-g*40,rotate:random(0,360),y:40.5-g*2.5,type:floor(random(0,15))})
+			}
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:140,rotate:random(0,360),y:43,type:floor(random(0,15))})
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:180,rotate:random(0,360),y:43.5,type:floor(random(0,15))})
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:220,rotate:random(0,360),y:43,type:floor(random(0,15))})
+			for(let g=0;g<7;g++){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:260+g*40,rotate:random(0,360),y:40.5-g*2.5,type:floor(random(0,15))})
+			}
+
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:108,rotate:random(0,360),y:34,type:floor(random(0,15))})
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:156,rotate:random(0,360),y:37,type:floor(random(0,15))})
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:204,rotate:random(0,360),y:37,type:floor(random(0,15))})
+			for(let g=0;g<5;g++){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:252+g*48,rotate:random(0,360),y:34-g*3,type:floor(random(0,15))})
+			}
+
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:124,rotate:random(0,360),y:27.5,type:floor(random(0,15))})
+			graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:180,rotate:random(0,360),y:31,type:floor(random(0,15))})
+			for(let g=0;g<2;g++){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:234+g*56,rotate:random(0,360),y:27.5-g*3.5,type:floor(random(0,15))})
+			}
+
+			for(let g=0;g<2;g++){
+				for(let h=0;h<5;h++){
+					graphics.combatant[graphics.combatant.length-1].parts.tail[g].push([[],[]])
+					for(let i=0;i<12;i++){
+						graphics.combatant[graphics.combatant.length-1].parts.tail[g][h][0].push({spin:[h*15+i*30-15,h*15+i*30+15,h*15+i*30],y:[0,0,-3.125]})
+						graphics.combatant[graphics.combatant.length-1].parts.tail[g][h][1].push({spin:[h*15+i*30-15,h*15+i*30+15,h*15+i*30],y:[0,0,3.125]})
+					}
+				}
+			}
+
+			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
+			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],29,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				//print('Generated U-HF-'+(g+1))
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],30,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				//print('Generated U-HB-'+(g+1))
+			}
+			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
+			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
+				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front.push(createGraphics(200,330))
+				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g])
+				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(100,0)
+				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],31,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				//print('Generated U-KMF-'+(g+1))
+				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(200,330))
+				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
+				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(100,0)
+				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],32,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				//print('Generated U-KMB-'+(g+1))
+			}
+			graphics.combatant[graphics.combatant.length-1].sprites.hair.tail=[[],[]]
+			for(let g=0;g<2;g++){
+				for(let h=0;h<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;h++){
+					graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].push([])
+					for(let i=0,li=5;i<li;i++){
+						graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].length-1].push(createGraphics(48,96))
+						setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h][i])
+						graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h][i].translate(24,48)
+						graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h][i].scale(5)
+					}
+					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h],33+g,h*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					//print('Generated U-HT-'+(g*graphics.combatant[graphics.combatant.length-1].sprites.genAmount+h+1))
+				}
+			}
+		break
 	}
 }
 function setupBackground(type,layer){
@@ -1408,10 +2124,15 @@ function setupGraphics(){
 	colorMode(RGB,255,255,255,1)
 	graphics.main=createGraphics(900,600)
 	setupLayer(graphics.main)
-	graphics.combatantGen=[[1],[2],[1,2],[2,1]]
+	graphics.combatantGen=[[1],[2],[3],[1,2],[2,1],[2,3],[3,2],[3,1],[1,3]]
 	graphics.combatantDamageGen=[
 		[[0],[1]],
 		[[0],[1]],
+		[[0],[1]],
+		[[0,0],[0,1],[1,0],[1,1]],
+		[[0,0],[0,1],[1,0],[1,1]],
+		[[0,0],[0,1],[1,0],[1,1]],
+		[[0,0],[0,1],[1,0],[1,1]],
 		[[0,0],[0,1],[1,0],[1,1]],
 		[[0,0],[0,1],[1,0],[1,1]]
 	]
@@ -1432,10 +2153,12 @@ function setupGraphics(){
 	graphics.minor=[]
 
 	setupGeneralGraphics()
-	setupCombatantGraphics(0)
-	setupCombatantGraphics(1)
+	graphics.combatant.push(0,0)
+	//setupCombatantGraphics(0)
+	//setupCombatantGraphics(1)
+	setupCombatantGraphics(2)
 
-	setupBackground(0,graphics.backgrounds[0])
+	/*setupBackground(0,graphics.backgrounds[0])
 	setupBackground(1,graphics.backgrounds[1])
 	setupBackground(3,graphics.backgrounds[3])
 	setupBackground(4,graphics.backgrounds[4])
@@ -1444,7 +2167,7 @@ function setupGraphics(){
 		for(let b=0,lb=graphics.combatantBackgrounds[1][a].length;b<lb;b++){setupCombatantBackground(1,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[1][a][b])}
 		for(let b=0,lb=graphics.combatantBackgrounds[3][a].length;b<lb;b++){setupCombatantBackground(3,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[3][a][b])}
 		for(let b=0,lb=graphics.combatantBackgrounds[4][a].length;b<lb;b++){setupCombatantBackground(4,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[4][a][b])}
-	}
+	}*/
 	/*
 	0-Title
 	1-Loss

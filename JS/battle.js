@@ -65,7 +65,14 @@ class battle{
         if(this.player.length==1){
             this.playerKey=this.player[0]-1
         }else{
-            this.playerKey=this.player[0]+1
+            switch(this.player[0],this.player[1]){
+                case 1,2: this.playerKey=3; break
+                case 2,1: this.playerKey=4; break
+                case 2,3: this.playerKey=5; break
+                case 3,2: this.playerKey=6; break
+                case 3,1: this.playerKey=7; break
+                case 1,3: this.playerKey=8; break
+            }
         }
     }
     calculatePlayerKeyDamage(){

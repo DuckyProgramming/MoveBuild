@@ -14,12 +14,9 @@ class perkManager{
     }
     assemble(){
         this.getPosKey()
-        //this.addPerk(floor(random(0,4)))
-        //this.addPerk(floor(random(4,8)))
-        //this.addPerk(floor(random(8,12)))
-        this.addPerk(3)
-        this.addPerk(10)
-        this.addPerk(11)
+        this.addPerk(floor(random(0,4)))
+        this.addPerk(floor(random(4,8)))
+        this.addPerk(floor(random(8,12)))
     }
     getPosKey(){
         this.posKey=0.5-this.battle.player.length*0.5+this.player*2
