@@ -473,10 +473,10 @@ types={
                 text:[100,0,100],
                 active:[255,200,255],
             },{
-                fill:[240,200,160],
-                stroke:[200,160,120],
-                text:[100,50,0],
-                active:[255,240,215],
+                fill:[240,180,180],
+                stroke:[200,140,140],
+                text:[150,0,0],
+                active:[255,225,225],
             },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
@@ -616,6 +616,7 @@ types={
 stage={scale:0,scene:'map'}
 game={player:[3],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
+options={damage:false}
 graphics={main:0,backgrounds:[],combatantBackgrounds:[],minor:[],combatant:[],combatantGen:0}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}

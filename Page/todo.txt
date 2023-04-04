@@ -33,12 +33,6 @@ Entertainment
 
 Generality:
 First Character Gimmick
-Second Character Gimmick
+Third Character Gimmick
 
-Sakura Damage Flash Animation
-Character 3? (Ume)
-Ume Damage Sprite
-Ume Damage Flash
-
-MULTIPLAYER:
-Done! (For now)
+Ume Base Cards
