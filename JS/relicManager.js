@@ -6,6 +6,7 @@ class relicManager{
         this.listing={relic:[[],[],[],[]]}
         this.active=[]
         this.player=[]
+        this.detail=[]
 
         this.relics=[]
         this.displayRelics=[]
@@ -24,14 +25,22 @@ class relicManager{
             if(types.relic[a].rarity>=0&&(types.relic[a].list==0||this.battle.player.includes(types.relic[a].list))){
                 this.listing.relic[types.relic[a].rarity].push(a)
             }
-            this.player.push(-1)
             this.active.push(0)
+            this.player.push(-1)
+            switch(types.relic[a].id){
+                case 17:
+                    this.detail.push([0])
+                break
+                default:
+                    this.detail.push([])
+                break
+            }
         }
         for(let a=0,la=this.battle.player.length;a<la;a++){
             this.complete.push(false)
             this.position.push(0)
             this.total.push(0)
-            this.up.push(false)
+            this.up.push(true)
         }
     }
     setupStash(){
@@ -91,7 +100,31 @@ class relicManager{
             case 5:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(7)
             break
+            case 16:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
+            break
+            case 29:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(14)
+            break
+            case 30:
+                this.battle.currency.money[player]+=300
+            break
+            case 32:
+                this.battle.cardManagers[player].randomEffect(0,2,[1])
+            break
+            case 33:
+                this.battle.cardManagers[player].randomEffect(0,2,[2])
+            break
+            case 34:
+                this.battle.cardManagers[player].randomEffect(0,2,[3])
+            break
+            case 35:
+                this.battle.cardManagers[player].randomEffect(0,2,[4])
+            break
         }
+    }
+    hasRelic(type,player){
+        return this.active[type]>0&&this.player[type]==player
     }
     activate(type,args){
         switch(type){
@@ -109,6 +142,12 @@ class relicManager{
                     if(this.active[7]>0){
                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[7])].statusEffect('Dexterity',this.active[7])
                     }
+                    if(this.active[21]>0){
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[21])].statusEffect('Dodge',this.active[21])
+                    }
+                    if(this.active[31]>0){
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[31])].statusEffect('Single Strength',8*this.active[31])
+                    }
                 }
                 if(args[0]%3==0){
                     if(this.active[4]>0){
@@ -119,6 +158,11 @@ class relicManager{
             case 1:
                 if(this.active[1]>0){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[1])].heal(2*this.active[1])
+                }
+                if(this.active[19]>0){
+                    if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[19])].life<this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[19])].base.life){
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[19])].heal(12*this.active[19])
+                    }
                 }
             break
             case 2:
@@ -138,6 +182,30 @@ class relicManager{
                             this.battle.cardManagers[this.player[10]].hand.add(findName('Miracle',types.card),0,0)
                         }
                     }
+                }
+            break
+            case 3:
+                if(this.active[17]>0){
+                    this.battle.cardManagers[this.player[17]].draw(this.active[17])
+                    this.battle.energy.main[this.player[17]]+=this.active[17]
+                }
+            break
+            case 4:
+                if(this.active[18]>0){
+                    this.detail[18]++
+                    if(this.detail[18]%10==0){
+                        this.battle.cardManagers[this.player[18]].draw(this.active[18])
+                    }
+                }
+                switch(args[0]){
+                    case 4:
+                        if(this.active[20]>0){
+                            this.battle.cardManagers[this.player[20]].randomEffect(2,1,[this.active[20]])
+                        }
+                        if(this.active[27]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[27])].heal(this.active[1])
+                        }
+                    break
                 }
             break
         }

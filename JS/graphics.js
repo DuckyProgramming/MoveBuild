@@ -2235,7 +2235,7 @@ function setupGraphics(){
 	colorMode(RGB,255,255,255,1)
 	graphics.main=createGraphics(900,600)
 	setupLayer(graphics.main)
-	graphics.combatantGen=[[1],[2],[3],[1,2],[2,1],[2,3],[3,2],[3,1],[1,3]]
+	/*graphics.combatantGen=[[1],[2],[3],[1,2],[2,1],[2,3],[3,2],[3,1],[1,3]]
 	graphics.combatantDamageGen=[
 		[[0],[1]],
 		[[0],[1]],
@@ -2260,15 +2260,15 @@ function setupGraphics(){
 				setupLayer(graphics.combatantBackgrounds[a][b][c])
 			}
 		}
-	}
+	}*/
 	graphics.minor=[]
 
 	setupGeneralGraphics()
 	setupCombatantGraphics(0)
-	setupCombatantGraphics(1)
-	setupCombatantGraphics(2)
+	//setupCombatantGraphics(1)
+	//setupCombatantGraphics(2)
 
-	setupBackground(0,graphics.backgrounds[0])
+	/*setupBackground(0,graphics.backgrounds[0])
 	setupBackground(1,graphics.backgrounds[1])
 	setupBackground(3,graphics.backgrounds[3])
 	setupBackground(4,graphics.backgrounds[4])
@@ -2277,7 +2277,7 @@ function setupGraphics(){
 		for(let b=0,lb=graphics.combatantBackgrounds[1][a].length;b<lb;b++){setupCombatantBackground(1,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[1][a][b])}
 		for(let b=0,lb=graphics.combatantBackgrounds[3][a].length;b<lb;b++){setupCombatantBackground(3,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[3][a][b])}
 		for(let b=0,lb=graphics.combatantBackgrounds[4][a].length;b<lb;b++){setupCombatantBackground(4,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[4][a][b])}
-	}
+	}*/
 	/*
 	0-Title
 	1-Loss

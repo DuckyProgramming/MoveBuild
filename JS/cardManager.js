@@ -53,6 +53,9 @@ class cardManager{
     allEffect(group,effect){
         this.getList(group).allEffect(effect)
     }
+    randomEffect(group,effect,args){
+        this.getList(group).randomEffect(effect,args)
+    }
     draw(amount){
         let amountLeft=amount-this.reserve.cards.length
         if(this.reserve.cards.length>0){

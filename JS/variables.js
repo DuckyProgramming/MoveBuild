@@ -314,6 +314,14 @@ types={
         //some bleed
 
         {
+            name:'Teleport',rarity:1,list:3,
+            levels:[
+                {effect:[],attack:54,cost:2,target:[6],spec:[1],class:3},
+                {effect:[],attack:54,cost:1,target:[6],spec:[1],class:3},
+            ],
+        },
+
+        {
             name:'Swift\nStrike',rarity:1,list:0,
             levels:[
                 {effect:[7],attack:1,cost:0,target:[2,1,1],spec:[0],class:1},
@@ -379,13 +387,13 @@ types={
         },
 
         {
-            name:'Fatigue',rarity:0,list:3,
+            name:'Fatigue',rarity:0,list:4,
             levels:[
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
             ],
         },{
-            name:'Dazed',rarity:0,list:3,
+            name:'Dazed',rarity:0,list:4,
             levels:[
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
@@ -393,16 +401,16 @@ types={
         },
 
         {
-            name:'Doubt',rarity:0,list:4,
+            name:'Doubt',rarity:0,list:5,
             levels:[
-                {effect:[],attack:-1,cost:0,target:[0],spec:[5],class:5},
-                {effect:[],attack:-1,cost:0,target:[0],spec:[5],class:5},
+                {effect:[],attack:-1,cost:0,target:[0],spec:[5],class:6},
+                {effect:[],attack:-1,cost:0,target:[0],spec:[5],class:6},
             ],
         },{
-            name:'Shame',rarity:0,list:4,
+            name:'Shame',rarity:0,list:5,
             levels:[
-                {effect:[],attack:-2,cost:0,target:[0],spec:[5],class:5},
-                {effect:[],attack:-2,cost:0,target:[0],spec:[5],class:5},
+                {effect:[],attack:-2,cost:0,target:[0],spec:[5],class:6},
+                {effect:[],attack:-2,cost:0,target:[0],spec:[5],class:6},
             ],
         },
     ],combatant:[
@@ -427,33 +435,56 @@ types={
         {name:'2 Tile Strike (Nonpenetrative) (Advance)',class:1},
         {name:'2 Tile Push (Advance)',class:1},
     ],relic:[
-        {name:'',id:0,rarity:-1,list:-1,description:''},
-        {name:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 2 HP at\nthe End of Combat'},
-        {name:'Extra Draw',id:2,rarity:0,list:0,description:'Draw 2 More Cards\nat the Start of Combat'},
-        {name:'First Turn Energy',id:3,rarity:0,list:0,description:'Gain 1 Energy at\nthe Start of Combat'},
-        {name:'3 Turn Energy',id:4,rarity:0,list:0,description:'Gain 1 Energy\nEvery 3rd Turn'},
-        {name:'7 Max HP',id:5,rarity:0,list:0,description:'When Taken, Gain 7 Max HP'},
-        {name:'First Turn Strength',id:6,rarity:0,list:0,description:'Gain 1 Strength\nat the Start of Combat'},
-        {name:'First Turn Dexterity',id:7,rarity:0,list:0,description:'Gain 1 Dexterity\nat the Start of Combat'},
-        {name:'Emergency Move',id:8,rarity:0,list:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
-        {name:'Redraw',id:9,rarity:0,list:0,description:'Add 1 Redraw at\nthe Start of Combat'},
-        {name:'Miracle',id:10,rarity:0,list:0,description:'Add 1 Miracle at\nthe Start of Combat'},
+        {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
+        {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 2 HP at\nthe End of Combat'},
+        {name:'',internal:'Extra Draw',id:2,rarity:0,list:0,description:'Draw 2 More Cards\nat the Start of Combat'},
+        {name:'',internal:'First Turn Energy',id:3,rarity:0,list:0,description:'Gain 1 Energy at\nthe Start of Combat'},
+        {name:'',internal:'3 Turn Energy',id:4,rarity:0,list:0,description:'Gain 1 Energy\nEvery 3rd Turn'},
+        {name:'',internal:'7 Max HP',id:5,rarity:0,list:0,description:'When Taken,\nGain 7 Max HP'},
+        {name:'',internal:'First Turn Strength',id:6,rarity:0,list:0,description:'Gain 1 Strength\nat the Start of Combat'},
+        {name:'',internal:'First Turn Dexterity',id:7,rarity:0,list:0,description:'Gain 1 Dexterity\nat the Start of Combat'},
+        {name:'',internal:'Emergency Move',id:8,rarity:0,list:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
+        {name:'',internal:'Redraw',id:9,rarity:0,list:0,description:'Add 1 Redraw at\nthe Start of Combat'},
+        {name:'',internal:'Miracle',id:10,rarity:0,list:0,description:'Add 1 Miracle at\nthe Start of Combat'},
+        
+        {name:'',internal:'Play Unplayable',id:11,rarity:1,list:0,description:'You Can Play and\nExhaust Unplayable Cards'},
+        {name:'',internal:'Upgrade All Attacks',id:12,rarity:1,list:0,description:'Upgrade All Attacks Added'},
+        {name:'',internal:'Upgrade All Defense',id:13,rarity:1,list:0,description:'Upgrade All Defense Added'},
+        {name:'',internal:'Upgrade All Movement',id:14,rarity:1,list:0,description:'Upgrade All Movement Added'},
+        {name:'',internal:'Upgrade All Powers',id:15,rarity:1,list:0,description:'Upgrade All Powers Added'},
+        {name:'',internal:'10 Max HP',id:16,rarity:1,list:0,description:'When Taken,\nGain 10 Max HP'},
+        {name:'',internal:'Death Boost',id:17,rarity:1,list:0,description:'When an Enemy Dies,\nGain 1 Energy and Draw 1 Card'},
+        {name:'',internal:'10 Card Draw',id:18,rarity:1,list:0,description:'Every 10 Cards Played,\nDraw 1 Card'},
+        {name:'',internal:'Emergency Heal',id:19,rarity:1,list:0,description:'At the End of Combat, If Your\nHP is Below 50%, Heal 12 HP'},
+        {name:'',internal:'Power Cost Reduce',id:20,rarity:1,list:0,description:'When You Play a Power,\na Random Card Costs 1 Less'},
 
-        {name:'',id:11,rarity:1,list:0,description:''},
-        {name:'',id:12,rarity:1,list:0,description:''},
-        {name:'',id:13,rarity:1,list:0,description:''},
-        {name:'duck',id:14,rarity:2,list:0,description:''},
-        {name:'goose',id:15,rarity:2,list:0,description:''},
-        /*{name:'',id:11,rarity:0,list:0,description:''},
-        {name:'',id:12,rarity:0,list:0,description:''},
-        {name:'',id:13,rarity:0,list:0,description:''},
-        {name:'',id:14,rarity:0,list:0,description:''},
-        {name:'',id:15,rarity:0,list:0,description:''},
-        {name:'',id:16,rarity:0,list:0,description:''},
-        {name:'',id:17,rarity:0,list:0,description:''},
-        {name:'',id:18,rarity:0,list:0,description:''},
-        {name:'',id:19,rarity:0,list:0,description:''},
-        {name:'',id:20,rarity:0,list:0,description:''},*/
+        {name:'',internal:'Starting Dodge',id:21,rarity:2,list:0,description:'Gain 1 Dodge at\nthe Start of Combat'},
+        {name:'',internal:'Selective Redraw',id:22,rarity:2,list:0,description:'Add 1 Selective Redraw at\nthe Start of Combat'},
+        {name:'',internal:'No Weak',id:23,rarity:2,list:0,description:'You Cannot\nBecome Weak'},
+        {name:'',internal:'No Frail',id:24,rarity:2,list:0,description:'You Cannot\nBecome Frail'},
+        {name:'',internal:'No Vulnerable',id:25,rarity:2,list:0,description:'You Cannot\nBecome Vulnerable'},
+        {name:'',internal:'Retain Block',id:26,rarity:2,list:0,description:'Lose Only 10 Block\nat End of Turn'},
+        {name:'',internal:'Power Heal',id:27,rarity:2,list:0,description:'When You Play a\nPower, Heal 1 HP'},
+        {name:'',internal:'Retain Energy',id:28,rarity:2,list:0,description:'1 Energy Can be\nConserved Between Turns'},
+        {name:'',internal:'14 Max HP',id:29,rarity:2,list:0,description:'When Taken,\nGain 14 Max HP'},
+        {name:'',internal:'300 Currency',id:30,rarity:2,list:0,description:'When Taken,\nGain 300 Currency'},
+
+        {name:'',internal:'First Attack',id:31,rarity:0,list:0,description:'First Attack Deals\n8 More Damage'},
+        {name:'',internal:'Upgrade Random Attacks',id:32,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Attacks'},
+        {name:'',internal:'Upgrade Random Defense',id:33,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Defense'},
+        {name:'',internal:'Upgrade Random Movement',id:34,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Movement'},
+        {name:'',internal:'Upgrade Random Powers',id:35,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Powers'},
+        
+        /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:12,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:13,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:14,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:15,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:16,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:17,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:18,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:19,rarity:0,list:0,description:''},
+        {name:'',internal:'',id:20,rarity:0,list:0,description:''},*/
         //blessed shiny rock?
     ],color:{
         card:[
@@ -496,8 +527,8 @@ types={
             [['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             [['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
-            [['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
-            
+            //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
+            [['Teleport',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3]],
            
         ]
     },level:[
@@ -614,7 +645,7 @@ types={
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[3],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 options={damage:false}
 graphics={main:0,backgrounds:[],combatantBackgrounds:[],minor:[],combatant:[],combatantGen:0}

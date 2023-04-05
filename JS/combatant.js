@@ -38,15 +38,15 @@ class combatant{
         this.dodges=[]
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
-            'Vulnerable','Retain Block',
+            'Vulnerable','Retain Block','Single Strength',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
-                1,1,
+                1,1,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
-                0,0,
+                0,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement
         //0-good, 1-bad, 2-nonclassified good
@@ -140,7 +140,7 @@ class combatant{
 
                 this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:1,foot:1}
 
                 this.goal={anim:{direction:this.anim.direction,sword:true}}
 
@@ -263,7 +263,7 @@ class combatant{
 
                 this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
 
                 this.goal={anim:{direction:this.anim.direction,sword:true}}
 
@@ -317,7 +317,7 @@ class combatant{
                 }
             break
             case 'Ume':
-                this.anim={direction:direction,head:direction,mouth:{x:6,y:4,open:0},
+                this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{bottom:{x:1,y:1},under:{bottom:1}},
                     kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
                     wrap:{bow:{position:{x:1,y:1}}},
@@ -339,7 +339,7 @@ class combatant{
                     hair:{pin:[-85,85]},
                     wrap:{bow:24,center:0},
                     sleeve:{decoration:[]},
-                    sandal:[10,-10],eye:[-18,18],blush:[-17,17],button:0,mouth:216}
+                    sandal:[10,-10],eye:[-18,18],blush:[-17,17],button:0,sword:75,mouth:216}
 
                 this.color=graphics.combatant[2].color
 
@@ -393,7 +393,7 @@ class combatant{
 
                 this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
 
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:1}
 
                 this.goal={anim:{direction:this.anim.direction,sword:true}}
 
@@ -697,6 +697,10 @@ class combatant{
             if(userCombatant.status.main[6]>0){
                 damage+=userCombatant.status.main[6]
             }
+            if(userCombatant.status.main[12]>0){
+                damage+=userCombatant.status.main[12]
+                userCombatant.status.main[12]=0
+            }
             if(userCombatant.status.main[8]>0){
                 damage*=0.75
             }
@@ -758,7 +762,11 @@ class combatant{
     }
     endBlock(){
         if(this.status.main[11]<=0){
-            this.block=0
+            if(this.battle.relicManager.active[26]>0&&this.id==this.battle.relicManager.player[26]){
+                this.block=max(0,this.block-10)
+            }else{
+                this.block=0
+            }
         }
     }
     moveTile(direction,speed){
@@ -774,9 +782,14 @@ class combatant{
         this.tilePosition.y=y
     }
     statusEffect(name,value){
-        let status=findList(name,this.status.name)
-        if(status>=0){
-            this.status.main[status]+=value
+        if(!(
+            this.battle.relicManager.active[23]>0&&this.id==this.battle.relicManager.player[23]&&name=='Weak'||
+            this.battle.relicManager.active[24]>0&&this.id==this.battle.relicManager.player[24]&&name=='Frail'||
+            this.battle.relicManager.active[25]>0&&this.id==this.battle.relicManager.player[25]&&name=='Vulnerable')){
+            let status=findList(name,this.status.name)
+            if(status>=0){
+                this.status.main[status]+=value
+            }
         }
     }
     getStatus(name){
@@ -830,7 +843,7 @@ class combatant{
     }
     startAnimation(type){
         switch(this.name){
-            case 'Lira': case 'Sakura':
+            case 'Lira': case 'Sakura': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -847,7 +860,7 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
-                    case 4: case 12: case 14: case 15: case 18:
+                    case 4: case 12: case 14: case 15: case 18: case 19: case 20:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -937,18 +950,18 @@ class combatant{
                     break
                     case 1:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*180)*27
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*180)*45
-                        this.spin.arms[1].top=93-sin(this.animSet.loop*180)*72
-                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*180)*105
+                        this.anim.arms[this.animSet.hand].top=24+sin(this.animSet.loop*180)*27
+                        this.anim.arms[this.animSet.hand].bottom=9+sin(this.animSet.loop*180)*45
+                        this.spin.arms[this.animSet.hand].top=(93-sin(this.animSet.loop*180)*72)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].bottom=(75-sin(this.animSet.loop*180)*105)*(this.animSet.hand*2-1)
                         this.spin.sword=75+sin(this.animSet.loop*180)*30
                     break
                     case 2:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*180)*36
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*180)*96
-                        this.spin.arms[1].top=93-sin(this.animSet.loop*180)*63
-                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*180)*90
+                        this.anim.arms[this.animSet.hand].top=24+sin(this.animSet.loop*180)*36
+                        this.anim.arms[this.animSet.hand].bottom=9+sin(this.animSet.loop*180)*96
+                        this.spin.arms[this.animSet.hand].top=(93-sin(this.animSet.loop*180)*63)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].bottom=(75-sin(this.animSet.loop*180)*90)*(this.animSet.hand*2-1)
                         this.spin.sword=75+sin(this.animSet.loop*180)*45
                     break
                     case 3:
@@ -975,10 +988,10 @@ class combatant{
                     break
                     case 6:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*6
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*36
-                        this.spin.arms[1].top=93+sin(this.animSet.loop*90)*-63
-                        this.spin.arms[1].bottom=75+sin(this.animSet.loop*90)*-120
+                        this.anim.arms[this.animSet.hand].top=24+sin(this.animSet.loop*90)*6
+                        this.anim.arms[this.animSet.hand].bottom=9+sin(this.animSet.loop*90)*36
+                        this.spin.arms[this.animSet.hand].top=(93+sin(this.animSet.loop*90)*-63)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].bottom=(75+sin(this.animSet.loop*90)*-120)*(this.animSet.hand*2-1)
                     break
                     case 7:
                         this.animSet.loop+=rate
@@ -999,47 +1012,47 @@ class combatant{
                     break
                     case 8:
                         this.animSet.loop+=rate
-                        this.anim.legs[1].top=9+sin(this.animSet.loop*180)*63
-                        this.anim.legs[1].bottom=-sin(this.animSet.loop*180)*12
-                        this.spin.legs[1].bottom=120-sin(this.animSet.loop*180)*60
+                        this.anim.legs[this.animSet.foot].top=9+sin(this.animSet.loop*180)*63
+                        this.anim.legs[this.animSet.foot].bottom=-sin(this.animSet.loop*180)*12
+                        this.spin.legs[this.animSet.foot].bottom=(120-sin(this.animSet.loop*180)*60)*(this.animSet.foot*2-1)
                     break
                     case 9:
                         this.animSet.loop+=rate
-                        this.anim.legs[1].top=9+sin(this.animSet.loop*90)*81
-                        this.anim.legs[1].bottom=sin(this.animSet.loop*90)*75
-                        this.spin.legs[1].top=60-sin(this.animSet.loop*90)*45
-                        this.spin.legs[1].bottom=120-sin(this.animSet.loop*90)*105
+                        this.anim.legs[this.animSet.foot].top=9+sin(this.animSet.loop*90)*81
+                        this.anim.legs[this.animSet.foot].bottom=sin(this.animSet.loop*90)*75
+                        this.spin.legs[this.animSet.foot].top=(60-sin(this.animSet.loop*90)*45)*(this.animSet.foot*2-1)
+                        this.spin.legs[this.animSet.foot].bottom=1(20-sin(this.animSet.loop*90)*105)*(this.animSet.foot*2-1)
                     break
                     case 10:
                         this.animSet.loop+=rate
                         this.goal.anim.direction+=rate*360
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*60
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*63
+                        this.anim.arms[this.animSet.hand].top=24+sin(this.animSet.loop*90)*60
+                        this.anim.arms[this.animSet.hand].bottom=9+sin(this.animSet.loop*90)*63
                         this.spin.sword=75+sin(this.animSet.loop*90)*15
                     break
                     case 11:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*3
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*63
-                        this.spin.arms[1].top=93+sin(this.animSet.loop*90)*-57
-                        this.spin.arms[1].bottom=75+sin(this.animSet.loop*90)*-135
+                        this.anim.arms[this.animSet.hand].top=24+sin(this.animSet.loop*90)*3
+                        this.anim.arms[this.animSet.hand].bottom=9+sin(this.animSet.loop*90)*63
+                        this.spin.arms[this.animSet.hand].top=(93+sin(this.animSet.loop*90)*-57)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].bottom=(75+sin(this.animSet.loop*90)*-135)*(this.animSet.hand*2-1)
                         for(let g=0;g<2;g++){
                             this.anim.eye[g]=constrain(abs(sin(this.animSet.loop*90))*1.5,0,1)
                         }
                     break
                     case 12:
                         this.animSet.loop+=rate
-                        this.anim.arms[0].top=24+sin(this.animSet.loop*90)*21
-                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*90)*66
-                        this.spin.arms[0].top=-93+sin(this.animSet.loop*90)*48
-                        this.spin.arms[0].bottom=-75+sin(this.animSet.loop*90)*60
+                        this.anim.arms[1-this.animSet.hand].top=24+sin(this.animSet.loop*90)*21
+                        this.anim.arms[1-this.animSet.hand].bottom=9+sin(this.animSet.loop*90)*66
+                        this.spin.arms[1-this.animSet.hand].top=(-93+sin(this.animSet.loop*90)*48)*(this.animSet.hand*2-1)
+                        this.spin.arms[1-this.animSet.hand].bottom=(-75+sin(this.animSet.loop*90)*60)*(this.animSet.hand*2-1)
                     break
                     case 13:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*180)*51
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*180)*81
-                        this.spin.arms[1].top=93-sin(this.animSet.loop*180)*33
-                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*180)*30
+                        this.anim.arms[this.animSet.hand].top=24+sin(this.animSet.loop*180)*51
+                        this.anim.arms[this.animSet.hand].bottom=9+sin(this.animSet.loop*180)*81
+                        this.spin.arms[this.animSet.hand].top=(93-sin(this.animSet.loop*180)*33)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].bottom=(75-sin(this.animSet.loop*180)*30)*(this.animSet.hand*2-1)
                         this.spin.sword=75+sin(this.animSet.loop*180)*21
                     break
                     case 14:
@@ -1054,17 +1067,17 @@ class combatant{
                     break
                     case 15:
                         this.animSet.loop+=rate
-                        this.anim.arms[0].top=24+sin(this.animSet.loop*90)*36
-                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*90)*87
-                        this.spin.arms[0].top=-93+sin(this.animSet.loop*90)*48
-                        this.spin.arms[0].bottom=-75+sin(this.animSet.loop*90)*60
+                        this.anim.arms[1-this.animSet.hand].top=24+sin(this.animSet.loop*90)*36
+                        this.anim.arms[1-this.animSet.hand].bottom=9+sin(this.animSet.loop*90)*87
+                        this.spin.arms[1-this.animSet.hand].top=(-93+sin(this.animSet.loop*90)*48)*(this.animSet.hand*2-1)
+                        this.spin.arms[1-this.animSet.hand].bottom=(-75+sin(this.animSet.loop*90)*60)*(this.animSet.hand*2-1)
                     break
                     case 16:
                         this.animSet.loop+=rate
-                        this.anim.arms[0].top=24+sin(this.animSet.loop*180)*48
-                        this.anim.arms[0].bottom=9+sin(this.animSet.loop*180)*111
-                        this.spin.arms[0].top=-93+sin(this.animSet.loop*180)*63
-                        this.spin.arms[0].bottom=-75+sin(this.animSet.loop*180)*90
+                        this.anim.arms[this.animSet.hand].top=24+sin(this.animSet.loop*180)*48
+                        this.anim.arms[this.animSet.hand].bottom=9+sin(this.animSet.loop*180)*111
+                        this.spin.arms[this.animSet.hand].top=(93-sin(this.animSet.loop*180)*63)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].bottom=(75-sin(this.animSet.loop*180)*90)*(this.animSet.hand*2-1)
                         this.spin.sword=75+sin(this.animSet.loop*180)*45
                     break
                     case 17:
@@ -1078,10 +1091,21 @@ class combatant{
                     break
                     case 18:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+sin(this.animSet.loop*90)*36
-                        this.anim.arms[1].bottom=9+sin(this.animSet.loop*90)*87
-                        this.spin.arms[1].top=93-sin(this.animSet.loop*90)*48
-                        this.spin.arms[1].bottom=75-sin(this.animSet.loop*90)*60
+                        this.anim.arms[1-this.animSet.hand].top=24+sin(this.animSet.loop*90)*36
+                        this.anim.arms[1-this.animSet.hand].bottom=9+sin(this.animSet.loop*90)*87
+                        this.spin.arms[1-this.animSet.hand].top=(93-sin(this.animSet.loop*90)*48)*(this.animSet.hand*2-1)
+                        this.spin.arms[1-this.animSet.hand].bottom=(75-sin(this.animSet.loop*90)*60)*(this.animSet.hand*2-1)
+                    break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=1-sin(this.animSet.loop*180)
+                    break
+                    case 20:
+                        this.animSet.loop+=rate
+                        this.anim.arms[this.animSet.hand].top=24+sin(this.animSet.loop*90)*36
+                        this.anim.arms[this.animSet.hand].bottom=9+sin(this.animSet.loop*90)*87
+                        this.spin.arms[this.animSet.hand].top=(93-sin(this.animSet.loop*90)*48)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].bottom=(75-sin(this.animSet.loop*90)*60)*(this.animSet.hand*2-1)
                     break
                 }
             break
@@ -1239,7 +1263,23 @@ class combatant{
                 }
             break
             case 'Ume':
-                minorGraphicDisplay(this.layer,type)
+                switch(type){
+                    case -1:
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x*0.95+this.graphics.arms[key].middle.x*0.05,this.graphics.arms[key].bottom.y*0.95+this.graphics.arms[key].middle.y*0.05)
+                        this.layer.rotate(90+90*sign(sin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(sin(this.anim.direction+this.spin.arms[key].bottom+75)))
+                        this.layer.scale(1,constrain(sin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
+                        this.layer.fill(225,this.fade)
+                        this.layer.noStroke()
+                        this.layer.rect(0,-12,1,24)
+                        this.layer.fill(50,255,200)
+                        this.layer.ellipse(0,-24,3,3)
+                        this.layer.pop()
+                    break
+                    default:
+                        minorGraphicDisplay(this.layer,type)
+                    break
+                }
             break
         }
     }
@@ -3202,6 +3242,9 @@ class combatant{
                         this.layer.image(graphics.combatant[2].sprites.hair.back[this.sprites.spinDetailHead],-20*this.fade,-75-20*this.fade,40*this.fade,60*this.fade)
                     }
                     for(let g=0;g<2;g++){
+                        if(this.trigger.display.extra.sword&&cos(this.spin.arms[g].top+this.anim.direction)<=0.6&&g==0){
+                            this.minorDisplay(-1,g)
+                        }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)<=-0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
@@ -3371,6 +3414,9 @@ class combatant{
                         }
                     }
                     for(let g=0;g<2;g++){
+                        if(this.trigger.display.extra.sword&&cos(this.spin.arms[g].top+this.anim.direction)<0.4&&cos(this.spin.arms[g].top+this.anim.direction)>-0.6&&g==0){
+                            this.minorDisplay(-1,g)
+                        }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)<0.4&&cos(this.spin.arms[g].top+this.anim.direction)>-0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
@@ -3695,6 +3741,9 @@ class combatant{
                         this.layer.strokeJoin(MITER)
                     }
                     for(let g=0;g<2;g++){
+                        if(this.trigger.display.extra.sword&&cos(this.spin.arms[g].top+this.anim.direction)>0.4&&cos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==0){
+                            this.minorDisplay(-1,g)
+                        }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)>-0.3&&cos(this.spin.arms[g].top+this.anim.direction)<0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(min(4,cos(this.spin.arms[g].top+this.anim.direction)*5+2))
@@ -3760,13 +3809,16 @@ class combatant{
                         this.minorDisplayGeneral(1,0)
                     }
                     for(let g=0;g<2;g++){
+                        if(this.trigger.display.extra.sword&&(cos(this.spin.arms[g].top+this.anim.direction)>=0.6||cos(this.spin.arms[g].bottom+this.anim.direction)>=0.3)&&g==0){
+                            this.minorDisplay(-1,g)
+                        }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)>=0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(min(4,cos(this.spin.arms[g].top+this.anim.direction)*5+2))
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                         }
-                        if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].bottom+this.anim.direction)>=0.8){
+                        if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
@@ -4294,6 +4346,7 @@ class combatant{
                 this.dead=true
                 this.battle.counter.killed++
                 this.battle.combatantManager.reorder()
+                this.battle.relicManager.activate(3)
             }
         }
         if(this.team==0&&this.life>0&&!this.moved){

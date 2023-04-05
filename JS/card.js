@@ -48,6 +48,9 @@ class card{
                     if(user.status.main[6]>0){
                         damage+=user.status.main[6]
                     }
+                    if(user.status.main[12]>0){
+                        damage+=user.status.main[12]
+                    }
                     if(user.status.main[8]>0){
                         damage*=0.75
                     }
@@ -83,7 +86,7 @@ class card{
                         }else{
                             return effect+' ('+block+')'
                         }
-                    }else if(type==2){
+                    }else if(type==3){
                         if(block==effect){
                             return effect+'X'
                         }else{
@@ -155,7 +158,8 @@ class card{
             case 51: string+='Move '+this.effect[0]+' Tiles\nAdd '+this.effect[1]+' Dodge'; break
             case 52: string+='Move '+this.effect[0]+' Tiles\nDiscard When Another\nCard is Played'; break
             case 53: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nAdd '+this.effect[1]+' Dodge'; break
-            
+            case 54: string+='Move to Any\nEmpty Tile'; break
+
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
@@ -196,6 +200,9 @@ class card{
                 this.deSize=true
             break
         }
+    }
+    playable(){
+        return !this.spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)
     }
     display(){
         if(this.size>0&&this.fade>0){
@@ -258,6 +265,9 @@ class card{
                 break
                 case 5:
                     this.layer.text('Status',0,this.height/2-6)
+                break
+                case 6:
+                    this.layer.text('Curse',0,this.height/2-6)
                 break
             }
             this.layer.pop()

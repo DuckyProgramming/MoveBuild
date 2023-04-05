@@ -30,9 +30,12 @@ Redirect?
 Shatter, remove all block and do dage
 Snap Strike, deal damage and gain temporary strength
 Entertainment
+Move X tiles
+Move and Add a Step
 
 Generality:
 First Character Gimmick
 Third Character Gimmick
 
+Ume Weapon
 Ume Base Cards

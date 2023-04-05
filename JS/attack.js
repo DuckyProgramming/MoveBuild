@@ -31,7 +31,7 @@ class attack{
                 this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
             break
-            case 3: case 14: case 20: case 51: case 52:
+            case 3: case 14: case 20: case 51: case 52: case 54:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -163,7 +163,7 @@ class attack{
                 this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                 this.userCombatant.runAnimation(1/15,0)
                 if(this.timer==10*this.targetDistance&&this.type==20){
-                    this.battle.cardManagers[this.player].hand.randomEffect(0)
+                    this.battle.cardManagers[this.player].randomEffect(2,0,[])
                 }else if(this.timer==10*this.targetDistance&&this.type==51){
                     this.userCombatant.statusEffect('Dodge',this.effect[1])
                 }
@@ -858,7 +858,7 @@ class attack{
                     this.userCombatant.runAnimation(1/15,15)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,1,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,1,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
                 }else if(this.timer==10*this.targetDistance+15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                 }else if(this.timer>=10*this.targetDistance+25){
@@ -921,13 +921,13 @@ class attack{
             break
             case 37:
                 if(this.timer==1){
-                    this.userCombatant.startAnimation(15)
+                    this.userCombatant.startAnimation(20)
                 }
                 if(this.timer<=30){
-                    this.userCombatant.runAnimation(1/15,15)
+                    this.userCombatant.runAnimation(1/15,20)
                 }
                 if(this.timer==15){
-                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,3,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,3,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
                     this.userCombatant.armed=false
                 }else if(this.timer==10*this.targetDistance+15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1186,6 +1186,20 @@ class attack{
                 }else if(this.timer==10*this.targetDistance+15){
                     this.targetCombatant.statusEffect('Bleed',this.effect[0])
                 }else if(this.timer>=10*this.targetDistance+25){
+                    this.remove=true
+                }
+            break
+            case 54:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(19)
+                }
+                this.userCombatant.runAnimation(1/20,19)
+                if(this.timer==10){
+                    this.userCombatant.moveTile(this.direction,this.distance)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
+                    this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                    this.battle.activate(1,this.userCombatant.id)
+                }else if(this.timer>=20){
                     this.remove=true
                 }
             break

@@ -3,6 +3,7 @@ class battle{
         this.layer=layer
         this.player=player
 
+        this.initialized=false
         this.initialManagers()
         this.tileManager=new tileManager(this.layer,this)
         this.combatantManager=new combatantManager(this.layer,this)
@@ -13,6 +14,7 @@ class battle{
         this.nodeManager=new nodeManager(this.layer,this)
         this.purchaseManager=new purchaseManager(this.layer,this)
         this.relicManager=new relicManager(this.layer,this)
+        this.initialized=true
 
         this.encounter={class:0}
         this.currency={money:[]}
@@ -60,6 +62,7 @@ class battle{
             this.energy.main.push(0)
             this.energy.gen.push(0)
             this.energy.base.push(3)
+            this.anim.turn.push(0)
             this.anim.deck.push(1)
         }
         if(this.player.length==1){
@@ -104,7 +107,7 @@ class battle{
             this.energy.gen[a]=this.energy.base[a]
         }
         this.turn={main:0,total:0,time:0,accelerate:0}
-        this.anim={reserve:1,discard:1,endTurn:1,turn:[],defeat:0,deck:1,exit:1,afford:0,upAfford:false}
+        this.anim={reserve:1,discard:1,endTurn:1,turn:[],defeat:0,deck:[],exit:1,afford:0,upAfford:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
@@ -115,6 +118,7 @@ class battle{
 
         for(let a=0,la=this.player.length;a<la;a++){
             this.anim.turn.push(0)
+            this.anim.deck.push(1)
             let playerCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
             if(playerCombatant.life<=0){
                 this.positionCombatant(playerCombatant,{x:-1,y:-1})
@@ -247,7 +251,11 @@ class battle{
         this.turn.total++
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            this.energy.main[a]=this.energy.gen[a]
+            if(this.relicManager.active[28]>0&&a==this.relicManager.player[28]&&this.energy.main[a]>=1){
+                this.energy.main[a]=this.energy.gen[a]+1
+            }else{
+                this.energy.main[a]=this.energy.gen[a]
+            }
         }
         this.combatantManager.setupCombatants()
         this.combatantManager.tick()
@@ -261,6 +269,12 @@ class battle{
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
             this.endTurn()
         }
+    }
+    playCard(card,player){
+        if(card.spec.includes(0)){
+            this.cardManagers[player].fatigue()
+        }
+        this.relicManager.activate(4,[card.class])
     }
     displayCurrency(){
         this.layer.fill(240,240,220)

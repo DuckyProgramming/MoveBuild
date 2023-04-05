@@ -7,6 +7,7 @@ class relic{
         this.size=size
 
         this.name=types.relic[this.type].name
+        this.internal=types.relic[this.type].internal
         this.description=types.relic[this.type].description
         this.rarity=types.relic[this.type].rarity
 
@@ -26,7 +27,7 @@ class relic{
                 this.layer.fill(150,this.fade)
                 this.layer.rect(0,0,2,40)
             }
-            switch(this.name){
+            switch(this.internal){
                 case '':
                     displaySymbol(this.layer,0,0,1,0,1,this.fade)
                 break
@@ -114,6 +115,64 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('1',8,-3)
                 break
+                case 'Play Unplayable':
+                break
+                case 'Upgrade All Attacks':
+                break
+                case 'Upgrade All Defense':
+                break
+                case 'Upgrade All Movement':
+                break
+                case 'Upgrade All Powers':
+                break
+                case '10 Max HP':
+                    displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',0,12)
+                break
+                case 'Death Boost':
+                break
+                case '10 Card Draw':
+                break
+                case 'Emergency Heal':
+                break
+                case 'Power Cost Reduce':
+                break
+                case 'Starting Dodge':
+                break
+                case 'Selective Redraw':
+                break
+                case 'No Weak':
+                break
+                case 'No Frail':
+                break
+                case 'No Vulnerable':
+                break
+                case 'Retain Block':
+                break
+                case 'Power Heal':
+                break
+                case 'Retain Energy':
+                break
+                case '14 Max HP':
+                    displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('14',0,12)
+                break
+                case '300 Currency':
+                break
+                case 'First Attack':
+                break
+                case 'Upgrade Random Attacks':
+                break
+                case 'Upgrade Random Defense':
+                break
+                case 'Upgrade Random Movement':
+                break
+                case 'Upgrade Random Powers':
+                break
             }
             this.layer.pop()
         }
@@ -124,7 +183,7 @@ class relic{
             this.layer.noStroke()
             this.layer.rect(100,240,160,120,10)
             this.layer.fill(0,this.infoFade)
-            this.layer.textSize(16)
+            this.layer.textSize(12)
             this.layer.text(this.name,100,200)
             this.layer.textSize(8)
             this.layer.text(this.description,100,245)
