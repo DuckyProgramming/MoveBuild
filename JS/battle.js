@@ -4,6 +4,7 @@ class battle{
         this.player=player
 
         this.initialized=false
+        this.initialGraphics()
         this.initialManagers()
         this.tileManager=new tileManager(this.layer,this)
         this.combatantManager=new combatantManager(this.layer,this)
@@ -65,39 +66,21 @@ class battle{
             this.anim.turn.push(0)
             this.anim.deck.push(1)
         }
-        if(this.player.length==1){
-            this.playerKey=this.player[0]-1
-        }else{
-            switch(this.player[0],this.player[1]){
-                case 1,2: this.playerKey=3; break
-                case 2,1: this.playerKey=4; break
-                case 2,3: this.playerKey=5; break
-                case 3,2: this.playerKey=6; break
-                case 3,1: this.playerKey=7; break
-                case 1,3: this.playerKey=8; break
+    }
+    initialGraphics(){
+        this.graphics={combatants:[]}
+        for(let a=0,la=game.playerNumber;a<la;a++){
+            if(this.player.includes(a+1)){
+                setupCombatantGraphics(a)
+            }else{
+                graphics.combatant.push(-1)
             }
         }
-    }
-    calculatePlayerKeyDamage(){
-        if(this.player.length==1){
-            if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(0)].trigger.display.extra.damage){
-                this.playerKeyDamage=1
-            }else{
-                this.playerKeyDamage=0
-            }
-        }else if(this.player.length==2){
-            if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(0)].trigger.display.extra.damage){
-                if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(1)].trigger.display.extra.damage){
-                    this.playerKeyDamage=3
-                }else{
-                    this.playerKeyDamage=2
-                }
-            }else{
-                if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(1)].trigger.display.extra.damage){
-                    this.playerKeyDamage=1
-                }else{
-                    this.playerKeyDamage=0
-                }
+        for(let a=0,la=graphics.backgroundGen;a<la;a++){
+            this.graphics.combatants.push([[],[]])
+            for(let b=0,lb=this.player.length;b<lb;b++){
+                this.graphics.combatants[a][0].push(setupCombatantBackground(a,this.player,b,lb,[0],this.layer))
+                this.graphics.combatants[a][1].push(setupCombatantBackground(a,this.player,b,lb,[1],this.layer))
             }
         }
     }
@@ -373,8 +356,15 @@ class battle{
                 this.displayCurrency()
             break
             case 'rest':
-                this.calculatePlayerKeyDamage()
-                this.layer.image(graphics.combatantBackgrounds[3][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.backgrounds[3],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.player.length;a<la;a++){
+                    if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage){
+                        this.graphics.combatants[3][1][a].display()
+                    }else{
+                        this.graphics.combatants[3][0][a].display()
+                    }
+                }
+			    this.layer.image(graphics.overlays[0],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
@@ -423,17 +413,35 @@ class battle{
                 this.displayCurrency()
             break
             case 'defeat':
-                this.calculatePlayerKeyDamage()
-                this.layer.image(graphics.combatantBackgrounds[1][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.backgrounds[1],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.player.length;a<la;a++){
+                    if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage){
+                        this.graphics.combatants[1][1][a].display()
+                    }else{
+                        this.graphics.combatants[1][0][a].display()
+                    }
+                }
             break
             case 'stash':
-                this.calculatePlayerKeyDamage()
-                this.layer.image(graphics.combatantBackgrounds[4][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.backgrounds[4],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.player.length;a<la;a++){
+                    if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage){
+                        this.graphics.combatants[4][1][a].display()
+                    }else{
+                        this.graphics.combatants[4][0][a].display()
+                    }
+                }
                 this.relicManager.display(stage.scene)
             break
             case 'perk':
-                this.calculatePlayerKeyDamage()
-                this.layer.image(graphics.combatantBackgrounds[0][this.playerKey][this.playerKeyDamage],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.backgrounds[0],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.player.length;a<la;a++){
+                    if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage){
+                        this.graphics.combatants[0][1][a].display()
+                    }else{
+                        this.graphics.combatants[0][0][a].display()
+                    }
+                }
                 for(let a=0,la=this.perkManagers.length;a<la;a++){
                     this.perkManagers[a].display()
                 }

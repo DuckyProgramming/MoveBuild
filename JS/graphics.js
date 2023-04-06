@@ -2079,106 +2079,135 @@ function setupBackground(type,layer){
 		break
 	}
 }
-function setupCombatantBackground(type,player,damage,layer){
-	layer.image(graphics.backgrounds[type],0,0,layer.width,layer.height)
+function setupCombatantBackground(type,player,a,la,damage,layer){
+	let p1
 	switch(type){
 		case 0:
-			for(let a=0,la=player.length;a<la;a++){
-				p1=new combatant(layer,{player:[0]},1200-la*175+a*525,1070,0,0,0,0,player[a],0,0,-30)
-				if(player[a]==1){
-					p1.parts.mouth-=4
-					p1.spin.mouth-=180
-				}else if(player[a]==2){
-					p1.anim.mouth.y++
-				}else if(player[a]==3){
-					p1.parts.mouth-=2
-					p1.spin.mouth-=180
-				}
-				p1.size=5
-				p1.fade=1
-				p1.spin.sword=36-(player[a]-1)*24
-				p1.anim.legs=[
-					{top:24-(player[a]-1)*12,bottom:12-(player[a]-1)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-					{top:12-(player[a]-1)*6,bottom:36-(player[a]-1)*6,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-				]
-				p1.anim.arms=[
-					{top:36-(player[a]-1)*9,bottom:-6+(player[a]-1)*87,length:{top:16,bottom:16}},
-					{top:27-(player[a]-1)*3,bottom:108-(player[a]-1)*90,length:{top:16,bottom:16}}
-				]
-				p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
-				p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-1)*45,lock:0}]
-				if(damage[a]==1&&options.damage){
-					p1.trigger.display.extra.damage=true
-				}
-				p1.display()
-			}
-		break
-		case 1:
-			for(let a=0,la=player.length;a<la;a++){
-				p1=new combatant(layer,{player:[0]},950-la*100+a*400,940+a*40,0,0,0,0,player[a],0,0,-45)
-				if(player[a]==2){
-					p1.parts.mouth+=4
-					p1.spin.mouth+=180
-				}
-				p1.anim.eye=[1,1]
+			p1=new combatant(layer,{player:[0]},600-la*87.5+a*525,535,0,0,0,0,player[a],0,0,-30)
+			if(player[a]==1){
+				p1.parts.mouth-=4
+				p1.spin.mouth-=180
+			}else if(player[a]==2){
 				p1.anim.mouth.y++
-				p1.size=5
-				p1.fade=1
-				p1.trigger.display.extra.sword=false
-				p1.anim.legs=[
-					{top:30-a*6,bottom:-60-a*36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-					{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-				]
-				p1.anim.arms=[
-					{top:36,bottom:12,length:{top:16,bottom:16}},
-					{top:36+a*12,bottom:60-a*42,length:{top:16,bottom:16}}
-				]
-				p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
-				p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
-				p1.direction=84
-				if(damage[a]==1&&options.damage){
-					p1.trigger.display.extra.damage=true
-				}
-				p1.display()
+			}else if(player[a]==3){
+				p1.parts.mouth-=2
+				p1.spin.mouth-=180
 			}
-		break
+			p1.size=2.5
+			p1.fade=1
+			p1.spin.sword=36-(player[a]-1)*24
+			p1.anim.legs=[
+				{top:24-(player[a]-1)*12,bottom:12-(player[a]-1)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+				{top:12-(player[a]-1)*6,bottom:36-(player[a]-1)*6,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+			]
+			p1.anim.arms=[
+				{top:36-(player[a]-1)*9,bottom:-6+(player[a]-1)*87,length:{top:16,bottom:16}},
+				{top:27-(player[a]-1)*3,bottom:108-(player[a]-1)*90,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+			p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-1)*45,lock:0}]
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+		case 1:
+			p1=new combatant(layer,{player:[0]},475-la*50+a*200,470+a*20,0,0,0,0,player[a],0,0,-45)
+			if(player[a]==2){
+				p1.parts.mouth+=4
+				p1.spin.mouth+=180
+			}
+			p1.anim.eye=[1,1]
+			p1.anim.mouth.y++
+			p1.size=2.5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+			p1.anim.legs=[
+				{top:30-a*6,bottom:-60-a*36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+				{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+			]
+			p1.anim.arms=[
+				{top:36,bottom:12,length:{top:16,bottom:16}},
+				{top:36+a*12,bottom:60-a*42,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+			p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+			p1.direction=84
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
 		case 2:
 			/**/
-		break
+			return -1
 		case 3:
-			for(let a=0,la=player.length;a<la;a++){
-				p1=new combatant(layer,{player:[0]},700-a*200,1040,0,0,0,0,player[a],0,0,30+a*3)
-				if(player[a]==1){
-					p1.parts.mouth-=4
-					p1.spin.mouth-=180
-				}else if(player[a]==2){
-					p1.anim.mouth.y++
-				}else if(player[a]==3){
-					p1.parts.mouth-=2
-					p1.spin.mouth-=180
-				}
-				p1.anim.eye=[1,1]
-				p1.anim.eyeStyle=[2,2]
-				p1.fades.kimono.main.front={x:1,y:0.975}
-				p1.fades.kimono.main.back={x:1,y:0.975}
-				p1.size=5
-				p1.fade=1
-				p1.trigger.display.extra.sword=false
-				p1.anim.legs=[
-					{top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-					{top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-				]
-				p1.anim.arms=[
-					{top:24,bottom:60-a*30,length:{top:16,bottom:16}},
-					{top:24,bottom:60-a*30,length:{top:16,bottom:16}}
-				]
-				p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:150,lock:0}]
-				p1.spin.arms=[{top:-75-a*15,bottom:-12-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
-				if(damage[a]==1&&options.damage){
-					p1.trigger.display.extra.damage=true
-				}
-				p1.display()
+			p1=new combatant(layer,{player:[0]},350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
+			if(player[a]==1){
+				p1.parts.mouth-=4
+				p1.spin.mouth-=180
+			}else if(player[a]==2){
+				p1.anim.mouth.y++
+			}else if(player[a]==3){
+				p1.parts.mouth-=2
+				p1.spin.mouth-=180
 			}
+			p1.anim.eye=[1,1]
+			p1.anim.eyeStyle=[2,2]
+			p1.fades.kimono.main.front={x:1,y:0.975}
+			p1.fades.kimono.main.back={x:1,y:0.975}
+			p1.size=2.5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+			p1.anim.legs=[
+				{top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+				{top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+			]
+			p1.anim.arms=[
+				{top:24,bottom:60-a*30,length:{top:16,bottom:16}},
+				{top:24,bottom:60-a*30,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:150,lock:0}]
+			p1.spin.arms=[{top:-75-a*15,bottom:-12-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+		break
+		case 4:
+			p1=new combatant(layer,{player:[0]},550-a*300,477.5+a*32.5,0,0,0,0,player[a],0,0,30-a*60)
+			if(player[a]==1){
+				p1.parts.mouth-=3
+				p1.spin.mouth-=180
+				p1.anim.mouth.y-=2
+			}else if(player[a]==2){
+				p1.anim.mouth.y--
+			}else if(player[a]==3){
+				p1.parts.mouth--
+				p1.spin.mouth-=180
+				p1.anim.mouth.y--
+			}
+			p1.size=2.5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+			p1.anim.legs=[
+				{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}},
+				{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}}
+			]
+			p1.anim.arms=[
+				{top:18+a*36,bottom:12+a*96,length:{top:16,bottom:16}},
+				{top:27-a*3,bottom:60-a*42,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+			p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+		break
+	}
+}
+function setupOverlay(type,layer){
+	switch(type){
+		case 0:
 			graphic=createGraphics(layer.width,layer.height)
 			setupLayer(graphic)
 			graphic.fill(0)
@@ -2191,40 +2220,6 @@ function setupCombatantBackground(type,player,damage,layer){
 				graphic.arc(900,920,1440-a*24,1080-a*18,-180,0)
 				graphic.arc(900,920,1440-a*24,360-a*6,0,180)
 			}
-			layer.image(graphic,0,0,layer.width,layer.height)
-		break
-		case 4:
-			for(let a=0,la=player.length;a<la;a++){
-				p1=new combatant(layer,{player:[0]},1100-a*600,955+a*65,0,0,0,0,player[a],0,0,30-a*60)
-				if(player[a]==1){
-					p1.parts.mouth-=3
-					p1.spin.mouth-=180
-					p1.anim.mouth.y-=2
-				}else if(player[a]==2){
-					p1.anim.mouth.y--
-				}else if(player[a]==3){
-					p1.parts.mouth--
-					p1.spin.mouth-=180
-					p1.anim.mouth.y--
-				}
-				p1.size=5
-				p1.fade=1
-				p1.trigger.display.extra.sword=false
-				p1.anim.legs=[
-					{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}},
-					{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}}
-				]
-				p1.anim.arms=[
-					{top:18+a*36,bottom:12+a*96,length:{top:16,bottom:16}},
-					{top:27-a*3,bottom:60-a*42,length:{top:16,bottom:16}}
-				]
-				p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
-				p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
-				if(damage[a]==1&&options.damage){
-					p1.trigger.display.extra.damage=true
-				}
-				p1.display()
-			}
 		break
 	}
 }
@@ -2235,51 +2230,28 @@ function setupGraphics(){
 	colorMode(RGB,255,255,255,1)
 	graphics.main=createGraphics(900,600)
 	setupLayer(graphics.main)
-	/*graphics.combatantGen=[[1],[2],[3],[1,2],[2,1],[2,3],[3,2],[3,1],[1,3]]
-	graphics.combatantDamageGen=[
-		[[0],[1]],
-		[[0],[1]],
-		[[0],[1]],
-		[[0,0],[0,1],[1,0],[1,1]],
-		[[0,0],[0,1],[1,0],[1,1]],
-		[[0,0],[0,1],[1,0],[1,1]],
-		[[0,0],[0,1],[1,0],[1,1]],
-		[[0,0],[0,1],[1,0],[1,1]],
-		[[0,0],[0,1],[1,0],[1,1]]
-	]
 	graphics.backgrounds=[]
-	graphics.combatantBackgrounds=[]
-	for(let a=0;a<5;a++){
+	for(let a=0;a<graphics.backgroundGen;a++){
 		graphics.backgrounds.push(createGraphics(1800,1200))
 		setupLayer(graphics.backgrounds[a])
-		graphics.combatantBackgrounds.push([])
-		for(let b=0;b<graphics.combatantGen.length;b++){
-			graphics.combatantBackgrounds[a].push([])
-			for(let c=0,lc=graphics.combatantDamageGen[b].length;c<lc;c++){
-				graphics.combatantBackgrounds[a][b].push(createGraphics(1800,1200))
-				setupLayer(graphics.combatantBackgrounds[a][b][c])
-			}
-		}
-	}*/
+	}
+	graphics.overlays=[]
+	for(let a=0;a<graphics.overlayGen;a++){
+		graphics.overlays.push(createGraphics(1800,1200))
+		setupLayer(graphics.overlays[a])
+	}
 	graphics.minor=[]
 
 	setupGeneralGraphics()
-	setupCombatantGraphics(0)
-	//setupCombatantGraphics(1)
-	//setupCombatantGraphics(2)
 
-	/*setupBackground(0,graphics.backgrounds[0])
-	setupBackground(1,graphics.backgrounds[1])
-	setupBackground(3,graphics.backgrounds[3])
-	setupBackground(4,graphics.backgrounds[4])
-	for(let a=0,la=graphics.combatantGen.length;a<la;a++){
-		for(let b=0,lb=graphics.combatantBackgrounds[0][a].length;b<lb;b++){setupCombatantBackground(0,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[0][a][b])}
-		for(let b=0,lb=graphics.combatantBackgrounds[1][a].length;b<lb;b++){setupCombatantBackground(1,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[1][a][b])}
-		for(let b=0,lb=graphics.combatantBackgrounds[3][a].length;b<lb;b++){setupCombatantBackground(3,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[3][a][b])}
-		for(let b=0,lb=graphics.combatantBackgrounds[4][a].length;b<lb;b++){setupCombatantBackground(4,graphics.combatantGen[a],graphics.combatantDamageGen[a][b],graphics.combatantBackgrounds[4][a][b])}
-	}*/
+	for(let a=0,la=graphics.backgroundGen;a<la;a++){
+		setupBackground(a,graphics.backgrounds[a])
+	}
+	for(let a=0,la=graphics.overlayGen;a<la;a++){
+		setupOverlay(a,graphics.overlays[a])
+	}
 	/*
-	0-Title
+	0-Perk
 	1-Loss
 	2-Win //
 	3-Rest

@@ -531,8 +531,8 @@ types={
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //E[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
-            [['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
+            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
+            //[['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
             [['Teleport',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3]],
            
@@ -596,14 +596,14 @@ types={
             level:2,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},name:'Human'},
-                /*{position:{x:1,y:0},name:'Biker'},
+                {position:{x:0,y:0},name:'Biker'},
+                {position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},
                 {position:{x:3,y:0},name:'Thug'},
                 {position:{x:3,y:6},name:'Thug'},
                 {position:{x:4,y:6},name:'Thug'},
                 {position:{x:5,y:6},name:'Biker'},
-                {position:{x:6,y:6},name:'Biker'},*/
+                {position:{x:6,y:6},name:'Biker'},
 
                 /*{position:{x:0,y:1},name:'Duck'},
                 {position:{x:0,y:2},name:'Duck'},
@@ -654,7 +654,7 @@ stage={scale:0,scene:'map'}
 game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 options={damage:false}
-graphics={main:0,backgrounds:[],combatantBackgrounds:[],minor:[],combatant:[],combatantGen:0}
+graphics={main:0,backgroundGen:5,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
