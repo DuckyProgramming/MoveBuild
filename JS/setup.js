@@ -4,9 +4,9 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    for(let a=11;a<=35;a++){
+    /*for(let a=11;a<=35;a++){
         current.relicManager.addRelic(a,0)
-    }
+    }*/
 
     stage.scene='battle'
     current.setupBattle(types.encounter[1])

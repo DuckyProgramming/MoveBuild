@@ -86,6 +86,9 @@ class cardManager{
         this.drop.cards=[]
         this.exhaust.cards=[]
     }
+    reset(){
+        this.hand.reset()
+    }
     display(scene,args){
         switch(scene){
             case 'battle':

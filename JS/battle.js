@@ -115,7 +115,7 @@ class battle{
         this.tileManager.generateTiles(types.level[encounter.level])
         
         this.combatantManager.resetCombatants()
-
+        
         for(let a=0,la=this.player.length;a<la;a++){
             this.anim.turn.push(0)
             this.anim.deck.push(1)
@@ -139,6 +139,7 @@ class battle{
         }
         
         for(let a=0,la=this.cardManagers.length;a<la;a++){
+            this.cardManagers[a].reset()
             this.cardManagers[a].clear()
             this.cardManagers[a].copy(0,1)
             this.cardManagers[a].shuffle(1)

@@ -259,7 +259,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 8: case 40: case 44: case 45:
+            case 8: case 40: case 44: case 45: case 55:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -283,6 +283,10 @@ class attack{
                             this.battle.cardManagers[this.player].allEffect(1,4)
                             this.battle.cardManagers[this.player].allEffect(2,3)
                             this.battle.cardManagers[this.player].allEffect(3,4)
+                        break
+                        case 55:
+                            this.battle.cardManagers[this.player].draw(this.effect[0])
+                            this.battle.cardManagers[this.player].hand.discard(this.effect[1])
                         break
                     }
                 }else if(this.timer>=20){

@@ -225,6 +225,127 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
                 layer.line(sin(a*30)*3,cos(a*30)*3,sin(a*30)*6,cos(a*30)*6)
             }
         break
+        case 16:
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,24,24)
+            layer.line(-6*sqrt(2),6*sqrt(2),6*sqrt(2),-6*sqrt(2))
+        break
+        case 17:
+            layer.fill(80,fade)
+            layer.rect(0,0,6,24)
+            layer.rect(0,0,24,6)
+        break
+        case 18:
+            layer.stroke(150,0,0,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(360*a/la)*(10-a%2*5),cos(360*a/la)*(10-a%2*5))
+            }
+            layer.endShape(CLOSE)
+        break
+        case 19:
+            layer.stroke(150,175,200,fade)
+            layer.strokeWeight(1.5)
+			layer.line(-7.5,-4.5,0,-9)
+            layer.line(7.5,-4.5,0,-9)
+			layer.arc(0,-4.5,15,24,0,180)
+        break
+        case 20:
+            layer.stroke(75,150,75,fade)
+            layer.strokeWeight(1.5)
+            layer.line(-7.5,-3,1.5,-3)
+            layer.line(-7.5,3,1.5,3)
+            layer.line(-7.5,-3,-7.5,3)
+            layer.line(1.5,-7.5,10.5,0)
+            layer.line(1.5,7.5,10.5,0)
+            layer.line(1.5,-7.5,1.5,-3)
+            layer.line(1.5,7.5,1.5,3)
+        break
+        case 21:
+            layer.stroke(255,255,200,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            for(let a=0,la=8;a<la;a++){
+                layer.vertex(sin(360*a/la)*(10-a%2*6),cos(360*a/la)*(10-a%2*6))
+            }
+            layer.endShape(CLOSE)
+        break
+        case 22:
+            layer.stroke(0,fade)
+            layer.strokeWeight(3)
+            layer.noFill()
+            layer.ellipse(0,0,30,30)
+            layer.line(-8,-2,-4,2)
+            layer.line(-8,2,-4,-2)
+            layer.line(8,-2,4,2)
+            layer.line(8,2,4,-2)
+        break
+        case 23:
+            layer.stroke(255,fade)
+            layer.strokeWeight(1.2)
+            layer.arc(0,0,15,15,-165,-105)
+            layer.arc(0,0,15,15,-75,-15)
+            layer.arc(0,0,15,15,15,75)
+            layer.arc(0,0,15,15,105,165)
+        break
+        case 24:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,12,-6,-6,6,-6)
+        break
+        case 25:
+            layer.fill(150,175,200,fade)
+            layer.triangle(0,12,-6,-6,6,-6)
+        break
+        case 26:
+            layer.fill(0,150,255,fade)
+            layer.triangle(0,12,-6,-6,6,-6)
+        break
+        case 27:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-7.5,-4.5,7.5,-4.5,0,-9)
+			layer.arc(0,-4.5,15,24,0,180)
+        break
+        case 28:
+            layer.fill(240,240,220,fade)
+            layer.ellipse(0,0,24,24)
+            layer.fill(220,220,200,fade)
+            layer.ellipse(0,0,15,15)
+        break
+        case 29:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-4,-12,-8,6,0,6)
+            layer.ellipse(6,0,8,8)
+        break
     }
     layer.pop()
 }
+/*
+1-Relic
+2-Health
+3-Enemy
+4-7-Arrow
+8-Card
+9-Energy
+10-Max Health
+11-Strength
+12-Dexterity
+13-Movement (Card Symbol)
+14-Redo
+15-Miracle
+16-No
+17-Add
+18-Attack
+19-Defense
+20-Movement (Standard Symbol)
+21-Power
+22-Dead
+23-Dodge
+24-Weak
+25-Frail
+26-Vulnerable
+27-Block
+28-Currency
+29-Single Strength
+*/

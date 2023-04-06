@@ -111,14 +111,18 @@ class relicManager{
             break
             case 32:
                 this.battle.cardManagers[player].randomEffect(0,2,[1])
+                this.battle.cardManagers[player].randomEffect(0,2,[1])
             break
             case 33:
+                this.battle.cardManagers[player].randomEffect(0,2,[2])
                 this.battle.cardManagers[player].randomEffect(0,2,[2])
             break
             case 34:
                 this.battle.cardManagers[player].randomEffect(0,2,[3])
+                this.battle.cardManagers[player].randomEffect(0,2,[3])
             break
             case 35:
+                this.battle.cardManagers[player].randomEffect(0,2,[4])
                 this.battle.cardManagers[player].randomEffect(0,2,[4])
             break
         }
@@ -180,6 +184,11 @@ class relicManager{
                     if(this.active[10]>0&&args[1]==this.player[10]){
                         for(let a=0,la=this.active[10];a<la;a++){
                             this.battle.cardManagers[this.player[10]].hand.add(findName('Miracle',types.card),0,0)
+                        }
+                    }
+                    if(this.active[22]>0&&args[1]==this.player[22]){
+                        for(let a=0,la=this.active[22];a<la;a++){
+                            this.battle.cardManagers[this.player[22]].hand.add(findName('Selective\nRedraw',types.card),0,0)
                         }
                     }
                 }

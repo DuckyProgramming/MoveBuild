@@ -6,6 +6,9 @@ class group{
         this.id=id
         this.cards=[]
         this.sorted=[]
+
+        this.status={discard:0}
+        this.anim={discard:0}
     }
     initialCards(type,player){
         switch(type){
@@ -25,6 +28,10 @@ class group{
                 /**/
             break
         }
+    }
+    reset(){
+        this.status={discard:0}
+        this.anim={discard:0}
     }
     add(type,level,color){
         game.id++
@@ -47,6 +54,9 @@ class group{
             this.cards[a].select=false
             this.cards[a].anim.select=0
         }
+    }
+    discard(amount){
+        this.status.discard+=amount
     }
     shuffle(){
         let cards=[]
@@ -178,11 +188,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
+                        this.cards[a].displayStatus([this.anim.discard])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
+                        this.cards[a].displayStatus([this.anim.discard])
                     }
                 }
             break
@@ -276,7 +288,7 @@ class group{
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         this.cards[b].deSize=true
-                        if(this.cards[b].spec.includes(1)||this.cards[a].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
+                        if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
                             this.cards[b].exhaust=true
                         }
                         for(let c=0,lc=this.cards.length;c<lc;c++){
@@ -297,7 +309,7 @@ class group{
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         this.cards[b].deSize=true
-                        if(this.cards[b].spec.includes(1)||this.cards[a].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
+                        if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
                             this.cards[b].exhaust=true
                         }
                         for(let c=0,lc=this.cards.length;c<lc;c++){
@@ -307,11 +319,16 @@ class group{
                     }
                 }
             break
+            case 4:
+                this.cards[a].deSize=true
+                this.status.discard--
+            break
         }
     }
     update(scene,args){
         switch(scene){
             case 'battle':
+                this.anim.discard=smoothAnim(this.anim.discard,this.status.discard>0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -412,11 +429,17 @@ class group{
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
-                            if(this.cards[a].afford){
-                                this.callInput(0,a)
-                            }else{
-                                this.battle.anim.upAfford=true
+                        if(pointInsideBox({position:inputs.rel},this.cards[a])){
+                            if(this.status.discard>0){
+                                this.callInput(4,a)
+                                break
+                            }
+                            if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
+                                if(this.cards[a].afford){
+                                    this.callInput(0,a)
+                                }else{
+                                    this.battle.anim.upAfford=true
+                                }
                             }
                         }
                     }
@@ -472,11 +495,17 @@ class group{
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((int(key)+9)%10==a&&this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
-                            if(this.cards[a].afford){
-                                this.callInput(0,a)
-                            }else{
-                                this.battle.anim.upAfford=true
+                        if((int(key)+9)%10==a){
+                            if(this.status.discard>0){
+                                this.callInput(4,a)
+                            }
+                            if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
+                                if(this.cards[a].afford){
+                                    this.callInput(0,a)
+                                    break
+                                }else{
+                                    this.battle.anim.upAfford=true
+                                }
                             }
                         }
                     }

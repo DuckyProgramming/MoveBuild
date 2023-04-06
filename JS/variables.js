@@ -370,13 +370,19 @@ types={
             name:'Emergency\nMove',rarity:-1,list:0,
             levels:[
                 {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[1,2],class:3},
-                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[1,2],class:3},
+                {effect:[3],attack:3,cost:0,target:[1,1,3],spec:[1,2],class:3},
             ],
         },{
             name:'Redraw',rarity:-1,list:0,
             levels:[
                 {effect:[],attack:40,cost:0,target:[0],spec:[1,4],class:5},
-                {effect:[],attack:40,cost:0,target:[0],spec:[1,4],class:5},
+                {effect:[],attack:40,cost:0,target:[0],spec:[1,2],class:5},
+            ],
+        },{
+            name:'Selective\nRedraw',rarity:-1,list:0,
+            levels:[
+                {effect:[1,1],attack:55,cost:0,target:[0],spec:[1,4],class:5},
+                {effect:[2,2],attack:55,cost:0,target:[0],spec:[1,4],class:5},
             ],
         },{
             name:'Miracle',rarity:-1,list:0,
@@ -441,8 +447,8 @@ types={
         {name:'',internal:'First Turn Energy',id:3,rarity:0,list:0,description:'Gain 1 Energy at\nthe Start of Combat'},
         {name:'',internal:'3 Turn Energy',id:4,rarity:0,list:0,description:'Gain 1 Energy\nEvery 3rd Turn'},
         {name:'',internal:'7 Max HP',id:5,rarity:0,list:0,description:'When Taken,\nGain 7 Max HP'},
-        {name:'',internal:'First Turn Strength',id:6,rarity:0,list:0,description:'Gain 1 Strength\nat the Start of Combat'},
-        {name:'',internal:'First Turn Dexterity',id:7,rarity:0,list:0,description:'Gain 1 Dexterity\nat the Start of Combat'},
+        {name:'',internal:'Starting Strength',id:6,rarity:0,list:0,description:'Gain 1 Strength\nat the Start of Combat'},
+        {name:'',internal:'Starting Dexterity',id:7,rarity:0,list:0,description:'Gain 1 Dexterity\nat the Start of Combat'},
         {name:'',internal:'Emergency Move',id:8,rarity:0,list:0,description:'Add 1 Emergency Move at\nthe Start of Combat'},
         {name:'',internal:'Redraw',id:9,rarity:0,list:0,description:'Add 1 Redraw at\nthe Start of Combat'},
         {name:'',internal:'Miracle',id:10,rarity:0,list:0,description:'Add 1 Miracle at\nthe Start of Combat'},
@@ -523,8 +529,8 @@ types={
     },deck:{
         start:[
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
-            //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
+            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+            //E[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             [['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
