@@ -492,6 +492,10 @@ types={
         {name:'',internal:'',id:19,rarity:0,list:0,description:''},
         {name:'',internal:'',id:20,rarity:0,list:0,description:''},*/
         //blessed shiny rock?
+    ],item:[
+        {name:'',id:0,rarity:-1,list:-1,description:''},
+        {name:'Empty',id:1,rarity:-1,list:-1,description:'None'},
+        {name:'Rock',id:2,rarity:0,list:0,description:'Deal 10 Damage\nRange 1-6'},
     ],color:{
         card:[
             {
@@ -596,14 +600,14 @@ types={
             level:2,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},name:'Biker'},
-                {position:{x:1,y:0},name:'Biker'},
+                {position:{x:0,y:0},name:'Human'},
+                /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},
                 {position:{x:3,y:0},name:'Thug'},
                 {position:{x:3,y:6},name:'Thug'},
                 {position:{x:4,y:6},name:'Thug'},
                 {position:{x:5,y:6},name:'Biker'},
-                {position:{x:6,y:6},name:'Biker'},
+                {position:{x:6,y:6},name:'Biker'},*/
 
                 /*{position:{x:0,y:1},name:'Duck'},
                 {position:{x:0,y:2},name:'Duck'},

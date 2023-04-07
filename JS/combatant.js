@@ -2245,7 +2245,7 @@ class combatant{
                             this.minorDisplay(0,g)
                         }
                         if(this.trigger.display.skin.arms&&cos(this.spin.arms[g].top+this.anim.direction)<0.4&&cos(this.spin.arms[g].top+this.anim.direction)>-0.6){
-                            this.layer.stroke(this.flashColor(this.color.skin.arms[0]),this.flashColor(this.color.skin.arms[1]),this.flashColor(this.color.skin.arms[2]),this.fade*this.fades.skin.arms)
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)

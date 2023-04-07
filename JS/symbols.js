@@ -318,6 +318,21 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-4,-12,-8,6,0,6)
             layer.ellipse(6,0,8,8)
         break
+        case 30:
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(-5,-5,8,8)
+            layer.rect(5,-5,8,8)
+            layer.rect(-5,5,8,8)
+            layer.rect(5,5,8,8)
+            layer.rect(0,0,22,22)
+        break
+        case 31:
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1.5)
+            layer.line(-10,-10,10,10)
+            layer.line(-10,10,10,-10)
+        break
     }
     layer.pop()
 }
@@ -348,4 +363,6 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 27-Block
 28-Currency
 29-Single Strength
+30-Item
+31-Empty
 */

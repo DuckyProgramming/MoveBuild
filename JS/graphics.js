@@ -2181,7 +2181,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}else if(player[a]==2){
 				p1.anim.mouth.y--
 			}else if(player[a]==3){
-				p1.parts.mouth--
+				p1.parts.mouth-=2
 				p1.spin.mouth-=180
 				p1.anim.mouth.y--
 			}

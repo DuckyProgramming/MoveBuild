@@ -15,6 +15,7 @@ class battle{
         this.nodeManager=new nodeManager(this.layer,this)
         this.purchaseManager=new purchaseManager(this.layer,this)
         this.relicManager=new relicManager(this.layer,this)
+        this.itemManager=new itemManager(this.layer,this)
         this.initialized=true
 
         this.encounter={class:0}
@@ -331,6 +332,7 @@ class battle{
                 this.particleManager.display()
                 this.overlayManager.display()
                 this.relicManager.display(stage.scene)
+                this.itemManager.display(stage.scene)
                 this.displayCurrency()
                 if(this.anim.defeat>0){
                     this.layer.fill(0,this.anim.defeat)
@@ -464,6 +466,7 @@ class battle{
                 this.particleManager.update()
                 this.overlayManager.update()
                 this.relicManager.update(stage.scene)
+                this.itemManager.update(stage.scene)
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                 }
@@ -580,6 +583,7 @@ class battle{
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)
+                        this.itemManager.onClick(stage.scene)
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:24})){
                             this.overlayManager.overlays[1][this.turn.main].active=true
                             this.overlayManager.overlays[1][this.turn.main].activate()
@@ -660,6 +664,7 @@ class battle{
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
                         this.relicManager.onKey(stage.scene,key,code)
+                        this.itemManager.onKey(stage.center,key,code)
                         if(key=='r'||key=='R'){
                             this.overlayManager.overlays[1][this.turn.main].active=true
                             this.overlayManager.overlays[1][this.turn.main].activate()
