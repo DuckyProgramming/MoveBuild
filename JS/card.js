@@ -156,10 +156,11 @@ class card{
             case 48: if(this.effect[0]>0){string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n'} string+='Push 2 Tiles'; break
             case 50: string+='Add '+this.calculateEffect(+this.effect[0],1)+' Block\nRetain Block\nfor '+this.effect[1]+' Turn'; if(this.effect[1]>1){string+='s'} break
             case 51: string+='Move '+this.effect[0]+' Tile';if(this.effect[0]>1){string+='s'} string+='\nAdd '+this.effect[1]+' Dodge'; break
-            case 52: string+='Move '+this.effect[0]+' Tile';if(this.effect[0]>1){string+='s'} string+='\nDiscard When Another\nCard is Played'; break
+            case 52: string+='Move '+this.effect[0]+' Tile';if(this.effect[0]>1){string+='s'} string+='\nDiscard When a\nCard is Played'; break
             case 53: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nAdd '+this.effect[1]+' Dodge'; break
             case 54: string+='Move to Any\nEmpty Tile'; break
             case 55: string+='Draw '+this.effect[0]+' Card'; if(this.effect[0]>1){string+='s'} string+='\nDiscard '+this.effect[1]+' Card'; if(this.effect[1]>1){string+='s'} break
+            case 56: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} string+='\nCosts 1 More When\na Card is Played'; break
             
         }
         if(string[string.length-1]=='\n'){
@@ -199,6 +200,11 @@ class card{
         switch(this.attack){
             case 52:
                 this.deSize=true
+            break
+            case 56:
+                if(this.cost>=0){
+                    this.cost++
+                }
             break
         }
     }

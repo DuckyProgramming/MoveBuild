@@ -19,36 +19,32 @@ class itemManager{
         }
         for(let a=0,la=this.battle.player.length;a<la;a++){
             this.items.push([
-                new item(this.layer,a,25+(this.layer.width-50)*a,100,0,1),
-                new item(this.layer,a,75+(this.layer.width-150)*a,100,1,1),
-                new item(this.layer,a,125+(this.layer.width-250)*a,100,1,1),
-                new item(this.layer,a,175+(this.layer.width-350)*a,100,1,1)])
+                new item(this.layer,a,25+(this.layer.width-50)*a,50,0,1),
+                new item(this.layer,a,75+(this.layer.width-150)*a,50,1,1),
+                new item(this.layer,a,125+(this.layer.width-250)*a,50,1,1),
+                new item(this.layer,a,175+(this.layer.width-350)*a,50,1,1)])
             this.position.push(0)
             this.up.push(false)
         }
     }
     addItem(type,player){
-        /*this.player[types.relic[type].id]=player
-        this.active[types.relic[type].id]+=1
-        if(this.battle.player.length==2){
-            this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),50+floor(this.position[player]/8)*50,types.relic[type].id,1))
-        }else{
-            this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,50+floor(this.position[player]/18)*50,types.relic[type].id,1))
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type==1){
+                this.items[player][a].type=type
+                this.items[player][a].refresh()
+                break
+            }
         }
-        this.position[player]++
-        this.total[player]++
-        this.get(types.relic[type].id,player)*/
     }
-    addRandomRelic(player){
-        /*let possible=[0,0,0,1,1,2]
+    addRandomItem(player){
+        let possible=[0,0,0,1,1,2]
         let rarity=possible[floor(random(0,possible.length))]
         let index=floor(random(0,this.listing.item[rarity].length))
-        this.adItem(this.listing.relic[rarity][index],player)*/
+        this.addItem(this.listing.item[rarity][index],player)
     }
-    addSetRelic(rarity,player){
-        /*let index=floor(random(0,this.listing.item[rarity].length))
+    addSetItem(rarity,player){
+        let index=floor(random(0,this.listing.item[rarity].length))
         this.addRelic(this.listing.item[rarity][index],player)
-        this.listing.item[rarity].splice(index,1)*/
     }
     makeItemSelection(rarity){
         /*(for(let a=0,la=this.complete.length;a<la;a++){
@@ -62,6 +58,13 @@ class itemManager{
             relics[rarity[a]].splice(index,1)
         }
         return list*/
+    }
+    activateItem(type,player){
+        switch(type){
+            case 2:
+                this.battle.cardManagers[player].hand.callInput(6,[57,[10],1,[2,1,6]])
+            break
+        }
     }
     use(type,player){
         switch(type){
@@ -81,11 +84,29 @@ class itemManager{
                     }
                 }
             break
+            case 'shop':
+                for(let a=0,la=this.items.length;a<la;a++){
+                    for(let b=0,lb=this.items[a].length;b<lb;b++){
+                        this.items[a][b].display()
+                    }
+                }
+                for(let a=0,la=this.items.length;a<la;a++){
+                    for(let b=0,lb=this.items[a].length;b<lb;b++){
+                        this.items[a][b].displayInfo()
+                    }
+                }
+                this.layer.fill(230,230,210)
+                this.layer.textSize(16)
+                this.layer.text('10',25,83)
+                if(this.battle.currency.money.length>1){
+                    this.layer.text('10',this.layer.width-25,83)
+                }
+            break
         }
     }
     update(scene){
         switch(scene){
-            case 'battle':
+            case 'battle': case 'shop':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         this.items[a][b].update(this.up[this.items[a][b].player],la,inputs)
@@ -97,18 +118,44 @@ class itemManager{
     onClick(scene){
         switch(scene){
             case 'battle':
-                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.items[0].length>0){
+                if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,100)<20&&this.items[1].length>0){
+                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
                     this.up[1]=toggle(this.up[1])
+                }
+                for(let a=0,la=this.items.length;a<la;a++){
+                    for(let b=0,lb=this.items[a].length;b<lb;b++){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
+                            this.activateItem(this.items[a][b].type,a)
+                            this.items[a][b].type=1
+                            this.items[a][b].refresh()
+                        }
+                    }
+                }
+            break
+            case 'shop':
+                if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
+                    this.up[0]=toggle(this.up[0])
+                }
+                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
+                    this.up[1]=toggle(this.up[1])
+                }
+                for(let a=0,la=this.items.length;a<la;a++){
+                    for(let b=0,lb=this.items[a].length;b<lb;b++){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
+                            this.battle.currency.money[a]+=10
+                            this.items[a][b].type=1
+                            this.items[a][b].refresh()
+                        }
+                    }
                 }
             break
         }
     }
     onKey(scene,key,code){
         switch(scene){
-            case 'battle':
+            case 'battle': case 'shop':
                 if(key=='o'&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }

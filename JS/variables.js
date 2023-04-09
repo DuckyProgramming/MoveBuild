@@ -390,6 +390,12 @@ types={
                 {effect:[1],attack:41,cost:0,target:[0],spec:[1,4],class:5},
                 {effect:[2],attack:41,cost:0,target:[0],spec:[1,4],class:5},
             ],
+        },{
+            name:'Initiative',rarity:-1,list:0,
+            levels:[
+                {effect:[2],attack:56,cost:0,target:[1,1,2],spec:[1,4],class:3},
+                {effect:[3],attack:56,cost:0,target:[1,1,3],spec:[1,4],class:3},
+            ],
         },
 
         {
@@ -480,7 +486,12 @@ types={
         {name:'',internal:'Upgrade Random Defense',id:33,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Defense'},
         {name:'',internal:'Upgrade Random Movement',id:34,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Movement'},
         {name:'',internal:'Upgrade Random Powers',id:35,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Powers'},
-        
+        {name:'',internal:'Starting Block',id:36,rarity:0,list:0,description:'Add 10 Block\nat the Start of Combat'},
+        {name:'',internal:'No Attack Energy',id:37,rarity:0,list:0,description:'When You Do Not Attack,\nGain 1 Energy Next Turn'},
+        {name:'',internal:'Rest Energy',id:38,rarity:0,list:0,description:'Gain 2 Energy\nAfter Resting'},
+        {name:'',internal:'Damage Taken Cards',id:39,rarity:0,list:0,description:'Draw 3 Cards the First\nTime Damage is Taken'},
+        {name:'',internal:'Card Currency',id:40,rarity:0,list:0,description:'Gain 10 Currency\nWhen a Card is Added'},
+
         /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
         {name:'',internal:'',id:12,rarity:0,list:0,description:''},
         {name:'',internal:'',id:13,rarity:0,list:0,description:''},

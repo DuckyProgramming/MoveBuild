@@ -140,6 +140,7 @@ class battle{
             this.optionManagers[a].reset()
         }
         this.combatantManager.resetCombatants()
+        this.relicManager.activate(7,[])
     }
     setupShop(){
         this.purchaseManager.setup()
@@ -250,6 +251,9 @@ class battle{
         this.cardManagers[0].turnDraw()
         this.relicManager.activate(2,[this.turn.total,this.turn.main])
         this.relicManager.activate(0,[this.turn.total])
+        if(this.turn.total==1){
+            this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+        }
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
             this.endTurn()
@@ -259,7 +263,7 @@ class battle{
         if(card.spec.includes(0)){
             this.cardManagers[player].fatigue()
         }
-        this.relicManager.activate(4,[card.class])
+        this.relicManager.activate(4,[card.class,player])
     }
     displayCurrency(){
         this.layer.fill(240,240,220)
@@ -412,6 +416,7 @@ class battle{
                 this.layer.text('Exit',26,528)
                 this.purchaseManager.display()
                 this.overlayManager.display()
+                this.itemManager.display(stage.scene)
                 this.displayCurrency()
             break
             case 'defeat':
@@ -501,16 +506,20 @@ class battle{
                             this.overlayManager.overlays[0][a].active=true
                             switch(this.encounter.class){
                                 case 0:
-                                    this.overlayManager.overlays[0][a].activate([
+                                    this.overlayManager.overlays[0][a].activate([0,[
                                         {type:1,value:[0,floor(random(0,1.5)),0]},
-                                        {type:0,value:[floor(random(40,81))]}])
+                                        {type:0,value:[floor(random(40,81))]}]])
                                 break
                                 case 1:
-                                    this.overlayManager.overlays[0][a].activate([
+                                    this.overlayManager.overlays[0][a].activate([0,[
                                         {type:1,value:[1,floor(random(0,2)),0]},
                                         {type:2,value:[]},
-                                        {type:0,value:[floor(random(120,201))]}])
+                                        {type:0,value:[floor(random(120,201))]}]])
                                 break
+                            }
+                            if(floor(random(0,3))==0||true){
+                                this.overlayManager.overlays[0][a].activate([1,[
+                                    {type:3,value:[]}]])
                             }
                         }
                         this.relicManager.activate(1,[])
@@ -547,6 +556,7 @@ class battle{
             case 'shop':
                 this.purchaseManager.update()
                 this.overlayManager.update()
+                this.itemManager.update(stage.scene)
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
                     this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
                 }
@@ -578,12 +588,12 @@ class battle{
         switch(scene){
             case 'battle':
                 if(!this.result.defeat){
+                    this.itemManager.onClick(stage.scene)
                     if(this.overlayManager.anyActive){
-                        this.overlayManager.onClick()
+                        this.overlayManager.onClick(stage.scene)
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)
-                        this.itemManager.onClick(stage.scene)
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:24})){
                             this.overlayManager.overlays[1][this.turn.main].active=true
                             this.overlayManager.overlays[1][this.turn.main].activate()
@@ -628,6 +638,7 @@ class battle{
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onClick()
                 }else{
+                    this.itemManager.onClick(stage.scene)
                     this.purchaseManager.onClick()
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})){
@@ -659,12 +670,12 @@ class battle{
         switch(scene){
             case 'battle':
                 if(!this.result.defeat){
+                    this.itemManager.onKey(stage.scene,key,code)
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onKey(key,code)
                     }else if(this.turn.main<this.player.length){
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
                         this.relicManager.onKey(stage.scene,key,code)
-                        this.itemManager.onKey(stage.center,key,code)
                         if(key=='r'||key=='R'){
                             this.overlayManager.overlays[1][this.turn.main].active=true
                             this.overlayManager.overlays[1][this.turn.main].activate()
@@ -712,6 +723,7 @@ class battle{
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onKey(key,code)
                 }else{
+                    this.itemManager.onKey(stage.scene,key,code)
                     this.purchaseManager.onKey(key,code)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){

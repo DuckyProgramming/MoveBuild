@@ -32,6 +32,8 @@ Snap Strike, deal damage and gain temporary strength
 Entertainment
 Move X tiles
 Move and Add a Step
+1 inch punch
+Commit
 
 Generality:
 First Character Gimmick

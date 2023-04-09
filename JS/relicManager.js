@@ -28,7 +28,7 @@ class relicManager{
             this.active.push(0)
             this.player.push(-1)
             switch(types.relic[a].id){
-                case 17:
+                case 4: case 17: case 37: case 38: case 39:
                     this.detail.push([0])
                 break
                 default:
@@ -61,9 +61,9 @@ class relicManager{
         this.player[types.relic[type].id]=player
         this.active[types.relic[type].id]+=1
         if(this.battle.player.length==2){
-            this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),50+floor(this.position[player]/8)*50,types.relic[type].id,1))
+            this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),100+floor(this.position[player]/8)*50,types.relic[type].id,1))
         }else{
-            this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,50+floor(this.position[player]/18)*50,types.relic[type].id,1))
+            this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,100+floor(this.position[player]/18)*50,types.relic[type].id,1))
         }
         this.position[player]++
         this.total[player]++
@@ -131,7 +131,7 @@ class relicManager{
     }
     activate(type,args){
         switch(type){
-            case 0:
+            case 0://start of general turn [turn]
                 if(args[0]==1){
                     if(this.active[2]>0){
                         this.battle.cardManagers[this.player[2]].draw(2*this.active[2])
@@ -151,14 +151,29 @@ class relicManager{
                     if(this.active[31]>0){
                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[31])].statusEffect('Single Strength',8*this.active[31])
                     }
+                    if(this.active[36]>0){
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[36])].addBlock(10*this.active[36])
+                    }
+                    if(this.active[38]>0&&this.detail[38]==1){
+                        this.detail[38]=0
+                        this.battle.energy.main[this.player[38]]+=2*this.active[38]
+                    }
+                    if(this.active[39]>0){this.detail[39]=0}
                 }
-                if(args[0]%3==0){
-                    if(this.active[4]>0){
+                if(this.active[4]>0){
+                    this.detail[4]++
+                    if(this.detail[4]%3==0){
                         this.battle.energy.main[this.player[4]]+=this.active[4]
                     }
                 }
+                if(this.active[37]>0){
+                    if(args[0]>1&&this.detail[37]==0){
+                        this.battle.energy.main[this.player[37]]+=this.active[37]
+                    }
+                    this.detail[37]=0
+                }
             break
-            case 1:
+            case 1://end of combat
                 if(this.active[1]>0){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[1])].heal(2*this.active[1])
                 }
@@ -168,7 +183,7 @@ class relicManager{
                     }
                 }
             break
-            case 2:
+            case 2://start of player turn [turn,player]
                 if(args[0]==1){
                     if(this.active[8]>0&&args[1]==this.player[8]){
                         for(let a=0,la=this.active[8];a<la;a++){
@@ -192,28 +207,49 @@ class relicManager{
                     }
                 }
             break
-            case 3:
+            case 3://enemy dies
                 if(this.active[17]>0){
                     this.battle.cardManagers[this.player[17]].draw(this.active[17])
                     this.battle.energy.main[this.player[17]]+=this.active[17]
                 }
             break
-            case 4:
-                if(this.active[18]>0){
+            case 4://playing card [class,plauer]
+                if(this.active[18]>0&&args[1]==this.player[18]){
                     this.detail[18]++
                     if(this.detail[18]%10==0){
                         this.battle.cardManagers[this.player[18]].draw(this.active[18])
                     }
                 }
                 switch(args[0]){
+                    case 1:
+                        if(this.active[37]>0&&args[1]==this.player[37]&&this.detail[37]==0){
+                            this.detail[37]=1
+                        }
+                    break
                     case 4:
-                        if(this.active[20]>0){
+                        if(this.active[20]>0&&args[1]==this.player[20]){
                             this.battle.cardManagers[this.player[20]].randomEffect(2,1,[this.active[20]])
                         }
-                        if(this.active[27]>0){
+                        if(this.active[27]>0&&args[1]==this.player[27]){
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[27])].heal(this.active[1])
                         }
                     break
+                }
+            break
+            case 5://adding card [player]
+                if(this.active[40]>0&&args[0]==this.player[40]){
+                    this.battle.currency.money[this.player[40]]+=10*this.active[0]
+                }
+            break
+            case 6://taking damage [player]
+                if(this.active[38]>0&&args[0]==this.player[38]&&this.detail[38]==0){
+                    this.detail[38]=1
+                    this.battle.cardManagers[this.player[38]].draw(3*this.active[38])
+                }
+            break
+            case 7://entering rest
+                if(this.active[38]>0&&this.detail[38]==0){
+                    this.detail[38]=1
                 }
             break
         }
@@ -291,10 +327,10 @@ class relicManager{
     onClick(scene){
         switch(scene){
             case 'battle':
-                if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.total[0]>1){
+                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>1){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.total[1]>0){
+                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,100)<20&&this.total[1]>0){
                     this.up[1]=toggle(this.up[1])
                 }
             break

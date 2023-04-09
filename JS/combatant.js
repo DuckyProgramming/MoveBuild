@@ -494,6 +494,7 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
+        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0],upFlash:[false,false]}
     }
     calculateParts(){
         switch(this.name){
@@ -731,9 +732,11 @@ class combatant{
                     this.block=0
                     this.life-=damageLeft
                     this.infoAnim.upFlash[0]=true
+                    this.battle.relicManager.activate(6,[this.id])
                 }else{
                     this.life-=damage
                     this.infoAnim.upFlash[0]=true
+                    this.battle.relicManager.activate(6,[this.id])
                 }
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
                 if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length&&spec==0){

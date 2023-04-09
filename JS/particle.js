@@ -39,6 +39,15 @@ class particle{
                 this.scale=1
                 this.size=0
             break
+            case 5:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.speed=16/3
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+            break
         }
     }
     display(){
@@ -92,6 +101,10 @@ class particle{
                         this.layer.triangle(-1,-2,1,-2,0,-8)
                     }
                 break
+                case 5:
+                    this.layer.fill(160,this.fade)
+                    regPoly(this.layer,0,0,7,4,4,this.time*3)
+                break
             }
             this.layer.pop()
         }
@@ -114,7 +127,7 @@ class particle{
                     }
                 }
             break
-            case 1: case 4:
+            case 1: case 4: case 5:
                 this.position.x+=sin(this.direction)*this.speed
                 this.position.y-=cos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){

@@ -2208,17 +2208,15 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 function setupOverlay(type,layer){
 	switch(type){
 		case 0:
-			graphic=createGraphics(layer.width,layer.height)
-			setupLayer(graphic)
-			graphic.fill(0)
-			graphic.rect(graphic.width/2,graphic.height/2,graphic.width,graphic.height)
-			graphic.erase(0.2)
-			graphic.rect(graphic.width/2,graphic.height/2,graphic.width,graphic.height)
-			graphic.noErase()
-			graphic.erase(0.025)
+			layer.fill(0)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			layer.erase(0.2)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			layer.noErase()
+			layer.erase(0.025)
 			for(let a=0,la=100;a<la;a++){
-				graphic.arc(900,920,1440-a*24,1080-a*18,-180,0)
-				graphic.arc(900,920,1440-a*24,360-a*6,0,180)
+				layer.arc(900,920,1440-a*24,1080-a*18,-180,0)
+				layer.arc(900,920,1440-a*24,360-a*6,0,180)
 			}
 		break
 	}

@@ -14,6 +14,11 @@ class item{
         this.infoFade=0
         this.deFade=false
     }
+    refresh(){
+        this.name=types.item[this.type].name
+        this.description=types.item[this.type].description
+        this.rarity=types.item[this.type].rarity
+    }
     display(){
         if(this.fade>0){
             this.layer.push()
@@ -30,6 +35,10 @@ class item{
                     displaySymbol(this.layer,0,0,31,0,1,this.fade)
                 break
                 case 'Rock':
+                    displaySymbol(this.layer,0,0,18,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('10',0,0)
                 break
             }
             this.layer.pop()

@@ -36,12 +36,15 @@ class group{
     add(type,level,color){
         game.id++
         this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
-        if(this.battle.initialized&&this.id==0&&(
-            this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
-            this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
-            this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
-            this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player))){
-            this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+        if(this.battle.initialized&&this.id==0){
+            if(
+                this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
+                this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
+                this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
+                this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player)){
+                this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+            }
+            this.battle.relicManager.activate(5,[this.player])
         }
     }
     addDrop(type,level,color){
@@ -240,18 +243,10 @@ class group{
     callInput(type,a){
         switch(type){
             case 0:
-                this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
-                this.battle.attackManager.energy=this.battle.energy.main[this.player]
                 this.battle.attackManager.type=this.cards[a].attack
-                this.battle.attackManager.player=this.player
                 this.battle.attackManager.effect=this.cards[a].effect
                 this.battle.attackManager.attackClass=this.cards[a].class
-                this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
-                this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
-                this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
-                this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
-                this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
-                this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
+                this.callInput(5,0)
                 this.cards[a].usable=false
                 if(this.cards[a].target[0]==0){
                     this.battle.attackManager.execute()
@@ -322,6 +317,30 @@ class group{
             case 4:
                 this.cards[a].deSize=true
                 this.status.discard--
+            break
+            case 5:
+                this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
+                this.battle.attackManager.energy=this.battle.energy.main[this.player]
+                this.battle.attackManager.player=this.player
+                this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
+                this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
+                this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
+                this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
+                this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
+                this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
+            break
+            case 6:
+                this.battle.attackManager.type=a[0]
+                this.battle.attackManager.effect=a[1]
+                this.battle.attackManager.attackClass=a[2]
+                this.callInput(5,0)
+                if(a[3][0]==0){
+                    this.battle.attackManager.execute()
+                }else{
+                    this.battle.attackManager.targetInfo=copyArray(a[3])
+                    this.battle.attackManager.targetDistance=0
+                    this.battle.attackManager.cost=0
+                }
             break
         }
     }

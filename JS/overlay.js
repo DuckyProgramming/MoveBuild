@@ -46,9 +46,11 @@ class overlay{
     activate(args){
         switch(this.type){
             case 1:
-                this.rewards=[]
-                for(let a=0,la=args.length;a<la;a++){
-                    this.rewards.push({type:args[a].type,value:args[a].value,fade:1,position:this.rewards.length*50,usable:true})
+                if(args[0]==0){
+                    this.rewards=[]
+                }
+                for(let a=0,la=args[1].length;a<la;a++){
+                    this.rewards.push({type:args[1][a].type,value:args[1][a].value,fade:1,position:this.rewards.length*50,usable:true})
                 }
             break
             case 2:
@@ -100,6 +102,9 @@ class overlay{
                     break
                     case 2:
                         this.battle.relicManager.addRandomRelic(this.player)
+                    break
+                    case 3:
+                        this.battle.itemManager.addRandomItem(this.player)
                     break
                 }
             break
@@ -162,6 +167,24 @@ class overlay{
                             this.layer.noStroke()
                             this.layer.textSize(16)
                             this.layer.text('New Relic',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
+                        break
+                        case 3:
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
+                            this.layer.fill(200,this.fade)
+                            this.layer.noStroke()
+                            this.layer.ellipse(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,30,30)
+                            this.layer.stroke(100,this.fade)
+                            this.layer.noFill()
+                            this.layer.strokeWeight(1)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-45,this.layer.height/2-110+this.rewards[a].position,8,8)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-35,this.layer.height/2-110+this.rewards[a].position,8,8)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-45,this.layer.height/2-100+this.rewards[a].position,8,8)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-35,this.layer.height/2-100+this.rewards[a].position,8,8)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,22,22)
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.noStroke()
+                            this.layer.textSize(16)
+                            this.layer.text('New Item',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
                         break
                     }
                 }
