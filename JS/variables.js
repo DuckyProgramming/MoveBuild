@@ -396,6 +396,12 @@ types={
                 {effect:[2],attack:56,cost:0,target:[1,1,2],spec:[1,4],class:3},
                 {effect:[3],attack:56,cost:0,target:[1,1,3],spec:[1,4],class:3},
             ],
+        },{
+            name:'Shiv',rarity:-1,list:0,
+            levels:[
+                {effect:[4],attack:1,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[6],attack:1,cost:0,target:[2,1,1],spec:[1],class:1},
+            ],
         },
 
         {
@@ -492,6 +498,28 @@ types={
         {name:'',internal:'Damage Taken Cards',id:39,rarity:0,list:0,description:'Draw 3 Cards the First\nTime Damage is Taken'},
         {name:'',internal:'Card Currency',id:40,rarity:0,list:0,description:'Gain 10 Currency\nWhen a Card is Added'},
 
+        {name:'',internal:'Turn 2 Block',id:41,rarity:1,list:0,description:'Add 14 Block at\nthe Start of Turn 2'},
+        {name:'',internal:'3 Attack Strength',id:42,rarity:1,list:0,description:'Every 3 Attacks Played,\nGain 1 Strength'},
+        {name:'',internal:'3 Attack Dexterity',id:43,rarity:1,list:0,description:'Every 3 Attacks Played,\nGain 1 Dexterity'},
+        {name:'',internal:'3 Attack Block',id:44,rarity:1,list:0,description:'Every 3 Attacks Played,\nGain 4 Block'},
+        {name:'',internal:'Boss Heal',id:45,rarity:1,list:0,description:'At the Start of Boss\nCombat, Heal 25 HP'},
+        {name:'',internal:'Extra Card Option',id:46,rarity:1,list:0,description:'Card Rewards Have\n1 More Choice'},
+        {name:'',internal:'Max HP Rest',id:47,rarity:1,list:0,description:'Can Gain 4 Max\nHP When Resting'},
+        {name:'',internal:'Damage Block Next Turn',id:48,rarity:1,list:0,description:'When You Take Damage,\nGain 3 Block Next Turn'},
+        {name:'',internal:'Skip Card Max HP',id:49,rarity:1,list:0,description:'Gain 2 Max HP When\nYou Skip Adding a Card'},
+        {name:'',internal:'Strike Damage',id:50,rarity:1,list:0,description:'Cards Containing '+"'Strike'"+'\nDeal 2 More Damage'},
+        
+        {name:'',internal:'Unplayed Card Block',id:51,rarity:2,list:0,description:'At the End of Your Turn,\nGain 1 Block Per Unplayed Card'},
+        {name:'',internal:'Shivs',id:52,rarity:2,list:0,description:'Add 2 Shivs at the\nStart of Combat'},
+        {name:'',internal:'Healing Boost',id:53,rarity:2,list:0,description:'All Healing is\n50% More Effective'},
+        {name:'',internal:'No Card Draw',id:54,rarity:2,list:0,description:'If You Have No Cards in\nYour Hand, Draw 1 Card'},
+        {name:'',internal:'Damage Decrease',id:55,rarity:2,list:0,description:'Reduce All Damage\nAbove 1 By 1'},
+        {name:'',internal:'Damage Threshold',id:56,rarity:2,list:0,description:'If You Take 5 or Less\nDamage, Reduce it to 1'},
+        {name:'',internal:'Starting Armor',id:57,rarity:2,list:0,description:'Gain 4 Armor at the\nStart of Combat'},
+        {name:'',internal:'Relic Rest',id:58,rarity:2,list:0,description:'Can Gain a Relic\nWhen Resting'},
+        {name:'',internal:'Remove Rest',id:59,rarity:2,list:0,description:'Can Remove Cards\nWhen Resting'},
+        {name:'',internal:'Strength Rest',id:60,rarity:2,list:0,description:'Can Gain Strength\nWhen Resting, Max 3'},
+        
         /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
         {name:'',internal:'',id:12,rarity:0,list:0,description:''},
         {name:'',internal:'',id:13,rarity:0,list:0,description:''},

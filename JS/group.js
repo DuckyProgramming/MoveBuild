@@ -102,6 +102,9 @@ class group{
                 break
             }
         }
+        if(effect&&this.battle.relicManager.active[51]>0&&this.battle.relicManager.player[51]==this.player){
+            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length)
+        }
     }
     randomEffect(effect,args){
         if(this.cards.length>0){
@@ -244,8 +247,11 @@ class group{
         switch(type){
             case 0:
                 this.battle.attackManager.type=this.cards[a].attack
-                this.battle.attackManager.effect=this.cards[a].effect
+                this.battle.attackManager.effect=copyArray(this.cards[a].effect)
                 this.battle.attackManager.attackClass=this.cards[a].class
+                if(this.cards[a].strike&&this.battle.relicManager.active[50]&&this.player==this.battle.relicManager.player[50]&&this.battle.attackManager.effect.length>0){
+                    this.battle.attackManager.effect[0]+=2
+                }
                 this.callInput(5,0)
                 this.cards[a].usable=false
                 if(this.cards[a].target[0]==0){
@@ -342,6 +348,15 @@ class group{
                     this.battle.attackManager.cost=0
                 }
             break
+            case 7:
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    if(!this.cards[a].usable){
+                        this.cards[a].upSize=false
+                        this.cards[a].select=false
+                        this.cards[a].usable=true
+                    }
+                }
+            break
         }
     }
     update(scene,args){
@@ -382,6 +397,9 @@ class group{
                         }
                     }
                 }
+                if(this.battle.turn.main==this.player&&this.cards.length==0&&this.battle.relicManager.active[54]>0&&this.player==this.battle.relicManager.player[54]){
+                    this.battle.cardManagers[this.player].draw(1)
+                }
             break
             case 'drop':
                 for(let a=0,la=this.cards.length;a<la;a++){
@@ -412,11 +430,6 @@ class group{
                     this.callInput(2,a)
                 }
             }
-            for(let a=0,la=this.cards.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable){
-                    this.callInput(1,a)
-                }
-            }
         }
         if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
@@ -426,21 +439,11 @@ class group{
                     this.callInput(3,a)
                 }
             }
-            for(let a=0,la=this.cards.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable){
-                    this.callInput(1,a)
-                }
-            }
         }
         if(this.battle.attackManager.targetInfo[0]==4){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(1,this.battle.attackManager.targetInfo[1]+1,this.battle.attackManager.targetInfo[2]+1,this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
-                }
-            }
-            for(let a=0,la=this.cards.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable){
-                    this.callInput(1,a)
                 }
             }
         }
@@ -464,6 +467,12 @@ class group{
                     }
                 break
             }
+        }else{
+            for(let a=0,la=this.cards.length;a<la;a++){
+                if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].usable){
+                    this.callInput(1,a)
+                }
+            }
         }
     }
     onKey(scene,key,code){
@@ -473,11 +482,6 @@ class group{
                 if(this.battle.tileManager.tiles[a].occupied==0&&
                     (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)){
                     this.callInput(2,a)
-                }
-            }
-            for(let a=0,la=this.cards.length;a<la;a++){
-                if(!this.cards[a].usable&&(code==BACKSPACE||key==inputs.above[a])){
-                    this.callInput(1,a)
                 }
             }
         }
@@ -491,22 +495,12 @@ class group{
                     }
                 }
             }
-            for(let a=0,la=this.cards.length;a<la;a++){
-                if(!this.cards[a].usable&&(code==BACKSPACE||key==inputs.above[a])){
-                    this.callInput(1,a)
-                }
-            }
         }
         if(this.battle.attackManager.targetInfo[0]==4){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1,int(inputs.lastKey[1])-1)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1,int(inputs.lastKey[1])-1)
                 if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(1,this.battle.attackManager.targetInfo[1]+1,this.battle.attackManager.targetInfo[2]+1,this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
                     this.callInput(2,a)
-                }
-            }
-            for(let a=0,la=this.cards.length;a<la;a++){
-                if(!this.cards[a].usable&&(code==BACKSPACE||key==inputs.above[a])){
-                    this.callInput(1,a)
                 }
             }
         }
@@ -529,6 +523,19 @@ class group{
                         }
                     }
                 break
+            }
+        }else{
+            let allUsable=true
+            for(let a=0,la=this.cards.length;a<la;a++){
+                if(!this.cards[a].usable){
+                    allUsable=false
+                    if(code==BACKSPACE||key==inputs.above[a]){
+                        this.callInput(1,a)
+                    }
+                }
+            }
+            if(allUsable&&code==BACKSPACE){
+                this.battle.attackManager.targetInfo[0]=0
             }
         }
     }

@@ -38,6 +38,8 @@ class card{
         if(this.list==-1){
             this.list=this.color
         }
+
+        this.strike=this.name.includes('Strike')
     }
     calculateEffect(effect,type){
         if(stage.scene=='battle'){
@@ -51,11 +53,14 @@ class card{
                     if(user.status.main[12]>0){
                         damage+=user.status.main[12]
                     }
-                    if(user.status.main[8]>0){
-                        damage*=0.75
+                    if(this.strike&&this.battle.relicManager.active[50]&&this.player==this.battle.relicManager.player[50]){
+                        damage+=2
                     }
                     if(user.status.main[0]>0){
                         damage*=2
+                    }
+                    if(user.status.main[8]>0){
+                        damage*=0.75
                     }
                     damage=floor(damage)
                     if(type==0){
@@ -93,6 +98,16 @@ class card{
                             return effect+'X (+'+block+')'
                         }
                     }
+                case 4:
+                    let health=effect
+                    if(this.battle.relicManager.active[53]>0&&this.player==this.battle.relicManager.player[53]){
+                        health*=1.5
+                    }
+                    if(health==effect){
+                        return effect
+                    }else{
+                        return effect+' ('+health+')'
+                    }
             }
         }else{
             return effect
@@ -118,7 +133,7 @@ class card{
             case 7: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Fatal, Gain\n'+this.effect[1]+' Energy'; break
             case 8: string+='Draw '+this.effect[0]+' Card'; if(this.effect[0]>1){string+='s'} break
             case 9: string+='Swap With an\nAdjacent Enemy\nTarget Will Face User\nor\nMove '+this.effect[0]+' Tiles'; break
-            case 10: string+='Heal '+this.effect[0]+' Health'; break
+            case 10: string+='Heal '+this.calculateEffect(this.effect[0],4)+' Health'; break
             case 11: string+='Pull 1 Tile\nTarget Will Face User'; break
             case 12: string+='Deal '+this.calculateEffect(this.effect[0],2)+' Damage'; break
             case 13: string+='Add '+this.calculateEffect(this.effect[0],3)+' Block'; break

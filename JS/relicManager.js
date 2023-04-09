@@ -28,7 +28,7 @@ class relicManager{
             this.active.push(0)
             this.player.push(-1)
             switch(types.relic[a].id){
-                case 4: case 17: case 37: case 38: case 39:
+                case 4: case 17: case 37: case 38: case 39: case 42: case 43: case 44: case 60:
                     this.detail.push([0])
                 break
                 default:
@@ -40,7 +40,7 @@ class relicManager{
             this.complete.push(false)
             this.position.push(0)
             this.total.push(0)
-            this.up.push(false)
+            this.up.push(true)
         }
     }
     setupStash(){
@@ -68,6 +68,15 @@ class relicManager{
         this.position[player]++
         this.total[player]++
         this.get(types.relic[type].id,player)
+    }
+    loseRelic(type){
+        this.active[types.relic[type].id]-=1
+        for(let a=0,la=this.relics.length;a<la;a++){
+            if(this.relics[a].type==type){
+                this.relics[a].active=false
+            }
+        }
+        this.lose(types.relic[type].id,this.player[types.relic[type].id])
     }
     addRandomRelic(player){
         let possible=[0,0,0,1,1,2]
@@ -124,6 +133,40 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,2,[4])
                 this.battle.cardManagers[player].randomEffect(0,2,[4])
             break
+            case 46:
+                this.battle.overlayManager.overlays[3][player].options++
+            break
+            case 47:
+                this.battle.optionManagers[player].addOption(3)
+            break
+            case 58:
+                this.battle.optionManagers[player].addOption(4)
+            break
+            case 59:
+                this.battle.optionManagers[player].addOption(5)
+            break
+            case 60:
+                this.battle.optionManagers[player].addOption(6)
+            break
+        }
+    }
+    lose(type,player){
+        switch(type){
+            case 46:
+                this.battle.overlayManager.overlays[3][player].options++
+            break
+            case 47:
+                this.battle.optionManagers[player].removeOption(3)
+            break
+            case 58:
+                this.battle.optionManagers[player].removeOption(4)
+            break
+            case 59:
+                this.battle.optionManagers[player].removeOption(5)
+            break
+            case 60:
+                this.battle.optionManagers[player].removeOption(6)
+            break
         }
     }
     hasRelic(type,player){
@@ -131,34 +174,50 @@ class relicManager{
     }
     activate(type,args){
         switch(type){
-            case 0://start of general turn [turn]
-                if(args[0]==1){
-                    if(this.active[2]>0){
-                        this.battle.cardManagers[this.player[2]].draw(2*this.active[2])
-                    }
-                    if(this.active[3]>0){
-                        this.battle.energy.main[this.player[3]]+=this.active[3]
-                    }
-                    if(this.active[6]>0){
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[6])].statusEffect('Strength',this.active[6])
-                    }
-                    if(this.active[7]>0){
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[7])].statusEffect('Dexterity',this.active[7])
-                    }
-                    if(this.active[21]>0){
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[21])].statusEffect('Dodge',this.active[21])
-                    }
-                    if(this.active[31]>0){
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[31])].statusEffect('Single Strength',8*this.active[31])
-                    }
-                    if(this.active[36]>0){
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[36])].addBlock(10*this.active[36])
-                    }
-                    if(this.active[38]>0&&this.detail[38]==1){
-                        this.detail[38]=0
-                        this.battle.energy.main[this.player[38]]+=2*this.active[38]
-                    }
-                    if(this.active[39]>0){this.detail[39]=0}
+            case 0://start of general turn [turn,class]
+                switch(args[0]){
+                    case 1:
+                        if(this.active[2]>0){
+                            this.battle.cardManagers[this.player[2]].draw(2*this.active[2])
+                        }
+                        if(this.active[3]>0){
+                            this.battle.energy.main[this.player[3]]+=this.active[3]
+                        }
+                        if(this.active[6]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[6])].statusEffect('Strength',this.active[6])
+                        }
+                        if(this.active[7]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[7])].statusEffect('Dexterity',this.active[7])
+                        }
+                        if(this.active[21]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[21])].statusEffect('Dodge',this.active[21])
+                        }
+                        if(this.active[31]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[31])].statusEffect('Single Strength',8*this.active[31])
+                        }
+                        if(this.active[36]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[36])].addBlock(10*this.active[36])
+                        }
+                        if(this.active[38]>0&&this.detail[38]==1){
+                            this.detail[38]=0
+                            this.battle.energy.main[this.player[38]]+=2*this.active[38]
+                        }
+                        if(this.active[45]>0&&args[1]==2){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[45])].heal(25*this.active[45])
+                        }
+                        if(this.active[57]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[57])].statusEffect('Armor',4*this.active[57])
+                        }
+                        if(this.active[60]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[60])].statusEffect('Strength',this.detail[60])
+                        }
+                        if(this.active[39]>0){this.detail[39]=0}
+                    break
+                    case 2:
+                        if(this.active[41]>0){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[41])].addBlock(14*this.active[41])
+                        }
+                    break
                 }
                 if(this.active[4]>0){
                     this.detail[4]++
@@ -205,6 +264,11 @@ class relicManager{
                             this.battle.cardManagers[this.player[22]].hand.add(findName('Selective\nRedraw',types.card),0,0)
                         }
                     }
+                    if(this.active[52]>0&&args[1]==this.player[52]){
+                        for(let a=0,la=2*this.active[52];a<la;a++){
+                            this.battle.cardManagers[this.player[52]].hand.add(findName('Shiv',types.card),0,0)
+                        }
+                    }
                 }
             break
             case 3://enemy dies
@@ -224,6 +288,24 @@ class relicManager{
                     case 1:
                         if(this.active[37]>0&&args[1]==this.player[37]&&this.detail[37]==0){
                             this.detail[37]=1
+                        }
+                        if(this.active[42]>0){
+                            this.detail[42]++
+                            if(this.detail[42]%3==0){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[42])].statusEffect('Strength',this.active[42])
+                            }
+                        }
+                        if(this.active[43]>0){
+                            this.detail[43]++
+                            if(this.detail[43]%3==0){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[43])].statusEffect('Dexterity',this.active[43])
+                            }
+                        }
+                        if(this.active[44]>0){
+                            this.detail[44]++
+                            if(this.detail[44]%3==0){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[44])].addBlock(4*this.active[44])
+                            }
                         }
                     break
                     case 4:
@@ -246,10 +328,18 @@ class relicManager{
                     this.detail[38]=1
                     this.battle.cardManagers[this.player[38]].draw(3*this.active[38])
                 }
+                if(this.active[48]>0&&args[0]==this.player[48]){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[48])].statusEffect('Block Next Turn',3)
+                }
             break
             case 7://entering rest
                 if(this.active[38]>0&&this.detail[38]==0){
                     this.detail[38]=1
+                }
+            break
+            case 8://skipping card [player]
+                if(this.active[49]>0&&args[0]==this.player[49]){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player[49])].gainMaxHP(2*this.active[49])
                 }
             break
         }

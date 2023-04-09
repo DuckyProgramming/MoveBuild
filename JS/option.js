@@ -54,6 +54,70 @@ class option{
                 this.layer.textSize(24)
                 this.layer.text('Upgrade',0,60-this.player*120)
             break
+            case 3:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,80,80)
+                plus(this.layer,8)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Max HP',0,60-this.player*120)
+            break
+            case 4:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.ellipse(0,0,56,56)
+                this.layer.ellipse(0,0,84,84)
+                plus(this.layer,5)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Relic',0,60-this.player*120)
+            break
+            case 5:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,60,80,5)
+                this.layer.line(-20,-20,-15,-20)
+                this.layer.line(-15,-20,0,-5)
+                this.layer.line(5,0,20,15)
+                this.layer.line(20,15,20,20)
+                this.layer.line(15,20,20,20)
+                this.layer.line(-20,-15,-5,0)
+                this.layer.line(0,5,15,20)
+                this.layer.line(-20,-20,-20,-15)
+                this.layer.line(-20,20,-15,20)
+                this.layer.line(-15,20,0,5)
+                this.layer.line(5,0,20,-15)
+                this.layer.line(20,-15,20,-20)
+                this.layer.line(15,-20,20,-20)
+                this.layer.line(-20,15,-5,0)
+                this.layer.line(0,-5,15,-20)
+                this.layer.line(-20,20,-20,15)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Remove',0,60-this.player*120)
+            break
+            case 6:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.beginShape()
+                for(let a=0,la=16;a<la;a++){
+                    this.layer.vertex(sin(360*a/la)*(50-a%2*25),cos(360*a/la)*(50-a%2*25))
+                }
+                this.layer.endShape(CLOSE)
+                this.layer.triangle(0,-21,-12,15,12,15)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Strength',0,60-this.player*120)
+            break
         }
         this.layer.pop()
     }

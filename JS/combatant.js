@@ -38,15 +38,15 @@ class combatant{
         this.dodges=[]
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
-            'Vulnerable','Retain Block','Single Strength',
+            'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
-                1,1,0,
+                1,1,0,2,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
-                0,0,0,
+                0,0,0,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement
         //0-good, 1-bad, 2-nonclassified good
@@ -723,6 +723,15 @@ class combatant{
                     this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
                 }
             }
+            if(this.battle.relicManager.active[55]>0&&this.id==this.battle.relicManager.player[55]){
+                damage=max(min(damage,1),damage-1)
+            }
+            if(this.battle.relicManager.active[56]>0&&this.id==this.battle.relicManager.player[56]&&damage>1&&damage<=5){
+                damage=1
+            }
+            if(this.status.main[14]>0){
+                this.status.main[14]--
+            }
             if(hit){
                 if(this.block>=damage&&spec!=1){
                     this.block-=damage
@@ -799,7 +808,11 @@ class combatant{
         return this.status.main[findList(name,this.status.name)]
     }
     heal(amount){
-        this.life=min(this.life+amount,this.base.life)
+        let gain=amount
+        if(this.battle.relicManager.active[53]>0&&this.id==this.battle.relicManager.player[53]){
+            gain*=1.5
+        }
+        this.life=min(this.life+ceil(gain),this.base.life)
     }
     gainMaxHP(amount){
         this.base.life+=amount
@@ -815,6 +828,7 @@ class combatant{
                 switch(a){
                     case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
                     case 5: this.takeDamage(this.status.main[a],-1); break
+                    case 13: case 14: this.block+=this.status.main[a]; break
                 }
                 if(this.status.behavior[a]==1){
                     if(this.status.main[a]>0){

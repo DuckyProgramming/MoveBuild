@@ -37,6 +37,7 @@ class overlay{
             break
             case 3:
                 this.cards=[]
+                this.options=3
             break
         }
     }
@@ -69,18 +70,18 @@ class overlay{
                 switch(args[2]){
                     case 0:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
-                        for(let a=0,la=3;a<la;a++){
+                        for(let a=0,la=this.options;a<la;a++){
                             let index=floor(random(0,list[args[1]].length))
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],this.battle.player[this.player],-1))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],this.battle.player[this.player],-1))
                             this.cards[a].upSize=true
                             list[args[1]].splice(index,1)
                         }
                     break
                     case 1:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
-                        for(let a=0,la=3;a<la;a++){
+                        for(let a=0,la=this.options;a<la;a++){
                             let index=floor(random(0,list[args[1]].length))
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-120+240*a/(la-1),this.layer.height/2+20,list[args[1]][index],args[0],0,-1))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],0,-1))
                             this.cards[a].upSize=true
                             list[args[1]].splice(index,1)
                         }
@@ -218,7 +219,7 @@ class overlay{
             break
             case 3:
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2,this.layer.height/2,400,200,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2,this.options*120+40,200,10)
                 this.layer.rect(this.layer.width/2,this.layer.height/2+125,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
@@ -228,6 +229,10 @@ class overlay{
                 this.layer.textSize(20)
                 switch(this.args[0]){
                     case 0: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
+                }
+                if(this.args[0]==0&&this.battle.relicManager.active[49]>0&&this.battle.relicManager.player[49]==this.player){
+                    this.layer.textSize(8)
+                    this.layer.text('2 Max HP',this.layer.width/2,this.layer.height/2+140)
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
@@ -254,7 +259,7 @@ class overlay{
                             this.rewards[a].position-=10
                         }
                     }
-                    if(this.rewards.length<=0&&this.active&&!this.battle.overlayManager.overlays[3].active&&this.active){
+                    if(this.rewards.length<=0&&!this.battle.overlayManager.overlays[3].active&&this.active){
                         this.active=false
                     }
                 break
@@ -309,6 +314,11 @@ class overlay{
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-205},width:120,height:40})){
                         this.active=false
+                        for(let a=0,la=this.rewards.length;a<la;a++){
+                            if(this.rewards[a].type==1){
+                                this.battle.relicManager.activate(8,[this.player])
+                            }
+                        }
                     }
                 break
                 case 2:
@@ -407,7 +417,11 @@ class overlay{
                 case 3:
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].deSize){
-                            this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+                            switch(this.args[0]){
+                                case 0:
+                                    this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+                                break
+                            }
                             for(let b=0,lb=this.cards.length;b<lb;b++){
                                 this.cards[b].deSize=true
                                 this.cards[b].upSize=false
@@ -417,6 +431,9 @@ class overlay{
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125},width:120,height:40})){
                         this.active=false
+                        if(this.args[0]==0){
+                            this.battle.relicManager.activate(8,[this.player])
+                        }
                     }
                 break
             }
@@ -434,6 +451,11 @@ class overlay{
                     }
                     if(code==ENTER){
                         this.active=false
+                        for(let a=0,la=this.rewards.length;a<la;a++){
+                            if(this.rewards[a].type==1){
+                                this.battle.relicManager.activate(8,[this.player])
+                            }
+                        }
                     }
                 break
                 case 2:
@@ -530,7 +552,11 @@ class overlay{
                 case 3:
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if((int(key)+9)%10==a&&!this.cards[a].deSize){
-                            this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+                            switch(this.args[0]){
+                                case 0:
+                                    this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+                                break
+                            }
                             for(let b=0,lb=this.cards.length;b<lb;b++){
                                 this.cards[b].deSize=true
                                 this.cards[b].upSize=false
@@ -540,6 +566,9 @@ class overlay{
                     }
                     if(code==ENTER){
                         this.active=false
+                        if(this.args[0]==0){
+                            this.battle.relicManager.activate(8,[this.player])
+                        }
                     }
                 break
             }

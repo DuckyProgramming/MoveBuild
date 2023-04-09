@@ -250,7 +250,7 @@ class battle{
         this.turnManager.clear()
         this.cardManagers[0].turnDraw()
         this.relicManager.activate(2,[this.turn.total,this.turn.main])
-        this.relicManager.activate(0,[this.turn.total])
+        this.relicManager.activate(0,[this.turn.total,this.encounter.class])
         if(this.turn.total==1){
             this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
         }
@@ -517,7 +517,7 @@ class battle{
                                         {type:0,value:[floor(random(120,201))]}]])
                                 break
                             }
-                            if(floor(random(0,3))==0||true){
+                            if(floor(random(0,3))==0){
                                 this.overlayManager.overlays[0][a].activate([1,[
                                     {type:3,value:[]}]])
                             }

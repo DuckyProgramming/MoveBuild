@@ -14,13 +14,18 @@ class relic{
         this.fade=0
         this.infoFade=0
         this.deFade=false
+        this.active=true
     }
     display(){
         if(this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
             this.layer.scale(this.size)
-            this.layer.fill(200,this.fade)
+            if(this.active){
+                this.layer.fill(200,this.fade)
+            }else{
+                this.layer.fill(120,this.fade)
+            }
             this.layer.noStroke()
             this.layer.ellipse(0,0,40,40)
             if(this.player==-1){

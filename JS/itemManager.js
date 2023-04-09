@@ -24,7 +24,7 @@ class itemManager{
                 new item(this.layer,a,125+(this.layer.width-250)*a,50,1,1),
                 new item(this.layer,a,175+(this.layer.width-350)*a,50,1,1)])
             this.position.push(0)
-            this.up.push(false)
+            this.up.push(true)
         }
     }
     addItem(type,player){
@@ -128,6 +128,7 @@ class itemManager{
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
                             this.activateItem(this.items[a][b].type,a)
+                            this.battle.cardManagers[a].hand.callInput(7,0)
                             this.items[a][b].type=1
                             this.items[a][b].refresh()
                         }
@@ -145,6 +146,7 @@ class itemManager{
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
                             this.battle.currency.money[a]+=10
+                            this.battle.cardManagers[a].hand.callInput(7,0)
                             this.items[a][b].type=1
                             this.items[a][b].refresh()
                         }
@@ -155,7 +157,15 @@ class itemManager{
     }
     onKey(scene,key,code){
         switch(scene){
-            case 'battle': case 'shop':
+            case 'battle':
+                if(key=='o'&&this.items[0].length>0){
+                    this.up[0]=toggle(this.up[0])
+                }
+                if(this.battle.player.length==2&&key=='O'&&this.items[1].length>0){
+                    this.up[1]=toggle(this.up[1])
+                }
+            break
+            case 'shop':
                 if(key=='o'&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }
