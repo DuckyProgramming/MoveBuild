@@ -310,6 +310,12 @@ types={
                 {effect:[6,1],attack:53,cost:2,target:[2,1,1],spec:[],class:1},
                 {effect:[12,1],attack:53,cost:2,target:[2,1,1],spec:[],class:1},
             ],
+        },{
+            name:'Commit',rarity:1,list:2,
+            levels:[
+                {effect:[1],attack:59,cost:0,target:[1,1,1],spec:[],class:3},
+                {effect:[2],attack:59,cost:0,target:[1,1,2],spec:[],class:3},
+            ],
         },
         //some bleed
 
@@ -319,7 +325,20 @@ types={
                 {effect:[],attack:54,cost:2,target:[6],spec:[1],class:3},
                 {effect:[],attack:54,cost:1,target:[6],spec:[1],class:3},
             ],
+        },{
+            name:'Stagger',rarity:0,list:3,
+            levels:[
+                {effect:[2],attack:58,cost:2,target:[1,1,2],spec:[],class:3},
+                {effect:[2],attack:58,cost:1,target:[1,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'Ponder',rarity:0,list:3,
+            levels:[
+                {effect:[4,1],attack:55,cost:1,target:[0],spec:[],class:4},
+                {effect:[5,1],attack:55,cost:1,target:[0],spec:[],class:4},
+            ],
         },
+        //elements
 
         {
             name:'Swift\nStrike',rarity:1,list:0,
@@ -402,6 +421,12 @@ types={
                 {effect:[4],attack:1,cost:0,target:[2,1,1],spec:[1],class:1},
                 {effect:[6],attack:1,cost:0,target:[2,1,1],spec:[1],class:1},
             ],
+        },{
+            name:'Stride',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[1],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,2],spec:[1],class:3},
+            ],
         },
 
         {
@@ -435,7 +460,7 @@ types={
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
         {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
         {name:'Sakura',life:50,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her."},
-        {name:'Ume',life:40,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
+        {name:'Ume',life:40,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world..."},
         {name:'Human',life:25,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:"Just a guy"},
         {name:'Duck',life:20,behavior:1,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:"Typical duck"},
         {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
@@ -495,8 +520,8 @@ types={
         {name:'',internal:'Starting Block',id:36,rarity:0,list:0,description:'Add 10 Block\nat the Start of Combat'},
         {name:'',internal:'No Attack Energy',id:37,rarity:0,list:0,description:'When You Do Not Attack,\nGain 1 Energy Next Turn'},
         {name:'',internal:'Rest Energy',id:38,rarity:0,list:0,description:'Gain 2 Energy\nAfter Resting'},
-        {name:'',internal:'Damage Taken Cards',id:39,rarity:0,list:0,description:'Draw 3 Cards the First\nTime Damage is Taken'},
-        {name:'',internal:'Card Currency',id:40,rarity:0,list:0,description:'Gain 10 Currency\nWhen a Card is Added'},
+        {name:'',internal:'Damage Taken Draw',id:39,rarity:0,list:0,description:'Draw 3 Cards the First\nTime Damage is Taken'},
+        {name:'',internal:'Card Add Currency',id:40,rarity:0,list:0,description:'Gain 10 Currency\nWhen a Card is Added'},
 
         {name:'',internal:'Turn 2 Block',id:41,rarity:1,list:0,description:'Add 14 Block at\nthe Start of Turn 2'},
         {name:'',internal:'3 Attack Strength',id:42,rarity:1,list:0,description:'Every 3 Attacks Played,\nGain 1 Strength'},
@@ -573,11 +598,11 @@ types={
         start:[
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            //E[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
-            //[['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Scratch',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
+            //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
+            //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
+            [['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Commit',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
-            [['Teleport',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3]],
+            [['Teleport',0,3],['Stagger',0,3],['Ponder',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3]],
            
         ]
     },level:[
@@ -694,7 +719,7 @@ types={
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:[3],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 options={damage:false}
 graphics={main:0,backgroundGen:5,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[]}

@@ -3,12 +3,8 @@ Animations:
 Bugs:
 
 Mechanics:
-Shop (Items) (Double as Well)
-Battle Reward (Items)
 Lose-Stats(Same stats as win though)
 Menu
-Perk (Item)
-Items
 Event-Off Unknown
 Boss Rewards
 Next World
@@ -23,7 +19,9 @@ More Fights:
 
 More Relics:
 
-Cards:
+More Items:
+
+More Cards:
 Deal Damage and Gain Energy? (Jab?)
 Separate?
 Redirect?
@@ -31,9 +29,7 @@ Shatter, remove all block and do dage
 Snap Strike, deal damage and gain temporary strength
 Entertainment
 Move X tiles
-Move and Add a Step
 1 inch punch
-Commit
 
 Generality:
 First Character Gimmick

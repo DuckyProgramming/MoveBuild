@@ -19,7 +19,7 @@ class item{
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
     }
-    display(){
+    display(total){
         if(this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
@@ -30,6 +30,9 @@ class item{
             switch(this.name){
                 case '':
                     displaySymbol(this.layer,0,0,30,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text(total,0,0)
                 break
                 case 'Empty':
                     displaySymbol(this.layer,0,0,31,0,1,this.fade)

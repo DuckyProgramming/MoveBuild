@@ -124,7 +124,9 @@ class card{
         switch(this.attack){
             case -1: string+='Gain 1 Weak at\nthe End of Your Turn'; break
             case -2: string+='Gain 1 Vulnerable at\nthe End of Your Turn'; break
-            case 1: case 25: case 32: case 36: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage'; break
+            case 1: case 25: case 32: case 36: case 57:
+                string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage';
+            break
             case 2: string+='Add '+this.calculateEffect(this.effect[0],1)+' Block'; break
             case 3: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} break
             case 4: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\n2 Times'; break
@@ -176,6 +178,8 @@ class card{
             case 54: string+='Move to Any\nEmpty Tile'; break
             case 55: string+='Draw '+this.effect[0]+' Card'; if(this.effect[0]>1){string+='s'} string+='\nDiscard '+this.effect[1]+' Card'; if(this.effect[1]>1){string+='s'} break
             case 56: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} string+='\nCosts 1 More When\na Card is Played'; break
+            case 58: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} string+='\nAdd a Stride\nto Your Hand'; break
+            case 59: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} string+='\nLose All Block'; break
             
         }
         if(string[string.length-1]=='\n'){

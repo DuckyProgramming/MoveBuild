@@ -8,6 +8,7 @@ class itemManager{
         this.items=[]
         this.position=[]
         this.up=[]
+        this.total=[]
 
         this.initialListing()
     }
@@ -25,6 +26,7 @@ class itemManager{
                 new item(this.layer,a,175+(this.layer.width-350)*a,50,1,1)])
             this.position.push(0)
             this.up.push(true)
+            this.total.push(0)
         }
     }
     addItem(type,player){
@@ -32,6 +34,7 @@ class itemManager{
             if(this.items[player][a].type==1){
                 this.items[player][a].type=type
                 this.items[player][a].refresh()
+                this.total[player]++
                 break
             }
         }
@@ -44,7 +47,7 @@ class itemManager{
     }
     addSetItem(rarity,player){
         let index=floor(random(0,this.listing.item[rarity].length))
-        this.addRelic(this.listing.item[rarity][index],player)
+        this.addItem(this.listing.item[rarity][index],player)
     }
     makeItemSelection(rarity){
         /*(for(let a=0,la=this.complete.length;a<la;a++){
@@ -75,7 +78,7 @@ class itemManager{
             case 'battle':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        this.items[a][b].display()
+                        this.items[a][b].display(this.total[a])
                     }
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
@@ -87,7 +90,7 @@ class itemManager{
             case 'shop':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        this.items[a][b].display()
+                        this.items[a][b].display(this.total[a])
                     }
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
@@ -126,9 +129,10 @@ class itemManager{
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.battle.attackManager.attacks.length<=0){
                             this.activateItem(this.items[a][b].type,a)
                             this.battle.cardManagers[a].hand.callInput(7,0)
+                            this.total[a]--
                             this.items[a][b].type=1
                             this.items[a][b].refresh()
                         }
@@ -146,7 +150,7 @@ class itemManager{
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
                             this.battle.currency.money[a]+=10
-                            this.battle.cardManagers[a].hand.callInput(7,0)
+                            this.total[a]--
                             this.items[a][b].type=1
                             this.items[a][b].refresh()
                         }

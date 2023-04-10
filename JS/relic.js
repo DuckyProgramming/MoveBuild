@@ -16,7 +16,7 @@ class relic{
         this.deFade=false
         this.active=true
     }
-    display(){
+    display(total){
         if(this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
@@ -35,6 +35,9 @@ class relic{
             switch(this.internal){
                 case '':
                     displaySymbol(this.layer,0,0,1,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text(total,0,0)
                 break
                 case 'Quick Heal':
                     displaySymbol(this.layer,-10,0,2,0,0.6,this.fade)
@@ -297,6 +300,198 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('2',-7,0)
+                break
+                case 'Starting Block':
+                    displaySymbol(this.layer,-8,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'No Attack Energy':
+                    displaySymbol(this.layer,-8,0,18,0,0.75,this.fade)
+                    displaySymbol(this.layer,-8,0,16,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-3,9,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-8,0)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Rest Energy':
+                    displaySymbol(this.layer,0,-6,9,0,1,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,-6)
+                break
+                case 'Damage Taken Draw':
+                    displaySymbol(this.layer,-8,0,33,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,0.8,this.fade)
+                break
+                case 'Card Add Currency':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,-5,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',8,10)
+                break
+                case 'Turn 2 Block':
+                    displaySymbol(this.layer,-8,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('14',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('2',8,-3)
+                break
+                case '3 Attack Strength':
+                    displaySymbol(this.layer,-7,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,11,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-7,0)
+                    this.layer.text('1',10,0)
+                break
+                case '3 Attack Dexterity':
+                    displaySymbol(this.layer,-7,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,12,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-7,0)
+                    this.layer.text('1',10,0)
+                break
+                case '3 Attack Block':
+                    displaySymbol(this.layer,-7,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,27,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-7,0)
+                    this.layer.text('4',10,0)
+                break
+                case 'Boss Heal':
+                    displaySymbol(this.layer,-8,0,35,0,0.25,this.fade)
+                    displaySymbol(this.layer,10,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('25',10,0)
+                break
+                case 'Extra Card Option':
+                    displaySymbol(this.layer,-8,0,17,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.text('1',8,0)
+                break
+                case 'Max HP Rest':
+                    displaySymbol(this.layer,0,-6,10,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',0,-6)
+                break
+                case 'Damage Block Next Turn':
+                    displaySymbol(this.layer,-8,0,33,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,27,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',10,0)
+                break
+                case 'Skip Card Max HP':
+                    displaySymbol(this.layer,-8,0,16,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,17,0,0.4,this.fade)
+                    displaySymbol(this.layer,10,0,10,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',10,0)
+                break
+                case 'Strike Damage':
+                    displaySymbol(this.layer,-10,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,18,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('S',-10,0)
+                    this.layer.text('+2',8,0)
+                break
+                case 'Unplayed Card Block':
+                    displaySymbol(this.layer,-10,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,10,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-10,0)
+                break
+                case 'Shivs':
+                    displaySymbol(this.layer,-8,0,36,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Healing Boost':
+                    displaySymbol(this.layer,0,0,2,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('+50%',0,0)
+                break
+                case 'No Card Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',-8,0)
+                    this.layer.text('1',8,0)
+                break
+                case 'Damage Decrease':
+                    displaySymbol(this.layer,0,0,18,0,1.2,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',0,0)
+                break
+                case 'Damage Threshold':
+                    displaySymbol(this.layer,-9,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,18,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('<5',-9,0)
+                    this.layer.text('1',9,0)
+                break
+                case 'Starting Armor':
+                    displaySymbol(this.layer,-8,0,37,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Relic Rest':
+                    displaySymbol(this.layer,0,-6,1,0,0.75,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',0,-6)
+                break
+                case 'Remove Rest':
+                    displaySymbol(this.layer,0,-6,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,0,-6,16,0,0.75,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',0,-6)
+                break
+                case 'Strength Rest':
+                    displaySymbol(this.layer,0,-6,11,0,0.75,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',0,-6)
                 break
             }
             this.layer.pop()

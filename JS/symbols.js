@@ -349,6 +349,70 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.line(-10,-10,10,10)
             layer.line(-10,10,10,-10)
         break
+        case 32:
+            layer.fill(255,fade)
+            layer.ellipse(-4,1,6,6)
+            layer.ellipse(0,2,6,6)
+            layer.ellipse(4,1,6,6)
+            layer.ellipse(-2,-2,6,6)
+            layer.ellipse(2,-2,6,6)
+        break
+        case 33:
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(360*a/la)*(10-a%2*4),cos(360*a/la)*(10-a%2*4))
+            }
+            layer.endShape(CLOSE)
+            layer.line(-3,-3,3,3)
+            layer.line(-3,3,3,-3)
+        break
+        case 34:
+            layer.stroke(0,fade)
+            layer.strokeWeight(3)
+            layer.noFill()
+            layer.ellipse(0,0,30,30)
+            layer.strokeWeight(6)
+            layer.point(-6,0)
+            layer.point(6,0)
+            layer.strokeWeight(2)
+            layer.line(-3,-3,-8,-5)
+            layer.line(3,-3,8,-5)
+        break
+        case 35:
+            layer.stroke(0,fade)
+            layer.strokeWeight(3)
+            layer.noFill()
+            layer.ellipse(0,0,70,70)
+            layer.ellipse(0,0,50,50)
+            for(let a=0,la=12;a<la;a++){
+                layer.line(sin(360*a/la)*25,cos(360*a/la)*25,sin(360*(a-0.5)/la)*35,cos(360*(a-0.5)/la)*35)
+                layer.line(sin(360*a/la)*25,cos(360*a/la)*25,sin(360*(a+0.5)/la)*35,cos(360*(a+0.5)/la)*35)
+                layer.line(sin(360*(a-0.5)/la)*35,cos(360*(a-0.5)/la)*35,sin(360*(a-0.5)/la)*40,cos(360*(a-0.5)/la)*40)
+            }
+            layer.ellipse(0,0,30,30)
+            layer.strokeWeight(6)
+            layer.point(-6,0)
+            layer.point(6,0)
+            layer.strokeWeight(2)
+            layer.line(-3,-3,-8,-5)
+            layer.line(3,-3,8,-5)
+        break
+        case 36:
+            layer.fill(150)
+            layer.triangle(0,-10,-3,4,3,4)
+            layer.fill(100,60,20)
+            layer.rect(0,6,3,4)
+        break
+        case 37:
+            layer.fill(150,175,200,fade)
+            layer.rect(0,0,12,12)
+            layer.triangle(-1.5,-6,1.5,-6,0,-10.5)
+            layer.triangle(-6,-1.5,-6,1.5,-10.5,0)
+            layer.triangle(-1.5,6,1.5,6,0,10.5)
+            layer.triangle(6,-1.5,6,1.5,10.5,0)
+        break
     }
     layer.pop()
 }
@@ -381,4 +445,10 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 29-Single Strength
 30-Item
 31-Empty
+32-Rest
+33-Pain
+34-Elite
+35-Boss
+36-Shiv
+37-Armor
 */

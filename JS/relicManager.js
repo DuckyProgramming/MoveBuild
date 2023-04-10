@@ -348,18 +348,18 @@ class relicManager{
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].display()
+                    this.relics[a].display(la-1)
                 }
                 for(let a=0,la=this.relics.length;a<la;a++){
                     this.relics[a].displayInfo()
                 }
             break
             case 'stash':
+                for(let a=0,la=this.displayRelics.length,lea=this.relics.length;a<la;a++){
+                    this.displayRelics[a].display(lea-1)
+                }
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    this.displayRelics[a].display()
-                    for(let a=0,la=this.displayRelics.length;a<la;a++){
-                        this.displayRelics[a].displayInfo()
-                    }
+                    this.displayRelics[a].displayInfo()
                 }
             break
         }

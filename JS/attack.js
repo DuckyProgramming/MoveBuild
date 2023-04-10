@@ -31,7 +31,7 @@ class attack{
                 this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
             break
-            case 3: case 14: case 20: case 51: case 52: case 54: case 56:
+            case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -155,7 +155,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 3: case 20: case 51: case 52: case 56:
+            case 3: case 20: case 51: case 52: case 56: case 58: case 59:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -166,6 +166,10 @@ class attack{
                     this.battle.cardManagers[this.player].randomEffect(2,0,[])
                 }else if(this.timer==10*this.targetDistance&&this.type==51){
                     this.userCombatant.statusEffect('Dodge',this.effect[1])
+                }else if(this.timer==10*this.targetDistance&&this.type==58){
+                    this.battle.cardManagers[this.player].hand.add(findName('Stagger',types.card),0,0)
+                }else if(this.timer==10*this.targetDistance&&this.type==59){
+                    this.userCombatant.block=0
                 }
                 if(this.timer>=15*this.targetDistance){
                     this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
@@ -259,7 +263,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 8: case 40: case 44: case 45: case 55:
+            case 8: case 40: case 44: case 45: case 55: case 60:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }

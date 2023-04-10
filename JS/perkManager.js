@@ -43,7 +43,9 @@ class perkManager{
             break
             case 3:
                 this.complete=true
-                /**/
+                for(let a=0,la=this.battle.itemManager.items[this.player].length-1;a<la;a++){
+                    this.battle.itemManager.addSetItem(floor(random(0,2)),this.player)
+                }
             break
             case 4:
                 this.battle.overlayManager.overlays[5][this.player].active=true
