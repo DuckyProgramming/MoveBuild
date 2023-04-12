@@ -39,6 +39,8 @@ class card{
             this.list=this.color
         }
 
+        this.base={cost:this.cost}
+
         this.strike=this.name.includes('Strike')
     }
     calculateEffect(effect,type){
@@ -180,6 +182,8 @@ class card{
             case 56: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} string+='\nCosts 1 More When\na Card is Played'; break
             case 58: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} string+='\nAdd a Stride\nto Your Hand'; break
             case 59: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} string+='\nLose All Block'; break
+            case 60: string+='Move '; if(this.effect[0]!=1){string+=this.effect[0]} string+='X'; if(this.effect[1]>0){string+='+1'} string+=' Tiles'; break
+            case 61: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Fatal, Gain\n'+this.effect[1]+' Currency'; break
             
         }
         if(string[string.length-1]=='\n'){

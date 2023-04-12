@@ -82,6 +82,9 @@ class tileManager{
                         this.tiles[a].targetted[0]=true
                     }else if((this.battle.attackManager.targetInfo[0]==4)&&this.tiles[a].occupied==0&&legalTargetCombatant(1,this.battle.attackManager.targetInfo[1]+1,this.battle.attackManager.targetInfo[2]+1,this.tiles[a],this.battle.attackManager,this.tiles)){
                         this.tiles[a].targetted[0]=true
+                    }else if((this.battle.attackManager.targetInfo[0]==7)&&this.tiles[a].occupied==0&&
+                    (legalTargetCombatant(0,1,this.battle.energy.main[this.battle.attackManager.player]+this.battle.attackManager.targetInfo[1],this.tiles[a],this.battle.attackManager,this.tiles))){
+                        this.tiles[a].targetted[0]=true
                     }
                 }
             break

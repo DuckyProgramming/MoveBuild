@@ -337,6 +337,12 @@ types={
                 {effect:[4,1],attack:55,cost:1,target:[0],spec:[],class:4},
                 {effect:[5,1],attack:55,cost:1,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Sprint',rarity:1,list:3,
+            levels:[
+                {effect:[1,0],attack:60,cost:-1,target:[7,0],spec:[],class:3},
+                {effect:[1,1],attack:60,cost:-1,target:[7,1],spec:[],class:3},
+            ],
         },
         //elements
 
@@ -377,10 +383,34 @@ types={
                 {effect:[2],attack:44,cost:0,target:[0],spec:[],class:4},
             ],
         },{
+            name:'Enlighten',rarity:1,list:0,
+            levels:[
+                {effect:[0],attack:62,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:62,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Purity',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:63,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:63,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Panacea',rarity:1,list:0,
+            levels:[
+                {effect:[1],attack:64,cost:0,target:[0],spec:[],class:4},
+                {effect:[2],attack:64,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
             name:'Apotheosis',rarity:2,list:0,
             levels:[
                 {effect:[],attack:45,cost:2,target:[0],spec:[1],class:4},
                 {effect:[],attack:45,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Entertainer',rarity:2,list:0,
+            levels:[
+                {effect:[8,20],attack:61,cost:1,target:[2,1,1],spec:[1],class:1},
+                {effect:[12,25],attack:61,cost:1,target:[2,1,1],spec:[1],class:1},
             ],
         },
         //you know how it is
@@ -597,12 +627,13 @@ types={
     },deck:{
         start:[
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
-            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+            [['Entertainer',0,0],['Enlighten',0,0],['Purity',0,0],['Panacea',0,0],['Defend',0,0],['Defend',0,0]],
+            //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             [['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Commit',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
-            [['Teleport',0,3],['Stagger',0,3],['Ponder',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3]],
+            [['Teleport',0,3],['Stagger',0,3],['Ponder',0,3],['Sprint',0,3],['Defend',0,3],['Defend',0,3]],
            
         ]
     },level:[
@@ -721,7 +752,7 @@ types={
 stage={scale:0,scene:'map'}
 game={player:[3],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
-options={damage:false}
+options={damage:false,alt:false}
 graphics={main:0,backgroundGen:5,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}

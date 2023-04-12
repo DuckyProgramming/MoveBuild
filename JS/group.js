@@ -137,9 +137,12 @@ class group{
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1){
+                if(spec==1||spec==2){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
+                    if(spec==2){
+                        list[list.length-1].cost=list[list.length-1].base.cost
+                    }
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -148,9 +151,12 @@ class group{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1){
+                if(spec==1||spec==2){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
+                    if(spec==2){
+                        list[list.length-1].cost=list[list.length-1].base.cost
+                    }
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -249,6 +255,7 @@ class group{
                 this.battle.attackManager.type=this.cards[a].attack
                 this.battle.attackManager.effect=copyArray(this.cards[a].effect)
                 this.battle.attackManager.attackClass=this.cards[a].class
+                this.battle.attackManager.player=this.player
                 if(this.cards[a].strike&&this.battle.relicManager.active[50]&&this.player==this.battle.relicManager.player[50]&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
@@ -327,7 +334,6 @@ class group{
             case 5:
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
                 this.battle.attackManager.energy=this.battle.energy.main[this.player]
-                this.battle.attackManager.player=this.player
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
                 this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
                 this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
@@ -443,6 +449,15 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==4){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(1,this.battle.attackManager.targetInfo[1]+1,this.battle.attackManager.targetInfo[2]+1,this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==7){
+            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                if(this.battle.tileManager.tiles[a].occupied==0&&
+                    (legalTargetCombatant(0,1,this.battle.energy.main[this.battle.attackManager.player]+this.battle.attackManager.targetInfo[1],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }
             }
