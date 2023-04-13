@@ -224,11 +224,11 @@ class overlay{
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 switch(this.args[0]){
-                    case 0: this.layer.text('Add a Card',this.layer.width/2,this.layer.height/2-70); break
+                    case 0: case 1: this.layer.text('Add a Card',this.layer.width/2,this.layer.height/2-70); break
                 }
                 this.layer.textSize(20)
                 switch(this.args[0]){
-                    case 0: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
+                    case 0: case 1: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
                 }
                 if(this.args[0]==0&&this.battle.relicManager.active[49]>0&&this.battle.relicManager.player[49]==this.player){
                     this.layer.textSize(8)
@@ -420,6 +420,9 @@ class overlay{
                             switch(this.args[0]){
                                 case 0:
                                     this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+                                break
+                                case 1:
+                                    this.battle.cardManagers[this.player].hand.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
                                 break
                             }
                             for(let b=0,lb=this.cards.length;b<lb;b++){

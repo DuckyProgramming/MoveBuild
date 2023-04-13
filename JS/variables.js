@@ -385,8 +385,8 @@ types={
         },{
             name:'Enlighten',rarity:1,list:0,
             levels:[
-                {effect:[0],attack:62,cost:0,target:[0],spec:[],class:4},
-                {effect:[1],attack:62,cost:0,target:[0],spec:[],class:4},
+                {effect:[1,0],attack:62,cost:0,target:[0],spec:[],class:4},
+                {effect:[1,1],attack:62,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Purity',rarity:1,list:0,
@@ -401,6 +401,48 @@ types={
                 {effect:[2],attack:64,cost:0,target:[0],spec:[],class:4},
             ],
         },{
+            name:'Panic\nDefense',rarity:1,list:0,
+            levels:[
+                {effect:[30,2],attack:65,cost:0,target:[0],spec:[],class:1},
+                {effect:[40,2],attack:65,cost:0,target:[0],spec:[],class:1},
+            ],
+        },{
+            name:'Blind',rarity:1,list:0,
+            levels:[
+                {effect:[2],attack:66,cost:0,target:[2,1,1],spec:[],class:4},
+                {effect:[3],attack:66,cost:0,target:[2,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Trip',rarity:1,list:0,
+            levels:[
+                {effect:[2],attack:67,cost:0,target:[2,1,1],spec:[],class:4},
+                {effect:[3],attack:67,cost:0,target:[2,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Shackle',rarity:1,list:0,
+            levels:[
+                {effect:[10],attack:68,cost:0,target:[2,1,1],spec:[1],class:4},
+                {effect:[15],attack:68,cost:0,target:[2,1,1],spec:[1],class:4},
+            ],
+        },{
+            name:'Jack of\nAll Trades',rarity:1,list:0,
+            levels:[
+                {effect:[1],attack:69,cost:0,target:[0],spec:[],class:4},
+                {effect:[2],attack:69,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Forethought',rarity:1,list:0,
+            levels:[
+                {effect:[1],attack:70,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:70,cost:0,target:[0],spec:[2],class:4},
+            ],
+        },{
+            name:'Discovery',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:71,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:71,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
             name:'Apotheosis',rarity:2,list:0,
             levels:[
                 {effect:[],attack:45,cost:2,target:[0],spec:[1],class:4},
@@ -409,8 +451,8 @@ types={
         },{
             name:'Entertainer',rarity:2,list:0,
             levels:[
-                {effect:[8,20],attack:61,cost:1,target:[2,1,1],spec:[1],class:1},
-                {effect:[12,25],attack:61,cost:1,target:[2,1,1],spec:[1],class:1},
+                {effect:[8,20],attack:61,cost:1,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[12,25],attack:61,cost:1,target:[2,1,1],spec:[0,1],class:1},
             ],
         },
         //you know how it is
@@ -627,7 +669,7 @@ types={
     },deck:{
         start:[
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
-            [['Entertainer',0,0],['Enlighten',0,0],['Purity',0,0],['Panacea',0,0],['Defend',0,0],['Defend',0,0]],
+            [['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
@@ -750,7 +792,7 @@ types={
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[3],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 options={damage:false,alt:false}
 graphics={main:0,backgroundGen:5,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[]}

@@ -188,10 +188,10 @@ function multiplyString(base,multiply){
 	return string
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost)
 }
 function upgradeCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,base.cost)
 }
 function copyArray(base){
 	let list=[]

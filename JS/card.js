@@ -1,5 +1,5 @@
 class card{
-    constructor(layer,battle,player,x,y,type,level,color,id){
+    constructor(layer,battle,player,x,y,type,level,color,id,cost=-1){
         this.layer=layer
         this.battle=battle
         this.player=player
@@ -8,6 +8,7 @@ class card{
         this.level=level
         this.color=color
         this.id=id
+        this.cost=cost
 
         this.width=90
         this.height=120
@@ -30,7 +31,6 @@ class card{
         this.list=types.card[this.type].list
         this.effect=types.card[this.type].levels[this.level].effect
         this.attack=types.card[this.type].levels[this.level].attack
-        this.cost=types.card[this.type].levels[this.level].cost
         this.target=types.card[this.type].levels[this.level].target
         this.spec=types.card[this.type].levels[this.level].spec
         this.class=types.card[this.type].levels[this.level].class
@@ -39,7 +39,10 @@ class card{
             this.list=this.color
         }
 
-        this.base={cost:this.cost}
+        this.base={cost:types.card[this.type].levels[this.level].cost}
+        if(this.cost==-1){
+            this.cost=this.base.cost
+        }
 
         this.strike=this.name.includes('Strike')
     }
@@ -184,6 +187,16 @@ class card{
             case 59: string+='Move '+this.effect[0]+' Tile'; if(this.effect[0]>1){string+='s'} string+='\nLose All Block'; break
             case 60: string+='Move '; if(this.effect[0]!=1){string+=this.effect[0]} string+='X'; if(this.effect[1]>0){string+='+1'} string+=' Tiles'; break
             case 61: string+='Deal '+this.calculateEffect(this.effect[0],0)+' Damage\nIf Fatal, Gain\n'+this.effect[1]+' Currency'; break
+            case 62: string+='Reduce Cost of\nAll Cards in\nHand to '+this.effect[0]; if(this.effect[1]==0){string+='\nTemporarily'} break
+            case 63: string+='Exhaust Any Number\nof Cards in Hand'; break
+            case 64: string+='Gain '+this.effect[0]+' Control'; break
+            case 65: string+='Add '+this.calculateEffect(this.effect[0],1)+' Block\nCannot Gain Block\nfor '+this.effect[1]+' Turn'; if(this.effect[1]>1){string+='s'} break
+            case 66: string+='Apply '+this.effect[0]+' Weak'; break
+            case 67: string+='Apply '+this.effect[0]+' Vulnerable'; break
+            case 68: string+='Remove '+this.effect[0]+' Strength\nTemporarily'; break
+            case 69: string+='Add '+this.effect[0]+' Random\nColorless Card'; if(this.effect[0]>1){string+='s'}; string+='\nto Your Hand'; break
+            case 70: string+='Place a Card\non Top of Your\nDraw Pile\nIt Costs 0\nTemporarily'; break
+            case 71: string+='Choose Between 3\nCards to Add\nto Your Hand\nIt Costs 0'; break
             
         }
         if(string[string.length-1]=='\n'){
@@ -309,9 +322,19 @@ class card{
             this.layer.translate(this.position.x,this.position.y)
             this.layer.scale(this.size)
             this.layer.noFill()
-            this.layer.stroke(255,0,0,this.fade*anim[0])
             this.layer.strokeWeight(3)
-            this.layer.rect(0,0,this.width+2,this.height+2,5)
+            if(anim[0]>0){
+                this.layer.stroke(255,0,0,this.fade*anim[0])
+                this.layer.rect(0,0,this.width+2,this.height+2,5)
+            }
+            if(anim[1]>0){
+                this.layer.stroke(100,255,255,this.fade*anim[1])
+                this.layer.rect(0,0,this.width+2,this.height+2,5)
+            }
+            if(anim[2]>0){
+                this.layer.stroke(255,255,0,this.fade*anim[2])
+                this.layer.rect(0,0,this.width+2,this.height+2,5)
+            }
             this.layer.pop()
         }
     }

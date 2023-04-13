@@ -38,17 +38,17 @@ class combatant{
         this.dodges=[]
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
-            'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor',
+            'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor','Control','Cannot Gain Block',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
-                1,1,0,2,0,
+                1,1,0,2,0,0,1,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
-                0,0,0,0,0,
+                0,0,0,0,0,0,1,
             ]}
-        //0-none, 1-decrement, 2-remove, 3-early decrement
+        //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good
         for(let a=0;a<20;a++){
             this.status.main.push(0)
@@ -809,16 +809,18 @@ class combatant{
         }
     }
     addBlock(value){
-        let block=value
-        if(this.status.main[7]>0){
-            block+=this.status.main[7]
-        }
-        if(this.status.main[9]>0){
-            block*=0.75
-        }
-        block=floor(block)
-        if(block>=0){
-            this.block+=block
+        if(this.status.main[16]<=0){
+            let block=value
+            if(this.status.main[7]>0){
+                block+=this.status.main[7]
+            }
+            if(this.status.main[9]>0){
+                block*=0.75
+            }
+            block=floor(block)
+            if(block>=0){
+                this.block+=block
+            }
         }
     }
     endBlock(){
@@ -849,7 +851,11 @@ class combatant{
             this.battle.relicManager.active[25]>0&&this.id==this.battle.relicManager.player[25]&&name=='Vulnerable')){
             let status=findList(name,this.status.name)
             if(status>=0){
-                this.status.main[status]+=value
+                if(this.status.main[15]>0&&(this.status.class[status]==1&&value>0||(this.status.class[status]==0||this.status.class[status]==2)&&value<0)){
+                    this.status.main[15]--
+                }else{
+                    this.status.main[status]+=value
+                }
             }
         }
     }
@@ -879,7 +885,7 @@ class combatant{
                     case 5: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: this.block+=this.status.main[a]; break
                 }
-                if(this.status.behavior[a]==1){
+                if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
                     if(this.status.main[a]>0){
                         this.status.main[a]--
                     }else if(this.status.main[a]<0){
@@ -894,7 +900,7 @@ class combatant{
     tickEarly(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
-                if(this.status.behavior[a]==3){
+                if(this.status.behavior[a]==3&&this.team>0){
                     if(this.status.main[a]>0){
                         this.status.main[a]--
                     }else if(this.status.main[a]<0){
@@ -922,11 +928,11 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=true
                     break
-                    case 3: case 6: case 8: case 9: case 17:
+                    case 3: case 6: case 8: case 9: case 17: case 23:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
-                    case 4: case 12: case 14: case 15: case 18: case 19: case 20:
+                    case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -1092,7 +1098,7 @@ class combatant{
                         this.anim.legs[this.animSet.foot].top=9+sin(this.animSet.loop*90)*81
                         this.anim.legs[this.animSet.foot].bottom=sin(this.animSet.loop*90)*75
                         this.spin.legs[this.animSet.foot].top=(60-sin(this.animSet.loop*90)*45)*(this.animSet.foot*2-1)
-                        this.spin.legs[this.animSet.foot].bottom=1(20-sin(this.animSet.loop*90)*105)*(this.animSet.foot*2-1)
+                        this.spin.legs[this.animSet.foot].bottom=(120-sin(this.animSet.loop*90)*105)*(this.animSet.foot*2-1)
                     break
                     case 10:
                         this.animSet.loop+=rate
@@ -1207,6 +1213,20 @@ class combatant{
                                 this.spin.mouth=216
                             }
                         }
+                    break
+                    case 22:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1-this.animSet.hand].top=24+sin(this.animSet.loop*180)*84
+                        this.anim.arms[1-this.animSet.hand].bottom=9+sin(this.animSet.loop*180)*135
+                        this.spin.arms[1-this.animSet.hand].top=(93-sin(this.animSet.loop*180)*57)*(1-this.animSet.hand*2)
+                        this.spin.arms[1-this.animSet.hand].bottom=(75-sin(this.animSet.loop*180)*69)*(1-this.animSet.hand*2)
+                    break
+                    case 23:
+                        this.animSet.loop+=rate
+                        this.anim.legs[this.animSet.foot].top=9+sin(this.animSet.loop*90)*51
+                        this.anim.legs[this.animSet.foot].bottom=sin(this.animSet.loop*90)*48
+                        this.spin.legs[this.animSet.foot].top=(60-sin(this.animSet.loop*90)*45)*(this.animSet.foot*2-1)
+                        this.spin.legs[this.animSet.foot].bottom=(120-sin(this.animSet.loop*90)*105)*(this.animSet.foot*2-1)
                     break
                 }
             break

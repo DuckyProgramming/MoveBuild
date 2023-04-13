@@ -7,8 +7,7 @@ class group{
         this.cards=[]
         this.sorted=[]
 
-        this.status={discard:0}
-        this.anim={discard:0}
+        this.reset()
     }
     initialCards(type,player){
         switch(type){
@@ -30,8 +29,11 @@ class group{
         }
     }
     reset(){
-        this.status={discard:0}
-        this.anim={discard:0}
+        this.cancel()
+        this.anim={discard:0,exhaust:0,reserve:0}
+    }
+    cancel(){
+        this.status={discard:0,exhaust:0,reserve:0}
     }
     add(type,level,color){
         game.id++
@@ -61,6 +63,15 @@ class group{
     discard(amount){
         this.status.discard+=amount
     }
+    exhaust(amount){
+        this.status.exhaust+=amount
+    }
+    exhaustAny(){
+        this.status.exhaust=-1
+    }
+    reserve(amount){
+        this.status.reserve+=amount
+    }
     shuffle(){
         let cards=[]
         while(this.cards.length>0){
@@ -74,6 +85,9 @@ class group{
         }
     }
     allEffect(effect){
+        if(effect==1){
+            this.cancel()
+        }
         for(let a=0,la=this.cards.length;a<la;a++){
             switch(effect){
                 case 0:
@@ -137,12 +151,12 @@ class group{
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2){
+                if(spec==1){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
-                    if(spec==2){
-                        list[list.length-1].cost=list[list.length-1].base.cost
-                    }
+                }
+                if(spec==2){
+                    list[list.length-1].cost=list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -200,13 +214,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve])
                     }
                 }
             break
@@ -329,7 +343,9 @@ class group{
             break
             case 4:
                 this.cards[a].deSize=true
-                this.status.discard--
+                if(this.status.discard>0){
+                    this.status.discard--
+                }
             break
             case 5:
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
@@ -363,12 +379,28 @@ class group{
                     }
                 }
             break
+            case 8:
+                this.cards[a].deSize=true
+                this.cards[a].exhaust=true
+                if(this.status.exhaust>0){
+                    this.status.exhaust--
+                }
+            break
+            case 9:
+                this.cards[a].deSize=true
+                this.cards[a].discardEffect.push(1)
+                if(this.status.reserve>0){
+                    this.status.reserve--
+                }
+            break
         }
     }
     update(scene,args){
         switch(scene){
             case 'battle':
-                this.anim.discard=smoothAnim(this.anim.discard,this.status.discard>0,0,1,5)
+                this.anim.discard=smoothAnim(this.anim.discard,this.status.discard!=0,0,1,5)
+                this.anim.exhaust=smoothAnim(this.anim.exhaust,this.status.exhaust!=0,0,1,5)
+                this.anim.reserve=smoothAnim(this.anim.reserve,this.status.reserve!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -390,8 +422,15 @@ class group{
                             this.cards[a].deSize=false
                             if(this.cards[a].discardEffect.includes(0)){
                                 this.cards[a]=upgradeCard(this.cards[a])
+                                this.cards[a].discardEffect=[]
                             }
-                            this.cards[a].discardEffect=[]
+                            if(this.cards[a].discardEffect.includes(1)){
+                                this.cards[a].cost=0
+                                this.cards[a].discardEffect=[]
+                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
+                                a--
+                                la--
+                            }
                         }else if(this.cards[a].exhaust){
                             this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
                             a--
@@ -467,8 +506,17 @@ class group{
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},this.cards[a])){
-                            if(this.status.discard>0){
+                            if(this.status.discard!=0){
+                                print('a')
                                 this.callInput(4,a)
+                                break
+                            }
+                            if(this.status.exhaust!=0){
+                                this.callInput(8,a)
+                                break
+                            }
+                            if(this.status.reserve!=0){
+                                this.callInput(9,a)
                                 break
                             }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
@@ -524,8 +572,17 @@ class group{
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if((int(key)+9)%10==a){
-                            if(this.status.discard>0){
+                            if(this.status.discard!=0){
                                 this.callInput(4,a)
+                                break
+                            }
+                            if(this.status.exhaust!=0){
+                                this.callInput(8,a)
+                                break
+                            }
+                            if(this.status.reserve!=0){
+                                this.callInput(9,a)
+                                break
                             }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                 if(this.cards[a].afford){

@@ -23,6 +23,7 @@ class attack{
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
             case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
             case 38: case 39: case 42: case 46: case 47: case 48: case 49: case 53: case 57: case 61:
+            case 66: case 67: case 68:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -135,7 +136,7 @@ class attack{
                     }
                 }
             break
-            case 2: case 23: case 26: case 43: case 50:
+            case 2: case 23: case 26: case 43: case 50: case 65:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -150,6 +151,8 @@ class attack{
                         this.battle.cardManagers[this.player].draw(this.effect[1])
                     }else if(this.type==50){
                         this.userCombatant.statusEffect('Retain Block',this.effect[1])
+                    }else if(this.type==65){
+                        this.userCombatant.statusEffect('Cannot Gain Block',this.effect[1])
                     }
                 }else if(this.timer>=30){
                     this.remove=true
@@ -245,7 +248,7 @@ class attack{
                     }
                 }
             break
-            case 6: case 41:
+            case 6: case 41: case 71:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -258,12 +261,16 @@ class attack{
                         case 41:
                             this.battle.energy.main[this.player]+=this.effect[0]
                         break
+                        case 71:
+                            this.battle.overlayManager.overlays[10][this.player].active=true
+                            this.battle.overlayManager.overlays[10][this.player].activate([0,3,1])
+                        break
                     }
                 }else if(this.timer>=20){
                     this.remove=true
                 }
             break
-            case 8: case 40: case 44: case 45: case 55: case 60:
+            case 8: case 40: case 44: case 45: case 55: case 60: case 62: case 63: case 69: case 70:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -291,6 +298,26 @@ class attack{
                         case 55:
                             this.battle.cardManagers[this.player].draw(this.effect[0])
                             this.battle.cardManagers[this.player].hand.discard(this.effect[1])
+                        break
+                        case 62:
+                            for(let a=0,la=this.battle.cardManagers[this.player].hand.cards.length;a<la;a++){
+                                this.battle.cardManagers[this.player].hand.cards[a].cost=min(this.battle.cardManagers[this.player].hand.cards[a].cost,this.effect[0])
+                                if(this.effect[1]>0){
+                                    this.battle.cardManagers[this.player].hand.cards[a].base.cost=min(this.battle.cardManagers[this.player].hand.cards[a].base.cost,this.effect[0])
+                                }
+                            }
+                        break
+                        case 63:
+                            this.battle.cardManagers[this.player].hand.exhaustAny()
+                        break
+                        case 69:
+                            for(let a=0;a<this.effect[0];a++){
+                                let index=floor(random(0,this.battle.cardManagers[this.player].listing.card[0][3].length))
+                                this.battle.cardManagers[this.player].hand.add(this.battle.cardManagers[this.player].listing.card[0][3][index],0,0)
+                            }
+                        break
+                        case 70:
+                            this.battle.cardManagers[this.player].hand.reserve(this.effect[0])
                         break
                     }
                 }else if(this.timer>=20){
@@ -321,13 +348,20 @@ class attack{
                     this.remove=true
                 }
             break
-            case 10:
+            case 10: case 64:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(6)
                 }
                 this.userCombatant.runAnimation(1/10,6)
                 if(this.timer==10){
-                    this.userCombatant.heal(this.effect[0])
+                    switch(this.type){
+                        case 10:
+                            this.userCombatant.heal(this.effect[0])
+                        break
+                        case 64:
+                            this.userCombatant.statusEffect('Control',this.effect[0])
+                        break
+                    }
                 }else if(this.timer>=20){
                     this.remove=true
                 }
@@ -1236,6 +1270,35 @@ class attack{
                     if(this.targetCombatant.life<=0){
                         this.battle.currency.money[this.player]+=this.effect[1]
                     }
+                }else if(this.timer>=30){
+                    this.remove=true
+                }
+            break
+            case 66: case 68:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(22)
+                }
+                this.userCombatant.runAnimation(1/30,22)
+                if(this.timer==15){
+                    switch(this.type){
+                        case 66:
+                            this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        break
+                        case 68:
+                            this.targetCombatant.statusEffect('Strength',-this.effect[0])
+                        break
+                    }
+                }else if(this.timer>=30){
+                    this.remove=true
+                }
+            break
+            case 67:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(23)
+                }
+                this.userCombatant.runAnimation(1/15,23)
+                if(this.timer==15){
+                    this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
                 }else if(this.timer>=30){
                     this.remove=true
                 }

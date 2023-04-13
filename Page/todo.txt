@@ -28,6 +28,7 @@ Redirect?
 Shatter, remove all block and do dage
 Snap Strike, deal damage and gain temporary strength
 1 inch punch
+do something, exhaust a card
 
 Generality:
 First Character Gimmick
