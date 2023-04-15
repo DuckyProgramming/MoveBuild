@@ -46,7 +46,11 @@ class optionManager{
             break
             case 1:
                 this.complete=true
-                this.battle.combatantManager.combatants[this.player].heal(round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
+                if(this.battle.relicManager.hasRelic(65,this.id)){
+                    this.battle.combatantManager.combatants[this.player].heal(round(this.battle.combatantManager.combatants[this.player].base.life)*0.4+10)
+                }else{
+                    this.battle.combatantManager.combatants[this.player].heal(round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
+                }
             break
             case 2:
                 this.battle.overlayManager.overlays[5][this.player].active=true
@@ -68,6 +72,10 @@ class optionManager{
                 this.complete=true
                 this.battle.relicManager.detail[60]++
             break
+            case 7:
+                this.battle.overlayManager.overlays[3][this.player].active=true
+                this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(1,3)),0])
+            break
         }
     }
     reset(){
@@ -88,7 +96,8 @@ class optionManager{
             this.options[a].update()
         }
         if(this.selected==2&&!this.battle.overlayManager.overlays[5][this.player].active||
-            this.selected==5&&!this.battle.overlayManager.overlays[6][this.player].active){
+            this.selected==5&&!this.battle.overlayManager.overlays[6][this.player].active||
+            this.selected==7&&!this.battle.overlayManager.overlays[3][this.player].active){
             this.complete=true
         }
     }

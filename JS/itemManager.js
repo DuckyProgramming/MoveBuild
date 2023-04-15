@@ -9,6 +9,7 @@ class itemManager{
         this.position=[]
         this.up=[]
         this.total=[]
+        this.effectiveness=[]
 
         this.initialListing()
     }
@@ -27,6 +28,7 @@ class itemManager{
             this.position.push(0)
             this.up.push(true)
             this.total.push(0)
+            this.effectiveness.push(1)
         }
     }
     addItem(type,player){
@@ -49,28 +51,26 @@ class itemManager{
         let index=floor(random(0,this.listing.item[rarity].length))
         this.addItem(this.listing.item[rarity][index],player)
     }
-    makeItemSelection(rarity){
-        /*(for(let a=0,la=this.complete.length;a<la;a++){
-            this.complete[a]=false
+    addItemSlots(amount,player){
+        for(let a=0;a<amount;a++){
+            this.items[player].push(new item(this.layer,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,1,1))
+            this.position[player]++
         }
-        let list=[]
-        let relics=copyArrayStack(this.listing.relic)
-        for(let a=0,la=rarity.length;a<la;a++){
-            let index=floor(random(0,relics[rarity[a]].length))
-            list.push(relics[rarity[a]][index])
-            relics[rarity[a]].splice(index,1)
+    }
+    removeItemSlots(amount,player){
+        for(let a=0;a<amount;a++){
+            this.items[player].splice(this.items[player].length-1,1)
         }
-        return list*/
+        this.position-=player
     }
     activateItem(type,player){
         switch(type){
             case 2:
-                this.battle.cardManagers[player].hand.callInput(6,[57,[10],1,[2,1,6]])
+                this.battle.cardManagers[player].hand.callInput(6,[57,[10*this.effectiveness[player]],1,[2,1,6]])
             break
         }
-    }
-    use(type,player){
-        switch(type){
+        if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,2))==0){
+            this.addRandomItem(player)
         }
     }
     display(scene){
@@ -130,11 +130,12 @@ class itemManager{
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.battle.attackManager.attacks.length<=0){
-                            this.activateItem(this.items[a][b].type,a)
-                            this.battle.cardManagers[a].hand.callInput(7,0)
+                            let type=this.items[a][b].type
                             this.total[a]--
                             this.items[a][b].type=1
                             this.items[a][b].refresh()
+                            this.activateItem(type,a)
+                            this.battle.cardManagers[a].hand.callInput(7,0)
                         }
                     }
                 }

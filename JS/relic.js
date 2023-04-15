@@ -24,7 +24,7 @@ class relic{
             if(this.active){
                 this.layer.fill(200,this.fade)
             }else{
-                this.layer.fill(120,this.fade)
+                this.layer.fill(80,this.fade)
             }
             this.layer.noStroke()
             this.layer.ellipse(0,0,40,40)

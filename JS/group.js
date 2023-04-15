@@ -37,16 +37,23 @@ class group{
     }
     add(type,level,color){
         game.id++
-        this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
-        if(this.battle.initialized&&this.id==0){
-            if(
-                this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
-                this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
-                this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
-                this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player)){
-                this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+        if(types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
+            this.battle.relicManager.active[66]--
+            if(this.battle.relicManager.active[66]<=0){
+                this.battle.relicManager.deactivate(66)
             }
-            this.battle.relicManager.activate(5,[this.player])
+        }else{
+            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
+            if(this.battle.initialized&&this.id==0){
+                if(
+                    this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
+                    this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
+                    this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
+                    this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player)){
+                    this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+                }
+                this.battle.relicManager.activate(5,[this.player])
+            }
         }
     }
     addDrop(type,level,color){
@@ -88,6 +95,7 @@ class group{
         if(effect==1){
             this.cancel()
         }
+        let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
             switch(effect){
                 case 0:
@@ -100,7 +108,9 @@ class group{
                     if(this.cards[a].spec.includes(4)){
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
-                    }else if(!this.cards[a].spec.includes(2)){
+                    }else if(this.cards[a].spec.includes(2)){
+                        total++
+                    }else{
                         this.cards[a].deSize=true
                     }
                 break
@@ -116,8 +126,11 @@ class group{
                 break
             }
         }
-        if(effect&&this.battle.relicManager.active[51]>0&&this.battle.relicManager.player[51]==this.player){
+        if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length)
+        }
+        if(effect==1&&total>0&&this.battle.relicManager.hasRelic(76,this.player)){
+            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(4*total)
         }
     }
     randomEffect(effect,args){
@@ -201,11 +214,15 @@ class group{
         this.cards.splice(index,1)
         return true
     }
-    cost(cost){
-        if(cost==-1){
-            this.battle.energy.main[this.player]=0
+    cost(cost,cardClass){
+        if(cardClass==1&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[22]>0){
+            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[22]--
         }else{
-            this.battle.energy.main[this.player]-=cost
+            if(cost==-1){
+                this.battle.energy.main[this.player]=0
+            }else{
+                this.battle.energy.main[this.player]-=cost
+            }
         }
     }
     display(scene,args){
@@ -270,15 +287,21 @@ class group{
                 this.battle.attackManager.effect=copyArray(this.cards[a].effect)
                 this.battle.attackManager.attackClass=this.cards[a].class
                 this.battle.attackManager.player=this.player
-                if(this.cards[a].strike&&this.battle.relicManager.active[50]&&this.player==this.battle.relicManager.player[50]&&this.battle.attackManager.effect.length>0){
+                if(this.cards[a].strike&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
                 this.callInput(5,0)
                 this.cards[a].usable=false
                 if(this.cards[a].target[0]==0){
                     this.battle.attackManager.execute()
-                    this.cards[a].deSize=true
-                    this.cost(this.cards[a].cost)
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    if(userCombatant.status.main[23]>0){
+                        userCombatant.status.main[23]--
+                        this.cards[a].usable=true
+                    }else{
+                        this.cards[a].deSize=true
+                    }
+                    this.cost(this.cards[a].cost,this.cards[a].class)
                     if(this.cards[a].spec.includes(1)||this.cards[a].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
                         this.cards[a].exhaust=true
                     }
@@ -306,12 +329,20 @@ class group{
                 this.battle.attackManager.targetClass=1
                 this.battle.attackManager.target[0]=a
                 this.battle.attackManager.execute()
-                this.cost(this.battle.attackManager.cost)
+                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass)
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
-                        this.cards[b].deSize=true
-                        if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
-                            this.cards[b].exhaust=true
+                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                        if(userCombatant.status.main[23]>0){
+                            userCombatant.status.main[23]--
+                            this.cards[b].usable=true
+                            this.cards[b].select=false
+                            this.cards[b].upSize=false
+                        }else{
+                            this.cards[b].deSize=true
+                            if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
+                                this.cards[b].exhaust=true
+                            }
                         }
                         for(let c=0,lc=this.cards.length;c<lc;c++){
                             this.cards[c].anotherPlayed()
@@ -327,12 +358,20 @@ class group{
                 this.battle.attackManager.targetClass=2
                 this.battle.attackManager.target[0]=a
                 this.battle.attackManager.execute()
-                this.cost(this.battle.attackManager.cost)
+                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass)
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
-                        this.cards[b].deSize=true
-                        if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
-                            this.cards[b].exhaust=true
+                        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                        if(userCombatant.status.main[23]>0){
+                            userCombatant.status.main[23]--
+                            this.cards[b].usable=true
+                            this.cards[b].select=false
+                            this.cards[b].upSize=false
+                        }else{
+                            this.cards[b].deSize=true
+                            if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
+                                this.cards[b].exhaust=true
+                            }
                         }
                         for(let c=0,lc=this.cards.length;c<lc;c++){
                             this.cards[c].anotherPlayed()
@@ -442,7 +481,7 @@ class group{
                         }
                     }
                 }
-                if(this.battle.turn.main==this.player&&this.cards.length==0&&this.battle.relicManager.active[54]>0&&this.player==this.battle.relicManager.player[54]){
+                if(this.battle.turn.main==this.player&&this.cards.length==0&&this.battle.relicManager.hasRelic(54,this.player)){
                     this.battle.cardManagers[this.player].draw(1)
                 }
             break

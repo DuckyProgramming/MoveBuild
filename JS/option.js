@@ -118,6 +118,17 @@ class option{
                 this.layer.textSize(24)
                 this.layer.text('Strength',0,60-this.player*120)
             break
+            case 7:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,60,80,5)
+                plus(this.layer,5)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Card',0,60-this.player*120)
+            break
         }
         this.layer.pop()
     }

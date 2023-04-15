@@ -24,7 +24,7 @@ class battle{
         
         this.turn={main:0,total:0,time:0,accelerate:0}
         this.anim={reserve:1,discard:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],exit:1,afford:0,upAfford:false}
-        this.counter={enemy:0,killed:0}
+        this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
 
@@ -219,6 +219,7 @@ class battle{
     endTurn(){
         this.combatantManager.tickEarly()
         this.cardManagers[this.turn.main].allEffect(2,1)
+        this.relicManager.activate(9,[this.turn.total,this.turn.main])
         this.turn.main++
         if(this.turn.main>=this.player.length){
             this.sendReinforce()
@@ -226,8 +227,9 @@ class battle{
             this.combatantManager.enableCombatants()
         }else{
             this.cardManagers[this.turn.main].turnDraw()
-            this.relicManager.activate(2,[this.turn.total,this.turn.main])
+            this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
             this.turn.time=game.turnTime
+            this.counter.turnPlayed=[0,0,0,0,0]
         }
         this.attackManager.clear()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
@@ -239,7 +241,7 @@ class battle{
         this.turn.total++
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            if(this.relicManager.active[28]>0&&a==this.relicManager.player[28]&&this.energy.main[a]>=1){
+            if(this.relicManager.hasRelic(28,a)&&this.energy.main[a]>=1){
                 this.energy.main[a]=this.energy.gen[a]+1
             }else{
                 this.energy.main[a]=this.energy.gen[a]
@@ -251,8 +253,9 @@ class battle{
         this.combatantManager.activateCombatants(0,0)
         this.turnManager.clear()
         this.cardManagers[0].turnDraw()
-        this.relicManager.activate(2,[this.turn.total,this.turn.main])
+        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
+        this.counter.turnPlayed=[0,0,0,0,0]
         if(this.turn.total==1){
             this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
         }
@@ -265,6 +268,8 @@ class battle{
         if(card.spec.includes(0)){
             this.cardManagers[player].fatigue()
         }
+        this.counter.turnPlayed[0]++
+        this.counter.turnPlayed[card.class]++
         this.relicManager.activate(4,[card.class,player])
     }
     displayCurrency(){
@@ -513,6 +518,9 @@ class battle{
                         this.overlayManager.closeAll()
                         for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
                             this.overlayManager.overlays[0][a].active=true
+                            if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
+                                this.encounter.class=1
+                            }
                             switch(this.encounter.class){
                                 case 0:
                                     this.overlayManager.overlays[0][a].activate([0,[
@@ -526,7 +534,7 @@ class battle{
                                         {type:0,value:[floor(random(120,201))]}]])
                                 break
                             }
-                            if(floor(random(0,3))==0){
+                            if(floor(random(0,3))==0||this.relicManager.hasRelic(83,a)){
                                 this.overlayManager.overlays[0][a].activate([1,[
                                     {type:3,value:[]}]])
                             }

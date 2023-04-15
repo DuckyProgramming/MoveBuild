@@ -58,7 +58,10 @@ class card{
                     if(user.status.main[12]>0){
                         damage+=user.status.main[12]
                     }
-                    if(this.strike&&this.battle.relicManager.active[50]&&this.player==this.battle.relicManager.player[50]){
+                    if(user.status.main[17]>0){
+                        damage+=user.status.main[17]
+                    }
+                    if(this.strike&&this.battle.relicManager.hasRelic(50,this.player)){
                         damage+=2
                     }
                     if(user.status.main[0]>0){
@@ -86,6 +89,9 @@ class card{
                     if(user.status.main[7]>0){
                         block+=user.status.main[7]
                     }
+                    if(user.status.main[18]>0){
+                        block+=user.status.main[18]
+                    }
                     if(user.status.main[9]>0){
                         block*=0.75
                     }
@@ -105,7 +111,7 @@ class card{
                     }
                 case 4:
                     let health=effect
-                    if(this.battle.relicManager.active[53]>0&&this.player==this.battle.relicManager.player[53]){
+                    if(this.battle.relicManager.hasRelic(53,this.player)){
                         health*=1.5
                     }
                     if(health==effect){
@@ -342,7 +348,9 @@ class card{
         if(this.select){
             this.upSize=true
         }
-        if(this.battle.energy.main[this.player]>=this.cost&&!(this.spec.includes(6)&&!this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].armed)){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if((userCombatant.status.main[22]>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost)&&
+            !(this.spec.includes(6)&&!userCombatant.armed)){
             this.afford=true
         }else{
             this.afford=false

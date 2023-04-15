@@ -32,25 +32,28 @@ class combatant{
         this.dead=false
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0],upFlash:[false,false]}
+        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
 
         this.block=0
         this.dodges=[]
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
-            'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor','Control','Cannot Gain Block',
+            'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
+            'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
-                1,1,0,2,0,0,1,
+                1,1,0,2,0,0,1,2,2,0,
+                2,0,0,0,1,1,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
-                0,0,0,0,0,0,1,
+                0,0,0,0,0,0,1,0,0,0,
+                1,0,2,2,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good
-        for(let a=0;a<20;a++){
+        for(let a=0;a<40;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -543,7 +546,7 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
-        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0],upFlash:[false,false]}
+        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
     }
     calculateParts(){
         switch(this.name){
@@ -740,7 +743,7 @@ class combatant{
             this.offset.position.y=0
         }
     }
-    takeDamage(value,user,spec){
+    takeDamage(value,user,spec=0){
         let damage=value
         if(value>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
             let userCombatant=this.battle.combatantManager.combatants[user]
@@ -751,15 +754,18 @@ class combatant{
                 damage+=userCombatant.status.main[12]
                 userCombatant.status.main[12]=0
             }
+            if(userCombatant.status.main[17]>0){
+                damage+=userCombatant.status.main[17]
+            }
             if(userCombatant.status.main[8]>0){
                 damage*=0.75
             }
-            if(this.status.main[10]>0){
-                damage*=1.5
+            if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
+                damage+=4
             }
         }
         damage=floor(damage)
-        if(value>0&&this.life>0){
+        if(damage>0&&this.life>0){
             let hit=true
             if(user>=0&&user<this.battle.combatantManager.combatants.length){
                 let userCombatant=this.battle.combatantManager.combatants[user]
@@ -770,31 +776,48 @@ class combatant{
                     this.status.main[3]--
                     hit=false
                     this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
+                }else if(this.status.main[21]>0){
+                    this.status.main[21]--
+                    hit=false
+                    this.infoAnim.upFlash[2]=true
                 }
             }
-            if(this.battle.relicManager.active[55]>0&&this.id==this.battle.relicManager.player[55]){
-                damage=max(min(damage,1),damage-1)
+            if(this.battle.relicManager.hasRelic(55,this.id)){
+                damage=max(min(damage,1),damage-this.battle.relicManager.active[55])
             }
-            if(this.battle.relicManager.active[56]>0&&this.id==this.battle.relicManager.player[56]&&damage>1&&damage<=5){
+            if(this.battle.relicManager.hasRelic(56,this.id)&&damage>1&&damage<=5){
+                damage=1
+            }
+            if(this.status.main[10]>0){
+                damage*=1.5
+            }
+            if(this.status.main[24]>0){
+                damage*=0.5
+            }
+            if(this.status.main[25]>0&&damage>1){
                 damage=1
             }
             if(this.status.main[14]>0){
                 this.status.main[14]--
             }
             if(hit){
+                let blocked=0
                 if(this.block>=damage&&spec!=1){
                     this.block-=damage
                     this.infoAnim.upFlash[1]=true
+                    blocked=0
                 }else if(this.block>0&&spec!=1){
                     let damageLeft=damage-this.block
                     this.block=0
                     this.life-=damageLeft
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
+                    blocked=1
                 }else{
                     this.life-=damage
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
+                    blocked=2
                 }
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
                 if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length&&spec==0){
@@ -803,6 +826,15 @@ class combatant{
                         this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
                         this.battle.turnManager.turns[1].target=[user]
                         this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id))
+                    }
+                    if(this.battle.relicManager.hasRelic(61,this.id)){
+                        userCombatant.takeDamage(3*this.battle.relicManager.active[61],-1)
+                    }
+                    if(blocked>0&&this.battle.relicManager.hasRelic(74,this.id)){
+                        userCombatant.statusEffect('Next Turn Weak',this.battle.relicManager.active[74])
+                    }
+                    if(blocked==0&&this.battle.relicManager.hasRelic(75,this.id)){
+                        userCombatant.statusEffect('Next Turn Weak',this.battle.relicManager.active[75])
                     }
                 }
             }
@@ -813,6 +845,9 @@ class combatant{
             let block=value
             if(this.status.main[7]>0){
                 block+=this.status.main[7]
+            }
+            if(this.status.main[18]>0){
+                block+=this.status.main[18]
             }
             if(this.status.main[9]>0){
                 block*=0.75
@@ -825,7 +860,7 @@ class combatant{
     }
     endBlock(){
         if(this.status.main[11]<=0){
-            if(this.battle.relicManager.active[26]>0&&this.id==this.battle.relicManager.player[26]){
+            if(this.battle.relicManager.hasRelic(26,this.id)){
                 this.block=max(0,this.block-10)
             }else{
                 this.block=0
@@ -846,9 +881,9 @@ class combatant{
     }
     statusEffect(name,value){
         if(!(
-            this.battle.relicManager.active[23]>0&&this.id==this.battle.relicManager.player[23]&&name=='Weak'||
-            this.battle.relicManager.active[24]>0&&this.id==this.battle.relicManager.player[24]&&name=='Frail'||
-            this.battle.relicManager.active[25]>0&&this.id==this.battle.relicManager.player[25]&&name=='Vulnerable')){
+            this.battle.relicManager.hasRelic(23,this.id)&&name=='Weak'||
+            this.battle.relicManager.hasRelic(24,this.id)&&name=='Frail'||
+            this.battle.relicManager.hasRelic(25,this.id)&&name=='Vulnerable')){
             let status=findList(name,this.status.name)
             if(status>=0){
                 if(this.status.main[15]>0&&(this.status.class[status]==1&&value>0||(this.status.class[status]==0||this.status.class[status]==2)&&value<0)){
@@ -864,7 +899,7 @@ class combatant{
     }
     heal(amount){
         let gain=amount
-        if(this.battle.relicManager.active[53]>0&&this.id==this.battle.relicManager.player[53]){
+        if(this.battle.relicManager.hasRelic(53,this.id)){
             gain*=1.5
         }
         this.life=min(this.life+ceil(gain),this.base.life)
@@ -883,7 +918,8 @@ class combatant{
                 switch(a){
                     case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
                     case 5: this.takeDamage(this.status.main[a],-1); break
-                    case 13: case 14: this.block+=this.status.main[a]; break
+                    case 13: case 14: case 19: this.addBlock(this.status.main[a]); break
+                    case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
                     if(this.status.main[a]>0){
@@ -911,7 +947,11 @@ class combatant{
         }
     }
     flashColor(color){
-        return mergeColor(mergeColor(color,[150,150,150],this.infoAnim.flash[1]),[200,0,0],this.infoAnim.flash[0])
+        return mergeColor(
+            mergeColor(
+            mergeColor(color,[125,255,0],this.infoAnim.flash[2]),
+            [150,150,150],this.infoAnim.flash[1]),
+            [200,0,0],this.infoAnim.flash[0])
     }
     startAnimation(type){
         switch(this.name){
@@ -4631,21 +4671,31 @@ class combatant{
         this.tilePosition.y=round(this.tilePosition.y)
         if(this.team>0){
             this.fade=1
-            if(this.life<=0&&!this.dead){
-                this.dead=true
-                this.startAnimation(7)
-                this.deTarget()
-                let allDead=true
-                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                    if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].life>0){
-                        allDead=false
+            if(this.life<=0){
+                if(!this.dead){
+                    if(this.battle.relicManager.hasRelic(81,this.id)){
+                        this.battle.relicManager.active[81]--
+                        if(this.battle.relicManager.active[81]<=0){
+                            this.battle.relicManager.deactivate(81)
+                        }
+                        this.heal(round(this.base.life*5)/10)
+                    }else{
+                        this.dead=true
+                        this.startAnimation(7)
+                        this.deTarget()
+                        let allDead=true
+                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].life>0){
+                                allDead=false
+                            }
+                        }
+                        if(allDead){
+                            this.battle.result.defeat=true
+                        }
                     }
+                }else{
+                    this.runAnimation(1/15,7)
                 }
-                if(allDead){
-                    this.battle.result.defeat=true
-                }
-            }else if(this.life<=0){
-                this.runAnimation(1/15,7)
             }
         }else{
             this.fade=smoothAnim(this.fade,this.life>0,0,1,15)

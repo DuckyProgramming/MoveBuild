@@ -19,6 +19,14 @@ class attack{
         this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
         this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
 
+        this.clearAttack=false
+        switch(this.attackClass){
+            case 1:
+                if(this.userCombatant.status.main[0]>0){
+                    this.clearAttack=true
+                }
+            break
+        }
         switch(this.type){
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
             case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
@@ -902,7 +910,7 @@ class attack{
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,1,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
                 }else if(this.timer==10*this.targetDistance+15){
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                 }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true
                 }
@@ -972,7 +980,7 @@ class attack{
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,3,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
                     this.userCombatant.armed=false
                 }else if(this.timer==10*this.targetDistance+15){
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                     this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)].addType(3)
                 }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true
@@ -1255,7 +1263,7 @@ class attack{
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,5,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),7.5*this.targetDistance-2]))
                 }else if(this.timer==15*this.targetDistance+15){
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                 }else if(this.timer>=15*this.targetDistance+25){
                     this.remove=true
                 }
@@ -1311,7 +1319,7 @@ class attack{
         if(this.remove){
             switch(this.attackClass){
                 case 1:
-                    if(this.userCombatant.status.main[0]>0){
+                    if(this.userCombatant.status.main[0]>0&&this.clearAttack){
                         this.userCombatant.status.main[0]--
                     }
                 break

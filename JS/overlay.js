@@ -230,7 +230,7 @@ class overlay{
                 switch(this.args[0]){
                     case 0: case 1: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
                 }
-                if(this.args[0]==0&&this.battle.relicManager.active[49]>0&&this.battle.relicManager.player[49]==this.player){
+                if(this.args[0]==0&&this.battle.relicManager.hasRelic(49,this.player)){
                     this.layer.textSize(8)
                     this.layer.text('2 Max HP',this.layer.width/2,this.layer.height/2+140)
                 }
