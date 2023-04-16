@@ -92,9 +92,6 @@ class relicManager{
         this.listing.relic[rarity].splice(index,1)
     }
     makeRelicSelection(rarity){
-        for(let a=0,la=this.complete.length;a<la;a++){
-            this.complete[a]=false
-        }
         let list=[]
         let relics=copyArrayStack(this.listing.relic)
         for(let a=0,la=rarity.length;a<la;a++){
@@ -107,16 +104,16 @@ class relicManager{
     get(type,player){
         switch(type){
             case 5:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(7)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(8)
             break
             case 16:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
-            break
-            case 29:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(14)
             break
+            case 29:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(20)
+            break
             case 30:
-                this.battle.currency.money[player]+=300
+                this.battle.getCurrency(500,player)
             break
             case 32:
                 this.battle.cardManagers[player].randomEffect(0,2,[1])
@@ -156,7 +153,7 @@ class relicManager{
                 this.battle.itemManager.addItemSlots(2,player)
             break
             case 77:
-                this.battle.itemManager.effectiveness[player]*=1.5
+                this.battle.itemManager.effectiveness[player]*=2
             break
         }
     }
@@ -233,7 +230,7 @@ class relicManager{
                             this.battle.energy.main[this.player[38]]+=2*this.active[38]
                         }
                         if(this.active[45]>0&&args[1]==2){
-                            this.relicPlayer(45).heal(25*this.active[45])
+                            this.relicPlayer(45).heal(this.relicPlayer(45).base.life)
                         }
                         if(this.active[57]>0){
                             this.relicPlayer(57).statusEffect('Armor',4*this.active[57])
@@ -288,7 +285,7 @@ class relicManager{
             break
             case 1://end of combat
                 if(this.active[1]>0){
-                    this.relicPlayer(1).heal(2*this.active[1])
+                    this.relicPlayer(1).heal(3*this.active[1])
                 }
                 if(this.active[19]>0){
                     if(this.relicPlayer(19).life<this.relicPlayer(19).base.life){
@@ -406,14 +403,14 @@ class relicManager{
                             this.battle.cardManagers[this.player[20]].randomEffect(2,1,[this.active[20]])
                         }
                         if(this.active[27]>0&&args[1]==this.player[27]){
-                            this.relicPlayer(27).heal(this.active[1])
+                            this.relicPlayer(27).heal(2*this.active[1])
                         }
                     break
                 }
             break
             case 5://adding card [player]
                 if(this.active[40]>0&&args[0]==this.player[40]){
-                    this.battle.currency.money[this.player[40]]+=10*this.active[0]
+                    this.battle.getCurrency(20*this.active[0],this.player[40])
                 }
             break
             case 6://taking damage [player]
@@ -450,18 +447,16 @@ class relicManager{
             case 'battle':
                 for(let a=0,la=this.relics.length;a<la;a++){
                     this.relics[a].display(la-1)
+                    if(a<la-1&&this.relics[a+1].fade<=0){
+                        break
+                    }
                 }
-                for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].displayInfo()
-                }
+                this.relics.forEach(relic=>relic.displayInfo())
             break
             case 'stash':
-                for(let a=0,la=this.displayRelics.length,lea=this.relics.length;a<la;a++){
-                    this.displayRelics[a].display(lea-1)
-                }
-                for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    this.displayRelics[a].displayInfo()
-                }
+                let lea=this.displayRelics.length
+                this.displayRelics.forEach(relic=>relic.display(lea-1))
+                this.displayRelics.forEach(relic=>relic.displayInfo())
             break
         }
     }
@@ -504,14 +499,10 @@ class relicManager{
     update(scene){
         switch(scene){
             case 'battle':
-                for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].update(this.up[this.relics[a].player],this.total[this.relics[a].player],inputs)
-                }
+                this.relics.forEach(relic=>relic.update(this.up[relic.player],this.total[relic.player],inputs))
             break
             case 'stash':
-                for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    this.displayRelics[a].update(true,0,inputs)
-                }
+                this.displayRelics.forEach(relic=>relic.update(true,0,inputs))
             break
         }
     }

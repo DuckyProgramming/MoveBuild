@@ -22,9 +22,7 @@ class perkManager{
         this.posKey=0.5-this.battle.player.length*0.5+this.player*2
     }
     addPerk(type){
-        for(let a=0,la=this.perks.length;a<la;a++){
-            this.perks[a].position.x-=75
-        }
+        this.perks.forEach(perk=>perk.position.x-=75)
         this.perks.push(new perk(this.layer,this.battle.player.length-1-this.player,this.layer.width/2+this.perks.length*75,this.layer.height/4+this.posKey*60,type))
     }
     getPerk(type){
@@ -35,7 +33,7 @@ class perkManager{
             break
             case 1:
                 this.complete=true
-                this.battle.currency.money[this.player]+=100
+                this.battle.getCurrency(100,this.player)
             break
             case 2:
                 this.complete=true
@@ -66,7 +64,7 @@ class perkManager{
             case 8:
                 this.complete=true
                 this.battle.combatantManager.combatants[this.player].loseMaxHP(5)
-                this.battle.currency.money[this.player]+=250
+                this.battle.getCurrency(250,this.player)
             break
             case 9:
                 this.complete=true
@@ -94,14 +92,10 @@ class perkManager{
         }
     }
     display(){
-        for(let a=0,la=this.perks.length;a<la;a++){
-            this.perks[a].display()
-        }
+        this.perks.forEach(perk=>perk.display())
     }
     update(){
-        for(let a=0,la=this.perks.length;a<la;a++){
-            this.perks[a].update()
-        }
+        this.perks.forEach(perk=>perk.update())
         if(this.selected==4&&!this.battle.overlayManager.overlays[5][this.player].active||
             (this.selected==5||this.selected==10||this.selected==11)&&!this.battle.overlayManager.overlays[3][this.player].active||
             this.selected==6&&!this.battle.overlayManager.overlays[6][this.player].active||

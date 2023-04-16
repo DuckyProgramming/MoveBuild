@@ -18,6 +18,28 @@ Enemy Do Nothing
 More Fights:
 
 More Relics:
+Buffed Scared Piggy
+Pudding
+Cursed Book of HP
+Threataning Duck
+Hat of Rage
+Buff 2 Turn Block
+3 Turn Block (Very Buffed)
+Hyper Helpful Duck
+Split Spike
+De-Rare Teapot
+Eudicot
+Striped Candle
+Bone Claw / Snowball
+Doubled Gold Bank
+Exit Sign
+Top Hat
+Canned Tuna
+Mume but buffed like 1%
+
+Formation of the Shop Relics
+-a bunch
+Nearly All Boss Relics are Fine
 
 More Items:
 
@@ -29,6 +51,8 @@ Shatter, remove all block and do dage
 Snap Strike, deal damage and gain temporary strength
 1 inch punch
 do something, exhaust a card
+
+new strength system
 
 Generality:
 First Character Gimmick

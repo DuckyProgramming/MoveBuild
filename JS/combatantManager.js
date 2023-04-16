@@ -52,11 +52,7 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){
                 this.combatants[a].moved=false
-                if(types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4){
-                    this.combatants[a].activated=true
-                }else{
-                    this.combatants[a].activated=false
-                }
+                this.combatants[a].activated=types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4?true:false
             }
         }
     }
@@ -112,14 +108,10 @@ class combatantManager{
         return combatants
     }
     tick(){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            this.combatants[a].tick()
-        }
+        this.combatants.forEach(combatant=>combatant.tick())
     }
     tickEarly(){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            this.combatants[a].tickEarly()
-        }
+        this.combatants.forEach(combatant=>combatant.tickEarly())
     }
     reorder(){
         let order=1
@@ -172,12 +164,8 @@ class combatantManager{
     displayInfo(scene){
         switch(scene){
             case 'battle':
-                for(let a=0,la=this.combatants.length;a<la;a++){
-                    this.combatants[a].displayInfo('battle')
-                }
-                for(let a=0,la=this.combatants.length;a<la;a++){
-                    this.combatants[a].displayInfo('overlay')
-                }
+                this.combatants.forEach(combatant=>combatant.displayInfo('battle'))
+                this.combatants.forEach(combatant=>combatant.displayInfo('overlay'))
             break
             case 'rest':
                 for(let a=0,la=this.combatants.length;a<la;a++){
@@ -195,11 +183,7 @@ class combatantManager{
                     for(let b=0;b<game.animRate;b++){
                         this.combatants[a].update()
                     }
-                    if(dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius&&!this.battle.overlayManager.anyActive){
-                        this.combatants[a].infoAnim.upSize=true
-                    }else{
-                        this.combatants[a].infoAnim.upSize=false
-                    }
+                    this.combatants[a].infoAnim.upSize=dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius&&!this.battle.overlayManager.anyActive?true:false
                     if((this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5)&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&
                     (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)){
                         this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].targetted[0]=true

@@ -77,26 +77,18 @@ class itemManager{
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.items.length;a<la;a++){
-                    for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        this.items[a][b].display(this.total[a])
-                    }
+                    this.items[a].forEach(item=>item.display(this.total[a]))
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
-                    for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        this.items[a][b].displayInfo()
-                    }
+                    this.items[a].forEach(item=>item.displayInfo())
                 }
             break
             case 'shop':
                 for(let a=0,la=this.items.length;a<la;a++){
-                    for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        this.items[a][b].display(this.total[a])
-                    }
+                    this.items[a].forEach(item=>item.display(this.total[a]))
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
-                    for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        this.items[a][b].displayInfo()
-                    }
+                    this.items[a].forEach(item=>item.displayInfo())
                 }
                 this.layer.fill(230,230,210)
                 this.layer.textSize(16)
@@ -111,9 +103,7 @@ class itemManager{
         switch(scene){
             case 'battle': case 'shop':
                 for(let a=0,la=this.items.length;a<la;a++){
-                    for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        this.items[a][b].update(this.up[this.items[a][b].player],la,inputs)
-                    }
+                    this.items[a].forEach(item=>item.update(this.up[a],la,inputs))
                 }
             break
         }
@@ -150,7 +140,7 @@ class itemManager{
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
-                            this.battle.currency.money[a]+=10
+                            this.battle.getCurrency(10,a)
                             this.total[a]--
                             this.items[a][b].type=1
                             this.items[a][b].refresh()

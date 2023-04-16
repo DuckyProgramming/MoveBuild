@@ -494,6 +494,86 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-1.5,6,1.5,6,0,10.5)
             layer.triangle(6,-1.5,6,1.5,10.5,0)
         break
+        case 38:
+            layer.fill(255,50,50,this.fade)
+            layer.triangle(-7.5,-6,-7.5,-0.75,9,-3.375)
+            layer.triangle(7.5,6,7.5,-0.75,-9,3.375)
+        break
+        case 39:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-4.5,-9,-7.5,4.5,-1.5,4.5)
+            layer.triangle(4.5,-9,7.5,4.5,1.5,4.5)
+        break
+        case 40:
+            layer.fill(100,0,100,fade)
+            layer.rect(0,0,8,8)
+            layer.quad(0,-4*sqrt(2),-4*sqrt(2),0,0,4*sqrt(2),4*sqrt(2),0)
+        break
+        case 41:
+            layer.fill(255,50,50,fade)
+            layer.triangle(4,-12,8,6,0,6)
+            layer.rect(-6,0,6,6)
+        break
+        case 42:
+            layer.fill(150,175,200,fade)
+            layer.triangle(4,-12,8,6,0,6)
+            layer.rect(-6,0,6,6)
+        break
+        case 43:
+            layer.fill(150,175,200,fade)
+            layer.quad(0,-3,-3,0,0,3,3,0)
+            layer.ellipse(-4,-4,3,3)
+            layer.ellipse(-4,4,3,3)
+            layer.ellipse(4,-4,3,3)
+            layer.ellipse(4,4,3,3)
+        break
+        case 44:
+            layer.fill(255,125,0,this.fade)
+            layer.rect(-1.5,-1.5,7,7)
+            layer.fill(255,255,0,this.fade)
+            layer.rect(0,0,7,7)
+            layer.fill(125,255,0,this.fade)
+            layer.rect(1.5,1.5,7,7)
+        break
+        case 45:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-6,-3,3,3,3)
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
+        case 46:
+            layer.fill(150,fade)
+            layer.rect(-3,0,4.5,6,1)
+            layer.rect(3,0,4.5,6,1)
+        break
+        case 47:
+            layer.stroke(150,0,0,fade)
+            layer.strokeWeight(0.5)
+            layer.beginShape()
+            for(let a=0,la=9;a<la;a++){
+                layer.vertex(sin(180*a/(la-1))*(5-a%2*2.5)+0.25,cos(180*a/(la-1))*(5-a%2*2.5))
+            }
+            layer.endShape(CLOSE)
+            layer.stroke(100,fade)
+            layer.strokeWeight(0.5)
+            layer.beginShape()
+            for(let a=0,la=9;a<la;a++){
+                layer.vertex(sin(-180+180*a/(la-1))*(5-a%2*2.5)-0.25,cos(-180+180*a/(la-1))*(5-a%2*2.5))
+            }
+            layer.endShape(CLOSE)
+        break
+        case 48:
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,10,10,-165,-105)
+            layer.arc(0,0,10,10,-75,-15)
+            layer.arc(0,0,10,10,15,75)
+            layer.arc(0,0,10,10,105,165)
+        break
+        case 49:
+            layer.fill(200,100,200,fade)
+            layer.rect(-3,0,6,4)
+            layer.triangle(0,-6,0,6,8,0)
+        break
     }
     layer.pop()
 }
@@ -532,4 +612,16 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 35-Boss
 36-Shiv
 37-Armor
+38-Counter
+39-Double Damage
+40-Curse
+41-Temporary Strength
+42-Temporary Dexterity
+43-Metallicize
+44-Buffer
+45-Free Attack
+46-Double Play
+47-Half Damage
+48-Intangible
+49-Retain
 */

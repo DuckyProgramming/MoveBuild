@@ -32,11 +32,7 @@ class purchase{
         if((this.player==-1&&(this.battle.currency.money[0]>=this.cost[0]&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=this.cost[1]&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=this.cost[this.player])&&this.usable){
             let purchaser=0
             if(this.player==-1){
-                if(inputs.rel.x<this.position.x){
-                    purchaser=0
-                }else if(inputs.rel.x>this.position.x){
-                    purchaser=1
-                }
+                purchaser=inputs.rel.x<this.position.x?0:1
             }else{
                 purchaser=this.player
             }
@@ -152,13 +148,9 @@ class purchase{
                 this.card.anim.afford=1
             break
         }
-        if(this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width,height:this.card.height})||
+        this.upSize=this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width,height:this.card.height})||
         this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90,height:120})||
-        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size){
-            this.upSize=true
-        }else{
-            this.upSize=false
-        }
+        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size?true:false
         switch(this.type){
             case 3:
                 this.relic.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}})

@@ -66,16 +66,12 @@ class tileManager{
         return list
     }
     activateTiles(type,id){
-        for(let a=0,la=this.tiles.length;a<la;a++){
-            this.tiles[a].activate(type,id)
-        }
+        this.tiles.forEach(tile=>tile.activate(type,id))
     }
     display(scene){
         switch(scene){
             case 'battle':
-                for(let a=0,la=this.tiles.length;a<la;a++){
-                    this.tiles[a].display()
-                }
+                this.tiles.forEach(tile=>tile.display())
                 for(let a=0,la=this.tiles.length;a<la;a++){
                     if((this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6)&&this.tiles[a].occupied==0&&
                     (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||this.battle.attackManager.targetInfo[0]==6)){
@@ -92,9 +88,7 @@ class tileManager{
     }
     displayCoordinate(){
         if(this.anim.coordinate>0){
-            for(let a=0,la=this.tiles.length;a<la;a++){
-                this.tiles[a].displayCoordinate(this.anim.coordinate)
-            }
+            this.tiles.forEach(tile=>tile.displayCoordinate(this.anim.coordinate))
         }
     }
     update(scene){

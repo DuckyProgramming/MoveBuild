@@ -218,6 +218,7 @@ class group{
         if(cardClass==1&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[22]>0){
             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[22]--
         }else{
+            this.battle.energy.main[this.player]
             if(cost==-1){
                 this.battle.energy.main[this.player]=0
             }else{
@@ -242,9 +243,7 @@ class group{
                 }
             break
             case 'drop':
-                for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].display()
-                }
+                this.cards.forEach(card=>card.display())
             break
             case 'overlay':
                 if(args[0]==0){
@@ -305,9 +304,7 @@ class group{
                     if(this.cards[a].spec.includes(1)||this.cards[a].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
                         this.cards[a].exhaust=true
                     }
-                    for(let c=0,lc=this.cards.length;c<lc;c++){
-                        this.cards[c].anotherPlayed()
-                    }
+                    this.cards.forEach(card=>card.anotherPlayed())
                     this.battle.playCard(this.cards[a],this.player)
                 }else{
                     this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
@@ -318,7 +315,6 @@ class group{
             break
             case 1:
                 this.battle.attackManager.targetInfo[0]=0
-                this.cards[a].upSize=false
                 this.cards[a].select=false
                 this.cards[a].usable=true
             break
@@ -337,13 +333,13 @@ class group{
                             userCombatant.status.main[23]--
                             this.cards[b].usable=true
                             this.cards[b].select=false
-                            this.cards[b].upSize=false
                         }else{
                             this.cards[b].deSize=true
                             if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
                                 this.cards[b].exhaust=true
                             }
                         }
+                        this.cards.forEach(card=>card.anotherPlayed())
                         for(let c=0,lc=this.cards.length;c<lc;c++){
                             this.cards[c].anotherPlayed()
                         }
@@ -366,16 +362,13 @@ class group{
                             userCombatant.status.main[23]--
                             this.cards[b].usable=true
                             this.cards[b].select=false
-                            this.cards[b].upSize=false
                         }else{
                             this.cards[b].deSize=true
                             if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
                                 this.cards[b].exhaust=true
                             }
                         }
-                        for(let c=0,lc=this.cards.length;c<lc;c++){
-                            this.cards[c].anotherPlayed()
-                        }
+                        this.cards.forEach(card=>card.anotherPlayed())
                         this.battle.playCard(this.cards[b],this.player)
                     }
                 }
@@ -412,7 +405,6 @@ class group{
             case 7:
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(!this.cards[a].usable){
-                        this.cards[a].upSize=false
                         this.cards[a].select=false
                         this.cards[a].usable=true
                     }
@@ -451,11 +443,7 @@ class group{
                     if(this.cards[a].position.x>a*100+100&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+100||a==0)){
                         this.cards[a].position.x-=20
                     }
-                    if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected){
-                        this.cards[a].upSize=true
-                    }else{
-                        this.cards[a].upSize=false
-                    }
+                    this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected?true:false
                     if(this.cards[a].size<=0){
                         if(this.cards[a].discardEffect.length>0){
                             this.cards[a].deSize=false
@@ -498,10 +486,7 @@ class group{
                 }
             break
             case 'overlay':
-                for(let a=0,la=this.cards.length;a<la;a++){
-                    //this.cards[a].size=smoothAnim(this.cards[a].size,a>=args[0]*15&&a<args[0]*15+15,0,1,5)
-                    this.cards[a].update()
-                }
+                this.cards.forEach(card=>card.update())
             break
         }
     }

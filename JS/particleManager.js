@@ -12,9 +12,7 @@ class particleManager{
         this.particles.push(new particle(this.layer,x,y,0,[value]))
     }
     display(){
-        for(let a=0,la=this.particles.length;a<la;a++){
-            this.particles[a].display()
-        }
+        this.particles.forEach(particle=>particle.display())
     }
     update(){
         for(let a=0,la=this.particles.length;a<la;a++){

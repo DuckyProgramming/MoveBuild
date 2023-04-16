@@ -15,14 +15,15 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
             [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
             [new overlay(this.layer,this.battle,0,2,[7])],//transform card, no return
-            [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand
+            [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand,10
+            [new overlay(this.layer,this.battle,0,4,[])],//end stats
             
         )
         if(this.battle.player.length==2){
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[3,10,0,1,2,4,5,6,7,8,9]
+        this.priority=[11,3,10,0,1,2,4,5,6,7,8,9]
         this.anyActive=false
     }
     copyOverlays(){
@@ -39,9 +40,7 @@ class overlayManager{
     }
     closeAll(){
         for(let a=0,la=this.overlays.length;a<la;a++){
-            for(let b=0,lb=this.overlays[a].length;b<lb;b++){
-                this.overlays[a][b].active=false
-            }
+            this.overlays[a].forEach(overlay=>overlay.active=false)
         }
     }
     display(){

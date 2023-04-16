@@ -53,7 +53,7 @@ class combatant{
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good
-        for(let a=0;a<40;a++){
+        for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
             this.status.active.push(false)
             this.status.position.push(0)
@@ -681,20 +681,12 @@ class combatant{
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3:
-                    if(target==-1){
-                        this.targetTile={x:-1,y:-1}
-                    }else{
-                        this.targetTile=this.battle.tileManager.tiles[target].tilePosition
-                    }
+                    this.targetTile=target==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target].tilePosition
                 break
                 case 6: case 7:
                     this.targetTile=[]
                     for(let a=0,la=target.length;a<la;a++){
-                        if(target[a]==-1){
-                            this.targetTile.push({x:-1,y:-1})
-                        }else{
-                            this.targetTile.push(this.battle.tileManager.tiles[target[a]].tilePosition)
-                        }
+                        this.targetTile.push(target==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target].tilePosition)
                     }
                 break
             }
@@ -806,8 +798,15 @@ class combatant{
                     this.block-=damage
                     this.infoAnim.upFlash[1]=true
                     blocked=0
+                    if(this.id<this.battle.player.length){
+                        this.battle.stats.taken[this.id][1]+=damage
+                    }
                 }else if(this.block>0&&spec!=1){
                     let damageLeft=damage-this.block
+                    if(this.id<this.battle.player.length){
+                        this.battle.stats.taken[this.id][1]+=this.block
+                        this.battle.stats.taken[this.id][2]+=damageLeft
+                    }
                     this.block=0
                     this.life-=damageLeft
                     this.infoAnim.upFlash[0]=true
@@ -818,8 +817,17 @@ class combatant{
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
                     blocked=2
+                    if(this.id<this.battle.player.length){
+                        this.battle.stats.taken[this.id][2]+=damage
+                    }
                 }
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
+                if(this.battle.turn.main<this.battle.player.length&&this.team==0){
+                    this.battle.stats.damage[this.battle.turn.main]+=damage
+                }
+                if(this.id<this.battle.player.length){
+                    this.battle.stats.taken[this.id][0]+=damage
+                }
                 if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length&&spec==0){
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     if(this.status.main[1]>0){
@@ -855,16 +863,15 @@ class combatant{
             block=floor(block)
             if(block>=0){
                 this.block+=block
+                if(this.id<this.battle.player.length){
+                    this.battle.stats.block[this.id]+=block
+                }
             }
         }
     }
     endBlock(){
         if(this.status.main[11]<=0){
-            if(this.battle.relicManager.hasRelic(26,this.id)){
-                this.block=max(0,this.block-10)
-            }else{
-                this.block=0
-            }
+            this.block=this.battle.relicManager.hasRelic(26,this.id)?max(0,this.block-10):0
         }
     }
     moveTile(direction,speed){
@@ -876,6 +883,9 @@ class combatant{
         this.relativePosition.y+=cos(direction)*speed
     }
     moveTilePosition(x,y){
+        if(this.id<this.battle.player.length){
+            this.battle.stats.move[this.id]+=distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y)
+        }
         this.tilePosition.x=x
         this.tilePosition.y=y
     }
@@ -1237,21 +1247,13 @@ class combatant{
                         if(this.name=='Lira'){
                             this.parts.mouth=-65+sin(this.animSet.loop*180)*-4
                             this.anim.mouth.y=abs(5-sin(this.animSet.loop*180)*10)
-                            if(sin(this.animSet.loop*180)>0.5){
-                                this.spin.mouth=36
-                            }else{
-                                this.spin.mouth=216
-                            }
+                            this.spin.mouth=sin(this.animSet.loop*180)>0.5?36:216
                         }else if(this.name=='Sakura'){
                             this.anim.mouth.y=5+sin(this.animSet.loop*180)
                         }else if(this.name=='Ume'){
                             this.parts.mouth=-65+sin(this.animSet.loop*180)*-2
                             this.anim.mouth.y=abs(4-sin(this.animSet.loop*180)*8)
-                            if(sin(this.animSet.loop*180)>0.5){
-                                this.spin.mouth=36
-                            }else{
-                                this.spin.mouth=216
-                            }
+                            this.spin.mouth=sin(this.animSet.loop*180)>0.5?36:216
                         }
                     break
                     case 22:
@@ -4705,6 +4707,9 @@ class combatant{
                 this.battle.counter.killed++
                 this.battle.combatantManager.reorder()
                 this.battle.relicManager.activate(3)
+                if(this.battle.turn.main<this.battle.player.length){
+                    this.battle.stats.killed[this.battle.turn.main]++
+                }
             }
         }
         if(this.team==0&&this.life>0&&!this.moved){
@@ -4712,22 +4717,14 @@ class combatant{
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3:
                     if(target!=-1){
-                        if(this.activated){
-                            this.battle.tileManager.tiles[target].targetted[2]=true
-                        }else{
-                            this.battle.tileManager.tiles[target].targetted[1]=true
-                        }
+                        this.battle.tileManager.tiles[target].targetted[this.activated?2:1]=true
                     }
                 break
                 case 6: case 7:
                     if(target.length>0){
                         for(let a=0,la=target.length;a<la;a++){
                             if(target[a]!=-1){
-                                if(this.activated){
-                                    this.battle.tileManager.tiles[target[a]].targetted[2]=true
-                                }else{
-                                    this.battle.tileManager.tiles[target[a]].targetted[1]=true
-                                }
+                                this.battle.tileManager.tiles[target[a]].targetted[1]=true
                             }
                         }
                     }
@@ -4744,16 +4741,14 @@ class combatant{
             this.anim.direction>this.goal.anim.direction-360&&this.anim.direction<this.goal.anim.direction-180||
             this.anim.direction>this.goal.anim.direction+360&&this.anim.direction<this.goal.anim.direction+540||
             this.anim.direction>this.goal.anim.direction-720&&this.anim.direction<this.goal.anim.direction-540||
-            this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900
-        ){
+            this.anim.direction>this.goal.anim.direction+720&&this.anim.direction<this.goal.anim.direction+900){
             this.anim.direction-=15
         }else if(
             this.anim.direction<this.goal.anim.direction&&this.anim.direction>this.goal.anim.direction-180||
             this.anim.direction<this.goal.anim.direction+360&&this.anim.direction>this.goal.anim.direction+180||
             this.anim.direction<this.goal.anim.direction-360&&this.anim.direction>this.goal.anim.direction-540||
             this.anim.direction<this.goal.anim.direction+720&&this.anim.direction>this.goal.anim.direction+540||
-            this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900
-        ){
+            this.anim.direction<this.goal.anim.direction-720&&this.anim.direction>this.goal.anim.direction-900){
             this.anim.direction+=15
         }else{
             this.anim.direction+=15*(floor(random(0,2)*2-1))
@@ -4820,11 +4815,7 @@ class combatant{
             case 'Lira': case 'Sakura': case 'Ume':
                 this.anim.head=this.anim.direction
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
-                if(this.life<=this.base.life*0.2&&options.damage){
-                    this.trigger.display.extra.damage=true
-                }else{
-                    this.trigger.display.extra.damage=false
-                }
+                this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage?true:false
                 if(this.name=='Sakura'&&!this.armed){
                     this.goal.anim.sword=false
                 }else if(this.name=='Sakura'&&this.battle.attackManager.attacks.length<=0&&this.life>0){

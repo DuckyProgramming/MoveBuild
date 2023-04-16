@@ -72,17 +72,9 @@ class card{
                     }
                     damage=floor(damage)
                     if(type==0){
-                        if(damage==effect){
-                            return effect
-                        }else{
-                            return effect+' ('+damage+')'
-                        }
+                        return damage==effect?effect:effect+` (${damage})`
                     }else if(type==2){
-                        if(damage==effect){
-                            return effect+'X'
-                        }else{
-                            return effect+'X (+'+damage+')'
-                        }
+                        return damage==effect?effect+'X':effect+`X (+${damage})`
                     }
                 case 1: case 3:
                     let block=effect
@@ -97,28 +89,16 @@ class card{
                     }
                     block=floor(block)
                     if(type==1){
-                        if(block==effect){
-                            return effect
-                        }else{
-                            return effect+' ('+block+')'
-                        }
+                        return block==effect?effect:effect+` (${block})`
                     }else if(type==3){
-                        if(block==effect){
-                            return effect+'X'
-                        }else{
-                            return effect+'X (+'+block+')'
-                        }
+                        return block==effect?effect+'X':effect+`X (+${block})`
                     }
                 case 4:
                     let health=effect
                     if(this.battle.relicManager.hasRelic(53,this.player)){
                         health*=1.5
                     }
-                    if(health==effect){
-                        return effect
-                    }else{
-                        return effect+' ('+health+')'
-                    }
+                    return health==effect?effect:effect+` (${health})`
             }
         }else{
             return effect
@@ -349,12 +329,8 @@ class card{
             this.upSize=true
         }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        if((userCombatant.status.main[22]>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost)&&
-            !(this.spec.includes(6)&&!userCombatant.armed)){
-            this.afford=true
-        }else{
-            this.afford=false
-        }
+        this.afford=(userCombatant.status.main[22]>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost)&&
+        !(this.spec.includes(6)&&!userCombatant.armed)?true:false
         if(this.deSize&&this.size>0||this.downSize&&this.size>0.6||!this.upSize&&this.size>1){
             this.size=round(this.size*5-1)/5
         }else if(!this.deSize&&(!this.downSize&&this.size<1||this.size<0.6||this.upSize&&this.size<1.5)){

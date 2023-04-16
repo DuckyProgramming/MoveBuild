@@ -177,13 +177,7 @@ class turn{
                     case 3:
                         if(this.timer==1){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                            if(this.targetCombatant.status.main[2]>0){
-                                this.procedure[0]=2
-                            }else if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
-                                this.procedure[0]=0
-                            }else{
-                                this.procedure[0]=1
-                            }
+                            this.procedure[0]=this.targetCombatant.status.main[2]>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                         }else if(this.timer==10){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -294,13 +288,7 @@ class turn{
                         if(this.targetDistance==1){
                             if(this.timer==1){
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                                if(this.targetCombatant.status.main[2]>0){
-                                    this.procedure[0]=2
-                                }else if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
-                                    this.procedure[0]=0
-                                }else{
-                                    this.procedure[0]=1
-                                }
+                                this.procedure[0]=this.targetCombatant.status.main[2]>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                                 this.userCombatant.startAnimation(3)
                             }else if(this.timer==10){
                                 this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -351,13 +339,7 @@ class turn{
                             if(this.timer==1){
                                 this.userCombatant.startAnimation(0)
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
-                                if(this.targetCombatant.status.main[2]>0){
-                                    this.procedure[0]=2
-                                }else if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
-                                    this.procedure[0]=0
-                                }else{
-                                    this.procedure[0]=1
-                                }
+                                this.procedure[0]=this.targetCombatant.status.main[2]>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             }else if(this.timer==16){
                                 this.userCombatant.startAnimation(3)
                             }else if(this.timer==25){

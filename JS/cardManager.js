@@ -57,6 +57,7 @@ class cardManager{
         this.getList(group).randomEffect(effect,args)
     }
     draw(amount){
+        this.battle.stats.drawn[this.player]+=amount
         let amountLeft=amount-this.reserve.cards.length
         if(this.reserve.cards.length>0){
             this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),1)

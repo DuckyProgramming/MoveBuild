@@ -28,13 +28,9 @@ class purchaseManager{
             list=this.battle.relicManager.makeRelicSelection(group)
             let index=floor(random(0,group.length))
             for(let a=0,la=group.length;a<la;a++){
-                if(this.battle.relicManager.hasRelic(85,-1)&&a==index){
-                    this.purchases.push(new purchase(this.layer,this.battle,0,700+(a%2)*100,100+floor(a/2)*125,3,[0],[list[a]]))
-                }else{
-                    this.purchases.push(new purchase(this.layer,this.battle,0,700+(a%2)*100,100+floor(a/2)*125,3,[round(random(cost[group[a]][0],cost[group[a]][1]))],[list[a]]))
-                }
+                this.purchases.push(new purchase(this.layer,this.battle,0,700+(a%2)*100,100+floor(a/2)*125,3,[this.battle.relicManager.hasRelic(85,-1)&&a==index?0:round(random(cost[group[a]][0],cost[group[a]][1]))],[list[a]]))
             }
-            this.purchases.push(new purchase(this.layer,this.battle,0,550,487.5,2,[100],[]))
+            this.purchases.push(new purchase(this.layer,this.battle,0,550,487.5,2,[200],[]))
         }else{
             for(let a=0,la=this.battle.player.length;a<la;a++){
                 let list=copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
@@ -62,16 +58,10 @@ class purchaseManager{
             let index=floor(random(0,group.length))
             for(let a=0,la=group.length;a<la;a++){
                 let price=round(random(cost[group[a]][0],cost[group[a]][1]))
-                if(this.battle.relicManager.hasRelic(85,0)&&a==index){
-                    this.purchases.push(new purchase(this.layer,this.battle,-1,100+a*100,75,3,[0,price],[list[a]]))
-                }else if(this.battle.relicManager.hasRelic(85,1)&&a==index){
-                    this.purchases.push(new purchase(this.layer,this.battle,-1,100+a*100,75,3,[price,0],[list[a]]))
-                }else{
-                    this.purchases.push(new purchase(this.layer,this.battle,-1,100+a*100,75,3,[price,price],[list[a]]))
-                }
+                this.purchases.push(new purchase(this.layer,this.battle,-1,100+a*100,75,3,[this.battle.relicManager.hasRelic(85,0)&&a==index?0:price,this.battle.relicManager.hasRelic(85,1)&&a==index?0:price],[list[a]]))
             }
-            this.purchases.push(new purchase(this.layer,this.battle,0,150,200,2,[100,100],[]))
-            this.purchases.push(new purchase(this.layer,this.battle,1,750,200,2,[100,100],[]))
+            this.purchases.push(new purchase(this.layer,this.battle,0,150,200,2,[200,200],[]))
+            this.purchases.push(new purchase(this.layer,this.battle,1,750,200,2,[200,200],[]))
         }
     }
     display(){
@@ -87,18 +77,12 @@ class purchaseManager{
         }
     }
     update(){
-        for(let a=0,la=this.purchases.length;a<la;a++){
-            this.purchases[a].update()
-        }
+        this.purchases.forEach(purchase=>purchase.update())
     }
     onClick(){
-        for(let a=0,la=this.purchases.length;a<la;a++){
-            this.purchases[a].onClick()
-        }
+        this.purchases.forEach(purchase=>purchase.onClick())
     }
     onKey(key,code){
-        for(let a=0,la=this.purchases.length;a<la;a++){
-            this.purchases[a].onKey(key,code)
-        }
+        this.purchases.forEach(purchase=>purchase.onKey(key,code))
     }
 }

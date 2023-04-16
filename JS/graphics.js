@@ -1787,11 +1787,7 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[108-g*24,84-g*24,96-g*24],y:[0,0,max(0,10.5+g*1.5)]})
 			}
 			for(let g=-15;g<15;g++){
-				if(g>=0){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop.push({spin:[-84+g*24,-66+g*24,-75+g*24],y:[0,0,-0.75]})
-				}else{
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop.push({spin:[0,0,0],y:[-999,-999,-999]})
-				}
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.mainTop.push(g>=0?{spin:[-84+g*24,-66+g*24,-75+g*24],y:[0,0,-0.75]}:{spin:[0,0,0],y:[-999,-999,-999]})
 			}
 			for(let g=0;g<2;g++){
 				graphics.combatant[graphics.combatant.length-1].parts.kimono.decoration.large.push({spin:100-g*40,rotate:random(0,360),y:40.5-g*2.5,type:floor(random(0,15))})

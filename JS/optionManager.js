@@ -22,9 +22,7 @@ class optionManager{
         this.posKey=0.5-this.battle.player.length*0.5+this.player*2
     }
     addOption(type){
-        for(let a=0,la=this.options.length;a<la;a++){
-            this.options[a].position.x-=75
-        }
+        this.options.forEach(option=>option.position.x-=75)
         this.options.push(new option(this.layer,this.battle.player.length-1-this.player,this.layer.width/2+this.options.length*75,this.layer.height/4+this.posKey*60,type))
     }
     removeOption(type){
@@ -46,11 +44,7 @@ class optionManager{
             break
             case 1:
                 this.complete=true
-                if(this.battle.relicManager.hasRelic(65,this.id)){
-                    this.battle.combatantManager.combatants[this.player].heal(round(this.battle.combatantManager.combatants[this.player].base.life)*0.4+10)
-                }else{
-                    this.battle.combatantManager.combatants[this.player].heal(round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
-                }
+                this.battle.combatantManager.combatants[this.player].heal(this.battle.relicManager.hasRelic(65,this.id)?round(this.battle.combatantManager.combatants[this.player].base.life)*0.4+10:round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
             break
             case 2:
                 this.battle.overlayManager.overlays[5][this.player].active=true
@@ -87,14 +81,10 @@ class optionManager{
         }
     }
     display(){
-        for(let a=0,la=this.options.length;a<la;a++){
-            this.options[a].display()
-        }
+        this.options.forEach(option=>option.display())
     }
     update(){
-        for(let a=0,la=this.options.length;a<la;a++){
-            this.options[a].update()
-        }
+        this.options.forEach(option=>option.update())
         if(this.selected==2&&!this.battle.overlayManager.overlays[5][this.player].active||
             this.selected==5&&!this.battle.overlayManager.overlays[6][this.player].active||
             this.selected==7&&!this.battle.overlayManager.overlays[3][this.player].active){

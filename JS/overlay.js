@@ -16,19 +16,13 @@ class overlay{
                 this.page=0
                 switch(this.args[0]){
                     case 0: case 6:
-                        for(let a=0,la=this.battle.cardManagers[this.player].reserve.cards.length;a<la;a++){
-                            this.battle.cardManagers[this.player].reserve.cards[a].size=0
-                        }
+                        this.battle.cardManagers[this.player].reserve.cards.forEach(card=>card.size=0)
                     break
                     case 1: case 5:
-                        for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
-                            this.battle.cardManagers[this.player].discard.cards[a].size=0
-                        }
+                        this.battle.cardManagers[this.player].discard.cards.forEach(card=>card.size=0)
                     break
                     case 2: case 3: case 4: case 7:
-                        for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
-                            this.battle.cardManagers[this.player].deck.cards[a].size=0
-                        }
+                        this.battle.cardManagers[this.player].deck.cards.forEach(card=>card.size=0)
                     break
                 }
                 switch(this.args[0]){
@@ -95,7 +89,7 @@ class overlay{
             case 1:
                 switch(args.type){
                     case 0:
-                        this.battle.currency.money[this.player]+=args.value[0]
+                        this.battle.getCurrency(args.value[0],this.player)
                     break
                     case 1:
                         this.battle.overlayManager.overlays[3][this.player].active=true
@@ -239,6 +233,31 @@ class overlay{
                     this.cards[a].anim={select:0,afford:1}
                     this.cards[a].display()
                 }
+            break
+            case 4:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2,240,360,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-205,120,40,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text('Stats',this.layer.width/2+225*this.posKey,this.layer.height/2-150)
+                this.layer.textSize(20)
+                this.layer.text('Close',this.layer.width/2+225*this.posKey,this.layer.height/2-205)
+                this.layer.textSize(10)
+                this.layer.text(this.battle.stats.killed[this.player]+' Enemies Killed',this.layer.width/2+225*this.posKey,this.layer.height/2-120)
+                this.layer.text(this.battle.stats.damage[this.player]+' Damage Dealt',this.layer.width/2+225*this.posKey,this.layer.height/2-105)
+                this.layer.text(this.battle.stats.block[this.player]+' Block Added',this.layer.width/2+225*this.posKey,this.layer.height/2-90)
+                this.layer.text(this.battle.stats.move[this.player]+' Tiles Moved',this.layer.width/2+225*this.posKey,this.layer.height/2-75)
+                this.layer.text(this.battle.stats.drawn[this.player]+' Cards Drawn',this.layer.width/2+225*this.posKey,this.layer.height/2-60)
+                this.layer.text(this.battle.stats.played[this.player][0]+' Cards Played:',this.layer.width/2+225*this.posKey,this.layer.height/2-45)
+                this.layer.text(this.battle.stats.taken[this.player][0]+' Damage Taken:',this.layer.width/2+225*this.posKey,this.layer.height/2+15)
+                this.layer.textSize(8)
+                this.layer.text(this.battle.stats.played[this.player][1]+' Attacks',this.layer.width/2+225*this.posKey,this.layer.height/2-30)
+                this.layer.text(this.battle.stats.played[this.player][2]+' Defense',this.layer.width/2+225*this.posKey,this.layer.height/2-20)
+                this.layer.text(this.battle.stats.played[this.player][3]+' Movement',this.layer.width/2+225*this.posKey,this.layer.height/2-10)
+                this.layer.text(this.battle.stats.played[this.player][4]+' Powers',this.layer.width/2+225*this.posKey,this.layer.height/2)
+                this.layer.text(this.battle.stats.taken[this.player][1]+' Blocked',this.layer.width/2+225*this.posKey,this.layer.height/2+30)
+                this.layer.text(this.battle.stats.taken[this.player][2]+' Unblocked',this.layer.width/2+225*this.posKey,this.layer.height/2+40)
             break
         }
     }
@@ -439,6 +458,11 @@ class overlay{
                         }
                     }
                 break
+                case 4:
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-205},width:120,height:40})){
+                        this.active=false
+                    }
+                break
             }
         }
     }
@@ -572,6 +596,11 @@ class overlay{
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player])
                         }
+                    }
+                break
+                case 4:
+                    if(code==ENTER){
+                        this.active=false
                     }
                 break
             }

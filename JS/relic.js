@@ -21,11 +21,7 @@ class relic{
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
             this.layer.scale(this.size)
-            if(this.active){
-                this.layer.fill(200,this.fade)
-            }else{
-                this.layer.fill(80,this.fade)
-            }
+            this.layer.fill(this.active?200:80,this.fade)
             this.layer.noStroke()
             this.layer.ellipse(0,0,40,40)
             if(this.player==-1){
@@ -75,11 +71,11 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('3',7,1)
                 break
-                case '7 Max HP':
+                case '8 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('7',0,12)
+                    this.layer.text('8',0,12)
                 break
                 case 'Starting Strength':
                     displaySymbol(this.layer,-8,0,11,0,1,this.fade)
@@ -154,11 +150,11 @@ class relic{
                     displaySymbol(this.layer,8,-7,7,0,0.6,this.fade)
                     displaySymbol(this.layer,8,7,21,0,0.6,this.fade)
                 break
-                case '10 Max HP':
+                case '14 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('10',0,12)
+                    this.layer.text('14',0,12)
                 break
                 case 'Death Boost':
                     displaySymbol(this.layer,-8,0,22,0,0.5,this.fade)
@@ -193,8 +189,8 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('-1',-8,0)
                 break
-                case 'Starting Dodge':
-                    displaySymbol(this.layer,-8,0,23,0,1,this.fade)
+                case 'Starting Buffer':
+                    displaySymbol(this.layer,-8,0,44,0,1.5,this.fade)
                     displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -248,17 +244,17 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',0,-4)
                 break
-                case '14 Max HP':
+                case '20 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('14',0,12)
+                    this.layer.text('20',0,12)
                 break
-                case '300 Currency':
+                case '500 Currency':
                     displaySymbol(this.layer,0,0,28,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('300',0,0)
+                    this.layer.text('500',0,0)
                 break
                 case 'First Attack':
                     displaySymbol(this.layer,-8,0,29,0,1,this.fade)
@@ -474,24 +470,234 @@ class relic{
                 case 'Relic Rest':
                     displaySymbol(this.layer,0,-6,1,0,0.75,this.fade)
                     displaySymbol(this.layer,0,10,32,0,1,this.fade)
-                    this.layer.fill(0,this.fade)
-                    this.layer.textSize(10)
-                    this.layer.text('4',0,-6)
                 break
                 case 'Remove Rest':
                     displaySymbol(this.layer,0,-6,8,0,0.75,this.fade)
                     displaySymbol(this.layer,0,-6,16,0,0.75,this.fade)
                     displaySymbol(this.layer,0,10,32,0,1,this.fade)
-                    this.layer.fill(0,this.fade)
-                    this.layer.textSize(10)
-                    this.layer.text('4',0,-6)
                 break
                 case 'Strength Rest':
                     displaySymbol(this.layer,0,-6,11,0,0.75,this.fade)
                     displaySymbol(this.layer,0,10,32,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('4',0,-6)
+                    this.layer.text('1',0,-6)
+                break
+                case 'Always Counter':
+                    displaySymbol(this.layer,0,0,38,0,1.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('3',0,0)
+                break
+                case 'Card Rest':
+                    displaySymbol(this.layer,0,-6,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,-6,17,0,0.5,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                break
+                case '10 Attack Damage':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,39,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-9,0)
+                    this.layer.text('1',9,0)
+                break
+                case '10 Attack Energy':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-9,0)
+                    this.layer.text('1',9,0)
+                break
+                case 'Better Rest Heal':
+                    displaySymbol(this.layer,0,-6,2,0,0.75,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',0,-6)
+                break
+                case 'Cancel Curse':
+                    displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,40,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
+                break
+                case 'Large Bag':
+                    displaySymbol(this.layer,-8,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,30,0,0.6,this.fade)
+                break
+                case 'Base Block':
+                    displaySymbol(this.layer,-8,-2,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,-2,16,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,-2,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,1,12,4,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('6',10,-2)
+                break
+                case 'Block Damage':
+                    displaySymbol(this.layer,0,0,27,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,18,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',0,0)
+                break
+                case '3 Turn Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('3',7,1)
+                break
+                case 'Attacking Defense':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,18,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,42,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',9,0)
+                break
+                case 'Turn 2 Energy':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('2',8,-3)
+                break
+                case '3 Skill Metallicize':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,19,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,43,0,1.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-9,0)
+                    this.layer.text('1',9,0)
+                break
+                case 'Unblocked Weaken':
+                    displaySymbol(this.layer,-8,0,27,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,24,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',9,0)
+                break
+                case 'Blocked Weaken':
+                    displaySymbol(this.layer,-8,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,0,24,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',9,0)
+                break
+                case 'Retain Card Block':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,49,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,27,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',8,0)
+                break
+                case 'Better Items':
+                    displaySymbol(this.layer,0,-6,30,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2x',0,10)
+                break
+                case '10 Skill Buffer':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,19,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,44,0,1.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-9,0)
+                    this.layer.text('1',9,0)
+                break
+                case 'Important Enemies':
+                    displaySymbol(this.layer,-9,0,3,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,34,0,0.5,this.fade)
+                break
+                case 'Item Reuse':
+                    displaySymbol(this.layer,-7,0,30,0,0.8,this.fade)
+                    displaySymbol(this.layer,11,0,30,0,0.6,this.fade)
+                break
+                case 'Revive':
+                    displaySymbol(this.layer,-9,-4,22,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,-4,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('50%',0,12)
+                break
+                case 'Low Play Draw':
+                    displaySymbol(this.layer,-9,0,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,-9,0,16,0,0.75,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-9,0)
+                    this.layer.text('3',9,0)
+                break
+                case 'Item Collector':
+                    displaySymbol(this.layer,-9,0,3,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,30,0,0.6,this.fade)
+                break
+                case 'Block Collection':
+                    displaySymbol(this.layer,-10,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,13,-1,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('8',-10,0)
+                    this.layer.textSize(15)
+                    this.layer.text('2',2,-1)
+                break
+                case 'Coupon':
+                    displaySymbol(this.layer,0,-6,1,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('$0',0,10)
+                break
+                case 'First Attack Free':
+                    displaySymbol(this.layer,0,0,45,0,2.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'First Card Double':
+                    displaySymbol(this.layer,0,0,46,0,3,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Per Enemy Block':
+                    displaySymbol(this.layer,-10,0,27,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,6,-4,3,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',-10,0)
+                break
+                case '2 Turn Half Damage':
+                    displaySymbol(this.layer,0,0,47,0,2.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,0)
+                break
+                case '5 Turn Intangible':
+                    displaySymbol(this.layer,-8,0,48,0,1.5,this.fade)
+                    displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('5',7,1)
                 break
             }
             this.layer.pop()
