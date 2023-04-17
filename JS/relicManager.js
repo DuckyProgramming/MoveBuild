@@ -29,7 +29,7 @@ class relicManager{
             this.player.push(-1)
             switch(types.relic[a].id){
                 case 4: case 17: case 37: case 38: case 39: case 42: case 43: case 44: case 60: case 63:
-                case 64: case 70: case 73: case 78: case 90:
+                case 64: case 70: case 73: case 78: case 90: case 93: case 111:
                     this.detail.push(0)
                 break
                 default:
@@ -155,6 +155,9 @@ class relicManager{
             case 77:
                 this.battle.itemManager.effectiveness[player]*=2
             break
+            case 102:
+                this.battle.overlayManager.overlays[3][player].takable++
+            break
         }
     }
     lose(type,player){
@@ -182,6 +185,9 @@ class relicManager{
             break
             case 77:
                 this.battle.itemManager.effectiveness[player]/=1.5
+            break
+            case 102:
+                this.battle.overlayManager.overlays[3][player].takable--
             break
         }
         this.deactivate(type)
@@ -247,11 +253,24 @@ class relicManager{
                         if(this.active[89]>0){
                             this.relicPlayer(89).statusEffect('Take Half Damage',2*this.active[89])
                         }
+                        if(this.active[93]>0&&this.detail[93]==1){
+                            this.detail[93]=0
+                            this.battle.energy.main[this.player[93]]+=2*this.active[93]
+                        }
+                        if(this.active[96]>0&&args[1]==1){
+                            this.battle.combatantManager.allEffect(1,[1-this.active[96]*0.2])
+                        }
+                        if(this.active[111]>0){
+                            this.detail[111]++
+                            if(this.detail[111]<=3){
+                                this.battle.combatantManager.allEffect(2,[1])
+                            }
+                        }
                         if(this.active[39]>0){this.detail[39]=0}
                     break
                     case 2:
                         if(this.active[41]>0){
-                            this.relicPlayer(41).addBlock(14*this.active[41])
+                            this.relicPlayer(41).addBlock(16*this.active[41])
                         }
                         if(this.active[72]>0){
                             this.battle.energy.main[this.player[72]]+=2*this.active[72]
@@ -316,7 +335,7 @@ class relicManager{
                         }
                     }
                     if(this.active[52]>0&&args[1]==this.player[52]){
-                        for(let a=0,la=2*this.active[52];a<la;a++){
+                        for(let a=0,la=4*this.active[52];a<la;a++){
                             this.battle.cardManagers[this.player[52]].hand.add(findName('Shiv',types.card),0,0)
                         }
                     }
@@ -336,6 +355,12 @@ class relicManager{
                 if(this.active[17]>0){
                     this.battle.cardManagers[this.player[17]].draw(this.active[17])
                     this.battle.energy.main[this.player[17]]+=this.active[17]
+                }
+                if(this.active[94]>0){
+                    this.relicPlayer(94).statusEffect('Strength',2*this.active[94])
+                }
+                if(this.active[95]>0){
+                    this.relicPlayer(95).statusEffect('Dexterity',2*this.active[95])
                 }
             break
             case 4://playing card [class,plauer]
@@ -410,7 +435,7 @@ class relicManager{
             break
             case 5://adding card [player]
                 if(this.active[40]>0&&args[0]==this.player[40]){
-                    this.battle.getCurrency(20*this.active[0],this.player[40])
+                    this.battle.getCurrency(20*this.active[40],this.player[40])
                 }
             break
             case 6://taking damage [player]
@@ -422,14 +447,38 @@ class relicManager{
                     this.relicPlayer(48).statusEffect('Block Next Turn',3)
                 }
             break
-            case 7://entering rest
-                if(this.active[38]>0&&this.detail[38]==0){
-                    this.detail[38]=1
+            case 7://entering room [room]
+                if(this.active[91]>0&&args[0]!=4){
+                    this.battle.getCurrency(20*this.active[91],this.player[91])
+                }
+                switch(args[0]){
+                    case 3://rest
+                        if(this.active[38]>0&&this.detail[38]==0){
+                            this.detail[38]=1
+                        }
+                        if(this.active[99]>0){
+                            this.relicPlayer(99).heal(5*this.active[99])
+                        }
+                    break
+                    case 4://shop
+                        if(this.active[91]>0){
+                            this.lose(91,this.player[91])
+                        }
+                        if(this.active[92]>0){
+                            this.relicPlayer(92).heal(15*this.active[92])
+                        }
+                        if(this.active[93]>0&&this.detail[93]==0){
+                            this.detail[93]=1
+                        }
+                    break
                 }
             break
             case 8://skipping card [player]
                 if(this.active[49]>0&&args[0]==this.player[49]){
                     this.relicPlayer(49).gainMaxHP(2*this.active[49])
+                }
+                if(this.active[101]>0&&args[0]==this.player[101]){
+                    this.battle.getCurrency(10*this.active[101],this.player[101])
                 }
             break
             case 9://start of player turn [turn,player]

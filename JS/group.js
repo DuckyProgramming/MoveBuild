@@ -218,7 +218,6 @@ class group{
         if(cardClass==1&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[22]>0){
             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[22]--
         }else{
-            this.battle.energy.main[this.player]
             if(cost==-1){
                 this.battle.energy.main[this.player]=0
             }else{

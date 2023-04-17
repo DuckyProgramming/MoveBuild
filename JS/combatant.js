@@ -686,7 +686,7 @@ class combatant{
                 case 6: case 7:
                     this.targetTile=[]
                     for(let a=0,la=target.length;a<la;a++){
-                        this.targetTile.push(target==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target].tilePosition)
+                        this.targetTile.push(target[a]==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target[a]].tilePosition)
                     }
                 break
             }
@@ -739,15 +739,21 @@ class combatant{
         let damage=value
         if(value>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
             let userCombatant=this.battle.combatantManager.combatants[user]
-            if(userCombatant.status.main[6]>0){
-                damage+=userCombatant.status.main[6]
+            let totalStr=0
+            if(userCombatant.status.main[6]!=0){
+                totalStr+=userCombatant.status.main[6]
+            }
+            if(userCombatant.status.main[17]!=0){
+                totalStr+=userCombatant.status.main[17]
+            }
+            if(totalStr>0){
+                damage*=1+totalStr*0.2
+            }else if(totalStr<0){
+                damage*=max(0.2,1+totalStr*0.1)
             }
             if(userCombatant.status.main[12]>0){
                 damage+=userCombatant.status.main[12]
                 userCombatant.status.main[12]=0
-            }
-            if(userCombatant.status.main[17]>0){
-                damage+=userCombatant.status.main[17]
             }
             if(userCombatant.status.main[8]>0){
                 damage*=0.75
@@ -756,7 +762,7 @@ class combatant{
                 damage+=4
             }
         }
-        damage=floor(damage)
+        damage=round(damage*10)/10
         if(damage>0&&this.life>0){
             let hit=true
             if(user>=0&&user<this.battle.combatantManager.combatants.length){
@@ -851,16 +857,22 @@ class combatant{
     addBlock(value){
         if(this.status.main[16]<=0){
             let block=value
-            if(this.status.main[7]>0){
-                block+=this.status.main[7]
+            let totalDex=0
+            if(this.status.main[7]!=0){
+                totalDex+=this.status.main[7]
             }
-            if(this.status.main[18]>0){
-                block+=this.status.main[18]
+            if(this.status.main[18]!=0){
+                totalDex+=this.status.main[18]
+            }
+            if(totalDex>0){
+                block*=1+totalDex*0.2
+            }else if(totalDex<0){
+                block*=max(0.2,1+totalDex*0.1)
             }
             if(this.status.main[9]>0){
                 block*=0.75
             }
-            block=floor(block)
+            block=round(block*10)/10
             if(block>=0){
                 this.block+=block
                 if(this.id<this.battle.player.length){
@@ -884,7 +896,11 @@ class combatant{
     }
     moveTilePosition(x,y){
         if(this.id<this.battle.player.length){
-            this.battle.stats.move[this.id]+=distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y)
+            let distance=distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y)
+            this.battle.stats.move[this.id]+=distance
+            if(this.battle.relicManager.hasRelic(100,this.id)){
+                this.addBlock(2*distance*this.battle.relicManager.active[100])
+            }
         }
         this.tilePosition.x=x
         this.tilePosition.y=y

@@ -4,10 +4,13 @@ Bugs:
 
 Mechanics:
 Lose-Stats(Same stats as win though)
+Shop Relics (Concept)
+Sell Relics
 Menu
 Event-Off Unknown
 Boss Rewards
 Next World
+Partnership Cards?
 
 Battle Content:
 Weak Enemy
@@ -18,24 +21,10 @@ Enemy Do Nothing
 More Fights:
 
 More Relics:
-Buffed Scared Piggy
-Pudding
-Cursed Book of HP
-Threataning Duck
-Hat of Rage
-Buff 2 Turn Block
-3 Turn Block (Very Buffed)
-Hyper Helpful Duck
-Split Spike
-De-Rare Teapot
-Eudicot
-Striped Candle
-Bone Claw / Snowball
-Doubled Gold Bank
-Exit Sign
-Top Hat
-Canned Tuna
-Mume but buffed like 1%
+
+103-110
+112+
+we're working on events now for exit sign
 
 Formation of the Shop Relics
 -a bunch
@@ -45,11 +34,12 @@ More Items:
 
 More Cards:
 Deal Damage and Gain Energy? (Jab?)
-Separate?
 Redirect?
 Shatter, remove all block and do dage
 Snap Strike, deal damage and gain temporary strength
 1 inch punch
+Tactical Retreat
+Unexhaust
 do something, exhaust a card
 
 new strength system

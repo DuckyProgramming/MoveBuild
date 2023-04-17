@@ -1943,7 +1943,7 @@ function setupBackground(type,layer){
                     layer.triangle(layer.width*b/lb+e+f-30*c,layer.height,layer.width*b/lb+e+f+30*c,layer.height,layer.width*b/lb+e+f,layer.height*0.7+layer.height*2/5*a/la+g-400*random(0.8,1.2)*c)
                 }
             }
-            for(let a=0;a<1000;a++){
+            for(let a=0;a<1e3;a++){
                 b=random(0,2)
                 c=random(15,20)
                 d=random(layer.height*0.65+sin((-50+(a*12)%(layer.width+100))*1.2)*50,layer.height*0.8)

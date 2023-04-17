@@ -140,13 +140,13 @@ function pointInsideBox(point,box){
 }
 function intentDescription(attack){
 	switch(attack.type){
-		case 1: return 'Deal '+attack.effect[0]+' Damage\nRange 1-1'
-		case 2: return 'Deal '+attack.effect[0]+' Damage 3 Times\nRange 1-1'
-		case 3: return 'Deal '+attack.effect[0]+' Damage\nPush 1 Tile\nRange 1-1'
-		case 4: return 'Add '+attack.effect[0]+' Block'
-		case 5: return 'Shuffle in '+attack.effect[0]+' Dazed'
-		case 6: return 'Deal '+attack.effect[0]+' Damage\nRange 1-2'
-		case 7: return 'Deal '+attack.effect[0]+' Damage\nPush 1 Tile\nRange 1-2'
+		case 1: return `Deal ${attack.effect[0]} Damage\nRange 1-1`
+		case 2: return `Deal ${attack.effect[0]} Damage 3 Times\nRange 1-1`
+		case 3: return `Deal ${attack.effect[0]} Damage\nPush 1 Tile\nRange 1-1`
+		case 4: return `Add ${attack.effect[0]} Block`
+		case 5: return `Shuffle in ${attack.effect[0]} Dazed`
+		case 6: return `Deal ${attack.effect[0]} Damage\nRange 1-2`
+		case 7: return `Deal ${attack.effect[0]} Damage\nPush 1 Tile\nRange 1-2`
 
 	}
 }

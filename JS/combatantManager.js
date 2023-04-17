@@ -70,6 +70,20 @@ class combatantManager{
             }
         }
     }
+    allEffect(effect,args){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                switch(effect){
+                    case 1:
+                        this.combatants[a].life*=args[0]
+                    break
+                    case 2:
+                        this.combatants[a].life=args[0]
+                    break
+                }
+            }
+        }
+    }
     addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30))
         this.id++

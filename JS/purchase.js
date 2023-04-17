@@ -107,7 +107,7 @@ class purchase{
                 case 1: case 2:
                     this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                     this.layer.textSize(16)
-                    this.layer.text(this.cost[0],0,72.5)
+                    this.layer.text(this.cost[this.player],0,72.5)
                     this.layer.fill(255,0,0,1-this.anim.usable)
                     this.layer.textSize(16)
                     this.layer.text('Sold Out',0,72.5)
@@ -115,7 +115,7 @@ class purchase{
                 case 3:
                     this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
                     this.layer.textSize(16)
-                    this.layer.text(this.cost[0],0,40)
+                    this.layer.text(this.cost[this.player],0,40)
                     this.layer.fill(255,0,0,1-this.anim.usable)
                     this.layer.textSize(16)
                     this.layer.text('Sold Out',0,40)

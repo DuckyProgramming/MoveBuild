@@ -145,7 +145,6 @@ class battle{
     setupRest(){
         this.optionManagers.forEach(optionManager=>optionManager.reset())
         this.combatantManager.resetCombatants()
-        this.relicManager.activate(7,[])
     }
     setupShop(){
         this.purchaseManager.setup()
@@ -159,11 +158,7 @@ class battle{
     addCombatant(position,type,team,direction){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
-        if(direction==0){
-            this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2)))
-        }else{
-            this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,this.tileManager.getTileRelativeDirection(position.x,position.y,-150+floor(random(0,6))*60))
-        }
+        this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2)):direction)
     }
     positionCombatant(combatant,position){
         if(position.x==-1){
@@ -247,7 +242,7 @@ class battle{
         this.turn.total++
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            this.energy.main[a]=this.relicManager.hasRelic(28,a)&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen
+            this.energy.main[a]=this.relicManager.hasRelic(28,a)&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]
         }
         this.combatantManager.setupCombatants()
         this.combatantManager.tick()
@@ -414,13 +409,8 @@ class battle{
                     this.layer.text('Deck',26+a*(this.layer.width-52),496-4*this.anim.deck[a])
                     this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),496+4*this.anim.deck[a])
                 }
-                if(this.player.length==1){
-                    this.layer.fill(this.colorDetail[0].fill)
-                    this.layer.stroke(this.colorDetail[0].stroke)
-                }else{
-                    this.layer.fill(types.color.card[0].fill)
-                    this.layer.stroke(types.color.card[0].stroke)
-                }
+                this.layer.fill(this.player==1?this.colorDetail[0].fill:types.color.card[0].fill)
+                this.layer.stroke(this.player==1?this.colorDetail[0].stroke:types.color.card[0].stroke)
                 this.layer.strokeWeight(3*this.anim.exit)
                 this.layer.rect(26,528,32*this.anim.exit,24*this.anim.exit,5*this.anim.exit)
                 this.layer.fill(0)

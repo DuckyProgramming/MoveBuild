@@ -31,7 +31,7 @@ class nodeManager{
         let possibilities=[0,0,0,1,3,4,5,5,6]
         for(let a=0,la=20;a<la;a++){
             for(let b=0,lb=min(min(a+1,4),20-a);b<lb;b++){
-                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,a<2?6:a==la-1?2:possibilities[floor(random(0,possibilities.length))]))
+                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,a<2?5:a==la-1?2:possibilities[floor(random(0,possibilities.length))]))
             }
         }
         this.scroll=this.layer.height/2-240
@@ -54,6 +54,7 @@ class nodeManager{
         this.scroll=scroll
     }
     enterNode(type){
+        this.battle.relicManager.activate(7,[type])
         switch(type){
             case 0:
                 transition.scene='battle'
@@ -76,8 +77,9 @@ class nodeManager{
                 this.battle.setupShop()
             break
             case 5:
-                let send=[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,10))]
+                let send=this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
                 if(send==5){
+                    transition.scene='event'
                 }else{
                     this.enterNode(send)
                 }

@@ -31,6 +31,7 @@ class overlay{
             break
             case 3:
                 this.cards=[]
+                this.takable=1
                 this.options=3
             break
         }
@@ -61,6 +62,7 @@ class overlay{
             case 3:
                 this.cards=[]
                 let list=[]
+                this.taken=0
                 switch(args[2]){
                     case 0:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
@@ -444,11 +446,16 @@ class overlay{
                                     this.battle.cardManagers[this.player].hand.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
                                 break
                             }
-                            for(let b=0,lb=this.cards.length;b<lb;b++){
-                                this.cards[b].deSize=true
-                                this.cards[b].upSize=false
+                            this.cards[a].deSize=true
+                            this.cards[a].upSize=false
+                            this.taken++
+                            if(this.taken>=this.takable){
+                                this.active=false
+                                for(let b=0,lb=this.cards.length;b<lb;b++){
+                                    this.cards[b].deSize=true
+                                    this.cards[b].upSize=false
+                                }
                             }
-                            this.active=false
                         }
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125},width:120,height:40})){
@@ -584,11 +591,16 @@ class overlay{
                                     this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
                                 break
                             }
-                            for(let b=0,lb=this.cards.length;b<lb;b++){
-                                this.cards[b].deSize=true
-                                this.cards[b].upSize=false
+                            this.cards[a].deSize=true
+                            this.cards[a].upSize=false
+                            this.taken++
+                            if(this.taken>=this.takable){
+                                this.active=false
+                                for(let b=0,lb=this.cards.length;b<lb;b++){
+                                    this.cards[b].deSize=true
+                                    this.cards[b].upSize=false
+                                }
                             }
-                            this.active=false
                         }
                     }
                     if(code==ENTER){
