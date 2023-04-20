@@ -53,6 +53,9 @@ class group{
                     this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
                 }
                 this.battle.relicManager.activate(5,[this.player])
+                if(types.card[type].rarity>=0||types.card[type].list>=0){
+                    this.battle.stats.card[this.player]++
+                }
             }
         }
     }

@@ -350,7 +350,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 10: case 64:
+            case 10: case 64: case 72: case 73: case 74:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(6)
                 }
@@ -362,6 +362,18 @@ class attack{
                         break
                         case 64:
                             this.userCombatant.statusEffect('Control',this.effect[0])
+                        break
+                        case 72:
+                            this.userCombatant.statusEffect('Strength',this.effect[0])
+                            this.userCombatant.life-=this.effect[1]
+                        break
+                        case 73:
+                            this.userCombatant.statusEffect('Dexterity',this.effect[0])
+                            this.userCombatant.life-=this.effect[1]
+                        break
+                        case 74:
+                            this.userCombatant.statusEffect('Buffer',this.effect[0])
+                            this.userCombatant.life-=this.effect[1]
                         break
                     }
                 }else if(this.timer>=20){

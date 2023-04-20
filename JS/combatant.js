@@ -4678,6 +4678,13 @@ class combatant{
                 this.displayInfoInternal()
                 this.layer.pop()
             break
+            case 'event':
+                this.layer.push()
+                this.layer.translate(800-this.id*700,510)
+                this.layer.scale(1.5)
+                this.displayInfoInternal()
+                this.layer.pop()
+            break
         }
     }
     updatePassive(){

@@ -2073,6 +2073,63 @@ function setupBackground(type,layer){
                 layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
             }
 		break
+		case 5:
+			for(let a=0,la=layer.height/5;a<la;a++){
+                layer.fill(40+50*a/la,60+50*a/la,50+50*a/la)
+                layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
+            }
+            for(let a=0,la=100;a<la;a++){
+                b=-50+a*75%(layer.width+100)+random(-10,10)
+                c=-20+a*95%(layer.height*0.2+50)+random(-10,10)+layer.height*0.8
+                d=random(0.6,1)
+                e=random(0.8,1)
+                g=random(0,2)
+                for(let f=0,lf=20;f<lf;f++){
+                    layer.fill(mergeColor([100,110,120],[90,95,100],f/lf+g))
+                    layer.ellipse(b,c,120*d*(1-f/lf),90*d*e*(1-f/lf))
+                }
+            }
+			for(let a=0,la=layer.height*4/5;a<la;a++){
+                layer.fill(150+50*a/la,225+25*a/la,200+25*a/la)
+                layer.rect(layer.width/2,a+0.5,layer.width,2)
+            }
+			for(let a=0,la=200;a<la;a++){
+                b=random(0,10)**2.5*2
+                c=random(0.6,1)
+                e=random(220,240)
+                f=random(0,layer.width)
+                for(let d=0,ld=20;d<ld;d++){
+                    layer.fill(e,0.025)
+                    layer.ellipse(f,b,c*400*(1-d/ld),c*240*(1-d/ld))
+                }
+            }
+			for(let a=0,la=20;a<=la;a++){
+				c=a==0?random(300,600):d
+				d=random(300,600)+a%2*200
+				for(let b=0,lb=20;b<lb;b++){
+					layer.fill(150-50*(a-b/lb)/la)
+					layer.quad(
+						layer.width*(a-b/lb)/la,map(b/lb,0,1,d,c),
+						layer.width*(a-(b+1)/lb)/la,map((b+1)/lb,0,1,d,c),
+						layer.width*(a-(b+1)/lb)/la,layer.height*0.8+1,
+						layer.width*(a-b/lb)/la,layer.height*0.8+1,
+					)
+				}
+			}
+			for(let a=0,la=20;a<=la;a++){
+				c=a==0?random(450,750):d
+				d=random(450,750)+a%2*200
+				for(let b=0,lb=20;b<lb;b++){
+					layer.fill(100-50*(a-b/lb)/la)
+					layer.quad(
+						layer.width*(a+0.5-b/lb)/la,map(b/lb,0,1,d,c),
+						layer.width*(a+0.5-(b+1)/lb)/la,map((b+1)/lb,0,1,d,c),
+						layer.width*(a+0.5-(b+1)/lb)/la,layer.height*0.8+1,
+						layer.width*(a+0.5-b/lb)/la,layer.height*0.8+1,
+					)
+				}
+			}
+		break
 	}
 }
 function setupCombatantBackground(type,player,a,la,damage,layer){
@@ -2167,7 +2224,6 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				p1.trigger.display.extra.damage=true
 			}
 			return p1
-		break
 		case 4:
 			p1=new combatant(layer,{player:[0]},550-a*300,477.5+a*32.5,0,0,0,0,player[a],0,0,30-a*60)
 			if(player[a]==1){
@@ -2198,7 +2254,36 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				p1.trigger.display.extra.damage=true
 			}
 			return p1
-		break
+		case 5:
+			p1=new combatant(layer,{player:[0]},800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
+			if(player[a]==1){
+				p1.parts.mouth-=3
+				p1.spin.mouth-=180
+				p1.anim.mouth.y-=2
+			}else if(player[a]==2){
+				p1.anim.mouth.y--
+			}else if(player[a]==3){
+				p1.parts.mouth-=2
+				p1.spin.mouth-=180
+				p1.anim.mouth.y--
+			}
+			p1.size=2.5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+			p1.anim.legs=[
+				{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+				{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+			]
+			p1.anim.arms=[
+				{top:24-a*3,bottom:36-a*12,length:{top:16,bottom:16}},
+				{top:24-a*3,bottom:36,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+			p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
 	}
 }
 function setupOverlay(type,layer){
@@ -2249,6 +2334,7 @@ function setupGraphics(){
 	1-Loss
 	2-Win //
 	3-Rest
-	4-Prize
+	4-Stash
+	5-Event
 	*/
 }

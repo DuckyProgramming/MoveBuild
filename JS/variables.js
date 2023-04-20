@@ -458,6 +458,14 @@ types={
         //you know how it is
 
         {
+            name:'Miracle',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:41,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[2],attack:41,cost:0,target:[0],spec:[1,4],class:4},
+            ],
+        },
+        
+        {
             name:'Emergency\nMove',rarity:-1,list:0,
             levels:[
                 {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[1,2],class:3},
@@ -466,22 +474,36 @@ types={
         },{
             name:'Redraw',rarity:-1,list:0,
             levels:[
-                {effect:[],attack:40,cost:0,target:[0],spec:[1,4],class:5},
-                {effect:[],attack:40,cost:0,target:[0],spec:[1,2],class:5},
+                {effect:[],attack:40,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[],attack:40,cost:0,target:[0],spec:[1,2],class:4},
             ],
         },{
             name:'Selective\nRedraw',rarity:-1,list:0,
             levels:[
-                {effect:[1,1],attack:55,cost:0,target:[0],spec:[1,4],class:5},
-                {effect:[2,2],attack:55,cost:0,target:[0],spec:[1,4],class:5},
+                {effect:[1,1],attack:55,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[2,2],attack:55,cost:0,target:[0],spec:[1,4],class:4},
             ],
         },{
-            name:'Miracle',rarity:-1,list:0,
+            name:'Mixture A',rarity:-1,list:0,
             levels:[
-                {effect:[1],attack:41,cost:0,target:[0],spec:[1,4],class:5},
-                {effect:[2],attack:41,cost:0,target:[0],spec:[1,4],class:5},
+                {effect:[3,4],attack:72,cost:0,target:[0],spec:[1],class:4},
+                {effect:[4,4],attack:72,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
+            name:'Mixture B',rarity:-1,list:0,
+            levels:[
+                {effect:[6,4],attack:72,cost:0,target:[0],spec:[1],class:4},
+                {effect:[8,4],attack:72,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Mixture C',rarity:-1,list:0,
+            levels:[
+                {effect:[1,4],attack:72,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,4],attack:72,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },
+        
+        {
             name:'Initiative',rarity:-1,list:0,
             levels:[
                 {effect:[2],attack:56,cost:0,target:[1,1,2],spec:[1,4],class:3},
@@ -709,6 +731,158 @@ types={
         {name:'',id:0,rarity:-1,list:-1,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,description:'None'},
         {name:'Rock',id:2,rarity:0,list:0,description:'Deal 10 Damage\nRange 1-6'},
+    ],event:[
+        {
+            name:'',id:0,list:-1,
+            pages:[],
+        },{
+            name:'Dropped Book',id:1,list:0,
+            pages:[
+                {
+                    desc:
+`You come across what appearsto be a book
+lying in the dirt. Peering into it, you see
+numerous Konaian writings on the art of combat.\n
+When you pick it up, you notice its extreme length
+and the poor condition of its pages. And there seems
+to be some sort of energy radiating from it...`,
+                    option:['Read','Leave'],
+                    optionDesc:['Lose 4 Health',''],
+                    link:[1,2],
+                },{
+                    desc:
+`The book is extremely long and quite confusing, but manages
+to keep you interested. After several hours, you finally
+reach the end.You've learned some, but you feel weakened.`,
+                    option:['Exit'],
+                    optionDesc:['Gain a Card'],
+                    link:[-1],
+                },{
+                    desc:`You leave, knowing it isn't worth the risk.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Unstable Building',id:2,list:0,
+            pages:[
+                {
+                    desc:`
+You enter a building, looking for something of value.
+But as soon as you step inside, the walls start shaking.
+You don't have much time, as the building will collapse any minute,
+but there's still enough to grab something before you leave.`,
+option:['Grab the briefcase','Grab the medical kit'],
+                    optionDesc:['',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`The building collapses as you carry the heavy case out,
+but you get out without major injuries. You get the materials out
+of the box and they turn out to be potentitally valuable.`,
+                    option:['Collect the money'],
+                    optionDesc:['Gain 300 Currency, Take 20 Damage'],
+                    link:[-1],
+                },{
+                    desc:`You manage to make it out, and the kit is exactly what it looks like.`,
+                    option:['Use the kit'],
+                    optionDesc:['Heal to Full'],
+                    link:[-1],
+                }
+            ],
+        },{
+            name:'Cliffs',id:3,list:0,
+            pages:[
+                {
+                    desc:
+`When crossing a large chasm, you fail to watch your step,
+and the rock you're standing on collapses beneath your feet,
+sending you falling into a gap. You can see the bottom from
+where you are, but it is a long drop.`,
+                    option:['Grab on to the side','Try to land on a ledge','Hope for the best'],
+                    optionDesc:['','',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`With some difficulty, you successfully grab on to the side and
+use friction with the edge to slow your fall. You seem to have
+dropped some items along the way, but they could be anywhere now.`,
+                    option:['Get out of the hole'],
+                    optionDesc:['Lose 1 Relic'],
+                    link:[-1],
+                },{
+                    desc:
+`The only ledge you can see is just a little out of reach.
+You manage to move over, but the landing knocks you unconscious.
+When you get up, your head is spinning, and you forget some
+of what you were doing beforehand.`,
+                    option:['Get out of the hole'],
+                    optionDesc:['Lose 2 Random Cards'],
+                    link:[-1],
+                },{
+                    desc:`You land with a crash. After a minute of lying in pain, you get back up and leave.`,
+                    option:['Get out of the hole'],
+                    optionDesc:['Lose 13 Health'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Dealer',id:4,list:0,
+            pages:[
+                {
+                    desc:
+`A mysterious man walks up to you and invites you into
+a dark alley. Prepared to fight, you are quite surprised 
+when he shows you several boxes Within them are
+mysterious liquids and scientific tools.\n
+He asks you which you would like to test.`,
+                    option:['Mixture A','Mixture B','Mixture C','Decline'],
+                    optionDesc:['Add Mixture A to Deck','Add Mixture B to Deck','Add Mixture C to Deck',''],
+                    link:[1,1,1,2],
+                },{
+                    desc:`He laughs and hands you the box, leaving into the darkness.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`He looks at you with a disappointed expression, and leaves.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'The Bomb',id:5,list:0,
+            pages:[
+                {
+                    desc:
+`You hear a call and rush over to help. The rebels
+have planted a bomb in the city. The locals have no
+idea how to defuse it, but you might have a guess.`,
+                    option:['Cut the red wire','Cut the green wire','Cut the blue wire','Back away'],
+                    optionDesc:['','','',''],
+                    link:[1,1,1,3],
+                },{
+                    desc:`You're thanked for preventing needless destruction.`,
+                    option:['Job well done'],
+                    optionDesc:['Gain 200 Currency'],
+                    link:[-1],
+                },{
+                    desc:`It blows up in your face. Lucky that it wasn't particularly powerful.`,
+                    option:['Ouch'],
+                    optionDesc:['Lose 30 Health'],
+                    link:[-1],
+                },{
+                    desc:
+`You escape the explosion. How are you supposed
+to know how to defuse a bomb?`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },
     ],color:{
         card:[
             {
@@ -872,7 +1046,7 @@ stage={scale:0,scene:'map'}
 game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 options={damage:false,alt:false}
-graphics={main:0,backgroundGen:5,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[]}
+graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[]}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

@@ -188,6 +188,13 @@ class combatantManager{
                     }
                 }
             break
+            case 'event':
+                for(let a=0,la=this.combatants.length;a<la;a++){
+                    if(this.combatants[a].team>0){
+                        this.combatants[a].displayInfo('event')
+                    }
+                }
+            break
         }
     }
     update(scene){
@@ -204,7 +211,7 @@ class combatantManager{
                     }
                 }
             break
-            case 'rest':
+            case 'rest': case 'event':
                 for(let a=0,la=this.combatants.length;a<la;a++){
                     for(let b=0;b<game.animRate;b++){
                         this.combatants[a].updatePassive()

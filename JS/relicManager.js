@@ -69,6 +69,9 @@ class relicManager{
         this.position[player]++
         this.total[player]++
         this.get(types.relic[type].id,player)
+        if(type>0){
+            this.battle.stats.relic[player]++
+        }
     }
     loseRelic(type){
         this.active[types.relic[type].id]-=1

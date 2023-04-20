@@ -40,6 +40,7 @@ class itemManager{
                 break
             }
         }
+        this.battle.stats.item[player]++
     }
     addRandomItem(player){
         let possible=[0,0,0,1,1,2]

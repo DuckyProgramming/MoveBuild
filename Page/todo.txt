@@ -1,18 +1,18 @@
 Animations:
 
 Bugs:
+trig lookup tables
 
 Mechanics:
-Lose-Stats(Same stats as win though)
 Shop Relics (Concept)
 Sell Relics
 Menu
-Event-Off Unknown
 Boss Rewards
 Next World
 Partnership Cards?
 
 Battle Content:
+Enemy with a gun (range 6)
 Weak Enemy
 Innate Cards
 2 Tile Move
@@ -31,6 +31,10 @@ Formation of the Shop Relics
 Nearly All Boss Relics are Fine
 
 More Items:
+health items
+
+More Events:
+all imports
 
 More Cards:
 Deal Damage and Gain Energy? (Jab?)

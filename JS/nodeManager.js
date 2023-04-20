@@ -55,6 +55,8 @@ class nodeManager{
     }
     enterNode(type){
         this.battle.relicManager.activate(7,[type])
+        this.battle.stats.node[0]++
+        this.battle.stats.node[1+type]++
         switch(type){
             case 0:
                 transition.scene='battle'
@@ -77,9 +79,10 @@ class nodeManager{
                 this.battle.setupShop()
             break
             case 5:
-                let send=this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
+                let send=5//this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
                 if(send==5){
                     transition.scene='event'
+                    this.battle.setupEvent()
                 }else{
                     this.enterNode(send)
                 }

@@ -23,7 +23,7 @@ class overlayManager{
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[11,3,10,0,1,2,4,5,6,7,8,9]
+        this.priority=[3,10,0,1,2,4,5,6,7,8,9,11]
         this.anyActive=false
     }
     copyOverlays(){

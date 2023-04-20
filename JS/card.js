@@ -52,14 +52,20 @@ class card{
             switch(type){
                 case 0: case 2:
                     let damage=effect
+                    let totalStr=0
                     if(user.status.main[6]>0){
-                        damage+=user.status.main[6]
-                    }
-                    if(user.status.main[12]>0){
-                        damage+=user.status.main[12]
+                        totalStr+=user.status.main[6]
                     }
                     if(user.status.main[17]>0){
                         damage+=user.status.main[17]
+                    }
+                    if(totalStr>0){
+                        damage*=1+totalStr*0.2
+                    }else if(totalStr<0){
+                        damage*=max(0.2,1+totalStr*0.1)
+                    }
+                    if(user.status.main[12]>0){
+                        totalStr+=user.status.main[12]
                     }
                     if(this.strike&&this.battle.relicManager.hasRelic(50,this.player)){
                         damage+=2
@@ -70,7 +76,7 @@ class card{
                     if(user.status.main[8]>0){
                         damage*=0.75
                     }
-                    damage=floor(damage)
+                    damage=round(damage*10)/10
                     if(type==0){
                         return damage==effect?effect:effect+` (${damage})`
                     }else if(type==2){
@@ -78,16 +84,22 @@ class card{
                     }
                 case 1: case 3:
                     let block=effect
+                    let totalDex=0
                     if(user.status.main[7]>0){
-                        block+=user.status.main[7]
+                        totalDex+=user.status.main[7]
                     }
                     if(user.status.main[18]>0){
-                        block+=user.status.main[18]
+                        totalDex+=user.status.main[18]
+                    }
+                    if(totalDex>0){
+                        block*=1+totalDex*0.2
+                    }else if(totalDex<0){
+                        block*=max(0.2,1+totalDex*0.1)
                     }
                     if(user.status.main[9]>0){
                         block*=0.75
                     }
-                    block=floor(block)
+                    block=round(block*10)/10
                     if(type==1){
                         return block==effect?effect:effect+` (${block})`
                     }else if(type==3){
@@ -183,6 +195,9 @@ class card{
             case 69: string+=`Add ${this.effect[0]} Random\nColorless Card${this.effect[0]>1?`s`:``}\nto Your Hand`; break
             case 70: string+=`Place a Card\non Top of Your\nDraw Pile\nIt Costs 0\nTemporarily`; break
             case 71: string+=`Choose Between 3\nCards to Add\nto Your Hand\nIt Costs 0`; break
+            case 72: string+=`Gain ${this.effect[0]} Strength\nLose ${this.effect[1]} Health`; break
+            case 73: string+=`Gain ${this.effect[0]} Dexterity\nLose ${this.effect[1]} Health`; break
+            case 74: string+=`Gain ${this.effect[0]} Buffer\nLose ${this.effect[1]} Health`; break
             
         }
         if(string[string.length-1]=='\n'){

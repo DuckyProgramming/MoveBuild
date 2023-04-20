@@ -21,7 +21,7 @@ class battle{
         this.encounter={class:0}
         this.currency={money:[]}
         this.energy={main:[],gen:[],base:[]}
-        this.stats={killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[]}
+        this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         
         this.turn={main:0,total:0,time:0,accelerate:0}
         this.anim={reserve:1,discard:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],exit:1,afford:0,upAfford:false}
@@ -36,19 +36,18 @@ class battle{
     }
     initialManagers(){
         this.cardManagers=[]
+        this.optionManagers=[]
+        this.perkManagers=[]
+        this.eventManagers=[]
         for(let a=0,la=this.player.length;a<la;a++){
             this.cardManagers.push(new cardManager(this.layer,this,a))
-            this.cardManagers[a].initialDeck()
-        }
-        this.optionManagers=[]
-        for(let a=0,la=this.player.length;a<la;a++){
             this.optionManagers.push(new optionManager(this.layer,this,a))
+            this.perkManagers.push(new perkManager(this.layer,this,a))
+            this.eventManagers.push(new eventManager(this.layer,this,a))
+            this.cardManagers[a].initialDeck()
+            this.eventManagers[a].initial()
         }
         this.optionManagers.forEach(optionManager=>optionManager.assemble())
-        this.perkManagers=[]
-        for(let a=0,la=this.player.length;a<la;a++){
-            this.perkManagers.push(new perkManager(this.layer,this,a))
-        }
         this.perkManagers.forEach(perkManager=>perkManager.assemble())
     }
     initial(){
@@ -72,6 +71,9 @@ class battle{
             this.stats.drawn.push(0)
             this.stats.played.push([0,0,0,0,0])
             this.stats.taken.push([0,0,0])
+            this.stats.card.push(0)
+            this.stats.relic.push(0)
+            this.stats.item.push(0)
         }
     }
     initialGraphics(){
@@ -152,7 +154,12 @@ class battle{
     setupStash(){
         this.relicManager.setupStash()
     }
+    setupEvent(){
+        this.eventManagers.forEach(eventManager=>eventManager.pickEvent())
+        this.eventManagers.forEach(eventManager=>eventManager.setup())
+    }
     setupStats(){
+        this.overlayManager.closeAll()
         this.overlayManager.overlays[11].forEach(overlay=>overlay.active=true)
     }
     addCombatant(position,type,team,direction){
@@ -227,10 +234,14 @@ class battle{
             this.turnManager.loadEnemyTurns()
             this.combatantManager.enableCombatants()
         }else{
+            
             this.cardManagers[this.turn.main].turnDraw()
             this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
             this.turn.time=game.turnTime
             this.counter.turnPlayed=[0,0,0,0,0]
+            if(this.turn.total==1){
+                this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+            }
         }
         this.attackManager.clear()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
@@ -423,7 +434,22 @@ class battle{
                 this.displayCurrency()
             break
             case 'victory':
-                /*graphical code*/
+                this.layer.image(graphics.backgrounds[2],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.player.length;a<la;a++){
+                    this.graphics.combatants[2][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                }
+                for(let a=0,la=this.colorDetail.length;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    this.layer.strokeWeight(3*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),496,32*this.anim.deck[a],24*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.fill(0)
+                    this.layer.noStroke()
+                    this.layer.textSize(8*this.anim.deck[a])
+                    this.layer.text('Deck',26+a*(this.layer.width-52),496-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),496+4*this.anim.deck[a])
+                }
+                this.combatantManager.displayInfo(stage.scene)
                 this.overlayManager.display()
             break
             case 'defeat':
@@ -431,6 +457,18 @@ class battle{
                 for(let a=0,la=this.player.length;a<la;a++){
                     this.graphics.combatants[1][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
+                for(let a=0,la=this.colorDetail.length;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    this.layer.strokeWeight(3*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),496,32*this.anim.deck[a],24*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.fill(0)
+                    this.layer.noStroke()
+                    this.layer.textSize(8*this.anim.deck[a])
+                    this.layer.text('Deck',26+a*(this.layer.width-52),496-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),496+4*this.anim.deck[a])
+                }
+                this.combatantManager.displayInfo(stage.scene)
                 this.overlayManager.display()
             break
             case 'stash':
@@ -446,6 +484,26 @@ class battle{
                     this.graphics.combatants[0][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.perkManagers.forEach(perkManager=>perkManager.display())
+                this.overlayManager.display()
+            break
+            case 'event':
+                this.layer.image(graphics.backgrounds[5],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.player.length;a<la;a++){
+                    //this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                }
+                for(let a=0,la=this.colorDetail.length;a<la;a++){
+                    this.layer.fill(this.colorDetail[a].fill)
+                    this.layer.stroke(this.colorDetail[a].stroke)
+                    this.layer.strokeWeight(3*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),496,32*this.anim.deck[a],24*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.fill(0)
+                    this.layer.noStroke()
+                    this.layer.textSize(8*this.anim.deck[a])
+                    this.layer.text('Deck',26+a*(this.layer.width-52),496-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),496+4*this.anim.deck[a])
+                }
+                this.combatantManager.displayInfo(stage.scene)
+                this.eventManagers.forEach(eventManager=>eventManager.display())
                 this.overlayManager.display()
             break
         }
@@ -533,9 +591,7 @@ class battle{
                 }
             break
             case 'rest':
-                for(let a=0,la=this.optionManagers.length;a<la;a++){
-                    this.optionManagers[a].update()
-                }
+                this.optionManagers.forEach(optionManager=>optionManager.update())
                 this.combatantManager.update(scene)
                 this.overlayManager.update()
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
@@ -563,6 +619,9 @@ class battle{
             break
             case 'victory': case 'defeat':
                 this.overlayManager.update()
+                for(let a=0,la=this.anim.deck.length;a<la;a++){
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24}),1,1.5,5)
+                }
                 let allClosed=true
                 for(let a=0,la=this.overlayManager.overlays[11].length;a<la;a++){
                     if(this.overlayManager.overlays[11][a].active){
@@ -590,6 +649,26 @@ class battle{
                 if(allPerkComplete){
                     transition.trigger=true
                     transition.scene='map'
+                }
+            break
+            case 'event':
+                this.eventManagers.forEach(eventManager=>eventManager.update())
+                this.combatantManager.update(scene)
+                this.overlayManager.update()
+                for(let a=0,la=this.anim.deck.length;a<la;a++){
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                }
+                if(!this.overlayManager.anyActive){
+                    let allEventsComplete=true
+                    for(let a=0,la=this.eventManagers.length;a<la;a++){
+                        if(!this.eventManagers[a].complete){
+                            allEventsComplete=false
+                        }
+                    }
+                    if(allEventsComplete){
+                        transition.trigger=true
+                        transition.scene='map'
+                    }
                 }
             break
         }
@@ -666,6 +745,12 @@ class battle{
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onClick()
                 }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }
+                }
             break
             case 'stash':
                 this.relicManager.onClick(stage.scene)
@@ -675,6 +760,19 @@ class battle{
                     this.overlayManager.onClick()
                 }else{
                     this.perkManagers.forEach(perkManager=>perkManager.onClick())
+                }
+            break
+            case 'event':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onClick()
+                }else{
+                    this.eventManagers.forEach(eventManager=>eventManager.onClick())
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})){
+                            this.overlayManager.overlays[4][a].active=true
+                            this.overlayManager.overlays[4][a].activate()
+                        }
+                    }
                 }
             break
         }
@@ -754,6 +852,12 @@ class battle{
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onKey(key,code)
                 }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }
+                }
             break
             case 'stash':
                 this.relicManager.onKey(stage.scene,key,code)
@@ -766,6 +870,24 @@ class battle{
                         if(!this.perkManagers[a].complete){
                             this.perkManagers[a].onKey(key,code)
                             break
+                        }
+                    }
+                }
+            break
+            case 'event':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
+                }else{
+                    for(let a=0,la=this.eventManagers.length;a<la;a++){
+                        if(!this.eventManagers[a].complete){
+                            this.eventManagers[a].onKey(key,code)
+                            break
+                        }
+                    }
+                    for(let a=0,la=this.cardManagers.length;a<la;a++){
+                        if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                            this.overlayManager.overlays[4][a].active=true
+                            this.overlayManager.overlays[4][a].activate()
                         }
                     }
                 }
