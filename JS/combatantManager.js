@@ -84,8 +84,8 @@ class combatantManager{
             }
         }
     }
-    addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction){
-        this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30))
+    addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
+        this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
         this.id++
     }
     getCombatantIndex(tileX,tileY){

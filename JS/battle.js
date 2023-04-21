@@ -54,7 +54,7 @@ class battle{
         this.combatantManager.clearCombatants()
         this.nodeManager.setupMap()
         for(let a=0,la=this.player.length;a<la;a++){
-            this.addCombatant({x:0,y:0},this.player[a],a+1,0)
+            this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
             this.colorDetail.push(types.color.card[this.player[a]])
             this.currency.money.push(100)
             this.energy.main.push(0)
@@ -123,11 +123,11 @@ class battle{
             }
         }
         for(let a=0,la=encounter.enemy.length;a<la;a++){
-            this.addCombatant(encounter.enemy[a].position,findName(encounter.enemy[a].name,types.combatant),0,0)
+            this.addCombatant(encounter.enemy[a].position,findName(encounter.enemy[a].name,types.combatant),0,0,false)
             this.counter.enemy++
         }
         for(let a=0,la=encounter.reinforce.length;a<la;a++){
-            this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},type:encounter.reinforce[a].type,turn:encounter.reinforce[a].turn})
+            this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},type:encounter.reinforce[a].type,turn:encounter.reinforce[a].turn,minion:false})
             this.counter.enemy++
         }
         
@@ -162,10 +162,10 @@ class battle{
         this.overlayManager.closeAll()
         this.overlayManager.overlays[11].forEach(overlay=>overlay.active=true)
     }
-    addCombatant(position,type,team,direction){
+    addCombatant(position,type,team,direction,minion){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
-        this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2)):direction)
+        this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2)):direction,minion)
     }
     positionCombatant(combatant,position){
         if(position.x==-1){
@@ -183,7 +183,7 @@ class battle{
     loadReinforce(){
         for(let a=0,la=this.reinforce.back.length;a<la;a++){
             if(this.turn.total+this.turn.accelerate>=this.reinforce.back[a].turn){
-                this.reinforce.front.push({position:{x:this.reinforce.back[a].position.x,y:this.reinforce.back[a].position.y},type:this.reinforce.back[a].type})
+                this.reinforce.front.push({position:{x:this.reinforce.back[a].position.x,y:this.reinforce.back[a].position.y},type:this.reinforce.back[a].type,minion:this.reinforce.back[a].minion})
                 this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.back[a].position.x,this.reinforce.back[a].position.y)].reinforce=true
                 this.reinforce.back.splice(a,1)
                 a--
@@ -194,7 +194,7 @@ class battle{
     sendReinforce(){
         for(let a=0,la=this.reinforce.front.length;a<la;a++){
             if(this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].occupied==0){
-                this.addCombatant(this.reinforce.front[a].position,this.reinforce.front[a].type,1,1)
+                this.addCombatant(this.reinforce.front[a].position,this.reinforce.front[a].type,1,1,this.reinforce.front[a].minion)
                 this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
                 this.reinforce.front.splice(a,1)
                 a--
@@ -241,6 +241,9 @@ class battle{
             this.counter.turnPlayed=[0,0,0,0,0]
             if(this.turn.total==1){
                 this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                if(this.relicManager.hasRelic(107,this.turn.main)){
+                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                }
             }
         }
         this.attackManager.clear()
@@ -266,6 +269,9 @@ class battle{
         this.counter.turnPlayed=[0,0,0,0,0]
         if(this.turn.total==1){
             this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+            if(this.relicManager.hasRelic(107,this.turn.main)){
+                this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+            }
         }
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){

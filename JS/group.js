@@ -167,12 +167,12 @@ class group{
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1){
+                if(spec==1||spec==2){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
-                }
-                if(spec==2){
-                    list[list.length-1].cost=list[list.length-1].base.cost
+                    if(spec==2){
+                        list[list.length-1].cost=list[list.length-1].base.cost
+                    }
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -342,9 +342,6 @@ class group{
                             }
                         }
                         this.cards.forEach(card=>card.anotherPlayed())
-                        for(let c=0,lc=this.cards.length;c<lc;c++){
-                            this.cards[c].anotherPlayed()
-                        }
                         this.battle.playCard(this.cards[b],this.player)
                     }
                 }
@@ -461,6 +458,7 @@ class group{
                                 la--
                             }
                         }else if(this.cards[a].exhaust){
+                            this.battle.relicManager.activate(10,[this.player])
                             this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
                             a--
                             la--

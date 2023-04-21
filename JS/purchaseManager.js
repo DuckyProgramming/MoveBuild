@@ -64,6 +64,17 @@ class purchaseManager{
             this.purchases.push(new purchase(this.layer,this.battle,1,750,200,2,[this.battle.relicManager.hasRelic(97,0)?120:200,this.battle.relicManager.hasRelic(97,1)?120:200],[]))
         }
     }
+    bogo(player,type){
+        let list=[]
+        for(let a=0,la=this.purchases.length;a<la;a++){
+            if(this.purchases[a].type==type&&this.purchases[a].cost[player]>0&&this.purchases[a].usable){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            this.purchases[list[floor(random(0,list.length))]].cost[player]=0
+        }
+    }
     display(){
         for(let a=0,la=this.purchases.length;a<la;a++){
             if(this.purchases[a].size<=1){

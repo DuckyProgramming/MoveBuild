@@ -2,6 +2,7 @@ Animations:
 
 Bugs:
 trig lookup tables
+streamline getPlayerCombatantIndex
 
 Mechanics:
 Shop Relics (Concept)

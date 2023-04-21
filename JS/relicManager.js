@@ -29,7 +29,7 @@ class relicManager{
             this.player.push(-1)
             switch(types.relic[a].id){
                 case 4: case 17: case 37: case 38: case 39: case 42: case 43: case 44: case 60: case 63:
-                case 64: case 70: case 73: case 78: case 90: case 93: case 111:
+                case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111:
                     this.detail.push(0)
                 break
                 default:
@@ -51,10 +51,10 @@ class relicManager{
         }
         let relics=copyArrayStack(this.listing.relic)
         let possible=[0,0,0/*,1,1,2*/]
-        for(let a=0,la=3;a<la;a++){
+        for(let a=0,la=this.active[109]>0?5:3;a<la;a++){
             let rarity=possible[floor(random(0,possible.length))]
             let index=floor(random(0,relics[rarity].length))
-            this.displayRelics.push(new relic(this.layer,1-this.battle.player.length,this.layer.width/2,this.layer.height/2-100+a*100,relics[rarity][index],2))
+            this.displayRelics.push(new relic(this.layer,1-this.battle.player.length,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
             relics[rarity].splice(index,1)
         }
     }
@@ -202,6 +202,15 @@ class relicManager{
             }
         }
     }
+    loseRandom(player){
+        let possible=[]
+        for(let a=0,la=this.relics.length;a<la;a++){
+            if(this.player[this.relics[a].type]==player&&this.relics[a].active&&this.relics[a].type>0){
+                possible.push(this.relics[a].type)
+            }
+        }
+        this.lose(possible[floor(random(0,possible.length))],player)
+    }
     hasRelic(type,player){
         return this.active[type]>0&&(this.player[type]==player||player==-1)
     }
@@ -270,6 +279,7 @@ class relicManager{
                             }
                         }
                         if(this.active[39]>0){this.detail[39]=0}
+                        if(this.active[108]>0){this.detail[108]=0}
                     break
                     case 2:
                         if(this.active[41]>0){
@@ -277,6 +287,11 @@ class relicManager{
                         }
                         if(this.active[72]>0){
                             this.battle.energy.main[this.player[72]]+=2*this.active[72]
+                        }
+                    break
+                    case 3:
+                        if(this.active[112]>0){
+                            this.relicPlayer(112).addBlock(24*this.active[112])
                         }
                     break
                 }
@@ -302,6 +317,12 @@ class relicManager{
                     this.detail[90]++
                     if(this.detail[90]%5==0){
                         this.relicPlayer(90).statusEffect('Intangible',this.active[90])
+                    }
+                }
+                if(this.active[105]>0){
+                    let ownerCombatant=this.relicPlayer(105)
+                    if(ownerCombatant.life<ownerCombatant.base.life/2){
+                        ownerCombatant.statusEffect('Strength',this.active[105])
                     }
                 }
             break
@@ -342,7 +363,16 @@ class relicManager{
                             this.battle.cardManagers[this.player[52]].hand.add(findName('Shiv',types.card),0,0)
                         }
                     }
+                    
                 }else{
+                    if(args[0]==2){
+                        if(this.active[114]>0&&args[1]==this.player[114]){
+                            for(let a=0,la=this.active[114];a<la;a++){
+                                let pos=floor(random(0,this.battle.cardManagers[this.player[114]].discard.cards.length))
+                                this.battle.cardManagers[this.player[114]].discard.send(this.battle.cardManagers[this.player[114]].hand.cards,pos,pos+1,1)
+                            }
+                        }
+                    }
                     if(this.active[82]>0&&args[1]==this.player[82]&&args[2][0]<3){
                         this.battle.cardManagers[this.player[82]].draw(3*this.active[82])
                     }
@@ -351,6 +381,11 @@ class relicManager{
                     this.detail[70]++
                     if(this.detail[70]%3==0){
                         this.battle.cardManagers[this.player[70]].draw(this.active[70])
+                    }
+                }
+                if(this.active[115]>0&&args[1]==this.player[115]){
+                    for(let a=0,la=this.active[115];a<la;a++){
+                        this.battle.cardManagers[this.player[115]].hand.add(findName('Back\nUp',types.card),0,0)
                     }
                 }
             break
@@ -364,6 +399,9 @@ class relicManager{
                 }
                 if(this.active[95]>0){
                     this.relicPlayer(95).statusEffect('Dexterity',2*this.active[95])
+                }
+                if(this.active[116]>0){
+                    this.battle.getCurrency(5*this.active[116],this.player[116])
                 }
             break
             case 4://playing card [class,plauer]
@@ -489,6 +527,14 @@ class relicManager{
                     let player=this.relicPlayer(68)
                     if(player.block<=0){
                         player.addBlock(6)
+                    }
+                }
+            break
+            case 10://card exhausted [player]
+                if(this.active[112]>0&&args[0]==this.player[112]){
+                    let manager=this.battle.cardManagers[this.player[112]]
+                    for(let a=0,la=this.active[112];a<la;a++){
+                        manager.hand.add(manager.listing.card[this.battle.player[manager.player]][3][floor(random(0,manager.listing.card[this.battle.player[manager.player]][3].length))],0,this.battle.player[this.player[112]])
                     }
                 }
             break

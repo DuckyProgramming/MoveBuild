@@ -41,7 +41,14 @@ class purchase{
             this.deSize=true
             switch(this.type){
                 case 1:
-                    this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color)
+                    if(this.battle.relicManager.hasRelic(110,purchaser)){
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,max(types.card[this.card.type].levels.length-1,this.card.level+this.battle.relicManager.active[110]),this.card.color)
+                    }else{
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color)
+                    }
+                    if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0){
+                        this.battle.purchaseManager.bogo(purchaser,1)
+                    }
                 break
                 case 2:
                     this.battle.overlayManager.overlays[6][purchaser].active=true
@@ -49,6 +56,9 @@ class purchase{
                 break
                 case 3:
                     this.battle.relicManager.addRelic(this.relic.type,purchaser)
+                    if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0){
+                        this.battle.purchaseManager.bogo(purchaser,3)
+                    }
                 break
             }
         }

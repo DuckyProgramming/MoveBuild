@@ -10,6 +10,7 @@ class optionManager{
         this.world=0
 
         this.complete=false
+        this.selections=0
         this.selected=-1
     }
     assemble(){
@@ -24,6 +25,10 @@ class optionManager{
     addOption(type){
         this.options.forEach(option=>option.position.x-=75)
         this.options.push(new option(this.layer,this.battle.player.length-1-this.player,this.layer.width/2+this.options.length*75,this.layer.height/4+this.posKey*60,type))
+    }
+    finishSelection(){
+        this.selections++
+        this.selected=-1
     }
     removeOption(type){
         for(let a=0,la=this.options.length;a<la;a++){
@@ -40,10 +45,11 @@ class optionManager{
     triggerOption(type){
         switch(type){
             case 0:
-                this.complete=true
+                this.selections+=10
+                this.selected=-1
             break
             case 1:
-                this.complete=true
+                this.finishSelection()
                 this.battle.combatantManager.combatants[this.player].heal(this.battle.relicManager.hasRelic(65,this.id)?round(this.battle.combatantManager.combatants[this.player].base.life)*0.4+10:round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
             break
             case 2:
@@ -51,11 +57,11 @@ class optionManager{
                 this.battle.overlayManager.overlays[5][this.player].activate()
             break
             case 3:
-                this.complete=true
+                this.finishSelection()
                 this.battle.combatantManager.combatants[this.player].gainMaxHP(4)
             break
             case 4:
-                this.complete=true
+                this.finishSelection()
                 this.battle.relicManager.addSetRelic(floor(random(0,2)),this.player)
             break
             case 5:
@@ -63,7 +69,7 @@ class optionManager{
                 this.battle.overlayManager.overlays[6][this.player].activate()
             break
             case 6:
-                this.complete=true
+                this.finishSelection()
                 this.battle.relicManager.detail[60]++
             break
             case 7:
@@ -74,6 +80,7 @@ class optionManager{
     }
     reset(){
         this.complete=false
+        this.selections=0
         this.selected=-1
         for(let a=0,la=this.options.length;a<la;a++){
             this.options[a].complete=false
@@ -88,12 +95,15 @@ class optionManager{
         if(this.selected==2&&!this.battle.overlayManager.overlays[5][this.player].active||
             this.selected==5&&!this.battle.overlayManager.overlays[6][this.player].active||
             this.selected==7&&!this.battle.overlayManager.overlays[3][this.player].active){
+            this.finishSelection()
+        }
+        if(this.selections>=(this.battle.relicManager.hasRelic(117,this.player)?2:1)){
             this.complete=true
         }
     }
     onClick(){
         for(let a=0,la=this.options.length;a<la;a++){
-            if(dist(inputs.rel.x,inputs.rel.y,this.options[a].position.x,this.options[a].position.y)<50&&this.selected==-1){
+            if(dist(inputs.rel.x,inputs.rel.y,this.options[a].position.x,this.options[a].position.y)<50&&this.selected==-1&&!this.options[a].complete){
                 this.options[a].complete=true
                 this.triggerOption(this.options[a].type)
                 this.selected=this.options[a].type
@@ -105,7 +115,7 @@ class optionManager{
     }
     onKey(key,code){
         for(let a=0,la=this.options.length;a<la;a++){
-            if((int(key)+9)%10==a&&this.selected==-1){
+            if((int(key)+9)%10==a&&this.selected==-1&&!this.options[a].complete){
                 this.options[a].complete=true
                 this.triggerOption(this.options[a].type)
                 this.selected=this.options[a].type

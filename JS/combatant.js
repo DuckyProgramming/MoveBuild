@@ -1,5 +1,5 @@
 class combatant{
-    constructor(layer,battle,x,y,relativeX,relativeY,tileX,tileY,type,team,id,direction){
+    constructor(layer,battle,x,y,relativeX,relativeY,tileX,tileY,type,team,id,direction,minion=false){
         this.layer=layer
         this.battle=battle
         this.position={x:x,y:y}
@@ -8,7 +8,9 @@ class combatant{
         this.type=type
         this.team=team
         this.id=id
+        this.minion=minion
         this.offset={position:{x:0,y:0},life:{x:0,y:25}}
+
         this.fade=0
 
         this.name=types.combatant[this.type].name
@@ -4729,7 +4731,9 @@ class combatant{
                 this.dead=true
                 this.battle.counter.killed++
                 this.battle.combatantManager.reorder()
-                this.battle.relicManager.activate(3)
+                if(!this.minion){
+                    this.battle.relicManager.activate(3)
+                }
                 if(this.battle.turn.main<this.battle.player.length){
                     this.battle.stats.killed[this.battle.turn.main]++
                 }

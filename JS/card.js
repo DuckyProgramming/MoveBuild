@@ -198,7 +198,8 @@ class card{
             case 72: string+=`Gain ${this.effect[0]} Strength\nLose ${this.effect[1]} Health`; break
             case 73: string+=`Gain ${this.effect[0]} Dexterity\nLose ${this.effect[1]} Health`; break
             case 74: string+=`Gain ${this.effect[0]} Buffer\nLose ${this.effect[1]} Health`; break
-            
+            case 75: string+=`Move ${this.effect[0]} Tile${this.effect[0]>1?`s`:``}\nAway From Enemy`; break
+
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)

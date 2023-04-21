@@ -492,14 +492,20 @@ types={
         },{
             name:'Mixture B',rarity:-1,list:0,
             levels:[
-                {effect:[6,4],attack:72,cost:0,target:[0],spec:[1],class:4},
-                {effect:[8,4],attack:72,cost:0,target:[0],spec:[1],class:4},
+                {effect:[6,4],attack:73,cost:0,target:[0],spec:[1],class:4},
+                {effect:[8,4],attack:73,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Mixture C',rarity:-1,list:0,
             levels:[
-                {effect:[1,4],attack:72,cost:0,target:[0],spec:[1],class:4},
-                {effect:[2,4],attack:72,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1,4],attack:74,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,4],attack:74,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Back\nUp',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:75,cost:0,target:[2,1,1],spec:[1,4],class:3},
+                {effect:[1],attack:75,cost:0,target:[2,1,2],spec:[1,4],class:3},
             ],
         },
         
@@ -688,20 +694,20 @@ types={
         {name:'',internal:'Skip Events',id:103,rarity:1,list:0,description:'You Can Skip Events'},
         {name:'',internal:'Remove Max HP',id:104,rarity:1,list:0,description:'When a Card is Removed,\nGain 7 Max HP'},
         {name:'',internal:'Low Health Strength',id:105,rarity:1,list:0,description:'Gain 1 Strength Every Turn\nWhen Health Below 50%'},
-        {name:'',internal:'Play Status',id:106,rarity:1,list:0,description:'Unplayable Status\nCards Can be Played'},
+        {name:'',internal:'Status Immunity',id:106,rarity:1,list:0,description:'Status Cards Other Than\nFatigue Exhaust When Drawn'},
         {name:'',internal:'Early Initiative',id:107,rarity:1,list:0,description:'Start Each Combat With 2 Initiative'},
         {name:'',internal:'Less Fatigue',id:108,rarity:1,list:0,description:'Remove the First Fatigue\nAdded Each Combat'},
         {name:'',internal:'More Stashes',id:109,rarity:1,list:0,description:'Stashes Contain 2 More Relics'},
-        /*sus*/{name:'',internal:'Max HP Change',id:110,rarity:1,list:0,description:'When You Gain Max HP, Gain 50% More\nWhen You Lose Max HP, Lose 50% Less'},
+        {name:'',internal:'Upgrade Purchases',id:110,rarity:1,list:0,description:'Upgrade All\nCards at the Shop'},
 
         {name:'',internal:'3 Enemy 1 HP',id:111,rarity:2,list:0,description:'Next 3 Combats,\nEnemies Have 1 HP'},
         {name:'',internal:'Turn 3 Block',id:112,rarity:2,list:0,description:'Add 24 Block at\nthe Start of Turn 2'},
         {name:'',internal:'Exhaust Random',id:113,rarity:2,list:0,description:'When a Card is Exhausted,\nAdd a Random Card to Your Hand'},
-        {name:'',internal:'Reuse Card',id:114,rarity:2,list:0,description:'At the Start of Turn 2, Put a Card From\nYour Discard Pile in Your Hand'},
+        {name:'',internal:'Reuse Card',id:114,rarity:2,list:0,description:'At the Start of Turn 2, Put 2 Cards From\nYour Discard Pile in Your Hand'},
         {name:'',internal:'Always Back Up',id:115,rarity:2,list:0,description:'If You Draw No Movement Cards,\nAdd a Back Up to Your Hand'},
-        /*sus*/{name:'',internal:'Juke',id:116,rarity:2,list:0,description:'Can Go Through 1 Enemy\nWhen Moving Per Combat'},
+        {name:'',internal:'Death Money',id:116,rarity:2,list:0,description:'Get 5 Currency When an Enemy Dies'},
         {name:'',internal:'Double Rest',id:117,rarity:2,list:0,description:'Can Pick 2 Different\nEffects When Resting'},
-        /*sus*/{name:'',internal:'Buy One Get One',id:118,rarity:2,list:0,description:'After Purchasing a Card or a\nRelic, Another Becomes Free'},
+        {name:'',internal:'Buy One Get One',id:118,rarity:2,list:0,description:'After Purchasing a Card or a\nRelic, Another Becomes Free'},
         {name:'',internal:'Premium',id:119,rarity:2,list:0,description:'Whenever You Gain\nCurrency, Gain 10 More'},
         {name:'',internal:'Planned Attack',id:120,rarity:2,list:0,description:'Each Turn, If the First Card in Draw Pile\nis an Attack, Draw it, it Costs 1 Less'},
         

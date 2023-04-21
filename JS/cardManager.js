@@ -69,13 +69,27 @@ class cardManager{
                 this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),1)
             }
         }
+        if(this.battle.relicManager.hasRelic(106,this.player)){
+            for(let a=0,la=this.hand.cards.length;a<la;a++){
+                if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
+                    this.battle.relicManager.activate(10,[this.player])
+                    this.hand.send(this.exhaust.cards,a,a+1,0)
+                    a--
+                    la--
+                }
+            }
+        }
     }
     turnDraw(){
         this.draw(this.drawAmount)
     }
     fatigue(){
-        this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
-        this.drop.addDrop(findName('Fatigue',types.card),0,game.playerNumber+1)
+        if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){
+            this.battle.relicManager.detail[108]=1
+        }else{
+            this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
+            this.drop.addDrop(findName('Fatigue',types.card),0,game.playerNumber+1)
+        }
     }
     transformCard(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][floor(random(0,this.listing.card[base.list][3].length))],base.level,base.color,base.id)

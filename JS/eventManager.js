@@ -43,8 +43,15 @@ class eventManager{
     display(){
         this.layer.fill(200,this.primaryFade*0.5)
         this.layer.noStroke()
+        if(this.battle.relicManager.hasRelic(103,this.player)){
+            this.layer.rect(this.posKey,35,120,40,10)
+        }
         this.layer.rect(this.posKey,300,360,480,10)
         this.layer.fill(0,this.primaryFade)
+        if(this.battle.relicManager.hasRelic(103,this.player)){
+            this.layer.textSize(20)
+            this.layer.text('Skip',this.posKey,35)
+        }
         this.layer.textSize(30)
         this.layer.text(this.name,this.posKey,100)
         for(let a=0,la=this.pages.length;a<la;a++){
@@ -92,7 +99,7 @@ class eventManager{
                     break
                     case 3:
                         if(this.page==1&&a==0){
-                            this.battle.relicManager.getRandomRelic(this.player)
+                            this.battle.relicManager.loseRandom(this.player)
                         }else if(this.page==2&&a==0){
                             for(let a=0;a<this.effect[0];a++){
                                 let index=floor(random(0,this.battle.cardManagers[this.player].listing.card[0][3].length))
@@ -141,6 +148,9 @@ class eventManager{
                     this.callInput(0,a)
                 }
             }
+            if(this.battle.relicManager.hasRelic(103,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:35},width:120,height:40})){
+                this.complete=true
+            }
         }
     }
     onKey(key,code){
@@ -149,6 +159,9 @@ class eventManager{
                 if(int(key)-1==a){
                     this.callInput(0,a)
                 }
+            }
+            if(this.battle.relicManager.hasRelic(103,this.player)&&code==ENTER){
+                this.complete=true
             }
         }
     }

@@ -379,6 +379,9 @@ class overlay{
                                         break
                                         case 4:
                                             if(this.battle.cardManagers[this.player].deck.remove(a)){
+                                                if(this.battle.relicManager.hasRelic(104,this.player)){
+                                                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].gainMaxHP(7*this.battle.relicManager.active[104])
+                                                }
                                                 a--
                                                 la--
                                             }

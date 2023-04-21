@@ -4,7 +4,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    for(let a=103;a<=110;a++){
+    for(let a=119;a<=120;a++){
         current.relicManager.addRelic(a,0)
     }
     //current.itemManager.addItem(2,0)
