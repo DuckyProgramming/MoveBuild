@@ -4,6 +4,7 @@ class battle{
         this.player=player
 
         this.initialized=false
+        this.players=this.player.length
         this.initialGraphics()
         this.initialManagers()
         this.tileManager=new tileManager(this.layer,this)
@@ -39,7 +40,7 @@ class battle{
         this.optionManagers=[]
         this.perkManagers=[]
         this.eventManagers=[]
-        for(let a=0,la=this.player.length;a<la;a++){
+        for(let a=0,la=this.players;a<la;a++){
             this.cardManagers.push(new cardManager(this.layer,this,a))
             this.optionManagers.push(new optionManager(this.layer,this,a))
             this.perkManagers.push(new perkManager(this.layer,this,a))
@@ -53,7 +54,7 @@ class battle{
     initial(){
         this.combatantManager.clearCombatants()
         this.nodeManager.setupMap()
-        for(let a=0,la=this.player.length;a<la;a++){
+        for(let a=0,la=this.players;a<la;a++){
             this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
             this.colorDetail.push(types.color.card[this.player[a]])
             this.currency.money.push(100)
@@ -87,7 +88,7 @@ class battle{
         }
         for(let a=0,la=graphics.backgroundGen;a<la;a++){
             this.graphics.combatants.push([[],[]])
-            for(let b=0,lb=this.player.length;b<lb;b++){
+            for(let b=0,lb=this.players;b<lb;b++){
                 this.graphics.combatants[a][0].push(setupCombatantBackground(a,this.player,b,lb,[0],this.layer))
                 this.graphics.combatants[a][1].push(setupCombatantBackground(a,this.player,b,lb,[1],this.layer))
             }
@@ -108,7 +109,7 @@ class battle{
         
         this.combatantManager.resetCombatants()
         
-        for(let a=0,la=this.player.length;a<la;a++){
+        for(let a=0,la=this.players;a<la;a++){
             this.anim.extra.push(0)
             this.anim.turn.push(0)
             this.anim.deck.push(1)
@@ -229,7 +230,7 @@ class battle{
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         this.turn.main++
-        if(this.turn.main>=this.player.length){
+        if(this.turn.main>=this.players){
             this.sendReinforce()
             this.turnManager.loadEnemyTurns()
             this.combatantManager.enableCombatants()
@@ -247,7 +248,7 @@ class battle{
             }
         }
         this.attackManager.clear()
-        if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
+        if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
             this.endTurn()
         }
     }
@@ -274,7 +275,7 @@ class battle{
             }
         }
         this.loadReinforce()
-        if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.player.length){
+        if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
             this.endTurn()
         }
     }
@@ -311,14 +312,15 @@ class battle{
         this.layer.textAlign(CENTER,CENTER)
     }
     getCurrency(amount,player){
-        this.stats.earned[player]+=amount
-        this.currency.money[player]+=amount
+        let bonus=this.relicManager.hasRelic(119,player)?10:0
+        this.stats.earned[player]+=amount+bonus
+        this.currency.money[player]+=amount+bonus
     }
     display(scene){
         switch(scene){
             case 'battle':
                 this.layer.background(110,115,120)
-                for(let a=0,la=this.player.length;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.layer.fill(mergeColor([225,255,255],[255,0,0],this.anim.afford))
                     this.layer.stroke(mergeColor([200,255,255],[255,0,0],this.anim.afford))
                     this.layer.strokeWeight(3)
@@ -394,7 +396,7 @@ class battle{
             break
             case 'rest':
                 this.layer.image(graphics.backgrounds[3],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.player.length;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[3][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
 			    this.layer.image(graphics.overlays[0],0,0,this.layer.width,this.layer.height)
@@ -441,7 +443,7 @@ class battle{
             break
             case 'victory':
                 this.layer.image(graphics.backgrounds[2],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.player.length;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[2][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
@@ -460,7 +462,7 @@ class battle{
             break
             case 'defeat':
                 this.layer.image(graphics.backgrounds[1],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.player.length;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[1][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
@@ -479,14 +481,14 @@ class battle{
             break
             case 'stash':
                 this.layer.image(graphics.backgrounds[4],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.player.length;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[4][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.relicManager.display(stage.scene)
             break
             case 'perk':
                 this.layer.image(graphics.backgrounds[0],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.player.length;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[0][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.perkManagers.forEach(perkManager=>perkManager.display())
@@ -494,8 +496,8 @@ class battle{
             break
             case 'event':
                 this.layer.image(graphics.backgrounds[5],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.player.length;a<la;a++){
-                    //this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
@@ -686,12 +688,12 @@ class battle{
                     this.itemManager.onClick(stage.scene)
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onClick(stage.scene)
-                    }else if(this.turn.main<this.player.length){
+                    }else if(this.turn.main<this.players){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:496},width:32,height:24})){
-                            this.overlayManager.overlays[1][this.turn.main].active=true
-                            this.overlayManager.overlays[1][this.turn.main].activate()
+                            this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
+                            this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:528},width:32,height:24})){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
@@ -790,12 +792,12 @@ class battle{
                     this.itemManager.onKey(stage.scene,key,code)
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onKey(key,code)
-                    }else if(this.turn.main<this.player.length){
+                    }else if(this.turn.main<this.players){
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
                         this.relicManager.onKey(stage.scene,key,code)
                         if(key=='r'||key=='R'){
-                            this.overlayManager.overlays[1][this.turn.main].active=true
-                            this.overlayManager.overlays[1][this.turn.main].activate()
+                            this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
+                            this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
                         }else if(key=='d'||key=='D'){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
@@ -811,7 +813,7 @@ class battle{
                 }else{
                     this.nodeManager.onKey(key,code)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }
@@ -829,7 +831,7 @@ class battle{
                         }
                     }
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }
@@ -843,7 +845,7 @@ class battle{
                     this.itemManager.onKey(stage.scene,key,code)
                     this.purchaseManager.onKey(key,code)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }
@@ -859,7 +861,7 @@ class battle{
                     this.overlayManager.onKey(key,code)
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
                         this.overlayManager.overlays[4][a].active=true
                         this.overlayManager.overlays[4][a].activate()
                     }
@@ -891,7 +893,7 @@ class battle{
                         }
                     }
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.player.length==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.player.length==2){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }

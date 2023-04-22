@@ -44,7 +44,7 @@ class turnManager{
         }
     }
     update(){
-        if(game.turnTime>0&&this.battle.turn.time<=0&&this.battle.turn.main<this.battle.player.length&&this.battle.attackManager.attacks.length==0&&this.turns.length==0){
+        if(game.turnTime>0&&this.battle.turn.time<=0&&this.battle.turn.main<this.battle.players&&this.battle.attackManager.attacks.length==0&&this.turns.length==0){
             this.battle.endTurn()
         }else{
             this.battle.turn.time--
@@ -67,7 +67,7 @@ class turnManager{
                         this.turns.splice(0,1)
                     }
                 }
-            }else if(this.battle.turn.main>=this.battle.player.length){
+            }else if(this.battle.turn.main>=this.battle.players){
                 if(this.auxiliary){
                     this.battle.turn.main=0
                 }else{

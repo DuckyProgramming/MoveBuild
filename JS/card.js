@@ -1,5 +1,5 @@
 class card{
-    constructor(layer,battle,player,x,y,type,level,color,id,cost=-1){
+    constructor(layer,battle,player,x,y,type,level,color,id,cost,additionalSpec,name,list,effect,attack,target,spec,cardClass){
         this.layer=layer
         this.battle=battle
         this.player=player
@@ -8,7 +8,7 @@ class card{
         this.level=level
         this.color=color
         this.id=id
-        this.cost=cost
+        this.cost=cost||-1
 
         this.width=90
         this.height=120
@@ -27,14 +27,15 @@ class card{
         this.anim={select:0,afford:0}
         this.colorDetail=types.color.card[this.color]
 
-        this.name=types.card[this.type].name
-        this.list=types.card[this.type].list
-        this.effect=types.card[this.type].levels[this.level].effect
-        this.attack=types.card[this.type].levels[this.level].attack
-        this.target=types.card[this.type].levels[this.level].target
-        this.spec=types.card[this.type].levels[this.level].spec
-        this.class=types.card[this.type].levels[this.level].class
+        this.name=name||types.card[this.type].name
+        this.list=list||types.card[this.type].list
+        this.effect=effect||types.card[this.type].levels[this.level].effect
+        this.attack=attack||types.card[this.type].levels[this.level].attack
+        this.target=target||types.card[this.type].levels[this.level].target
+        this.spec=(spec||types.card[this.type].levels[this.level].spec).concat(additionalSpec||[])
+        this.class=cardClass||types.card[this.type].levels[this.level].class
         this.levels=types.card[this.type].levels.length
+        this.additionalSpec=additionalSpec||[]
         if(this.list==-1){
             this.list=this.color
         }
@@ -120,6 +121,9 @@ class card{
         let string=''
         if(this.spec.includes(5)){
             string+='Unplayable\n'
+        }
+        if(this.spec.includes(7)){
+            string+='Unremovable\n'
         }
         if(this.spec.includes(3)){
             string+='Innate\n'
@@ -295,6 +299,7 @@ class card{
             this.layer.textSize(8)
             this.layer.text(this.description(),0,5)
             this.layer.textSize(6)
+            this.layer.text(this.id,this.width/2-8,-this.height/2+8)
             switch(this.class){
                 case 1:
                     this.layer.text('Attack',0,this.height/2-6)

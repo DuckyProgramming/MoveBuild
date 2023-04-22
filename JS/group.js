@@ -111,7 +111,7 @@ class group{
                     if(this.cards[a].spec.includes(4)){
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
-                    }else if(this.cards[a].spec.includes(2)){
+                    }else if(this.cards[a].spec.includes(2)||this.battle.relicManager.hasRelic(128,this.player)){
                         total++
                     }else{
                         this.cards[a].deSize=true
@@ -204,6 +204,11 @@ class group{
             }
         }
     }
+    copySelf(index){
+        game.id++
+        this.cards.splice(index,0,copyCard(this.cards[index]))
+        this.cards[index+1].id=game.id
+    }
     sort(){
         let names=[]
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -214,8 +219,11 @@ class group{
         this.sorted=names.sort()
     }
     remove(index){
-        this.cards.splice(index,1)
-        return true
+        let possible=!this.cards[index].spec.includes(7)
+        if(possible){
+            this.cards.splice(index,1)
+        }
+        return possible
     }
     cost(cost,cardClass){
         if(cardClass==1&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[22]>0){
@@ -380,7 +388,7 @@ class group{
             break
             case 5:
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
-                this.battle.attackManager.energy=this.battle.energy.main[this.player]
+                this.battle.attackManager.energy=this.battle.energy.main[this.player]+(this.battle.relicManager.hasRelic(121,this.player)?2:0)
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
                 this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
                 this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
@@ -519,7 +527,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==7){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
-                    (legalTargetCombatant(0,1,this.battle.energy.main[this.battle.attackManager.player]+this.battle.attackManager.targetInfo[1],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)&&
+                    (legalTargetCombatant(0,1,this.battle.energy.main[this.battle.attackManager.player]+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }
@@ -531,7 +539,6 @@ class group{
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},this.cards[a])){
                             if(this.status.discard!=0){
-                                print('a')
                                 this.callInput(4,a)
                                 break
                             }

@@ -17,13 +17,16 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[7])],//transform card, no return
             [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand,10
             [new overlay(this.layer,this.battle,0,4,[])],//end stats
-            
+            [new overlay(this.layer,this.battle,0,2,[8])],//duplicate card, no return
+            [new overlay(this.layer,this.battle,0,2,[9])],//view reserve (ordered)
+            [new overlay(this.layer,this.battle,0,2,[10])],//make card innate
+
         )
-        if(this.battle.player.length==2){
+        if(this.battle.players==2){
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[3,10,0,1,2,4,5,6,7,8,9,11]
+        this.priority=[3,10,0,1,13,2,4,5,6,7,8,9,12,14,11]
         this.anyActive=false
     }
     copyOverlays(){

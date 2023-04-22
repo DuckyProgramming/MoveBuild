@@ -2136,7 +2136,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 	let p1
 	switch(type){
 		case 0:
-			p1=new combatant(layer,{player:[0]},600-la*87.5+a*525,535,0,0,0,0,player[a],0,0,-30)
+			p1=new combatant(layer,graphics.proxyBattle,600-la*87.5+a*525,535,0,0,0,0,player[a],0,0,-30)
 			if(player[a]==1){
 				p1.parts.mouth-=4
 				p1.spin.mouth-=180
@@ -2164,7 +2164,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 1:
-			p1=new combatant(layer,{player:[0]},475-la*50+a*200,470+a*20,0,0,0,0,player[a],0,0,-45)
+			p1=new combatant(layer,graphics.proxyBattle,475-la*50+a*200,470+a*20,0,0,0,0,player[a],0,0,-45)
 			if(player[a]==2){
 				p1.parts.mouth+=4
 				p1.spin.mouth+=180
@@ -2193,7 +2193,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			/**/
 			return -1
 		case 3:
-			p1=new combatant(layer,{player:[0]},350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
+			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
 			if(player[a]==1){
 				p1.parts.mouth-=4
 				p1.spin.mouth-=180
@@ -2225,7 +2225,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 4:
-			p1=new combatant(layer,{player:[0]},550-a*300,477.5+a*32.5,0,0,0,0,player[a],0,0,30-a*60)
+			p1=new combatant(layer,graphics.proxyBattle,550-a*300,477.5+a*32.5,0,0,0,0,player[a],0,0,30-a*60)
 			if(player[a]==1){
 				p1.parts.mouth-=3
 				p1.spin.mouth-=180
@@ -2255,7 +2255,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 5:
-			p1=new combatant(layer,{player:[0]},800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
+			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
 			if(player[a]==1){
 				p1.parts.mouth-=3
 				p1.spin.mouth-=180
@@ -2320,6 +2320,7 @@ function setupGraphics(){
 		setupLayer(graphics.overlays[a])
 	}
 	graphics.minor=[]
+	graphics.proxyBattle={player:[0],players:0}
 
 	setupGeneralGraphics()
 

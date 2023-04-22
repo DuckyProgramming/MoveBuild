@@ -19,11 +19,11 @@ class perkManager{
         this.addPerk(floor(random(8,12)))
     }
     getPosKey(){
-        this.posKey=0.5-this.battle.player.length*0.5+this.player*2
+        this.posKey=0.5-this.battle.players*0.5+this.player*2
     }
     addPerk(type){
         this.perks.forEach(perk=>perk.position.x-=75)
-        this.perks.push(new perk(this.layer,this.battle.player.length-1-this.player,this.layer.width/2+this.perks.length*75,this.layer.height/4+this.posKey*60,type))
+        this.perks.push(new perk(this.layer,this.battle.players-1-this.player,this.layer.width/2+this.perks.length*75,this.layer.height/4+this.posKey*60,type))
     }
     getPerk(type){
         switch(type){

@@ -555,6 +555,12 @@ types={
                 {effect:[],attack:-2,cost:0,target:[0],spec:[5],class:6},
                 {effect:[],attack:-2,cost:0,target:[0],spec:[4,5],class:6},
             ],
+        },{
+            name:'Hoarding',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:0,cost:1,target:[0],spec:[5,7],class:6},
+                {effect:[],attack:0,cost:1,target:[0],spec:[4,5,7],class:6},
+            ],
         },
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
@@ -718,7 +724,7 @@ types={
         {name:'',internal:'10 Max HP Full Heal',id:125,rarity:3,list:0,description:'When Taken, Gain 10 Max\nHP and Heal All HP'},
         {name:'',internal:'Starting Colorless',id:126,rarity:3,list:0,description:'Add 1 Colorless Card\nat the Start of Combat'},
         {name:'',internal:'Relic Pack',id:127,rarity:3,list:0,description:'When Taken, Gain 3 Relics\nand a Special Curse'},
-        {name:'',internal:'Card Hold',id:128,rarity:3,list:0,description:'You Do Not Discard Your Hand\nat the End of Your Turn'},
+        {name:'',internal:'Card Hold',id:128,rarity:3,list:0,description:'All Cards\nHave Retain'},
         {name:'',internal:'View Draw',id:129,rarity:3,list:0,description:'Draw Pile Cards Are\nViewed in Order'},
         {name:'',internal:'Innate Card',id:130,rarity:3,list:0,description:'When Taken, Make a Card Innate'},
         
@@ -994,7 +1000,7 @@ to know how to defuse a bomb?`,
             level:2,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},name:'Human'},
+                {position:{x:0,y:0},name:'Bouncer'},
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},
                 {position:{x:3,y:0},name:'Thug'},
@@ -1052,7 +1058,7 @@ stage={scale:0,scene:'map'}
 game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 options={damage:false,alt:false}
-graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[]}
+graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

@@ -31,7 +31,7 @@ class nodeManager{
         let possibilities=[0,0,0,1,3,4,5,5,6]
         for(let a=0,la=20;a<la;a++){
             for(let b=0,lb=min(min(a+1,4),20-a);b<lb;b++){
-                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,a<2?4:a==la-1?2:possibilities[floor(random(0,possibilities.length))]))
+                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,a<2?3:a==la-1?2:possibilities[floor(random(0,possibilities.length))]))
             }
         }
         this.scroll=this.layer.height/2-240

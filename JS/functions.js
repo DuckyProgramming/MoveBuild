@@ -175,10 +175,10 @@ function multiplyString(base,multiply){
 	return string
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass)
 }
 function upgradeCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,base.cost)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,base.cost,base.additionalSpec)
 }
 function copyArray(base){
 	let list=[]
@@ -312,7 +312,7 @@ function updateMouse(layer){
 	inputs.rel.y=(inputs.mouse.y-height/2)/stage.scale+layer.height/2
 }
 function quickAdd(name){
-	current.cardManagers[constrain(current.turn.main,0,current.player.length-1)].hand.add(findName(name,types.card),0,0)
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0)
 }
 function kill(index){
 	current.combatantManager.combatants[index].life=0

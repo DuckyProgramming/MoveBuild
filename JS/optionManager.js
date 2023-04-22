@@ -20,11 +20,11 @@ class optionManager{
         this.addOption(2)
     }
     getPosKey(){
-        this.posKey=0.5-this.battle.player.length*0.5+this.player*2
+        this.posKey=0.5-this.battle.players*0.5+this.player*2
     }
     addOption(type){
         this.options.forEach(option=>option.position.x-=75)
-        this.options.push(new option(this.layer,this.battle.player.length-1-this.player,this.layer.width/2+this.options.length*75,this.layer.height/4+this.posKey*60,type))
+        this.options.push(new option(this.layer,this.battle.players-1-this.player,this.layer.width/2+this.options.length*75,this.layer.height/4+this.posKey*60,type))
     }
     finishSelection(){
         this.selections++

@@ -20,7 +20,7 @@ class combatant{
         this.attack=copyArray(types.combatant[this.type].attack)
         this.description=types.combatant[this.type].description
 
-        if(this.team==0&&this.battle.player.length>1){
+        if(this.team==0&&this.battle.players>1){
             this.life*=1.5
             for(let a=0,la=this.attack.length;a<la;a++){
                 if(types.attack[this.attack[a].type].class==0){
@@ -73,7 +73,7 @@ class combatant{
 
         this.intent=0
         this.activated=false
-        this.target=floor(random(0,this.battle.player.length))
+        this.target=floor(random(0,this.battle.players))
 
         switch(this.name){
             case 'Lira':
@@ -720,7 +720,7 @@ class combatant{
     deTarget(){
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].target==this.id){
-                this.battle.combatantManager.combatants[a].target=this.battle.player.length-1-this.battle.combatantManager.combatants[a].target
+                this.battle.combatantManager.combatants[a].target=this.battle.players-1-this.battle.combatantManager.combatants[a].target
             }
         }
     }
@@ -806,12 +806,15 @@ class combatant{
                     this.block-=damage
                     this.infoAnim.upFlash[1]=true
                     blocked=0
-                    if(this.id<this.battle.player.length){
+                    if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][1]+=damage
+                    }
+                    if(this.block<=0&&0<=user&&user<this.battle.players&&this.battle.relicManager.hasRelic(124,user)){
+                        this.statusEffect('Vulnerable',2)
                     }
                 }else if(this.block>0&&spec!=1){
                     let damageLeft=damage-this.block
-                    if(this.id<this.battle.player.length){
+                    if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][1]+=this.block
                         this.battle.stats.taken[this.id][2]+=damageLeft
                     }
@@ -820,20 +823,23 @@ class combatant{
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
                     blocked=1
+                    if(0<=user&&user<this.battle.players&&this.battle.relicManager.hasRelic(124,user)){
+                        this.statusEffect('Vulnerable',2)
+                    }
                 }else{
                     this.life-=damage
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
                     blocked=2
-                    if(this.id<this.battle.player.length){
+                    if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][2]+=damage
                     }
                 }
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
-                if(this.battle.turn.main<this.battle.player.length&&this.team==0){
+                if(this.battle.turn.main<this.battle.players&&this.team==0){
                     this.battle.stats.damage[this.battle.turn.main]+=damage
                 }
-                if(this.id<this.battle.player.length){
+                if(this.id<this.battle.players){
                     this.battle.stats.taken[this.id][0]+=damage
                 }
                 if(this.life>0&&user>=0&&user<this.battle.combatantManager.combatants.length&&spec==0){
@@ -877,7 +883,7 @@ class combatant{
             block=round(block*10)/10
             if(block>=0){
                 this.block+=block
-                if(this.id<this.battle.player.length){
+                if(this.id<this.battle.players){
                     this.battle.stats.block[this.id]+=block
                 }
             }
@@ -897,7 +903,7 @@ class combatant{
         this.relativePosition.y+=cos(direction)*speed
     }
     moveTilePosition(x,y){
-        if(this.id<this.battle.player.length){
+        if(this.id<this.battle.players){
             let distance=distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y)
             this.battle.stats.move[this.id]+=distance
             if(this.battle.relicManager.hasRelic(100,this.id)){
@@ -4734,7 +4740,7 @@ class combatant{
                 if(!this.minion){
                     this.battle.relicManager.activate(3)
                 }
-                if(this.battle.turn.main<this.battle.player.length){
+                if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.killed[this.battle.turn.main]++
                 }
             }

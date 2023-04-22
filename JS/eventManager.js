@@ -14,7 +14,7 @@ class eventManager{
         this.fade=[]
 
         this.listing={event:[]}
-        this.posKey=this.layer.width/2+225*(this.player*2-this.battle.player.length+1)
+        this.posKey=this.layer.width/2+225*(this.player*2-this.battle.players+1)
     }
     initial(){
         for(let a=0,la=types.event.length;a<la;a++){

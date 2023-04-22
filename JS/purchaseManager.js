@@ -6,7 +6,7 @@ class purchaseManager{
     }
     setup(){
         this.purchases=[]
-        if(this.battle.player.length==1){
+        if(this.battle.players==1){
             let list=copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
             let group=[0,0,0,0,1,1,1,2]
             let cost=[[80,100],[120,150],[200,250]]
@@ -32,7 +32,7 @@ class purchaseManager{
             }
             this.purchases.push(new purchase(this.layer,this.battle,0,550,487.5,2,[this.battle.relicManager.hasRelic(97,0)?120:200],[]))
         }else{
-            for(let a=0,la=this.battle.player.length;a<la;a++){
+            for(let a=0,la=this.battle.players;a<la;a++){
                 let list=copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                 let group=[0,0,0,0,1,1,1,2]
                 let cost=[[80,100],[120,150],[200,250]]

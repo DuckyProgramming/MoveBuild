@@ -4,13 +4,13 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    for(let a=119;a<=120;a++){
+    for(let a=91;a<=100;a++){
         current.relicManager.addRelic(a,0)
     }
     //current.itemManager.addItem(2,0)
 
-    //stage.scene='battle'
-    //current.setupBattle(types.encounter[1])
+    stage.scene='battle'
+    current.setupBattle(types.encounter[1])
 
     /*current.overlayManager.overlays[0][0].active=true
     current.overlayManager.overlays[0][1].active=true

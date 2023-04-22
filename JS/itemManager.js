@@ -19,7 +19,7 @@ class itemManager{
                 this.listing.item[types.item[a].rarity].push(a)
             }
         }
-        for(let a=0,la=this.battle.player.length;a<la;a++){
+        for(let a=0,la=this.battle.players;a<la;a++){
             this.items.push([
                 new item(this.layer,a,25+(this.layer.width-50)*a,50,0,1),
                 new item(this.layer,a,75+(this.layer.width-150)*a,50,1,1),
@@ -115,7 +115,7 @@ class itemManager{
                 if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
+                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
                     this.up[1]=toggle(this.up[1])
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
@@ -135,7 +135,7 @@ class itemManager{
                 if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
+                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
                     this.up[1]=toggle(this.up[1])
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
@@ -157,7 +157,7 @@ class itemManager{
                 if(key=='o'&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.player.length==2&&key=='O'&&this.items[1].length>0){
+                if(this.battle.players==2&&key=='O'&&this.items[1].length>0){
                     this.up[1]=toggle(this.up[1])
                 }
             break
@@ -165,7 +165,7 @@ class itemManager{
                 if(key=='o'&&this.items[0].length>0){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.player.length==2&&key=='O'&&this.items[1].length>0){
+                if(this.battle.players==2&&key=='O'&&this.items[1].length>0){
                     this.up[1]=toggle(this.up[1])
                 }
             break

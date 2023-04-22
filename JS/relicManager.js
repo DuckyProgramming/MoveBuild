@@ -16,7 +16,7 @@ class relicManager{
         this.complete=[]
 
         this.initialListing()
-        for(let a=0,la=this.battle.player.length;a<la;a++){
+        for(let a=0,la=this.battle.players;a<la;a++){
             this.addRelic(0,a)
         }
     }
@@ -37,7 +37,7 @@ class relicManager{
                 break
             }
         }
-        for(let a=0,la=this.battle.player.length;a<la;a++){
+        for(let a=0,la=this.battle.players;a<la;a++){
             this.complete.push(false)
             this.position.push(0)
             this.total.push(0)
@@ -54,14 +54,14 @@ class relicManager{
         for(let a=0,la=this.active[109]>0?5:3;a<la;a++){
             let rarity=possible[floor(random(0,possible.length))]
             let index=floor(random(0,relics[rarity].length))
-            this.displayRelics.push(new relic(this.layer,1-this.battle.player.length,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
+            this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
             relics[rarity].splice(index,1)
         }
     }
     addRelic(type,player){
         this.player[types.relic[type].id]=player
         this.active[types.relic[type].id]+=1
-        if(this.battle.player.length==2){
+        if(this.battle.players==2){
             this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),100+floor(this.position[player]/8)*50,types.relic[type].id,1))
         }else{
             this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,100+floor(this.position[player]/18)*50,types.relic[type].id,1))
@@ -160,6 +160,25 @@ class relicManager{
             break
             case 102:
                 this.battle.overlayManager.overlays[3][player].takable++
+            break
+            case 123:
+                this.battle.overlayManager.overlays[12][player].active=true
+                this.battle.overlayManager.overlays[12][player].activate([])
+            break
+            case 125:
+                let owner=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)]
+                owner.gainMaxHP(10)
+                owner.heal(owner.base.life)
+            break
+            case 127:
+                for(let a=0,la=3;a<la;a++){
+                    this.addRandomRelic(player)
+                }
+                this.battle.cardManagers[player].deck.add(findName('Hoarding',types.card),0,game.playerNumber+2)
+            break
+            case 130:
+                this.battle.overlayManager.overlays[14][player].active=true
+                this.battle.overlayManager.overlays[14][player].activate([])
             break
         }
     }
@@ -278,6 +297,9 @@ class relicManager{
                                 this.battle.combatantManager.allEffect(2,[1])
                             }
                         }
+                        if(this.active[122]>0){
+                            this.relicPlayer(122).statusEffect('Control',this.active[122])
+                        }
                         if(this.active[39]>0){this.detail[39]=0}
                         if(this.active[108]>0){this.detail[108]=0}
                     break
@@ -363,7 +385,10 @@ class relicManager{
                             this.battle.cardManagers[this.player[52]].hand.add(findName('Shiv',types.card),0,0)
                         }
                     }
-                    
+                    if(this.active[126]>0&&args[1]==this.player[126]){
+                        this.battle.overlayManager.overlays[10][this.player[126]].active=true
+                        this.battle.overlayManager.overlays[10][this.player[126]].activate([0,3,1])
+                    }
                 }else{
                     if(args[0]==2){
                         if(this.active[114]>0&&args[1]==this.player[114]){
@@ -386,6 +411,17 @@ class relicManager{
                 if(this.active[115]>0&&args[1]==this.player[115]){
                     for(let a=0,la=this.active[115];a<la;a++){
                         this.battle.cardManagers[this.player[115]].hand.add(findName('Back\nUp',types.card),0,0)
+                    }
+                }
+                if(this.active[120]>0&&args[1]==this.player[120]){
+                    let manager=this.battle.cardManagers[this.player[120]]
+                    for(let a=0,la=this.active[120];a<la;a++){
+                        if(manager.reserve.cards.length>0&&manager.reserve.cards[0].class==1){
+                            manager.reserve.send(manager.hand.cards,0,1,1)
+                            if(manager.hand.cards[manager.hand.cards.length-1].cost>0){
+                                manager.hand.cards[manager.hand.cards.length-1].cost--
+                            }
+                        }
                     }
                 }
             break
@@ -569,12 +605,12 @@ class relicManager{
                         }
                     }
                 }
-                if(this.battle.player.length==1){
+                if(this.battle.players==1){
                     this.addRelic(this.displayRelics[a].type,0)
                     this.complete[0]=true
                     transition.trigger=true
                     transition.scene='map'
-                }else if(this.battle.player.length==2){
+                }else if(this.battle.players==2){
                     if(inputs.rel.x<this.displayRelics[a].position.x){
                         this.addRelic(this.displayRelics[a].type,0)
                         this.complete[0]=true
@@ -610,13 +646,13 @@ class relicManager{
                 if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>1){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.player.length==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,100)<20&&this.total[1]>0){
+                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,100)<20&&this.total[1]>0){
                     this.up[1]=toggle(this.up[1])
                 }
             break
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade&&(this.battle.player.length==1&&!this.complete[0]||this.battle.player.length==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
+                    if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
                         this.callInput(0,a)
                     }
                 }
@@ -629,13 +665,13 @@ class relicManager{
                 if(key=='i'&&this.total[0]>1){
                     this.up[0]=toggle(this.up[0])
                 }
-                if(this.battle.player.length==2&&key=='I'&&this.total[1]>0){
+                if(this.battle.players==2&&key=='I'&&this.total[1]>0){
                     this.up[1]=toggle(this.up[1])
                 }
             break
             case 'stash':
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
-                    if((int(key)+9)%10==a&&!this.displayRelics[a].deFade&&(this.battle.player.length==1&&!this.complete[0]||this.battle.player.length==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
+                    if((int(key)+9)%10==a&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
                         this.callInput(0,a)
                     }
                 }
