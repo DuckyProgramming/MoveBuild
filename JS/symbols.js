@@ -574,6 +574,75 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.rect(-3,0,6,4)
             layer.triangle(0,-6,0,6,8,0)
         break
+        case 50:
+            layer.fill(100,200,150,fade)
+            layer.ellipse(-4,-4,8,8)
+            layer.ellipse(4,-4,8,8)
+            layer.ellipse(-4,4,8,8)
+            layer.ellipse(4,4,8,8)
+            layer.ellipse(0,0,6,6)
+            layer.rect(0,6,1,12)
+        break
+        case 51:
+            layer.fill(255,255,150,fade)
+            layer.beginShape()
+            for(let a=0,la=10;a<la;a++){
+                layer.vertex(sin(a*36)*(1+a%2*6),cos(a*36)*(1+a%2*6))
+            }
+            layer.endShape()
+        break
+        case 52:
+            layer.stroke(0,fade)
+            layer.strokeWeight(3)
+            layer.noFill()
+            layer.rect(0,-7,32,12)
+            layer.rect(0,7,28,16)
+            layer.rect(0,-4,6,4)
+        break
+        case 53:
+            layer.fill(100,fade)
+            layer.rect(-4,-4,5,5)
+            layer.ellipse(4,-4,6,6)
+            regTriangle(layer,-4,4,4,4,60)
+            layer.quad(4,1,7,4,4,7,1,4)
+        break
+        case 54:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.line(6,-4,6,6)
+            layer.arc(4,6,4,4,0,90)
+            layer.line(-4,8,4,8)
+            layer.arc(-4,6,4,4,90,180)
+            layer.line(-6,-4,-6,6)
+        break
+        case 55:
+            layer.fill(75,150,75,fade)
+            layer.rect(0,-2,4,6)
+            layer.triangle(-4,1,4,1,0,7)
+        break
+        case 56:
+            layer.fill(200,180,120,fade)
+            layer.ellipse(0,0,12,12)
+            layer.rect(0,-6,3,6)
+            layer.rect(0,6,3,6)
+            layer.rect(-6,0,6,3)
+            layer.rect(6,0,6,3)
+        break
+        case 57:
+            layer.fill(150,fade)
+            layer.triangle(0,0,-6,0,0,-6)
+            layer.triangle(0,0,6,0,0,6)
+            layer.fill(125,fade)
+            layer.triangle(0,0,-6,0,0,6)
+            layer.triangle(0,0,6,0,0,-6)
+        break
+        case 58:
+            layer.fill(0,150,255,fade)
+            layer.triangle(0,1,-2,-5,2,-5)
+            layer.triangle(1,0,-5,-2,-5,2)
+            layer.triangle(0,-1,2,5,-2,5)
+            layer.triangle(-1,0,5,2,5,-2)
+        break
     }
     layer.pop()
 }
@@ -624,4 +693,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 47-Half Damage
 48-Intangible
 49-Retain
+50-Luck
+51-Status
+52-Stash
+53-Random
+54-Exhaust
+55-Movement (Card Symbol) (Reverse)
+56-Control
+57-Colorless
+58-Innate
 */

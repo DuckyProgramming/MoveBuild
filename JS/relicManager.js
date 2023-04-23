@@ -567,10 +567,10 @@ class relicManager{
                 }
             break
             case 10://card exhausted [player]
-                if(this.active[112]>0&&args[0]==this.player[112]){
-                    let manager=this.battle.cardManagers[this.player[112]]
-                    for(let a=0,la=this.active[112];a<la;a++){
-                        manager.hand.add(manager.listing.card[this.battle.player[manager.player]][3][floor(random(0,manager.listing.card[this.battle.player[manager.player]][3].length))],0,this.battle.player[this.player[112]])
+                if(this.active[113]>0&&args[0]==this.player[113]){
+                    let manager=this.battle.cardManagers[this.player[113]]
+                    for(let a=0,la=this.active[113];a<la;a++){
+                        manager.hand.add(manager.listing.card[this.battle.player[manager.player]][3][floor(random(0,manager.listing.card[this.battle.player[manager.player]][3].length))],0,this.battle.player[this.player[113]])
                     }
                 }
             break

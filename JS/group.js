@@ -466,7 +466,9 @@ class group{
                                 la--
                             }
                         }else if(this.cards[a].exhaust){
-                            this.battle.relicManager.activate(10,[this.player])
+                            if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){
+                                this.battle.relicManager.activate(10,[this.player])
+                            }
                             this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
                             a--
                             la--

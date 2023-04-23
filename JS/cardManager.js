@@ -72,7 +72,6 @@ class cardManager{
         if(this.battle.relicManager.hasRelic(106,this.player)){
             for(let a=0,la=this.hand.cards.length;a<la;a++){
                 if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
-                    this.battle.relicManager.activate(10,[this.player])
                     this.hand.send(this.exhaust.cards,a,a+1,0)
                     a--
                     la--
