@@ -80,6 +80,16 @@ class combatantManager{
                     case 2:
                         this.combatants[a].life=args[0]
                     break
+                    case 3:
+                        this.combatants[a].statusEffect('Strength',args[0])
+                    break
+                    case 4:
+                        this.combatants[a].statusEffect('Counter All',args[0])
+                    break
+                    case 5:
+                        this.combatants[a].life*=args[0]
+                        this.combatants[a].base.life*=args[0]
+                    break
                 }
             }
         }
@@ -206,7 +216,7 @@ class combatantManager{
                     }
                     this.combatants[a].infoAnim.upSize=dist(inputs.rel.x,inputs.rel.y,this.combatants[a].position.x,this.combatants[a].position.y)<game.targetRadius&&!this.battle.overlayManager.anyActive?true:false
                     if((this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5)&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&
-                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)){
+                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.battle.attackManager.player)?1:this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)){
                         this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].targetted[0]=true
                     }
                 }

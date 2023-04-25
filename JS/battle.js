@@ -235,17 +235,18 @@ class battle{
             this.turnManager.loadEnemyTurns()
             this.combatantManager.enableCombatants()
         }else{
-            
-            this.cardManagers[this.turn.main].turnDraw()
-            this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
-            this.turn.time=game.turnTime
-            this.counter.turnPlayed=[0,0,0,0,0]
             if(this.turn.total==1){
-                this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                if(!this.relicManager.hasRelic(141,this.turn.main)){
+                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                }
                 if(this.relicManager.hasRelic(107,this.turn.main)){
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                 }
             }
+            this.cardManagers[this.turn.main].turnDraw()
+            this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
+            this.turn.time=game.turnTime
+            this.counter.turnPlayed=[0,0,0,0,0]
         }
         this.attackManager.clear()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
@@ -264,16 +265,18 @@ class battle{
         this.combatantManager.unmoveCombatants()
         this.combatantManager.activateCombatants(0,0)
         this.turnManager.clear()
-        this.cardManagers[0].turnDraw()
-        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
-        this.relicManager.activate(0,[this.turn.total,this.encounter.class])
-        this.counter.turnPlayed=[0,0,0,0,0]
         if(this.turn.total==1){
-            this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+            if(!this.relicManager.hasRelic(141,this.turn.main)){
+                this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+            }
             if(this.relicManager.hasRelic(107,this.turn.main)){
                 this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
             }
         }
+        this.cardManagers[0].turnDraw()
+        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
+        this.relicManager.activate(0,[this.turn.total,this.encounter.class])
+        this.counter.turnPlayed=[0,0,0,0,0]
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
             this.endTurn()
@@ -312,9 +315,10 @@ class battle{
         this.layer.textAlign(CENTER,CENTER)
     }
     getCurrency(amount,player){
+        let multi=this.relicManager.hasRelic(135,player)?0.5:1
         let bonus=this.relicManager.hasRelic(119,player)?10:0
-        this.stats.earned[player]+=amount+bonus
-        this.currency.money[player]+=amount+bonus
+        this.stats.earned[player]+=round((amount+bonus)*multi)
+        this.currency.money[player]+=round((amount+bonus)*multi)
     }
     display(scene){
         switch(scene){

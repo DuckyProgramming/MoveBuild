@@ -57,6 +57,7 @@ class overlay{
                 }
                 switch(this.args[0]){
                     case 3: this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0); break
+                    case 4: this.activated=0; break
                 }
             break
             case 3:
@@ -381,11 +382,11 @@ class overlay{
                                         break
                                         case 4:
                                             if(this.battle.cardManagers[this.player].deck.remove(a)){
-                                                if(this.battle.relicManager.hasRelic(104,this.player)){
-                                                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].gainMaxHP(7*this.battle.relicManager.active[104])
-                                                }
+                                                this.battle.relicManager.activate(11,[this.player])
                                                 a--
                                                 la--
+                                                this.activated++
+                                                complete=this.activated>=this.args[1]
                                             }else{
                                                 complete=false
                                             }
@@ -401,7 +402,9 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(3)
                                         break
                                     }
-                                    this.battle.cardManagers[this.player].deck.cards[a].size=size
+                                    if(a<this.battle.cardManagers[this.player].deck.cards.length){
+                                        this.battle.cardManagers[this.player].deck.cards[a].size=size
+                                    }
                                     this.active=!complete
                                 }
                                 this.battle.cardManagers[this.player].deck.cards[a].select=false
@@ -542,11 +545,11 @@ class overlay{
                                         break
                                         case 4:
                                             if(this.battle.cardManagers[this.player].deck.remove(a)){
-                                                if(this.battle.relicManager.hasRelic(104,this.player)){
-                                                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].gainMaxHP(7*this.battle.relicManager.active[104])
-                                                }
+                                                this.battle.relicManager.activate(11,[this.player])
                                                 a--
                                                 la--
+                                                this.activated++
+                                                complete=this.activated>=this.args[1]
                                             }else{
                                                 complete=false
                                             }
@@ -584,7 +587,6 @@ class overlay{
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
                                     switch(this.args[0]){
                                         case 5:
-                                            
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--

@@ -1216,9 +1216,9 @@ class attack{
                 }
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,5,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),7.5*this.targetDistance-2]))
-                }else if(this.timer==15*this.targetDistance+15){
+                }else if(this.timer==30*this.targetDistance+15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user,1)
-                }else if(this.timer>=15*this.targetDistance+25){
+                }else if(this.timer>=30*this.targetDistance+25){
                     this.remove=true
                 }
             break

@@ -18,17 +18,12 @@ Weak Enemy
 Innate Cards
 2 Tile Move
 Enemy Do Nothing
+The other statuses
 
 More Fights:
 
 More Relics:
 
-103-110
-112+
-we're working on events now for exit sign
-
-Formation of the Shop Relics
--a bunch
 Nearly All Boss Relics are Fine
 
 More Items:
@@ -46,8 +41,7 @@ Snap Strike, deal damage and gain temporary strength
 Tactical Retreat
 Unexhaust
 do something, exhaust a card
-
-new strength system
+The other curses
 
 Generality:
 First Character Gimmick

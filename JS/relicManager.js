@@ -3,7 +3,7 @@ class relicManager{
         this.layer=layer
         this.battle=battle
         
-        this.listing={relic:[[],[],[],[]]}
+        this.listing={relic:[[],[],[],[],[]]}
         this.active=[]
         this.player=[]
         this.detail=[]
@@ -180,12 +180,73 @@ class relicManager{
                 this.battle.overlayManager.overlays[14][player].active=true
                 this.battle.overlayManager.overlays[14][player].activate([])
             break
+            case 131:
+                this.battle.energy.base[player]++
+                this.battle.overlayManager.overlays[3][player].options--
+            break
+            case 132:
+                this.battle.energy.base[player]++
+                this.battle.optionManagers[player].removeOption(1)
+            break
+            case 133:
+                this.battle.energy.base[player]++
+                this.battle.optionManagers[player].removeOption(2)
+            break
+            case 134:
+                this.battle.energy.base[player]++
+                let manager=this.battle.cardManagers[player]
+                manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
+                manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
+            break
+            case 135: case 136: case 137: case 138: case 140: case 141: case 142:  case 144: case 145: case 146: case 147: case 148:
+                this.battle.energy.base[player]++
+            break
+            case 139:
+                this.battle.energy.base[player]++
+                this.battle.cardManagers[player].drawAmount--
+            break
+            case 143:
+                this.battle.energy.base[player]++
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(10)
+            break
+            case 151:
+                this.battle.overlayManager.overlays[15][player].active=true
+                this.battle.overlayManager.overlays[15][player].activate([])
+            break
+            case 154:
+                for(let a=0,la=this.battle.cardManagers[player].deck.cards.length;a<la;a++){
+                    if(this.battle.cardManagers[player].deck.cards[a].basic){
+                        this.battle.cardManagers[player].deck.cards[a]=this.battle.cardManagers[player].transformCard(this.battle.cardManagers[player].deck.cards[a])
+                    }
+                }
+            break
+            case 155:
+                this.battle.cardManagers[player].drawAmount+=2
+            break
+            case 156:
+                this.battle.cardManagers[player].drawAmount+=3
+            break
+            case 157:
+                this.battle.itemManager.effectiveness[player]*=5
+            break
+            case 159:
+                this.battle.itemManager.addRandomItem(player)
+                this.battle.getCurrency(200,player)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
+                this.battle.overlayManager.overlays[3][player].active=true
+                this.battle.overlayManager.overlays[3][player].activate([0,2,0])
+                this.battle.cardManagers[player].randomEffect(0,2,[0])
+            break
+            case 160:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(50)
+            break
+
         }
     }
     lose(type,player){
         switch(type){
             case 46:
-                this.battle.overlayManager.overlays[3][player].options++
+                this.battle.overlayManager.overlays[3][player].options--
             break
             case 47:
                 this.battle.optionManagers[player].removeOption(3)
@@ -206,10 +267,38 @@ class relicManager{
                 this.battle.itemManager.RemoveItemSlots(2,player)
             break
             case 77:
-                this.battle.itemManager.effectiveness[player]/=1.5
+                this.battle.itemManager.effectiveness[player]/=2
             break
             case 102:
                 this.battle.overlayManager.overlays[3][player].takable--
+            break
+            case 131:
+                this.battle.energy.base[player]--
+                this.battle.overlayManager.overlays[3][player].options++
+            break
+            case 132:
+                this.battle.energy.base[player]--
+                this.battle.optionManagers[player].addOption(1)
+            break
+            case 133:
+                this.battle.energy.base[player]--
+                this.battle.optionManagers[player].addOption(2)
+            break
+            case 134: case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 143: case 144: case 145: case 146: case 147: case 148:
+                this.battle.energy.base[player]--
+            break
+            case 139:
+                this.battle.energy.base[player]--
+                this.battle.cardManagers[player].drawAmount++
+            break
+            case 155:
+                this.battle.cardManagers[player].drawAmount-=2
+            break
+            case 156:
+                this.battle.cardManagers[player].drawAmount-=3
+            break
+            case 157:
+                this.battle.itemManager.effectiveness[player]/=5
             break
         }
         this.deactivate(type)
@@ -300,6 +389,18 @@ class relicManager{
                         if(this.active[122]>0){
                             this.relicPlayer(122).statusEffect('Control',this.active[122])
                         }
+                        if(this.active[137]>0){
+                            this.battle.combatantManager.allEffect(3,[this.active[137]])
+                        }
+                        if(this.active[146]>0){
+                            this.battle.combatantManager.allEffect(4,[this.active[146]])
+                        }
+                        if(this.active[147]>0){
+                            this.battle.combatantManager.allEffect(5,[1+this.active[147]*0.2])
+                        }
+                        if(this.active[149]>0){
+                            this.relicPlayer(149).statusEffect('Free Card',this.active[149])
+                        }
                         if(this.active[39]>0){this.detail[39]=0}
                         if(this.active[108]>0){this.detail[108]=0}
                     break
@@ -347,6 +448,12 @@ class relicManager{
                         ownerCombatant.statusEffect('Strength',this.active[105])
                     }
                 }
+                if(this.active[147]>0&&args[0]>=2){
+                    this.relicPlayer(147).statusEffect('Dexterity',-this.active[147])
+                }
+                if(this.active[152]>0&&args[1]>0){
+                    this.battle.energy.main[this.player[152]]+=2*this.active[152]
+                }
             break
             case 1://end of combat
                 if(this.active[1]>0){
@@ -356,6 +463,9 @@ class relicManager{
                     if(this.relicPlayer(19).life<this.relicPlayer(19).base.life){
                         this.relicPlayer(19).heal(12*this.active[19])
                     }
+                }
+                if(this.active[153]>0){
+                    this.relicPlayer(153).heal(10*this.active[153])
                 }
             break
             case 2://start of player turn [turn,player,played]
@@ -388,6 +498,19 @@ class relicManager{
                     if(this.active[126]>0&&args[1]==this.player[126]){
                         this.battle.overlayManager.overlays[10][this.player[126]].active=true
                         this.battle.overlayManager.overlays[10][this.player[126]].activate([0,3,1])
+                    }
+                    if(this.active[144]>0&&args[1]==this.player[144]){
+                        for(let a=0,la=this.active[144];a<la;a++){
+                            this.battle.cardManagers[this.player[144]].reserve.addShuffle(findName('Electrocuted',types.card),0,game.playerNumber+1)
+                        }
+                    }
+                    if(this.active[156]>0){
+                        this.battle.cardManagers[this.player[156]].allEffect(2,5)
+                    }
+                    if(this.active[158]>0&&args[1]==this.player[158]){
+                        for(let a=0,la=3*this.active[158];a<la;a++){
+                            this.battle.cardManagers[this.player[158]].hand.add(findName('Miracle',types.card),0,0)
+                        }
                     }
                 }else{
                     if(args[0]==2){
@@ -445,6 +568,11 @@ class relicManager{
                     this.detail[18]++
                     if(this.detail[18]%10==0){
                         this.battle.cardManagers[this.player[18]].draw(this.active[18])
+                    }
+                }
+                if(this.active[140]>0&&args[1]==this.player[140]){
+                    if(this.battle.counter.turnPlayed[0]>=5){
+                        this.battle.endTurn()
                     }
                 }
                 switch(args[0]){
@@ -572,6 +700,11 @@ class relicManager{
                     for(let a=0,la=this.active[113];a<la;a++){
                         manager.hand.add(manager.listing.card[this.battle.player[manager.player]][3][floor(random(0,manager.listing.card[this.battle.player[manager.player]][3].length))],0,this.battle.player[this.player[113]])
                     }
+                }
+            break
+            case 11://removing card [player]
+                if(this.active[104]>0&&args[0]==this.player[104]){
+                    this.relicPlayer(104).gainMaxHP(7*this.active[104])
                 }
             break
         }

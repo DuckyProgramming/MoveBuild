@@ -32,15 +32,17 @@ class itemManager{
         }
     }
     addItem(type,player){
-        for(let a=0,la=this.items[player].length;a<la;a++){
-            if(this.items[player][a].type==1){
-                this.items[player][a].type=type
-                this.items[player][a].refresh()
-                this.total[player]++
-                break
+        if(!this.battle.relicManager.hasRelic(138,player)){
+            for(let a=0,la=this.items[player].length;a<la;a++){
+                if(this.items[player][a].type==1){
+                    this.items[player][a].type=type
+                    this.items[player][a].refresh()
+                    this.total[player]++
+                    break
+                }
             }
+            this.battle.stats.item[player]++
         }
-        this.battle.stats.item[player]++
     }
     addRandomItem(player){
         let possible=[0,0,0,1,1,2]

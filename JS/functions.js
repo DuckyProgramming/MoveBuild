@@ -138,15 +138,15 @@ function sign(value){
 function pointInsideBox(point,box){
 	return point.position.x>box.position.x-box.width/2&&point.position.x<box.position.x+box.width/2&&point.position.y>box.position.y-box.height/2&&point.position.y<box.position.y+box.height/2
 }
-function intentDescription(attack){
+function intentDescription(attack,info){
 	switch(attack.type){
-		case 1: return `Deal ${attack.effect[0]} Damage\nRange 1-1`
-		case 2: return `Deal ${attack.effect[0]} Damage 3 Times\nRange 1-1`
-		case 3: return `Deal ${attack.effect[0]} Damage\nPush 1 Tile\nRange 1-1`
-		case 4: return `Add ${attack.effect[0]} Block`
-		case 5: return `Shuffle in ${attack.effect[0]} Dazed`
-		case 6: return `Deal ${attack.effect[0]} Damage\nRange 1-2`
-		case 7: return `Deal ${attack.effect[0]} Damage\nPush 1 Tile\nRange 1-2`
+		case 1: return `Deal ${info?attack.effect[0]:`?`} Damage\nRange 1-1`
+		case 2: return `Deal ${info?attack.effect[0]:`?`} Damage 3 Times\nRange 1-1`
+		case 3: return `Deal ${info?attack.effect[0]:`?`} Damage\nPush 1 Tile\nRange 1-1`
+		case 4: return `Add ${info?attack.effect[0]:`?`} Block`
+		case 5: return `Shuffle in ${info?attack.effect[0]:`?`} Dazed`
+		case 6: return `Deal ${info?attack.effect[0]:`?`} Damage\nRange 1-2`
+		case 7: return `Deal ${info?attack.effect[0]:`?`} Damage\nPush 1 Tile\nRange 1-2`
 
 	}
 }
@@ -175,10 +175,10 @@ function multiplyString(base,multiply){
 	return string
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass)
 }
 function upgradeCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,base.cost,base.additionalSpec)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,base.base.cost,base.additionalSpec)
 }
 function copyArray(base){
 	let list=[]
@@ -269,6 +269,8 @@ function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,t
 				return false
 			}
 		break
+		case 2:
+			return legalTarget(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
 	}
 	return false
 }

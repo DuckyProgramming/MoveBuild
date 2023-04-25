@@ -60,7 +60,7 @@ class cardManager{
         this.battle.stats.drawn[this.player]+=amount
         let amountLeft=amount-this.reserve.cards.length
         if(this.reserve.cards.length>0){
-            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),1)
+            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),3)
         }
         if(amountLeft>0&&this.discard.cards.length>0){
             this.discard.send(this.reserve.cards,0,-1,2)
@@ -88,6 +88,11 @@ class cardManager{
         }else{
             this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
             this.drop.addDrop(findName('Fatigue',types.card),0,game.playerNumber+1)
+            if(this.battle.relicManager.hasRelic(142,this.player)){
+                this.discard.cards[this.discard.cards.length-1].cost++
+                this.discard.cards[this.discard.cards.length-1].base.cost++
+                this.drop.cards[this.drop.cards.length-1].cost++
+            }
         }
     }
     transformCard(base){

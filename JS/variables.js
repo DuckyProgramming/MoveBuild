@@ -460,8 +460,8 @@ types={
         {
             name:'Miracle',rarity:-1,list:0,
             levels:[
-                {effect:[1],attack:41,cost:0,target:[0],spec:[1,4],class:4},
-                {effect:[2],attack:41,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[1],attack:41,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[2],attack:41,cost:0,target:[0],spec:[1,2],class:4},
             ],
         },
         
@@ -540,6 +540,12 @@ types={
             levels:[
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
+            ],
+        },{
+            name:'Electrocuted',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-3,cost:0,target:[0],spec:[5],class:5},
+                {effect:[1],attack:-3,cost:0,target:[0],spec:[5],class:5},
             ],
         },
 
@@ -727,6 +733,39 @@ types={
         {name:'',internal:'Card Hold',id:128,rarity:3,list:0,description:'All Cards\nHave Retain'},
         {name:'',internal:'View Draw',id:129,rarity:3,list:0,description:'Draw Pile Cards Are\nViewed in Order'},
         {name:'',internal:'Innate Card',id:130,rarity:3,list:0,description:'When Taken, Make a Card Innate'},
+        
+        {name:'',internal:'Energy/Card Choice',id:131,rarity:4,list:0,description:'Gain 1 Base Energy, Have 2\nLess Cards to Choose From'},
+        {name:'',internal:'Energy/Rest Heal',id:132,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Heal at Rest'},
+        {name:'',internal:'Energy/Rest Upgrade',id:133,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Upgrade at Rest'},
+        {name:'',internal:'Energy/Curses',id:134,rarity:4,list:0,description:'Gain 1 Base Energy,\nAdd 2 Curses to Deck'},
+        {name:'',internal:'Energy/Currency',id:135,rarity:4,list:0,description:'Gain 1 Base Energy,\nGain 50% Less Currency'},
+        {name:'',internal:'Energy/Intent',id:136,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot See Enemy Intent Values'},
+        {name:'',internal:'Energy/Strength',id:137,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies Start Combat With 1 Strength'},
+        {name:'',internal:'Energy/Items',id:138,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Obtain Items'},
+        {name:'',internal:'Energy/Draw',id:139,rarity:4,list:0,description:'Gain 1 Base Energy,\nDraw 1 Less Card Every Turn'},
+        {name:'',internal:'Energy/Card Limit',id:140,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Play More Than 5 Cards Every Turn'},
+
+        {name:'',internal:'Energy/Initiative',id:141,rarity:4,list:0,description:'Gain 1 Base Energy,\nYou No Longer Start With Initiative'},
+        {name:'',internal:'Energy/Fatigue',id:142,rarity:4,list:0,description:'Gain 1 Base Energy,\nFatigue Costs 2'},
+        {name:'',internal:'Energy/Max HP',id:143,rarity:4,list:0,description:'Gain 1 Base Energy,\nLose 10 Max HP'},
+        {name:'',internal:'Energy/Electrocuted',id:144,rarity:4,list:0,description:'Gain 1 Base Energy, Shuffle 1 Electrocuted\nInto Draw at the Start of Combat'},
+        {name:'',internal:'Energy/Range',id:145,rarity:4,list:0,description:'Gain 1 Base Energy\nCan Only Attack at Range 1'},
+        {name:'',internal:'Energy/Counter',id:146,rarity:4,list:0,description:'Gain 1 Base Energy,\nAll Enemies Counter All 1'},
+        {name:'',internal:'Energy/Enemy Health',id:147,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies Have 20% More Health'},
+        {name:'',internal:'Energy/Dexterity',id:148,rarity:4,list:0,description:'Gain 1 Base Energy,\nLose 1 Dexterity Every Turn'},
+        {name:'',internal:'2 Free Cards',id:149,rarity:4,list:0,description:'The First 2 Cards Played\nEvery Combat are Free'},
+        {name:'',internal:'Avoidance',id:150,rarity:4,list:0,description:'You May Move\nThrough Obstructions'},
+
+        {name:'',internal:'Remove 3',id:151,rarity:4,list:0,description:'When Taken, Remove 3 Cards'},
+        {name:'',internal:'Difficulty Energy',id:152,rarity:4,list:0,description:'Gain 2 Energy Every Turn\non Elites and Bosses'},
+        {name:'',internal:'Large Quick Heal',id:153,rarity:4,list:0,description:'Heal 10 HP at\nthe End of Combat'},
+        {name:'',internal:'Transform Basic',id:154,rarity:4,list:0,description:'When Taken, Transform\nAll Strikes and Defends'},
+        {name:'',internal:'Basic Draw',id:155,rarity:4,list:0,description:'Draw 2 More\nCards Every Turn'},
+        {name:'',internal:'Confused Draw',id:156,rarity:4,list:0,description:'Draw 3 More Cards Eveyr Turn,\nStart Combat Confused'},
+        {name:'',internal:'Item Buff',id:157,rarity:4,list:0,description:'Items are 5x\nMore Effective'},
+        {name:'',internal:'3 Starting Miracles',id:158,rarity:4,list:0,description:'Add 3 Miracles\nat the Start of Combat'},
+        {name:'',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n200 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
+        {name:'',internal:'50 Max HP',id:160,rarity:4,list:0,description:'When Taken,\nGain 50 Max HP'},
         
         /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
         {name:'',internal:'',id:12,rarity:0,list:0,description:''},
@@ -1000,7 +1039,7 @@ to know how to defuse a bomb?`,
             level:2,class:0,world:0,
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},name:'Bouncer'},
+                {position:{x:0,y:0},name:'Duck'},
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},
                 {position:{x:3,y:0},name:'Thug'},
@@ -1055,7 +1094,7 @@ to know how to defuse a bomb?`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0}
+game={player:[1],playerNumber:3,id:0,timer:0,animRate:2,targetRadius:30,turnTime:0,scene:0}
 constants={collisionDamage:4}
 options={damage:false,alt:false}
 graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}

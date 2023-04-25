@@ -4,9 +4,9 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    /*for(let a=131;a<=140;a++){
+    for(let a=160;a<=160;a++){
         current.relicManager.addRelic(a,0)
-    }*/
+    }
     //current.itemManager.addItem(2,0)
 
     stage.scene='battle'

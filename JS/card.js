@@ -40,12 +40,13 @@ class card{
             this.list=this.color
         }
 
-        this.base={cost:types.card[this.type].levels[this.level].cost}
+        this.base={cost:cost||types.card[this.type].levels[this.level].cost}
         if(this.cost==-1){
             this.cost=this.base.cost
         }
 
         this.strike=this.name.includes('Strike')
+        this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'
     }
     calculateEffect(effect,type){
         if(stage.scene=='battle'){
@@ -54,10 +55,10 @@ class card{
                 case 0: case 2:
                     let damage=effect
                     let totalStr=0
-                    if(user.status.main[6]>0){
+                    if(user.status.main[6]!=0){
                         totalStr+=user.status.main[6]
                     }
-                    if(user.status.main[17]>0){
+                    if(user.status.main[17]!=0){
                         damage+=user.status.main[17]
                     }
                     if(totalStr>0){
@@ -86,10 +87,10 @@ class card{
                 case 1: case 3:
                     let block=effect
                     let totalDex=0
-                    if(user.status.main[7]>0){
+                    if(user.status.main[7]!=0){
                         totalDex+=user.status.main[7]
                     }
-                    if(user.status.main[18]>0){
+                    if(user.status.main[18]!=0){
                         totalDex+=user.status.main[18]
                     }
                     if(totalDex>0){
@@ -131,6 +132,7 @@ class card{
         switch(this.attack){
             case -1: string+=`Gain 1 Weak at\nthe End of Your Turn`; break
             case -2: string+=`Gain 1 Vulnerable at\nthe End of Your Turn`; break
+            case -3: string+=`When Drawn,\nExhaust ${this.effect[0]} Card`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break
@@ -350,7 +352,7 @@ class card{
             this.upSize=true
         }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        this.afford=(userCombatant.status.main[22]>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost)&&
+        this.afford=(userCombatant.status.main[27]>0||userCombatant.status.main[22]>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost)&&
         !(this.spec.includes(6)&&!userCombatant.armed)?true:false
         if(this.deSize&&this.size>0||this.downSize&&this.size>0.6||!this.upSize&&this.size>1){
             this.size=round(this.size*5-1)/5

@@ -41,17 +41,17 @@ class combatant{
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
             'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
-            'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible',
+            'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
                 1,1,0,2,0,0,1,2,2,0,
-                2,0,0,0,1,1,
+                2,0,0,0,1,1,0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
                 0,0,0,0,0,0,1,0,0,0,
-                1,0,2,2,0,0,
+                1,0,2,2,0,0,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good
@@ -857,6 +857,9 @@ class combatant{
                     }
                     if(blocked==0&&this.battle.relicManager.hasRelic(75,this.id)){
                         userCombatant.statusEffect('Next Turn Weak',this.battle.relicManager.active[75])
+                    }
+                    if(this.status.main[26]>0){
+                        userCombatant.takeDamage(this.status.main[26],-1)
                     }
                 }
             }
@@ -4606,8 +4609,10 @@ class combatant{
         for(let a=0,la=this.status.display.length;a<la;a++){
             displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade*this.infoAnim.life)
         }
-        for(let a=0,la=this.attack.length;a<la;a++){
-            displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a])
+        if(this.team==0){
+            for(let a=0,la=this.attack.length;a<la;a++){
+                displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
+            }
         }
         this.layer.fill(0,this.fade*this.infoAnim.life)
         this.layer.textSize(6)
@@ -4660,7 +4665,7 @@ class combatant{
                     if(this.team==0){
                         for(let a=0,la=this.attack.length;a<la;a++){
                             this.layer.fill(0,this.fade*this.infoAnim.description*this.infoAnim.intent[a])
-                            this.layer.text(intentDescription(this.attack[a]),50,280)
+                            this.layer.text(intentDescription(this.attack[a],!this.battle.relicManager.hasRelic(136,-1)),50,280)
                         }
                     }
                     this.layer.textAlign(CENTER,CENTER)
@@ -4674,7 +4679,7 @@ class combatant{
                     }
                     if(this.team==0){
                         for(let a=0,la=this.attack.length;a<la;a++){
-                            displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a])
+                            displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
                         }
                     }
                 }
