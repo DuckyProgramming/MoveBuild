@@ -82,6 +82,15 @@ class relicManager{
         }
         this.lose(types.relic[type].id,this.player[types.relic[type].id])
     }
+    loseRandomRelic(player){
+        let list=[]
+        for(let a=1,la=this.player.length;a<la;a++){
+            if(this.player[a]==player&&this.active[a]>0){
+                list.push(a)
+            }
+        }
+        this.lose(list[floor(random(0,list.length))],player)
+    }
     addRandomRelic(player){
         let possible=[0,0,0,1,1,2]
         let rarity=possible[floor(random(0,possible.length))]
@@ -245,6 +254,34 @@ class relicManager{
     }
     lose(type,player){
         switch(type){
+            case 5:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(6)
+            break
+            case 16:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(10)
+            break
+            case 29:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(14)
+            break
+            case 30:
+                this.battle.currency.money[player]-=500
+            break
+            case 32:
+                this.battle.cardManagers[player].randomEffect(0,3,[1])
+                this.battle.cardManagers[player].randomEffect(0,3,[1])
+            break
+            case 33:
+                this.battle.cardManagers[player].randomEffect(0,3,[2])
+                this.battle.cardManagers[player].randomEffect(0,3,[2])
+            break
+            case 34:
+                this.battle.cardManagers[player].randomEffect(0,3,[3])
+                this.battle.cardManagers[player].randomEffect(0,3,[3])
+            break
+            case 35:
+                this.battle.cardManagers[player].randomEffect(0,3,[4])
+                this.battle.cardManagers[player].randomEffect(0,3,[4])
+            break
             case 46:
                 this.battle.overlayManager.overlays[3][player].options--
             break
@@ -272,6 +309,21 @@ class relicManager{
             case 102:
                 this.battle.overlayManager.overlays[3][player].takable--
             break
+            case 123:
+                this.battle.cardManagers[player].deck.unDuplicate()
+            break
+            case 125:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(10)
+            break
+            case 127:
+                for(let a=0,la=3;a<la;a++){
+                    this.loseRandomRelic(player)
+                }
+                this.battle.cardManagers[player].deck.removeType(findName('Hoarding',types.card))
+            break
+            case 130:
+                this.battle.cardManagers[player].deck.unInnate()
+            break
             case 131:
                 this.battle.energy.base[player]--
                 this.battle.overlayManager.overlays[3][player].options++
@@ -284,12 +336,34 @@ class relicManager{
                 this.battle.energy.base[player]--
                 this.battle.optionManagers[player].addOption(2)
             break
-            case 134: case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 143: case 144: case 145: case 146: case 147: case 148:
+            case 134:
+                this.battle.energy.base[player]++
+                let manager=this.battle.cardManagers[player]
+                manager.deck.removeCurse()
+                manager.deck.removeCurse()
+            break
+            case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 144: case 145: case 146: case 147: case 148:
                 this.battle.energy.base[player]--
             break
             case 139:
                 this.battle.energy.base[player]--
                 this.battle.cardManagers[player].drawAmount++
+            break
+            case 143:
+                this.battle.energy.base[player]--
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
+            break
+            case 151:
+                this.battle.cardManagers[player].deck.unremove()
+                this.battle.cardManagers[player].deck.unremove()
+                this.battle.cardManagers[player].deck.unremove()
+            break
+            case 154:
+                for(let a=0,la=this.battle.cardManagers[player].deck.cards.length;a<la;a++){
+                    if(!this.battle.cardManagers[player].deck.cards[a].basic){
+                        this.battle.cardManagers[player].deck.cards[a]=this.battle.cardManagers[player].transformCardToBasic(this.battle.cardManagers[player].deck.cards[a])
+                    }
+                }
             break
             case 155:
                 this.battle.cardManagers[player].drawAmount-=2
@@ -299,6 +373,16 @@ class relicManager{
             break
             case 157:
                 this.battle.itemManager.effectiveness[player]/=5
+            break
+            case 159:
+                this.battle.itemManager.loseRandom(player)
+                this.battle.currency.money[player]-=200
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(10)
+                this.battle.cardManagers[player].deck.removeRarity(2)
+                this.battle.cardManagers[player].randomEffect(0,3,[0])
+            break
+            case 160:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(30)
             break
         }
         this.deactivate(type)
@@ -317,7 +401,9 @@ class relicManager{
                 possible.push(this.relics[a].type)
             }
         }
-        this.lose(possible[floor(random(0,possible.length))],player)
+        if(possible.length>0){
+            this.lose(possible[floor(random(0,possible.length))],player)
+        }
     }
     hasRelic(type,player){
         return this.active[type]>0&&(this.player[type]==player||player==-1)

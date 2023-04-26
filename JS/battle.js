@@ -12,11 +12,11 @@ class battle{
         this.attackManager=new attackManager(this.layer,this)
         this.turnManager=new turnManager(this.layer,this)
         this.particleManager=new particleManager(this.layer,this)
-        this.overlayManager=new overlayManager(this.layer,this)
         this.nodeManager=new nodeManager(this.layer,this)
         this.purchaseManager=new purchaseManager(this.layer,this)
         this.relicManager=new relicManager(this.layer,this)
         this.itemManager=new itemManager(this.layer,this)
+        this.overlayManager=new overlayManager(this.layer,this)
         this.initialized=true
 
         this.encounter={class:0}
@@ -25,7 +25,7 @@ class battle{
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         
         this.turn={main:0,total:0,time:0,accelerate:0}
-        this.anim={reserve:1,discard:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],exit:1,afford:0,upAfford:false}
+        this.anim={reserve:1,discard:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],exit:1,sell:[],afford:0,upAfford:false}
         this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
@@ -64,6 +64,7 @@ class battle{
             this.anim.extra.push(0)
             this.anim.turn.push(0)
             this.anim.deck.push(1)
+            this.anim.sell.push(1)
             this.stats.killed.push(0)
             this.stats.earned.push(0)
             this.stats.damage.push(0)
@@ -426,20 +427,25 @@ class battle{
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.deck[a])
                     this.layer.rect(26+a*(this.layer.width-52),496,32*this.anim.deck[a],24*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.strokeWeight(3*this.anim.sell[a])
+                    this.layer.rect(26+a*(this.layer.width-52),528,32*this.anim.sell[a],24*this.anim.sell[a],5*this.anim.sell[a])
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
                     this.layer.text('Deck',26+a*(this.layer.width-52),496-4*this.anim.deck[a])
                     this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),496+4*this.anim.deck[a])
+                    this.layer.textSize(8*this.anim.sell[a])
+                    this.layer.text('Sell',26+a*(this.layer.width-52),528-4*this.anim.sell[a])
+                    this.layer.text('Relic',26+a*(this.layer.width-52),528+4*this.anim.sell[a])
                 }
                 this.layer.fill(this.player==1?this.colorDetail[0].fill:types.color.card[0].fill)
                 this.layer.stroke(this.player==1?this.colorDetail[0].stroke:types.color.card[0].stroke)
                 this.layer.strokeWeight(3*this.anim.exit)
-                this.layer.rect(26,528,32*this.anim.exit,24*this.anim.exit,5*this.anim.exit)
+                this.layer.rect(26,560,32*this.anim.exit,24*this.anim.exit,5*this.anim.exit)
                 this.layer.fill(0)
                 this.layer.noStroke()
                 this.layer.textSize(8*this.anim.exit)
-                this.layer.text('Exit',26,528)
+                this.layer.text('Exit',26,560)
                 this.purchaseManager.display()
                 this.overlayManager.display()
                 this.itemManager.display(stage.scene)
@@ -626,8 +632,9 @@ class battle{
                 this.itemManager.update(stage.scene)
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
                     this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:496},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:528},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
                 }
-                this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:528},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
+                this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:560},width:32,height:24})&&!this.overlayManager.anyActive,1,1.5,5)
             break
             case 'victory': case 'defeat':
                 this.overlayManager.update()
@@ -746,8 +753,12 @@ class battle{
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }
+                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:528},width:32,height:24})){
+                            this.overlayManager.overlays[16][a].active=true
+                            this.overlayManager.overlays[16][a].activate()
+                        }
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:528},width:32,height:24})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:560},width:32,height:24})){
                         transition.trigger=true
                         transition.scene='map'
                     }
@@ -852,6 +863,10 @@ class battle{
                         if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
+                        }
+                        if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players.length==2||key=='S'&&a==1&&this.players==2){
+                            this.overlayManager.overlays[16][a].active=true
+                            this.overlayManager.overlays[16][a].activate()
                         }
                     }
                     if(code==ENTER){

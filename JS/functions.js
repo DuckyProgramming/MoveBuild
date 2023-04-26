@@ -180,6 +180,9 @@ function copyCard(base){
 function upgradeCard(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,base.base.cost,base.additionalSpec)
 }
+function unupgradeCard(base){
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.base.cost,base.additionalSpec)
+}
 function copyArray(base){
 	let list=[]
 	for(let a=0,la=base.length;a<la;a++){

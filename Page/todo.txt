@@ -5,8 +5,8 @@ trig lookup tables
 streamline getPlayerCombatantIndex
 
 Mechanics:
-Shop Relics (Concept)
 Sell Relics
+Skip Stash
 Menu
 Boss Rewards
 Next World
@@ -21,10 +21,6 @@ Enemy Do Nothing
 The other statuses
 
 More Fights:
-
-More Relics:
-
-Nearly All Boss Relics are Fine
 
 More Items:
 health items

@@ -5,7 +5,9 @@ class group{
         this.player=player
         this.id=id
         this.cards=[]
+        this.removed=[]
         this.sorted=[]
+        this.lastDuplicate=''
 
         this.reset()
     }
@@ -148,7 +150,10 @@ class group{
         if(this.cards.length>0){
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(this.cards[a].usable&&!(this.cards[a].cost<=0&&effect==1)&&!((this.cards[a].level>=types.card[this.cards[a].type].levels.length-1||this.cards[a].class!=args[0])&&effect==2)){
+                if(this.cards[a].usable
+                &&!(this.cards[a].cost<=0&&effect==1)
+                &&!((this.cards[a].level>=types.card[this.cards[a].type].levels.length-1||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==2)
+                &&!((this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==3)){
                     list.push(a)
                 }
             }
@@ -165,6 +170,9 @@ class group{
                     break
                     case 2:
                         this.cards[index]=upgradeCard(this.cards[index])
+                    break
+                    case 3:
+                        this.cards[index]=unupgradeCard(this.cards[index])
                     break
                 }
             }
@@ -227,6 +235,7 @@ class group{
     }
     copySelf(index){
         game.id++
+        this.lastDuplicate=this.cards[index].name
         this.cards.splice(index,0,copyCard(this.cards[index]))
         this.cards[index+1].id=game.id
     }
@@ -242,9 +251,54 @@ class group{
     remove(index){
         let possible=!this.cards[index].spec.includes(7)
         if(possible){
+            this.removed.push(copyCard(this.cards[index]))
             this.cards.splice(index,1)
         }
         return possible
+    }
+    unremove(){
+        this.cards.push(this.removed[this.removed.length-1])
+        this.removed.splice(this.removed.length-1,1)
+    }
+    removeType(type){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].type==type){
+                this.cards.splice(a,1)
+                break
+            }
+        }
+    }
+    removeCurse(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].class==6){
+                this.cards.splice(a,1)
+                break
+            }
+        }
+    }
+    removeRarity(rarity){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].rarity==rarity){
+                this.cards.splice(a,1)
+                break
+            }
+        }
+    }
+    unDuplicate(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].name==this.lastDuplicate){
+                this.cards.splice(a,1)
+                break
+            }
+        }
+    }
+    unInnate(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].additionalSpec.includes(3)){
+                this.cards[a].spec.splice(this.cards[a].spec.indexOf(3),1)
+                this.cards[a].additionalSpec.splice(this.cards[a].additionalSpec.indexOf(3),1)
+            }
+        }
     }
     cost(cost,cardClass){
         if(cost!=0){

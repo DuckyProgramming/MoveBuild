@@ -1,8 +1,9 @@
 class item{
-    constructor(layer,player,x,y,type,size){
+    constructor(layer,player,x,y,altX,altY,type,size){
         this.layer=layer
         this.player=player
         this.position={x:x,y:y}
+        this.altPosition={x:altX,y:altY}
         this.type=type
         this.size=size
 
@@ -19,10 +20,10 @@ class item{
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
     }
-    display(total){
+    display(total,alt){
         if(this.fade>0){
             this.layer.push()
-            this.layer.translate(this.position.x,this.position.y)
+            this.layer.translate(alt?this.altPosition.x:this.position.x,alt?this.altPosition.y:this.position.y)
             this.layer.scale(this.size)
             this.layer.fill(200,this.fade)
             this.layer.noStroke()
@@ -74,8 +75,8 @@ class item{
             }
         }
     }
-    update(up,total,inputs){
+    update(up,total,inputs,alt){
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
-        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.size&&this.type!=0,0,1,5)
+        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,alt?this.altPosition.x:this.position.x,alt?this.altPosition.y:this.position.y)<20*this.size&&this.type!=0,0,1,5)
     }
 }

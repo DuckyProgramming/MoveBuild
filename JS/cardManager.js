@@ -98,6 +98,9 @@ class cardManager{
     transformCard(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][floor(random(0,this.listing.card[base.list][3].length))],base.level,base.color,base.id)
     }
+    transformCardToBasic(base){
+        return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(['Strike','Defend','Step'][floor(random(0,3))],types.card),base.level,base.color,base.id)
+    }
     clear(){
         this.reserve.cards=[]
         this.hand.cards=[]

@@ -21,10 +21,10 @@ class itemManager{
         }
         for(let a=0,la=this.battle.players;a<la;a++){
             this.items.push([
-                new item(this.layer,a,25+(this.layer.width-50)*a,50,0,1),
-                new item(this.layer,a,75+(this.layer.width-150)*a,50,1,1),
-                new item(this.layer,a,125+(this.layer.width-250)*a,50,1,1),
-                new item(this.layer,a,175+(this.layer.width-350)*a,50,1,1)])
+                new item(this.layer,a,25+(this.layer.width-50)*a,50,25+(this.layer.width-50)*a,50,0,1),
+                new item(this.layer,a,75+(this.layer.width-150)*a,50,25+(this.layer.width-50)*a,100,1,1),
+                new item(this.layer,a,125+(this.layer.width-250)*a,50,25+(this.layer.width-50)*a,150,1,1),
+                new item(this.layer,a,175+(this.layer.width-350)*a,50,25+(this.layer.width-50)*a,200,1,1)])
             this.position.push(0)
             this.up.push(true)
             this.total.push(0)
@@ -49,6 +49,17 @@ class itemManager{
         let rarity=possible[floor(random(0,possible.length))]
         let index=floor(random(0,this.listing.item[rarity].length))
         this.addItem(this.listing.item[rarity][index],player)
+    }
+    loseRandom(player){
+        let possible=[]
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player].type>1){
+                possible.push(a)
+            }
+        }
+        if(possible.length>0){
+            this.items[possible[floor(random(0,possible.length))]].type=1
+        }
     }
     addSetItem(rarity,player){
         let index=floor(random(0,this.listing.item[rarity].length))
@@ -80,7 +91,7 @@ class itemManager{
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.items.length;a<la;a++){
-                    this.items[a].forEach(item=>item.display(this.total[a]))
+                    this.items[a].forEach(item=>item.display(this.total[a],false))
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
                     this.items[a].forEach(item=>item.displayInfo())
@@ -88,25 +99,30 @@ class itemManager{
             break
             case 'shop':
                 for(let a=0,la=this.items.length;a<la;a++){
-                    this.items[a].forEach(item=>item.display(this.total[a]))
+                    this.items[a].forEach(item=>item.display(this.total[a],true))
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
                     this.items[a].forEach(item=>item.displayInfo())
                 }
                 this.layer.fill(230,230,210)
                 this.layer.textSize(16)
-                this.layer.text('10',25,83)
+                this.layer.text('10',25,33+this.items[0].length*50)
                 if(this.battle.currency.money.length>1){
-                    this.layer.text('10',this.layer.width-25,83)
+                    this.layer.text('10',this.layer.width-25,33+this.items[1].length*50)
                 }
             break
         }
     }
     update(scene){
         switch(scene){
-            case 'battle': case 'shop':
+            case 'battle':
                 for(let a=0,la=this.items.length;a<la;a++){
-                    this.items[a].forEach(item=>item.update(this.up[a],la,inputs))
+                    this.items[a].forEach(item=>item.update(this.up[a],la,inputs,false))
+                }
+            break
+            case 'shop':
+                for(let a=0,la=this.items.length;a<la;a++){
+                    this.items[a].forEach(item=>item.update(this.up[a],la,inputs,true))
                 }
             break
         }
@@ -142,7 +158,7 @@ class itemManager{
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].altPosition.x,this.items[a][b].altPosition.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
                             this.battle.getCurrency(10,a)
                             this.total[a]--
                             this.items[a][b].type=1

@@ -21,13 +21,14 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[9])],//view reserve (ordered)
             [new overlay(this.layer,this.battle,0,2,[10])],//make card innate
             [new overlay(this.layer,this.battle,0,2,[4,3])],//remove 3 cards, no return
+            [new overlay(this.layer,this.battle,0,4,[0])],//sell relic, no return
 
         )
         if(this.battle.players==2){
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[3,10,0,1,13,2,4,15,5,6,7,8,9,12,14,11]
+        this.priority=[3,10,0,1,13,2,16,4,15,5,6,7,8,9,12,14,11]
         this.anyActive=false
     }
     copyOverlays(){
