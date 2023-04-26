@@ -107,13 +107,13 @@ class relicManager{
     get(type,player){
         switch(type){
             case 5:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(8)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(6)
             break
             case 16:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(14)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
             break
             case 29:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(20)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(14)
             break
             case 30:
                 this.battle.getCurrency(500,player)
@@ -238,7 +238,7 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,2,[0])
             break
             case 160:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(50)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(30)
             break
 
         }
@@ -399,7 +399,7 @@ class relicManager{
                             this.battle.combatantManager.allEffect(5,[1+this.active[147]*0.2])
                         }
                         if(this.active[149]>0){
-                            this.relicPlayer(149).statusEffect('Free Card',this.active[149])
+                            this.relicPlayer(149).statusEffect('Free Card',2*this.active[149])
                         }
                         if(this.active[39]>0){this.detail[39]=0}
                         if(this.active[108]>0){this.detail[108]=0}

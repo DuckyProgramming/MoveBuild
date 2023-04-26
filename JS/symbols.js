@@ -659,6 +659,37 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(0,-1,2,5,-2,5)
             layer.triangle(-1,0,5,2,5,-2)
         break
+        case 59:
+            layer.fill(255,50,50,fade)
+            layer.triangle(13.5,0,-6.75,-4.5,-6.75,4.5)
+        break
+        case 60:
+            layer.fill(75,fade)
+            layer.beginShape()
+            for(let a=0,la=12;a<la;a++){
+                layer.vertex(sin(a*30)*(2+a%2*4),cos(a*30)*(2+a%2*4))
+            }
+            layer.endShape()
+        break
+        case 61:
+            layer.fill(255,50,50,this.fade)
+            layer.triangle(-7.5,-6,-7.5,-0.75,9,-3.375)
+            layer.triangle(7.5,6,7.5,-0.75,-9,3.375)
+        break
+        case 62:
+            layer.fill(150,fade)
+            layer.rect(0,0,7.5,10,2)
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
+        case 63:
+            layer.fill(75,fade)
+            layer.beginShape()
+            for(let a=0,la=8;a<la;a++){
+                layer.vertex(sin((a+0.5)/la*360)*6,cos((a+0.5)/la*360)*6)
+            }
+            layer.endShape()
+        break
     }
     layer.pop()
 }
@@ -718,4 +749,9 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 56-Control
 57-Colorless
 58-Innate
+59-Offensive Intent
+60-Fatigue
+61-Counter
+62-Free Card
+63-Obstruction
 */

@@ -990,6 +990,194 @@ class relic{
                     displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
                     displaySymbol(this.layer,0,0,58,1.2,this.fade)
                 break
+                case 'Energy/Card Choice':
+                    displaySymbol(this.layer,0,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,-13,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,13,0,8,0,0.6,this.fade)
+                break
+                case 'Energy/Rest Heal':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,2,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,8,32,0,0.6,this.fade)
+                break
+                case 'Energy/Rest Upgrade':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,8,-4,17,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,8,32,0,0.6,this.fade)
+                break
+                case 'Energy/Curses':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,8,0,40,0,0.6,this.fade)
+                break
+                case 'Energy/Currency':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    this.layer.text('-50%',9,0)
+                break
+                case 'Energy/Intent':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,7,-8,59,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,4,3,0,0.4,this.fade)
+                break
+                case 'Energy/Strength':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-8,11,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,4,3,0,0.4,this.fade)
+                break
+                case 'Energy/Items':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,30,0,0.6,this.fade)
+                break
+                case 'Energy/Draw':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,0.9,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',8,0)
+                break
+                case 'Energy/Card Limit':
+                    displaySymbol(this.layer,-11,0,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,16,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(8)
+                    this.layer.text('>5',8,0)
+                break
+                case 'Energy/Initiative':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,9,0,13,0,0.9,this.fade)
+                break
+                case 'Energy/Fatigue':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,9,0,60,0,0.9,this.fade)
+                break
+                case 'Energy/Max HP':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,10,0,0.4,this.fade)
+                break
+                case 'Energy/Electrocuted':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,9,0,51,0,0.9,this.fade)
+                break
+                case 'Energy/Range':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,13,0,1.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
+                break
+                case 'Energy/Counter':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,61,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
+                break
+                case 'Energy/Enemy Health':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,-8,2,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,6,3,0,0.4,this.fade)
+                break
+                case 'Energy/Dexterity':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,12,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,16,0,0.6,this.fade)
+                break
+                case '2 Free Cards':
+                    displaySymbol(this.layer,0,0,62,0,2.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,0)
+                break
+                case 'Avoidance':
+                    displaySymbol(this.layer,0,0,63,0,1,this.fade)
+                    displaySymbol(this.layer,-13,0,20,0,0.6,this.fade)
+                    displaySymbol(this.layer,12,0,20,0,0.6,this.fade)
+                break
+                case 'Remove 3':
+                    displaySymbol(this.layer,0,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('3',0,0)
+                break
+                case 'Difficulty Energy':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,34,0,0.4,this.fade)
+                break
+                case 'Large Quick Heal':
+                    displaySymbol(this.layer,-10,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,7,-4,3,0,0.4,this.fade)
+                    displaySymbol(this.layer,7,9,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-10,0)
+                break
+                case 'Transform Basic':
+                    displaySymbol(this.layer,-12,0,8,0,0.7,this.fade)
+                    displaySymbol(this.layer,-12,0,18,0,0.4,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,0.7,this.fade)
+                    displaySymbol(this.layer,0,0,19,0,0.4,this.fade)
+                    displaySymbol(this.layer,12,0,8,0,0.7,this.fade)
+                    displaySymbol(this.layer,12,0,20,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('?',0,14)
+                break
+                case 'Basic Draw':
+                    displaySymbol(this.layer,-8,-2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,-2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,10,4,0,0.6,this.fade)
+                break
+                case 'Confused Draw':
+                    displaySymbol(this.layer,-12,-4,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,12,-4,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,-4,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,10,4,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('?',0,-4)
+                break
+                case 'Much Better Items':
+                    displaySymbol(this.layer,0,-6,30,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5x',0,10)
+                break
+                case '3 Starting Miracles':
+                    displaySymbol(this.layer,-8,0,15,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                break
+                case 'Random':
+                    displaySymbol(this.layer,-8,-8,30,0,0.4,this.fade)
+                    displaySymbol(this.layer,-8,8,10,0,0.3,this.fade)
+                    displaySymbol(this.layer,8,-8,28,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,8,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,0,7,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,8,17,0,0.3,this.fade)
+                break
+                case '30 Max HP':
+                    displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('30',0,12)
+                break
+
             }
             this.layer.pop()
         }
