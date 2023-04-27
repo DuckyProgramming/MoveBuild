@@ -21,7 +21,7 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[9])],//view reserve (ordered)
             [new overlay(this.layer,this.battle,0,2,[10])],//make card innate
             [new overlay(this.layer,this.battle,0,2,[4,3])],//remove 3 cards, no return
-            [new overlay(this.layer,this.battle,0,4,[0])],//sell relic, no return
+            [new overlay(this.layer,this.battle,0,5,[0])],//sell relic, no return
 
         )
         if(this.battle.players==2){

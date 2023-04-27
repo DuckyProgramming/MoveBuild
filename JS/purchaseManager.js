@@ -24,7 +24,7 @@ class purchaseManager{
                 list[group[a]].splice(index,1)
             }
             group=[0,0,0,1,1,1,2,2,3,3]
-            cost=[[160,200],[280,350],[400,500],[240,300]]
+            cost=[[160,200],[240,300],[400,500],[200,250]]
             list=this.battle.relicManager.makeRelicSelection(group)
             let index=floor(random(0,group.length))
             for(let a=0,la=group.length;a<la;a++){
@@ -53,7 +53,7 @@ class purchaseManager{
                 list[group[a]].splice(index,1)
             }
             group=[0,0,0,1,1,1,2,2,3,3]
-            cost=[[160,200],[280,350],[400,500],[240,300]]
+            cost=[[160,200],[240,300],[400,500],[200,250]]
             list=this.battle.relicManager.makeRelicSelection(group)
             let index=floor(random(0,group.length))
             for(let a=0,la=group.length;a<la;a++){

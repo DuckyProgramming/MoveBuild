@@ -5,7 +5,6 @@ trig lookup tables
 streamline getPlayerCombatantIndex
 
 Mechanics:
-Sell Relics
 Skip Stash
 Menu
 Boss Rewards

@@ -1230,7 +1230,7 @@ class attack{
                 if(this.timer==15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                     if(this.targetCombatant.life<=0){
-                        this.battle.getCurrency(this.effect[1],this.player)
+                        this.battle.addCurrency(this.effect[1],this.player)
                     }
                 }else if(this.timer>=30){
                     this.remove=true

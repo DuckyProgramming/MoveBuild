@@ -158,9 +158,9 @@ class purchase{
                 this.card.anim.afford=1
             break
         }
-        this.upSize=this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width,height:this.card.height})||
+        this.upSize=(this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width,height:this.card.height})||
         this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90,height:120})||
-        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size?true:false
+        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size)&&!this.battle.overlayManager.anyActive
         switch(this.type){
             case 3:
                 this.relic.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}})
@@ -168,9 +168,9 @@ class purchase{
         }
     }
     onClick(){
-        if(this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width,height:this.card.height})||
+        if((this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width,height:this.card.height})||
         this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90,height:120})||
-        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size){
+        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size)&&!this.battle.overlayManager.anyActive){
             this.buy()
         }
     }

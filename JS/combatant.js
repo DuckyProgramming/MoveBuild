@@ -4853,7 +4853,7 @@ class combatant{
             case 'Lira': case 'Sakura': case 'Ume':
                 this.anim.head=this.anim.direction
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
-                this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage?true:false
+                this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
                 if(this.name=='Sakura'&&!this.armed){
                     this.goal.anim.sword=false
                 }else if(this.name=='Sakura'&&this.battle.attackManager.attacks.length<=0&&this.life>0){

@@ -48,30 +48,27 @@ class item{
             this.layer.pop()
         }
     }
-    displayInfo(){
+    displayInfo(pos){
         if(this.infoFade>0){
             this.layer.fill(150,this.infoFade)
             this.layer.noStroke()
-            this.layer.rect(100,240,160,120,10)
+            this.layer.rect(100+pos*50,240,160,120,10)
             this.layer.fill(0,this.infoFade)
             this.layer.textSize(12)
-            this.layer.text(this.name,100,200)
+            this.layer.text(this.name,100+pos*50,200)
             this.layer.textSize(8)
-            this.layer.text(this.description,100,245)
+            this.layer.text(this.description,100+pos*50,245)
             this.layer.textSize(10)
             switch(this.rarity){
                 case 0:
-                    this.layer.text('Common',100,290)
+                    this.layer.text('Common',100+pos*50,290)
                 break
                 case 1:
-                    this.layer.text('Uncommon',100,290)
+                    this.layer.text('Uncommon',100+pos*50,290)
                 break
                 case 2:
-                    this.layer.text('Rare',100,290)
-                break
-                case 3:
-                    this.layer.text('Boss',100,290)
-                break
+                    this.layer.text('Rare',100+pos*50,290)
+                K
             }
         }
     }

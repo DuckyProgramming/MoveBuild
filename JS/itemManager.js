@@ -94,7 +94,7 @@ class itemManager{
                     this.items[a].forEach(item=>item.display(this.total[a],false))
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
-                    this.items[a].forEach(item=>item.displayInfo())
+                    this.items[a].forEach(item=>item.displayInfo(0))
                 }
             break
             case 'shop':
@@ -102,7 +102,7 @@ class itemManager{
                     this.items[a].forEach(item=>item.display(this.total[a],true))
                 }
                 for(let a=0,la=this.items.length;a<la;a++){
-                    this.items[a].forEach(item=>item.displayInfo())
+                    this.items[a].forEach(item=>item.displayInfo(1))
                 }
                 this.layer.fill(230,230,210)
                 this.layer.textSize(16)
@@ -159,7 +159,7 @@ class itemManager{
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].altPosition.x,this.items[a][b].altPosition.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
-                            this.battle.getCurrency(10,a)
+                            this.battle.addCurrency(10,a)
                             this.total[a]--
                             this.items[a][b].type=1
                             this.items[a][b].refresh()

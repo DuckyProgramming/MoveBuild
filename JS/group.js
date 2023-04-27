@@ -530,7 +530,7 @@ class group{
                     if(this.cards[a].position.x>a*100+100&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+100||a==0)){
                         this.cards[a].position.x-=20
                     }
-                    this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected?true:false
+                    this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected
                     if(this.cards[a].size<=0){
                         if(this.cards[a].discardEffect.length>0){
                             this.cards[a].deSize=false

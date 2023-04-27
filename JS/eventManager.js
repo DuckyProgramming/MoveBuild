@@ -91,7 +91,7 @@ class eventManager{
                     break
                     case 2:
                         if(this.page==1&&a==0){
-                            this.battle.getCurrency(300,this.player)
+                            this.battle.addCurrency(300,this.player)
                             userCombatant.life-=20
                         }else if(this.page==2&&a==0){
                             userCombatant.heal(userCombatant.base.life)
@@ -122,7 +122,7 @@ class eventManager{
                         if(this.page==0&&a<3&&floor(random(0,3))==0){
                             tempPage++
                         }else if(this.page==1&&a==0){
-                            this.battle.getCurrency(200,this.player)
+                            this.battle.addCurrency(200,this.player)
                         }else if(this.page==2&&a==0){
                             userCombatant.life-=30
                         }

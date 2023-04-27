@@ -315,7 +315,7 @@ class battle{
         }
         this.layer.textAlign(CENTER,CENTER)
     }
-    getCurrency(amount,player){
+    addCurrency(amount,player){
         let multi=this.relicManager.hasRelic(135,player)?0.5:1
         let bonus=this.relicManager.hasRelic(119,player)?10:0
         this.stats.earned[player]+=round((amount+bonus)*multi)

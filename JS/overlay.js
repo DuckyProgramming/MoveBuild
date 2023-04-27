@@ -33,7 +33,7 @@ class overlay{
                 this.takable=1
                 this.options=3
             break
-            case 4:
+            case 5:
                 this.page=0
                 this.battle.relicManager.relics.forEach(relic=>relic.fade=0)
             break
@@ -95,7 +95,7 @@ class overlay{
             case 1:
                 switch(args.type){
                     case 0:
-                        this.battle.getCurrency(args.value[0],this.player)
+                        this.battle.addCurrency(args.value[0],this.player)
                     break
                     case 1:
                         this.battle.overlayManager.overlays[3][this.player].active=true
@@ -278,6 +278,19 @@ class overlay{
                 this.layer.text(this.battle.stats.taken[this.player][1]+' Blocked',this.layer.width/2+225*this.posKey,this.layer.height/2+100)
                 this.layer.text(this.battle.stats.taken[this.player][2]+' Unblocked',this.layer.width/2+225*this.posKey,this.layer.height/2+110)
             break
+            case 5:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2,370,310,10)
+                this.layer.rect(this.layer.width/2-215,this.layer.height/2,40,40,10)
+                this.layer.rect(this.layer.width/2+215,this.layer.height/2,40,40,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+180,120,40,10)
+                this.layer.fill(0,this.fade*0.8)
+                regTriangle(this.layer,this.layer.width/2-212.5,this.layer.height/2,15,15,30)
+                regTriangle(this.layer,this.layer.width/2+212.5,this.layer.height/2,15,15,-30)
+                this.layer.textSize(20)
+                this.layer.text('Close',this.layer.width/2,this.layer.height/2+180)
+                this.battle.relicManager.display('overlay',[this.player,this.page])
+            break
         }
     }
     update(first){
@@ -336,6 +349,9 @@ class overlay{
                             this.cards[a].size=round(this.cards[a].size*5-1)/5
                         }
                     }
+                break
+                case 5:
+                    this.battle.relicManager.update('overlay',[this.active,this.page,this.player])
                 break
             }
         }
@@ -505,6 +521,17 @@ class overlay{
                         this.active=false
                     }
                 break
+                case 5:
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215,y:this.layer.height/2},width:40,height:40})&&this.page>0){
+                        this.page--
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+215,y:this.layer.height/2},width:40,height:40})&&
+                    this.page<ceil((this.battle.relicManager.total[this.player]-1)/30)-1){
+                        this.page++
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+180},width:120,height:40})){
+                        this.active=false
+                    }
+                    this.battle.relicManager.onClick('overlay',[this.player,this.page])
+                break
             }
         }
     }
@@ -665,6 +692,16 @@ class overlay{
                 break
                 case 4:
                     if(code==ENTER){
+                        this.active=false
+                    }
+                break
+                case 5:
+                    if(code==LEFT_ARROW&&this.page>0){
+                        this.page--
+                    }else if(code==RIGHT_ARROW&&
+                        this.page<ceil((this.battle.relicManager.total[this.player]-1)/30)-1){
+                        this.page++
+                    }else if(code==ENTER){
                         this.active=false
                     }
                 break

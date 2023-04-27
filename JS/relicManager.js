@@ -125,7 +125,7 @@ class relicManager{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(14)
             break
             case 30:
-                this.battle.getCurrency(500,player)
+                this.battle.addCurrency(500,player)
             break
             case 32:
                 this.battle.cardManagers[player].randomEffect(0,2,[1])
@@ -240,7 +240,7 @@ class relicManager{
             break
             case 159:
                 this.battle.itemManager.addRandomItem(player)
-                this.battle.getCurrency(200,player)
+                this.battle.addCurrency(200,player)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
                 this.battle.overlayManager.overlays[3][player].active=true
                 this.battle.overlayManager.overlays[3][player].activate([0,2,0])
@@ -402,7 +402,7 @@ class relicManager{
             }
         }
         if(possible.length>0){
-            this.lose(possible[floor(random(0,possible.length))],player)
+            this.loseRelic(possible[floor(random(0,possible.length))])
         }
     }
     hasRelic(type,player){
@@ -646,7 +646,7 @@ class relicManager{
                     this.relicPlayer(95).statusEffect('Dexterity',2*this.active[95])
                 }
                 if(this.active[116]>0){
-                    this.battle.getCurrency(5*this.active[116],this.player[116])
+                    this.battle.addCurrency(5*this.active[116],this.player[116])
                 }
             break
             case 4://playing card [class,plauer]
@@ -726,7 +726,7 @@ class relicManager{
             break
             case 5://adding card [player]
                 if(this.active[40]>0&&args[0]==this.player[40]){
-                    this.battle.getCurrency(20*this.active[40],this.player[40])
+                    this.battle.addCurrency(20*this.active[40],this.player[40])
                 }
             break
             case 6://taking damage [player]
@@ -740,7 +740,7 @@ class relicManager{
             break
             case 7://entering room [room]
                 if(this.active[91]>0&&args[0]!=4){
-                    this.battle.getCurrency(20*this.active[91],this.player[91])
+                    this.battle.addCurrency(20*this.active[91],this.player[91])
                 }
                 switch(args[0]){
                     case 3://rest
@@ -753,7 +753,7 @@ class relicManager{
                     break
                     case 4://shop
                         if(this.active[91]>0){
-                            this.lose(91,this.player[91])
+                            this.loseRelic(91)
                         }
                         if(this.active[92]>0){
                             this.relicPlayer(92).heal(15*this.active[92])
@@ -769,7 +769,7 @@ class relicManager{
                     this.relicPlayer(49).gainMaxHP(2*this.active[49])
                 }
                 if(this.active[101]>0&&args[0]==this.player[101]){
-                    this.battle.getCurrency(10*this.active[101],this.player[101])
+                    this.battle.addCurrency(10*this.active[101],this.player[101])
                 }
             break
             case 9://start of player turn [turn,player]
@@ -795,7 +795,7 @@ class relicManager{
             break
         }
     }
-    display(scene){
+    display(scene,args){
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.relics.length;a<la;a++){
@@ -810,6 +810,21 @@ class relicManager{
                 let lea=this.displayRelics.length
                 this.displayRelics.forEach(relic=>relic.display(lea-1))
                 this.displayRelics.forEach(relic=>relic.displayInfo())
+            break
+            case 'overlay':
+                let position=0
+                let index=0
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    if(this.player[this.relics[a].type]==args[0]&&this.relics[a].type!=0){
+                        this.relics[a].display(la-1,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60},true)
+                        position++
+                        if(position>=30){
+                            position-=30
+                        }
+                        index++
+                    }
+                }
+                this.relics.forEach(relic=>relic.displayInfo())
             break
         }
     }
@@ -849,7 +864,7 @@ class relicManager{
             break
         }
     }
-    update(scene){
+    update(scene,args){
         switch(scene){
             case 'battle':
                 this.relics.forEach(relic=>relic.update(this.up[relic.player],this.total[relic.player],inputs))
@@ -857,9 +872,26 @@ class relicManager{
             case 'stash':
                 this.displayRelics.forEach(relic=>relic.update(true,0,inputs))
             break
+            case 'overlay':
+                let position=0
+                let index=0
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    if(this.player[this.relics[a].type]==args[2]&&this.relics[a].type!=0){
+                        if(index>=args[1]*30&&index<args[1]*30+30){
+                            this.relics[a].update(args[0],this.total[relic.player],inputs,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60})
+                            position++
+                        }else{
+                            this.relics[a].update(false,this.total[relic.player],inputs,{x:-10000,y:0})
+                        }
+                        index++
+                    }else{
+                        this.relics[a].update(false,this.total[relic.player],inputs,{x:-10000,y:0})
+                    }
+                }
+            break
         }
     }
-    onClick(scene){
+    onClick(scene,args){
         switch(scene){
             case 'battle':
                 if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>1){
@@ -873,6 +905,22 @@ class relicManager{
                 for(let a=0,la=this.displayRelics.length;a<la;a++){
                     if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
                         this.callInput(0,a)
+                    }
+                }
+            break
+            case 'overlay':
+                let position=0
+                let index=0
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    if(this.player[this.relics[a].type]==args[0]&&this.relics[a].type!=0){
+                        if(index>=args[1]*30&&index<args[1]*30+30){
+                            if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type]>0){
+                                this.battle.addCurrency(this.relics[a].value,this.player[this.relics[a].type])
+                                this.loseRelic(this.relics[a].type)
+                            }
+                            position++
+                        }
+                        index++
                     }
                 }
             break

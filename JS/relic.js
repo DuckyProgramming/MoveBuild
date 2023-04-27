@@ -15,11 +15,19 @@ class relic{
         this.infoFade=0
         this.deFade=false
         this.active=true
+
+        switch(this.rarity){
+            case 0: this.value=80; break
+            case 1: this.value=120; break
+            case 2: this.value=200; break
+            case 3: this.value=100; break
+            case 4: this.value=600; break
+        }
     }
-    display(total){
+    display(total,position=this.position,value=false){
         if(this.fade>0){
             this.layer.push()
-            this.layer.translate(this.position.x,this.position.y)
+            this.layer.translate(position.x,position.y)
             this.layer.scale(this.size)
             this.layer.fill(this.active?200:80,this.fade)
             this.layer.noStroke()
@@ -71,7 +79,7 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('3',7,1)
                 break
-                case '8 Max HP':
+                case '6 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -150,7 +158,7 @@ class relic{
                     displaySymbol(this.layer,8,-7,7,0,0.6,this.fade)
                     displaySymbol(this.layer,8,7,21,0,0.6,this.fade)
                 break
-                case '14 Max HP':
+                case '10 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -244,7 +252,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',0,-4)
                 break
-                case '20 Max HP':
+                case '14 Max HP':
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -1179,41 +1187,46 @@ class relic{
                 break
 
             }
+            if(value){
+                this.layer.fill(230,230,210)
+                this.layer.textSize(12)
+                this.layer.text(this.value,0,29)
+            }
             this.layer.pop()
         }
     }
-    displayInfo(){
+    displayInfo(pos){
         if(this.infoFade>0){
             this.layer.fill(150,this.infoFade)
             this.layer.noStroke()
-            this.layer.rect(100,240,160,120,10)
+            this.layer.rect(100+pos*50,240,160,120,10)
             this.layer.fill(0,this.infoFade)
             this.layer.textSize(12)
-            this.layer.text(this.name,100,200)
+            this.layer.text(this.name,100+pos*50,200)
             this.layer.textSize(8)
-            this.layer.text(this.description,100,245)
+            this.layer.text(this.description,100+pos*50,245)
             this.layer.textSize(10)
             switch(this.rarity){
                 case 0:
-                    this.layer.text('Common',100,290)
+                    this.layer.text('Common',100+pos*50,290)
                 break
                 case 1:
-                    this.layer.text('Uncommon',100,290)
+                    this.layer.text('Uncommon',100+pos*50,290)
                 break
                 case 2:
-                    this.layer.text('Rare',100,290)
+                    this.layer.text('Rare',100+pos*50,290)
                 break
                 case 3:
-                    this.layer.text('Shop',100,290)
+                    this.layer.text('Shop',100+pos*50,290)
                 break
                 case 4:
-                    this.layer.text('Boss',100,290)
+                    this.layer.text('Boss',100+pos*50,290)
                 break
             }
         }
     }
-    update(up,total,inputs){
+    update(up,total,inputs,position=this.position){
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>1,0,1,5)
-        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.size&&this.type!=0,0,1,5)
+        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0,0,1,5)
     }
 }

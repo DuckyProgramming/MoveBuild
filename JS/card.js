@@ -354,7 +354,7 @@ class card{
         }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         this.afford=(userCombatant.status.main[27]>0||userCombatant.status.main[22]>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost)&&
-        !(this.spec.includes(6)&&!userCombatant.armed)?true:false
+        !(this.spec.includes(6)&&!userCombatant.armed)
         if(this.deSize&&this.size>0||this.downSize&&this.size>0.6||!this.upSize&&this.size>1){
             this.size=round(this.size*5-1)/5
         }else if(!this.deSize&&(!this.downSize&&this.size<1||this.size<0.6||this.upSize&&this.size<1.5)){
