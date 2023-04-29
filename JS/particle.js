@@ -113,8 +113,8 @@ class particle{
         this.time++
         switch(this.type){
             case 0:
-                this.position.x+=sin(this.direction)*this.speed
-                this.position.y-=cos(this.direction)*this.speed
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
                 if(!this.trigger){
                     this.fade+=0.2
                     if(this.fade>=2){
@@ -128,8 +128,8 @@ class particle{
                 }
             break
             case 1: case 4: case 5:
-                this.position.x+=sin(this.direction)*this.speed
-                this.position.y-=cos(this.direction)*this.speed-10/this.timer
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){
                     this.fade+=2/this.timer
                     if(this.fade>=2){
@@ -150,8 +150,8 @@ class particle{
                 }
             break
             case 3:
-                this.position.x+=sin(this.direction)*this.speed
-                this.position.y-=cos(this.direction)*this.speed-10/this.timer
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){
                     this.fade+=1/this.timer
                     if(this.fade>=1){

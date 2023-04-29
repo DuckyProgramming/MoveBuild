@@ -147,6 +147,9 @@ function intentDescription(attack,info){
 		case 5: return `Shuffle in ${info?attack.effect[0]:`?`} Dazed`
 		case 6: return `Deal ${info?attack.effect[0]:`?`} Damage\nRange 1-2`
 		case 7: return `Deal ${info?attack.effect[0]:`?`} Damage\nPush 1 Tile\nRange 1-2`
+		case 8: return `Shuffle in ${info?attack.effect[0]:`?`} Burn\nRange 1-2`
+		case 9: return `Deal ${info?attack.effect[0]:`?`} Damage\n3 Tiles Wide\nRange 1-1`
+		case 10: return `Add ${info?attack.effect[0]:`?`} Block to All Enemies`
 
 	}
 }

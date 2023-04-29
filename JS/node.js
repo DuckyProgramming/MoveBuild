@@ -65,9 +65,9 @@ class node{
                 this.layer.ellipse(0,0,70,70)
                 this.layer.ellipse(0,0,50,50)
                 for(let a=0,la=12;a<la;a++){
-                    this.layer.line(sin(360*a/la)*25,cos(360*a/la)*25,sin(360*(a-0.5)/la)*35,cos(360*(a-0.5)/la)*35)
-                    this.layer.line(sin(360*a/la)*25,cos(360*a/la)*25,sin(360*(a+0.5)/la)*35,cos(360*(a+0.5)/la)*35)
-                    this.layer.line(sin(360*(a-0.5)/la)*35,cos(360*(a-0.5)/la)*35,sin(360*(a-0.5)/la)*40,cos(360*(a-0.5)/la)*40)
+                    this.layer.line(lsin(360*a/la)*25,lcos(360*a/la)*25,lsin(360*(a-0.5)/la)*35,lcos(360*(a-0.5)/la)*35)
+                    this.layer.line(lsin(360*a/la)*25,lcos(360*a/la)*25,lsin(360*(a+0.5)/la)*35,lcos(360*(a+0.5)/la)*35)
+                    this.layer.line(lsin(360*(a-0.5)/la)*35,lcos(360*(a-0.5)/la)*35,lsin(360*(a-0.5)/la)*40,lcos(360*(a-0.5)/la)*40)
                 }
                 this.layer.ellipse(0,0,30,30)
                 this.layer.strokeWeight(6)

@@ -13,7 +13,7 @@ class tile{
         this.reinforce=false
         this.target=0
 
-        this.anim={target:[0,0,0],reinforce:0,part:[],upPart:[]}
+        this.anim={target:[0,0,0,0,0],reinforce:0,part:[],upPart:[]}
         for(let a=0,la=this.type.length;a<la;a++){
             this.anim.part.push(0)
             this.anim.upPart.push(true)
@@ -119,6 +119,21 @@ class tile{
             this.layer.stroke(200,0,0,this.fade*this.anim.target[2])
             this.layer.strokeWeight(2)
             this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
+            stack++
+        }
+        if(this.anim.target[3]>0){
+            this.layer.noFill()
+            this.layer.stroke(255,200,50,this.fade*this.anim.target[3])
+            this.layer.strokeWeight(2)
+            this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
+            stack++
+        }
+        if(this.anim.target[4]>0){
+            this.layer.noFill()
+            this.layer.stroke(200,150,0,this.fade*this.anim.target[4])
+            this.layer.strokeWeight(2)
+            this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
+            stack++
         }
         this.layer.pop()
     }

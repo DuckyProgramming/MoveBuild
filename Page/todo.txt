@@ -1,11 +1,8 @@
 Animations:
 
 Bugs:
-trig lookup tables
-streamline getPlayerCombatantIndex
 
 Mechanics:
-Skip Stash
 Menu
 Boss Rewards
 Next World
@@ -18,6 +15,7 @@ Innate Cards
 2 Tile Move
 Enemy Do Nothing
 The other statuses
+Gangster
 
 More Fights:
 

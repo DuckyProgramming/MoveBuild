@@ -29,10 +29,17 @@ class turn{
                             case 1: case 2: case 3:
                                 this.target=[this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
                             break
-                            case 6: case 7:
+                            case 6: case 7: case 8:
                                 this.target=[
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]),
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2)
+                                ]
+                            break
+                            case 9:
+                                this.target=[
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1])
                                 ]
                             break
                         }
@@ -48,6 +55,32 @@ class turn{
 
                                 this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
                                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                            }
+                        }else if(this.type==9){
+                            this.targetCombatant=[]
+                            this.direction=[]
+                            this.distance=[]
+                            this.relativeDirection=[]
+                            this.relativeDistance=[]
+                            this.targetDistance=[]
+                            for(let a=0,la=this.target.length;a<la;a++){
+                                if(this.target[a]==-1){
+                                    this.userCombatant.moved=true
+                                }else{
+                                    let targetCombatant=this.battle.combatantManager.combatants[this.target[a]]
+                                    this.targetCombatant.push(targetCombatant)
+
+                                    this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
+                                    this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
+
+                                    this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
+                                    this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
+
+                                    this.targetDistance.push(distTargetCombatant(0,this.userCombatant,targetCombatant))
+                                }
+                            }
+                            if(this.targetCombatant.length==0){
+                                this.remove=true
                             }
                         }else{
                             this.targetCombatant=-1
@@ -144,6 +177,9 @@ class turn{
                     this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
                     this.remove=true
                 break
+                default:
+                    this.remove=true
+                break
             }
         }
     }
@@ -225,13 +261,17 @@ class turn{
                             }
                         }
                     break
-                    case 4:
+                    case 4: case 10:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(1)
                         }
                         this.userCombatant.runAnimation(1/30,1)
                         if(this.timer==15){
-                            this.userCombatant.addBlock(this.effect[0])
+                            if(this.type==10){
+                                this.battle.combatantManager.allEffect(6,[this.effect[0]])
+                            }else{
+                                this.userCombatant.addBlock(this.effect[0])
+                            }
                         }else if(this.timer>=30){
                             this.remove=true
                         }
@@ -248,14 +288,20 @@ class turn{
                             this.remove=true
                         }
                     break
-                    case 6:
+                    case 6: case 8:
                         if(this.targetDistance==1){
                             if(this.timer==1){
                                 this.userCombatant.startAnimation(2)
                             }
                             this.userCombatant.runAnimation(1/30,2)
                             if(this.timer==15){
-                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                if(this.type==8){
+                                    for(let a=0,la=this.effect[0];a<la;a++){
+                                        this.battle.drop(findName('Burn',types.card),0,game.playerNumber+1)
+                                    }
+                                }else{
+                                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                }
                             }else if(this.timer>=30){
                                 this.remove=true
                             }
@@ -277,7 +323,13 @@ class turn{
                             if(this.timer==15){
                                 this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x/2+this.targetCombatant.tilePosition.x/2,this.userCombatant.tilePosition.y/2+this.targetCombatant.tilePosition.y/2)
                             }else if(this.timer==30){
-                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                if(this.type==8){
+                                    for(let a=0,la=this.effect[0];a<la;a++){
+                                        this.battle.drop(findName('Burn',types.card),0,game.playerNumber+1)
+                                    }
+                                }else{
+                                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                }
                                 this.battle.activate(1,this.userCombatant.id)
                             }else if(this.timer>=45){
                                 this.remove=true
@@ -396,6 +448,17 @@ class turn{
                                     this.remove=true
                                 }
                             }
+                        }
+                    break
+                    case 9:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(4)
+                        }
+                        this.userCombatant.runAnimation(1/30,4)
+                        if(this.timer==15){
+                            this.targetCombatant.forEach(targetCombatant=>targetCombatant.takeDamage(this.effect[0],this.user))
+                        }else if(this.timer>=30){
+                            this.remove=true
                         }
                     break
                 }

@@ -810,10 +810,14 @@ class relicManager{
                 let lea=this.displayRelics.length
                 this.displayRelics.forEach(relic=>relic.display(lea-1))
                 this.displayRelics.forEach(relic=>relic.displayInfo())
+                this.layer.fill(200,this.fade)
+                this.layer.noStroke()
+                this.layer.ellipse(this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50,60,60)
+                this.layer.fill(80,this.fade)
+                regTriangle(this.layer,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50,20,20,90)
             break
             case 'overlay':
                 let position=0
-                let index=0
                 for(let a=0,la=this.relics.length;a<la;a++){
                     if(this.player[this.relics[a].type]==args[0]&&this.relics[a].type!=0){
                         this.relics[a].display(la-1,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60},true)
@@ -821,7 +825,6 @@ class relicManager{
                         if(position>=30){
                             position-=30
                         }
-                        index++
                     }
                 }
                 this.relics.forEach(relic=>relic.displayInfo())
@@ -907,6 +910,10 @@ class relicManager{
                         this.callInput(0,a)
                     }
                 }
+                if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50)<30){
+                    transition.trigger=true
+                    transition.scene='map'
+                }
             break
             case 'overlay':
                 let position=0
@@ -941,6 +948,10 @@ class relicManager{
                     if((int(key)+9)%10==a&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
                         this.callInput(0,a)
                     }
+                }
+                if(code==ENTER){
+                    transition.trigger=true
+                    transition.scene='map'
                 }
             break
         }

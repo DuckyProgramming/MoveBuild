@@ -6,6 +6,14 @@ class combatantManager{
         this.id=0
 
         this.combatants=[]
+        this.playerCombatantIndex=[]
+    }
+    assignPlayer(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0){
+                this.playerCombatantIndex[this.combatants[a].id]=a
+            }
+        }
     }
     clearCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -27,6 +35,7 @@ class combatantManager{
                 this.combatants[a].reset()
             }
         }
+        this.assignPlayer()
         for(let a=0,la=this.combatants.length;a<la;a++){
             this.combatants[a].id=a
         }
@@ -40,6 +49,7 @@ class combatantManager{
                 this.combatants[a].endBlock()
             }
         }
+        this.assignPlayer()
     }
     enableCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -90,12 +100,18 @@ class combatantManager{
                         this.combatants[a].life*=args[0]
                         this.combatants[a].base.life*=args[0]
                     break
+                    case 6:
+                        this.combatants[a].addBlock(args[0])
+                    break
                 }
             }
         }
     }
     addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
+        if(this.id<this.battle.players){
+            this.playerCombatantIndex[this.id]=this.combatants.length-1
+        }
         this.id++
     }
     getCombatantIndex(tileX,tileY){
@@ -107,11 +123,7 @@ class combatantManager{
         return -1
     }
     getPlayerCombatantIndex(id){
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team>0&&this.combatants[a].id==id){
-                return a
-            }
-        }
+        return this.playerCombatantIndex[id]
     }
     damageArea(damage,team,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){

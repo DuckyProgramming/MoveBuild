@@ -542,6 +542,12 @@ types={
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:5},
             ],
         },{
+            name:'Burn',rarity:0,list:4,
+            levels:[
+                {effect:[2],attack:-4,cost:0,target:[0],spec:[5],class:5},
+                {effect:[4],attack:-4,cost:0,target:[0],spec:[5],class:5},
+            ],
+        },{
             name:'Electrocuted',rarity:0,list:4,
             levels:[
                 {effect:[1],attack:-3,cost:0,target:[0],spec:[5],class:5},
@@ -569,19 +575,20 @@ types={
             ],
         },
     ],combatant:[
-        {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:""},
-        {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management."},
-        {name:'Sakura',life:50,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her."},
-        {name:'Ume',life:40,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:"Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world..."},
-        {name:'Human',life:25,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:"Just a guy"},
-        {name:'Duck',life:20,behavior:1,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:"Typical duck"},
-        {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:"Likes his personal space"},
-        {name:'Thug',life:32,behavior:0,move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:"Beats people up"},
-        {name:'Biker',life:40,behavior:0,move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:"Now bikeless"},
-        //fast boy
+        {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
+        {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
+        {name:'Sakura',life:50,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
+        {name:'Ume',life:40,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
+        {name:'Human',life:25,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
+        {name:'Duck',life:20,behavior:1,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:`Typical duck`},
+        {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
+        {name:'Thug',life:32,behavior:0,move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:`Beats people up`},
+        {name:'Biker',life:40,behavior:0,move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
+        {name:'Drunk',life:30,behavior:1,move:{type:0,speed:1},attack:[{type:8,effect:[1]},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
+        {name:'Drunk Boss',life:90,behavior:1,move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},
 
     ],attack:[
-        {name:'',class:0},
+        {name:'',class:0},//0
         {name:'Strike',class:1},
         {name:'Triple Strike',class:1},
         {name:'Push',class:1},
@@ -589,6 +596,9 @@ types={
         {name:'Daze',class:4},
         {name:'2 Tile Strike (Nonpenetrative) (Advance)',class:1},
         {name:'2 Tile Push (Advance)',class:1},
+        {name:'Burn (2 Range) (Nonpenetrative) (Advance)',class:1},
+        {name:'3 Spread Strike',class:1},
+        {name:'All Enemy Block',class:2},//10
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -644,7 +654,7 @@ types={
         {name:'',internal:'Max HP Rest',id:47,rarity:1,list:0,description:'Can Gain 4 Max\nHP When Resting'},
         {name:'',internal:'Damage Block Next Turn',id:48,rarity:1,list:0,description:'When You Take Damage,\nGain 3 Block Next Turn'},
         {name:'',internal:'Skip Card Max HP',id:49,rarity:1,list:0,description:'Gain 2 Max HP When\nYou Skip Adding a Card'},
-        {name:'',internal:'Strike Damage',id:50,rarity:1,list:0,description:'Cards Containing '+"'Strike'"+'\nDeal 2 More Damage'},
+        {name:'',internal:'Strike Damage',id:50,rarity:1,list:0,description:'Cards Containing '+`'Strike'`+'\nDeal 2 More Damage'},
         
         {name:'',internal:'Unplayed Card Block',id:51,rarity:2,list:0,description:'At the End of Your Turn,\nGain 1 Block Per Unplayed Card'},
         {name:'',internal:'Shivs',id:52,rarity:2,list:0,description:'Add 4 Shivs at the\nStart of Combat'},
@@ -933,6 +943,40 @@ to know how to defuse a bomb?`,
                     link:[-1],
                 },
             ],
+        },{
+            name:'Bar Fight',id:6,list:0,
+            pages:[
+                {
+                    desc:
+`You arrive in a bar, hoping to enjoy the evening.
+But you are rudely awakened when a man touches your shoulder.
+The people here might not know who you are.
+But they definitely know that you don't belong here.
+His friends surround you, ready to get some information out of you.
+Things could quickly get ugly.`,
+                    option:['Ask them what they want ','Punch him'],
+                    optionDesc:['','Start Fight'],
+                    link:[1,-2],
+                },{
+                    desc:`He asks you where you're from, and why you're here.`,
+                    option:['Tell the truth.','Punch him'],
+                    optionDesc:['','Start Fight'],
+                    link:[2,-2],
+                },{
+                    desc:
+`He looks at you with disapproval, but backs down,
+avoiding having to fight. The gang returns to chatting in the back,
+while you enjoy some well-earned rest.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`He manages to get in a quick strike.`,
+                    option:['Fight Back'],
+                    optionDesc:['Take 6 Damage, Start Fight'],
+                    link:[-2],
+                },
+            ],
         },
     ],color:{
         card:[
@@ -1031,15 +1075,17 @@ to know how to defuse a bomb?`,
     ],encounter:[
         {
             level:0,class:0,world:-1,
+            name:'',
             player:{position:{x:0,y:0}},
             enemy:[
             ],reinforce:[
             ],
         },{
             level:2,class:0,world:0,
+            name:'Placeholder',
             player:{position:{x:3,y:3}},
             enemy:[
-                {position:{x:0,y:0},name:'Duck'},
+                {position:{x:0,y:0},name:'Biker'},
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},
                 {position:{x:3,y:0},name:'Thug'},
@@ -1062,6 +1108,7 @@ to know how to defuse a bomb?`,
             ],
         },{
             level:2,class:1,world:0,
+            name:'Placeholder',
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},name:'Human'},
@@ -1078,6 +1125,7 @@ to know how to defuse a bomb?`,
             ],
         },{
             level:2,class:2,world:0,
+            name:'Placeholder',
             player:{position:{x:3,y:3}},
             enemy:[
                 {position:{x:0,y:0},name:'Human'},
@@ -1090,11 +1138,22 @@ to know how to defuse a bomb?`,
                 {position:{x:6,y:6},name:'Human'},
             ],reinforce:[
             ],
+        },{
+            level:2,class:0,world:-1,
+            name:'Bar Fight',
+            player:{position:{x:3,y:3}},
+            enemy:[
+                {position:{x:6,y:6},name:'Drunk'},
+                {position:{x:3,y:6},name:'Drunk'},
+                {position:{x:6,y:3},name:'Drunk'},
+                {position:{x:0,y:0},name:'Drunk Boss'},
+            ],reinforce:[
+            ],
         },
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:3,id:0,timer:0,animRate:2,targetRadius:30,turnTime:0,scene:0}
+game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]]}
 constants={collisionDamage:4}
 options={damage:false,alt:false}
 graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}

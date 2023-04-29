@@ -10,20 +10,20 @@ function displayTrianglesBack(layer,parts,direction,base,width,weight,slant,colo
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
 	for(let part of parts){
-		if(cos(part.spin[1]+direction)<=0&&cos(part.spin[0]+direction)>0){
-			if(cos(part.spin[2]+direction)>0){
-				layer.triangle(sin(part.spin[1]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])))
+		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
+			if(lcos(part.spin[2]+direction)>0){
+				layer.triangle(lsin(part.spin[1]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])))
 			}else{
-				layer.quad(sin(part.spin[1]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])),sin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
+				layer.quad(lsin(part.spin[1]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])),lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 			}
-		}else if(cos(part.spin[0]+direction)<=0&&cos(part.spin[1]+direction)>0){
-			if(cos(part.spin[2]+direction)>0){
-				layer.triangle(sin(part.spin[0]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])))
+		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)>0){
+			if(lcos(part.spin[2]+direction)>0){
+				layer.triangle(lsin(part.spin[0]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])))
 			}else{
-				layer.quad(sin(part.spin[0]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])),sin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
+				layer.quad(lsin(part.spin[0]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])),lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 			}
-		}else if(cos(part.spin[0]+direction)<=0&&cos(part.spin[1]+direction)<=0&&cos(part.spin[2]+direction)<=0){
-			layer.triangle(sin(part.spin[0]+direction)*width/2,base,sin(part.spin[1]+direction)*width/2,base,sin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
+		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)<=0&&lcos(part.spin[2]+direction)<=0){
+			layer.triangle(lsin(part.spin[0]+direction)*width/2,base,lsin(part.spin[1]+direction)*width/2,base,lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 		}
 	}
 }
@@ -39,20 +39,20 @@ function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,col
 	layer.strokeWeight(weight)
 	layer.strokeJoin(ROUND)
 	for(let part of parts){
-		if(cos(part.spin[1]+direction)<=0&&cos(part.spin[0]+direction)>0){
-			if(cos(part.spin[2]+direction)<=0){
-				layer.triangle(sin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])))
+		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
+			if(lcos(part.spin[2]+direction)<=0){
+				layer.triangle(lsin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])))
 			}else{
-				layer.quad(sin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])),sin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
+				layer.quad(lsin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])),lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 			}
-		}else if(cos(part.spin[0]+direction)<=0&&cos(part.spin[1]+direction)>0){
-			if(cos(part.spin[2]+direction)<=0){
-				layer.triangle(sin(part.spin[1]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])))
+		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)>0){
+			if(lcos(part.spin[2]+direction)<=0){
+				layer.triangle(lsin(part.spin[1]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])))
 			}else{
-				layer.quad(sin(part.spin[1]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])),sin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
+				layer.quad(lsin(part.spin[1]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])),lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 			}
-		}else if(cos(part.spin[0]+direction)>0&&cos(part.spin[1]+direction)>0&&cos(part.spin[2]+direction)>0){
-			layer.triangle(sin(part.spin[0]+direction)*width/2,base,sin(part.spin[1]+direction)*width/2,base,sin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
+		}else if(lcos(part.spin[0]+direction)>0&&lcos(part.spin[1]+direction)>0&&lcos(part.spin[2]+direction)>0){
+			layer.triangle(lsin(part.spin[0]+direction)*width/2,base,lsin(part.spin[1]+direction)*width/2,base,lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 		}
 	}
 }
@@ -71,38 +71,38 @@ function displayTrianglesBackMerge(layer,parts,direction,base,width,weight,slant
 			layer.fill(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
 			layer.stroke(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
 		}
-		if(cos(part.spin[1]+direction)<=0&&cos(part.spin[0]+direction)>0){
-			if(cos(part.spin[2]+direction)>0){
-				layer.triangle(sin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
+		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
+			if(lcos(part.spin[2]+direction)>0){
+				layer.triangle(lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
 				width/2+(part.y[1]*(1-abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))+part.y[0]*abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))*slant,
 				base+part.y[1]*(1-abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))+part.y[0]*abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]),
 				width/2+(part.y[2]*abs(1-(90-part.spin[2]-direction)/abs(part.spin[1]-part.spin[2]))+part.y[1]*abs(90-part.spin[2]-direction)/abs(part.spin[1]-part.spin[2]))*slant,
 				base+part.y[2]*abs(1-(90-part.spin[2]-direction)/abs(part.spin[1]-part.spin[2]))+part.y[1]*abs(90-part.spin[2]-direction)/abs(part.spin[1]-part.spin[2]))
 			}else{
-				layer.quad(sin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2],
-				sin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
+				layer.quad(lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2],
+				lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
 				width/2+(part.y[1]*(1-abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))+part.y[0]*abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))*slant,
 				base+part.y[1]*(1-abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))+part.y[0]*abs(90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]),
 				width/2+(part.y[2]*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))+part.y[0]*(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,
 				base+part.y[2]*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))+part.y[0]*(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))
 			}
-		}else if(cos(part.spin[0]+direction)<=0&&cos(part.spin[1]+direction)>0){
-			if(cos(part.spin[2]+direction)>0){
-				layer.triangle(sin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
+		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)>0){
+			if(lcos(part.spin[2]+direction)>0){
+				layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
 				-width/2-(part.y[0]*(1-abs(-90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))+part.y[1]*abs(-90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))*slant,
 				base+part.y[0]*(1-abs(-90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))+part.y[1]*abs(-90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]),
 				-width/2-(part.y[2]*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))+part.y[0]*(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,
 				base+part.y[2]*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))+part.y[0]*(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))
 			}else{
-				layer.quad(sin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2],
-				sin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
+				layer.quad(lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2],
+				lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
 				-width/2-(part.y[0]*(1-abs(-90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))+part.y[1]*abs(-90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))*slant,
 				base+part.y[0]*(1-abs(-90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))+part.y[1]*abs(-90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]),
 				-width/2-(part.y[2]*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))+part.y[1]*(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,
 				base+part.y[2]*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))+part.y[1]*(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))
 			}
-		}else if(cos(part.spin[0]+direction)<=0&&cos(part.spin[1]+direction)<=0&&cos(part.spin[2]+direction)<=0){
-			layer.triangle(sin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],sin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],sin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2])
+		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)<=0&&lcos(part.spin[2]+direction)<=0){
+			layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2])
 		}
 	}
 }
@@ -121,38 +121,38 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 			layer.fill(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
 			layer.stroke(color1[0]*g/lg+color2[0]*(1-g/lg),color1[1]*g/lg+color2[1]*(1-g/lg),color1[2]*g/lg+color2[2]*(1-g/lg),fade)
 		}
-		if(cos(part.spin[1]+direction)<=0&&cos(part.spin[0]+direction)>0){
-			if(cos(part.spin[2]+direction)<=0){
-				layer.triangle(sin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
+		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
+			if(lcos(part.spin[2]+direction)<=0){
+				layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
 				width/2+(part.y[0]*(1-abs(90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))+part.y[1]*abs(90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))*slant,
 				base+part.y[0]*(1-abs(90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]))+part.y[1]*abs(90-part.spin[0]-direction)/abs(part.spin[1]-part.spin[0]),
 				width/2+(part.y[2]*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))+part.y[0]*(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,
 				base+part.y[2]*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))+part.y[0]*(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))
 			}else{
-				layer.quad(sin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2],
-				sin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
+				layer.quad(lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2],
+				lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],
 				width/2+(part.y[0]*(1-(90-part.spin[0]-direction)/(part.spin[1]-part.spin[0]))+part.y[1]*(90-part.spin[0]-direction)/(part.spin[1]-part.spin[0]))*slant,
 				base+part.y[0]*(1-(90-part.spin[0]-direction)/(part.spin[1]-part.spin[0]))+part.y[1]*(90-part.spin[0]-direction)/(part.spin[1]-part.spin[0]),
 				width/2+(part.y[2]*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))+part.y[1]*(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,
 				base+part.y[2]*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))+part.y[1]*(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))
 			}
-		}else if(cos(part.spin[0]+direction)<=0&&cos(part.spin[1]+direction)>0){
-			if(cos(part.spin[2]+direction)<=0){
-				layer.triangle(sin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
+		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)>0){
+			if(lcos(part.spin[2]+direction)<=0){
+				layer.triangle(lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
 				-width/2-(part.y[1]*(1-abs(-90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))+part.y[0]*abs(-90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))*slant,
 				base+part.y[1]*(1-abs(-90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]))+part.y[0]*abs(-90-part.spin[1]-direction)/abs(part.spin[0]-part.spin[1]),
 				-width/2-(part.y[2]*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))+part.y[1]*(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,
 				base+part.y[2]*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))+part.y[1]*(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))
 			}else{
-				layer.quad(sin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2],
-				sin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
+				layer.quad(lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2],
+				lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],
 				-width/2-(part.y[1]*(1-(-90-part.spin[1]-direction)/(part.spin[0]-part.spin[1]))+part.y[0]*(-90-part.spin[1]-direction)/(part.spin[0]-part.spin[1]))*slant,
 				base+part.y[1]*(1-(-90-part.spin[1]-direction)/(part.spin[0]-part.spin[1]))+part.y[0]*(-90-part.spin[1]-direction)/(part.spin[0]-part.spin[1]),
 				-width/2-(part.y[2]*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))+part.y[0]*(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,
 				base+part.y[2]*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))+part.y[0]*(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))
 			}
-		}else if(cos(part.spin[0]+direction)>0&&cos(part.spin[1]+direction)>0&&cos(part.spin[2]+direction)>0){
-			layer.triangle(sin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],sin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],sin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2])
+		}else if(lcos(part.spin[0]+direction)>0&&lcos(part.spin[1]+direction)>0&&lcos(part.spin[2]+direction)>0){
+			layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2])
 		}
 	}
 }
@@ -474,32 +474,32 @@ function minorGraphicDisplay(layer,type){
 		case 9:
 			layer.fill(253,233,237)
 			for(let h=0;h<8;h++){
-				layer.rotate(45+cos(h*90+45)*10)
-				layer.ellipse(0,sin(h*90)*0.4+1.6,1,2)
+				layer.rotate(45+lcos(h*90+45)*10)
+				layer.ellipse(0,lsin(h*90)*0.4+1.6,1,2)
 				layer.rect(0,-1,0.16,2)
 			}
 			for(let g=0,lg=5;g<lg;g++){
 				layer.fill(217-38*g/lg,224-63*g/lg,137-66*g/lg)
 				for(let h=0;h<8;h++){
-					layer.rotate(45+cos(h*90+45)*10)
-					layer.ellipse(0,sin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
-					layer.rect(0,-(sin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,sin(h*90)*0.4+1.6-0.9*g/lg)
+					layer.rotate(45+lcos(h*90+45)*10)
+					layer.ellipse(0,lsin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+					layer.rect(0,-(lsin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,lsin(h*90)*0.4+1.6-0.9*g/lg)
 				}
 			}
 			layer.rotate(18)
 			layer.scale(0.8)
 			layer.fill(235,201,215)
 			for(let h=0;h<8;h++){
-				layer.rotate(45+cos(h*90+45)*10)
-				layer.ellipse(0,sin(h*90)*0.4+1.6,1,2)
+				layer.rotate(45+lcos(h*90+45)*10)
+				layer.ellipse(0,lsin(h*90)*0.4+1.6,1,2)
 				layer.rect(0,-1,0.16,2)
 			}
 			for(let g=0,lg=5;g<lg;g++){
 				layer.fill(173-51*g/lg,113-68*g/lg,180-42*g/lg)
 				for(let h=0;h<8;h++){
-					layer.rotate(45+cos(h*90+45)*10)
-					layer.ellipse(0,sin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
-					layer.rect(0,-(sin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,sin(h*90)*0.4+1.6-0.9*g/lg)
+					layer.rotate(45+lcos(h*90+45)*10)
+					layer.ellipse(0,lsin(h*90)*0.4+1.6-0.9*g/lg,0.8*(1-g/lg),1.8*(1-g/lg))
+					layer.rect(0,-(lsin(h*90)*0.4+1.6-0.9*g/lg)/2,0.08-0.08*g/lg,lsin(h*90)*0.4+1.6-0.9*g/lg)
 				}
 			}
 		break
@@ -718,20 +718,20 @@ function generateSprite(layer,type,direction){
 			layer.line(-17.5,0,17.5,0)
 			layer.strokeWeight(0.75)
 			for(let g=0,lg=data.parts.hair.strand.length;g<lg;g++){
-				if(cos(data.parts.hair.strand[g]+direction)>0){
-					layer.line(sin(data.parts.hair.strand[g]+direction)*15.5,0,sin(data.parts.hair.strand[g]+direction)*14,18)
+				if(lcos(data.parts.hair.strand[g]+direction)>0){
+					layer.line(lsin(data.parts.hair.strand[g]+direction)*15.5,0,lsin(data.parts.hair.strand[g]+direction)*14,18)
 				}
 			}
 			layer.strokeWeight(0.5)
 			layer.noFill()
-			layer.arc(cos(direction+data.parts.hair.top)*-5,-10,16*cos(direction+data.parts.hair.top),12,-180,0)
+			layer.arc(lcos(direction+data.parts.hair.top)*-5,-10,16*lcos(direction+data.parts.hair.top),12,-180,0)
 		break
 		case 11:
 			displayTrianglesBack(layer,data.parts.hair.main,direction,0,35,1,0.1,data.color.hair.back,1)
 			layer.strokeWeight(0.75)
 			for(let g=0,lg=data.parts.hair.strand.length;g<lg;g++){
-				if(cos(data.parts.hair.strand[g]+direction)<=0){
-					layer.line(sin(data.parts.hair.strand[g]+direction)*15.5,0,sin(data.parts.hair.strand[g]+direction)*14,18)
+				if(lcos(data.parts.hair.strand[g]+direction)<=0){
+					layer.line(lsin(data.parts.hair.strand[g]+direction)*15.5,0,lsin(data.parts.hair.strand[g]+direction)*14,18)
 				}
 			}
 			displayTrianglesBack(layer,data.parts.hair.inside,direction,0,33,1,0.1,data.color.hair.insideBack,1)
@@ -792,19 +792,19 @@ function generateSprite(layer,type,direction){
 			for(let g=0,lg=data.parts.tail.length;g<lg;g++){
 				controlSpin(data.parts.tail[g][0],direction,0)
 				controlSpin(data.parts.tail[g][1],direction,0)
-				layer.translate(sin(direction*6+g*135)*0.6,0)
+				layer.translate(lsin(direction*6+g*135)*0.6,0)
 				displayTrianglesFrontMerge(layer,data.parts.tail[g][0],direction,30-g*5,3.2+min(g,4)*1.2,1,0.4*(0.8+min(g,4)*0.3),
-					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,g/lg),cos(direction+data.spin.tail)*20,[0,1,1]),
-					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(g+1)/lg),cos(direction+data.spin.tail)*20,[0,1,1]),1),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,g/lg),lcos(direction+data.spin.tail)*20,[0,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(g+1)/lg),lcos(direction+data.spin.tail)*20,[0,1,1]),1),
 				displayTrianglesFrontMerge(layer,data.parts.tail[g][1],direction,30-g*5,3.2+min(g,4)*1.2,1,-0.4*(0.8+min(g,4)*0.3),
-					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,g/lg),cos(direction+data.spin.tail)*20,[0,1,1]),
-					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(g+1)/lg),cos(direction+data.spin.tail)*20,[0,1,1]),1)
-				layer.translate(sin(direction*6+g*135)*-0.6,0)
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,g/lg),lcos(direction+data.spin.tail)*20,[0,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(g+1)/lg),lcos(direction+data.spin.tail)*20,[0,1,1]),1)
+				layer.translate(lsin(direction*6+g*135)*-0.6,0)
 			}
 			layer.noStroke()
 			layer.fill(111,23,27)
-			layer.rect(sin(direction*6)*0.3+sin(direction*6+135)*0.3,27.1,abs(sin(direction*6)*0.57-sin(direction*6+135)*0.57)+3.8,0.3)
-			layer.rect(sin(direction*6)*0.3+sin(direction*6+135)*0.3,27.9,abs(sin(direction*6)*0.57-sin(direction*6+135)*0.57)+3.8,0.3)
+			layer.rect(lsin(direction*6)*0.3+lsin(direction*6+135)*0.3,27.1,abs(lsin(direction*6)*0.57-lsin(direction*6+135)*0.57)+3.8,0.3)
+			layer.rect(lsin(direction*6)*0.3+lsin(direction*6+135)*0.3,27.9,abs(lsin(direction*6)*0.57-lsin(direction*6+135)*0.57)+3.8,0.3)
 		break
 		case 19:
 			controlSpin(data.parts.under.dress,direction,0)
@@ -890,19 +890,19 @@ function generateSprite(layer,type,direction){
 		break
 		case 29:
 			for(let g=0;g<2;g++){
-				if(cos(data.spin.tail[g]+direction)>=0){
+				if(lcos(data.spin.tail[g]+direction)>=0){
 					for(let h=0,lh=data.parts.tail[g].length;h<lh;h++){
 						controlSpin(data.parts.tail[g][h][0],direction,0)
 						controlSpin(data.parts.tail[g][h][1],direction,0)
 						layer.push()
-						layer.translate(sin(data.spin.tail[g]+direction)*data.parts.hair.tail[h][0]+sin(data.spin.tail[g]+h*150+direction*6)*0.5,-5+data.parts.hair.tail[h][1])
-						layer.rotate(sin(data.spin.tail[g]+direction)*data.parts.hair.tail[h][2])
+						layer.translate(lsin(data.spin.tail[g]+direction)*data.parts.hair.tail[h][0]+lsin(data.spin.tail[g]+h*150+direction*6)*0.5,-5+data.parts.hair.tail[h][1])
+						layer.rotate(lsin(data.spin.tail[g]+direction)*data.parts.hair.tail[h][2])
 						displayTrianglesFrontMerge(layer,data.parts.tail[g][h][0],direction,5,2.5,1,0.4,
-							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,h/lh),cos(direction+data.spin.tail[g])*20,[1,1,1]),
-							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(h+1)/lh),cos(direction+data.spin.tail[g])*20,[1,1,1]),1)
+							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,h/lh),lcos(direction+data.spin.tail[g])*20,[1,1,1]),
+							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(h+1)/lh),lcos(direction+data.spin.tail[g])*20,[1,1,1]),1)
 						displayTrianglesFrontMerge(layer,data.parts.tail[g][h][1],direction,5,2.5,1,-0.4,
-							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,h/lh),cos(direction+data.spin.tail[g])*20,[1,1,1]),
-							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(h+1)/lh),cos(direction+data.spin.tail[g])*20,[1,1,1]),1)
+							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,h/lh),lcos(direction+data.spin.tail[g])*20,[1,1,1]),
+							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(h+1)/lh),lcos(direction+data.spin.tail[g])*20,[1,1,1]),1)
 						layer.pop()
 					}
 				}
@@ -918,19 +918,19 @@ function generateSprite(layer,type,direction){
 		break
 		case 30:
 			for(let g=0;g<2;g++){
-				if(cos(data.spin.tail[g]+direction)<0){
+				if(lcos(data.spin.tail[g]+direction)<0){
 					for(let h=0,lh=data.parts.tail[g].length;h<lh;h++){
 						controlSpin(data.parts.tail[g][h][0],direction,0)
 						controlSpin(data.parts.tail[g][h][1],direction,0)
 						layer.push()
-						layer.translate(sin(data.spin.tail[g]+direction)*data.parts.hair.tail[h][0]+sin(data.spin.tail[g]+h*150+direction*6)*0.5,-5+data.parts.hair.tail[h][1])
-						layer.rotate(sin(data.spin.tail[g]+direction)*data.parts.hair.tail[h][2])
+						layer.translate(lsin(data.spin.tail[g]+direction)*data.parts.hair.tail[h][0]+lsin(data.spin.tail[g]+h*150+direction*6)*0.5,-5+data.parts.hair.tail[h][1])
+						layer.rotate(lsin(data.spin.tail[g]+direction)*data.parts.hair.tail[h][2])
 						displayTrianglesFrontMerge(layer,data.parts.tail[g][h][0],direction,5,2.5,1,0.4,
-							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,h/lh),cos(direction+data.spin.tail[g])*20,[1,1,1]),
-							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(h+1)/lh),cos(direction+data.spin.tail[g])*20,[1,1,1]),1)
+							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,h/lh),lcos(direction+data.spin.tail[g])*20,[1,1,1]),
+							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(h+1)/lh),lcos(direction+data.spin.tail[g])*20,[1,1,1]),1)
 						displayTrianglesFrontMerge(layer,data.parts.tail[g][h][1],direction,5,2.5,1,-0.4,
-							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,h/lh),cos(direction+data.spin.tail[g])*20,[1,1,1]),
-							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(h+1)/lh),cos(direction+data.spin.tail[g])*20,[1,1,1]),1)
+							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,h/lh),lcos(direction+data.spin.tail[g])*20,[1,1,1]),
+							upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(h+1)/lh),lcos(direction+data.spin.tail[g])*20,[1,1,1]),1)
 						layer.pop()
 					}
 				}
@@ -948,11 +948,11 @@ function generateSprite(layer,type,direction){
 
 			layer.noStroke()
 			for(let g=0,lg=data.parts.kimono.decoration.large.length;g<lg;g++){
-				if(cos(data.parts.kimono.decoration.large[g].spin+direction)>0){
+				if(lcos(data.parts.kimono.decoration.large[g].spin+direction)>0){
 					layer.push()
-					layer.translate((1.5+data.parts.kimono.decoration.large[g].y*0.18)*sin(data.parts.kimono.decoration.large[g].spin+direction),-71+data.parts.kimono.decoration.large[g].y+73)
-					layer.rotate(-12*sin(data.parts.kimono.decoration.large[g].spin+direction))
-					layer.scale(cos(data.parts.kimono.decoration.large[g].spin+direction),1)
+					layer.translate((1.5+data.parts.kimono.decoration.large[g].y*0.18)*lsin(data.parts.kimono.decoration.large[g].spin+direction),-71+data.parts.kimono.decoration.large[g].y+73)
+					layer.rotate(-12*lsin(data.parts.kimono.decoration.large[g].spin+direction))
+					layer.scale(lcos(data.parts.kimono.decoration.large[g].spin+direction),1)
 					layer.rotate(data.parts.kimono.decoration.large[g].rotate)
 					minorGraphicDisplay(layer,data.parts.kimono.decoration.large[g].type)
 					layer.pop()
@@ -974,11 +974,11 @@ function generateSprite(layer,type,direction){
 			displayTrianglesFrontMerge(layer,data.parts.kimono.mainDamage,direction,23,10.5,0.5,0.18,data.color.kimono.main.start,data.color.kimono.main.end,1)
 			layer.noStroke()
 			for(let g=0,lg=data.parts.kimono.decoration.large.length;g<lg;g++){
-				if(cos(data.parts.kimono.decoration.large[g].spin+direction)>0){
+				if(lcos(data.parts.kimono.decoration.large[g].spin+direction)>0){
 					layer.push()
-					layer.translate((1.5+data.parts.kimono.decoration.large[g].y*0.18)*sin(data.parts.kimono.decoration.large[g].spin+direction),-71+data.parts.kimono.decoration.large[g].y+73)
-					layer.rotate(-12*sin(data.parts.kimono.decoration.large[g].spin+direction))
-					layer.scale(cos(data.parts.kimono.decoration.large[g].spin+direction),1)
+					layer.translate((1.5+data.parts.kimono.decoration.large[g].y*0.18)*lsin(data.parts.kimono.decoration.large[g].spin+direction),-71+data.parts.kimono.decoration.large[g].y+73)
+					layer.rotate(-12*lsin(data.parts.kimono.decoration.large[g].spin+direction))
+					layer.scale(lcos(data.parts.kimono.decoration.large[g].spin+direction),1)
 					layer.rotate(data.parts.kimono.decoration.large[g].rotate)
 					minorGraphicDisplay(layer,data.parts.kimono.decoration.large[g].type)
 					layer.pop()
@@ -1325,10 +1325,10 @@ function setupCombatantGraphics(type){
 					}
 				}
 				for(let g=0;g<18;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,6+((g+2)**3%6)/2-cos(-80-g*20)*5]})
+					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,6+((g+2)**3%6)/2-lcos(-80-g*20)*5]})
 				}
 				for(let g=0;g<12;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],y:[-1,-1,6+((g+1)**2%6)/2-cos(-60-g*30)*5]})
+					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],y:[-1,-1,6+((g+1)**2%6)/2-lcos(-60-g*30)*5]})
 				}
 				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-36,36,0],y:[-1,-1,11]})
 			}
@@ -1549,7 +1549,7 @@ function setupCombatantGraphics(type){
 					}
 				}
 				for(let g=0;g<18;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,5+((g+2)**3%6)/2-cos(-80-g*20)*5]})
+					graphics.combatant[graphics.combatant.length-1].parts.kimono.mainAnti.push({spin:[-96-g*20,-64-g*20,-80-g*20],y:[-1,-1,5+((g+2)**3%6)/2-lcos(-80-g*20)*5]})
 				}
 				for(let g=0;g<12;g++){
 					graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideAnti.push({spin:[-84-g*30,-36-g*30,-60-g*30],height:-3-((g+2)**2.5%6)/2})
@@ -1946,7 +1946,7 @@ function setupBackground(type,layer){
             for(let a=0;a<1e3;a++){
                 b=random(0,2)
                 c=random(15,20)
-                d=random(layer.height*0.65+sin((-50+(a*12)%(layer.width+100))*1.2)*50,layer.height*0.8)
+                d=random(layer.height*0.65+lsin((-50+(a*12)%(layer.width+100))*1.2)*50,layer.height*0.8)
                 e=random(0,360)
                 f=random(b/4,b)
 				layer.push()
@@ -1971,7 +1971,7 @@ function setupBackground(type,layer){
                 	let g=random(c/4,c)
                     let h=random(10,15)
                     layer.fill(125+c*70,190+g*65,190+g*95,0.25)
-                    layer.quad(d+sin(f)*h,e+cos(f)*h,d+sin(f+90)*h*3,e+cos(f+90)*h*3,d+sin(f+180)*h,e+cos(f+180)*h,d+sin(f+270)*h*3,e+cos(f+270)*h*3)
+                    layer.quad(d+lsin(f)*h,e+lcos(f)*h,d+lsin(f+90)*h*3,e+lcos(f+90)*h*3,d+lsin(f+180)*h,e+lcos(f+180)*h,d+lsin(f+270)*h*3,e+lcos(f+270)*h*3)
                 }
             }
             for(let a=0,la=layer.height/5+30;a<la;a++){
@@ -2040,12 +2040,12 @@ function setupBackground(type,layer){
 			layer.fill(255,125,0,0.025)
 			for(let a=0,la=10;a<la;a++){
             	layer.arc(900,920,(240-a*10),(240-a*10),-20,200)
-            	layer.quad(900+cos(20)*(120-a*5),920-sin(20)*(120-a*5),900,920,900-cos(20)*(120-a*5),920-sin(20)*(120-a*5),900,600+a*12.5)
+            	layer.quad(900+lcos(20)*(120-a*5),920-lsin(20)*(120-a*5),900,920,900-lcos(20)*(120-a*5),920-lsin(20)*(120-a*5),900,600+a*12.5)
 			}
 			for(let a=0,la=20;a<la;a++){
             	layer.fill(255,125+a*5,0,0.15)
 				layer.arc(900,920,(120-a*5),(120-a*5),-20,200)
-            	layer.quad(900+cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,920,900-cos(20)*(60-a*2.5),920-sin(20)*(60-a*2.5),900,760+a*6.25)
+            	layer.quad(900+lcos(20)*(60-a*2.5),920-lsin(20)*(60-a*2.5),900,920,900-lcos(20)*(60-a*2.5),920-lsin(20)*(60-a*2.5),900,760+a*6.25)
 			}
 		break
 		case 4:
@@ -2058,7 +2058,7 @@ function setupBackground(type,layer){
 				b=random(0,180)
 				c=sqrt(random(0,600**2))
 				layer.push()
-				layer.translate(layer.width*0.7+cos(b)*c,layer.height*0.825-sin(b)*c*0.5)
+				layer.translate(layer.width*0.7+lcos(b)*c,layer.height*0.825-lsin(b)*c*0.5)
 				layer.rotate(random(0,360))
 				layer.fill(random(100,120),random(100,120),random(90,100))
 				layer.rect(0,0,random(60,80))
@@ -2307,6 +2307,7 @@ function setupGraphics(){
 	textAlign(CENTER,CENTER)
 	rectMode(CENTER)
 	colorMode(RGB,255,255,255,1)
+	setupTrig()
 	graphics.main=createGraphics(900,600)
 	setupLayer(graphics.main)
 	graphics.backgrounds=[]
@@ -2338,4 +2339,20 @@ function setupGraphics(){
 	4-Stash
 	5-Event
 	*/
+}
+function setupTrig(){
+	for(let a=0,la=180;a<la;a++){
+		game.trig[0].push(sin(a))
+		game.trig[1].push(cos(a))
+	}
+	for(let a=0,la=180;a<la;a++){
+		game.trig[0].push(-game.trig[0][a])
+		game.trig[1].push(game.trig[1][179-a])
+	}
+}
+function lsin(direction){
+	return game.trig[0][floor((direction%360+360)%360)]
+}
+function lcos(direction){
+	return game.trig[1][floor((direction%360+360)%360)]
 }

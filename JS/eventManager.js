@@ -83,7 +83,7 @@ class eventManager{
                 switch(this.id){
                     case 1:
                         if(this.page==0&&a==0){
-                            userCombatant.life-=4
+                            userCombatant.safeDamage(4)
                         }else if(this.page==1&&a==0){
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
@@ -92,7 +92,7 @@ class eventManager{
                     case 2:
                         if(this.page==1&&a==0){
                             this.battle.addCurrency(300,this.player)
-                            userCombatant.life-=20
+                            userCombatant.safeDamage(20)
                         }else if(this.page==2&&a==0){
                             userCombatant.heal(userCombatant.base.life)
                         }
@@ -106,7 +106,7 @@ class eventManager{
                                 this.battle.cardManagers[this.player].hand.add(this.battle.cardManagers[this.player].listing.card[0][3][index],0,0)
                             }
                         }else if(this.page==3&&a==0){
-                            userCombatant.life-=13
+                            userCombatant.safeDamage(13)
                         }
                     break
                     case 4:
@@ -124,13 +124,27 @@ class eventManager{
                         }else if(this.page==1&&a==0){
                             this.battle.addCurrency(200,this.player)
                         }else if(this.page==2&&a==0){
-                            userCombatant.life-=30
+                            userCombatant.safeDamage(30)
+                        }
+                    break
+                    case 6:
+                        if((this.page==0||this.page==1)&&a==0&&floor(random(0,3))==0){
+                            tempPage=3-this.pages[this.page].link[a]
+                        }else if((this.page==0||this.page==1)&&a==1){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Bar Fight',types.encounter)])
+                        }else if(this.page==3&&a==0){
+                            userCombatant.safeDamage(6)
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Bar Fight',types.encounter)])
                         }
                     break
                 }
                 this.page=this.pages[this.page].link[a]+tempPage
                 if(this.page==-1){
                     this.complete=true
+                }else if(this.page==-2){
+                    transition.trigger=true
                 }
             break
         }

@@ -134,6 +134,7 @@ class card{
             case -1: string+=`Gain 1 Weak at\nthe End of Your Turn`; break
             case -2: string+=`Gain 1 Vulnerable at\nthe End of Your Turn`; break
             case -3: string+=`When Drawn,\nExhaust ${this.effect[0]} Card`; break
+            case -4: string+=`Take ${this.effect[0]} Damage at\nthe End of Your Turn`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break
@@ -238,6 +239,9 @@ class card{
             break
             case -2:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[9]++
+            break
+            case -4:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0],-1)
             break
         }
     }

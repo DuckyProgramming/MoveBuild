@@ -160,6 +160,10 @@ class battle{
         this.eventManagers.forEach(eventManager=>eventManager.pickEvent())
         this.eventManagers.forEach(eventManager=>eventManager.setup())
     }
+    setupSpecificEvent(event){
+        this.eventManagers.forEach(eventManager=>eventManager.event=event)
+        this.eventManagers.forEach(eventManager=>eventManager.setup())
+    }
     setupStats(){
         this.overlayManager.closeAll()
         this.overlayManager.overlays[11].forEach(overlay=>overlay.active=true)

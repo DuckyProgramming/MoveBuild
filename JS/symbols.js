@@ -155,14 +155,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             layer.beginShape()
             for(let a=0,la=9;a<la;a++){
-                layer.vertex(sin(180*a/(la-1))*(5-a%2*2.5)+0.25,cos(180*a/(la-1))*(5-a%2*2.5))
+                layer.vertex(lsin(180*a/(la-1))*(5-a%2*2.5)+0.25,lcos(180*a/(la-1))*(5-a%2*2.5))
             }
             layer.endShape(CLOSE)
             layer.stroke(100,fade)
             layer.strokeWeight(0.5)
             layer.beginShape()
             for(let a=0,la=9;a<la;a++){
-                layer.vertex(sin(-180+180*a/(la-1))*(5-a%2*2.5)-0.25,cos(-180+180*a/(la-1))*(5-a%2*2.5))
+                layer.vertex(lsin(-180+180*a/(la-1))*(5-a%2*2.5)-0.25,lcos(-180+180*a/(la-1))*(5-a%2*2.5))
             }
             layer.endShape(CLOSE)
         break
@@ -209,16 +209,22 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.rect(-3,0,4,3)
             layer.triangle(6,0,-1,-4,-1,4)
         break
-        case 4:
+        case 4: case 10:
             layer.fill(150,175,200,fade)
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)
         break
-        case 5:
+        case 5: case 8:
             layer.fill(125,125,125,fade)
             layer.stroke(100,100,100,fade)
             layer.strokeWeight(1)
             layer.rect(0,0,6,8,1)
+        break
+        case 9:
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-2,-4.5,2)
+            layer.triangle(9,-4,-4.5,-2,-4.5,2)
+            layer.triangle(9,4,-4.5,-2,-4.5,2)
         break
     }
     layer.fill(0,fade)
@@ -226,7 +232,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
     layer.textSize(8)
     if(info){
         switch(type){
-            case 1: case 3: case 4: case 5: case 6: case 7:
+            case 1: case 3: case 4: case 5: case 6: case 7: case 8: case 9: case 10:
                 layer.text(effect[0],0,0)
             break
             case 2:
@@ -335,7 +341,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(255,100,200,fade)
             layer.strokeWeight(1)
             for(let a=0,la=12;a<la;a++){
-                layer.line(sin(a*30)*3,cos(a*30)*3,sin(a*30)*6,cos(a*30)*6)
+                layer.line(lsin(a*30)*3,lcos(a*30)*3,lsin(a*30)*6,lcos(a*30)*6)
             }
         break
         case 16:
@@ -354,7 +360,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             layer.beginShape()
             for(let a=0,la=16;a<la;a++){
-                layer.vertex(sin(360*a/la)*(10-a%2*5),cos(360*a/la)*(10-a%2*5))
+                layer.vertex(lsin(360*a/la)*(10-a%2*5),lcos(360*a/la)*(10-a%2*5))
             }
             layer.endShape(CLOSE)
         break
@@ -381,7 +387,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             layer.beginShape()
             for(let a=0,la=8;a<la;a++){
-                layer.vertex(sin(360*a/la)*(10-a%2*6),cos(360*a/la)*(10-a%2*6))
+                layer.vertex(lsin(360*a/la)*(10-a%2*6),lcos(360*a/la)*(10-a%2*6))
             }
             layer.endShape(CLOSE)
         break
@@ -459,7 +465,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(1)
             layer.beginShape()
             for(let a=0,la=16;a<la;a++){
-                layer.vertex(sin(360*a/la)*(10-a%2*4),cos(360*a/la)*(10-a%2*4))
+                layer.vertex(lsin(360*a/la)*(10-a%2*4),lcos(360*a/la)*(10-a%2*4))
             }
             layer.endShape(CLOSE)
             layer.line(-3,-3,3,3)
@@ -484,9 +490,9 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,70,70)
             layer.ellipse(0,0,50,50)
             for(let a=0,la=12;a<la;a++){
-                layer.line(sin(360*a/la)*25,cos(360*a/la)*25,sin(360*(a-0.5)/la)*35,cos(360*(a-0.5)/la)*35)
-                layer.line(sin(360*a/la)*25,cos(360*a/la)*25,sin(360*(a+0.5)/la)*35,cos(360*(a+0.5)/la)*35)
-                layer.line(sin(360*(a-0.5)/la)*35,cos(360*(a-0.5)/la)*35,sin(360*(a-0.5)/la)*40,cos(360*(a-0.5)/la)*40)
+                layer.line(lsin(360*a/la)*25,lcos(360*a/la)*25,lsin(360*(a-0.5)/la)*35,lcos(360*(a-0.5)/la)*35)
+                layer.line(lsin(360*a/la)*25,lcos(360*a/la)*25,lsin(360*(a+0.5)/la)*35,lcos(360*(a+0.5)/la)*35)
+                layer.line(lsin(360*(a-0.5)/la)*35,lcos(360*(a-0.5)/la)*35,lsin(360*(a-0.5)/la)*40,lcos(360*(a-0.5)/la)*40)
             }
             layer.ellipse(0,0,30,30)
             layer.strokeWeight(6)
@@ -567,14 +573,14 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             layer.beginShape()
             for(let a=0,la=9;a<la;a++){
-                layer.vertex(sin(180*a/(la-1))*(5-a%2*2.5)+0.25,cos(180*a/(la-1))*(5-a%2*2.5))
+                layer.vertex(lsin(180*a/(la-1))*(5-a%2*2.5)+0.25,lcos(180*a/(la-1))*(5-a%2*2.5))
             }
             layer.endShape(CLOSE)
             layer.stroke(100,fade)
             layer.strokeWeight(0.5)
             layer.beginShape()
             for(let a=0,la=9;a<la;a++){
-                layer.vertex(sin(-180+180*a/(la-1))*(5-a%2*2.5)-0.25,cos(-180+180*a/(la-1))*(5-a%2*2.5))
+                layer.vertex(lsin(-180+180*a/(la-1))*(5-a%2*2.5)-0.25,lcos(-180+180*a/(la-1))*(5-a%2*2.5))
             }
             layer.endShape(CLOSE)
         break
@@ -603,7 +609,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.fill(255,255,150,fade)
             layer.beginShape()
             for(let a=0,la=10;a<la;a++){
-                layer.vertex(sin(a*36)*(1+a%2*6),cos(a*36)*(1+a%2*6))
+                layer.vertex(lsin(a*36)*(1+a%2*6),lcos(a*36)*(1+a%2*6))
             }
             layer.endShape()
         break
@@ -667,7 +673,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.fill(75,fade)
             layer.beginShape()
             for(let a=0,la=12;a<la;a++){
-                layer.vertex(sin(a*30)*(2+a%2*4),cos(a*30)*(2+a%2*4))
+                layer.vertex(lsin(a*30)*(2+a%2*4),lcos(a*30)*(2+a%2*4))
             }
             layer.endShape()
         break
@@ -686,7 +692,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.fill(75,fade)
             layer.beginShape()
             for(let a=0,la=8;a<la;a++){
-                layer.vertex(sin((a+0.5)/la*360)*6,cos((a+0.5)/la*360)*6)
+                layer.vertex(lsin((a+0.5)/la*360)*6,lcos((a+0.5)/la*360)*6)
             }
             layer.endShape()
         break
