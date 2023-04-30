@@ -139,6 +139,23 @@ class eventManager{
                             this.battle.setupBattle(types.encounter[findName('Bar Fight',types.encounter)])
                         }
                     break
+                    case 7:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[5][this.player].active=true
+                            this.battle.overlayManager.overlays[5][this.player].activate()
+                        }else if(this.page==2&&a==0){
+                            this.battle.relicManager.addRelic(findName('Bent Pliers',types.relic),this.player)
+                            current.cardManagers[this.player].deck.add(findName('Pain',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 8:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Monkey Attack',types.encounter)])
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.loseRandomRelic(this.player)
+                        }
+                    break
                 }
                 this.page=this.pages[this.page].link[a]+tempPage
                 if(this.page==-1){

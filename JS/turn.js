@@ -26,7 +26,7 @@ class turn{
                         this.userCombatant.moved=true
                     }else{
                         switch(this.type){
-                            case 1: case 2: case 3:
+                            case 1: case 2: case 3: case 11:
                                 this.target=[this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
                             break
                             case 6: case 7: case 8:
@@ -458,6 +458,17 @@ class turn{
                         if(this.timer==15){
                             this.targetCombatant.forEach(targetCombatant=>targetCombatant.takeDamage(this.effect[0],this.user))
                         }else if(this.timer>=30){
+                            this.remove=true
+                        }
+                    break
+                    case 11:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(2)
+                        }
+                        this.userCombatant.runAnimation(1/10,2)
+                        if(this.timer==10||this.timer==15||this.timer==20||this.timer==25||this.timer==30){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }else if(this.timer>=40){
                             this.remove=true
                         }
                     break

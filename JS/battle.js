@@ -106,7 +106,7 @@ class battle{
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
 
-        this.tileManager.generateTiles(types.level[encounter.level])
+        this.tileManager.generateTiles(types.level[findName(encounter.level,types.level)])
         
         this.combatantManager.resetCombatants()
         
@@ -129,7 +129,7 @@ class battle{
             this.counter.enemy++
         }
         for(let a=0,la=encounter.reinforce.length;a<la;a++){
-            this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},type:encounter.reinforce[a].type,turn:encounter.reinforce[a].turn,minion:false})
+            this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},name:encounter.reinforce[a].name,turn:encounter.reinforce[a].turn,minion:false})
             this.counter.enemy++
         }
         
@@ -189,7 +189,7 @@ class battle{
     loadReinforce(){
         for(let a=0,la=this.reinforce.back.length;a<la;a++){
             if(this.turn.total+this.turn.accelerate>=this.reinforce.back[a].turn){
-                this.reinforce.front.push({position:{x:this.reinforce.back[a].position.x,y:this.reinforce.back[a].position.y},type:this.reinforce.back[a].type,minion:this.reinforce.back[a].minion})
+                this.reinforce.front.push({position:{x:this.reinforce.back[a].position.x,y:this.reinforce.back[a].position.y},name:this.reinforce.back[a].name,minion:this.reinforce.back[a].minion})
                 this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.back[a].position.x,this.reinforce.back[a].position.y)].reinforce=true
                 this.reinforce.back.splice(a,1)
                 a--
@@ -200,7 +200,7 @@ class battle{
     sendReinforce(){
         for(let a=0,la=this.reinforce.front.length;a<la;a++){
             if(this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].occupied==0){
-                this.addCombatant(this.reinforce.front[a].position,this.reinforce.front[a].type,1,1,this.reinforce.front[a].minion)
+                this.addCombatant(this.reinforce.front[a].position,findName(this.reinforce.front[a].name,types.combatant),0,1,this.reinforce.front[a].minion)
                 this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
                 this.reinforce.front.splice(a,1)
                 a--
@@ -509,10 +509,10 @@ class battle{
                 this.overlayManager.display()
             break
             case 'event':
-                this.layer.image(graphics.backgrounds[5],0,0,this.layer.width,this.layer.height)
+                /*this.layer.image(graphics.backgrounds[5],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
-                }
+                }*/
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)

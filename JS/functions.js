@@ -150,6 +150,7 @@ function intentDescription(attack,info){
 		case 8: return `Shuffle in ${info?attack.effect[0]:`?`} Burn\nRange 1-2`
 		case 9: return `Deal ${info?attack.effect[0]:`?`} Damage\n3 Tiles Wide\nRange 1-1`
 		case 10: return `Add ${info?attack.effect[0]:`?`} Block to All Enemies`
+		case 11: return `Deal ${info?attack.effect[0]:`?`} Damage 5 Times\nRange 1-1`
 
 	}
 }
@@ -181,7 +182,7 @@ function copyCard(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass)
 }
 function upgradeCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,base.base.cost,base.additionalSpec)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec)
 }
 function unupgradeCard(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.base.cost,base.additionalSpec)

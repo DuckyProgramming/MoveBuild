@@ -573,6 +573,12 @@ types={
                 {effect:[],attack:0,cost:1,target:[0],spec:[5,7],class:6},
                 {effect:[],attack:0,cost:1,target:[0],spec:[4,5,7],class:6},
             ],
+        },{
+            name:'Pain',rarity:0,list:5,
+            levels:[
+                {effect:[2],attack:-5,cost:0,target:[0],spec:[5],class:6},
+                {effect:[1],attack:-5,cost:0,target:[0],spec:[4,5],class:6},
+            ],
         },
     ],combatant:[
         {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
@@ -586,6 +592,7 @@ types={
         {name:'Biker',life:40,behavior:0,move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
         {name:'Drunk',life:30,behavior:1,move:{type:0,speed:1},attack:[{type:8,effect:[1]},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
         {name:'Drunk Boss',life:90,behavior:1,move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},
+        {name:'Monkey',life:12,behavior:1,move:{type:0,speed:1},attack:[{type:11,effect:[1]}],description:`You`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -599,6 +606,7 @@ types={
         {name:'Burn (2 Range) (Nonpenetrative) (Advance)',class:1},
         {name:'3 Spread Strike',class:1},
         {name:'All Enemy Block',class:2},//10
+        {name:'Pentuple Strike',class:1},
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -776,7 +784,9 @@ types={
         {name:'',internal:'3 Starting Miracles',id:158,rarity:4,list:0,description:'Add 3 Miracles\nat the Start of Combat'},
         {name:'',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n200 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
         {name:'',internal:'30 Max HP',id:160,rarity:4,list:0,description:'When Taken,\nGain 30 Max HP'},
-        
+       
+        {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,description:'Every Turn, Upgrade a Random Card\nat the Start of Your Hand'},
+
         /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
         {name:'',internal:'',id:12,rarity:0,list:0,description:''},
         {name:'',internal:'',id:13,rarity:0,list:0,description:''},
@@ -977,6 +987,93 @@ while you enjoy some well-earned rest.`,
                     link:[-2],
                 },
             ],
+        },{
+            name:'Abandoned Forge',id:7,list:0,
+            pages:[
+                {
+                    desc:
+`You come across an abandoned forge, complete with tools.
+Looks like nobody's used it for a long time.
+Despite that, it appears to be in good condition.
+You might still be able to use it for its intended purpose.`,
+                    option:['Use it','Take tools','Leave'],
+                    optionDesc:['','',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`You manage to figure out the methods of the
+forge and successfully work with it.`,
+                    option:['Finish'],
+                    optionDesc:['Upgrade 1 Card'],
+                    link:[-1],
+                },{
+                    desc:`
+As you attempt to take the tongs from the still-hot furnace,
+pain jets through your arm.
+You are able to lift them and take them with some difficulty,
+but your arm continues to hurt.`,
+                    option:['Ouch'],
+                    optionDesc:['Gain a Relic, Become Cursed - Pain'],
+                    link:[-1],
+                },{
+                    desc:`You avoid the forge and continue on your path.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Monkey Master',id:8,list:0,
+            pages:[
+                {
+                    desc:
+`You're walking through a clearing in the forest
+when you hear some rustling in the leaves
+Turning around, you're too slow to stop the monkeys
+from grabbing you as more and more appear.`,
+                    option:['Fight the monkeys','Throw something valuable'],
+                    optionDesc:['Start Fight',''],
+                    link:[-2,1],
+                },{
+                    desc:`The monkeys run after the object you threw.`,
+                    option:['Exit'],
+                    optionDesc:['Lose 1 Relic'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Backseat',id:9,list:0,
+            pages:[
+                {
+                    desc:
+`You're traveling in the back of a public bus when you realize
+that something feels off about the other passengers.
+Sure enough, you notice a poorly concealed weapon inside one's coat.
+And the other ones probably all did the same.
+If they wanted to kill you, it would be easy, now that
+they have you surrounded and unprepared.`,
+                    option:['Attack them','Jump out of the window','Act normal'],
+                    optionDesc:['Start Fight','',''],
+                    link:[-1,1,2],
+                },{
+                    desc:
+`It's not your best landing, sure, but the bus is
+far away before they can get after you.`,
+                    option:['Exit'],
+                    optionDesc:['Lose 7 Health'],
+                    link:[-1],
+                },{
+                    desc:`Well, if they just don't notice...`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`A few minutes later, they jump you simultaneously.`,
+                    option:['Fight back'],
+                    optionDesc:['Start Fight, Lose 6 Health'],
+                    link:[-1],
+                },
+            ],
         },
     ],color:{
         card:[
@@ -1050,6 +1147,13 @@ while you enjoy some well-earned rest.`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Crushed 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Spiky 7',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -1081,7 +1185,7 @@ while you enjoy some well-earned rest.`,
             ],reinforce:[
             ],
         },{
-            level:2,class:0,world:0,
+            level:'Basic 7',class:0,world:0,
             name:'Placeholder',
             player:{position:{x:3,y:3}},
             enemy:[
@@ -1107,7 +1211,7 @@ while you enjoy some well-earned rest.`,
                 //{position:{x:6,y:3},name:'Human',turn:2},
             ],
         },{
-            level:2,class:1,world:0,
+            level:'Basic 7',class:1,world:0,
             name:'Placeholder',
             player:{position:{x:3,y:3}},
             enemy:[
@@ -1124,7 +1228,7 @@ while you enjoy some well-earned rest.`,
             ],reinforce:[
             ],
         },{
-            level:2,class:2,world:0,
+            level:'Basic 7',class:2,world:0,
             name:'Placeholder',
             player:{position:{x:3,y:3}},
             enemy:[
@@ -1139,7 +1243,7 @@ while you enjoy some well-earned rest.`,
             ],reinforce:[
             ],
         },{
-            level:2,class:0,world:-1,
+            level:'Basic 5',class:0,world:-1,
             name:'Bar Fight',
             player:{position:{x:3,y:3}},
             enemy:[
@@ -1148,6 +1252,21 @@ while you enjoy some well-earned rest.`,
                 {position:{x:6,y:3},name:'Drunk'},
                 {position:{x:0,y:0},name:'Drunk Boss'},
             ],reinforce:[
+            ],
+        },{
+            level:'Crushed 5',class:0,world:-1,
+            name:'Monkey Attack',
+            player:{position:{x:2,y:1}},
+            enemy:[
+                {position:{x:0,y:0},name:'Monkey'},
+                {position:{x:3,y:0},name:'Monkey'},
+                {position:{x:0,y:1},name:'Monkey'},
+                {position:{x:1,y:2},name:'Monkey'},
+                {position:{x:4,y:1},name:'Monkey'},
+                {position:{x:4,y:2},name:'Monkey'},
+            ],reinforce:[
+                {position:{x:1,y:1},name:'Monkey',turn:3},
+                {position:{x:3,y:1},name:'Monkey',turn:3},
             ],
         },
     ],

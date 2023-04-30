@@ -226,6 +226,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(9,-4,-4.5,-2,-4.5,2)
             layer.triangle(9,4,-4.5,-2,-4.5,2)
         break
+        case 11:
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,0,-1,0,1)
+            layer.triangle(6,-2,-3,-3,-3,-1)
+            layer.triangle(6,2,-3,1,-3,3)
+            layer.triangle(3,-4,-6,-5,-6,-3)
+            layer.triangle(3,4,-6,3,-6,5)
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -237,6 +245,9 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             break
             case 2:
                 layer.text(effect[0]+'x3',0,0)
+            break
+            case 11:
+                layer.text(effect[0]+'x5',0,0)
             break
         }
     }else{

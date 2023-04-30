@@ -13,7 +13,7 @@ function setup(){
     //current.setupBattle(types.encounter[4])
 
     stage.scene='event'
-    current.setupSpecificEvent(6)
+    current.setupSpecificEvent(9)
 
     /*current.overlayManager.overlays[0][0].active=true
     current.overlayManager.overlays[0][1].active=true
