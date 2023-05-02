@@ -22,6 +22,10 @@ class turnManager{
             this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
             this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
     }
+    loadEnemyRotate(enemy){
+        this.auxiliary=true
+        this.turns.push(new turn(4,this.battle,0,0,enemy))
+    }
     loadEnemyTurns(){
         this.auxiliary=false
         this.turns=[]
@@ -51,7 +55,7 @@ class turnManager{
         }
         for(let a=0;a<game.animRate;a++){
             if(this.turns.length>0){
-                if(this.battle.combatantManager.combatants[this.turns[0].user].team==0){
+                if(this.battle.combatantManager.combatants[this.turns[0].user].team==0&&!this.auxiliary){
                     this.battle.turn.main=this.turns[0].user
                 }
                 if(this.turns[0].timer==0){

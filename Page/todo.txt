@@ -1,6 +1,9 @@
 Animations:
 
 Bugs:
+fix findtileindex
+Only retarget on activation
+
 
 Mechanics:
 Menu
@@ -9,7 +12,6 @@ Next World
 Partnership Cards?
 
 Battle Content:
-Enemy with a gun (range 6)
 Weak Enemy
 Innate Cards
 2 Tile Move

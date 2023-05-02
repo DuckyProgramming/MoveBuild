@@ -48,6 +48,15 @@ class particle{
                 this.size=1
                 this.scale=1
             break
+            case 6:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.speed=15
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+            break
         }
     }
     display(){
@@ -105,6 +114,13 @@ class particle{
                     this.layer.fill(160,this.fade)
                     regPoly(this.layer,0,0,7,4,4,this.time*3)
                 break
+                case 6:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(200)
+                    this.layer.rect(0,1,4,4)
+                    this.layer.arc(0,-1,4,6,-180,0)
+                    this.layer.rotate(-this.direction)
+                break
             }
             this.layer.pop()
         }
@@ -127,7 +143,7 @@ class particle{
                     }
                 }
             break
-            case 1: case 4: case 5:
+            case 1: case 4: case 5: case 6:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){

@@ -215,13 +215,16 @@ class battle{
         }
     }
     activate(type,id){
+        this.tileManager.activate()
         this.combatantManager.activateCombatants(type,id)
         this.tileManager.activateTiles(type,id)
     }
     activateCombatant(type,id){
+        this.tileManager.activate()
         this.combatantManager.activateCombatants(type,id)
     }
     activateTile(type,id){
+        this.tileManager.activate()
         this.tileManager.activateTiles(type,id)
     }
     drop(type,level,color){
@@ -268,6 +271,7 @@ class battle{
         this.combatantManager.setupCombatants()
         this.combatantManager.tick()
         this.combatantManager.unmoveCombatants()
+        this.tileManager.activate()
         this.combatantManager.activateCombatants(0,0)
         this.turnManager.clear()
         if(this.turn.total==1){

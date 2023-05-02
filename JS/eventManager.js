@@ -156,6 +156,20 @@ class eventManager{
                             this.battle.relicManager.loseRandomRelic(this.player)
                         }
                     break
+                    case 9:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Bus Surprise',types.encounter)])
+                        }else if(this.page==0&&a==2&&floor(random(0,3))==0){
+                            tempPage=1
+                        }else if(this.page==1&&a==0){
+                            userCombatant.safeDamage(7)
+                        }else if(this.page==3&&a==0){
+                            userCombatant.safeDamage(5)
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Bus Surprise',types.encounter)])
+                        }
+                    break
                 }
                 this.page=this.pages[this.page].link[a]+tempPage
                 if(this.page==-1){

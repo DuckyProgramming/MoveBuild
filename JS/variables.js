@@ -570,8 +570,8 @@ types={
         },{
             name:'Hoarding',rarity:0,list:5,
             levels:[
-                {effect:[],attack:0,cost:1,target:[0],spec:[5,7],class:6},
-                {effect:[],attack:0,cost:1,target:[0],spec:[4,5,7],class:6},
+                {effect:[],attack:0,cost:0,target:[0],spec:[5,7],class:6},
+                {effect:[],attack:0,cost:0,target:[0],spec:[4,5,7],class:6},
             ],
         },{
             name:'Pain',rarity:0,list:5,
@@ -579,20 +579,28 @@ types={
                 {effect:[2],attack:-5,cost:0,target:[0],spec:[5],class:6},
                 {effect:[1],attack:-5,cost:0,target:[0],spec:[4,5],class:6},
             ],
+        },{
+            name:'Ascender Bane',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:0,cost:0,target:[0],spec:[4,5,7],class:6},
+                {effect:[],attack:0,cost:0,target:[0],spec:[4,7],class:6},
+            ],
         },
     ],combatant:[
-        {name:'',life:20,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
-        {name:'Lira',life:60,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
-        {name:'Sakura',life:50,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
-        {name:'Ume',life:40,behavior:0,move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
-        {name:'Human',life:25,behavior:0,move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
-        {name:'Duck',life:20,behavior:1,move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:`Typical duck`},
-        {name:'Bouncer',life:22,behavior:1,move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
-        {name:'Thug',life:32,behavior:0,move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:`Beats people up`},
-        {name:'Biker',life:40,behavior:0,move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
-        {name:'Drunk',life:30,behavior:1,move:{type:0,speed:1},attack:[{type:8,effect:[1]},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
-        {name:'Drunk Boss',life:90,behavior:1,move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},
-        {name:'Monkey',life:12,behavior:1,move:{type:0,speed:1},attack:[{type:11,effect:[1]}],description:`You`},
+        {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
+        {name:'Lira',life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
+        {name:'Sakura',life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
+        {name:'Ume',life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
+        {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
+        {name:'Duck',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:`Typical duck`},
+        {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
+        {name:'Thug',life:32,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:`Beats people up`},
+        {name:'Biker',life:40,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
+        {name:'Drunk',life:30,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[1]},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
+        {name:'Drunk Boss',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},
+        {name:'Monkey',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:11,effect:[1]}],description:`You`},
+        {name:'Trenchcoat',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`Nobody knows who he is`},
+        {name:'Trenchcoat Gunner',life:45,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[10]}],description:`Keeps a low profile`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -607,6 +615,7 @@ types={
         {name:'3 Spread Strike',class:1},
         {name:'All Enemy Block',class:2},//10
         {name:'Pentuple Strike',class:1},
+        {name:'Gun (Nonpenetrative)',class:1},
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -1054,7 +1063,7 @@ If they wanted to kill you, it would be easy, now that
 they have you surrounded and unprepared.`,
                     option:['Attack them','Jump out of the window','Act normal'],
                     optionDesc:['Start Fight','',''],
-                    link:[-1,1,2],
+                    link:[-2,1,2],
                 },{
                     desc:
 `It's not your best landing, sure, but the bus is
@@ -1070,8 +1079,8 @@ far away before they can get after you.`,
                 },{
                     desc:`A few minutes later, they jump you simultaneously.`,
                     option:['Fight back'],
-                    optionDesc:['Start Fight, Lose 6 Health'],
-                    link:[-1],
+                    optionDesc:['Start Fight, Lose 5 Health'],
+                    link:[-2],
                 },
             ],
         },
@@ -1152,6 +1161,13 @@ far away before they can get after you.`,
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'2-Crushed 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Spiky 7',
@@ -1267,6 +1283,17 @@ far away before they can get after you.`,
             ],reinforce:[
                 {position:{x:1,y:1},name:'Monkey',turn:3},
                 {position:{x:3,y:1},name:'Monkey',turn:3},
+            ],
+        },{
+            level:'2-Crushed 7',class:0,world:-1,
+            name:'Bus Surprise',
+            player:{position:{x:3,y:1}},
+            enemy:[
+                {position:{x:0,y:1},name:'Trenchcoat Gunner'},
+                {position:{x:0,y:0},name:'Trenchcoat'},
+                {position:{x:1,y:1},name:'Trenchcoat'},
+                {position:{x:1,y:2},name:'Trenchcoat'},
+            ],reinforce:[
             ],
         },
     ],

@@ -151,6 +151,7 @@ function intentDescription(attack,info){
 		case 9: return `Deal ${info?attack.effect[0]:`?`} Damage\n3 Tiles Wide\nRange 1-1`
 		case 10: return `Add ${info?attack.effect[0]:`?`} Block to All Enemies`
 		case 11: return `Deal ${info?attack.effect[0]:`?`} Damage 5 Times\nRange 1-1`
+		case 12: return `Deal ${info?attack.effect[0]:`?`} Damage\nRange 1-6`
 
 	}
 }
