@@ -6,6 +6,7 @@ class tileManager{
         this.height=0
         this.tiles=[]
 
+        this.center={x:0,y:0}
         this.anim={coordinate:0}
     }
     generateTiles(level){
@@ -18,6 +19,7 @@ class tileManager{
         this.tiles=[]
         this.width=level.map[0].length
         this.height=level.map.length
+        this.center={x:this.layer.width/2,y:this.layer.height/2-60}
         for(let a=0,la=level.map.length;a<la;a++){
             for(let b=0,lb=level.map[a].length;b<lb;b++){
                 if(level.map[a][b].type>=0){
@@ -51,7 +53,7 @@ class tileManager{
                 return this.tiles[a].relativePosition
             }
         }
-        return {x:0,y:0}
+        return this.center
     }
     getTileRelativeDirection(tile1X,tile1Y,tile2X,tile2Y){
         return vectorAtan(this.getTileRelativePosition(tile1X,tile1Y),this.getTileRelativePosition(tile2X,tile2Y))

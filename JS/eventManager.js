@@ -170,6 +170,12 @@ class eventManager{
                             this.battle.setupBattle(types.encounter[findName('Bus Surprise',types.encounter)])
                         }
                     break
+                    case 10:
+                        if(this.page==1&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('The Alley',types.encounter)])
+                        }
+                    break
                 }
                 this.page=this.pages[this.page].link[a]+tempPage
                 if(this.page==-1){

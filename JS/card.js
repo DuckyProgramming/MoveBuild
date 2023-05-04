@@ -136,6 +136,7 @@ class card{
             case -3: string+=`When Drawn,\nExhaust ${this.effect[0]} Card`; break
             case -4: string+=`Take ${this.effect[0]} Damage at\nthe End of Your Turn`; break
             case -5: string+=`Take ${this.effect[0]} Damage\nWhen You Play a Card`; break
+            case -6: string+=`When Drawn,\nGain ${this.effect[0]} Weak`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

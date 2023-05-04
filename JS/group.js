@@ -183,6 +183,9 @@ class group{
             case -3:
                 this.status.exhaust+=effect[0]
             break
+            case -6:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Weak',effect[0])
+            break
         }
     }
     send(list,firstIndex,lastIndex,spec){

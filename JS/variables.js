@@ -553,6 +553,12 @@ types={
                 {effect:[1],attack:-3,cost:0,target:[0],spec:[5],class:5},
                 {effect:[1],attack:-3,cost:0,target:[0],spec:[5],class:5},
             ],
+        },{
+            name:'Arm\nInjury',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-6,cost:0,target:[0],spec:[5],class:5},
+                {effect:[1],attack:-6,cost:0,target:[0],spec:[5],class:5},
+            ],
         },
 
         {
@@ -601,7 +607,8 @@ types={
         {name:'Monkey',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:11,effect:[1]}],description:`You`},
         {name:'Trenchcoat',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`Nobody knows who he is`},
         {name:'Trenchcoat Gunner',life:45,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[10]}],description:`Keeps a low profile`},
-
+        {name:'Goon',life:45,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:14,effect:[4,1,'Arm\nInjury']},{type:4,effect:[12]}],description:`Bars you from life`},
+        
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -616,6 +623,8 @@ types={
         {name:'All Enemy Block',class:2},//10
         {name:'Pentuple Strike',class:1},
         {name:'Gun (Nonpenetrative)',class:1},
+        {name:'Injuring Strike',class:1},
+        {name:'Injuring 2 Tile Strike (Nonpenetrative) (Advance)',class:1},
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -1083,6 +1092,85 @@ far away before they can get after you.`,
                     link:[-2],
                 },
             ],
+        },{
+            name:'The Alley',id:10,list:0,
+            pages:[
+                {
+                    desc:
+`You notice a strange man hiding in an alley.
+When he notices you, he runs off. He turns the corner,
+but you still have a chance to chase him down.`,
+                    option:['Run after him','Not worth it'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:`He leads you into an alley where his friends lie in wait.`,
+                    option:['Fight them'],
+                    optionDesc:['Start Fight'],
+                    link:[-2],
+                },{
+                    desc:
+`It's not worth going into back
+alleys just to stop a mystery man.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Duplication Rock',id:11,list:0,
+            pages:[
+                {
+                    desc:
+`You find a shiny rock on the ground.
+Inside it you can see reflections of yourself that loop on themselves.
+You can feel power emanating from within, but nothing inside it feels new.`,
+                    option:['Smash it','Drop it'],
+                    optionDesc:['Duplicate a Card',''],
+                    link:[-1,1],
+                },{
+                    desc:`Somebody else can get more use out of it than you.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Cardboard Box',id:25,list:0,
+            pages:[
+                {
+                    desc:
+`You notice a box at the bottom of a well.
+The box has some labels on it,
+stating it to be a Management collection
+box for recent excavations on the planet.
+The people who intended to carry it probably
+dropped it and didn't want to get it back.
+Smart choice, the well doesn't look easy to get down.`,
+                    option:['Climb in','Leave'],
+                    optionDesc:['Lose 5 Health',''],
+                    link:[1,-1],
+                },{
+                    desc:
+`You climb in, but it's a lot harder to get down than you expected.
+It's almost as if the well is getting deeper...`,
+                    option:['Continue','Leave'],
+                    optionDesc:['Lose 5 Health',''],
+                    link:[2,-1],
+                },{
+                    desc:`Ouch... Is this really worth it?`,
+                    option:['Continue','Leave'],
+                    optionDesc:['Lose 5 Health',''],
+                    link:[3,-1],
+                },{
+                    desc:
+`You reach the end of the well and pick up the box.
+Inside you find something useful.`,
+                    option:['Take it'],
+                    optionDesc:['Gain a Relic'],
+                    link:[-1],
+                },
+            ],
         },
     ],color:{
         card:[
@@ -1168,6 +1256,15 @@ far away before they can get after you.`,
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Bent 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
             name:'Spiky 7',
@@ -1293,6 +1390,16 @@ far away before they can get after you.`,
                 {position:{x:0,y:0},name:'Trenchcoat'},
                 {position:{x:1,y:1},name:'Trenchcoat'},
                 {position:{x:1,y:2},name:'Trenchcoat'},
+            ],reinforce:[
+            ],
+        },{
+            level:'Bent 5',class:0,world:-1,
+            name:'The Alley',
+            player:{position:{x:2,y:1}},
+            enemy:[
+                {position:{x:0,y:1},name:'Goon'},
+                {position:{x:3,y:4},name:'Goon'},
+                {position:{x:4,y:4},name:'Goon'},
             ],reinforce:[
             ],
         },

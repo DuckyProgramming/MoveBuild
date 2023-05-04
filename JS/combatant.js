@@ -33,6 +33,7 @@ class combatant{
         this.order=this.id
         this.moved=false
         this.dead=false
+        this.blocked=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
         this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
@@ -617,6 +618,14 @@ class combatant{
                         this.trigger.display.coat=true
                         this.trigger.display.hat=true
                     break
+                    case 'Goon':
+                        this.color={skin:{head:[160,60,60],body:[150,50,50],legs:[145,45,45],arms:[155,55,55]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.eyeHole=[235,210,160]
+                        this.anim.sword=1
+                        this.spin.sword=75
+                        this.fades.sword=1
+                        this.trigger.display.extra={sword:true}
+                    break
                 }
             break
         }
@@ -741,9 +750,9 @@ class combatant{
     }
     getTarget(){
         switch(this.attack[this.intent].type){
-            case 1: case 2: case 3: case 11: return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
-            case 4: case 5: return -1
-            case 6: case 7: case 8:
+            case 1: case 2: case 3: case 11: case 13: return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
+            case 4: case 5: case 10: return -1
+            case 6: case 7: case 8: case 14:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
@@ -786,10 +795,10 @@ class combatant{
             }
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
-                case 1: case 2: case 3: case 11:
+                case 1: case 2: case 3: case 11: case 13:
                     this.targetTile=target==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target].tilePosition
                 break
-                case 6: case 7: case 8: case 9: case 12:
+                case 6: case 7: case 8: case 9: case 12: case 14:
                     this.targetTile=[]
                     for(let a=0,la=target.length;a<la;a++){
                         this.targetTile.push(target[a]==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target[a]].tilePosition)
@@ -799,14 +808,14 @@ class combatant{
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].team>0&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2)){
                     switch(this.attack[this.intent].type){
-                        case 1: case 2: case 3: case 11:
+                        case 1: case 2: case 3: case 11: case 13:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile.y){
                                     this.activated=true
                             }
                         break
-                        case 6: case 7: case 8:
+                        case 6: case 7: case 8: case 14:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -931,18 +940,17 @@ class combatant{
                 this.status.main[14]--
             }
             if(hit){
-                let blocked=0
-                if(this.block>=damage&&spec!=1){
+                if(this.block>=damage&&spec!=2){
                     this.block-=damage
                     this.infoAnim.upFlash[1]=true
-                    blocked=0
+                    this.blocked=0
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][1]+=damage
                     }
                     if(this.block<=0&&0<=user&&user<this.battle.players&&this.battle.relicManager.hasRelic(124,user)){
                         this.statusEffect('Vulnerable',2)
                     }
-                }else if(this.block>0&&spec!=1){
+                }else if(this.block>0&&spec!=2){
                     let damageLeft=damage-this.block
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][1]+=this.block
@@ -952,7 +960,7 @@ class combatant{
                     this.life-=damageLeft
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
-                    blocked=1
+                    this.blocked=1
                     if(0<=user&&user<this.battle.players&&this.battle.relicManager.hasRelic(124,user)){
                         this.statusEffect('Vulnerable',2)
                     }
@@ -960,7 +968,7 @@ class combatant{
                     this.life-=damage
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
-                    blocked=2
+                    this.blocked=2
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][2]+=damage
                     }
@@ -982,10 +990,10 @@ class combatant{
                     if(this.battle.relicManager.hasRelic(61,this.id)){
                         userCombatant.takeDamage(3*this.battle.relicManager.active[61],-1)
                     }
-                    if(blocked>0&&this.battle.relicManager.hasRelic(74,this.id)){
+                    if(this.blocked>0&&this.battle.relicManager.hasRelic(74,this.id)){
                         userCombatant.statusEffect('Next Turn Weak',this.battle.relicManager.active[74])
                     }
-                    if(blocked==0&&this.battle.relicManager.hasRelic(75,this.id)){
+                    if(this.blocked==0&&this.battle.relicManager.hasRelic(75,this.id)){
                         userCombatant.statusEffect('Next Turn Weak',this.battle.relicManager.active[75])
                     }
                     if(this.status.main[26]>0){
@@ -1179,6 +1187,10 @@ class combatant{
                     case 0: case 2: case 4:
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
+                        if(this.name=='Goon'&&type==2){
+                            this.animSet.loop=0
+                            this.goal.anim.sword=true
+                        }
                     break
                     case 1: case 3: case 5:
                         this.animSet.loop=0
@@ -1491,12 +1503,20 @@ class combatant{
                     break
                     case 2:
                         this.animSet.loop+=rate
-                        for(let g=0;g<2;g++){
-                            if(lsin((this.animSet.loop+this.animSet.flip+g)*180)>=0){
-                                this.anim.arms[g].top=24+lsin((this.animSet.loop+this.animSet.flip+g)*180)*36
-                                this.anim.arms[g].bottom=9+lsin((this.animSet.loop+this.animSet.flip+g)*180)*96
-                                this.spin.arms[g].top=(93-lsin((this.animSet.loop+this.animSet.flip+g)*180)*63)*(g*2-1)
-                                this.spin.arms[g].bottom=(75-lsin((this.animSet.loop+this.animSet.flip+g)*180)*90)*(g*2-1)
+                        if(this.name=='Goon'){
+                            this.anim.arms[0].top=24+lsin(this.animSet.loop*180)*36
+                            this.anim.arms[0].bottom=9+lsin(this.animSet.loop*180)*96
+                            this.spin.arms[0].top=-93+lsin(this.animSet.loop*180)*63
+                            this.spin.arms[0].bottom=-75+lsin(this.animSet.loop*180)*90
+                            this.spin.sword=75+lsin(this.animSet.loop*180)*45
+                        }else{
+                            for(let g=0;g<2;g++){
+                                if(lsin((this.animSet.loop+this.animSet.flip+g)*180)>=0){
+                                    this.anim.arms[g].top=24+lsin((this.animSet.loop+this.animSet.flip+g)*180)*36
+                                    this.anim.arms[g].bottom=9+lsin((this.animSet.loop+this.animSet.flip+g)*180)*96
+                                    this.spin.arms[g].top=(93-lsin((this.animSet.loop+this.animSet.flip+g)*180)*63)*(g*2-1)
+                                    this.spin.arms[g].bottom=(75-lsin((this.animSet.loop+this.animSet.flip+g)*180)*90)*(g*2-1)
+                                }
                             }
                         }
                     break
@@ -1520,10 +1540,10 @@ class combatant{
                     break
                     case 5:
                         this.animSet.loop+=rate
-                        this.anim.arms[1].top=24+lsin(this.animSet.loop*90)*48
-                        this.anim.arms[1].bottom=9+lsin(this.animSet.loop*90)*84
-                        this.spin.arms[1].top=(93-lsin(this.animSet.loop*90)*48)
-                        this.spin.arms[1].bottom=(75-lsin(this.animSet.loop*90)*60)
+                        this.anim.arms[0].top=24+lsin(this.animSet.loop*90)*48
+                        this.anim.arms[0].bottom=9+lsin(this.animSet.loop*90)*84
+                        this.spin.arms[0].top=-93+lsin(this.animSet.loop*90)*48
+                        this.spin.arms[0].bottom=-75+lsin(this.animSet.loop*90)*60
                     break
 
                 }
@@ -1615,6 +1635,20 @@ class combatant{
                     break
                     default:
                         minorGraphicDisplay(this.layer,type)
+                    break
+                }
+            break
+            case 'Goon':
+                switch(type){
+                    case 0:
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x*0.95+this.graphics.arms[key].middle.x*0.05,this.graphics.arms[key].bottom.y*0.95+this.graphics.arms[key].middle.y*0.05)
+                        this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75)))
+                        this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
+                        this.layer.fill(150,this.fade)
+                        this.layer.noStroke()
+                        this.layer.rect(0,-18,3,36)
+                        this.layer.pop()
                     break
                 }
             break
@@ -4822,6 +4856,9 @@ class combatant{
     					this.layer.rect(lsin(this.anim.direction)*15.5,this.parts.eyeLevel,lcos(this.anim.direction)*20,7,2)
                     }
                     for(let g=0;g<2;g++){
+                        if(this.name=='Goon'&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
+                            this.minorDisplay(0,g)
+                        }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
@@ -4885,6 +4922,9 @@ class combatant{
                         }
                     }
                     for(let g=0;g<2;g++){
+                        if(this.name=='Goon'&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
+                            this.minorDisplay(0,g)
+                        }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
@@ -4901,6 +4941,9 @@ class combatant{
                         this.minorDisplayGeneral(1,0)
                     }
                     for(let g=0;g<2;g++){
+                        if(this.name=='Goon'&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.6)&&g==0){
+                            this.minorDisplay(0,g)
+                        }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
@@ -4912,7 +4955,7 @@ class combatant{
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         }
-                        if(this.name=='Thug'&&this.trigger.display.eye[g]){
+                        if((this.name=='Thug'||this.name=='Goon')&&this.trigger.display.eye[g]){
                             this.layer.stroke(this.flashColor(this.color.eyeHole)[0],this.flashColor(this.color.eyeHole)[1],this.flashColor(this.color.eyeHole)[2],this.fade*this.fades.eye[g])
                             this.layer.strokeWeight((6-this.anim.eye[g]*3)*constrain(lcos(this.spin.eye[g]+this.anim.head)*5,0,1))
                             this.layer.line(lsin(this.spin.eye[g]+this.anim.head)*14-(g*2-1)*lcos(this.spin.eye[g]+this.anim.head)*this.anim.eye[g]*2,this.parts.eyeLevel-0.5,lsin(this.spin.eye[g]+this.anim.head)*14+(g*2-1)*lcos(this.spin.eye[g]+this.anim.head)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2-0.5)
@@ -5142,12 +5185,12 @@ class combatant{
         if(this.team==0&&this.life>0&&!this.moved){
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
-                case 1: case 2: case 3: case 11:
+                case 1: case 2: case 3: case 11: case 13:
                     if(target!=-1){
                         this.battle.tileManager.tiles[target].targetted[this.activated?2:1]=true
                     }
                 break
-                case 6: case 7: case 9: case 12:
+                case 6: case 7: case 9: case 12: case 14:
                     if(target.length>0){
                         for(let a=0,la=target.length;a<la;a++){
                             if(target[a]!=-1){
