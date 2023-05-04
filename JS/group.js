@@ -287,6 +287,13 @@ class group{
             }
         }
     }
+    removeAllCurse(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].class==6){
+                this.cards.splice(a,1)
+            }
+        }
+    }
     unDuplicate(){
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].name==this.lastDuplicate){

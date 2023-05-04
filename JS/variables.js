@@ -582,8 +582,14 @@ types={
         },{
             name:'Pain',rarity:0,list:5,
             levels:[
-                {effect:[2],attack:-5,cost:0,target:[0],spec:[5],class:6},
+                {effect:[1],attack:-5,cost:0,target:[0],spec:[5],class:6},
                 {effect:[1],attack:-5,cost:0,target:[0],spec:[4,5],class:6},
+            ],
+        },{
+            name:'Regret',rarity:0,list:5,
+            levels:[
+                {effect:[1],attack:-7,cost:0,target:[0],spec:[5],class:6},
+                {effect:[1],attack:-7,cost:0,target:[0],spec:[4,5],class:6},
             ],
         },{
             name:'Ascender Bane',rarity:0,list:5,
@@ -1136,7 +1142,7 @@ You can feel power emanating from within, but nothing inside it feels new.`,
                 },
             ],
         },{
-            name:'Cardboard Box',id:25,list:0,
+            name:'Cardboard Box',id:12,list:0,
             pages:[
                 {
                     desc:
@@ -1152,7 +1158,8 @@ Smart choice, the well doesn't look easy to get down.`,
                     link:[1,-1],
                 },{
                     desc:
-`You climb in, but it's a lot harder to get down than you expected.
+`You climb in, but it's a lot harder
+to get down than you expected.
 It's almost as if the well is getting deeper...`,
                     option:['Continue','Leave'],
                     optionDesc:['Lose 5 Health',''],
@@ -1168,6 +1175,229 @@ It's almost as if the well is getting deeper...`,
 Inside you find something useful.`,
                     option:['Take it'],
                     optionDesc:['Gain a Relic'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Glowing Spring',id:13,list:0,
+            pages:[
+                {
+                    desc:
+`You encounter a spring filled with shining water.
+It looks safe to drink.`,
+                    option:['Drink','Leave'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You feel refreshed, like a weight has
+been lifted off your shoulders.`,
+                    option:['Done'],
+                    optionDesc:['Remove All Curses'],
+                    link:[-1],
+                },{
+                    desc:
+`You're not touching that liquid
+until you find out what it is.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Hidden Bank',id:14,list:0,
+            pages:[
+                {
+                    desc:
+`You find a crate of money lying open on the
+side of the road, overflowing with coins. A sign
+nearby says to take only the coins on the outside.`,
+                    option:['Take the coins','Smash it'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You pick up the scattered coins and
+leave the rest where you found it.`,
+                    option:['Take the money'],
+                    optionDesc:['Gain 75 Currency'],
+                    link:[-1],
+                },{
+                    desc:
+`You smash the crate and watch as more
+and more money streams out.`,
+                    option:['Take the money'],
+                    optionDesc:['Gain 175 Currency, Become Cursed - Regret'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Punching Bag',id:15,list:0,
+            pages:[
+                {
+                    desc:
+`While resting, you notice an abandoned
+punching bag on the ground. Perfect for
+testing some of your combat abilities?`,
+                    option:['Beat it up','Leave it there'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You have a good time hitting the bag,
+until it breaks a few minutes later.`,
+                    option:['That was fun'],
+                    optionDesc:['Upgrade a card'],
+                    link:[-1],
+                },{
+                    desc:
+`It's not good enough.
+You finish up and leave the area.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Back-Alley Deal',id:16,list:0,
+            pages:[
+                {
+                    desc:
+`A mysterious man appears in an alley and offers you a deal.
+In return for a card, he'll give you another.
+You see a small pack in his hand, but he looks
+at you expectedly for your end of the deal.`,
+                    option:['Hand him a card','Back out'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:`You give him a card and he gives you the pack.`,
+                    option:['Good deal'],
+                    optionDesc:['Transform a Card'],
+                    link:[-1],
+                },{
+                    desc:
+`You run off, ending the deal prematurely.
+He doesn't follow.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'False Healer',id:17,list:0,
+            pages:[
+                {
+                    desc:
+`A strangely-dressed man approaches you on the
+road and asks to heal you in return for payment.
+It's obvious that he doesn't have the tools
+necessary to heal others. You notice immediately.
+In a slightly menacing voice, you tell him to back off.\n
+"Alright, sorry, okay? I can't heal people,
+I just help them unlearn bad habits..."
+"I'll do it for free..."`,
+                    option:['Accept','Refuse'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`He tells you some of the most useless information
+you've ever heard. And yet, it's a new perspective.
+He escapes when you're not looking,
+but you've gotten what you need.`,
+                    option:['Try it out'],
+                    optionDesc:['Remove a Card'],
+                    link:[-1],
+                },{
+                    desc:`You make him leave. You don't support con men.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Donut',id:18,list:0,
+            pages:[
+                {
+                    desc:
+`You've grabbed the box containing the supplies
+you need, when you notice a donut shop nearby.
+When you enter, you realize that this is no ordinary
+donut shop. They don't take normal currency.
+Whatever's in the box, it can't be
+worth more than a donut, right?`,
+                    option:['Buy a donut','Keep the box'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:`You trade the box for a donut from the shop.`,
+                    option:['Eat it'],
+                    optionDesc:['Gain 5 Max Health'],
+                    link:[-1],
+                },{
+                    desc:
+`You resist the urge and open the box later.
+But you really wanted the donut...`,
+                    option:['Take the contents'],
+                    optionDesc:['Gain 2 Relics, Become Cursed - Regret'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Shining Light',id:19,list:0,
+            pages:[
+                {
+                    desc:
+`In a clearing, you notice a ball of light,
+floating in the center of the area.
+You feel a warm glow coming from it,
+and feel compelled to enter.`,
+                    option:['Enter the ball','Ignore it'],
+                    optionDesc:['Lose 12 Health',''],
+                    link:[1,2],
+                },{
+                    desc:
+`Despite the pain, you see great knowledge
+within the ball, feeling invigorated.`,
+                    option:['Gain knowledge'],
+                    optionDesc:['Upgrade 2 Random Cards'],
+                    link:[-1],
+                },{
+                    desc:
+`You go around it,
+wondering what it might have been.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Magic Man',id:20,list:0,
+            pages:[
+                {
+                    desc:
+`A traveling merchant approaches
+you and offers his services.
+Supposedly, he specializes in healing,
+but he doesn't bother to explain how.`,
+                    option:['Heal','Purify','Refuse'],
+                    optionDesc:['Lose 35 Currency','Lose 50 Currency',''],
+                    link:[1,2,3],
+                },{
+                    desc:`A warm golden light envelops your body and dissipates.`,
+                    option:['Healed'],
+                    optionDesc:['Heal 15 Health'],
+                    link:[-1],
+                },{
+                    desc:`A cold blue flame envelops your body and dissipates.`,
+                    option:['Purified'],
+                    optionDesc:['Remove a Card'],
+                    link:[-1],
+                },{
+                    desc:`You can't trust this man, so you refuse his services.`,
+                    option:['Exit'],
+                    optionDesc:[''],
                     link:[-1],
                 },
             ],

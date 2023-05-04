@@ -35,7 +35,6 @@ class eventManager{
         this.pages=types.event[this.event].pages
         this.page=0
         this.primaryFade=1
-        this.fade.push([])
         for(let a=0,la=this.pages.length;a<la;a++){
             this.fade.push(0)
         }
@@ -174,6 +173,82 @@ class eventManager{
                         if(this.page==1&&a==0){
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('The Alley',types.encounter)])
+                        }
+                    break
+                    case 11:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[12][this.player].active=true
+                            this.battle.overlayManager.overlays[12][this.player].activate()
+                        }
+                    break
+                    case 12:
+                        if(this.page<3&&a==0){
+                            userCombatant.safeDamage(5)
+                            if(floor(random(0,4))==0){
+                                tempPage=3-this.pages[this.page].link[a]
+                            }
+                        }else if(this.page==3&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }
+                    break
+                    case 13:
+                        if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.removeAllCurse()
+                        }
+                    break
+                    case 14:
+                        if(this.page==1&&a==0){
+                            this.battle.addCurrency(75,this.player)
+                        }else if(this.page==2&&a==0){
+                            current.cardManagers[this.player].deck.add(findName('Regret',types.card),0,game.playerNumber+2)
+                            this.battle.addCurrency(175,this.player)
+                        }
+                    break
+                    case 15:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[5][this.player].active=true
+                            this.battle.overlayManager.overlays[5][this.player].activate()
+                        }
+                    break
+                    case 16:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[9][this.player].active=true
+                            this.battle.overlayManager.overlays[9][this.player].activate()
+                        }
+                    break
+                    case 17:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
+                        }
+                    break
+                    case 18:
+                        if(this.page==1&&a==0){
+                            userCombatant.gainMaxHP(5)
+                        }else if(this.page==2&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            current.cardManagers[this.player].deck.add(findName('Regret',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 19:
+                        if(this.page==0&&a==0){
+                            userCombatant.safeDamage(12)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].randomEffect(0,2,[0])
+                            this.battle.cardManagers[this.player].randomEffect(0,2,[0])
+                        }
+                    break
+                    case 20:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(35,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==1&&a==0){
+                            userCombatant.heal(15)
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
                         }
                     break
                 }

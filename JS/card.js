@@ -137,6 +137,7 @@ class card{
             case -4: string+=`Take ${this.effect[0]} Damage at\nthe End of Your Turn`; break
             case -5: string+=`Take ${this.effect[0]} Damage\nWhen You Play a Card`; break
             case -6: string+=`When Drawn,\nGain ${this.effect[0]} Weak`; break
+            case -7: string+=`At the End of Your\nTurn, Take ${this.effect[0]} Damage\nPer You Card Left\nat End of Turn`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break
@@ -244,6 +245,9 @@ class card{
             break
             case -4:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0],-1)
+            break
+            case -7:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0]*(this.battle.cardManagers[this.player].hand.cards.length-1),-1)
             break
         }
     }

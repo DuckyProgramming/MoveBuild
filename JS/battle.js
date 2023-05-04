@@ -329,6 +329,9 @@ class battle{
         this.stats.earned[player]+=round((amount+bonus)*multi)
         this.currency.money[player]+=round((amount+bonus)*multi)
     }
+    loseCurrency(amount,player){
+        this.currency.money[player]-=round(amount)
+    }
     display(scene){
         switch(scene){
             case 'battle':
@@ -517,6 +520,7 @@ class battle{
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }*/
+                this.displayCurrency()
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
