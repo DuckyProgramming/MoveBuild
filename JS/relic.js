@@ -1185,6 +1185,20 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('30',0,12)
                 break
+                case 'Upgrade Random Turn':
+                    displaySymbol(this.layer,0,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,-4,7,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,12,4,0,0.8,this.fade)
+                break
+                case 'Duplicate Random Turn':
+                    displaySymbol(this.layer,0,-4,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,-4,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,12,4,0,0.8,this.fade)
+                break
+                case 'No Heal':
+                    displaySymbol(this.layer,0,0,2,0,1,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
+                break
 
             }
             if(value){

@@ -167,11 +167,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.endShape(CLOSE)
         break
         case 25:
-            layer.fill(150,255,100,fade)
-            layer.arc(0,0,10,10,-165,-105)
-            layer.arc(0,0,10,10,-75,-15)
-            layer.arc(0,0,10,10,15,75)
-            layer.arc(0,0,10,10,105,165)
+            layer.fill(50,150,100,fade)
+            layer.ellipse(0,0,8,8)
+            layer.rotate(-45)
+            for(let a=0,la=3;a<la;a++){
+                layer.triangle(-2,3,2,3,0,8)
+                layer.rotate(45)
+            }
         break
         case 26:
             layer.fill(255,50,50,this.fade)
@@ -183,6 +185,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,7.5,10,2)
             layer.fill(200,255,255,fade)
             layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
+        case 28: case 29:
+            layer.fill(225,fade)
+            layer.ellipse(0,2,5,5)
+            layer.ellipse(sin(120)*2,cos(120)*2,5,5)
+            layer.ellipse(-sin(120)*2,cos(120)*2,5,5)
         break
 
     }
@@ -245,6 +253,30 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
         break
+        case 15:
+            layer.fill(200,25,25,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+        break
+        case 16:
+            layer.fill(255,50,50,fade)
+            for(let a=0,la=6;a<la;a++){
+                layer.rotate(60)
+                layer.triangle(9,0,0,-2,0,2)
+            }
+        break
+        case 17:
+            layer.fill(225,fade)
+            layer.ellipse(0,3,7.5,7.5)
+            layer.ellipse(sin(120)*3,cos(120)*3,7.5,7.5)
+            layer.ellipse(-sin(120)*3,cos(120)*3,7.5,7.5)
+            layer.fill(255,50,50,fade)
+            for(let a=0,la=6;a<la;a++){
+                layer.rotate(60)
+                layer.triangle(9,0,0,-2,0,2)
+            }
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -252,14 +284,17 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
     if(info){
         switch(type){
             case 1: case 3: case 4: case 5: case 6: case 7: case 8: case 9: case 10: case 12:
-            case 13: case 14:
+            case 13: case 14: case 16:
                 layer.text(effect[0],0,0)
             break
             case 2:
-                layer.text(effect[0]+'x3',0,0)
+                layer.text(`${effect[0]}x3`,0,0)
             break
             case 11:
-                layer.text(effect[0]+'x5',0,0)
+                layer.text(`${effect[0]}x5`,0,0)
+            break
+            case 15: case 17:
+                layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
         }
     }else{

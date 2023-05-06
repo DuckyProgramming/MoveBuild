@@ -2129,6 +2129,10 @@ function setupBackground(type,layer){
 					)
 				}
 			}
+			for(let a=0,la=60;a<la;a++){
+				layer.fill(0,1-sqrt(a/la))
+				layer.rect(layer.width/2,a,layer.width,2)
+			}
 		break
 	}
 }

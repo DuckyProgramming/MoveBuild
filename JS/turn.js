@@ -29,7 +29,7 @@ class turn{
                             case 1: case 2: case 3: case 11: case 13:
                                 this.target=[this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
                             break
-                            case 6: case 7: case 8: case 14:
+                            case 6: case 7: case 8: case 14: case 15:
                                 this.target=[
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]),
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2)
@@ -52,6 +52,17 @@ class turn{
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*6)
                                 ]
                             break
+                            case 16: case 17:
+                                this.target=[
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1])
+                                ]
+                            break
+
                         }
                         if(this.target.length<=1){
                             if(this.target[0]==-1){
@@ -334,7 +345,7 @@ class turn{
                             this.remove=true
                         }
                     break
-                    case 6: case 8: case 14:
+                    case 6: case 8: case 14: case 15:
                         if(this.targetDistance==1){
                             if(this.timer==1){
                                 this.userCombatant.startAnimation(2)
@@ -353,6 +364,8 @@ class turn{
                                                 this.battle.drop(findName(this.effect[2],types.card),0,game.playerNumber+1)
                                             }
                                         }
+                                    }else if(this.type==15){
+                                        this.targetCombatant.statusEffect('Weak',this.effect[1])
                                     }
                                 }
                             }else if(this.timer>=30){
@@ -388,6 +401,8 @@ class turn{
                                                 this.battle.drop(findName(this.effect[2],types.card),0,game.playerNumber+1)
                                             }
                                         }
+                                    }else if(this.type==15){
+                                        this.targetCombatant.statusEffect('Weak',this.effect[1])
                                     }
                                 }
                                 this.battle.activate(1,this.userCombatant.id)
@@ -544,6 +559,18 @@ class turn{
                         }else if(this.timer==5*this.targetDistance+15){
                             this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                         }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                            this.remove=true
+                        }
+                    break
+                    case 16: case 17:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(6)
+                        }
+                        this.userCombatant.runAnimation(1/10,6)
+                        if(this.timer==10){
+                            this.battle.combatantManager.damageAreaID(this.effect[0],this.userCombatant.id,this.userCombatant.tilePosition)
+                            this.battle.combatantManager.statusAreaID('Next Turn Cannot Move',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                        }else if(this.timer>=20){
                             this.remove=true
                         }
                     break

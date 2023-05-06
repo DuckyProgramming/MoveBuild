@@ -79,8 +79,24 @@ class cardManager{
             }
         }
     }
-    turnDraw(){
-        this.draw(this.drawAmount)
+    drawInnate(){
+        let total=0
+        for(let a=0,la=this.reserve.cards.length;a<la;a++){
+            if(this.reserve.cards[a].spec.includes(3)){
+                this.reserve.send(this.hand.cards,a,a+1,3)
+                a--
+                la--
+                total++
+            }
+        }
+        return total
+    }
+    turnDraw(turn){
+        let tempDrawAmount=this.drawAmount
+        if(turn==1){
+            tempDrawAmount-=this.drawInnate()
+        }
+        this.draw(tempDrawAmount)
     }
     fatigue(){
         if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){

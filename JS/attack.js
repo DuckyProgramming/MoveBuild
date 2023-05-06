@@ -31,7 +31,7 @@ class attack{
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
             case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
             case 38: case 39: case 42: case 46: case 47: case 48: case 49: case 53: case 57: case 61:
-            case 66: case 67: case 68: case 75:
+            case 66: case 67: case 68: case 75: case 77:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -273,6 +273,7 @@ class attack{
                 }
             break
             case 8: case 40: case 44: case 45: case 55: case 60: case 62: case 63: case 69: case 70:
+            case 76: case 78:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -320,6 +321,12 @@ class attack{
                         break
                         case 70:
                             this.battle.cardManagers[this.player].hand.reserve(this.effect[0])
+                        break
+                        case 76:
+                            this.userCombatant.statusEffect('Intangible',this.effect[0])
+                        break
+                        case 78:
+                            this.battle.cardManagers[this.player].randomEffect(2,5,[])
                         break
                     }
                 }else if(this.timer>=20){
@@ -1295,6 +1302,18 @@ class attack{
                         this.battle.activate(1,this.userCombatant.id)
                         this.remove=true
                     }
+                }
+            break
+            case 77:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(24)
+                }
+                this.userCombatant.runAnimation(1/12,24)
+                if(this.timer==6){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.userCombatant.heal(this.effect[1])
+                }else if(this.timer>=12){
+                    this.remove=true
                 }
             break
 

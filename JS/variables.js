@@ -507,6 +507,24 @@ types={
                 {effect:[1],attack:75,cost:0,target:[2,1,1],spec:[1,4],class:3},
                 {effect:[1],attack:75,cost:0,target:[2,1,2],spec:[1,4],class:3},
             ],
+        },{
+            name:'Apparition',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:76,cost:1,target:[0],spec:[1,4],class:4},
+                {effect:[1],attack:76,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Bite',rarity:-1,list:0,
+            levels:[
+                {effect:[7,2],attack:77,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[10,3],attack:77,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Madness',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:78,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:78,cost:0,target:[0],spec:[1],class:4},
+            ],
         },
         
         {
@@ -564,20 +582,20 @@ types={
         {
             name:'Doubt',rarity:0,list:5,
             levels:[
-                {effect:[],attack:-1,cost:0,target:[0],spec:[5],class:6},
-                {effect:[],attack:-1,cost:0,target:[0],spec:[4,5],class:6},
+                {effect:[1],attack:-1,cost:0,target:[0],spec:[5],class:6},
+                {effect:[1],attack:-1,cost:0,target:[0],spec:[4,5],class:6},
             ],
         },{
             name:'Shame',rarity:0,list:5,
             levels:[
-                {effect:[],attack:-2,cost:0,target:[0],spec:[5],class:6},
-                {effect:[],attack:-2,cost:0,target:[0],spec:[4,5],class:6},
+                {effect:[1],attack:-2,cost:0,target:[0],spec:[5],class:6},
+                {effect:[1],attack:-2,cost:0,target:[0],spec:[4,5],class:6},
             ],
         },{
             name:'Hoarding',rarity:0,list:5,
             levels:[
-                {effect:[],attack:0,cost:0,target:[0],spec:[5,7],class:6},
-                {effect:[],attack:0,cost:0,target:[0],spec:[4,5,7],class:6},
+                {effect:[],attack:0,cost:1,target:[0],spec:[5,7],class:6},
+                {effect:[],attack:0,cost:1,target:[0],spec:[7],class:6},
             ],
         },{
             name:'Pain',rarity:0,list:5,
@@ -590,6 +608,30 @@ types={
             levels:[
                 {effect:[1],attack:-7,cost:0,target:[0],spec:[5],class:6},
                 {effect:[1],attack:-7,cost:0,target:[0],spec:[4,5],class:6},
+            ],
+        },{
+            name:'Decay',rarity:0,list:5,
+            levels:[
+                {effect:[2],attack:-4,cost:0,target:[0],spec:[5],class:6},
+                {effect:[1],attack:-4,cost:0,target:[0],spec:[5],class:6},
+            ],
+        },{
+            name:'Guilt',rarity:0,list:5,
+            levels:[
+                {effect:[10],attack:-8,cost:0,target:[0],spec:[5],class:6},
+                {effect:[5],attack:-8,cost:0,target:[0],spec:[5],class:6},
+            ],
+        },{
+            name:'Normality',rarity:0,list:5,
+            levels:[
+                {effect:[3],attack:-9,cost:0,target:[0],spec:[5],class:6},
+                {effect:[4],attack:-9,cost:0,target:[0],spec:[5],class:6},
+            ],
+        },{
+            name:'Writhe',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:0,cost:0,target:[0],spec:[3,5],class:6},
+                {effect:[],attack:0,cost:0,target:[0],spec:[3,4,5],class:6},
             ],
         },{
             name:'Ascender Bane',rarity:0,list:5,
@@ -614,6 +656,7 @@ types={
         {name:'Trenchcoat',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`Nobody knows who he is`},
         {name:'Trenchcoat Gunner',life:45,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[10]}],description:`Keeps a low profile`},
         {name:'Goon',life:45,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:14,effect:[4,1,'Arm\nInjury']},{type:4,effect:[12]}],description:`Bars you from life`},
+        {name:'Slaver',life:46,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:15,effect:[7,2]},{type:17,effect:[2,1]}],description:`Former policeman`},
         
     ],attack:[
         {name:'',class:0},//0
@@ -631,6 +674,9 @@ types={
         {name:'Gun (Nonpenetrative)',class:1},
         {name:'Injuring Strike',class:1},
         {name:'Injuring 2 Tile Strike (Nonpenetrative) (Advance)',class:1},
+        {name:'2 Tile Strike / Weaken',class:1},
+        {name:'Spin Strike',class:1},
+        {name:'Spin Strike / Stuck',class:1},
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -801,7 +847,7 @@ types={
         {name:'',internal:'Remove 3',id:151,rarity:4,list:0,description:'When Taken, Remove 3 Cards'},
         {name:'',internal:'Difficulty Energy',id:152,rarity:4,list:0,description:'Gain 2 Energy Every Turn\non Elites and Bosses'},
         {name:'',internal:'Large Quick Heal',id:153,rarity:4,list:0,description:'Heal 10 HP at\nthe End of Combat'},
-        {name:'',internal:'Transform Basic',id:154,rarity:4,list:0,description:'When Taken, Transform\nAll Strikes and Defends'},
+        {name:'',internal:'Transform Basic',id:154,rarity:4,list:0,description:'When Taken, Transform\nAll Strikes, Defends, and Steps'},
         {name:'',internal:'Basic Draw',id:155,rarity:4,list:0,description:'Draw 2 More\nCards Every Turn'},
         {name:'',internal:'Confused Draw',id:156,rarity:4,list:0,description:'Draw 3 More Cards Eveyr Turn,\nStart Combat Confused'},
         {name:'',internal:'Much Better Items',id:157,rarity:4,list:0,description:'Items are 5x\nMore Effective'},
@@ -809,7 +855,9 @@ types={
         {name:'',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n200 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
         {name:'',internal:'30 Max HP',id:160,rarity:4,list:0,description:'When Taken,\nGain 30 Max HP'},
        
-        {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,description:'Every Turn, Upgrade a Random Card\nat the Start of Your Hand'},
+        {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
+        {name:'Audric Codex',internal:'Duplicate Random Turn',id:162,rarity:-1,list:0,description:'Every Turn, Duplicate a Random\nCard in Your Hand'},
+        {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-1,list:0,description:'You Can No Longer Heal'},
 
         /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
         {name:'',internal:'',id:12,rarity:0,list:0,description:''},
@@ -1401,6 +1449,553 @@ but he doesn't bother to explain how.`,
                     link:[-1],
                 },
             ],
+        },{
+            name:'Corruption',id:21,list:0,
+            pages:[
+                {
+                    desc:
+`As you travel, you are jumped by a man in a suit,
+looking around frantically for something.
+When he sees you, he hands you a piece of paper and
+tells you to keep it safe, but to never give it to anybody.
+Seeing your confused expression,
+he tries to hand you some money as thanks.`,
+                    option:['Take it','Decline'],
+                    optionDesc:['Gain 175 Currency',''],
+                    link:[1,2],
+                },{
+                    desc:
+`He runs off, leaving you with the paper.
+You try to read it, but it's all bureaucratic nonsense.`,
+                    option:['Easy money'],
+                    optionDesc:['Become Cursed - Doubt'],
+                    link:[-1],
+                },{
+                    desc:
+`He runs off, still holding the paper,
+trying to find more passerby.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Humanic Writings',id:22,list:0,
+            pages:[
+                {
+                    desc:
+`Finding a mysterious square rock,
+you quickly notice strange scripts on it.
+This is the language of the pre-Management humans.
+Perhaps a relic of the first Konaian colonists.
+They only changed their scripts to match the
+Management after the Grand Alliance War, after all.
+As you continue to read, the meanings become clear.`,
+                    option:['Elegance','Simplicity'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`The answer was elegance.
+Of course.`,
+                    option:['That'+"'"+'s what it meant'],
+                    optionDesc:['Remove a Card'],
+                    link:[-1],
+                },{
+                    desc:`The truth is always simple.`,
+                    option:['That'+"'"+'s what it meant'],
+                    optionDesc:['Upgrade All Strikes, Defends, and Steps'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Council of Spirits',id:23,list:0,
+            pages:[
+                {
+                    desc:
+`A group of three apparitions appear around
+you as you walk, circling around you.
+They talk amongst themselves about you,
+before one descends to address you.
+"Would you like a taste of our power?"`,
+                    option:['Accept','Refuse'],
+                    optionDesc:['Lose 50% Max Health',''],
+                    link:[1,2],
+                },{
+                    desc:
+`As it speaks, you notice it nearing your body as
+smoke swirls around you, blocking your vision.
+You almost lose consciousness,
+but the smoke dissipates before you can.
+The things are gone.`,
+                    option:['Continue'],
+                    optionDesc:['Gain 5 Apparition'],
+                    link:[-1],
+                },{
+                    desc:
+`The shape laughs at you before fading away,
+returning to the air.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'The Bet',id:24,list:0,
+            pages:[
+                {
+                    desc:
+`Two men sitting across from each other at a
+table notice you and ask you to come over.
+"Would like to bet on who wins? That would make the
+game a little more interesting, don't you agree?"
+The other man smiles and stares at you expectantly.`,
+                    option:['Bet on first player','Bet on second player','Refuse'],
+                    optionDesc:['Lose 50 Currency','Lose 50 Currency',''],
+                    link:[1,1,3],
+                },{
+                    desc:
+`The man you bet on wins the game.
+You receive the return on your bet.`,
+                    option:['Collect winnings'],
+                    optionDesc:['Gain 100 Currency'],
+                    link:[-1],
+                },{
+                    desc:
+`The man you bet on loses the game. The winner
+takes your money with him as the two leave.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`The two pay you no mind and continue their game.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Library',id:25,list:0,
+            pages:[
+                {
+                    desc:
+`You find a large, but abandoned building.
+The label on the front marks it to be a library.
+Entering, you see rows upon rows of books,
+and many spots to read in.`,
+                    option:['Read','Sleep'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`The book details a group of colonists who left Terra
+to preserve the culture destroyed in Americanization.
+Atlorium Inc.'s Manager personally met with the
+colonists' leader to negotiate the travel expenses.`,
+                    option:['Interesting story'],
+                    optionDesc:['Add 1 Card'],
+                    link:[-1],
+                },{
+                    desc:
+`You decide that you need to recover,
+and that you don't have time for reading.
+You wake up feeling refreshed.`,
+                    option:['Done'],
+                    optionDesc:['Heal 25 Health'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Forgotten Altar',id:26,list:0,
+            pages:[
+                {
+                    desc:
+`In front of you sits an altar to a forgotten god.
+Atop the altar sits an ornate female statue
+with arms outstretched. She calls out
+to you, demanding sacrifice.\n
+You want to run, but the doors have shut behind you,
+propelled by some sort of force.`,
+                    option:['Sacrifice','Smash'],
+                    optionDesc:['Lose 18 Health',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You let some of your blood out and
+allow it to seep into the pedestal.
+Everything goes dark.
+You wake up a short while later feeling new potential.`,
+                    option:['Leave'],
+                    optionDesc:['Gain 5 Max Health'],
+                    link:[-1],
+                },{
+                    desc:
+`You smash the statue with a large strike.
+The hold of the room ceases. The door swings open.
+A dark sound echoes around you, the magic seeping into you.`,
+                    option:['Exit'],
+                    optionDesc:['Become Cursed - Decay'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Cursed Tome',id:27,list:0,
+            pages:[
+                {
+                    desc:
+`You see an abandoned temple. Within, a book is
+opened on a pedestal, flipped to a random page.
+You arrive. It's about an abandoned
+Management project, known as Godhood.`,
+                    option:['Read','Stop'],
+                    optionDesc:['Lose 2 Health',''],
+                    link:[2,1],
+                },{
+                    desc:`You resist the urge to read and put down the book.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`Project Godhood was created by the Great
+Manager to unlock the secrets of life.
+It was founded under the notion that
+control over life was the last frontier`,
+                    option:['Read','Stop'],
+                    optionDesc:['Lose 4 Health',''],
+                    link:[3,1],
+                },{
+                    desc:
+`The project specialized in the creation of humanoids
+who would be capable of blending among the populace.
+Due to the apparent power of this knowledge, the project
+was kept secret from all but the most important.`,
+                    option:['Read','Stop'],
+                    optionDesc:['Lose 8 Health',''],
+                    link:[4,1],
+                },{
+                    desc:
+`Godhood was shut down by the Great Manager
+upon his retirement, to hide the evidence.
+The remaining organisms were destroyed, except one,
+who was spared after the Director requested her safety.`,
+                    option:['Take','Stop'],
+                    optionDesc:['Lose 36 Health',''],
+                    link:[5,1],
+                },{
+                    desc:
+`You pick up the book, feeling drained.
+You take it with you on your travels.`,
+                    option:['Keep it'],
+                    optionDesc:['Gain 1 Relic'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Slaver',id:28,list:0,
+            pages:[
+                {
+                    desc:
+`A figure jumps you and tries to tase you with a
+makeshift staff. You easily dodge out of the way.
+"Come quietly, and we won't harm you!"
+He doesn't know what you're capable of.`,
+                    option:['Fight','Persuade'],
+                    optionDesc:['Start Fight',''],
+                    link:[-2,1],
+                },{
+                    desc:
+`You explain to him how most of the
+warriors in the region tend to travel,
+so it's easier to capture civilians in the
+villages rather than roaming the roads.
+While he's distracted, you escape.`,
+                    option:['Run'],
+                    optionDesc:['Become Cursed - Guilt'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Mausoleum',id:29,list:0,
+            pages:[
+                {
+                    desc:
+`Venturing through several tombs, you arrive at the end
+of the catacombs. There lies a large coffin covered in gems.
+The text on the side is unintelligible, but you can
+recognize strange smoke coming out of the sides.`,
+                    option:['Open the Coffin','Don'+"'"+'t'],
+                    optionDesc:['Gain 1 Relic',''],
+                    link:[1,3],
+                },{
+                    desc:
+`You push it open and find a relic within,
+which you take with you. The smoke flows around the room
+and begins to choke you. You only just make it out.`,
+                    option:['Take it'],
+                    optionDesc:['Become Cursed - Writhe'],
+                    link:[-1],
+                },{
+                    desc:
+`You push it open and find a relic within,
+which you take with you. The smoke dissipates,
+until there's nothing left inside.`,
+                    option:['Take it'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:"You leave it undisturbed.",
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Closed Chamber',id:30,list:0,
+            pages:[
+                {
+                    desc:
+`You enter a room, looking for anything of use,
+when the door locks behind you.
+A screen in the center of the room lights up,
+and a voice beguns speaking from within it.
+"What are you here for? And more importantly,
+what shall be the price?"`,
+                    option:['Money','Success (Cards)','Help (Relic)','The exit'],
+                    optionDesc:['Lose 8 Health','Lose 8 Health','Lose 24 Health',''],
+                    link:[1,2,3,4],
+                },{
+                    desc:
+`"You never change, do you?"
+"Money rains from the sky.`,
+                    option:['Done'],
+                    optionDesc:['Gain 45 Currency'],
+                    link:[0],
+                },{
+                    desc:
+`"Maybe this will help?"
+A card appears in your hand.`,
+                    option:['Done'],
+                    optionDesc:['Gain 1 Uncommon Colorless Card'],
+                    link:[0],
+                },{
+                    desc:
+`"This could be useful."
+An relic appears in your hand.`,
+                    option:['Done'],
+                    optionDesc:['Gain 1 Relic'],
+                    link:[0],
+                },{
+                    desc:
+`"Right behind you.
+You see the door behind you has opened.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Homeless Man',id:31,list:0,
+            pages:[
+                {
+                    desc:
+`You encounter a homeless-looking man in a town,
+begging for money. When he sees you, he runs up to you.
+"Please, can you spare some coin?
+I have things I can trade..."`,
+                    option:['Donate','Rob','Leave'],
+                    optionDesc:['Lose 50 Currency','',''],
+                    link:[1,2,4],
+                },{
+                    desc:`You hand him some of your money while he gives you a relic.`,
+                    option:['Good deal'],
+                    optionDesc:['Gain a Relic'],
+                    link:[-1],
+                },{
+                    desc:
+`You grab the relic from his hands and start to escape.
+"Have you no shame?" He calls out.
+You have no shame.`,
+                    option:['Run'],
+                    optionDesc:['Gain a Relic'],
+                    link:[-1],
+                },{
+                    desc:
+`You grab the relic from his hands and start to escape.
+"Have you no shame?" He calls out.
+You have shame.`,
+                    option:['Run'],
+                    optionDesc:['Gain a Relic, Become Cursed - Shame'],
+                    link:[-1],
+                },{
+                    desc:`You leave him to beg from somebody else.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Vampires',id:32,list:0,
+            pages:[
+                {
+                    desc:
+`You notice a group of hooded figures on
+the street, performing an unknown ritual.
+As you approach, they turn to you in unison.
+The largest smiles and extends a hand toward you.
+"Join us, ||, and feel the power."`,
+                    option:['Accept','Refuse'],
+                    optionDesc:['Lose 25% Max Health, Remove All Strikes',''],
+                    link:[1,2],
+                },{
+                    desc:
+`He pulls you forward and sinks his teeth through your neck.
+You feel a dark force moving through your body from the bite.\n
+You wake up some time later, alone and hungry.`,
+                    option:['You must feed'],
+                    optionDesc:['Gain 5 Bites'],
+                    link:[-1],
+                },{
+                    desc:
+`You move back and prepare your weapon.
+The figure sighs and turns to leave.
+The group morphs into fog and disappear,
+leaving you alone once more.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Mind Bloom',id:33,list:0,
+            pages:[
+                {
+                    desc:
+`While traveling, your thoughts suddenly appear to feel...
+real.
+Images of occurrences began to flow between your mind
+and reality, manifesting themselves in real forms.
+The sensation is quickly fleeting. What do you do?`,
+                    option:['I am Smart','I am Rich','I am Strong'],
+                    optionDesc:['Upgrade All Cards','Gain 999 Currency','Gain 50% Max Health'],
+                    link:[1,2,3],
+                },{
+                    desc:`Can it really be this easy?`,
+                    option:['I am?'],
+                    optionDesc:['You Can No Longer Heal'],
+                    link:[-1],
+                },{
+                    desc:`Can it really be this easy?`,
+                    option:['I am?'],
+                    optionDesc:['Become Cursed - 2 Normalities'],
+                    link:[-1],
+                },{
+                    desc:`Can it really be this easy?`,
+                    option:['I am?'],
+                    optionDesc:['Become Cursed - Doubt'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Sensory Stone',id:34,list:0,
+            pages:[
+                {
+                    desc:
+`You discover a glowing tesseract spinning and
+shifting gently in the air. When you touch it,
+you begin to see a distant memory from within.`,
+                    option:['Recall','Absorb'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:`A flash of thought jumps through your mind.`,
+                    option:['Accept the memories'],
+                    optionDesc:['Add 1 Uncommon Colorless Card'],
+                    link:[-1],
+                },{
+                    desc:`A flash of thought jumps through your mind.`,
+                    option:['Accept the memories'],
+                    optionDesc:['Add 1 Rare Colorless Card'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Winding Halls',id:35,list:0,
+            pages:[
+                {
+                    desc:
+`As you slowly make your way up the twisting pathways,
+you constantly find yourself losing your way.
+The walls and ground seem to inexplicably shift before your eyes.
+The constant whispering voices in the back of
+your head aren't helping things either.
+Passing by a structure you are certain you have previously seen,
+you start to question if you are going insane.
+You need to change something, and soon.`,
+                    option:['Embrace madness','Continue','Head back'],
+                    optionDesc:['','',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`You change the way you think about this place.
+Things are beginning to make sense now.
+"Maybe those voices were right after all.
+Things do seem to make so much more sense now.`,
+                    option:['Get out'],
+                    optionDesc:['Gain 2 Madness, Lose 10 Max Health'],
+                    link:[-1],
+                },{
+                    desc:
+`As you take a moment to stop and carefully
+observe the undulating landscape around you,
+the hint of a pattern starts to emerge from within
+the randomness. Whenever the demented noises
+begin to interrupt your thoughts, you struggle
+through the mental pain and ignore it.`,
+                    option:['Get out'],
+                    optionDesc:['Become Cursed - Writhe'],
+                    link:[-1],
+                },{
+                    desc:
+`You spend what seems like an eternity lost in the maze.
+Slowly, you are able to retrace your steps,
+reorient yourself, and make it out.`,
+                    option:['Get out'],
+                    optionDesc:['Lose 5 Max Health'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Luvocorp UFO',id:36,list:0,
+            pages:[
+                {
+                    desc:
+`You notice a strangely shaped object in the sky. As it
+descends toward you, you can make out a logo and the word
+"Luvocorp" on the side. It continues its approach, moving
+quickly enough that you don't think you can escape.`,
+                    option:['Hit it','Try to Dodge it'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You hit the UFO with all of your strength,
+causing it to move backwards and land harmlessly nearby.
+The driver quickly starts up the engine again and
+leaves without you, much to your confusion.`,
+                    option:['It'+"'"+'s gone'],
+                    optionDesc:['Lose 1 Random Card'],
+                    link:[-1],
+                },{
+                    desc:
+`The UFO continues its downward course and lands directly
+on top of you before you can escape, crushing you.
+You wake up not long later. The UFO is gone.`,
+                    option:['Get up'],
+                    optionDesc:['Lose 6 Health'],
+                    link:[-1],
+                },
+            ],
         },
     ],color:{
         card:[
@@ -1452,6 +2047,13 @@ but he doesn't bother to explain how.`,
         {
             name:'',
             map:[
+            ],
+        },{
+            name:'Basic 3',
+            map:[
+                [{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]}],
             ],
         },{
             name:'Basic 5',
@@ -1630,6 +2232,14 @@ but he doesn't bother to explain how.`,
                 {position:{x:0,y:1},name:'Goon'},
                 {position:{x:3,y:4},name:'Goon'},
                 {position:{x:4,y:4},name:'Goon'},
+            ],reinforce:[
+            ],
+        },{
+            level:'Basic 3',class:0,world:-1,
+            name:'Slaver',
+            player:{position:{x:0,y:0}},
+            enemy:[
+                {position:{x:2,y:2},name:'Slaver'},
             ],reinforce:[
             ],
         },

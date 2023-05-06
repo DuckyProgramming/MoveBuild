@@ -634,7 +634,14 @@ class relicManager{
                     }
                 }
                 if(this.active[161]>0&&args[1]==this.player[161]){
-                    this.battle.cardManagers[this.player[161]].randomEffect(2,2,[0])
+                    for(let a=0,la=this.active[161];a<la;a++){
+                        this.battle.cardManagers[this.player[161]].randomEffect(2,2,[0])
+                    }
+                }
+                if(this.active[162]>0&&args[1]==this.player[162]){
+                    for(let a=0,la=this.active[162];a<la;a++){
+                        this.battle.cardManagers[this.player[162]].randomEffect(2,4,[0])
+                    }
                 }
             break
             case 3://enemy dies

@@ -132,7 +132,6 @@ class battle{
             this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},name:encounter.reinforce[a].name,turn:encounter.reinforce[a].turn,minion:false})
             this.counter.enemy++
         }
-        
         for(let a=0,la=this.cardManagers.length;a<la;a++){
             this.cardManagers[a].reset()
             this.cardManagers[a].clear()
@@ -251,7 +250,7 @@ class battle{
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                 }
             }
-            this.cardManagers[this.turn.main].turnDraw()
+            this.cardManagers[this.turn.main].turnDraw(this.turn.total)
             this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
             this.turn.time=game.turnTime
             this.counter.turnPlayed=[0,0,0,0,0]
@@ -282,7 +281,7 @@ class battle{
                 this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
             }
         }
-        this.cardManagers[0].turnDraw()
+        this.cardManagers[0].turnDraw(this.turn.total)
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
         this.counter.turnPlayed=[0,0,0,0,0]
@@ -516,8 +515,8 @@ class battle{
                 this.overlayManager.display()
             break
             case 'event':
-                /*this.layer.image(graphics.backgrounds[5],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.players;a<la;a++){
+                this.layer.image(graphics.backgrounds[5],0,0,this.layer.width,this.layer.height)
+                /*for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }*/
                 this.displayCurrency()

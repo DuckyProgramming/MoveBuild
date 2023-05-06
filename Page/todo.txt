@@ -13,7 +13,6 @@ Partnership Cards?
 
 Battle Content:
 Weak Enemy
-Innate Cards
 2 Tile Move
 Enemy Do Nothing
 The other statuses

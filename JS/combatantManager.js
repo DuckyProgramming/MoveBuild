@@ -133,6 +133,22 @@ class combatantManager{
             }
         }
     }
+    damageAreaID(damage,id,tilePosition){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].id!=id&&distance>=0&&distance<=1){
+                this.combatants[a].takeDamage(damage)
+            }
+        }
+    }
+    statusAreaID(name,amount,id,tilePosition){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].id!=id&&distance>=0&&distance<=1){
+                this.combatants[a].statusEffect(name,amount)
+            }
+        }
+    }
     getArea(team,tilePosition){
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){

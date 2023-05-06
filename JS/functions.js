@@ -154,6 +154,9 @@ function intentDescription(attack,info){
 		case 12: return `Deal ${info?attack.effect[0]:`?`} Damage\nRange 1-6`
 		case 13: return `Deal ${info?attack.effect[0]:`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
 		case 14: return `Deal ${info?attack.effect[0]:`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
+		case 15: return `Deal ${info?attack.effect[0]:`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-2`
+		case 16: return `Deal ${info?attack.effect[0]:`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
+		case 17: return `Deal ${info?attack.effect[0]:`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
 
 	}
 }
@@ -170,6 +173,13 @@ function findList(entry,list){
 function findName(name,list){
 	for(let a=0,la=list.length;a<la;a++){
 		if(list[a].name==name){
+			return a
+		}
+	}
+}
+function findInternal(internal,list){
+	for(let a=0,la=list.length;a<la;a++){
+		if(list[a].internal==internal){
 			return a
 		}
 	}
@@ -290,7 +300,7 @@ function distTargetCombatant(type,combatant1,combatant2){
 function transformDirection(type,direction){
 	switch(type){
 		case 0:
-			let actualDirection=(direction%360+180)%360-180
+			let actualDirection=(direction%360+540)%360-180
 			if(abs(actualDirection+30)<=30){
 				return [0,1]
 			}else if(abs(actualDirection-30)<=30){

@@ -138,6 +138,8 @@ class card{
             case -5: string+=`Take ${this.effect[0]} Damage\nWhen You Play a Card`; break
             case -6: string+=`When Drawn,\nGain ${this.effect[0]} Weak`; break
             case -7: string+=`At the End of Your\nTurn, Take ${this.effect[0]} Damage\nPer You Card Left\nat End of Turn`; break
+            case -8: string+=`Take ${this.effect[0]} Damage\nWhen an Enemy Dies`; break
+            case -9: string+=`You Cannot\nPlay More Than ${this.effect[0]}\nCards This Turn`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break
@@ -210,7 +212,9 @@ class card{
             case 73: string+=`Gain ${this.effect[0]} Dexterity\nLose ${this.effect[1]} Health`; break
             case 74: string+=`Gain ${this.effect[0]} Buffer\nLose ${this.effect[1]} Health`; break
             case 75: string+=`Move ${this.effect[0]} Tile${this.effect[0]>1?`s`:``}\nAway From Enemy`; break
-
+            case 76: string+=`Gain ${this.effect[0]} Intangible`; break
+            case 77: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nHeal ${this.calculateEffect(this.effect[1],4)} Health`; break
+            case 78: string+=`A Random Card\nin Your Hand\nBecomes Free`; break
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
@@ -238,10 +242,10 @@ class card{
     callDiscardEffect(){
         switch(this.attack){
             case -1:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[8]++
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[8]+=this.effect[0]
             break
             case -2:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[9]++
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].status.main[9]+=this.effect[0]
             break
             case -4:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0],-1)
@@ -255,6 +259,11 @@ class card{
         switch(this.attack){
             case -5:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0],-1)
+            break
+            case -9:
+                if(this.battle.counter.turnPlayed[0]+1>=this.effect[0]){
+                    this.battle.cardManagers[this.player].allEffect(2,2)
+                }
             break
             case 52:
                 this.deSize=true

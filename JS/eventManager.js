@@ -110,11 +110,11 @@ class eventManager{
                     break
                     case 4:
                         if(this.page==0&&a==0){
-                            current.cardManagers[this.player].deck.add(findName('Mixture A',types.card),0,0)
+                            this.battle.cardManagers[this.player].deck.add(findName('Mixture A',types.card),0,0)
                         }else if(this.page==0&&a==1){
-                            current.cardManagers[this.player].deck.add(findName('Mixture B',types.card),0,0)
+                            this.battle.cardManagers[this.player].deck.add(findName('Mixture B',types.card),0,0)
                         }else if(this.page==0&&a==2){
-                            current.cardManagers[this.player].deck.add(findName('Mixture C',types.card),0,0)
+                            this.battle.cardManagers[this.player].deck.add(findName('Mixture C',types.card),0,0)
                         }
                     break
                     case 5:
@@ -143,8 +143,8 @@ class eventManager{
                             this.battle.overlayManager.overlays[5][this.player].active=true
                             this.battle.overlayManager.overlays[5][this.player].activate()
                         }else if(this.page==2&&a==0){
-                            this.battle.relicManager.addRelic(findName('Bent Pliers',types.relic),this.player)
-                            current.cardManagers[this.player].deck.add(findName('Pain',types.card),0,game.playerNumber+2)
+                            this.battle.relicManager.addRelic(findInternal('Upgrade Random Turn',types.relic),this.player)
+                            this.battle.cardManagers[this.player].deck.add(findName('Pain',types.card),0,game.playerNumber+2)
                         }
                     break
                     case 8:
@@ -200,7 +200,7 @@ class eventManager{
                         if(this.page==1&&a==0){
                             this.battle.addCurrency(75,this.player)
                         }else if(this.page==2&&a==0){
-                            current.cardManagers[this.player].deck.add(findName('Regret',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Regret',types.card),0,game.playerNumber+2)
                             this.battle.addCurrency(175,this.player)
                         }
                     break
@@ -228,7 +228,7 @@ class eventManager{
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)
                             this.battle.relicManager.addRandomRelic(this.player)
-                            current.cardManagers[this.player].deck.add(findName('Regret',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Regret',types.card),0,game.playerNumber+2)
                         }
                     break
                     case 19:
@@ -249,6 +249,166 @@ class eventManager{
                         }else if(this.page==2&&a==0){
                             this.battle.overlayManager.overlays[6][this.player].active=true
                             this.battle.overlayManager.overlays[6][this.player].activate()
+                        }
+                    break
+                    case 21:
+                        if(this.page==0&&a==0){
+                            this.battle.addCurrency(175,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Doubt',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 22:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].allEffect(0,6)
+                        }
+                    break
+                    case 23:
+                        if(this.page==0&&a==0){
+                            userCombatant.loseMaxHP(userCombatant.base.life/2)
+                        }else if(this.page==1&&a==0){
+                            for(let b=0,lb=5;b<lb;b++){
+                                this.battle.cardManagers[this.player].deck.add(findName('Apparition',types.card),0,0)
+                            }
+                        }
+                    break
+                    case 24:
+                        if(this.page==0&&a<2){
+                            if(floor(random(0,2))==0){
+                                tempPage++
+                            }
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.addCurrency(100,this.player)
+                        }
+                    break
+                    case 25:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(1,3)),0])
+                        }else if(this.page==2&&a==0){
+                            userCombatant.heal(25)
+                        }
+                    break
+                    case 26:
+                        if(this.page==0&&a==0){
+                            userCombatant.safeDamage(18)
+                        }else if(this.page==1&&a==0){
+                            userCombatant.gainMaxHP(5)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Decay',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 27:
+                        if(this.page==0&&a==0){
+                            userCombatant.safeDamage(2)
+                        }else if(this.page==2&&a==0){
+                            userCombatant.safeDamage(4)
+                        }else if(this.page==3&&a==0){
+                            userCombatant.safeDamage(8)
+                        }else if(this.page==4&&a==0){
+                            userCombatant.safeDamage(36)
+                        }else if(this.page==5&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Duplicate Random Turn',types.relic),this.player)
+                        }
+                    case 28:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Slaver',types.encounter)])
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Guilt',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 29:
+                        if(this.page==0&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            if(floor(random(0,2))==0){
+                                tempPage++
+                            }
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Writhe',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 30:
+                        if(this.page==0&&a<2){
+                            userCombatant.life-=8
+                        }else if(this.page==0&&a==2){
+                            userCombatant.life-=24
+                        }else if(this.page==1&&a==0){
+                            this.battle.addCurrency(45,this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,1])
+                        }else if(this.page==3&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }
+                    break
+                    case 31:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(50,this.player)
+                        }else if(this.page==0&&a==1&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if((this.page==1||this.page==2)&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }else if(this.page==3&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            this.battle.cardManagers[this.player].deck.add(findName('Shame',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 32:
+                        if(this.page==0&&a==0){
+                            userCombatant.loseMaxHP(userCombatant.base.life/4)
+                            this.battle.cardManagers[this.player].deck.removeAllName('Strike')
+                        }else if(this.page==1&&a==0){
+                            for(let b=0,lb=5;b<lb;b++){
+                                this.battle.cardManagers[this.player].deck.add(findName('Bite',types.card),0,0)
+                            }
+                        }
+                    break
+                    case 33:
+                        if(this.page==0&&a==0){
+                            this.battle.cardManagers[this.player].allEffect(0,4,[])
+                        }else if(this.page==0&&a==1){
+                            this.battle.addCurrency(999,this.player)
+                        }else if(this.page==0&&a==2){
+                            userCombatant.gainMaxHP(userCombatant.base.life/2)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('No Heal',types.relic),this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Normality',types.card),0,game.playerNumber+2)
+                            this.battle.cardManagers[this.player].deck.add(findName('Normality',types.card),0,game.playerNumber+2)
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Doubt',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 34:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,1])
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,2,1])
+                        }
+                    break
+                    case 35:
+                        if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Madness',types.card),0,0)
+                            this.battle.cardManagers[this.player].deck.add(findName('Madness',types.card),0,0)
+                            userCombatant.loseMaxHP(10)
+                        }else if(this.page==2&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Writhe',types.card),0,game.playerNumber+2)
+                        }else if(this.page==3&&a==0){
+                            userCombatant.loseMaxHP(5)
+                        }
+                    break
+                    case 36:
+                        if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].randomEffect(0,6,[])
+                        }else if(this.page==2&&a==0){
+                            userCombatant.safeDamage(6)
                         }
                     break
                 }

@@ -137,6 +137,11 @@ class group{
                 case 5:
                     this.cards[a].cost=floor(random(0,4))
                 break
+                case 6:
+                    if(this.cards[a].basic){
+                        this.cards[a]=upgradeCard(this.cards[a])
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -151,7 +156,7 @@ class group{
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
                 if(this.cards[a].usable
-                &&!(this.cards[a].cost<=0&&effect==1)
+                &&!(this.cards[a].cost<=0&&(effect==1||effect==5))
                 &&!((this.cards[a].level>=types.card[this.cards[a].type].levels.length-1||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==2)
                 &&!((this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==3)){
                     list.push(a)
@@ -174,6 +179,15 @@ class group{
                     case 3:
                         this.cards[index]=unupgradeCard(this.cards[index])
                     break
+                    case 4:
+                        this.copySelf(index)
+                    break
+                    case 5:
+                        this.cards[index].cost=0
+                    break
+                    case 6:
+                        this.cards.splice(index,1)
+                    break
                 }
             }
         }
@@ -186,6 +200,15 @@ class group{
             case -6:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Weak',effect[0])
             break
+        }
+    }
+    deathEffect(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            switch(this.cards[a].attack){
+                case -8:
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.cards[a].effect[0],-1)
+                break
+            }
         }
     }
     send(list,firstIndex,lastIndex,spec){
@@ -291,6 +314,17 @@ class group{
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].class==6){
                 this.cards.splice(a,1)
+                a--
+                la--
+            }
+        }
+    }
+    removeAllName(name){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].name==name){
+                this.cards.splice(a,1)
+                a--
+                la--
             }
         }
     }
