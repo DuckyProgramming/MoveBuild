@@ -411,6 +411,56 @@ class eventManager{
                             userCombatant.safeDamage(6)
                         }
                     break
+                    case 37:
+                        if(this.page==0&&a==0){
+                            this.battle.addCurrency(50,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(25,this.player)
+                        }else if(this.page==1&&a==0){
+                            userCombatant.safeDamage(11)
+                        }
+                    break
+                    case 38:
+                        if(this.page==1&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Fungal Ducks',types.encounter)])
+                        }else if(this.page==2&&a==0){
+                            userCombatant.heal(25)
+                            this.battle.cardManagers[this.player].deck.add(findName('Parasite',types.card),0,game.playerNumber+2)
+                        }
+                    break
+                    case 39:
+                        if(this.page==0&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }else if(this.page==1&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Automata',types.encounter)])
+                        }
+                    break
+                    case 40:
+                    break
+                    case 41:
+                    break
+                    case 42:
+                    break
+                    case 43:
+                    break
+                    case 44:
+                    break
+                    case 45:
+                    break
+                    case 46:
+                    break
+                    case 47:
+                    break
+                    case 48:
+                    break
+                    case 49:
+                    break
+                    case 50:
+                    break
                 }
                 this.page=this.pages[this.page].link[a]+tempPage
                 if(this.page==-1){

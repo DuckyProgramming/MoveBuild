@@ -278,6 +278,9 @@ class group{
         let possible=!this.cards[index].spec.includes(7)
         if(possible){
             this.removed.push(copyCard(this.cards[index]))
+            if(this.cards[index].attack==-10){
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].loseMaxHP(this.cards[index].effect[0])
+            }
             this.cards.splice(index,1)
         }
         return possible

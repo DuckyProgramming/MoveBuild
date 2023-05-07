@@ -628,6 +628,12 @@ types={
                 {effect:[4],attack:-9,cost:0,target:[0],spec:[5],class:6},
             ],
         },{
+            name:'Parasite',rarity:0,list:5,
+            levels:[
+                {effect:[5],attack:-10,cost:0,target:[0],spec:[5],class:6},
+                {effect:[3],attack:-10,cost:0,target:[0],spec:[5],class:6},
+            ],
+        },{
             name:'Writhe',rarity:0,list:5,
             levels:[
                 {effect:[],attack:0,cost:0,target:[0],spec:[3,5],class:6},
@@ -657,7 +663,9 @@ types={
         {name:'Trenchcoat Gunner',life:45,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[10]}],description:`Keeps a low profile`},
         {name:'Goon',life:45,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:14,effect:[4,1,'Arm\nInjury']},{type:4,effect:[12]}],description:`Bars you from life`},
         {name:'Slaver',life:46,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:15,effect:[7,2]},{type:17,effect:[2,1]}],description:`Former policeman`},
-        
+        {name:'Fungal Duck',life:26,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:18,effect:[1]}],description:`Default enemy design`},
+        {name:'Orb Walker',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[15]},{type:13,effect:[10,1,'Burn']}],description:`Why he so overpowered?`},
+
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -677,6 +685,8 @@ types={
         {name:'2 Tile Strike / Weaken',class:1},
         {name:'Spin Strike',class:1},
         {name:'Spin Strike / Stuck',class:1},
+        {name:'Strengthen',class:4},
+        {name:'2 Tile Triple Strike (Nonpenetrative) (Advance)',class:1},
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -1996,6 +2006,461 @@ You wake up not long later. The UFO is gone.`,
                     link:[-1],
                 },
             ],
+        },{
+            name:'Goo Puddle',id:37,list:0,
+            pages:[
+                {
+                    desc:
+`As you walk through a marsh, the ground
+collapses and you fall into a puddle.
+It's made of goo, which quickly causes you to sink.
+It takes you a few minutes to get out.
+All along, the goo burns your skin,
+making it even more difficult to escape the goo.
+When you get out, you notice that your money is missing.
+Looking back into the puddle,
+you notice that your money is inside,
+along with the money of others who have fallen in.`,
+                    option:['Gather Money','Leave'],
+                    optionDesc:['Gain 50 Currency','Lose 25 Currency'],
+                    link:[1,2],
+                },{
+                    desc:
+`Feeling the sting of the goo as the prolonged exposure
+starts to melt away at your skin, you get the gold.`,
+                    option:['Get out'],
+                    optionDesc:['Lose 11 Health'],
+                    link:[-1],
+                },{
+                    desc:`You decide that touching the goo isn't worth it.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Mushrooms',id:38,list:0,
+            pages:[
+                {
+                    desc:
+`On the ground in front of you are multiple
+mushrooms you are unable to identify.
+They're blocking the path, so it's impossible
+for you to go around the patch.
+You could just walk over them, but you
+feel like eating one for some reason...`,
+                    option:['Walk through them','Eat one'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`As you step over the mushrooms,
+the ground begins to shake.
+Ducks infected by the mushrooms appear 
+from the dirt and attack you.`,
+                    option:['Ambushed'],
+                    optionDesc:['Start Fight'],
+                    link:[-2],
+                },{
+                    desc:
+`You give in to the unnatural desire to eat.
+As you consume mushroom after mushroom,
+you feel yourself entering into a daze and pass out.
+As you wake, you feel very odd.`,
+                    option:['Get up'],
+                    optionDesc:['Heal 25 Health, Become Cursed - Parasite'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Mysterious Sphere',id:39,list:0,
+            pages:[
+                {
+                    desc:
+`A shining sphere juts out of the terrain nearby,
+objects appearing to float from within it.
+Just as you are about to break it open, you notice
+yourself to be surrounded by deactivated automata.`,
+                    option:['Smash it','Escape'],
+                    optionDesc:['Gain 3 Relics',''],
+                    link:[1,2],
+                },{
+                    desc:
+`As soon as you smash the sphere open,
+the sentries spring up and attack you.`,
+                    option:['Fight them'],
+                    optionDesc:['Start Fight'],
+                    link:[-2],
+                },{
+                    desc:
+`No need to be greedy.
+The sentries remain in place.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'This is a Robbery',id:40,list:0,
+            pages:[
+                {
+                    desc:
+`A man jumps at you from behind a tree and attempts to
+hold you at knifepoint, but you spot him and jump back.
+Ignoring the miss, he holds the knife and threatens you,
+preparing for a possible battle.
+"If you want to pass, you'll have to pay up.
+All your money will do!"`,
+                    option:['Resist','Pay Up'],
+                    optionDesc:['','Lose All Currency'],
+                    link:[1,2],
+                },{
+                    desc:
+`You raise your weapon in defiance. He follows suit.
+Before you can strike first, his friend
+appears from behind the tree and attacks you.`,
+                    option:['Battle him'],
+                    optionDesc:['Start Fight'],
+                    link:[-1],
+                },{
+                    desc:
+`You hand over your money. He laughs and runs off.
+"What a loser, haha!"`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Dangerous Game',id:41,list:0,
+            pages:[
+                {
+                    desc:
+`You are rudely awakened by gunshots from a nearby forest,
+along with two men talking to each other..
+Taking a look, you spot a hunter and his companion hunting... something.
+You can't really see what it is from where you are.
+It at least isn't you, is it?`,
+                    option:['Join in the Game','Watch the Game','Go back to sleep'],
+                    optionDesc:['','',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`The hunters are preoccupied,
+enough that they don't notice you following them.
+But before you get a chance to strike, 
+they call it quits and leave for the town.`,
+                    option:['Leave'],
+                    optionDesc:['Upgrade 1 Card'],
+                    link:[-1],
+                },{
+                    desc:
+`The hunters fail to catch their prey, but
+they're much more skilled than you initially believed.
+You could take this to be a learning experience, or more,
+but this is a dangerous game they're playing.`,
+                    option:['Leave'],
+                    optionDesc:['Gain 1 Card'],
+                    link:[-1],
+                },{
+                    desc:
+`You get fairly good, albeit short rest.
+The hunters are gone by the time you wake up.`,
+                    option:['Continue'],
+                    optionDesc:['Heal 5 Health'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Dead Soldier',id:42,list:0,
+            pages:[
+                {
+                    desc:
+`You notice the body of a Management soldier on
+the ground, holding the apparent rank of Corporal.
+Unlike most soldiers, he has a name tag, reading
+CPL. Ray Earle. But the main item on his body is his pack.
+But as you prepare to take his possessions,
+you realize that you've seen this trap before.
+The Management is known for using its
+soldiers long past their lifetimes...`,
+                    option:['Steal from him','Leave him alone'],
+                    optionDesc:['',''],
+                    link:[1,3],
+                },{
+                    desc:
+`You carefully pick through his possessions,
+only to realize that he probably died of natural causes.
+Finding not a single trap on his body,
+you take everything you can find of value.`,
+                    option:['Take stuff'],
+                    optionDesc:['Gain 1 Relic, Gain 45 Currency'],
+                    link:[-1],
+                },{
+                    desc:
+`Hearing a beep, you are unable to escape
+before the explosion hits. The Management can't
+help itself from using underhanded tactics.`,
+                    option:['Ouch'],
+                    optionDesc:['Lose 25 Health'],
+                    link:[-1],
+                },{
+                    desc:`You leave his body where it is and continue on your path.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Antiquarian',id:43,list:0,
+            pages:[
+                {
+                    desc:
+`Inside a shop, you see rows upon rows of artifacts
+The owner, tinkering with something in the back, turns to face you.
+"Come on in and buy something,
+I've got plenty of products here!"`,
+                    option:['Buy something','Get out'],
+                    optionDesc:['',''],
+                    link:[-1,1],
+                },{
+                    desc:
+`This shop owner isn't a good person,
+so you get out before anything can happen.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Bonfire Spirits',id:44,list:0,
+            pages:[
+                {
+                    desc:
+`You happen upon a group of what looks like
+purple fire spirits dancing around a large bonfire.
+The spirits toss small bones and fragments
+into the fire, which brilliantly erupts each time.
+As you approach, the spirits all turn to you, expectantly...`,
+                    option:['Toss something in'],
+                    optionDesc:['Remove a Card,\nHeal 10 Health'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Upscaling',id:45,list:0,
+            pages:[
+                {
+                    desc:
+`You enter a seemingly cheery-looking shop that
+seems to relate to what your working on right now.
+The proprietor approaches from behind the counter and greets you.
+"Hello, what would you like?" he says politely.
+You're liking the place, when he looks over you again.
+"Actually, we don't serve people like you, not that it's illegal, of course..."\n
+He reconsiders the final time. "Fine, what service would you like?"
+You could take one of the services, but you would rather punch him.`,
+                    option:['Adjustments','Cleanup','Punch him'],
+                    optionDesc:['Lose 40 Currency','Lose 60 Currency',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`He completes the service you asked for.
+"Okay, now get out."
+Should've punched him.`,
+                    option:['Leave'],
+                    optionDesc:['Upgrade 2 Random Cards'],
+                    link:[-1],
+                },{
+                    desc:
+`He completes the service you asked for.
+"Okay, now get out."
+Should've punched him.`,
+                    option:['Leave'],
+                    optionDesc:['Remove a Card'],
+                    link:[-1],
+                },{
+                    desc:
+`You hit him so hard that your fist might even hurt a little.
+He recoils from the collision. You leave, feeling satisfied.`,
+                    option:['Serves him right'],
+                    optionDesc:['Lose 1 Health'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Mystery Gift',id:46,list:0,
+            pages:[
+                {
+                    desc:
+`As you pass by a dumpster,
+you notice a strange creature eating something inside.
+When it notices you, it drops its food and runs towards you,
+trying to take your possessions.`,
+                    option:['Give it a relic','Run'],
+                    optionDesc:['Lose 1 Relic, Gain 1 Relic',''],
+                    link:[1,2],
+                },{
+                    desc:
+`When it sees you hand it a relic,
+it quickly devours it and hands you a box.`,
+                    option:['Take it'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`It tries to catch up, but you're way too fast.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Crossroads',id:47,list:0,
+            pages:[
+                {
+                    desc:
+`The Management has announced a massive
+weapons test at the Masurian Lake.
+The test is safe for viewers at 20 kilometers,
+and it has been announced that all are welcome to view it.
+A typical show of force for the Management, they want
+the citizens of Konai to know what they're up against.`,
+                    option:['View the test','Rest'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You see the absolute power the Management has
+created as the Starflame missiles hit the water.
+Watching the massive plasma explosions,
+you wonder why any of the fighting is even going on at all.
+If the Management has four of these on every ship,
+they have no reason to even try to fight.
+That's probably enough firepower to destroy entire planets...`,
+                    option:['Beautiful?'],
+                    optionDesc:['Gain 1 Potion'],
+                    link:[-1],
+                },{
+                    desc:
+`You don't have the additional time
+to watch such a meaningless spectacle.
+You rest in the meantime while others gather to watch.`,
+                    option:['Good rest'],
+                    optionDesc:['Heal 6 Health'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Fight Club',id:48,list:0,
+            pages:[
+                {
+                    desc:
+`You stumble across a secret fight club in
+the criminal underworld. There are multiple fights
+scheduled today, but also some vacancies.`,
+                    option:['Join a fight','Bet on a fight','Ignore it'],
+                    optionDesc:['Start Fight','',''],
+                    link:[-1,1,3],
+                },{
+                    desc:`You win the bet and collect winnings.`,
+                    option:['Win'],
+                    optionDesc:['Gain 125 Currency'],
+                    link:[-1],
+                },{
+                    desc:
+`You lose the bet,
+but at least you didn't get beat up.`,
+                    option:['Lose'],
+                    optionDesc:['Lose 125 Currency'],
+                    link:[-1],
+                },{
+                    desc:`You leave the fight club and go somewhere else.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Gold Bar',id:49,list:0,
+            pages:[
+                {
+                    desc:
+`In the center of an ancient temple,
+you discover that the treasures within are undisturbed.
+At the end, you discover a gold bar.
+It might not have any direct value, but it may have other uses.`,
+                    option:['Take it',`Don't`],
+                    optionDesc:['Gain 1 Relic',''],
+                    link:[2,1],
+                },{
+                    desc:`You won't fall for such an obvious trap.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`As you grab the bar, a trapdoor opens in the roof,
+causing a giant stone ball to fall in front of you.
+You realize the ground is slightly slanted
+as the ball begins rolling toward you.`,
+                    option:['Get hit','Duck','Run'],
+                    optionDesc:['','',''],
+                    link:[3,4,5],
+                },{
+                    desc:
+`The full force of the rolling ball nearly flattens you,
+but you're able to bring it to a stop.`,
+                    option:['Ouch'],
+                    optionDesc:['Lose 16 Health'],
+                    link:[-1],
+                },{
+                    desc:`The ball rolls over you and ends up at the end of the hall.`,
+                    option:['Ouch'],
+                    optionDesc:['Lose 4 Max Health'],
+                    link:[-1],
+                },{
+                    desc:`You get out of the way, but your foot appears broken...`,
+                    option:['Ouch'],
+                    optionDesc:['Become Cursed - Injury'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Bootlegging',id:50,list:0,
+            pages:[
+                {
+                    desc:
+`A group of men are standing around a
+car while one attempts to fix the engine.
+As you approach, one picks up his gun and prepares to fire.
+You do the same, raising your weapon.
+"No need to be so aggressive, okay? We're just doing a little
+business here, dealing our product out to customers."
+"What's the product?", you reply.
+"It's a new type of drink, with some new chemicals mixed in.
+It's safe to drink, but I'm afraid it's illegal."
+"Isn't that legal, though?", you ask.
+"Not exactly. The concentrations of some of
+the parts are above regulated levels."
+"Anyway, I'll give you a sample if you keep quiet."`,
+                    option:['Take some','Refuse'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`He reaches into the trunk, into a box within the trunk,
+and pulls out a bottle containing suspicious brown liquid.
+"Enjoy your drink!"`,
+                    option:['Take it'],
+                    optionDesc:['Gain 1 Potion'],
+                    link:[-1],
+                },{
+                    desc:`You leave them to do their business alone.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
         },
     ],color:{
         card:[
@@ -2076,6 +2541,13 @@ You wake up not long later. The UFO is gone.`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Crushed 4',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Crushed 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -2097,6 +2569,15 @@ You wake up not long later. The UFO is gone.`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Rectangular 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Spiky 7',
@@ -2214,7 +2695,7 @@ You wake up not long later. The UFO is gone.`,
                 {position:{x:3,y:1},name:'Monkey',turn:3},
             ],
         },{
-            level:'2-Crushed 7',class:0,world:-1,
+            level:'2-Crushed 7',class:1,world:-1,
             name:'Bus Surprise',
             player:{position:{x:3,y:1}},
             enemy:[
@@ -2240,6 +2721,26 @@ You wake up not long later. The UFO is gone.`,
             player:{position:{x:0,y:0}},
             enemy:[
                 {position:{x:2,y:2},name:'Slaver'},
+            ],reinforce:[
+            ],
+        },{
+            level:'Rectangular 5',class:0,world:-1,
+            name:'Fungal Ducks',
+            player:{position:{x:2,y:1}},
+            enemy:[
+                {position:{x:2,y:4},name:'Fungal Duck'},
+                {position:{x:3,y:4},name:'Fungal Duck'},
+                {position:{x:4,y:4},name:'Fungal Duck'},
+                {position:{x:5,y:4},name:'Fungal Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:'Crushed 4',class:1,world:-1,
+            name:'Automata',
+            player:{position:{x:3,y:1}},
+            enemy:[
+                {position:{x:0,y:1},name:'Orb Walker'},
+                {position:{x:1,y:1},name:'Orb Walker'},
             ],reinforce:[
             ],
         },

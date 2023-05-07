@@ -140,6 +140,7 @@ class card{
             case -7: string+=`At the End of Your\nTurn, Take ${this.effect[0]} Damage\nPer You Card Left\nat End of Turn`; break
             case -8: string+=`Take ${this.effect[0]} Damage\nWhen an Enemy Dies`; break
             case -9: string+=`You Cannot\nPlay More Than ${this.effect[0]}\nCards This Turn`; break
+            case -10: string+=`When Removed,\nLose ${this.effect[0]} Max Health`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

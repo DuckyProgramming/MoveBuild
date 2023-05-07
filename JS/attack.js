@@ -640,7 +640,7 @@ class attack{
                 }
                 this.userCombatant.runAnimation(1/10,10)
                 if(this.timer==10){
-                    this.battle.combatantManager.damageArea(this.effect[0],this.userCombatant.team,this.userCombatant.tilePosition)
+                    this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
                 }else if(this.timer>=20){
                     this.remove=true
                 }

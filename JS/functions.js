@@ -157,6 +157,8 @@ function intentDescription(attack,info){
 		case 15: return `Deal ${info?attack.effect[0]:`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-2`
 		case 16: return `Deal ${info?attack.effect[0]:`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
 		case 17: return `Deal ${info?attack.effect[0]:`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
+		case 18: return `Gain ${info?attack.effect[0]:`?`} Strength`
+		case 19: return `Deal ${info?attack.effect[0]:`?`} Damage 3 Times\nRange 1-2`
 
 	}
 }
@@ -238,7 +240,10 @@ function distTarget(type,x,y){
 			if(x==0&&y!=0){
 				return abs(y)
 			}
-			return 0
+			if(x==0&&y==0){
+				return 0
+			}
+			return -1
 	}
 }
 function targetDirection(type,x,y){

@@ -125,19 +125,19 @@ class combatantManager{
     getPlayerCombatantIndex(id){
         return this.playerCombatantIndex[id]
     }
-    damageArea(damage,team,tilePosition){
+    damageArea(damage,user,team,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
             if(this.combatants[a].team!=team&&distance>=0&&distance<=1){
-                this.combatants[a].takeDamage(damage)
+                this.combatants[a].takeDamage(damage,user)
             }
         }
     }
-    damageAreaID(damage,id,tilePosition){
+    damageAreaID(damage,user,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
             if(this.combatants[a].id!=id&&distance>=0&&distance<=1){
-                this.combatants[a].takeDamage(damage)
+                this.combatants[a].takeDamage(damage,user)
             }
         }
     }
