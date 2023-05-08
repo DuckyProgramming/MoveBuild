@@ -598,6 +598,12 @@ types={
                 {effect:[],attack:0,cost:1,target:[0],spec:[7],class:6},
             ],
         },{
+            name:'Injury',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:0,cost:0,target:[0],spec:[5],class:6},
+                {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:6},
+            ],
+        },{
             name:'Pain',rarity:0,list:5,
             levels:[
                 {effect:[1],attack:-5,cost:0,target:[0],spec:[5],class:6},
@@ -647,17 +653,17 @@ types={
             ],
         },
     ],combatant:[
-        {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
-        {name:'Lira',life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
-        {name:'Sakura',life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
-        {name:'Ume',life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
+        {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},//0
+        {name:'Lira',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
+        {name:'Sakura',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
+        {name:'Ume',identifier:['Sister','Miss'],life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
         {name:'Thug',life:32,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:`Beats people up`},
         {name:'Biker',life:40,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
         {name:'Drunk',life:30,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[1]},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
-        {name:'Drunk Boss',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},
+        {name:'Drunk Boss',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},//10
         {name:'Monkey',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:11,effect:[1]}],description:`You`},
         {name:'Trenchcoat',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`Nobody knows who he is`},
         {name:'Trenchcoat Gunner',life:45,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[10]}],description:`Keeps a low profile`},
@@ -665,6 +671,9 @@ types={
         {name:'Slaver',life:46,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:15,effect:[7,2]},{type:17,effect:[2,1]}],description:`Former policeman`},
         {name:'Fungal Duck',life:26,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:18,effect:[1]}],description:`Default enemy design`},
         {name:'Orb Walker',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[15]},{type:13,effect:[10,1,'Burn']}],description:`Why he so overpowered?`},
+        {name:'Pointy',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]}],description:`Stabby gaming`},
+        {name:'Romeo',life:40,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:15,effect:[10,2]},{type:21,effect:[]}],description:`Kinda useless`},
+        {name:'Billy Beatup',life:75,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},//20
 
     ],attack:[
         {name:'',class:0},//0
@@ -687,6 +696,9 @@ types={
         {name:'Spin Strike / Stuck',class:1},
         {name:'Strengthen',class:4},
         {name:'2 Tile Triple Strike (Nonpenetrative) (Advance)',class:1},
+        {name:'2 Tile Double Strike (Nonpenetrative) (Advance)',class:1},//20
+        {name:'Idle',class:0},
+
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -868,6 +880,8 @@ types={
         {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
         {name:'Audric Codex',internal:'Duplicate Random Turn',id:162,rarity:-1,list:0,description:'Every Turn, Duplicate a Random\nCard in Your Hand'},
         {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-1,list:0,description:'You Can No Longer Heal'},
+        {name:'Mandelbox',internal:'Rarer Rewards',id:164,rarity:-1,list:0,description:'Card Rewards Are Rarer'},
+        {name:'Gold Bar',internal:'More Currency',id:165,rarity:-1,list:0,description:'Gain 25% More Currency'},
 
         /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
         {name:'',internal:'',id:12,rarity:0,list:0,description:''},
@@ -884,6 +898,9 @@ types={
         {name:'',id:0,rarity:-1,list:-1,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,description:'None'},
         {name:'Rock',id:2,rarity:0,list:0,description:'Deal 10 Damage\nRange 1-6'},
+        {name:'Starflame Prototype',id:101,rarity:-1,list:-1,description:'Gain 5 Strength,\nShuffle in 5 Burn'},
+        {name:'Cola',id:102,rarity:-1,list:-1,description:'Heal 15 HP\nCan No Longer Gain Block'},
+
     ],event:[
         {
             name:'',id:0,list:-1,
@@ -1853,7 +1870,7 @@ You have shame.`,
 the street, performing an unknown ritual.
 As you approach, they turn to you in unison.
 The largest smiles and extends a hand toward you.
-"Join us, ||, and feel the power."`,
+"Join us, |0|, and feel the power."`,
                     option:['Accept','Refuse'],
                     optionDesc:['Lose 25% Max Health, Remove All Strikes',''],
                     link:[1,2],
@@ -2119,9 +2136,9 @@ All your money will do!"`,
 `You raise your weapon in defiance. He follows suit.
 Before you can strike first, his friend
 appears from behind the tree and attacks you.`,
-                    option:['Battle him'],
+                    option:['Battle Him'],
                     optionDesc:['Start Fight'],
-                    link:[-1],
+                    link:[-2],
                 },{
                     desc:
 `You hand over your money. He laughs and runs off.
@@ -2167,7 +2184,7 @@ but this is a dangerous game they're playing.`,
 `You get fairly good, albeit short rest.
 The hunters are gone by the time you wake up.`,
                     option:['Continue'],
-                    optionDesc:['Heal 5 Health'],
+                    optionDesc:['Heal 10 Health'],
                     link:[-1],
                 },
             ],
@@ -2222,7 +2239,7 @@ The owner, tinkering with something in the back, turns to face you.
 I've got plenty of products here!"`,
                     option:['Buy something','Get out'],
                     optionDesc:['',''],
-                    link:[-1,1],
+                    link:[-2,1],
                 },{
                     desc:
 `This shop owner isn't a good person,
@@ -2242,8 +2259,49 @@ purple fire spirits dancing around a large bonfire.
 The spirits toss small bones and fragments
 into the fire, which brilliantly erupts each time.
 As you approach, the spirits all turn to you, expectantly...`,
-                    option:['Toss something in'],
-                    optionDesc:['Remove a Card,\nHeal 10 Health'],
+                    option:['Toss something in','Decline'],
+                    optionDesc:['Remove a Card, Receive Reward Based on Card'],
+                    link:[1,2],
+                },{
+                    desc:`The spirits make no move to stop you from leaving.`,
+                    option:['Leave'],
+                    optionDesc:[],
+                    link:[-1],
+                },{
+                    desc:`They wait, ready for you to make your offering.`,
+                    option:[],
+                    optionDesc:[],
+                    link:[],
+                },{
+                    desc:
+`You throw it in, but nothing happens.
+Disappointing.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`The flames grow slightly brighter.
+The spirits continue dancing.
+You feel slightly warmer from their presence.`,
+                    option:['Leave'],
+                    optionDesc:['Heal 5 HP'],
+                    link:[-1],
+                },{
+                    desc:
+`The flames erupt, growing significantly stronger.
+The spirits dance around you excitedly,
+filling you with a sense of warmth.`,
+                    option:['Leave'],
+                    optionDesc:['Heal All HP'],
+                    link:[-1],
+                },{
+                    desc:
+`The flames burst outward as the fire explodes in strength.
+The spirits dance around you excitedly before merging into you,
+filling you with warmth and strength.`,
+                    option:['Leave'],
+                    optionDesc:['Heal All HP, Gain 10 Max HP'],
                     link:[-1],
                 },
             ],
@@ -2255,7 +2313,7 @@ As you approach, the spirits all turn to you, expectantly...`,
 `You enter a seemingly cheery-looking shop that
 seems to relate to what your working on right now.
 The proprietor approaches from behind the counter and greets you.
-"Hello, what would you like?" he says politely.
+"Hello, |1|, what would you like?" he says politely.\n
 You're liking the place, when he looks over you again.
 "Actually, we don't serve people like you, not that it's illegal, of course..."\n
 He reconsiders the final time. "Fine, what service would you like?"
@@ -2338,7 +2396,7 @@ If the Management has four of these on every ship,
 they have no reason to even try to fight.
 That's probably enough firepower to destroy entire planets...`,
                     option:['Beautiful?'],
-                    optionDesc:['Gain 1 Potion'],
+                    optionDesc:['Gain 1 Item'],
                     link:[-1],
                 },{
                     desc:
@@ -2360,7 +2418,7 @@ the criminal underworld. There are multiple fights
 scheduled today, but also some vacancies.`,
                     option:['Join a fight','Bet on a fight','Ignore it'],
                     optionDesc:['Start Fight','',''],
-                    link:[-1,1,3],
+                    link:[-2,1,3],
                 },{
                     desc:`You win the bet and collect winnings.`,
                     option:['Win'],
@@ -2452,7 +2510,7 @@ the parts are above regulated levels."
 and pulls out a bottle containing suspicious brown liquid.
 "Enjoy your drink!"`,
                     option:['Take it'],
-                    optionDesc:['Gain 1 Potion'],
+                    optionDesc:['Gain 1 Item'],
                     link:[-1],
                 },{
                     desc:`You leave them to do their business alone.`,
@@ -2580,6 +2638,15 @@ and pulls out a bottle containing suspicious brown liquid.
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Star 5',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
             name:'Spiky 7',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -2613,7 +2680,7 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'Basic 7',class:0,world:0,
             name:'Placeholder',
-            player:{position:{x:3,y:3}},
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Biker'},
                 /*{position:{x:1,y:0},name:'Biker'},
@@ -2639,7 +2706,7 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'Basic 7',class:1,world:0,
             name:'Placeholder',
-            player:{position:{x:3,y:3}},
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Human'},
                 /*{position:{x:6,y:6},name:'Human'},
@@ -2656,7 +2723,7 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'Basic 7',class:2,world:0,
             name:'Placeholder',
-            player:{position:{x:3,y:3}},
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Human'},
                 {position:{x:1,y:0},name:'Human'},
@@ -2671,18 +2738,18 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'Basic 5',class:0,world:-1,
             name:'Bar Fight',
-            player:{position:{x:3,y:3}},
+            player:{position:[[{x:2,y:2}],[{x:2,y:1},{x:1,y:2}]]},
             enemy:[
-                {position:{x:6,y:6},name:'Drunk'},
-                {position:{x:3,y:6},name:'Drunk'},
-                {position:{x:6,y:3},name:'Drunk'},
+                {position:{x:4,y:4},name:'Drunk'},
+                {position:{x:2,y:4},name:'Drunk'},
+                {position:{x:4,y:2},name:'Drunk'},
                 {position:{x:0,y:0},name:'Drunk Boss'},
             ],reinforce:[
             ],
         },{
             level:'Crushed 5',class:0,world:-1,
             name:'Monkey Attack',
-            player:{position:{x:2,y:1}},
+            player:{position:[[{x:2,y:1}],[{x:1,y:0},{x:2,y:0}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Monkey'},
                 {position:{x:3,y:0},name:'Monkey'},
@@ -2697,7 +2764,7 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'2-Crushed 7',class:1,world:-1,
             name:'Bus Surprise',
-            player:{position:{x:3,y:1}},
+            player:{position:[[{x:3,y:1}],[{x:3,y:1},{x:4,y:1}]]},
             enemy:[
                 {position:{x:0,y:1},name:'Trenchcoat Gunner'},
                 {position:{x:0,y:0},name:'Trenchcoat'},
@@ -2708,7 +2775,7 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'Bent 5',class:0,world:-1,
             name:'The Alley',
-            player:{position:{x:2,y:1}},
+            player:{position:[[{x:2,y:1}],[{x:2,y:1},{x:3,y:1}]]},
             enemy:[
                 {position:{x:0,y:1},name:'Goon'},
                 {position:{x:3,y:4},name:'Goon'},
@@ -2718,7 +2785,7 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'Basic 3',class:0,world:-1,
             name:'Slaver',
-            player:{position:{x:0,y:0}},
+            player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:0,y:1}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Slaver'},
             ],reinforce:[
@@ -2726,7 +2793,7 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'Rectangular 5',class:0,world:-1,
             name:'Fungal Ducks',
-            player:{position:{x:2,y:1}},
+            player:{position:[[{x:2,y:1}],[{x:1,y:0},{x:2,y:0}]]},
             enemy:[
                 {position:{x:2,y:4},name:'Fungal Duck'},
                 {position:{x:3,y:4},name:'Fungal Duck'},
@@ -2737,10 +2804,27 @@ and pulls out a bottle containing suspicious brown liquid.
         },{
             level:'Crushed 4',class:1,world:-1,
             name:'Automata',
-            player:{position:{x:3,y:1}},
+            player:{position:[[{x:3,y:1}],[{x:2,y:0},{x:3,y:2}]]},
             enemy:[
                 {position:{x:0,y:1},name:'Orb Walker'},
                 {position:{x:1,y:1},name:'Orb Walker'},
+            ],reinforce:[
+            ],
+        },{
+            level:'Star 5',class:0,world:-1,
+            name:'Robbery',
+            player:{position:[[{x:1,y:2}],[{x:0,y:1},{x:1,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Pointy'},
+                {position:{x:4,y:3},name:'Romeo'},
+            ],reinforce:[
+            ],
+        },{
+            level:'Basic 3',class:0,world:-1,
+            name:'Fight Club',
+            player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:0,y:1}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Billy Beatup'},
             ],reinforce:[
             ],
         },

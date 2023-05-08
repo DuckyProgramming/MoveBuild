@@ -1199,6 +1199,16 @@ class relic{
                     displaySymbol(this.layer,0,0,2,0,1,this.fade)
                     displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
                 break
+                case 'Rarer Rewards':
+                    displaySymbol(this.layer,0,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,10,64,0,0.5,this.fade)
+                break
+                case 'More Currency':
+                    displaySymbol(this.layer,0,0,28,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('+25%',0,0)
+                break
 
             }
             if(value){

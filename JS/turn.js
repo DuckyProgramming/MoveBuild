@@ -29,7 +29,7 @@ class turn{
                             case 1: case 2: case 3: case 11: case 13:
                                 this.target=[this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
                             break
-                            case 6: case 7: case 8: case 14: case 15: case 19:
+                            case 6: case 7: case 8: case 14: case 15: case 19: case 20:
                                 this.target=[
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]),
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2)
@@ -621,6 +621,45 @@ class turn{
                                 this.remove=true
                             }
                         }
+                    break
+                    case 20:
+                        if(this.targetDistance==1){
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(2)
+                            }
+                            this.userCombatant.runAnimation(1/15,2)
+                            if(this.timer==12|this.timer==18){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            }else if(this.timer>=30){
+                                this.remove=true
+                            }
+                        }else if(this.targetDistance==2){
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(0)
+                            }else if(this.timer==16){
+                                this.userCombatant.startAnimation(2)
+                            }
+                            if(this.timer<=15){
+                                this.userCombatant.runAnimation(1/15,0)
+                            }else if(this.timer<=45){
+                                this.userCombatant.runAnimation(1/15,2)
+                            }
+                            if(this.timer<=15){
+                                this.userCombatant.moveTile(this.direction,this.distance/30)
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/30)
+                            }
+                            if(this.timer==15){
+                                this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x/2+this.targetCombatant.tilePosition.x/2,this.userCombatant.tilePosition.y/2+this.targetCombatant.tilePosition.y/2)
+                            }else if(this.timer==27||this.timer==33){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                this.battle.activate(1,this.userCombatant.id)
+                            }else if(this.timer>=45){
+                                this.remove=true
+                            }
+                        }
+                    break
+                    default:
+                        this.remove=true
                     break
                 }
                 if(this.remove){

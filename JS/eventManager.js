@@ -56,7 +56,10 @@ class eventManager{
         for(let a=0,la=this.pages.length;a<la;a++){
             this.layer.fill(0,this.fade[a])
             this.layer.textSize(10)
-            this.layer.text(this.pages[a].desc,this.posKey,200)
+            this.layer.text(this.pages[a].desc
+                .replace('|0|',types.combatant[this.battle.player[this.player]].identifier[0])
+                .replace('|1|',types.combatant[this.battle.player[this.player]].identifier[1])
+                ,this.posKey,200)
             this.layer.textSize(12)
             for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
                 this.layer.text(this.pages[a].option[b],this.posKey,300+b*50)
@@ -440,26 +443,108 @@ class eventManager{
                         }
                     break
                     case 40:
+                        if(this.page==0&&a==1&&this.battle.currency.money[this.player]>0){
+                            this.battle.loseCurrency(this.battle.currency.money[this.player],this.player)
+                        }else if(this.page==1&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Robbery',types.encounter)])
+                        }
                     break
                     case 41:
+                        if(this.page==1&&a==0){
+                            this.battle.overlayManager.overlays[5][this.player].active=true
+                            this.battle.overlayManager.overlays[5][this.player].activate()
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
+                        }else if(this.page==3&&a==0){
+                            userCombatant.heal(10)
+                        }
                     break
                     case 42:
+                        if(this.page==0&&a==0&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                            this.battle.addCurrency(45,this.player)
+                        }else if(this.page==2&&a==0){
+                            userCombatant.safeDamage(25)
+                        }
                     break
                     case 43:
+                        if(this.page==0&&a==0){
+                            transition.scene='shop'
+                            this.battle.purchaseManager.setup(1)
+                        }
                     break
                     case 44:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[17][this.player].active=true
+                            this.battle.overlayManager.overlays[17][this.player].activate()
+                        }else if(this.page==4&&a==0){
+                            userCombatant.heal(5)
+                        }else if(this.page==5&&a==0){
+                            userCombatant.heal(userCombatant.base.life)
+                        }else if(this.page==6&&a==0){
+                            userCombatant.heal(userCombatant.base.life)
+                            userCombatant.gainMaxHP(10)
+                        }
                     break
                     case 45:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(40,this.player)
+                        }else if(this.page==0&&a==1){
+                            this.battle.loseCurrency(60,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].randomEffect(0,2,[0])
+                            this.battle.cardManagers[this.player].randomEffect(0,2,[0])
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
+                        }else if(this.page==3&&a==0){
+                            userCombatant.safeDamage(1)
+                        }
                     break
                     case 46:
+                        if(this.page==0&&a==0){
+                            this.battle.relicManager.loseRandomRelic(this.player)
+                            this.battle.relicManager.addRelic(findInternal('Rarer Rewards',types.relic),this.player)
+                        }
                     break
                     case 47:
+                        if(this.page==1&&a==0){
+                            this.battle.itemManager.addItem(findName('Starflame Prototype',types.item),this.player)
+                        }else if(this.page==2&&a==0){
+                            userCombatant.heal(6)
+                        }
                     break
                     case 48:
+                        if(this.page==0&&a==0){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Fight Club',types.encounter)])
+                        }else if(this.page==0&&a==1&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if(this.page==1&&a==0){
+                            this.battle.addCurrency(125,this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.loseCurrency(125,this.player)
+                        }
                     break
                     case 49:
+                        if(this.page==0&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('More Currency',types.relic),this.player)
+                        }else if(this.page==3&&a==0){
+                            userCombatant.safeDamage(16)
+                        }else if(this.page==4&&a==0){
+                            userCombatant.loseMaxHP(4)
+                        }else if(this.page==5&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Injury',types.card),0,game.playerNumber+2)
+                        }
                     break
                     case 50:
+                        if(this.page==1&&a==0){
+                            this.battle.itemManager.addItem(findName('Cola',types.item),this.player)
+                        }
                     break
                 }
                 this.page=this.pages[this.page].link[a]+tempPage

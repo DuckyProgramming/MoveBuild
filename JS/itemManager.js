@@ -78,9 +78,20 @@ class itemManager{
         this.position-=player
     }
     activateItem(type,player){
-        switch(type){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)]
+        switch(types.item[type].id){
             case 2:
                 this.battle.cardManagers[player].hand.callInput(6,[57,[10*this.effectiveness[player]],1,[2,1,6]])
+            break
+            case 101:
+                userCombatant.statusEffect('Strength',5*this.effectiveness[player])
+                for(let a=0,la=5*this.effectiveness[player];a<la;a++){
+                    this.battle.cardManagers[player].discard.add(findName('Burn',types.card),0,game.playerNumber+1)
+                }
+            break
+            case 102:
+                userCombatant.heal(15*this.effectiveness[player])
+                userCombatant.statusEffect('Cannot Gain Block',99)
             break
         }
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,2))==0){

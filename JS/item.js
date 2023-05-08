@@ -44,6 +44,22 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('10',0,0)
                 break
+                case 'Starflame Prototype':
+                    displaySymbol(this.layer,-8,0,11,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,2,65,0,0.8,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',-8,0)
+                break
+                case 'Cola':
+                    displaySymbol(this.layer,-8,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,16,0,0.6,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('15',-8,0)
+                break
             }
             this.layer.pop()
         }

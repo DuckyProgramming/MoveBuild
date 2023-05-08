@@ -4,7 +4,6 @@ Bugs:
 fix findtileindex
 Only retarget on activation
 
-
 Mechanics:
 Menu
 Boss Rewards
@@ -14,7 +13,6 @@ Partnership Cards?
 Battle Content:
 Weak Enemy
 2 Tile Move
-Enemy Do Nothing
 The other statuses
 Gangster
 

@@ -401,6 +401,8 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.cards[a].size=size
                                         break
                                         case 4:
+                                            let rarity=this.battle.cardManagers[this.player].deck.cards[a].rarity
+                                            let basic=this.battle.cardManagers[this.player].deck.cards[a].basic
                                             if(this.battle.cardManagers[this.player].deck.remove(a)){
                                                 this.battle.relicManager.activate(11,[this.player])
                                                 a--
@@ -408,6 +410,9 @@ class overlay{
                                                 this.activated++
                                                 complete=this.activated>=this.args[1]
                                                 breakAfter=true
+                                                if(this.args[2]==1){
+                                                    this.battle.eventManagers[this.player].page=basic?3:rarity==2?6:rarity==1?5:4
+                                                }
                                             }else{
                                                 complete=false
                                             }

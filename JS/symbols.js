@@ -287,6 +287,15 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(255,50,50,fade)
             layer.triangle(0,-6,-3,3,3,3)
         break
+        case 20:
+            layer.fill(255,50,50,fade)
+            layer.triangle(7,-3,-4.5,-5,-3.5,-1)
+            layer.triangle(7,3,-4.5,1,-3.5,5)
+        break
+        case 21:
+            layer.fill(255,fade)
+            layer.quad(0,-5,-5,0,0,5,5,0)
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -297,6 +306,9 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 13: case 14: case 16: case 18:
                 layer.text(effect[0],0,0)
             break
+            case 20:
+                layer.text(`${effect[0]}x2`,0,0)
+            break
             case 2: case 19:
                 layer.text(`${effect[0]}x3`,0,0)
             break
@@ -305,6 +317,9 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             break
             case 15: case 17:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
+            break
+            case 21:
+                layer.text(`X`,0,0)
             break
         }
     }else{
@@ -764,6 +779,23 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             }
             layer.endShape()
         break
+        case 64:
+            layer.fill(225,25,25,fade)
+            layer.ellipse(-12,0,8,8)
+            layer.fill(25,225,25,fade)
+            layer.ellipse(0,0,8,8)
+            layer.fill(25,25,225,fade)
+            layer.ellipse(12,0,8,8)
+        break
+        case 65:
+            layer.fill(150,0,0,fade)
+            layer.ellipse(0,0,10,10)
+            layer.rotate(-36)
+            for(let a=0,la=3;a<la;a++){
+                layer.triangle(-3,-3,3,-3,0,-10)
+                layer.rotate(36)
+            }
+        break
     }
     layer.pop()
 }
@@ -828,4 +860,6 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 61-Counter
 62-Free Card
 63-Obstruction
+64-Random
+65-Burn
 */

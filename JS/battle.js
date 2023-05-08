@@ -121,7 +121,7 @@ class battle{
                 if(playerCombatant.dead){
                     playerCombatant.revive()
                 }
-                this.positionCombatant(playerCombatant,{x:encounter.player.position.x+a-la+1,y:encounter.player.position.y-la+1})
+                this.positionCombatant(playerCombatant,{x:encounter.player.position[la-1][a].x,y:encounter.player.position[la-1][a].y})
             }
         }
         for(let a=0,la=encounter.enemy.length;a<la;a++){
@@ -150,7 +150,7 @@ class battle{
         this.combatantManager.resetCombatants()
     }
     setupShop(){
-        this.purchaseManager.setup()
+        this.purchaseManager.setup(0)
     }
     setupStash(){
         this.relicManager.setupStash()
@@ -323,7 +323,7 @@ class battle{
         this.layer.textAlign(CENTER,CENTER)
     }
     addCurrency(amount,player){
-        let multi=this.relicManager.hasRelic(135,player)?0.5:1
+        let multi=this.relicManager.hasRelic(135,player)?0.5:1*this.relicManager.hasRelic(165,player)?1.25:1
         let bonus=this.relicManager.hasRelic(119,player)?10:0
         this.stats.earned[player]+=round((amount+bonus)*multi)
         this.currency.money[player]+=round((amount+bonus)*multi)
@@ -593,12 +593,12 @@ class battle{
                             switch(this.encounter.class){
                                 case 0:
                                     this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[0,floor(random(0,1.5)),0]},
+                                        {type:1,value:[0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
                                         {type:0,value:[floor(random(40,81))]}]])
                                 break
                                 case 1:
                                     this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[1,floor(random(0,2)),0]},
+                                        {type:1,value:[1,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
                                         {type:2,value:[]},
                                         {type:0,value:[floor(random(120,201))]}]])
                                 break

@@ -29,7 +29,7 @@ class card{
 
         this.name=name||types.card[this.type].name
         this.list=list||types.card[this.type].list
-        this.list.rarity||types.card[this.type].rarity
+        this.rarity=types.card[this.type].rarity
         this.effect=effect||types.card[this.type].levels[this.level].effect
         this.attack=attack||types.card[this.type].levels[this.level].attack
         this.target=target||types.card[this.type].levels[this.level].target

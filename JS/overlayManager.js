@@ -11,7 +11,7 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,3,[0])],//new card to deck
             [new overlay(this.layer,this.battle,0,2,[2])],//view deck
             [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return
-            [new overlay(this.layer,this.battle,0,2,[4,1])],//remove card, no return
+            [new overlay(this.layer,this.battle,0,2,[4,1,0])],//remove card, no return
             [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
             [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
             [new overlay(this.layer,this.battle,0,2,[7])],//transform card, no return
@@ -20,15 +20,16 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[8])],//duplicate card, no return
             [new overlay(this.layer,this.battle,0,2,[9])],//view reserve (ordered)
             [new overlay(this.layer,this.battle,0,2,[10])],//make card innate
-            [new overlay(this.layer,this.battle,0,2,[4,3])],//remove 3 cards, no return
+            [new overlay(this.layer,this.battle,0,2,[4,3,0])],//remove 3 cards, no return
             [new overlay(this.layer,this.battle,0,5,[0])],//sell relic, no return
+            [new overlay(this.layer,this.battle,0,2,[4,1,1])],//remove card, return through event (bonfire spirits)
 
         )
         if(this.battle.players==2){
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[3,10,0,1,13,2,16,4,15,5,6,7,8,9,12,14,11]
+        this.priority=[17,3,10,0,1,13,2,16,4,15,5,6,7,8,9,12,14,11]
         this.anyActive=false
     }
     copyOverlays(){
