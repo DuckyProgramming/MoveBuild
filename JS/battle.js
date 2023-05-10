@@ -200,6 +200,7 @@ class battle{
         for(let a=0,la=this.reinforce.front.length;a<la;a++){
             if(this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].occupied==0){
                 this.addCombatant(this.reinforce.front[a].position,findName(this.reinforce.front[a].name,types.combatant),0,1,this.reinforce.front[a].minion)
+                this.tileManager.activate()
                 this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
                 this.reinforce.front.splice(a,1)
                 a--

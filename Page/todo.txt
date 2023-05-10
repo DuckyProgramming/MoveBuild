@@ -12,7 +12,6 @@ Partnership Cards?
 
 Battle Content:
 Weak Enemy
-2 Tile Move
 The other statuses
 Gangster
 
@@ -22,7 +21,6 @@ More Items:
 health items
 
 More Events:
-all imports
 
 More Cards:
 Deal Damage and Gain Energy? (Jab?)

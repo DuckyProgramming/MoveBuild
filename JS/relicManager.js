@@ -752,6 +752,9 @@ class relicManager{
                 if(this.active[91]>0&&args[0]!=4){
                     this.battle.addCurrency(20*this.active[91],this.player[91])
                 }
+                if(this.active[166]>0){
+                    this.battle.addCurrency(10*this.active[166],this.player[166])
+                }
                 switch(args[0]){
                     case 3://rest
                         if(this.active[38]>0&&this.detail[38]==0){

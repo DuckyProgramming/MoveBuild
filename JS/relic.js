@@ -1209,6 +1209,21 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('+25%',0,0)
                 break
+                case 'Currency Per Room':
+                    displaySymbol(this.layer,6,0,28,0,0.8,this.fade)
+                    displaySymbol(this.layer,-10,0,7,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('10',6,0)
+                break
+                case 'Random Fatigue Cost Decrease':
+                    displaySymbol(this.layer,-8,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,-8,0,60,0,1.2,this.fade)
+                    displaySymbol(this.layer,8,0,9,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',8,0)
+                break
 
             }
             if(value){

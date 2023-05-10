@@ -556,12 +556,11 @@ class combatant{
                     break
                 }
             break
-            case 'Monkey':
+            case 'Monkey': case 'Monkey Gangster':
                 this.anim={direction:direction,head:direction,mouth:{x:12,y:8,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:9,bottom:9}},{top:9,bottom:0,length:{top:9,bottom:9}}],
                     arms:[{top:24,bottom:9,length:{top:9,bottom:9}},{top:24,bottom:9,length:{top:9,bottom:9}}]}
                 this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
-                this.color={skin:{head:[190,95,0],body:[170,85,0],legs:[160,80,0],arms:[160,80,0]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                 this.parts={eyeLevel:-60,mouth:-48,
                     legs:[{top:{x:4,y:-18},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-18},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                     arms:[{top:{x:8,y:-30},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:8,y:-30},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
@@ -573,6 +572,20 @@ class combatant{
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
+                switch(this.name){
+                    case 'Monkey':
+                        this.color={skin:{head:[190,95,0],body:[170,85,0],legs:[160,80,0],arms:[160,80,0]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    break
+                    case 'Monkey Gangster':
+                        this.color={skin:{head:[190,95,0],body:[225,225,225],legs:[220,220,220],arms:[215,215,215]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.tie=[[250,250,250],[100,200,200]]
+                        this.color.hat=[210,210,210]
+                        this.fades.tie=1
+                        this.fades.hat=1
+                        this.trigger.display.tie=true
+                        this.trigger.display.hat=true
+                    break
+                }
             break
             case 'Orb Walker':
                 this.anim={direction:direction,legs:[{top:39,length:{top:36}},{top:39,length:{top:36}},{top:39,length:{top:36}},{top:39,length:{top:36}}]}
@@ -1266,7 +1279,7 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
-                    case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22: case 24:
+                    case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22: case 24: case 25:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -1565,6 +1578,13 @@ class combatant{
                         this.animSet.loop+=rate
                         this.offset.position.x=lsin(this.animSet.loop*180)*sin(this.anim.direction)*60
                         this.offset.position.y=lsin(this.animSet.loop*180)*cos(this.anim.direction)*30
+                    break
+                    case 25:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1-this.animSet.hand].top=24+lsin(this.animSet.loop*90)*48
+                        this.anim.arms[1-this.animSet.hand].bottom=9+lsin(this.animSet.loop*90)*84
+                        this.spin.arms[1-this.animSet.hand].top=(93-lsin(this.animSet.loop*90)*48)*(1-this.animSet.hand*2)
+                        this.spin.arms[1-this.animSet.hand].bottom=(75-lsin(this.animSet.loop*90)*60)*(1-this.animSet.hand*2)
                     break
                 }
             break
@@ -5002,7 +5022,7 @@ class combatant{
                         }
                     }
                 break
-                case 'Monkey':
+                case 'Monkey': case 'Monkey Gangster':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -5015,6 +5035,13 @@ class combatant{
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                         this.layer.ellipse(0,-28,18,27)
+                    }
+                    if(this.name=='Monkey Gangster'&&this.trigger.display.tie&&cos(this.anim.direction)>0){
+                        this.layer.fill(this.flashColor(this.color.tie[0])[0],this.flashColor(this.color.tie[0])[1],this.flashColor(this.color.tie[0])[2],this.fade*this.fades.tie)
+                        this.layer.noStroke()
+		    			this.layer.triangle(sin(this.anim.direction)*3-cos(this.anim.direction)*3,-36,sin(this.anim.direction)*3+cos(this.anim.direction)*3,-36,sin(this.anim.direction)*9,-24)
+	    				this.layer.fill(this.flashColor(this.color.tie[1])[0],this.flashColor(this.color.tie[1])[1],this.flashColor(this.color.tie[1])[2],this.fade*this.fades.tie)
+                        this.layer.quad(sin(this.anim.direction)*6-cos(this.anim.direction)*1.5,-30,sin(this.anim.direction)*3,-36,sin(this.anim.direction)*6+cos(this.anim.direction)*1.5,-30,sin(this.anim.direction)*9,-24)
                     }
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
@@ -5065,6 +5092,13 @@ class combatant{
                         if(this.trigger.display.eye[g]){
                             this.minorDisplayGeneral(2,g)
                         }
+                    }
+                    if(this.name=='Monkey Gangster'&&this.trigger.display.hat){
+                        this.layer.fill(this.flashColor(this.color.hat)[0],this.flashColor(this.color.hat)[1],this.flashColor(this.color.hat)[2],this.fade*this.fades.hat)
+                        this.layer.stroke(this.flashColor(this.color.hat)[0],this.flashColor(this.color.hat)[1],this.flashColor(this.color.hat)[2],this.fade*this.fades.hat)
+			    		this.layer.strokeWeight(4)
+		    			this.layer.line(-16,-69,16,-69)
+    					this.layer.quad(-12,-69,12,-69,8,-75,-8,-75)
                     }
                 break
                 case 'Duck': case 'Fungal Duck':
@@ -5561,6 +5595,7 @@ class combatant{
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
             if(this.life<=0&&!this.dead){
                 this.dead=true
+                this.battle.tileManager.activate()
                 this.battle.counter.killed++
                 this.battle.combatantManager.reorder()
                 if(this.battle.turn.main<this.battle.players){

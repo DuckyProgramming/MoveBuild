@@ -525,6 +525,18 @@ types={
                 {effect:[],attack:78,cost:1,target:[0],spec:[1],class:4},
                 {effect:[],attack:78,cost:0,target:[0],spec:[1],class:4},
             ],
+        },{
+            name:'Ouroboros',rarity:-1,list:0,
+            levels:[
+                {effect:[4,2],attack:79,cost:1,target:[2,1,2],spec:[],class:1},
+                {effect:[6,2],attack:79,cost:1,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Glock',rarity:-1,list:0,
+            levels:[
+                {effect:[10,2],attack:80,cost:1,target:[2,1,6],spec:[],class:1},
+                {effect:[16,3],attack:80,cost:1,target:[2,1,6],spec:[],class:1},
+            ],
         },
         
         {
@@ -664,7 +676,7 @@ types={
         {name:'Biker',life:40,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
         {name:'Drunk',life:30,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[1]},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
         {name:'Drunk Boss',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},//10
-        {name:'Monkey',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:11,effect:[1]}],description:`You`},
+        {name:'Monkey',life:12,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:11,effect:[1]}],description:`You`},
         {name:'Trenchcoat',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`Nobody knows who he is`},
         {name:'Trenchcoat Gunner',life:45,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[10]}],description:`Keeps a low profile`},
         {name:'Goon',life:45,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:14,effect:[4,1,'Arm\nInjury']},{type:4,effect:[12]}],description:`Bars you from life`},
@@ -674,6 +686,7 @@ types={
         {name:'Pointy',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]}],description:`Stabby gaming`},
         {name:'Romeo',life:40,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:15,effect:[10,2]},{type:21,effect:[]}],description:`Kinda useless`},
         {name:'Billy Beatup',life:75,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},//20
+        {name:'Monkey Gangster',life:24,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[5]},{type:11,effect:[2]}],description:`Your occupation`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -882,6 +895,8 @@ types={
         {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-1,list:0,description:'You Can No Longer Heal'},
         {name:'Mandelbox',internal:'Rarer Rewards',id:164,rarity:-1,list:0,description:'Card Rewards Are Rarer'},
         {name:'Gold Bar',internal:'More Currency',id:165,rarity:-1,list:0,description:'Gain 25% More Currency'},
+        {name:'Stocks',internal:'Currency Per Room',id:166,rarity:-1,list:0,description:'Gain 10 Currency Every Room'},
+        {name:'Survival Notes',internal:'Random Fatigue Cost Decrease',id:167,rarity:-1,list:0,description:'25% of Fatigue is Cheaper'},
 
         /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
         {name:'',internal:'',id:12,rarity:0,list:0,description:''},
@@ -912,7 +927,7 @@ types={
                     desc:
 `You come across what appearsto be a book
 lying in the dirt. Peering into it, you see
-numerous Konaian writings on the art of combat.\n
+numerous writings on the art of combat.\n
 When you pick it up, you notice its extreme length
 and the poor condition of its pages. And there seems
 to be some sort of energy radiating from it...`,
@@ -1514,7 +1529,7 @@ trying to find more passerby.`,
 `Finding a mysterious square rock,
 you quickly notice strange scripts on it.
 This is the language of the pre-Management humans.
-Perhaps a relic of the first Konaian colonists.
+Perhaps a relic of the first colonists.
 They only changed their scripts to match the
 Management after the Grand Alliance War, after all.
 As you continue to read, the meanings become clear.`,
@@ -2382,7 +2397,7 @@ weapons test at the Masurian Lake.
 The test is safe for viewers at 20 kilometers,
 and it has been announced that all are welcome to view it.
 A typical show of force for the Management, they want
-the citizens of Konai to know what they're up against.`,
+the citizens to know what they're up against.`,
                     option:['View the test','Rest'],
                     optionDesc:['',''],
                     link:[1,2],
@@ -2519,6 +2534,344 @@ and pulls out a bottle containing suspicious brown liquid.
                     link:[-1],
                 },
             ],
+        },{
+            name:'Investments',id:51,list:0,
+            pages:[
+                {
+                    desc:
+`You walk into an unknown building. On the inside,
+the proprietor asks if you are here to invest.
+You tell him that you're a traveler,
+but he replies that his business are everywhere,
+so you'll be able to take money out anywhere.
+He tells you that his investments are linked to a
+very profitable hedge fund owned by the Management.`,
+                    option:['Invest','Decline'],
+                    optionDesc:['Lose 100 Currency',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You hand over your money and he adds your information to a list.
+He thanks you for your time as you leave.`,
+                    option:['Worth it'],
+                    optionDesc:['Gain 1 Relic'],
+                    link:[-1],
+                },{
+                    desc:`It's too risky to be putting your money into things right now.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Paper Ball',id:52,list:0,
+            pages:[
+                {
+                    desc:
+`A man wearing a trenchcoat walks by you. When he gets near,
+he quickly hands you a paper ball and runs away.
+Unfolding the ball, you find a message from
+some sort of organization operating on the planet.
+"We would like to meet you tomorrow at our base."
+Looks like they've given you directions there as well.`,
+                    option:['Go there',"Don't"],
+                    optionDesc:['',''],
+                    link:[2,1],
+                },{
+                    desc:
+`Sounds like a scam.
+Nobody transmits messages via paper balls.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`When you arrive, a squad of people jump
+out from all sides and attack you.`,
+                    option:['Run'],
+                    optionDesc:['Lose 6 Health'],
+                    link:[-1],
+                },{
+                    desc:
+`There's nobody there,
+only a drop box and some security systems.`,
+                    option:['Go toward the box','Leave'],
+                    optionDesc:['Lose 3 Health',''],
+                    link:[4,5],
+                },{
+                    desc:
+`You advance, but the security system
+takes a chunk out of you.`,
+                    option:['Keep going','Leave'],
+                    optionDesc:['Lose 3 Health',''],
+                    link:[6,5],
+                },{
+                    desc:`You leave the box behind and head out.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:`You pick up the box and find useful equipment inside.`,
+                    option:['Take it'],
+                    optionDesc:['Gain 1 Relic'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Notes',id:53,list:0,
+            pages:[
+                {
+                    desc:
+                    `You find a notebook,
+                    seemingly just left on the ground for no reason.
+                    After making sure that there are no traps nearby,
+                    you grab the notebook and read through the first few pages.`,
+                    option:['Read on','Leave it'],
+                    optionDesc:['',''],
+                    link:[2,1],
+                },{
+                    desc:`You let the book stay where you left it.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`Within, you see a discussion of the uniqueness of
+culture and how it remains despite fierce resistance.`,
+                    option:['Interesting'],
+                    optionDesc:['Gain 1 Card'],
+                    link:[-1],
+                },{
+                    desc:
+`Within, you see a discussion of the the future
+prospects of Managemental conquests.`,
+                    option:['Interesting'],
+                    optionDesc:['Gain 1 Random Card'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Abandoned Home',id:54,list:0,
+            pages:[
+                {
+                    desc:
+`In a remote area you discover an empty house
+that's been turned practically upside down.
+Nearly everything that's not nailed down has been taken.
+Only some random junk remains inside.
+You find the entrance to the basement and enter.
+There, most of the objects inside remain intact.
+You open up one closet and look inside.
+Hundreds of books are inside,
+along with many ages of notes.
+There's space for one large book in the center, but it's gone.`,
+                    option:['Take the stuff','Destroy the evidence'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You grab every book you can and
+leave the house with the materials.`,
+                    option:['Gain 1 Relic'],
+                    optionDesc:['Gain 1 Relic'],
+                    link:[-1],
+                },{
+                    desc:
+`You get the house burnt down,
+along with anything of value inside.`,
+                    option:['Done'],
+                    optionDesc:['Gain 55 Currency'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Taxi',id:55,list:0,
+            pages:[
+                {
+                    desc:
+`You get into a taxi to cross a
+non-pedestrian-friendly bridge. "Hello," he says.
+"I'm Alexander, your driver. Where would you like to go?"
+He accelerates as soon as you tell him your destination.
+As he continually speeds up, you begin to get worried.
+This is exacerbated when he starts swerving through traffic.
+It is at that moment you realize that the
+other cars are driving the other way.`,
+                    option:['Grab the wheel','Hope for the best','Jump out the door'],
+                    optionDesc:['','',''],
+                    link:[1,2,3],
+                },{
+                    desc:
+`You push him out of the way and successfully slow
+the taxi down. Other cards turn around the taxi,
+While you can't drive, you are able to jump
+out and run the rest of the trip on foot.`,
+                    option:['Escape'],
+                    optionDesc:['Gain 1 Random Card'],
+                    link:[-1],
+                },{
+                    desc:
+`As you watch, the taxi collides directly
+with another and flies off the bridge.
+You wake up hours later, in severe pain.`,
+                    option:['Pain'],
+                    optionDesc:['Lose 99 Health'],
+                    link:[-1],
+                },{
+                    desc:
+`You get out and land on the pavement.
+The taxi goes on and crashes in the distance.
+You spend the next few minutes frantically 
+dashing between cars to get off the bridge.`,
+                    option:['Get out of there'],
+                    optionDesc:['Lose 9 Health'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Outmonkeyed',id:56,list:0,
+            pages:[
+                {
+                    desc:
+`You are stopped in the road by a gang of monkeys.
+"We'd like your protection payment," the first one says.`,
+                    option:['How much?','Attack him'],
+                    optionDesc:['','Start Fight'],
+                    link:[1,-2],
+                },{
+                    desc:`
+"40", he answers.
+"Standard Management currency."`,
+                    option:['Pay up','Attack him'],
+                    optionDesc:['Lose 40 Currency','Start Fight'],
+                    link:[2,-2],
+                },{
+                    desc:
+`You hand over the money.
+The monkeys leave.`,
+                    option:['Done'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Call of the Void',id:57,list:0,
+            pages:[
+                {
+                    desc:
+`You see a sphere floating in the
+middle of the air. It's made of nothing.
+Like, it's literally nothing.
+Not empty space, just nothing at all.
+Probably a glitch or something...`,
+                    option:['Put something in','Jump in'],
+                    optionDesc:['Remove a Card','Remove All Cards'],
+                    link:[1,2],
+                },{
+                    desc:
+`You throw the card into the sphere,
+where it ceases to exist.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You wake up a short time later.
+You've forgotten everything, but,
+The Cycle Must Repeat.`,
+                    option:['Leave'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'The Mirror',id:58,list:0,
+            pages:[
+                {
+                    desc:
+`You see a strange mirror emanating a soft glow nearby.
+You can see something reflected back at you,
+but it isn't yourself...`,
+                    option:['Look into it','Look into it'],
+                    optionDesc:['Duplicate a Card','Duplicate All Cards'],
+                    link:[1,1],
+                },{
+                    desc:
+`You watch as what you see floats out 
+of the mirror and into your hand.
+As you are left holding it, the mirror disappears.`,
+                    option:['Take it'],
+                    optionDesc:[''],
+                    link:[-1],
+                },{
+                    desc:
+`You watch as what you see floats out
+of the mirror and into your hand.
+As you are left holding it, the mirror disappears.`,
+                    option:['Take it'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Take Out the Trash',id:59,list:0,
+            pages:[
+                {
+                    desc:
+`You find your way to the waste disposal site, for some reason.
+Your notice several boxes on the side, containing random stuff.
+Suddenly, an employee notices you.
+You might be able to grab something before you run.`,
+                    option:['Grab the "Random" Box','Grab the "Assorted" Box','Run'],
+                    optionDesc:['','',''],
+                    link:[1,2,3],
+                },{
+                    desc:`You grab the box, but you can't tell what's inside.`,
+                    option:['Run'],
+                    optionDesc:['Gain 5 Random Cards'],
+                    link:[-1],
+                },{
+                    desc:`You grab the box, but you can't tell what's inside.`,
+                    option:['Run'],
+                    optionDesc:['Gain 1 Relic'],
+                    link:[-1],
+                },{
+                    desc:`You get out of there.`,
+                    option:['Exit'],
+                    optionDesc:[''],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'The New Ship',id:60,list:0,
+            pages:[
+                {
+                    desc:
+`You didn't even know there's a shipyard on here.
+When you arrive, the soldiers in the area let you
+through the security clearance and into the main zone.
+Looks like an entire lake was drained to build this shipyard.
+Weird that they didn't just build it in space.`,
+                    option:['Tour the shipyard','Rest'],
+                    optionDesc:['',''],
+                    link:[1,2],
+                },{
+                    desc:
+`You tour the shipyard, discovering its many facilities.
+You were never involved in naval operations,
+so it's quite a jarring transition.`,
+                    option:['Interesting'],
+                    optionDesc:['Gain 1 Card'],
+                    link:[-1],
+                },{
+                    desc:
+`You decide that you'll save the
+shipyard visit for another time.`,
+                    option:['Done'],
+                    optionDesc:['Heal 12 Health'],
+                    link:[-1],
+                },
+            ],
         },
     ],color:{
         card:[
@@ -2611,6 +2964,15 @@ and pulls out a bottle containing suspicious brown liquid.
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Crushed 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'2-Crushed 7',
@@ -2753,9 +3115,7 @@ and pulls out a bottle containing suspicious brown liquid.
             enemy:[
                 {position:{x:0,y:0},name:'Monkey'},
                 {position:{x:3,y:0},name:'Monkey'},
-                {position:{x:0,y:1},name:'Monkey'},
                 {position:{x:1,y:2},name:'Monkey'},
-                {position:{x:4,y:1},name:'Monkey'},
                 {position:{x:4,y:2},name:'Monkey'},
             ],reinforce:[
                 {position:{x:1,y:1},name:'Monkey',turn:3},
@@ -2826,6 +3186,21 @@ and pulls out a bottle containing suspicious brown liquid.
             enemy:[
                 {position:{x:2,y:2},name:'Billy Beatup'},
             ],reinforce:[
+            ],
+        },{
+            level:'Crushed 7',class:0,world:-1,
+            name:'Monkey Gang',
+            player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:0}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Monkey Gangster'},
+                {position:{x:0,y:2},name:'Monkey Gangster'},
+                {position:{x:2,y:4},name:'Monkey Gangster'},
+                {position:{x:4,y:0},name:'Monkey Gangster'},
+                {position:{x:6,y:2},name:'Monkey Gangster'},
+                {position:{x:6,y:4},name:'Monkey Gangster'},
+            ],reinforce:[
+                {position:{x:1,y:2},name:'Monkey Gangster',turn:3},
+                {position:{x:5,y:2},name:'Monkey Gangster',turn:3},
             ],
         },
     ],

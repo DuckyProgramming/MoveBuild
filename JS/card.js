@@ -30,7 +30,7 @@ class card{
         this.name=name||types.card[this.type].name
         this.list=list||types.card[this.type].list
         this.rarity=types.card[this.type].rarity
-        this.effect=effect||types.card[this.type].levels[this.level].effect
+        this.effect=effect||copyArray(types.card[this.type].levels[this.level].effect)
         this.attack=attack||types.card[this.type].levels[this.level].attack
         this.target=target||types.card[this.type].levels[this.level].target
         this.spec=(spec||types.card[this.type].levels[this.level].spec).concat(additionalSpec||[])
@@ -216,6 +216,9 @@ class card{
             case 76: string+=`Gain ${this.effect[0]} Intangible`; break
             case 77: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nHeal ${this.calculateEffect(this.effect[1],4)} Health`; break
             case 78: string+=`A Random Card\nin Your Hand\nBecomes Free`; break
+            case 79: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nAdd an Ouroboros With\n+${this.effect[1]} Damage to Discard`; break
+            case 80: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nApply ${this.effect[1]} Frail`; break
+
         }
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)

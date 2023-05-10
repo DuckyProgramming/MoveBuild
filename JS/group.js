@@ -104,6 +104,9 @@ class group{
     allEffect(effect){
         if(effect==1){
             this.cancel()
+            if(this.battle.relicManager.hasRelic(51,this.player)){
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length)
+            }
         }
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -141,6 +144,11 @@ class group{
                     if(this.cards[a].basic){
                         this.cards[a]=upgradeCard(this.cards[a])
                     }
+                break
+                case 7:
+                    this.copySelf(a)
+                    a++
+                    la++
                 break
             }
         }

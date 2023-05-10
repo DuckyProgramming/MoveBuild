@@ -546,6 +546,96 @@ class eventManager{
                             this.battle.itemManager.addItem(findName('Cola',types.item),this.player)
                         }
                     break
+                    case 51:
+                        if(this.page==0&&a==0){
+                            this.battle.loseCurrency(100,this.player)
+                        }else if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Currency Per Room',types.relic),this.player)
+                        }
+                    break
+                    case 52:
+                        if(this.page==0&&a==0&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if(this.page==2&&a==0){
+                            userCombatant.safeDamage(6)
+                        }else if(this.page==3&&a==0){
+                            userCombatant.safeDamage(3)
+                            if(floor(random(0,4))==0){
+                                tempPage=3
+                            }
+                        }else if(this.page==4&&a==0){
+                            userCombatant.safeDamage(6)
+                        }else if(this.page==6&&a==0){
+                            this.battle.relicManager.addRandomRelic()
+                        }
+                    break
+                    case 53:
+                        if(this.page==0&&a==0&&floor(random(0,2))==0){
+                            tempPage++
+                        }else if(this.page==2&&a==0){
+                            this.battle.overlayManager.overlays[3][this.player].active=true
+                            this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
+                        }else if(this.page==3&&a==0){
+                            this.battle.cardManagers[this.player].addRandom(0,0)
+                        }
+                    break
+                    case 54:
+                        if(this.page==1&&a==0){
+                            this.battle.relicManager.addRelic(findInternal('Random Fatigue Cost Decrease',types.relic),this.player)
+                        }else if(this.page==2&&a==0){
+                            this.battle.addCurrency(55,this.player)
+                        }
+                    break
+                    case 55:
+                        if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].addRandom(0,0)
+                        }else if(this.page==2&&a==0){
+                            userCombatant.safeDamage(99)
+                        }else if(this.page==3&&a==0){
+                            userCombatant.safeDamage(9)
+                        }
+                    break
+                    case 56:
+                        if(this.page>=0&&this.page<=1&&a==1){
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[findName('Monkey Gang',types.encounter)])
+                        }else if(this.page==1&&a==0){
+                            this.battle.loseCurrency(40,this.player)
+                        }
+                    break
+                    case 57:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[6][this.player].active=true
+                            this.battle.overlayManager.overlays[6][this.player].activate()
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].deck.cards=[]
+                            this.battle.cardManagers[this.player].deck.add(findName('Ouroboros',types.card),0,0)
+                        }
+                    break
+                    case 58:
+                        if(this.page==0&&a==0){
+                            this.battle.overlayManager.overlays[12][this.player].active=true
+                            this.battle.overlayManager.overlays[12][this.player].activate()
+                        }else if(this.page==0&&a==1){
+                            this.battle.cardManagers[this.player].allEffect(0,7)
+                        }
+                    break
+                    case 59:
+                        if(this.page==1&&a==0){
+                            for(let a=0,la=5;a<la;a++){
+                                this.battle.cardManagers[this.player].addRandom(0,0)
+                            }
+                        }else if(this.page==2&&a==0){
+                            this.battle.relicManager.addRandomRelic(this.player)
+                        }
+                    break
+                    case 60:
+                        if(this.page==1&&a==0){
+                            this.battle.cardManagers[this.player].deck.add(findName('Glock',types.card),0,0)
+                        }else if(this.page==2&&a==0){
+                            userCombatant.heal(12)
+                        }
+                    break
                 }
                 this.page=this.pages[this.page].link[a]+tempPage
                 if(this.page==-1){

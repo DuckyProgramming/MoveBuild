@@ -56,6 +56,9 @@ class cardManager{
     randomEffect(group,effect,args){
         this.getList(group).randomEffect(effect,args)
     }
+    addRandom(group,level){
+        this.getList(group).add(this.listing.card[this.battle.player[this.player]][0][floor(random(0,this.listing.card[this.battle.player[this.player]][0].length))],level,this.battle.player[this.player])
+    }
     draw(amount){
         this.battle.stats.drawn[this.player]+=amount
         let amountLeft=amount-this.reserve.cards.length
@@ -108,6 +111,11 @@ class cardManager{
                 this.discard.cards[this.discard.cards.length-1].cost++
                 this.discard.cards[this.discard.cards.length-1].base.cost++
                 this.drop.cards[this.drop.cards.length-1].cost++
+            }
+            if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))==0){
+                this.discard.cards[this.discard.cards.length-1].cost--
+                this.discard.cards[this.discard.cards.length-1].base.cost--
+                this.drop.cards[this.drop.cards.length-1].cost--
             }
         }
     }

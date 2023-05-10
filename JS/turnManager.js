@@ -38,7 +38,9 @@ class turnManager{
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0){
-                this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
+                for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed;b<lb;b++){
+                    this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
+                }
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
