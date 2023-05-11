@@ -15,7 +15,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 1: case 4:
+            case 1: case 4: case 7:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=8
@@ -39,7 +39,7 @@ class particle{
                 this.scale=1
                 this.size=0
             break
-            case 5:
+            case 5: case 8:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=16/3
@@ -98,7 +98,7 @@ class particle{
                 case 3:
                     if(this.size>0){
                         this.layer.rotate(this.time*6)
-                        this.layer.image(graphics.minor[19],-30*this.size,-30*this.size,60*this.size,60*this.size)
+                        this.layer.image(graphics.minor[17],-30*this.size,-30*this.size,60*this.size,60*this.size)
                     }
                 break
                 case 4:
@@ -119,7 +119,21 @@ class particle{
                     this.layer.fill(200)
                     this.layer.rect(0,1,4,4)
                     this.layer.arc(0,-1,4,6,-180,0)
-                    this.layer.rotate(-this.direction)
+                break
+                case 7:
+                    this.layer.rotate(this.time*10)
+                    this.layer.fill(40,this.fade)
+                    this.layer.rect(0,-4,2,2)
+                    this.layer.fill(60,this.fade)
+                    this.layer.rect(0,0,8,8)
+                break
+                case 8:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(100,255,150)
+                    this.layer.rect(0,0,4,8)
+                    this.layer.fill(60)
+                    this.layer.triangle(-2.5,-4,2.5,-4,0,-7)
+                    this.layer.rect(0,5,5,2)
                 break
             }
             this.layer.pop()
@@ -143,7 +157,7 @@ class particle{
                     }
                 }
             break
-            case 1: case 4: case 5: case 6:
+            case 1: case 4: case 5: case 6: case 7: case 8:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){

@@ -101,7 +101,7 @@ class battle{
             this.energy.gen[a]=this.energy.base[a]
         }
         this.turn={main:0,total:0,time:0,accelerate:0}
-        this.anim={reserve:1,discard:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],exit:1,afford:0,upAfford:false}
+        this.anim={reserve:1,discard:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],sell:[],exit:1,afford:0,upAfford:false}
         this.counter={enemy:0,killed:0}
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
@@ -218,14 +218,21 @@ class battle{
         this.tileManager.activate()
         this.combatantManager.activateCombatants(type,id)
         this.tileManager.activateTiles(type,id)
+        this.updateTargetting()
     }
     activateCombatant(type,id){
         this.tileManager.activate()
         this.combatantManager.activateCombatants(type,id)
+        this.updateTargetting()
     }
     activateTile(type,id){
         this.tileManager.activate()
         this.tileManager.activateTiles(type,id)
+    }
+    updateTargetting(){
+        this.tileManager.unTargetTiles()
+        this.tileManager.retargetTiles()
+        this.combatantManager.targetCombatants()
     }
     drop(type,level,color){
         for(let b=0,lb=this.cardManagers.length;b<lb;b++){
@@ -273,6 +280,7 @@ class battle{
         this.combatantManager.unmoveCombatants()
         this.tileManager.activate()
         this.combatantManager.activateCombatants(0,0)
+        this.updateTargetting()
         this.turnManager.clear()
         if(this.turn.total==1){
             if(!this.relicManager.hasRelic(141,this.turn.main)){

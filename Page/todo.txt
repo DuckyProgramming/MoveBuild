@@ -1,8 +1,6 @@
 Animations:
 
 Bugs:
-fix findtileindex
-Only retarget on activation
 
 Mechanics:
 Menu
@@ -23,6 +21,7 @@ health items
 More Events:
 
 More Cards:
+square strike
 Deal Damage and Gain Energy? (Jab?)
 Redirect?
 Shatter, remove all block and do dage

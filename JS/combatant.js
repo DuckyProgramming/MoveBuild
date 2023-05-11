@@ -44,19 +44,19 @@ class combatant{
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
             'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
             'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Next Turn Cannot Move',
-            'Strength Per Turn',
+            'Strength Per Turn','Poison','Stun',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
                 1,1,0,2,0,0,1,2,2,0,
                 2,0,0,0,1,1,0,0,1,2,
-                0,
+                0,1,1,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
                 0,0,0,0,0,0,1,0,0,0,
                 1,0,2,2,0,0,0,2,1,1,
-                0,
+                0,1,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good
@@ -982,6 +982,36 @@ class combatant{
             }
         }
     }
+    markTarget(){
+        if(this.life>0&&!this.moved&&this.status.main[32]<=0){
+            let target=this.getTarget()
+            switch(this.attack[this.intent].type){
+                case 1: case 2: case 3: case 11: case 13:
+                    if(target!=-1){
+                        this.battle.tileManager.tiles[target].targetted[this.activated?2:1]=true
+                    }
+                break
+                case 6: case 7: case 9: case 12: case 14: case 15: case 16: case 17: case 19: case 20:
+                    if(target.length>0){
+                        for(let a=0,la=target.length;a<la;a++){
+                            if(target[a]!=-1){
+                                this.battle.tileManager.tiles[target[a]].targetted[this.activated?2:1]=true
+                            }
+                        }
+                    }
+                break
+                case 8:
+                    if(target.length>0){
+                        for(let a=0,la=target.length;a<la;a++){
+                            if(target[a]!=-1){
+                                this.battle.tileManager.tiles[target[a]].targetted[this.activated?4:3]=true
+                            }
+                        }
+                    }
+                break
+            }
+        }
+    }
     revive(){
         if(this.dead){
             this.dead=false
@@ -1003,6 +1033,10 @@ class combatant{
         if(value>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
             let userCombatant=this.battle.combatantManager.combatants[user]
             let totalStr=0
+            if(userCombatant.status.main[12]>0){
+                damage+=userCombatant.status.main[12]
+                userCombatant.status.main[12]=0
+            }
             if(userCombatant.status.main[6]!=0){
                 totalStr+=userCombatant.status.main[6]
             }
@@ -1013,10 +1047,6 @@ class combatant{
                 damage*=1+totalStr*0.2
             }else if(totalStr<0){
                 damage*=max(0.2,1+totalStr*0.1)
-            }
-            if(userCombatant.status.main[12]>0){
-                damage+=userCombatant.status.main[12]
-                userCombatant.status.main[12]=0
             }
             if(userCombatant.status.main[8]>0){
                 damage*=0.75
@@ -1196,6 +1226,9 @@ class combatant{
                     this.status.main[status]+=value
                 }
             }
+            if(status==32){
+                this.battle.updateTargetting()
+            }
         }
     }
     getStatus(name){
@@ -1223,7 +1256,7 @@ class combatant{
             if(this.status.main[a]!=0){
                 switch(a){
                     case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
-                    case 5: this.takeDamage(this.status.main[a],-1); break
+                    case 5: case 31: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
@@ -5598,6 +5631,7 @@ class combatant{
                 this.battle.tileManager.activate()
                 this.battle.counter.killed++
                 this.battle.combatantManager.reorder()
+                this.battle.updateTargetting()
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.cardManagers[this.battle.turn.main].hand.deathEffect()
                 }
@@ -5607,34 +5641,6 @@ class combatant{
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.killed[this.battle.turn.main]++
                 }
-            }
-        }
-        if(this.team==0&&this.life>0&&!this.moved){
-            let target=this.getTarget()
-            switch(this.attack[this.intent].type){
-                case 1: case 2: case 3: case 11: case 13:
-                    if(target!=-1){
-                        this.battle.tileManager.tiles[target].targetted[this.activated?2:1]=true
-                    }
-                break
-                case 6: case 7: case 9: case 12: case 14: case 15: case 16: case 17: case 19: case 20:
-                    if(target.length>0){
-                        for(let a=0,la=target.length;a<la;a++){
-                            if(target[a]!=-1){
-                                this.battle.tileManager.tiles[target[a]].targetted[this.activated?2:1]=true
-                            }
-                        }
-                    }
-                break
-                case 8:
-                    if(target.length>0){
-                        for(let a=0,la=target.length;a<la;a++){
-                            if(target[a]!=-1){
-                                this.battle.tileManager.tiles[target[a]].targetted[this.activated?4:3]=true
-                            }
-                        }
-                    }
-                break
             }
         }
         this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)

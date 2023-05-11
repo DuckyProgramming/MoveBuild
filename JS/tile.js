@@ -47,6 +47,11 @@ class tile{
             }
         }
     }
+    unTarget(){
+        for(let a=0,la=this.anim.target.length;a<la;a++){
+            this.targetted[a]=false
+        }
+    }
     removeType(index){
         this.type.splice(index,1)
         this.anim.part.splice(index,1)
@@ -89,7 +94,9 @@ class tile{
                 break
                 case 3:
                     this.layer.rotate(90)
-                    this.layer.image(graphics.minor[61],5-20*this.fade*this.anim.part[a],-25*this.fade*this.anim.part[a],40*this.fade*this.anim.part[a],50*this.fade*this.anim.part[a])
+                    if(this.anim.part[a]>0){
+                        this.layer.image(graphics.minor[17],5-20*this.fade*this.anim.part[a],-25*this.fade*this.anim.part[a],40*this.fade*this.anim.part[a],50*this.fade*this.anim.part[a])
+                    }
                 break
             }
         }
@@ -142,7 +149,6 @@ class tile{
         this.tilePosition.y=round(this.tilePosition.y)
         for(let a=0,la=this.anim.target.length;a<la;a++){
             this.anim.target[a]=smoothAnim(this.anim.target[a],this.targetted[a],0,1,5)
-            this.targetted[a]=false
         }
         this.anim.reinforce=smoothAnim(this.anim.reinforce,this.reinforce,0,1,5)
         for(let a=0,la=this.anim.part.length;a<la;a++){

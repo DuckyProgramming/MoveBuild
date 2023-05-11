@@ -7,10 +7,12 @@ function setup(){
     /*for(let a=1;a<=60;a++){
         current.relicManager.addRelic(a,0)
     }*/
-    //current.itemManager.addItem(2,0)
+    for(let a=0,la=3;a<la;a++){
+        current.itemManager.addItem(26+a,0)
+    }
 
-    //stage.scene='battle'
-    //current.setupBattle(types.encounter[4])
+    stage.scene='battle'
+    current.setupBattle(types.encounter[1])
 
     /*current.overlayManager.overlays[0][0].active=true
     current.overlayManager.overlays[0][1].active=true

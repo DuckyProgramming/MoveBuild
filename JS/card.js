@@ -55,35 +55,40 @@ class card{
             switch(type){
                 case 0: case 2:
                     let damage=effect
+                    let bonus=0
                     let totalStr=0
+                    if(this.strike&&this.battle.relicManager.hasRelic(50,this.player)){
+                        bonus+=2
+                    }
+                    if(user.status.main[12]>0){
+                        bonus+=user.status.main[12]
+                    }
                     if(user.status.main[6]!=0){
                         totalStr+=user.status.main[6]
                     }
                     if(user.status.main[17]!=0){
-                        damage+=user.status.main[17]
+                        totalStr+=user.status.main[17]
                     }
                     if(totalStr>0){
                         damage*=1+totalStr*0.2
+                        bonus*=1+totalStr*0.2
                     }else if(totalStr<0){
                         damage*=max(0.2,1+totalStr*0.1)
-                    }
-                    if(user.status.main[12]>0){
-                        totalStr+=user.status.main[12]
-                    }
-                    if(this.strike&&this.battle.relicManager.hasRelic(50,this.player)){
-                        damage+=2
+                        bonus*=max(0.2,1+totalStr*0.1)
                     }
                     if(user.status.main[0]>0){
                         damage*=2
+                        bonus*=2
                     }
                     if(user.status.main[8]>0){
                         damage*=0.75
+                        bonus*=0.75
                     }
                     damage=round(damage*10)/10
                     if(type==0){
-                        return damage==effect?effect:effect+` (${damage})`
+                        return damage==effect?effect:effect+`(${damage+bonus})`
                     }else if(type==2){
-                        return damage==effect?effect+'X':effect+`X (+${damage})`
+                        return (damage==effect?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
                     }
                 case 1: case 3:
                     let block=effect
@@ -141,6 +146,7 @@ class card{
             case -8: string+=`Take ${this.effect[0]} Damage\nWhen an Enemy Dies`; break
             case -9: string+=`You Cannot\nPlay More Than ${this.effect[0]}\nCards This Turn`; break
             case -10: string+=`When Removed,\nLose ${this.effect[0]} Max Health`; break
+            case -11: string+=`If Unplayed,\nAdd a Pride to\nDiscard Pile`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

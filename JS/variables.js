@@ -235,8 +235,8 @@ types={
         {
             name:'Cut',rarity:0,list:2,
             levels:[
-                {effect:[7],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
-                {effect:[10],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[9],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[13],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
             ],
         },{
             name:'Throw\nScythe',rarity:1,list:2,
@@ -658,10 +658,22 @@ types={
                 {effect:[],attack:0,cost:0,target:[0],spec:[3,4,5],class:6},
             ],
         },{
-            name:'Ascender Bane',rarity:0,list:5,
+            name:'Clumsy',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:0,cost:0,target:[0],spec:[4,5],class:6},
+                {effect:[],attack:0,cost:0,target:[0],spec:[4],class:6},
+            ],
+        },{
+            name:'Ascender\nBane',rarity:0,list:5,
             levels:[
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5,7],class:6},
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,7],class:6},
+            ],
+        },{
+            name:'Pride',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:-11,cost:1,target:[0],spec:[1,3],class:6},
+                {effect:[],attack:-11,cost:1,target:[0],spec:[1,3],class:6},
             ],
         },
     ],combatant:[
@@ -685,7 +697,7 @@ types={
         {name:'Orb Walker',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[15]},{type:13,effect:[10,1,'Burn']}],description:`Why he so overpowered?`},
         {name:'Pointy',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]}],description:`Stabby gaming`},
         {name:'Romeo',life:40,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:15,effect:[10,2]},{type:21,effect:[]}],description:`Kinda useless`},
-        {name:'Billy Beatup',life:75,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},//20
+        {name:'Billy Beatup',life:75,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},//20
         {name:'Monkey Gangster',life:24,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[5]},{type:11,effect:[2]}],description:`Your occupation`},
 
     ],attack:[
@@ -897,22 +909,63 @@ types={
         {name:'Gold Bar',internal:'More Currency',id:165,rarity:-1,list:0,description:'Gain 25% More Currency'},
         {name:'Stocks',internal:'Currency Per Room',id:166,rarity:-1,list:0,description:'Gain 10 Currency Every Room'},
         {name:'Survival Notes',internal:'Random Fatigue Cost Decrease',id:167,rarity:-1,list:0,description:'25% of Fatigue is Cheaper'},
-
-        /*{name:'',internal:'',id:11,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:12,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:13,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:14,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:15,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:16,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:17,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:18,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:19,rarity:0,list:0,description:''},
-        {name:'',internal:'',id:20,rarity:0,list:0,description:''},*/
-        //blessed shiny rock?
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,description:'None'},
         {name:'Rock',id:2,rarity:0,list:0,description:'Deal 10 Damage\nRange 1-6'},
+        {name:'Attack Box',id:3,rarity:0,list:0,description:'Add 3 Free Attacks\nto Your Hand'},
+        {name:'Skill Box',id:4,rarity:0,list:0,description:'Add 3 Free Skills\nto Your Hand'},
+        {name:'Movement Box',id:5,rarity:0,list:0,description:'Add 3 Free Movements\nto Your Hand'},
+        {name:'Power Box',id:6,rarity:0,list:0,description:'Add 3 Free Powers\nto Your Hand'},
+        {name:'Bread',id:7,rarity:0,list:0,description:'Heal 15 HP'},
+        {name:'Arsenic',id:8,rarity:0,list:0,description:'Apply 10 Poison\nRange 1-2'},
+        {name:'Small Smoke Bomb',id:9,rarity:0,list:0,description:'Move to Any\nEmpty Tile'},
+        {name:'Battery Pack',id:10,rarity:0,list:0,description:'Counter 5 All'},
+        {name:'Portable Shield',id:11,rarity:0,list:0,description:'Add 20 Block'},
+        {name:'Grenade',id:12,rarity:0,list:0,description:'Deal 10 Splash Damage\nRange 1-3'},
+        {name:'Rapid Forge',id:13,rarity:0,list:0,description:'Upgrade All\nCards in Hand'},
+        {name:'Caffeine',id:14,rarity:0,list:0,description:'Gain 3 Energy'},
+        {name:'Attack Juice',id:15,rarity:0,list:0,description:'Gain 2 Strength'},
+        {name:'Defense Juice',id:16,rarity:0,list:0,description:'Gain 2 Dexterity'},
+        {name:'Attack Syringe',id:17,rarity:0,list:0,description:'Gain 5 Temporary\nStrength'},
+        {name:'Defense Syringe',id:18,rarity:0,list:0,description:'Gain 5 Temporary\nDexterity'},
+        {name:'Stun Dart',id:19,rarity:0,list:0,description:'Apply 1 Stun\nRange 1-6'},
+        {name:'Extra Bag',id:20,rarity:0,list:0,description:'Gain 1 Item Slot'},
+        {name:'Blank Paper',id:21,rarity:0,list:0,description:'Add 1 Colorless\nCard to Your Hand'},
+        {name:'Sand',id:22,rarity:0,list:0,description:'Apply 3 Weak'},
+        {name:'Dirt',id:23,rarity:0,list:0,description:'Apply 3 Vulnerable'},
+        {name:'Ash',id:24,rarity:0,list:0,description:'Apply 3 Frail'},
+        {name:'Decaf',id:25,rarity:0,list:0,description:'Draw 3 Cards'},
+        {name:'',id:26,rarity:1,list:0,description:'Add 5 Shivs\nto Your Hand'},
+        {name:'',id:27,rarity:1,list:0,description:'Gain 1 Control'},
+        {name:'',id:28,rarity:1,list:0,description:'Gain 10 Armor'},
+        {name:'',id:29,rarity:1,list:0,description:'Redraw Your Haned'},
+        {name:'',id:30,rarity:1,list:0,description:'Gain 5 Regeneration'},
+        {name:'',id:31,rarity:1,list:0,description:'Gain 1 Strength\nEvery Turn'},
+        {name:'',id:32,rarity:1,list:0,description:'Gain 1 Dexterity\nEvery Turn'},
+        {name:'',id:33,rarity:1,list:0,description:'Recall 1 Card,\nit Costs 0'},
+        {name:'',id:34,rarity:1,list:0,description:'Add 3 Miracles\nto Your Hand'},
+        {name:'',id:35,rarity:1,list:0,description:'Duplicate the Next\n2 Cards Played'},
+        {name:'',id:36,rarity:1,list:0,description:'Draw 3 Cards,\nThey Cost 0'},
+        {name:'',id:37,rarity:1,list:0,description:''},
+        {name:'',id:38,rarity:1,list:0,description:'Randomize Enemy Directions,\nActivate All Enemies'},
+        {name:'',id:39,rarity:1,list:0,description:'Push 1 Tile\nin All Directions\nRange 1-2'},
+        {name:'',id:40,rarity:1,list:0,description:'Remove All Fatigues'},
+        {name:'Pile of Junk',id:41,rarity:2,list:0,description:'Fill All Item Slots'},
+        {name:'',id:42,rarity:2,list:0,description:'Take an Extra Turn'},
+        {name:'',id:43,rarity:2,list:0,description:'Remove a Card\nFrom Your Deck'},
+        {name:'',id:44,rarity:2,list:0,description:'Gain 5 Max HP'},
+        {name:'',id:45,rarity:2,list:0,description:'Gain 2 Intangible'},
+        {name:'Large Smoke Bomb',id:46,rarity:2,list:0,description:'End a Non-Boss\nCombat'},
+        {name:'',id:47,rarity:2,list:0,description:'Draw 6 Cards,\nBecome Confused'},
+        {name:'',id:48,rarity:2,list:0,description:'Gain 2 Buffer'},
+        {name:'',id:49,rarity:2,list:0,description:'When You Die,\nHeal to 10% HP'},
+        {name:'',id:50,rarity:2,list:0,description:''},
+
+
+        //stat buffs and nerfs
+
+        
         {name:'Starflame Prototype',id:101,rarity:-1,list:-1,description:'Gain 5 Strength,\nShuffle in 5 Burn'},
         {name:'Cola',id:102,rarity:-1,list:-1,description:'Heal 15 HP\nCan No Longer Gain Block'},
 
@@ -2913,8 +2966,8 @@ shipyard visit for another time.`,
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
             [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
             //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
-            //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
-            [['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Commit',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
+            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
+            //[['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Commit',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
             [['Teleport',0,3],['Stagger',0,3],['Ponder',0,3],['Sprint',0,3],['Defend',0,3],['Defend',0,3]],
            
@@ -3044,7 +3097,10 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Biker'},
+                {position:{x:0,y:0},name:'Duck'},
+                {position:{x:1,y:0},name:'Duck'},
+                {position:{x:0,y:1},name:'Duck'},
+                {position:{x:1,y:1},name:'Duck'},
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},
                 {position:{x:3,y:0},name:'Thug'},

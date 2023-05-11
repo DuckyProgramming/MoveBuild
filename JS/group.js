@@ -18,10 +18,10 @@ class group{
                     this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
                 }
                 for(let a=0;a<8;a++){
-                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
+                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
                 }
                 for(let a=0;a<4;a++){
-                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
+                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
                 }
                 for(let a=1,la=types.card.length-2;a<la;a++){
                     //this.add(a,0,0)
@@ -434,9 +434,9 @@ class group{
                 if(this.cards[a].strike&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
-                this.callInput(5,0)
                 this.cards[a].usable=false
                 if(this.cards[a].target[0]==0){
+                    this.callInput(5,0)
                     this.battle.attackManager.execute()
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     if(userCombatant.status.main[23]>0){
@@ -456,6 +456,7 @@ class group{
                     this.battle.attackManager.targetDistance=0
                     this.battle.attackManager.cost=this.cards[a].cost
                     this.cards[a].select=true
+                    this.callInput(5,0)
                 }
             break
             case 1:
@@ -471,6 +472,7 @@ class group{
                 this.battle.attackManager.target[0]=a
                 this.battle.attackManager.execute()
                 this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass)
+                this.battle.updateTargetting()
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
@@ -497,6 +499,7 @@ class group{
                 this.battle.attackManager.target[0]=a
                 this.battle.attackManager.execute()
                 this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass)
+                this.battle.updateTargetting()
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
@@ -530,18 +533,20 @@ class group{
                 this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
                 this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
                 this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
+                this.battle.updateTargetting()
             break
             case 6:
                 this.battle.attackManager.type=a[0]
                 this.battle.attackManager.effect=a[1]
                 this.battle.attackManager.attackClass=a[2]
-                this.callInput(5,0)
                 if(a[3][0]==0){
+                    this.callInput(5,0)
                     this.battle.attackManager.execute()
                 }else{
                     this.battle.attackManager.targetInfo=copyArray(a[3])
                     this.battle.attackManager.targetDistance=0
                     this.battle.attackManager.cost=0
+                    this.callInput(5,0)
                 }
             break
             case 7:
@@ -665,6 +670,14 @@ class group{
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
                     (legalTargetCombatant(0,1,this.battle.energy.main[this.battle.attackManager.player]+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==8){
+            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                if((legalTargetCombatant(2,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles))&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }

@@ -57,7 +57,18 @@ class cardManager{
         this.getList(group).randomEffect(effect,args)
     }
     addRandom(group,level){
-        this.getList(group).add(this.listing.card[this.battle.player[this.player]][0][floor(random(0,this.listing.card[this.battle.player[this.player]][0].length))],level,this.battle.player[this.player])
+        this.getList(group).add(this.listing.card[this.battle.player[this.player]][3][floor(random(0,this.listing.card[this.battle.player[this.player]][3].length))],level,this.battle.player[this.player])
+    }
+    addRandomClass(group,level,cardClass){
+        let list=[]
+        for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
+            if(types.card[this.listing.card[this.battle.player[this.player]][3][a]].levels[level].class==cardClass){
+                list.push(this.listing.card[this.battle.player[this.player]][3][a])
+            }
+        }
+        if(list.length>0){
+            this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
+        }
     }
     draw(amount){
         this.battle.stats.drawn[this.player]+=amount

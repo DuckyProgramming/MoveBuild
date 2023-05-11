@@ -67,7 +67,7 @@ class itemManager{
     }
     addItemSlots(amount,player){
         for(let a=0;a<amount;a++){
-            this.items[player].push(new item(this.layer,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,1,1))
+            this.items[player].push(new item(this.layer,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,25+(this.layer.width-50)*player,250+this.position[player],1,1))
             this.position[player]++
         }
     }
@@ -83,6 +83,85 @@ class itemManager{
             case 2:
                 this.battle.cardManagers[player].hand.callInput(6,[57,[10*this.effectiveness[player]],1,[2,1,6]])
             break
+            case 3:
+                for(let a=0,la=3*this.effectiveness[player];a<la;a++){
+                    this.battle.cardManagers[player].addRandomClass(2,0,1)
+                }
+            break
+            case 4:
+                for(let a=0,la=3*this.effectiveness[player];a<la;a++){
+                    this.battle.cardManagers[player].addRandomClass(2,0,2)
+                }
+            break
+            case 5:
+                for(let a=0,la=3*this.effectiveness[player];a<la;a++){
+                    this.battle.cardManagers[player].addRandomClass(2,0,3)
+                }
+            break
+            case 6:
+                for(let a=0,la=3*this.effectiveness[player];a<la;a++){
+                    this.battle.cardManagers[player].addRandomClass(2,0,4)
+                }
+            break
+            case 7:
+                userCombatant.heal(15*this.effect[player])
+            break
+            case 8:
+                this.battle.cardManagers[player].hand.callInput(6,[81,[10*this.effectiveness[player]],4,[2,1,2]])
+            break
+            case 9:
+                this.battle.cardManagers[player].hand.callInput(6,[54,[],4,[6]])
+            break
+            case 10:
+                userCombatant.statusEffect('Counter All',10*this.effectiveness[player])
+            break
+            case 11:
+                userCombatant.addBlock(20*this.effectiveness[player])
+            break
+            case 12:
+                this.battle.cardManagers[player].hand.callInput(6,[82,[10*this.effectiveness[player]],4,[8,1,3]])
+            break
+            case 13:
+                this.battle.cardManagers[player].allEffect(2,4)
+            break
+            case 14:
+                this.battle.energy.main[player]+=3*this.effectiveness[player]
+            break
+            case 15:
+                userCombatant.statusEffect('Strength',2*this.effectiveness[player])
+            break
+            case 16:
+                userCombatant.statusEffect('Dexterity',2*this.effectiveness[player])
+            break
+            case 17:
+                userCombatant.statusEffect('Temporary Strength',5*this.effectiveness[player])
+            break
+            case 18:
+                userCombatant.statusEffect('Temporary Dexterity',5*this.effectiveness[player])
+            break
+            case 19:
+                this.battle.cardManagers[player].hand.callInput(6,[83,[1],1,[2,1,6]])
+            break
+            case 20:
+                this.addItemSlots(1,player)
+            break
+            case 21:
+                this.battle.overlayManager.overlays[10][player].active=true
+                this.battle.overlayManager.overlays[10][player].activate([0,3,1])
+            break
+            case 22:
+                this.battle.cardManagers[player].hand.callInput(6,[84,[3*this.effectiveness[player]],4,[2,1,3]])
+            break
+            case 23:
+                this.battle.cardManagers[player].hand.callInput(6,[85,[3*this.effectiveness[player]],4,[2,1,3]])
+            break
+            case 24:
+                this.battle.cardManagers[player].hand.callInput(6,[86,[3*this.effectiveness[player]],4,[2,1,3]])
+            break
+            case 25:
+                this.battle.cardManagers[player].draw(3*this.effectiveness[player])
+            break
+            
             case 101:
                 userCombatant.statusEffect('Strength',5*this.effectiveness[player])
                 for(let a=0,la=5*this.effectiveness[player];a<la;a++){

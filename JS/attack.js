@@ -31,7 +31,8 @@ class attack{
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
             case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
             case 38: case 39: case 42: case 46: case 47: case 48: case 49: case 53: case 57: case 61:
-            case 66: case 67: case 68: case 75: case 77: case 79: case 80:
+            case 66: case 67: case 68: case 75: case 77: case 79: case 80: case 81: case 83: case 84:
+            case 85: case 86:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -41,6 +42,7 @@ class attack{
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
             break
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
+            case 82:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -971,18 +973,36 @@ class attack{
                     this.remove=true
                 }
             break
-            case 38: case 79:
+            case 38: case 79: case 81: case 84: case 85: case 86:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
                 this.userCombatant.runAnimation(1/30,17)
                 if(this.timer==15){
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
-                    if(this.type==38&&types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
-                        this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
-                    }else if(this.type==79){
-                        this.battle.cardManagers[this.player].discard.add(findName('Ouroboros',types.card),0,0)
-                        this.battle.cardManagers[this.player].discard.cards[this.battle.cardManagers[this.player].discard.cards.length-1].effect[0]=this.effect[0]+2
+                    switch(this.type){
+                        case 38:
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                                this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
+                            }
+                        break
+                        case 79:
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.battle.cardManagers[this.player].discard.add(findName('Ouroboros',types.card),0,0)
+                            this.battle.cardManagers[this.player].discard.cards[this.battle.cardManagers[this.player].discard.cards.length-1].effect[0]=this.effect[0]+2
+                        break
+                        case 81:
+                            this.targetCombatant.statusEffect('Poison',this.effect[0])
+                        break
+                        case 84:
+                            this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        break
+                        case 85:
+                            this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                        break
+                        case 86:
+                            this.targetCombatant.statusEffect('Frail',this.effect[0])
+                        break
                     }
                 }else if(this.timer>=30){
                     this.remove=true
@@ -1332,6 +1352,36 @@ class attack{
                     this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                     this.targetCombatant.statusEffect('Frail',this.effect[1])
                 }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                    this.remove=true
+                }
+            break
+            case 82:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(15)
+                }
+                if(this.timer<=30){
+                    this.userCombatant.runAnimation(1/15,15)
+                }
+                if(this.timer==15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,7,[atan2(this.targetTile.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetTile.position.y),5*this.targetDistance-2]))
+                }else if(this.timer==10*this.targetDistance+15){
+                    this.battle.combatantManager.damageArea(this.effect[0],this.userCombatant.id,this.userCombatant.team,this.targetTile.tilePosition)
+                }else if(this.timer>=10*this.targetDistance+25){
+                    this.remove=true
+                }
+            break
+            case 83:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(15)
+                }
+                if(this.timer<=30){
+                    this.userCombatant.runAnimation(1/15,15)
+                }
+                if(this.timer==15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,8,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),7.5*this.targetDistance-2]))
+                }else if(this.timer==30*this.targetDistance+15){
+                    this.targetCombatant.statusEffect('Stun',this.effect[0])
+                }else if(this.timer>=30*this.targetDistance+25){
                     this.remove=true
                 }
             break

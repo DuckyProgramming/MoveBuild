@@ -1083,7 +1083,7 @@ class relic{
                 break
                 case 'Energy/Counter':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
-                    displaySymbol(this.layer,8,0,61,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,38,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('1',8,0)

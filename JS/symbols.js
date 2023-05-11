@@ -198,6 +198,18 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(60,fade)
             layer.triangle(-2,-1.5,-2,1.5,4,0)
         break
+        case 31:
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,8,8,-30,210)
+            layer.quad(0,0,sqrt(3)*2,-2,0,-2/(2-sqrt(3)),-sqrt(3)*2,-2)
+        break
+        case 32:
+            layer.fill(100,255,100,fade)
+            layer.triangle(-3,-4,3,-4,0,-6)
+            layer.triangle(-3,4,3,4,0,6)
+            layer.triangle(-4,-3,-4,3,-6,0)
+            layer.triangle(4,-3,4,3,6,0)
+        break
 
     }
     layer.pop()
@@ -760,10 +772,11 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             }
             layer.endShape()
         break
-        case 61:
+        case 61:        
             layer.fill(255,50,50,this.fade)
             layer.triangle(-7.5,-6,-7.5,-0.75,9,-3.375)
             layer.triangle(7.5,6,7.5,-0.75,-9,3.375)
+            layer.ellipse(-12,0,4.5,4.5)
         break
         case 62:
             layer.fill(150,fade)
@@ -795,6 +808,36 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
                 layer.triangle(-3,-3,3,-3,0,-10)
                 layer.rotate(36)
             }
+        break
+        case 66:
+            layer.fill(150,255,100,fade)
+            layer.arc(0,0,12,12,-30,210)
+            layer.quad(0,0,sqrt(3)*3,-3,0,-3/(2-sqrt(3)),-sqrt(3)*3,-3)
+        break
+        case 67:
+            layer.stroke(150,0,0,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(lsin(360*a/la)*(10-a%2*5),lcos(360*a/la)*(10-a%2*5))
+            }
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(lsin(360*a/la)*(16-a%2*9),lcos(360*a/la)*(16-a%2*9))
+            }
+            layer.endShape(CLOSE)
+        break
+        case 68:
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,8,8)
+            layer.rect(0,0,22,12)
+        break
+        case 69:
+            layer.fill(100,255,100,fade)
+            layer.triangle(-4.5,-6,4.5,-6,0,-9)
+            layer.triangle(-4.5,6,4.5,6,0,9)
+            layer.triangle(-6,-4.5,-6,4.5,-9,0)
+            layer.triangle(6,-4.5,6,4.5,9,0)
         break
     }
     layer.pop()
@@ -857,9 +900,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 58-Innate
 59-Offensive Intent
 60-Fatigue
-61-Counter
+61-Counter Once
 62-Free Card
 63-Obstruction
 64-Random
 65-Burn
+66-Poison
+67-Explosion
+68-Item Slot
+69-Stun
 */
