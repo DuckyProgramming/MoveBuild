@@ -18,7 +18,7 @@ class particleManager{
         for(let a=0,la=this.particles.length;a<la;a++){
             this.particles[a].update()
             if(this.particles[a].remove){
-                delete this.particles[0]
+                delete this.particles[a]
                 this.particles.splice(a,1)
                 a--
                 la--

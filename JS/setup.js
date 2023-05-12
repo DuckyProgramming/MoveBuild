@@ -7,9 +7,10 @@ function setup(){
     /*for(let a=1;a<=60;a++){
         current.relicManager.addRelic(a,0)
     }*/
-    for(let a=0,la=3;a<la;a++){
-        current.itemManager.addItem(26+a,0)
-    }
+    /*current.itemManager.addItemSlots(2,0)
+    for(let a=0,la=5;a<la;a++){
+        current.itemManager.addItem(2+a,0)
+    }*/
 
     stage.scene='battle'
     current.setupBattle(types.encounter[1])

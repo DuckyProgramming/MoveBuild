@@ -67,6 +67,14 @@ class tileManager{
         }
         return list
     }
+    typeArea(type,tilePosition){
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.tiles[a])
+            if(distance>0&&distance<=1){
+                this.tiles[a].addType(type)
+            }
+        }
+    }
     activate(){
         this.tiles.forEach(tile=>tile.occupied=0)
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){

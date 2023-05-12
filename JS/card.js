@@ -377,6 +377,10 @@ class card{
                 this.layer.stroke(255,255,0,this.fade*anim[2])
                 this.layer.rect(0,0,this.width+2,this.height+2,5)
             }
+            if(anim[3]>0){
+                this.layer.stroke(255,100,255,this.fade*anim[3])
+                this.layer.rect(0,0,this.width+2,this.height+2,5)
+            }
             this.layer.pop()
         }
     }

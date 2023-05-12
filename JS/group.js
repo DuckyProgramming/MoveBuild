@@ -32,10 +32,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0}
     }
     add(type,level,color){
         game.id++
@@ -88,6 +88,9 @@ class group{
     }
     reserve(amount){
         this.status.reserve+=amount
+    }
+    duplicate(amount){
+        this.status.duplicate+=amount
     }
     shuffle(){
         let cards=[]
@@ -149,6 +152,12 @@ class group{
                     this.copySelf(a)
                     a++
                     la++
+                break
+                case 8:
+                    if(this.cards[a].name=='Fatigue'){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                    }
                 break
             }
         }
@@ -224,7 +233,7 @@ class group{
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2||spec==3){
+                if(spec==1||spec==2||spec==3||spec==4||spec==5){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                     if(spec==2){
@@ -232,6 +241,13 @@ class group{
                     }
                     if(spec==3){
                         this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)
+                    }
+                    if(spec==4){
+                        list[list.length-1].cost=0
+                    }
+                    if(spec==5){
+                        this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)
+                        list[list.length-1].cost=0
                     }
                 }
                 delete this.cards[firstIndex]
@@ -241,7 +257,7 @@ class group{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2||spec==3){
+                if(spec==1||spec==2||spec==3||spec==4||spec==5){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                     if(spec==2){
@@ -249,6 +265,13 @@ class group{
                     }
                     if(spec==3){
                         this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)
+                    }
+                    if(spec==4){
+                        list[list.length-1].cost=0
+                    }
+                    if(spec==5){
+                        this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)
+                        list[list.length-1].cost=0
                     }
                 }
                 delete this.cards[firstIndex]
@@ -271,6 +294,13 @@ class group{
         game.id++
         this.lastDuplicate=this.cards[index].name
         this.cards.splice(index,0,copyCard(this.cards[index]))
+        this.cards[index+1].id=game.id
+    }
+    copySelfInput(index){
+        game.id++
+        this.cards.splice(this.cards.length,0,copyCard(this.cards[index]))
+        this.cards[this.cards.length-1].position.x=1200
+        this.cards[this.cards.length-1].position.y=500
         this.cards[index+1].id=game.id
     }
     sort(){
@@ -377,13 +407,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate])
                     }
                 }
             break
@@ -435,6 +465,10 @@ class group{
                     this.battle.attackManager.effect[0]+=2
                 }
                 this.cards[a].usable=false
+                if(this.status.duplicate>0){
+                    this.status.duplicate--
+                    this.copySelfInput(a)
+                }
                 if(this.cards[a].target[0]==0){
                     this.callInput(5,0)
                     this.battle.attackManager.execute()
@@ -579,6 +613,7 @@ class group{
                 this.anim.discard=smoothAnim(this.anim.discard,this.status.discard!=0,0,1,5)
                 this.anim.exhaust=smoothAnim(this.anim.exhaust,this.status.exhaust!=0,0,1,5)
                 this.anim.reserve=smoothAnim(this.anim.reserve,this.status.reserve!=0,0,1,5)
+                this.anim.duplicate=smoothAnim(this.anim.duplicate,this.status.duplicate!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){

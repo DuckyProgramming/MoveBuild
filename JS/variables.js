@@ -936,36 +936,32 @@ types={
         {name:'Dirt',id:23,rarity:0,list:0,description:'Apply 3 Vulnerable'},
         {name:'Ash',id:24,rarity:0,list:0,description:'Apply 3 Frail'},
         {name:'Decaf',id:25,rarity:0,list:0,description:'Draw 3 Cards'},
-        {name:'',id:26,rarity:1,list:0,description:'Add 5 Shivs\nto Your Hand'},
-        {name:'',id:27,rarity:1,list:0,description:'Gain 1 Control'},
-        {name:'',id:28,rarity:1,list:0,description:'Gain 10 Armor'},
-        {name:'',id:29,rarity:1,list:0,description:'Redraw Your Haned'},
-        {name:'',id:30,rarity:1,list:0,description:'Gain 5 Regeneration'},
-        {name:'',id:31,rarity:1,list:0,description:'Gain 1 Strength\nEvery Turn'},
-        {name:'',id:32,rarity:1,list:0,description:'Gain 1 Dexterity\nEvery Turn'},
-        {name:'',id:33,rarity:1,list:0,description:'Recall 1 Card,\nit Costs 0'},
-        {name:'',id:34,rarity:1,list:0,description:'Add 3 Miracles\nto Your Hand'},
-        {name:'',id:35,rarity:1,list:0,description:'Duplicate the Next\n2 Cards Played'},
-        {name:'',id:36,rarity:1,list:0,description:'Draw 3 Cards,\nThey Cost 0'},
-        {name:'',id:37,rarity:1,list:0,description:''},
-        {name:'',id:38,rarity:1,list:0,description:'Randomize Enemy Directions,\nActivate All Enemies'},
-        {name:'',id:39,rarity:1,list:0,description:'Push 1 Tile\nin All Directions\nRange 1-2'},
-        {name:'',id:40,rarity:1,list:0,description:'Remove All Fatigues'},
-        {name:'Pile of Junk',id:41,rarity:2,list:0,description:'Fill All Item Slots'},
-        {name:'',id:42,rarity:2,list:0,description:'Take an Extra Turn'},
-        {name:'',id:43,rarity:2,list:0,description:'Remove a Card\nFrom Your Deck'},
-        {name:'',id:44,rarity:2,list:0,description:'Gain 5 Max HP'},
-        {name:'',id:45,rarity:2,list:0,description:'Gain 2 Intangible'},
+        {name:'Rusted Gear',id:26,rarity:0,list:0,description:'Gain 1 Control'},
+        {name:'Spike Pads',id:27,rarity:1,list:0,description:'Place Spikes on\nAll Adjacent Tiles'},
+        {name:'Metal Plating',id:28,rarity:1,list:0,description:'Gain 10 Armor'},
+        {name:'Rigged Die',id:29,rarity:1,list:0,description:'Redraw Your Hand'},
+        {name:'Lifesprig',id:30,rarity:1,list:0,description:'Gain 8 Regeneration'},
+        {name:'Attack Powder',id:31,rarity:1,list:0,description:'Gain 1 Strength\nEvery Turn'},
+        {name:'Defense Powder',id:32,rarity:1,list:0,description:'Gain 1 Dexterity\nEvery Turn'},
+        {name:'Memory Pearl',id:33,rarity:1,list:0,description:'Recall 1 Card,\nit Costs 0'},
+        {name:'Shiny Cube',id:34,rarity:1,list:0,description:'Add 3 Miracles\nto Your Hand'},
+        {name:'Berlin Key',id:35,rarity:1,list:0,description:'Duplicate the Next\n2 Cards Played'},
+        {name:'Distilled Chaos',id:36,rarity:1,list:0,description:'Draw 3 Cards,\nThey Cost 0'},
+        {name:'Melted Steel',id:37,rarity:1,list:0,description:'Retain Block\nThis Combat'},
+        {name:'Flashbang',id:38,rarity:1,list:0,description:'Randomize Enemy Directions,\nActivate All Enemies'},
+        {name:'Buggy Horn',id:39,rarity:1,list:0,description:'Push 1 Tile\nin All Directions\nRange 1-2'},
+        {name:'Orange Juice',id:40,rarity:1,list:0,description:'Remove All Fatigues'},
+        {name:'Bag of Knives',id:41,rarity:1,list:0,description:'Add 5 Shivs\nto Your Hand'},
+        {name:'Time Crystal',id:42,rarity:2,list:0,description:'Take an Extra Turn'},
+        {name:'Trash Can',id:43,rarity:2,list:0,description:'Remove a Card\nFrom Your Deck'},
+        {name:'Duck Soup',id:44,rarity:2,list:0,description:'Gain 5 Max HP'},
+        {name:'Hologram Projector',id:45,rarity:2,list:0,description:'Gain 2 Intangible'},
         {name:'Large Smoke Bomb',id:46,rarity:2,list:0,description:'End a Non-Boss\nCombat'},
-        {name:'',id:47,rarity:2,list:0,description:'Draw 6 Cards,\nBecome Confused'},
-        {name:'',id:48,rarity:2,list:0,description:'Gain 2 Buffer'},
-        {name:'',id:49,rarity:2,list:0,description:'When You Die,\nHeal to 10% HP'},
-        {name:'',id:50,rarity:2,list:0,description:''},
-
-
-        //stat buffs and nerfs
-
-        
+        {name:'Mirror Dome',id:47,rarity:2,list:0,description:'Draw 10 Cards,\nBecome Confused'},
+        {name:'Shield Field',id:48,rarity:2,list:0,description:'Gain 2 Buffer'},
+        {name:'Bottled Fairy',id:49,rarity:2,list:0,description:'When You Die,\nHeal 10 HP'},
+        {name:'Particle Storm',id:50,rarity:2,list:0,description:'Deal 6 Damage to a\nRandom Enemy 15 Times'},
+        {name:'Pile of Junk',id:51,rarity:2,list:0,description:'Fill All Item Slots'},
         {name:'Starflame Prototype',id:101,rarity:-1,list:-1,description:'Gain 5 Strength,\nShuffle in 5 Burn'},
         {name:'Cola',id:102,rarity:-1,list:-1,description:'Heal 15 HP\nCan No Longer Gain Block'},
 
@@ -3086,14 +3082,14 @@ shipyard visit for another time.`,
         },
     ],encounter:[
         {
-            level:0,class:0,world:-1,
+            level:[],class:0,world:-1,
             name:'',
             player:{position:{x:0,y:0}},
             enemy:[
             ],reinforce:[
             ],
         },{
-            level:'Basic 7',class:0,world:0,
+            level:['Basic 7'],class:0,world:0,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
@@ -3122,7 +3118,7 @@ shipyard visit for another time.`,
                 //{position:{x:6,y:3},name:'Human',turn:2},
             ],
         },{
-            level:'Basic 7',class:1,world:0,
+            level:['Basic 7'],class:1,world:0,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
@@ -3139,7 +3135,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Basic 7',class:2,world:0,
+            level:['Basic 7'],class:2,world:0,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
@@ -3154,7 +3150,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Basic 5',class:0,world:-1,
+            level:['Basic 5'],class:0,world:-1,
             name:'Bar Fight',
             player:{position:[[{x:2,y:2}],[{x:2,y:1},{x:1,y:2}]]},
             enemy:[
@@ -3165,7 +3161,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Crushed 5',class:0,world:-1,
+            level:['Crushed 5'],class:0,world:-1,
             name:'Monkey Attack',
             player:{position:[[{x:2,y:1}],[{x:1,y:0},{x:2,y:0}]]},
             enemy:[
@@ -3178,7 +3174,7 @@ shipyard visit for another time.`,
                 {position:{x:3,y:1},name:'Monkey',turn:3},
             ],
         },{
-            level:'2-Crushed 7',class:1,world:-1,
+            level:['2-Crushed 7'],class:1,world:-1,
             name:'Bus Surprise',
             player:{position:[[{x:3,y:1}],[{x:3,y:1},{x:4,y:1}]]},
             enemy:[
@@ -3189,7 +3185,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Bent 5',class:0,world:-1,
+            level:['Bent 5'],class:0,world:-1,
             name:'The Alley',
             player:{position:[[{x:2,y:1}],[{x:2,y:1},{x:3,y:1}]]},
             enemy:[
@@ -3199,7 +3195,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Basic 3',class:0,world:-1,
+            level:['Basic 3'],class:0,world:-1,
             name:'Slaver',
             player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:0,y:1}]]},
             enemy:[
@@ -3207,7 +3203,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Rectangular 5',class:0,world:-1,
+            level:['Rectangular 5'],class:0,world:-1,
             name:'Fungal Ducks',
             player:{position:[[{x:2,y:1}],[{x:1,y:0},{x:2,y:0}]]},
             enemy:[
@@ -3218,7 +3214,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Crushed 4',class:1,world:-1,
+            level:['Crushed 4'],class:1,world:-1,
             name:'Automata',
             player:{position:[[{x:3,y:1}],[{x:2,y:0},{x:3,y:2}]]},
             enemy:[
@@ -3227,7 +3223,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Star 5',class:0,world:-1,
+            level:['Star 5'],class:0,world:-1,
             name:'Robbery',
             player:{position:[[{x:1,y:2}],[{x:0,y:1},{x:1,y:3}]]},
             enemy:[
@@ -3236,7 +3232,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Basic 3',class:0,world:-1,
+            level:['Basic 3'],class:0,world:-1,
             name:'Fight Club',
             player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:0,y:1}]]},
             enemy:[
@@ -3244,7 +3240,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:'Crushed 7',class:0,world:-1,
+            level:['Crushed 7'],class:0,world:-1,
             name:'Monkey Gang',
             player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:0}]]},
             enemy:[

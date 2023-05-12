@@ -23,13 +23,14 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[4,3,0])],//remove 3 cards, no return
             [new overlay(this.layer,this.battle,0,5,[0])],//sell relic, no return
             [new overlay(this.layer,this.battle,0,2,[4,1,1])],//remove card, return through event (bonfire spirits)
+            [new overlay(this.layer,this.battle,0,2,[11])],//bring in discard card as free, no return
 
         )
         if(this.battle.players==2){
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[17,3,10,0,1,13,2,16,4,15,5,6,7,8,9,12,14,11]
+        this.priority=[17,3,10,0,1,13,2,16,4,15,5,6,7,18,8,9,12,14,11]
         this.anyActive=false
     }
     copyOverlays(){

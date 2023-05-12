@@ -1,5 +1,3 @@
-Animations:
-
 Bugs:
 
 Mechanics:
@@ -14,11 +12,6 @@ The other statuses
 Gangster
 
 More Fights:
-
-More Items:
-health items
-
-More Events:
 
 More Cards:
 square strike

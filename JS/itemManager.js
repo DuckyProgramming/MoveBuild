@@ -85,26 +85,26 @@ class itemManager{
             break
             case 3:
                 for(let a=0,la=3*this.effectiveness[player];a<la;a++){
-                    this.battle.cardManagers[player].addRandomClass(2,0,1)
+                    this.battle.cardManagers[player].addRandomClassFree(2,0,1)
                 }
             break
             case 4:
                 for(let a=0,la=3*this.effectiveness[player];a<la;a++){
-                    this.battle.cardManagers[player].addRandomClass(2,0,2)
+                    this.battle.cardManagers[player].addRandomClassFree(2,0,2)
                 }
             break
             case 5:
                 for(let a=0,la=3*this.effectiveness[player];a<la;a++){
-                    this.battle.cardManagers[player].addRandomClass(2,0,3)
+                    this.battle.cardManagers[player].addRandomClassFree(2,0,3)
                 }
             break
             case 6:
                 for(let a=0,la=3*this.effectiveness[player];a<la;a++){
-                    this.battle.cardManagers[player].addRandomClass(2,0,4)
+                    this.battle.cardManagers[player].addRandomClassFree(2,0,4)
                 }
             break
             case 7:
-                userCombatant.heal(15*this.effect[player])
+                userCombatant.heal(15*this.effectiveness[player])
             break
             case 8:
                 this.battle.cardManagers[player].hand.callInput(6,[81,[10*this.effectiveness[player]],4,[2,1,2]])
@@ -161,7 +161,100 @@ class itemManager{
             case 25:
                 this.battle.cardManagers[player].draw(3*this.effectiveness[player])
             break
-            
+            case 26:
+                userCombatant.statusEffect('Control',1*this.effectiveness[player])
+            break
+            case 27:
+                this.battle.tileManager.typeArea(1,userCombatant.tilePosition)
+            break
+            case 28:
+                userCombatant.statusEffect('Armor',10*this.effectiveness[player])
+            break
+            case 29:
+                let amount=this.battle.cardManagers[player].hand.cards.length
+                this.battle.cardManagers[player].allEffect(2,2)
+                this.battle.cardManagers[player].draw(amount)
+            break
+            case 30:
+                userCombatant.statusEffect('Regeneration',8*this.effectiveness[player])
+            break
+            case 31:
+                userCombatant.statusEffect('Strength Per Turn',this.effectiveness[player])
+            break
+            case 32:
+                userCombatant.statusEffect('Dexterity Per Turn',this.effectiveness[player])
+            break
+            case 33:
+                this.battle.overlayManager.overlays[18][player].active=true
+                this.battle.overlayManager.overlays[18][player].activate([0,3,1])
+            break
+            case 34:
+                for(let a=0,la=3*this.effectiveness[player];a<la;a++){
+                    this.battle.cardManagers[player].hand.add(findName('Miracle',types.card),0,0)
+                }
+            break
+            case 35:
+                this.battle.cardManagers[player].hand.duplicate(2)
+            break
+            case 36:
+                this.battle.cardManagers[player].drawFree(3*this.effectiveness[player])
+            break
+            case 37:
+                userCombatant.statusEffect('Retain Block',99)
+            break
+            case 38:
+                this.battle.combatantManager.randomizeCombatants()
+            break
+            case 39:
+                this.battle.cardManagers[player].hand.callInput(6,[87,[3*this.effectiveness[player]],1,[0]])
+            break
+            case 40:
+                this.battle.cardManagers[player].reserve.removeAllName('Fatigue')
+                this.battle.cardManagers[player].discard.removeAllName('Fatigue')
+                this.battle.cardManagers[player].allEffect(2,8)
+            break
+            case 41:
+                for(let a=0,la=5*this.effectiveness[player];a<la;a++){
+                    this.battle.cardManagers[player].hand.add(findName('Shiv',types.card),0,0)
+                }
+            break
+            case 42:
+                userCombatant.statusEffect('Extra Turn',this.effectiveness[player])
+            break
+            case 43:
+                this.battle.overlayManager.overlays[6][player].active=true
+                this.battle.overlayManager.overlays[6][player].activate([0,3,1])
+            break
+            case 44:
+                userCombatant.gainMaxHP(5*this.effectiveness[player])
+            break
+            case 45:
+                userCombatant.statusEffect('Intangible',2*this.effectiveness[player])
+            break
+            case 46:
+                if(this.battle.encounter.class!=2){
+                    transition.trigger=true
+                    transition.scene='map'
+                }
+            break
+            case 47:
+                this.battle.cardManagers[player].draw(10*this.effectiveness[player])
+                this.battle.cardManagers[player].allEffect(2,5)
+            break
+            case 48:
+                userCombatant.statusEffect('Buffer',2*this.effectiveness[player])
+            break
+            case 49:
+                userCombatant.heal(10*this.effectiveness[player])
+            break
+            case 50:
+                this.battle.cardManagers[player].hand.callInput(6,[88,[6*this.effectiveness[player]],1,[0]])
+            break
+            case 51:
+                for(let a=0,la=this.items[player].length;a<la;a++){
+                    this.addRandomItem(player)
+                }
+            break
             case 101:
                 userCombatant.statusEffect('Strength',5*this.effectiveness[player])
                 for(let a=0,la=5*this.effectiveness[player];a<la;a++){
@@ -175,6 +268,14 @@ class itemManager{
         }
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,2))==0){
             this.addRandomItem(player)
+        }
+    }
+    activateDeath(player){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].name=='Bottled Fairy'){
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].heal(10*this.effectiveness[player])
+                this.items[player][a].type=1
+            }
         }
     }
     display(scene){

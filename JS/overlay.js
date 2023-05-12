@@ -17,7 +17,7 @@ class overlay{
                     case 0: case 6: case 9:
                         this.battle.cardManagers[this.player].reserve.cards.forEach(card=>card.size=0)
                     break
-                    case 1: case 5:
+                    case 1: case 5: case 11:
                         this.battle.cardManagers[this.player].discard.cards.forEach(card=>card.size=0)
                     break
                     case 2: case 3: case 4: case 7: case 8: case 10:
@@ -55,7 +55,7 @@ class overlay{
             case 2:
                 switch(this.args[0]){
                     case 0: case 6: case 9: this.battle.cardManagers[this.player].reserve.resetAnim(); break
-                    case 1: case 7: this.battle.cardManagers[this.player].discard.resetAnim(); break
+                    case 1: case 5: case 11: this.battle.cardManagers[this.player].discard.resetAnim(); break
                     case 2: case 3: case 4: case 7: case 8: case 10: this.battle.cardManagers[this.player].deck.resetAnim(); break
                 }
                 switch(this.args[0]){
@@ -206,11 +206,11 @@ class overlay{
                 this.layer.textSize(20)
                 switch(this.args[0]){
                     case 0: case 1: case 2: case 9: this.layer.text('Close',this.layer.width/2,this.layer.height/2+225); break
-                    case 3: case 4: case 5: case 6: case 7: case 8: case 10: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
+                    case 3: case 4: case 5: case 6: case 7: case 8: case 10: case 11: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
                     case 0: case 6: this.battle.cardManagers[this.player].reserve.display('overlay',[0,this.page]); break
-                    case 1: case 5: this.battle.cardManagers[this.player].discard.display('overlay',[1,this.page]); break
+                    case 1: case 5: case 11: this.battle.cardManagers[this.player].discard.display('overlay',[1,this.page]); break
                     case 2: case 3: case 4: case 7: case 8: case 10: this.battle.cardManagers[this.player].deck.display('overlay',[1,this.page]); break
                     case 9: this.battle.cardManagers[this.player].reserve.display('overlay',[1,this.page]); break
                 }
@@ -317,7 +317,7 @@ class overlay{
                 case 2:
                     switch(this.args[0]){
                         case 0: case 6: case 9: this.battle.cardManagers[this.player].reserve.update('overlay',[this.page]); break
-                        case 1: case 5: this.battle.cardManagers[this.player].discard.update('overlay',[this.page]); break
+                        case 1: case 5: case 11: this.battle.cardManagers[this.player].discard.update('overlay',[this.page]); break
                         case 2: case 3: case 4: case 7: case 8: case 10: this.battle.cardManagers[this.player].deck.update('overlay',[this.page]); break
                     }
                     switch(this.args[0]){
@@ -326,7 +326,7 @@ class overlay{
                                 this.battle.cardManagers[this.player].reserve.cards[a].size=constrain(this.battle.cardManagers[this.player].reserve.cards[a].size,0,this.fade)
                             }
                         break
-                        case 1: case 5:
+                        case 1: case 5: case 11:
                             for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
                                 this.battle.cardManagers[this.player].discard.cards[a].size=constrain(this.battle.cardManagers[this.player].discard.cards[a].size,0,this.fade)
                             }
@@ -447,13 +447,18 @@ class overlay{
                                 }
                             }
                         break
-                        case 5:
+                        case 5: case 11:
                             for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].discard.cards[a])&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&this.battle.cardManagers[this.player].discard.cards[a].select){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
                                     switch(this.args[0]){
                                         case 5:
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            a--
+                                            la--
+                                        break
+                                        case 11:
+                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,4)
                                             a--
                                             la--
                                         break
@@ -624,13 +629,18 @@ class overlay{
                                 }
                             }
                         break
-                        case 5:
+                        case 5: case 11:
                             for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
                                 if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&this.battle.cardManagers[this.player].discard.cards[a].select){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
                                     switch(this.args[0]){
                                         case 5:
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                            a--
+                                            la--
+                                        break
+                                        case 11:
+                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,4)
                                             a--
                                             la--
                                         break

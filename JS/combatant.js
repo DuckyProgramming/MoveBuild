@@ -44,19 +44,19 @@ class combatant{
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
             'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
             'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Next Turn Cannot Move',
-            'Strength Per Turn','Poison','Stun',
+            'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
                 1,1,0,2,0,0,1,2,2,0,
                 2,0,0,0,1,1,0,0,1,2,
-                0,1,1,
+                0,1,1,1,0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
                 0,0,0,0,0,0,1,0,0,0,
                 1,0,2,2,0,0,0,2,1,1,
-                0,1,1,
+                0,1,1,0,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good
@@ -1261,6 +1261,8 @@ class combatant{
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
                     case 30: this.status.main[findList('Strength',this.status.name)]+=this.status.main[a]; break
+                    case 33: this.heal(this.status.main[a]); break
+                    case 34: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
                     if(this.status.main[a]>0){
@@ -5598,29 +5600,32 @@ class combatant{
         if(this.team>0){
             this.fade=1
             if(this.life<=0){
-                if(!this.dead){
-                    if(this.battle.relicManager.hasRelic(81,this.id)){
-                        this.battle.relicManager.active[81]--
-                        if(this.battle.relicManager.active[81]<=0){
-                            this.battle.relicManager.deactivate(81)
-                        }
-                        this.heal(round(this.base.life*5)/10)
-                    }else{
-                        this.dead=true
-                        this.startAnimation(7)
-                        this.deTarget()
-                        let allDead=true
-                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].life>0){
-                                allDead=false
+                this.battle.itemManager.activateDeath(this.id)
+                if(this.life<=0){
+                    if(!this.dead){
+                        if(this.battle.relicManager.hasRelic(81,this.id)){
+                            this.battle.relicManager.active[81]--
+                            if(this.battle.relicManager.active[81]<=0){
+                                this.battle.relicManager.deactivate(81)
+                            }
+                            this.heal(round(this.base.life*5)/10)
+                        }else{
+                            this.dead=true
+                            this.startAnimation(7)
+                            this.deTarget()
+                            let allDead=true
+                            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                                if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].life>0){
+                                    allDead=false
+                                }
+                            }
+                            if(allDead){
+                                this.battle.result.defeat=true
                             }
                         }
-                        if(allDead){
-                            this.battle.result.defeat=true
-                        }
+                    }else{
+                        this.runAnimation(1/15,7)
                     }
-                }else{
-                    this.runAnimation(1/15,7)
                 }
             }
         }else{

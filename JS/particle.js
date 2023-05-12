@@ -24,7 +24,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 2:
+            case 2: case 9:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -135,6 +135,16 @@ class particle{
                     this.layer.triangle(-2.5,-4,2.5,-4,0,-7)
                     this.layer.rect(0,5,5,2)
                 break
+                case 9:
+                    this.layer.fill(255,50,50,this.fade)
+                    this.layer.ellipse(0,0,12,12)
+                    this.layer.fill(255,100,100,this.fade)
+                    this.layer.ellipse(0,0,9,9)
+                    this.layer.fill(255,150,150,this.fade)
+                    this.layer.ellipse(0,0,6,6)
+                    this.layer.fill(255,200,200,this.fade)
+                    this.layer.ellipse(0,0,3,3)
+                break
             }
             this.layer.pop()
         }
@@ -172,7 +182,7 @@ class particle{
                     }
                 }
             break
-            case 2:
+            case 2: case 9:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

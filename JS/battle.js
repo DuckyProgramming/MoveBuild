@@ -106,7 +106,7 @@ class battle{
         this.result={defeat:false,victory:false}
         this.reinforce={back:[],front:[]}
 
-        this.tileManager.generateTiles(types.level[findName(encounter.level,types.level)])
+        this.tileManager.generateTiles(types.level[findName(encounter.level[floor(random(0,encounter.level.length))],types.level)])
         
         this.combatantManager.resetCombatants()
         
@@ -244,7 +244,11 @@ class battle{
         this.combatantManager.tickEarly()
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
-        this.turn.main++
+        if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].status.main[35]>0){
+            this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].status.main[35]--
+        }else{
+            this.turn.main++
+        }
         if(this.turn.main>=this.players){
             this.sendReinforce()
             this.turnManager.loadEnemyTurns()

@@ -195,7 +195,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 30:
             layer.fill(255,50,50,fade)
             layer.triangle(0,-6,-1.5,3,1.5,3)
-            layer.fill(60,fade)
+            layer.fill(80,fade)
             layer.triangle(-2,-1.5,-2,1.5,4,0)
         break
         case 31:
@@ -209,6 +209,28 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-3,4,3,4,0,6)
             layer.triangle(-4,-3,-4,3,-6,0)
             layer.triangle(4,-3,4,3,6,0)
+        break
+        case 33:
+            layer.fill(150,255,150,fade)
+            layer.rect(0,0,2.5,10)
+            layer.rect(0,0,10,2.5)
+            layer.ellipse(-3.75,-3.75,2.4,2.4)
+            layer.ellipse(-3.75,3.75,2.4,2.4)
+            layer.ellipse(3.75,-3.75,2.4,2.4)
+            layer.ellipse(3.75,3.75,2.4,2.4)
+        break
+        case 34:
+            layer.fill(150,175,200,fade)
+            layer.triangle(0,-6,-1.5,3,1.5,3)
+            layer.fill(80,fade)
+            layer.triangle(-2,-1.5,-2,1.5,4,0)
+        break
+        case 35:
+            layer.stroke(40,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,12,12)
+            layer.line(0,0,0,-3.75)
+            layer.line(0,0,2.25,2.25)
         break
 
     }
@@ -680,11 +702,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.endShape(CLOSE)
         break
         case 48:
-            layer.fill(150,255,100,fade)
-            layer.arc(0,0,10,10,-165,-105)
-            layer.arc(0,0,10,10,-75,-15)
-            layer.arc(0,0,10,10,15,75)
-            layer.arc(0,0,10,10,105,165)
+            layer.fill(50,150,100,fade)
+            layer.ellipse(0,0,12,12)
+            layer.rotate(-45)
+            for(let a=0,la=3;a<la;a++){
+                layer.triangle(-3,4.5,3,4.5,0,12)
+                layer.rotate(45)
+            }
         break
         case 49:
             layer.fill(200,100,200,fade)
@@ -839,6 +863,52 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-6,-4.5,-6,4.5,-9,0)
             layer.triangle(6,-4.5,6,4.5,9,0)
         break
+        case 70:
+            layer.fill(90,95,100,fade)
+            regPoly(layer,0,0,6,24,10.8,0)
+            layer.fill(190,195,200,fade)
+            for(let a=0,la=5;a<la;a++){
+                for(let b=0,lb=1+a%2;b<lb;b++){
+                    layer.triangle(-2+10-lb*10+b*20,2+3/2-la*3/2+a*3,2+10-lb*10+b*20,2+3/2-la*3/2+a*3,10-lb*10+b*20,-3+3/2-la*3/2+a*3)
+                }
+            }
+        break
+        case 71:
+            layer.fill(150,255,150,fade)
+            layer.rect(0,0,6,24)
+            layer.rect(0,0,24,6)
+            layer.ellipse(-9,-9,6,6)
+            layer.ellipse(-9,9,6,6)
+            layer.ellipse(9,-9,6,6)
+            layer.ellipse(9,9,6,6)
+        break
+        case 72:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-12,-3,6,3,6)
+            layer.fill(80,fade)
+            layer.triangle(-4,-3,-4,3,8,0)
+        break
+        case 73:
+            layer.fill(150,175,200,fade)
+            layer.triangle(0,-12,-3,6,3,6)
+            layer.fill(80,fade)
+            layer.triangle(-4,-3,-4,3,8,0)
+        break
+        case 74:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-7.5,-4.3,7.5,-4.5,0,-9)
+			layer.arc(0,-4.5,15,24,0,180)
+            layer.fill(225,fade)
+            layer.rect(-4.5,0,13.5,4.5)
+            layer.triangle(2.25,-6.75,2.25,6.75,11.25,0)
+        break
+        case 75:
+            layer.stroke(40,fade)
+            layer.strokeWeight(2)
+            layer.ellipse(0,0,16,16)
+            layer.line(0,0,0,-5)
+            layer.line(0,0,3,3)
+        break
     }
     layer.pop()
 }
@@ -909,4 +979,10 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 67-Explosion
 68-Item Slot
 69-Stun
+70-Spike Tile
+71-Regen
+72-Strength Per Turn
+73-Dexterity Per Turn
+74-Retain Block
+75-Extra Turn
 */

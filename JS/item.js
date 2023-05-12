@@ -185,8 +185,156 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('3',0,0)
                 break
-
-
+                case 'Rusted Gear':
+                    displaySymbol(this.layer,0,0,56,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Spike Pads':
+                    displaySymbol(this.layer,0,0,70,0,0.8,this.fade)
+                break
+                case 'Metal Plating':
+                    displaySymbol(this.layer,0,0,37,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('10',0,0)
+                break
+                case 'Rigged Die':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,14,0,1.5,this.fade)
+                break
+                case 'Lifesprig':
+                    displaySymbol(this.layer,0,0,71,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,0)
+                break
+                case 'Attack Powder':
+                    displaySymbol(this.layer,0,0,72,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Defense Powder':
+                    displaySymbol(this.layer,0,0,73,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Memory Pearl':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,5,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,9,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,0)
+                break
+                case 'Shiny Cube':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,15,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('3',0,0)
+                break
+                case 'Berlin Key':
+                    displaySymbol(this.layer,-12,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,12,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,2,4,0,0.6,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,-6)
+                break
+                case 'Distilled Chaos':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,9,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.text('0',8,0)
+                break
+                case 'Melted Steel':
+                    displaySymbol(this.layer,0,0,74,0,1.2,this.fade)
+                break
+                case 'Flashbang':
+                    displaySymbol(this.layer,0,0,3,0,0.4,this.fade)
+                    displaySymbol(this.layer,12,0,4,0,0.4,this.fade)
+                    displaySymbol(this.layer,-12,0,5,0,0.4,this.fade)
+                    displaySymbol(this.layer,0,12,6,0,0.4,this.fade)
+                    displaySymbol(this.layer,0,-12,7,0,0.4,this.fade)
+                break
+                case 'Buggy Horn':
+                    displaySymbol(this.layer,-10,0,20,0,0.8,this.fade)
+                    displaySymbol(this.layer,9,0,3,0,0.5,this.fade)
+                break
+                case 'Orange Juice':
+                    displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,60,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
+                break
+                case 'Bag of Knives':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,36,0,1.4,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,0)
+                break
+                case 'Time Crystal':
+                    displaySymbol(this.layer,0,0,75,0,1.5,this.fade)
+                break
+                case 'Trash Can':
+                    displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,16,0,1.2,this.fade)
+                break
+                case 'Duck Soup':
+                    displaySymbol(this.layer,0,0,10,0,0.8,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,0)
+                break
+                case 'Hologram Projector':
+                    displaySymbol(this.layer,0,-4,48,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,0)
+                break
+                case 'Large Smoke Bomb':
+                    displaySymbol(this.layer,0,-4,3,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,12,4,0,0.8,this.fade)
+                break
+                case 'Mirror Dome':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('10',-8,0)
+                    this.layer.textSize(20)
+                    this.layer.text('?',8,0)
+                break
+                case 'Shield Field':
+                    displaySymbol(this.layer,0,0,44,0,2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,0)
+                break
+                case 'Bottled Fairy':
+                    displaySymbol(this.layer,-10,0,22,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('10',8,0)
+                break
+                case 'Particle Storm':
+                    displaySymbol(this.layer,-6,0,18,0,1.2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(6)
+                    this.layer.text('6x15',-6,0)
+                    this.layer.textSize(20)
+                    this.layer.text('?',10,0)
+                break
+                case 'Pile of Junk':
+                    displaySymbol(this.layer,-8,0,30,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,30,0,0.6,this.fade)
+                break
                 case 'Starflame Prototype':
                     displaySymbol(this.layer,-8,0,11,0,1,this.fade)
                     displaySymbol(this.layer,8,0,8,0,1,this.fade)
@@ -227,7 +375,7 @@ class item{
                 break
                 case 2:
                     this.layer.text('Rare',100+pos*50,290)
-                K
+                break
             }
         }
     }

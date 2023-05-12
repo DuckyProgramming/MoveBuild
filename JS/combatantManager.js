@@ -91,6 +91,15 @@ class combatantManager{
             }
         }
     }
+    randomizeCombatants(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                this.combatants[a].goal.anim.direction=-150+floor(random(0,6))*60
+                this.combatants[a].activated=true
+            }
+        }
+        this.battle.updateTargetting()
+    }
     allEffect(effect,args){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){
@@ -160,11 +169,10 @@ class combatantManager{
             }
         }
     }
-    getArea(team,tilePosition){
+    getArea(team,tilePosition,range){
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].team!=team&&distance>=0&&distance<=1){
+            if(this.combatants[a].team!=team&&legalTargetCombatant(0,0,range,{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)){
                 combatants.push(this.combatants[a])
             }
         }
