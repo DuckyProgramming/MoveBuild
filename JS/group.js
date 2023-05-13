@@ -497,6 +497,7 @@ class group{
                 this.battle.attackManager.targetInfo[0]=0
                 this.cards[a].select=false
                 this.cards[a].usable=true
+                this.battle.updateTargetting()
             break
             case 2:
                 this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.tileManager.tiles[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.tileManager.tiles[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30

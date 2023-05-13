@@ -589,6 +589,12 @@ types={
                 {effect:[1],attack:-6,cost:0,target:[0],spec:[5],class:5},
                 {effect:[1],attack:-6,cost:0,target:[0],spec:[5],class:5},
             ],
+        },{
+            name:'Stuck',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
+            ],
         },
 
         {
@@ -699,6 +705,13 @@ types={
         {name:'Romeo',life:40,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:15,effect:[10,2]},{type:21,effect:[]}],description:`Kinda useless`},
         {name:'Billy Beatup',life:75,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},//20
         {name:'Monkey Gangster',life:24,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[5]},{type:11,effect:[2]}],description:`Your occupation`},
+        {name:'Slime',life:20,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Stuck']},{type:23,effect:[2]}],description:`Not splitting yet`},
+        {name:'Cartel',life:42,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:24,effect:[2,5]},{type:4,effect:[12]}],description:`A businessman`},
+        {name:'Gangster',life:40,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:4,effect:[6]}],description:`Crime man`},
+        {name:'Ninja',life:32,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[4]}],description:`Wishes he was still cool`},
+        {name:'Red',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[7]},{type:15,effect:[5,1]},{type:25,effect:[4]}],description:`The people`},
+        {name:'Big Duck',life:50,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:5,effect:[2]},{type:2,effect:[3]},{type:6,effect:[8]}],description:`My boy grew up`},
+
 
     ],attack:[
         {name:'',class:0},//0
@@ -723,6 +736,10 @@ types={
         {name:'2 Tile Triple Strike (Nonpenetrative) (Advance)',class:1},
         {name:'2 Tile Double Strike (Nonpenetrative) (Advance)',class:1},//20
         {name:'Idle',class:0},
+        {name:'Statusing Strike',class:1},
+        {name:'Weaken',class:1},
+        {name:'2 Tile Bleeding Strike',class:1},
+        {name:'All Enemy Heal',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3093,10 +3110,13 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Duck'},
-                {position:{x:1,y:0},name:'Duck'},
-                {position:{x:0,y:1},name:'Duck'},
-                {position:{x:1,y:1},name:'Duck'},
+                //{position:{x:0,y:0},name:'Slime'},
+                //{position:{x:3,y:0},name:'Cartel'},
+                {position:{x:6,y:3},name:'Gangster'},
+                //{position:{x:6,y:6},name:'Ninja'},
+                //{position:{x:3,y:6},name:'Red'},
+                //{position:{x:0,y:3},name:'Big Duck'},
+
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},
                 {position:{x:3,y:0},name:'Thug'},

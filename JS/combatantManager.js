@@ -123,6 +123,9 @@ class combatantManager{
                     case 6:
                         this.combatants[a].addBlock(args[0])
                     break
+                    case 7:
+                        this.combatants[a].heal(args[0])
+                    break
                 }
             }
         }

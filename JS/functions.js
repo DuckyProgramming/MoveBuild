@@ -161,6 +161,10 @@ function intentDescription(attack,info){
 		case 19: return `Deal ${info?attack.effect[0]:`?`} Damage 3 Times\nRange 1-2`
 		case 20: return `Deal ${info?attack.effect[0]:`?`} Damage 3 Times\nRange 1-1`
 		case 21: return `Do Nothing`
+		case 22: return `Deal ${info?attack.effect[0]:`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
+		case 23: return `Apply ${info?attack.effect[0]:`?`} Weak\nRange 1-1`
+		case 24: return `Deal ${info?attack.effect[0]:`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bleed\nRange 1-2`
+		case 25: return `Heal ${info?attack.effect[0]:`?`} Health\nFor All Enemies`
 
 	}
 }
@@ -267,7 +271,7 @@ function targetDirection(type,x,y){
 				return 4
 			}
 			if(x==0&&y>0){
-				return 2
+				return 5
 			}
 			return -1
 	}

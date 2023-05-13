@@ -6,6 +6,7 @@ class turnManager{
         this.auxiliary=false
 
         this.turns=[]
+        this.turnsBack=[]
     }
     clear(){
         for(let a=0,la=this.turns.length;a<la;a++){
@@ -21,6 +22,10 @@ class turnManager{
         this.turns.push(new turn(0,this.battle,
             this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
             this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
+    }
+    loadEnemyMove(enemy){
+        this.auxiliary=true
+        this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
     }
     loadEnemyRotate(enemy){
         this.auxiliary=true
@@ -78,6 +83,21 @@ class turnManager{
                     this.battle.turn.main=0
                 }else{
                     this.battle.startTurn()
+                }
+            }
+            if(this.turnsBack.length>0&&this.battle.attackManager.attacks.length<=0){
+                if(this.turnsBack[0].timer==0){
+                    this.turnsBack[0].set()
+                }
+                if(this.turnsBack[0].remove){
+                    delete this.turnsBack[0]
+                    this.turnsBack.splice(0,1)
+                }else{
+                    this.turnsBack[0].update()
+                    if(this.turnsBack[0].remove){
+                        delete this.turnsBack[0]
+                        this.turnsBack.splice(0,1)
+                    }
                 }
             }
         }

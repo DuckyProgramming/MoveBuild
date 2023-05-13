@@ -232,6 +232,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.line(0,0,0,-3.75)
             layer.line(0,0,2.25,2.25)
         break
+        case 36:
+            layer.fill(255,50,50,this.fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(0,6,3,3)
+        break
 
     }
     layer.pop()
@@ -330,6 +336,28 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(255,fade)
             layer.quad(0,-5,-5,0,0,5,5,0)
         break
+        case 22:
+            layer.fill(0,255,100,fade)
+            layer.ellipse(0,0,8,8)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+        break
+        case 23:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+        break
+        case 24:
+            layer.fill(150,0,0,fade)
+            layer.arc(0,0,8,8,-45,225)
+            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+        break
+        case 25:
+            layer.fill(255,100,100,fade)
+            layer.rect(0,0,3,12)
+            layer.rect(0,0,12,3)
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -337,7 +365,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
     if(info){
         switch(type){
             case 1: case 3: case 4: case 5: case 6: case 7: case 8: case 9: case 10: case 12:
-            case 13: case 14: case 16: case 18:
+            case 13: case 14: case 16: case 18: case 22: case 23: case 25:
                 layer.text(effect[0],0,0)
             break
             case 20:
@@ -349,7 +377,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 11:
                 layer.text(`${effect[0]}x5`,0,0)
             break
-            case 15: case 17:
+            case 15: case 17: case 24:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:

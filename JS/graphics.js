@@ -2109,8 +2109,8 @@ function setupBackground(type,layer){
 				for(let b=0,lb=20;b<lb;b++){
 					layer.fill(150-50*(a-b/lb)/la)
 					layer.quad(
-						layer.width*(a-b/lb)/la,map(b/lb,0,1,d,c),
-						layer.width*(a-(b+1)/lb)/la,map((b+1)/lb,0,1,d,c),
+						layer.width*(a-b/lb)/la,lerp(d,c,b/lb),
+						layer.width*(a-(b+1)/lb)/la,lerp(d,c,(b+1)/lb),
 						layer.width*(a-(b+1)/lb)/la,layer.height*0.8+1,
 						layer.width*(a-b/lb)/la,layer.height*0.8+1,
 					)
@@ -2122,8 +2122,8 @@ function setupBackground(type,layer){
 				for(let b=0,lb=20;b<lb;b++){
 					layer.fill(100-50*(a-b/lb)/la)
 					layer.quad(
-						layer.width*(a+0.5-b/lb)/la,map(b/lb,0,1,d,c),
-						layer.width*(a+0.5-(b+1)/lb)/la,map((b+1)/lb,0,1,d,c),
+						layer.width*(a+0.5-b/lb)/la,lerp(d,c,b/lb),
+						layer.width*(a+0.5-(b+1)/lb)/la,lerp(d,c,(b+1)/lb),
 						layer.width*(a+0.5-(b+1)/lb)/la,layer.height*0.8+1,
 						layer.width*(a+0.5-b/lb)/la,layer.height*0.8+1,
 					)

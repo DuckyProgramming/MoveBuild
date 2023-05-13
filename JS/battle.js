@@ -228,6 +228,7 @@ class battle{
     activateTile(type,id){
         this.tileManager.activate()
         this.tileManager.activateTiles(type,id)
+        this.updateTargetting()
     }
     updateTargetting(){
         this.tileManager.unTargetTiles()
@@ -732,7 +733,7 @@ class battle{
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:528},width:32,height:24})){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:560},width:32,height:24})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0){
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:560},width:32,height:24})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
                             this.endTurn()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.extra[this.turn.main]*100,y:412},width:32,height:24})){
                             this.cardManagers[this.turn.main].hand.cancel()
@@ -840,7 +841,7 @@ class battle{
                         }else if(key=='d'||key=='D'){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
-                        }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0){
+                        }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0){
                             this.endTurn()
                         }
                     }
