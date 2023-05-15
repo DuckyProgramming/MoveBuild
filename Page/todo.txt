@@ -1,4 +1,6 @@
 Bugs:
+fatigue step (all movements ig)
+damage dealt on stat screen
 
 Mechanics:
 Menu

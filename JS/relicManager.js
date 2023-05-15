@@ -1,3 +1,7 @@
+class disabledRelicManager{
+    constructor(){}
+    hasRelic(){return false}
+}
 class relicManager{
     constructor(layer,battle){
         this.layer=layer

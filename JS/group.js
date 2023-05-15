@@ -7,6 +7,7 @@ class group{
         this.cards=[]
         this.removed=[]
         this.sorted=[]
+        this.drawEffects=[]
         this.lastDuplicate=''
 
         this.reset()
@@ -18,10 +19,10 @@ class group{
                     this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
                 }
                 for(let a=0;a<8;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
+                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
                 }
                 for(let a=0;a<4;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
+                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],types.deck.start[player][0][1],types.deck.start[player][0][2])
                 }
                 for(let a=1,la=types.card.length-2;a<la;a++){
                     //this.add(a,0,0)
@@ -173,7 +174,8 @@ class group{
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
                 if(this.cards[a].usable
-                &&!(this.cards[a].cost<=0&&(effect==1||effect==5))
+                &&!((this.cards[a].cost<=0||this.cards[a].spec.includes(5))&&(effect==1||effect==5))
+                &&!((this.cards[a].cost<0||this.cards[a].spec.includes(5))&&effect==7)
                 &&!((this.cards[a].level>=types.card[this.cards[a].type].levels.length-1||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==2)
                 &&!((this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==3)){
                     list.push(a)
@@ -205,6 +207,9 @@ class group{
                     case 6:
                         this.cards.splice(index,1)
                     break
+                    case 7:
+                        this.cards[index].cost+=args[0]
+                    break
                 }
             }
         }
@@ -217,6 +222,9 @@ class group{
             case -6:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Weak',effect[0])
             break
+            case -12:
+                this.drawEffects.push([0,7,[effect[0]]])
+            break
         }
     }
     deathEffect(){
@@ -228,7 +236,7 @@ class group{
             }
         }
     }
-    send(list,firstIndex,lastIndex,spec){
+    send(list,firstIndex,lastIndex,spec,parent){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
@@ -277,6 +285,16 @@ class group{
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
             }
+        }
+        if(this.drawEffects.length>0){
+            for(let a=0,la=this.drawEffects.length;a<la;a++){
+                switch(this.drawEffects[a][0]){
+                    case 0:
+                        parent.randomEffect(this.drawEffects[a][1],this.drawEffects[a][2])
+                    break
+                }
+            }
+            this.drawEffects=[]
         }
     }
     copy(list,firstIndex,lastIndex){

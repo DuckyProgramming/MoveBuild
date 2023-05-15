@@ -595,6 +595,12 @@ types={
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
             ],
+        },{
+            name:'Concussion',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
+                {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
+            ],
         },
 
         {
@@ -711,7 +717,12 @@ types={
         {name:'Ninja',life:32,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[4]}],description:`Wishes he was still cool`},
         {name:'Red',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[7]},{type:15,effect:[5,1]},{type:25,effect:[4]}],description:`The people`},
         {name:'Big Duck',life:50,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:5,effect:[2]},{type:2,effect:[3]},{type:6,effect:[8]}],description:`My boy grew up`},
-
+        {name:'Batter',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[12,1,'Concussion']},{type:4,effect:[6]},{type:26,effect:[1]}],description:`Uses people as baseballs`},
+        {name:'Slippery Gangster',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:20,effect:[3]}],description:`Can't hit this man`},
+        {name:'Gangster Gunner',life:24,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Our ranged support`},//30
+        {name:'Spheron',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[10]},{type:4,effect:[20]},{type:27,effect:[10,2]},{type:30,effect:[10,10]}],description:`Block strategy`},
+        {name:'Enforcer',life:80,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:28,effect:[8]},{type:29,effect:[8]}],description:`Doesn't make the rules`},
+        {name:'Rock Golem',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:22,effect:[5,1,'Dazed']},{type:4,effect:[4]}],description:`Why is this alive?`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -720,26 +731,31 @@ types={
         {name:'Push',class:1},
         {name:'Block',class:2},
         {name:'Daze',class:4},
-        {name:'2 Tile Strike (Nonpenetrative) (Advance)',class:1},
-        {name:'2 Tile Push (Advance)',class:1},
-        {name:'Burn (2 Range) (Nonpenetrative) (Advance)',class:1},
+        {name:'2 Tile Strike',class:1},
+        {name:'2 Tile Push',class:1},
+        {name:'2 Range Burn',class:1},
         {name:'3 Spread Strike',class:1},
         {name:'All Enemy Block',class:2},//10
         {name:'Pentuple Strike',class:1},
-        {name:'Gun (Nonpenetrative)',class:1},
+        {name:'Gun',class:1},
         {name:'Injuring Strike',class:1},
-        {name:'Injuring 2 Tile Strike (Nonpenetrative) (Advance)',class:1},
+        {name:'Injuring 2 Tile Strike',class:1},
         {name:'2 Tile Strike / Weaken',class:1},
         {name:'Spin Strike',class:1},
         {name:'Spin Strike / Stuck',class:1},
         {name:'Strengthen',class:4},
-        {name:'2 Tile Triple Strike (Nonpenetrative) (Advance)',class:1},
-        {name:'2 Tile Double Strike (Nonpenetrative) (Advance)',class:1},//20
+        {name:'2 Tile Triple Strike',class:1},
+        {name:'2 Tile Double Strike',class:1},//20
         {name:'Idle',class:0},
         {name:'Statusing Strike',class:1},
         {name:'Weaken',class:1},
-        {name:'2 Tile Bleeding Strike',class:1},
-        {name:'All Enemy Heal',class:1},
+        {name:'2 Tile Strike / Bleed',class:1},
+        {name:'All Enemy Heal',class:4},
+        {name:'All Enemy Strengthen',class:4},
+        {name:'2 Tile Strike / Frail',class:1},
+        {name:'2 Tile 3 Spread Strike',class:1},
+        {name:'2 Turn Block',class:2},
+        {name:'2 Tile Strike / Block',class:1},//30
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3110,12 +3126,12 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                //{position:{x:0,y:0},name:'Slime'},
-                //{position:{x:3,y:0},name:'Cartel'},
-                {position:{x:6,y:3},name:'Gangster'},
-                //{position:{x:6,y:6},name:'Ninja'},
-                //{position:{x:3,y:6},name:'Red'},
-                //{position:{x:0,y:3},name:'Big Duck'},
+                //{position:{x:0,y:0},name:'Batter'},
+                //{position:{x:3,y:0},name:'Slippery Gangster'},
+                //{position:{x:0,y:0},name:'Gangster Gunner'},
+                //{position:{x:3,y:0},name:'Spheron'},
+                //{position:{x:0,y:0},name:'Enforcer'},
+                //{position:{x:3,y:0},name:'Rock Golem'},
 
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},

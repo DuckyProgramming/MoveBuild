@@ -29,7 +29,7 @@ class turn{
                             case 1: case 2: case 3: case 11: case 13: case 22: case 23:
                                 this.target=[this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
                             break
-                            case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24:
+                            case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
                                 this.target=[
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]),
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2)
@@ -62,6 +62,16 @@ class turn{
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1])
                                 ]
                             break
+                            case 28:
+                                this.target=[
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]),
+                                    this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2)
+                                ]
+                            break
 
                         }
                         if(this.target.length<=1){
@@ -77,7 +87,7 @@ class turn{
                                 this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
                                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
                             }
-                        }else if(this.type==9){
+                        }else if(this.type==9||this.type==16||this.type==17||this.type==28){
                             this.targetCombatant=[]
                             this.direction=[]
                             this.distance=[]
@@ -326,7 +336,7 @@ class turn{
                             }
                         }
                     break
-                    case 4: case 10:
+                    case 4: case 10: case 29:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(1)
                         }
@@ -336,6 +346,9 @@ class turn{
                                 this.battle.combatantManager.allEffect(6,[this.effect[0]])
                             }else{
                                 this.userCombatant.addBlock(this.effect[0])
+                                if(this.type==29){
+                                    this.userCombatant.statusEffect('Retain Block',1)
+                                }
                             }
                         }else if(this.timer>=30){
                             this.remove=true
@@ -353,7 +366,7 @@ class turn{
                             this.remove=true
                         }
                     break
-                    case 6: case 8: case 14: case 15: case 24:
+                    case 6: case 8: case 14: case 15: case 24: case 27: case 30:
                         if(this.targetDistance==1){
                             if(this.timer==1){
                                 this.userCombatant.startAnimation(2)
@@ -374,6 +387,10 @@ class turn{
                                         this.targetCombatant.statusEffect('Weak',this.effect[1])
                                     }else if(this.type==24&&this.targetCombatant.blocked>0){
                                         this.targetCombatant.statusEffect('Bleed'&&this.effect[1]>0)
+                                    }else if(this.type==27){
+                                        this.targetCombatant.statusEffect('Frail',this.effect[1])
+                                    }else if(this.type==30){
+                                        this.userCombatant.addBlock(this.effect[1])
                                     }
                                 }
                             }else if(this.timer>=30){
@@ -411,6 +428,10 @@ class turn{
                                         this.targetCombatant.statusEffect('Weak',this.effect[1])
                                     }else if(this.type==24&&this.targetCombatant.blocked>0){
                                         this.targetCombatant.statusEffect('Bleed'&&this.effect[1]>0)
+                                    }else if(this.type==27){
+                                        this.targetCombatant.statusEffect('Frail',this.effect[1])
+                                    }else if(this.type==30){
+                                        this.userCombatant.addBlock(this.effect[1])
                                     }
                                 }
                                 this.battle.activate(1,this.userCombatant.id)
@@ -533,7 +554,7 @@ class turn{
                             }
                         }
                     break
-                    case 9:
+                    case 9: case 28:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(4)
                         }
@@ -584,13 +605,15 @@ class turn{
                             this.remove=true
                         }
                     break
-                    case 18: case 25:
+                    case 18: case 25: case 26:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(7)
                         }
                         this.userCombatant.runAnimation(1/15,7)
                         if(this.timer>=15){
-                            if(this.type==25){
+                            if(this.type==26){
+                                this.battle.combatantManager.allEffect(3,[this.effect[0]])
+                            }else if(this.type==25){
                                 this.battle.combatantManager.allEffect(7,[this.effect[0]])
                             }else{
                                 this.userCombatant.statusEffect('Strength',this.effect[0])

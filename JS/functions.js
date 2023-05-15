@@ -138,33 +138,111 @@ function sign(value){
 function pointInsideBox(point,box){
 	return point.position.x>box.position.x-box.width/2&&point.position.x<box.position.x+box.width/2&&point.position.y>box.position.y-box.height/2&&point.position.y<box.position.y+box.height/2
 }
-function intentDescription(attack,info){
+function calculateEffect(effect,user,type,player,relicManager,variant,args){
+	switch(type){
+		case 0: case 2:
+			let damage=effect
+			let bonus=0
+			let totalStr=0
+			if(variant&&args[0]&&relicManager.hasRelic(50,player)){
+				bonus+=2
+			}
+			if(user.status.main[12]>0){
+				bonus+=user.status.main[12]
+			}
+			if(user.status.main[6]!=0){
+				totalStr+=user.status.main[6]
+			}
+			if(user.status.main[17]!=0){
+				totalStr+=user.status.main[17]
+			}
+			if(totalStr>0){
+				damage*=1+totalStr*0.2
+				bonus*=1+totalStr*0.2
+			}else if(totalStr<0){
+				damage*=max(0.2,1+totalStr*0.1)
+				bonus*=max(0.2,1+totalStr*0.1)
+			}
+			if(user.status.main[0]>0){
+				damage*=2
+				bonus*=2
+			}
+			if(user.status.main[8]>0){
+				damage*=0.75
+				bonus*=0.75
+			}
+			damage=round(damage*10)/10
+			if(type==0){
+				return damage==effect?effect:effect+`(${damage+bonus})`
+			}else if(type==2){
+				return (damage==effect?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
+			}
+		case 1: case 3:
+			let block=effect
+			let totalDex=0
+			if(user.status.main[7]!=0){
+				totalDex+=user.status.main[7]
+			}
+			if(user.status.main[18]!=0){
+				totalDex+=user.status.main[18]
+			}
+			if(totalDex>0){
+				block*=1+totalDex*0.2
+			}else if(totalDex<0){
+				block*=max(0.2,1+totalDex*0.1)
+			}
+			if(user.status.main[9]>0){
+				block*=0.75
+			}
+			block=round(block*10)/10
+			if(type==1){
+				return block==effect?effect:effect+` (${block})`
+			}else if(type==3){
+				return block==effect?effect+'X':effect+`X (+${block})`
+			}
+		case 4:
+			let health=effect
+			if(relicManager.hasRelic(53,player)){
+				health*=1.5
+			}
+			return health==effect?effect:effect+` (${health})`
+	}
+}
+function calculateIntent(effect,user,type){
+	return calculateEffect(effect,user,type,-1,new disabledRelicManager(),false,[])
+}
+function intentDescription(attack,user,info){
 	switch(attack.type){
-		case 1: return `Deal ${info?attack.effect[0]:`?`} Damage\nRange 1-1`
-		case 2: return `Deal ${info?attack.effect[0]:`?`} Damage 3 Times\nRange 1-1`
-		case 3: return `Deal ${info?attack.effect[0]:`?`} Damage\nPush 1 Tile\nRange 1-1`
-		case 4: return `Add ${info?attack.effect[0]:`?`} Block`
+		case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
+		case 2: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`
+		case 3: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-1`
+		case 4: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block`
 		case 5: return `Shuffle in ${info?attack.effect[0]:`?`} Dazed`
-		case 6: return `Deal ${info?attack.effect[0]:`?`} Damage\nRange 1-2`
-		case 7: return `Deal ${info?attack.effect[0]:`?`} Damage\nPush 1 Tile\nRange 1-2`
+		case 6: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2`
+		case 7: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-2`
 		case 8: return `Shuffle in ${info?attack.effect[0]:`?`} Burn\nRange 1-2`
-		case 9: return `Deal ${info?attack.effect[0]:`?`} Damage\n3 Tiles Wide\nRange 1-1`
-		case 10: return `Add ${info?attack.effect[0]:`?`} Block to All Enemies`
-		case 11: return `Deal ${info?attack.effect[0]:`?`} Damage 5 Times\nRange 1-1`
-		case 12: return `Deal ${info?attack.effect[0]:`?`} Damage\nRange 1-6`
-		case 13: return `Deal ${info?attack.effect[0]:`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
-		case 14: return `Deal ${info?attack.effect[0]:`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
-		case 15: return `Deal ${info?attack.effect[0]:`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-2`
-		case 16: return `Deal ${info?attack.effect[0]:`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
-		case 17: return `Deal ${info?attack.effect[0]:`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
+		case 9: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-1`
+		case 10: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies`
+		case 11: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-1`
+		case 12: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
+		case 13: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
+		case 14: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
+		case 15: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-2`
+		case 16: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
+		case 17: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
 		case 18: return `Gain ${info?attack.effect[0]:`?`} Strength`
-		case 19: return `Deal ${info?attack.effect[0]:`?`} Damage 3 Times\nRange 1-2`
-		case 20: return `Deal ${info?attack.effect[0]:`?`} Damage 3 Times\nRange 1-1`
+		case 19: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-2`
+		case 20: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`
 		case 21: return `Do Nothing`
-		case 22: return `Deal ${info?attack.effect[0]:`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
+		case 22: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
 		case 23: return `Apply ${info?attack.effect[0]:`?`} Weak\nRange 1-1`
-		case 24: return `Deal ${info?attack.effect[0]:`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bleed\nRange 1-2`
-		case 25: return `Heal ${info?attack.effect[0]:`?`} Health\nFor All Enemies`
+		case 24: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bleed\nRange 1-2`
+		case 25: return `Heal ${info?calculateIntent(attack.effect[0],user,4):`?`} Health\nFor All Enemies`
+		case 26: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Strength`
+		case 27: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Frail\nRange 1-2`
+		case 28: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-2`
+		case 29: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 1 Turn`
+		case 30: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`}\nRange 1-2`
 
 	}
 }

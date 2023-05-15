@@ -86,13 +86,13 @@ class cardManager{
         this.battle.stats.drawn[this.player]+=amount
         let amountLeft=amount-this.reserve.cards.length
         if(this.reserve.cards.length>0){
-            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),3)
+            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),3,this.hand)
         }
         if(amountLeft>0&&this.discard.cards.length>0){
             this.discard.send(this.reserve.cards,0,-1,2)
             this.reserve.shuffle()
             if(this.reserve.cards.length>0){
-                this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),3)
+                this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),3,this.hand)
             }
         }
         if(this.battle.relicManager.hasRelic(106,this.player)){
@@ -109,13 +109,13 @@ class cardManager{
         this.battle.stats.drawn[this.player]+=amount
         let amountLeft=amount-this.reserve.cards.length
         if(this.reserve.cards.length>0){
-            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),5)
+            this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),5,this.hand)
         }
         if(amountLeft>0&&this.discard.cards.length>0){
             this.discard.send(this.reserve.cards,0,-1,4)
             this.reserve.shuffle()
             if(this.reserve.cards.length>0){
-                this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),5)
+                this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),5,this.hand)
             }
         }
         if(this.battle.relicManager.hasRelic(106,this.player)){

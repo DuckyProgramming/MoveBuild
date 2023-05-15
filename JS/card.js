@@ -52,74 +52,7 @@ class card{
     calculateEffect(effect,type){
         if(stage.scene=='battle'){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            switch(type){
-                case 0: case 2:
-                    let damage=effect
-                    let bonus=0
-                    let totalStr=0
-                    if(this.strike&&this.battle.relicManager.hasRelic(50,this.player)){
-                        bonus+=2
-                    }
-                    if(user.status.main[12]>0){
-                        bonus+=user.status.main[12]
-                    }
-                    if(user.status.main[6]!=0){
-                        totalStr+=user.status.main[6]
-                    }
-                    if(user.status.main[17]!=0){
-                        totalStr+=user.status.main[17]
-                    }
-                    if(totalStr>0){
-                        damage*=1+totalStr*0.2
-                        bonus*=1+totalStr*0.2
-                    }else if(totalStr<0){
-                        damage*=max(0.2,1+totalStr*0.1)
-                        bonus*=max(0.2,1+totalStr*0.1)
-                    }
-                    if(user.status.main[0]>0){
-                        damage*=2
-                        bonus*=2
-                    }
-                    if(user.status.main[8]>0){
-                        damage*=0.75
-                        bonus*=0.75
-                    }
-                    damage=round(damage*10)/10
-                    if(type==0){
-                        return damage==effect?effect:effect+`(${damage+bonus})`
-                    }else if(type==2){
-                        return (damage==effect?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
-                    }
-                case 1: case 3:
-                    let block=effect
-                    let totalDex=0
-                    if(user.status.main[7]!=0){
-                        totalDex+=user.status.main[7]
-                    }
-                    if(user.status.main[18]!=0){
-                        totalDex+=user.status.main[18]
-                    }
-                    if(totalDex>0){
-                        block*=1+totalDex*0.2
-                    }else if(totalDex<0){
-                        block*=max(0.2,1+totalDex*0.1)
-                    }
-                    if(user.status.main[9]>0){
-                        block*=0.75
-                    }
-                    block=round(block*10)/10
-                    if(type==1){
-                        return block==effect?effect:effect+` (${block})`
-                    }else if(type==3){
-                        return block==effect?effect+'X':effect+`X (+${block})`
-                    }
-                case 4:
-                    let health=effect
-                    if(this.battle.relicManager.hasRelic(53,this.player)){
-                        health*=1.5
-                    }
-                    return health==effect?effect:effect+` (${health})`
-            }
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike])
         }else{
             return effect
         }
@@ -147,6 +80,7 @@ class card{
             case -9: string+=`You Cannot\nPlay More Than ${this.effect[0]}\nCards This Turn`; break
             case -10: string+=`When Removed,\nLose ${this.effect[0]} Max Health`; break
             case -11: string+=`If Unplayed,\nAdd a Pride to\nDiscard Pile`; break
+            case -12: string+=`When Drawn,\nA Random Card\nCosts ${this.effect[0]} More`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break
@@ -184,7 +118,9 @@ class card{
             case 35: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nIf Target is Undamaged,\nGain ${this.effect[1]} Energy`; break
             case 37: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nDisarm`; break
             case 38: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nIf Target Will Attack,\nReduce Damage by ${this.effect[1]}`; break
-            case 39: case 49: string+=`Apply ${this.effect[0]} Bleed`; break
+            case 39: case 49:
+                string+=`Apply ${this.effect[0]} Bleed`;
+            break
             case 40: string+=`Discard Your Hand\nDraw That Many Cards`; break
             case 41: string+=`Gain ${this.effect[0]} Energy`; break
             case 42: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nDraw ${this.effect[1]} Card${this.effect[1]>1?`s`:``}`; break
