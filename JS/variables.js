@@ -21,8 +21,8 @@ types={
         },{
             name:'Step',rarity:-1,list:-1,
             levels:[
-                {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[],class:3},
-                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
+                {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
             ],
         },
         
@@ -41,8 +41,8 @@ types={
         },{
             name:'Dash',rarity:0,list:1,
             levels:[
-                {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[],class:3},
-                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[],class:3},
+                {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[0],class:3},
             ],
         },{
             name:'Push',rarity:0,list:1,
@@ -71,8 +71,8 @@ types={
         },{
             name:'Swap',rarity:1,list:1,
             levels:[
-                {effect:[1],attack:9,cost:1,target:[3,1,1],spec:[],class:3},
-                {effect:[1],attack:9,cost:0,target:[3,1,1],spec:[],class:3},
+                {effect:[1],attack:9,cost:1,target:[3,1,1],spec:[0],class:3},
+                {effect:[1],attack:9,cost:0,target:[3,1,1],spec:[0],class:3},
             ],
         },{
             name:'Pull',rarity:0,list:1,
@@ -95,8 +95,8 @@ types={
         },{
             name:'Shift',rarity:1,list:1,
             levels:[
-                {effect:[1],attack:14,cost:1,target:[4,1,1],spec:[],class:3},
-                {effect:[1],attack:14,cost:0,target:[4,1,1],spec:[],class:3},
+                {effect:[1],attack:14,cost:1,target:[4,1,1],spec:[0],class:3},
+                {effect:[1],attack:14,cost:0,target:[4,1,1],spec:[0],class:3},
             ],
         },{
             name:'Knee',rarity:1,list:1,
@@ -131,8 +131,8 @@ types={
         },{
             name:'Panic',rarity:1,list:1,
             levels:[
-                {effect:[2],attack:20,cost:0,target:[1,1,2],spec:[],class:3},
-                {effect:[3],attack:20,cost:0,target:[1,1,3],spec:[],class:3},
+                {effect:[2],attack:20,cost:0,target:[1,1,2],spec:[0],class:3},
+                {effect:[3],attack:20,cost:0,target:[1,1,3],spec:[0],class:3},
             ],
         },{
             name:'Close\nIn',rarity:1,list:1,
@@ -295,14 +295,14 @@ types={
         },{
             name:'Bob and\nWeave',rarity:1,list:2,
             levels:[
-                {effect:[1,1],attack:51,cost:2,target:[1,1,1],spec:[],class:3},
-                {effect:[2,1],attack:51,cost:2,target:[1,1,2],spec:[],class:3},
+                {effect:[1,1],attack:51,cost:2,target:[1,1,1],spec:[0],class:3},
+                {effect:[2,1],attack:51,cost:2,target:[1,1,2],spec:[0],class:3},
             ],
         },{
             name:'Positioning\nMove',rarity:0,list:2,
             levels:[
-                {effect:[2],attack:52,cost:0,target:[1,1,2],spec:[],class:3},
-                {effect:[3],attack:52,cost:0,target:[1,1,3],spec:[],class:3},
+                {effect:[2],attack:52,cost:0,target:[1,1,2],spec:[0],class:3},
+                {effect:[3],attack:52,cost:0,target:[1,1,3],spec:[0],class:3},
             ],
         },{
             name:'No Take\nBacks',rarity:1,list:2,
@@ -313,8 +313,8 @@ types={
         },{
             name:'Commit',rarity:1,list:2,
             levels:[
-                {effect:[1],attack:59,cost:0,target:[1,1,1],spec:[],class:3},
-                {effect:[2],attack:59,cost:0,target:[1,1,2],spec:[],class:3},
+                {effect:[1],attack:59,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[2],attack:59,cost:0,target:[1,1,2],spec:[0],class:3},
             ],
         },
         //some bleed
@@ -340,8 +340,8 @@ types={
         },{
             name:'Sprint',rarity:1,list:3,
             levels:[
-                {effect:[1,0],attack:60,cost:-1,target:[7,0],spec:[],class:3},
-                {effect:[1,1],attack:60,cost:-1,target:[7,1],spec:[],class:3},
+                {effect:[1,0],attack:60,cost:-1,target:[7,0],spec:[0],class:3},
+                {effect:[1,1],attack:60,cost:-1,target:[7,1],spec:[0],class:3},
             ],
         },
         //elements
@@ -560,6 +560,12 @@ types={
         },
 
         {
+            name:'Hurt',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:0,cost:0,target:[0],spec:[5],class:5},
+                {effect:[],attack:0,cost:0,target:[0],spec:[5],class:5},
+            ],
+        },{
             name:'Fatigue',rarity:0,list:4,
             levels:[
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
@@ -600,6 +606,18 @@ types={
             levels:[
                 {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
                 {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
+            ],
+        },{
+            name:'Spiked',rarity:0,list:4,
+            levels:[
+                {effect:[4],attack:-13,cost:0,target:[0],spec:[],class:5},
+                {effect:[6],attack:-13,cost:0,target:[0],spec:[],class:5},
+            ],
+        },{
+            name:'Light\nBleed',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-5,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[2],attack:-5,cost:0,target:[0],spec:[4,5],class:5},
             ],
         },
 
@@ -721,8 +739,17 @@ types={
         {name:'Slippery Gangster',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:20,effect:[3]}],description:`Can't hit this man`},
         {name:'Gangster Gunner',life:24,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Our ranged support`},//30
         {name:'Spheron',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[10]},{type:4,effect:[20]},{type:27,effect:[10,2]},{type:30,effect:[10,10]}],description:`Block strategy`},
-        {name:'Enforcer',life:80,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:28,effect:[8]},{type:29,effect:[8]}],description:`Doesn't make the rules`},
+        {name:'Enforcer',life:80,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:28,effect:[8]},{type:29,effect:[8]}],description:`Doesn't make the rules`},
         {name:'Rock Golem',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:22,effect:[5,1,'Dazed']},{type:4,effect:[4]}],description:`Why is this alive?`},
+        {name:'Big Slime',life:40,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:32,effect:[6,1,'Stuck']},{type:33,effect:[2]}],description:`Splitty boy`},
+        {name:'Spike Slime',life:14,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Spiked']},{type:23,effect:[2]}],description:`It hurts to touch him`},
+        {name:'Big Spike Slime',life:28,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:32,effect:[6,1,'Spiked']},{type:33,effect:[2]}],description:`At least he's not a slimoid`},
+        {name:'Moss Creature',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[3]},{type:10,effect:[3]}],description:`Teamwork somehow`},
+        {name:'Goblin',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
+        {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[6]},{type:35,effect:[15]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
+
+        //duckforce
+        //duckion
 
     ],attack:[
         {name:'',class:0},//0
@@ -756,6 +783,13 @@ types={
         {name:'2 Tile 3 Spread Strike',class:1},
         {name:'2 Turn Block',class:2},
         {name:'2 Tile Strike / Block',class:1},//30
+        {name:'Double Strike',class:1},
+        {name:'2 Tile Statusing Strike',class:1},
+        {name:'2 Tile Weaken',class:1},
+        {name:'Combo Triple Strike',class:1},
+        {name:'Combo Push',class:1},
+        {name:'Combo Injuring Strike',class:1},
+        {name:'Combo Finish',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3126,12 +3160,12 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                //{position:{x:0,y:0},name:'Batter'},
-                //{position:{x:3,y:0},name:'Slippery Gangster'},
-                //{position:{x:0,y:0},name:'Gangster Gunner'},
-                //{position:{x:3,y:0},name:'Spheron'},
-                //{position:{x:0,y:0},name:'Enforcer'},
-                //{position:{x:3,y:0},name:'Rock Golem'},
+                //{position:{x:0,y:0},name:'Big Slime'},
+                //{position:{x:3,y:0},name:'Spike Slime'},
+                //{position:{x:0,y:0},name:'Big Spike Slime'},
+                //{position:{x:3,y:0},name:'Moss Creature'},
+                //{position:{x:0,y:0},name:'Goblin'},
+                {position:{x:3,y:0},name:'Agent Duck'},
 
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},

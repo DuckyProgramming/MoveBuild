@@ -81,6 +81,7 @@ class card{
             case -10: string+=`When Removed,\nLose ${this.effect[0]} Max Health`; break
             case -11: string+=`If Unplayed,\nAdd a Pride to\nDiscard Pile`; break
             case -12: string+=`When Drawn,\nA Random Card\nCosts ${this.effect[0]} More`; break
+            case -13: string+=`Take ${this.effect[0]} Damage`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

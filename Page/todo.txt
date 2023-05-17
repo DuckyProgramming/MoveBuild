@@ -1,12 +1,11 @@
 Bugs:
-fatigue step (all movements ig)
-damage dealt on stat screen
 
 Mechanics:
 Menu
 Boss Rewards
 Next World
 Partnership Cards?
+debt
 
 Battle Content:
 Weak Enemy

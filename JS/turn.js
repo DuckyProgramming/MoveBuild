@@ -26,10 +26,12 @@ class turn{
                         this.userCombatant.moved=true
                     }else{
                         switch(this.type){
-                            case 1: case 2: case 3: case 11: case 13: case 22: case 23:
+                            case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
+                            case 36: case 37:
                                 this.target=[this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
                             break
                             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
+                            case 32: case 33:
                                 this.target=[
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]),
                                     this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2)
@@ -250,7 +252,7 @@ class turn{
         switch(this.action){
             case 0:
                 switch(this.type){
-                    case 1: case 13: case 22: case 23:
+                    case 1: case 13: case 22: case 23: case 36: case 37:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(2)
                         }
@@ -258,6 +260,9 @@ class turn{
                         if(this.timer==15){
                             if(this.type==23){
                                 this.targetCombatant.statusEffect('Weak',this.effect[0])
+                            }else if(this.type==37){
+                                this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userCombatant.combo,this.user)
+                                this.userCombatant.combo=0
                             }else{
                                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                                 if(this.type==13&&this.targetCombatant.blocked>0){
@@ -268,30 +273,43 @@ class turn{
                                     for(let a=0,la=this.effect[1];a<la;a++){
                                         this.battle.drop(findName(this.effect[2],types.card),0,game.playerNumber+1)
                                     }
+                                }else if(this.type==36){
+                                    this.userCombatant.combo++
+                                    if(this.targetCombatant.blocked>0){
+                                        for(let a=0,la=this.effect[1];a<la;a++){
+                                            this.battle.drop(findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        }
+                                    }
                                 }
                             }
                         }else if(this.timer>=30){
                             this.remove=true
                         }
                     break
-                    case 2:
+                    case 2: case 34:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(2)
                         }
                         this.userCombatant.runAnimation(1/30,2)
                         if(this.timer==10||this.timer==15||this.timer==20){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            if(this.type==34){
+                                this.userCombatant.combo++
+                            }
                         }else if(this.timer>=30){
                             this.remove=true
                         }
                     break
-                    case 3:
+                    case 3: case 35:
                         if(this.timer==1){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             this.procedure[0]=this.targetCombatant.status.main[2]>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                         }else if(this.timer==10){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            if(this.type==35){
+                                this.userCombatant.combo++
+                            }
                         }
                         if(this.timer<=20){
                             this.userCombatant.runAnimation(1/10,3)
@@ -366,7 +384,7 @@ class turn{
                             this.remove=true
                         }
                     break
-                    case 6: case 8: case 14: case 15: case 24: case 27: case 30:
+                    case 6: case 8: case 14: case 15: case 24: case 27: case 30: case 32: case 33:
                         if(this.targetDistance==1){
                             if(this.timer==1){
                                 this.userCombatant.startAnimation(2)
@@ -377,6 +395,8 @@ class turn{
                                     for(let a=0,la=this.effect[0];a<la;a++){
                                         this.battle.drop(findName('Burn',types.card),0,game.playerNumber+1)
                                     }
+                                }else if(this.type==33){
+                                    this.targetCombatant.statusEffect('Weak',this.effect[0])
                                 }else{
                                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                                     if(this.type==14&&this.targetCombatant.blocked>0){
@@ -391,6 +411,10 @@ class turn{
                                         this.targetCombatant.statusEffect('Frail',this.effect[1])
                                     }else if(this.type==30){
                                         this.userCombatant.addBlock(this.effect[1])
+                                    }else if(this.type==32){
+                                        for(let a=0,la=this.effect[1];a<la;a++){
+                                            this.battle.drop(findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        }
                                     }
                                 }
                             }else if(this.timer>=30){
@@ -418,6 +442,8 @@ class turn{
                                     for(let a=0,la=this.effect[0];a<la;a++){
                                         this.battle.drop(findName('Burn',types.card),0,game.playerNumber+1)
                                     }
+                                }else if(this.type==33){
+                                    this.targetCombatant.statusEffect('Weak',this.effect[0])
                                 }else{
                                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                                     if(this.type==14&&this.targetCombatant.blocked>0){
@@ -432,6 +458,10 @@ class turn{
                                         this.targetCombatant.statusEffect('Frail',this.effect[1])
                                     }else if(this.type==30){
                                         this.userCombatant.addBlock(this.effect[1])
+                                    }else if(this.type==32){
+                                        for(let a=0,la=this.effect[1];a<la;a++){
+                                            this.battle.drop(findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                        }
                                     }
                                 }
                                 this.battle.activate(1,this.userCombatant.id)
@@ -691,6 +721,17 @@ class turn{
                             }else if(this.timer>=45){
                                 this.remove=true
                             }
+                        }
+                    break
+                    case 31:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(2)
+                        }
+                        this.userCombatant.runAnimation(1/15,2)
+                        if(this.timer==12|this.timer==18){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }else if(this.timer>=30){
+                            this.remove=true
                         }
                     break
                     default:

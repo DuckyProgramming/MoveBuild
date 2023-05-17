@@ -100,6 +100,18 @@ class combatantManager{
         }
         this.battle.updateTargetting()
     }
+    summonCombatant(tilePosition,type,direction){
+        let list=[]
+        for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+            if(distTargetCombatant(0,{tilePosition:tilePosition},this.battle.tileManager.tiles[a])<=1&&distTargetCombatant(0,{tilePosition:tilePosition},this.battle.tileManager.tiles[a])>=0&&this.battle.tileManager.tiles[a].occupied==0){
+                list.push(a)
+            }
+        }
+        let tile=this.battle.tileManager.tiles[list[floor(random(0,list.length))]]
+        this.addCombatant(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,0,direction,false)
+        this.battle.tileManager.activate()
+        this.battle.counter.enemy++
+    }
     allEffect(effect,args){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){

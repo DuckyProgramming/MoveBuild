@@ -377,13 +377,16 @@ class attack{
                     this.remove=true
                 }
             break
-            case 10: case 64: case 72: case 73: case 74:
+            case -13: case 10: case 64: case 72: case 73: case 74:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(6)
                 }
                 this.userCombatant.runAnimation(1/10,6)
                 if(this.timer==10){
                     switch(this.type){
+                        case -13:
+                            this.userCombatant.takeDamage(this.effect[0])
+                        break
                         case 10:
                             this.userCombatant.heal(this.effect[0])
                         break
