@@ -550,11 +550,10 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce':
                 this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
                 this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
                 this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
-                this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
                 this.parts={eyeLevel:-40,beakLevel:-33,legs:[{top:{x:3,y:-15},middle:{x:0,y:0}},{top:{x:3,y:-15},middle:{x:0,y:0}}],arms:[{top:{x:3.5,y:-25},middle:{x:0,y:0}},{top:{x:3.5,y:-25},middle:{x:0,y:0}}]}
                 this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
                 this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true}}}
@@ -562,10 +561,20 @@ class combatant{
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 switch(this.name){
+                    case 'Duck':
+                        this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
+                    break
                     case 'Fungal Duck':
+                        this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
                         this.color.fungus=[[200,160,120],[180,170,160]]
                         this.fades.fungus=1
                         this.trigger.display.fungus=true
+                    break
+                    case 'Duckforce':
+                        this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[66,22,22],legs:[72,24,24],arms:[78,26,26]}}
+                        this.color.helmet=[60,20,20]
+                        this.fades.helmet=1
+                        this.trigger.display.helmet=true
                     break
                 }
             break
@@ -595,6 +604,15 @@ class combatant{
                         this.trigger.display.tie=true
                         this.trigger.display.hat=true
                         this.trigger.display.sunglasses=true
+                    break
+                    case 'General Duckion':
+                        this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[66,22,22],legs:[72,24,24],arms:[78,26,26]}}
+                        this.color.helmet=[60,20,20]
+                        this.color.badge=[[200,200,200],[255,255,150]]
+                        this.fades.helmet=1
+                        this.fades.badge=1
+                        this.trigger.display.helmet=true
+                        this.trigger.display.badge=true
                     break
                 }
             break
@@ -971,7 +989,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Duck': case 'Fungal Duck': case 'Big Duck': case 'Agent Duck': case 'General Duckion':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -1067,7 +1085,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction-60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction-60)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1])
                 ]
-            case 12:
+            case 12: case 38:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
@@ -1132,7 +1150,7 @@ class combatant{
                     this.targetTile=target==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target].tilePosition
                 break
                 case 6: case 7: case 8: case 9: case 12: case 14: case 15: case 16: case 17: case 19:
-                case 20: case 24: case 27: case 28: case 30: case 32: case 33:
+                case 20: case 24: case 27: case 28: case 30: case 32: case 33: case 38:
                     this.targetTile=[]
                     for(let a=0,la=target.length;a<la;a++){
                         this.targetTile.push(target[a]==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target[a]].tilePosition)
@@ -1170,7 +1188,7 @@ class combatant{
                                 }
                             }
                         break
-                        case 12:
+                        case 12: case 38:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -1207,7 +1225,7 @@ class combatant{
                     }
                 break
                 case 6: case 7: case 9: case 12: case 14: case 15: case 16: case 17: case 19: case 20:
-                case 24: case 27: case 28: case 30: case 32: case 33:
+                case 24: case 27: case 28: case 30: case 32: case 33: case 38:
                     if(target.length>0){
                         for(let a=0,la=target.length;a<la;a++){
                             if(target[a]!=-1){
@@ -1532,7 +1550,7 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=true
                     break
-                    case 3: case 6: case 8: case 9: case 17: case 23:
+                    case 3: case 6: case 8: case 9: case 17: case 23: case 26:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -1560,7 +1578,9 @@ class combatant{
                     break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Rock Golem':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion':
+            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime':
+            case 'Rock Golem': 
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -1844,9 +1864,15 @@ class combatant{
                         this.spin.arms[1-this.animSet.hand].top=(93-lsin(this.animSet.loop*90)*48)*(1-this.animSet.hand*2)
                         this.spin.arms[1-this.animSet.hand].bottom=(75-lsin(this.animSet.loop*90)*60)*(1-this.animSet.hand*2)
                     break
+                    case 26:
+                        this.animSet.loop+=rate
+                        this.anim.arms[this.animSet.hand].top=24+lsin(this.animSet.loop*90)*18
+                        this.anim.arms[this.animSet.hand].bottom=9+lsin(this.animSet.loop*90)*75
+                        this.spin.arms[this.animSet.hand].bottom=(75+lsin(this.animSet.loop*90)*30)*(this.animSet.hand*2-1)
+                    break
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Big Duck': case 'Agent Duck': case 'General Duckion':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -5377,7 +5403,7 @@ class combatant{
     					this.layer.quad(-12,-69,12,-69,8,-75,-8,-75)
                     }
                 break
-                case 'Duck': case 'Fungal Duck':
+                case 'Duck': case 'Fungal Duck': case 'Duckforce':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
                             this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[2],this.fade*this.fades.skin.arms)
@@ -5468,6 +5494,11 @@ class combatant{
                             this.layer.line(lsin(this.anim.direction-6+g*12)*16,this.parts.beakLevel-1.5,lsin(this.anim.direction-6+g*12)*16,this.parts.beakLevel-1)
                         }
                     }
+                    if(this.name=='Duckforce'&this.trigger.display.helmet){
+                        this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)
+                        this.layer.noStroke()
+                        this.layer.arc(0,-39,30,30,-180-lsin(this.anim.direction)*30,-lsin(this.anim.direction)*30)
+                    }
                 break
                 case 'Big Duck': case 'Agent Duck': case 'General Duckion':
                     for(let g=0;g<2;g++){
@@ -5488,6 +5519,18 @@ class combatant{
                         this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                         this.layer.noStroke()
                         this.layer.ellipse(0,-28,21,33)
+                    }
+                    if(this.name=='General Duckion'&&this.trigger.display.badge&&lcos(this.anim.direction+24)>0){
+                        this.layer.fill(this.flashColor(this.color.badge[0])[0],this.flashColor(this.color.badge[0])[1],this.flashColor(this.color.badge[0])[2],this.fade*this.fades.badge)
+                        this.layer.noStroke()
+                        this.layer.push()
+                        this.layer.translate(lsin(this.anim.direction+24)*8,-35)
+                        this.layer.scale(lcos(this.anim.direction+24),1)
+                        this.layer.ellipse(0,0,8,8)
+                        this.layer.fill(this.flashColor(this.color.badge[1])[0],this.flashColor(this.color.badge[1])[1],this.flashColor(this.color.badge[1])[2],this.fade*this.fades.badge)
+                        this.layer.quad(-5,0,0,1.5,5,0,0,-1.5)
+                        this.layer.quad(-1.5,0,0,5,1.5,0,0,-5)
+                        this.layer.pop()
                     }
                     if(this.name=='Agent Duck'&&this.trigger.display.tie&&lcos(this.anim.direction)>0){
                         this.layer.fill(this.flashColor(this.color.tie[0])[0],this.flashColor(this.color.tie[0])[1],this.flashColor(this.color.tie[0])[2],this.fade*this.fades.tie)
@@ -5586,6 +5629,11 @@ class combatant{
                         this.layer.fill(255,this.fade)
                         this.layer.textSize(12)
                         this.layer.text(this.combo,0,-85.5)
+                    }
+                    if(this.name=='General Duckion'&this.trigger.display.helmet){
+                        this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)
+                        this.layer.noStroke()
+                        this.layer.arc(0,-55,30,30,-180-lsin(this.anim.direction)*30,-lsin(this.anim.direction)*30)
                     }
                 break
                 case 'Orb Walker':
@@ -6259,6 +6307,7 @@ class combatant{
                             switch(this.spec[a]){
                                 case 0: this.layer.text('Will Turn to Face Player',40,305+a*15); break
                                 case 1: this.layer.text('Moves When You Move',40,305+a*15); break
+                                case 2: this.layer.text('Boss',40,305+a*15); break
                             }
                         }
                     }
@@ -6355,6 +6404,9 @@ class combatant{
                 }
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.killed[this.battle.turn.main]++
+                }
+                if(this.spec.includes(2)){
+                    this.battle.combatantManager.allEffect(2,[0])
                 }
                 switch(this.name){
                     case 'Big Slime':

@@ -82,6 +82,7 @@ class card{
             case -11: string+=`If Unplayed,\nAdd a Pride to\nDiscard Pile`; break
             case -12: string+=`When Drawn,\nA Random Card\nCosts ${this.effect[0]} More`; break
             case -13: string+=`Take ${this.effect[0]} Damage`; break
+            case -14: string+=`Lose ${this.effect[0]} Currency`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break
@@ -161,6 +162,8 @@ class card{
             case 78: string+=`A Random Card\nin Your Hand\nBecomes Free`; break
             case 79: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nAdd an Ouroboros With\n+${this.effect[1]} Damage to Discard`; break
             case 80: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nApply ${this.effect[1]} Frail`; break
+            
+            case 87: string+=`Move to Any Tile\nDestroy its\nOccupants`; break
 
         }
         if(string[string.length-1]=='\n'){

@@ -347,6 +347,14 @@ types={
         //elements
 
         {
+            name:'Telefrag',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:87,cost:0,target:[9],spec:[],class:3},
+                {effect:[],attack:87,cost:0,target:[9],spec:[2],class:3},
+            ],
+        },
+
+        {
             name:'Swift\nStrike',rarity:1,list:0,
             levels:[
                 {effect:[7],attack:1,cost:0,target:[2,1,1],spec:[0],class:1},
@@ -705,6 +713,12 @@ types={
                 {effect:[],attack:-11,cost:1,target:[0],spec:[1,3],class:6},
                 {effect:[],attack:-11,cost:1,target:[0],spec:[1,3],class:6},
             ],
+        },{
+            name:'Debt',rarity:0,list:5,
+            levels:[
+                {effect:[10],attack:-14,cost:0,target:[0],spec:[],class:6},
+                {effect:[5],attack:-14,cost:0,target:[0],spec:[],class:6},
+            ],
         },
     ],combatant:[
         {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},//0
@@ -712,7 +726,7 @@ types={
         {name:'Sakura',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
         {name:'Ume',identifier:['Sister','Miss'],life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
-        {name:'Duck',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:5,effect:[1]},{type:2,effect:[2]}],description:`Typical duck`},
+        {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1]}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
         {name:'Thug',life:32,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:`Beats people up`},
         {name:'Biker',life:40,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
@@ -747,9 +761,8 @@ types={
         {name:'Moss Creature',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[3]},{type:10,effect:[3]}],description:`Teamwork somehow`},
         {name:'Goblin',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
         {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[6]},{type:35,effect:[15]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
-
-        //duckforce
-        //duckion
+        {name:'Duckforce',life:35,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
+        {name:'General Duckion',life:270,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:2,effect:[6]},{type:39,effect:[3,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[3]},{type:42,effect:[3]}],description:`Duck leader`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -790,6 +803,12 @@ types={
         {name:'Combo Push',class:1},
         {name:'Combo Injuring Strike',class:1},
         {name:'Combo Finish',class:1},
+        {name:'6 Tile Strike',class:1},
+        {name:'Summon',class:4},
+        {name:'Build Landmines',class:4},//40
+        {name:'Build Spikes',class:4},
+        {name:'Build Trenches',class:4},
+
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3160,12 +3179,12 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                //{position:{x:0,y:0},name:'Big Slime'},
+                {position:{x:0,y:0},name:'General Duckion'},
                 //{position:{x:3,y:0},name:'Spike Slime'},
                 //{position:{x:0,y:0},name:'Big Spike Slime'},
                 //{position:{x:3,y:0},name:'Moss Creature'},
                 //{position:{x:0,y:0},name:'Goblin'},
-                {position:{x:3,y:0},name:'Agent Duck'},
+                //{position:{x:3,y:0},name:'Agent Duck'},
 
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},

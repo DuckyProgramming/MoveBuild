@@ -185,6 +185,13 @@ class battle{
         combatant.tilePosition={x:position.x,y:position.y}
         combatant.goal.anim.direction=combatant.anim.direction
     }
+    quickReinforce(name){
+        let empty=this.tileManager.getEmptyTiles()
+        let index=empty[floor(random(0,empty.length))]
+        this.reinforce.front.push({position:this.tileManager.tiles[index].tilePosition,name:name,minion:true})
+        this.tileManager.tiles[index].reinforce=true
+        this.counter.enemy++
+    }
     loadReinforce(){
         for(let a=0,la=this.reinforce.back.length;a<la;a++){
             if(this.turn.total+this.turn.accelerate>=this.reinforce.back[a].turn){
@@ -343,6 +350,9 @@ class battle{
         this.currency.money[player]+=round((amount+bonus)*multi)
     }
     loseCurrency(amount,player){
+        if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0){
+            this.cardManagers[player].deck.add(findName('Debt',types.card),0,game.playerNumber+2)
+        }
         this.currency.money[player]-=round(amount)
     }
     display(scene){

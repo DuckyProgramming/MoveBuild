@@ -42,7 +42,7 @@ class attack{
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
             break
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
-            case 82:
+            case 82: case 83: case 87:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -112,6 +112,17 @@ class attack{
     update(){
         this.timer++
         switch(this.type){
+            case -14:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(26)
+                }
+                this.userCombatant.runAnimation(1/10,26)
+                if(this.timer==10){
+                    this.battle.loseCurrency(this.effect[0],this.player)
+                }else if(this.timer>=20){
+                    this.remove=true
+                }
+            break
             case 1: case 7: case 34: case 35: case 42: case 46: case 53:
                 if(this.targetDistance==1){
                     if(this.timer==1){
@@ -814,7 +825,6 @@ class attack{
                 if(this.timer==15*this.targetDistance-15){
                     let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
                     this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
-                    
                 }else if(this.timer==15*this.targetDistance){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                 }else if(this.timer>=15*this.targetDistance+15){
@@ -1244,12 +1254,15 @@ class attack{
                     this.remove=true
                 }
             break
-            case 54:
+            case 54: case 87:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(19)
                 }
                 this.userCombatant.runAnimation(1/20,19)
                 if(this.timer==10){
+                    if(this.type==87){
+                        this.battle.combatantManager.clearTile(this.targetTile)
+                    }
                     this.userCombatant.moveTile(this.direction,this.distance)
                     this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
                     this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)

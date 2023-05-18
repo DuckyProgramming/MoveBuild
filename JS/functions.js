@@ -250,7 +250,12 @@ function intentDescription(attack,user,info){
 		case 35: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nGain 1 Combo\nRange 1-1`
 		case 36: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain 1 Combo Per Hit\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
 		case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage + ${info?calculateIntent(attack.effect[1],user,0):`?`} Per Combo\nGain 1 Combo Per Hit\nRange 1-1`
-
+		case 38: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
+		case 39: return `Spawn a ${info?attack.effect[0]:`?`}`
+		case 40: return 'Create 3 Landmines';
+		case 41: return `Create 3 Spikes`;
+		case 42: return 'Create 3 Trenches';
+		
 	}
 }
 function vectorAtan(point1,point2){

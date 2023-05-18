@@ -32,7 +32,7 @@ class tile{
                     this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)){
                         this.battle.combatantManager.combatants[this.target].takeDamage(20,-1,0)
-                        this.battle.combatantManager.damageArea(20,-1,this.tilePosition)
+                        this.battle.combatantManager.damageArea(20,-1,-1,this.tilePosition)
                         this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
                         this.anim.upPart[a]=false
                     }
@@ -42,6 +42,12 @@ class tile{
                     if(this.target>=0&&!this.battle.combatantManager.combatants[this.target].armed){
                         this.battle.combatantManager.combatants[this.target].armed=true
                         this.removeType(a)
+                    }
+                break
+                case 4:
+                    this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.target>=0&&this.battle.combatantManager.combatants[this.target].team==0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)){
+                        this.battle.combatantManager.combatants[this.target].addBlock(10)
                     }
                 break
             }
@@ -76,9 +82,9 @@ class tile{
             switch(this.type[a]){
                 case 1:
                     this.layer.fill(190,195,200,this.fade*this.anim.part[a])
-                    for(let a=0,la=9;a<la;a++){
-                        for(let b=0,lb=9-a%2-max(3,abs(a-4))*2;b<lb;b++){
-                            this.layer.triangle(-2+10-lb*10+b*20,2+3/2-la*3/2+a*3,2+10-lb*10+b*20,2+3/2-la*3/2+a*3,10-lb*10+b*20,-3+3/2-la*3/2+a*3)
+                    for(let b=0,lb=9;b<lb;b++){
+                        for(let c=0,lc=9-b%2-max(3,abs(b-4))*2;c<lc;c++){
+                            this.layer.triangle(-2+10-lc*10+c*20,2+3/2-lb*3/2+b*3,2+10-lc*10+c*20,2+3/2-lb*3/2+b*3,10-lc*10+c*20,-3+3/2-lb*3/2+b*3)
                         }
                     }
                 break
@@ -96,6 +102,12 @@ class tile{
                     this.layer.rotate(90)
                     if(this.anim.part[a]>0){
                         this.layer.image(graphics.minor[17],5-20*this.fade*this.anim.part[a],-25*this.fade*this.anim.part[a],40*this.fade*this.anim.part[a],50*this.fade*this.anim.part[a])
+                    }
+                break
+                case 4:
+                    this.layer.fill(40,this.fade*this.anim.part[a])
+                    for(let b=0,lb=5;b<lb;b++){
+                        this.layer.rect(-14+b*7,4,6,8,2)
                     }
                 break
             }

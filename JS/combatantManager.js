@@ -193,6 +193,13 @@ class combatantManager{
         }
         return combatants
     }
+    clearTile(tile){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].tilePosition.x==tile.tilePosition.x&&this.combatants[a].tilePosition.y==tile.tilePosition.y){
+                this.combatants[a].life=0
+            }
+        }
+    }
     tick(){
         this.combatants.forEach(combatant=>combatant.tick())
     }

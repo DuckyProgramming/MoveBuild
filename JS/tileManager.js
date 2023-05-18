@@ -106,6 +106,17 @@ class tileManager{
             }else if((this.battle.attackManager.targetInfo[0]==8)&&
             legalTargetCombatant(2,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)){
                 this.tiles[a].targetted[0]=true
+            }else if(this.battle.attackManager.targetInfo[0]==9){
+                this.tiles[a].targetted[0]=true
+            }
+        }
+    }
+    spawnAmount(amount,tilePosition,type){
+        let direction=floor(random(0,6/amount))
+        for(let a=0,la=amount;a<la;a++){
+            let index=this.getTileIndex(tilePosition.x+transformDirection(0,direction*60+a/la*360-30)[0],tilePosition.y+transformDirection(0,direction*60+a/la*360-30)[1])
+            if(index>=0&&this.tiles[index].type.length==0){
+                this.tiles[index].addType(type)
             }
         }
     }
