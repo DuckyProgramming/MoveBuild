@@ -9,11 +9,12 @@ class tile{
 
         this.fade=1
         this.occupied=0
-        this.targetted=[false,false,false]
+        this.targetted=[false,false,false,false,false]
         this.reinforce=false
+        this.fire=0
         this.target=0
 
-        this.anim={target:[0,0,0,0,0],reinforce:0,part:[],upPart:[]}
+        this.anim={target:[0,0,0,0,0],reinforce:0,fire:0,part:[],upPart:[]}
         for(let a=0,la=this.type.length;a<la;a++){
             this.anim.part.push(0)
             this.anim.upPart.push(true)
@@ -31,8 +32,8 @@ class tile{
                 case 2:
                     this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)){
-                        this.battle.combatantManager.combatants[this.target].takeDamage(20,-1,0)
-                        this.battle.combatantManager.damageArea(20,-1,-1,this.tilePosition)
+                        this.battle.combatantManager.combatants[this.target].takeDamage(10,-1,0)
+                        this.battle.combatantManager.damageArea(10,-1,-1,this.tilePosition)
                         this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
                         this.anim.upPart[a]=false
                     }
@@ -51,6 +52,16 @@ class tile{
                     }
                 break
             }
+        }
+    }
+    fireAttack(){
+        if(this.fire>0){
+            this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+            if(this.target>=0){
+                this.battle.combatantManager.combatants[this.target].takeDamage(this.fire,-1,0)
+            }
+            this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10,[10]))
+            this.fire=0
         }
     }
     unTarget(){
@@ -119,6 +130,16 @@ class tile{
             this.layer.line(-game.targetRadius/4,-game.targetRadius/4,game.targetRadius/4,game.targetRadius/4)
             this.layer.line(-game.targetRadius/4,game.targetRadius/4,game.targetRadius/4,-game.targetRadius/4)
         }
+        if(this.anim.fire>0){
+            this.layer.stroke(255,50,50,this.fade*this.anim.fire)
+            this.layer.strokeWeight(2)
+            this.layer.line(-game.targetRadius/2,-game.targetRadius/4,0,game.targetRadius*3/8)
+            this.layer.line(game.targetRadius/2,-game.targetRadius/4,0,game.targetRadius*3/8)
+            this.layer.fill(255,50,50,this.fade*this.anim.fire)
+            this.layer.noStroke()
+            this.layer.textSize(12)
+            this.layer.text(this.fire,0,-game.targetRadius/8)
+        }
         if(this.anim.target[0]>0){
             this.layer.noFill()
             this.layer.stroke(200,this.fade*this.anim.target[0])
@@ -163,11 +184,14 @@ class tile{
             this.anim.target[a]=smoothAnim(this.anim.target[a],this.targetted[a],0,1,5)
         }
         this.anim.reinforce=smoothAnim(this.anim.reinforce,this.reinforce,0,1,5)
+        this.anim.fire=smoothAnim(this.anim.fire,this.fire>0,0,1,5)
         for(let a=0,la=this.anim.part.length;a<la;a++){
             this.anim.part[a]=smoothAnim(this.anim.part[a],this.anim.upPart[a],0,1,5)
         }
-        if(this.anim.part<=0&&!this.anim.upPart){
-            this.type=0
+        for(let a=0,la=this.anim.part.length;a<la;a++){
+            if(this.anim.part[a]<=0&&!this.anim.upPart[a]){
+                this.type.splice(a,1)
+            }
         }
     }
     displayCoordinate(coordinateAnim){

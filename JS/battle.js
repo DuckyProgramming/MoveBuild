@@ -259,6 +259,7 @@ class battle{
         }
         if(this.turn.main>=this.players){
             this.sendReinforce()
+            this.tileManager.fire()
             this.turnManager.loadEnemyTurns()
             this.combatantManager.enableCombatants()
         }else{

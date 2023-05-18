@@ -252,9 +252,13 @@ function intentDescription(attack,user,info){
 		case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage + ${info?calculateIntent(attack.effect[1],user,0):`?`} Per Combo\nGain 1 Combo Per Hit\nRange 1-1`
 		case 38: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
 		case 39: return `Spawn a ${info?attack.effect[0]:`?`}`
-		case 40: return 'Create 3 Landmines';
+		case 40: return `Create 3 Landmines`;
 		case 41: return `Create 3 Spikes`;
-		case 42: return 'Create 3 Trenches';
+		case 42: return `Create 3 Trenches`;
+		case 43: return `Create Target Zone\nfor ${info?attack.effect[0]:`?`} Damage`
+		case 44: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bleed\n3 Tiles Wide\nRange 1-2`
+		case 45: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-6`
+		case 46: return `Create Target Line\nfor ${info?attack.effect[0]:`?`} Damage`
 		
 	}
 }

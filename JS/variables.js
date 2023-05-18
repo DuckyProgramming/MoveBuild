@@ -762,7 +762,9 @@ types={
         {name:'Goblin',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
         {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[6]},{type:35,effect:[15]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
         {name:'Duckforce',life:35,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
-        {name:'General Duckion',life:270,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:2,effect:[6]},{type:39,effect:[3,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[3]},{type:42,effect:[3]}],description:`Duck leader`},
+        {name:'General Duckion',life:175,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
+        {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
+        {name:'Sharpshot',life:360,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[],description:`Gunning`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -808,7 +810,10 @@ types={
         {name:'Build Landmines',class:4},//40
         {name:'Build Spikes',class:4},
         {name:'Build Trenches',class:4},
-
+        {name:'Bombing Zone',class:5},
+        {name:'2 Tile 3 Spread Strike / Bleed',class:1},
+        {name:'6 Tile Triple Strike',class:1},
+        {name:'Bombing Lines',class:5},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3179,7 +3184,7 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'General Duckion'},
+                {position:{x:0,y:0},name:'Roger Reviv'},
                 //{position:{x:3,y:0},name:'Spike Slime'},
                 //{position:{x:0,y:0},name:'Big Spike Slime'},
                 //{position:{x:3,y:0},name:'Moss Creature'},
