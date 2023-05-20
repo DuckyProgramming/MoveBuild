@@ -31,6 +31,14 @@ class turnManager{
         this.auxiliary=true
         this.turns.push(new turn(4,this.battle,0,0,enemy))
     }
+    loadEnemyMoveBack(enemy){
+        this.auxiliary=true
+        this.turnsBack.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
+    }
+    loadEnemyRotateBack(enemy){
+        this.auxiliary=true
+        this.turnsBack.push(new turn(4,this.battle,0,0,enemy))
+    }
     loadEnemyTurns(){
         this.auxiliary=false
         this.turns=[]
@@ -71,11 +79,13 @@ class turnManager{
                 if(this.turns[0].remove){
                     delete this.turns[0]
                     this.turns.splice(0,1)
+                    this.battle.updateTargetting()
                 }else{
                     this.turns[0].update()
                     if(this.turns[0].remove){
                         delete this.turns[0]
                         this.turns.splice(0,1)
+                        this.battle.updateTargetting()
                     }
                 }
             }else if(this.battle.turn.main>=this.battle.players){
@@ -92,11 +102,13 @@ class turnManager{
                 if(this.turnsBack[0].remove){
                     delete this.turnsBack[0]
                     this.turnsBack.splice(0,1)
+                    this.battle.updateTargetting()
                 }else{
                     this.turnsBack[0].update()
                     if(this.turnsBack[0].remove){
                         delete this.turnsBack[0]
                         this.turnsBack.splice(0,1)
+                        this.battle.updateTargetting()
                     }
                 }
             }

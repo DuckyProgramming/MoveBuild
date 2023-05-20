@@ -7,11 +7,13 @@ Next World
 Partnership Cards?
 
 Battle Content:
-Weak Enemy
 The other statuses
-Gangster
 
 More Fights:
+Slime boss
+Weak enemy
+Teleport enemy
+slow king
 
 More Cards:
 square strike
@@ -24,6 +26,7 @@ Tactical Retreat
 Unexhaust
 do something, exhaust a card
 The other curses
+Recover (remove 3 fatigues)
 
 Generality:
 First Character Gimmick

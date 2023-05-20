@@ -25,13 +25,13 @@ class tile{
             switch(this.type[a]){
                 case 1:
                     this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)){
+                    if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.target].spec.includes(3)){
                         this.battle.combatantManager.combatants[this.target].takeDamage(5,-1,0)
                     }
                 break
                 case 2:
                     this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)){
+                    if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.target].spec.includes(3)){
                         this.battle.combatantManager.combatants[this.target].takeDamage(10,-1,0)
                         this.battle.combatantManager.damageArea(10,-1,-1,this.tilePosition)
                         this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
@@ -42,13 +42,20 @@ class tile{
                     this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.target>=0&&!this.battle.combatantManager.combatants[this.target].armed){
                         this.battle.combatantManager.combatants[this.target].armed=true
-                        this.removeType(a)
+                        this.anim.upPart[a]=false
                     }
                 break
                 case 4:
                     this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.target>=0&&this.battle.combatantManager.combatants[this.target].team==0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)){
                         this.battle.combatantManager.combatants[this.target].addBlock(10)
+                    }
+                break
+                case 5:
+                    this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.target].spec.includes(4)){
+                        this.battle.combatantManager.combatants[this.target].takeDamage(15,-1,0)
+                        this.anim.upPart[a]=false
                     }
                 break
             }
@@ -120,6 +127,22 @@ class tile{
                     for(let b=0,lb=5;b<lb;b++){
                         this.layer.rect(-14+b*7,4,6,8,2)
                     }
+                break
+                case 5:
+                    this.layer.fill(120,80,40,this.fade*this.anim.part[a])
+                    this.layer.rect(0,0,36,12,4)
+                    this.layer.fill(90,60,30,this.fade*this.anim.part[a])
+                    this.layer.rect(-9,0,12,10,2)
+                    this.layer.rect(9,0,12,10,2)
+                    this.layer.fill(200)
+                    this.layer.triangle(-14,-4.5,-10,-4.5,-12,-12)
+                    this.layer.triangle(-14,4.5,-10,4.5,-12,-3)
+                    this.layer.triangle(14,-4.5,10,-4.5,12,-12)
+                    this.layer.triangle(14,4.5,10,4.5,12,-3)
+                    this.layer.triangle(-8,-4.5,-4,-4.5,-6,-12)
+                    this.layer.triangle(-8,4.5,-4,4.5,-6,-3)
+                    this.layer.triangle(8,-4.5,4,-4.5,6,-12)
+                    this.layer.triangle(8,4.5,4,4.5,6,-3)
                 break
             }
         }

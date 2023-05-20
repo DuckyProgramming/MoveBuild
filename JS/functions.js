@@ -173,9 +173,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			}
 			damage=round(damage*10)/10
 			if(type==0){
-				return damage==effect?effect:effect+`(${damage+bonus})`
+				return damage==effect&&bonus==0?effect:effect+`(${damage+bonus})`
 			}else if(type==2){
-				return (damage==effect?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
+				return (damage==effect&&bonus==0?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
 			}
 		case 1: case 3:
 			let block=effect
@@ -224,7 +224,7 @@ function intentDescription(attack,user,info){
 		case 9: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-1`
 		case 10: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies`
 		case 11: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-1`
-		case 12: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
+		case 12: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6\nNo Movement`
 		case 13: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
 		case 14: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
 		case 15: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-2`
@@ -251,14 +251,19 @@ function intentDescription(attack,user,info){
 		case 36: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain 1 Combo Per Hit\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
 		case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage + ${info?calculateIntent(attack.effect[1],user,0):`?`} Per Combo\nGain 1 Combo Per Hit\nRange 1-1`
 		case 38: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
-		case 39: return `Spawn a ${info?attack.effect[0]:`?`}`
-		case 40: return `Create 3 Landmines`;
-		case 41: return `Create 3 Spikes`;
-		case 42: return `Create 3 Trenches`;
+		case 39: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[0]>0?`s`:``):`?`}`
+		case 40: return `Create ${info?attack.effect[0]:``} Landmines`;
+		case 41: return `Create ${info?attack.effect[0]:``} Spikes`;
+		case 42: return `Create ${info?attack.effect[0]:``} Trenches`;
 		case 43: return `Create Target Zone\nfor ${info?attack.effect[0]:`?`} Damage`
 		case 44: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bleed\n3 Tiles Wide\nRange 1-2`
 		case 45: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-6`
 		case 46: return `Create Target Line\nfor ${info?attack.effect[0]:`?`} Damage`
+		case 47: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-6\nNo Movement`
+		case 48: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 1 Turn`
+		case 49: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-6\nNo Movement`
+		case 50: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turns\nRange 1-6\nNo Movement`
+		case 51: return `Create ${info?attack.effect[0]:``} Traps`;
 		
 	}
 }

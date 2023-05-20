@@ -761,10 +761,12 @@ types={
         {name:'Moss Creature',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[3]},{type:10,effect:[3]}],description:`Teamwork somehow`},
         {name:'Goblin',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
         {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[6]},{type:35,effect:[15]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
-        {name:'Duckforce',life:35,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
-        {name:'General Duckion',life:175,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
+        {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
+        {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
-        {name:'Sharpshot',life:360,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[],description:`Gunning`},
+        {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning`},
+        //{name:'Pyramid',life:35,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:`Minions now?`},
+        //{name:'Deca',life:125,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[],description:`It's just shapes`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -775,7 +777,7 @@ types={
         {name:'Daze',class:4},
         {name:'2 Tile Strike',class:1},
         {name:'2 Tile Push',class:1},
-        {name:'2 Range Burn',class:1},
+        {name:'2 Tile Burn',class:1},
         {name:'3 Spread Strike',class:1},
         {name:'All Enemy Block',class:2},//10
         {name:'Pentuple Strike',class:1},
@@ -814,6 +816,11 @@ types={
         {name:'2 Tile 3 Spread Strike / Bleed',class:1},
         {name:'6 Tile Triple Strike',class:1},
         {name:'Bombing Lines',class:5},
+        {name:'Double Gun',class:1},
+        {name:'3 Turn Block',class:2},
+        {name:'Triple Spread Gun',class:1},
+        {name:'Shattering Gun',class:1},//50
+        {name:'Build Traps',class:4},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3051,7 +3058,7 @@ shipyard visit for another time.`,
         start:[
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
-            [['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+            [/*['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],*/['Step',0,1],['Step',0,1]],
             //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
             [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             //[['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Commit',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
@@ -3184,7 +3191,7 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Roger Reviv'},
+                {position:{x:0,y:0},name:'Sharpshot'},
                 //{position:{x:3,y:0},name:'Spike Slime'},
                 //{position:{x:0,y:0},name:'Big Spike Slime'},
                 //{position:{x:3,y:0},name:'Moss Creature'},

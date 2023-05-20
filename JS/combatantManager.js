@@ -210,7 +210,7 @@ class combatantManager{
         let order=1
         let left=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==1&&this.combatants[a].life>0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 left.push(a)
             }
         }
