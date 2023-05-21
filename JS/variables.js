@@ -606,8 +606,8 @@ types={
         },{
             name:'Stuck',rarity:0,list:4,
             levels:[
-                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
-                {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
+                {effect:[1],attack:-15,cost:1,target:[0],spec:[1],class:5},
+                {effect:[1],attack:-15,cost:1,target:[0],spec:[1],class:5},
             ],
         },{
             name:'Concussion',rarity:0,list:4,
@@ -765,6 +765,8 @@ types={
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning`},
+        {name:'Slime Boss',life:120,behavior:0,spec:[5,6,4],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
+
         //{name:'Pyramid',life:35,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:`Minions now?`},
         //{name:'Deca',life:125,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[],description:`It's just shapes`},
 
@@ -786,7 +788,7 @@ types={
         {name:'Injuring 2 Tile Strike',class:1},
         {name:'2 Tile Strike / Weaken',class:1},
         {name:'Spin Strike',class:1},
-        {name:'Spin Strike / Stuck',class:1},
+        {name:'Spin Strike / Target Cannot Move',class:1},
         {name:'Strengthen',class:4},
         {name:'2 Tile Triple Strike',class:1},
         {name:'2 Tile Double Strike',class:1},//20
@@ -821,6 +823,10 @@ types={
         {name:'Triple Spread Gun',class:1},
         {name:'Shattering Gun',class:1},//50
         {name:'Build Traps',class:4},
+        {name:'Build Slime',class:4},
+        {name:'2 Tile 3 Spread Statusing Strike',class:1},
+        {name:'Spin Statusing Strike',class:1},
+        {name:'2 Tile Spin Weaken',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3191,7 +3197,7 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Sharpshot'},
+                {position:{x:0,y:0},name:'Slime Boss'},
                 //{position:{x:3,y:0},name:'Spike Slime'},
                 //{position:{x:0,y:0},name:'Big Spike Slime'},
                 //{position:{x:3,y:0},name:'Moss Creature'},

@@ -697,6 +697,18 @@ class combatant{
                     break
                 }
             break
+            case 'Slime Boss':
+                this.anim={direction:direction,eye:[0,0],arms:[{top:54,length:{top:22.5}},{top:54,length:{top:22.5}}]}
+                this.fades={eye:[1,1],skin:{arms:1,body:1}}
+                this.spin={arms:[{top:-90},{top:90}],eye:[-24,24]}
+                this.parts={eyeLevel:-67.5,arms:[{top:{x:67.5,y:-45},middle:{x:0,y:0}},{top:{x:67.5,y:-45},middle:{x:0,y:0}}]}
+                this.graphics={arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
+                this.trigger={display:{eye:[true,true],skin:{arms:true,body:true}}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={eye:{back:[0,0,0]},skin:{body:[150,255,50],arms:[140,245,40]}}
+            break
             case 'Spheron':
                 this.anim={direction:direction}
                 this.fades={body:1,balls:1}
@@ -941,6 +953,15 @@ class combatant{
         this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
     }
     initialBuff(){
+        if(this.spec.includes(5)){
+            let tile=this.battle.tileManager.getTileIndex(this.tilePosition.x,this.tilePosition.y)
+            if(tile>=0){
+                this.battle.tileManager.tiles[tile].addType(6)
+            }
+        }
+        if(this.spec.includes(6)){
+            this.threshold=this.life-20
+        }
         switch(this.name){
             case 'Orb Walker':
                 this.statusEffect('Strength Per Turn',1)
@@ -1043,7 +1064,7 @@ class combatant{
                     this.graphics.legs[g].middle.y=this.parts.legs[g].middle.y
                 }
             break
-            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Rock Golem':
+            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slime Boss': case 'Rock Golem':
                 for(let g=0;g<2;g++){
                     this.parts.arms[g].middle.x=this.parts.arms[g].top.x+lsin(this.anim.arms[g].top)*this.anim.arms[g].length.top
                     this.parts.arms[g].middle.y=this.parts.arms[g].top.y+lcos(this.anim.arms[g].top)*this.anim.arms[g].length.top
@@ -1118,7 +1139,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*5,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*5),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*6,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*6)
                 ]
-            case 16: case 17:
+            case 16: case 17: case 54:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-150)[0],this.tilePosition.y+transformDirection(0,-150)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-90)[0],this.tilePosition.y+transformDirection(0,-90)[1]),
@@ -1127,7 +1148,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,90)[0],this.tilePosition.y+transformDirection(0,90)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0],this.tilePosition.y+transformDirection(0,150)[1])
                 ]
-            case 28: case 44:
+            case 28: case 44: case 53:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
@@ -1156,6 +1177,21 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0]+transformDirection(0,this.goal.anim.direction)[0]*3,this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1]+transformDirection(0,this.goal.anim.direction)[1]*3),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0]+transformDirection(0,this.goal.anim.direction)[0]*4,this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1]+transformDirection(0,this.goal.anim.direction)[1]*4),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0]+transformDirection(0,this.goal.anim.direction)[0]*5,this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1]+transformDirection(0,this.goal.anim.direction)[1]*5)
+                ]
+            case 55:
+                return [
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-150)[0],this.tilePosition.y+transformDirection(0,-150)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-90)[0],this.tilePosition.y+transformDirection(0,-90)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-30)[0],this.tilePosition.y+transformDirection(0,-30)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,30)[0],this.tilePosition.y+transformDirection(0,30)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,90)[0],this.tilePosition.y+transformDirection(0,90)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0],this.tilePosition.y+transformDirection(0,150)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-150)[0]*2,this.tilePosition.y+transformDirection(0,-150)[1]*2),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-90)[0]*2,this.tilePosition.y+transformDirection(0,-90)[1]*2),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-30)[0]*2,this.tilePosition.y+transformDirection(0,-30)[1]*2),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,30)[0]*2,this.tilePosition.y+transformDirection(0,30)[1]*2),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,90)[0]*2,this.tilePosition.y+transformDirection(0,90)[1]*2),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,150)[0]*2,this.tilePosition.y+transformDirection(0,150)[1]*2)
                 ]
             default: return -1                
         }
@@ -1200,7 +1236,7 @@ class combatant{
                 break
                 case 6: case 7: case 8: case 9: case 12: case 14: case 15: case 16: case 17: case 19:
                 case 20: case 24: case 27: case 28: case 30: case 32: case 33: case 38: case 44: case 45:
-                case 47: case 49: case 50:
+                case 47: case 49: case 50: case 53: case 54: case 55:
                     this.targetTile=[]
                     for(let a=0,la=target.length;a<la;a++){
                         this.targetTile.push(target[a]==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target[a]].tilePosition)
@@ -1229,7 +1265,7 @@ class combatant{
                                 }
                             }
                         break
-                        case 9: case 16: case 17: case 28: case 44:
+                        case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -1290,7 +1326,7 @@ class combatant{
                 break
                 case 6: case 7: case 9: case 12: case 14: case 15: case 16: case 17: case 19: case 20:
                 case 24: case 27: case 28: case 30: case 32: case 33: case 38: case 44: case 45: case 47:
-                case 49: case 50:
+                case 49: case 50: case 53: case 54: case 55:
                     if(target.length>0){
                         for(let a=0,la=target.length;a<la;a++){
                             if(target[a]!=-1){
@@ -1458,6 +1494,10 @@ class combatant{
                 }
             }
         }
+        if(this.spec.includes(6)&&this.life<=this.threshold){
+            this.threshold-=20
+            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
+        }
     }
     addBlock(value){
         if(this.status.main[16]<=0){
@@ -1516,6 +1556,12 @@ class combatant{
             }
             this.tilePosition.x=x
             this.tilePosition.y=y
+            if(this.spec.includes(5)){
+                let tile=this.battle.tileManager.getTileIndex(this.tilePosition.x,this.tilePosition.y)
+                if(tile>=0){
+                    this.battle.tileManager.tiles[tile].addType(6)
+                }
+            }
         }
     }
     statusEffect(name,value){
@@ -1536,8 +1582,12 @@ class combatant{
             }
         }
     }
-    getStatus(name){
-        return this.status.main[findList(name,this.status.name)]
+    deStatus(name,value){
+        this.statusEffect(name,-value)
+        let status=findList(name,this.status.name)
+        if(status>=0){
+            this.status.main[status]=max(0,this.status.main[status])
+        }
     }
     heal(amount){
         if(!this.battle.relicManager.hasRelic(163,this.id)){
@@ -1646,14 +1696,13 @@ class combatant{
                 }
             break
             case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion':
-            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime':
-            case 'Rock Golem': 
+            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Rock Golem': 
                 switch(type){
                     case 0:
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2: case 3: case 7:
+                    case 2: case 3: case 4: case 6: case 7:
                         this.animSet.loop=0
                     break
                 }
@@ -1996,7 +2045,7 @@ class combatant{
                     break
                 }
             break
-            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Rock Golem':
+            case 'Slime': case 'Big Slime': case 'Spike Slime': case 'Big Spike Slime': case 'Slime Boss': case 'Rock Golem':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -2010,10 +2059,22 @@ class combatant{
                             this.spin.arms[g].top=(-90+abs(lsin(this.animSet.loop*180)*60))*(g*2-1)
                         }
                     break
-                    case 2:
+                    case 2: case 4:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
                             this.spin.arms[g].top=(-90+abs(lsin(this.animSet.loop*360)*75))*(g*2-1)
+                            this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*360))*30
+                        }
+                    break
+                    case 3:
+                        this.animSet.loop+=rate
+                        this.offset.position.y=lsin(this.animSet.loop*180)*-10
+                    break
+                    case 6:
+                        this.animSet.loop+=rate
+                        this.goal.anim.direction+=rate*180
+                        this.anim.direction+=rate*180
+                        for(let g=0;g<2;g++){
                             this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*360))*30
                         }
                     break
@@ -5861,6 +5922,33 @@ class combatant{
                         }
                     }
                 break
+                case 'Slime Boss':
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
+                            this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[2],this.fade*this.fades.skin.arms)
+                            this.layer.noStroke()
+                            this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,36,36)
+                        }
+                    }
+                    if(this.trigger.display.skin.body){
+                        this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
+                        this.layer.noStroke()
+                        this.layer.ellipse(0,-45,135,101.25)
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)>0){
+                            this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*50,[1,1,1]))[2],this.fade*this.fades.skin.arms)
+                            this.layer.noStroke()
+                            this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,36,36)
+                        }
+                        if(this.trigger.display.eye[g]){
+                            this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[g])
+                            this.layer.strokeWeight((5-this.anim.eye[g]*3)*constrain(lcos(this.spin.eye[g]+this.anim.direction)*5,0,1))
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*54-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*54+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
+                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*54-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*54+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                        }
+                    }
+                break
                 case 'Spheron':
                     if(this.trigger.display.balls){
                         this.layer.noStroke()
@@ -6439,6 +6527,8 @@ class combatant{
                                 case 2: this.layer.text('Boss',40,305+a*15); break
                                 case 3: this.layer.text('Immune to Spikes and Mines',40,305+a*15); break
                                 case 4: this.layer.text('Immune to Traps',40,305+a*15); break
+                                case 5: this.layer.text('Slimes Tiles Moved On',40,305+a*15); break
+                                case 6: this.layer.text('Spawns Slimes Every 20 HP Lost',40,305+a*15); break
 
                             }
                         }
@@ -6526,7 +6616,6 @@ class combatant{
                 this.dead=true
                 this.battle.tileManager.activate()
                 this.battle.counter.killed++
-                this.battle.combatantManager.reorder()
                 this.battle.updateTargetting()
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.cardManagers[this.battle.turn.main].hand.deathEffect()
@@ -6549,7 +6638,13 @@ class combatant{
                         this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
                         this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
                     break
+                    case 'Slime Boss':
+                        this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
+                        this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
+                        this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
+                    break
                 }
+                this.battle.combatantManager.reorder()
             }
         }
         this.time++
@@ -6643,6 +6738,9 @@ class combatant{
                 }else if(this.name=='Sakura'&&this.battle.attackManager.attacks.length<=0&&this.life>0){
                     this.goal.anim.sword=true
                 }
+            break
+            case 'Slime Boss':
+                this.anim.head=this.anim.direction
             break
             default:
                 this.anim.head=this.anim.direction

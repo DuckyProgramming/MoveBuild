@@ -184,6 +184,14 @@ class combatantManager{
             }
         }
     }
+    statusAreaID2(name,amount,id,tilePosition){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].id!=id&&distance>=0&&distance<=2){
+                this.combatants[a].statusEffect(name,amount)
+            }
+        }
+    }
     getArea(team,tilePosition,range){
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){

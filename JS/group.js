@@ -210,6 +210,9 @@ class group{
                     case 7:
                         this.cards[index].cost+=args[0]
                     break
+                    case 8:
+                        this.cards[index].spec.push(8)
+                    break
                 }
             }
         }
@@ -224,6 +227,9 @@ class group{
             break
             case -12:
                 this.drawEffects.push([0,7,[effect[0]]])
+            break
+            case -15:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Cannot Move',effect[0])
             break
         }
     }

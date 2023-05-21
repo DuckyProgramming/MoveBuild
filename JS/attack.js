@@ -133,7 +133,7 @@ class attack{
                         if(this.type==35&&this.targetCombatant.life==this.targetCombatant.base.life){
                             this.battle.energy.main[this.player]++
                         }
-                        if(this.type==46&&this.targetCombatant.getStatus('Bleed')>0){
+                        if(this.type==46&&this.targetCombatant.status.main[5]>0){
                             this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
                         }else{
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -281,13 +281,16 @@ class attack{
                     }
                 }
             break
-            case 6: case 41: case 71:
+            case -15: case 6: case 41: case 71:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
                 this.userCombatant.runAnimation(1/10,4)
                 if(this.timer==10){
                     switch(this.type){
+                        case -15:
+                            this.userCombatant.deStatus('Cannot Move',this.effect[0])
+                        break
                         case 6:
                             this.userCombatant.statusEffect('Double Damage',this.effect[0])
                         break

@@ -242,10 +242,10 @@ class battle{
         this.tileManager.retargetTiles()
         this.combatantManager.targetCombatants()
     }
-    drop(type,level,color){
-        for(let b=0,lb=this.cardManagers.length;b<lb;b++){
-            this.cardManagers[b].discard.add(type,level,color)
-            this.cardManagers[b].drop.addDrop(type,level,color)
+    drop(player,type,level,color){
+        if(player<this.cardManagers.length){
+            this.cardManagers[player].discard.add(type,level,color)
+            this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
     endTurn(){

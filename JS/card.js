@@ -83,6 +83,7 @@ class card{
             case -12: string+=`When Drawn,\nA Random Card\nCosts ${this.effect[0]} More`; break
             case -13: string+=`Take ${this.effect[0]} Damage`; break
             case -14: string+=`Lose ${this.effect[0]} Currency`; break
+            case -15: string+=`When Drawn,\nYou Cannot Move\nFor ${this.effect[0]} Turns\nWhen Played, Cancels\nPrevious Effect`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break
@@ -240,60 +241,67 @@ class card{
             this.layer.stroke(this.colorDetail.stroke,this.fade)
             this.layer.strokeWeight(5)
             this.layer.rect(0,0,this.width,this.height,5)
-            if(this.player==-1){
+            if(this.spec.includes(8)){
                 this.layer.noStroke()
-                this.layer.fill(150,this.fade)
-                this.layer.rect(0,0,3,this.height+5)
-            }
-            if(this.spec.includes(6)){
-                this.layer.fill(138,141,207,this.fade)
-                this.layer.stroke(111,114,178,this.fade)
-                this.layer.strokeWeight(2)
-                this.layer.ellipse(-this.width/2+10,-this.height/2+12,20,20)
-            }
-            if(!this.spec.includes(5)){
-                this.layer.fill(225,255,255,this.fade)
-                this.layer.stroke(200,255,255,this.fade)
-                this.layer.strokeWeight(2)
-                this.layer.quad(-this.width/2+2,-this.height/2+12,-this.width/2+10,-this.height/2+2,-this.width/2+18,-this.height/2+12,-this.width/2+10,-this.height/2+22)
-            }
-            this.layer.noStroke()
-            if(!this.spec.includes(5)){
-                this.layer.fill(mergeColor([255,0,0],[0,0,0],this.anim.afford),this.level/2,this.fade)
-                this.layer.textSize(14)
-                if(this.cost==-1){
-                    this.layer.text('X',-this.width/2+10,-this.height/2+13)
-                }else{
-                    this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
+                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
+                this.layer.textSize(16)
+                this.layer.text('Slimed',0,0)
+            }else{
+                if(this.player==-1){
+                    this.layer.noStroke()
+                    this.layer.fill(150,this.fade)
+                    this.layer.rect(0,0,3,this.height+5)
                 }
-            }
-            this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
-            this.layer.textSize(10)
-            this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
-            this.layer.fill(0,this.fade)
-            this.layer.textSize(8)
-            this.layer.text(this.description(),0,5)
-            this.layer.textSize(6)
-            this.layer.text(this.id,this.width/2-8,-this.height/2+8)
-            switch(this.class){
-                case 1:
-                    this.layer.text('Attack',0,this.height/2-6)
-                break
-                case 2:
-                    this.layer.text('Defense',0,this.height/2-6)
-                break
-                case 3:
-                    this.layer.text('Movement',0,this.height/2-6)
-                break
-                case 4:
-                    this.layer.text('Power',0,this.height/2-6)
-                break
-                case 5:
-                    this.layer.text('Status',0,this.height/2-6)
-                break
-                case 6:
-                    this.layer.text('Curse',0,this.height/2-6)
-                break
+                if(this.spec.includes(6)){
+                    this.layer.fill(138,141,207,this.fade)
+                    this.layer.stroke(111,114,178,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.ellipse(-this.width/2+10,-this.height/2+12,20,20)
+                }
+                if(!this.spec.includes(5)){
+                    this.layer.fill(225,255,255,this.fade)
+                    this.layer.stroke(200,255,255,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.quad(-this.width/2+2,-this.height/2+12,-this.width/2+10,-this.height/2+2,-this.width/2+18,-this.height/2+12,-this.width/2+10,-this.height/2+22)
+                }
+                this.layer.noStroke()
+                if(!this.spec.includes(5)){
+                    this.layer.fill(mergeColor([255,0,0],[0,0,0],this.anim.afford),this.level/2,this.fade)
+                    this.layer.textSize(14)
+                    if(this.cost==-1){
+                        this.layer.text('X',-this.width/2+10,-this.height/2+13)
+                    }else{
+                        this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
+                    }
+                }
+                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
+                this.layer.textSize(10)
+                this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
+                this.layer.fill(0,this.fade)
+                this.layer.textSize(8)
+                this.layer.text(this.description(),0,5)
+                this.layer.textSize(6)
+                this.layer.text(this.id,this.width/2-8,-this.height/2+8)
+                switch(this.class){
+                    case 1:
+                        this.layer.text('Attack',0,this.height/2-6)
+                    break
+                    case 2:
+                        this.layer.text('Defense',0,this.height/2-6)
+                    break
+                    case 3:
+                        this.layer.text('Movement',0,this.height/2-6)
+                    break
+                    case 4:
+                        this.layer.text('Power',0,this.height/2-6)
+                    break
+                    case 5:
+                        this.layer.text('Status',0,this.height/2-6)
+                    break
+                    case 6:
+                        this.layer.text('Curse',0,this.height/2-6)
+                    break
+                }
             }
             this.layer.pop()
         }

@@ -58,6 +58,16 @@ class tile{
                         this.anim.upPart[a]=false
                     }
                 break
+                case 6:
+                    this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.target>=0&&this.battle.combatantManager.combatants[this.target].id==id&&type==1&&this.battle.combatantManager.combatants[this.target].team>0){
+                        if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.target].id].reserve.cards.length>0){
+                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.target].id].randomEffect(1,8,[])
+                        }else{
+                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.target].id].randomEffect(3,8,[])
+                        }
+                    }
+                break
             }
         }
     }
@@ -134,7 +144,7 @@ class tile{
                     this.layer.fill(90,60,30,this.fade*this.anim.part[a])
                     this.layer.rect(-9,0,12,10,2)
                     this.layer.rect(9,0,12,10,2)
-                    this.layer.fill(200)
+                    this.layer.fill(200,this.fade*this.anim.part[a])
                     this.layer.triangle(-14,-4.5,-10,-4.5,-12,-12)
                     this.layer.triangle(-14,4.5,-10,4.5,-12,-3)
                     this.layer.triangle(14,-4.5,10,-4.5,12,-12)
@@ -143,6 +153,10 @@ class tile{
                     this.layer.triangle(-8,4.5,-4,4.5,-6,-3)
                     this.layer.triangle(8,-4.5,4,-4.5,6,-12)
                     this.layer.triangle(8,4.5,4,4.5,6,-3)
+                break
+                case 6:
+                    this.layer.fill(130,235,30,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,48,24)
                 break
             }
         }

@@ -183,6 +183,15 @@ class tileManager{
             }
         }
     }
+    spawnAmountDouble(amount,tilePosition,type){
+        let direction=floor(random(0,6/amount))
+        for(let a=0,la=amount;a<la;a++){
+            let index=this.getTileIndex(tilePosition.x+transformDirection(0,direction*60+a/la*360-30)[0]*2,tilePosition.y+transformDirection(0,direction*60+a/la*360-30)[1]*2)
+            if(index>=0&&this.tiles[index].type.length==0){
+                this.tiles[index].addType(type)
+            }
+        }
+    }
     display(scene){
         switch(scene){
             case 'battle':
