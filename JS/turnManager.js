@@ -18,10 +18,13 @@ class turnManager{
         this.turns=[]
     }
     loadEnemyAttack(enemy){
-        this.auxiliary=true
-        this.turns.push(new turn(0,this.battle,
-            this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
-            this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
+        print(enemy)
+        if(this.battle.combatantManager.combatants[enemy].team==0){
+            this.auxiliary=true
+            this.turns.push(new turn(0,this.battle,
+                this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
+                this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
+        }
     }
     loadEnemyMove(enemy){
         this.auxiliary=true

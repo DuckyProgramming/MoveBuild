@@ -436,7 +436,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(255,50,50,fade)
             layer.triangle(-3,6,-5,-3,-1,-3)
             layer.triangle(3,6,5,-3,1,-3)
-            layer.ellipse(-7.5,0,3,3)
+            layer.ellipse(-8,0,3,3)
         break
         case 44:
             layer.fill(150,0,0,fade)
@@ -452,14 +452,14 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(9,0,0,-2,0,2)
             layer.triangle(3,-3,-6,-5,-6,-1)
             layer.triangle(3,3,-6,1,-6,5)
-            layer.ellipse(-7.5,-2.25,3,3)
-            layer.ellipse(-7.5,2.25,3,3)
+            layer.ellipse(-9,-2.25,3,3)
+            layer.ellipse(-9,2.25,3,3)
         break
         case 46:
             layer.fill(255,50,50,fade)
             layer.triangle(-3,6,-5,-3,-1,-3)
             layer.triangle(3,6,5,-3,1,-3)
-            layer.rect(-7,0,1,5)
+            layer.rect(-8,0,2,5)
         break
         case 47:
             layer.fill(255,50,50,fade)
@@ -512,7 +512,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
                 layer.rotate(60)
                 layer.triangle(9,0,0,-2,0,2)
             }
-            layer.triangle(12,6,9,-3,15,-3)
+            layer.triangle(10.5,6,7.5,-3,13.5,-3)
         break
     }
     layer.fill(0,fade)
@@ -1128,7 +1128,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 26-Vulnerable
 27-Block
 28-Currency
-29-Single Strength
+29-Single Damage
 30-Item
 31-Empty
 32-Rest

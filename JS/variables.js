@@ -230,6 +230,54 @@ types={
                 {effect:[5],attack:1,cost:1,target:[2,1,1],spec:[],class:1},
                 {effect:[8],attack:1,cost:1,target:[2,1,1],spec:[],class:1},
             ],
+        },{
+            name:'Square\nStrike',rarity:2,list:1,
+            levels:[
+                {effect:[2],attack:88,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:88,cost:-1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Shatter',rarity:1,list:1,
+            levels:[
+                {effect:[12],attack:89,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[16],attack:89,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Snap\nStrike',rarity:0,list:1,
+            levels:[
+                {effect:[4,6],attack:90,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6,10],attack:90,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Tactical\nRetreat',rarity:1,list:1,
+            levels:[
+                {effect:[1,6],attack:91,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[2,8],attack:91,cost:1,target:[1,1,2],spec:[0],class:3},
+            ],
+        },{
+            name:'Recover',rarity:0,list:1,
+            levels:[
+                {effect:[2],attack:92,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:92,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Exhume',rarity:0,list:1,
+            levels:[
+                {effect:[1],attack:93,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:93,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Clear\nUp',rarity:-1,list:-1,
+            levels:[
+                {effect:[7,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Disposal',rarity:-1,list:-1,
+            levels:[
+                {effect:[10,1],attack:95,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,1],attack:95,cost:1,target:[0],spec:[],class:2},
+            ],
         },
 
         {
@@ -722,9 +770,9 @@ types={
         },
     ],combatant:[
         {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},//0
-        {name:'Lira',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
-        {name:'Sakura',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
-        {name:'Ume',identifier:['Sister','Miss'],life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
+        {name:'Lira',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
+        {name:'Sakura',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
+        {name:'Ume',identifier:['Sister','Miss'],life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1]}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
@@ -762,12 +810,16 @@ types={
         {name:'Goblin',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
         {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[6]},{type:35,effect:[15]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
+        
+        {name:'Shield Particle',life:120,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[10]},{type:4,effect:[5]}],description:`They shall return`},
+        
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning`},
-        {name:'Slime Boss',life:120,behavior:0,spec:[5,6,4],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
+        {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
+        {name:'Slow King',life:135,behavior:0,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[10,6]},{type:57,effect:[]}],description:`King of nothing`},
 
-        //{name:'Pyramid',life:35,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:`Minions now?`},
+        //{name:'Donu',life:125,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[],description:`It's just shapes`},
         //{name:'Deca',life:125,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[],description:`It's just shapes`},
 
     ],attack:[
@@ -827,6 +879,8 @@ types={
         {name:'2 Tile 3 Spread Statusing Strike',class:1},
         {name:'Spin Statusing Strike',class:1},
         {name:'2 Tile Spin Weaken',class:1},
+        {name:'Summon Shield Particles',class:4},
+        {name:'Absorb Shield Particles',class:4},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3064,8 +3118,8 @@ shipyard visit for another time.`,
         start:[
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
-            [/*['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],*/['Step',0,1],['Step',0,1]],
-            //[['Throw\nKnife',0,1],['Heavy\nStrike',0,1],['Heavy\nDefend',0,1],['Hook\nStrike',0,1],['Starter',0,1],['Light\nStrike',0,1]],
+            //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
+            [['Clear\nUp',0,1],['Disposal',0,1],['Snap\nStrike',0,1],['Tactical\nRetreat',0,1],['Recover',0,1],['Exhume',0,1]],
             [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             //[['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Commit',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],

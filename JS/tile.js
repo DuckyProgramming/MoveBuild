@@ -137,6 +137,9 @@ class tile{
                     for(let b=0,lb=5;b<lb;b++){
                         this.layer.rect(-14+b*7,4,6,8,2)
                     }
+                    for(let b=0,lb=4;b<lb;b++){
+                        this.layer.rect(-10.5+b*7,-6,6,8,2)
+                    }
                 break
                 case 5:
                     this.layer.fill(120,80,40,this.fade*this.anim.part[a])

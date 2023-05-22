@@ -431,7 +431,7 @@ class turn{
                             switch(this.type){
                                 case 5:
                                     for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName('Dazed',types.card),0,game.playerNumber+1)
+                                        this.battle.dropAll(findName('Dazed',types.card),0,game.playerNumber+1)
                                     }
                                 break
                                 case 39:
@@ -993,6 +993,9 @@ class turn{
                         case 1:
                             if(this.userCombatant.status.main[0]>0){
                                 this.userCombatant.status.main[0]--
+                            }
+                            if(this.userCombatant.status.main[12]>0){
+                                this.userCombatant.status.main[12]=0
                             }
                         break
                     }

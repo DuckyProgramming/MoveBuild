@@ -140,7 +140,7 @@ function pointInsideBox(point,box){
 }
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
-		case 0: case 2:
+		case 0: case 2: case 5:
 			let damage=effect
 			let bonus=0
 			let totalStr=0
@@ -176,6 +176,8 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				return damage==effect&&bonus==0?effect:effect+`(${damage+bonus})`
 			}else if(type==2){
 				return (damage==effect&&bonus==0?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
+			}else if(type==5){
+				return (damage==effect&&bonus==0?effect+'XX':effect+`(${damage})XX`)+(bonus>0?`(+${bonus})`:``)
 			}
 		case 1: case 3:
 			let block=effect
@@ -267,8 +269,8 @@ function intentDescription(attack,user,info){
 		case 52: return `Create ${info?attack.effect[0]*2:``} Slime Tiles`;
 		case 53: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\n3 Tiles Wide\nRange 1-2`
 		case 54: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nto All Adjacent Tiles\nRange 1-1`
-		case 55: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nto All Adjacent Tiles\nRange 1-2`
-		
+		case 55: return `Apply ${info?attack.effect[0]:`?`} Weak\nto All Adjacent Tiles\nRange 1-2`
+		default: return `INVALID`
 	}
 }
 function vectorAtan(point1,point2){
@@ -452,4 +454,7 @@ function quickAdd(name){
 }
 function kill(index){
 	current.combatantManager.combatants[index].life=0
+}
+function enemy(index){
+	return current.combatantManager.combatants[index+current.players]
 }

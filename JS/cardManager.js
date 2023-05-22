@@ -165,6 +165,16 @@ class cardManager{
             }
         }
     }
+    deFatigue(value){
+        let left=value
+        left-=this.reserve.deFatigue(left)
+        if(left>0){
+            left-=this.discard.deFatigue(left)
+        }
+        if(left>0){
+            left-=this.hand.deFatigue(left)
+        }
+    }
     transformCard(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][floor(random(0,this.listing.card[base.list][3].length))],base.level,base.color,base.id)
     }

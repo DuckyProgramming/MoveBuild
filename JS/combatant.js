@@ -31,7 +31,7 @@ class combatant{
             }
         }
 
-        this.order=this.id
+        this.order=0
         this.moved=false
         this.dead=false
         this.blocked=0
@@ -43,7 +43,7 @@ class combatant{
         this.dodges=[]
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
-            'Vulnerable','Retain Block','Single Strength','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
+            'Vulnerable','Retain Block','Single Damage','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
             'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Next Turn Cannot Move',
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn',
             ],display:[],active:[],position:[],size:[],
@@ -988,6 +988,7 @@ class combatant{
         }
     }
     calculateParts(){
+        this.anim.head=this.anim.direction
         switch(this.name){
             case 'Lira': case 'Sakura': case 'Ume':
                 for(let g=0;g<2;g++){
@@ -1030,7 +1031,7 @@ class combatant{
                     this.graphics.arms[g].bottomStack.x=(this.parts.arms[g].bottom.x+(4-min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))/2)*lsin(this.spin.arms[g].bottom+this.anim.direction),
                     this.graphics.arms[g].bottomStack.y=this.parts.arms[g].bottom.y
                 }
-                this.sprites.spin=(((this.anim.direction%360)+360)%360)
+                this.sprites.spin=round(((this.anim.direction%360)+360)%360)
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
@@ -1215,6 +1216,9 @@ class combatant{
                     case 4:
                         this.intent=this.battle.turn.total<=3?this.attack.length-1:(this.battle.turn.total-4)%this.attack.length
                     break
+                    case 5:
+                        this.intent=(this.battle.turn.total+this.id)%this.attack.length
+                    break
                 }
             break
         }
@@ -1370,7 +1374,6 @@ class combatant{
             let totalStr=0
             if(userCombatant.status.main[12]>0){
                 damage+=userCombatant.status.main[12]
-                userCombatant.status.main[12]=0
             }
             if(userCombatant.status.main[6]!=0){
                 totalStr+=userCombatant.status.main[6]
@@ -1537,6 +1540,7 @@ class combatant{
         if(this.status.main[28]<=0){
             this.position.x+=lsin(direction)*speed
             this.position.y+=lcos(direction)*speed
+            this.battle.combatantManager.sort()
         }
     }
     moveRelativeTile(direction,speed){
@@ -6628,6 +6632,7 @@ class combatant{
                 }
                 if(this.spec.includes(2)){
                     this.battle.combatantManager.allEffect(2,[0])
+                    this.battle.clearReinforce()
                 }
                 switch(this.name){
                     case 'Big Slime':
@@ -6730,7 +6735,6 @@ class combatant{
         }
         switch(this.name){
             case 'Lira': case 'Sakura': case 'Ume':
-                this.anim.head=this.anim.direction
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
                 this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
                 if(this.name=='Sakura'&&!this.armed){
@@ -6738,12 +6742,6 @@ class combatant{
                 }else if(this.name=='Sakura'&&this.battle.attackManager.attacks.length<=0&&this.life>0){
                     this.goal.anim.sword=true
                 }
-            break
-            case 'Slime Boss':
-                this.anim.head=this.anim.direction
-            break
-            default:
-                this.anim.head=this.anim.direction
             break
         }
     }

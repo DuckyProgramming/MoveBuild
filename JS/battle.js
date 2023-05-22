@@ -192,6 +192,10 @@ class battle{
         this.tileManager.tiles[index].reinforce=true
         this.counter.enemy++
     }
+    clearReinforce(){
+        this.counter.enemy-=this.reinforce.back.length+this.reinforce.front.length
+        this.reinforce={back:[],front:[]}
+    }
     loadReinforce(){
         for(let a=0,la=this.reinforce.back.length;a<la;a++){
             if(this.turn.total+this.turn.accelerate>=this.reinforce.back[a].turn){
@@ -246,6 +250,12 @@ class battle{
         if(player<this.cardManagers.length){
             this.cardManagers[player].discard.add(type,level,color)
             this.cardManagers[player].drop.addDrop(type,level,color)
+        }
+    }
+    dropAll(type,level,color){
+        for(let a=0,la=this.cardManagers.length;a<la;a++){
+            this.cardManagers[a].discard.add(type,level,color)
+            this.cardManagers[a].drop.addDrop(type,level,color)
         }
     }
     endTurn(){
@@ -595,7 +605,8 @@ class battle{
                 if(this.anim.upAfford&&this.anim.afford>=1){
                     this.anim.upAfford=false
                 }
-                if(this.counter.killed>=this.counter.enemy){
+                if(this.counter.killed>=this.counter.enemy&&!this.result.defeat){
+                    print(this.counter.killed,this.counter.enemy)
                     if(this.result.victory){
                         let allClosed=true
                         for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){

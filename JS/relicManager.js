@@ -45,7 +45,7 @@ class relicManager{
             this.complete.push(false)
             this.position.push(0)
             this.total.push(0)
-            this.up.push(true)
+            this.up.push(false)
         }
     }
     setupStash(){
@@ -71,10 +71,10 @@ class relicManager{
             this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,100+floor(this.position[player]/18)*50,types.relic[type].id,1))
         }
         this.position[player]++
-        this.total[player]++
         this.get(types.relic[type].id,player)
         if(type>0){
             this.battle.stats.relic[player]++
+            this.total[player]++
         }
     }
     loseRelic(type){
@@ -436,7 +436,7 @@ class relicManager{
                             this.relicPlayer(21).statusEffect('Buffer',this.active[21])
                         }
                         if(this.active[31]>0){
-                            this.relicPlayer(31).statusEffect('Single Strength',8*this.active[31])
+                            this.relicPlayer(31).statusEffect('Single Damage',8*this.active[31])
                         }
                         if(this.active[36]>0){
                             this.relicPlayer(36).addBlock(10*this.active[36])
@@ -816,10 +816,7 @@ class relicManager{
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].display(la-1)
-                    if(a<la-1&&this.relics[a+1].fade<=0){
-                        break
-                    }
+                    this.relics[a].display(this.total[this.relics[a].player])
                 }
                 this.relics.forEach(relic=>relic.displayInfo())
             break
@@ -914,7 +911,7 @@ class relicManager{
     onClick(scene,args){
         switch(scene){
             case 'battle':
-                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>1){
+                if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }
                 if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,100)<20&&this.total[1]>0){
@@ -953,7 +950,7 @@ class relicManager{
     onKey(scene,key,code){
         switch(scene){
             case 'battle':
-                if(key=='i'&&this.total[0]>1){
+                if(key=='i'&&this.total[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }
                 if(this.battle.players==2&&key=='I'&&this.total[1]>0){

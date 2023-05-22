@@ -7,6 +7,7 @@ class combatantManager{
 
         this.combatants=[]
         this.playerCombatantIndex=[]
+        this.sorted=[]
     }
     assignPlayer(){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -36,6 +37,7 @@ class combatantManager{
             }
         }
         this.assignPlayer()
+        this.sort()
         for(let a=0,la=this.combatants.length;a<la;a++){
             this.combatants[a].id=a
         }
@@ -109,6 +111,7 @@ class combatantManager{
         }
         let tile=this.battle.tileManager.tiles[list[floor(random(0,list.length))]]
         this.addCombatant(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,0,direction,false)
+        this.battle.updateTargetting()
         this.battle.tileManager.activate()
         this.battle.counter.enemy++
     }
@@ -148,6 +151,8 @@ class combatantManager{
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
         this.id++
+        this.sort()
+        this.reorder()
     }
     getCombatantIndex(tileX,tileY){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -242,19 +247,21 @@ class combatantManager{
             }
         }
     }
+    sort(){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(!list.includes(this.combatants[a].position.y)){
+                list.push(this.combatants[a].position.y)
+            }
+        }
+        this.sorted=list.sort(function(a,b){return a-b})
+    }
     display(scene){
         switch(scene){
             case 'battle':
-                let list=[]
-                for(let a=0,la=this.combatants.length;a<la;a++){
-                    if(!list.includes(this.combatants[a].position.y)){
-                        list.push(this.combatants[a].position.y)
-                    }
-                }
-                let sorted=list.sort()
-                for(let a=0,la=sorted.length;a<la;a++){
+                for(let a=0,la=this.sorted.length;a<la;a++){
                     for(let b=0,lb=this.combatants.length;b<lb;b++){
-                        if(this.combatants[b].position.y==sorted[a]){
+                        if(this.combatants[b].position.y==this.sorted[a]){
                             this.combatants[b].display()
                         }
                     }
