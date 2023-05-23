@@ -1,6 +1,81 @@
 types={
     card:[
         {
+            name:'Force',rarity:-1,list:-1,
+            levels:[
+                {effect:[],attack:5,cost:0,target:[2,1,2],spec:[1],class:1},
+                {effect:[],attack:5,cost:0,target:[2,1,2],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Counter\nPush',rarity:-1,list:-1,
+            levels:[
+                {effect:[10],attack:96,cost:1,target:[0],spec:[],class:2},
+                {effect:[16],attack:96,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Counter\nStab',rarity:-1,list:-1,
+            levels:[
+                {effect:[6,5],attack:97,cost:1,target:[0],spec:[],class:2},
+                {effect:[8,8],attack:97,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Hidden\nWeapon',rarity:-1,list:-1,
+            levels:[
+                {effect:[2],attack:98,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:98,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Focus',rarity:-1,list:-1,
+            levels:[
+                {effect:[1],attack:99,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2],attack:99,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Heavy\nPush',rarity:-1,list:-1,
+            levels:[
+                {effect:[],attack:100,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[],attack:100,cost:1,target:[2,1,1],spec:[2],class:1},
+            ],
+        },{
+            name:'Long\nPull',rarity:-1,list:-1,
+            levels:[
+                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1],class:1},
+                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Ambush',rarity:-1,list:-1,
+            levels:[
+                {effect:[8],attack:101,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:101,cost:1,target:[2,1,1],spec:[0,2],class:1},
+            ],
+        },{
+            name:'Backup\nScythe',rarity:-1,list:-1,
+            levels:[
+                {effect:[],attack:102,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:102,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Consuming\nSlice',rarity:-1,list:-1,
+            levels:[
+                {effect:[19,1],attack:103,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[27,1],attack:103,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Glaciate',rarity:-1,list:-1,
+            levels:[
+                {effect:[10,1],attack:104,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,2],attack:104,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Drill',rarity:-1,list:-1,
+            levels:[
+                {effect:[11,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+
+
+        {
             name:'',rarity:-1,list:-1,
             levels:[
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
@@ -881,6 +956,7 @@ types={
         {name:'2 Tile Spin Weaken',class:1},
         {name:'Summon Shield Particles',class:4},
         {name:'Absorb Shield Particles',class:4},
+        {name:'Bleed',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3119,9 +3195,9 @@ shipyard visit for another time.`,
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Clear\nUp',0,1],['Disposal',0,1],['Snap\nStrike',0,1],['Tactical\nRetreat',0,1],['Recover',0,1],['Exhume',0,1]],
-            [['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
-            //[['Bob and\nWeave',0,2],['Positioning\nMove',0,2],['No Take\nBacks',0,2],['Commit',0,2],['Open\nWounds',0,2],['Quick\nStab',0,2]],
+            [['Force',0,1],['Counter\nPush',0,1],['Counter\nStab',0,1],['Hidden\nWeapon',0,1],['Focus',0,1],['Heavy\nPush',0,1]],
+            //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
+            [['Long\nPull',0,2],['Ambush',0,2],['Backup\nScythe',0,2],['Consuming\nSlice',0,2],['Glaciate',0,2],['Drill',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
             [['Teleport',0,3],['Stagger',0,3],['Ponder',0,3],['Sprint',0,3],['Defend',0,3],['Defend',0,3]],
            
@@ -3251,7 +3327,7 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Slime Boss'},
+                {position:{x:0,y:0},name:'Human'},
                 //{position:{x:3,y:0},name:'Spike Slime'},
                 //{position:{x:0,y:0},name:'Big Spike Slime'},
                 //{position:{x:3,y:0},name:'Moss Creature'},

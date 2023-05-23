@@ -96,7 +96,7 @@ class card{
             case 8: string+=`Draw ${this.effect[0]} Card`; if(this.effect[0]>1){string+=`s`} break
             case 9: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nor\nMove ${this.effect[0]} Tiles`; break
             case 10: string+=`Heal ${this.calculateEffect(this.effect[0],4)} Health`; break
-            case 11: string+=`Pull 1 Tile\nTarget Will Face User`; break
+            case 11: string+=`Pull Target Until Adjacent\nTarget Will Face User`; break
             case 12: string+=`Deal ${this.calculateEffect(this.effect[0],2)} Damage`; break
             case 13: string+=`Add ${this.calculateEffect(this.effect[0],3)} Block`; break
             case 14: string+=`Pass Through an\nAdjacent Target\nor\nMove ${this.effect[0]} Tile`; if(this.effect[0]>1){string+=`s`} break
@@ -178,6 +178,16 @@ class card{
             case 93: string+=`Put a Card in Exhaust\nPile in Your Hand`; break
             case 94: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nExhaust ${this.effect[1]} Card ${this.effect[1]>1?`s`:``}`; break
             case 95: string+=`Add ${this.calculateEffect(this.effect[0],1)} Block\nExhaust ${this.effect[1]} Card ${this.effect[1]>1?`s`:``}`; break
+            case 96: string+=`Add ${this.calculateEffect(this.effect[0],1)} Block\nCounter Push 1 Tile`; break
+            case 97: string+=`Add ${this.calculateEffect(this.effect[0],1)} Block\nCounter ${this.effect[1]} Bleed`; break
+            case 98: string+=`Gain ${this.effect[0]} Temporary\nDamage Up`; break
+            case 99: string+=`Gain ${this.effect[0]} Energy\nNext Turn`; break
+            case 100: string+=`${this.effect[0]>0?`Deal `+this.calculateEffect(this.effect[0],0)+` Damage`:``}\nPush 2 Tiles`; break
+            case 101: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nDoes Double\nDamage if\nPlayed First`; break
+            case 102: string+=`Rearm or Create\na Rearmament Point`; break
+            case 103: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nDraw ${this.effect[1]} Less\nCards Next Turn`; break
+            case 104: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nIf Target Will\nUse a Special Move,\nReduce Damage by ${this.effect[1]}`; break
+            case 105: string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage\nIf Fatal,\nLose ${this.effect[1]} Energy`; break
 
         }
         if(string[string.length-1]=='\n'){

@@ -606,7 +606,6 @@ class battle{
                     this.anim.upAfford=false
                 }
                 if(this.counter.killed>=this.counter.enemy&&!this.result.defeat){
-                    print(this.counter.killed,this.counter.enemy)
                     if(this.result.victory){
                         let allClosed=true
                         for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){

@@ -14,6 +14,7 @@ class cardManager{
         this.exhaust=new group(this.layer,this.battle,this.player,5)
 
         this.drawAmount=6
+        this.tempDraw=0
 
         this.initialListing()
     }
@@ -141,11 +142,12 @@ class cardManager{
         return total
     }
     turnDraw(turn){
-        let tempDrawAmount=this.drawAmount
+        let tempDrawAmount=this.drawAmount+this.tempDraw
         if(turn==1){
             tempDrawAmount-=this.drawInnate()
         }
         this.draw(tempDrawAmount)
+        this.tempDraw=0
     }
     fatigue(){
         if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){

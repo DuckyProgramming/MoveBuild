@@ -45,19 +45,22 @@ class combatant{
             'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
             'Vulnerable','Retain Block','Single Damage','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
             'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Next Turn Cannot Move',
-            'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn',
+            'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
+            'Temporary Damage Up','Temporary Draw',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
                 1,0,0,2,0,0,1,2,2,0,
                 2,0,0,0,1,1,0,0,1,2,
-                0,1,1,1,0,0,0,2,
+                0,1,1,1,0,0,0,2,1,2,
+                2,2,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
                 0,0,0,0,0,0,1,0,0,0,
                 1,0,2,2,0,0,0,2,1,1,
-                0,1,1,0,0,2,0,1,
+                0,1,1,0,0,2,0,1,0,0,
+                0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good
@@ -1375,6 +1378,9 @@ class combatant{
             if(userCombatant.status.main[12]>0){
                 damage+=userCombatant.status.main[12]
             }
+            if(userCombatant.status.main[40]>0){
+                damage+=userCombatant.status.main[40]
+            }
             if(userCombatant.status.main[6]!=0){
                 totalStr+=userCombatant.status.main[6]
             }
@@ -1481,6 +1487,14 @@ class combatant{
                         this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
                         this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                         this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id))
+                    }else if(this.status.main[38]>0){
+                        this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                        this.battle.turnManager.turns[1].target=[user]
+                        this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,3,[0],this.id))
+                    }else if(this.status.main[39]>0){
+                        this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                        this.battle.turnManager.turns[1].target=[user]
+                        this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,58,[this.status.main[39]],this.id))
                     }
                     if(this.battle.relicManager.hasRelic(61,this.id)){
                         userCombatant.takeDamage(3*this.battle.relicManager.active[61],-1)
@@ -1623,6 +1637,7 @@ class combatant{
                     case 33: this.heal(this.status.main[a]); break
                     case 34: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Gain Block',this.status.name)]+=this.status.main[a]; break
+                    case 41: this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){

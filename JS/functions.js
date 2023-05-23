@@ -1,3 +1,9 @@
+function isInt(value) {
+	return !isNaN(value) && 
+		   parseInt(Number(value)) == value && 
+		   !isNaN(parseInt(value, 10));
+  }
+  
 function setupLayer(layer){
 	layer.noStroke()
     layer.angleMode(DEGREES)
@@ -149,6 +155,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			}
 			if(user.status.main[12]>0){
 				bonus+=user.status.main[12]
+			}
+			if(user.status.main[40]>0){
+				bonus+=user.status.main[40]
 			}
 			if(user.status.main[6]!=0){
 				totalStr+=user.status.main[6]
