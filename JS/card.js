@@ -84,6 +84,7 @@ class card{
             case -13: string+=`Take ${this.effect[0]} Damage`; break
             case -14: string+=`Lose ${this.effect[0]} Currency`; break
             case -15: string+=`When Drawn,\nYou Cannot Move\nFor ${this.effect[0]} Turns\nWhen Played, Cancels\nPrevious Effect`; break
+            case -16: string+='When Drawn,\nAdd a Fatigue to Hand'; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

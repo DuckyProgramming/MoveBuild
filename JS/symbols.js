@@ -520,7 +520,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(120,225,20,fade)
             layer.ellipse(0,0,16,8)
         break
-        case 53:
+        case 53: case 60:
             layer.fill(0,255,100,fade)
             layer.ellipse(0,0,8,8)
             layer.fill(255,50,50,fade)
@@ -545,6 +545,34 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             }
             layer.triangle(10.5,6,7.5,-3,13.5,-3)
         break
+        case 56:
+            layer.fill(180,20,120,fade)
+            layer.ellipse(-5,0,4,4)
+            layer.ellipse(5,0,4,4)
+            layer.fill(40,fade)
+            layer.triangle(-0.5,-1.5,-0.5,1.5,-3,0)
+            layer.triangle(0.5,-1.5,0.5,1.5,3,0)
+        break
+        case 57:
+            layer.fill(180,20,120,fade)
+            layer.ellipse(-5,0,4,4)
+            layer.ellipse(5,0,4,4)
+            layer.fill(40,fade)
+            layer.triangle(-3,-1.5,-3,1.5,-0.5,0)
+            layer.triangle(3,-1.5,3,1.5,0.5,0)
+        break
+        case 58:
+            layer.fill(150,0,0,fade)
+            layer.arc(0,0,8,8,-45,225)
+            layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
+        break
+        case 59:
+            layer.fill(255,50,50,fade)
+            layer.triangle(7,-3,-4.5,-5,-3.5,-1)
+            layer.triangle(7,3,-4.5,1,-3.5,5)
+            layer.ellipse(-7.5,-2.25,3,3)
+            layer.ellipse(-7.5,2.25,3,3)
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -554,10 +582,10 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 1: case 3: case 4: case 5: case 6: case 7: case 8: case 9: case 10: case 12:
             case 13: case 14: case 16: case 18: case 22: case 23: case 25: case 26: case 28: case 29:
             case 32: case 33: case 35: case 36: case 38: case 39: case 40: case 41: case 42: case 43:
-            case 46: case 48: case 51: case 52: case 53: case 54: case 55:
+            case 46: case 48: case 51: case 52: case 53: case 54: case 55: case 58: case 60:
                 layer.text(effect[0],0,0)
             break
-            case 20: case 31: case 47:
+            case 20: case 31: case 47: case 59:
                 layer.text(`${effect[0]}x2`,0,0)
             break
             case 2: case 19: case 34: case 45:

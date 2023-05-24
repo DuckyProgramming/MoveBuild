@@ -105,15 +105,18 @@ class combatantManager{
     summonCombatant(tilePosition,type,direction){
         let list=[]
         for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
-            if(distTargetCombatant(0,{tilePosition:tilePosition},this.battle.tileManager.tiles[a])<=1&&distTargetCombatant(0,{tilePosition:tilePosition},this.battle.tileManager.tiles[a])>=0&&this.battle.tileManager.tiles[a].occupied==0){
+            let length=distTargetCombatant(0,{tilePosition:tilePosition},this.battle.tileManager.tiles[a])
+            if(length<=1&&length>=0&&this.battle.tileManager.tiles[a].occupied==0){
                 list.push(a)
             }
         }
-        let tile=this.battle.tileManager.tiles[list[floor(random(0,list.length))]]
-        this.addCombatant(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,0,direction,false)
-        this.battle.updateTargetting()
-        this.battle.tileManager.activate()
-        this.battle.counter.enemy++
+        if(list.length>0){
+            let tile=this.battle.tileManager.tiles[list[floor(random(0,list.length))]]
+            this.addCombatant(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,0,direction,false)
+            this.battle.updateTargetting()
+            this.battle.tileManager.activate()
+            this.battle.counter.enemy++
+        }
     }
     allEffect(effect,args){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -144,6 +147,16 @@ class combatantManager{
                 }
             }
         }
+    }
+    killAll(name){
+        let total=0
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].name==name){
+                total+=this.combatants[a].life
+                this.combatants[a].life=0
+            }
+        }
+        return total
     }
     addCombatant(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))

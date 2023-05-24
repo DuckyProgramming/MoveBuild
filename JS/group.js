@@ -259,6 +259,9 @@ class group{
             case -15:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Cannot Move',effect[0])
             break
+            case -16:
+                this.battle.cardManagers[this.player].hand.add(findName('Fatigue',types.card),0,game.playerNumber+1)
+            break
         }
     }
     deathEffect(){

@@ -10,7 +10,6 @@ Battle Content:
 The other statuses
 
 More Fights:
-Slime boss
 Weak enemy
 Teleport enemy
 slow king
