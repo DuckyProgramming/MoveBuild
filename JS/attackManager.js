@@ -10,6 +10,8 @@ class attackManager{
         this.effect=0
         this.attackClass=0
         this.user=0
+        this.level=0
+        this.color=0
         this.energy=0
         this.target=[0]
 
@@ -21,6 +23,7 @@ class attackManager{
         this.position={x:0,y:0}
         this.relativePosition={x:0,y:0}
         this.tilePosition={x:0,y:0}
+        this.endAfter=false
     }
     clear(){
         for(let a=0,la=this.attacks.length;a<la;a++){
@@ -33,7 +36,7 @@ class attackManager{
         this.targetInfo[0]=0
     }
     execute(){
-        this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.energy,this.target,this.targetDistance,this.targetClass))
+        this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.target,this.targetDistance,this.targetClass))
     }
     update(){
         for(let a=0;a<game.animRate;a++){
@@ -42,6 +45,10 @@ class attackManager{
                 if(this.attacks[0].remove){
                     delete this.attacks[0]
                     this.attacks.splice(0,1)
+                    if(this.endAfter){
+                        this.endAfter=false
+                        this.battle.endTurn()
+                    }
                 }
             }
         }

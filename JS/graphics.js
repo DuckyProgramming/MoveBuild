@@ -1009,11 +1009,18 @@ function setupGeneralGraphics(){
 	18 Sakura Floral Print
 	19-21 Ume Sandal Bottom
 	22-23 Ume Sandal Top
+	24-25 Sakura Parasol
 	*/
-	for(let a=0,la=24;a<la;a++){
+	for(let a=0,la=26;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
+			break
+			case 24:
+				graphics.minor.push(createGraphics(600,300))
+			break
+			case 25:
+				graphics.minor.push(createGraphics(400,200))
 			break
 			default:
 				graphics.minor.push(createGraphics(160,160))
@@ -1180,6 +1187,36 @@ function setupGeneralGraphics(){
 			graphics.minor[22+a].line(80+(58-b*14)*(a*2-1),53.5+b*26,80+(48-b*14)*(a*2-1),53.5+b*26)
 		}
 	}
+	graphics.minor[24].stroke(99,58,71)
+	graphics.minor[24].strokeWeight(3)
+	for(let a=0;a<10;a++){
+		graphics.minor[24].line(300,225,60+(a+0.5)*48,75)
+	}
+	graphics.minor[24].fill(0)
+	graphics.minor[24].noStroke()
+	graphics.minor[24].erase()
+	graphics.minor[24].beginShape()
+	graphics.minor[24].vertex(480,125)
+	graphics.minor[24].bezierVertex(400,100,200,100,120,125)
+	graphics.minor[24].vertex(20,125)
+	graphics.minor[24].vertex(20,50)
+	graphics.minor[24].vertex(580,50)
+	graphics.minor[24].vertex(580,125)
+	graphics.minor[24].endShape()
+	graphics.minor[25].stroke(178,86,74)
+	graphics.minor[25].strokeWeight(3)
+	for(let a=0;a<11;a++){
+		graphics.minor[25].line(200,125,20+a*36,25)
+	}
+	graphics.minor[25].fill(0)
+	graphics.minor[25].noStroke()
+	graphics.minor[25].erase()
+	graphics.minor[25].beginShape()
+	graphics.minor[25].vertex(380,25)
+	graphics.minor[25].bezierVertex(300,50,100,50,20,25)
+	graphics.minor[25].vertex(0,20)
+	graphics.minor[25].vertex(400,20)
+	graphics.minor[25].endShape()
 }
 function setupCombatantGraphics(type){
 	switch(type){

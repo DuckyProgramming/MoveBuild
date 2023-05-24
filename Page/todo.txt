@@ -20,7 +20,6 @@ Deal Damage and Gain Energy? (Jab?)
 Redirect?
 1 inch punch
 The other curses
-Parasol
 Wave
 
 Generality:

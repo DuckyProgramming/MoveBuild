@@ -262,8 +262,8 @@ class battle{
         this.combatantManager.tickEarly()
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
-        if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].status.main[35]>0){
-            this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].status.main[35]--
+        if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
+            this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')--
         }else{
             this.turn.main++
         }

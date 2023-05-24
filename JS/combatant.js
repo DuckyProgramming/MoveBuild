@@ -42,7 +42,7 @@ class combatant{
         this.block=0
         this.dodges=[]
         this.status={main:[],name:[
-            'Double Damage','Counter','Cannot be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
+            'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
             'Vulnerable','Retain Block','Single Damage','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
             'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Next Turn Cannot Move',
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
@@ -209,7 +209,7 @@ class combatant{
                 this.kimono.decoration.push({spin:218,rotate:random(0,360),y:24,width:0.2,height:1,type:0})
             break
             case 'Sakura':
-                this.anim={direction:direction,head:direction,sword:1,mouth:{x:8,y:5,open:0},
+                this.anim={direction:direction,head:direction,sword:1,sword2:0,mouth:{x:8,y:5,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
                     kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
                     wrap:{bow:{position:{x:1,y:1}}},
@@ -292,7 +292,7 @@ class combatant{
                     sandal:{edge:0},
                 }
 
-                this.trigger.display.extra={sword:true,damage:false}
+                this.trigger.display.extra={sword:true,sword2:true,damage:false}
 
                 this.calc={int:[0,0,0,0]}
 
@@ -300,7 +300,7 @@ class combatant{
 
                 this.animSet={loop:0,flip:0,hand:0,foot:0}
 
-                this.goal={anim:{direction:this.anim.direction,sword:true}}
+                this.goal={anim:{direction:this.anim.direction,sword:true,sword2:true}}
 
                 for(let g=0;g<2;g++){
                     this.kimono.decoration.large.push({spin:90-g*47.5,rotate:24,y:50-g*5,width:0.35,height:1})
@@ -1607,6 +1607,9 @@ class combatant{
             this.status.main[status]=max(0,this.status.main[status])
         }
     }
+    getStatus(name){
+        return this.status.main[findList(name,this.status.name)]
+    }
     heal(amount){
         if(!this.battle.relicManager.hasRelic(163,this.id)){
             let gain=amount
@@ -1711,6 +1714,11 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=true
                         this.anim.eyeStyle=[1,1]
+                    break
+                    case 27:
+                        this.animSet.loop=0
+                        this.goal.anim.sword=false
+                        this.goal.anim.sword2=true
                     break
                 }
             break
@@ -2005,6 +2013,13 @@ class combatant{
                         this.anim.arms[this.animSet.hand].bottom=9+lsin(this.animSet.loop*90)*75
                         this.spin.arms[this.animSet.hand].bottom=(75+lsin(this.animSet.loop*90)*30)*(this.animSet.hand*2-1)
                     break
+                    case 27:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1-this.animSet.hand].top=24+lsin(this.animSet.loop*90)*36
+                        this.anim.arms[1-this.animSet.hand].bottom=9+lsin(this.animSet.loop*90)*96
+                        this.spin.arms[1-this.animSet.hand].top=(93-lsin(this.animSet.loop*90)*63)*(1-this.animSet.hand*2)
+                        this.spin.arms[1-this.animSet.hand].bottom=(75-lsin(this.animSet.loop*90)*90)*(1-this.animSet.hand*2)
+                    break
                 }
             break
             case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion':
@@ -2281,8 +2296,68 @@ class combatant{
                         this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
                         this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75)))
                         this.layer.scale(-1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
-                        this.layer.image(graphics.minor[17],-27,-42,54,54)
+                        this.layer.image(graphics.minor[17],-27*this.fade,-15-27*this.fade,54*this.fade,54*this.fade)
                         this.layer.pop()
+                    break
+                    case 1:
+                        if(this.anim.sword2>0){
+                            this.layer.push()
+                            this.layer.translate(this.graphics.arms[key].bottom.x*0.9+this.graphics.arms[key].middle.x*0.1,this.graphics.arms[key].bottom.y*0.9+this.graphics.arms[key].middle.y*0.1)
+                            this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom-75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom-75)))
+                            this.layer.scale(-0.5,-0.5*constrain(lsin(this.anim.direction+this.spin.arms[key].bottom-75)*2,-1,1)*this.anim.sword2)
+                            this.layer.strokeCap(SQUARE)
+                            this.layer.noFill()
+                            this.layer.stroke(207,217,220,this.fade)
+                            this.layer.strokeWeight(0.4)
+                            this.layer.beginShape()
+                            this.layer.vertex(45,45)
+                            this.layer.bezierVertex(25,40,-25,40,-45,45)
+                            this.layer.endShape()
+                            this.layer.strokeCap(ROUND)
+                            this.layer.fill(237,155,140,this.fade)
+                            this.layer.noStroke()
+                            this.layer.beginShape()
+                            this.layer.vertex(-45,45)
+                            this.layer.vertex(0,65)
+                            this.layer.vertex(45,45)
+                            this.layer.bezierVertex(25,40,-25,40,-45,45)
+                            this.layer.endShape()
+                            this.layer.stroke(104,78,95,this.fade)
+                            this.layer.strokeWeight(1.5)
+                            this.layer.line(0,-5,0,50)
+                            this.layer.image(graphics.minor[24],-75*this.fade,50-30*this.fade,150*this.fade,60*this.fade)
+                            this.layer.fill(246,209,161,this.fade)
+                            this.layer.noStroke()
+                            this.layer.beginShape()
+                            this.layer.vertex(-45,45)
+                            this.layer.vertex(0,65)
+                            this.layer.vertex(45,45)
+                            this.layer.bezierVertex(25,50,-25,50,-45,45)
+                            this.layer.endShape()
+                            this.layer.image(graphics.minor[25],-50*this.fade,60-20*this.fade,100*this.fade,40*this.fade)
+                            this.layer.push()
+                            this.layer.fill(239,230,231,this.fade)
+                            this.layer.ellipse(0,65,3,3)
+                            this.layer.translate(0,65)
+                            this.layer.rotate(95-165*3/4)
+                            for(let a=0;a<4;a++){
+                                this.layer.arc(0,0,12.5,2.5,-90,90)
+                                this.layer.rotate(-165/4)
+                            }
+                            this.layer.pop()
+                            this.layer.fill(225,202,187,this.fade)
+                            this.layer.rect(0,65.5,3.5,0.4)
+                            this.layer.strokeCap(SQUARE)
+                            this.layer.noFill()
+                            this.layer.stroke(207,217,220,this.fade)
+                            this.layer.strokeWeight(0.4)
+                            this.layer.beginShape()
+                            this.layer.vertex(45.5,45)
+                            this.layer.bezierVertex(25,50,-25,50,-45.5,45)
+                            this.layer.endShape()
+                            this.layer.strokeCap(ROUND)
+                            this.layer.pop()
+                        }
                     break
                 }
             break
@@ -3105,6 +3180,9 @@ class combatant{
                         if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.6&&g==0){
                             this.minorDisplay(0,g)
                         }
+                        if(this.trigger.display.extra.sword2&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.6&&g==1){
+                            this.minorDisplay(1,g)
+                        }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
@@ -3353,6 +3431,9 @@ class combatant{
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6&&g==0){
                             this.minorDisplay(0,g)
+                        }
+                        if(this.trigger.display.extra.sword2&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6&&g==1){
+                            this.minorDisplay(1,g)
                         }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -3970,6 +4051,9 @@ class combatant{
                         if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)>0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==0){
                             this.minorDisplay(0,g)
                         }
+                        if(this.trigger.display.extra.sword2&&lcos(this.spin.arms[g].top+this.anim.direction)>0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6&&g==1){
+                            this.minorDisplay(1,g)
+                        }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
@@ -4075,6 +4159,9 @@ class combatant{
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3)&&g==0){
                             this.minorDisplay(0,g)
+                        }
+                        if(this.trigger.display.extra.sword2&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3)&&g==1){
+                            this.minorDisplay(1,g)
                         }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -6749,13 +6836,21 @@ class combatant{
             }
         }
         switch(this.name){
-            case 'Lira': case 'Sakura': case 'Ume':
+            case 'Lira': case 'Ume':
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
                 this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
-                if(this.name=='Sakura'&&!this.armed){
+            break
+            case 'Sakura':
+                this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
+                this.anim.sword2=smoothAnim(this.anim.sword2,this.goal.anim.sword2,0,1,5)
+                this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
+                if(!this.armed){
                     this.goal.anim.sword=false
-                }else if(this.name=='Sakura'&&this.battle.attackManager.attacks.length<=0&&this.life>0){
+                }else if(this.battle.attackManager.attacks.length<=0&&this.life>0){
                     this.goal.anim.sword=true
+                }
+                if(this.battle.attackManager.attacks.length<=0){
+                    this.goal.anim.sword2=false
                 }
             break
         }

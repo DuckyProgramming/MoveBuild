@@ -1,6 +1,114 @@
 types={
     card:[
         {
+            name:'Blind',rarity:-1,list:-1,
+            levels:[
+                {effect:[3,1],attack:106,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4,2],attack:106,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Smokescreen',rarity:-1,list:-1,
+            levels:[
+                {effect:[10,2],attack:107,cost:0,target:[0],spec:[],class:2},
+                {effect:[15,3],attack:107,cost:0,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Streamline',rarity:-1,list:-1,
+            levels:[
+                {effect:[15],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
+                {effect:[20],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Overheat',rarity:-1,list:-1,
+            levels:[
+                {effect:[2],attack:109,cost:0,target:[0],spec:[],class:4},
+                {effect:[3],attack:109,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Regulate',rarity:-1,list:-1,
+            levels:[
+                {effect:[11,1],attack:110,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:110,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Lightspeed',rarity:-1,list:-1,
+            levels:[
+                {effect:[5,2,1],attack:111,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[6,3,1],attack:111,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Stored\nEnergy',rarity:-1,list:-1,
+            levels:[
+                {effect:[1],attack:41,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2],attack:41,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Blade\nDance',rarity:-1,list:-1,
+            levels:[
+                {effect:[3],attack:112,cost:1,target:[0],spec:[0],class:4},
+                {effect:[4],attack:112,cost:1,target:[0],spec:[0],class:4},
+            ],
+        },{
+            name:'Adrenaline',rarity:-1,list:-1,
+            levels:[
+                {effect:[1,2],attack:113,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,2],attack:113,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Supply',rarity:-1,list:-1,
+            levels:[
+                {effect:[],attack:114,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:114,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Anger',rarity:-1,list:-1,
+            levels:[
+                {effect:[5],attack:115,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:115,cost:0,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Bide\nTime',rarity:-1,list:-1,
+            levels:[
+                {effect:[0],attack:116,cost:-1,target:[0],spec:[],class:4},
+                {effect:[1],attack:116,cost:-1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Facade',rarity:-1,list:-1,
+            levels:[
+                {effect:[7],attack:117,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:117,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Rampage',rarity:-1,list:-1,
+            levels:[
+                {effect:[8,4],attack:118,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,8],attack:118,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Outmaneuver',rarity:-1,list:-1,
+            levels:[
+                {effect:[2],attack:99,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:99,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Clash',rarity:-1,list:-1,
+            levels:[
+                {effect:[14],attack:119,cost:0,target:[2,1,2],spec:[0],class:1},
+                {effect:[18],attack:119,cost:0,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Survivor',rarity:-1,list:-1,
+            levels:[
+                {effect:[8,1],attack:120,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,1],attack:120,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Parasol',rarity:-1,list:-1,
+            levels:[
+                {effect:[8],attack:121,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[12],attack:121,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
             name:'Force',rarity:-1,list:-1,
             levels:[
                 {effect:[],attack:5,cost:0,target:[2,1,2],spec:[1],class:1},
@@ -3195,12 +3303,11 @@ shipyard visit for another time.`,
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
             //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Force',0,1],['Counter\nPush',0,1],['Counter\nStab',0,1],['Hidden\nWeapon',0,1],['Focus',0,1],['Heavy\nPush',0,1]],
+            [['Facade',0,1],['Rampage',0,1],['Outmaneuver',0,1],['Clash',0,1],['Survivor',0,1],['Parasol',0,1]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             [['Long\nPull',0,2],['Ambush',0,2],['Backup\nScythe',0,2],['Consuming\nSlice',0,2],['Glaciate',0,2],['Drill',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
             [['Teleport',0,3],['Stagger',0,3],['Ponder',0,3],['Sprint',0,3],['Defend',0,3],['Defend',0,3]],
-           
         ]
     },level:[
         {
