@@ -958,7 +958,7 @@ types={
             ],
         },
     ],combatant:[
-        {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},//0
+        {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
         {name:'Lira',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
         {name:'Sakura',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
         {name:'Ume',identifier:['Sister','Miss'],life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
@@ -968,7 +968,7 @@ types={
         {name:'Thug',life:32,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:`Beats people up`},
         {name:'Biker',life:40,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
         {name:'Drunk',life:30,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[1]},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
-        {name:'Drunk Boss',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},//10
+        {name:'Drunk Boss',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[2]},{type:9,effect:[9]},{type:10,effect:[5]}],description:`Was going to get the milk`},
         {name:'Monkey',life:12,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:11,effect:[1]}],description:`You`},
         {name:'Trenchcoat',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`Nobody knows who he is`},
         {name:'Trenchcoat Gunner',life:45,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[10]}],description:`Keeps a low profile`},
@@ -978,7 +978,7 @@ types={
         {name:'Orb Walker',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:16,effect:[15]},{type:13,effect:[10,1,'Burn']}],description:`Why he so overpowered?`},
         {name:'Pointy',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[5]}],description:`Stabby gaming`},
         {name:'Romeo',life:40,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:15,effect:[10,2]},{type:21,effect:[]}],description:`Kinda useless`},
-        {name:'Billy Beatup',life:75,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},//20
+        {name:'Billy Beatup',life:75,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},
         {name:'Monkey Gangster',life:24,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[5]},{type:11,effect:[2]}],description:`Your occupation`},
         {name:'Slime',life:20,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Stuck']},{type:23,effect:[2]}],description:`Not splitting yet`},
         {name:'Cartel',life:42,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:24,effect:[2,5]},{type:4,effect:[12]}],description:`A businessman`},
@@ -988,7 +988,7 @@ types={
         {name:'Big Duck',life:50,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:5,effect:[2]},{type:2,effect:[3]},{type:6,effect:[8]}],description:`My boy grew up`},
         {name:'Batter',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[12,1,'Concussion']},{type:4,effect:[6]},{type:26,effect:[1]}],description:`Uses people as baseballs`},
         {name:'Slippery Gangster',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:20,effect:[3]}],description:`Can't hit this man`},
-        {name:'Gangster Gunner',life:24,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Our ranged support`},//30
+        {name:'Gangster Gunner',life:24,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Our ranged support`},
         {name:'Spheron',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[10]},{type:4,effect:[20]},{type:27,effect:[10,2]},{type:30,effect:[10,10]}],description:`Block strategy`},
         {name:'Enforcer',life:80,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:28,effect:[8]},{type:29,effect:[8]}],description:`Doesn't make the rules`},
         {name:'Rock Golem',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:22,effect:[5,1,'Dazed']},{type:4,effect:[4]}],description:`Why is this alive?`},
@@ -998,6 +998,11 @@ types={
         {name:'Moss Creature',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[3]},{type:10,effect:[3]}],description:`Teamwork somehow`},
         {name:'Goblin',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
         {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[6]},{type:35,effect:[15]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
+        {name:'Nerfer',life:50,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:6,effect:[6]},{type:4,effect:[8]},{type:33,effect:[3]},{type:61,effect:[3]},{type:62,effect:[3]}],description:`Makes you worse`},
+        {name:'Buffer',life:50,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:6,effect:[6]},{type:4,effect:[8]},{type:26,effect:[2]},{type:63,effect:[2]},{type:25,effect:[10]}],description:`Makes his guys better`},
+        {name:'Scrapper',life:48,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[7]},{type:64,effect:[4]},{type:4,effect:[12]}],description:`Takes you apart`},
+        {name:'Fat Scrapper',life:80,behavior:3,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:64,effect:[6]},{type:4,effect:[24]},{type:21,effect:[]},{type:21,effect:[]}],description:`Doesn't care about block`},
+
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         
@@ -1007,8 +1012,8 @@ types={
         {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
 
-        //{name:'Donu',life:125,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[],description:`It's just shapes`},
-        //{name:'Deca',life:125,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[],description:`It's just shapes`},
+        {name:'Donu',life:75,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
+        {name:'Deca',life:75,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:66,effect:[4,1,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -1072,6 +1077,12 @@ types={
         {name:'Bleed',class:1},
         {name:'6 Tile Double Strike',class:1},
         {name:'3 Spread Statusing Strike',class:1},//60
+        {name:'2 Tile Frailize',class:1},
+        {name:'2 Tile Vulnerablize',class:1},
+        {name:'All Enemy Dexterize',class:4},
+        {name:'Unblockable 3 Spread Strike',class:1},
+        {name:'All Enemy 2 Turn Block',class:2},
+        {name:'2 Tile Double Statusing Strike',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3441,12 +3452,12 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Slow King'},
-                //{position:{x:3,y:0},name:'Spike Slime'},
-                //{position:{x:0,y:0},name:'Big Spike Slime'},
-                //{position:{x:3,y:0},name:'Moss Creature'},
-                //{position:{x:0,y:0},name:'Goblin'},
-                //{position:{x:3,y:0},name:'Agent Duck'},
+                {position:{x:0,y:0},name:'Donu'},
+                {position:{x:3,y:0},name:'Deca'},
+                //{position:{x:6,y:3},name:'Donu'},
+                //{position:{x:6,y:6},name:'Donu'},
+                //{position:{x:3,y:6},name:'Donu'},
+                //{position:{x:0,y:3},name:'Donu'},
 
                 /*{position:{x:1,y:0},name:'Biker'},
                 {position:{x:2,y:0},name:'Thug'},

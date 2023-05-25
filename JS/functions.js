@@ -284,7 +284,13 @@ function intentDescription(attack,user,info){
 		case 58: return `Apply ${info?attack.effect[0]:`?`} Bleed`
 		case 59: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-6`
 		case 60: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\n3 Tiles Wide\nRange 1-1`
-
+		case 61: return `Apply ${info?attack.effect[0]:`?`} Frail\nRange 1-2`
+		case 62: return `Apply ${info?attack.effect[0]:`?`} Vulnerable\nRange 1-2`
+		case 63: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Dexterity`
+		case 64: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nIgnore Block\nRange 1-1`
+		case 65: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies\nAll Enemies Retain Block\nFor 1 Turn`
+		case 66: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\n\nRange 1-2`
+		
 		default: return `INVALID`
 	}
 }

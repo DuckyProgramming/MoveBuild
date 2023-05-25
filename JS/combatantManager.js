@@ -144,6 +144,12 @@ class combatantManager{
                     case 7:
                         this.combatants[a].heal(args[0])
                     break
+                    case 8:
+                        this.combatants[a].statusEffect('Dexterity',args[0])
+                    break
+                    case 9:
+                        this.combatants[a].statusEffect('Retain Block',args[0])
+                    break
                 }
             }
         }

@@ -10,7 +10,7 @@ Battle Content:
 The other statuses
 
 More Fights:
-Weak enemy
+Weak enemy (based off pointy?)
 Teleport enemy
 slow king
 
