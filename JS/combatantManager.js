@@ -55,14 +55,14 @@ class combatantManager{
     }
     enableCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 this.combatants[a].endBlock()
             }
         }
     }
     unmoveCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 this.combatants[a].moved=false
                 this.combatants[a].activated=types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==5
             }
@@ -70,14 +70,14 @@ class combatantManager{
     }
     activateCombatants(type,id){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 this.combatants[a].activate(type,id)
             }
         }
     }
     targetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 this.combatants[a].markTarget()
             }
             if((this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5)&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&
@@ -149,6 +149,11 @@ class combatantManager{
                     break
                     case 9:
                         this.combatants[a].statusEffect('Retain Block',args[0])
+                    break
+                    case 10:
+                        if(this.combatants[a].name==args[1]){
+                            this.combatants[a].heal(args[0])
+                        }
                     break
                 }
             }

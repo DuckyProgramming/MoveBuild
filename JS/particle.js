@@ -48,7 +48,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 6:
+            case 6: case 11:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=15
@@ -153,6 +153,13 @@ class particle{
                     this.layer.fill(255,255,100,this.fade)
                     this.layer.ellipse(0,0,4,4)
                 break
+                case 11:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(230,130,210,this.fade/10)
+                    for(let a=0,la=10;a<la;a++){
+                        this.layer.triangle(0,-9,-15*(a+1)/la,-9+15*(a+1)/la,15*(a+1)/la,-9+15*(a+1)/la)
+                    }
+                break
             }
             this.layer.pop()
         }
@@ -175,7 +182,7 @@ class particle{
                     }
                 }
             break
-            case 1: case 4: case 5: case 6: case 7: case 8:
+            case 1: case 4: case 5: case 6: case 7: case 8: case 11:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){

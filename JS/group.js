@@ -188,6 +188,11 @@ class group{
                         this.cards[a].exhaust=true
                     }
                 break
+                case 9:
+                    if(this.cards[a].name=='Burn'){
+                        this.cards[a]=upgradeCard(this.cards[a])
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){

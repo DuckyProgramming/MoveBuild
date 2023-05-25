@@ -141,6 +141,11 @@ class cardManager{
         }
         return total
     }
+    allEffect(effect){
+        this.reserve.allEffect(effect)
+        this.hand.allEffect(effect)
+        this.discard.allEffect(effect)
+    }
     turnDraw(turn){
         let tempDrawAmount=this.drawAmount+this.tempDraw
         if(turn==1){
