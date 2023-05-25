@@ -71,6 +71,15 @@ class tileManager{
         }
         return list
     }
+    allEffect(type,args){
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            switch(type){
+                case 0:
+                    this.tiles[a].addType(args[0])
+                break
+            }
+        }
+    }
     typeArea(type,tilePosition){
         for(let a=0,la=this.tiles.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.tiles[a])

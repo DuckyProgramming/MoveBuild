@@ -864,6 +864,12 @@ types={
                 {effect:[1],attack:-16,cost:1,target:[0],spec:[1],class:5},
                 {effect:[1],attack:-16,cost:1,target:[0],spec:[1],class:5},
             ],
+        },{
+            name:'Dizzy',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-17,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[1],attack:-17,cost:0,target:[0],spec:[4,5],class:5},
+            ],
         },
 
         {
@@ -1010,15 +1016,19 @@ types={
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
         {name:'Hexaghost Orb',life:20,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:72,effect:[3,1]},{type:70,effect:[10]}],description:`Should probably kill it`},
+        {name:'Bodyguard',life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[20]},{type:77,effect:[4]},{type:13,effect:[8,1,'Dizzy']}],description:`Paid to die`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
-        {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
-        {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning`},
         {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
-        {name:'Deca',life:75,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:66,effect:[4,1,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
+        {name:'Deca',life:75,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
+        
+        {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
+        {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning`},
+        
+        {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -1096,6 +1106,9 @@ types={
         {name:'Block / Strengthen',class:2},
         {name:'Nonmoving 3 Tile Statusing Strike',class:1},
         {name:'Status and Upgrade Status',class:4},
+        {name:'Money Drop',class:4},
+        {name:'2 Tile Triple Injuring Strike',class:1},
+        {name:'2 Tile Quad Strike',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3463,15 +3476,9 @@ shipyard visit for another time.`,
         },{
             level:['Basic 7'],class:0,world:0,
             name:'Placeholder',
-            player:{position:[[{x:4,y:4}],[{x:2,y:2},{x:3,y:2}]]},
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:3,y:3},name:'Hexaghost Core'},
-                {position:{x:1,y:1},name:'Hexaghost Orb'},
-                {position:{x:3,y:1},name:'Hexaghost Orb'},
-                {position:{x:5,y:3},name:'Hexaghost Orb'},
-                {position:{x:5,y:5},name:'Hexaghost Orb'},
-                {position:{x:3,y:5},name:'Hexaghost Orb'},
-                {position:{x:1,y:3},name:'Hexaghost Orb'},
+                {position:{x:0,y:0},name:'Capitalist'},
 
                 //{position:{x:3,y:0},name:'Mugger'},
                 //{position:{x:6,y:3},name:'Donu'},

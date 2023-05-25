@@ -246,6 +246,10 @@ class group{
                     case 8:
                         this.cards[index].spec.push(8)
                     break
+                    case 9:
+                        this.cards[index].cost+=args[0]
+                        this.cards[index].base.cost+=args[0]
+                    break
                 }
             }
         }
@@ -266,6 +270,9 @@ class group{
             break
             case -16:
                 this.battle.cardManagers[this.player].hand.add(findName('Fatigue',types.card),0,game.playerNumber+1)
+            break
+            case -17:
+                this.drawEffects.push([0,9,[effect[0]]])
             break
         }
     }

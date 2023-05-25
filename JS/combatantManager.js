@@ -221,6 +221,14 @@ class combatantManager{
             }
         }
     }
+    dropAreaID(type,level,color,id,tilePosition){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].id!=id&&distance>=0&&distance<=1&&this.combatants[a].team>0){
+                this.battle.drop(this.combatants[a].id,type,level,color)
+            }
+        }
+    }
     getArea(team,tilePosition,range){
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){

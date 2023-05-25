@@ -68,6 +68,18 @@ class tile{
                         }
                     }
                 break
+                case 7:
+                    this.target=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.target>=0&&(this.battle.combatantManager.combatants[this.target].team==0&&type==0||this.battle.combatantManager.combatants[this.target].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.target].spec.includes(3)){
+                        if(this.battle.combatantManager.combatants[this.target].team>0){
+                            this.battle.addCurrency(10,this.battle.combatantManager.combatants[this.target].id)
+                            this.anim.upPart[a]=false
+                        }else if(this.battle.combatantManager.combatants[this.target].name=='Capitalist'){
+                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bodyguard',types.combatant),this.battle.combatantManager.combatants[this.target].goal.anim.direction)
+                            this.anim.upPart[a]=false
+                        }
+                    }
+                break
             }
         }
     }
@@ -161,6 +173,12 @@ class tile{
                 case 6:
                     this.layer.fill(130,235,30,this.fade*this.anim.part[a])
                     this.layer.ellipse(0,0,48,24)
+                break
+                case 7:
+                    this.layer.fill(240,240,220,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,24,12)
+                    this.layer.fill(220,220,200,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,15,7.5)
                 break
             }
         }
