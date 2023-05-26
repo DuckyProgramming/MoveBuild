@@ -1720,10 +1720,10 @@ class attack{
             switch(this.attackClass){
                 case 1:
                     if(this.userCombatant.getStatus('Double Damage')>0&&this.clearAttack[0]){
-                        this.userCombatant.getStatus('Double Damage')--
+                        this.userCombatant.status.main[0]--
                     }
                     if(this.userCombatant.getStatus('Single Damage')>0&&this.clearAttack[1]){
-                        this.userCombatant.getStatus('Single Damage')=0
+                        this.userCombatant.status.main[12]=0
                     }
                 break
             }

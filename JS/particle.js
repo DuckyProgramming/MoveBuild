@@ -57,6 +57,12 @@ class particle{
                 this.size=1
                 this.scale=1
             break
+            case 12:
+                this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
+                this.fade=1
+                this.size=1
+                this.scale=1
+            break
         }
     }
     display(){
@@ -160,6 +166,11 @@ class particle{
                         this.layer.triangle(0,-9,-15*(a+1)/la,-9+15*(a+1)/la,15*(a+1)/la,-9+15*(a+1)/la)
                     }
                 break
+                case 12:
+                    this.layer.stroke(255,0,0,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.line(0,0,this.position2.x,this.position2.y)
+                break
             }
             this.layer.pop()
         }
@@ -224,6 +235,12 @@ class particle{
                             this.remove=true
                         }
                     }
+                }
+            break
+            case 12:
+                this.fade-=1/15
+                if(this.fade<=0){
+                    this.remove=true
                 }
             break
         }

@@ -1011,22 +1011,26 @@ types={
         {name:'Looter',life:28,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[6,40]},{type:67,effect:[12,30]}],description:`Looting people instead`},
         {name:'Mugger',life:42,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[9,60]},{type:69,effect:[5]}],description:`Got a little extra violent`},
         {name:'Little Guy',life:15,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:4,effect:[6]}],description:`Not really a threat`},
-
+        {name:'Blue Duck',life:30,behavior:2,spec:[1],move:{type:0,speed:2},attack:[{type:2,effect:[3]},{type:5,effect:[2]}],description:`Lost a flying race with you in 2016`},
+        
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
         {name:'Hexaghost Orb',life:20,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:72,effect:[3,1]},{type:70,effect:[10]}],description:`Should probably kill it`},
         {name:'Bodyguard',life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[20]},{type:77,effect:[4]},{type:13,effect:[8,1,'Dizzy']}],description:`Paid to die`},
+        {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
+        {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
         
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
-        {name:'Donu',life:75,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
-        {name:'Deca',life:75,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
+        {name:'Donu',life:75,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
+        {name:'Deca',life:75,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning`},
+        {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
 
@@ -1109,6 +1113,9 @@ types={
         {name:'Money Drop',class:4},
         {name:'2 Tile Triple Injuring Strike',class:1},
         {name:'2 Tile Quad Strike',class:1},
+        {name:'Connective Beam',class:5},
+        {name:'3 Tile Strike',class:1},
+        {name:'Assault Beam',class:1},//80
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3346,8 +3353,8 @@ shipyard visit for another time.`,
         start:[
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
-            //[['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],['Step',0,1],['Step',0,1]],
-            [['Facade',0,1],['Rampage',0,1],['Outmaneuver',0,1],['Clash',0,1],['Survivor',0,1],['Parasol',0,1]],
+            [/*['Strike',0,1],['Strike',0,1],['Strike',0,1],['Strike',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Defend',0,1],['Step',0,1],['Step',0,1],*/['Step',0,1],['Step',0,1]],
+            //[['Facade',0,1],['Rampage',0,1],['Outmaneuver',0,1],['Clash',0,1],['Survivor',0,1],['Parasol',0,1]],
             //[['Strike',0,2],['Strike',0,2],['Strike',0,2],['Strike',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Defend',0,2],['Step',0,2],['Step',0,2],['Step',0,2],['Step',0,2]],
             [['Long\nPull',0,2],['Ambush',0,2],['Backup\nScythe',0,2],['Consuming\nSlice',0,2],['Glaciate',0,2],['Drill',0,2]],
             //[['Strike',0,3],['Strike',0,3],['Strike',0,3],['Strike',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Defend',0,3],['Step',0,3],['Step',0,3],['Step',0,3],['Step',0,3]],
@@ -3464,6 +3471,17 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[2]},{type:[]},{type:[2]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'War 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[1]},{type:[2]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[1]},{type:[2]},{type:-1}],
+                [{type:[]},{type:[1]},{type:[]},{type:[]},{type:[]},{type:[1]},{type:[]}],
+                [{type:-1},{type:[2]},{type:[1]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[2]},{type:[1]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
         },
     ],encounter:[
         {
@@ -3476,35 +3494,14 @@ shipyard visit for another time.`,
         },{
             level:['Basic 7'],class:0,world:0,
             name:'Placeholder',
-            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
+            player:{position:[[{x:6,y:6}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Capitalist'},
+                {position:{x:0,y:0},name:'Bronze Automaton'},
 
-                //{position:{x:3,y:0},name:'Mugger'},
-                //{position:{x:6,y:3},name:'Donu'},
-                //{position:{x:6,y:6},name:'Donu'},
-                //{position:{x:3,y:6},name:'Donu'},
-                //{position:{x:0,y:3},name:'Donu'},
-
-                /*{position:{x:1,y:0},name:'Biker'},
-                {position:{x:2,y:0},name:'Thug'},
-                {position:{x:3,y:0},name:'Thug'},
-                {position:{x:3,y:6},name:'Thug'},
-                {position:{x:4,y:6},name:'Thug'},
-                {position:{x:5,y:6},name:'Biker'},
-                {position:{x:6,y:6},name:'Biker'},*/
-
-                /*{position:{x:0,y:1},name:'Duck'},
-                {position:{x:0,y:2},name:'Duck'},
-                {position:{x:4,y:1},name:'Duck'},
-                {position:{x:5,y:2},name:'Duck'},
-                {position:{x:1,y:4},name:'Duck'},
-                {position:{x:2,y:5},name:'Duck'},
-                {position:{x:6,y:4},name:'Duck'},
-                {position:{x:6,y:5},name:'Duck'},*/
+                {position:{x:3,y:0},name:'Bronze Orb C'},
+                {position:{x:0,y:3},name:'Bronze Orb C'},
+                {position:{x:3,y:3},name:'Bronze Orb C'},
             ],reinforce:[
-                //{position:{x:0,y:3},name:'Human',turn:2},
-                //{position:{x:6,y:3},name:'Human',turn:2},
             ],
         },{
             level:['Basic 7'],class:1,world:0,
@@ -3642,6 +3639,19 @@ shipyard visit for another time.`,
             ],reinforce:[
                 {position:{x:1,y:2},name:'Monkey Gangster',turn:3},
                 {position:{x:5,y:2},name:'Monkey Gangster',turn:3},
+            ],
+        },{
+            level:['War 7'],class:2,world:0,
+            name:'General Duckion',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'General Duckion'},
+                {position:{x:2,y:1},name:'Duckforce'},
+                {position:{x:1,y:2},name:'Duckforce'},
+                {position:{x:5,y:4},name:'Duckforce'},
+                {position:{x:4,y:5},name:'Duckforce'},
+
+            ],reinforce:[
             ],
         },
     ],

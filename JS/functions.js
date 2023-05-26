@@ -301,7 +301,10 @@ function intentDescription(attack,user,info){
 		case 75: return `Create Currency on All Tiles`
 		case 76: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
 		case 77: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 4 Times\nRange 1-2`
-		
+		case 78: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nBetween Self and\nOther Bronze Orbs`
+		case 79: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-3`
+		case 80: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6\nNo Movement`
+
 		default: return `INVALID`
 	}
 }
@@ -412,6 +415,9 @@ function targetDirection(type,x,y){
 			}
 			return -1
 	}
+}
+function targetDirectionCombatant(type,combatant1,combatant2){
+	return targetDirection(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
 }
 function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,tiles){
 	switch(type){
