@@ -86,6 +86,7 @@ class card{
             case -15: string+=`When Drawn,\nYou Cannot Move\nFor ${this.effect[0]} Turns\nWhen Played, Cancels\nPrevious Effect`; break
             case -16: string+='When Drawn,\nAdd a Fatigue to Hand'; break
             case -17: string+=`When Drawn,\nA Random Card\nCosts ${this.effect[0]} More This Combat`; break
+            case -18: string+=`When Drawn,\nLose ${this.effect[0]} Energy`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

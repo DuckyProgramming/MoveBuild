@@ -274,6 +274,9 @@ class group{
             case -17:
                 this.drawEffects.push([0,9,[effect[0]]])
             break
+            case -18:
+                this.battle.energy.main[this.player]-=effect[0]
+            break
         }
     }
     deathEffect(){

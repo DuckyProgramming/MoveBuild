@@ -872,6 +872,28 @@ class combatant{
                 this.calc={int:[0,0,0,0]}
                 this.goal={anim:{direction:this.anim.direction}}
             break
+            case 'Management Robot':
+                this.anim={direction:direction,head:direction,eye:[0,0],eyeStyle:[0,0],
+                    legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
+                    arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
+                this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+                this.parts={eyeLevel:-78,minor:15,
+                    legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                    arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+                this.graphics={
+                    legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                    arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+                this.fades={eye:[1,1],skin:{legs:1,arms:1,body:1,head:1}}
+                this.trigger={display:{eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                switch(this.name){
+                    default:
+                        this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
+                    break
+                }
+            break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
@@ -1105,11 +1127,48 @@ class combatant{
                         this.trigger.display.tie=true
                         this.trigger.display.sunglasses=true
                     break
+                    case 'Management Soldier':
+                        this.color={skin:{head:[240,220,180],body:[95,105,110],legs:[65,85,85],arms:[85,135,195]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[30,25,0]
+                        this.color.helmet=[80,85,90]
+                        this.color.visor=[65,130,140]
+                        this.fades.belt=1
+                        this.fades.helmet=1
+                        this.fades.visor=1
+                        this.trigger.display.belt=true
+                        this.trigger.display.helmet=true
+                        this.trigger.display.visor=true
+                    break
+                    case 'Management Officer':
+                        this.color={skin:{head:[240,220,180],body:[100,100,100],legs:[95,95,95],arms:[95,95,95]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[60,60,60]
+                        this.color.badge=[[50,50,200],[75,75,225]]
+                        this.color.glasses=[[40,40,40],[255,255,255]]
+                        this.fades.belt=1
+                        this.fades.badge=1
+                        this.fades.glasses=1
+                        this.trigger.display.belt=true
+                        this.trigger.display.badge=true
+                        this.trigger.display.glasses=true
+                    break
+                    case 'Management Special Forces':
+                        this.color={skin:{head:[240,220,180],body:[85,90,90],legs:[75,80,80],arms:[80,85,85]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[80,75,50]
+                        this.color.helmet=[50,55,60]
+                        this.color.visor=[100,150,200]
+                        this.fades.belt=1
+                        this.fades.helmet=1
+                        this.fades.visor=1
+                        this.trigger.display.belt=true
+                        this.trigger.display.helmet=true
+                        this.trigger.display.visor=true
+                    break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
                 }
             break
+        
         }
         if(this.team>0){
             this.fade=1
@@ -1315,13 +1374,13 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*3,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*3)
                 ]
-            case 9: case 60: case 64: case 69:
+            case 9: case 60: case 64: case 69: case 82:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction-60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction-60)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1])
                 ]
-            case 12: case 38: case 45: case 47: case 50: case 59: case 80:
+            case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
@@ -1445,6 +1504,7 @@ class combatant{
                 case 20: case 24: case 27: case 28: case 30: case 32: case 33: case 38: case 44: case 45:
                 case 47: case 49: case 50: case 53: case 54: case 55: case 59: case 60: case 61: case 62:
                 case 64: case 66: case 67: case 69: case 71: case 73: case 76: case 77: case 79: case 80:
+                case 81: case 82: case 83:
                     this.targetTile=[]
                     for(let a=0,la=target.length;a<la;a++){
                         this.targetTile.push(target[a]==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target[a]].tilePosition)
@@ -1485,7 +1545,7 @@ class combatant{
                             }
                         break
                         case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
-                        case 69:
+                        case 69: case 82:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -1494,7 +1554,7 @@ class combatant{
                                 }
                             }
                         break
-                        case 12: case 38: case 45: case 47: case 50: case 59: case 80:
+                        case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -1547,7 +1607,8 @@ class combatant{
                 case 6: case 7: case 9: case 12: case 14: case 15: case 16: case 17: case 19: case 20:
                 case 24: case 27: case 28: case 30: case 32: case 33: case 38: case 44: case 45: case 47:
                 case 49: case 50: case 53: case 54: case 55: case 59: case 60: case 61: case 62: case 64:
-                case 66: case 67: case 69: case 71: case 73: case 76: case 77: case 79: case 80:
+                case 66: case 67: case 69: case 71: case 73: case 76: case 77: case 79: case 80: case 81:
+                case 82: case 83:
                     if(target.length>0){
                         for(let a=0,la=target.length;a<la;a++){
                             if(target[a]!=-1){
@@ -6759,7 +6820,84 @@ class combatant{
                         this.layer.quad(-3,-30,0,-33,3,-30,0,-27)
                     }
                 break
+                case 'Management Robot':
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.limb)[0],this.flashColor(this.color.skin.limb)[1],this.flashColor(this.color.skin.limb)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.limb)[0],this.flashColor(this.color.skin.limb)[1],this.flashColor(this.color.skin.limb)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                        for(let h=0;h<2;h++){
+                            if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                                if(this.trigger.display.skin.legs){
+                                    this.layer.stroke(this.flashColor(this.color.skin.limb)[0],this.flashColor(this.color.skin.limb)[1],this.flashColor(this.color.skin.limb)[2],this.fade*this.fades.skin.legs)
+                                    this.layer.strokeWeight(4)
+                                    this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
+                                    this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
+                                }
+                            }
+                        }
+                    }
+                    if(this.trigger.display.skin.body){
+                        this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>=0){
+                                this.layer.rect(7.5*lsin(this.anim.direction+a*90),-45,15*lcos(this.anim.direction+a*90),30)
+                            }
+                        }
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
+                            this.layer.stroke(this.flashColor(this.color.skin.limb)[0],this.flashColor(this.color.skin.limb)[1],this.flashColor(this.color.skin.limb)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                            this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                            this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        }
+                    }
+                    if(this.trigger.display.skin.head){
+                        this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>=0){
+                                this.layer.rect(13.5*lsin(this.anim.direction+a*90),-75,27*lcos(this.anim.direction+a*90),27)
+                            }
+                        }
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
+                            this.layer.stroke(this.flashColor(this.color.skin.limb)[0],this.flashColor(this.color.skin.limb)[1],this.flashColor(this.color.skin.limb)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                            this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                            this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        }
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.limb)[0],this.flashColor(this.color.skin.limb)[1],this.flashColor(this.color.skin.limb)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                        if(this.trigger.display.eye[g]){
+                            this.minorDisplayGeneral(0,g)
+                        }
+                    }
+                break
                 default:
+                    if((this.name=='Management Soldier'||this.name=='Management Special Forces')&&this.trigger.display.visor&&lcos(this.anim.direction)<=0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor/2)
+                        this.layer.rect(lsin(this.anim.direction)*18,-78,20*lcos(this.anim.direction),6)
+                    }
                     if(this.name=='Slow King'&&this.trigger.display.cape&&lcos(this.anim.direction+180)<-0.1){
                         this.layer.noStroke()
                         this.layer.fill(this.color.cape[0],this.color.cape[1],this.color.cape[2],this.fade*this.fades.cape)
@@ -6857,7 +6995,14 @@ class combatant{
                         this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
                         this.layer.ellipse(lsin(this.anim.direction)*6.5,-54,8*lcos(this.anim.direction),8)
                     }
-                    if((this.name=='Bouncer'||this.name=='Drunk')&&this.trigger.display.belt){
+                    if(this.name=='Management Officer'&&this.trigger.display.badge&&lcos(this.anim.direction+36)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.badge[0])[0],this.flashColor(this.color.badge[0])[1],this.flashColor(this.color.badge[0])[2],this.fade*this.fades.badge)
+                        this.layer.ellipse(lsin(this.anim.direction+36)*6,-57,5*lcos(this.anim.direction+36),5)
+                        this.layer.fill(this.flashColor(this.color.badge[1])[0],this.flashColor(this.color.badge[1])[1],this.flashColor(this.color.badge[1])[2],this.fade*this.fades.badge)
+                        this.layer.ellipse(lsin(this.anim.direction+36)*6,-56,3*lcos(this.anim.direction+36),3)
+                    }
+                    if((this.name=='Bouncer'||this.name=='Drunk'||this.name=='Management Officer')&&this.trigger.display.belt){
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
                         this.layer.rect(0,-45,14,3)
@@ -6874,6 +7019,15 @@ class combatant{
                         for(let a=0,la=6;a<la;a++){
                             if(lcos(30+a*60)>0){
 					            this.layer.rect(lsin(30+a*60)*6.5,-48,lcos(30+a*60)*4,3)
+                            }
+                        }
+                    }
+                    if((this.name=='Management Soldier'||this.name=='Management Special Forces')&&this.trigger.display.belt){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
+                        for(let a=0,la=8;a<la;a++){
+                            if(lcos(30+a*60)>0){
+					            this.layer.rect(lsin(22.5+a*45)*6.5,-48,lcos(22.5+a*45)*3,2)
                             }
                         }
                     }
@@ -7170,6 +7324,24 @@ class combatant{
                         this.layer.line(-15,-90,15,-90)
 					    this.layer.rect(0,-100,16,20,1)
 					}
+                    if((this.name=='Management Soldier'||'Management Special Forces')&&this.trigger.display.helmet){
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)
+                        this.layer.arc(0,-81,36,36,-180,0)
+                    }
+                    if((this.name=='Management Soldier'||'Management Special Forces')&&this.trigger.display.visor&&lcos(this.anim.direction)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor/2)
+                        this.layer.rect(lsin(this.anim.direction)*18,-78,20*lcos(this.anim.direction),6)
+                    }
+                    if(this.name=='Management Officer'&&this.trigger.display.glasses&&lcos(this.anim.direction)>0){
+                        this.layer.fill(this.color.glasses[1][0],this.color.glasses[1][1],this.color.glasses[1][2],this.fade*this.fades.glasses/5)
+                        this.layer.stroke(this.color.glasses[0][0],this.color.glasses[0][1],this.color.glasses[0][2],this.fade*this.fades.glasses)
+                        this.layer.strokeWeight(1)
+	    				this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-77,6*lcos(this.anim.direction),3)
+		    			this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5,-77,6*lcos(this.anim.direction),3)
+			    		this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-77,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-77)
+                    }
                 break
             
             }
@@ -7255,7 +7427,7 @@ class combatant{
                     this.layer.noStroke()
                     this.layer.rect(100,300,160,240,10)
                     this.layer.fill(0,this.fade*this.infoAnim.description)
-                    this.layer.textSize(16)
+                    this.layer.textSize(this.name.length>=20?12:16)
                     this.layer.text(this.name,100,200)
                     this.layer.textSize(8)
                     this.layer.text(this.description,100,240)

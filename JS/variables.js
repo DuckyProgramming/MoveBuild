@@ -870,6 +870,12 @@ types={
                 {effect:[1],attack:-17,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[1],attack:-17,cost:0,target:[0],spec:[4,5],class:5},
             ],
+        },{
+            name:'Void',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-18,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[1],attack:-18,cost:0,target:[0],spec:[4,5],class:5},
+            ],
         },
 
         {
@@ -1012,7 +1018,11 @@ types={
         {name:'Mugger',life:42,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[9,60]},{type:69,effect:[5]}],description:`Got a little extra violent`},
         {name:'Little Guy',life:15,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:4,effect:[6]}],description:`Not really a threat`},
         {name:'Blue Duck',life:30,behavior:2,spec:[1],move:{type:0,speed:2},attack:[{type:2,effect:[3]},{type:5,effect:[2]}],description:`Lost a flying race with you in 2016`},
-        
+        {name:'Management Robot',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
+        {name:'Management Soldier',life:135,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
+        {name:'Management Officer',life:70,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his suboordinates`},
+        {name:'Management Special Forces',life:120,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:82,effect:[4,1,'Void']},{type:83,effect:[8,1,'Electrocuted']},{type:6,effect:[18]},{type:45,effect:[5]}],description:`Gets paid if he can win`},
+
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
@@ -1033,7 +1043,7 @@ types={
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
-
+        
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -1116,6 +1126,9 @@ types={
         {name:'Connective Beam',class:5},
         {name:'3 Tile Strike',class:1},
         {name:'Assault Beam',class:1},//80
+        {name:'Statusing Gun',class:1},
+        {name:'3 Spread Injuring Strike',class:1},
+        {name:'6 Tile Statusing Strike',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3496,11 +3509,7 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:6,y:6}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Bronze Automaton'},
-
-                {position:{x:3,y:0},name:'Bronze Orb C'},
-                {position:{x:0,y:3},name:'Bronze Orb C'},
-                {position:{x:3,y:3},name:'Bronze Orb C'},
+                {position:{x:0,y:0},name:'Management Special Forces'},
             ],reinforce:[
             ],
         },{
