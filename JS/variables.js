@@ -1022,7 +1022,16 @@ types={
         {name:'Management Soldier',life:135,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
         {name:'Management Officer',life:70,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his suboordinates`},
         {name:'Management Special Forces',life:120,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:82,effect:[4,1,'Void']},{type:83,effect:[8,1,'Electrocuted']},{type:6,effect:[18]},{type:45,effect:[5]}],description:`Gets paid if he can win`},
-
+        {name:'Sneaky Gremlin',life:13,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:4,effect:[3]}],description:`Pretends to be hidden`},
+        {name:'Fat Gremlin',life:17,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[5]},{type:84,effect:[3,1]}],description:`Resembles somebody`},
+        {name:'Angry Gremlin',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[3]}],description:`Anger management issue`},
+        {name:'Deployer',life:40,behavior:9,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in backups`},
+        {name:'Chief Deployer',life:80,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Sentry']},{type:6,effect:[6]},{type:4,effect:[7]},{type:39,effect:[1,'Deployer']}],description:`Builds the builders`},
+        {name:'Sentry',life:8,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
+        {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
+        {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[12]},{type:86,effect:[5]}],description:`Extra enemy's kinda pointless`},
+        {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
+        
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
@@ -1129,7 +1138,12 @@ types={
         {name:'Statusing Gun',class:1},
         {name:'3 Spread Injuring Strike',class:1},
         {name:'6 Tile Statusing Strike',class:1},
-
+        {name:'3 Spread Strike / Weak',class:1},
+        {name:'Crescent Strike',class:1},
+        {name:'Triple Crescent Strike',class:1},
+        {name:'Shockwave',class:1},
+        {name:'Freeze',class:4},
+        //6 tile push
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -3507,9 +3521,11 @@ shipyard visit for another time.`,
         },{
             level:['Basic 7'],class:0,world:0,
             name:'Placeholder',
-            player:{position:[[{x:6,y:6}],[{x:2,y:2},{x:3,y:2}]]},
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Management Special Forces'},
+                {position:{x:0,y:0},name:'Solar Shard'},
+                {position:{x:1,y:0},name:'Lunar Shard'},
+                {position:{x:2,y:0},name:'Lunar Dust'},
             ],reinforce:[
             ],
         },{
@@ -3666,7 +3682,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]]}
+game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],dev:true}
 constants={collisionDamage:4}
 options={damage:false,alt:false}
 graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}

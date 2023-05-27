@@ -866,6 +866,9 @@ class battle{
                             this.endTurn()
                         }
                     }
+                    if(key=='Q'&&game.dev){
+                        quickAdd('Telefrag')
+                    }
                 }
             break
             case 'map':
