@@ -21,7 +21,7 @@ class battle{
 
         this.encounter={class:0}
         this.currency={money:[]}
-        this.energy={main:[],gen:[],base:[]}
+        this.energy={main:[],gen:[],base:[],temp:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         
         this.turn={main:0,total:0,time:0,accelerate:0}
@@ -61,6 +61,7 @@ class battle{
             this.energy.main.push(0)
             this.energy.gen.push(0)
             this.energy.base.push(3)
+            this.energy.temp.push(0)
             this.anim.extra.push(0)
             this.anim.turn.push(0)
             this.anim.deck.push(1)
@@ -296,7 +297,8 @@ class battle{
         this.turn.total++
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            this.energy.main[a]=this.relicManager.hasRelic(28,a)&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]
+            this.energy.main[a]=max(0,this.relicManager.hasRelic(28,a)&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]+this.energy.temp[a])
+            this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
         this.combatantManager.tick()

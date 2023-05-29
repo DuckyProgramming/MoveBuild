@@ -257,7 +257,7 @@ class group{
     drawEffect(attack,effect){
         switch(attack){
             case -3:
-                this.status.exhaust+=effect[0]
+                this.drawEffects.push([1,effect[0]])
             break
             case -6:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Weak',effect[0])
@@ -265,7 +265,7 @@ class group{
             case -12:
                 this.drawEffects.push([0,7,[effect[0]]])
             break
-            case -15:
+            case -15: case -19:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Cannot Move',effect[0])
             break
             case -16:
@@ -343,6 +343,9 @@ class group{
                 switch(this.drawEffects[a][0]){
                     case 0:
                         parent.randomEffect(this.drawEffects[a][1],this.drawEffects[a][2])
+                    break
+                    case 1:
+                        parent.status.exhaust+=this.drawEffects[a][1]
                     break
                 }
             }

@@ -841,6 +841,12 @@ types={
                 {effect:[1],attack:-15,cost:1,target:[0],spec:[1],class:5},
             ],
         },{
+            name:'Glued',rarity:0,list:4,
+            levels:[
+                {effect:[2],attack:-19,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[2],attack:-19,cost:0,target:[0],spec:[4,5],class:5},
+            ],
+        },{
             name:'Concussion',rarity:0,list:4,
             levels:[
                 {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
@@ -875,6 +881,12 @@ types={
             levels:[
                 {effect:[1],attack:-18,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[1],attack:-18,cost:0,target:[0],spec:[4,5],class:5},
+            ],
+        },{
+            name:'Slow\nBleed',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-5,cost:0,target:[0],spec:[5],class:5},
+                {effect:[2],attack:-5,cost:0,target:[0],spec:[5],class:5},
             ],
         },
 
@@ -1018,8 +1030,8 @@ types={
         {name:'Mugger',life:42,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[9,60]},{type:69,effect:[5]}],description:`Got a little extra violent`},
         {name:'Little Guy',life:15,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:4,effect:[6]}],description:`Not really a threat`},
         {name:'Blue Duck',life:30,behavior:2,spec:[1],move:{type:0,speed:2},attack:[{type:2,effect:[3]},{type:5,effect:[2]}],description:`Lost a flying race with you in 2016`},
-        {name:'Management Robot',life:90,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
-        {name:'Management Soldier',life:135,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
+        {name:'Management Robot',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
+        {name:'Management Soldier',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
         {name:'Management Officer',life:70,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his suboordinates`},
         {name:'Management Special Forces',life:120,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:82,effect:[4,1,'Void']},{type:83,effect:[8,1,'Electrocuted']},{type:6,effect:[18]},{type:45,effect:[5]}],description:`Gets paid if he can win`},
         {name:'Sneaky Gremlin',life:13,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:4,effect:[3]}],description:`Pretends to be hidden`},
@@ -1031,6 +1043,10 @@ types={
         {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[12]},{type:86,effect:[5]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
+        {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Glued']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Use to have good aim`},
+        {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[2]},{type:32,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
+        {name:'Management Custodian',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[2]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
+        {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
         
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -1143,6 +1159,14 @@ types={
         {name:'Triple Crescent Strike',class:1},
         {name:'Shockwave',class:1},
         {name:'Freeze',class:4},
+        {name:'Injuring Gun',class:1},
+        {name:'Pushing Gun',class:1},//90
+        {name:'Pushing Statusing Gun',class:1},
+        {name:'Card Draw Down',class:4},
+        {name:'Energy Down',class:4},
+        {name:'Anti-Control',class:4},
+        {name:'3 Spread Quad Strike',class:1},
+
         //6 tile push
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3523,9 +3547,7 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Solar Shard'},
-                {position:{x:1,y:0},name:'Lunar Shard'},
-                {position:{x:2,y:0},name:'Lunar Dust'},
+                {position:{x:0,y:0},name:''},
             ],reinforce:[
             ],
         },{
