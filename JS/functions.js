@@ -322,6 +322,9 @@ function intentDescription(attack,user,info){
 		case 96: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPulls at Range 2\nRange 1-2`
 		case 97: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nPush 1 Tile\nRange 1-1`
 		case 98: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-6`
+		case 99: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-3`
+		case 100: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-4`
+		case 101: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 4 Times\nRange 1-1`
 		
 		default: return `INVALID`
 	}
@@ -489,6 +492,30 @@ function transformDirection(type,direction){
 				return [0,0]
 			}
 	}
+}
+function numerilizeDirection(type,direction){
+	switch(type){
+		case 0:
+			let actualDirection=(direction%360+540)%360-180
+			if(abs(actualDirection+30)<=30){
+				return 5
+			}else if(abs(actualDirection-30)<=30){
+				return 4
+			}else if(abs(actualDirection+90)<=30){
+				return 0
+			}else if(abs(actualDirection-90)<=30){
+				return 3
+			}else if(abs(actualDirection+150)<=30){
+				return 1
+			}else if(abs(actualDirection-150)<=30){
+				return 2
+			}else{
+				return -1
+			}
+	}
+}
+function directionCombatant(combatant1,combatant2){
+	return atan2(combatant1.relativePosition.x-combatant2.relativePosition.x,combatant1.relativePosition.y-combatant2.relativePosition.y)
 }
 function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
 	if(trigger&&anim<maxPoint){

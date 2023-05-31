@@ -1525,7 +1525,7 @@ class combatant{
     getTarget(){
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-            case 36: case 37: case 97:
+            case 36: case 37: case 97: case 101:
                 return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
             case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96:
@@ -1533,11 +1533,18 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
                 ]
-            case 71: case 73: case 79:
+            case 71: case 73: case 79: case 99:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*3,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*3)
+                ]
+            case 100:
+                return [
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*3,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*3),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*4,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*4)
                 ]
             case 9: case 60: case 64: case 69: case 82: case 84: case 95:
                 return [
@@ -1685,7 +1692,7 @@ class combatant{
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                case 36: case 37: case 97:
+                case 36: case 37: case 97: case 101:
                     this.targetTile=target==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target].tilePosition
                 break
                 case 6: case 7: case 8: case 9: case 12: case 14: case 15: case 16: case 17: case 19:
@@ -1693,7 +1700,7 @@ class combatant{
                 case 47: case 49: case 50: case 53: case 54: case 55: case 59: case 60: case 61: case 62:
                 case 64: case 66: case 67: case 69: case 71: case 73: case 76: case 77: case 79: case 80:
                 case 81: case 82: case 83: case 84: case 85: case 86: case 87: case 89: case 90: case 91:
-                case 95: case 96: case 97: case 98:
+                case 95: case 96: case 97: case 98: case 99: case 100:
                     this.targetTile=[]
                     for(let a=0,la=target.length;a<la;a++){
                         this.targetTile.push(target[a]==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target[a]].tilePosition)
@@ -1704,7 +1711,7 @@ class combatant{
                 if(this.battle.combatantManager.combatants[a].team>0&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2)){
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                        case 36: case 37: case 97:
+                        case 36: case 37: case 97: case 101:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile.y){
@@ -1712,7 +1719,7 @@ class combatant{
                             }
                         break
                         case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
-                        case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96:
+                        case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -1729,6 +1736,18 @@ class combatant{
                                     this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].y&&
                                     !(b>=1&&this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetTile[0].x,this.targetTile[0].y)].occupied>0)&&
                                     !(b>=2&&this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetTile[1].x,this.targetTile[1].y)].occupied>0)){
+                                        this.activated=true
+                                }
+                            }
+                        break
+                        case 100:
+                            for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                                if(
+                                    this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
+                                    this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].y&&
+                                    !(b>=1&&this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetTile[0].x,this.targetTile[0].y)].occupied>0)&&
+                                    !(b>=2&&this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetTile[1].x,this.targetTile[1].y)].occupied>0)&&
+                                    !(b>=3&&this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetTile[2].x,this.targetTile[2].y)].occupied>0)){
                                         this.activated=true
                                 }
                             }
@@ -1789,9 +1808,9 @@ class combatant{
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                case 36: case 37: case 97:
+                case 36: case 37: case 97: case 101:
                     if(target!=-1){
-                        this.battle.tileManager.tiles[target].targetted[this.activated?2:1]=true
+                        this.battle.tileManager.tiles[target].targetted[this.activated?2:1][numerilizeDirection(0,directionCombatant(this.battle.tileManager.tiles[target],this))]=true
                     }
                 break
                 case 6: case 7: case 9: case 12: case 14: case 15: case 16: case 17: case 19: case 20:
@@ -1799,11 +1818,11 @@ class combatant{
                 case 49: case 50: case 53: case 54: case 55: case 59: case 60: case 61: case 62: case 64:
                 case 66: case 67: case 69: case 71: case 73: case 76: case 77: case 79: case 80: case 81:
                 case 82: case 83: case 84: case 85: case 86: case 87: case 89: case 90: case 91: case 95:
-                case 96: case 98:
+                case 96: case 98: case 99: case 100:
                     if(target.length>0){
                         for(let a=0,la=target.length;a<la;a++){
                             if(target[a]!=-1){
-                                this.battle.tileManager.tiles[target[a]].targetted[this.activated?2:1]=true
+                                this.battle.tileManager.tiles[target[a]].targetted[this.activated?2:1][numerilizeDirection(0,directionCombatant(this.battle.tileManager.tiles[target[a]],this))]=true
                             }
                         }
                     }
@@ -1812,7 +1831,7 @@ class combatant{
                     if(target.length>0){
                         for(let a=0,la=target.length;a<la;a++){
                             if(target[a]!=-1){
-                                this.battle.tileManager.tiles[target[a]].targetted[this.activated?4:3]=true
+                                this.battle.tileManager.tiles[target[a]].targetted[this.activated?4:3][numerilizeDirection(0,directionCombatant(this.battle.tileManager.tiles[target[a]],this))]=true
                             }
                         }
                     }
@@ -1824,7 +1843,7 @@ class combatant{
                             for(let b=1,lb=distTargetCombatant(0,this,this.battle.combatantManager.combatants[a]);b<lb;b++){
                                 let index=this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-direction*60+90)[0]*b,this.tilePosition.y+transformDirection(0,-direction*60+90)[1]*b)
                                 if(index>=0){
-                                    this.battle.tileManager.tiles[index].targetted[2]=true
+                                    this.battle.tileManager.tiles[index].targetted[2][numerilizeDirection(0,-direction*60+90)]=true
                                 }
                             }
                         }

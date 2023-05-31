@@ -9,12 +9,18 @@ class tile{
 
         this.fade=1
         this.occupied=0
-        this.targetted=[false,false,false,false,false]
+        this.targetted=[
+            [false,false,false,false,false,false],
+            [false,false,false,false,false,false],
+            [false,false,false,false,false,false],
+            [false,false,false,false,false,false],
+            [false,false,false,false,false,false],
+        ]
         this.reinforce=false
         this.fire=0
         this.target=0
 
-        this.anim={target:[0,0,0,0,0],reinforce:0,fire:0,part:[],upPart:[]}
+        this.anim={target:[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]],reinforce:0,fire:0,part:[],upPart:[]}
         for(let a=0,la=this.type.length;a<la;a++){
             this.anim.part.push(0)
             this.anim.upPart.push(true)
@@ -94,8 +100,10 @@ class tile{
         }
     }
     unTarget(){
-        for(let a=0,la=this.anim.target.length;a<la;a++){
-            this.targetted[a]=false
+        for(let a=0,la=this.targetted.length;a<la;a++){
+            for(let b=0,lb=this.targetted[a].length;b<lb;b++){
+                this.targetted[a][b]=false
+            }
         }
     }
     removeType(index){
@@ -199,39 +207,69 @@ class tile{
             this.layer.textSize(12)
             this.layer.text(this.fire,0,-game.targetRadius/8)
         }
-        if(this.anim.target[0]>0){
+        if(this.anim.target[0][0]>0||this.anim.target[0][1]>0||this.anim.target[0][2]>0||this.anim.target[0][3]>0||this.anim.target[0][4]>0||this.anim.target[0][5]>0){
             this.layer.noFill()
-            this.layer.stroke(200,this.fade*this.anim.target[0])
+            this.layer.stroke(200,this.fade*max(this.anim.target[0][0],this.anim.target[0][1],this.anim.target[0][2],this.anim.target[0][3],this.anim.target[0][4],this.anim.target[0][5]))
             this.layer.strokeWeight(2)
             this.layer.ellipse(0,0,game.targetRadius*2)
+            for(let a=0,la=6;a<la;a++){
+                if(this.anim.target[0][a]>0){
+                    this.layer.stroke(200,this.fade*this.anim.target[0][a])
+                    this.layer.line(cos(constants.cycle[a])*game.targetRadius,sin(constants.cycle[a])*game.targetRadius,cos(constants.cycle[a])*game.targetRadius*0.6,sin(constants.cycle[a])*game.targetRadius*0.6)
+                }
+            }
             stack++
         }
-        if(this.anim.target[1]>0){
+        if(this.anim.target[1][0]>0||this.anim.target[1][1]>0||this.anim.target[1][2]>0||this.anim.target[1][3]>0||this.anim.target[1][4]>0||this.anim.target[1][5]>0){
             this.layer.noFill()
-            this.layer.stroke(255,50,50,this.fade*this.anim.target[1])
+            this.layer.stroke(255,50,50,this.fade*max(this.anim.target[1][0],this.anim.target[1][1],this.anim.target[1][2],this.anim.target[1][3],this.anim.target[1][4],this.anim.target[1][5]))
             this.layer.strokeWeight(2)
-            this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
+            this.layer.ellipse(0,0,game.targetRadius*2+stack*4)
+            for(let a=0,la=6;a<la;a++){
+                if(this.anim.target[1][a]>0){
+                    this.layer.stroke(255,50,50,this.fade*this.anim.target[1][a])
+                    this.layer.line(cos(constants.cycle[a])*(game.targetRadius+stack*2),sin(constants.cycle[a])*(game.targetRadius+stack*2),cos(constants.cycle[a])*(game.targetRadius*0.6+stack*2),sin(constants.cycle[a])*(game.targetRadius*0.6+stack*2))
+                }
+            }
             stack++
         }
-        if(this.anim.target[2]>0){
+        if(this.anim.target[2][0]>0||this.anim.target[2][1]>0||this.anim.target[2][2]>0||this.anim.target[2][3]>0||this.anim.target[2][4]>0||this.anim.target[2][5]>0){
             this.layer.noFill()
-            this.layer.stroke(200,0,0,this.fade*this.anim.target[2])
+            this.layer.stroke(200,0,0,this.fade*max(this.anim.target[2][0],this.anim.target[2][1],this.anim.target[2][2],this.anim.target[2][3],this.anim.target[2][4],this.anim.target[2][5]))
             this.layer.strokeWeight(2)
-            this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
+            this.layer.ellipse(0,0,game.targetRadius*2+stack*4)
+            for(let a=0,la=6;a<la;a++){
+                if(this.anim.target[2][a]>0){
+                    this.layer.stroke(200,0,0,this.fade*this.anim.target[2][a])
+                    this.layer.line(cos(constants.cycle[a])*(game.targetRadius+stack*2),sin(constants.cycle[a])*(game.targetRadius+stack*2),cos(constants.cycle[a])*(game.targetRadius*0.6+stack*2),sin(constants.cycle[a])*(game.targetRadius*0.6+stack*2))
+                }
+            }
             stack++
         }
-        if(this.anim.target[3]>0){
+        if(this.anim.target[3][0]>0||this.anim.target[3][1]>0||this.anim.target[3][2]>0||this.anim.target[3][3]>0||this.anim.target[3][4]>0||this.anim.target[3][5]>0){
             this.layer.noFill()
-            this.layer.stroke(255,200,50,this.fade*this.anim.target[3])
+            this.layer.stroke(255,200,50,this.fade*max(this.anim.target[3][0],this.anim.target[3][1],this.anim.target[3][2],this.anim.target[3][3],this.anim.target[3][4],this.anim.target[3][5]))
             this.layer.strokeWeight(2)
-            this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
+            this.layer.ellipse(0,0,game.targetRadius*2+stack*4)
+            for(let a=0,la=6;a<la;a++){
+                if(this.anim.target[3][a]>0){
+                    this.layer.stroke(255,200,50,this.fade*this.anim.target[3][a])
+                    this.layer.line(cos(constants.cycle[a])*(game.targetRadius+stack*2),sin(constants.cycle[a])*(game.targetRadius+stack*2),cos(constants.cycle[a])*(game.targetRadius*0.6+stack*2),sin(constants.cycle[a])*(game.targetRadius*0.6+stack*2))
+                }
+            }
             stack++
         }
-        if(this.anim.target[4]>0){
+        if(this.anim.target[4][0]>0||this.anim.target[4][1]>0||this.anim.target[4][2]>0||this.anim.target[4][3]>0||this.anim.target[4][4]>0||this.anim.target[4][5]>0){
             this.layer.noFill()
-            this.layer.stroke(200,150,0,this.fade*this.anim.target[4])
+            this.layer.stroke(200,150,0,this.fade*max(this.anim.target[4][0],this.anim.target[4][1],this.anim.target[4][2],this.anim.target[4][3],this.anim.target[4][4],this.anim.target[4][5]))
             this.layer.strokeWeight(2)
-            this.layer.ellipse(0,0,game.targetRadius*2-stack*4)
+            this.layer.ellipse(0,0,game.targetRadius*2+stack*4)
+            for(let a=0,la=6;a<la;a++){
+                if(this.anim.target[4][a]>0){
+                    this.layer.stroke(200,150,0,this.fade*this.anim.target[4][a])
+                    this.layer.line(cos(constants.cycle[a])*(game.targetRadius+stack*2),sin(constants.cycle[a])*(game.targetRadius+stack*2),cos(constants.cycle[a])*(game.targetRadius*0.6+stack*2),sin(constants.cycle[a])*(game.targetRadius*0.6+stack*2))
+                }
+            }
             stack++
         }
         this.layer.pop()
@@ -240,7 +278,9 @@ class tile{
         this.tilePosition.x=round(this.tilePosition.x)
         this.tilePosition.y=round(this.tilePosition.y)
         for(let a=0,la=this.anim.target.length;a<la;a++){
-            this.anim.target[a]=smoothAnim(this.anim.target[a],this.targetted[a],0,1,5)
+            for(let b=0,lb=this.anim.target[a].length;b<lb;b++){
+                this.anim.target[a][b]=smoothAnim(this.anim.target[a][b],this.targetted[a][b],0,1,5)
+            }
         }
         this.anim.reinforce=smoothAnim(this.anim.reinforce,this.reinforce,0,1,5)
         this.anim.fire=smoothAnim(this.anim.fire,this.fire>0,0,1,5)

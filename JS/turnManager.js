@@ -36,7 +36,9 @@ class turnManager{
     }
     loadEnemyMove(enemy){
         this.auxiliary=true
-        this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
+        for(let a=0,la=this.battle.combatantManager.combatants[enemy].move.speed;a<la;a++){
+            this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
+        }
     }
     loadEnemyRotate(enemy){
         this.auxiliary=true
@@ -44,7 +46,9 @@ class turnManager{
     }
     loadEnemyMoveBack(enemy){
         this.auxiliary=true
-        this.turnsBack.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
+        for(let a=0,la=this.battle.combatantManager.combatants[enemy].move.speed;a<la;a++){
+            this.turnsBack.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
+        }
     }
     loadEnemyRotateBack(enemy){
         this.auxiliary=true

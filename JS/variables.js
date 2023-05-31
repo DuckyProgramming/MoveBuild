@@ -1049,6 +1049,7 @@ types={
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[8]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
         {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[9]}],description:`Helping the prisoners for some reason`},
+        {name:'Lightspeed',life:85,behavior:1,spec:[1],move:{type:0,speed:3},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[12]}],description:`He be fast`},
         
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -1171,6 +1172,9 @@ types={
         {name:'2 Tile Pull Strike',class:1},
         {name:'Double Push',class:1},
         {name:'6 Tile Push',class:1},
+        {name:'3 Tile Double Strike',class:1},
+        {name:'4 Tile Strike',class:1},//100
+        {name:'Quad Strike',class:1},
 
         //repulse to end of map
 
@@ -3553,7 +3557,7 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Prison Guard'},
+                {position:{x:2,y:2},name:'Lightspeed'},
             ],reinforce:[
             ],
         },{
@@ -3569,12 +3573,12 @@ shipyard visit for another time.`,
             name:'BronzeAutoTemp',
             player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
             enemy:[
-                /*{position:{x:0,y:0},name:'Bronze Automaton'},
+                {position:{x:0,y:0},name:'Bronze Automaton'},
                 {position:{x:3,y:3},name:'Bronze Orb C'},
                 {position:{x:0,y:3},name:'Bronze Orb A'},
                 {position:{x:3,y:0},name:'Bronze Orb A'},
                 {position:{x:6,y:3},name:'Bronze Orb C'},
-                {position:{x:3,y:6},name:'Bronze Orb C'},*/
+                {position:{x:3,y:6},name:'Bronze Orb C'},
             ],reinforce:[
             ],
         },{
@@ -3732,7 +3736,7 @@ shipyard visit for another time.`,
 }
 stage={scale:0,scene:'map'}
 game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],startEnergy:3,dev:true}
-constants={collisionDamage:4}
+constants={collisionDamage:4,cycle:[0,40,140,180,220,320]}
 options={damage:false,alt:false}
 graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}
 transition={trigger:false,anim:0,scene:stage.scene}
