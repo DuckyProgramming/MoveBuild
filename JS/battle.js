@@ -60,7 +60,7 @@ class battle{
             this.currency.money.push(100)
             this.energy.main.push(0)
             this.energy.gen.push(0)
-            this.energy.base.push(3)
+            this.energy.base.push(game.startEnergy)
             this.energy.temp.push(0)
             this.anim.extra.push(0)
             this.anim.turn.push(0)

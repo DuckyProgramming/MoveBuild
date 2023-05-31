@@ -37,9 +37,8 @@ class attack{
             case 21: case 24: case 25: case 27: case 32: case 33: case 34: case 35: case 36: case 37:
             case 38: case 39: case 42: case 46: case 47: case 48: case 49: case 53: case 57: case 61:
             case 66: case 67: case 68: case 75: case 77: case 79: case 80: case 81: case 83: case 84:
-            case 85: case 86: case 88: case 89: case 90: case 94: case 100: case 101: case 102: case 103:
-            case 104: case 105: case 106: case 108: case 110: case 111: case 115: case 117: case 118: case 119:
-            case 121:
+            case 85: case 86: case 88: case 89: case 90: case 94: case 100: case 101: case 103: case 104:
+            case 105: case 106: case 108: case 110: case 111: case 115: case 117: case 118: case 119: case 121:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -633,7 +632,6 @@ class attack{
                     }
                     if(this.timer>=30){
                         this.targetCombatant.moveTilePosition(round(this.targetCombatant.tilePosition.x/2+this.userCombatant.tilePosition.x/2),round(this.targetCombatant.tilePosition.y/2+this.userCombatant.tilePosition.y/2))
-                        this.battle.activate(1,this.userCombatant.id)
                         this.battle.activate(1,this.targetCombatant.id)
                         this.remove=true
                     }
@@ -662,7 +660,6 @@ class attack{
                     }
                     if(this.timer>=50){
                         this.targetCombatant.moveTilePosition(round(this.targetCombatant.tilePosition.x/3+this.userCombatant.tilePosition.x*2/3),round(this.targetCombatant.tilePosition.y/3+this.userCombatant.tilePosition.y*2/3))
-                        this.battle.activate(1,this.userCombatant.id)
                         this.battle.activate(1,this.targetCombatant.id)
                         this.remove=true
                     }

@@ -319,6 +319,9 @@ function intentDescription(attack,user,info){
 		case 93: return `Lose ${info?attack.effect[0]:`?`} Energy`
 		case 94: return `Apply ${info?attack.effect[0]:`?`} Anti-Control`
 		case 95: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 4 Times\n3 Tiles Wide\nRange 1-1`
+		case 96: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPulls at Range 2\nRange 1-2`
+		case 97: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nPush 1 Tile\nRange 1-1`
+		case 98: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-6`
 		
 		default: return `INVALID`
 	}

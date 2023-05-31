@@ -33,6 +33,7 @@ class combatant{
 
         this.order=0
         this.moved=false
+        this.agressor=false
         this.dead=false
         this.blocked=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
@@ -1294,6 +1295,27 @@ class combatant{
                         this.trigger.display.helmet=true
                         this.trigger.display.visor=true
                     break
+                    case 'Prisoner':
+                        this.color={skin:{head:[240,220,180],body:[225,155,25],legs:[220,150,20],arms:[215,145,15]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[230,230,230]
+                        this.fades.belt=1
+                        this.trigger.display.belt=1
+                    break
+                    case 'Prison Guard':
+                        this.color={skin:{head:[240,220,180],body:[175,100,0],legs:[170,95,0],arms:[165,90,0]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[[70,70,70],[60,60,60]]
+                        this.color.armor=[80,80,80]
+                        this.color.helmet=[100,100,100]
+                        this.color.visor=[200,200,200]
+                        this.fades.belt=1
+                        this.fades.armor=1
+                        this.fades.helmet=1
+                        this.fades.visor=1
+                        this.trigger.display.belt=1
+                        this.trigger.display.armor=1
+                        this.trigger.display.helmet=1
+                        this.trigger.display.visor=1
+                    break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
@@ -1503,10 +1525,10 @@ class combatant{
     getTarget(){
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-            case 36: case 37:
+            case 36: case 37: case 97:
                 return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
-            case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77:
+            case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
@@ -1517,14 +1539,14 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*3,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*3)
                 ]
-            case 9: case 60: case 64: case 69: case 82: case 84:
+            case 9: case 60: case 64: case 69: case 82: case 84: case 95:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction-60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction-60)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1])
                 ]
             case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
-            case 90: case 91:
+            case 90: case 91: case 98:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
@@ -1646,17 +1668,24 @@ class combatant{
     }
     activate(type,id){
         if(this.life>0&&!this.moved){
-            if(this.spec.includes(0)&&id==this.target&&type==1&&this.battle.turn.main<this.battle.players){
+            if(this.spec.includes(0)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players){
+                this.target=id
                 this.battle.turnManager.loadEnemyRotate(this.id)
             }
-            if(this.spec.includes(1)&&id==this.target&&type==1&&this.battle.turn.main<this.battle.players){
+            if(this.spec.includes(1)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players){
+                this.target=id
                 this.battle.turnManager.loadEnemyMoveBack(this.id)
                 this.battle.turnManager.loadEnemyRotateBack(this.id)
+            }
+            if(this.spec.includes(7)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&!this.agressor){
+                this.target=id
+                this.battle.turnManager.loadEnemyAttackRepeat(this.id)
+                this.agressor=true
             }
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                case 36: case 37:
+                case 36: case 37: case 97:
                     this.targetTile=target==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target].tilePosition
                 break
                 case 6: case 7: case 8: case 9: case 12: case 14: case 15: case 16: case 17: case 19:
@@ -1664,6 +1693,7 @@ class combatant{
                 case 47: case 49: case 50: case 53: case 54: case 55: case 59: case 60: case 61: case 62:
                 case 64: case 66: case 67: case 69: case 71: case 73: case 76: case 77: case 79: case 80:
                 case 81: case 82: case 83: case 84: case 85: case 86: case 87: case 89: case 90: case 91:
+                case 95: case 96: case 97: case 98:
                     this.targetTile=[]
                     for(let a=0,la=target.length;a<la;a++){
                         this.targetTile.push(target[a]==-1?{x:-1,y:-1}:this.battle.tileManager.tiles[target[a]].tilePosition)
@@ -1674,7 +1704,7 @@ class combatant{
                 if(this.battle.combatantManager.combatants[a].team>0&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2)){
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                        case 36: case 37:
+                        case 36: case 37: case 97:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile.y){
@@ -1682,7 +1712,7 @@ class combatant{
                             }
                         break
                         case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
-                        case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77:
+                        case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -1704,7 +1734,7 @@ class combatant{
                             }
                         break
                         case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
-                        case 69: case 82: case 84: case 85: case 86: case 87:
+                        case 69: case 82: case 84: case 85: case 86: case 87: case 95:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -1714,7 +1744,7 @@ class combatant{
                             }
                         break
                         case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
-                        case 90: case 91:
+                        case 90: case 91: case 98:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].x&&
@@ -1759,7 +1789,7 @@ class combatant{
             let target=this.getTarget()
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                case 36: case 37:
+                case 36: case 37: case 97:
                     if(target!=-1){
                         this.battle.tileManager.tiles[target].targetted[this.activated?2:1]=true
                     }
@@ -1768,7 +1798,8 @@ class combatant{
                 case 24: case 27: case 28: case 30: case 32: case 33: case 38: case 44: case 45: case 47:
                 case 49: case 50: case 53: case 54: case 55: case 59: case 60: case 61: case 62: case 64:
                 case 66: case 67: case 69: case 71: case 73: case 76: case 77: case 79: case 80: case 81:
-                case 82: case 83: case 84: case 85: case 86: case 87: case 89: case 90: case 91:
+                case 82: case 83: case 84: case 85: case 86: case 87: case 89: case 90: case 91: case 95:
+                case 96: case 98:
                     if(target.length>0){
                         for(let a=0,la=target.length;a<la;a++){
                             if(target[a]!=-1){
@@ -2008,34 +2039,28 @@ class combatant{
         }
     }
     moveTile(direction,speed){
-        if(this.status.main[28]<=0){
-            this.position.x+=lsin(direction)*speed
-            this.position.y+=lcos(direction)*speed
-            this.battle.combatantManager.sort()
-        }
+        this.position.x+=lsin(direction)*speed
+        this.position.y+=lcos(direction)*speed
+        this.battle.combatantManager.sort()
     }
     moveRelativeTile(direction,speed){
-        if(this.status.main[28]<=0){
-            this.relativePosition.x+=lsin(direction)*speed
-            this.relativePosition.y+=lcos(direction)*speed
-        }
+        this.relativePosition.x+=lsin(direction)*speed
+        this.relativePosition.y+=lcos(direction)*speed
     }
     moveTilePosition(x,y){
-        if(this.status.main[28]<=0){
-            if(this.id<this.battle.players){
-                let distance=distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y)
-                this.battle.stats.move[this.id]+=distance
-                if(this.battle.relicManager.hasRelic(100,this.id)){
-                    this.addBlock(2*distance*this.battle.relicManager.active[100])
-                }
+        if(this.id<this.battle.players){
+            let distance=distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y)
+            this.battle.stats.move[this.id]+=distance
+            if(this.battle.relicManager.hasRelic(100,this.id)){
+                this.addBlock(2*distance*this.battle.relicManager.active[100])
             }
-            this.tilePosition.x=x
-            this.tilePosition.y=y
-            if(this.spec.includes(5)){
-                let tile=this.battle.tileManager.getTileIndex(this.tilePosition.x,this.tilePosition.y)
-                if(tile>=0){
-                    this.battle.tileManager.tiles[tile].addType(6)
-                }
+        }
+        this.tilePosition.x=x
+        this.tilePosition.y=y
+        if(this.spec.includes(5)){
+            let tile=this.battle.tileManager.getTileIndex(this.tilePosition.x,this.tilePosition.y)
+            if(tile>=0){
+                this.battle.tileManager.tiles[tile].addType(6)
             }
         }
     }
@@ -7237,6 +7262,16 @@ class combatant{
                             if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard')&&this.trigger.display.band){
                                 this.minorDisplay(1,g)
                             }
+                            if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                                this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(
+                                    this.graphics.arms[g].top.x*0.7+this.graphics.arms[g].middle.x*0.3,this.graphics.arms[g].top.y*0.7+this.graphics.arms[g].middle.y*0.3,
+                                    this.graphics.arms[g].top.x*0.3+this.graphics.arms[g].middle.x*0.7,this.graphics.arms[g].top.y*0.3+this.graphics.arms[g].middle.y*0.7)
+                                this.layer.line(
+                                    this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
+                                    this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
+                            }
                         }
                     }
                     if(this.name=='Solar Shard'&&this.trigger.display.sun){
@@ -7326,8 +7361,8 @@ class combatant{
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
                         for(let a=0,la=6;a<la;a++){
-                            if(lcos(30+a*60)>0){
-					            this.layer.rect(lsin(30+a*60)*6.5,-48,lcos(30+a*60)*4,3)
+                            if(lcos(30+a*60+this.anim.direction)>0){
+					            this.layer.rect(lsin(30+a*60+this.anim.direction)*6.5,-48,lcos(30+a*60+this.anim.direction)*4,3)
                             }
                         }
                     }
@@ -7335,12 +7370,12 @@ class combatant{
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
                         for(let a=0,la=8;a<la;a++){
-                            if(lcos(30+a*60)>0){
-					            this.layer.rect(lsin(22.5+a*45)*6.5,-48,lcos(22.5+a*45)*3,2)
+                            if(lcos(22.5+a*45+this.anim.direction)>0){
+					            this.layer.rect(lsin(22.5+a*45+this.anim.direction)*6.5,-48,lcos(22.5+a*45+this.anim.direction)*3,2)
                             }
                         }
                     }
-                    if(this.name=='Sharpshot'&&this.trigger.display.belt){
+                    if((this.name=='Sharpshot'||this.name=='Prison Guard')&&this.trigger.display.belt){
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.belt[0])[0],this.flashColor(this.color.belt[0])[1],this.flashColor(this.color.belt[0])[2],this.fade*this.fades.belt)
                         this.layer.rect(0,-45,14,4)
@@ -7371,6 +7406,15 @@ class combatant{
                             }
                         }
                     }
+                    if(this.name=='Prisoner'&&this.trigger.display.belt){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
+                        for(let a=0,la=6;a<la;a++){
+                            if(lcos(30+a*60+this.anim.direction)>0){
+					            this.layer.rect(lsin(30+a*60+this.anim.direction)*6.5,-48,lcos(30+a*60+this.anim.direction)*2,6)
+                            }
+                        }
+                    }
                     if(this.name=='Drunk'&&this.trigger.display.bottle){
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.bottle)[0],this.flashColor(this.color.bottle)[1],this.flashColor(this.color.bottle)[2],this.fade*this.fades.bottle)
@@ -7397,6 +7441,16 @@ class combatant{
                             if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard')&&this.trigger.display.band){
                                 this.minorDisplay(1,g)
                             }
+                            if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                                this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(
+                                    this.graphics.arms[g].top.x*0.7+this.graphics.arms[g].middle.x*0.3,this.graphics.arms[g].top.y*0.7+this.graphics.arms[g].middle.y*0.3,
+                                    this.graphics.arms[g].top.x*0.3+this.graphics.arms[g].middle.x*0.7,this.graphics.arms[g].top.y*0.3+this.graphics.arms[g].middle.y*0.7)
+                                this.layer.line(
+                                    this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
+                                    this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
+                            }
                         }
                         for(let h=0;h<2;h++){
                             if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
@@ -7405,6 +7459,16 @@ class combatant{
                                     this.layer.strokeWeight(4)
                                     this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                     this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
+                                    if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                                        this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                                        this.layer.strokeWeight(4)
+                                        this.layer.line(
+                                            this.graphics.legs[h].top.x*0.7+this.graphics.legs[h].middle.x*0.3,this.graphics.legs[h].top.y*0.7+this.graphics.legs[h].middle.y*0.3,
+                                            this.graphics.legs[h].top.x*0.3+this.graphics.legs[h].middle.x*0.7,this.graphics.legs[h].top.y*0.3+this.graphics.legs[h].middle.y*0.7)
+                                        this.layer.line(
+                                            this.graphics.legs[h].middle.x*0.7+this.graphics.legs[h].bottom.x*0.3,this.graphics.legs[h].middle.y*0.7+this.graphics.legs[h].bottom.y*0.3,
+                                            this.graphics.legs[h].middle.x*0.3+this.graphics.legs[h].bottom.x*0.7,this.graphics.legs[h].middle.y*0.3+this.graphics.legs[h].bottom.y*0.7)
+                                    }
                                 }
                             }
                         }
@@ -7462,6 +7526,16 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                             if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard')&&this.trigger.display.band){
                                 this.minorDisplay(1,g)
+                            }
+                            if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                                this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(
+                                    this.graphics.arms[g].top.x*0.7+this.graphics.arms[g].middle.x*0.3,this.graphics.arms[g].top.y*0.7+this.graphics.arms[g].middle.y*0.3,
+                                    this.graphics.arms[g].top.x*0.3+this.graphics.arms[g].middle.x*0.7,this.graphics.arms[g].top.y*0.3+this.graphics.arms[g].middle.y*0.7)
+                                this.layer.line(
+                                    this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
+                                    this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
                             }
                         }
                     }
@@ -7547,6 +7621,16 @@ class combatant{
                                 if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard')&&this.trigger.display.band){
                                     this.minorDisplay(1,g)
                                 }
+                                if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                                    this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                                    this.layer.strokeWeight(4)
+                                    this.layer.line(
+                                        this.graphics.arms[g].top.x*0.7+this.graphics.arms[g].middle.x*0.3,this.graphics.arms[g].top.y*0.7+this.graphics.arms[g].middle.y*0.3,
+                                        this.graphics.arms[g].top.x*0.3+this.graphics.arms[g].middle.x*0.7,this.graphics.arms[g].top.y*0.3+this.graphics.arms[g].middle.y*0.7)
+                                    this.layer.line(
+                                        this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
+                                        this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
+                                }
                             }
                             if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
                                 this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -7554,6 +7638,13 @@ class combatant{
                                 this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                                 if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard')&&this.trigger.display.band){
                                     this.minorDisplay(1,g)
+                                }
+                                if(this.name=='Prison Guard'&&this.trigger.display.armor){
+                                    this.layer.stroke(this.flashColor(this.color.armor)[0],this.flashColor(this.color.armor)[1],this.flashColor(this.color.armor)[2],this.fade*this.fades.armor)
+                                    this.layer.strokeWeight(4)
+                                    this.layer.line(
+                                        this.graphics.arms[g].middle.x*0.7+this.graphics.arms[g].bottom.x*0.3,this.graphics.arms[g].middle.y*0.7+this.graphics.arms[g].bottom.y*0.3,
+                                        this.graphics.arms[g].middle.x*0.3+this.graphics.arms[g].bottom.x*0.7,this.graphics.arms[g].middle.y*0.3+this.graphics.arms[g].bottom.y*0.7)
                                 }
                             }
                             if((this.name=='Thug'||this.name=='Goon')&&this.trigger.display.eye[g]){
@@ -7745,7 +7836,9 @@ class combatant{
         }
         if(this.team==0){
             for(let a=0,la=this.attack.length;a<la;a++){
-                displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
+                if(this.infoAnim.intent[a]>0){
+                    displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
+                }
             }
         }
         this.layer.fill(0,this.fade*this.infoAnim.life)
@@ -7817,6 +7910,7 @@ class combatant{
                                 case 4: this.layer.text('Immune to Traps',40,305+a*15); break
                                 case 5: this.layer.text('Slimes Tiles Moved On',40,305+a*15); break
                                 case 6: this.layer.text('Spawns Slimes Every 20 HP Lost',40,305+a*15); break
+                                case 7: this.layer.text('Attacks When You Move',40,305+a*15); break
 
                             }
                         }
@@ -7844,7 +7938,9 @@ class combatant{
                     }
                     if(this.team==0){
                         for(let a=0,la=this.attack.length;a<la;a++){
-                            displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
+                            if(this.infoAnim.intent[a]>0){
+                                displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
+                            }
                         }
                     }
                 }

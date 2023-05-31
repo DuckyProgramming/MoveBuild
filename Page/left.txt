@@ -1,16 +1,5 @@
-        {name:'Agent',alt:'',life:80,height:80,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Brother','Mister','MPKF-8589869056','George']},
-        {name:'Duelist',alt:'',life:70,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Sister','Miss','Princess','Setsuna']},
-        {name:'Executor',alt:'',life:50,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Brother','Mister','MAEP-65091','Azis']},
-        {name:'Creation',alt:'',life:60,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Sister','Miss','MPCO-SKR','9']},
-        {name:'Builder',alt:'',life:60,height:66,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Friend','Duck','____','Duckipo']},
-        {name:'Phantasm',alt:'',life:50,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Friend','Thing','____','Certes']},
-        {name:'Gentleman',alt:'',life:70,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Brother','Mister','MCFN-3742105','Alexander']},
-        
-
         {name:'Snaky Plant',alt:'',life:80,height:75,behavior:1,attacks:[1,1,3,13,12],damage:[9,10,2,0,6],altAttack:[0,0,4,0,0],class:1,buff:0},
-
-        {name:'Prisoner',alt:'',life:28,height:75,behavior:0,attacks:[1,3,8],damage:[8,5,10],altAttack:[0,2,0],class:0,buff:0},
-        {name:'Prison Guard',alt:'',life:56,height:75,behavior:0,attacks:[3,8],damage:[3,16],altAttack:[3,0],class:0,buff:7},
+        
         {name:'Gas Man',alt:'',life:85,height:80,behavior:1,attacks:[1,3,5],damage:[15,3,4],altAttack:[0,6,0],class:0,buff:0},
         {name:'Debt Collector',alt:'',life:64,height:75,behavior:0,attacks:[1],damage:[12],altAttack:[0],class:0,buff:0},
         {name:'Swordmaster',alt:'',life:105,height:75,behavior:0,attacks:[16,1,17],damage:[20,16,10],altAttack:[1,0,2],class:0,buff:0},
@@ -47,6 +36,39 @@
         
         {name:'Lightspeed',alt:'',life:85,height:75,behavior:0,attacks:[3,3,3,3],damage:[6,4,3,2],altAttack:[2,3,4,6],class:0,buff:26},
         {name:'Champion',alt:'',life:180,height:84,behavior:0,attacks:[58,62],damage:[4,4],altAttack:[2,10],class:0,buff:1},
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        {name:'Agent',alt:'',life:80,height:80,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Brother','Mister','MPKF-8589869056','George']},
+        {name:'Duelist',alt:'',life:70,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Sister','Miss','Princess','Setsuna']},
+        {name:'Executor',alt:'',life:50,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Brother','Mister','MAEP-65091','Azis']},
+        {name:'Creation',alt:'',life:60,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Sister','Miss','MPCO-SKR','9']},
+        {name:'Builder',alt:'',life:60,height:66,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Friend','Duck','____','Duckipo']},
+        {name:'Phantasm',alt:'',life:50,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Friend','Thing','____','Certes']},
+        {name:'Gentleman',alt:'',life:70,height:75,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0,identifiers:['Brother','Mister','MCFN-3742105','Alexander']},
         
         {name:'Wall',alt:'',life:30,height:60,behavior:0,attacks:[],damage:[],altAttack:[],class:0,buff:0},
         {name:'Spikes',alt:'',life:20,height:60,behavior:0,attacks:[],damage:[],altAttack:[],class:-1,buff:0},//40

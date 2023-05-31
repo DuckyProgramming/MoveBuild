@@ -1,5 +1,4 @@
 Bugs:
-Etherealn't
 
 Mechanics:
 Menu

@@ -25,6 +25,15 @@ class turnManager{
                 this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
         }
     }
+    loadEnemyAttackRepeat(enemy){
+        if(this.battle.combatantManager.combatants[enemy].team==0){
+            this.auxiliary=true
+            this.turns.push(new turn(0,this.battle,
+                this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
+                this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
+            this.turns[this.turns.length-1].mover=false
+        }
+    }
     loadEnemyMove(enemy){
         this.auxiliary=true
         this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
@@ -67,7 +76,7 @@ class turnManager{
     update(){
         if(game.turnTime>0&&this.battle.turn.time<=0&&this.battle.turn.main<this.battle.players&&this.battle.attackManager.attacks.length==0&&this.turns.length==0){
             this.battle.endTurn()
-        }else{
+        }else if(!this.battle.result.victory&&!this.battle.result.defeat){
             this.battle.turn.time--
         }
         for(let a=0;a<game.animRate;a++){

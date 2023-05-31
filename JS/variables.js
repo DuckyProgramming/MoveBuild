@@ -440,8 +440,8 @@ types={
         },{
             name:'Recover',rarity:0,list:1,
             levels:[
-                {effect:[2],attack:92,cost:1,target:[0],spec:[],class:4},
-                {effect:[3],attack:92,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:92,cost:1,target:[0],spec:[1],class:4},
+                {effect:[3],attack:92,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Exhume',rarity:0,list:1,
@@ -1047,6 +1047,8 @@ types={
         {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[2]},{type:32,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         {name:'Management Custodian',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[2]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
+        {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[8]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
+        {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[9]}],description:`Helping the prisoners for some reason`},
         
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1]}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -1064,7 +1066,7 @@ types={
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
-        {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning`},
+        {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
@@ -1166,8 +1168,12 @@ types={
         {name:'Energy Down',class:4},
         {name:'Anti-Control',class:4},
         {name:'3 Spread Quad Strike',class:1},
+        {name:'2 Tile Pull Strike',class:1},
+        {name:'Double Push',class:1},
+        {name:'6 Tile Push',class:1},
 
-        //6 tile push
+        //repulse to end of map
+
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -3547,7 +3553,28 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:''},
+                {position:{x:0,y:0},name:'Prison Guard'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 7'],class:0,world:0,
+            name:'BossFightTemp',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Sharpshot'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 7'],class:0,world:0,
+            name:'BronzeAutoTemp',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                /*{position:{x:0,y:0},name:'Bronze Automaton'},
+                {position:{x:3,y:3},name:'Bronze Orb C'},
+                {position:{x:0,y:3},name:'Bronze Orb A'},
+                {position:{x:3,y:0},name:'Bronze Orb A'},
+                {position:{x:6,y:3},name:'Bronze Orb C'},
+                {position:{x:3,y:6},name:'Bronze Orb C'},*/
             ],reinforce:[
             ],
         },{
@@ -3704,7 +3731,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],dev:true}
+game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],startEnergy:3,dev:true}
 constants={collisionDamage:4}
 options={damage:false,alt:false}
 graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}

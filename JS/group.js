@@ -822,7 +822,7 @@ class group{
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                 if(this.cards[a].afford){
                                     this.callInput(0,a)
-                                }else{
+                                }else if(!this.cards[a].energyAfford){
                                     this.battle.anim.upAfford=true
                                 }
                             }

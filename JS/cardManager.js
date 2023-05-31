@@ -141,7 +141,7 @@ class cardManager{
         }
         return total
     }
-    allEffect(effect){
+    allGroupEffect(effect){
         this.reserve.allEffect(effect)
         this.hand.allEffect(effect)
         this.discard.allEffect(effect)
