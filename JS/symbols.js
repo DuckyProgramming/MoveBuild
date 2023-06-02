@@ -12,7 +12,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(3,-6,5,3,1,3)
         break
         case 1:
-            layer.fill(255,50,50,this.fade)
+            layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
             layer.ellipse(-8,0,3,3)
@@ -132,11 +132,11 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(4,4,3,3)
         break
         case 21:
-            layer.fill(255,125,0,this.fade)
+            layer.fill(255,125,0,fade)
             layer.rect(-1.5,-1.5,7,7)
-            layer.fill(255,255,0,this.fade)
+            layer.fill(255,255,0,fade)
             layer.rect(0,0,7,7)
-            layer.fill(125,255,0,this.fade)
+            layer.fill(125,255,0,fade)
             layer.rect(1.5,1.5,7,7)
         break
         case 22:
@@ -176,7 +176,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             }
         break
         case 26:
-            layer.fill(255,50,50,this.fade)
+            layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
         break
@@ -233,7 +233,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.line(0,0,2.25,2.25)
         break
         case 36:
-            layer.fill(255,50,50,this.fade)
+            layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
             layer.ellipse(0,6,3,3)
@@ -254,7 +254,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,0,0,fade)
             layer.rect(-3,0,4,3)
             layer.triangle(6,0,-1,6,-1,-6)
-            layer.fill(255,50,50,this.fade)
+            layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
             layer.ellipse(-8,0,3,3)
@@ -263,7 +263,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,0,0,fade)
             layer.arc(0,0,8,8,-45,225)
             layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
-            layer.fill(255,50,50,this.fade)
+            layer.fill(255,50,50,fade)
             layer.triangle(-5,-4,-5,-0.5,6,-2.25)
             layer.triangle(5,4,5,-0.5,-6,2.25)
             layer.ellipse(-8,0,3,3)
@@ -333,6 +333,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(-3,0,2,2)
             layer.rect(3,0,2,2)
         break
+        case 47:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(0,6,3,3)
+            layer.ellipse(-8,0,3,3)
+        break
 
     }
     layer.pop()
@@ -365,7 +372,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)
         break
-        case 5: case 8:
+        case 5:
             layer.fill(125,125,125,fade)
             layer.stroke(100,100,100,fade)
             layer.strokeWeight(1)
@@ -381,6 +388,15 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.rect(-3,0,4,3)
             layer.triangle(6,0,-1,-4,-1,4)
             layer.rect(-4,0,1,6)
+        break
+        case 8:
+            layer.fill(255,200,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.rect(-5.5,0,1,6)
+            layer.fill(125,125,125,fade)
+            layer.stroke(100,100,100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
         break
         case 9:
             layer.fill(255,50,50,fade)
@@ -425,6 +441,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(0,6,-3,-3,3,-3)
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.rect(-5.5,0,1,6)
         break
         case 16:
             layer.fill(255,50,50,fade)
@@ -457,8 +474,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         break
         case 20:
             layer.fill(255,50,50,fade)
-            layer.triangle(7,-3,-4.5,-5,-3.5,-1)
-            layer.triangle(7,3,-4.5,1,-3.5,5)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
             layer.rect(-4.5,0,1,6)
         break
         case 21:
@@ -481,6 +498,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.quad(0,0,-2*sqrt(2),-2*sqrt(2),0,-4*sqrt(2),2*sqrt(2),-2*sqrt(2))
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.rect(-5.5,0,1,6)
         break
         case 25:
             layer.fill(255,100,100,fade)
@@ -490,6 +508,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 26:
             layer.fill(255,50,50,fade)
             layer.triangle(0,-6,-3,3,3,3)
+            layer.rect(0,-7)
             layer.ellipse(0,6,3,3)
         break
         case 27:
@@ -522,8 +541,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         break
         case 31:
             layer.fill(255,50,50,fade)
-            layer.triangle(7,-3,-4.5,-5,-3.5,-1)
-            layer.triangle(7,3,-4.5,1,-3.5,5)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
         break
         case 32:
             layer.fill(0,255,100,fade)
@@ -535,7 +554,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 33:
             layer.fill(255,50,50,fade)
             layer.triangle(0,6,-3,-3,3,-3)
-            layer.rect(0,-4.5,6,1)
+            layer.rect(0,-4,6,1)
         break
         case 34:
             layer.fill(240,240,40,fade)
@@ -613,6 +632,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(9,0,-4.5,-2,-4.5,2)
             layer.triangle(9,-4,-4.5,-2,-4.5,2)
             layer.triangle(9,4,-4.5,-2,-4.5,2)
+            layer.rect(-5.5,0,1,6)
         break
         case 45:
             layer.fill(255,50,50,fade)
@@ -640,8 +660,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)
             layer.fill(225,fade)
-            layer.rect(-3,0,9,3)
-            layer.rect(-4,0,1,3)
+            layer.rect(-2.25,0,7.5,3)
+            layer.rect(-7,0,1,3)
             layer.triangle(1,-3,1,3,5,0)
         break
         case 49:
@@ -721,10 +741,10 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         break
         case 59:
             layer.fill(255,50,50,fade)
-            layer.triangle(7,-3,-4.5,-5,-3.5,-1)
-            layer.triangle(7,3,-4.5,1,-3.5,5)
-            layer.ellipse(-7.5,-2.25,3,3)
-            layer.ellipse(-7.5,2.25,3,3)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
+            layer.ellipse(-6.5,-2.25,3,3)
+            layer.ellipse(-6.5,2.25,3,3)
         break
         case 60:
             layer.fill(0,255,100,fade)
@@ -737,14 +757,17 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 61:
             layer.fill(150,175,200,fade)
             layer.triangle(0,6,-3,-3,3,-3)
+            layer.rect(0,-4,6,1)
         break
         case 62:
             layer.fill(0,150,255,fade)
             layer.triangle(0,6,-3,-3,3,-3)
+            layer.rect(0,-4,6,1)
         break
         case 63:
             layer.fill(150,175,200,fade)
             layer.triangle(0,-6,-3,3,3,3)
+            layer.ellipse(-7,0,3,3)
         break
         case 64:
             layer.fill(150,175,200,fade)
@@ -768,8 +791,9 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(0,255,100,fade)
             layer.ellipse(0,0,8,8)
             layer.fill(255,50,50,fade)
-            layer.triangle(7,-3,-4.5,-5,-3.5,-1)
-            layer.triangle(7,3,-4.5,1,-3.5,5)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
+            layer.rect(-4.5,0,1,6)
         break
         case 67:
             layer.fill(240,240,220,fade)
@@ -778,6 +802,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.ellipse(0,0,5,5)
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.rect(-5.5,0,1,6)
         break
         case 68:
             layer.fill(150,255,255,fade)
@@ -842,6 +867,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(9,0,0,-2,0,2)
             layer.triangle(3,-3,-6,-5,-6,-1)
             layer.triangle(3,3,-6,1,-6,5)
+            layer.rect(-7,0,6,1)
         break
         case 77:
             layer.fill(255,50,50,fade)
@@ -1013,8 +1039,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         break
         case 99:
             layer.fill(255,50,50,fade)
-            layer.triangle(7,-3,-4.5,-5,-3.5,-1)
-            layer.triangle(7,3,-4.5,1,-3.5,5)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
             layer.rect(-4.5,0,1,6)
             layer.rect(-6,0,1,6)
         break
@@ -1032,6 +1058,71 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(3,-6,-6,-8,-6,-4)
             layer.triangle(3,6,-6,4,-6,8)
         break
+        case 102:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(225,fade)
+            layer.rect(-1.5,0,6,3)
+            layer.rect(-5.5,0,1,3)
+            layer.rect(-7,0,1,3)
+            layer.triangle(1,-3,1,3,5,0)
+        break
+        case 103:
+            layer.fill(200,25,25,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
+            layer.rect(-4.5,0,1,6)
+        break
+        case 104:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-2,0,-5,-1.5,-5,1.5)
+            layer.triangle(-2,-4,-5,-1.5,-5,1.5)
+            layer.triangle(-2,4,-5,-1.5,-5,1.5)
+            layer.triangle(2,0,-1,-1.5,-1,1.5)
+            layer.triangle(2,-4,-1,-1.5,-1,1.5)
+            layer.triangle(2,4,-1,-1.5,-1,1.5)
+            layer.triangle(6,0,3,-1.5,3,1.5)
+            layer.triangle(6,-4,3,-1.5,3,1.5)
+            layer.triangle(6,4,3,-1.5,3,1.5)
+        break
+        case 105:
+            layer.fill(255,200,50,fade)
+            layer.triangle(9,0,-4.5,-2,-4.5,2)
+            layer.triangle(9,-4,-4.5,-2,-4.5,2)
+            layer.triangle(9,4,-4.5,-2,-4.5,2)
+            layer.rect(-5.5,0,1,6)
+            layer.fill(125,125,125,fade)
+            layer.stroke(100,100,100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
+        break
+        case 106:
+            layer.fill(255,50,50,fade)
+            layer.rect(-6,0,1,3)
+            layer.rect(-4.5,0,1,3)
+            layer.rect(-3,0,1,3)
+            layer.rect(-1.5,0,1,3)
+            layer.triangle(6,0,-1,-4,-1,4)
+        break
+        case 107:
+            layer.fill(200,25,25,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(7,-3,-3.5,-5,-3.5,-1)
+            layer.triangle(7,3,-3.5,1,-3.5,5)
+            layer.rect(-4.5,0,1,6)
+        break
+        case 108:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -1044,13 +1135,13 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 46: case 48: case 49: case 51: case 52: case 53: case 54: case 55: case 58: case 60:
             case 61: case 62: case 63: case 64: case 65: case 69: case 70: case 71: case 73: case 78:
             case 79: case 80: case 81: case 82: case 83: case 85: case 87: case 88: case 89: case 90:
-            case 91: case 94: case 96: case 98: case 100:
+            case 91: case 94: case 96: case 98: case 100: case 102: case 105: case 106:
                 layer.text(effect[0],0,0)
             break
-            case 20: case 31: case 47: case 59: case 66: case 97: case 99:
+            case 20: case 31: case 47: case 59: case 66: case 97: case 99: case 103:
                 layer.text(`${effect[0]}x2`,0,0)
             break
-            case 2: case 19: case 34: case 45: case 76: case 86:
+            case 2: case 19: case 34: case 45: case 76: case 86: case 104:
                 layer.text(`${effect[0]}x3`,0,0)
             break
             case 77: case 95: case 101:
@@ -1060,6 +1151,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
                 layer.text(`${effect[0]}x5`,0,0)
             break
             case 15: case 17: case 24: case 27: case 30: case 44: case 50: case 67: case 72: case 84:
+            case 108:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:
@@ -1071,6 +1163,9 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             break
             case 92: case 93:
                 layer.text(`-${effect[0]}`,0,0)
+            break
+            case 107:
+                layer.text(`${effect[0]}x2|${effect[1]}`,0,0)
             break
         }
     }else{
