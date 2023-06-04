@@ -33,7 +33,6 @@ class battle{
         this.colorDetail=[]
         
         this.initial()
-        //this.setupBattle(types.encounter[0])
     }
     initialManagers(){
         this.cardManagers=[]
@@ -171,7 +170,7 @@ class battle{
     addCombatant(position,type,team,direction,minion){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
-        this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2)):direction,minion)
+        this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion)
     }
     positionCombatant(combatant,position){
         if(position.x==-1){
@@ -412,13 +411,14 @@ class battle{
                     this.layer.text(this.energy.main[a]+'/'+this.energy.gen[a],-74+this.anim.turn[a]*100,454)
                 }
                 this.tileManager.display(scene)
+                this.particleManager.display('back')
                 this.combatantManager.display(scene)
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
                     this.cardManagers[a].display(scene,[this.anim.turn[a]])
                 }
                 this.tileManager.displayCoordinate()
                 this.combatantManager.displayInfo(scene)
-                this.particleManager.display()
+                this.particleManager.display('front')
                 this.overlayManager.display()
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)

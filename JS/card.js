@@ -89,6 +89,7 @@ class card{
             case -17: string+=`When Drawn,\nA Random Card\nCosts ${this.effect[0]} More This Combat`; break
             case -18: string+=`When Drawn,\nLose ${this.effect[0]} Energy`; break
             case -19: string+=`When Drawn,\nYou Cannot Move\nFor ${this.effect[0]} Turns`; break
+            case -20: string+=`When Drawn,\nMovement Cards in Hand\nCost ${this.effect[0]} More`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

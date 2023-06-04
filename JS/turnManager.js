@@ -30,8 +30,7 @@ class turnManager{
             this.auxiliary=true
             this.turns.push(new turn(0,this.battle,
                 this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
-                this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy))
-            this.turns[this.turns.length-1].mover=false
+                this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy,false))
         }
     }
     loadEnemyMove(enemy){

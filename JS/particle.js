@@ -57,7 +57,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 12:
+            case 12: case 13:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -171,6 +171,11 @@ class particle{
                     this.layer.strokeWeight(5)
                     this.layer.line(0,0,this.position2.x,this.position2.y)
                 break
+                case 13:
+                    this.layer.stroke(0,100,255,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.line(0,0,this.position2.x,this.position2.y)
+                break
             }
             this.layer.pop()
         }
@@ -237,7 +242,7 @@ class particle{
                     }
                 }
             break
-            case 12:
+            case 12: case 13:
                 this.fade-=1/15
                 if(this.fade<=0){
                     this.remove=true

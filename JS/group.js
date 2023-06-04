@@ -193,6 +193,11 @@ class group{
                         this.cards[a]=upgradeCard(this.cards[a])
                     }
                 break
+                case 10:
+                    if(this.cards[a].class==3&&this.cards[a].cost>=0){
+                        this.cards[a].cost++
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -277,6 +282,9 @@ class group{
             case -18:
                 this.battle.energy.main[this.player]-=effect[0]
             break
+            case -20:
+                this.drawEffects.push([2,[effect[0]]])
+            break
         }
     }
     deathEffect(){
@@ -346,6 +354,11 @@ class group{
                     break
                     case 1:
                         parent.status.exhaust+=this.drawEffects[a][1]
+                    break
+                    case 2:
+                        for(let b=0,lb=this.drawEffects[a][1];b<lb;b++){
+                            parent.allEffect(10)
+                        }
                     break
                 }
             }

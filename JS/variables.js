@@ -847,6 +847,12 @@ types={
                 {effect:[2],attack:-19,cost:0,target:[0],spec:[4,5],class:5},
             ],
         },{
+            name:'Cemented',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-20,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[1],attack:-20,cost:0,target:[0],spec:[4,5],class:5},
+            ],
+        },{
             name:'Concussion',rarity:0,list:4,
             levels:[
                 {effect:[1],attack:-12,cost:0,target:[0],spec:[5],class:5},
@@ -1006,6 +1012,7 @@ types={
         {name:'Monkey Gangster',life:24,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[5]},{type:11,effect:[2]}],description:`Your occupation`},
         {name:'Slime',life:20,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Stuck']},{type:23,effect:[2]}],description:`Not splitting yet`},
         {name:'Cartel',life:42,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:24,effect:[2,5]},{type:4,effect:[12]}],description:`A businessman`},
+        
         {name:'Gangster',life:40,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:4,effect:[6]}],description:`Crime man`},
         {name:'Ninja',life:32,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[4]}],description:`Wishes he was still cool`},
         {name:'Red',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[7]},{type:15,effect:[5,1]},{type:25,effect:[4]}],description:`The people`},
@@ -1056,7 +1063,15 @@ types={
         {name:'Flying Rock',life:14,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:22,effect:[2,1,'Dazed']},{type:6,effect:[7]}],description:`Vaguely spherical`},
         {name:'Repulsor',life:22,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:106,effect:[4]},{type:87,effect:[8]},{type:6,effect:[6]}],description:`Sends you to the shadow realm`},
         {name:'Champion',life:180,behavior:1,spec:[1],move:{type:0,speed:2},attack:[{type:107,effect:[10,2]},{type:108,effect:[15,9]}],description:`Appointed up`},
-        
+        {name:'Management Autoduck',life:60,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:2,effect:[4]},{type:5,effect:[2,'Dazed']}],description:`Supposed to be better than duck`},
+        {name:'Modicum',life:10,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[4]},{type:16,effect:[3]},{type:109,effect:[5]}],description:`Spammy boy`},
+        {name:'Slimoid',life:35,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[12]},{type:22,effect:[6,1,'Cemented']},{type:23,effect:[2]}],description:`You thought it wouldn't split`},
+        {name:'Big Slimoid',life:70,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Cemented']},{type:33,effect:[2]}],description:`Recursion`},
+        {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:110,effect:[3,3]},{type:111,effect:[2]}],description:`Somewhat armored`},
+        {name:'Fireball',life:30,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
+        {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[4]},{type:113,effect:[5]},{type:114,effect:[3,2]}],description:`More alive then intended`},
+        {name:'Management Drone',life:75,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
+
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
@@ -1188,6 +1203,13 @@ types={
         {name:'Ultrapush',class:1},
         {name:'2 Tile Double Strike / Strengthen',class:1},
         {name:'Counter',class:2},
+        {name:'Self Heal',class:4},
+        {name:'2 Turn Counter',class:2},//110
+        {name:'Metallicize',class:4},
+        {name:'2 Tile Strike / Strengthen',class:1},
+        {name:'Leeching Strike',class:1},
+        {name:'3 Spread Strike / Frailize',class:1},
+        {name:'Management Beam',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3504,6 +3526,24 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
+            name:'Hallway 5',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Crushed Rectangular 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Rectangular 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3568,10 +3608,124 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                //{position:{x:0,y:0},name:'Gremlin'},
-                //{position:{x:0,y:0},name:'Flying Rock'},
-                //{position:{x:0,y:0},name:'Repulsor'},
-                {position:{x:0,y:0},name:'Champion'},
+                //{position:{x:0,y:0},name:'Bush Thing'},
+                //{position:{x:0,y:0},name:'Fireball'},
+                //{position:{x:0,y:0},name:'Dead Shell'},
+                //{position:{x:0,y:0},name:'Management Drone'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:0,
+            name:'Gansters 1',
+            player:{position:[[{x:1,y:1}],[{x:0,y:0},{x:1,y:0}]]},
+            enemy:[
+                {position:{x:1,y:2},name:'Gangster'},
+                {position:{x:2,y:2},name:'Gangster'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Crushed Rectangular 5'],class:0,world:-1,
+            name:'Cartel',
+            player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:1,y:1}]]},
+            enemy:[
+                {position:{x:3,y:2},name:'Cartel'},
+                {position:{x:2,y:4},name:'Cartel'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:0,world:0,
+            name:'Big Slimoid',
+            player:{position:[[{x:2,y:2}],[{x:1,y:2},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:4,y:3},name:'Slimoid'},
+                {position:{x:3,y:4},name:'Slimoid'},
+                {position:{x:0,y:0},name:'Big Slimoid'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:0,world:0,
+            name:'Big Spike Slime',
+            player:{position:[[{x:2,y:2}],[{x:1,y:2},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:4,y:3},name:'Spike Slime'},
+                {position:{x:3,y:4},name:'Spike Slime'},
+                {position:{x:0,y:0},name:'Big Spike Slime'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:0,world:0,
+            name:'Big Slime',
+            player:{position:[[{x:2,y:2}],[{x:1,y:2},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:4,y:3},name:'Slime'},
+                {position:{x:3,y:4},name:'Slime'},
+                {position:{x:0,y:0},name:'Big Slime'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:0,world:0,
+            name:'Slimoids',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:3,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Slimoid'},
+                {position:{x:1,y:3},name:'Slimoid'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:0,world:0,
+            name:'Spike Slimes',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:3,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Spike Slime'},
+                {position:{x:1,y:3},name:'Spike Slime'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:0,world:0,
+            name:'Slimes',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:3,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Slime'},
+                {position:{x:1,y:3},name:'Slime'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Hallway 5'],class:0,world:1,
+            name:'Bikers',
+            player:{position:[[{x:2,y:2}],[{x:1,y:0},{x:0,y:1}]]},
+            enemy:[
+                {position:{x:3,y:4},name:'Biker'},
+                {position:{x:4,y:3},name:'Biker'},
+
+            ],reinforce:[
+            ],
+        },{
+            level:['Hallway 5'],class:0,world:1,
+            name:'Thugs',
+            player:{position:[[{x:2,y:2}],[{x:3,y:4},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Thug'},
+                {position:{x:1,y:0},name:'Thug'},
+
+            ],reinforce:[
+            ],
+        },{
+            level:['Crushed 5'],class:0,world:1,
+            name:'Bouncers',
+            player:{position:[[{x:2,y:1}],[{x:1,y:0},{x:2,y:0}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Bouncer'},
+            ],reinforce:[
+                {position:{x:4,y:1},name:'Bouncer',turn:1},
+                {position:{x:0,y:1},name:'Bouncer',turn:2},
+                {position:{x:4,y:1},name:'Bouncer',turn:3},
+            ],
+        },{
+            level:['Basic 5'],class:0,world:0,
+            name:'Duck',
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Duck'},
             ],reinforce:[
             ],
         },{
@@ -3593,38 +3747,6 @@ shipyard visit for another time.`,
                 {position:{x:3,y:0},name:'Bronze Orb A'},
                 {position:{x:6,y:3},name:'Bronze Orb C'},
                 {position:{x:3,y:6},name:'Bronze Orb C'},
-            ],reinforce:[
-            ],
-        },{
-            level:['Basic 7'],class:1,world:0,
-            name:'Placeholder',
-            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
-            enemy:[
-                {position:{x:0,y:0},name:'Human'},
-                /*{position:{x:6,y:6},name:'Human'},
-                {position:{x:0,y:1},name:'Duck'},
-                {position:{x:0,y:2},name:'Duck'},
-                {position:{x:4,y:1},name:'Duck'},
-                {position:{x:5,y:2},name:'Duck'},
-                {position:{x:1,y:4},name:'Duck'},
-                {position:{x:2,y:5},name:'Duck'},
-                {position:{x:6,y:4},name:'Duck'},
-                {position:{x:6,y:5},name:'Duck'},*/
-            ],reinforce:[
-            ],
-        },{
-            level:['Basic 7'],class:2,world:0,
-            name:'Placeholder',
-            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
-            enemy:[
-                {position:{x:0,y:0},name:'Human'},
-                {position:{x:1,y:0},name:'Human'},
-                {position:{x:2,y:0},name:'Human'},
-                {position:{x:3,y:0},name:'Human'},
-                {position:{x:3,y:6},name:'Human'},
-                {position:{x:4,y:6},name:'Human'},
-                {position:{x:5,y:6},name:'Human'},
-                {position:{x:6,y:6},name:'Human'},
             ],reinforce:[
             ],
         },{
