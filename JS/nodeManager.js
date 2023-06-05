@@ -4,7 +4,7 @@ class nodeManager{
         this.battle=battle
         this.nodes=[]
 
-        this.listing={encounter:[[[],[],[]],[[],[],[]],[[],[],[]]]}
+        this.listing={encounter:[[[],[],[]],[[],[],[]],[[],[],[]]],name:[[[],[],[]],[[],[],[]],[[],[],[]]]}
 
         this.tilePosition={x:0,y:-1}
         this.scroll=this.layer.height-150
@@ -14,8 +14,9 @@ class nodeManager{
     }
     initialListing(){
         for(let a=0,la=types.encounter.length;a<la;a++){
-            if(types.encounter[a].world>=0){
+            if(types.encounter[a].class>=0&&types.encounter[a].world>=0){
                 this.listing.encounter[types.encounter[a].world][types.encounter[a].class].push(a)
+                this.listing.name[types.encounter[a].world][types.encounter[a].class].push(types.encounter[a].name)
             }
         }
     }

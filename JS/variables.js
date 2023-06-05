@@ -1021,7 +1021,6 @@ types={
         {name:'Gangster Gunner',life:24,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Our ranged support`},
         {name:'Spheron',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[10]},{type:4,effect:[20]},{type:27,effect:[10,2]},{type:30,effect:[10,10]}],description:`Block strategy`},
         {name:'Enforcer',life:80,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:28,effect:[8]},{type:29,effect:[8]}],description:`Doesn't make the rules`},
-
         {name:'Rock Golem',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:22,effect:[5,1,'Dazed']},{type:4,effect:[4]}],description:`Why is this alive?`},
         {name:'Big Slime',life:40,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:32,effect:[6,1,'Stuck']},{type:33,effect:[2]}],description:`Splitty boy`},
         {name:'Spike Slime',life:14,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Spiked']},{type:23,effect:[2]}],description:`It hurts to touch him`},
@@ -1036,7 +1035,8 @@ types={
         {name:'Looter',life:28,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[6,40]},{type:67,effect:[12,30]}],description:`Looting people instead`},
         {name:'Mugger',life:42,behavior:7,spec:[0],move:{type:0,speed:1},attack:[{type:68,effect:[]},{type:4,effect:[6]},{type:67,effect:[9,60]},{type:69,effect:[5]}],description:`Got a little extra violent`},
         {name:'Little Guy',life:15,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:4,effect:[6]}],description:`Not really a threat`},
-        {name:'Blue Duck',life:30,behavior:2,spec:[1],move:{type:0,speed:2},attack:[{type:2,effect:[3]},{type:5,effect:[2,'Dazed']}],description:`Lost a flying race with you in 2016`},
+        {name:'Blue Duck',life:30,behavior:2,spec:[1],move:{type:0,speed:1},attack:[{type:2,effect:[3]},{type:5,effect:[2,'Dazed']}],description:`Lost a flying race with you in 2016`},
+        {name:'Management Prototype',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:116,effect:[8]},{type:31,effect:[4]},{type:4,effect:[6]}],description:`Doesn't work as intended`},
         {name:'Management Robot',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
         {name:'Management Soldier',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
         {name:'Management Officer',life:70,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his suboordinates`},
@@ -1044,9 +1044,10 @@ types={
         {name:'Sneaky Gremlin',life:13,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:4,effect:[3]}],description:`Pretends to be hidden`},
         {name:'Fat Gremlin',life:17,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[5]},{type:84,effect:[3,1]}],description:`Resembles somebody`},
         {name:'Angry Gremlin',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[3]}],description:`Anger management issue`},
-        {name:'Deployer',life:40,behavior:9,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in backups`},
-        {name:'Chief Deployer',life:80,behavior:3,spec:[],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Sentry']},{type:6,effect:[6]},{type:4,effect:[7]},{type:39,effect:[1,'Deployer']}],description:`Builds the builders`},
+        {name:'Deployer',life:40,behavior:9,spec:[],move:{type:2,speed:1},attack:[{type:6,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in backups`},
+        {name:'Chief Deployer',life:80,behavior:3,spec:[],move:{type:2,speed:1},attack:[{type:39,effect:[1,'Sentry']},{type:6,effect:[6]},{type:4,effect:[7]},{type:39,effect:[1,'Deployer']}],description:`Builds the builders`},
         {name:'Sentry',life:8,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
+
         {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[12]},{type:86,effect:[5]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
@@ -1210,6 +1211,7 @@ types={
         {name:'Leeching Strike',class:1},
         {name:'3 Spread Strike / Frailize',class:1},
         {name:'Management Beam',class:1},
+        {name:'Retreating Strike',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3517,6 +3519,13 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Slid Crushed 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Bent 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -3553,6 +3562,15 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Winged Rectangular 4',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Rectangular 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3562,6 +3580,41 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Rectangular 6',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Rhombic 4',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Crescent 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Broken Star 5',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Star 5',
             map:[
                 [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
@@ -3569,6 +3622,17 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Star 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
             ],
         },{
             name:'Cut 5',
@@ -3597,6 +3661,20 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
             ],
         },{
+            name:'Trapezoid 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Trapezoid 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Triangle 4',
             map:[
                 [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
@@ -3612,6 +3690,40 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Cut Triangle 7',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Tapered 5',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Induction 4',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Off Induction 4',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Induction 7',
@@ -3630,6 +3742,17 @@ shipyard visit for another time.`,
                 [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'3-7',
+            map:[
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
         },{
             name:'Spiky 7',
@@ -3664,6 +3787,74 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[2]},{type:[1]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Workshop 6',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Workshop 8',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Factory1 5',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Factory1 7',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Factory2 7',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Factory2B 7',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Factory2C 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
         },
     ],encounter:[
         {
@@ -3671,6 +3862,166 @@ shipyard visit for another time.`,
             name:'',
             player:{position:[{x:0,y:0}]},
             enemy:[
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 7'],class:2,world:1,
+            name:'Bronze Automaton',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Bronze Automaton'},
+                {position:{x:3,y:3},name:'Bronze Orb C'},
+                {position:{x:0,y:3},name:'Bronze Orb A'},
+                {position:{x:3,y:0},name:'Bronze Orb A'},
+                {position:{x:6,y:3},name:'Bronze Orb C'},
+                {position:{x:3,y:6},name:'Bronze Orb C'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Broken Star 5'],class:1,world:2,
+            name:'Solar Shard',
+            player:{position:[[{x:4,y:3}],[{x:4,y:2},{x:4,y:4}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Solar Shard'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Crescent 5'],class:0,world:2,
+            name:'Lunar Shard',
+            player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
+            enemy:[
+                {position:{x:2,y:4},name:'Lunar Shard'},
+                {position:{x:4,y:4},name:'Lunar Shard'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Rectangular 6'],class:1,world:1,
+            name:'Chief Deployer',
+            player:{position:[[{x:4,y:4}],[{x:2,y:4},{x:6,y:4}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Chief Deployer'},
+                {position:{x:1,y:0},name:'Sentry'},
+                {position:{x:3,y:0},name:'Sentry'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Winged Rectangular 4'],class:0,world:1,
+            name:'Deployer',
+            player:{position:[[{x:3,y:4}],[{x:2,y:4},{x:4,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Deployer'},
+                {position:{x:2,y:0},name:'Deployer'},
+                {position:{x:1,y:0},name:'Sentry'},
+            ],reinforce:[
+            ],
+        },{
+            level:['3-7'],class:0,world:0,
+            name:'Gremlin Group',
+            player:{position:[[{x:3,y:3}],[{x:3,y:3},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Sneaky Gremlin'},
+                {position:{x:5,y:5},name:'Fat Gremlin'},
+                {position:{x:1,y:3},name:'Angry Gremlin'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Factory1 5'],class:1,world:2,
+            name:'Management Special Forces',
+            player:{position:[[{x:3,y:4}],[{x:3,y:4},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Management Special Forces'},
+                {position:{x:0,y:2},name:'Management Special Forces'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Factory2C 7'],class:1,world:2,
+            name:'Management Officer',
+            player:{position:[[{x:3,y:2}],[{x:3,y:2},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Management Soldier'},
+                {position:{x:0,y:2},name:'Management Soldier'},
+                {position:{x:5,y:5},name:'Management Officer'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Factory2B 7'],class:0,world:2,
+            name:'Management Soldier',
+            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:0,y:2}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Management Soldier'},
+                {position:{x:3,y:5},name:'Management Soldier'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Factory1 7'],class:0,world:2,
+            name:'Management Robot',
+            player:{position:[[{x:3,y:3}],[{x:3,y:2},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Management Robot'},
+                {position:{x:0,y:1},name:'Management Robot'},
+                {position:{x:6,y:6},name:'Management Robot'},
+                {position:{x:6,y:5},name:'Management Robot'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:-1,world:2,
+            name:'Management Prototype',
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Management Prototype'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Trapezoid 7'],class:0,world:1,
+            name:'Blue Duck',
+            player:{position:[[{x:4,y:2}],[{x:3,y:2},{x:5,y:2}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Blue Duck'},
+                {position:{x:3,y:0},name:'Blue Duck'},
+                {position:{x:6,y:1},name:'Blue Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Trapezoid 5'],class:0,world:0,
+            name:'Duck',
+            player:{position:[[{x:3,y:2}],[{x:2,y:2},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Duck'},
+                {position:{x:2,y:0},name:'Duck'},
+                {position:{x:4,y:1},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:-1,world:1,
+            name:'Human',
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Human'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Off Induction 4'],class:0,world:1,
+            name:'Mugger',
+            player:{position:[[{x:1,y:1}],[{x:0,y:0},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Mugger'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Induction 4'],class:0,world:1,
+            name:'Looter',
+            player:{position:[[{x:2,y:1}],[{x:2,y:0},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Looter'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Workshop 6'],class:0,world:1,
+            name:'Scrapper',
+            player:{position:[[{x:1,y:0}],[{x:1,y:0},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:5,y:2},name:'Scrapper'},
+                {position:{x:5,y:3},name:'Fat Scrapper'},
             ],reinforce:[
             ],
         },{
@@ -3685,7 +4036,62 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Crushed Hole 7'],class:0,world:0,
+            level:['Rhombic 4'],class:0,world:1,
+            name:'Nerfer Buffer',
+            player:{position:[[{x:3,y:0}],[{x:2,y:0},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Nerfer'},
+                {position:{x:2,y:3},name:'Buffer'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Slid Crushed 5'],class:1,world:1,
+            name:'Agent Duck',
+            player:{position:[[{x:3,y:1}],[{x:3,y:0},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Agent Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Star 7'],class:0,world:0,
+            name:'Goblin',
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Goblin'},
+                {position:{x:2,y:0},name:'Goblin'},
+                {position:{x:0,y:1},name:'Goblin'},
+                {position:{x:0,y:2},name:'Goblin'},
+                {position:{x:1,y:4},name:'Goblin'},
+                {position:{x:2,y:5},name:'Goblin'},
+                {position:{x:4,y:1},name:'Goblin'},
+                {position:{x:5,y:2},name:'Goblin'},
+                {position:{x:6,y:4},name:'Goblin'},
+                {position:{x:6,y:5},name:'Goblin'},
+                {position:{x:4,y:6},name:'Goblin'},
+                {position:{x:5,y:6},name:'Goblin'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Cut Triangle 7'],class:0,world:0,
+            name:'Moss Creature',
+            player:{position:[[{x:4,y:4}],[{x:3,y:3},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Moss Creature'},
+                {position:{x:7,y:5},name:'Moss Creature'},
+                {position:{x:3,y:6},name:'Moss Creature'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Tapered 5'],class:0,world:0,
+            name:'Rock Golem',
+            player:{position:[[{x:1,y:0}],[{x:1,y:1},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:2,y:4},name:'Rock Golem'},
+                {position:{x:4,y:4},name:'Rock Golem'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Crushed Hole 7'],class:1,world:1,
             name:'Enforcer',
             player:{position:[[{x:4,y:0}],[{x:3,y:0},{x:4,y:1}]]},
             enemy:[
@@ -3696,7 +4102,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Triangle 5'],class:1,world:1,
+            level:['Triangle 5'],class:1,world:0,
             name:'Spheron',
             player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:3,y:1}]]},
             enemy:[
@@ -3704,7 +4110,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Induction 7'],class:1,world:1,
+            level:['Induction 7'],class:0,world:1,
             name:'Gangster Gunner',
             player:{position:[[{x:3,y:2}],[{x:3,y:2},{x:4,y:3}]]},
             enemy:[
@@ -3714,7 +4120,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['A 5'],class:1,world:1,
+            level:['A 5'],class:0,world:1,
             name:'Slippery Gangster',
             player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
             enemy:[
@@ -3724,7 +4130,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Hallway 7'],class:1,world:1,
+            level:['Hallway 7'],class:0,world:1,
             name:'Batter',
             player:{position:[[{x:3,y:2}],[{x:2,y:2},{x:4,y:2}]]},
             enemy:[
@@ -3735,7 +4141,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:0,world:0,
+            level:['Basic 5'],class:1,world:0,
             name:'Big Duck',
             player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
             enemy:[
@@ -3766,7 +4172,7 @@ shipyard visit for another time.`,
             ],
         },{
             level:['Basic 3'],class:0,world:1,
-            name:'Ganster',
+            name:'Gangster',
             player:{position:[[{x:1,y:1}],[{x:0,y:0},{x:1,y:0}]]},
             enemy:[
                 {position:{x:1,y:2},name:'Gangster'},
@@ -3774,7 +4180,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Crushed Rectangular 5'],class:0,world:-1,
+            level:['Crushed Rectangular 5'],class:1,world:1,
             name:'Cartel',
             player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:1,y:1}]]},
             enemy:[
@@ -3783,7 +4189,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:0,world:0,
+            level:['Basic 5'],class:1,world:2,
             name:'Big Slimoid',
             player:{position:[[{x:2,y:2}],[{x:1,y:2},{x:2,y:1}]]},
             enemy:[
@@ -3793,7 +4199,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:0,world:0,
+            level:['Basic 5'],class:1,world:0,
             name:'Big Spike Slime',
             player:{position:[[{x:2,y:2}],[{x:1,y:2},{x:2,y:1}]]},
             enemy:[
@@ -3803,7 +4209,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:0,world:0,
+            level:['Basic 5'],class:1,world:0,
             name:'Big Slime',
             player:{position:[[{x:2,y:2}],[{x:1,y:2},{x:2,y:1}]]},
             enemy:[
@@ -3813,8 +4219,8 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:0,world:0,
-            name:'Slimoids',
+            level:['Basic 5'],class:0,world:2,
+            name:'Slimoid',
             player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:3,y:3}]]},
             enemy:[
                 {position:{x:3,y:1},name:'Slimoid'},
@@ -3823,7 +4229,7 @@ shipyard visit for another time.`,
             ],
         },{
             level:['Basic 5'],class:0,world:0,
-            name:'Spike Slimes',
+            name:'Spike Slime',
             player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:3,y:3}]]},
             enemy:[
                 {position:{x:3,y:1},name:'Spike Slime'},
@@ -3832,7 +4238,7 @@ shipyard visit for another time.`,
             ],
         },{
             level:['Basic 5'],class:0,world:0,
-            name:'Slimes',
+            name:'Slime',
             player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:3,y:3}]]},
             enemy:[
                 {position:{x:3,y:1},name:'Slime'},
@@ -3841,7 +4247,7 @@ shipyard visit for another time.`,
             ],
         },{
             level:['Hallway 5'],class:0,world:1,
-            name:'Bikers',
+            name:'Biker',
             player:{position:[[{x:2,y:2}],[{x:1,y:0},{x:0,y:1}]]},
             enemy:[
                 {position:{x:3,y:4},name:'Biker'},
@@ -3851,7 +4257,7 @@ shipyard visit for another time.`,
             ],
         },{
             level:['Hallway 5'],class:0,world:1,
-            name:'Thugs',
+            name:'Thug',
             player:{position:[[{x:2,y:2}],[{x:3,y:4},{x:4,y:3}]]},
             enemy:[
                 {position:{x:0,y:1},name:'Thug'},
@@ -3861,7 +4267,7 @@ shipyard visit for another time.`,
             ],
         },{
             level:['Crushed 5'],class:0,world:1,
-            name:'Bouncers',
+            name:'Bouncer',
             player:{position:[[{x:2,y:1}],[{x:1,y:0},{x:2,y:0}]]},
             enemy:[
                 {position:{x:0,y:1},name:'Bouncer'},
@@ -3871,32 +4277,11 @@ shipyard visit for another time.`,
                 {position:{x:4,y:1},name:'Bouncer',turn:3},
             ],
         },{
-            level:['Basic 5'],class:0,world:0,
-            name:'Duck',
+            level:['Basic 5'],class:-1,world:0,
+            name:'Little Guy',
             player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Duck'},
-            ],reinforce:[
-            ],
-        },{
-            level:['Basic 7'],class:0,world:0,
-            name:'BossFightTemp',
-            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
-            enemy:[
-                {position:{x:0,y:0},name:'Sharpshot'},
-            ],reinforce:[
-            ],
-        },{
-            level:['Basic 7'],class:0,world:0,
-            name:'BronzeAutoTemp',
-            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
-            enemy:[
-                {position:{x:0,y:0},name:'Bronze Automaton'},
-                {position:{x:3,y:3},name:'Bronze Orb C'},
-                {position:{x:0,y:3},name:'Bronze Orb A'},
-                {position:{x:3,y:0},name:'Bronze Orb A'},
-                {position:{x:6,y:3},name:'Bronze Orb C'},
-                {position:{x:3,y:6},name:'Bronze Orb C'},
+                {position:{x:0,y:0},name:'Little Guy'},
             ],reinforce:[
             ],
         },{

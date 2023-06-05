@@ -682,10 +682,12 @@ class group{
                 }
             break
             case 8:
-                this.cards[a].deSize=true
-                this.cards[a].exhaust=true
-                if(this.status.exhaust>0){
-                    this.status.exhaust--
+                if(this.cards[a].attack!=-3){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.status.exhaust>0){
+                        this.status.exhaust--
+                    }
                 }
             break
             case 9:

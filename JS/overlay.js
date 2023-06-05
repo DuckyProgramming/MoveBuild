@@ -307,6 +307,7 @@ class overlay{
                         if(!this.rewards[a].usable){
                             this.rewards[a].fade-=0.2
                             if(this.rewards[a].fade<=0){
+                                delete this.rewards[a]
                                 this.rewards.splice(a,1)
                                 a--
                                 la--

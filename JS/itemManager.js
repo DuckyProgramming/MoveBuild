@@ -73,6 +73,7 @@ class itemManager{
     }
     removeItemSlots(amount,player){
         for(let a=0;a<amount;a++){
+            delete this.items[player][this.items[player].length-1]
             this.items[player].splice(this.items[player].length-1,1)
         }
         this.position-=player

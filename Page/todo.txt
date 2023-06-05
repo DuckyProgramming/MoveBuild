@@ -24,12 +24,13 @@ Regeneration
 Reduce damage taken by 25%
 Shield bash
 Chain reaction
+Temporary ignore block
 
 Wave
 
 Generality:
 First Character Gimmick
-(Time Dilation, Card Fusion, Combo Moves)
+(Card Fusion)
 Third Character Gimmick
 
 Ume Base Cards

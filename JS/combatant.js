@@ -931,7 +931,7 @@ class combatant{
                 this.calc={int:[0,0,0,0]}
                 this.goal={anim:{direction:this.anim.direction}}
             break
-            case 'Management Robot':
+            case 'Management Robot': case 'Management Prototype':
                 this.anim={direction:direction,head:direction,eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
                     arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
@@ -948,6 +948,9 @@ class combatant{
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 switch(this.name){
+                    case 'Management Prototype':
+                        this.color={skin:{in:[80,120,120],out:[60,100,100],limb:[55,95,95]},eye:{back:[200,50,200],front:[225,75,225],glow:[150,150,255]}}
+                    break
                     default:
                         this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
                     break
@@ -1678,7 +1681,7 @@ class combatant{
     getTarget(){
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-            case 36: case 37: case 97: case 101: case 103: case 113:
+            case 36: case 37: case 97: case 101: case 103: case 113: case 116:
                 return this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])
             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
             case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 107:
@@ -1832,7 +1835,7 @@ class combatant{
     convertTile(target){
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-            case 36: case 37: case 97: case 101: case 103: case 113:
+            case 36: case 37: case 97: case 101: case 103: case 113: case 116:
                 return target==-1?{tilePosition:{x:-1,y:-1}}:this.battle.tileManager.tiles[target]
             case 6: case 7: case 8: case 9: case 12: case 14: case 15: case 16: case 17: case 19:
             case 20: case 24: case 27: case 28: case 30: case 32: case 33: case 38: case 44: case 45:
@@ -1870,7 +1873,7 @@ class combatant{
                 if(this.battle.combatantManager.combatants[a].team>0&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2)){
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                        case 36: case 37: case 97: case 101: case 103: case 113:
+                        case 36: case 37: case 97: case 101: case 103: case 113: case 116:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile.tilePosition.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile.tilePosition.y){
@@ -1969,7 +1972,7 @@ class combatant{
             this.targetTile=this.convertTile(target)
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                case 36: case 37: case 97: case 101: case 103: case 113:
+                case 36: case 37: case 97: case 101: case 103: case 113: case 116:
                     if(this.targetTile.tilePosition.x>=0){
                         this.targetTile.target(this.activated?2:1,numerilizeDirection(0,directionCombatant(this.targetTile,this)))
                     }
@@ -7568,7 +7571,7 @@ class combatant{
                         this.layer.quad(-3,-30,0,-33,3,-30,0,-27)
                     }
                 break
-                case 'Management Robot':
+                case 'Management Robot': case 'Management Prototype':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.limb)[0],this.flashColor(this.color.skin.limb)[1],this.flashColor(this.color.skin.limb)[2],this.fade*this.fades.skin.arms)
@@ -7599,9 +7602,22 @@ class combatant{
                         this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.body)
                         this.layer.strokeWeight(4)
                         this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
-                        for(let a=0,la=4;a<la;a++){
-                            if(lcos(this.anim.direction+a*90)>=0){
-                                this.layer.rect(7.5*lsin(this.anim.direction+a*90),-45,15*lcos(this.anim.direction+a*90),30)
+                        if(this.name=='Management Prototype'){
+                            for(let a=0,la=6;a<la;a++){
+                                if(lcos(this.anim.direction+a*60)>=0){
+                                    this.layer.rect(7.5*lsin(this.anim.direction+a*60),-42,8.5*lcos(this.anim.direction+a*60),24)
+                                }
+                            }
+                            for(let a=0,la=4;a<la;a++){
+                                if(lcos(this.anim.direction+a*90)>=0){
+                                    this.layer.rect(5*lsin(this.anim.direction+a*90),-57,10*lcos(this.anim.direction+a*90),6)
+                                }
+                            }
+                        }else{
+                            for(let a=0,la=4;a<la;a++){
+                                if(lcos(this.anim.direction+a*90)>=0){
+                                    this.layer.rect(7.5*lsin(this.anim.direction+a*90),-45,15*lcos(this.anim.direction+a*90),30)
+                                }
                             }
                         }
                     }
@@ -7617,9 +7633,17 @@ class combatant{
                         this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.fill(this.flashColor(this.color.skin.in)[0],this.flashColor(this.color.skin.in)[1],this.flashColor(this.color.skin.in)[2],this.fade*this.fades.skin.body)
-                        for(let a=0,la=4;a<la;a++){
-                            if(lcos(this.anim.direction+a*90)>=0){
-                                this.layer.rect(13.5*lsin(this.anim.direction+a*90),-75,27*lcos(this.anim.direction+a*90),27)
+                        if(this.name=='Management Prototype'){
+                            for(let a=0,la=6;a<la;a++){
+                                if(lcos(this.anim.direction+a*60)>=0){
+                                    this.layer.rect(13.5*lsin(this.anim.direction+a*60),-75,15.5*lcos(this.anim.direction+a*60),27)
+                                }
+                            }
+                        }else{
+                            for(let a=0,la=4;a<la;a++){
+                                if(lcos(this.anim.direction+a*90)>=0){
+                                    this.layer.rect(13.5*lsin(this.anim.direction+a*90),-75,27*lcos(this.anim.direction+a*90),27)
+                                }
                             }
                         }
                     }

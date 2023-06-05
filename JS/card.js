@@ -72,7 +72,7 @@ class card{
         switch(this.attack){
             case -1: string+=`Gain 1 Weak at\nthe End of Your Turn`; break
             case -2: string+=`Gain 1 Vulnerable at\nthe End of Your Turn`; break
-            case -3: string+=`When Drawn,\nExhaust ${this.effect[0]} Card`; break
+            case -3: string+=`When Drawn,\nExhaust ${this.effect[0]} Card\nCannot be Selected\nto Exhaust`; break
             case -4: string+=`Take ${this.effect[0]} Damage at\nthe End of Your Turn`; break
             case -5: string+=`Take ${this.effect[0]} Damage\nWhen You Play a Card`; break
             case -6: string+=`When Drawn,\nGain ${this.effect[0]} Weak`; break

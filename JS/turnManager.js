@@ -76,6 +76,16 @@ class turnManager{
             }
         }
     }
+    unMoveTurn(id){
+        for(let a=0,la=this.turns.length;a<la;a++){
+            if(this.turns[a].action==1&&this.turns[a].user==id){
+                delete this.turns[a]
+                this.turns.splice(a,1)
+                a--
+                la--
+            }
+        }
+    }
     update(){
         if(game.turnTime>0&&this.battle.turn.time<=0&&this.battle.turn.main<this.battle.players&&this.battle.attackManager.attacks.length==0&&this.turns.length==0){
             this.battle.endTurn()

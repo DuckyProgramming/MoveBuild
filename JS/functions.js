@@ -334,7 +334,8 @@ function intentDescription(attack,user,info){
 		case 112: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Strength\nRange 1-2`
 		case 113: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHeal ${info?calculateIntent(attack.effect[0],user,4):`?`} Health\nRange 1-1`
 		case 114: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`}\n3 Tiles Wide\nRange 1-1`
-
+		case 115: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMove 1 Tile Away\nRange 1-1`
+		
 		default: return `INVALID`
 	}
 }
@@ -554,15 +555,24 @@ function outEncounter(){
 	print(`
 World 1:
 Enemies:${current.nodeManager.listing.encounter[0][0].length}
+(${current.nodeManager.listing.name[0][0].join(',')})
 Elites:${current.nodeManager.listing.encounter[0][1].length}
+(${current.nodeManager.listing.name[0][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[0][2].length}
+(${current.nodeManager.listing.name[0][2].join(',')})
 \nWorld 2:
 Enemies:${current.nodeManager.listing.encounter[1][0].length}
+(${current.nodeManager.listing.name[1][0].join(',')})
 Elites:${current.nodeManager.listing.encounter[1][1].length}
+(${current.nodeManager.listing.name[1][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[1][2].length}
+(${current.nodeManager.listing.name[1][2].join(',')})
 \nWorld 3:
 Enemies:${current.nodeManager.listing.encounter[2][0].length}
+(${current.nodeManager.listing.name[2][0].join(',')})
 Elites:${current.nodeManager.listing.encounter[2][1].length}
+(${current.nodeManager.listing.name[2][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[2][2].length}
+(${current.nodeManager.listing.name[2][2].join(',')})
 	`)
 }

@@ -33,6 +33,7 @@ class optionManager{
     removeOption(type){
         for(let a=0,la=this.options.length;a<la;a++){
             if(this.options[a].type==type){
+                delete this.options[a]
                 this.options.splice(a,1)
                 a--
                 la--

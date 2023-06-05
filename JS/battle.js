@@ -871,6 +871,9 @@ class battle{
                     if(key=='Q'&&game.dev){
                         quickAdd('Telefrag')
                     }
+                    if(key=='W'&&game.dev){
+                        save(graphics.main)
+                    }
                 }
             break
             case 'map':
