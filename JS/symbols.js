@@ -509,8 +509,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 26:
             layer.fill(255,50,50,fade)
             layer.triangle(0,-6,-3,3,3,3)
-            layer.rect(0,-7)
-            layer.ellipse(0,6,3,3)
+            layer.rect(0,4,6,1)
+            layer.ellipse(0,7,3,3)
         break
         case 27:
             layer.fill(150,175,200,fade)

@@ -1012,16 +1012,16 @@ types={
         {name:'Monkey Gangster',life:24,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[5]},{type:11,effect:[2]}],description:`Your occupation`},
         {name:'Slime',life:20,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Stuck']},{type:23,effect:[2]}],description:`Not splitting yet`},
         {name:'Cartel',life:42,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:24,effect:[2,5]},{type:4,effect:[12]}],description:`A businessman`},
-        
         {name:'Gangster',life:40,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:4,effect:[6]}],description:`Crime man`},
         {name:'Ninja',life:32,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[4]}],description:`Wishes he was still cool`},
         {name:'Red',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[7]},{type:15,effect:[5,1]},{type:25,effect:[4]}],description:`The people`},
-        {name:'Big Duck',life:50,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:5,effect:[2,'Dazed']},{type:2,effect:[3]},{type:6,effect:[8]}],description:`My boy grew up`},
+        {name:'Big Duck',life:50,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:5,effect:[2,'Dazed']},{type:2,effect:[3]},{type:6,effect:[8]}],description:`My boy grew up`},
         {name:'Batter',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[12,1,'Concussion']},{type:4,effect:[6]},{type:26,effect:[1]}],description:`Uses people as baseballs`},
         {name:'Slippery Gangster',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:20,effect:[3]}],description:`Can't hit this man`},
         {name:'Gangster Gunner',life:24,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Our ranged support`},
         {name:'Spheron',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[10]},{type:4,effect:[20]},{type:27,effect:[10,2]},{type:30,effect:[10,10]}],description:`Block strategy`},
         {name:'Enforcer',life:80,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:28,effect:[8]},{type:29,effect:[8]}],description:`Doesn't make the rules`},
+
         {name:'Rock Golem',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:22,effect:[5,1,'Dazed']},{type:4,effect:[4]}],description:`Why is this alive?`},
         {name:'Big Slime',life:40,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:32,effect:[6,1,'Stuck']},{type:33,effect:[2]}],description:`Splitty boy`},
         {name:'Spike Slime',life:14,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Spiked']},{type:23,effect:[2]}],description:`It hurts to touch him`},
@@ -3535,6 +3535,15 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
             ],
         },{
+            name:'Hallway 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Crushed Rectangular 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3560,6 +3569,67 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Cut 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Sliced 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'A 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Triangle 4',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Triangle 5',
+            map:[
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Induction 7',
+            map:[
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Crushed Hole 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Spiky 7',
@@ -3599,7 +3669,7 @@ shipyard visit for another time.`,
         {
             level:[],class:0,world:-1,
             name:'',
-            player:{position:{x:0,y:0}},
+            player:{position:[{x:0,y:0}]},
             enemy:[
             ],reinforce:[
             ],
@@ -3615,8 +3685,88 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 3'],class:0,world:0,
-            name:'Gansters 1',
+            level:['Crushed Hole 7'],class:0,world:0,
+            name:'Enforcer',
+            player:{position:[[{x:4,y:0}],[{x:3,y:0},{x:4,y:1}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Ninja'},
+                {position:{x:0,y:1},name:'Ninja'},
+                {position:{x:6,y:4},name:'Ninja'},
+                {position:{x:0,y:2},name:'Enforcer'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Triangle 5'],class:1,world:1,
+            name:'Spheron',
+            player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:4,y:4},name:'Spheron'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Induction 7'],class:1,world:1,
+            name:'Gangster Gunner',
+            player:{position:[[{x:3,y:2}],[{x:3,y:2},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:4,y:0},name:'Gangster'},
+                {position:{x:6,y:4},name:'Gangster'},
+                {position:{x:0,y:2},name:'Gangster Gunner'},
+            ],reinforce:[
+            ],
+        },{
+            level:['A 5'],class:1,world:1,
+            name:'Slippery Gangster',
+            player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Gangster'},
+                {position:{x:1,y:3},name:'Slippery Gangster'},
+                {position:{x:4,y:3},name:'Slippery Gangster'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Hallway 7'],class:1,world:1,
+            name:'Batter',
+            player:{position:[[{x:3,y:2}],[{x:2,y:2},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Gangster'},
+                {position:{x:6,y:4},name:'Gangster'},
+                {position:{x:0,y:1},name:'Batter'},
+                {position:{x:6,y:3},name:'Batter'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:0,world:0,
+            name:'Big Duck',
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:2,y:4},name:'Duck'},
+                {position:{x:4,y:4},name:'Duck'},
+                {position:{x:1,y:0},name:'Big Duck'},
+            ],reinforce:[
+                {position:{x:0,y:2},name:'Duck',turn:2},
+                {position:{x:4,y:2},name:'Duck',turn:2},
+            ],
+        },{
+            level:['Sliced 5'],class:0,world:1,
+            name:'Red',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:0,y:2},name:'Red'},
+                {position:{x:4,y:2},name:'Red'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Cut 5'],class:0,world:1,
+            name:'Ninja',
+            player:{position:[[{x:1,y:2}],[{x:0,y:1},{x:1,y:3}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Ninja'},
+                {position:{x:3,y:3},name:'Ninja'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 3'],class:0,world:1,
+            name:'Ganster',
             player:{position:[[{x:1,y:1}],[{x:0,y:0},{x:1,y:0}]]},
             enemy:[
                 {position:{x:1,y:2},name:'Gangster'},

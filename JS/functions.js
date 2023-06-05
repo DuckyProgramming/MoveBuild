@@ -550,3 +550,19 @@ function kill(index){
 function enemy(index){
 	return current.combatantManager.combatants[index+current.players]
 }
+function outEncounter(){
+	print(`
+World 1:
+Enemies:${current.nodeManager.listing.encounter[0][0].length}
+Elites:${current.nodeManager.listing.encounter[0][1].length}
+Bosses:${current.nodeManager.listing.encounter[0][2].length}
+\nWorld 2:
+Enemies:${current.nodeManager.listing.encounter[1][0].length}
+Elites:${current.nodeManager.listing.encounter[1][1].length}
+Bosses:${current.nodeManager.listing.encounter[1][2].length}
+\nWorld 3:
+Enemies:${current.nodeManager.listing.encounter[2][0].length}
+Elites:${current.nodeManager.listing.encounter[2][1].length}
+Bosses:${current.nodeManager.listing.encounter[2][2].length}
+	`)
+}

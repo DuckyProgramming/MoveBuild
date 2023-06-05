@@ -231,41 +231,108 @@ class turn{
                             this.direction=round(atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)/60-random(0.4,0.6))*60+30
 
                             this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
+                            let fail=false
                             if(this.target[0]==-1){
-                                this.remove=true
+                                fail=true
                             }else{
                                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                 if(this.targetTile.occupied>0){
-                                    this.direction+=(floor(random(0,2))*2-1)*60
-                                    this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
-                                    if(this.target[0]==-1){
-                                        this.remove=true
-                                    }else{
-                                        this.targetTile=this.battle.tileManager.tiles[this.target[0]]
-                                        if(this.targetTile.occupied>0){
-                                            this.remove=true
-                                        }
-    
-                                        this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
-                                        this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
-    
-                                        this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
-                                        this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
-                                    }
+                                    fail=true
                                 }else{
-                                    if(this.targetTile.occupied>0){
-                                        this.remove=true
-                                    }
-
                                     this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                     this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
 
                                     this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
                                     this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
                                 }
-                                if(!this.remove){
+                            }
+                            if(fail){
+                                let angle=floor(random(0,2))*2-1
+                                fail=false
+                                this.direction+=angle*60
+                                this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
+                                if(this.target[0]==-1){
+                                    fail=true
+                                }else{
+                                    this.targetTile=this.battle.tileManager.tiles[this.target[0]]
+                                    if(this.targetTile.occupied>0){
+                                        fail=true
+                                    }else{
+                                        this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                        this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+    
+                                        this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                        this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                    }
+                                }
+                                if(fail){
+                                    fail=false
+                                    this.direction-=angle*120
+                                    this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
+                                    if(this.target[0]==-1){
+                                        fail=true
+                                    }else{
+                                        this.targetTile=this.battle.tileManager.tiles[this.target[0]]
+                                        if(this.targetTile.occupied>0){
+                                            fail=true
+                                        }else{
+                                            this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                            this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+        
+                                            this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                            this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                        }
+                                    }
+                                    if(fail){
+                                        fail=false
+                                        this.direction+=angle*180
+                                        this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
+                                        if(this.target[0]==-1){
+                                            fail=true
+                                        }else{
+                                            this.targetTile=this.battle.tileManager.tiles[this.target[0]]
+                                            if(this.targetTile.occupied>0){
+                                                fail=true
+                                            }else{
+                                                this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                                this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+            
+                                                this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                                this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                            }
+                                        }
+                                        if(fail){
+                                            fail=false
+                                            this.direction-=angle*240
+                                            this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
+                                            if(this.target[0]==-1){
+                                                fail=true
+                                            }else{
+                                                this.targetTile=this.battle.tileManager.tiles[this.target[0]]
+                                                if(this.targetTile.occupied>0){
+                                                    fail=true
+                                                }else{
+                                                    this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                                    this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+                
+                                                    this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                                    this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                                }
+                                            }
+                                            if(fail){
+                                                this.remove=true
+                                            }
+                                        }else{
+                                            this.userCombatant.goal.anim.direction=this.relativeDirection
+                                        }
+                                    }else{
+                                        this.userCombatant.goal.anim.direction=this.relativeDirection
+                                    }
+                                }else{
                                     this.userCombatant.goal.anim.direction=this.relativeDirection
                                 }
+                            }else{
+                                this.userCombatant.goal.anim.direction=this.relativeDirection
                             }
                         break
                         case 1:
@@ -317,8 +384,6 @@ class turn{
                                 this.type=0
                                 this.set()
                             }
-                        break
-                        case 3:
                         break
                     }
                 break
@@ -1561,7 +1626,6 @@ class turn{
                             this.remove=true
                         }
                     break
-
                     default:
                         this.remove=true
                     break
