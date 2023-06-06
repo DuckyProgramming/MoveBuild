@@ -186,6 +186,9 @@ class combatantManager{
         }
         return -1
     }
+    playCard(){
+        this.combatants.forEach(combatant=>combatant.playCard())
+    }
     getPlayerCombatantIndex(id){
         return this.playerCombatantIndex[id]
     }

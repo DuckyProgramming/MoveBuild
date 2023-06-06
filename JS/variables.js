@@ -1047,19 +1047,18 @@ types={
         {name:'Deployer',life:40,behavior:9,spec:[],move:{type:2,speed:1},attack:[{type:6,effect:[9]},{type:4,effect:[10]},{type:39,effect:[1,'Sentry']}],description:`Brings in backups`},
         {name:'Chief Deployer',life:80,behavior:3,spec:[],move:{type:2,speed:1},attack:[{type:39,effect:[1,'Sentry']},{type:6,effect:[6]},{type:4,effect:[7]},{type:39,effect:[1,'Deployer']}],description:`Builds the builders`},
         {name:'Sentry',life:8,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
-
         {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[12]},{type:86,effect:[5]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
         {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Glued']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Use to have good aim`},
-        {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:0,speed:1},attack:[{type:34,effect:[2]},{type:32,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
+        {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:34,effect:[2]},{type:32,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         {name:'Management Custodian',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[2]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[8]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
         {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[9]}],description:`Helping the prisoners for some reason`},
         {name:'Lightspeed',life:85,behavior:1,spec:[1],move:{type:0,speed:3},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[12]}],description:`He be fast`},
         {name:'Swordmaster',life:105,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:102,effect:[20]},{type:79,effect:[16]},{type:103,effect:[5,2]},{type:21,effect:[]}],description:`Mastered something`},
-        {name:'Gas Man',life:85,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
+        {name:'Gas Man',life:170,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
         {name:'Gremlin',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:32,effect:[5,1,'Dazed']},{type:21,effect:[]},{type:9,effect:[10]}],description:`Repetitive`},
         {name:'Flying Rock',life:14,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:22,effect:[2,1,'Dazed']},{type:6,effect:[7]}],description:`Vaguely spherical`},
         {name:'Repulsor',life:22,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:106,effect:[4]},{type:87,effect:[8]},{type:6,effect:[6]}],description:`Sends you to the shadow realm`},
@@ -1071,7 +1070,7 @@ types={
         {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:110,effect:[3,3]},{type:111,effect:[2]}],description:`Somewhat armored`},
         {name:'Fireball',life:30,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[4]},{type:113,effect:[5]},{type:114,effect:[3,2]}],description:`More alive then intended`},
-        {name:'Management Drone',life:75,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
+        {name:'Management Drone',life:75,behavior:1,spec:[8],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -3512,6 +3511,14 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Half-Crushed 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'2-Crushed 7',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -3519,10 +3526,23 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'3-Crushed 6',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Slid Crushed 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Arrow Crushed 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
@@ -3562,6 +3582,13 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Rectangular 3',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Winged Rectangular 4',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3587,6 +3614,24 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Rectangular 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Rhombic 3',
+            map:[
+                [{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:[]}],
             ],
         },{
             name:'Rhombic 4',
@@ -3653,6 +3698,15 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Peak Extended 3',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+
+            ],
+        },{
             name:'A 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3668,11 +3722,53 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Fat Trapezoid 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Extended Trapezoid 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Trapezoid 7',
             map:[
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Pointed 4',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Pointed 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Triangle 3',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:-1}],
             ],
         },{
             name:'Triangle 4',
@@ -3690,6 +3786,18 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Hole Triangle 7',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+
             ],
         },{
             name:'Cut Triangle 7',
@@ -3735,6 +3843,47 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Short Induction 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Cornered 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Crushed Hole 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:-1},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Extended Hole 3',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Randhole 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:[]}],
+                [{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Crushed Hole 7',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3760,7 +3909,7 @@ shipyard visit for another time.`,
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
                 [{type:[]},{type:[1]},{type:[]},{type:[1]},{type:[]},{type:-1},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
-                [{type:[]},{type:[1]},{type:[]},{type:[]},{type:[]},{type:1},{type:[]}],
+                [{type:[]},{type:[1]},{type:[]},{type:[]},{type:[]},{type:[1]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[1]},{type:[]},{type:[1]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
@@ -3786,6 +3935,70 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[2]},{type:[1]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[2]},{type:[1]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Funneled 7',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Slime 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[6]},{type:[6]},{type:[6]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[6]},{type:[]},{type:[]},{type:[6]},{type:[]},{type:-1}],
+                [{type:[]},{type:[6]},{type:[]},{type:[]},{type:[]},{type:[6]},{type:[]}],
+                [{type:-1},{type:[]},{type:[6]},{type:[]},{type:[]},{type:[6]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[6]},{type:[6]},{type:[6]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Shielded 7',
+            map:[
+                [{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:-1},{type:-1},{type:-1}],
+                [{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:-1},{type:-1}],
+                [{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:-1}],
+                [{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:[9]}],
+                [{type:-1},{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:[9]},{type:[9]}],
+                [{type:-1},{type:-1},{type:[9]},{type:[9]},{type:[9]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[9]},{type:[9]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Dualized 7',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Trap 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[5]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[5]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[5]},{type:[]},{type:[]},{type:-1}],
+                [{type:[5]},{type:[5]},{type:[5]},{type:[5]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Burning 5',
+            map:[
+                [{type:[8]},{type:[8]},{type:[8]},{type:-1},{type:-1}],
+                [{type:[8]},{type:[]},{type:[]},{type:[8]},{type:-1}],
+                [{type:[8]},{type:[]},{type:[]},{type:[]},{type:[8]}],
+                [{type:-1},{type:[8]},{type:[]},{type:[]},{type:[8]}],
+                [{type:-1},{type:-1},{type:[8]},{type:[8]},{type:[8]}],
             ],
         },{
             name:'Workshop 6',
@@ -3862,6 +4075,236 @@ shipyard visit for another time.`,
             name:'',
             player:{position:[{x:0,y:0}]},
             enemy:[
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 7'],class:0,world:0,
+            name:'Placeholder',
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
+            enemy:[
+                //{position:{x:0,y:0},name:'Bush Thing'},
+                //{position:{x:0,y:0},name:'Fireball'},
+                //{position:{x:0,y:0},name:'Dead Shell'},
+                //{position:{x:0,y:0},name:'Management Drone'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Rectangular 7'],class:2,world:2,
+            name:'Capitalist',
+            player:{position:[[{x:5,y:5}],[{x:4,y:5},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Capitalist'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Funneled 7'],class:2,world:1,
+            name:'Roger Reviv',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Roger Reviv'},
+                {position:{x:2,y:2},name:'Cartel'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Trap 7'],class:2,world:1,
+            name:'Sharpshot',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Sharpshot'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 7'],class:2,world:0,
+            name:'Hexaghost',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Hexaghost Core'},
+                {position:{x:1,y:1},name:'Hexaghost Orb'},
+                {position:{x:1,y:3},name:'Hexaghost Orb'},
+                {position:{x:3,y:1},name:'Hexaghost Orb'},
+                {position:{x:5,y:3},name:'Hexaghost Orb'},
+                {position:{x:3,y:5},name:'Hexaghost Orb'},
+                {position:{x:5,y:5},name:'Hexaghost Orb'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Dualized 7'],class:2,world:0,
+            name:'Donu Deca',
+            player:{position:[[{x:4,y:5}],[{x:3,y:5},{x:5,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Donu'},
+                {position:{x:3,y:0},name:'Deca'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Shielded 7'],class:2,world:0,
+            name:'Slow King',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Slow King'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Slime 7'],class:2,world:0,
+            name:'Slime Boss',
+            player:{position:[[{x:6,y:6}],[{x:6,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Slime Boss'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Hole Triangle 7'],class:0,world:2,
+            name:'Management Drone',
+            player:{position:[[{x:6,y:6}],[{x:5,y:5},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:4,y:2},name:'Management Drone'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Triangle 3'],class:0,world:0,
+            name:'Dead Shell',
+            player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Dead Shell'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Half-Crushed 5'],class:3,world:0,
+            name:'Fireball',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Fireball'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Cornered 5'],class:3,world:0,
+            name:'Bush Thing',
+            player:{position:[[{x:3,y:3}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Bush Thing'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Arrow Crushed 5'],class:1,world:2,
+            name:'Champion',
+            player:{position:[[{x:4,y:1}],[{x:3,y:0},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Champion'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Extended Trapezoid 5'],class:0,world:2,
+            name:'Management Autoduck',
+            player:{position:[[{x:3,y:2}],[{x:2,y:2},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:1,y:3},name:'Management Autoduck'},
+                {position:{x:2,y:0},name:'Management Autoduck'},
+                {position:{x:6,y:3},name:'Management Autoduck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['3-Crushed 6'],class:3,world:0,
+            name:'Repulsor',
+            player:{position:[[{x:5,y:0}],[{x:5,y:0},{x:5,y:1}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Repulsor'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Fat Trapezoid 5'],class:0,world:0,
+            name:'Rock Golem',
+            player:{position:[[{x:2,y:0}],[{x:1,y:0},{x:3,y:0}]]},
+            enemy:[
+                {position:{x:3,y:2},name:'Rock Golem'},
+                {position:{x:0,y:1},name:'Rock Golem'},
+                {position:{x:5,y:1},name:'Rock Golem'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Rhombic 3'],class:3,world:0,
+            name:'Gremlin',
+            player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:1,y:0}]]},
+            enemy:[
+                {position:{x:0,y:2},name:'Gremlin'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Burning 5'],class:1,world:2,
+            name:'Gas Man',
+            player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Gas Man'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Rectangular 3'],class:1,world:0,
+            name:'Swordmaster',
+            player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Swordmaster'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Peak Extended 3'],class:1,world:0,
+            name:'Lightspeed',
+            player:{position:[[{x:3,y:2}],[{x:4,y:2},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Lightspeed'},
+                {position:{x:0,y:1},name:'Lightspeed'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Randhole 5'],class:1,world:0,
+            name:'Prison Guard',
+            player:{position:[[{x:2,y:2}],[{x:2,y:2},{x:3,y:3}]]},
+            enemy:[
+                {position:{x:0,y:2},name:'Prison Guard'},
+                {position:{x:2,y:0},name:'Prison Guard'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Crushed Hole 5'],class:0,world:0,
+            name:'Prisoner',
+            player:{position:[[{x:2,y:1}],[{x:2,y:0},{x:2,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Prisoner'},
+                {position:{x:4,y:2},name:'Prisoner'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Extended Hole 3'],class:0,world:2,
+            name:'Walker Driver',
+            player:{position:[[{x:3,y:1}],[{x:2,y:0},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Walker Driver'},
+                {position:{x:1,y:1},name:'Management Soldier'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Pointed 4'],class:0,world:2,
+            name:'Management Custodian',
+            player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
+            enemy:[
+                {position:{x:1,y:2},name:'Management Soldier'},
+                {position:{x:3,y:2},name:'Management Soldier'},
+                {position:{x:3,y:4},name:'Management Custodian'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Pointed 5'],class:1,world:2,
+            name:'Management Caller',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:4,y:6},name:'Management Caller'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Short Induction 7'],class:0,world:2,
+            name:'Management Sniper',
+            player:{position:[[{x:3,y:2}],[{x:3,y:1},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:5,y:2},name:'Management Soldier'},
+                {position:{x:0,y:2},name:'Management Sniper'},
             ],reinforce:[
             ],
         },{
@@ -4025,17 +4468,6 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 7'],class:0,world:0,
-            name:'Placeholder',
-            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
-            enemy:[
-                //{position:{x:0,y:0},name:'Bush Thing'},
-                //{position:{x:0,y:0},name:'Fireball'},
-                //{position:{x:0,y:0},name:'Dead Shell'},
-                //{position:{x:0,y:0},name:'Management Drone'},
-            ],reinforce:[
-            ],
-        },{
             level:['Rhombic 4'],class:0,world:1,
             name:'Nerfer Buffer',
             player:{position:[[{x:3,y:0}],[{x:2,y:0},{x:3,y:1}]]},
@@ -4112,7 +4544,7 @@ shipyard visit for another time.`,
         },{
             level:['Induction 7'],class:0,world:1,
             name:'Gangster Gunner',
-            player:{position:[[{x:3,y:2}],[{x:3,y:2},{x:4,y:3}]]},
+            player:{position:[[{x:3,y:2}],[{x:3,y:1},{x:4,y:3}]]},
             enemy:[
                 {position:{x:4,y:0},name:'Gangster'},
                 {position:{x:6,y:4},name:'Gangster'},
@@ -4252,7 +4684,6 @@ shipyard visit for another time.`,
             enemy:[
                 {position:{x:3,y:4},name:'Biker'},
                 {position:{x:4,y:3},name:'Biker'},
-
             ],reinforce:[
             ],
         },{
@@ -4262,7 +4693,6 @@ shipyard visit for another time.`,
             enemy:[
                 {position:{x:0,y:1},name:'Thug'},
                 {position:{x:1,y:0},name:'Thug'},
-
             ],reinforce:[
             ],
         },{
@@ -4377,7 +4807,7 @@ shipyard visit for another time.`,
         },{
             level:['Crushed 7'],class:0,world:-1,
             name:'Monkey Gang',
-            player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:0}]]},
+            player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:1}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Monkey Gangster'},
                 {position:{x:0,y:2},name:'Monkey Gangster'},
@@ -4399,7 +4829,6 @@ shipyard visit for another time.`,
                 {position:{x:1,y:2},name:'Duckforce'},
                 {position:{x:5,y:4},name:'Duckforce'},
                 {position:{x:4,y:5},name:'Duckforce'},
-
             ],reinforce:[
             ],
         },

@@ -47,14 +47,14 @@ class combatant{
             'Vulnerable','Retain Block','Single Damage','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
             'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Next Turn Cannot Move',
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
-            'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn',
+            'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Burn',
             ],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
                 1,0,0,2,0,0,1,2,2,0,
                 2,0,0,0,1,1,0,0,1,2,
                 0,1,1,1,0,0,0,2,1,2,
-                2,2,0,0,0,0,0,0,
+                2,2,0,0,0,0,2,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -1223,9 +1223,12 @@ class combatant{
                         this.size=1.2
                         this.color={skin:{head:[20,75,20],body:[25,25,25],legs:[20,20,20],arms:[15,15,15]},eye:{back:[160,0,100],front:[180,20,120],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                         this.color.cape=[5,5,5]
+                        this.color.shield=[180,20,120]
                         this.fades.cape=1
+                        this.fades.shield=0
                         this.trigger.display.cape=true
                         this.trigger.display.tumor=true
+                        this.trigger.display.shield=true
                     break
                     case 'Nerfer':
                         this.color={skin:{head:[240,220,180],body:[200,150,150],legs:[190,140,140],arms:[180,130,130]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
@@ -1851,6 +1854,11 @@ class combatant{
                 return targetTile
         }
     }
+    playCard(){
+        if(this.spec.includes(8)){
+            this.battle.turnManager.loadEnemyAttackRepeat(this.id)
+        }
+    }
     activate(type,id){
         if(this.life>0&&!this.moved){
             if(this.spec.includes(0)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players){
@@ -2038,11 +2046,11 @@ class combatant{
                     for(let b=0,lb=this.targetTile.length;b<lb;b++){
                         if(
                             this.targetTile[b].tilePosition.x>=0&&
-                            !(b>=1&&(this.targetTile[1].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                            !(b>=2&&(this.targetTile[2].tilePosition.x<0||this.targetTile[1].occupied>0))&&
-                            !(b>=3&&(this.targetTile[3].tilePosition.x<0||this.targetTile[2].occupied>0))&&
-                            !(b>=4&&(this.targetTile[4].tilePosition.x<0||this.targetTile[3].occupied>0))&&
-                            !(b>=5&&(this.targetTile[5].tilePosition.x<0||this.targetTile[4].occupied>0))){
+                            !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
+                            !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))&&
+                            !(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0))&&
+                            !(b>=4&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))&&
+                            !(b>=5&&(this.targetTile[4].tilePosition.x<0||this.targetTile[4].occupied>0))){
                                 this.targetTile[b].target(this.activated?2:1,numerilizeDirection(0,directionCombatant(this.targetTile[b],this)))
                         }
                     }
@@ -3541,7 +3549,7 @@ class combatant{
                                     this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                                 }
                                 if(this.trigger.display.skin.legs){
-                                    this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                    this.layer.stroke(upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
                                     this.layer.strokeWeight(4)
                                     this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                     this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -4426,7 +4434,7 @@ class combatant{
                                     this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                                 }
                                 if(this.trigger.display.skin.legs){
-                                    this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                    this.layer.stroke(upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
                                     this.layer.strokeWeight(4)
                                     this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                     this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -5587,7 +5595,7 @@ class combatant{
                                     this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                                 }
                                 if(this.trigger.display.skin.legs){
-                                    this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                    this.layer.stroke(upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,cos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
                                     this.layer.strokeWeight(4)
                                     this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                     this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -8491,6 +8499,13 @@ class combatant{
                         this.layer.line(-15,-90,15,-90)
 					    this.layer.rect(0,-95,20,10,1)
 					}
+                    if(this.name=='Slow King'&&this.trigger.display.shield){
+                        this.layer.fill(this.color.shield[0],this.color.shield[1],this.color.shield[2],this.fade*this.fades.shield*0.2)
+						this.layer.stroke(this.color.shield[0],this.color.shield[1],this.color.shield[2],this.fade*this.fades.shield)
+						this.layer.strokeWeight(3)
+                        regPoly(this.layer,0,-48,7,56,56,game.timer*2)
+						regPoly(this.layer,0,-48,7,72,72,-game.timer*2)
+                    }
                 break
             
             }
@@ -8609,6 +8624,7 @@ class combatant{
                                 case 5: this.layer.text('Slimes Tiles Moved On',40,305+a*15); break
                                 case 6: this.layer.text('Spawns Slimes Every 20 HP Lost',40,305+a*15); break
                                 case 7: this.layer.text('Attacks When You Move',40,305+a*15); break
+                                case 8: this.layer.text('Attacks When You Play a Card',40,305+a*15); break
 
                             }
                         }
@@ -8855,6 +8871,9 @@ class combatant{
                 if(this.battle.attackManager.attacks.length<=0){
                     this.goal.anim.sword2=false
                 }
+            break
+            case 'Slow King':
+                this.fades.shield=smoothAnim(this.fades.shield,this.block>0,0,1,5)
             break
         }
     }

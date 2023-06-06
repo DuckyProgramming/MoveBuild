@@ -1,7 +1,4 @@
 Bugs:
-2-player monkey gangster start points
-2-player rewards bugs
-Game's a buggy mess with stats
 
 Mechanics:
 Menu

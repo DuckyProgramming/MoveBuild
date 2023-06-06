@@ -86,6 +86,19 @@ class tile{
                         }
                     }
                 break
+                case 8:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                        this.battle.drop(this.battle.combatantManager.combatants[this.combatant].id,findName('Burn',types.card),0,game.playerNumber+1)
+                    }
+                break
+                case 9:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)){
+                        this.battle.combatantManager.combatants[this.combatant].addBlock(5)
+                        this.anim.upPart[a]=false
+                    }
+                break
             }
         }
     }
@@ -191,6 +204,25 @@ class tile{
                     this.layer.ellipse(0,0,24,12)
                     this.layer.fill(220,220,200,this.fade*this.anim.part[a])
                     this.layer.ellipse(0,0,15,7.5)
+                break
+                case 8:
+                    this.layer.fill(60,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,48,24)
+                    this.layer.fill(255,100,0,this.fade*this.anim.part[a])
+                    let size=0.9+0.1*lsin(game.timer*10)
+                    this.layer.ellipse(0,0,10*size,5*size)
+                    this.layer.ellipse(0,-8,10*size,5*size)
+                    this.layer.ellipse(0,8,10*size,5*size)
+                    this.layer.ellipse(-12,-4,10*size,5*size)
+                    this.layer.ellipse(-12,4,10*size,5*size)
+                    this.layer.ellipse(12,-4,10*size,5*size)
+                    this.layer.ellipse(12,4,10*size,5*size)
+                break
+                case 9:
+                    this.layer.fill(180,20,120,this.fade*this.anim.part[a]*0.2)
+					this.layer.stroke(180,20,120,this.fade*this.anim.part[a])
+					this.layer.strokeWeight(3)
+                    regPoly(this.layer,0,0,7,15,15,game.timer*2)
                 break
             }
         }

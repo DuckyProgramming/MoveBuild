@@ -1714,6 +1714,7 @@ class attack{
             break
         }
         if(this.remove){
+            this.battle.combatantManager.playCard()
             switch(this.attackClass){
                 case 1:
                     if(this.userCombatant.getStatus('Double Damage')>0&&this.clearAttack[0]){

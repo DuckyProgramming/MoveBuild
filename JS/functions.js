@@ -554,6 +554,8 @@ function enemy(index){
 function outEncounter(){
 	print(`
 World 1:
+Easies:${current.nodeManager.listing.encounter[0][3].length}
+(${current.nodeManager.listing.name[0][3].join(',')})
 Enemies:${current.nodeManager.listing.encounter[0][0].length}
 (${current.nodeManager.listing.name[0][0].join(',')})
 Elites:${current.nodeManager.listing.encounter[0][1].length}

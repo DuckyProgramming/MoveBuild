@@ -4,7 +4,7 @@ class nodeManager{
         this.battle=battle
         this.nodes=[]
 
-        this.listing={encounter:[[[],[],[]],[[],[],[]],[[],[],[]]],name:[[[],[],[]],[[],[],[]],[[],[],[]]]}
+        this.listing={encounter:[[[],[],[],[]],[[],[],[]],[[],[],[]]],name:[[[],[],[],[]],[[],[],[]],[[],[],[]]]}
 
         this.tilePosition={x:0,y:-1}
         this.scroll=this.layer.height-150
