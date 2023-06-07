@@ -1043,6 +1043,15 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95]},eye:{back:[50,50,200],front:[75,75,225],glow:[150,150,255]}}
             break
+            case 'Personnel Carrier':
+                this.anim={direction:direction}
+                this.fades={wheel:1,body:1,window:1}
+                this.trigger={display:{wheel:true,body:true,window:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[120,120,120],out:[100,100,100],window:[75,75,225]}
+            break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
@@ -1643,7 +1652,7 @@ class combatant{
                 }
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': break
-            case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': break
+            case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': break
             default:
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -1712,7 +1721,7 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1])
                 ]
             case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
-            case 90: case 91: case 98: case 106: case 115:
+            case 90: case 91: case 98: case 106: case 115: case 117: case 118: case 119:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
@@ -1846,7 +1855,7 @@ class combatant{
             case 64: case 66: case 67: case 69: case 71: case 73: case 76: case 77: case 79: case 80:
             case 81: case 82: case 83: case 84: case 85: case 86: case 87: case 89: case 90: case 91:
             case 95: case 96: case 97: case 98: case 99: case 100: case 104: case 105: case 106: case 107:
-            case 112: case 114: case 115:
+            case 112: case 114: case 115: case 117: case 118: case 119:
                 let targetTile=[]
                 for(let a=0,la=target.length;a<la;a++){
                     targetTile.push(target[a]==-1?{tilePosition:{x:-1,y:-1}}:this.battle.tileManager.tiles[target[a]])
@@ -1925,6 +1934,7 @@ class combatant{
                         break
                         case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
                         case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 105: case 114:
+                        case 117:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -1934,7 +1944,7 @@ class combatant{
                             }
                         break
                         case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
-                        case 90: case 91: case 98: case 106: case 115:
+                        case 90: case 91: case 98: case 106: case 115: case 118: case 119:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -2027,7 +2037,7 @@ class combatant{
                     }
                 break
                 case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
-                case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 114:
+                case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 114: case 117:
                     for(let b=0,lb=this.targetTile.length;b<lb;b++){
                         if(this.targetTile[b].tilePosition.x>=0){
                             this.targetTile[b].target(this.activated?2:1,numerilizeDirection(0,directionCombatant(this.targetTile[b],this)))
@@ -2042,7 +2052,7 @@ class combatant{
                     }
                 break
                 case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
-                case 90: case 91: case 98: case 106: case 115:
+                case 90: case 91: case 98: case 106: case 115: case 118: case 119:
                     for(let b=0,lb=this.targetTile.length;b<lb;b++){
                         if(
                             this.targetTile[b].tilePosition.x>=0&&
@@ -2464,7 +2474,7 @@ class combatant{
             case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell':
                 this.animSet.loop=0
             break
-            case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': break
+            case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier': break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -2924,7 +2934,7 @@ class combatant{
                     break
                 }
             break
-            case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': break
+            case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier': break
             default:
                 switch(type){
                     case 0:
@@ -7823,6 +7833,38 @@ class combatant{
                         }
                     }
                 break
+                case 'Personnel Carrier':
+                    if(this.trigger.display.wheel){
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.wheel)
+                        this.layer.strokeWeight(4)
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.wheel)
+                        for(let a=0,la=4;a<la;a++){
+                            this.layer.ellipse(-20*lsin(this.anim.direction-30+a*60+floor(a/2)*60),-10,20*lsin(this.anim.direction),20)
+                        }
+                    }
+                    if(this.trigger.display.body){
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(4)
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>=0){
+                                this.layer.rect((40-a%2*20)*lsin(this.anim.direction+a*90),-30,(40+a%2*40)*lcos(this.anim.direction+a*90),40)
+                                this.layer.rect(15*lsin(this.anim.direction+a*90),-53,30*lcos(this.anim.direction+a*90),6)
+                            }
+                        }
+                        for(let a=0,la=2;a<la;a++){
+                            if(lcos(this.anim.direction-90+a*180)>=0){
+                                this.layer.ellipse(20*lsin(this.anim.direction-90+a*180),-30,20*lcos(this.anim.direction-90+a*180),20)
+                            }
+                        }
+                        this.layer.line(lsin(this.anim.direction-15)*30,-56,lsin(this.anim.direction-15)*30,-64)
+                    }
+                    if(this.trigger.display.window&&lcos(this.anim.direction)>0){
+                        this.layer.fill(this.flashColor(this.color.window)[0],this.flashColor(this.color.window)[1],this.flashColor(this.color.window)[2],this.fade*this.fades.window)
+                        this.layer.noStroke()
+                        this.layer.rect(40*lsin(this.anim.direction),-35,25*lcos(this.anim.direction),10)
+                    }
+                break
                 default:
                     if(this.name=='Lightspeed'&&this.trigger.display.wing){
                         this.layer.noFill()
@@ -8739,9 +8781,10 @@ class combatant{
                     this.battle.overlayManager.overlays[0][floor(random(0,this.battle.players))].activate([1,[
                             {type:0,value:[this.status.main[42]]}]])
                 }
+                let type=0
                 switch(this.name){
                     case 'Slimoid':
-                        let type=findName('Modicum',types.combatant)
+                        type=findName('Modicum',types.combatant)
                         for(let a=0,la=7;a<la;a++){
                             this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
                         }
@@ -8768,6 +8811,12 @@ class combatant{
                     break
                     case 'Lunar Shard':
                         this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Dust',types.combatant),this.goal.anim.direction)
+                    break
+                    case 'Personnel Carrier':
+                        type=findName('Management Robot',types.combatant)
+                        for(let a=0,la=5;a<la;a++){
+                            this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                        }
                     break
                 }
                 this.battle.combatantManager.reorder()

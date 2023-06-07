@@ -1092,6 +1092,7 @@ types={
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
+        {name:'Personnel Carrier',life:300,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         
     ],attack:[
         {name:'',class:0},//0
@@ -1211,6 +1212,9 @@ types={
         {name:'3 Spread Strike / Frailize',class:1},
         {name:'Management Beam',class:1},
         {name:'Retreating Strike',class:1},
+        {name:'Drive',class:5},
+        {name:'Triple Management Beam',class:1},
+        {name:'Draining Management Beam',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3992,6 +3996,17 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Cornered 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Burning 5',
             map:[
                 [{type:[8]},{type:[8]},{type:[8]},{type:-1},{type:-1}],
@@ -4075,6 +4090,16 @@ shipyard visit for another time.`,
             name:'',
             player:{position:[{x:0,y:0}]},
             enemy:[
+            ],reinforce:[
+            ],
+        },{
+            level:['Cornered 7'],class:0,world:0,
+            name:'Personnel Carrier',
+            player:{position:[[{x:4,y:4}],[{x:4,y:4},{x:5,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Personnel Carrier'},
+                {position:{x:2,y:0},name:'Management Robot'},
+                {position:{x:0,y:2},name:'Management Robot'},
             ],reinforce:[
             ],
         },{
