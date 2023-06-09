@@ -48,7 +48,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 6: case 11:
+            case 6: case 11: case 14:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=15
@@ -176,6 +176,14 @@ class particle{
                     this.layer.strokeWeight(5)
                     this.layer.line(0,0,this.position2.x,this.position2.y)
                 break
+                case 14:
+                    this.layer.fill(255,this.fade)
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    this.layer.arc(0,-8,6,6,-150,-30)
+                    this.layer.arc(0,-8,12,12,-150,-30)
+                    this.layer.arc(0,-8,18,18,-150,-30)
+                break
             }
             this.layer.pop()
         }
@@ -198,7 +206,7 @@ class particle{
                     }
                 }
             break
-            case 1: case 4: case 5: case 6: case 7: case 8: case 11:
+            case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){

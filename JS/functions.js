@@ -338,7 +338,18 @@ function intentDescription(attack,user,info){
 		case 117: return `Move to End of Board, Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap`
 		case 118: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-6\nNo Movement`
 		case 119: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[0]:`?`} Less\nCard${attack.effect[0]!=1||info?`s`:``} Next Turn\nRange 1-6\nNo Movement`
-		
+		case 120: return `Apply ${info?attack.effect[0]:`?`} Distracted\nto All Adjacent Tiles\nRange 1-1`
+		case 121: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Left\nRange 1-1`
+		case 122: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Right\nRange 1-1`
+		case 123: return `Apply ${info?attack.effect[0]:`?`} Bleed\nRange 1-6\nNo Movement`
+		case 124: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDrain ${info?attack.effect[1]:`?`} Energy\n3 Tiles Wide\nRange 1-1`
+		case 125: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSwap With Target\nRange 1-6`
+		case 126: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies\nAll Enemies Retain Block\nFor 2 Turns`
+		case 127: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage\nRange 2-2`
+		case 128: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
+		case 129: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6\nNo Movement`
+		case 130: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-6\nNo Movement`
+
 		default: return `INVALID`
 	}
 }
@@ -556,28 +567,32 @@ function enemy(index){
 }
 function outEncounter(){
 	print(`
-World 1:
-Easies:${current.nodeManager.listing.encounter[0][3].length}
+Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length}
+\nWorld 1:
+Easies:${current.nodeManager.listing.encounter[0][3].length}/5
 (${current.nodeManager.listing.name[0][3].join(',')})
-Enemies:${current.nodeManager.listing.encounter[0][0].length}
+Enemies:${current.nodeManager.listing.encounter[0][0].length}/18
 (${current.nodeManager.listing.name[0][0].join(',')})
-Elites:${current.nodeManager.listing.encounter[0][1].length}
+Elites:${current.nodeManager.listing.encounter[0][1].length}/8
 (${current.nodeManager.listing.name[0][1].join(',')})
-Bosses:${current.nodeManager.listing.encounter[0][2].length}
+Bosses:${current.nodeManager.listing.encounter[0][2].length}/5
 (${current.nodeManager.listing.name[0][2].join(',')})
+Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length}
 \nWorld 2:
-Enemies:${current.nodeManager.listing.encounter[1][0].length}
+Enemies:${current.nodeManager.listing.encounter[1][0].length}/18
 (${current.nodeManager.listing.name[1][0].join(',')})
-Elites:${current.nodeManager.listing.encounter[1][1].length}
+Elites:${current.nodeManager.listing.encounter[1][1].length}/8
 (${current.nodeManager.listing.name[1][1].join(',')})
-Bosses:${current.nodeManager.listing.encounter[1][2].length}
+Bosses:${current.nodeManager.listing.encounter[1][2].length}/5
 (${current.nodeManager.listing.name[1][2].join(',')})
+Total:${current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length}
 \nWorld 3:
-Enemies:${current.nodeManager.listing.encounter[2][0].length}
+Enemies:${current.nodeManager.listing.encounter[2][0].length}/18
 (${current.nodeManager.listing.name[2][0].join(',')})
-Elites:${current.nodeManager.listing.encounter[2][1].length}
+Elites:${current.nodeManager.listing.encounter[2][1].length}/8
 (${current.nodeManager.listing.name[2][1].join(',')})
-Bosses:${current.nodeManager.listing.encounter[2][2].length}
+Bosses:${current.nodeManager.listing.encounter[2][2].length}/5
 (${current.nodeManager.listing.name[2][2].join(',')})
+Total:${current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length}
 	`)
 }

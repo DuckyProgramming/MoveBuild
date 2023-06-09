@@ -861,8 +861,14 @@ types={
         },{
             name:'Spiked',rarity:0,list:4,
             levels:[
-                {effect:[4],attack:-13,cost:0,target:[0],spec:[],class:5},
-                {effect:[6],attack:-13,cost:0,target:[0],spec:[],class:5},
+                {effect:[4],attack:-13,cost:0,target:[0],spec:[1],class:5},
+                {effect:[6],attack:-13,cost:0,target:[0],spec:[1],class:5},
+            ],
+        },{
+            name:'Shrapnel',rarity:0,list:4,
+            levels:[
+                {effect:[2,1],attack:-21,cost:0,target:[0],spec:[1],class:5},
+                {effect:[3,1],attack:-21,cost:0,target:[0],spec:[1],class:5},
             ],
         },{
             name:'Light\nBleed',rarity:0,list:4,
@@ -1058,7 +1064,7 @@ types={
         {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[9]}],description:`Helping the prisoners for some reason`},
         {name:'Lightspeed',life:85,behavior:1,spec:[1],move:{type:0,speed:3},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[12]}],description:`He be fast`},
         {name:'Swordmaster',life:105,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:102,effect:[20]},{type:79,effect:[16]},{type:103,effect:[5,2]},{type:21,effect:[]}],description:`Mastered something`},
-        {name:'Gas Man',life:170,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
+        {name:'Gas Man',life:84,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
         {name:'Gremlin',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:32,effect:[5,1,'Dazed']},{type:21,effect:[]},{type:9,effect:[10]}],description:`Repetitive`},
         {name:'Flying Rock',life:14,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:22,effect:[2,1,'Dazed']},{type:6,effect:[7]}],description:`Vaguely spherical`},
         {name:'Repulsor',life:22,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:106,effect:[4]},{type:87,effect:[8]},{type:6,effect:[6]}],description:`Sends you to the shadow realm`},
@@ -1071,6 +1077,20 @@ types={
         {name:'Fireball',life:30,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
         {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[4]},{type:113,effect:[5]},{type:114,effect:[3,2]}],description:`More alive then intended`},
         {name:'Management Drone',life:75,behavior:1,spec:[8],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
+
+        {name:'Executive',life:125,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[15]},{type:120,effect:[1]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
+        {name:'Mechanized',life:150,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
+        {name:'Ninja Master',life:56,behavior:1,spec:[],move:{type:3,speed:1},attack:[{type:121,effect:[12]},{type:122,effect:[12]},{type:123,effect:[5]}],description:`Mastered teleportation, but not much else`},
+        {name:'Bomber Boy',life:105,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:127,effect:[18]},{type:128,effect:[10,3,'Shrapnel']}],description:`Loves his weaponry`},
+        {name:'Intern',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:1,effect:[5]},{type:4,effect:[3]}],description:`Working for exposure`},
+        {name:'Assistant Hiring Officer',life:180,behavior:1,spec:[],move:{type:1,speed:2},attack:[{type:39,effect:[3,'Intern']},{type:130,effect:[9]}],description:`Cutting costs everywhere`},
+        {name:'Gangster Machinegunner',life:48,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`Realized he can hold down the trigger`},
+
+        //jet
+        //self-destruct bot
+        //assistant fitness officer
+        //chief engineering officer
+        //corrupt detective
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -1092,8 +1112,10 @@ types={
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
-        {name:'Personnel Carrier',life:300,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
+        {name:'Personnel Carrier',life:450,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         
+        //{name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
+
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -1214,7 +1236,18 @@ types={
         {name:'Retreating Strike',class:1},
         {name:'Drive',class:5},
         {name:'Triple Management Beam',class:1},
-        {name:'Draining Management Beam',class:1},
+        {name:'Draw Reducing Management Beam',class:1},
+        {name:'Bore',class:1},//120
+        {name:'Left Push',class:1},
+        {name:'Right Push',class:1},
+        {name:'Throwing Star',class:1},
+        {name:'3 Spread Strike / Energy Drain',class:1},
+        {name:'6 Tile Swap Strike',class:1},
+        {name:'All Enemy 3 Turn Block',class:2},
+        {name:'2 Tile Bomb Throw',class:5},
+        {name:'Spin Injuring Strike',class:1},
+        {name:'Machine Gun',class:1},
+        {name:'6 Tile Shout',class:1},//130
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -4093,24 +4126,26 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Cornered 7'],class:0,world:0,
+            level:['Basic 7'],class:0,world:0,
+            name:'Placeholder',
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
+            enemy:[
+                //{position:{x:0,y:0},name:'Executive'},
+                //{position:{x:0,y:0},name:'Mechanized'},
+                //{position:{x:0,y:0},name:'Ninja Master'},
+                //{position:{x:0,y:0},name:'Bomber Boy'},
+                //{position:{x:0,y:0},name:'Assistant Hiring Officer'},
+                //{position:{x:0,y:0},name:'Gangster Machinegunner'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Cornered 7'],class:2,world:2,
             name:'Personnel Carrier',
             player:{position:[[{x:4,y:4}],[{x:4,y:4},{x:5,y:5}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Personnel Carrier'},
                 {position:{x:2,y:0},name:'Management Robot'},
                 {position:{x:0,y:2},name:'Management Robot'},
-            ],reinforce:[
-            ],
-        },{
-            level:['Basic 7'],class:0,world:0,
-            name:'Placeholder',
-            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
-            enemy:[
-                //{position:{x:0,y:0},name:'Bush Thing'},
-                //{position:{x:0,y:0},name:'Fireball'},
-                //{position:{x:0,y:0},name:'Dead Shell'},
-                //{position:{x:0,y:0},name:'Management Drone'},
             ],reinforce:[
             ],
         },{
@@ -4254,7 +4289,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Burning 5'],class:1,world:2,
+            level:['Burning 5'],class:1,world:1,
             name:'Gas Man',
             player:{position:[[{x:1,y:1}],[{x:2,y:1},{x:1,y:2}]]},
             enemy:[
@@ -4270,7 +4305,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Peak Extended 3'],class:1,world:0,
+            level:['Peak Extended 3'],class:0,world:2,
             name:'Lightspeed',
             player:{position:[[{x:3,y:2}],[{x:4,y:2},{x:4,y:3}]]},
             enemy:[

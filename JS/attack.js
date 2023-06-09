@@ -553,7 +553,7 @@ class attack{
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                     if(this.targetClass==2){
-                        this.targetCombatant.goal.anim.direction=this.direction
+                        this.targetCombatant.goal.anim.direction=this.relativeDirection
                     }
                 }
                 this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
@@ -573,7 +573,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case -13: case 10: case 64: case 72: case 73: case 74:
+            case -13: case -21: case 10: case 64: case 72: case 73: case 74:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(6)
                 }
@@ -582,6 +582,10 @@ class attack{
                     switch(this.type){
                         case -13:
                             this.userCombatant.takeDamage(this.effect[0])
+                        break
+                        case -21:
+                            this.userCombatant.takeDamage(this.effect[0])
+                            this.battle.cardManagers[this.user].draw(this.effect[1])
                         break
                         case 10:
                             this.userCombatant.heal(this.effect[0])
@@ -1559,6 +1563,7 @@ class attack{
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,7,[atan2(this.targetTile.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetTile.position.y),5*this.targetDistance-2]))
                 }else if(this.timer==10*this.targetDistance+15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetTile.position.x,this.targetTile.position.y,10,[10]))
                     this.battle.combatantManager.damageArea(this.effect[0],this.userCombatant.id,this.userCombatant.team,this.targetTile.tilePosition)
                 }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true

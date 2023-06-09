@@ -321,6 +321,9 @@ class battle{
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
             this.endTurn()
+        }else if(this.combatantManager.combatants[this.turn.main].getStatus('Distracted')>0){
+            this.combatantManager.combatants[this.turn.main].statusEffect('Distracted',-1)
+            this.endTurn()
         }
     }
     playCard(card,player){
