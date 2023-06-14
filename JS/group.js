@@ -255,6 +255,9 @@ class group{
                         this.cards[index].cost+=args[0]
                         this.cards[index].base.cost+=args[0]
                     break
+                    case 10:
+                        this.cards[index].spec.push(9)
+                    break
                 }
             }
         }

@@ -16,33 +16,12 @@
         {name:'Purge X02',alt:'',life:550,height:75,behavior:4,attacks:[16,21,10,21,3,21,1,21],damage:[150,0,20,0,8,0,60,0],altAttack:[5,0,'Voidstuck',0,6,0,0,0],class:1,buff:1},
         
         {name:'Flashbulb',alt:'',life:36,height:54,behavior:1,attacks:[55,3,7],damage:[3,1,1],altAttack:[0,4,0],class:0,buff:0},
-        {name:'Bolt',alt:'',life:12,height:60,behavior:0,attacks:[10,1,3,21,21],damage:[1,10,3,0,0],altAttack:['Electrocuted',0,2,0,0],class:0,buff:0},//110
         {name:'Poison Flower',alt:'',life:27,height:45,behavior:0,attacks:[28,56,57],damage:[2,3,2],altAttack:[0,2,0],class:0,buff:0},
         {name:'Louse',alt:'',life:17,height:36,behavior:0,attacks:[1,1,1,7],damage:[5,6,7,2],altAttack:[0,0,0,0],class:0,buff:24},
         
 
 
-
-
-
-
-
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
+      
         
         
         

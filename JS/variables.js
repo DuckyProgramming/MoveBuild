@@ -1091,6 +1091,15 @@ types={
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[3,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
         {name:'Corrupt Detective',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:141,effect:[12,1]},{type:140,effect:[10,2]},{type:12,effect:[15]}],description:`Received tax benefits`},
 
+        /*{name:'Riot Police',life:247,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Reichswehr',life:43,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Louse',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Pollen Sprite',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Hvurmp',life:25,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Beekeeper',life:76,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
+        {name:'Pixie',life:11,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},*/
+
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
@@ -1098,7 +1107,7 @@ types={
         {name:'Bodyguard',life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[20]},{type:77,effect:[4]},{type:13,effect:[8,1,'Dizzy']}],description:`Paid to die`},
         {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
-        
+
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
@@ -1112,11 +1121,13 @@ types={
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
+        {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         
         //{name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:1,speed:1},attack:[],description:``},
-        //chief engineering officer
+        //coffee commander?
 
-        //reichswehr
+        //deluxe robot
+
         //comrade (equalize)
 
     ],attack:[
@@ -1264,6 +1275,11 @@ types={
         {name:'Gun / Energy Down',class:1},
         {name:'Get Swole',class:5},
         {name:'3 Tile Brutal Kick',class:1},
+        {name:'Staple Gun',class:1},
+        {name:'Taser Gun',class:1},
+        {name:'2 Tile 3 Spread Push',class:1},
+        {name:'Triple Spin Strike',class:1},
+
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -4246,6 +4262,17 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]}],
             ],
+        },{
+            name:'Gapped 7',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
         },
     ],encounter:[
         {
@@ -4260,12 +4287,22 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                //{position:{x:0,y:0},name:''},
-                //{position:{x:0,y:0},name:''},
-                //{position:{x:0,y:0},name:''},
-                //{position:{x:0,y:0},name:''},
-                //{position:{x:0,y:0},name:''},
-                //{position:{x:0,y:0},name:''},
+                //{position:{x:0,y:0},name:'Riot Police'},
+                //{position:{x:0,y:0},name:'Reichswehr'},
+                //{position:{x:0,y:0},name:'Louse'},
+                //{position:{x:0,y:0},name:'Pollen Sprite'},
+                //{position:{x:0,y:0},name:'Hvurmp'},
+                //{position:{x:0,y:0},name:'Elf Archer'},
+                //{position:{x:0,y:0},name:'Beekeeper'},
+                //{position:{x:0,y:0},name:'Pixie'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Gapped 7'],class:2,world:2,
+            name:'Chief Engineering Officer',
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Chief Engineering Officer'},
             ],reinforce:[
             ],
         },{

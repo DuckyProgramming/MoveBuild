@@ -69,6 +69,9 @@ class card{
         if(this.spec.includes(3)){
             string+='Innate\n'
         }
+        if(this.spec.includes(9)){
+            string+='Stapled\n'
+        }
         switch(this.attack){
             case -1: string+=`Gain 1 Weak at\nthe End of Your Turn`; break
             case -2: string+=`Gain 1 Vulnerable at\nthe End of Your Turn`; break
@@ -269,6 +272,9 @@ class card{
         this.battle.attackManager.color=this.color
     }
     anotherPlayed(){
+        if(this.spec.includes(9)){
+            this.deSize=true
+        }
         switch(this.attack){
             case -5:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0],-1)
