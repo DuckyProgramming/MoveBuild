@@ -17,10 +17,10 @@ class tile{
             [false,false,false,false,false,false,false],
         ]
         this.reinforce=false
-        this.fire=0
+        this.fire=[0,0]
         this.combatant=0
 
-        this.anim={target:[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]],reinforce:0,fire:0,part:[],upPart:[]}
+        this.anim={target:[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]],reinforce:0,fire:[0,0],part:[],upPart:[]}
         for(let a=0,la=this.type.length;a<la;a++){
             this.anim.part.push(0)
             this.anim.upPart.push(true)
@@ -103,13 +103,15 @@ class tile{
         }
     }
     fireAttack(){
-        if(this.fire>0){
-            this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-            if(this.combatant>=0){
-                this.battle.combatantManager.combatants[this.combatant].takeDamage(this.fire,-1,0)
+        for(let a=0,la=2;a<la;a++){
+            if(this.fire[a]>0){
+                this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                if(this.combatant>=0){
+                    this.battle.combatantManager.combatants[this.combatant].takeDamage(this.fire[a],-1,0)
+                }
+                this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10+a*7,[10]))
+                this.fire[a]=0
             }
-            this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10,[10]))
-            this.fire=0
         }
     }
     target(type,direction){
@@ -233,15 +235,28 @@ class tile{
             this.layer.line(-game.targetRadius/4,-game.targetRadius/4,game.targetRadius/4,game.targetRadius/4)
             this.layer.line(-game.targetRadius/4,game.targetRadius/4,game.targetRadius/4,-game.targetRadius/4)
         }
-        if(this.anim.fire>0){
-            this.layer.stroke(255,50,50,this.fade*this.anim.fire)
+        if(this.anim.fire[0]>0){
+            this.layer.stroke(255,50,50,this.fade*this.anim.fire[0])
             this.layer.strokeWeight(2)
             this.layer.line(-game.targetRadius/2,-game.targetRadius/4,0,game.targetRadius*3/8)
             this.layer.line(game.targetRadius/2,-game.targetRadius/4,0,game.targetRadius*3/8)
-            this.layer.fill(255,50,50,this.fade*this.anim.fire)
+            this.layer.fill(255,50,50,this.fade*this.anim.fire[0])
             this.layer.noStroke()
             this.layer.textSize(12)
-            this.layer.text(this.fire,0,-game.targetRadius/8)
+            this.layer.text(this.fire[0],0,-game.targetRadius/8)
+        }
+        if(this.anim.fire[1]>0){
+            this.layer.stroke(255,50,50,this.fade*this.anim.fire[1])
+            this.layer.strokeWeight(2)
+            this.layer.ellipse(0,0,game.targetRadius*3/4,game.targetRadius*3/4)
+            this.layer.line(0,-game.targetRadius/4,0,-game.targetRadius*3/8)
+            this.layer.line(0,game.targetRadius/4,0,game.targetRadius*3/8)
+            this.layer.line(-game.targetRadius/4,0,-game.targetRadius*3/8,0)
+            this.layer.line(game.targetRadius/4,0,game.targetRadius*3/8,0)
+            this.layer.fill(255,50,50,this.fade*this.anim.fire[1])
+            this.layer.noStroke()
+            this.layer.textSize(12)
+            this.layer.text(this.fire[1],0,0)
         }
         if(this.anim.target[0][6]>0){
             this.layer.noFill()
@@ -319,7 +334,9 @@ class tile{
             }
         }
         this.anim.reinforce=smoothAnim(this.anim.reinforce,this.reinforce,0,1,5)
-        this.anim.fire=smoothAnim(this.anim.fire,this.fire>0,0,1,5)
+        for(let a=0,la=this.anim.fire.length;a<la;a++){
+            this.anim.fire[a]=smoothAnim(this.anim.fire[a],this.fire[a]>0,0,1,5)
+        }
         for(let a=0,la=this.anim.part.length;a<la;a++){
             this.anim.part[a]=smoothAnim(this.anim.part[a],this.anim.upPart[a],0,1,5)
         }

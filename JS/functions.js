@@ -17,7 +17,7 @@ function displayTransition(layer,transition){
 	layer.rect(layer.width/2,layer.height-transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
 	if(transition.trigger){
 		transition.anim=round(transition.anim*10+1)/10
-		if(transition.anim>1.1){
+		if(transition.anim!=1.1){
 			transition.trigger = false
 			stage.scene=transition.scene
 		}
@@ -237,7 +237,7 @@ function intentDescription(attack,user,info){
 		case 14: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
 		case 15: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-2`
 		case 16: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
-		case 17: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
+		case 17: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nTargets Cannot Move\nFor ${info?attack.effect[0]:`?`} Turn${attack.effect[0]!=1?`s`:` `}\nRange 1-1`
 		case 18: return `Gain ${info?attack.effect[0]:`?`} Strength`
 		case 19: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-2`
 		case 20: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-2`
@@ -307,7 +307,7 @@ function intentDescription(attack,user,info){
 		case 85: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n5 Tiles Wide\nRange 2-2`
 		case 86: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\n5 Tiles Wide\nRange 2-2`
 		case 87: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-2`
-		case 88: return `You Cannot Move\nFor ${info?attack.effect[0]:`?`} Turns`
+		case 88: return `You Cannot Move\nFor ${info?attack.effect[0]:`?`} Turn${attack.effect[0]!=1?`s`:` `}`
 		case 89: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
 		case 90: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-6\nNo Movement`
 		case 91: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
@@ -349,6 +349,19 @@ function intentDescription(attack,user,info){
 		case 128: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
 		case 129: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6\nNo Movement`
 		case 130: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-6\nNo Movement`
+		case 131: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Directions Wide\nRange 1-6\nNo Movement`
+		case 132: return `Shuffle in ${info?attack.effect[0]:`?`} ${info?attack.effect[1].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nto All Adjacent Tiles\nRange 1-1`
+		case 133: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\\nto All Adjacent Tiles\n2 Times\nRange 1-1`
+		case 134: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6\nNo Movement\nIf No Target,\nCreate Target Zone`
+		case 135: return `Move to End of Board, Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}`
+		case 136: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nKill Self\nRange 1-1`
+		case 137: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2\nTargets Adjacent Diagonals`
+		case 138: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Back Left\nRange 1-2`
+		case 139: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Back Right\nRange 1-2`
+		case 140: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${attack.effect[0]!=1?`s`:` `}\nRange 1-6\nNo Movement`
+		case 141: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\nRange 1-6\nNo Movement`
+		case 142: return `Gain ${info?attack.effect[0]:`?`} Strength\nDeal ${info?calculateIntent(attack.effect[1],user,0):`?`} Damage\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-1`
+		case 143: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 2 Tiles\nRange 1-3`
 
 		default: return `INVALID`
 	}
@@ -567,7 +580,7 @@ function enemy(index){
 }
 function outEncounter(){
 	print(`
-Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length}
+Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length+current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/100
 \nWorld 1:
 Easies:${current.nodeManager.listing.encounter[0][3].length}/5
 (${current.nodeManager.listing.name[0][3].join(',')})
@@ -577,7 +590,7 @@ Elites:${current.nodeManager.listing.encounter[0][1].length}/8
 (${current.nodeManager.listing.name[0][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[0][2].length}/5
 (${current.nodeManager.listing.name[0][2].join(',')})
-Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length}
+Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length}/36
 \nWorld 2:
 Enemies:${current.nodeManager.listing.encounter[1][0].length}/18
 (${current.nodeManager.listing.name[1][0].join(',')})
@@ -585,7 +598,7 @@ Elites:${current.nodeManager.listing.encounter[1][1].length}/8
 (${current.nodeManager.listing.name[1][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[1][2].length}/5
 (${current.nodeManager.listing.name[1][2].join(',')})
-Total:${current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length}
+Total:${current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length}/31
 \nWorld 3:
 Enemies:${current.nodeManager.listing.encounter[2][0].length}/18
 (${current.nodeManager.listing.name[2][0].join(',')})
@@ -593,6 +606,12 @@ Elites:${current.nodeManager.listing.encounter[2][1].length}/8
 (${current.nodeManager.listing.name[2][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[2][2].length}/5
 (${current.nodeManager.listing.name[2][2].join(',')})
-Total:${current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length}
+Total:${current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length}/31
+\nWorld 4:
+Elites:${current.nodeManager.listing.encounter[3][1].length}/1
+(${current.nodeManager.listing.name[3][1].join(',')})
+Bosses:${current.nodeManager.listing.encounter[3][2].length}/1
+(${current.nodeManager.listing.name[3][2].join(',')})
+Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/2
 	`)
 }

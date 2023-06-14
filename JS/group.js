@@ -19,10 +19,10 @@ class group{
                     this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2])
                 }
                 for(let a=0,la=8;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][0].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
+                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][0].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
                 }
                 for(let a=0,la=4;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
+                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
                 }
                 for(let a=1,la=types.card.length-2;a<la;a++){
                     //this.add(a,0,0)

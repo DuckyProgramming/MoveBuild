@@ -93,60 +93,70 @@ class tileManager{
             }
         }
     }
-    fireArea(power,tilePosition,range){
+    fireArea(type,power,tilePosition,range){
         for(let a=0,la=this.tiles.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.tiles[a])
             if(distance>=0&&distance<=range){
-                this.tiles[a].fire+=power
+                this.tiles[a].fire[type]+=power
             }
         }
     }
-    fireRow(power,row){
+    fireAreaTrefoil(type,power,tilePosition,range){
+        let flip=floor(random(0,2))
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.tiles[a])
+            let direction=targetDirection(0,tilePosition.x-this.tiles[a].tilePosition.x,tilePosition.y-this.tiles[a].tilePosition.y)
+            if(distance>=0&&distance<=range&&(direction==-1||direction%2==flip)){
+                this.tiles[a].fire[type]+=power
+            }
+        }
+    }
+    fireRow(type,power,row){
         for(let a=0,la=this.tiles.length;a<la;a++){
             if(this.tiles[a].tilePosition.x==row){
-                this.tiles[a].fire+=power
+                this.tiles[a].fire[type]+=power
             }
         }
     }
-    fireColumn(power,column){
+    fireColumn(type,power,column){
         for(let a=0,la=this.tiles.length;a<la;a++){
             if(this.tiles[a].tilePosition.y==column){
-                this.tiles[a].fire+=power
+                this.tiles[a].fire[type]+=power
             }
         }
     }
-    fireDiagonal(power,diagonal){
+    fireDiagonal(type,power,diagonal){
         for(let a=0,la=this.tiles.length;a<la;a++){
             if(this.tiles[a].tilePosition.y-this.tiles[a].tilePosition.x==diagonal){
-                this.tiles[a].fire+=power
+                this.tiles[a].fire[type]+=power
             }
         }
     }
-    fireRandomRow(power){
-        this.fireRow(power,floor(random(0,this.width)))
+    fireRandomRow(type,power){
+        this.fireRow(type,power,floor(random(0,this.width)))
     }
-    fireRandomColumn(power){
-        this.fireColumn(power,floor(random(0,this.height)))
+    fireRandomColumn(type,power){
+        this.fireColumn(type,power,floor(random(0,this.height)))
     }
-    fireRandomDiagonal(power){
-        this.fireDiagonal(power,floor(random(this.diagonal[0],this.diagonal[1]+1)))
+    fireRandomDiagonal(type,power){
+        this.fireDiagonal(type,power,floor(random(this.diagonal[0],this.diagonal[1]+1)))
     }
-    fireRandomSet(power){
+    fireRandomSet(type,power){
         if(floor(random(0,3))==0){
-            this.fireRandomRow(power)
+            this.fireRandomRow(type,power)
         }else if(floor(random(0,2))==0){
-            this.fireRandomColumn(power)
+            this.fireRandomColumn(type,power)
         }else{
-            this.fireRandomDiagonal(power)
+            this.fireRandomDiagonal(type,power)
         }
     }
-    fireRandomTarget(power,tilePosition){
+    fireRandomTarget(type,power,tilePosition){
         if(floor(random(0,3))==0){
-            this.fireRow(power,tilePosition.x)
+            this.fireRow(type,power,tilePosition.x)
         }else if(floor(random(0,2))==0){
-            this.fireColumn(power,tilePosition.y)
+            this.fireColumn(type,power,tilePosition.y)
         }else{
-            this.fireDiagonal(power,tilePosition.y-tilePosition.x)
+            this.fireDiagonal(type,power,tilePosition.y-tilePosition.x)
         }
     }
     fire(){
