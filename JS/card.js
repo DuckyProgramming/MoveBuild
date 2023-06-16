@@ -313,7 +313,17 @@ class card{
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
                 this.layer.textSize(16)
-                this.layer.text('Slimed',0,0)
+                if(this.spec.includes(10)){
+                    this.layer.text('Slimed',0,-12)
+                    this.layer.text('Smoked',0,12)
+                }else{
+                    this.layer.text('Slimed',0,0)
+                }
+            }else if(this.spec.includes(10)){
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
+                this.layer.textSize(16)
+                this.layer.text('Smoked',0,0)
             }else{
                 if(this.player==-1){
                     this.layer.noStroke()

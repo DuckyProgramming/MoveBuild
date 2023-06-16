@@ -1090,15 +1090,15 @@ types={
         {name:'Destructor Bot',life:81,behavior:0,spec:[],move:{type:0,speed:3},attack:[{type:136,effect:[40]}],description:`Has no regard for its nonexistent life`},
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[3,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
         {name:'Corrupt Detective',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:141,effect:[12,1]},{type:140,effect:[10,2]},{type:12,effect:[15]}],description:`Received tax benefits`},
-
-        /*{name:'Riot Police',life:247,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Reichswehr',life:43,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Louse',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Pollen Sprite',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Hvurmp',life:25,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Beekeeper',life:76,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},
-        {name:'Pixie',life:11,behavior:1,spec:[],move:{type:0,speed:1},attack:[],description:``},*/
+        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,3]},{type:10,effect:[8]}],description:`Not actually projectile spammer`},
+        {name:'Riot Police',life:147,behavior:0,spec:[9],move:{type:0,speed:1},attack:[{type:150,effect:[6,4]},{type:9,effect:[16]}],description:`Responds to everything except riots`},
+        {name:'Reichswehr',life:43,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:151,effect:[6,1]},{type:12,effect:[10]},{type:152,effect:[2]}],description:`No historical context`},
+        {name:'Louse',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:153,effect:[2]},{type:79,effect:[5]},{type:6,effect:[6]},{type:1,effect:[7]}],description:`Would rather not do anything`},
+        {name:'Fungling',life:15,behavior:5,spec:[11],move:{type:1,speed:1},attack:[{type:4,effect:[5]},{type:154,effect:[6,1]}],description:`Doesn't do a whole lot`},
+        {name:'Hwurmp',life:25,behavior:1,spec:[10],move:{type:0,speed:1},attack:[{type:157,effect:[6,2,'Dazed']}],description:`Full of hot air`},
+        {name:'Bee',life:4,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[1]}],description:`3 Pixels`},
+        {name:'Beekeeper',life:76,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
+        {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -1125,9 +1125,10 @@ types={
         
         //{name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:1,speed:1},attack:[],description:``},
         //coffee commander?
-
+        //purge x02
+        //office fight club
+        //accounting department
         //deluxe robot
-
         //comrade (equalize)
 
     ],attack:[
@@ -1279,6 +1280,16 @@ types={
         {name:'Taser Gun',class:1},
         {name:'2 Tile 3 Spread Push',class:1},
         {name:'Triple Spin Strike',class:1},
+        {name:'Poison Arrow',class:1},
+        {name:'2 Tile Triple Strike / Bleed',class:1},
+        {name:'2 Tile Smoke Bomb',class:5},//150
+        {name:'Gun / Burn',class:1},
+        {name:'6 Tile Weaken',class:1},
+        {name:'3 Spread Weaken',class:1},
+        {name:'Poison Drive',class:5},
+        {name:'Local Summon',class:4},
+        {name:'2 Tile Pull Double Strike',class:1},
+        {name:'Statusing Shockwave',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3757,6 +3768,17 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
             ],
         },{
+            name:'Star2 7',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:[]}],
+            ],
+        },{
             name:'Cut 5',
             map:[
                 [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -3927,6 +3949,23 @@ shipyard visit for another time.`,
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Dual Induction 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Dual Induction 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
             ],
         },{
             name:'Cornered 5',
@@ -4273,7 +4312,50 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Defense 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[4]},{type:[4]},{type:[4]},{type:[4]},{type:[4]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Rebound 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Singleside2 5',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Expanse 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
         },
+        //spike spawners
     ],encounter:[
         {
             level:[],class:0,world:-1,
@@ -4287,14 +4369,75 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                //{position:{x:0,y:0},name:'Riot Police'},
-                //{position:{x:0,y:0},name:'Reichswehr'},
-                //{position:{x:0,y:0},name:'Louse'},
-                //{position:{x:0,y:0},name:'Pollen Sprite'},
-                //{position:{x:0,y:0},name:'Hvurmp'},
-                //{position:{x:0,y:0},name:'Elf Archer'},
-                //{position:{x:0,y:0},name:'Beekeeper'},
-                //{position:{x:0,y:0},name:'Pixie'},
+                //{position:{x:0,y:0},name:''},
+            ],reinforce:[
+            ],
+        },{
+            level:['Expanse 7'],class:0,world:0,
+            name:'Pixie',
+            player:{position:[[{x:5,y:5}],[{x:4,y:5},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Pixie'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Singleside2 5'],class:1,world:0,
+            name:'Beekeeper',
+            player:{position:[[{x:4,y:5}],[{x:3,y:5},{x:5,y:5}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Beekeeper'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Singleside 5'],class:0,world:0,
+            name:'Hwurmp',
+            player:{position:[[{x:3,y:5}],[{x:1,y:4},{x:4,y:4}]]},
+            enemy:[
+                {position:{x:2,y:3},name:'Hwurmp'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Rebound 7'],class:0,world:0,
+            name:'Fungling',
+            player:{position:[[{x:1,y:3}],[{x:1,y:2},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Fungling'},
+                {position:{x:3,y:6},name:'Fungling'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Dual Induction 5'],class:0,world:0,
+            name:'Louse',
+            player:{position:[[{x:3,y:1}],[{x:3,y:1},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Louse'},
+                {position:{x:6,y:2},name:'Louse'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Defense 5'],class:0,world:1,
+            name:'Reichswehr',
+            player:{position:[[{x:3,y:4}],[{x:2,y:4},{x:4,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Reichswehr'},
+                {position:{x:2,y:0},name:'Reichswehr'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Dual Induction 7'],class:0,world:2,
+            name:'Riot Police',
+            player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:1,y:2},name:'Riot Police'},
+                {position:{x:5,y:2},name:'Riot Police'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Star2 7'],class:0,world:1,
+            name:'Elf Archer',
+            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Elf Archer'},
             ],reinforce:[
             ],
         },{

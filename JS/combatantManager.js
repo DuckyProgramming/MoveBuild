@@ -80,7 +80,9 @@ class combatantManager{
             if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 this.combatants[a].markTarget()
             }
-            if((this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5)&&this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&
+            if((this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5)&&
+            this.combatants[a].life>0&&this.combatants[a].team!=this.combatants[this.battle.attackManager.user].team&&
+            !(this.combatants[a].spec.includes(9)&&abs(this.combatants[a].goal.anim.direction-atan2(this.combatants[this.battle.attackManager.player].relativePosition.x-this.combatants[a].relativePosition.x,this.combatants[this.battle.attackManager.player].relativePosition.y-this.combatants[a].relativePosition.y))<30)&&
             (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.battle.attackManager.player)?1:this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)){
                 this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].target(0,numerilizeDirection(0,directionCombatant(this.combatants[a],this.combatants[this.battle.attackManager.user])))
             }
@@ -240,6 +242,20 @@ class combatantManager{
             }
         }
         return combatants
+    }
+    randomEffectArea(loop,type,args,team,tilePosition){
+        for(let b=0,lb=loop;b<lb;b++){
+            for(let a=0,la=this.combatants.length;a<la;a++){
+                let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+                if(this.combatants[a].team!=team&&distance>=0&&distance<=1&&this.combatants[a].id<this.battle.players){
+                    if(this.battle.cardManagers[this.combatants[a].id].reserve.cards.length>0){
+                        this.battle.cardManagers[this.combatants[a].id].randomEffect(1,type,args)
+                    }else{
+                        this.battle.cardManagers[this.combatants[a].id].randomEffect(3,type,args)
+                    }
+                }
+            }
+        }
     }
     clearTile(tile){
         for(let a=0,la=this.combatants.length;a<la;a++){

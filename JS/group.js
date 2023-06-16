@@ -157,6 +157,9 @@ class group{
                         total++
                     }else{
                         this.cards[a].deSize=true
+                        if(this.cards[a].spec.includes(10)){
+                            this.cards[a].spec.splice(this.cards[a].spec.indexOf(10),1)
+                        }
                     }
                 break
                 case 2:
@@ -257,6 +260,9 @@ class group{
                     break
                     case 10:
                         this.cards[index].spec.push(9)
+                    break
+                    case 11:
+                        this.cards[index].spec.push(10)
                     break
                 }
             }

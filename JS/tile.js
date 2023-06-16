@@ -9,7 +9,7 @@ class tile{
 
         this.fade=1
         this.occupied=0
-        this.combatantted=[
+        this.targetted=[
             [false,false,false,false,false,false,false],
             [false,false,false,false,false,false,false],
             [false,false,false,false,false,false,false],
@@ -99,6 +99,13 @@ class tile{
                         this.anim.upPart[a]=false
                     }
                 break
+                case 10:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(11)){
+                        this.battle.combatantManager.combatants[this.combatant].statusEffect('Poison',3)
+                        this.anim.upPart[a]=false
+                    }
+                break
             }
         }
     }
@@ -115,13 +122,13 @@ class tile{
         }
     }
     target(type,direction){
-        this.combatantted[type][direction]=true
-        this.combatantted[type][6]=true
+        this.targetted[type][direction]=true
+        this.targetted[type][6]=true
     }
     unTarget(){
-        for(let a=0,la=this.combatantted.length;a<la;a++){
-            for(let b=0,lb=this.combatantted[a].length;b<lb;b++){
-                this.combatantted[a][b]=false
+        for(let a=0,la=this.targetted.length;a<la;a++){
+            for(let b=0,lb=this.targetted[a].length;b<lb;b++){
+                this.targetted[a][b]=false
             }
         }
     }
@@ -225,6 +232,13 @@ class tile{
 					this.layer.stroke(180,20,120,this.fade*this.anim.part[a])
 					this.layer.strokeWeight(3)
                     regPoly(this.layer,0,0,7,15,15,game.timer*2)
+                break
+                case 10:
+                    this.layer.fill(150,255,100,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,40,20)
+                    for(let a=0,la=10;a<la;a++){
+                        this.layer.ellipse(cos(a*36)*20,sin(a*36)*10,16,8)
+                    }
                 break
             }
         }
@@ -330,7 +344,7 @@ class tile{
         this.tilePosition.y=round(this.tilePosition.y)
         for(let a=0,la=this.anim.target.length;a<la;a++){
             for(let b=0,lb=this.anim.target[a].length;b<lb;b++){
-                this.anim.target[a][b]=smoothAnim(this.anim.target[a][b],this.combatantted[a][b],0,1,5)
+                this.anim.target[a][b]=smoothAnim(this.anim.target[a][b],this.targetted[a][b],0,1,5)
             }
         }
         this.anim.reinforce=smoothAnim(this.anim.reinforce,this.reinforce,0,1,5)
