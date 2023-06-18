@@ -1,4 +1,7 @@
 Bugs:
+Louse Graphical Bugs
+Reset animations after each battle
+Empty Map Coordinate Offset Bugs
 
 Mechanics:
 Menu
@@ -21,11 +24,8 @@ Shield bash
 Chain reaction
 Temporary ignore block
 
-Wave
-
 Generality:
 First Character Gimmick
 (Card Fusion)
-Third Character Gimmick
 
-Ume Base Cards
+(Third Character Gimmick, Ume Base Cards)

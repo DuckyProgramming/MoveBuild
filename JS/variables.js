@@ -900,6 +900,12 @@ types={
                 {effect:[1],attack:-5,cost:0,target:[0],spec:[5],class:5},
                 {effect:[2],attack:-5,cost:0,target:[0],spec:[5],class:5},
             ],
+        },{
+            name:'Paralyzed',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:-22,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[],attack:-22,cost:0,target:[0],spec:[4,5],class:5},
+            ],
         },
 
         {
@@ -1017,7 +1023,7 @@ types={
         {name:'Billy Beatup',life:75,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[6]}],description:`Beats you up`},
         {name:'Monkey Gangster',life:24,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:1,effect:[5]},{type:11,effect:[2]}],description:`Your occupation`},
         {name:'Slime',life:20,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Stuck']},{type:23,effect:[2]}],description:`Not splitting yet`},
-        {name:'Cartel',life:42,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:24,effect:[2,5]},{type:4,effect:[12]}],description:`A businessman`},
+        {name:'Cartel',life:42,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:24,effect:[2,5]},{type:4,effect:[12]}],description:`A businessman`},
         {name:'Gangster',life:40,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]},{type:4,effect:[6]}],description:`Crime man`},
         {name:'Ninja',life:32,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:20,effect:[4]}],description:`Wishes he was still cool`},
         {name:'Red',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[7]},{type:15,effect:[5,1]},{type:25,effect:[4]}],description:`The people`},
@@ -1045,7 +1051,7 @@ types={
         {name:'Management Prototype',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:116,effect:[8]},{type:31,effect:[4]},{type:4,effect:[6]}],description:`Doesn't work as intended`},
         {name:'Management Robot',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[10]},{type:20,effect:[4]},{type:10,effect:[4]}],description:`Mass produced soldier`},
         {name:'Management Soldier',life:135,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:14,effect:[8,1,'Electrocuted']},{type:60,effect:[12,2,'Dazed']},{type:10,effect:[6]}],description:`Wishes he was paid`},
-        {name:'Management Officer',life:70,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his suboordinates`},
+        {name:'Management Officer',life:49,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:18,effect:[1]},{type:81,effect:[8,3,'Dazed']}],description:`Hates his suboordinates`},
         {name:'Management Special Forces',life:120,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:82,effect:[4,1,'Void']},{type:83,effect:[8,1,'Electrocuted']},{type:6,effect:[18]},{type:45,effect:[5]}],description:`Gets paid if he can win`},
         {name:'Sneaky Gremlin',life:13,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:1,effect:[6]},{type:4,effect:[3]}],description:`Pretends to be hidden`},
         {name:'Fat Gremlin',life:17,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[5]},{type:84,effect:[3,1]}],description:`Resembles somebody`},
@@ -1084,7 +1090,7 @@ types={
         {name:'Intern',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:1,effect:[5]},{type:4,effect:[3]}],description:`Working for exposure`},
         {name:'Assistant Hiring Officer',life:180,behavior:1,spec:[],move:{type:1,speed:2},attack:[{type:39,effect:[3,'Intern']},{type:130,effect:[9]}],description:`Cutting costs everywhere`},
         {name:'Gangster Machinegunner',life:48,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`Realized he can hold down the trigger`},
-        {name:'Bolt',life:12,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:131,effect:[10]},{type:132,effect:[1,'Electrocuted']},{type:133,effect:[3]}],description:`Literally electricity`},
+        {name:'Bolt',life:8,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:131,effect:[10]},{type:132,effect:[1,'Electrocuted']},{type:133,effect:[3]}],description:`Literally electricity`},
         {name:'Jet',life:128,behavior:0,spec:[0],move:{type:1,speed:2},attack:[{type:134,effect:[18,1]},{type:135,effect:[8,2,'Burn']}],description:`Technology difference`},
         {name:'Armored Ninja',life:72,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:137,effect:[9]},{type:138,effect:[6]},{type:139,effect:[6]},{type:10,effect:[6]}],description:`Not a spike slime?`},
         {name:'Destructor Bot',life:81,behavior:0,spec:[],move:{type:0,speed:3},attack:[{type:136,effect:[40]}],description:`Has no regard for its nonexistent life`},
@@ -1099,6 +1105,15 @@ types={
         {name:'Bee',life:4,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[1]}],description:`3 Pixels`},
         {name:'Beekeeper',life:76,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
+
+        {name:'PhD',life:50,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[2,1]},{type:159,effect:[1]},{type:160,effect:[4]}],description:`Still can't find a job`},
+        {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[6]},{type:161,effect:[9]},{type:162,effect:[12]}],description:`Oh shiny`},
+        {name:'Coffee Commander',life:270,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]}],description:`Don't talk to him even if he's had his coffee`},
+        {name:'Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
+        {name:'Host',life:22,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Drone']}],description:`Voluntary`},
+        {name:'Antihwurmp',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
+        {name:'Junkie',life:40,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:79,effect:[6]},{type:167,effect:[1,3]}],description:`Purchases product`},
+        {name:'Prestige',life:131,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:168,effect:[2]}],description:`Back for more?`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -1123,13 +1138,13 @@ types={
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         
-        //{name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:1,speed:1},attack:[],description:``},
-        //coffee commander?
-        //purge x02
         //office fight club
-        //accounting department
-        //deluxe robot
+
+        //{name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:1,speed:1},attack:[],description:``},
+        //purge x02
         //comrade (equalize)
+        //dr duck
+        //doublo
 
     ],attack:[
         {name:'',class:0},//0
@@ -1290,6 +1305,17 @@ types={
         {name:'Local Summon',class:4},
         {name:'2 Tile Pull Double Strike',class:1},
         {name:'Statusing Shockwave',class:1},
+        {name:'Paper Airplane',class:1},
+        {name:'Random Buff or Nerf',class:2},
+        {name:'Force Grab',class:1},//160
+        {name:'Static Beam',class:1},
+        {name:'Burst Charge',class:1},
+        {name:'Drink Coffee',class:2},
+        {name:'Triple Spread Statusing Gun',class:1},
+        {name:'Drone Beam',class:1},
+        {name:'Statusing Pullwave',class:1},
+        {name:'5 Random Random Buffs',class:2},
+        {name:'2 Tile 3 Spread Double Strike',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -4333,6 +4359,17 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Singleside 5',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Singleside2 5',
             map:[
                 [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
@@ -4354,8 +4391,14 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Lanes 3',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
         },
-        //spike spawners
     ],encounter:[
         {
             level:[],class:0,world:-1,
@@ -4369,7 +4412,22 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                //{position:{x:0,y:0},name:''},
+                 //{position:{x:0,y:0},name:'PhD'},
+                //{position:{x:0,y:0},name:'Glimerrer'},
+                //{position:{x:0,y:0},name:'Coffee Commander'},
+                //{position:{x:0,y:0},name:'Host'},
+                //{position:{x:0,y:0},name:'Antihwurmp'},
+                 {position:{x:0,y:0},name:'Junkie'},
+                 //{position:{x:0,y:0},name:'Prestige'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Lanes 3'],class:3,world:0,
+            name:'Bolt',
+            player:{position:[[{x:1,y:1}],[{x:0,y:1},{x:1,y:1}]]},
+            enemy:[
+                {position:{x:3,y:0},name:'Bolt'},
+                {position:{x:4,y:2},name:'Bolt'},
             ],reinforce:[
             ],
         },{
@@ -4433,7 +4491,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Star2 7'],class:0,world:1,
+            level:['Star2 7'],class:1,world:0,
             name:'Elf Archer',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
@@ -4491,17 +4549,6 @@ shipyard visit for another time.`,
             player:{position:[[{x:1,y:4}],[{x:0,y:4},{x:2,y:4}]]},
             enemy:[
                 {position:{x:1,y:0},name:'Jet'},
-            ],reinforce:[
-            ],
-        },{
-            level:['Lanes 3'],class:0,world:0,
-            name:'Bolt',
-            player:{position:[[{x:2,y:3}],[{x:1,y:2},{x:3,y:4}]]},
-            enemy:[
-                {position:{x:0,y:0},name:'Bolt'},
-                {position:{x:0,y:2},name:'Bolt'},
-                {position:{x:4,y:4},name:'Bolt'},
-                {position:{x:4,y:6},name:'Bolt'},
             ],reinforce:[
             ],
         },{
@@ -4858,7 +4905,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Factory2C 7'],class:1,world:2,
+            level:['Factory2C 7'],class:0,world:2,
             name:'Management Officer',
             player:{position:[[{x:3,y:2}],[{x:3,y:2},{x:4,y:2}]]},
             enemy:[
@@ -5094,7 +5141,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Crushed Rectangular 5'],class:1,world:1,
+            level:['Crushed Rectangular 5'],class:0,world:1,
             name:'Cartel',
             player:{position:[[{x:0,y:0}],[{x:1,y:0},{x:1,y:1}]]},
             enemy:[

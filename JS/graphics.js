@@ -996,233 +996,11 @@ function generateSprite(layer,type,direction){
 		break
 	}
 }
-function setupGeneralGraphics(){
-	/*
-	0-1 Lira Bow
-	2-3 Lira Flower
-	4-6 Lira Sandal Bottom
-	7-8 Lira Sandal Top
-	9-11 Sakura Flower
-	12-14 Sakura Sandal Bottom
-	15-16 Sakura Sandal Top
-	17 Sakura Scythe
-	18 Sakura Floral Print
-	19-21 Ume Sandal Bottom
-	22-23 Ume Sandal Top
-	24-25 Sakura Parasol
-	*/
-	for(let a=0,la=26;a<la;a++){
-		switch(a){
-			case 9: case 11:
-				graphics.minor.push(createGraphics(160,240))
-			break
-			case 24:
-				graphics.minor.push(createGraphics(600,300))
-			break
-			case 25:
-				graphics.minor.push(createGraphics(400,200))
-			break
-			default:
-				graphics.minor.push(createGraphics(160,160))
-			break
-		}
-		setupLayer(graphics.minor[graphics.minor.length-1])
-	}
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[a].translate(80,80)
-		for(let b=0,lb=16;b<lb;b++){
-			graphics.minor[a].fill(80+b*8,200+b*5,80+b*8)
-			graphics.minor[a].triangle(0,0,15+b*0.5,45-b*1.25,45-b*1.25,15+b*0.5)
-			graphics.minor[a].triangle(0,0,-15-b*0.5,-45+b*1.25,-45+b*1.25,-15-b*0.5)
-		}
-	}
-	graphics.minor[1].erase()
-	graphics.minor[1].triangle(15,20,40,30,20,55)
-	graphics.minor[1].triangle(-15,-60,-40,-20,-20,-25)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[2+a].translate(80,80)
-		for(let b=0,lb=8;b<lb;b++){
-			graphics.minor[2+a].rotate(19+a*7-b)
-			graphics.minor[2+a].fill(100+a*25+b*(20-a*5),50+b*15,150-a*25+b*(5+a*5))
-			for(let c=0,lc=12;c<lc;c++){
-				graphics.minor[2+a].rotate(30)
-				graphics.minor[2+a].ellipse(0,(24-b)*(1-b/lb),15*(1-b/lb),30*(1-b/lb))
-			}
-		}
-		graphics.minor[2+a].rotate(12+a*36)
-		graphics.minor[2+a].fill(50+a*25,0,100-a*25)
-		for(let b=0,lb=5;b<lb;b++){
-			graphics.minor[2+a].rotate(72)
-			graphics.minor[2+a].rect(0,-6,2,12)
-			graphics.minor[2+a].ellipse(0,-12,4,4)
-		}
-	}
-	for(let a=0,la=3;a<la;a++){
-		graphics.minor[4+a].fill(150,160,196)
-		graphics.minor[4+a].rect(80,80,100,20)
-		graphics.minor[4+a].ellipse(80,70,100,100)
-		graphics.minor[4+a].ellipse(80,90,100,100)
-		graphics.minor[4+a].fill(105,112,137)
-		graphics.minor[4+a].rect(80,70,100,6)
-		graphics.minor[4+a].rect(80,90,100,6)
-		graphics.minor[4+a].quad(36,47,124,47,127,53,33,53)
-		graphics.minor[4+a].quad(36,113,124,113,127,107,33,107)
-		graphics.minor[4+a].quad(54,27,106,27,114,33,46,33)
-		graphics.minor[4+a].quad(54,133,106,133,114,127,46,127)
-	}
-	graphics.minor[5].erase()
-	graphics.minor[5].triangle(90,70,65,20,115,20)
-	graphics.minor[5].triangle(65,100,95,140,35,140)
-	graphics.minor[6].erase()
-	graphics.minor[6].triangle(70,50,25,20,115,20)
-	graphics.minor[6].triangle(95,85,75,140,115,140)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[7+a].stroke(95,55,65)
-		graphics.minor[7+a].strokeWeight(20)
-		graphics.minor[7+a].line(80+56*(a*2-1),46,80,150)
-	}
-
-	graphics.minor[9].translate(80,140)
-	flower(graphics.minor[9],0.4,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56])
-	graphics.minor[9].translate(0,-30)
-	flower(graphics.minor[9],0.5,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56])
-	graphics.minor[10].translate(80,80)
-	flower(graphics.minor[10],0.5,[[241,170,189],[250,222,226],[240,207,211],[254,228,232]],[20,40,12,4],[54])
-	graphics.minor[11].translate(80,160)
-	crystalFlower(graphics.minor[11],0.3,36,[[216,112,124],[247,225,225],[220,160,180],[240,180,200]],[30,4,3],[62])
-	graphics.minor[11].translate(0,-30)
-	crystalFlower(graphics.minor[11],0.5,0,[[216,112,124],[247,225,225],[220,160,180],[240,180,200]],[30,4,3],[62])
-	for(let a=0,la=3;a<la;a++){
-		graphics.minor[12+a].fill(151,119,103)
-		graphics.minor[12+a].rect(80,80,100,20)
-		graphics.minor[12+a].ellipse(80,70,100,100)
-		graphics.minor[12+a].ellipse(80,90,100,100)
-		graphics.minor[12+a].fill(122,94,90)
-		graphics.minor[12+a].rect(80,70,100,6)
-		graphics.minor[12+a].rect(80,90,100,6)
-		graphics.minor[12+a].quad(36,47,124,47,127,53,33,53)
-		graphics.minor[12+a].quad(36,113,124,113,127,107,33,107)
-		graphics.minor[12+a].quad(54,27,106,27,114,33,46,33)
-		graphics.minor[12+a].quad(54,133,106,133,114,127,46,127)
-	}
-	graphics.minor[13].erase()
-	graphics.minor[13].triangle(90,70,65,20,115,20)
-	graphics.minor[13].triangle(65,100,95,140,35,140)
-	graphics.minor[14].erase()
-	graphics.minor[14].triangle(70,50,25,20,115,20)
-	graphics.minor[14].triangle(95,85,75,140,115,140)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[15+a].stroke(201,61,96)
-		graphics.minor[15+a].strokeWeight(20)
-		graphics.minor[15+a].line(80+56*(a*2-1),46,80,150)
-		graphics.minor[15+a].stroke(233,216,194)
-		graphics.minor[15+a].strokeWeight(8)
-		for(let b=0,lb=4;b<lb;b++){
-			graphics.minor[15+a].point(80+(51-b*14)*(a*2-1),56+b*26)
-		}
-	}
-	graphics.minor[17].translate(80,80)
-	graphics.minor[17].scale(-0.9,0.9)
-	graphics.minor[17].rotate(-90)
-	graphics.minor[17].fill(138,141,207)
-	graphics.minor[17].arc(0,0,150,180,0,30)
-	graphics.minor[17].fill(111,114,178)
-	graphics.minor[17].arc(0,0,150,180,30,60)
-	graphics.minor[17].fill(88,82,128)
-	graphics.minor[17].arc(0,0,150,180,60,90)
-	graphics.minor[17].fill(161,168,222)
-	graphics.minor[17].arc(0,0,135,180,0,15)
-	graphics.minor[17].fill(121,124,188)
-	graphics.minor[17].arc(0,0,135,180,15,45)
-	graphics.minor[17].fill(98,92,138)
-	graphics.minor[17].arc(0,0,135,180,45,75)
-	graphics.minor[17].fill(77,65,108)
-	graphics.minor[17].arc(0,0,135,180,75,90)
-	graphics.minor[17].erase()
-	graphics.minor[17].arc(0,0,120,180,0,90)
-	graphics.minor[17].noErase()
-	graphics.minor[17].fill(189,187,237)
-	graphics.minor[17].rect(0,0,160,8,3)
-	graphics.minor[17].fill(149,134,184)
-	graphics.minor[17].rect(0,-2,160,4,3)
-	graphics.minor[18].translate(80,80)
-    graphics.minor[18].fill(255,123,205)
-    graphics.minor[18].noStroke()
-    for(let a=0;a<5;a++){
-        graphics.minor[18].beginShape()
-        graphics.minor[18].vertex(0,0)
-        graphics.minor[18].bezierVertex(-18,-20,-16,-45,0,-45)
-        graphics.minor[18].bezierVertex(16,-45,18,-20,0,0)
-        graphics.minor[18].endShape()
-        graphics.minor[18].rotate(72)
-    }
-    graphics.minor[18].erase()
-    graphics.minor[18].ellipse(0,0,20,20)
-	for(let a=0,la=3;a<la;a++){
-		graphics.minor[19+a].fill(183,157,196)
-		graphics.minor[19+a].rect(80,80,100,20)
-		graphics.minor[19+a].ellipse(80,70,100,100)
-		graphics.minor[19+a].ellipse(80,90,100,100)
-		graphics.minor[19+a].fill(116,109,166)
-		graphics.minor[19+a].rect(80,70,100,6)
-		graphics.minor[19+a].rect(80,90,100,6)
-		graphics.minor[19+a].quad(36,47,124,47,127,53,33,53)
-		graphics.minor[19+a].quad(36,113,124,113,127,107,33,107)
-		graphics.minor[19+a].quad(54,27,106,27,114,33,46,33)
-		graphics.minor[19+a].quad(54,133,106,133,114,127,46,127)
-	}
-	graphics.minor[20].erase()
-	graphics.minor[20].triangle(90,70,65,20,115,20)
-	graphics.minor[20].triangle(65,100,95,140,35,140)
-	graphics.minor[21].erase()
-	graphics.minor[21].triangle(70,50,25,20,115,20)
-	graphics.minor[21].triangle(95,85,75,140,115,140)
-	for(let a=0,la=2;a<la;a++){
-		graphics.minor[22+a].stroke(200,233,226)
-		graphics.minor[22+a].strokeWeight(20)
-		graphics.minor[22+a].line(80+56*(a*2-1),46,80,150)
-		graphics.minor[22+a].stroke(107,200,215)
-		graphics.minor[22+a].strokeWeight(8)
-		for(let b=0,lb=4;b<lb;b++){
-			graphics.minor[22+a].line(80+(58-b*14)*(a*2-1),53.5+b*26,80+(48-b*14)*(a*2-1),53.5+b*26)
-		}
-	}
-	graphics.minor[24].stroke(99,58,71)
-	graphics.minor[24].strokeWeight(3)
-	for(let a=0;a<10;a++){
-		graphics.minor[24].line(300,225,60+(a+0.5)*48,75)
-	}
-	graphics.minor[24].fill(0)
-	graphics.minor[24].noStroke()
-	graphics.minor[24].erase()
-	graphics.minor[24].beginShape()
-	graphics.minor[24].vertex(480,125)
-	graphics.minor[24].bezierVertex(400,100,200,100,120,125)
-	graphics.minor[24].vertex(20,125)
-	graphics.minor[24].vertex(20,50)
-	graphics.minor[24].vertex(580,50)
-	graphics.minor[24].vertex(580,125)
-	graphics.minor[24].endShape()
-	graphics.minor[25].stroke(178,86,74)
-	graphics.minor[25].strokeWeight(3)
-	for(let a=0;a<11;a++){
-		graphics.minor[25].line(200,125,20+a*36,25)
-	}
-	graphics.minor[25].fill(0)
-	graphics.minor[25].noStroke()
-	graphics.minor[25].erase()
-	graphics.minor[25].beginShape()
-	graphics.minor[25].vertex(380,25)
-	graphics.minor[25].bezierVertex(300,50,100,50,20,25)
-	graphics.minor[25].vertex(0,20)
-	graphics.minor[25].vertex(400,20)
-	graphics.minor[25].endShape()
-}
 function setupCombatantGraphics(type){
 	switch(type){
 		case 0:
 			graphics.combatant.push({
-				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[]},kimono:{main:{back:[],front:[]},outside:{back:[],front:[]},mainDamage:{back:[],front:[]},outsideDamage:{back:[],front:[]}},under:{dress:{back:[],front:[]},dressDamage:{back:[],front:[]}}},
+				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[]},kimono:{main:{back:[],front:[]},outside:{back:[],front:[]},mainDamage:{back:[],front:[]},outsideDamage:{back:[],front:[]}}},
 				parts:{kimono:{main:[],outside:[],outsideTop:[],mainDamage:[],outsideDamage:[],mainAnti:[],outsideAnti:[]}},
 				color:{
 					hair:{back:[30,70,40],front:[40,90,50],insideBack:[25,60,35],insideFront:[35,80,45],glow:[50,110,60]},
@@ -1235,7 +1013,7 @@ function setupCombatantGraphics(type){
 					band:[[100,165,100],[150,200,150],[100,225,100]],mouth:{in:[225,125,125],out:[0,0,0]},
 				}
 			})
-		
+
 			graphics.combatant[graphics.combatant.length-1].parts.hair={
 				main:[
 					{spin:[0,45,45],height:3},
@@ -1960,6 +1738,382 @@ function setupCombatantGraphics(type){
 		break
 	}
 }
+function setupCombatantBackground(type,player,a,la,damage,layer){
+	let p1
+	switch(type){
+		case 0:
+			p1=new combatant(layer,graphics.proxyBattle,600-la*87.5+a*525,535,0,0,0,0,player[a],0,0,-30)
+			if(player[a]==1){
+				p1.parts.mouth-=4
+				p1.spin.mouth-=180
+			}else if(player[a]==2){
+				p1.anim.mouth.y++
+			}else if(player[a]==3){
+				p1.parts.mouth-=2
+				p1.spin.mouth-=180
+			}
+			p1.size=2.5
+			p1.fade=1
+			p1.spin.sword=36-(player[a]-1)*24
+			p1.anim.legs=[
+				{top:24-(player[a]-1)*12,bottom:12-(player[a]-1)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+				{top:12-(player[a]-1)*6,bottom:36-(player[a]-1)*6,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+			]
+			p1.anim.arms=[
+				{top:36-(player[a]-1)*9,bottom:-6+(player[a]-1)*87,length:{top:16,bottom:16}},
+				{top:27-(player[a]-1)*3,bottom:108-(player[a]-1)*90,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+			p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-1)*45,lock:0}]
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+		case 1:
+			p1=new combatant(layer,graphics.proxyBattle,475-la*50+a*200,470+a*20,0,0,0,0,player[a],0,0,-45)
+			if(player[a]==2){
+				p1.parts.mouth+=4
+				p1.spin.mouth+=180
+			}
+			p1.anim.eye=[1,1]
+			p1.anim.mouth.y++
+			p1.size=2.5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+			p1.anim.legs=[
+				{top:30-a*6,bottom:-60-a*36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+				{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+			]
+			p1.anim.arms=[
+				{top:36,bottom:12,length:{top:16,bottom:16}},
+				{top:36+a*12,bottom:60-a*42,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+			p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+			p1.direction=84
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+		case 2:
+			/**/
+			return -1
+		case 3:
+			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
+			if(player[a]==1){
+				p1.parts.mouth-=4
+				p1.spin.mouth-=180
+			}else if(player[a]==2){
+				p1.anim.mouth.y++
+			}else if(player[a]==3){
+				p1.parts.mouth-=2
+				p1.spin.mouth-=180
+			}
+			p1.anim.eye=[1,1]
+			p1.anim.eyeStyle=[2,2]
+			p1.fades.kimono.main.front={x:1,y:0.975}
+			p1.fades.kimono.main.back={x:1,y:0.975}
+			p1.size=2.5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+			p1.anim.legs=[
+				{top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+				{top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+			]
+			p1.anim.arms=[
+				{top:24,bottom:60-a*30,length:{top:16,bottom:16}},
+				{top:24,bottom:60-a*30,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:150,lock:0}]
+			p1.spin.arms=[{top:-75-a*15,bottom:-12-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+		case 4:
+			p1=new combatant(layer,graphics.proxyBattle,550-a*300,477.5+a*32.5,0,0,0,0,player[a],0,0,30-a*60)
+			if(player[a]==1){
+				p1.parts.mouth-=3
+				p1.spin.mouth-=180
+				p1.anim.mouth.y-=2
+			}else if(player[a]==2){
+				p1.anim.mouth.y--
+			}else if(player[a]==3){
+				p1.parts.mouth-=2
+				p1.spin.mouth-=180
+				p1.anim.mouth.y--
+			}
+			p1.size=2.5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+			p1.anim.legs=[
+				{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}},
+				{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}}
+			]
+			p1.anim.arms=[
+				{top:18+a*36,bottom:12+a*96,length:{top:16,bottom:16}},
+				{top:27-a*3,bottom:60-a*42,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+			p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+		case 5:
+			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
+			if(player[a]==1){
+				p1.parts.mouth-=3
+				p1.spin.mouth-=180
+				p1.anim.mouth.y-=2
+			}else if(player[a]==2){
+				p1.anim.mouth.y--
+			}else if(player[a]==3){
+				p1.parts.mouth-=2
+				p1.spin.mouth-=180
+				p1.anim.mouth.y--
+			}
+			p1.size=2.5
+			p1.fade=1
+			p1.trigger.display.extra.sword=false
+			p1.anim.legs=[
+				{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+				{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+			]
+			p1.anim.arms=[
+				{top:24-a*3,bottom:36-a*12,length:{top:16,bottom:16}},
+				{top:24-a*3,bottom:36,length:{top:16,bottom:16}}
+			]
+			p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+			p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
+	}
+}
+function setupGeneralGraphics(){
+	/*
+	0-1 Lira Bow
+	2-3 Lira Flower
+	4-6 Lira Sandal Bottom
+	7-8 Lira Sandal Top
+	9-11 Sakura Flower
+	12-14 Sakura Sandal Bottom
+	15-16 Sakura Sandal Top
+	17 Sakura Scythe
+	18 Sakura Floral Print
+	19-21 Ume Sandal Bottom
+	22-23 Ume Sandal Top
+	24-25 Sakura Parasol
+	*/
+	for(let a=0,la=26;a<la;a++){
+		switch(a){
+			case 9: case 11:
+				graphics.minor.push(createGraphics(160,240))
+			break
+			case 24:
+				graphics.minor.push(createGraphics(600,300))
+			break
+			case 25:
+				graphics.minor.push(createGraphics(400,200))
+			break
+			default:
+				graphics.minor.push(createGraphics(160,160))
+			break
+		}
+		setupLayer(graphics.minor[graphics.minor.length-1])
+	}
+	for(let a=0,la=2;a<la;a++){
+		graphics.minor[a].translate(80,80)
+		for(let b=0,lb=16;b<lb;b++){
+			graphics.minor[a].fill(80+b*8,200+b*5,80+b*8)
+			graphics.minor[a].triangle(0,0,15+b*0.5,45-b*1.25,45-b*1.25,15+b*0.5)
+			graphics.minor[a].triangle(0,0,-15-b*0.5,-45+b*1.25,-45+b*1.25,-15-b*0.5)
+		}
+	}
+	graphics.minor[1].erase()
+	graphics.minor[1].triangle(15,20,40,30,20,55)
+	graphics.minor[1].triangle(-15,-60,-40,-20,-20,-25)
+	for(let a=0,la=2;a<la;a++){
+		graphics.minor[2+a].translate(80,80)
+		for(let b=0,lb=8;b<lb;b++){
+			graphics.minor[2+a].rotate(19+a*7-b)
+			graphics.minor[2+a].fill(100+a*25+b*(20-a*5),50+b*15,150-a*25+b*(5+a*5))
+			for(let c=0,lc=12;c<lc;c++){
+				graphics.minor[2+a].rotate(30)
+				graphics.minor[2+a].ellipse(0,(24-b)*(1-b/lb),15*(1-b/lb),30*(1-b/lb))
+			}
+		}
+		graphics.minor[2+a].rotate(12+a*36)
+		graphics.minor[2+a].fill(50+a*25,0,100-a*25)
+		for(let b=0,lb=5;b<lb;b++){
+			graphics.minor[2+a].rotate(72)
+			graphics.minor[2+a].rect(0,-6,2,12)
+			graphics.minor[2+a].ellipse(0,-12,4,4)
+		}
+	}
+	for(let a=0,la=3;a<la;a++){
+		graphics.minor[4+a].fill(150,160,196)
+		graphics.minor[4+a].rect(80,80,100,20)
+		graphics.minor[4+a].ellipse(80,70,100,100)
+		graphics.minor[4+a].ellipse(80,90,100,100)
+		graphics.minor[4+a].fill(105,112,137)
+		graphics.minor[4+a].rect(80,70,100,6)
+		graphics.minor[4+a].rect(80,90,100,6)
+		graphics.minor[4+a].quad(36,47,124,47,127,53,33,53)
+		graphics.minor[4+a].quad(36,113,124,113,127,107,33,107)
+		graphics.minor[4+a].quad(54,27,106,27,114,33,46,33)
+		graphics.minor[4+a].quad(54,133,106,133,114,127,46,127)
+	}
+	graphics.minor[5].erase()
+	graphics.minor[5].triangle(90,70,65,20,115,20)
+	graphics.minor[5].triangle(65,100,95,140,35,140)
+	graphics.minor[6].erase()
+	graphics.minor[6].triangle(70,50,25,20,115,20)
+	graphics.minor[6].triangle(95,85,75,140,115,140)
+	for(let a=0,la=2;a<la;a++){
+		graphics.minor[7+a].stroke(95,55,65)
+		graphics.minor[7+a].strokeWeight(20)
+		graphics.minor[7+a].line(80+56*(a*2-1),46,80,150)
+	}
+
+	graphics.minor[9].translate(80,140)
+	flower(graphics.minor[9],0.4,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56])
+	graphics.minor[9].translate(0,-30)
+	flower(graphics.minor[9],0.5,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56])
+	graphics.minor[10].translate(80,80)
+	flower(graphics.minor[10],0.5,[[241,170,189],[250,222,226],[240,207,211],[254,228,232]],[20,40,12,4],[54])
+	graphics.minor[11].translate(80,160)
+	crystalFlower(graphics.minor[11],0.3,36,[[216,112,124],[247,225,225],[220,160,180],[240,180,200]],[30,4,3],[62])
+	graphics.minor[11].translate(0,-30)
+	crystalFlower(graphics.minor[11],0.5,0,[[216,112,124],[247,225,225],[220,160,180],[240,180,200]],[30,4,3],[62])
+	for(let a=0,la=3;a<la;a++){
+		graphics.minor[12+a].fill(151,119,103)
+		graphics.minor[12+a].rect(80,80,100,20)
+		graphics.minor[12+a].ellipse(80,70,100,100)
+		graphics.minor[12+a].ellipse(80,90,100,100)
+		graphics.minor[12+a].fill(122,94,90)
+		graphics.minor[12+a].rect(80,70,100,6)
+		graphics.minor[12+a].rect(80,90,100,6)
+		graphics.minor[12+a].quad(36,47,124,47,127,53,33,53)
+		graphics.minor[12+a].quad(36,113,124,113,127,107,33,107)
+		graphics.minor[12+a].quad(54,27,106,27,114,33,46,33)
+		graphics.minor[12+a].quad(54,133,106,133,114,127,46,127)
+	}
+	graphics.minor[13].erase()
+	graphics.minor[13].triangle(90,70,65,20,115,20)
+	graphics.minor[13].triangle(65,100,95,140,35,140)
+	graphics.minor[14].erase()
+	graphics.minor[14].triangle(70,50,25,20,115,20)
+	graphics.minor[14].triangle(95,85,75,140,115,140)
+	for(let a=0,la=2;a<la;a++){
+		graphics.minor[15+a].stroke(201,61,96)
+		graphics.minor[15+a].strokeWeight(20)
+		graphics.minor[15+a].line(80+56*(a*2-1),46,80,150)
+		graphics.minor[15+a].stroke(233,216,194)
+		graphics.minor[15+a].strokeWeight(8)
+		for(let b=0,lb=4;b<lb;b++){
+			graphics.minor[15+a].point(80+(51-b*14)*(a*2-1),56+b*26)
+		}
+	}
+	graphics.minor[17].translate(80,80)
+	graphics.minor[17].scale(-0.9,0.9)
+	graphics.minor[17].rotate(-90)
+	graphics.minor[17].fill(138,141,207)
+	graphics.minor[17].arc(0,0,150,180,0,30)
+	graphics.minor[17].fill(111,114,178)
+	graphics.minor[17].arc(0,0,150,180,30,60)
+	graphics.minor[17].fill(88,82,128)
+	graphics.minor[17].arc(0,0,150,180,60,90)
+	graphics.minor[17].fill(161,168,222)
+	graphics.minor[17].arc(0,0,135,180,0,15)
+	graphics.minor[17].fill(121,124,188)
+	graphics.minor[17].arc(0,0,135,180,15,45)
+	graphics.minor[17].fill(98,92,138)
+	graphics.minor[17].arc(0,0,135,180,45,75)
+	graphics.minor[17].fill(77,65,108)
+	graphics.minor[17].arc(0,0,135,180,75,90)
+	graphics.minor[17].erase()
+	graphics.minor[17].arc(0,0,120,180,0,90)
+	graphics.minor[17].noErase()
+	graphics.minor[17].fill(189,187,237)
+	graphics.minor[17].rect(0,0,160,8,3)
+	graphics.minor[17].fill(149,134,184)
+	graphics.minor[17].rect(0,-2,160,4,3)
+	graphics.minor[18].translate(80,80)
+    graphics.minor[18].fill(255,123,205)
+    graphics.minor[18].noStroke()
+    for(let a=0;a<5;a++){
+        graphics.minor[18].beginShape()
+        graphics.minor[18].vertex(0,0)
+        graphics.minor[18].bezierVertex(-18,-20,-16,-45,0,-45)
+        graphics.minor[18].bezierVertex(16,-45,18,-20,0,0)
+        graphics.minor[18].endShape()
+        graphics.minor[18].rotate(72)
+    }
+    graphics.minor[18].erase()
+    graphics.minor[18].ellipse(0,0,20,20)
+	for(let a=0,la=3;a<la;a++){
+		graphics.minor[19+a].fill(183,157,196)
+		graphics.minor[19+a].rect(80,80,100,20)
+		graphics.minor[19+a].ellipse(80,70,100,100)
+		graphics.minor[19+a].ellipse(80,90,100,100)
+		graphics.minor[19+a].fill(116,109,166)
+		graphics.minor[19+a].rect(80,70,100,6)
+		graphics.minor[19+a].rect(80,90,100,6)
+		graphics.minor[19+a].quad(36,47,124,47,127,53,33,53)
+		graphics.minor[19+a].quad(36,113,124,113,127,107,33,107)
+		graphics.minor[19+a].quad(54,27,106,27,114,33,46,33)
+		graphics.minor[19+a].quad(54,133,106,133,114,127,46,127)
+	}
+	graphics.minor[20].erase()
+	graphics.minor[20].triangle(90,70,65,20,115,20)
+	graphics.minor[20].triangle(65,100,95,140,35,140)
+	graphics.minor[21].erase()
+	graphics.minor[21].triangle(70,50,25,20,115,20)
+	graphics.minor[21].triangle(95,85,75,140,115,140)
+	for(let a=0,la=2;a<la;a++){
+		graphics.minor[22+a].stroke(200,233,226)
+		graphics.minor[22+a].strokeWeight(20)
+		graphics.minor[22+a].line(80+56*(a*2-1),46,80,150)
+		graphics.minor[22+a].stroke(107,200,215)
+		graphics.minor[22+a].strokeWeight(8)
+		for(let b=0,lb=4;b<lb;b++){
+			graphics.minor[22+a].line(80+(58-b*14)*(a*2-1),53.5+b*26,80+(48-b*14)*(a*2-1),53.5+b*26)
+		}
+	}
+	graphics.minor[24].stroke(99,58,71)
+	graphics.minor[24].strokeWeight(3)
+	for(let a=0;a<10;a++){
+		graphics.minor[24].line(300,225,60+(a+0.5)*48,75)
+	}
+	graphics.minor[24].fill(0)
+	graphics.minor[24].noStroke()
+	graphics.minor[24].erase()
+	graphics.minor[24].beginShape()
+	graphics.minor[24].vertex(480,125)
+	graphics.minor[24].bezierVertex(400,100,200,100,120,125)
+	graphics.minor[24].vertex(20,125)
+	graphics.minor[24].vertex(20,50)
+	graphics.minor[24].vertex(580,50)
+	graphics.minor[24].vertex(580,125)
+	graphics.minor[24].endShape()
+	graphics.minor[25].stroke(178,86,74)
+	graphics.minor[25].strokeWeight(3)
+	for(let a=0;a<11;a++){
+		graphics.minor[25].line(200,125,20+a*36,25)
+	}
+	graphics.minor[25].fill(0)
+	graphics.minor[25].noStroke()
+	graphics.minor[25].erase()
+	graphics.minor[25].beginShape()
+	graphics.minor[25].vertex(380,25)
+	graphics.minor[25].bezierVertex(300,50,100,50,20,25)
+	graphics.minor[25].vertex(0,20)
+	graphics.minor[25].vertex(400,20)
+	graphics.minor[25].endShape()
+}
 function setupBackground(type,layer){
 	switch(type){
 		case 0:
@@ -2173,160 +2327,6 @@ function setupBackground(type,layer){
 		break
 	}
 }
-function setupCombatantBackground(type,player,a,la,damage,layer){
-	let p1
-	switch(type){
-		case 0:
-			p1=new combatant(layer,graphics.proxyBattle,600-la*87.5+a*525,535,0,0,0,0,player[a],0,0,-30)
-			if(player[a]==1){
-				p1.parts.mouth-=4
-				p1.spin.mouth-=180
-			}else if(player[a]==2){
-				p1.anim.mouth.y++
-			}else if(player[a]==3){
-				p1.parts.mouth-=2
-				p1.spin.mouth-=180
-			}
-			p1.size=2.5
-			p1.fade=1
-			p1.spin.sword=36-(player[a]-1)*24
-			p1.anim.legs=[
-				{top:24-(player[a]-1)*12,bottom:12-(player[a]-1)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-				{top:12-(player[a]-1)*6,bottom:36-(player[a]-1)*6,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-			]
-			p1.anim.arms=[
-				{top:36-(player[a]-1)*9,bottom:-6+(player[a]-1)*87,length:{top:16,bottom:16}},
-				{top:27-(player[a]-1)*3,bottom:108-(player[a]-1)*90,length:{top:16,bottom:16}}
-			]
-			p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
-			p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-1)*45,lock:0}]
-			if(damage[a]==1&&options.damage){
-				p1.trigger.display.extra.damage=true
-			}
-			return p1
-		case 1:
-			p1=new combatant(layer,graphics.proxyBattle,475-la*50+a*200,470+a*20,0,0,0,0,player[a],0,0,-45)
-			if(player[a]==2){
-				p1.parts.mouth+=4
-				p1.spin.mouth+=180
-			}
-			p1.anim.eye=[1,1]
-			p1.anim.mouth.y++
-			p1.size=2.5
-			p1.fade=1
-			p1.trigger.display.extra.sword=false
-			p1.anim.legs=[
-				{top:30-a*6,bottom:-60-a*36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-				{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-			]
-			p1.anim.arms=[
-				{top:36,bottom:12,length:{top:16,bottom:16}},
-				{top:36+a*12,bottom:60-a*42,length:{top:16,bottom:16}}
-			]
-			p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
-			p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
-			p1.direction=84
-			if(damage[a]==1&&options.damage){
-				p1.trigger.display.extra.damage=true
-			}
-			return p1
-		case 2:
-			/**/
-			return -1
-		case 3:
-			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
-			if(player[a]==1){
-				p1.parts.mouth-=4
-				p1.spin.mouth-=180
-			}else if(player[a]==2){
-				p1.anim.mouth.y++
-			}else if(player[a]==3){
-				p1.parts.mouth-=2
-				p1.spin.mouth-=180
-			}
-			p1.anim.eye=[1,1]
-			p1.anim.eyeStyle=[2,2]
-			p1.fades.kimono.main.front={x:1,y:0.975}
-			p1.fades.kimono.main.back={x:1,y:0.975}
-			p1.size=2.5
-			p1.fade=1
-			p1.trigger.display.extra.sword=false
-			p1.anim.legs=[
-				{top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-				{top:30,bottom:87,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-			]
-			p1.anim.arms=[
-				{top:24,bottom:60-a*30,length:{top:16,bottom:16}},
-				{top:24,bottom:60-a*30,length:{top:16,bottom:16}}
-			]
-			p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:150,lock:0}]
-			p1.spin.arms=[{top:-75-a*15,bottom:-12-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
-			if(damage[a]==1&&options.damage){
-				p1.trigger.display.extra.damage=true
-			}
-			return p1
-		case 4:
-			p1=new combatant(layer,graphics.proxyBattle,550-a*300,477.5+a*32.5,0,0,0,0,player[a],0,0,30-a*60)
-			if(player[a]==1){
-				p1.parts.mouth-=3
-				p1.spin.mouth-=180
-				p1.anim.mouth.y-=2
-			}else if(player[a]==2){
-				p1.anim.mouth.y--
-			}else if(player[a]==3){
-				p1.parts.mouth-=2
-				p1.spin.mouth-=180
-				p1.anim.mouth.y--
-			}
-			p1.size=2.5
-			p1.fade=1
-			p1.trigger.display.extra.sword=false
-			p1.anim.legs=[
-				{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}},
-				{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8,sandal:{back:15.5-a*8,front:14.5-a*8}}}
-			]
-			p1.anim.arms=[
-				{top:18+a*36,bottom:12+a*96,length:{top:16,bottom:16}},
-				{top:27-a*3,bottom:60-a*42,length:{top:16,bottom:16}}
-			]
-			p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
-			p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
-			if(damage[a]==1&&options.damage){
-				p1.trigger.display.extra.damage=true
-			}
-			return p1
-		case 5:
-			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
-			if(player[a]==1){
-				p1.parts.mouth-=3
-				p1.spin.mouth-=180
-				p1.anim.mouth.y-=2
-			}else if(player[a]==2){
-				p1.anim.mouth.y--
-			}else if(player[a]==3){
-				p1.parts.mouth-=2
-				p1.spin.mouth-=180
-				p1.anim.mouth.y--
-			}
-			p1.size=2.5
-			p1.fade=1
-			p1.trigger.display.extra.sword=false
-			p1.anim.legs=[
-				{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-				{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
-			]
-			p1.anim.arms=[
-				{top:24-a*3,bottom:36-a*12,length:{top:16,bottom:16}},
-				{top:24-a*3,bottom:36,length:{top:16,bottom:16}}
-			]
-			p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
-			p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
-			if(damage[a]==1&&options.damage){
-				p1.trigger.display.extra.damage=true
-			}
-			return p1
-	}
-}
 function setupOverlay(type,layer){
 	switch(type){
 		case 0:
@@ -2351,27 +2351,20 @@ function setupGraphics(){
 	setupTrig()
 	graphics.main=createGraphics(900,600)
 	setupLayer(graphics.main)
-	graphics.backgrounds=[]
-	for(let a=0;a<graphics.backgroundGen;a++){
-		graphics.backgrounds.push(createGraphics(1800,1200))
-		setupLayer(graphics.backgrounds[a])
-	}
-	graphics.overlays=[]
-	for(let a=0;a<graphics.overlayGen;a++){
-		graphics.overlays.push(createGraphics(1800,1200))
-		setupLayer(graphics.overlays[a])
-	}
-	graphics.minor=[]
 	graphics.proxyBattle={player:[0],players:0}
 
 	setupGeneralGraphics()
-
 	for(let a=0,la=graphics.backgroundGen;a<la;a++){
+		graphics.backgrounds.push(createGraphics(900,600))
+		setupLayer(graphics.backgrounds[a])
 		setupBackground(a,graphics.backgrounds[a])
 	}
 	for(let a=0,la=graphics.overlayGen;a<la;a++){
+		graphics.overlays.push(createGraphics(900,600))
+		setupLayer(graphics.overlays[a])
 		setupOverlay(a,graphics.overlays[a])
 	}
+
 	/*
 	0-Perk
 	1-Loss

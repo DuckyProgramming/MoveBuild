@@ -264,6 +264,9 @@ class group{
                     case 11:
                         this.cards[index].spec.push(10)
                     break
+                    case 12:
+                        this.send(args[0],index,index+1,0)
+                    break
                 }
             }
         }
@@ -294,6 +297,7 @@ class group{
             case -20:
                 this.drawEffects.push([2,[effect[0]]])
             break
+            case -22: return 'break'
         }
     }
     deathEffect(){
@@ -317,13 +321,13 @@ class group{
                         list[list.length-1].cost=list[list.length-1].base.cost
                     }
                     if(spec==3){
-                        this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)
+                        if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                     }
                     if(spec==4){
                         list[list.length-1].cost=0
                     }
                     if(spec==5){
-                        this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)
+                        if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                         list[list.length-1].cost=0
                     }
                 }
@@ -341,13 +345,13 @@ class group{
                         list[list.length-1].cost=list[list.length-1].base.cost
                     }
                     if(spec==3){
-                        this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)
+                        if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                     }
                     if(spec==4){
                         list[list.length-1].cost=0
                     }
                     if(spec==5){
-                        this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)
+                        if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                         list[list.length-1].cost=0
                     }
                 }
