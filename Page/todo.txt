@@ -1,6 +1,4 @@
 Bugs:
-Louse Graphical Bugs
-Reset animations after each battle
 Empty Map Coordinate Offset Bugs
 
 Mechanics:

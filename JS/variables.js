@@ -1106,12 +1106,12 @@ types={
         {name:'Beekeeper',life:76,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
 
-        {name:'PhD',life:50,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[2,1]},{type:159,effect:[1]},{type:160,effect:[4]}],description:`Still can't find a job`},
+        {name:'PhD',life:78,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
         {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[6]},{type:161,effect:[9]},{type:162,effect:[12]}],description:`Oh shiny`},
-        {name:'Coffee Commander',life:270,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]}],description:`Don't talk to him even if he's had his coffee`},
-        {name:'Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
-        {name:'Host',life:22,behavior:5,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Drone']}],description:`Voluntary`},
-        {name:'Antihwurmp',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
+        {name:'Coffee Commander',life:270,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]}],description:`Don't talk to him even if he's had his coffee`},
+        {name:'Host Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
+        {name:'Host',life:22,behavior:12,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
+        {name:'Antihwurmp',life:25,behavior:0,spec:[10],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
         {name:'Junkie',life:40,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:79,effect:[6]},{type:167,effect:[1,3]}],description:`Purchases product`},
         {name:'Prestige',life:131,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:168,effect:[2]}],description:`Back for more?`},
 
@@ -1138,8 +1138,6 @@ types={
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         
-        //office fight club
-
         //{name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:1,speed:1},attack:[],description:``},
         //purge x02
         //comrade (equalize)
@@ -1309,7 +1307,7 @@ types={
         {name:'Random Buff or Nerf',class:2},
         {name:'Force Grab',class:1},//160
         {name:'Static Beam',class:1},
-        {name:'Burst Charge',class:1},
+        {name:'Burst Charge',class:5},
         {name:'Drink Coffee',class:2},
         {name:'Triple Spread Statusing Gun',class:1},
         {name:'Drone Beam',class:1},
@@ -4398,6 +4396,75 @@ shipyard visit for another time.`,
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Outsliced 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Antisingleside 5',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Derectangular 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                
+            ],
+        },{
+            name:'Gunfire 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[4]},{type:[4]},{type:[4]},{type:[4]},{type:[4]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Heart 5',
+            map:[
+                [{type:[]},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Dump 5',
+            map:[
+                [{type:[]},{type:[]},{type:[11]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[11]},{type:[11]},{type:-1}],
+                [{type:[11]},{type:[11]},{type:[11]},{type:[11]},{type:[11]}],
+                [{type:-1},{type:[11]},{type:[11]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[11]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Hole 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
         },
     ],encounter:[
         {
@@ -4412,13 +4479,65 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                 //{position:{x:0,y:0},name:'PhD'},
-                //{position:{x:0,y:0},name:'Glimerrer'},
-                //{position:{x:0,y:0},name:'Coffee Commander'},
-                //{position:{x:0,y:0},name:'Host'},
-                //{position:{x:0,y:0},name:'Antihwurmp'},
-                 {position:{x:0,y:0},name:'Junkie'},
-                 //{position:{x:0,y:0},name:'Prestige'},
+                //{position:{x:0,y:0},name:'Prestige'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Hole 5'],class:0,world:1,
+            name:'Prestige',
+            player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Prestige'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Dump 5'],class:0,world:1,
+            name:'Junkie',
+            player:{position:[[{x:3,y:3}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Junkie'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Heart 5'],class:0,world:0,
+            name:'Host',
+            player:{position:[[{x:3,y:2}],[{x:3,y:2},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:1,y:2},name:'Host'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Gunfire 5'],class:1,world:2,
+            name:'Coffee Commander',
+            player:{position:[[{x:6,y:4}],[{x:5,y:4},{x:7,y:4}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Coffee Commander'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Derectangular 5'],class:0,world:0,
+            name:'Glimerrer',
+            player:{position:[[{x:3,y:4}],[{x:3,y:4},{x:2,y:4}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Glimerrer'},
+                {position:{x:2,y:0},name:'Glimerrer'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Antisingleside 5'],class:0,world:0,
+            name:'Antihwurmp',
+            player:{position:[[{x:3,y:5}],[{x:1,y:4},{x:4,y:4}]]},
+            enemy:[
+                {position:{x:2,y:3},name:'Antihwurmp'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Outsliced 5'],class:0,world:2,
+            name:'PhD',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'PhD'},
+                {position:{x:4,y:3},name:'PhD'},
             ],reinforce:[
             ],
         },{

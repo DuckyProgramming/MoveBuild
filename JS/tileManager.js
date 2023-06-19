@@ -4,7 +4,8 @@ class tileManager{
         this.battle=battle
         this.width=0
         this.height=0
-        this.diagonal=[0]
+        this.diagonal=[0,0]
+        this.offset={x:0,y:0}
         this.tiles=[]
 
         this.center={x:0,y:0}
@@ -21,6 +22,16 @@ class tileManager{
         this.width=level.map[0].length
         this.height=level.map.length
         this.diagonal=[0,0]
+        this.offset={x:level.map.length,y:level.map[0].length}
+        for(let a=0,la=level.map.length;a<la;a++){
+            for(let b=0,lb=level.map[a].length;b<lb;b++){
+                if(level.map[a][b].type>=0){
+                    this.offset.x=min(this.offset.x,a)
+                    this.offset.y=min(this.offset.y,b)
+                }
+            }
+        }
+
         this.center={x:this.layer.width/2,y:this.layer.height/2-60}
         for(let a=0,la=level.map.length;a<la;a++){
             for(let b=0,lb=level.map[a].length;b<lb;b++){
@@ -30,7 +41,7 @@ class tileManager{
                         this.layer.height/2-60-(la-1)*25+a*50,
                         this.layer.width/2-(lb-1)*50+(la-1)*25+b*100-a*50,
                         this.layer.height/2-50-(la-1)*25*sqrt(3)+a*50*sqrt(3),
-                        b,a,level.map[a][b].type))
+                        b,a,this.offset,level.map[a][b].type))
                     this.diagonal[0]=min(this.diagonal[0],a-b)
                     this.diagonal[1]=max(this.diagonal[1],a-b)
                 }

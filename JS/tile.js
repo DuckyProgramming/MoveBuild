@@ -1,10 +1,11 @@
 class tile{
-    constructor(layer,battle,x,y,relativeX,relativeY,tileX,tileY,type){
+    constructor(layer,battle,x,y,relativeX,relativeY,tileX,tileY,offset,type){
         this.layer=layer
         this.battle=battle
         this.position={x:x,y:y}
         this.relativePosition={x:relativeX,y:relativeY}
         this.tilePosition={x:tileX,y:tileY}
+        this.offset=offset
         this.type=copyArray(type)
 
         this.fade=1
@@ -103,6 +104,17 @@ class tile{
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(11)){
                         this.battle.combatantManager.combatants[this.combatant].statusEffect('Poison',3)
+                        this.anim.upPart[a]=false
+                    }
+                break
+                case 11:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(11)){
+                        if(this.battle.turn.main>=this.battle.players){
+                            this.battle.combatantManager.combatants[this.combatant].randomStatus(1)
+                        }else{
+                            this.battle.combatantManager.combatants[this.combatant].randomStatusInstant(1)
+                        }
                         this.anim.upPart[a]=false
                     }
                 break
@@ -240,6 +252,10 @@ class tile{
                         this.layer.ellipse(cos(a*36)*20,sin(a*36)*10,16,8)
                     }
                 break
+                case 11:
+                    this.layer.fill(100,60,20,this.fade*this.anim.part[a])
+                    this.layer.triangle(-16,0,16,0,0,-12)
+                break
             }
         }
         let stack=0
@@ -366,6 +382,6 @@ class tile{
         this.layer.fill(0,this.fade*coordinateAnim)
         this.layer.noStroke()
         this.layer.textSize(12)
-        this.layer.text((this.tilePosition.x+1)+','+(this.tilePosition.y+1),this.position.x,this.position.y)
+        this.layer.text((this.tilePosition.x+1-this.offset.x)+','+(this.tilePosition.y+1-this.offset.y),this.position.x,this.position.y)
     }
 }

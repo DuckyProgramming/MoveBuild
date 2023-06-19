@@ -2789,7 +2789,7 @@ class turn{
                     break
                     case 161:
                         if(this.timer==10){
-                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-48,22,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-36,22,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
                             this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                         }else if(this.timer>=20){
                             this.battle.turnManager.unMoveTurn(this.user)
@@ -2809,10 +2809,8 @@ class turn{
                                 }
                                 this.battle.turnManager.unMoveTurn(this.user)
                                 this.remove=true
-                                if(this.target[1]>=0&&this.target[0]>=0){
-                                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,23,[20]))
-                                    this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
-                                }
+                                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,23,[20]))
+                                this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                             }else{
                                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -2843,8 +2841,12 @@ class turn{
                         }
                     break
                     case 165:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(1)
+                        }
+                        this.userCombatant.runAnimation(1/20,1)
                         if(this.timer==10){
-                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-48,24,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,24,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
                             this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                         }else if(this.timer>=20){
                             this.remove=true

@@ -266,7 +266,7 @@ class particle{
                     this.layer.quad(0,5,-1,0,0,-6,1,0)
                 break
                 case 22:
-                    this.layer.stroke(240,160,240,this.fade)
+                    this.layer.stroke(100,255,255,this.fade)
                     this.layer.strokeWeight(5)
                     for(let a=0,la=this.ticks;a<la;a++){
                         this.layer.line(
@@ -287,7 +287,7 @@ class particle{
                     this.layer.ellipse(0,0,3,3)
                 break
                 case 24:
-                    this.layer.stroke(240,160,240,this.fade)
+                    this.layer.stroke(100,255,255,this.fade)
                     this.layer.strokeWeight(5)
                     for(let a=0,la=this.ticks;a<la;a++){
                         this.layer.line(
