@@ -87,6 +87,14 @@ class particle{
                 this.ticks=ceil(dist(0,0,this.position2.x,this.position2.y)/10)
                 this.direction=atan2(this.position2.x,this.position2.y)
             break
+            case 25:
+                this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
+                this.fade=1
+                this.size=1
+                this.scale=1
+                this.ticks=ceil(dist(0,0,this.position2.x,this.position2.y)/20)
+                this.direction=atan2(this.position2.x,this.position2.y)
+            break
         }
     }
     display(){
@@ -297,6 +305,17 @@ class particle{
                             map((a+1)/la,0,1,0,this.position2.y)+(a==la-1?0:-10*lsin(this.direction)*lsin(this.time*30)*lsin(a*60+60)))
                     }
                 break
+                case 25:
+                    this.layer.stroke(255,150,50,this.fade)
+                    this.layer.strokeWeight(5)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.line(
+                            map(a/la,0,1,0,this.position2.x)+(a==0?0:15*lcos(this.direction)*lsin(this.time*-30+a*90)),
+                            map(a/la,0,1,0,this.position2.y)+(a==0?0:-15*lsin(this.direction)*lsin(this.time*-30+a*90)),
+                            map((a+1)/la,0,1,0,this.position2.x)+(a==la-1?0:15*lcos(this.direction)*lsin(this.time*-30+a*90+90)),
+                            map((a+1)/la,0,1,0,this.position2.y)+(a==la-1?0:-15*lsin(this.direction)*lsin(this.time*-30+a*90+90)))
+                    }
+                break
             }
             this.layer.pop()
         }
@@ -370,7 +389,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 15: case 22: case 24:
+            case 15: case 22: case 24: case 25:
                 this.fade-=1/30
                 if(this.fade<=0){
                     this.remove=true

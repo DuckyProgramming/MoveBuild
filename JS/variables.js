@@ -826,7 +826,7 @@ types={
             name:'Electrocuted',rarity:0,list:4,
             levels:[
                 {effect:[1],attack:-3,cost:0,target:[0],spec:[5],class:5},
-                {effect:[1],attack:-3,cost:0,target:[0],spec:[5],class:5},
+                {effect:[2],attack:-3,cost:0,target:[0],spec:[5],class:5},
             ],
         },{
             name:'Arm\nInjury',rarity:0,list:4,
@@ -895,6 +895,12 @@ types={
                 {effect:[1],attack:-18,cost:0,target:[0],spec:[4,5],class:5},
             ],
         },{
+            name:'Voidstuck',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-18,cost:1,target:[0],spec:[1],class:5},
+                {effect:[1],attack:-18,cost:1,target:[0],spec:[1],class:5},
+            ],
+        },{
             name:'Slow\nBleed',rarity:0,list:4,
             levels:[
                 {effect:[1],attack:-5,cost:0,target:[0],spec:[5],class:5},
@@ -905,6 +911,18 @@ types={
             levels:[
                 {effect:[],attack:-22,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[],attack:-22,cost:0,target:[0],spec:[4,5],class:5},
+            ],
+        },{
+            name:'Convulsive',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:-23,cost:0,target:[0],spec:[5],class:5},
+                {effect:[2],attack:-23,cost:0,target:[0],spec:[5],class:5},
+            ],
+        },{
+            name:'Napalm',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:-24,cost:3,target:[0],spec:[1,4],class:5},
+                {effect:[],attack:-24,cost:3,target:[0],spec:[1,4],class:5},
             ],
         },
 
@@ -1105,7 +1123,6 @@ types={
         {name:'Bee',life:4,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[1]}],description:`3 Pixels`},
         {name:'Beekeeper',life:76,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
-
         {name:'PhD',life:78,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
         {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[6]},{type:161,effect:[9]},{type:162,effect:[12]}],description:`Oh shiny`},
         {name:'Coffee Commander',life:270,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]}],description:`Don't talk to him even if he's had his coffee`},
@@ -1130,20 +1147,23 @@ types={
         {name:'Deca',life:75,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         
+        {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
+        
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
+        
+        {name:'Comrade',life:280,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[5]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
+        
+        {name:'Councilman',life:270,behavior:0,spec:[1],move:{type:1,speed:1},attack:[{type:174,effect:[3]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         
-        //{name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:1,speed:1},attack:[],description:``},
-        //purge x02
-        //comrade (equalize)
-        //dr duck
-        //doublo
-
+        {name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
+        
+        {name:'Purge X02',life:550,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[60]},{type:21,effect:[]}],description:`Actually a human`},
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -1314,6 +1334,23 @@ types={
         {name:'Statusing Pullwave',class:1},
         {name:'5 Random Random Buffs',class:2},
         {name:'2 Tile 3 Spread Double Strike',class:1},
+        {name:'All Enemy Regen',class:4},
+        {name:'All Enemy Buffer',class:4},//170
+        {name:'2 Tile 3 Spread Double Strike / Bleed',class:1},
+        {name:'3 Tile Percentage Strike',class:1},
+        {name:'Double Heat Beam',class:1},
+        {name:'Half Damage Time',class:2},
+        {name:'3 Tile Drive',class:5},
+        {name:'2 Tile Combined Spin Strike',class:1},
+        {name:'Fadeout',class:2},
+        {name:'6 Tile Injuring Strike',class:1},
+        {name:'Double Injuring Gun',class:1},
+        {name:'6 Tile Pull Strike',class:1},//180
+        {name:'2 Tile Injuring Bomb Throw',class:5},
+        {name:'7 Turn Block',class:2},
+        {name:'2 Tile Ranging Statusing Strike',class:1},
+        {name:'6 Tile Sextuple Strike',class:1},
+        {name:'6 Tile 3 Wide Strike',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -4465,6 +4502,50 @@ shipyard visit for another time.`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'No Step 7',
+            map:[
+                [{type:[12]},{type:[12]},{type:[12]},{type:[12]},{type:-1},{type:-1},{type:-1}],
+                [{type:[12]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[12]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[12]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Spikespawn 7',
+            map:[
+                [{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:-1},{type:-1},{type:-1}],
+                [{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:-1},{type:-1}],
+                [{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:-1}],
+                [{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]}],
+                [{type:-1},{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]}],
+                [{type:-1},{type:-1},{type:[13]},{type:[13]},{type:[13]},{type:[13]},{type:[13]}],
+                [{type:-1},{type:-1},{type:-1},{type:[13]},{type:[13]},{type:[13]},{type:[13]}],
+            ],
+        },{
+            name:'Drain 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[14]},{type:[]},{type:[14]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[14]},{type:[]},{type:[]},{type:[]},{type:[14]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[14]},{type:[]},{type:[14]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Clipped 7',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[15]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[15]},{type:[]},{type:[15]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[15]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
+            ],
         },
     ],encounter:[
         {
@@ -4479,11 +4560,45 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                //{position:{x:0,y:0},name:'Prestige'},
+                {position:{x:0,y:0},name:'Purge X02'},
             ],reinforce:[
             ],
         },{
-            level:['Hole 5'],class:0,world:1,
+            level:['Clipped 7'],class:2,world:2,
+            name:'Purge X02',
+            player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Purge X02'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Drain 7'],class:2,world:2,
+            name:'Shadow Trooper',
+            player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Shadow Trooper'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Spikespawn 7'],class:2,world:1,
+            name:'Councilman',
+            player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Councilman'},
+            ],reinforce:[
+            ],
+        },{
+            level:['No Step 7'],class:2,world:1,
+            name:'Comrade',
+            player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Comrade'},
+                {position:{x:1,y:3},name:'Red'},
+                {position:{x:3,y:1},name:'Red'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Hole 5'],class:1,world:1,
             name:'Prestige',
             player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
             enemy:[

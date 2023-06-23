@@ -88,13 +88,15 @@ class card{
             case -13: string+=`Take ${this.effect[0]} Damage`; break
             case -14: string+=`Lose ${this.effect[0]} Currency`; break
             case -15: string+=`When Drawn,\nYou Cannot Move\nFor ${this.effect[0]} Turns\nWhen Played, Cancels\nPrevious Effect`; break
-            case -16: string+='When Drawn,\nAdd a Fatigue to Hand'; break
+            case -16: string+=`When Drawn,\nAdd a Fatigue to Hand`; break
             case -17: string+=`When Drawn,\nA Random Card\nCosts ${this.effect[0]} More This Combat`; break
             case -18: string+=`When Drawn,\nLose ${this.effect[0]} Energy`; break
             case -19: string+=`When Drawn,\nYou Cannot Move\nFor ${this.effect[0]} Turns`; break
             case -20: string+=`When Drawn,\nMovement Cards in Hand\nCost ${this.effect[0]} More`; break
             case -21: string+=`Take ${this.effect[0]} Damage\nDraw ${this.effect[1]} Card${this.effect[1]!=1?`s`:``}`; break
-            case -22: string+='When Drawn,\nStop Drawing'; break
+            case -22: string+=`When Drawn,\nStop Drawing`; break
+            case -23: string+=`When Drawn,\nExhaust ${this.effect[0]}\nRandom Card${this.effect[0]!=1?`s`:``}`; break
+            case -24: string+=`When Drawn,\nAdd a Burn to Hand`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

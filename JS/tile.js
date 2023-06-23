@@ -118,6 +118,32 @@ class tile{
                         this.anim.upPart[a]=false
                     }
                 break
+                case 12:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
+                        this.battle.combatantManager.combatants[this.combatant].takeDamage(25,-1,0)
+                    }
+                break
+                case 13:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)){
+                        this.anim.upPart[a]=false
+                        this.addType(1)
+                    }
+                break
+                case 14:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                        this.battle.energy.main[this.battle.combatantManager.combatants[this.combatant].id]=0
+                        this.anim.upPart[a]=false
+                    }
+                break
+                case 15:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1){
+                        this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),-150+floor(random(0,6))*60)
+                    }
+                break
             }
         }
     }
@@ -157,7 +183,7 @@ class tile{
     display(){
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
-        if(this.occupied){
+        if(this.occupied==1){
             this.layer.fill(70,75,80,this.fade)
         }else{
             this.layer.fill(90,95,100,this.fade)
@@ -255,6 +281,33 @@ class tile{
                 case 11:
                     this.layer.fill(100,60,20,this.fade*this.anim.part[a])
                     this.layer.triangle(-16,0,16,0,0,-12)
+                break
+                case 12:
+                    this.layer.stroke(180,this.fade*this.anim.part[a])
+                    this.layer.strokeWeight(1)
+                    this.layer.noFill()
+                    for(let b=0,lb=11;b<lb;b++){
+                        this.layer.ellipse(-20+b*4,3+(b*2.5+b*b*0.5)%4,6,6)
+                    }
+                break
+                case 13:
+                    this.layer.fill(200,40,40,this.fade*this.anim.part[a])
+                    this.layer.triangle(-2,2,2,2,0,-3)
+                break
+                case 14:
+                    this.layer.fill(0,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,32,16)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.ellipse(cos(a*60)*16,sin(a*60)*8,20,10)
+                    }
+                break
+                case 15:
+                    this.layer.fill(120,this.fade*this.anim.part[a])
+                    this.layer.stroke(100,this.fade*this.anim.part[a])
+                    this.layer.strokeWeight(3)
+                    this.layer.ellipse(0,0,36,18)
+                    this.layer.line(-12,-6,12,6)
+                    this.layer.line(-12,6,12,-6)
                 break
             }
         }

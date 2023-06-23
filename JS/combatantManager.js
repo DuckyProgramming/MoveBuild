@@ -157,6 +157,12 @@ class combatantManager{
                             this.combatants[a].heal(args[0])
                         }
                     break
+                    case 11:
+                        this.combatants[a].statusEffect('Regeneration',args[0])
+                    break
+                    case 12:
+                        this.combatants[a].statusEffect('Buffer',args[0])
+                    break
                 }
             }
         }

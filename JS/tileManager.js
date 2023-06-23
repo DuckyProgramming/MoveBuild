@@ -26,8 +26,8 @@ class tileManager{
         for(let a=0,la=level.map.length;a<la;a++){
             for(let b=0,lb=level.map[a].length;b<lb;b++){
                 if(level.map[a][b].type>=0){
-                    this.offset.x=min(this.offset.x,a)
-                    this.offset.y=min(this.offset.y,b)
+                    this.offset.x=min(this.offset.x,b)
+                    this.offset.y=min(this.offset.y,a)
                 }
             }
         }
@@ -179,7 +179,7 @@ class tileManager{
             if(this.battle.combatantManager.combatants[a].life>0||this.battle.combatantManager.combatants[a].team>0){
                 for(let b=0,lb=this.tiles.length;b<lb;b++){
                     if(this.tiles[b].tilePosition.x==this.battle.combatantManager.combatants[a].tilePosition.x&&this.tiles[b].tilePosition.y==this.battle.combatantManager.combatants[a].tilePosition.y){
-                        this.tiles[b].occupied=1
+                        this.tiles[b].occupied=this.battle.combatantManager.combatants[a].getStatus('Invisible')>0?2:1
                     }
                 }
             }

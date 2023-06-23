@@ -1,5 +1,5 @@
 Bugs:
-Empty Map Coordinate Offset Bugs
+darkblot
 
 Mechanics:
 Menu
@@ -21,6 +21,7 @@ Reduce damage taken by 25%
 Shield bash
 Chain reaction
 Temporary ignore block
+Diagonal move
 
 Generality:
 First Character Gimmick
