@@ -11,17 +11,17 @@ class tile{
         this.fade=1
         this.occupied=0
         this.targetted=[
-            [false,false,false,false,false,false,false],
-            [false,false,false,false,false,false,false],
-            [false,false,false,false,false,false,false],
-            [false,false,false,false,false,false,false],
-            [false,false,false,false,false,false,false],
+            [false,false,false,false,false,false,false,false,false,false,false,false,false],
+            [false,false,false,false,false,false,false,false,false,false,false,false,false],
+            [false,false,false,false,false,false,false,false,false,false,false,false,false],
+            [false,false,false,false,false,false,false,false,false,false,false,false,false],
+            [false,false,false,false,false,false,false,false,false,false,false,false,false],
         ]
         this.reinforce=false
         this.fire=[0,0]
         this.combatant=0
 
-        this.anim={target:[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]],reinforce:0,fire:[0,0],part:[],upPart:[]}
+        this.anim={target:[[0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0]],reinforce:0,fire:[0,0],part:[],upPart:[]}
         for(let a=0,la=this.type.length;a<la;a++){
             this.anim.part.push(0)
             this.anim.upPart.push(true)
@@ -125,7 +125,8 @@ class tile{
                     }
                 break
                 case 13:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    this.
+                    combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)){
                         this.anim.upPart[a]=false
                         this.addType(1)
@@ -142,6 +143,34 @@ class tile{
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1){
                         this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),-150+floor(random(0,6))*60)
+                    }
+                break
+                case 16:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                        this.battle.energy.main[this.battle.combatantManager.combatants[this.combatant].id]=0
+                        this.anim.upPart[a]=false
+                        if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length>0){
+                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(2,14,[])
+                        }else if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].reserve.cards.length>0){
+                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(1,14,[])
+                        }else{
+                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(3,14,[])
+                        }
+                    }
+                break
+                case 17:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team<=0){
+                        this.battle.combatantManager.combatants[this.combatant].life=0
+                    }
+                break
+                case 18:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                        let amount=this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].allEffect(2,2)
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].draw(amount)
                     }
                 break
             }
@@ -161,7 +190,7 @@ class tile{
     }
     target(type,direction){
         this.targetted[type][direction]=true
-        this.targetted[type][6]=true
+        this.targetted[type][12]=true
     }
     unTarget(){
         for(let a=0,la=this.targetted.length;a<la;a++){
@@ -309,6 +338,27 @@ class tile{
                     this.layer.line(-12,-6,12,6)
                     this.layer.line(-12,6,12,-6)
                 break
+                case 16:
+                    this.layer.fill(240,this.fade*this.anim.part[a])
+                    regStar(this.layer,0,0,10,32,16,8,4,0)
+                break
+                case 17:
+                    this.layer.stroke(180,0,0,this.fade*this.anim.part[a])
+                    this.layer.strokeWeight(2)
+                    this.layer.line(-16,-8,16,-8)
+                    this.layer.line(-16,-8,-16,8)
+                    this.layer.line(-16,8,16,8)
+                    this.layer.line(16,-8,16,8)
+                    this.layer.line(-16,-8,16,8)
+                    this.layer.line(-16,8,16,-8)
+                break
+                case 18:
+                    this.layer.fill(190,this.fade*this.anim.part[a])
+                    this.layer.rect(-8,-2,6,8)
+                    this.layer.rect(8,2,6,8)
+                    this.layer.triangle(-16,2,0,2,-8,8)
+                    this.layer.triangle(16,-2,0,-2,8,-8)
+                break
             }
         }
         let stack=0
@@ -341,12 +391,12 @@ class tile{
             this.layer.textSize(12)
             this.layer.text(this.fire[1],0,0)
         }
-        if(this.anim.target[0][6]>0){
+        if(this.anim.target[0][12]>0){
             this.layer.noFill()
-            this.layer.stroke(200,this.fade*this.anim.target[0][6])
+            this.layer.stroke(200,this.fade*this.anim.target[0][12])
             this.layer.strokeWeight(2)
             this.layer.ellipse(0,0,game.targetRadius*2)
-            for(let a=0,la=6;a<la;a++){
+            for(let a=0,la=12;a<la;a++){
                 if(this.anim.target[0][a]>0){
                     this.layer.stroke(200,this.fade*this.anim.target[0][a])
                     this.layer.line(cos(constants.cycle[a])*game.targetRadius,sin(constants.cycle[a])*game.targetRadius,cos(constants.cycle[a])*game.targetRadius*0.6,sin(constants.cycle[a])*game.targetRadius*0.6)
@@ -354,12 +404,12 @@ class tile{
             }
             stack++
         }
-        if(this.anim.target[1][6]>0){
+        if(this.anim.target[1][12]>0){
             this.layer.noFill()
-            this.layer.stroke(255,50,50,this.fade*this.anim.target[1][6])
+            this.layer.stroke(255,50,50,this.fade*this.anim.target[1][12])
             this.layer.strokeWeight(2)
             this.layer.ellipse(0,0,game.targetRadius*2+stack*4)
-            for(let a=0,la=6;a<la;a++){
+            for(let a=0,la=12;a<la;a++){
                 if(this.anim.target[1][a]>0){
                     this.layer.stroke(255,50,50,this.fade*this.anim.target[1][a])
                     this.layer.line(cos(constants.cycle[a])*(game.targetRadius+stack*2),sin(constants.cycle[a])*(game.targetRadius+stack*2),cos(constants.cycle[a])*(game.targetRadius*0.6+stack*2),sin(constants.cycle[a])*(game.targetRadius*0.6+stack*2))
@@ -367,12 +417,12 @@ class tile{
             }
             stack++
         }
-        if(this.anim.target[2][6]>0){
+        if(this.anim.target[2][12]>0){
             this.layer.noFill()
-            this.layer.stroke(200,0,0,this.fade*this.anim.target[2][6])
+            this.layer.stroke(200,0,0,this.fade*this.anim.target[2][12])
             this.layer.strokeWeight(2)
             this.layer.ellipse(0,0,game.targetRadius*2+stack*4)
-            for(let a=0,la=6;a<la;a++){
+            for(let a=0,la=12;a<la;a++){
                 if(this.anim.target[2][a]>0){
                     this.layer.stroke(200,0,0,this.fade*this.anim.target[2][a])
                     this.layer.line(cos(constants.cycle[a])*(game.targetRadius+stack*2),sin(constants.cycle[a])*(game.targetRadius+stack*2),cos(constants.cycle[a])*(game.targetRadius*0.6+stack*2),sin(constants.cycle[a])*(game.targetRadius*0.6+stack*2))
@@ -380,12 +430,12 @@ class tile{
             }
             stack++
         }
-        if(this.anim.target[3][6]>0){
+        if(this.anim.target[3][12]>0){
             this.layer.noFill()
-            this.layer.stroke(255,200,50,this.fade*this.anim.target[3][6])
+            this.layer.stroke(255,200,50,this.fade*this.anim.target[3][12])
             this.layer.strokeWeight(2)
             this.layer.ellipse(0,0,game.targetRadius*2+stack*4)
-            for(let a=0,la=6;a<la;a++){
+            for(let a=0,la=12;a<la;a++){
                 if(this.anim.target[3][a]>0){
                     this.layer.stroke(255,200,50,this.fade*this.anim.target[3][a])
                     this.layer.line(cos(constants.cycle[a])*(game.targetRadius+stack*2),sin(constants.cycle[a])*(game.targetRadius+stack*2),cos(constants.cycle[a])*(game.targetRadius*0.6+stack*2),sin(constants.cycle[a])*(game.targetRadius*0.6+stack*2))
@@ -393,12 +443,12 @@ class tile{
             }
             stack++
         }
-        if(this.anim.target[4][6]>0){
+        if(this.anim.target[4][12]>0){
             this.layer.noFill()
-            this.layer.stroke(200,150,0,this.fade*this.anim.target[4][6])
+            this.layer.stroke(200,150,0,this.fade*this.anim.target[4][12])
             this.layer.strokeWeight(2)
             this.layer.ellipse(0,0,game.targetRadius*2+stack*4)
-            for(let a=0,la=6;a<la;a++){
+            for(let a=0,la=12;a<la;a++){
                 if(this.anim.target[4][a]>0){
                     this.layer.stroke(200,150,0,this.fade*this.anim.target[4][a])
                     this.layer.line(cos(constants.cycle[a])*(game.targetRadius+stack*2),sin(constants.cycle[a])*(game.targetRadius+stack*2),cos(constants.cycle[a])*(game.targetRadius*0.6+stack*2),sin(constants.cycle[a])*(game.targetRadius*0.6+stack*2))

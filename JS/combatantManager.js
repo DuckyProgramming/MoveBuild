@@ -163,6 +163,9 @@ class combatantManager{
                     case 12:
                         this.combatants[a].statusEffect('Buffer',args[0])
                     break
+                    case 13:
+                        this.combatants[a].statusEffect('Armor',args[0])
+                    break
                 }
             }
         }
@@ -237,6 +240,14 @@ class combatantManager{
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
             if(this.combatants[a].id!=id&&(variant==0||this.combatants[a].blocked>0)&&distance>=0&&distance<=1&&this.combatants[a].team>0){
                 this.battle.drop(this.combatants[a].id,type,level,color)
+            }
+        }
+    }
+    energyDownAreaID(effect,id,tilePosition){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].id!=id&&distance>=0&&distance<=1&&this.combatants[a].team>0){
+                this.battle.energy.temp[this.combatants[a].id]-=effect
             }
         }
     }

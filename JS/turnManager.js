@@ -65,7 +65,7 @@ class turnManager{
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].status.main[32]<=0){
-                for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed;b<lb;b++){
+                for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up');b<lb;b++){
                     this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
                 }
             }

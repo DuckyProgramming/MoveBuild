@@ -180,6 +180,30 @@ types={
                 {effect:[11,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[15,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Teleport',rarity:-1,list:-1,
+            levels:[
+                {effect:[],attack:54,cost:2,target:[6],spec:[1],class:3},
+                {effect:[],attack:54,cost:1,target:[6],spec:[1],class:3},
+            ],
+        },{
+            name:'Stagger',rarity:-1,list:-1,
+            levels:[
+                {effect:[2],attack:58,cost:2,target:[1,1,2],spec:[],class:3},
+                {effect:[2],attack:58,cost:1,target:[1,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'Ponder',rarity:-1,list:-1,
+            levels:[
+                {effect:[4,1],attack:55,cost:1,target:[0],spec:[],class:4},
+                {effect:[5,1],attack:55,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Sprint',rarity:-1,list:-1,
+            levels:[
+                {effect:[1,0],attack:60,cost:-1,target:[7,0],spec:[0],class:3},
+                {effect:[1,1],attack:60,cost:-1,target:[7,1],spec:[0],class:3},
+            ],
         },
 
 
@@ -550,6 +574,35 @@ types={
         },
         //some bleed
 
+
+        {
+            name:'Teleport',rarity:1,list:3,
+            levels:[
+                {effect:[],attack:54,cost:2,target:[6],spec:[1],class:3},
+                {effect:[],attack:54,cost:1,target:[6],spec:[1],class:3},
+            ],
+        },{
+            name:'Stagger',rarity:0,list:3,
+            levels:[
+                {effect:[2],attack:58,cost:2,target:[1,1,2],spec:[],class:3},
+                {effect:[2],attack:58,cost:1,target:[1,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'Ponder',rarity:0,list:3,
+            levels:[
+                {effect:[4,1],attack:55,cost:1,target:[0],spec:[],class:4},
+                {effect:[5,1],attack:55,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Sprint',rarity:1,list:3,
+            levels:[
+                {effect:[1,0],attack:60,cost:-1,target:[7,0],spec:[0],class:3},
+                {effect:[1,1],attack:60,cost:-1,target:[7,1],spec:[0],class:3},
+            ],
+        },
+        //elements
+
+        
         {
             name:'Teleport',rarity:1,list:3,
             levels:[
@@ -921,8 +974,20 @@ types={
         },{
             name:'Napalm',rarity:0,list:4,
             levels:[
-                {effect:[],attack:-24,cost:3,target:[0],spec:[1,4],class:5},
-                {effect:[],attack:-24,cost:3,target:[0],spec:[1,4],class:5},
+                {effect:[],attack:-24,cost:3,target:[0],spec:[1],class:5},
+                {effect:[],attack:-24,cost:3,target:[0],spec:[1],class:5},
+            ],
+        },{
+            name:'Empty',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:-25,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[],attack:-25,cost:0,target:[0],spec:[4,5],class:5},
+            ],
+        },{
+            name:'Decremented',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:-26,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[],attack:-26,cost:0,target:[0],spec:[4,5],class:5},
             ],
         },
 
@@ -1021,7 +1086,7 @@ types={
         {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
         {name:'Lira',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
         {name:'Sakura',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relciam her.`},
-        {name:'Ume',identifier:['Sister','Miss'],life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Self-taught sorceress, talented but\nhopelessly unprepared for what's ahead.\nHer training might not turn to be\nuseful in this new world...`},
+        {},
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[/*{type:4,effect:[6]},*/{type:3,effect:[4]}],description:`Likes his personal space`},
@@ -1102,14 +1167,14 @@ types={
         {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[4]},{type:113,effect:[5]},{type:114,effect:[3,2]}],description:`More alive then intended`},
         {name:'Management Drone',life:75,behavior:1,spec:[8],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
         {name:'Executive',life:125,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[15]},{type:120,effect:[1]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
-        {name:'Mechanized',life:150,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
+        {name:'Mechanized',life:130,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
         {name:'Ninja Master',life:56,behavior:1,spec:[],move:{type:3,speed:1},attack:[{type:121,effect:[12]},{type:122,effect:[12]},{type:123,effect:[5]}],description:`Mastered teleportation, but not much else`},
         {name:'Bomber Boy',life:105,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:127,effect:[18]},{type:128,effect:[10,3,'Shrapnel']}],description:`Loves his weaponry`},
         {name:'Intern',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:1,effect:[5]},{type:4,effect:[3]}],description:`Working for exposure`},
         {name:'Assistant Hiring Officer',life:180,behavior:1,spec:[],move:{type:1,speed:2},attack:[{type:39,effect:[3,'Intern']},{type:130,effect:[9]}],description:`Cutting costs everywhere`},
         {name:'Gangster Machinegunner',life:48,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`Realized he can hold down the trigger`},
         {name:'Bolt',life:8,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:131,effect:[10]},{type:132,effect:[1,'Electrocuted']},{type:133,effect:[3]}],description:`Literally electricity`},
-        {name:'Jet',life:128,behavior:0,spec:[0],move:{type:1,speed:2},attack:[{type:134,effect:[18,1]},{type:135,effect:[8,2,'Burn']}],description:`Technology difference`},
+        {name:'Jet',life:192,behavior:0,spec:[1],move:{type:1,speed:2},attack:[{type:134,effect:[18,1]},{type:135,effect:[8,2,'Burn']}],description:`Technology difference`},
         {name:'Armored Ninja',life:72,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:137,effect:[9]},{type:138,effect:[6]},{type:139,effect:[6]},{type:10,effect:[6]}],description:`Not a spike slime?`},
         {name:'Destructor Bot',life:81,behavior:0,spec:[],move:{type:0,speed:3},attack:[{type:136,effect:[40]}],description:`Has no regard for its nonexistent life`},
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[3,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
@@ -1125,12 +1190,15 @@ types={
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
         {name:'PhD',life:78,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
         {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[6]},{type:161,effect:[9]},{type:162,effect:[12]}],description:`Oh shiny`},
-        {name:'Coffee Commander',life:270,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Host Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
         {name:'Host',life:22,behavior:12,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
         {name:'Antihwurmp',life:25,behavior:0,spec:[10],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
         {name:'Junkie',life:40,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:79,effect:[6]},{type:167,effect:[1,3]}],description:`Purchases product`},
         {name:'Prestige',life:131,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:168,effect:[2]}],description:`Back for more?`},
+        {name:'Darkblot',life:51,behavior:13,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:31,effect:[8]},{type:29,effect:[12]},{type:186,effect:[]}],description:`Blame the Lobster`},
+        {name:'Divine Guard',life:375,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:221,effect:[12]},{type:222,effect:[10]},{type:72,effect:[15,1]}],description:`You shall not pass`},
+        {name:'Avant Guard',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:223,effect:[16]},{type:224,effect:[16]},{type:72,effect:[8,2]}],description:`Behind you!`},
+        {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[5]},{type:204,effect:[4]},{type:21,effect:[]}],description:`Pretty bad`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -1139,31 +1207,41 @@ types={
         {name:'Bodyguard',life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[20]},{type:77,effect:[4]},{type:13,effect:[8,1,'Dizzy']}],description:`Paid to die`},
         {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
-
+        {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
+        {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:215,effect:[4,1]},{type:216,effect:[10]}],description:`Stolen`},
+        {name:'Glitch',life:25,behavior:5,spec:[],move:{type:4,speed:2},attack:[{type:6,effect:[4]},{type:9,effect:[6]}],description:`Intended`},
+        {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[6]},{type:28,effect:[9]}],description:`Not intended`},
+        {name:'Nil',life:141,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[8,1,'Empty']},{type:198,effect:[10,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
+        {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:225,effect:[]},{type:1,effect:[7]},{type:2,effect:[2]},{type:3,effect:[5]},{type:4,effect:[6]}],description:`Stuck in the ground`},
+        {name:'Vengeful',life:70,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[3]},{type:210,effect:[1]}],description:`Remember last time?`},
+        {name:'Coffee Commander',life:435,behavior:0,spec:[1],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]},{type:188,effect:[5]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
+        {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
+        
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
-        
-        {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
+        {name:'Wiz',life:110,behavior:0,spec:[0,2],move:{type:5,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Operation godhood`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
-        {name:'Sharpshot',life:360,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
+        {name:'Sharpshot',life:330,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
-        
-        {name:'Comrade',life:280,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[5]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
-        
-        {name:'Councilman',life:270,behavior:0,spec:[1],move:{type:1,speed:1},attack:[{type:174,effect:[3]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
+        {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[5]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
+        {name:'Councilman',life:270,behavior:0,spec:[1,2],move:{type:1,speed:1},attack:[{type:174,effect:[3]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
+        {name:'Gangmaster',life:305,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
-        {name:'Personnel Carrier',life:450,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
-        {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
+        {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
+        {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
+        {name:'Shadow Trooper',life:600,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
+        {name:'Purge X02',life:550,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[60]},{type:21,effect:[]}],description:`Actually a human`},
+
+        {name:'Rewriter',life:920,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:190,effect:[18,4]},{type:191,effect:[6]},{type:192,effect:[18]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+
         
-        {name:'Shadow Trooper',life:600,behavior:0,spec:[0],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
-        
-        {name:'Purge X02',life:550,behavior:0,spec:[1],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[60]},{type:21,effect:[]}],description:`Actually a human`},
+        {name:'Lunaria',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -1324,11 +1402,11 @@ types={
         {name:'2 Tile Pull Double Strike',class:1},
         {name:'Statusing Shockwave',class:1},
         {name:'Paper Airplane',class:1},
-        {name:'Random Buff or Nerf',class:2},
+        {name:'Random Buff or Nerf',class:4},
         {name:'Force Grab',class:1},//160
         {name:'Static Beam',class:1},
         {name:'Burst Charge',class:5},
-        {name:'Drink Coffee',class:2},
+        {name:'Drink Coffee',class:4},
         {name:'Triple Spread Statusing Gun',class:1},
         {name:'Drone Beam',class:1},
         {name:'Statusing Pullwave',class:1},
@@ -1339,7 +1417,7 @@ types={
         {name:'2 Tile 3 Spread Double Strike / Bleed',class:1},
         {name:'3 Tile Percentage Strike',class:1},
         {name:'Double Heat Beam',class:1},
-        {name:'Half Damage Time',class:2},
+        {name:'Half Damage Time',class:4},
         {name:'3 Tile Drive',class:5},
         {name:'2 Tile Combined Spin Strike',class:1},
         {name:'Fadeout',class:2},
@@ -1351,7 +1429,47 @@ types={
         {name:'2 Tile Ranging Statusing Strike',class:1},
         {name:'6 Tile Sextuple Strike',class:1},
         {name:'6 Tile 3 Wide Strike',class:1},
-
+        {name:'Respawn Allies',class:4},
+        {name:'Drink Redbull',class:4},
+        {name:'Tractor Beam',class:1},
+    
+        {name:'Randomized Corner Summon',class:4},
+        {name:'Block / Armor',class:2},//190
+        {name:'Pentuple Godbeam',class:1},
+        {name:'2 Tile Shockwave',class:1},
+        {name:'6 Tile Shattering Strike',class:1},
+        {name:'6 Tile Double Injuring Strike',class:1},
+        {name:'3 Spread Charge',class:5},
+        {name:'6 Tile Statusing Push',class:1},
+        {name:'All Enemy Armor',class:2},
+        {name:'Spin Strike / Energy Down',class:1},
+        {name:'Transform Pulse',class:1},
+        {name:'Drain Pulse',class:1},//200
+        {name:'Freeze Pulse',class:1},
+        {name:'Arcane Pulse',class:1},
+        {name:'2 Tile Random Push',class:1},
+        {name:'5 Spread Strike',class:1},
+        {name:'6 Tile 3 Direction Strike',class:1},
+        {name:'6 Tile Swap Double Strike',class:1},
+        {name:'Health-Based Strengthen',class:4},
+        {name:'Rocket Launcher',class:1},
+        {name:'1 Tile Bomb Throw',class:5},
+        {name:'Speed Boost',class:4},//210
+        {name:'2 Tile Range Swap Strike',class:1},
+        {name:'Double Assault Push',class:1},
+        {name:'Vortex Spin Strike',class:1},
+        {name:'2 Tile Edged Strike',class:1},
+        {name:'Spin Strike / Dissipate',class:1},
+        {name:'Life Transfer',class:4},
+        {name:'Spin Strike / Spawn',class:1},
+        {name:'All Diagonal Moon Beam',class:1},
+        {name:'All Direction Moon Beam',class:1},
+        {name:'Third Damage Time',class:4},//220
+        {name:'3 Tile Edged Strike',class:1},
+        {name:'3 Tile Conical Blast',class:1},
+        {name:'Left Chop',class:1},
+        {name:'Right Chop',class:1},
+        {name:'Redeploy',class:4},
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -1602,7 +1720,7 @@ types={
             pages:[
                 {
                     desc:
-`You come across what appearsto be a book
+`You come across what appears to be a book
 lying in the dirt. Peering into it, you see
 numerous writings on the art of combat.\n
 When you pick it up, you notice its extreme length
@@ -1615,7 +1733,7 @@ to be some sort of energy radiating from it...`,
                     desc:
 `The book is extremely long and quite confusing, but manages
 to keep you interested. After several hours, you finally
-reach the end.You've learned some, but you feel weakened.`,
+reach the end. You've learned some, but you feel weakened.`,
                     option:['Exit'],
                     optionDesc:['Gain a Card'],
                     link:[-1],
@@ -4546,6 +4664,107 @@ shipyard visit for another time.`,
                 [{type:-1},{type:-1},{type:[]},{type:[15]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
             ],
+        },{
+            name:'Triplet 6',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Cord 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Gate1 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Gate2 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+            ],
+        },{
+            name:'Nudged 5',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Manhattan 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Transform 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[16]},{type:[]},{type:[16]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[16]},{type:[]},{type:[]},{type:[]},{type:[16]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[16]},{type:[]},{type:[16]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Debent 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Killzone 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[17]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[17]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[17]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[17]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Redraw 7',
+            map:[
+                [{type:[]},{type:[]},{type:[18]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[18]},{type:[]},{type:[18]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[18]},{type:[]},{type:[18]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[18]},{type:[]},{type:[]}],
+            ],
         },
     ],encounter:[
         {
@@ -4560,7 +4779,88 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Purge X02'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Redraw 7'],class:2,world:2,
+            name:'Lunaria',
+            player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Lunaria'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Killzone 7'],class:2,world:1,
+            name:'Gangmaster',
+            player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Gangmaster'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Debent 5'],class:1,world:1,
+            name:'Tech Support',
+            player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:5,y:4}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Tech Support'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Transform 7'],class:2,world:0,
+            name:'Wiz',
+            player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Wiz'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Manhattan 5'],class:1,world:0,
+            name:'Vengeful',
+            player:{position:[[{x:4,y:3}],[{x:4,y:3},{x:5,y:4}]]},
+            enemy:[
+                {position:{x:4,y:0},name:'Vengeful'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Nudged 5'],class:3,world:0,
+            name:'Rusty',
+            player:{position:[[{x:3,y:2}],[{x:3,y:3},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Rusty'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Gate2 7'],class:1,world:3,
+            name:'Avant Guard',
+            player:{position:[[{x:3,y:4}],[{x:2,y:4},{x:4,y:4}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Avant Guard'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Gate1 7'],class:1,world:3,
+            name:'Divine Guard',
+            player:{position:[[{x:4,y:4}],[{x:3,y:4},{x:5,y:4}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Divine Guard'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Cord 7'],class:2,world:3,
+            name:'Rewriter',
+            player:{position:[[{x:5,y:6}],[{x:4,y:5},{x:5,y:5}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Rewriter'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Triplet 6'],class:0,world:2,
+            name:'Darkblot',
+            player:{position:[[{x:1,y:0}],[{x:1,y:1},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:0,y:2},name:'Darkblot'},
+                {position:{x:4,y:2},name:'Darkblot'},
+                {position:{x:3,y:4},name:'Darkblot'},
             ],reinforce:[
             ],
         },{
@@ -4778,7 +5078,7 @@ shipyard visit for another time.`,
                 {position:{x:5,y:4},name:'Ninja',turn:2},
             ],
         },{
-            level:['Channel 5'],class:0,world:2,
+            level:['Channel 5'],class:1,world:2,
             name:'Jet',
             player:{position:[[{x:1,y:4}],[{x:0,y:4},{x:2,y:4}]]},
             enemy:[
@@ -5599,8 +5899,8 @@ shipyard visit for another time.`,
 }
 stage={scale:0,scene:'map'}
 game={player:[1],playerNumber:3,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],startEnergy:3,dev:true}
-constants={collisionDamage:4,cycle:[0,40,140,180,220,320]}
-options={damage:false,alt:false}
+constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
+options={damage:false,alt:false,preGen:[]}
 graphics={main:0,backgroundGen:6,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}

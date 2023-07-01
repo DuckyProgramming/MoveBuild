@@ -97,6 +97,8 @@ class card{
             case -22: string+=`When Drawn,\nStop Drawing`; break
             case -23: string+=`When Drawn,\nExhaust ${this.effect[0]}\nRandom Card${this.effect[0]!=1?`s`:``}`; break
             case -24: string+=`When Drawn,\nAdd a Burn to Hand`; break
+            case -25: string+=`When Drawn,\nAll Cards in Hand\nWill Exhaust`; break
+            case -26: string+=`When Drawn,\nHalve Card Effects`; break
             case 1: case 25: case 32: case 36: case 57:
                 string+=`Deal ${this.calculateEffect(this.effect[0],0)} Damage`;
             break

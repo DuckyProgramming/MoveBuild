@@ -80,12 +80,15 @@ class battle{
     }
     initialGraphics(){
         this.graphics={combatants:[]}
-        for(let a=0,la=game.playerNumber;a<la;a++){
+        for(let a=0,la=10;a<la;a++){
             if(this.player.includes(a+1)){
                 setupCombatantGraphics(a)
             }else{
                 graphics.combatant.push(-1)
             }
+        }
+        for(let a=0,la=options.preGen.length;a<la;a++){
+            setupCombatantGraphics(options.preGen[a])
         }
         for(let a=0,la=graphics.backgroundGen;a<la;a++){
             this.graphics.combatants.push([[],[]])
@@ -192,6 +195,13 @@ class battle{
         this.tileManager.tiles[index].reinforce=true
         this.counter.enemy++
     }
+    quickReinforceCorner(name1,name2,amount,size){
+        for(let a=0,la=amount;a<la;a++){
+            this.reinforce.front.push({position:{x:size*(1+transformDirection(0,a*60-150)[0]),y:size*(1+transformDirection(0,a*60-150)[1])},name:floor(random(0,5))==0?name1:name2,minion:true})
+            this.tileManager.tiles[this.tileManager.getTileIndex(size*(1+transformDirection(0,a*60-150)[0]),size*(1+transformDirection(0,a*60-150)[1]))].reinforce=true
+        }
+        this.counter.enemy++
+    }
     clearReinforce(){
         this.counter.enemy-=this.reinforce.back.length+this.reinforce.front.length
         this.reinforce={back:[],front:[]}
@@ -268,6 +278,7 @@ class battle{
             this.turn.main++
         }
         if(this.turn.main>=this.players){
+            this.tileManager.activate()
             this.sendReinforce()
             this.tileManager.fire()
             this.turnManager.loadEnemyTurns()

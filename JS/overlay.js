@@ -437,8 +437,10 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                         break
                                         case 10:
-                                            this.battle.cardManagers[this.player].deck.cards[a].spec.push(3)
-                                            this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(3)
+                                            if(!this.battle.cardManagers[this.player].deck.cards[a].includes(3)){
+                                                this.battle.cardManagers[this.player].deck.cards[a].spec.push(3)
+                                                this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(3)
+                                            }
                                         break
                                     }
                                     this.active=!complete
@@ -641,8 +643,10 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                         break
                                         case 10:
-                                            this.battle.cardManagers[this.player].deck.cards[a].spec.push(3)
-                                            this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(3)
+                                            if(!this.battle.cardManagers[this.player].deck.cards[a].includes(3)){
+                                                this.battle.cardManagers[this.player].deck.cards[a].spec.push(3)
+                                                this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(3)
+                                            }
                                         break
                                     }
                                     this.active=!complete

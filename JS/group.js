@@ -201,6 +201,17 @@ class group{
                         this.cards[a].cost++
                     }
                 break
+                case 11:
+                    if(!this.cards[a].spec.includes(1)&&this.cards[a].attack!=-25){
+                        this.cards[a].spec.push(1)
+                        print('a')
+                    }
+                break
+                case 12:
+                    for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
+                        this.cards[a].effect[b]=round(this.cards[a].effect[b]/2)
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -218,7 +229,11 @@ class group{
                 &&!((this.cards[a].cost<=0||this.cards[a].spec.includes(5))&&(effect==1||effect==5))
                 &&!((this.cards[a].cost<0||this.cards[a].spec.includes(5))&&effect==7)
                 &&!((this.cards[a].level>=types.card[this.cards[a].type].levels.length-1||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==2)
-                &&!((this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==3)){
+                &&!((this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0)&&effect==3)
+                &&!(this.cards[a].spec.includes(8)&&effect==8)
+                &&!(this.cards[a].spec.includes(9)&&effect==10)
+                &&!(this.cards[a].spec.includes(10)&&effect==11)
+                &&!(this.cards[a].effect.length==0&&effect==15)){
                     list.push(a)
                 }
             }
@@ -271,6 +286,19 @@ class group{
                         this.cards[index].deSize=true
                         this.cards[index].exhaust=true
                     break
+                    case 14:
+                        if(this.id==2){
+                            this.cards[index].deSize=true
+                            this.cards[index].discardEffect.push(2)
+                        }else{
+                            this.cards[index]=this.battle.cardManagers[this.player].transformCard(this.cards[index])
+                        }
+                    break
+                    case 15:
+                        for(let a=0,la=this.cards[index].effect.length;a<la;a++){
+                            this.cards[index].effect[a]=min(this.cards[index].effect[a],1)
+                        }
+                    break
                 }
             }
         }
@@ -309,6 +337,12 @@ class group{
             break
             case -24:
                 this.battle.cardManagers[this.player].hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+            break
+            case -25:
+                this.drawEffects.push([3])
+            break
+            case -26:
+                this.drawEffects.push([4])
             break
         }
     }
@@ -381,9 +415,15 @@ class group{
                         parent.status.exhaust+=this.drawEffects[a][1]
                     break
                     case 2:
-                        for(let b=0,lb=this.drawEffects[a][1];b<lb;b++){
+                        for(let b=0,lb=this.drawEffects[a][1][0];b<lb;b++){
                             parent.allEffect(10)
                         }
+                    break
+                    case 3:
+                        parent.allEffect(11)
+                    break
+                    case 4:
+                        parent.allEffect(12)
                     break
                 }
             }
@@ -756,6 +796,10 @@ class group{
                                 this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                                 a--
                                 la--
+                            }
+                            if(this.cards[a].discardEffect.includes(2)){
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCard(this.cards[a])
+                                this.cards[a].discardEffect=[]
                             }
                         }else if(this.cards[a].exhaust){
                             if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){

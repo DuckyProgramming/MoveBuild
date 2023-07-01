@@ -1525,7 +1525,7 @@ function setupCombatantGraphics(type){
 				}
 			}
 		break
-		case 2:
+		case 10:
 			graphics.combatant.push({
 				spin:{tail:[-96,96]},
 				sprites:{detail:15,genAmount:0,animDirection:0,temp:0,hair:{back:[],front:[],tail:[[],[]]},kimono:{main:{back:[],front:[]},mainDamage:{back:[],front:[]}}},
