@@ -62,6 +62,19 @@ class relicManager{
             relics[rarity].splice(index,1)
         }
     }
+    setupBossStash(){
+        this.displayRelics=[]
+        for(let a=0,la=this.complete.length;a<la;a++){
+            this.complete[a]=false
+        }
+        let relics=copyArrayStack(this.listing.relic)
+        for(let a=0,la=3;a<la;a++){
+            let rarity=4
+            let index=floor(random(0,relics[rarity].length))
+            this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,relics[rarity][index],2))
+            relics[rarity].splice(index,1)
+        }
+    }
     addRelic(type,player){
         this.player[types.relic[type].id]=player
         this.active[types.relic[type].id]+=1
@@ -813,6 +826,7 @@ class relicManager{
         }
     }
     display(scene,args){
+        let lea=this.displayRelics.length
         switch(scene){
             case 'battle':
                 for(let a=0,la=this.relics.length;a<la;a++){
@@ -821,7 +835,6 @@ class relicManager{
                 this.relics.forEach(relic=>relic.displayInfo())
             break
             case 'stash':
-                let lea=this.displayRelics.length
                 this.displayRelics.forEach(relic=>relic.display(lea-1))
                 this.displayRelics.forEach(relic=>relic.displayInfo())
                 this.layer.fill(200,this.fade)
@@ -829,6 +842,15 @@ class relicManager{
                 this.layer.ellipse(this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50,60,60)
                 this.layer.fill(80,this.fade)
                 regTriangle(this.layer,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50,20,20,90)
+            break
+            case 'bossstash':
+                this.displayRelics.forEach(relic=>relic.display(lea-1))
+                this.displayRelics.forEach(relic=>relic.displayInfo())
+                this.layer.fill(200,this.fade)
+                this.layer.noStroke()
+                this.layer.ellipse(this.layer.width/2,this.layer.height/2+45,60,60)
+                this.layer.fill(80,this.fade)
+                regTriangle(this.layer,this.layer.width/2,this.layer.height/2+45,20,20,90)
             break
             case 'overlay':
                 let position=0
@@ -879,6 +901,41 @@ class relicManager{
                     }
                 }
             break
+            case 1:
+                this.displayRelics[a].deFade=true
+                for(let b=0,lb=this.listing.relic.length;b<lb;b++){
+                    for(let c=0,lc=this.listing.relic[b].length;c<lc;c++){
+                        if(this.listing.relic[b][c]==this.displayRelics[a].type){
+                            this.listing.relic[b].splice(c,1)
+                        }
+                    }
+                }
+                if(this.battle.players==1){
+                    this.addRelic(this.displayRelics[a].type,0)
+                    this.complete[0]=true
+                    transition.trigger=true
+                    this.battle.nextWorld()
+                    transition.scene='map'
+                }else if(this.battle.players==2){
+                    if(inputs.rel.x<this.displayRelics[a].position.x){
+                        this.addRelic(this.displayRelics[a].type,0)
+                        this.complete[0]=true
+                        if(this.complete[1]){
+                            transition.trigger=true
+                            this.battle.nextWorld()
+                            transition.scene='map'
+                        }
+                    }else if(inputs.rel.x>this.displayRelics[a].position.x){
+                        this.addRelic(this.displayRelics[a].type,1)
+                        this.complete[1]=true
+                        if(this.complete[0]){
+                            transition.trigger=true
+                            this.battle.nextWorld()
+                            transition.scene='map'
+                        }
+                    }
+                }
+            break
         }
     }
     update(scene,args){
@@ -886,7 +943,7 @@ class relicManager{
             case 'battle':
                 this.relics.forEach(relic=>relic.update(this.up[relic.player],this.total[relic.player],inputs))
             break
-            case 'stash':
+            case 'stash': case 'bossstash':
                 this.displayRelics.forEach(relic=>relic.update(true,0,inputs))
             break
             case 'overlay':
@@ -926,6 +983,18 @@ class relicManager{
                 }
                 if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50)<30){
                     transition.trigger=true
+                    transition.scene='map'
+                }
+            break
+            case 'bossstash':
+                for(let a=0,la=this.displayRelics.length;a<la;a++){
+                    if(dist(inputs.rel.x,inputs.rel.y,this.displayRelics[a].position.x,this.displayRelics[a].position.y)<20*this.displayRelics[a].size&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
+                        this.callInput(1,a)
+                    }
+                }
+                if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2,this.layer.height/2+45)<30){
+                    transition.trigger=true
+                    this.battle.nextWorld()
                     transition.scene='map'
                 }
             break

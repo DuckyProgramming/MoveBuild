@@ -17,7 +17,7 @@ function displayTransition(layer,transition){
 	layer.rect(layer.width/2,layer.height-transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
 	if(transition.trigger){
 		transition.anim=round(transition.anim*10+1)/10
-		if(transition.anim!=1.1){
+		if(transition.anim>=1.1){
 			transition.trigger = false
 			stage.scene=transition.scene
 		}

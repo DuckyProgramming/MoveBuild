@@ -1773,6 +1773,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			p1.size=2.5
 			p1.fade=1
+			p1.graphic=true
 			if(damage[a]==1&&options.damage){
 				p1.trigger.display.extra.damage=true
 			}
@@ -1803,6 +1804,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			p1.size=2.5
 			p1.fade=1
 			p1.direction=84
+			p1.graphic=true
 			if(damage[a]==1&&options.damage){
 				p1.trigger.display.extra.damage=true
 			}
@@ -1846,6 +1848,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			p1.anim.eyeStyle=[2,2]
 			p1.size=2.5
 			p1.fade=1
+			p1.graphic=true
 			if(damage[a]==1&&options.damage){
 				p1.trigger.display.extra.damage=true
 			}
@@ -1884,6 +1887,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			p1.size=2.5
 			p1.fade=1
+			p1.graphic=true
 			if(damage[a]==1&&options.damage){
 				p1.trigger.display.extra.damage=true
 			}
@@ -1922,10 +1926,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			p1.size=2.5
 			p1.fade=1
+			p1.graphic=true
 			if(damage[a]==1&&options.damage){
 				p1.trigger.display.extra.damage=true
 			}
 			return p1
+		case 6:
+			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
+			p1.size=2.5
+			p1.fade=1
+			p1.graphic=true
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1			
 	}
 }
 function setupGeneralGraphics(){
@@ -2361,6 +2375,66 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2,a,layer.width,2)
 			}
 		break
+		case 6:
+			for(let a=0,la=layer.height;a<la;a++){
+                layer.fill(40+30*a/la,80+70*a/la,100+80*a/la)
+                layer.rect(layer.width/2,a+0.5,layer.width,2)
+            }
+			for(let a=0,la=100;a<la;a++){
+
+			}
+			for(let a=0,la=30;a<=la;a++){
+				for(let b=14,lb=20,sb=b;b<=lb;b++){
+					let offset=noise(a/2+b/5+50)*20+noise(b/2+a/5+100)*20
+					layer.fill(30+random(0,5)+offset,50+random(0,5)+offset,70+random(0,5)+offset)
+					if(b==16&&sb==16&&abs(15-a)!=8){
+						layer.triangle(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+					}else{
+						layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+					}
+				}
+			}
+			for(let a=0.5,la=30;a<=la;a++){
+				for(let b=14.5,lb=20,sb=b;b<=lb;b++){
+					let offset=noise(a/2+b/5+50)*20+noise(b/2+a/5+100)*20
+					layer.fill(30+random(0,5)+offset,50+random(0,5)+offset,70+random(0,5)+offset)
+					if(b==16&&sb==16&&abs(15-a)!=8){
+						layer.triangle(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+					}else{
+						layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+					}
+				}
+			}
+			for(let a=0,la=30;a<=la;a++){
+				for(let b=8+constrain(abs(15-a)+2,4,8),lb=20,sb=b;b<=lb;b++){
+					let offset=noise(a/2+b/5)*20+noise(b/2+a/5+50)*20
+					layer.fill(60+random(0,5)+offset,80+random(0,5)+offset,100+random(0,5)+offset)
+					if(b==16&&sb==16&&abs(15-a)!=6){
+						layer.triangle(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+					}else{
+						layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+					}
+				}
+			}
+			for(let a=0.5,la=30;a<=la;a++){
+				for(let b=8+constrain(abs(15-a)+2,4.5,8.5),lb=20;b<=lb;b++){
+					let offset=noise(a+b/3)*20+noise(b+a/3+50)*20
+					layer.fill(60+random(0,5)+offset,80+random(0,5)+offset,100+random(0,5)+offset)
+					layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+				}
+			}
+			for(let a=0,la=5;a<la;a++){
+				for(let b=0,lb=5;b<lb;b++){
+					let offset=noise(a/2+b/5+100)*40+noise(b/2+a/5+150)*40
+					layer.fill(160+offset,180+offset,200+offset)
+					layer.quad(
+						layer.width/2+(a-b-1)*layer.width/60-0.5,layer.height/2+(a+b-7)*layer.height/40,
+						layer.width/2+(a-b)*layer.width/60,layer.height/2+(a+b-8)*layer.height/40-0.5,
+						layer.width/2+(a-b+1)*layer.width/60+0.5,layer.height/2+(a+b-7)*layer.height/40,
+						layer.width/2+(a-b)*layer.width/60,layer.height/2+(a+b-6)*layer.height/40+0.5)
+				}
+			}
+		break
 	}
 }
 function setupOverlay(type,layer){
@@ -2408,6 +2482,7 @@ function setupGraphics(){
 	3-Rest
 	4-Stash
 	5-Event
+	6-Bossstash
 	*/
 }
 function setupTrig(){

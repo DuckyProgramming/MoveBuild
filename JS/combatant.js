@@ -36,6 +36,7 @@ class combatant{
         this.aggressor=false
         this.dead=false
         this.respawn=false
+        this.graphic=false
         this.blocked=0
         this.taken=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
@@ -4817,17 +4818,19 @@ class combatant{
                         this.layer.noStroke()
                         this.layer.arc(0,-84,36,36,-180,0)
                     }
-                    this.layer.noFill()
-                    this.layer.stroke(240,240,40,this.fade)
-                    this.layer.strokeWeight(3)
-                    this.layer.strokeCap(SQUARE)
-                    this.layer.arc(0.5,-121.5,15,15,-135,45)
-                    this.layer.arc(-0.5,-120.5,15,15,45,225)
-                    this.layer.strokeCap(ROUND)
-                    this.layer.noStroke()
-                    this.layer.fill(255,this.fade)
-                    this.layer.textSize(12)
-                    this.layer.text(this.combo,0,-120.5)
+                    if(!this.graphic){
+                        this.layer.noFill()
+                        this.layer.stroke(240,240,40,this.fade)
+                        this.layer.strokeWeight(3)
+                        this.layer.strokeCap(SQUARE)
+                        this.layer.arc(0.5,-121.5,15,15,-135,45)
+                        this.layer.arc(-0.5,-120.5,15,15,45,225)
+                        this.layer.strokeCap(ROUND)
+                        this.layer.noStroke()
+                        this.layer.fill(255,this.fade)
+                        this.layer.textSize(12)
+                        this.layer.text(this.combo,0,-120.5)
+                    }
                 break
                 case 'Lira':
                     if(this.trigger.display.hair.back){

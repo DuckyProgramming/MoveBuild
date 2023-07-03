@@ -20,6 +20,12 @@ class nodeManager{
             }
         }
     }
+    nextWorld(){
+        this.tilePosition={x:0,y:-1}
+        this.scroll=this.layer.height-150
+        this.world++
+        this.setupMap()
+    }
     getNodeIndex(tileX,tileY){
         for(let a=0,la=this.nodes.length;a<la;a++){
             if(this.nodes[a].tilePosition.x==tileX&&this.nodes[a].tilePosition.y==tileY){
@@ -29,10 +35,12 @@ class nodeManager{
         return -1
     }
     setupMap(){
-        let possibilities=[0,0,0,1,3,4,5,5,6]
+        this.nodes=[]
+        let possibilities=[0,0,0,1,3,4,5,5]
         for(let a=0,la=20;a<la;a++){
             for(let b=0,lb=min(min(a+1,4),20-a);b<lb;b++){
-                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,a<2?0:a==la-1?2:possibilities[floor(random(0,possibilities.length))]))
+                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,
+                a<2?0:a==la-1?2:a==la-2?3:a==10?6:possibilities[floor(random(0,possibilities.length))]))
             }
         }
         this.scroll=this.layer.height/2-240

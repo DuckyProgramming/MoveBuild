@@ -1,9 +1,9 @@
 Bugs:
+a lot of graphical stuff
 
 Mechanics:
 Menu
-Boss Rewards
-Next World
+Ending
 
 Partnership Cards:
 swap with ally
@@ -12,7 +12,6 @@ take ally's health
 block ally
 
 More Cards:
-Option Play
 Swap Play (swaps between strike and defend, retain)
 Deal Damage and Gain Energy? (Jab?)
 Attack and slow down

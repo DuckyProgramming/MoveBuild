@@ -161,6 +161,9 @@ class battle{
     setupStash(){
         this.relicManager.setupStash()
     }
+    setupBossStash(){
+        this.relicManager.setupBossStash()
+    }
     setupEvent(){
         this.eventManagers.forEach(eventManager=>eventManager.pickEvent())
         this.eventManagers.forEach(eventManager=>eventManager.setup())
@@ -172,6 +175,9 @@ class battle{
     setupStats(){
         this.overlayManager.closeAll()
         this.overlayManager.overlays[11].forEach(overlay=>overlay.active=true)
+    }
+    nextWorld(){
+        this.nodeManager.nextWorld()
     }
     addCombatant(position,type,team,direction,minion){
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
@@ -561,6 +567,13 @@ class battle{
                 }
                 this.relicManager.display(stage.scene)
             break
+            case 'bossstash':
+                this.layer.image(graphics.backgrounds[6],0,0,this.layer.width,this.layer.height)
+                /*for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[6][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                }*/
+                this.relicManager.display(stage.scene)
+            break
             case 'perk':
                 this.layer.image(graphics.backgrounds[0],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
@@ -571,9 +584,9 @@ class battle{
             break
             case 'event':
                 this.layer.image(graphics.backgrounds[5],0,0,this.layer.width,this.layer.height)
-                /*for(let a=0,la=this.players;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
-                }*/
+                }
                 this.displayCurrency()
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
                     this.layer.fill(this.colorDetail[a].fill)
@@ -635,7 +648,12 @@ class battle{
                         }
                         if(allClosed){
                             transition.trigger=true
-                            transition.scene='map'
+                            if(this.encounter.class==2){
+                                transition.scene='bossstash'
+                                this.setupBossStash()
+                            }else{
+                                transition.scene='map'
+                            }
                         }
                     }else{
                         this.result.victory=true
@@ -720,7 +738,7 @@ class battle{
                     transition.scene='menu'
                 }
             break
-            case 'stash':
+            case 'stash':  case 'bossstash':
                 this.relicManager.update(stage.scene)
             break
             case 'perk':
@@ -843,7 +861,7 @@ class battle{
                     }
                 }
             break
-            case 'stash':
+            case 'stash': case 'bossstash':
                 this.relicManager.onClick(stage.scene)
             break
             case 'perk':
@@ -960,7 +978,7 @@ class battle{
                     }
                 }
             break
-            case 'stash':
+            case 'stash': case 'bossstash':
                 this.relicManager.onKey(stage.scene,key,code)
             break
             case 'perk':
