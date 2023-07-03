@@ -192,6 +192,9 @@ class tile{
         this.targetted[type][direction]=true
         this.targetted[type][12]=true
     }
+    indescriptTarget(type){
+        this.targetted[type][12]=true
+    }
     unTarget(){
         for(let a=0,la=this.targetted.length;a<la;a++){
             for(let b=0,lb=this.targetted[a].length;b<lb;b++){

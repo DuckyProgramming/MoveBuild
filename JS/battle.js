@@ -81,7 +81,10 @@ class battle{
     initialGraphics(){
         this.graphics={combatants:[]}
         for(let a=0,la=10;a<la;a++){
-            if(this.player.includes(a+1)){
+            if(
+                a==0&&this.player.includes(2)||
+                a==1&&this.player.includes(3)
+            ){
                 setupCombatantGraphics(a)
             }else{
                 graphics.combatant.push(-1)
@@ -337,15 +340,16 @@ class battle{
             this.endTurn()
         }
     }
-    playCard(card,player){
+    playCard(card,player,mode){
+        let cardClass=card.spec.includes(12)?card.class[mode]:card.class
         if(card.spec.includes(0)){
             this.cardManagers[player].fatigue()
         }
         this.stats.played[player][0]++
-        this.stats.played[player][card.class]++
+        this.stats.played[player][cardClass]++
         this.counter.turnPlayed[0]++
-        this.counter.turnPlayed[card.class]++
-        this.relicManager.activate(4,[card.class,player])
+        this.counter.turnPlayed[cardClass]++
+        this.relicManager.activate(4,[cardClass,player])
     }
     displayCurrency(){
         this.layer.fill(240,240,220)

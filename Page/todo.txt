@@ -1,10 +1,10 @@
 Bugs:
-DONUT MAPS
 
 Mechanics:
 Menu
 Boss Rewards
 Next World
+
 Partnership Cards:
 swap with ally
 heal ally
@@ -28,9 +28,13 @@ Impale through 2
 
 Generality:
 
-Agent
+Agent:
+3 Packs (riot, engineering, infantry)
+
+Phantasm
 
 First Character Gimmick
 (hp dealing)
 
-Third Character Package?
+Dictionary Additions:
+conditionin

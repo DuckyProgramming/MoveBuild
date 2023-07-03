@@ -8,6 +8,7 @@ class group{
         this.removed=[]
         this.sorted=[]
         this.drawEffects=[]
+        this.spec=[]
         this.lastDuplicate=''
 
         this.reset()
@@ -204,7 +205,6 @@ class group{
                 case 11:
                     if(!this.cards[a].spec.includes(1)&&this.cards[a].attack!=-25){
                         this.cards[a].spec.push(1)
-                        print('a')
                     }
                 break
                 case 12:
@@ -536,13 +536,15 @@ class group{
             }
         }
     }
-    cost(cost,cardClass){
+    cost(cost,cardClass,spec){
         if(cost!=0){
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             if(cardClass==1&&userCombatant.status.main[22]>0){
                 userCombatant.status.main[22]--
             }else if(userCombatant.status.main[27]>0){
                 userCombatant.status.main[27]--
+            }else if(spec.includes(11)){
+                userCombatant.combo-=cost
             }else{
                 if(cost==-1){
                     this.battle.energy.main[this.player]=0
@@ -633,10 +635,10 @@ class group{
                     }
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed())
-                    this.battle.playCard(this.cards[a],this.player)
+                    this.battle.playCard(this.cards[a],this.player,0)
                     this.callInput(5,0)
                     this.battle.attackManager.execute()
-                    this.cost(this.cards[a].cost,this.cards[a].class)
+                    this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec)
                 }else{
                     this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                     this.battle.attackManager.targetDistance=0
@@ -652,14 +654,18 @@ class group{
                 this.battle.updateTargetting()
             break
             case 2:
-                this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.tileManager.tiles[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.tileManager.tiles[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
+                if(this.battle.combatantManager.combatants[this.battle.attackManager.user].id!=a){
+                    this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.tileManager.tiles[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.tileManager.tiles[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
+                }
                 this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.tileManager.tiles[a],this.battle.attackManager)
                 this.battle.attackManager.targetInfo[0]=0
                 this.battle.attackManager.targetClass=1
                 this.battle.attackManager.target[0]=a
+                this.spec=[]
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                        this.spec=this.cards[b].spec
                         if(userCombatant.status.main[23]>0){
                             userCombatant.status.main[23]--
                             this.cards[b].usable=true
@@ -672,22 +678,32 @@ class group{
                         }
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed())
-                        this.battle.playCard(this.cards[b],this.player)
+                        if(this.spec.includes(12)){
+                            let characteristic=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0
+                            this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
+                            this.battle.attackManager.effect=this.battle.attackManager.effect[characteristic]
+                            this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
+                        }
+                        this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
                     }
                 }
                 this.battle.attackManager.execute()
-                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass)
+                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
                 this.battle.updateTargetting()
             break
             case 3:
-                this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
+                if(this.battle.combatantManager.combatants[this.battle.attackManager.user].id!=a){
+                    this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
+                }
                 this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager)
                 this.battle.attackManager.targetInfo[0]=0
                 this.battle.attackManager.targetClass=2
                 this.battle.attackManager.target[0]=a
+                this.spec=[]
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                        this.spec=this.cards[b].spec
                         if(userCombatant.status.main[23]>0){
                             userCombatant.status.main[23]--
                             this.cards[b].usable=true
@@ -700,11 +716,17 @@ class group{
                         }
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed())
-                        this.battle.playCard(this.cards[b],this.player)
+                        if(this.spec.includes(12)){
+                            let characteristic=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0
+                            this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
+                            this.battle.attackManager.effect=this.battle.attackManager.effect[characteristic]
+                            this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
+                        }
+                        this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
                     }
                 }
                 this.battle.attackManager.execute()
-                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass)
+                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
                 this.battle.updateTargetting()
             break
             case 4:
@@ -846,7 +868,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
                     (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.player)?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)&&
@@ -883,6 +905,14 @@ class group{
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==10){
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team==this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
+                    this.callInput(3,a)
                 }
             }
         }

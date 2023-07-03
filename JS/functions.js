@@ -150,7 +150,7 @@ function pointInsideBox(point,box){
 }
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
-		case 0: case 2: case 5:
+		case 0: case 2: case 5: case 7: case 8:
 			let damage=effect
 			let bonus=0
 			let totalStr=0
@@ -185,14 +185,14 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				bonus*=0.75
 			}
 			damage=round(damage*10)/10
-			if(type==0){
-				return damage==effect&&bonus==0?effect:effect+`(${damage+bonus})`
-			}else if(type==2){
-				return (damage==effect&&bonus==0?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
-			}else if(type==5){
-				return (damage==effect&&bonus==0?effect+'XX':effect+`(${damage})XX`)+(bonus>0?`(+${bonus})`:``)
+			switch(type){
+				case 0: return damage==effect&&bonus==0?effect:effect+`(${damage+bonus})`
+				case 2: return (damage==effect&&bonus==0?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
+				case 5: return (damage==effect&&bonus==0?effect+'XX':effect+`(${damage})XX`)+(bonus>0?`(+${bonus})`:``)
+				case 7: return effect==1?(damage==effect?'Combo':`1(${damage})*Combo`):(damage==effect?effect+'*Combo':effect+`(${damage})*Combo`)
+				case 8: return (damage==effect&&bonus==0?effect+'X':effect+`(${damage}) X`)+(bonus>0?`(+${bonus})`:``)
 			}
-		case 1: case 3:
+		case 1: case 3: case 6:
 			let block=effect
 			let totalDex=0
 			if(user.status.main[7]!=0){
@@ -210,10 +210,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				block*=0.75
 			}
 			block=round(block*10)/10
-			if(type==1){
-				return block==effect?effect:effect+` (${block})`
-			}else if(type==3){
-				return block==effect?effect+'X':effect+`X (+${block})`
+			switch(type){
+				case 1: return block==effect?effect:effect+` (${block})`
+				case 3: block==effect?effect+'X':effect+`X (+${block})`
+				case 6: return block==effect?effect+'*Combo':effect+`(${block})*Combo`
 			}
 		case 4:
 			let health=effect
@@ -349,8 +349,8 @@ function intentDescription(attack,user,info){
 		case 118: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-6\nNo Movement`
 		case 119: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[0]:`?`} Less\nCard${attack.effect[0]!=1||info?`s`:``} Next Turn\nRange 1-6\nNo Movement`
 		case 120: return `Apply ${info?attack.effect[0]:`?`} Distracted\nto All Adjacent Tiles\nRange 1-1`
-		case 121: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Left\nRange 1-1`
-		case 122: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Right\nRange 1-1`
+		case 121: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Right\nRange 1-1`
+		case 122: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Left\nRange 1-1`
 		case 123: return `Apply ${info?attack.effect[0]:`?`} Bleed\nRange 1-6\nNo Movement`
 		case 124: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDrain ${info?attack.effect[1]:`?`} Energy\n3 Tiles Wide\nRange 1-1`
 		case 125: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSwap With Target\nRange 1-6`
@@ -447,8 +447,8 @@ function intentDescription(attack,user,info){
 		case 220: return `Take Third Damage\nFor ${info?attack.effect[0]:`?`} Turns`
 		case 221: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-3\nTargets 2 Adjacent Tiles\nTargets Adjacent Diagonals`
 		case 222: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin a 60% Field\nRange 1-3`
-		case 223: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHits All Targets in Range\nPush 1 Tile Left\nRange 1-2`
-		case 224: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHits All Targets in Range\nPush 1 Tile Right\nRange 1-2`
+		case 223: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHits All Targets in Range\nPush 1 Tile Right\nRange 1-2`
+		case 224: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHits All Targets in Range\nPush 1 Tile Left\nRange 1-2`
 		case 225: return `Kill Self\nReturn Next Turn,\nHealed to Full`
 
 		default: return `INVALID`
@@ -479,11 +479,15 @@ function findInternal(internal,list){
 	}
 }
 function multiplyString(base,multiply){
-	let string=''
-	for(let a=0;a<multiply;a++){
-		string+=base
+	if(multiply==0){
+		return ''
+	}else{
+		let string=''
+		for(let a=0;a<multiply;a++){
+			string+=base
+		}
+		return string
 	}
-	return string
 }
 function copyCard(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass)
@@ -570,8 +574,19 @@ function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,t
 		case 0:
 			if(legalTarget(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
 				let length=distTarget(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
-				for(a=0,la=tiles.length;a<la;a++){
-					if(tiles[a].occupied>0&&legalTarget(0,0,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(0,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+				let valid=[]
+				for(let a=0,la=length;a<la;a++){
+					valid.push(false)
+				}
+				for(let a=0,la=tiles.length;a<la;a++){
+					for(let b=0,lb=valid.length;b<lb;b++){
+						if(tiles[a].occupied==0&&tiles[a].tilePosition.x==map((b+1)/(length+1),0,1,combatant1.tilePosition.x,combatant2.tilePosition.x)&&tiles[a].tilePosition.y==map((b+1)/(length+1),0,1,combatant1.tilePosition.y,combatant2.tilePosition.y)){
+							valid[b]=true
+						}
+					}
+				}
+				for(let a=0,la=valid.length;a<la;a++){
+					if(!valid[a]){
 						return false
 					}
 				}
@@ -618,7 +633,7 @@ function transformDirection(type,direction){
 			}
 	}
 }
-function numerilizeDirection(type,direction){
+function numeralizeDirection(type,direction){
 	switch(type){
 		case 0:
 			let actualDirection=(direction%360+540)%360-180
@@ -677,6 +692,9 @@ function kill(index){
 }
 function enemy(index){
 	return current.combatantManager.combatants[index+current.players]
+}
+function combo(value){
+	current.combatantManager.combatants[0].combo+=value
 }
 function outEncounter(){
 	print(`
