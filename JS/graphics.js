@@ -1810,8 +1810,9 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 2:
+			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
 			/**/
-			return -1
+			return p1
 		case 3:
 			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
 			switch(p1.name){
@@ -2267,8 +2268,15 @@ function setupBackground(type,layer){
                 layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
             }
 			for(let a=0,la=layer.height*0.1;a<la;a++){
-				layer.fill(random(200,255),random(200,255),255,1-0.6*a/la)
-				layer.ellipse(random(0,layer.width),a*8,4)
+				b=random(3,4)
+				c=b*random(1.25,1.5)
+				d=b*random(4.5,7.5)
+				e=random(0,layer.width)
+				layer.fill(255,random(200,255),255,1-0.6*a/la)
+				layer.ellipse(e,a*8,b)
+				layer.fill(random(200,255),random(200,255),255,0.2-0.12*a/la)
+				layer.ellipse(e,a*8,c,d)
+				layer.ellipse(e,a*8,d,c)
 			}
 			layer.stroke(125,75,25)
 			layer.strokeWeight(20)
@@ -2380,8 +2388,16 @@ function setupBackground(type,layer){
                 layer.fill(40+30*a/la,80+70*a/la,100+80*a/la)
                 layer.rect(layer.width/2,a+0.5,layer.width,2)
             }
-			for(let a=0,la=100;a<la;a++){
-
+			for(let a=0,la=layer.height*0.1;a<la;a++){
+				b=random(3,4)
+				c=b*random(1.25,1.5)
+				d=b*random(4.5,7.5)
+				e=random(0,layer.width)
+				layer.fill(random(200,255),random(200,255),255,1-0.6*a/la)
+				layer.ellipse(e,a*8,b)
+				layer.fill(random(200,255),random(200,255),255,0.2-0.12*a/la)
+				layer.ellipse(e,a*8,c,d)
+				layer.ellipse(e,a*8,d,c)
 			}
 			for(let a=0,la=30;a<=la;a++){
 				for(let b=14,lb=20,sb=b;b<=lb;b++){
@@ -2465,12 +2481,12 @@ function setupGraphics(){
 
 	setupGeneralGraphics()
 	for(let a=0,la=graphics.backgroundGen;a<la;a++){
-		graphics.backgrounds.push(createGraphics(900,600))
+		graphics.backgrounds.push(createGraphics(1800,1200))
 		setupLayer(graphics.backgrounds[a])
 		setupBackground(a,graphics.backgrounds[a])
 	}
 	for(let a=0,la=graphics.overlayGen;a<la;a++){
-		graphics.overlays.push(createGraphics(900,600))
+		graphics.overlays.push(createGraphics(1800,1200))
 		setupLayer(graphics.overlays[a])
 		setupOverlay(a,graphics.overlays[a])
 	}

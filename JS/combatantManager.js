@@ -8,6 +8,7 @@ class combatantManager{
         this.combatants=[]
         this.playerCombatantIndex=[]
         this.sorted=[]
+        this.proxyPlayer=new combatant(this.layer,this.battle,0,0,0,0,0,0,0,0,0,0)
     }
     assignPlayer(){
         for(let a=0,la=this.combatants.length;a<la;a++){

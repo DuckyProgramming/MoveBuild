@@ -4936,7 +4936,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:0,world:-1,
+            level:['Basic 5'],class:2,world:-1,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[

@@ -55,7 +55,7 @@ class card{
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike])
         }else{
-            return effect
+            return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
     }
     description(attack,effect){
@@ -240,7 +240,7 @@ class card{
             case 141: string+=`Convert ${this.calculateEffect(effect[0],6)}\nto Block`; break
             case 142: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Strength\nWhen Attacked`; break
             case 143: string+=`${effect[0]>0?`Deal `+this.calculateEffect(effect[0],0)+` Damage\n2 Times\n`:`\n`}Push 1 Tile`; break
-            case 144: string+=`Deal ${this.calculateEffect(effect[0],8)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)`; break
+            case 144: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)`; break
 
         }
         if(string[string.length-1]=='\n'){

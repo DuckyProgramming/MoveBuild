@@ -649,8 +649,13 @@ class battle{
                         if(allClosed){
                             transition.trigger=true
                             if(this.encounter.class==2){
-                                transition.scene='bossstash'
-                                this.setupBossStash()
+                                if(this.nodeManager.world==3){
+                                    transition.scene='victory'
+                                    this.setupStats()
+                                }else{
+                                    transition.scene='bossstash'
+                                    this.setupBossStash()
+                                }
                             }else{
                                 transition.scene='map'
                             }
@@ -663,20 +668,23 @@ class battle{
                             if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
                                 this.encounter.class=1
                             }
+                            switch(this.encounter.class){
+                                case 0:
+                                    this.overlayManager.overlays[0][a].activate([0,[
+                                        {type:1,value:[0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
+                                        {type:0,value:[floor(random(40,81))]}]])
+                                break
+                                case 1:
+                                    this.overlayManager.overlays[0][a].activate([0,[
+                                        {type:1,value:[1,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
+                                        {type:2,value:[]},
+                                        {type:0,value:[floor(random(120,201))]}]])
+                                break
+                                case 2:
+                                    this.overlayManager.overlays[0][a].activate([0,[]])
+                                break
+                            }
                             if(this.encounter.class!=2){
-                                switch(this.encounter.class){
-                                    case 0:
-                                        this.overlayManager.overlays[0][a].activate([0,[
-                                            {type:1,value:[0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
-                                            {type:0,value:[floor(random(40,81))]}]])
-                                    break
-                                    case 1:
-                                        this.overlayManager.overlays[0][a].activate([0,[
-                                            {type:1,value:[1,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
-                                            {type:2,value:[]},
-                                            {type:0,value:[floor(random(120,201))]}]])
-                                    break
-                                }
                                 if(floor(random(0,3))==0||this.relicManager.hasRelic(83,a)){
                                     this.overlayManager.overlays[0][a].activate([1,[
                                         {type:3,value:[]}]])

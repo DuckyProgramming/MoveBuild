@@ -1037,6 +1037,18 @@ class relicManager{
                     transition.scene='map'
                 }
             break
+            case 'bossstash':
+                for(let a=0,la=this.displayRelics.length;a<la;a++){
+                    if((int(key)+9)%10==a&&!this.displayRelics[a].deFade&&(this.battle.players==1&&!this.complete[0]||this.battle.players==2&&(inputs.rel.x<this.displayRelics[a].position.x&&!this.complete[0]||inputs.rel.x>this.displayRelics[a].position.x&&!this.complete[1]))){
+                        this.callInput(1,a)
+                    }
+                }
+                if(code==ENTER){
+                    transition.trigger=true
+                    this.battle.nextWorld()
+                    transition.scene='map'
+                }
+            break
         }
     }
 }

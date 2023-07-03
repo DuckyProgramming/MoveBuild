@@ -1,9 +1,12 @@
+Graphics:
+Agent Graphics
+Victory Graphics
+Characters for BossStash
+
 Bugs:
-a lot of graphical stuff
 
 Mechanics:
 Menu
-Ending
 
 Partnership Cards:
 swap with ally
