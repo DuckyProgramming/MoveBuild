@@ -10,15 +10,17 @@ Menu (and the rest of the start)
 
 Partnership Cards:
 add some more (indefinite amount)
+Buffs (buffer, strength)
+remove ally fatigue
+ally draws more cards
+steal money from ally
 
 More Cards:
-Deal Damage and Gain Energy? (Jab?)
-Attack and slow down
 Regeneration
 Shield bash
-Chain reaction
 Copy
 Impale through 2
+Kamikaze
 
 Generality:
 

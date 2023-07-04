@@ -252,13 +252,24 @@ class card{
             case 146: string+=`Add ${this.calculateEffectAlly(effect[0],1)} Block\nto Ally`; break
             case 147: string+=`Swap Places\nWith Ally`; break
             case 148: string+=`Heal ${this.calculateEffectAlly(effect[0],4)} Health\nRemove ${this.effect[1]} Health\nfrom Ally`; break
-
             case 149: string+=`Take 25% Less\nDamage For ${effect[0]} Turn${effect[0]!=1?`s`:``}`; break
             case 150: string+=`Gain ${effect[0]} Strength\nFor 2 Turns`; break
             case 151: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Etherealed, Add\nan Operational Defend`; break
             case 152: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Etherealed, Add\nan Operational Strike`; break
             case 153: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDiagonally`; break
             case 154: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Your Block`; break
+            case 155: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy`; break
+            case 156: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Temporary Slow`; break
+            case 157: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Target And to Up\nto 1 Adjacent Enemy`; break
+
+            case 158: string+=`Ally Draws ${effect[0]} More\nCards on Their Turn`; break
+            case 159: string+=`Ally Gains ${effect[0]} Strength`; break
+            case 160: string+=`Ally Gains ${effect[0]} Energy\non Their Turn`; break
+            case 161: string+='Send All Remaining\nCards to Ally'; break
+            case 162: string+=`Ally Gains ${effect[0]} Buffer`; break
+            case 163: string+=`Ally Removes ${effect[0]} Statuses`; break
+            case 164: string+=`Steal ${effect[0]} Currency\nFrom Ally`; break
+            case 165: string+=`Move Ally to Any\nEmpty Tile`; break
 
         }
         if(string[string.length-1]=='\n'){

@@ -204,9 +204,7 @@ types={
                 {effect:[1,0],attack:60,cost:-1,target:[7,0],spec:[0],class:3},
                 {effect:[1,1],attack:60,cost:-1,target:[7,1],spec:[0],class:3},
             ],
-        },
-
-        {
+        },{
             name:'Palisade',rarity:-1,list:-1,
             levels:[
                 {effect:[3],attack:149,cost:1,target:[0],spec:[],class:4},
@@ -242,6 +240,24 @@ types={
                 {effect:[2],attack:154,cost:2,target:[2,1,1],spec:[0],class:1},
                 {effect:[3],attack:154,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Jab',rarity:-1,list:-1,
+            levels:[
+                {effect:[2,1],attack:155,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4,1],attack:155,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Stop Right\nThere',rarity:-1,list:-1,
+            levels:[
+                {effect:[7,1],attack:156,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1],attack:156,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Progression',rarity:-1,list:-1,
+            levels:[
+                {effect:[7],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
         
@@ -269,10 +285,7 @@ types={
                 {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
             ],
-        },
-
-
-        {
+        },{
             name:'Electrify',rarity:1,list:1,
             levels:[
                 {effect:[6,4],attack:122,cost:1,target:[0],spec:[],class:2},
@@ -1273,6 +1286,30 @@ types={
                 {effect:[14],attack:146,cost:1,target:[0],spec:[],class:2},
             ],
         },{
+            name:'Ally\nDraw',rarity:0,list:7,
+            levels:[
+                {effect:[1],attack:158,cost:0,target:[0],spec:[],class:4},
+                {effect:[2],attack:158,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Ally\nStrengthen',rarity:0,list:7,
+            levels:[
+                {effect:[2],attack:159,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:159,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Ally\nEnergy',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:160,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1],attack:160,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Ally\nGrant',rarity:1,list:7,
+            levels:[
+                {effect:[],attack:161,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:161,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },{
             name:'Ally\nSwap',rarity:1,list:7,
             levels:[
                 {effect:[],attack:147,cost:0,target:[0],spec:[],class:3},
@@ -1283,6 +1320,30 @@ types={
             levels:[
                 {effect:[16,8],attack:148,cost:1,target:[0],spec:[1],class:4},
                 {effect:[24,12],attack:148,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Ally\nBuffer',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:162,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:162,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Ally\nCleanse',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:163,cost:1,target:[0],spec:[1],class:4},
+                {effect:[4],attack:163,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Ally\nRob',rarity:1,list:7,
+            levels:[
+                {effect:[20],attack:164,cost:1,target:[0],spec:[1],class:4},
+                {effect:[30],attack:164,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Ally\nTeleport',rarity:1,list:7,
+            levels:[
+                {effect:[],attack:165,cost:1,target:[6],spec:[1],class:3},
+                {effect:[],attack:165,cost:0,target:[6],spec:[1],class:3},
             ],
         },
 
@@ -3920,7 +3981,7 @@ shipyard visit for another time.`,
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
 
             //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Palisade',0,-1],['Prime\nTime',0,-1],['Operational\nStrike',0,-1],['Operational\nDefend',0,-1],['Diagonal\nStep',0,-1],['Defensive\nReversal',0,-1]],
+            [['Ally\nBuffer',0,-1],['Ally\nCleanse',0,-1],['Ally\nRob',0,-1],['Ally\nTeleport',0,-1],['Diagonal\nStep',0,-1],['Defensive\nReversal',0,-1]],
 
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
             //[['Facade',0,-1],['Rampage',0,-1],['Outmaneuver',0,-1],['Clash',0,-1],['Survivor',0,-1],['Parasol',0,-1]],
@@ -6134,7 +6195,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],startEnergy:3,dev:true,allMap:-1}
+game={player:[1,2],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],startEnergy:3,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}
 graphics={main:0,backgroundGen:7,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}

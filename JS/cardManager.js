@@ -172,6 +172,16 @@ class cardManager{
             }
         }
     }
+    deStatus(value){
+        let left=value
+        left-=this.reserve.deStatus(left)
+        if(left>0){
+            left-=this.discard.deStatus(left)
+        }
+        if(left>0){
+            left-=this.hand.deStatus(left)
+        }
+    }
     deFatigue(value){
         let left=value
         left-=this.reserve.deFatigue(left)
