@@ -51,7 +51,7 @@ class combatant{
             'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Next Turn Cannot Move',
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
             'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
-            'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit',
+            'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
@@ -59,7 +59,7 @@ class combatant{
                 2,0,0,0,1,1,0,0,1,2,
                 0,1,1,1,0,0,0,2,1,2,
                 2,2,0,0,0,0,2,0,0,0,
-                0,1,0,1,0,2,2,
+                0,1,0,1,0,2,2,1,2,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -67,7 +67,7 @@ class combatant{
                 1,0,2,2,0,0,0,2,3,1,
                 0,1,1,0,0,2,0,1,0,0,
                 0,2,3,0,2,2,1,0,1,1,
-                0,0,3,0,2,0,0,
+                0,0,3,0,2,0,0,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3090,6 +3090,9 @@ class combatant{
             if(this.status.main[53]>0){
                 damage*=0.333
             }
+            if(this.status.main[57]>0){
+                damage*=0.75
+            }
             if(this.status.main[25]>0&&damage>1){
                 damage=1
             }
@@ -3383,6 +3386,7 @@ class combatant{
                     case 34: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Gain Block',this.status.name)]+=this.status.main[a]; break
                     case 41: this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]; break
+                    case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
@@ -4731,6 +4735,11 @@ class combatant{
                     this.layer.triangle(-6,-8,6,-8,0,12)
                 break
                 case 'George':
+                    if(this.trigger.display.visor&&lcos(this.anim.direction)<0){
+                        this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor*0.5)
+                        this.layer.noStroke()
+                        this.layer.rect(lsin(this.anim.direction)*16,-81,24*lcos(this.anim.direction),6)
+                    }
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -4808,10 +4817,10 @@ class combatant{
                             this.minorDisplayGeneral(0,g)
                         }
                     }
-                    if(this.trigger.display.visor){
+                    if(this.trigger.display.visor&&lcos(this.anim.direction)>=0){
                         this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor*0.5)
                         this.layer.noStroke()
-                        this.layer.rect(lsin(this.anim.direction)*8,-81,24*lcos(this.anim.direction),6)
+                        this.layer.rect(lsin(this.anim.direction)*16,-81,24*lcos(this.anim.direction),6)
                     }
                     if(this.trigger.display.helmet){
                         this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)

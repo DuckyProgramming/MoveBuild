@@ -62,6 +62,15 @@ class purchaseManager{
                         let price=round(random(cost[group[a]][0],cost[group[a]][1]))
                         this.purchases.push(new purchase(this.layer,this.battle,-1,112.5+a*75,75,3,[this.battle.relicManager.hasRelic(85,0)&&a==index?0:price,this.battle.relicManager.hasRelic(85,1)&&a==index?0:price],[list[a]]))
                     }
+                    list=copyArrayStack(this.battle.cardManagers[0].listing.card[game.playerNumber+3])
+                    group=[0,1]
+                    cost=[[100,125],[140,175],[260,325]]
+                    for(let a=0,la=group.length;a<la;a++){
+                        let index=floor(random(0,list[group[a]].length))
+                        let price=round(random(cost[group[a]][0],cost[group[a]][1]))
+                        this.purchases.push(new purchase(this.layer,this.battle,-1,250+a*400,200,1,[price,price],[list[group[a]][index],0,game.playerNumber+3]))
+                        list[group[a]].splice(index,1)
+                    }
                     this.purchases.push(new purchase(this.layer,this.battle,0,150,200,2,[this.battle.relicManager.hasRelic(97,0)?120:200,this.battle.relicManager.hasRelic(97,1)?120:200],[]))
                     this.purchases.push(new purchase(this.layer,this.battle,1,750,200,2,[this.battle.relicManager.hasRelic(97,0)?120:200,this.battle.relicManager.hasRelic(97,1)?120:200],[]))
                 }

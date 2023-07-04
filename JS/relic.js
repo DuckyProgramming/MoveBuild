@@ -698,7 +698,7 @@ class relic{
                     this.layer.text('2',0,0)
                 break
                 case '5 Turn Intangible':
-                    displaySymbol(this.layer,-8,0,48,0,1.5,this.fade)
+                    displaySymbol(this.layer,-8,0,48,0,1.2,this.fade)
                     displaySymbol(this.layer,7,10,4,0,0.6,this.fade)
                     displaySymbol(this.layer,7,-10,5,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)

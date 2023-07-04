@@ -525,6 +525,15 @@ function legalTarget(type,lengthStart,lengthEnd,x,y){
 			return false
 	}
 }
+function legalTargetDiagonal(type,lengthStart,lengthEnd,x,y){
+	switch(type){
+		case 0:
+			if((x==-y&&abs(x)>=lengthStart&&abs(x)<=lengthEnd||x==y/2&&abs(x)>=lengthStart&&abs(x)<=lengthEnd||y==x/2&&abs(y)>=lengthStart&&abs(y)<=lengthEnd)&&(x!=0||y!=0)){
+				return true
+			}
+			return false
+	}
+}
 function distTarget(type,x,y){
 	switch(type){
 		case 0:
@@ -535,6 +544,24 @@ function distTarget(type,x,y){
 				return abs(x)
 			}
 			if(x==0&&y!=0){
+				return abs(y)
+			}
+			if(x==0&&y==0){
+				return 0
+			}
+			return -1
+	}
+}
+function distTargetDiagonal(type,x,y){
+	switch(type){
+		case 0:
+			if(x==-y&&x!=0){
+				return abs(x)
+			}
+			if(x==y/2&&x!=0){
+				return abs(x)
+			}
+			if(y==x/2&&y!=0){
 				return abs(y)
 			}
 			if(x==0&&y==0){
@@ -610,8 +637,51 @@ function legalTargetCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,t
 	}
 	return false
 }
+function legalTargetDiagonalCombatant(type,lengthStart,lengthEnd,combatant1,combatant2,tiles){
+	switch(type){
+		case 0:
+			if(legalTargetDiagonal(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
+				let length=distTargetDiagonal(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
+				let valid=[]
+				for(let a=0,la=length;a<la;a++){
+					valid.push(false)
+				}
+				for(let a=0,la=tiles.length;a<la;a++){
+					for(let b=0,lb=valid.length;b<lb;b++){
+						if(tiles[a].occupied==0&&tiles[a].tilePosition.x==map((b+1)/(length+1),0,1,combatant1.tilePosition.x,combatant2.tilePosition.x)&&tiles[a].tilePosition.y==map((b+1)/(length+1),0,1,combatant1.tilePosition.y,combatant2.tilePosition.y)){
+							valid[b]=true
+						}
+					}
+				}
+				for(let a=0,la=valid.length;a<la;a++){
+					if(!valid[a]){
+						return false
+					}
+				}
+				return true
+			}
+		break
+		case 1:
+			if(legalTargetDiagonal(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)){
+				let length=distTargetDiagonal(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)-1
+				for(a=0,la=tiles.length;a<la;a++){
+					if(tiles[a].occupied==1&&legalTargetDiagonal(0,0,length,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)&&targetDirection(0,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)==targetDirection(0,tiles[a].tilePosition.x-combatant2.tilePosition.x,tiles[a].tilePosition.y-combatant2.tilePosition.y)){
+						return true
+					}
+				}
+				return false
+			}
+		break
+		case 2:
+			return legalTargetDiagonal(0,lengthStart,lengthEnd,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
+	}
+	return false
+}
 function distTargetCombatant(type,combatant1,combatant2){
 	return distTarget(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
+}
+function distTargetDiagonalCombatant(type,combatant1,combatant2){
+	return distTargetDiagonal(type,combatant1.tilePosition.x-combatant2.tilePosition.x,combatant1.tilePosition.y-combatant2.tilePosition.y)
 }
 function transformDirection(type,direction){
 	switch(type){

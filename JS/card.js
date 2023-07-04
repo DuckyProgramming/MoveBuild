@@ -58,6 +58,14 @@ class card{
             return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
     }
+    calculateEffectAlly(effect,type){
+        if(stage.scene=='battle'){
+            let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player)]
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike])
+        }else{
+            return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
+        }
+    }
     description(attack,effect){
         let string=''
         if(this.spec.includes(5)){
@@ -236,11 +244,21 @@ class card{
             case 138: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide`; break
             case 139: string+=`Deal ${this.calculateEffect(effect[0],0)}+${effect[1]!=1?`${effect[1]}*`:``}Combo\nDamage 3 Tiles Wide\nEnd Combel`; break
             case 140: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIgnore Block`; break
-
             case 141: string+=`Convert ${this.calculateEffect(effect[0],6)}\nto Block`; break
             case 142: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Strength\nWhen Attacked`; break
             case 143: string+=`${effect[0]>0?`Deal `+this.calculateEffect(effect[0],0)+` Damage\n2 Times\n`:`\n`}Push 1 Tile`; break
             case 144: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)`; break
+            case 145: string+=`Heal ${this.calculateEffectAlly(effect[0],4)} Health\nto Ally`; break
+            case 146: string+=`Add ${this.calculateEffectAlly(effect[0],1)} Block\nto Ally`; break
+            case 147: string+=`Swap Places\nWith Ally`; break
+            case 148: string+=`Heal ${this.calculateEffectAlly(effect[0],4)} Health\nRemove ${this.effect[1]} Health\nfrom Ally`; break
+
+            case 149: string+=`Take 25% Less\nDamage For ${effect[0]} Turn${effect[0]!=1?`s`:``}`; break
+            case 150: string+=`Gain ${effect[0]} Strength\nFor 2 Turns`; break
+            case 151: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Etherealed, Add\nan Operational Defend`; break
+            case 152: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Etherealed, Add\nan Operational Strike`; break
+            case 153: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDiagonally`; break
+            case 154: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Your Block`; break
 
         }
         if(string[string.length-1]=='\n'){
@@ -324,16 +342,26 @@ class card{
     playable(){
         return !this.spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)
     }
+    etherealed(){
+        switch(this.attack){
+            case 151:
+                this.battle.cardManagers[this.player].hand.add(findName('Operational\nDefend',types.card),this.level,this.color)
+            break
+            case 152:
+                this.battle.cardManagers[this.player].hand.add(findName('Operational\nStrike',types.card),this.level,this.color)
+            break
+        }
+    }
     display(){
         if(this.size>0&&this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
             this.layer.scale(this.size)
-            this.layer.fill(255,this.fade*this.anim.select)
+            this.layer.fill(this.colorDetail.active[0],this.colorDetail.active[1],this.colorDetail.active[2],this.fade*this.anim.select)
             this.layer.noStroke()
             this.layer.rect(0,0,this.width+15,this.height+15,10)
-            this.layer.fill(this.colorDetail.fill,this.fade)
-            this.layer.stroke(this.colorDetail.stroke,this.fade)
+            this.layer.fill(this.colorDetail.fill[0],this.colorDetail.fill[1],this.colorDetail.fill[2],this.fade)
+            this.layer.stroke(this.colorDetail.stroke[0],this.colorDetail.stroke[1],this.colorDetail.stroke[2],this.fade)
             this.layer.strokeWeight(5)
             this.layer.rect(0,0,this.width,this.height,5)
             if(this.spec.includes(12)){
@@ -341,7 +369,7 @@ class card{
             }
             if(this.spec.includes(8)){
                 this.layer.noStroke()
-                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
+                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(16)
                 if(this.spec.includes(10)){
                     this.layer.text('Slimed',0,-12)
@@ -351,13 +379,20 @@ class card{
                 }
             }else if(this.spec.includes(10)){
                 this.layer.noStroke()
-                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
+                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(16)
                 this.layer.text('Smoked',0,0)
             }else{
                 if(this.player==-1){
                     this.layer.noStroke()
-                    this.layer.fill(150,this.fade)
+                    switch(this.color){
+                        case game.playerNumber+3:
+                            this.layer.fill(255,100,100,this.fade)
+                        break
+                        default:
+                            this.layer.fill(150,this.fade)
+                        break
+                    }
                     this.layer.rect(0,0,3,this.height+5)
                 }
                 if(this.spec.includes(6)){
@@ -394,7 +429,7 @@ class card{
                         this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
                     }
                 }
-                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1)),this.level/2,this.fade)
+                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(10)
                 this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
                 this.layer.fill(0,this.fade)

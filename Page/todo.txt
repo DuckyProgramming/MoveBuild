@@ -6,25 +6,17 @@ Characters for BossStash
 Bugs:
 
 Mechanics:
-Menu
+Menu (and the rest of the start)
 
 Partnership Cards:
-swap with ally
-heal ally
-take ally's health
-block ally
+add some more (indefinite amount)
 
 More Cards:
-Swap Play (swaps between strike and defend, retain)
 Deal Damage and Gain Energy? (Jab?)
 Attack and slow down
 Regeneration
-2 Turn Strength
-Reduce damage taken by 25%
 Shield bash
 Chain reaction
-Temporary ignore block
-Diagonal move
 Copy
 Impale through 2
 
