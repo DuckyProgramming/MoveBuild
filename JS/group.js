@@ -864,12 +864,20 @@ class group{
                                 this.cards[a].discardEffect=[]
                             }
                         }else if(this.cards[a].exhaust){
-                            if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){
-                                this.battle.relicManager.activate(10,[this.player])
+                            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                            if(userCombatant.getStatus('Cancel Exhaust')>0){
+                                userCombatant.status.main[findList('Cancel Exhaust',userCombatant.status.name)]--
+                                this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                a--
+                                la--
+                            }else{
+                                if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){
+                                    this.battle.relicManager.activate(10,[this.player])
+                                }
+                                this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
+                                a--
+                                la--
                             }
-                            this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
-                            a--
-                            la--
                         }else{
                             this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
                             a--

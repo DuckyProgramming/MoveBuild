@@ -52,6 +52,7 @@ class combatant{
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
             'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
             'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
+            'Untargettable From Front','Cancel Exhaust',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
@@ -60,6 +61,7 @@ class combatant{
                 0,1,1,1,0,0,0,2,1,2,
                 2,2,0,0,0,0,2,0,0,0,
                 0,1,0,1,0,2,2,1,2,2,
+                1,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -68,6 +70,7 @@ class combatant{
                 0,1,1,0,0,2,0,1,0,0,
                 0,2,3,0,2,2,1,0,1,1,
                 0,0,3,0,2,0,0,0,0,1,
+                0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad

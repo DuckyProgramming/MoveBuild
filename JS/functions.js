@@ -804,3 +804,6 @@ Bosses:${current.nodeManager.listing.encounter[3][2].length}/1
 Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/3
 	`)
 }
+function shut(){
+	print('s')
+}

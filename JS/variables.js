@@ -285,7 +285,89 @@ types={
                 {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
             ],
+        },
+        
+        
+        
+        {
+            name:'Security\nPack',rarity:-1,list:1,
+            levels:[
+                {effect:[],attack:166,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:167,cost:0,target:[0],spec:[1,2],class:4},
+            ],
         },{
+            name:'Sapper\nPack',rarity:-1,list:1,
+            levels:[
+                {effect:[],attack:168,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:169,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'Infantry\nPack',rarity:-1,list:1,
+            levels:[
+                {effect:[],attack:170,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:171,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },
+        
+        {
+            name:'Riot\nShield',rarity:-1,list:1,
+            levels:[
+                {effect:[1],attack:172,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:172,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Pepper\nSpray',rarity:-1,list:1,
+            levels:[
+                {effect:[2],attack:173,cost:1,target:[2,1,2],spec:[1],class:1},
+                {effect:[3],attack:173,cost:1,target:[2,1,2],spec:[1],class:1},
+            ],
+        },{
+            name:'Shock\nBaton',rarity:-1,list:1,
+            levels:[
+                {effect:[8,1],attack:174,cost:1,target:[2,1,1],spec:[1],class:1},
+                {effect:[12,1],attack:174,cost:1,target:[2,1,1],spec:[1],class:1},
+            ],
+        },{
+            name:'Flamethrower',rarity:-1,list:1,
+            levels:[
+                {effect:[6],attack:175,cost:1,target:[2,1,1],spec:[1],class:1},
+                {effect:[8],attack:175,cost:1,target:[2,1,1],spec:[1],class:1},
+            ],
+        },{
+            name:'Impact\nGrenade',rarity:-1,list:1,
+            levels:[
+                {effect:[12],attack:176,cost:2,target:[2,1,3],spec:[1],class:1},
+                {effect:[15],attack:176,cost:2,target:[2,1,3],spec:[1],class:1},
+            ],
+        },{
+            name:'Landmine',rarity:-1,list:1,
+            levels:[
+                {effect:[],attack:177,cost:1,target:[1,1,1],spec:[1],class:4},
+                {effect:[],attack:177,cost:1,target:[1,1,1],spec:[1],class:4},
+            ],
+        },{
+            name:'Submachine',rarity:-1,list:1,
+            levels:[
+                {effect:[7],attack:178,cost:3,target:[2,1,3],spec:[1],class:1},
+                {effect:[9],attack:178,cost:3,target:[2,1,3],spec:[1],class:1},
+            ],
+        },{
+            name:'Antitank\nRocket',rarity:-1,list:1,
+            levels:[
+                {effect:[6],attack:179,cost:3,target:[2,1,6],spec:[1],class:1},
+                {effect:[8],attack:179,cost:3,target:[2,1,6],spec:[1],class:1},
+            ],
+        },{
+            name:'Ammo\nBox',rarity:-1,list:1,
+            levels:[
+                {effect:[1],attack:180,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2],attack:180,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },
+        
+        
+        
+        {
             name:'Electrify',rarity:1,list:1,
             levels:[
                 {effect:[6,4],attack:122,cost:1,target:[0],spec:[],class:2},
@@ -3981,7 +4063,7 @@ shipyard visit for another time.`,
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
 
             //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Ally\nBuffer',0,-1],['Ally\nCleanse',0,-1],['Ally\nRob',0,-1],['Ally\nTeleport',0,-1],['Diagonal\nStep',0,-1],['Defensive\nReversal',0,-1]],
+            [['Submachine',0,-1],['Antitank\nRocket',0,-1],['Ammo\nBox',0,-1],['Flamethrower',0,-1],['Impact\nGrenade',0,-1],['Landmine',0,-1]],
 
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
             //[['Facade',0,-1],['Rampage',0,-1],['Outmaneuver',0,-1],['Clash',0,-1],['Survivor',0,-1],['Parasol',0,-1]],

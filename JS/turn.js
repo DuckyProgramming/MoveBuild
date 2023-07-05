@@ -402,14 +402,17 @@ class turn{
                                 this.remove=true
                             }else{
                                 this.targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[0]]
+                                if(abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10){
+                                    this.remove=true
+                                }else{
+                                    this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                    this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
 
-                                this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
-                                this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                    this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                    this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
 
-                                this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
-                                this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
-
-                                this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
+                                    this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
+                                }
                             }
                         }else if(this.type==9||this.type==28||this.type==44||this.type==53||this.type==60||this.type==64||this.type==69||this.type==82||this.type==85||this.type==86||
                             this.type==87||this.type==95||this.type==104||this.type==105||this.type==114||this.type==120||this.type==124||this.type==142||this.type==146||this.type==153||
@@ -428,15 +431,17 @@ class turn{
                                     }
                                 }else{
                                     let targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
-                                    this.targetCombatant.push(targetCombatant)
+                                    if(!(abs(this.userCombatant.goal.anim.direction-targetCombatant+180)<10||abs(this.userCombatant.goal.anim.direction-targetCombatant-180)<10)){
+                                        this.targetCombatant.push(targetCombatant)
 
-                                    this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
-                                    this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
+                                        this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
+                                        this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
 
-                                    this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
-                                    this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
+                                        this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
+                                        this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
 
-                                    this.targetDistance.push(distTargetCombatant(0,this.userCombatant,targetCombatant))
+                                        this.targetDistance.push(distTargetCombatant(0,this.userCombatant,targetCombatant))
+                                    }
                                 }
                             }
                             if(this.targetCombatant.length==0&&this.attackClass!=5){
@@ -451,7 +456,9 @@ class turn{
                                     }
                                 }else{
                                     let targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
-                                    this.direction=atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y)
+                                    if(!(abs(this.userCombatant.goal.anim.direction-this.targetCombatant+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant-180)<10)){
+                                        this.direction=atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y)
+                                    }
                                 }
                             }
                         }else{
@@ -528,16 +535,19 @@ class turn{
                                         }
                                     }else{
                                         this.targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
+                                        if(abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10){
+                                            this.targetCombatant=-1
+                                        }else{
+                                            this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
 
-                                        this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                            this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
 
-                                        this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                            this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                            this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
 
-                                        this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
-                                        this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
-
-                                        this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
-                                        break
+                                            this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
+                                            break
+                                        }
                                     }
                                 }
                             }

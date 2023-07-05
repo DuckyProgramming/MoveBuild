@@ -8,13 +8,6 @@ Bugs:
 Mechanics:
 Menu (and the rest of the start)
 
-Partnership Cards:
-add some more (indefinite amount)
-Buffs (buffer, strength)
-remove ally fatigue
-ally draws more cards
-steal money from ally
-
 More Cards:
 Regeneration
 Shield bash
@@ -34,3 +27,7 @@ First Character Gimmick
 
 Dictionary Additions:
 conditionin
+
+Done for now:
+
+Partnership Cards

@@ -187,7 +187,7 @@ class card{
             case 79: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Ouroboros With\n+${effect[1]} Damage to Discard`; break
             case 80: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Frail`; break
             case 81: string+=`Apply ${effect[0]} Poison`; break
-            case 82: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage`; break
+            case 82: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nCan be Thrown\nThrough Things`; break
             case 83: string+=`Apply ${effect[0]} Stun`; break
             case 86: string+=`Apply ${effect[0]} Frail`; break
             case 87: string+=`Move to Any Tile\nDestroy its\nOccupants`; break
@@ -261,7 +261,6 @@ class card{
             case 155: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy`; break
             case 156: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Temporary Slow`; break
             case 157: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Target And to Up\nto 1 Adjacent Enemy`; break
-
             case 158: string+=`Ally Draws ${effect[0]} More\nCards on Their Turn`; break
             case 159: string+=`Ally Gains ${effect[0]} Strength`; break
             case 160: string+=`Ally Gains ${effect[0]} Energy\non Their Turn`; break
@@ -270,6 +269,25 @@ class card{
             case 163: string+=`Ally Removes ${effect[0]} Statuses`; break
             case 164: string+=`Steal ${effect[0]} Currency\nFrom Ally`; break
             case 165: string+=`Move Ally to Any\nEmpty Tile`; break
+
+            case 166: string+=`Add to Hand:\nRiot Shield\nPepper Spray\nShock Baton`; break
+            case 167: string+=`Add to Hand:\nRiot Shield\nPepper Spray\nShock Baton\nUpgrade 1\nat Random`; break
+            case 168: string+=`Add to Hand:\nFlamethrower\nImpact Grenade\nLandmine`; break
+            case 169: string+=`Add to Hand:\nFlamethrower\nImpact Grenade\nLandmine\nUpgrade 1\nat Random`; break
+            case 170: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box`; break
+            case 171: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box\nUpgrade 1\nat Random`; break
+
+            case 172: string+=`You Cannot Take\nFrontal Damage\nFor ${effect[0]} Turns`; break
+            case 173: string+=`Target Moves in\na Random Direction`; break
+            case 174: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Stun`; break
+
+            case 175: string+=`Apply ${effect[0]} Burn\n3 Tiles Wide`; break
+            case 176: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nIgnore Block`; break
+            case 177: string+=`Create 1 Landmine`; break
+
+            case 178: string+=`Deal ${this.calculateEffect(effect[0],0)} Decrementing\nDamage 4 Times`; break
+            case 179: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nPushes Without\nSplash at Range 1`; break
+            case 180: string+=`Your Next ${effect[0]} Exhausts\nDo Not Occur`; break
 
         }
         if(string[string.length-1]=='\n'){
