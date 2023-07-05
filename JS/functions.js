@@ -757,10 +757,23 @@ function updateMouse(layer){
 	inputs.rel.y=(inputs.mouse.y-height/2)/stage.scale+layer.height/2
 }
 function quickAdd(name){
-	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0)
+	if(findName(name,types.card)>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0)
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
 }
 function kill(index){
-	current.combatantManager.combatants[index].life=0
+	if(index<current.combatantManager.combatants.length){
+		current.combatantManager.combatants[index].life=0
+		return 'Dead'
+	}else{
+		return 'Invalid'
+	}
+}
+function player(index){
+	return current.combatantManager.combatants[index]
 }
 function enemy(index){
 	return current.combatantManager.combatants[index+current.players]
@@ -803,6 +816,30 @@ Elites:${current.nodeManager.listing.encounter[3][1].length}/2
 Bosses:${current.nodeManager.listing.encounter[3][2].length}/1
 (${current.nodeManager.listing.name[3][2].join(',')})
 Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/3
+	`)
+}
+function outListing(){
+	print(`
+Colorless:
+Common:${current.cardManagers[0].listing.card[0][0].length}
+Uncommon:${current.cardManagers[0].listing.card[0][1].length}
+Rare:${current.cardManagers[0].listing.card[0][2].length}
+Total:${current.cardManagers[0].listing.card[0][3].length}
+\n${types.combatant[1].name}:
+Common:${current.cardManagers[0].listing.card[1][0].length}
+Uncommon:${current.cardManagers[0].listing.card[1][1].length}
+Rare:${current.cardManagers[0].listing.card[1][2].length}
+Total:${current.cardManagers[0].listing.card[1][3].length}
+\n${types.combatant[2].name}:
+Common:${current.cardManagers[0].listing.card[2][0].length}
+Uncommon:${current.cardManagers[0].listing.card[2][1].length}
+Rare:${current.cardManagers[0].listing.card[2][2].length}
+Total:${current.cardManagers[0].listing.card[2][3].length}
+\n${types.combatant[3].name}:
+Common:${current.cardManagers[0].listing.card[3][0].length}
+Uncommon:${current.cardManagers[0].listing.card[3][1].length}
+Rare:${current.cardManagers[0].listing.card[3][2].length}
+Total:${current.cardManagers[0].listing.card[3][3].length}
 	`)
 }
 function shut(){

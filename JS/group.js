@@ -63,6 +63,34 @@ class group{
             }
         }
     }
+    addFree(type,level,color,variant){
+        game.id++
+        if(types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
+            this.battle.relicManager.active[66]--
+            if(this.battle.relicManager.active[66]<=0){
+                this.battle.relicManager.deactivate(66)
+            }
+        }else{
+            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
+            this.cards[this.cards.length-1].cost=0
+            if(variant==1){
+                this.cards[this.cards.length-1].base.cost=0
+            }
+            if(this.battle.initialized&&this.id==0){
+                if(
+                    this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
+                    this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
+                    this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
+                    this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player)){
+                    this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+                }
+                this.battle.relicManager.activate(5,[this.player])
+                if(types.card[type].rarity>=0||types.card[type].list>=0){
+                    this.battle.stats.card[this.player]++
+                }
+            }
+        }
+    }
     addDrop(type,level,color){
         game.id++
         this.cards.push(new card(this.layer,this.battle,this.player,40,-100-this.cards.length*200,type,level,color,game.id))
@@ -239,6 +267,11 @@ class group{
                 break
                 case 14:
                     if(this.cards[a].cost>0){
+                        this.cards[a].cost--
+                    }
+                break
+                case 15:
+                    if(this.cards[a].spec.includes(11)){
                         this.cards[a].cost--
                     }
                 break
@@ -878,6 +911,7 @@ class group{
                                 if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){
                                     this.battle.relicManager.activate(10,[this.player])
                                 }
+                                this.cards[a].callExhaustEffect()
                                 this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
                                 a--
                                 la--

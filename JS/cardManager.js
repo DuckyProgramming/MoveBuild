@@ -57,8 +57,11 @@ class cardManager{
     randomEffect(group,effect,args){
         this.getList(group).randomEffect(effect,args)
     }
-    addRandom(group,level){
-        this.getList(group).add(this.listing.card[this.battle.player[this.player]][3][floor(random(0,this.listing.card[this.battle.player[this.player]][3].length))],level,this.battle.player[this.player])
+    addRandom(group,level,cardClass){
+        this.getList(group).add(this.listing.card[this.battle.player[this.player]][cardClass][floor(random(0,this.listing.card[this.battle.player[this.player]][3].length))],level,this.battle.player[this.player])
+    }
+    addRandomFree(group,level,cardClass,variant){
+        this.getList(group).addFree(this.listing.card[this.battle.player[this.player]][cardClass][floor(random(0,this.listing.card[this.battle.player[this.player]][3].length))],level,this.battle.player[this.player],variant)
     }
     addRandomClass(group,level,cardClass){
         let list=[]

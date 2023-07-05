@@ -509,9 +509,7 @@ types={
                 {effect:[15],attack:140,cost:5,target:[2,1,1],spec:[0,11],class:1},
                 {effect:[23],attack:140,cost:5,target:[2,1,1],spec:[0,11],class:1},
             ],
-        },
-
-        {
+        },{
             name:'Defensive\nPosition',rarity:1,list:1,
             levels:[
                 {effect:[4],attack:141,cost:1,target:[0],spec:[],class:2},
@@ -532,26 +530,26 @@ types={
         },{
             name:'Option\nPlay',rarity:0,list:1,
             levels:[
-                {effect:[[8],[6]],attack:[1,2],cost:1,target:[10,1,1],spec:[12],class:[1,2]},
-                {effect:[[12],[9]],attack:[1,2],cost:1,target:[10,1,1],spec:[12],class:[1,2]},
+                {effect:[[8],[6]],attack:[1,2],cost:1,target:[10,1,1],spec:[12],reality:[[0],[]],class:[1,2]},
+                {effect:[[12],[9]],attack:[1,2],cost:1,target:[10,1,1],spec:[12],reality:[[0],[]],class:[1,2]},
             ],
         },{
             name:'Punch-Kick\nCombo',rarity:1,list:1,
             levels:[
-                {effect:[10],attack:143,cost:2,target:[2,1,1],spec:[],class:1},
-                {effect:[14],attack:143,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[10],attack:143,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[14],attack:143,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'One Last\nThing',rarity:0,list:1,
             levels:[
-                {effect:[2],attack:144,cost:1,target:[2,1,1],spec:[],class:1},
-                {effect:[3],attack:144,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[2],attack:144,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:144,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Option\nAssault',rarity:1,list:1,
             levels:[
-                {effect:[[7],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],class:[1,3]},
-                {effect:[[11],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],class:[1,3]},
+                {effect:[[7],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],reality:[[0],[]],class:[1,3]},
+                {effect:[[11],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],reality:[[0],[]],class:[1,3]},
             ],
         },{
             name:'Dodge\nCounter',rarity:1,list:1,
@@ -562,8 +560,8 @@ types={
         },{
             name:'Dynamic\nMove',rarity:1,list:1,
             levels:[
-                {effect:[1,2,8],attack:182,cost:1,target:[1,1,1],spec:[],class:3},
-                {effect:[2,3,8],attack:182,cost:1,target:[1,1,2],spec:[],class:3},
+                {effect:[1,2,8],attack:182,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[2,3,8],attack:182,cost:1,target:[1,1,2],spec:[0],class:3},
             ],
         },{
             name:'Back\nPocket',rarity:1,list:1,
@@ -580,8 +578,8 @@ types={
         },{
             name:'Rising\nUpper',rarity:2,list:1,
             levels:[
-                {effect:[12,1],attack:185,cost:2,target:[2,1,1],spec:[],class:1},
-                {effect:[18,1],attack:185,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[12,1],attack:185,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[18,1],attack:185,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Flow\nState',rarity:2,list:1,
@@ -592,8 +590,8 @@ types={
         },{
             name:'Uncontrolled\nPower',rarity:2,list:1,
             levels:[
-                {effect:[24,8],attack:187,cost:2,target:[2,1,1],spec:[],class:1},
-                {effect:[32,8],attack:187,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[24,8],attack:187,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[32,8],attack:187,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'This is\nPersonal',rarity:2,list:1,
@@ -604,8 +602,8 @@ types={
         },{
             name:'Enraging\nBlow',rarity:2,list:1,
             levels:[
-                {effect:[14],attack:189,cost:1,target:[2,1,1],spec:[],class:1},
-                {effect:[20],attack:189,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[14],attack:189,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[20],attack:189,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Absorb\nAttacks',rarity:0,list:1,
@@ -616,20 +614,20 @@ types={
         },{
             name:'Obliterate',rarity:2,list:1,
             levels:[
-                {effect:[5],attack:191,cost:2,target:[2,1,1],spec:[],class:1},
-                {effect:[8],attack:191,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[5],attack:191,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:191,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Kinetic\nMove',rarity:1,list:1,
             levels:[
-                {effect:[2,2],attack:192,cost:2,target:[1,1,2],spec:[],class:3},
-                {effect:[2,4],attack:192,cost:2,target:[1,1,2],spec:[],class:3},
+                {effect:[2,2],attack:192,cost:2,target:[1,1,2],spec:[0],class:3},
+                {effect:[2,4],attack:192,cost:2,target:[1,1,2],spec:[0],class:3},
             ],
         },{
             name:'Twist\nKick',rarity:0,list:1,
             levels:[
-                {effect:[13],attack:193,cost:2,target:[2,1,1],spec:[],class:1},
-                {effect:[21],attack:193,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[13],attack:193,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[21],attack:193,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Iron\nBody',rarity:1,list:1,
@@ -646,8 +644,8 @@ types={
         },{
             name:'Reflex\nStrike',rarity:0,list:1,
             levels:[
-                {effect:[8,1],attack:196,cost:1,target:[2,1,1],spec:[],class:1},
-                {effect:[12,1],attack:196,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[8,1],attack:196,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:196,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Start\nStrong',rarity:0,list:1,
@@ -655,7 +653,116 @@ types={
                 {effect:[10,1],attack:197,cost:1,target:[0],spec:[3],class:2},
                 {effect:[14,1],attack:197,cost:1,target:[0],spec:[3],class:2},
             ],
+        },{
+            name:'Combo\nJuice',rarity:1,list:1,
+            levels:[
+                {effect:[2],attack:198,cost:1,target:[0],spec:[1],class:4},
+                {effect:[3],attack:198,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Plan of\nAction',rarity:2,list:1,
+            levels:[
+                {effect:[1],attack:199,cost:1,target:[0],spec:[1],class:4},
+                {effect:[0],attack:199,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Extra\nReps',rarity:1,list:1,
+            levels:[
+                {effect:[4,4],attack:200,cost:1,target:[0],spec:[],class:4},
+                {effect:[4,4],attack:200,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Separate',rarity:0,list:1,
+            levels:[
+                {effect:[5],attack:201,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:201,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Utility\nPack',rarity:1,list:1,
+            levels:[
+                {effect:[1,6],attack:202,cost:0,target:[0],spec:[],class:4},
+                {effect:[2,8],attack:202,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Power\nThrough',rarity:0,list:1,
+            levels:[
+                {effect:[4],attack:203,cost:1,target:[0],spec:[],class:4},
+                {effect:[6],attack:203,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Prime\nMover',rarity:1,list:1,
+            levels:[
+                {effect:[1,1],attack:204,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1,3],attack:204,cost:2,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Shimmy',rarity:1,list:1,
+            levels:[
+                {effect:[1],attack:205,cost:2,target:[1,1,1],spec:[1],class:3},
+                {effect:[1],attack:205,cost:1,target:[1,1,1],spec:[1],class:3},
+            ],
+        },{
+            name:'Big\nBlock',rarity:0,list:1,
+            levels:[
+                {effect:[20],attack:2,cost:2,target:[0],spec:[],class:2},
+                {effect:[28],attack:2,cost:2,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Recycle',rarity:1,list:1,
+            levels:[
+                {effect:[6],attack:206,cost:1,target:[0],spec:[],class:4},
+                {effect:[8],attack:206,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Change\nof Heart',rarity:1,list:1,
+            levels:[
+                {effect:[1,2],attack:207,cost:0,target:[0],spec:[],class:4},
+                {effect:[1,3],attack:207,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Accelerate',rarity:1,list:1,
+            levels:[
+                {effect:[4],attack:208,cost:7,target:[2,1,3],spec:[0,11],class:1},
+                {effect:[5],attack:208,cost:7,target:[2,1,3],spec:[0,11],class:1},
+            ],
+        },{
+            name:'Deft',rarity:1,list:1,
+            levels:[
+                {effect:[1],attack:209,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:210,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Double\nDodge Punch',rarity:2,list:1,
+            levels:[
+                {effect:[20],attack:211,cost:9,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[28],attack:211,cost:9,target:[2,1,1],spec:[0,11],class:1},
+            ],
+        },{
+            name:'Energy\nBooster',rarity:2,list:1,
+            levels:[
+                {effect:[1],attack:212,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:212,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Prepping\nUp',rarity:1,list:1,
+            levels:[
+                {effect:[1,2],attack:213,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,2],attack:213,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Field\nPromotion',rarity:1,list:1,
+            levels:[
+                {effect:[1,1],attack:214,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,1],attack:214,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Rev\nUp',rarity:1,list:1,
+            levels:[
+                {effect:[6,5],attack:215,cost:1,target:[0],spec:[],class:4},
+                {effect:[10,5],attack:215,cost:0,target:[0],spec:[],class:4},
+            ],
         },
+
 
         
         {

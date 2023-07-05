@@ -576,7 +576,7 @@ class eventManager{
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
                         }else if(this.page==3&&a==0){
-                            this.battle.cardManagers[this.player].addRandom(0,0)
+                            this.battle.cardManagers[this.player].addRandom(0,0,3)
                         }
                     break
                     case 54:
@@ -588,7 +588,7 @@ class eventManager{
                     break
                     case 55:
                         if(this.page==1&&a==0){
-                            this.battle.cardManagers[this.player].addRandom(0,0)
+                            this.battle.cardManagers[this.player].addRandom(0,0,3)
                         }else if(this.page==2&&a==0){
                             userCombatant.safeDamage(99)
                         }else if(this.page==3&&a==0){
@@ -623,7 +623,7 @@ class eventManager{
                     case 59:
                         if(this.page==1&&a==0){
                             for(let a=0,la=5;a<la;a++){
-                                this.battle.cardManagers[this.player].addRandom(0,0)
+                                this.battle.cardManagers[this.player].addRandom(0,0,3)
                             }
                         }else if(this.page==2&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)
