@@ -14,7 +14,7 @@ function setup(){
 
     stage.scene='battle'
     current.setupBattle(types.encounter[1])
-    current.nodeManager.world=2
+    //current.nodeManager.world=2
 
     /*current.overlayManager.overlays[0][0].active=true
     current.overlayManager.overlays[0][1].active=true

@@ -150,7 +150,7 @@ function pointInsideBox(point,box){
 }
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
-		case 0: case 2: case 5: case 7:
+		case 0: case 2: case 5: case 7: case 8:
 			let damage=effect
 			let bonus=0
 			let totalStr=0
@@ -189,7 +189,8 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 0: return damage==effect&&bonus==0?effect:effect+`(${damage+bonus})`
 				case 2: return (damage==effect&&bonus==0?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
 				case 5: return (damage==effect&&bonus==0?effect+'XX':effect+`(${damage})XX`)+(bonus>0?`(+${bonus})`:``)
-				case 7: return effect==1?(damage==effect?'Combo':`1(${damage})*Combo`):(damage==effect?effect+'*Combo':effect+`(${damage})*Combo`)
+				case 7: return effect==1?(damage==effect?'1*Combo':`1(${damage})*Combo`):(damage==effect?effect+'*Combo':effect+`(${damage})*Combo`)
+				case 8: return effect==1?(damage==effect&&bonus==0?effect+'1*Combo':effect+`1(${damage})*Combo`)+(bonus>0?`(+${bonus})`:``):(damage==effect&&bonus==0?effect+'*Combo':effect+`(${damage})*Combo`)+(bonus>0?`(+${bonus})`:``)
 
 			}
 		case 1: case 3: case 6:
@@ -266,7 +267,7 @@ function intentDescription(attack,user,info){
 		case 34: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nGain 1 Combo Per Hit\nRange 1-1`
 		case 35: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nGain 1 Combo\nRange 1-1`
 		case 36: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain 1 Combo Per Hit\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
-		case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage + ${info?calculateIntent(attack.effect[1],user,0):`?`} Per Combo\nGain 1 Combo Per Hit\nRange 1-1`
+		case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage+${info?calculateIntent(attack.effect[1],user,0):`?`}*Combo\nGain 1 Combo Per Hit\nRange 1-1`
 		case 38: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
 		case 39: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[0]>0?`s`:``):`?`}`
 		case 40: return `Create ${info?attack.effect[0]:`?`} Landmine${attack.effect[0]!=1?`s`:``}`;

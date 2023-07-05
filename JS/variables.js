@@ -307,13 +307,11 @@ types={
                 {effect:[],attack:170,cost:0,target:[0],spec:[1,2],class:4},
                 {effect:[],attack:171,cost:0,target:[0],spec:[1,2],class:4},
             ],
-        },
-        
-        {
+        },{
             name:'Riot\nShield',rarity:-1,list:1,
             levels:[
-                {effect:[1],attack:172,cost:1,target:[0],spec:[1],class:4},
-                {effect:[1],attack:172,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:172,cost:1,target:[0],spec:[1],class:2},
+                {effect:[1],attack:172,cost:1,target:[0],spec:[1],class:2},
             ],
         },{
             name:'Pepper\nSpray',rarity:-1,list:1,
@@ -549,15 +547,115 @@ types={
                 {effect:[2],attack:144,cost:1,target:[2,1,1],spec:[],class:1},
                 {effect:[3],attack:144,cost:1,target:[2,1,1],spec:[],class:1},
             ],
-        },
-
-        /*{
+        },{
             name:'Option\nAssault',rarity:1,list:1,
             levels:[
-                {effect:[[8],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],class:[1,3]},
-                {effect:[[12],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],class:[1,3]},
+                {effect:[[7],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],class:[1,3]},
+                {effect:[[11],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],class:[1,3]},
             ],
-        },*/
+        },{
+            name:'Dodge\nCounter',rarity:1,list:1,
+            levels:[
+                {effect:[1,10],attack:181,cost:3,target:[0],spec:[],class:2},
+                {effect:[1,15],attack:181,cost:2,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Dynamic\nMove',rarity:1,list:1,
+            levels:[
+                {effect:[1,2,8],attack:182,cost:1,target:[1,1,1],spec:[],class:3},
+                {effect:[2,3,8],attack:182,cost:1,target:[1,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'Back\nPocket',rarity:1,list:1,
+            levels:[
+                {effect:[2,0],attack:183,cost:-1,target:[0],spec:[],class:4},
+                {effect:[3,1],attack:183,cost:-1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Broad\nShoulders',rarity:1,list:1,
+            levels:[
+                {effect:[4],attack:184,cost:1,target:[0],spec:[1],class:4},
+                {effect:[8],attack:184,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Rising\nUpper',rarity:2,list:1,
+            levels:[
+                {effect:[12,1],attack:185,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[18,1],attack:185,cost:2,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Flow\nState',rarity:2,list:1,
+            levels:[
+                {effect:[1],attack:186,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:186,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Uncontrolled\nPower',rarity:2,list:1,
+            levels:[
+                {effect:[24,8],attack:187,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[32,8],attack:187,cost:2,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'This is\nPersonal',rarity:2,list:1,
+            levels:[
+                {effect:[6,2],attack:188,cost:2,target:[2,1,6],spec:[],class:4},
+                {effect:[10,2],attack:188,cost:2,target:[2,1,6],spec:[],class:4},
+            ],
+        },{
+            name:'Enraging\nBlow',rarity:2,list:1,
+            levels:[
+                {effect:[14],attack:189,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[20],attack:189,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Absorb\nAttacks',rarity:0,list:1,
+            levels:[
+                {effect:[7,1],attack:190,cost:1,target:[0],spec:[],class:2},
+                {effect:[10,1],attack:190,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Obliterate',rarity:2,list:1,
+            levels:[
+                {effect:[5],attack:191,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[8],attack:191,cost:2,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Kinetic\nMove',rarity:1,list:1,
+            levels:[
+                {effect:[2,2],attack:192,cost:2,target:[1,1,2],spec:[],class:3},
+                {effect:[2,4],attack:192,cost:2,target:[1,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'Twist\nKick',rarity:0,list:1,
+            levels:[
+                {effect:[13],attack:193,cost:2,target:[2,1,1],spec:[],class:1},
+                {effect:[21],attack:193,cost:2,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Iron\nBody',rarity:1,list:1,
+            levels:[
+                {effect:[22,4],attack:194,cost:1,target:[0],spec:[1],class:2},
+                {effect:[40,6],attack:194,cost:1,target:[0],spec:[1],class:2},
+            ],
+        },{
+            name:'Embolden',rarity:1,list:1,
+            levels:[
+                {effect:[2],attack:195,cost:1,target:[0],spec:[1],class:4},
+                {effect:[3],attack:195,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Reflex\nStrike',rarity:0,list:1,
+            levels:[
+                {effect:[8,1],attack:196,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[12,1],attack:196,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Start\nStrong',rarity:0,list:1,
+            levels:[
+                {effect:[10,1],attack:197,cost:1,target:[0],spec:[3],class:2},
+                {effect:[14,1],attack:197,cost:1,target:[0],spec:[3],class:2},
+            ],
+        },
 
         
         {
@@ -1568,8 +1666,8 @@ types={
         {name:'General Duckion',life:175,behavior:0,spec:[0,3,2],move:{type:0,speed:1},attack:[{type:19,effect:[6]},{type:39,effect:[2,'Duckforce']},{type:40,effect:[3]},{type:41,effect:[6]},{type:42,effect:[6]}],description:`Duck leader`},
         {name:'Slime Boss',life:120,behavior:0,spec:[5,6,2],move:{type:0,speed:1},attack:[{type:52,effect:[6]},{type:53,effect:[10,1,'Stuck']},{type:54,effect:[15,1,'Stuck']},{type:48,effect:[15]},{type:55,effect:[3]}],description:`Very fat slime`},
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
-        {name:'Donu',life:75,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
-        {name:'Deca',life:75,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
+        {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
+        {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:110,behavior:0,spec:[0,2],move:{type:5,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Operation godhood`},
         
@@ -4063,7 +4161,7 @@ shipyard visit for another time.`,
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
 
             //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Submachine',0,-1],['Antitank\nRocket',0,-1],['Ammo\nBox',0,-1],['Flamethrower',0,-1],['Impact\nGrenade',0,-1],['Landmine',0,-1]],
+            [['Kinetic\nMove',0,-1],['Twist\nKick',0,-1],['Iron\nBody',0,-1],['Embolden',0,-1],['Reflex\nStrike',0,-1],['Start\nStrong',0,-1]],
 
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
             //[['Facade',0,-1],['Rampage',0,-1],['Outmaneuver',0,-1],['Clash',0,-1],['Survivor',0,-1],['Parasol',0,-1]],
@@ -6277,7 +6375,8 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1,2],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],startEnergy:3,dev:true,allMap:-1}
+game={player:[1],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}
 graphics={main:0,backgroundGen:7,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}

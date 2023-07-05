@@ -52,7 +52,7 @@ class combatant{
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
             'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
             'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
-            'Untargettable From Front','Cancel Exhaust',
+            'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,
@@ -61,7 +61,7 @@ class combatant{
                 0,1,1,1,0,0,0,2,1,2,
                 2,2,0,0,0,0,2,0,0,0,
                 0,1,0,1,0,2,2,1,2,2,
-                1,0,
+                1,0,2,0,2,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -70,7 +70,7 @@ class combatant{
                 0,1,1,0,0,2,0,1,0,0,
                 0,2,3,0,2,2,1,0,1,1,
                 0,0,3,0,2,0,0,0,0,1,
-                0,2,
+                0,2,1,1,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3078,6 +3078,12 @@ class combatant{
             if(this.status.main[56]>0){
                 this.statusEffect('Strength',this.status.main[56])
             }
+            if(this.status.main[64]>0){
+                this.statusEffect('Energy Next Turn',this.status.main[64])
+            }
+            if(this.status.main[63]>0){
+                damage+=this.status.main[63]
+            }
             if(this.battle.relicManager.hasRelic(55,this.id)){
                 damage=max(min(damage,1),damage-this.battle.relicManager.active[55])
             }
@@ -3211,7 +3217,7 @@ class combatant{
         }
     }
     addBlock(value){
-        if(this.status.main[16]<=0){
+        if(value>0&&this.status.main[16]<=0){
             let block=value
             let totalDex=0
             if(this.status.main[7]!=0){
@@ -3227,6 +3233,9 @@ class combatant{
             }
             if(this.status.main[9]>0){
                 block*=0.75
+            }
+            if(this.status.main[65]>0){
+                block*=2
             }
             block=round(block*10)/10
             if(block>=0){
@@ -3380,7 +3389,7 @@ class combatant{
             if(this.status.main[a]!=0){
                 switch(a){
                     case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
-                    case 5: case 31: case 49: case 52: this.takeDamage(this.status.main[a],-1); break
+                    case 5: case 31: case 49: case 52: case 62: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
@@ -3449,6 +3458,7 @@ class combatant{
                         this.goal.anim.sword=false
                     break
                     case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22: case 24: case 25:
+                    case 30:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -3806,6 +3816,13 @@ class combatant{
                             this.spin.arms[g].top=(93-abs(lsin((this.animSet.loop+this.animSet.flip+g)*180))*57)*(g*2-1)
                             this.spin.arms[g].bottom=(75-abs(lsin((this.animSet.loop+this.animSet.flip+g)*180))*60)*(g*2-1)
                         }
+                    break
+                    case 30:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1-this.animSet.hand].top=24+lsin(this.animSet.loop*90)*111
+                        this.anim.arms[1-this.animSet.hand].bottom=9+lsin(this.animSet.loop*90)*141
+                        this.spin.arms[1-this.animSet.hand].top=(-93+lsin(this.animSet.loop*90)*33)*(this.animSet.hand*2-1)
+                        this.spin.arms[1-this.animSet.hand].bottom=(-75+lsin(this.animSet.loop*90)*27)*(this.animSet.hand*2-1)
                     break
                 }
             break
@@ -11312,6 +11329,7 @@ class combatant{
                                 case 9: this.layer.text('Untargettable From Front',40,305+a*15); break
                                 case 10: this.layer.text('Attacks When Injured',40,305+a*15); break
                                 case 11: this.layer.text('Immune to Poison Tiles',40,305+a*15); break
+                                case 12: this.layer.text('Co-Boss',40,305+a*15); break
 
                             }
                         }

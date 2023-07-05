@@ -41,7 +41,8 @@ class attack{
             case 105: case 106: case 108: case 110: case 111: case 115: case 117: case 118: case 119: case 121:
             case 123: case 124: case 125: case 126: case 127: case 129: case 130: case 132: case 133: case 134:
             case 135: case 136: case 137: case 143: case 144: case 151: case 154: case 155: case 156: case 157:
-            case 173: case 174: case 176: case 178: case 179:
+            case 173: case 174: case 176: case 178: case 179: case 185: case 187: case 188: case 189: case 191:
+            case 193: case 196:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -51,7 +52,7 @@ class attack{
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
             break
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
-            case 82: case 83: case 87: case 91: case 153: case 177:
+            case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -205,6 +206,16 @@ class attack{
                     case 154:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.block,this.user)
                     break
+                    case 191:
+                        this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.combo,this.user)
+                    break
+                    case 193:
+                        if(this.targetCombatant.spec.includes(2)||this.targetCombatant.spec.includes(12)){
+                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
+                        }else{
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -285,6 +296,15 @@ class attack{
                         this.targetCombatant.statusEffect('Stun',this.effect[1])
                         this.battle.updateTargetting()
                     break
+                    case 185:
+                        this.battle.cardManagers[this.player].drawFree(this.effect[1])
+                    break
+                    case 189:
+                        this.battle.turnManager.loadEnemyAttack(this.targetCombatant.id)
+                    break
+                    case 196:
+                        this.userCombatant.statusEffect('Conditioning',this.effect[1])
+                    break
                 }
             break
         }
@@ -295,7 +315,8 @@ class attack{
             case 1: case 7: case 12: case 34: case 35: case 42: case 46: case 53: case 88: case 89:
             case 90: case 94: case 101: case 103: case 105: case 106: case 108: case 110: case 111: case 115:
             case 117: case 118: case 119: case 123: case 124: case 125: case 126: case 129: case 137: case 140:
-            case 144: case 151: case 154: case 155: case 156: case 157: case 174:
+            case 144: case 151: case 154: case 155: case 156: case 157: case 174: case 185: case 187: case 189:
+            case 191: case 193: case 196:
                 if(this.targetDistance==1){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(2)
@@ -332,7 +353,8 @@ class attack{
                 }
             break
             case 2: case 13: case 23: case 26: case 43: case 50: case 65: case 95: case 96: case 97:
-            case 107: case 120: case 122: case 131: case 141: case 142: case 146: case 152: case 172:
+            case 107: case 120: case 122: case 131: case 141: case 142: case 146: case 152: case 172: case 190:
+            case 194: case 197:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -393,12 +415,22 @@ class attack{
                         case 142:
                             this.userCombatant.statusEffect('Temporary Strength on Hit',this.effect[1])
                         break
+                        case 190:
+                            this.userCombatant.statusEffect('Energy on Hit',this.effect[1])
+                        break
+                        case 194:
+                            this.userCombatant.life-=this.effect[1]
+                        break
+                        case 197:
+                            this.userCombatant.statusEffect('Conditioning',this.effect[1])
+                        break
                     }
                 }else if(this.timer>=30){
                     this.remove=true
                 }
             break
-            case 3: case 20: case 51: case 52: case 56: case 58: case 59: case 60: case 91:
+            case 3: case 20: case 51: case 52: case 56: case 58: case 59: case 60: case 91: case 182:
+            case 192:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -421,6 +453,13 @@ class attack{
                         break
                         case 91:
                             this.userCombatant.addBlock(this.effect[1])
+                        break
+                        case 182:
+                            this.userCombatant.combo+=this.effect[1]
+                            this.userCombatant.statusEffect('Must Play or Take Damage',this.effect[2])
+                        break
+                        case 192:
+                            this.userCombatant.statusEffect('Strength',this.effect[1])
                         break
                     }
                 }
@@ -477,10 +516,10 @@ class attack{
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                         }
                         if(this.timer==18){
-                            this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                             }
                         }else if(this.timer>=26){
                             this.remove=true
@@ -539,10 +578,10 @@ class attack{
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/20)
                         }
                         if(this.timer==28){
-                            this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                             }
                         }
                     }else{
@@ -560,7 +599,8 @@ class attack{
                     }
                 }
             break
-            case -15: case 6: case 41: case 71: case 92: case 98: case 113: case 128: case 149: case 150:
+            case -15: case 6: case 30: case 41: case 71: case 92: case 98: case 113: case 128: case 149:
+            case 150: case 181: case 184:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -572,6 +612,9 @@ class attack{
                         break
                         case 6:
                             this.userCombatant.statusEffect('Double Damage',this.effect[0])
+                        break
+                        case 30:
+                            this.userCombatant.statusEffect('Dodge',this.effect[0])
                         break
                         case 41:
                             this.battle.energy.main[this.player]+=this.effect[0]
@@ -600,13 +643,20 @@ class attack{
                             this.userCombatant.statusEffect('Temporary Strength',this.effect[0])
                             this.userCombatant.statusEffect('Temporary Strength Next Turn',this.effect[0])
                         break
+                        case 181:
+                            this.userCombatant.statusEffect('Dodge',this.effect[0])
+                            this.userCombatant.statusEffect('Counter',this.effect[1])
+                        break
+                        case 184:
+                            game.collisionDamage+=this.effect[0]
+                        break
                     }
                 }else if(this.timer>=20){
                     this.remove=true
                 }
             break
             case 8: case 28: case 29: case 40: case 44: case 45: case 55: case 60: case 62: case 63:
-            case 69: case 70: case 76: case 78: case 93: case 99: case 109: case 116:
+            case 69: case 70: case 76: case 78: case 93: case 99: case 109: case 116: case 183: case 186:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -684,6 +734,14 @@ class attack{
                             this.userCombatant.statusEffect('Energy Next Turn',this.effect[0]+this.energy)
                             this.battle.attackManager.endAfter=true
                         break
+                        case 183:
+                            this.battle.cardManagers[this.player].draw(this.effect[0]*this.energy+this.effect[1])
+                        break
+                        case 186:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.cardManagers[this.player].allEffect(2,14)
+                            }
+                        break
                     }
                 }else if(this.timer>=20){
                     this.remove=true
@@ -714,7 +772,7 @@ class attack{
                 }
             break
             case -13: case -21: case 10: case 64: case 72: case 73: case 74: case 164: case 166: case 167:
-            case 168: case 169: case 170: case 171: case 180:
+            case 168: case 169: case 170: case 171: case 180: case 195:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(6)
                 }
@@ -785,6 +843,10 @@ class attack{
                         break
                         case 180:
                             this.userCombatant.statusEffect('Cancel Exhaust',this.effect[0])
+                        break
+                        case 195:
+                            this.userCombatant.heal(this.userCombatant.combo*this.effect[0])
+                            this.userCombatant.combo=0
                         break
                     }
                 }else if(this.timer>=20){
@@ -918,10 +980,10 @@ class attack{
                         this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                     }
                     if(this.timer==18){
-                        this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                        this.targetCombatant.takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                         if(index>=0){
-                            this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.timer>=26){
                         this.remove=true
@@ -973,10 +1035,10 @@ class attack{
                         this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                     }
                     if(this.timer==18){
-                        this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                        this.targetCombatant.takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                         if(index>=0){
-                            this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.timer>=26){
                         this.remove=true
@@ -1079,10 +1141,10 @@ class attack{
                         this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                     }
                     if(this.timer==31){
-                        this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                        this.targetCombatant.takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                         if(index>=0){
-                            this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.timer>=39){
                         this.battle.activate(1,this.targetCombatant.id)
@@ -1184,17 +1246,6 @@ class attack{
                     this.remove=true
                 }
             break
-            case 30:
-                if(this.timer==1){
-                    this.userCombatant.startAnimation(4)
-                }
-                this.userCombatant.runAnimation(1/10,4)
-                if(this.timer==10){
-                    this.userCombatant.statusEffect('Dodge',this.effect[0])
-                }else if(this.timer>=20){
-                    this.remove=true
-                }
-            break
             case 31:
                 if(this.timer==1){
                     for(let a=0,la=this.targetCombatant.length;a<la;a++){
@@ -1224,10 +1275,10 @@ class attack{
                             this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a],-this.relativeDistance[a]/10)
                         }
                         if(this.timer==18){
-                            this.targetCombatant[a].takeDamage(constants.collisionDamage,-1)
+                            this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant[a].tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                             }
                         }
                     }else if(this.procedure[a]==0){
@@ -1435,10 +1486,10 @@ class attack{
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                         }
                         if(this.timer==18){
-                            this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                             }
                         }else if(this.timer>=26){
                             this.remove=true
@@ -1476,10 +1527,10 @@ class attack{
                                 this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                             }
                             if(this.timer==28){
-                                this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                                this.targetCombatant.takeDamage(game.collisionDamage,-1)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                                 }
                             }else if(this.timer>=36){
                                 this.battle.activate(1,this.targetCombatant.id)
@@ -1539,10 +1590,10 @@ class attack{
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/20)
                         }
                         if(this.timer==33){
-                            this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                             }
                         }else if(this.timer>=41){
                             this.remove=true
@@ -1580,10 +1631,10 @@ class attack{
                                 this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/20)
                             }
                             if(this.timer==43){
-                                this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                                this.targetCombatant.takeDamage(game.collisionDamage,-1)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                                 }
                             }else if(this.timer>=51){
                                 this.battle.activate(1,this.targetCombatant.id)
@@ -1810,10 +1861,10 @@ class attack{
                                 this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a],-this.relativeDistance[a]/10)
                             }
                             if(this.timer==8){
-                                this.targetCombatant[a].takeDamage(constants.collisionDamage,-1)
+                                this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant[a].tilePosition.y*2-this.userCombatant.tilePosition.y)
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                                 }
                             }
                         }else if(this.procedure[a]==0){
@@ -1843,10 +1894,10 @@ class attack{
                                 this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a],-this.relativeDistance[a]/10)
                             }
                             if(this.timer==8){
-                                this.targetCombatant[a].takeDamage(constants.collisionDamage,-1)
+                                this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant[a].tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
                                 if(index>=0){
-                                    this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                    this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                                 }
                             }
                         }else if(this.procedure[a]==0){
@@ -1989,10 +2040,10 @@ class attack{
                         this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                     }
                     if(this.timer==18){
-                        this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                        this.targetCombatant.takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                         if(index>=0){
-                            this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.timer==26){
                         this.procedure[2]=true
@@ -2082,11 +2133,11 @@ class attack{
                         this.targetCombatant.moveRelativeTile(this.relativeDirection-60,-this.relativeDistance/10/this.targetDistance)
                     }
                     if(this.timer==15*this.targetDistance+3){
-                        this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                        this.targetCombatant.takeDamage(game.collisionDamage,-1)
                         let offset=transformDirection(0,this.relativeDirection+60)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                         if(index>=0){
-                            this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.timer>=15*this.targetDistance+11){
                         this.remove=true
@@ -2156,11 +2207,11 @@ class attack{
                         this.targetCombatant.moveRelativeTile(this.relativeDirection+60,-this.relativeDistance/10/this.targetDistance)
                     }
                     if(this.timer==15*this.targetDistance+3){
-                        this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                        this.targetCombatant.takeDamage(game.collisionDamage,-1)
                         let offset=transformDirection(0,this.relativeDirection+60)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                         if(index>=0){
-                            this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.timer>=15*this.targetDistance+11){
                         this.remove=true
@@ -2246,10 +2297,10 @@ class attack{
                         this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                     }
                     if(this.timer==38){
-                        this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                        this.targetCombatant.takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                         if(index>=0){
-                            this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                         }
                     }else if(this.timer>=46){
                         this.remove=true
@@ -2386,10 +2437,10 @@ class attack{
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                         }
                         if(this.timer==18){
-                            this.targetCombatant.takeDamage(constants.collisionDamage,-1)
+                            this.targetCombatant.takeDamage(game.collisionDamage,-1)
                             let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                             if(index>=0){
-                                this.battle.combatantManager.combatants[index].takeDamage(constants.collisionDamage,-1)
+                                this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
                             }
                         }else if(this.timer>=26){
                             this.remove=true
@@ -2420,6 +2471,18 @@ class attack{
                     }else if(this.timer>=10*this.targetDistance+25){
                         this.remove=true
                     }
+                }
+            break
+            case 188:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(2)
+                }
+                this.userCombatant.runAnimation(1/30,2)
+                if(this.timer==15){
+                    this.targetCombatant.statusEffect('Damage Taken Up',this.effect[0])
+                    this.targetCombatant.statusEffect('Strength',this.effect[1])
+                }else if(this.timer>=30){
+                    this.remove=true
                 }
             break
                     

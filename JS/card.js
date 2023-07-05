@@ -269,25 +269,39 @@ class card{
             case 163: string+=`Ally Removes ${effect[0]} Statuses`; break
             case 164: string+=`Steal ${effect[0]} Currency\nFrom Ally`; break
             case 165: string+=`Move Ally to Any\nEmpty Tile`; break
-
             case 166: string+=`Add to Hand:\nRiot Shield\nPepper Spray\nShock Baton`; break
             case 167: string+=`Add to Hand:\nRiot Shield\nPepper Spray\nShock Baton\nUpgrade 1\nat Random`; break
             case 168: string+=`Add to Hand:\nFlamethrower\nImpact Grenade\nLandmine`; break
             case 169: string+=`Add to Hand:\nFlamethrower\nImpact Grenade\nLandmine\nUpgrade 1\nat Random`; break
             case 170: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box`; break
             case 171: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box\nUpgrade 1\nat Random`; break
-
             case 172: string+=`You Cannot Take\nFrontal Damage\nFor ${effect[0]} Turns`; break
             case 173: string+=`Target Moves in\na Random Direction`; break
             case 174: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Stun`; break
-
             case 175: string+=`Apply ${effect[0]} Burn\n3 Tiles Wide`; break
             case 176: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nIgnore Block`; break
             case 177: string+=`Create 1 Landmine`; break
-
             case 178: string+=`Deal ${this.calculateEffect(effect[0],0)} Decrementing\nDamage 4 Times`; break
             case 179: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nPushes Without\nSplash at Range 1`; break
             case 180: string+=`Your Next ${effect[0]} Exhausts\nDo Not Occur`; break
+            case 181: string+=`Add ${effect[0]} Dodge\nCounter ${effect[1]}`; break
+            case 182: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Combo\nTake ${effect[2]} Damage\nif You Don't Attack`; break
+            case 183: string+=`Draw ${effect[0]}X${effect[1]>0?`+${effect[1]}`:``} Cards`; break
+            case 184: string+=`Collisions do ${effect[0]}\nMore Damage`; break
+            case 185: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card\n${effect[1]!=1?`They Cost`:`It Costs`} 0`; break
+            case 186: string+=`All Cards in Hand\nCost ${this.effect[0]} Less`; break
+            case 187: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTake ${effect[1]} Damage\nif Discarded`; break
+            case 188: string+=`Apply ${effect[0]} Damage\nTaken Bonus\nand ${effect[1]} Strength`; break
+            case 189: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Will Attack`; break
+            case 190: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Energy\nWhen Hit`; break
+            case 191: string+=`Deal ${this.calculateEffect(effect[0],8)}\nDamage`; break
+
+            case 192: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Strength`; break
+            case 193: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double to Bosses`; break
+            case 194: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nLose ${effect[1]} Health`; break
+            case 195: string+=`Convert ${effect[0]}*Combo\nto Health`; break
+            case 196: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Conditioning`; break
+            case 197: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Conditioning`; break
 
         }
         if(string[string.length-1]=='\n'){
@@ -326,6 +340,9 @@ class card{
             break
             case -7:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0]*(this.battle.cardManagers[this.player].hand.cards.length-1),-1)
+            break
+            case 187:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[1],-1)
             break
         }
     }
