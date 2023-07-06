@@ -5,10 +5,6 @@ class perkManager{
         this.player=player
         this.perks=[]
 
-        this.tilePosition={x:0,y:-1}
-        this.scroll=0
-        this.world=0
-
         this.complete=false
         this.selected=-1
     }

@@ -2,6 +2,7 @@ Graphics:
 Agent Graphics
 Victory Graphics
 Characters for BossStash
+Characters for Pack
 
 Bugs:
 
@@ -21,7 +22,6 @@ Ascensions:
 Gimmick Land
 
 Generality:
-starter packs
 
 Agent:
 random cards

@@ -1940,7 +1940,16 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			if(damage[a]==1&&options.damage){
 				p1.trigger.display.extra.damage=true
 			}
-			return p1			
+			return p1
+		case 7:
+			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
+			p1.size=2.5
+			p1.fade=1
+			p1.graphic=true
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
+			return p1
 	}
 }
 function setupGeneralGraphics(){
@@ -2449,6 +2458,72 @@ function setupBackground(type,layer){
 						layer.width/2+(a-b+1)*layer.width/60+0.5,layer.height/2+(a+b-7)*layer.height/40,
 						layer.width/2+(a-b)*layer.width/60,layer.height/2+(a+b-6)*layer.height/40+0.5)
 				}
+			}
+		break
+		case 7:
+			for(let a=0,la=layer.height;a<la;a++){
+                layer.fill(250-25*a/la,220-50*a/la,240-60*a/la)
+                layer.rect(layer.width/2,a+0.5,layer.width,2)
+            }
+			for(let a=0,la=layer.height/5;a<la;a++){
+				for(let b=0,lb=4;b<lb;b++){
+					for(let c=0,lc=20;c<lc;c++){
+						layer.fill(250-25*(a/la+c/lc*0.6),220-50*(a/la+c/lc*0.6),240-60*(a/la+c/lc*0.6))
+						layer.rect(layer.width*b/(lb-1),a*5+2.5,layer.width/lb*0.8*(1-c/lc)*(la/2+a/2)/la,6)
+					}
+				}
+			}
+			for(let a=0,la=100;a<la;a++){
+                b=random(0,10)**2.5
+                c=random(0.6,1)
+                e=random(160,200)
+                f=random(0,layer.width)
+                for(let d=0,ld=10;d<ld;d++){
+                    layer.fill(e+100,e,e,0.01)
+                    layer.ellipse(f,b,c*200*(1-d/ld),c*120*(1-d/ld))
+                }
+            }
+			for(let a=0,la=30;a<la;a++){
+				c=random(15,30)
+				d=random(-30,30)+(a+0.5)/la*layer.width
+				e=random(15,25)
+				f=random(0,1)
+				g=random(1,2)
+				for(let b=0,lb=2;b<lb;b++){
+					layer.fill(237.5-25*(f+b*0.2),175-50*(f+b*0.2),190-60*(f+b*0.2))
+					layer.triangle(d-c+b*c*g/2,layer.height*0.9+b*c*e/10,d+c+b*c*g/2,layer.height*0.9+b*c*e/10,d-c+b*c*g/2,layer.height*0.9-c*e+b*c*e/10)
+				}
+			}
+			for(let a=0,la=20;a<la;a++){
+				c=random(20,40)
+				d=random(-30,30)+(a+0.5)/la*layer.width
+				e=random(15,25)
+				f=random(0,1)
+				g=random(1,2)
+				for(let b=0,lb=3;b<lb;b++){
+					layer.fill(225-25*(f+b*0.2),150-50*(f+b*0.2),160-60*(f+b*0.2))
+					layer.triangle(d-c+b*c*g/2,layer.height*0.9+b*c*e/10,d+c+b*c*g/2,layer.height*0.9+b*c*e/10,d-c+b*c*g/2,layer.height*0.9-c*e+b*c*e/10)
+				}
+			}
+			for(let a=0,la=3;a<la;a++){
+				for(let b=0,lb=50;b<lb;b++){
+					c=a/la*0.5+(b*7+0.5)%lb/lb*0.5+random(0,0.2)
+					layer.fill(212.5-25*c,125-50*c,130-60*c)
+					layer.rect((b*7+0.5)%lb/lb*layer.width+random(-20,20),layer.height-random(100,120)+a*50,random(60,120),random(60,120))
+				}
+			}
+			for(let a=0,la=40;a<la;a++){
+				for(let b=0,lb=10-floor(a/4);b<lb;b++){
+					c=random(0,0.5)*b/lb
+					d=random(0,1)
+					layer.fill(220-c*80+d*30,140-c*90+d*20,120-c*100+d*10)
+					layer.rect(a*40+random(-5,5),layer.height-25-a*10-lb*20+b*40,random(40,80),random(40,80))
+				}
+			}
+			for(let a=0,la=80;a<la;a++){
+				b=random(0,1)
+				layer.fill(200-b*20,120-b*20,95-b*25)
+				layer.ellipse(a*19.5+9.75+random(-15,15),layer.height-255-a*2.5+random(-5,5)+random(0,1)**4*(200-a/la*150),random(10,15))
 			}
 		break
 	}

@@ -5,10 +5,6 @@ class optionManager{
         this.player=player
         this.options=[]
 
-        this.tilePosition={x:0,y:-1}
-        this.scroll=0
-        this.world=0
-
         this.complete=false
         this.selections=0
         this.selected=-1

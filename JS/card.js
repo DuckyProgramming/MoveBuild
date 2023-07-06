@@ -458,14 +458,14 @@ class card{
                     this.layer.line(-this.width/2+1,this.height/2-12,-this.width/2+12,this.height/2-1)
                     this.layer.line(-this.width/2+1,this.height/2-1,-this.width/2+12,this.height/2-12)
                 break
-                case 1:
+                case 0:
                     this.layer.line(-this.width/2,this.height/2-10,-this.width/2+10,this.height/2-10)
                     this.layer.line(-this.width/2+10,this.height/2,-this.width/2+10,this.height/2-10)
                 break
-                case 2:
+                case 1:
                     this.layer.line(-this.width/2,this.height/2-15,-this.width/2+15,this.height/2)
                 break
-                case 3:
+                case 2:
                     this.layer.line(-this.width/2,this.height/2-5,-this.width/2+15,this.height/2-15)
                     this.layer.line(-this.width/2+5,this.height/2,-this.width/2+15,this.height/2-15)
                 break
@@ -473,7 +473,12 @@ class card{
             if(this.spec.includes(12)){
                 this.layer.line(-this.width/2,10,this.width/2,10)
             }
-            if(this.spec.includes(8)){
+            if(this.spec.includes(13)){
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+                this.layer.textSize(24)
+                this.layer.text('???',0,0)
+            }else if(this.spec.includes(8)){
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(16)

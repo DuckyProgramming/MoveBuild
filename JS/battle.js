@@ -36,19 +36,20 @@ class battle{
     }
     initialManagers(){
         this.cardManagers=[]
-        this.optionManagers=[]
         this.packManagers=[]
+        this.optionManagers=[]
         this.perkManagers=[]
         this.eventManagers=[]
         for(let a=0,la=this.players;a<la;a++){
             this.cardManagers.push(new cardManager(this.layer,this,a))
+            this.packManagers.push(new packManager(this.layer,this,a))
             this.optionManagers.push(new optionManager(this.layer,this,a))
-            this.packManagers.push()//
             this.perkManagers.push(new perkManager(this.layer,this,a))
             this.eventManagers.push(new eventManager(this.layer,this,a))
             this.cardManagers[a].initialDeck()
             this.eventManagers[a].initial()
         }
+        this.packManagers.forEach(packManager=>packManager.assemble())
         this.optionManagers.forEach(optionManager=>optionManager.assemble())
         this.perkManagers.forEach(perkManager=>perkManager.assemble())
     }
@@ -596,9 +597,9 @@ class battle{
             break
             case 'pack':
                 this.layer.image(graphics.backgrounds[7],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=this.players;a<la;a++){
+                /*for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[7][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
-                }
+                }*/
                 this.packManagers.forEach(packManager=>packManager.display())
                 this.overlayManager.display()
             break
@@ -778,6 +779,21 @@ class battle{
             case 'stash':  case 'bossstash':
                 this.relicManager.update(stage.scene)
             break
+            case 'pack':
+                this.packManagers.forEach(packManager=>packManager.update())
+                this.combatantManager.update(scene)
+                this.overlayManager.update()
+                let allPackComplete=true
+                for(let a=0,la=this.packManagers.length;a<la;a++){
+                    if(!this.packManagers[a].complete){
+                        allPackComplete=false
+                    }
+                }
+                if(allPackComplete){
+                    transition.trigger=true
+                    transition.scene='map'
+                }
+            break
             case 'perk':
                 this.perkManagers.forEach(perkManager=>perkManager.update())
                 this.combatantManager.update(scene)
@@ -901,6 +917,13 @@ class battle{
             case 'stash': case 'bossstash':
                 this.relicManager.onClick(stage.scene)
             break
+            case 'pack':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onClick()
+                }else{
+                    this.packManagers.forEach(packManager=>packManager.onClick())
+                }
+            break
             case 'perk':
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onClick()
@@ -957,7 +980,7 @@ class battle{
                 }else{
                     this.nodeManager.onKey(key,code)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }
@@ -975,7 +998,7 @@ class battle{
                         }
                     }
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }
@@ -989,11 +1012,11 @@ class battle{
                     this.itemManager.onKey(stage.scene,key,code)
                     this.purchaseManager.onKey(key,code)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }
-                        if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players.length==2||key=='S'&&a==1&&this.players==2){
+                        if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
                             this.overlayManager.overlays[16][a].active=true
                             this.overlayManager.overlays[16][a].activate()
                         }
@@ -1009,7 +1032,7 @@ class battle{
                     this.overlayManager.onKey(key,code)
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
+                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                         this.overlayManager.overlays[4][a].active=true
                         this.overlayManager.overlays[4][a].activate()
                     }
@@ -1017,6 +1040,18 @@ class battle{
             break
             case 'stash': case 'bossstash':
                 this.relicManager.onKey(stage.scene,key,code)
+            break
+            case 'pack':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
+                }else{
+                    for(let a=0,la=this.packManagers.length;a<la;a++){
+                        if(!this.packManagers[a].complete){
+                            this.packManagers[a].onKey(key,code)
+                            break
+                        }
+                    }
+                }
             break
             case 'perk':
                 if(this.overlayManager.anyActive){
@@ -1041,7 +1076,7 @@ class battle{
                         }
                     }
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players.length==2||key=='D'&&a==1&&this.players==2){
+                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true
                             this.overlayManager.overlays[4][a].activate()
                         }
