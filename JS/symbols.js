@@ -409,14 +409,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 56:
             layer.fill(150,0,0,fade)
-            layer.rect(-5,0,3,3)
             layer.beginShape()
             for(let a=0,la=16;a<la;a++){
                 layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
             }
             layer.endShape()
             layer.fill(255,50,50,fade)
-            layer.triangle(0,-6,-3,3,3,3)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
         break
         case 57:
             layer.stroke(150,0,0,fade)
@@ -449,9 +449,9 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 60:
             layer.fill(255,50,50,fade)
-            layer.triangle(7.5,0,-4.5,-3,-4.5,3)
+            layer.triangle(6,0,-4.5,-3,-4.5,3)
             layer.fill(40,fade)
-            layer.rect(7.5,0,2,8)
+            layer.rect(6,0,2,8)
         break
         case 61:
             layer.stroke(200,0,0,fade)

@@ -142,7 +142,7 @@ class relicManager{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(14)
             break
             case 30:
-                this.battle.addCurrency(500,player)
+                this.battle.addCurrency(600,player)
             break
             case 32:
                 this.battle.cardManagers[player].randomEffect(0,2,[1])

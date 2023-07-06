@@ -18,6 +18,7 @@ class attackManager{
         this.cost=0
         this.targetInfo=[0,0,0]
         this.targetClass=0
+        this.combo=0
 
         this.targetDistance=0
         this.position={x:0,y:0}
@@ -36,7 +37,7 @@ class attackManager{
         this.targetInfo[0]=0
     }
     execute(){
-        this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.target,this.targetDistance,this.targetClass))
+        this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.target,this.targetDistance,this.targetClass,this.combo))
     }
     update(){
         for(let a=0;a<game.animRate;a++){

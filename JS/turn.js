@@ -808,6 +808,11 @@ class turn{
                     this.remove=true
                 break
             }
+            if(this.remove){
+                if(this.userCombatant.aggressor){
+                    this.userCombatant.aggressor=false
+                }
+            }
         }
     }
     update(){

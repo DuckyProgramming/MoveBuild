@@ -69,6 +69,13 @@ class combatantManager{
             }
         }
     }
+    bossHeal(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0){
+                this.combatants[a].heal(this.combatants[a].base.life-this.combatants[a].life)
+            }
+        }
+    }
     activateCombatants(type,id){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0&&this.combatants[a].life>0){

@@ -4,7 +4,7 @@ class nodeManager{
         this.battle=battle
         this.nodes=[]
 
-        this.listing={encounter:[[[],[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]]],name:[[[],[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]]]}
+        this.listing={encounter:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]],name:[[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]],[[],[],[],[],[]]]}
 
         this.tilePosition={x:0,y:-1}
         this.scroll=this.layer.height-150
@@ -63,7 +63,7 @@ class nodeManager{
                     if(this.nodes[a].tilePosition.y==this.nodes[b].tilePosition.y-1&&(
                         this.nodes[a].tilePosition.y==0||this.nodes[a].tilePosition.y==1&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x*2||this.nodes[b].tilePosition.x==1&&(this.nodes[a].tilePosition.x==side[0]||this.nodes[a].tilePosition.x==1-side[0]&&floor(random(0,4))==0))||
                         this.nodes[a].tilePosition.y==2&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x*3/2||(this.nodes[a].tilePosition.x+this.nodes[b].tilePosition.x!=side[1]+1||floor(random(0,4))==0)&&(this.nodes[a].tilePosition.x==this.nodes[b].tilePosition.x||this.nodes[a].tilePosition.x==this.nodes[b].tilePosition.x-1))||
-                        this.nodes[a].tilePosition.y>=3&&this.nodes[a].tilePosition.y<=15&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x||abs(this.nodes[b].tilePosition.x-this.nodes[a].tilePosition.x)<=1&&floor(random(0,4))==0)||
+                        this.nodes[a].tilePosition.y>=3&&this.nodes[a].tilePosition.y<=15&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x||abs(this.nodes[b].tilePosition.x-this.nodes[a].tilePosition.x)<=1&&floor(random(0,3))==0)||
                         this.nodes[a].tilePosition.y==16&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x*2/3||(this.nodes[a].tilePosition.x+this.nodes[b].tilePosition.x!=side[2]+1||floor(random(0,4))==0)&&(this.nodes[a].tilePosition.x==this.nodes[b].tilePosition.x||this.nodes[a].tilePosition.x==this.nodes[b].tilePosition.x+1))||
                         this.nodes[a].tilePosition.y==18||this.nodes[a].tilePosition.y==17&&(this.nodes[b].tilePosition.x==this.nodes[a].tilePosition.x/2||this.nodes[a].tilePosition.x==1&&(this.nodes[b].tilePosition.x==side[3]||this.nodes[b].tilePosition.x==1-side[3]&&floor(random(0,4))==0)))){
                         this.nodes[a].connections.push(b)
@@ -76,14 +76,14 @@ class nodeManager{
         this.nodes.forEach(node=>node.scroll+=scroll-this.scroll)
         this.scroll=scroll
     }
-    enterNode(type){
+    enterNode(type,y){
         this.battle.relicManager.activate(7,[type])
         this.battle.stats.node[0]++
         this.battle.stats.node[1+type]++
         switch(type){
             case 0:
                 transition.scene='battle'
-                this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][0][floor(random(0,this.listing.encounter[this.world][0].length))]])
+                this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0][floor(random(0,this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0].length))]])
             break
             case 1:
                 transition.scene='battle'
@@ -102,12 +102,12 @@ class nodeManager{
                 this.battle.setupShop()
             break
             case 5:
-                this.send=this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
+                let send=this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
                 if(send==5){
                     transition.scene='event'
                     this.battle.setupEvent()
                 }else{
-                    this.enterNode(send)
+                    this.enterNode(send,y)
                 }
             break
             case 6:
@@ -131,7 +131,7 @@ class nodeManager{
                 this.nodes[a].complete=true
                 transition.trigger=true
                 this.scrollDown(this.nodes[a].base.position.y)
-                this.enterNode(this.nodes[a].type)
+                this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y)
                 break
             }
         }
@@ -144,7 +144,7 @@ class nodeManager{
                 this.nodes[a].complete=true
                 transition.trigger=true
                 this.scrollDown(this.nodes[a].base.position.y)
-                this.enterNode(this.nodes[a].type)
+                this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y)
                 break
             }
         }

@@ -2499,6 +2499,7 @@ function setupGraphics(){
 	4-Stash
 	5-Event
 	6-Bossstash
+	7-Pack
 	*/
 }
 function setupTrig(){

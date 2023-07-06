@@ -258,29 +258,41 @@ types={
                 {effect:[7],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[10],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Clear\nUp',rarity:-1,list:-1,
+            levels:[
+                {effect:[7,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Disposal',rarity:-1,list:-1,
+            levels:[
+                {effect:[10,1],attack:95,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,1],attack:95,cost:1,target:[0],spec:[],class:2},
+            ],
         },
 
         
         {
-            name:'',rarity:-1,list:-1,
+            name:'',rarity:-2,list:-1,
             levels:[
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
             ],
         },{
-            name:'Strike',rarity:-1,list:-1,
+            name:'Strike',rarity:-2,list:-1,
             levels:[
                 {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Defend',rarity:-1,list:-1,
+            name:'Defend',rarity:-2,list:-1,
             levels:[
                 {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
                 {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Step',rarity:-1,list:-1,
+            name:'Step',rarity:-2,list:-1,
             levels:[
                 {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
@@ -290,73 +302,73 @@ types={
         
         
         {
-            name:'Security\nPack',rarity:-1,list:1,
+            name:'Security\nPack',rarity:-3,list:1,
             levels:[
                 {effect:[],attack:166,cost:0,target:[0],spec:[1,2],class:4},
                 {effect:[],attack:167,cost:0,target:[0],spec:[1,2],class:4},
             ],
         },{
-            name:'Sapper\nPack',rarity:-1,list:1,
+            name:'Sapper\nPack',rarity:-3,list:1,
             levels:[
                 {effect:[],attack:168,cost:0,target:[0],spec:[1,2],class:4},
                 {effect:[],attack:169,cost:0,target:[0],spec:[1,2],class:4},
             ],
         },{
-            name:'Infantry\nPack',rarity:-1,list:1,
+            name:'Infantry\nPack',rarity:-3,list:1,
             levels:[
                 {effect:[],attack:170,cost:0,target:[0],spec:[1,2],class:4},
                 {effect:[],attack:171,cost:0,target:[0],spec:[1,2],class:4},
             ],
         },{
-            name:'Riot\nShield',rarity:-1,list:1,
+            name:'Riot\nShield',rarity:-3,list:1,
             levels:[
                 {effect:[1],attack:172,cost:1,target:[0],spec:[1],class:2},
                 {effect:[1],attack:172,cost:1,target:[0],spec:[1],class:2},
             ],
         },{
-            name:'Pepper\nSpray',rarity:-1,list:1,
+            name:'Pepper\nSpray',rarity:-3,list:1,
             levels:[
                 {effect:[2],attack:173,cost:1,target:[2,1,2],spec:[1],class:1},
                 {effect:[3],attack:173,cost:1,target:[2,1,2],spec:[1],class:1},
             ],
         },{
-            name:'Shock\nBaton',rarity:-1,list:1,
+            name:'Shock\nBaton',rarity:-3,list:1,
             levels:[
                 {effect:[8,1],attack:174,cost:1,target:[2,1,1],spec:[1],class:1},
                 {effect:[12,1],attack:174,cost:1,target:[2,1,1],spec:[1],class:1},
             ],
         },{
-            name:'Flamethrower',rarity:-1,list:1,
+            name:'Flamethrower',rarity:-3,list:1,
             levels:[
                 {effect:[6],attack:175,cost:1,target:[2,1,1],spec:[1],class:1},
                 {effect:[8],attack:175,cost:1,target:[2,1,1],spec:[1],class:1},
             ],
         },{
-            name:'Impact\nGrenade',rarity:-1,list:1,
+            name:'Impact\nGrenade',rarity:-3,list:1,
             levels:[
                 {effect:[12],attack:176,cost:2,target:[2,1,3],spec:[1],class:1},
                 {effect:[15],attack:176,cost:2,target:[2,1,3],spec:[1],class:1},
             ],
         },{
-            name:'Landmine',rarity:-1,list:1,
+            name:'Landmine',rarity:-3,list:1,
             levels:[
                 {effect:[],attack:177,cost:1,target:[1,1,1],spec:[1],class:4},
                 {effect:[],attack:177,cost:1,target:[1,1,1],spec:[1],class:4},
             ],
         },{
-            name:'Submachine',rarity:-1,list:1,
+            name:'Submachine',rarity:-3,list:1,
             levels:[
                 {effect:[7],attack:178,cost:3,target:[2,1,3],spec:[1],class:1},
                 {effect:[9],attack:178,cost:3,target:[2,1,3],spec:[1],class:1},
             ],
         },{
-            name:'Antitank\nRocket',rarity:-1,list:1,
+            name:'Antitank\nRocket',rarity:-3,list:1,
             levels:[
                 {effect:[6],attack:179,cost:3,target:[2,1,6],spec:[1],class:1},
                 {effect:[8],attack:179,cost:3,target:[2,1,6],spec:[1],class:1},
             ],
         },{
-            name:'Ammo\nBox',rarity:-1,list:1,
+            name:'Ammo\nBox',rarity:-3,list:1,
             levels:[
                 {effect:[1],attack:180,cost:0,target:[0],spec:[1],class:4},
                 {effect:[2],attack:180,cost:0,target:[0],spec:[1],class:4},
@@ -441,7 +453,7 @@ types={
             name:'Palm\nStrike',rarity:0,list:1,
             levels:[
                 {effect:[8,2],attack:137,cost:4,target:[2,1,1],spec:[0,11],class:1},
-                {effect:[110,3],attack:137,cost:4,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[11,3],attack:137,cost:4,target:[2,1,1],spec:[0,11],class:1},
             ],
         },{
             name:'Heavy\nOverhand',rarity:2,list:1,
@@ -488,8 +500,8 @@ types={
         },{
             name:'Link',rarity:0,list:1,
             levels:[
-                {effect:[2],attack:8,cost:2,target:[2,1,1],spec:[11],class:4},
-                {effect:[3],attack:8,cost:2,target:[2,1,1],spec:[11],class:4},
+                {effect:[2],attack:8,cost:2,target:[0],spec:[11],class:4},
+                {effect:[3],attack:8,cost:2,target:[0],spec:[11],class:4},
             ],
         },{
             name:'Wide\nPunch',rarity:0,list:1,
@@ -1005,18 +1017,6 @@ types={
                 {effect:[1],attack:93,cost:2,target:[0],spec:[1],class:4},
                 {effect:[1],attack:93,cost:1,target:[0],spec:[1],class:4},
             ],
-        },{
-            name:'Clear\nUp',rarity:-1,list:-1,
-            levels:[
-                {effect:[7,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[11,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Disposal',rarity:-1,list:-1,
-            levels:[
-                {effect:[10,1],attack:95,cost:1,target:[0],spec:[],class:2},
-                {effect:[15,1],attack:95,cost:1,target:[0],spec:[],class:2},
-            ],
         },
 
         {
@@ -1214,8 +1214,8 @@ types={
         },{
             name:'Apotheosis',rarity:2,list:0,
             levels:[
-                {effect:[],attack:45,cost:2,target:[0],spec:[1],class:4},
-                {effect:[],attack:45,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:45,cost:3,target:[0],spec:[14],class:4},
+                {effect:[],attack:45,cost:3,target:[0],spec:[13],class:4},
             ],
         },{
             name:'Entertainer',rarity:2,list:0,
@@ -1642,7 +1642,7 @@ types={
         {},
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
-        {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[/*{type:4,effect:[6]},*/{type:3,effect:[4]}],description:`Likes his personal space`},
+        {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
         {name:'Thug',life:32,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[8]}],description:`Beats people up`},
         {name:'Biker',life:40,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:7,effect:[8]}],description:`Now bikeless`},
         {name:'Drunk',life:30,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:8,effect:[1,'Burn']},{type:1,effect:[6]}],description:`Doesn't know what he's doing`},
@@ -2053,7 +2053,7 @@ types={
         {name:'',internal:'Power Heal',id:27,rarity:2,list:0,description:'When You Play a\nPower, Heal 2 HP'},
         {name:'',internal:'Retain Energy',id:28,rarity:2,list:0,description:'1 Energy Can be\nConserved Between Turns'},
         {name:'',internal:'14 Max HP',id:29,rarity:2,list:0,description:'When Taken,\nGain 14 Max HP'},
-        {name:'',internal:'500 Currency',id:30,rarity:2,list:0,description:'When Taken,\nGain 500 Currency'},
+        {name:'',internal:'600 Currency',id:30,rarity:2,list:0,description:'When Taken,\nGain 600 Currency'},
 
         {name:'',internal:'First Attack',id:31,rarity:0,list:0,description:'First Attack Deals\n8 More Damage'},
         {name:'',internal:'Upgrade Random Attacks',id:32,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Attacks'},
@@ -2192,7 +2192,7 @@ types={
         {name:'',internal:'Large Quick Heal',id:153,rarity:4,list:0,description:'Heal 10 HP at\nthe End of Combat'},
         {name:'',internal:'Transform Basic',id:154,rarity:4,list:0,description:'When Taken, Transform\nAll Strikes, Defends, and Steps'},
         {name:'',internal:'Basic Draw',id:155,rarity:4,list:0,description:'Draw 2 More\nCards Every Turn'},
-        {name:'',internal:'Confused Draw',id:156,rarity:4,list:0,description:'Draw 3 More Cards Eveyr Turn,\nStart Combat Confused'},
+        {name:'',internal:'Confused Draw',id:156,rarity:4,list:0,description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
         {name:'',internal:'Much Better Items',id:157,rarity:4,list:0,description:'Items are 5x\nMore Effective'},
         {name:'',internal:'3 Starting Miracles',id:158,rarity:4,list:0,description:'Add 3 Miracles\nat the Start of Combat'},
         {name:'',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n200 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
@@ -4267,8 +4267,8 @@ shipyard visit for another time.`,
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
 
-            //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Kinetic\nMove',0,-1],['Twist\nKick',0,-1],['Iron\nBody',0,-1],['Embolden',0,-1],['Reflex\nStrike',0,-1],['Start\nStrong',0,-1]],
+            [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
+            //[['Kinetic\nMove',0,-1],['Twist\nKick',0,-1],['Iron\nBody',0,-1],['Embolden',0,-1],['Reflex\nStrike',0,-1],['Start\nStrong',0,-1]],
 
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
             //[['Facade',0,-1],['Rampage',0,-1],['Outmaneuver',0,-1],['Clash',0,-1],['Survivor',0,-1],['Parasol',0,-1]],
@@ -5354,13 +5354,11 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:0,world:-1,
+            level:['Basic 5'],class:2,world:-1,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:1,y:1},name:'Duck'},
-                {position:{x:1,y:2},name:'Duck'},
-                {position:{x:2,y:1},name:'Duck'},
 
             ],reinforce:[
 
@@ -6053,7 +6051,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:-1,world:2,
+            level:['Basic 5'],class:4,world:2,
             name:'Management Prototype',
             player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
             enemy:[
@@ -6081,7 +6079,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:-1,world:1,
+            level:['Basic 5'],class:4,world:1,
             name:'Human',
             player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
             enemy:[
@@ -6354,7 +6352,7 @@ shipyard visit for another time.`,
                 {position:{x:4,y:1},name:'Bouncer',turn:3},
             ],
         },{
-            level:['Basic 5'],class:-1,world:0,
+            level:['Basic 5'],class:4,world:0,
             name:'Little Guy',
             player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
             enemy:[
@@ -6486,7 +6484,7 @@ game={player:[1],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}
-graphics={main:0,backgroundGen:7,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}
+graphics={main:0,backgroundGen:8,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

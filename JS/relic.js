@@ -49,7 +49,7 @@ class relic{
                     displaySymbol(this.layer,7,9,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',-10,0)
+                    this.layer.text('3',-10,0)
                 break
                 case 'Extra Draw':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
@@ -83,7 +83,7 @@ class relic{
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('8',0,12)
+                    this.layer.text('6',0,12)
                 break
                 case 'Starting Strength':
                     displaySymbol(this.layer,-8,0,11,0,1,this.fade)
@@ -258,11 +258,11 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('20',0,12)
                 break
-                case '500 Currency':
+                case '600 Currency':
                     displaySymbol(this.layer,0,0,28,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('500',0,0)
+                    this.layer.text('600',0,0)
                 break
                 case 'First Attack':
                     displaySymbol(this.layer,-8,0,29,0,1,this.fade)
@@ -745,7 +745,7 @@ class relic{
                     this.layer.text('2',8,0)
                 break
                 case 'Weak Elites':
-                    displaySymbol(this.layer,-10,0,34,0,0.5,this.fade)
+                    displaySymbol(this.layer,-12,0,34,0,0.4,this.fade)
                     displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)

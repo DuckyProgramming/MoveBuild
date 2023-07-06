@@ -208,7 +208,7 @@ class item{
                     displaySymbol(this.layer,0,0,71,0,1,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
-                    this.layer.text('5',0,0)
+                    this.layer.text('8',0,0)
                 break
                 case 'Attack Powder':
                     displaySymbol(this.layer,0,0,72,0,1.5,this.fade)

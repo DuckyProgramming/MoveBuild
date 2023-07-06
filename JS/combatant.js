@@ -70,7 +70,7 @@ class combatant{
                 0,1,1,0,0,2,0,1,0,0,
                 0,2,3,0,2,2,1,0,1,1,
                 0,0,3,0,2,0,0,0,0,1,
-                0,2,1,1,2,0,
+                2,2,1,1,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3636,8 +3636,10 @@ class combatant{
                             this.spin.legs[g].top=(60+constrain(this.animSet.loop,0,1)*30)*(g*2-1)
                             this.spin.legs[g].bottom=(120+constrain(this.animSet.loop,0,1)*30)*(g*2-1)
                             this.anim.eye[g]=constrain(this.animSet.loop,0,1)
-                            this.anim.legs[g].length.sandal.back=15.5+constrain(this.animSet.loop,0,1)*0.5
-                            this.anim.legs[g].length.sandal.front=14.5+constrain(this.animSet.loop,0,1)*1.5
+                            if(this.name=='Lira'||this.name=='Sakura'||this.name=='Ume'){
+                                this.anim.legs[g].length.sandal.back=15.5+constrain(this.animSet.loop,0,1)*0.5
+                                this.anim.legs[g].length.sandal.front=14.5+constrain(this.animSet.loop,0,1)*1.5
+                            }
                         }
                         this.offset.position.y=constrain(this.animSet.loop,0,1)*20
                     break
@@ -3829,8 +3831,8 @@ class combatant{
                         for(let a=0,la=2;a<la;a++){
                             this.anim.legs[this.animSet.foot+a*(1-this.animSet.foot)].top=9+lsin(this.animSet.loop*90)*81*(1-a*2)
                             this.anim.legs[this.animSet.foot+a*(1-this.animSet.foot)].bottom=lsin(this.animSet.loop*90)*75*(1-a*2)
-                            this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot)].top=(60-lsin(this.animSet.loop*90)*45)*(this.animSet.foot*2-1)
-                            this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot)].bottom=(120-lsin(this.animSet.loop*90)*105)*(this.animSet.foot*2-1)
+                            this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot)].top=(60-lsin(this.animSet.loop*90)*60)*(this.animSet.foot*2-1)*(1-a*2)
+                            this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot)].bottom=(120-lsin(this.animSet.loop*90)*120)*(this.animSet.foot*2-1)*(1-a*2)
                         }
                     break
                 }
@@ -4767,7 +4769,7 @@ class combatant{
                     if(this.trigger.display.visor&&lcos(this.anim.direction)<0){
                         this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor*0.5)
                         this.layer.noStroke()
-                        this.layer.rect(lsin(this.anim.direction)*16,-81,24*lcos(this.anim.direction),6)
+                        this.layer.rect(lsin(this.anim.direction)*16,-81,22*lcos(this.anim.direction),6)
                     }
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -4849,7 +4851,7 @@ class combatant{
                     if(this.trigger.display.visor&&lcos(this.anim.direction)>=0){
                         this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor*0.5)
                         this.layer.noStroke()
-                        this.layer.rect(lsin(this.anim.direction)*16,-81,24*lcos(this.anim.direction),6)
+                        this.layer.rect(lsin(this.anim.direction)*16,-81,22*lcos(this.anim.direction),6)
                     }
                     if(this.trigger.display.helmet){
                         this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)

@@ -245,7 +245,7 @@ class card{
             case 136: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times`; break
             case 137: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Strength\nNext Turn`; break
             case 138: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide`; break
-            case 139: string+=`Deal ${this.calculateEffect(effect[0],0)}+${effect[1]!=1?`${effect[1]}*`:``}Combo\nDamage 3 Tiles Wide\nEnd Combel`; break
+            case 139: string+=`Deal ${this.calculateEffect(effect[0],0)}+${effect[1]!=1?`${effect[1]}*`:``}Combo\nDamage 3 Tiles Wide\nEnd Combo`; break
             case 140: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIgnore Block`; break
             case 141: string+=`Convert ${this.calculateEffect(effect[0],6)}\nto Block`; break
             case 142: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Strength\nWhen Attacked`; break
@@ -332,6 +332,12 @@ class card{
         }
         if(this.spec.includes(0)){
             string+='\nFatigue'
+        }
+        if(this.spec.includes(13)){
+            string+='\n2 Fatigue'
+        }
+        if(this.spec.includes(14)){
+            string+='\n3 Fatigue'
         }
         if(this.spec.includes(2)){
             string+='\nRetain'
@@ -437,6 +443,33 @@ class card{
             this.layer.stroke(this.colorDetail.stroke[0],this.colorDetail.stroke[1],this.colorDetail.stroke[2],this.fade)
             this.layer.strokeWeight(5)
             this.layer.rect(0,0,this.width,this.height,5)
+            this.layer.strokeWeight(3)
+            switch(this.rarity){
+                case -1:
+                    this.layer.ellipse(-this.width/2+7.5,this.height/2-7.5,10,10)
+                break
+                case -2:
+                    this.layer.line(-this.width/2+7.5,this.height/2,-this.width/2+7.5,this.height/2-10)
+                break
+                case -3:
+                    this.layer.line(-this.width/2+1,this.height/2-12,-this.width/2+12,this.height/2-12)
+                    this.layer.line(-this.width/2+12,this.height/2-1,-this.width/2+12,this.height/2-12)
+                    this.layer.strokeWeight(2)
+                    this.layer.line(-this.width/2+1,this.height/2-12,-this.width/2+12,this.height/2-1)
+                    this.layer.line(-this.width/2+1,this.height/2-1,-this.width/2+12,this.height/2-12)
+                break
+                case 1:
+                    this.layer.line(-this.width/2,this.height/2-10,-this.width/2+10,this.height/2-10)
+                    this.layer.line(-this.width/2+10,this.height/2,-this.width/2+10,this.height/2-10)
+                break
+                case 2:
+                    this.layer.line(-this.width/2,this.height/2-15,-this.width/2+15,this.height/2)
+                break
+                case 3:
+                    this.layer.line(-this.width/2,this.height/2-5,-this.width/2+15,this.height/2-15)
+                    this.layer.line(-this.width/2+5,this.height/2,-this.width/2+15,this.height/2-15)
+                break
+            }
             if(this.spec.includes(12)){
                 this.layer.line(-this.width/2,10,this.width/2,10)
             }

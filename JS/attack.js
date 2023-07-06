@@ -1,5 +1,5 @@
 class attack{
-    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass){
+    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo){
         this.type=type
         this.battle=battle
         this.player=player
@@ -12,6 +12,7 @@ class attack{
         this.target=target
         this.targetDistance=targetDistance
         this.targetClass=targetClass
+        this.combo=combo
 
         this.procedure=[]
 
@@ -220,7 +221,7 @@ class attack{
                         }
                     break
                     case 129:
-                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userCombatant.combo,this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.combo,this.user)
                     break
                     case 140:
                         this.targetCombatant[a].takeDamage(this.effect[0],this.user,2)
@@ -232,7 +233,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.block,this.user)
                     break
                     case 191:
-                        this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.combo,this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*this.combo,this.user)
                     break
                     case 193:
                         if(this.targetCombatant.spec.includes(2)||this.targetCombatant.spec.includes(12)){
@@ -390,7 +391,7 @@ class attack{
                             this.userCombatant.addBlock(this.effect[0]*this.energy)
                         break
                         case 141:
-                            this.userCombatant.addBlock(this.effect[0]*this.userCombatant.combo)
+                            this.userCombatant.addBlock(this.effect[0]*this.combo)
                             this.userCombatant.combo=0
                         break
                         case 146:
@@ -439,7 +440,7 @@ class attack{
                             this.userCombatant.statusEffect('Counter All',this.effect[1])
                         break
                         case 131:
-                            this.userCombatant.statusEffect('Counter',this.effect[1]+this.effect[2]*this.userCombatant.combo)
+                            this.userCombatant.statusEffect('Counter',this.effect[1]+this.effect[2]*this.combo)
                         break
                         case 142:
                             this.userCombatant.statusEffect('Temporary Strength on Hit',this.effect[1])
@@ -931,7 +932,7 @@ class attack{
                             this.userCombatant.statusEffect('Cancel Exhaust',this.effect[0])
                         break
                         case 195:
-                            this.userCombatant.heal(this.userCombatant.combo*this.effect[0])
+                            this.userCombatant.heal(this.combo*this.effect[0])
                             this.userCombatant.combo=0
                         break
                         case 202:
@@ -1420,7 +1421,8 @@ class attack{
                 }else if(this.timer==15*this.targetDistance){
                     switch(this.type){
                         case 130:
-                            this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userCombatant.combo,this.user)
+                            this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.combo,this.user)
+                            this.userCombatant.combo=0
                         break
                         default:
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1432,6 +1434,7 @@ class attack{
                         break
                     }
                 }else if(this.timer>=15*this.targetDistance+15){
+                    this.remove=true
                     this.battle.activate(1,this.userCombatant.id)
                 }
             break
@@ -2070,9 +2073,6 @@ class attack{
                     let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
                     this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                 }else if(this.timer==15*this.targetDistance-5||this.timer==15*this.targetDistance||this.timer==15*this.targetDistance+5){
-                    if(this.timer==15*this.targetDistance-5){
-                        this.combo=this.userCombatant.combo
-                    }
                     switch(this.type){
                         case 132:
                             this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.combo,this.user)
@@ -2324,11 +2324,6 @@ class attack{
                 }
                 this.userCombatant.runAnimation(1/30,29)
                 if(this.timer==15){
-                    switch(this.type){
-                        case 139:
-                            this.combo=this.userCombatant.combo
-                        break
-                    }
                     for(let a=0,la=this.targetCombatant.length;a<la;a++){
                         switch(this.type){
                             case 139:

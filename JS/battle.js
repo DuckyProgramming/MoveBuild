@@ -37,11 +37,13 @@ class battle{
     initialManagers(){
         this.cardManagers=[]
         this.optionManagers=[]
+        this.packManagers=[]
         this.perkManagers=[]
         this.eventManagers=[]
         for(let a=0,la=this.players;a<la;a++){
             this.cardManagers.push(new cardManager(this.layer,this,a))
             this.optionManagers.push(new optionManager(this.layer,this,a))
+            this.packManagers.push()//
             this.perkManagers.push(new perkManager(this.layer,this,a))
             this.eventManagers.push(new eventManager(this.layer,this,a))
             this.cardManagers[a].initialDeck()
@@ -120,6 +122,7 @@ class battle{
             this.anim.extra.push(0)
             this.anim.turn.push(0)
             this.anim.deck.push(1)
+            this.anim.sell.push(1)
             let playerCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
             if(playerCombatant.life<=0){
                 this.positionCombatant(playerCombatant,{x:-1,y:-1})
@@ -353,6 +356,15 @@ class battle{
         if(card.spec.includes(0)||card.spec.includes(12)&&card.reality[mode].includes(0)){
             this.cardManagers[player].fatigue()
         }
+        if(card.spec.includes(13)||card.spec.includes(12)&&card.reality[mode].includes(13)){
+            this.cardManagers[player].fatigue()
+            this.cardManagers[player].fatigue()
+        }
+        if(card.spec.includes(14)||card.spec.includes(12)&&card.reality[mode].includes(14)){
+            this.cardManagers[player].fatigue()
+            this.cardManagers[player].fatigue()
+            this.cardManagers[player].fatigue()
+        }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
         this.counter.turnPlayed[0]++
@@ -582,6 +594,14 @@ class battle{
                 }*/
                 this.relicManager.display(stage.scene)
             break
+            case 'pack':
+                this.layer.image(graphics.backgrounds[7],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[7][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                }
+                this.packManagers.forEach(packManager=>packManager.display())
+                this.overlayManager.display()
+            break
             case 'perk':
                 this.layer.image(graphics.backgrounds[0],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
@@ -662,6 +682,7 @@ class battle{
                                     this.setupStats()
                                 }else{
                                     transition.scene='bossstash'
+                                    this.combatantManager.bossHeal()
                                     this.setupBossStash()
                                 }
                             }else{
@@ -677,7 +698,7 @@ class battle{
                                 this.encounter.class=1
                             }
                             switch(this.encounter.class){
-                                case 0:
+                                case 0: case 3: case 4:
                                     this.overlayManager.overlays[0][a].activate([0,[
                                         {type:1,value:[0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
                                         {type:0,value:[floor(random(40,81))]}]])
