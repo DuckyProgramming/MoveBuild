@@ -1794,7 +1794,6 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				case 'George':
 					p1.position.y+=5
 					p1.anim.mouth.y++
-					p1.trigger.display.extra.sword=false
 					p1.anim.legs=[
 						{top:30,bottom:60-a*36,length:{top:18,bottom:18}},
 						{top:18+a*6,bottom:-48-a*24,length:{top:18,bottom:18}}
@@ -1835,8 +1834,13 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 2:
-			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
-			/**/
+			p1=new combatant(layer,graphics.proxyBattle,225+a*450,312.5,0,0,0,0,player[a],0,0,30-a*60)
+			p1.size=1
+			p1.fade=1
+			p1.graphic=true
+			if(damage[a]==1&&options.damage){
+				p1.trigger.display.extra.damage=true
+			}
 			return p1
 		case 3:
 			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
@@ -2411,7 +2415,56 @@ function setupBackground(type,layer){
             }
 		break
 		case 2:
-			/**/
+			for(let a=0,la=30;a<=la;a++){
+				for(let b=0,lb=20;b<=lb;b++){
+					let offset=noise(a/2+b/3+150)*20+noise(b/2+a/3+200)*20
+					layer.fill(60+random(0,5)+offset,70+random(0,5)+offset,80+random(0,5)+offset)
+					layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+				}
+			}
+			for(let a=0.5,la=30;a<=la;a++){
+				for(let b=0.5,lb=20;b<=lb;b++){
+					let offset=noise(a/2+b/3+150)*20+noise(b/2+a/3+200)*20
+					layer.fill(60+random(0,5)+offset,70+random(0,5)+offset,80+random(0,5)+offset)
+					layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+				}
+			}
+			for(let b=0,lb=10;b<lb;b++){
+				let bounce=random(-1,0)
+				for(let a=0,la=20;a<=la;a++){
+					let offset=noise(a*1.5+b*0.5-100)*20+noise(b*1.5+a*0.5-50)*20
+					layer.fill(20+random(0,5)+offset,30+random(0,5)+offset,40+random(0,5)+offset)
+					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2),layer.width*(a+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2))
+				}
+			}
+			for(let a=0,la=2;a<la;a++){
+				layer.fill(150)
+				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+162.5,6,220,220,30)
+				for(let b=0,lb=20;b<lb;b++){
+					for(let c=0,lc=5+(b>=10?10-floor((b+1)/2):floor((b+1)/2));c<lc;c++){
+						let offset=noise(b*1.5+c*0.5-200)*60+noise(c*1.5+b*0.5-150)*60
+						if(b>=16){
+							layer.fill(100+random(0,5)+offset,180+random(0,5)+offset,100+random(0,5)+offset)
+						}else{
+							layer.fill(100+random(0,5)+offset,180+random(0,5)+offset,200+random(0,5)+offset)
+						}
+						regTriangle(layer,layer.width/4+a*layer.width/2-(-lc/2+0.5+c)*40,layer.height*0.3+b*17.5-b%2*5,24,24,b%2*60)
+					}
+				}
+			}
+			p1=new combatant(layer,graphics.proxyBattle,900,940,0,0,0,0,findName('Managerial',types.combatant),0,0,180)
+			p1.parts.mouth-=4
+			p1.anim.mouth.x+=3
+			p1.anim.mouth.y--
+			p1.spin.mouth-=180
+			p1.anim.legs=[{top:6,bottom:0,length:{top:20,bottom:20}},{top:6,bottom:0,length:{top:20,bottom:20}}]
+			p1.anim.arms=[{top:120,bottom:-150,length:{top:20,bottom:20}},{top:21,bottom:-12,length:{top:20,bottom:20}}]
+			p1.spin.legs=[{top:-60,bottom:-90},{top:60,bottom:90}]
+			p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+			p1.size=5
+			p1.fade=1
+			p1.graphic=true
+			p1.display()
 		break
 		case 3:
 			layer.noStroke()

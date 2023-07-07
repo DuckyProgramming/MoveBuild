@@ -1,6 +1,4 @@
 Graphics:
-Victory Graphics
-Characters for Victory
 
 Bugs:
 
@@ -21,13 +19,11 @@ Gimmick Land
 
 Generality:
 
-Agent:
-random cards
+Agent: random cards
 
 Phantasm
 
-First Character Gimmick
-(hp dealing)
+First Character Gimmick (hp dealing)
 
 Dictionary Additions:
 conditionin
