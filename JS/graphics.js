@@ -1742,8 +1742,18 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 	let p1
 	switch(type){
 		case 0:
-			p1=new combatant(layer,graphics.proxyBattle,600-la*87.5+a*525,535,0,0,0,0,player[a],0,0,-30)
+			p1=new combatant(layer,graphics.proxyBattle,425-la*87.5+a*525,535,0,0,0,0,player[a],0,0,-30)
 			switch(p1.name){
+				case 'George':
+					p1.parts.mouth-=4
+					p1.anim.mouth.x+=3
+					p1.anim.mouth.y--
+					p1.spin.mouth-=180
+					p1.anim.legs=[{top:12,bottom:3,length:{top:18,bottom:18}},{top:9,bottom:30,length:{top:18,bottom:18}}]
+                    p1.anim.arms=[{top:105,bottom:-150,length:{top:18,bottom:18}},{top:33,bottom:-3,length:{top:18,bottom:18}}]
+                	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
 				case 'Lira': case 'Sakura': case 'Ume':
 					switch(p1.name){
 						case 'Lira':
@@ -1758,17 +1768,17 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 							p1.spin.mouth-=180
 						break
 					}
-					p1.spin.sword=36-(player[a]-1)*24
+					p1.spin.sword=36-(player[a]-2)*24
 					p1.anim.legs=[
-						{top:24-(player[a]-1)*12,bottom:12-(player[a]-1)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-						{top:12-(player[a]-1)*6,bottom:36-(player[a]-1)*6,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+						{top:24-(player[a]-2)*12,bottom:12-(player[a]-2)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+						{top:12-(player[a]-2)*6,bottom:36-(player[a]-2)*6,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
 					]
 					p1.anim.arms=[
-						{top:36-(player[a]-1)*9,bottom:-6+(player[a]-1)*87,length:{top:16,bottom:16}},
-						{top:27-(player[a]-1)*3,bottom:108-(player[a]-1)*90,length:{top:16,bottom:16}}
+						{top:36-(player[a]-2)*9,bottom:-6+(player[a]-2)*87,length:{top:16,bottom:16}},
+						{top:27-(player[a]-2)*3,bottom:108-(player[a]-2)*90,length:{top:16,bottom:16}}
 					]
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
-					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-1)*45,lock:0}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-2)*45,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -1781,6 +1791,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 		case 1:
 			p1=new combatant(layer,graphics.proxyBattle,475-la*50+a*200,470+a*20,0,0,0,0,player[a],0,0,-45)
 			switch(p1.name){
+				case 'George':
+					p1.position.y+=5
+					p1.anim.mouth.y++
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:30,bottom:60-a*36,length:{top:18,bottom:18}},
+						{top:18+a*6,bottom:-48-a*24,length:{top:18,bottom:18}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:12,length:{top:18,bottom:18}},
+						{top:36+a*12,bottom:60-a*42,length:{top:18,bottom:18}}
+					]
+					p1.spin.legs=[{top:-180,bottom:-180,lock:0},{top:-60,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
 				case 'Lira': case 'Sakura': case 'Ume':
 					if(p1.name=='Sakura'){
 						p1.parts.mouth+=4
@@ -1789,7 +1814,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.mouth.y++
 					p1.trigger.display.extra.sword=false
 					p1.anim.legs=[
-						{top:30-a*6,bottom:-60-a*36,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+						{top:30-a*6,bottom:-60-a*24,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
 						{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
 					]
 					p1.anim.arms=[
@@ -1816,6 +1841,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 		case 3:
 			p1=new combatant(layer,graphics.proxyBattle,350-a*100,520,0,0,0,0,player[a],0,0,30+a*3)
 			switch(p1.name){
+				case 'George':
+					p1.position.y-=42.5
+					p1.anim.legs=[
+						{top:6,bottom:6,length:{top:18,bottom:18}},
+						{top:6,bottom:6,length:{top:18,bottom:18}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:72-a*12,length:{top:18,bottom:18}},
+						{top:36,bottom:72-a*12,length:{top:18,bottom:18}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-150+a*15,lock:0},{top:60,bottom:150-a*15,lock:0}]
+					p1.spin.arms=[{top:-84-a*3,bottom:-12-a*15,lock:0},{top:84+a*3,bottom:-30+a*15,lock:0}]
+				break
 				case 'Lira': case 'Sakura': case 'Ume':
 					switch(p1.name){
 						case 'Lira':
@@ -1857,6 +1895,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 		case 4:
 			p1=new combatant(layer,graphics.proxyBattle,550-a*300,477.5+a*32.5,0,0,0,0,player[a],0,0,30-a*60)
 			switch(p1.name){
+				case 'George':
+					p1.position.y-=a*15
+					p1.anim.legs=[
+						{top:3+a*36,bottom:6+a*9,length:{top:18,bottom:18-a*2}},
+						{top:3+a*36,bottom:6+a*9,length:{top:18,bottom:18-a*2}}
+					]
+					p1.anim.arms=[
+						{top:30+a*18,bottom:12+a*48,length:{top:18,bottom:18}},
+						{top:39-a*12,bottom:60-a*54,length:{top:18,bottom:18}}
+					]
+					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
 				case 'Lira': case 'Sakura': case 'Ume':
 					switch(p1.name){
 						case 'Lira':
@@ -1896,6 +1947,18 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 		case 5:
 			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
 			switch(p1.name){
+				case 'George':
+					p1.anim.legs=[
+						{top:3+a*3,bottom:3+a*3,length:{top:18,bottom:18}},
+						{top:3+a*3,bottom:3+a*3,length:{top:18,bottom:18}}
+					]
+					p1.anim.arms=[
+						{top:33+a*9,bottom:-3-a*27,length:{top:18,bottom:18}},
+						{top:33+a*9,bottom:-3-a*27,length:{top:18,bottom:18}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
+				break
 				case 'Lira': case 'Sakura': case 'Ume':
 					switch(p1.name){
 						case 'Lira':
@@ -1933,8 +1996,54 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 6:
-			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
-			p1.size=2.5
+			p1=new combatant(layer,graphics.proxyBattle,675-a*450,477.5,0,0,0,0,player[a],0,0,-45+a*90)
+			switch(p1.name){
+				case 'George':
+					p1.spin.mouth-=200
+					p1.anim.mouth.x++
+					p1.anim.mouth.y-=3
+					p1.parts.mouth-=3
+					p1.anim.legs=[
+						{top:9,bottom:0,length:{top:18,bottom:18}},
+						{top:9,bottom:0,length:{top:18,bottom:18}}
+					]
+					p1.anim.arms=[
+						{top:24-a*6,bottom:6-a*12,length:{top:18,bottom:18}},
+						{top:24+a*12,bottom:6+a*96,length:{top:18,bottom:18}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
+				break
+				case 'Lira': case 'Sakura': case 'Ume':
+					switch(p1.name){
+						case 'Lira':
+							p1.parts.mouth-=3
+							p1.spin.mouth-=180
+							p1.anim.mouth.y-=2
+						break
+						case 'Sakura':
+							p1.anim.mouth.y--
+						break
+						case 'Ume':
+							p1.parts.mouth-=2
+							p1.spin.mouth-=180
+							p1.anim.mouth.y--
+						break
+					}
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:6,bottom:12,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+						{top:6,bottom:12,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+					]
+					p1.anim.arms=[
+						{top:36-a*15,bottom:54-a*15,length:{top:16,bottom:16}},
+						{top:24+a*9,bottom:36+a*27,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90+a*60,bottom:-75+a*60,lock:0},{top:30+a*60,bottom:15+a*60,lock:0}]
+				break
+			}
+			p1.size=2
 			p1.fade=1
 			p1.graphic=true
 			if(damage[a]==1&&options.damage){
@@ -1942,8 +2051,46 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 7:
-			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
-			p1.size=2.5
+			p1=new combatant(layer,graphics.proxyBattle,400-a*200,425+a*25,0,0,0,0,player[a],0,0,30)
+			switch(p1.name){
+				case 'George':
+					p1.parts.mouth-=4
+					p1.anim.mouth.x+=3
+					p1.anim.mouth.y--
+					p1.spin.mouth-=180
+					p1.anim.legs=[{top:12,bottom:3,length:{top:18,bottom:18}},{top:9,bottom:30,length:{top:18,bottom:18}}]
+                    p1.anim.arms=[{top:120,bottom:-165,length:{top:18,bottom:18}},{top:36,bottom:-24,length:{top:18,bottom:18}}]
+                	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:120}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Lira': case 'Sakura': case 'Ume':
+					switch(p1.name){
+						case 'Lira':
+							p1.parts.mouth-=4
+							p1.spin.mouth-=180
+						break
+						case 'Sakura':
+							p1.anim.mouth.y++
+						break
+						case 'Ume':
+							p1.parts.mouth-=2
+							p1.spin.mouth-=180
+						break
+					}
+					p1.spin.sword=36-(player[a]-2)*30
+					p1.anim.legs=[
+						{top:3-(player[a]-2)*3,bottom:24-(player[a]-2)*9,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+						{top:15-(player[a]-2)*6,bottom:6-(player[a]-2)*3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+					]
+					p1.anim.arms=[
+						{top:36-(player[a]-2)*3,bottom:-6+(player[a]-2)*84,length:{top:16,bottom:16}},
+						{top:21+(player[a]-2)*6,bottom:135-(player[a]-2)*111,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+					p1.spin.arms=[{top:-120,bottom:-141,lock:0},{top:93,bottom:75,lock:0}]
+				break
+			}
+			p1.size=1.5
 			p1.fade=1
 			p1.graphic=true
 			if(damage[a]==1&&options.damage){
@@ -2450,7 +2597,7 @@ function setupBackground(type,layer){
 			}
 			for(let a=0,la=5;a<la;a++){
 				for(let b=0,lb=5;b<lb;b++){
-					let offset=noise(a/2+b/5+100)*40+noise(b/2+a/5+150)*40
+					let offset=noise(a/2+b/5+100)*60+noise(b/2+a/5+150)*60
 					layer.fill(160+offset,180+offset,200+offset)
 					layer.quad(
 						layer.width/2+(a-b-1)*layer.width/60-0.5,layer.height/2+(a+b-7)*layer.height/40,
@@ -2523,7 +2670,7 @@ function setupBackground(type,layer){
 			for(let a=0,la=80;a<la;a++){
 				b=random(0,1)
 				layer.fill(200-b*20,120-b*20,95-b*25)
-				layer.ellipse(a*19.5+9.75+random(-15,15),layer.height-255-a*2.5+random(-5,5)+random(0,1)**4*(200-a/la*150),random(10,15))
+				layer.ellipse(a*19.5+9.75+random(-15,15),layer.height-255-a*2.4+random(-5,5)+random(0,1)**4*(200-a/la*150),random(10,15))
 			}
 		break
 	}
@@ -2557,8 +2704,10 @@ function setupGraphics(){
 	setupGeneralGraphics()
 	for(let a=0,la=graphics.backgroundGen;a<la;a++){
 		graphics.backgrounds.push(createGraphics(1800,1200))
-		setupLayer(graphics.backgrounds[a])
-		setupBackground(a,graphics.backgrounds[a])
+		if(stage.scene!='graphic'||a==graphics.test){
+			setupLayer(graphics.backgrounds[a])
+			setupBackground(a,graphics.backgrounds[a])
+		}
 	}
 	for(let a=0,la=graphics.overlayGen;a<la;a++){
 		graphics.overlays.push(createGraphics(1800,1200))

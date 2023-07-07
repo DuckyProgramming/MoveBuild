@@ -1,8 +1,6 @@
 Graphics:
-Agent Graphics
 Victory Graphics
-Characters for BossStash
-Characters for Pack
+Characters for Victory
 
 Bugs:
 
@@ -33,6 +31,15 @@ First Character Gimmick
 
 Dictionary Additions:
 conditionin
+
+
+
+
+
+
+
+
+
 
 Done for now:
 

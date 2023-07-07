@@ -4769,7 +4769,11 @@ class combatant{
                     if(this.trigger.display.visor&&lcos(this.anim.direction)<0){
                         this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor*0.5)
                         this.layer.noStroke()
-                        this.layer.rect(lsin(this.anim.direction)*16,-81,22*lcos(this.anim.direction),6)
+                        if(this.trigger.display.extra.damage){
+                            this.layer.triangle(lsin(this.anim.direction)*16-9*lcos(this.anim.direction),-84,lsin(this.anim.direction)*16+9*lcos(this.anim.direction),-84,lsin(this.anim.direction)*16,-78)
+                        }else{
+                            this.layer.rect(lsin(this.anim.direction)*16,-81,18*lcos(this.anim.direction),6)
+                        }
                     }
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -4788,7 +4792,7 @@ class combatant{
                         this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
                         this.layer.noStroke()
                         for(let a=0,la=7;a<la;a++){
-                            this.layer.rect(lsin(360*a/la+this.anim.direction)*8,-48,5*lcos(360*a/la+this.anim.direction),2)
+                            this.layer.rect(lsin(360*a/la+this.anim.direction)*8,-48,3*lcos(360*a/la+this.anim.direction),2)
                         }
                     }
                     for(let g=0;g<2;g++){
@@ -4818,11 +4822,19 @@ class combatant{
                         }
                     }
                     if(this.trigger.display.badge&&lcos(this.anim.direction+60)>0){
-                        this.layer.fill(this.color.badge[0][0],this.color.badge[0][1],this.color.badge[0][2])
-                        this.layer.noStroke()
-                        this.layer.ellipse(lsin(this.anim.direction+60)*7,-58,lcos(this.anim.direction+48)*6,6)
-                        this.layer.fill(this.color.badge[1][0],this.color.badge[1][1],this.color.badge[1][2])
-                        this.layer.quad(lsin(this.anim.direction+60)*7-lcos(this.anim.direction+60),-58,lsin(this.anim.direction+60)*7,-61,lsin(this.anim.direction+60)*7+lcos(this.anim.direction+60),-58,lsin(this.anim.direction+60)*7,-55)
+                        if(this.trigger.display.extra.damage){
+                            this.layer.fill(this.color.badge[0][0],this.color.badge[0][1],this.color.badge[0][2])
+                            this.layer.noStroke()
+                            this.layer,arc(lsin(this.anim.direction+60)*7,-58,lcos(this.anim.direction+48)*6,6,0,180)
+                            this.layer.fill(this.color.badge[1][0],this.color.badge[1][1],this.color.badge[1][2])
+                            this.layer.triangle(lsin(this.anim.direction+60)*7-lcos(this.anim.direction+60),-58,lsin(this.anim.direction+60)*7+lcos(this.anim.direction+60),-58,lsin(this.anim.direction+60)*7,-55)
+                        }else{
+                            this.layer.fill(this.color.badge[0][0],this.color.badge[0][1],this.color.badge[0][2])
+                            this.layer.noStroke()
+                            this.layer.ellipse(lsin(this.anim.direction+60)*7,-58,lcos(this.anim.direction+48)*6,6)
+                            this.layer.fill(this.color.badge[1][0],this.color.badge[1][1],this.color.badge[1][2])
+                            this.layer.quad(lsin(this.anim.direction+60)*7-lcos(this.anim.direction+60),-58,lsin(this.anim.direction+60)*7,-61,lsin(this.anim.direction+60)*7+lcos(this.anim.direction+60),-58,lsin(this.anim.direction+60)*7,-55)
+                        }
                     }
                     if(this.trigger.display.skin.head){
                         this.layer.fill(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
@@ -4851,7 +4863,11 @@ class combatant{
                     if(this.trigger.display.visor&&lcos(this.anim.direction)>=0){
                         this.layer.fill(this.color.visor[0],this.color.visor[1],this.color.visor[2],this.fade*this.fades.visor*0.5)
                         this.layer.noStroke()
-                        this.layer.rect(lsin(this.anim.direction)*16,-81,22*lcos(this.anim.direction),6)
+                        if(this.trigger.display.extra.damage){
+                            this.layer.triangle(lsin(this.anim.direction)*16-9*lcos(this.anim.direction),-84,lsin(this.anim.direction)*16+9*lcos(this.anim.direction),-84,lsin(this.anim.direction)*16,-78)
+                        }else{
+                            this.layer.rect(lsin(this.anim.direction)*16,-81,18*lcos(this.anim.direction),6)
+                        }
                     }
                     if(this.trigger.display.helmet){
                         this.layer.fill(this.color.helmet[0],this.color.helmet[1],this.color.helmet[2],this.fade*this.fades.helmet)

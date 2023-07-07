@@ -16,11 +16,11 @@ class packManager{
         this.addPack()
     }
     getPosKey(){
-        this.posKey=0.5-this.battle.players*0.5+this.player*2
+        this.posKey=0.5-this.battle.players*0.5+this.player*2.5
     }
     addPack(){
-        this.packs.forEach(pack=>pack.reposition(-125,0))
-        this.packs.push(new pack(this.layer,this.player,this.battle,this.layer.width/2+this.packs.length*125,this.layer.height/4+this.posKey*60,this.packs.length))
+        this.packs.forEach(pack=>pack.reposition(-130,0))
+        this.packs.push(new pack(this.layer,this.player,this.battle,this.layer.width/2+this.packs.length*130,this.layer.height/4+this.posKey*60,this.packs.length))
     }
     display(){
         this.packs.forEach(pack=>pack.display())

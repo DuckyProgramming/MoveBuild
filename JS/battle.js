@@ -100,7 +100,9 @@ class battle{
             this.graphics.combatants.push([[],[]])
             for(let b=0,lb=this.players;b<lb;b++){
                 this.graphics.combatants[a][0].push(setupCombatantBackground(a,this.player,b,lb,[0],this.layer))
-                this.graphics.combatants[a][1].push(setupCombatantBackground(a,this.player,b,lb,[1],this.layer))
+                if(options.damage){
+                    this.graphics.combatants[a][1].push(setupCombatantBackground(a,this.player,b,lb,[1],this.layer))
+                }
             }
         }
     }
@@ -631,6 +633,12 @@ class battle{
                 this.combatantManager.displayInfo(stage.scene)
                 this.eventManagers.forEach(eventManager=>eventManager.display())
                 this.overlayManager.display()
+            break
+            case 'graphic':
+                this.layer.image(graphics.backgrounds[graphics.test],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[graphics.test][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                }
             break
         }
     }
