@@ -15,7 +15,7 @@ Gimmick Land
 
 Generality:
 Agent: random cards
-Phantasm
+Phantasm: all cards
 First Character Gimmick (hp dealing)
 
 Dictionary Additions:

@@ -217,12 +217,15 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 6: return block==effect?effect+'*Combo':effect+`(${block})*Combo`
 
 			}
-		case 4:
+		case 4: case 9:
 			let health=effect
 			if(relicManager.hasRelic(53,player)){
 				health*=1.5
 			}
-			return health==effect?effect:effect+` (${health})`
+			switch(type){
+				case 4: return health==effect?effect:effect+` (${health})`
+				case 9: return health==effect?effect+`X`:effect+` (${health})X`
+			}
 	}
 }
 function calculateIntent(effect,user,type){

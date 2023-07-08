@@ -52,7 +52,8 @@ class combatant{
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
             'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
             'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
-            'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn',
+            'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
+            'Combo on Block','Combo Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -61,7 +62,8 @@ class combatant{
                 0,1,1,1,0,0,0,2,1,2,//4
                 2,2,0,0,0,0,2,0,0,0,//5
                 0,1,0,1,0,2,2,1,2,2,//6
-                1,0,2,0,2,0,0,
+                1,0,2,0,2,0,0,1,0,0,//7
+                0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -70,7 +72,8 @@ class combatant{
                 0,1,1,0,0,2,0,1,0,0,
                 0,2,3,0,2,2,1,0,1,1,
                 0,0,3,0,2,0,0,0,0,1,
-                2,2,1,1,2,0,2,
+                2,2,1,1,2,0,2,3,2,2,
+                2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3268,7 +3271,7 @@ class combatant{
                     this.battle.stats.damage[this.battle.turn.main]+=damage
                     if(user>=0&&user<this.battle.combatantManager.combatants.length){
                         let userCombatant=this.battle.combatantManager.combatants[user]
-                        userCombatant.combo++
+                        userCombatant.combo+=1+userCombatant.status.main[68]
                     }
                 }
                 if(this.id<this.battle.players){
@@ -3353,6 +3356,9 @@ class combatant{
                 block*=2
             }
             block=round(block*10)/10
+            if(this.status.main[70]>0){
+                this.combo+=this.status.main[70]
+            }
             if(block>=0){
                 this.block+=block
                 if(this.id<this.battle.players){
@@ -3515,6 +3521,8 @@ class combatant{
                     case 41: this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]; break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
+                    case 67: this.combo=0; break
+                    case 71: this.combo+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){

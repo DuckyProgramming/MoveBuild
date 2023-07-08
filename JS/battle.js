@@ -373,11 +373,16 @@ class battle{
         this.stats.played[player][cardClass]++
         this.counter.turnPlayed[0]++
         this.counter.turnPlayed[cardClass]++
-        if(cardClass==1){
-            let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
-            if(userCombatant.getStatus('Must Play or Take Damage')>0){
-                userCombatant.status.main[findList('Must Play or Take Damage',userCombatant.status.name)]=0
-            }
+        switch(cardClass){
+            case 1:
+                let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
+                if(userCombatant.getStatus('Must Play or Take Damage')>0){
+                    userCombatant.status.main[findList('Must Play or Take Damage',userCombatant.status.name)]=0
+                }
+                if(userCombatant.getStatus('Attack Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Attack Draw'))
+                }
+            break
         }
         this.relicManager.activate(4,[cardClass,player])
     }

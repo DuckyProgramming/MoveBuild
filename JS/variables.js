@@ -97,12 +97,6 @@ types={
                 {effect:[12,1],attack:120,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Parasol',rarity:-1,list:-1,
-            levels:[
-                {effect:[8],attack:121,cost:0,target:[2,1,1],spec:[],class:1},
-                {effect:[12],attack:121,cost:0,target:[2,1,1],spec:[],class:1},
-            ],
-        },{
             name:'Force',rarity:-1,list:-1,
             levels:[
                 {effect:[],attack:5,cost:0,target:[2,1,2],spec:[1],class:1},
@@ -121,52 +115,10 @@ types={
                 {effect:[8,8],attack:97,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Hidden\nWeapon',rarity:-1,list:-1,
-            levels:[
-                {effect:[2],attack:98,cost:0,target:[0],spec:[],class:4},
-                {effect:[4],attack:98,cost:0,target:[0],spec:[],class:4},
-            ],
-        },{
-            name:'Focus',rarity:-1,list:-1,
-            levels:[
-                {effect:[1],attack:99,cost:0,target:[0],spec:[1],class:4},
-                {effect:[2],attack:99,cost:0,target:[0],spec:[1],class:4},
-            ],
-        },{
-            name:'Heavy\nPush',rarity:-1,list:-1,
-            levels:[
-                {effect:[],attack:100,cost:1,target:[2,1,1],spec:[],class:1},
-                {effect:[],attack:100,cost:1,target:[2,1,1],spec:[2],class:1},
-            ],
-        },{
-            name:'Long\nPull',rarity:-1,list:-1,
-            levels:[
-                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1],class:1},
-                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1,2],class:1},
-            ],
-        },{
             name:'Ambush',rarity:-1,list:-1,
             levels:[
                 {effect:[8],attack:101,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[10],attack:101,cost:1,target:[2,1,1],spec:[0,2],class:1},
-            ],
-        },{
-            name:'Backup\nScythe',rarity:-1,list:-1,
-            levels:[
-                {effect:[],attack:102,cost:2,target:[0],spec:[1],class:4},
-                {effect:[],attack:102,cost:1,target:[0],spec:[1],class:4},
-            ],
-        },{
-            name:'Consuming\nSlice',rarity:-1,list:-1,
-            levels:[
-                {effect:[19,1],attack:103,cost:1,target:[2,1,1],spec:[0,6],class:1},
-                {effect:[27,1],attack:103,cost:1,target:[2,1,1],spec:[0,6],class:1},
-            ],
-        },{
-            name:'Glaciate',rarity:-1,list:-1,
-            levels:[
-                {effect:[10,1],attack:104,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[14,2],attack:104,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Drill',rarity:-1,list:-1,
@@ -767,7 +719,146 @@ types={
                 {effect:[6,5],attack:215,cost:1,target:[0],spec:[],class:4},
                 {effect:[10,5],attack:215,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Hidden\nWeapon',rarity:0,list:1,
+            levels:[
+                {effect:[2],attack:98,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:98,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'One-Inch\nPunch',rarity:2,list:1,
+            levels:[
+                {effect:[25],attack:220,cost:3,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[40],attack:220,cost:3,target:[2,1,1],spec:[0,11],class:1},
+            ],
+        },{
+            name:'Combo\nBlock',rarity:0,list:1,
+            levels:[
+                {effect:[9,1],attack:221,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,1],attack:221,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Split\nKick',rarity:0,list:1,
+            levels:[
+                {effect:[16],attack:222,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[22],attack:222,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Ready\nUp',rarity:0,list:1,
+            levels:[
+                {effect:[2],attack:223,cost:0,target:[0],spec:[],class:4},
+                {effect:[3],attack:223,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Painkillers',rarity:1,list:1,
+            levels:[
+                {effect:[3],attack:224,cost:-1,target:[0],spec:[1],class:4},
+                {effect:[4],attack:224,cost:-1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Jerk',rarity:1,list:1,
+            levels:[
+                {effect:[4,1],attack:225,cost:1,target:[0],spec:[],class:4},
+                {effect:[6,1],attack:225,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Focus',rarity:0,list:1,
+            levels:[
+                {effect:[1],attack:99,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2],attack:99,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Overdrive',rarity:2,list:1,
+            levels:[
+                {effect:[20],attack:226,cost:1,target:[0],spec:[],class:4},
+                {effect:[30],attack:226,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'One-Two\nPunch',rarity:0,list:1,
+            levels:[
+                {effect:[1],attack:227,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:227,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Spin\nPunch',rarity:0,list:1,
+            levels:[
+                {effect:[6,2,1],attack:228,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[8,3,1],attack:228,cost:2,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Impasse',rarity:0,list:1,
+            levels:[
+                {effect:[15],attack:2,cost:3,target:[0],spec:[11],class:2},
+                {effect:[15],attack:2,cost:2,target:[0],spec:[11],class:2},
+            ],
+        },{
+            name:'Improvise',rarity:1,list:1,
+            levels:[
+                {effect:[1],attack:229,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:230,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'String',rarity:1,list:1,
+            levels:[
+                {effect:[1],attack:231,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:231,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Massed\nAssault',rarity:2,list:1,
+            levels:[
+                {effect:[1],attack:232,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:232,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Springback',rarity:1,list:1,
+            levels:[
+                {effect:[1],attack:233,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:233,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Continuity',rarity:0,list:1,
+            levels:[
+                {effect:[12,6],attack:234,cost:4,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[16,8],attack:234,cost:4,target:[2,1,1],spec:[0,11],class:1},
+            ],
+        },{
+            name:'Charge\nCounter',rarity:1,list:1,
+            levels:[
+                {effect:[6,4],attack:235,cost:-1,target:[0],spec:[],class:2},
+                {effect:[8,6],attack:235,cost:-1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Left Reverse\nKick',rarity:0,list:1,
+            levels:[
+                {effect:[11],attack:236,cost:3,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[18],attack:236,cost:3,target:[2,1,1],spec:[0,11],class:1},
+            ],
+        },{
+            name:'Right Reverse\nKick',rarity:0,list:1,
+            levels:[
+                {effect:[11],attack:237,cost:3,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[18],attack:237,cost:3,target:[2,1,1],spec:[0,11],class:1},
+            ],
+        },{
+            name:'Long\nPush',rarity:1,list:1,
+            levels:[
+                {effect:[],attack:100,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[],attack:100,cost:1,target:[2,1,1],spec:[2],class:1},
+            ],
+        },{
+            name:'Long\nPull',rarity:1,list:1,
+            levels:[
+                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1],class:1},
+                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Collect\nCombo',rarity:0,list:1,
+            levels:[
+                {effect:[1],attack:239,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:239,cost:1,target:[0],spec:[1],class:4},
+            ],
         },
+        //next turn combo
 
 
         
@@ -1097,6 +1188,30 @@ types={
                 {effect:[1],attack:59,cost:0,target:[1,1,1],spec:[0],class:3},
                 {effect:[2],attack:59,cost:0,target:[1,1,2],spec:[0],class:3},
             ],
+        },{
+            name:'Parasol',rarity:0,list:3,
+            levels:[
+                {effect:[8],attack:121,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[12],attack:121,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Backup\nScythe',rarity:1,list:3,
+            levels:[
+                {effect:[],attack:102,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:102,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Consuming\nSlice',rarity:1,list:3,
+            levels:[
+                {effect:[19,1],attack:103,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[27,1],attack:103,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Glaciate',rarity:0,list:3,
+            levels:[
+                {effect:[10,1],attack:104,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,2],attack:104,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
         //some bleed
 
@@ -1138,6 +1253,8 @@ types={
                 {effect:[1],attack:219,cost:1,target:[0],spec:[],class:4},
             ],
         },
+        //force push
+        //force pull
 
 
         {
@@ -4308,8 +4425,8 @@ shipyard visit for another time.`,
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
 
-            [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            //[['Kinetic\nMove',0,-1],['Twist\nKick',0,-1],['Iron\nBody',0,-1],['Embolden',0,-1],['Reflex\nStrike',0,-1],['Start\nStrong',0,-1]],
+            //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
+            [['One-Inch\nPunch',0,-1],['Combo\nBLock',0,-1],['Split\nKick',0,-1],['Ready\nUp',0,-1],['Painkillers',0,-1],['Jerk',0,-1]],
 
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
             //[['Facade',0,-1],['Rampage',0,-1],['Outmaneuver',0,-1],['Clash',0,-1],['Survivor',0,-1],['Parasol',0,-1]],
@@ -6522,7 +6639,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[4],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[1],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}
