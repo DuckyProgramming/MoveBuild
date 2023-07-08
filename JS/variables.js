@@ -103,12 +103,6 @@ types={
                 {effect:[],attack:5,cost:0,target:[2,1,2],spec:[1,2],class:1},
             ],
         },{
-            name:'Counter\nPush',rarity:-1,list:-1,
-            levels:[
-                {effect:[10],attack:96,cost:1,target:[0],spec:[],class:2},
-                {effect:[16],attack:96,cost:1,target:[0],spec:[],class:2},
-            ],
-        },{
             name:'Counter\nStab',rarity:-1,list:-1,
             levels:[
                 {effect:[6,5],attack:97,cost:1,target:[0],spec:[],class:2},
@@ -830,14 +824,14 @@ types={
         },{
             name:'Left Reverse\nKick',rarity:0,list:1,
             levels:[
-                {effect:[11],attack:236,cost:3,target:[2,1,1],spec:[0,11],class:1},
-                {effect:[18],attack:236,cost:3,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[11],attack:237,cost:3,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[18],attack:237,cost:3,target:[2,1,1],spec:[0,11],class:1},
             ],
         },{
             name:'Right Reverse\nKick',rarity:0,list:1,
             levels:[
-                {effect:[11],attack:237,cost:3,target:[2,1,1],spec:[0,11],class:1},
-                {effect:[18],attack:237,cost:3,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[11],attack:236,cost:3,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[18],attack:236,cost:3,target:[2,1,1],spec:[0,11],class:1},
             ],
         },{
             name:'Long\nPush',rarity:1,list:1,
@@ -846,19 +840,84 @@ types={
                 {effect:[],attack:100,cost:1,target:[2,1,1],spec:[2],class:1},
             ],
         },{
-            name:'Long\nPull',rarity:1,list:1,
-            levels:[
-                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1],class:1},
-                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1,2],class:1},
-            ],
-        },{
             name:'Collect\nCombo',rarity:0,list:1,
             levels:[
                 {effect:[1],attack:239,cost:1,target:[0],spec:[1],class:4},
                 {effect:[2],attack:239,cost:1,target:[0],spec:[1],class:4},
             ],
+        },{
+            name:'Delayed\nGratification',rarity:1,list:1,
+            levels:[
+                {effect:[3],attack:240,cost:0,target:[0],spec:[],class:4},
+                {effect:[5],attack:240,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Surprise\nCounter',rarity:1,list:1,
+            levels:[
+                {effect:[6,15],attack:23,cost:4,target:[0],spec:[11],class:2},
+                {effect:[9,20],attack:23,cost:4,target:[0],spec:[11],class:2},
+            ],
+        },{
+            name:'Wall Jump\nPunch',rarity:1,list:1,
+            levels:[
+                {effect:[6,16],attack:241,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,24],attack:241,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Frontal\nKick',rarity:0,list:1,
+            levels:[
+                {effect:[5],attack:16,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[8],attack:16,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Long\nCounter',rarity:0,list:1,
+            levels:[
+                {effect:[6,6],attack:242,cost:1,target:[0],spec:[],class:2},
+                {effect:[10,8],attack:242,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Extended\nPull',rarity:1,list:1,
+            levels:[
+                {effect:[],attack:243,cost:0,target:[2,2,3],spec:[1],class:1},
+                {effect:[],attack:243,cost:0,target:[2,2,3],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Left\nGrapple',rarity:0,list:1,
+            levels:[
+                {effect:[0],attack:245,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[0],attack:245,cost:0,target:[2,1,1],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Right\nGrapple',rarity:0,list:1,
+            levels:[
+                {effect:[0],attack:244,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[0],attack:244,cost:0,target:[2,1,1],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Ditch',rarity:0,list:1,
+            levels:[
+                {effect:[10],attack:246,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[14],attack:246,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Headbutt',rarity:1,list:1,
+            levels:[
+                {effect:[8,1],attack:247,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,1],attack:247,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Set\nSelf',rarity:1,list:1,
+            levels:[
+                {effect:[1,1],attack:248,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,2],attack:248,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Bank\nCombo',rarity:1,list:1,
+            levels:[
+                {effect:[3],attack:249,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:249,cost:1,target:[0],spec:[1],class:4},
+            ],
         },
-        //next turn combo
 
 
         
@@ -1102,7 +1161,21 @@ types={
                 {effect:[1],attack:93,cost:2,target:[0],spec:[1],class:4},
                 {effect:[1],attack:93,cost:1,target:[0],spec:[1],class:4},
             ],
+        },{
+            name:'Long\nPull',rarity:1,list:2,
+            levels:[
+                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1],class:1},
+                {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Counter\nPush',rarity:0,list:2,
+            levels:[
+                {effect:[10],attack:96,cost:1,target:[0],spec:[],class:2},
+                {effect:[16],attack:96,cost:1,target:[0],spec:[],class:2},
+            ],
         },
+        //vortex
+        //side counter push
 
         {
             name:'Cut',rarity:0,list:3,

@@ -48,12 +48,12 @@ class combatant{
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
             'Vulnerable','Retain Block','Single Damage','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
-            'Next Turn Weak','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Next Turn Cannot Move',
+            'Weak Next Turn','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Cannot Move Next Turn',
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
             'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
             'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
             'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
-            'Combo on Block','Combo Per Turn',
+            'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -63,7 +63,7 @@ class combatant{
                 2,2,0,0,0,0,2,0,0,0,//5
                 0,1,0,1,0,2,2,1,2,2,//6
                 1,0,2,0,2,0,0,1,0,0,//7
-                0,0,
+                0,0,2,2,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -73,7 +73,7 @@ class combatant{
                 0,2,3,0,2,2,1,0,1,1,
                 0,0,3,0,2,0,0,0,0,1,
                 2,2,1,1,2,0,2,3,2,2,
-                2,2,
+                2,2,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3283,22 +3283,31 @@ class combatant{
                         this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
                         this.battle.turnManager.turns[1].target=[user]
                         this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id))
-                    }else if(this.status.main[36]>0){
+                    }
+                    if(this.status.main[36]>0){
                         this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
                         this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                         this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id))
-                    }else if(this.status.main[38]>0){
+                    }
+                    if(this.status.main[38]>0){
                         this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
                         this.battle.turnManager.turns[1].target=[user]
                         this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,3,[0],this.id))
-                    }else if(this.status.main[39]>0){
+                    }
+                    if(this.status.main[39]>0){
                         this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
                         this.battle.turnManager.turns[1].target=[user]
                         this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,58,[this.status.main[39]],this.id))
-                    }else if(this.status.main[47]>0){
+                    }
+                    if(this.status.main[47]>0){
                         this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
                         this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                         this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id))
+                    }
+                    if(this.status.main[73]>0){
+                        this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                        this.battle.turnManager.turns[1].target=[user]
+                        this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,6,[this.status.main[73]],this.id))
                     }
                     if(this.status.main[44]>0&&this.life<=0){
                         userCombatant.statusEffect('Weak',this.status.main[44])
@@ -3310,10 +3319,10 @@ class combatant{
                         userCombatant.takeDamage(3*this.battle.relicManager.active[61],-1)
                     }
                     if(this.blocked>0&&this.battle.relicManager.hasRelic(74,this.id)){
-                        userCombatant.statusEffect('Next Turn Weak',this.battle.relicManager.active[74])
+                        userCombatant.statusEffect('Weak Next Turn',this.battle.relicManager.active[74])
                     }
                     if(this.blocked==0&&this.battle.relicManager.hasRelic(75,this.id)){
-                        userCombatant.statusEffect('Next Turn Weak',this.battle.relicManager.active[75])
+                        userCombatant.statusEffect('Weak Next Turn',this.battle.relicManager.active[75])
                     }
                     if(this.status.main[26]>0){
                         userCombatant.takeDamage(this.status.main[26],-1)
@@ -3522,7 +3531,7 @@ class combatant{
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
-                    case 71: this.combo+=this.status.main[a]; break
+                    case 71: case 72: this.combo+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){

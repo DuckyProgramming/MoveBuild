@@ -1283,7 +1283,7 @@ class turn{
                                     }
                                 break
                                 case 88:
-                                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Next Turn Cannot Move',this.effect[0])
+                                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Cannot Move Next Turn',this.effect[0])
                                 break
                                 case 92:
                                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Temporary Draw',-this.effect[0])
@@ -1378,7 +1378,7 @@ class turn{
                         if(this.timer==15){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                         }else if(this.timer==5*this.targetDistance+15){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             switch(this.type){
                                 case 50:
                                     this.targetCombatant.statusEffect('Cannot Gain Block Next Turn',this.effect[1])
@@ -1396,7 +1396,7 @@ class turn{
                                     }
                                 break
                                 case 140:
-                                    this.targetCombatant.statusEffect('Next Turn Cannot Move',this.effect[1])
+                                    this.targetCombatant.statusEffect('Cannot Move Next Turn',this.effect[1])
                                 break
                                 case 141:
                                     if(this.targetCombatant.id<this.battle.players){
@@ -1426,7 +1426,7 @@ class turn{
                             }
                             switch(this.type){
                                 case 17:
-                                    this.battle.combatantManager.statusAreaID('Next Turn Cannot Move',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                                    this.battle.combatantManager.statusAreaID('Cannot Move Next Turn',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
                                 break
                                 case 54:
                                     for(let a=0,la=this.effect[1];a<la;a++){
@@ -1547,7 +1547,7 @@ class turn{
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                         }
                         if(this.timer==5*this.targetDistance+15||this.timer==5*this.targetDistance+20){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.timer==5*this.targetDistance+20){
                                 switch(this.type){
                                     case 89:
@@ -1577,7 +1577,7 @@ class turn{
                             if(this.timer==15){
                                 this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                             }else if(this.timer==5*this.targetDistance+15){
-                                this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
                                 if(this.type==164){
                                     for(let a=0,la=this.effect[1];a<la;a++){
                                         this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
@@ -1626,7 +1626,7 @@ class turn{
                             if(this.timer==30){
                                 this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                             }else if(this.timer==5*this.targetDistance+30){
-                                this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
                                 if(this.type==164){
                                     for(let a=0,la=this.effect[1];a<la;a++){
                                         this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
@@ -1693,7 +1693,7 @@ class turn{
                         if(this.timer==15){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,11,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y-30),2.5*this.targetDistance-1]))
                         }else if(this.timer==5*this.targetDistance+15){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.type==73){
                                 for(let a=0,la=this.effect[1];a<la;a++){
                                     this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
@@ -1754,7 +1754,7 @@ class turn{
                     case 80:
                         if(this.timer==10){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,12,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=20){
                             this.remove=true
                         }
@@ -1851,7 +1851,7 @@ class turn{
                         if(this.timer==15){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                         }else if(this.timer==5*this.targetDistance+15){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.type==91){
                                 for(let a=0,la=this.effect[1];a<la;a++){
                                     this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
@@ -2102,7 +2102,7 @@ class turn{
                     case 115:
                         if(this.timer==10){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-48,13,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=20){
                             this.remove=true
                         }
@@ -2208,7 +2208,7 @@ class turn{
                     case 118:
                         if(this.timer==10||this.timer==15||this.timer==20){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-56,13,[this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-30+random(-20,20)]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=30){
                             this.remove=true
                         }
@@ -2216,7 +2216,7 @@ class turn{
                     case 119:
                         if(this.timer==10){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-56,13,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Temporary Draw',-this.effect[1])
                         }else if(this.timer>=20){
                             this.remove=true
@@ -2614,7 +2614,7 @@ class turn{
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                         }
                         if(this.timer==5*this.targetDistance+15||this.timer==5*this.targetDistance+18||this.timer==5*this.targetDistance+21||this.timer==5*this.targetDistance+24||this.timer==5*this.targetDistance+27){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=max(40,5*this.targetDistance+40)){
                             this.remove=true
                         }
@@ -2682,7 +2682,7 @@ class turn{
                     case 131:
                         if(this.timer==10){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-48,15,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=20){
                             this.remove=true
                         }
@@ -2960,7 +2960,7 @@ class turn{
                         if(this.timer==15){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,18,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                         }else if(this.timer==5*this.targetDistance+15){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.targetCombatant.id<this.battle.players){
                                 for(let a=0,la=this.effect[1];a<la;a++){
                                     if(this.battle.cardManagers[this.targetCombatant.id].reserve.cards.length>0){
@@ -2984,7 +2984,7 @@ class turn{
                         if(this.timer==15){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,19,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                         }else if(this.timer==5*this.targetDistance+15){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.targetCombatant.blocked>0){
                                 for(let a=0,la=this.effect[1];a<la;a++){
                                     this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
@@ -3015,7 +3015,7 @@ class turn{
                         if(this.timer==15){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,20,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                         }else if(this.timer==5*this.targetDistance+15){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.targetCombatant.statusEffect('Poison',this.effect[1])
                         }else if(this.timer>=max(30,5*this.targetDistance+25)){
                             this.remove=true
@@ -3081,7 +3081,7 @@ class turn{
                         if(this.timer==15){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,21,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                         }else if(this.timer==5*this.targetDistance+15){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             if(this.targetCombatant.id<this.battle.players){
                                 this.battle.cardManagers[this.targetCombatant.id].randomEffect(1,12,[this.battle.cardManagers[this.targetCombatant.id].discard.cards])
                             }
@@ -3092,7 +3092,7 @@ class turn{
                     case 161:
                         if(this.timer==10){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-36,22,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=20){
                             this.battle.turnManager.unMoveTurn(this.user)
                             this.remove=true
@@ -3157,7 +3157,7 @@ class turn{
                         this.userCombatant.runAnimation(1/20,1)
                         if(this.timer==10){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,24,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=20){
                             this.remove=true
                         }
@@ -3228,7 +3228,7 @@ class turn{
                     case 173:
                         if(this.timer==10||this.timer==25){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-81,25,[this.targetCombatant.position.x,this.targetCombatant.position.y-33]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=35){
                             this.remove=true
                         }
@@ -3386,7 +3386,7 @@ class turn{
                         if(this.timer==5||this.timer==10||this.timer==15||this.timer==20||this.timer==25){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-100,26,[this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-30+random(-40,40)]))
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-30+random(-40,40),27,[25]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=30){
                             this.remove=true
                         }
@@ -3398,7 +3398,7 @@ class turn{
                         this.userCombatant.runAnimation(1/10,3)
                         if(this.timer==10){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,this.type-171,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                             switch(this.type){
                                 case 199:
                                     if(this.targetCombatant.id<this.battle.players){
@@ -3859,7 +3859,7 @@ class turn{
                         this.userCombatant.runAnimation(1/10,3)
                         if(this.timer==10){
                             this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,33,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
-                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=20){
                             this.remove=true
                         }
