@@ -17,7 +17,9 @@ class pack{
     create(){
         let group=[0,0,0,1]
         for(let a=0,la=4;a<la;a++){
-            this.cards.push(new card(this.layer,this.battle,this.player,this.position.x-60+a*40,this.position.y-5+a%2*10,a==0&&this.battle.player[this.player]==1?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length))],0,this.battle.player[this.player],a+this.id*4+this.player*12))
+            if(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length>0){
+                this.cards.push(new card(this.layer,this.battle,this.player,this.position.x-60+a*40,this.position.y-5+a%2*10,a==0&&this.battle.player[this.player]==1?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length))],0,this.battle.player[this.player],a+this.id*4+this.player*12))
+            }
         }
     }
     reposition(x,y){

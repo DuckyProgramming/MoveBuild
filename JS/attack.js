@@ -44,7 +44,7 @@ class attack{
             case 123: case 124: case 125: case 126: case 127: case 129: case 130: case 132: case 133: case 134:
             case 135: case 136: case 137: case 143: case 144: case 151: case 154: case 155: case 156: case 157:
             case 173: case 174: case 176: case 178: case 179: case 185: case 187: case 188: case 189: case 191:
-            case 193: case 196: case 208: case 211:
+            case 193: case 196: case 208: case 211: case 217: case 218:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -380,7 +380,7 @@ class attack{
             break
             case 2: case 13: case 23: case 26: case 43: case 50: case 65: case 95: case 96: case 97:
             case 107: case 120: case 122: case 131: case 141: case 142: case 146: case 152: case 172: case 190:
-            case 194: case 197: case 206:
+            case 194: case 197: case 206: case 216:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -453,6 +453,11 @@ class attack{
                         break
                         case 197:
                             this.userCombatant.statusEffect('Conditioning',this.effect[1])
+                        break
+                        case 216:
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                            }
                         break
                     }
                 }else if(this.timer>=30){
@@ -2023,7 +2028,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case -14: case 102: case 112: case 114:
+            case -14: case 102: case 112: case 114: case 219:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(26)
                 }
@@ -2050,6 +2055,9 @@ class attack{
                         break
                         case 114:
                             this.battle.itemManager.addRandomItem(this.player)
+                        break
+                        case 219:
+                            this.userCombatant.statusEffect('Shiv Per Turn',this.effect[0])
                         break
                     }
                 }else if(this.timer>=20){
@@ -2676,6 +2684,40 @@ class attack{
                     this.remove=true
                 }
             break
+            case 217:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(15)
+                }
+                if(this.timer<=30){
+                    this.userCombatant.runAnimation(1/15,15)
+                }
+                if(this.timer==15||this.timer==20||this.timer==25){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,35,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
+                }
+                if(this.timer==10*this.targetDistance+15||this.timer==10*this.targetDistance+20||this.timer==10*this.targetDistance+25){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                }else if(this.timer>=10*this.targetDistance+35){
+                    this.remove=true
+                }
+            break
+            case 218:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(15)
+                }
+                if(this.timer<=30){
+                    this.userCombatant.runAnimation(1/15,15)
+                }
+                if(this.timer==15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,35,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
+                }else if(this.timer==10*this.targetDistance+15){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                    this.battle.cardManagers[this.player].draw(this.effect[1])
+                    this.battle.cardManagers[this.player].hand.discard(this.effect[2])
+                }else if(this.timer>=10*this.targetDistance+25){
+                    this.remove=true
+                }
+            break
+            
                     
             default:
                 this.remove=true

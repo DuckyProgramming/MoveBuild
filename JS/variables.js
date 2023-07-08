@@ -43,12 +43,6 @@ types={
                 {effect:[2],attack:41,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Blade\nDance',rarity:-1,list:-1,
-            levels:[
-                {effect:[3],attack:112,cost:1,target:[0],spec:[0],class:4},
-                {effect:[4],attack:112,cost:1,target:[0],spec:[0],class:4},
-            ],
-        },{
             name:'Adrenaline',rarity:-1,list:-1,
             levels:[
                 {effect:[1,2],attack:113,cost:0,target:[0],spec:[1],class:4},
@@ -1108,6 +1102,45 @@ types={
 
 
         {
+            name:'Blade\nDance',rarity:0,list:4,
+            levels:[
+                {effect:[3],attack:112,cost:1,target:[0],spec:[0],class:4},
+                {effect:[4],attack:112,cost:1,target:[0],spec:[0],class:4},
+            ],
+        },{
+            name:'In the\nFolds',rarity:0,list:4,
+            levels:[
+                {effect:[6,1],attack:216,cost:1,target:[0],spec:[],class:2},
+                {effect:[6,2],attack:216,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Dagger\nSpray',rarity:0,list:4,
+            levels:[
+                {effect:[2],attack:217,cost:1,target:[2,1,6],spec:[0],class:1},
+                {effect:[3],attack:217,cost:1,target:[2,1,6],spec:[0],class:1},
+            ],
+        },{
+            name:'Swap\nOut',rarity:0,list:4,
+            levels:[
+                {effect:[8,1,1],attack:218,cost:2,target:[2,1,6],spec:[0],class:1},
+                {effect:[12,1,1],attack:218,cost:2,target:[2,1,6],spec:[0],class:1},
+            ],
+        },{
+            name:'Backstab',rarity:0,list:4,
+            levels:[
+                {effect:[11],attack:1,cost:0,target:[2,1,1],spec:[0,1,4],class:1},
+                {effect:[15],attack:1,cost:0,target:[2,1,1],spec:[0,1,4],class:1},
+            ],
+        },{
+            name:'Blade\nSupply',rarity:1,list:4,
+            levels:[
+                {effect:[1],attack:219,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:219,cost:1,target:[0],spec:[],class:4},
+            ],
+        },
+
+
+        {
             name:'Telefrag',rarity:0,list:5,
             levels:[
                 {effect:[],attack:87,cost:0,target:[9],spec:[],class:3},
@@ -1637,9 +1670,9 @@ types={
     ],combatant:[
         {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
         {name:'George',identifier:['Brother','Mister'],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Experienced Management Agent,\ndisillusioned with the propaganda.\nTrained in a wide variety of techniques,\nbut undercover with few armaments.`},
-        {name:'Lira',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
-        {name:'Sakura',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relcaim her.`},
-        {},
+        {name:'Lira',identifier:['Sister','Miss'],life:70,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
+        {name:'Sakura',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relcaim her.`},
+        {name:'Certes',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`An experiment gone wrong... or right.\nDirector Stavresk wants his work\nback, but it appears he has failed.\nThe entity was allowed to go free.`},
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
@@ -4242,10 +4275,10 @@ shipyard visit for another time.`,
                 text:[100,0,100],
                 active:[255,200,255],
             },{
-                fill:[240,180,180],
-                stroke:[200,140,140],
-                text:[150,0,0],
-                active:[255,225,225],
+                fill:[120,100,200],
+                stroke:[90,75,160],
+                text:[50,0,100],
+                active:[225,200,255],
             },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
@@ -4262,6 +4295,13 @@ shipyard visit for another time.`,
                 text:[100,25,25],
                 active:[255,200,200],
             },
+
+            /*{
+                fill:[240,180,180],
+                stroke:[200,140,140],
+                text:[150,0,0],
+                active:[255,225,225],
+            },*/
         ],
     },deck:{
         start:[
@@ -4278,7 +4318,8 @@ shipyard visit for another time.`,
             [['Long\nPull',0,-1],['Ambush',0,-1],['Backup\nScythe',0,-1],['Consuming\nSlice',0,-1],['Glaciate',0,-1],['Drill',0,-1]],
             
             //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Teleport',0,-1],['Stagger',0,-1],['Ponder',0,-1],['Sprint',0,-1],['Defend',0,-1],['Defend',0,-1]],
+            [['Blade\nDance',0,-1],['In the\nFolds',0,-1],['Dagger\nSpray',0,-1],['Swap\nOut',0,-1],['Backstab',0,-1],['Blade\nSupply',0,-1]],
+            
         ]
     },level:[
         {
@@ -6481,7 +6522,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1,2],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[4],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}

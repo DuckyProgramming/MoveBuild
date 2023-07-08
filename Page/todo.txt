@@ -1,7 +1,3 @@
-Graphics:
-
-Bugs:
-
 Mechanics:
 Menu (and the rest of the start)
 
@@ -12,17 +8,14 @@ Copy
 Impale through 2
 Kamikaze
 
-Interesting Areas
+Interesting Target Zones
 
 Ascensions:
 Gimmick Land
 
 Generality:
-
 Agent: random cards
-
 Phantasm
-
 First Character Gimmick (hp dealing)
 
 Dictionary Additions:
@@ -37,6 +30,11 @@ conditionin
 
 
 
-Done for now:
+Bugs:
 
-Partnership Cards
+Graphics:
+
+Partnership Cards:
+
+
+

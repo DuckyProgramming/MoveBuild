@@ -86,7 +86,8 @@ class battle{
         for(let a=0,la=10;a<la;a++){
             if(
                 a==0&&this.player.includes(2)||
-                a==1&&this.player.includes(3)
+                a==1&&this.player.includes(3)||
+                a==2&&this.player.includes(4)
             ){
                 setupCombatantGraphics(a)
             }else{
