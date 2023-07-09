@@ -157,11 +157,17 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[0]&&relicManager.hasRelic(50,player)){
 				bonus+=2
 			}
+			if(variant&&args[1]&&user.status.main[76]>0){
+				bonus+=user.status.main[76]
+			}
 			if(user.status.main[12]>0){
 				bonus+=user.status.main[12]
 			}
 			if(user.status.main[40]>0){
 				bonus+=user.status.main[40]
+			}
+			if(user.status.main[75]>0){
+				bonus-=user.status.main[75]
 			}
 			if(user.status.main[6]!=0){
 				totalStr+=user.status.main[6]

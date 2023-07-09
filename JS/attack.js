@@ -46,7 +46,7 @@ class attack{
             case 173: case 174: case 176: case 178: case 179: case 185: case 187: case 188: case 189: case 191:
             case 193: case 196: case 208: case 211: case 217: case 218: case 220: case 228: case 234: case 236:
             case 237: case 241: case 243: case 244: case 245: case 246: case 247: case 250: case 251: case 252:
-            case 255:
+            case 255: case 260: case 263: case 265: case 266: case 267:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -244,6 +244,18 @@ class attack{
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }
                     break
+                    case 265:
+                        this.targetCombatant.takeDamage(this.effect[0]*this.battle.counter.turnPlayed[1],this.user)
+                    break
+                    case 267:
+                        let number=0
+                        for(let a=0,la=this.battle.cardManagers[this.player].hand.cards.length;a<la;a++){
+                            if(this.battle.cardManagers[this.player].hand.cards[a].class==2){
+                                number++
+                            }
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*number,this.user)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -325,7 +337,7 @@ class attack{
                         this.battle.updateTargetting()
                     break
                     case 185:
-                        this.battle.cardManagers[this.player].drawFree(this.effect[1])
+                        this.battle.cardManagers[this.player].drawPrice(this.effect[1],0)
                     break
                     case 189:
                         this.battle.turnManager.loadEnemyAttack(this.targetCombatant.id)
@@ -341,6 +353,9 @@ class attack{
                             this.userCombatant.combo+=this.effect[1]
                         }
                     break
+                    case 260:
+                        this.targetCombatant.statusEffect('Temporary Damage Down',this.effect[1])
+                    break
                 }
             break
         }
@@ -352,7 +367,8 @@ class attack{
             case 90: case 94: case 101: case 103: case 105: case 106: case 108: case 110: case 111: case 115:
             case 117: case 118: case 119: case 123: case 124: case 125: case 126: case 129: case 137: case 140:
             case 144: case 151: case 154: case 155: case 156: case 157: case 174: case 185: case 187: case 189:
-            case 191: case 193: case 196: case 220: case 228: case 234:
+            case 191: case 193: case 196: case 220: case 228: case 234: case 260: case 263: case 265: case 266:
+            case 267:
                 if(this.targetDistance==1){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(2)
@@ -390,7 +406,7 @@ class attack{
             break
             case 2: case 13: case 23: case 26: case 43: case 50: case 65: case 95: case 96: case 97:
             case 107: case 120: case 122: case 131: case 141: case 142: case 146: case 152: case 172: case 190:
-            case 194: case 197: case 206: case 216: case 221: case 235: case 242:
+            case 194: case 197: case 206: case 216: case 221: case 235: case 242: case 256: case 261: case 262:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -477,6 +493,15 @@ class attack{
                         break
                         case 242:
                             this.userCombatant.statusEffect('2 Range Counter',this.effect[1])
+                        break
+                        case 256:
+                            this.battle.cardManagers[this.player].hand.discard(this.effect[1])
+                        break
+                        case 261:
+                            this.battle.cardManagers[this.player].drawPrice(this.effect[1],1)
+                        break
+                        case 262:
+                            this.userCombatant.statusEffect('Block Next Turn',this.effect[1])
                         break
                     }
                 }else if(this.timer>=30){
@@ -662,7 +687,7 @@ class attack{
             break
             case -15: case 6: case 30: case 41: case 71: case 92: case 98: case 113: case 128: case 149:
             case 150: case 181: case 184: case 198: case 200: case 203: case 204: case 212: case 215: case 223:
-            case 225: case 226: case 231: case 239: case 240: case 249:
+            case 225: case 226: case 231: case 239: case 240: case 249: case 264:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -757,6 +782,9 @@ class attack{
                             this.userCombatant.statusEffect('Strength',floor(this.userCombatant.combo/this.effect[0]))
                             this.userCombatant.combo=0
                         break
+                        case 264:
+                            this.userCombatant.statusEffect('Shiv Boost',this.effect[0])
+                        break
                     }
                 }else if(this.timer>=20){
                     this.remove=true
@@ -765,7 +793,7 @@ class attack{
             case 8: case 28: case 29: case 40: case 44: case 45: case 55: case 60: case 62: case 63:
             case 69: case 70: case 76: case 78: case 93: case 99: case 109: case 116: case 183: case 186:
             case 199: case 207: case 209: case 210: case 213: case 214: case 227: case 229: case 230: case 232:
-            case 233: case 253: case 254:
+            case 233: case 253: case 254: case 259:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -910,6 +938,10 @@ class attack{
                         break
                         case 254:
                             this.userCombatant.statusEffect('Card Play Block',this.effect[0])
+                        break
+                        case 259:
+                            this.battle.energy.main[this.player]+=this.effect[0]
+                            this.battle.cardManagers[this.player].hand.discard(this.effect[1])
                         break
                     }
                 }else if(this.timer>=20){

@@ -278,6 +278,9 @@ class group{
                         this.cards[a].cost--
                     }
                 break
+                case 16:
+                    this.cards[a].taken()
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -426,7 +429,7 @@ class group{
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2||spec==3||spec==4||spec==5){
+                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                     if(spec==2){
@@ -441,6 +444,9 @@ class group{
                     if(spec==5){
                         if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                         list[list.length-1].cost=0
+                    }
+                    if(spec==6&&list[list.length-1].cost>0){
+                        list[list.length-1].cost-=1
                     }
                 }
                 delete this.cards[firstIndex]
@@ -450,7 +456,7 @@ class group{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2||spec==3||spec==4||spec==5){
+                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                     if(spec==2){
@@ -465,6 +471,9 @@ class group{
                     if(spec==5){
                         if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                         list[list.length-1].cost=0
+                    }
+                    if(spec==6&&list[list.length-1].cost>0){
+                        list[list.length-1].cost-=1
                     }
                 }
                 delete this.cards[firstIndex]
@@ -683,6 +692,12 @@ class group{
                 if(this.cards[a].strike&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
+                if(this.cards[a].name=='Shiv'){
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    if(userCombatant.status.main[76]>0){
+                        this.battle.attackManager.effect[0]+=userCombatant.status.main[76]
+                    }
+                }
                 this.cards[a].usable=false
                 if(this.status.duplicate>0){
                     this.status.duplicate--
@@ -804,6 +819,10 @@ class group{
             break
             case 4:
                 this.cards[a].deSize=true
+                this.cards[a].callSpecDiscardEffect()
+                for(let b=0,lb=this.cards.length;b<lb;b++){
+                    this.cards[b].otherDiscard()
+                }
                 if(this.status.discard>0){
                     this.status.discard--
                 }

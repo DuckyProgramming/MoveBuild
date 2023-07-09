@@ -1340,8 +1340,8 @@ types={
         },{
             name:'Skewer',rarity:0,list:4,
             levels:[
-                {effect:[7],attack:252,cost:-1,target:[2,1,1],spec:[],class:1},
-                {effect:[10],attack:252,cost:-1,target:[2,1,1],spec:[],class:1},
+                {effect:[7],attack:252,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:252,cost:-1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Dagger\nStorm',rarity:1,list:4,
@@ -1358,10 +1358,87 @@ types={
         },{
             name:'Glass\nKnife',rarity:2,list:4,
             levels:[
-                {effect:[8,2],attack:255,cost:1,target:[2,1,1],spec:[],class:1},
-                {effect:[12,2],attack:255,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[8,2],attack:255,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,2],attack:255,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Survivor',rarity:0,list:4,
+            levels:[
+                {effect:[8,1],attack:256,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,1],attack:256,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Reflex',rarity:0,list:4,
+            levels:[
+                {effect:[3],attack:257,cost:0,target:[0],spec:[5],class:4},
+                {effect:[4],attack:257,cost:0,target:[0],spec:[5],class:4},
+            ],
+        },{
+            name:'Tactician',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:258,cost:0,target:[0],spec:[5],class:4},
+                {effect:[1],attack:258,cost:0,target:[0],spec:[5],class:4},
+            ],
+        },{
+            name:'Concentrate',rarity:1,list:4,
+            levels:[
+                {effect:[2,3],attack:259,cost:0,target:[0],spec:[],class:4},
+                {effect:[2,2],attack:259,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Neutralize',rarity:0,list:4,
+            levels:[
+                {effect:[3,2],attack:260,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4,3],attack:260,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Restructure',rarity:0,list:4,
+            levels:[
+                {effect:[5,1],attack:261,cost:1,target:[0],spec:[],class:2},
+                {effect:[8,1],attack:261,cost:1,target:[0],spec:[],class:2},
             ],
         },
+        
+        {
+            name:'Repeat\nBlock',rarity:0,list:4,
+            levels:[
+                {effect:[7,7],attack:262,cost:1,target:[0],spec:[],class:2},
+                {effect:[10,10],attack:262,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Sneaky\nStrike',rarity:0,list:4,
+            levels:[
+                {effect:[14],attack:263,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[20],attack:263,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Knifing',rarity:1,list:4,
+            levels:[
+                {effect:[4],attack:264,cost:1,target:[0],spec:[1],class:4},
+                {effect:[6],attack:264,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Closer',rarity:0,list:4,
+            levels:[
+                {effect:[6],attack:265,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:265,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Masterful\nStab',rarity:1,list:4,
+            levels:[
+                {effect:[12],attack:266,cost:0,target:[2,1,2],spec:[0],class:1},
+                {effect:[16],attack:266,cost:0,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Flechettes',rarity:1,list:4,
+            levels:[
+                {effect:[4],attack:267,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[6],attack:267,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },
+
+        //phantasm movement
+
 
 
         {

@@ -198,7 +198,7 @@ class itemManager{
                 this.battle.cardManagers[player].hand.duplicate(2)
             break
             case 36:
-                this.battle.cardManagers[player].drawFree(3*this.effectiveness[player])
+                this.battle.cardManagers[player].drawPrice(3*this.effectiveness[player],0)
             break
             case 37:
                 userCombatant.statusEffect('Retain Block',99)

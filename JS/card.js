@@ -56,7 +56,7 @@ class card{
     calculateEffect(effect,type){
         if(stage.scene=='battle'){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv'])
         }else{
             return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
@@ -64,7 +64,7 @@ class card{
     calculateEffectAlly(effect,type){
         if(stage.scene=='battle'){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player)]
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv'])
         }else{
             return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
@@ -356,14 +356,24 @@ class card{
             case 247: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],7)}\nDamage\nPush 1 Tile\nEnd Combo`; break
             case 248: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Conditioning`; break
             case 249: string+=`Gain Strength\nPer ${effect[0]} Combo\nEnd Combo`; break
-
             case 250: string+=`${effect[0]>0?`Deal `+this.calculateEffect(effect[0],0)+` Damage\n`:`\n`}Push to End`; break
             case 252: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nX Times`; break
             case 253: string+=`Discard Your Hand\nAnd Add That\nMany${effect[0]>0?`+${effect[0]}`:``} Shivs`; break
             case 254: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Card Played`; break
             case 255: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nDecreases by ${effect[1]}`; break
+            case 256: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 257: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nWhen Selectively\nDiscarded`; break
+            case 258: string+=`Gain ${effect[0]} Energy\nWhen Selectively\nDiscarded`; break
+            case 259: string+=`Gain ${effect[0]} Energy\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 260: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Temporary\nDamage Down`; break
+            case 261: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\n${effect[1]!=1?`They Cost`:`It Costs`} 1 Less`; break
 
-
+            case 262: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Block\nNext Turn`; break
+            case 263: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less When a\nCard is Discarded`; break
+            case 264: string+=`Shivs Deal ${effect[0]}\nMore Damage`; break
+            case 265: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nAttacks Played\nThis Turn\n(Including This Card)`; break
+            case 266: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 More\nWhen Damage Taken`; break
+            case 267: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDefenses in Hand`; break
 
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
@@ -421,10 +431,37 @@ class card{
             break
         }
     }
+    callSpecDiscardEffect(){
+        switch(this.attack){
+            case 257:
+                this.battle.cardManagers[this.player].draw(this.effect[0])
+            break
+            case 258:
+                this.battle.energy.main[this.player]+=this.effect[0]
+            break
+        }
+    }
     callExhaustEffect(){
         switch(this.attack){
             case 202:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].combo+=this.effect[1]
+            break
+        }
+    }
+    otherDiscard(){
+        switch(this.attack){
+            case 263:
+                if(this.cost>0){
+                    this.cost--
+                }
+            break
+        }
+    }
+    taken(){
+        switch(this.attack){
+            case 266:
+                this.base.cost++
+                this.cost++
             break
         }
     }

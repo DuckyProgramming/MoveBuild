@@ -1563,8 +1563,10 @@ function setupCombatantGraphics(type){
                     {spin:[135,225,180],height:36},
 					{spin:[-135,0,-90],height:4},
 					{spin:[0,135,90],height:4},
-					{spin:[-180,-90,135],height:12},
-					{spin:[90,180,135],height:12},
+					{spin:[-165,-75,-120],height:8},
+					{spin:[75,165,120],height:8},
+					{spin:[-180,-105,-150],height:16},
+					{spin:[105,180,150],height:16},
                 ],
 			}
 			
