@@ -824,31 +824,46 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	print(`
-Colorless:
+		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}
 Uncommon:${current.cardManagers[0].listing.card[0][1].length}
 Rare:${current.cardManagers[0].listing.card[0][2].length}
-Total:${current.cardManagers[0].listing.card[0][3].length}
-\n${types.combatant[1].name}:
+	Total:${current.cardManagers[0].listing.card[0][3].length}
+		${types.combatant[1].name}:
 Common:${current.cardManagers[0].listing.card[1][0].length}
 Uncommon:${current.cardManagers[0].listing.card[1][1].length}
 Rare:${current.cardManagers[0].listing.card[1][2].length}
-Total:${current.cardManagers[0].listing.card[1][3].length}
-\n${types.combatant[2].name}:
+	Total:${current.cardManagers[0].listing.card[1][3].length}
+		${types.combatant[2].name}:
 Common:${current.cardManagers[0].listing.card[2][0].length}
 Uncommon:${current.cardManagers[0].listing.card[2][1].length}
 Rare:${current.cardManagers[0].listing.card[2][2].length}
-Total:${current.cardManagers[0].listing.card[2][3].length}
-\n${types.combatant[3].name}:
+	Total:${current.cardManagers[0].listing.card[2][3].length}
+		${types.combatant[3].name}:
 Common:${current.cardManagers[0].listing.card[3][0].length}
 Uncommon:${current.cardManagers[0].listing.card[3][1].length}
 Rare:${current.cardManagers[0].listing.card[3][2].length}
-Total:${current.cardManagers[0].listing.card[3][3].length}
-\n${types.combatant[4].name}:
+	Total:${current.cardManagers[0].listing.card[3][3].length}
+		${types.combatant[4].name}:
 Common:${current.cardManagers[0].listing.card[4][0].length}
 Uncommon:${current.cardManagers[0].listing.card[4][1].length}
 Rare:${current.cardManagers[0].listing.card[4][2].length}
-Total:${current.cardManagers[0].listing.card[4][3].length}
+	Total:${current.cardManagers[0].listing.card[4][3].length}
+		Status:
+Common:${current.cardManagers[0].listing.card[5][0].length}
+Uncommon:${current.cardManagers[0].listing.card[5][1].length}
+Rare:${current.cardManagers[0].listing.card[5][2].length}
+	Total:${current.cardManagers[0].listing.card[5][3].length}
+		Curse:
+Common:${current.cardManagers[0].listing.card[6][0].length}
+Uncommon:${current.cardManagers[0].listing.card[6][1].length}
+Rare:${current.cardManagers[0].listing.card[6][2].length}
+	Total:${current.cardManagers[0].listing.card[6][3].length}
+		Partnership:
+Common:${current.cardManagers[0].listing.card[7][0].length}
+Uncommon:${current.cardManagers[0].listing.card[7][1].length}
+Rare:${current.cardManagers[0].listing.card[7][2].length}
+	Total:${current.cardManagers[0].listing.card[7][3].length}
 	`)
 }
 function shut(){

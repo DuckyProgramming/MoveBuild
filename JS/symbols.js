@@ -583,6 +583,15 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.triangle(0,5,-1,8,1,8)
         break
+        case 74:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(125,125,125,fade)
+            layer.stroke(100,100,100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,-0.5,4.5,6,1)
+        break
     }
     layer.pop()
 }

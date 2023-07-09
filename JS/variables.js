@@ -43,12 +43,6 @@ types={
                 {effect:[2],attack:41,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Adrenaline',rarity:-1,list:-1,
-            levels:[
-                {effect:[1,2],attack:113,cost:0,target:[0],spec:[1],class:4},
-                {effect:[2,2],attack:113,cost:0,target:[0],spec:[1],class:4},
-            ],
-        },{
             name:'Supply',rarity:-1,list:-1,
             levels:[
                 {effect:[],attack:114,cost:1,target:[0],spec:[1],class:4},
@@ -1126,12 +1120,6 @@ types={
                 {effect:[8],attack:1,cost:1,target:[2,1,1],spec:[],class:1},
             ],
         },{
-            name:'Square\nStrike',rarity:2,list:2,
-            levels:[
-                {effect:[2],attack:88,cost:-1,target:[2,1,1],spec:[0],class:1},
-                {effect:[3],attack:88,cost:-1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
             name:'Shatter',rarity:1,list:2,
             levels:[
                 {effect:[12],attack:89,cost:2,target:[2,1,1],spec:[0],class:1},
@@ -1325,13 +1313,59 @@ types={
                 {effect:[1],attack:219,cost:1,target:[0],spec:[],class:4},
                 {effect:[1],attack:219,cost:1,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Square\nStrike',rarity:2,list:4,
+            levels:[
+                {effect:[2],attack:88,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:88,cost:-1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Adrenaline',rarity:2,list:4,
+            levels:[
+                {effect:[1,2],attack:113,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,2],attack:113,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Force\nPush',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:250,cost:1,target:[2,1,6],spec:[1],class:1},
+                {effect:[],attack:250,cost:1,target:[2,1,6],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Force\nPull',rarity:0,list:4,
+            levels:[
+                {effect:[],attack:251,cost:1,target:[2,2,6],spec:[1],class:1},
+                {effect:[],attack:251,cost:1,target:[2,2,6],spec:[1,2],class:1},
+            ],
+        },{
+            name:'Skewer',rarity:0,list:4,
+            levels:[
+                {effect:[7],attack:252,cost:-1,target:[2,1,1],spec:[],class:1},
+                {effect:[10],attack:252,cost:-1,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Dagger\nStorm',rarity:1,list:4,
+            levels:[
+                {effect:[0],attack:253,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:253,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'After\nImage',rarity:1,list:4,
+            levels:[
+                {effect:[2],attack:254,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:254,cost:1,target:[0],spec:[1,3],class:4},
+            ],
+        },{
+            name:'Glass\nKnife',rarity:2,list:4,
+            levels:[
+                {effect:[8,2],attack:255,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[12,2],attack:255,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
         },
-        //force push
-        //force pull
 
 
         {
-            name:'Telefrag',rarity:0,list:5,
+            name:'Telefrag',rarity:-3,list:-1,
             levels:[
                 {effect:[],attack:87,cost:0,target:[9],spec:[],class:3},
                 {effect:[],attack:87,cost:0,target:[9],spec:[2],class:3},
@@ -6712,7 +6746,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[4],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}

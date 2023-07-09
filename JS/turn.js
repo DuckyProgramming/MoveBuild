@@ -1933,9 +1933,6 @@ class turn{
                             }else if(this.timer<=30){
                                 this.userCombatant.runAnimation(1/10,3)
                             }
-                            if(this.timer==10){
-                                this.targetCombatant.goal.anim.direction=this.relativeDirection+180
-                            }
                             if(this.timer<=10){
                                 this.userCombatant.moveTile(this.direction,this.distance/15/this.targetDistance)
                                 this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/15/this.targetDistance)
@@ -3043,9 +3040,6 @@ class turn{
                             }else if(this.timer<=30){
                                 this.userCombatant.runAnimation(1/10,3)
                             }
-                            if(this.timer==10){
-                                this.targetCombatant.goal.anim.direction=this.relativeDirection+180
-                            }
                             if(this.timer<=10){
                                 this.userCombatant.moveTile(this.direction,this.distance/30)
                                 this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/30)
@@ -3267,9 +3261,6 @@ class turn{
                                 this.userCombatant.runAnimation(1/10,0)
                             }else if(this.timer<=15*this.targetDistance+10){
                                 this.userCombatant.runAnimation(1/10,3)
-                            }
-                            if(this.timer==15*this.targetDistance-20){
-                                this.targetCombatant.goal.anim.direction=this.relativeDirection+180
                             }
                             if(this.timer<=15*this.targetDistance-20){
                                 this.userCombatant.moveTile(this.direction,this.distance/15/this.targetDistance)
@@ -3630,9 +3621,6 @@ class turn{
                                 this.userCombatant.runAnimation(1/10,0)
                             }else if(this.timer<=30){
                                 this.userCombatant.runAnimation(1/10,3)
-                            }
-                            if(this.timer==10){
-                                this.targetCombatant.goal.anim.direction=this.relativeDirection+180
                             }
                             if(this.timer<=10){
                                 this.userCombatant.moveTile(this.direction,this.distance/15/this.targetDistance)

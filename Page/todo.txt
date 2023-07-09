@@ -14,8 +14,9 @@ Ascensions:
 Gimmick Land
 
 Generality:
-Agent: random cards
-Phantasm: all cards
+Lira: most cards
+Sakura: all cards
+Certes: all cards
 First Character Gimmick (hp dealing)
 
 Dictionary Additions:
@@ -36,5 +37,5 @@ Graphics:
 
 Partnership Cards:
 
-
+George:
 
