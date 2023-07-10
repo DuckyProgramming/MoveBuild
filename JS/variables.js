@@ -61,24 +61,6 @@ types={
                 {effect:[1],attack:116,cost:-1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Facade',rarity:-1,list:-1,
-            levels:[
-                {effect:[7],attack:117,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[10],attack:117,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Rampage',rarity:-1,list:-1,
-            levels:[
-                {effect:[8,4],attack:118,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[8,8],attack:118,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Outmaneuver',rarity:-1,list:-1,
-            levels:[
-                {effect:[2],attack:99,cost:1,target:[0],spec:[],class:4},
-                {effect:[3],attack:99,cost:1,target:[0],spec:[],class:4},
-            ],
-        },{
             name:'Force',rarity:-1,list:-1,
             levels:[
                 {effect:[],attack:5,cost:0,target:[2,1,2],spec:[1],class:1},
@@ -1541,14 +1523,6 @@ types={
                 {effect:[1,3],attack:283,cost:0,target:[0],spec:[],class:4},
                 {effect:[2,3],attack:283,cost:0,target:[0],spec:[],class:4},
             ],
-        },
-
-        {
-            name:'Rematerialize',rarity:0,list:4,
-            levels:[
-                {effect:[2],attack:284,cost:1,target:[0],spec:[],class:4},
-                {effect:[3],attack:284,cost:1,target:[0],spec:[],class:4},
-            ],
         },{
             name:'Prepared',rarity:0,list:4,
             levels:[
@@ -1578,6 +1552,150 @@ types={
             levels:[
                 {effect:[1,3],attack:289,cost:0,target:[0],spec:[1],class:4},
                 {effect:[1,5],attack:289,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Eviscerate',rarity:1,list:4,
+            levels:[
+                {effect:[7],attack:290,cost:3,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:290,cost:3,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Expertise',rarity:1,list:4,
+            levels:[
+                {effect:[8],attack:291,cost:1,target:[0],spec:[],class:4},
+                {effect:[9],attack:291,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Torrent',rarity:1,list:4,
+            levels:[
+                {effect:[2,11],attack:292,cost:2,target:[2,1,3],spec:[],class:2},
+                {effect:[3,14],attack:292,cost:2,target:[2,1,3],spec:[],class:2},
+            ],
+        },{
+            name:'Predate',rarity:1,list:4,
+            levels:[
+                {effect:[15,2],attack:293,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[20,3],attack:293,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Bullet\nTime',rarity:2,list:4,
+            levels:[
+                {effect:[],attack:294,cost:3,target:[0],spec:[1],class:4},
+                {effect:[],attack:294,cost:2,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Death\nExplosion',rarity:2,list:4,
+            levels:[
+                {effect:[],attack:295,cost:2,target:[2,1,1],spec:[],class:4},
+                {effect:[],attack:295,cost:1,target:[2,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Rampage',rarity:1,list:4,
+            levels:[
+                {effect:[8,4],attack:118,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,8],attack:118,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Outmaneuver',rarity:0,list:4,
+            levels:[
+                {effect:[2],attack:99,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:99,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Facade',rarity:0,list:4,
+            levels:[
+                {effect:[7],attack:117,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:117,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Finale',rarity:2,list:4,
+            levels:[
+                {effect:[50],attack:296,cost:0,target:[2,1,2],spec:[],class:1},
+                {effect:[64],attack:296,cost:0,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Malaise',rarity:2,list:4,
+            levels:[
+                {effect:[1,1],attack:297,cost:-1,target:[2,1,2],spec:[],class:4},
+                {effect:[1,2],attack:297,cost:-1,target:[2,1,2],spec:[],class:4},
+            ],
+        },{
+            name:'Nightmare',rarity:2,list:4,
+            levels:[
+                {effect:[3],attack:298,cost:2,target:[0],spec:[1],class:4},
+                {effect:[5],attack:298,cost:2,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Ghostly\nKiller',rarity:2,list:4,
+            levels:[
+                {effect:[],attack:299,cost:2,target:[0],spec:[],class:4},
+                {effect:[],attack:299,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Convert',rarity:2,list:4,
+            levels:[
+                {effect:[1,1],attack:300,cost:1,target:[0],spec:[3],class:4},
+                {effect:[1,1],attack:300,cost:0,target:[0],spec:[3],class:4},
+            ],
+        },{
+            name:'Rematerialize',rarity:0,list:4,
+            levels:[
+                {effect:[1],attack:284,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:284,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Unload',rarity:1,list:4,
+            levels:[
+                {effect:[14],attack:301,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[18],attack:301,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Wraith',rarity:2,list:4,
+            levels:[
+                {effect:[2,1],attack:302,cost:1,target:[0],spec:[],class:4},
+                {effect:[3,1],attack:302,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Ghost\nArmor',rarity:0,list:4,
+            levels:[
+                {effect:[13],attack:2,cost:1,target:[0],spec:[4],class:2},
+                {effect:[17],attack:2,cost:1,target:[0],spec:[4],class:2},
+            ],
+        },{
+            name:'Sentinel',rarity:1,list:4,
+            levels:[
+                {effect:[8,2],attack:303,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,3],attack:303,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Sever',rarity:1,list:4,
+            levels:[
+                {effect:[16],attack:304,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[22],attack:304,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Spot\nWeakness',rarity:1,list:4,
+            levels:[
+                {effect:[3],attack:305,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[8],attack:305,cost:1,target:[2,1,6],spec:[],class:4},
+            ],
+        },{
+            name:'Swirl',rarity:1,list:4,
+            levels:[
+                {effect:[],attack:306,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:306,cost:2,target:[0],spec:[1,2,3],class:4},
+            ],
+        },{
+            name:'Delimit',rarity:2,list:4,
+            levels:[
+                {effect:[3,1],attack:307,cost:0,target:[0],spec:[],class:4},
+                {effect:[2,1],attack:307,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Brutality',rarity:2,list:4,
+            levels:[
+                {effect:[1,1],attack:308,cost:0,target:[0],spec:[],class:4},
+                {effect:[1,1],attack:308,cost:0,target:[0],spec:[3],class:4},
             ],
         },
 

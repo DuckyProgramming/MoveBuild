@@ -190,6 +190,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage*=0.75
 				bonus*=0.75
 			}
+			if(user.status.main[82]>0){
+				damage*=2
+				bonus*=2
+			}
 			damage=round(damage*10)/10
 			switch(type){
 				case 0: return damage==effect&&bonus==0?effect:effect+`(${damage+bonus})`
@@ -505,6 +509,9 @@ function multiplyString(base,multiply){
 function copyCard(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass)
 }
+function copyCardFree(base){
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass)
+}
 function upgradeCard(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec)
 }
@@ -791,6 +798,9 @@ function enemy(index){
 }
 function combo(value){
 	current.combatantManager.combatants[0].combo+=value
+}
+function status(name){
+	return findList(name,current.combatantManager.combatants[0].status.name)
 }
 function outEncounter(){
 	print(`

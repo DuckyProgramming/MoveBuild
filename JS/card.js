@@ -369,7 +369,7 @@ class card{
             case 260: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Temporary\nDamage Down`; break
             case 261: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\n${effect[1]!=1?`They Cost`:`It Costs`} 1 Less`; break
             case 262: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Block\nNext Turn`; break
-            case 263: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less When a\nCard is Discarded`; break
+            case 263: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 This\nTurn When a\nCard is Discarded`; break
             case 264: string+=`Shivs Deal ${effect[0]}\nMore Damage`; break
             case 265: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nAttacks Played\nThis Turn\n(Including This Card)`; break
             case 266: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 More\nWhen Damage Taken`; break
@@ -390,16 +390,36 @@ class card{
             case 281: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExhaust ${effect[1]} Random Card${effect[1]!=1?`s`:``}`; break
             case 282: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Damage Taken`; break
             case 283: string+=`Gain ${effect[0]} Energy\nLose ${effect[1]} Health`; break
-
-            case 284: string+=`Gain ${effect[0]} Energy\nNext Turn`; break
+            case 284: string+=`Gain ${effect[0]} Energy\nFor the Next\n2 Turns`; break
             case 285: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 286: string+=`Counter ${effect[0]} All\nThis Combat`; break
             case 287: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
             case 288: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Drawn, Add ${effect[1]}\nStream${effect[1]!=1?`s`:``} to Hand`; break
             case 289: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nIf Last Card\nis a Defense,\nGain ${this.calculateEffect(effect[1],1)} Block`; break
+            case 290: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nCosts 1 Less This\nTurn When a\nCard is Discarded`; break
+            case 291: string+=`Draw to ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 292: string+=`Apply ${effect[0]} Weak\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 293: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} More\nCard${effect[1]!=1?`s`:``} Next Turn`; break
+            case 294: string+=`All Cards Cost 0\nYou Cannot Draw\nCards This Turn`; break
+            case 295: string+=`Target Explodes\non Death For\nits Max Health`
+            case 296: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nif Draw Pile\nis Empty`; break
+            case 297: string+=`Remove ${effect[0]}X Strength\nApply ${effect[1]}X Weak`; break
+            case 298: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}\nof a Card to\nYour Draw Pile\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
+            case 299: string+=`Deal Double Damage\nNext Turn`; break
+            case 300: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``} and\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}\nEvery Turn`; break
+            case 301: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscard Non-Attacks`; break
+            case 302: string+=`Gain ${effect[0]} Intangible\nLose ${effect[1]} Dexterity\nPer Turn`; break
+            case 303: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Energy\nWhen Exhausted`; break
+            case 304: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhuast Non-Attacks`; break
+            case 305: string+=`If Target\nIntends to Attack,\nGain ${effect[0]} Strength`; break
 
-            
-            
+            case 306: string+=`Retain Block\nFor 999 Turns`; break
+            case 307: string+=`Gain ${effect[0]} Vulnerable\nGain ${effect[1]} Energy\nPer Turn`; break
+            case 308: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``} and\nLose ${effect[1]} Health\nEvery Turn`; break
+
+
+
+
             
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
@@ -472,11 +492,17 @@ class card{
             case 202:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].combo+=this.effect[1]
             break
+            case 303:
+                this.battle.energy.main[this.id]+=this.effect[1]
+            break
         }
     }
     otherDiscard(){
         switch(this.attack){
             case 263:
+                this.cost=0
+            break
+            case 290:
                 if(this.cost>0){
                     this.cost--
                 }
@@ -743,6 +769,10 @@ class card{
             }
             if(anim[3]>0){
                 this.layer.stroke(255,100,255,this.fade*anim[3])
+                this.layer.rect(0,0,this.width+2,this.height+2,5)
+            }
+            if(anim[4]>0){
+                this.layer.stroke(255,200,200,this.fade*anim[4])
                 this.layer.rect(0,0,this.width+2,this.height+2,5)
             }
             this.layer.pop()

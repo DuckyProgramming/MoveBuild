@@ -7,6 +7,7 @@ Shield bash
 Copy
 Impale through 2
 Kamikaze
+Advance to Range 2
 
 Interesting Target Zones
 

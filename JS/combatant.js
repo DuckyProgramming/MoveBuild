@@ -53,7 +53,8 @@ class combatant{
             'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
             'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
             'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
-            'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat',
+            'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
+            'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -63,8 +64,8 @@ class combatant{
                 2,2,0,0,0,0,2,0,0,0,//5
                 0,1,0,1,0,2,2,1,2,2,//6
                 1,0,2,0,2,0,0,1,0,0,//7
-                0,0,2,2,0,2,0,2,0,
-                'Take Per Card Played','Counter All Combat',
+                0,0,2,2,0,2,0,2,0,1,//8
+                0,2,2,2,0,0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -74,7 +75,8 @@ class combatant{
                 0,2,3,0,2,2,1,0,1,1,
                 0,0,3,0,2,0,0,0,0,1,
                 2,2,1,1,2,0,2,3,2,2,
-                2,2,2,0,2,0,2,1,0,
+                2,2,2,0,2,0,2,1,0,3,
+                3,2,2,2,2,2,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3188,6 +3190,9 @@ class combatant{
                 if(userCombatant.status.main[0]>0){
                     damage*=2
                 }
+                if(userCombatant.status.main[82]>0){
+                    damage*=2
+                }
                 if(this.status.main[3]>0){
                     this.status.main[3]--
                     hit=false
@@ -3530,11 +3535,15 @@ class combatant{
                     case 33: this.heal(this.status.main[a]); break
                     case 34: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Gain Block',this.status.name)]+=this.status.main[a]; break
-                    case 41: this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]; break
+                    case 41: case 84: this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]; break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
                     case 71: case 72: this.combo+=this.status.main[a]; break
+                    case 81: this.status.main[findList('Energy Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 83: this.status.main[findList('Double Damage Turn',this.status.name)]+=this.status.main[a]; break
+                    case 85: this.battle.cardManagers[this.id].hand.discard(this.status.main[a]); break
+                    case 86: this.life-=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
@@ -11756,6 +11765,9 @@ class combatant{
                     this.battle.overlayManager.overlays[0][floor(random(0,this.battle.players))].active=true
                     this.battle.overlayManager.overlays[0][floor(random(0,this.battle.players))].activate([1,[
                             {type:0,value:[this.status.main[42]]}]])
+                }
+                if(this.status.main[80]>0){
+                    this.battle.combatantManager.damageAreaID(this.base.life,this.id,this.id,this.tilePosition)
                 }
                 if(this.name=='Prestige'&&this.base.life>10){
                     this.doubleHalf()
