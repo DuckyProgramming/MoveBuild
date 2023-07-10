@@ -1245,6 +1245,7 @@ types={
             ],
         },
         //some bleed
+        //tick
 
 
         {
@@ -1696,6 +1697,96 @@ types={
             levels:[
                 {effect:[1,1],attack:308,cost:0,target:[0],spec:[],class:4},
                 {effect:[1,1],attack:308,cost:0,target:[0],spec:[3],class:4},
+            ],
+        },{
+            name:'Corruption',rarity:2,list:4,
+            levels:[
+                {effect:[],attack:309,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:309,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Consume',rarity:2,list:4,
+            levels:[
+                {effect:[10,3],attack:310,cost:1,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[12,4],attack:310,cost:1,target:[2,1,1],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Overpower',rarity:2,list:4,
+            levels:[
+                {effect:[2],attack:311,cost:1,target:[0],spec:[1],class:4},
+                {effect:[3],attack:311,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Spinning\nBlades',rarity:1,list:4,
+            levels:[
+                {effect:[1],attack:312,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:312,cost:1,target:[0],spec:[3],class:4},
+            ],
+        },{
+            name:'Summon\nBlades',rarity:1,list:4,
+            levels:[
+                {effect:[1,1],attack:313,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1,2],attack:313,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Interior\nBurst',rarity:0,list:4,
+            levels:[
+                {effect:[6,10],attack:314,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[8,16],attack:314,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Respawn',rarity:1,list:4,
+            levels:[
+                {effect:[],attack:315,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:315,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Mystery\nCannon',rarity:1,list:4,
+            levels:[
+                {effect:[7,1],attack:316,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[10,2],attack:316,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Ghostly\nPresence',rarity:1,list:4,
+            levels:[
+                {effect:[1,1],attack:317,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,2],attack:317,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Clarity',rarity:1,list:4,
+            levels:[
+                {effect:[2],attack:318,cost:0,target:[0],spec:[1],class:4},
+                {effect:[3],attack:318,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Lodestone',rarity:0,list:4,
+            levels:[
+                {effect:[7,7],attack:319,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,10],attack:319,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Return\nShield',rarity:0,list:4,
+            levels:[
+                {effect:[8],attack:320,cost:2,target:[0],spec:[],class:2},
+                {effect:[12],attack:320,cost:2,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Mantle',rarity:0,list:4,
+            levels:[
+                {effect:[10,4],attack:321,cost:1,target:[0],spec:[],class:2},
+                {effect:[14,6],attack:321,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Arrival',rarity:0,list:4,
+            levels:[
+                {effect:[8,1],attack:322,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,1],attack:322,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Knifepoint',rarity:1,list:4,
+            levels:[
+                {effect:[7,1],attack:323,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9,2],attack:323,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },
 

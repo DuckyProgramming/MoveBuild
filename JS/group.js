@@ -298,6 +298,13 @@ class group{
                         this.cards[a].exhaust=true
                     }
                 break
+                case 20:
+                    if(this.cards[a].class==2 ){
+                        this.cards[a].cost=0
+                        this.cards[a].base.cost=0
+                        this.cards[a].spec.push(1)
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -962,6 +969,9 @@ class group{
                                 a--
                                 la--
                             }else{
+                                if(userCombatant.getStatus('Exhaust Draw')>0){
+                                    this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Exhaust Draw'))
+                                }
                                 if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){
                                     this.battle.relicManager.activate(10,[this.player])
                                 }

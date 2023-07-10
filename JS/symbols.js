@@ -699,6 +699,51 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             }
             layer.endShape()
         break
+        case 87:
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=17;a<la;a++){
+                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6)+0.5,cos(a/(la-1)*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+            layer.fill(255,200,255,fade)
+            layer.quad(-1,-7.5,0,-5,0,5,-1,5)
+            layer.fill(255,150,255,fade)
+            layer.quad(1,-2.5,0,-5,0,5,1,5)
+            layer.fill(255,255,255,fade)
+            layer.rect(0,6,5,2)
+            layer.rect(0,8,3,2)
+        break
+        case 88:
+            layer.fill(50,150,100,fade)
+            layer.ellipse(0,0,8,8)
+            layer.rotate(-45)
+            for(let a=0,la=3;a<la;a++){
+                layer.triangle(-2,3,2,3,0,8)
+                layer.rotate(45)
+            }
+            layer.triangle(0,-4.5,-1,-7.5,1,-7.5)
+        break
+        case 89:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(0,150,255,fade)
+            layer.rect(-7,0,1,3)
+            layer.rect(-2.25,0,7.5,3)
+            layer.triangle(1.5,-4.5,1.5,4.5,7.5,0)
+        break
+        case 90:
+            layer.fill(125,125,125,fade)
+            layer.stroke(100,100,100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noFill()
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(0.5)
+            layer.ellipse(0,0,8,8)
+            layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
+        break
     }
     layer.pop()
 }

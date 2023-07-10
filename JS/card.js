@@ -412,11 +412,24 @@ class card{
             case 303: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Energy\nWhen Exhausted`; break
             case 304: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhuast Non-Attacks`; break
             case 305: string+=`If Target\nIntends to Attack,\nGain ${effect[0]} Strength`; break
-
             case 306: string+=`Retain Block\nFor 999 Turns`; break
             case 307: string+=`Gain ${effect[0]} Vulnerable\nGain ${effect[1]} Energy\nPer Turn`; break
             case 308: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``} and\nLose ${effect[1]} Health\nEvery Turn`; break
-
+            case 309: string+=`All Defenses Are\nFree and Exhaust`; break
+            case 310: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\n${effect[1]} Max Health`; break
+            case 311: string+=`Multiply Your\nBuffs By ${effect[0]}`; break
+            case 312: string+=`When You\nTake Damage,\nAdd ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand`; break
+            case 313: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nIf Last Card\nis an Attack,\nAdd ${effect[1]} Shiv${effect[1]!=1?`s`:``}\nto Your Hand`; break
+            case 314: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Deal\n${this.calculateEffect(effect[1],0)} Splash Damage`; break
+            case 315: string+=`Send Discard\nPile to Hand`; break
+            case 316: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]}\nRandom Debuff`; break
+            case 317: string+=`Gain ${effect[0]} Intangible\nand ${effect[1]} Energy\nNext Turn`; break
+            case 318: string+=`When Card Exhausted\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 319: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[0],1)} Damage\nto a Random\nOther Enemy`; break
+            case 320: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFor 3 Turns`; break
+            case 321: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext Attack Deals\n${effect[1]} More Damage`; break
+            case 322: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf You Have No Block,\nGain ${effect[1]} Energy`; break
+            case 323: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nAdd ${effect[1]} Shiv${effect[1]!=1?`s`:``}\nto Your Hand`; break
 
 
 
