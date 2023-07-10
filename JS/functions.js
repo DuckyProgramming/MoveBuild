@@ -150,7 +150,7 @@ function pointInsideBox(point,box){
 }
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
-		case 0: case 2: case 5: case 7: case 8: case 10:
+		case 0: case 2: case 5: case 7: case 8: case 10: case 11:
 			let damage=effect
 			let bonus=0
 			let totalStr=0
@@ -198,6 +198,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 7: return effect==1?(damage==effect?'1*Combo':`1(${damage})*Combo`):(damage==effect?effect+'*Combo':effect+`(${damage})*Combo`)
 				case 8: return effect==1?(damage==effect&&bonus==0?effect+'1*Combo':effect+`1(${damage})*Combo`)+(bonus>0?`(+${bonus})`:``):(damage==effect&&bonus==0?effect+'*Combo':effect+`(${damage})*Combo`)+(bonus>0?`(+${bonus})`:``)
 				case 10: return damage==effect?effect:effect+`(${damage})`
+				case 11: return (damage==effect?effect+'X':effect+`(${damage})X`)
 
 			}
 		case 1: case 3: case 6:

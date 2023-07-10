@@ -1493,11 +1493,11 @@ class turn{
                                     this.userCombatant.heal(this.effect[0])
                                 break
                                 case 159:
-                                    this.userCombatant.randomStatus(this.effect[0])
+                                    this.userCombatant.randomStatus(this.effect[0],[0,1])
                                 break
                                 case 167:
                                     for(let a=0,la=5;a<la;a++){
-                                        this.userCombatant.randomBuff(floor(random(this.effect[0],this.effect[1]+1)))
+                                        this.userCombatant.randomStatus(floor(random(this.effect[0],this.effect[1]+1)),[1])
                                     }
                                 break
                                 case 169:

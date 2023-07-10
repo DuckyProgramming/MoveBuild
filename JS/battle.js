@@ -280,6 +280,12 @@ class battle{
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
+    dropDraw(player,type,level,color){
+        if(player<this.cardManagers.length){
+            this.cardManagers[player].reserve.add(type,level,color)
+            this.cardManagers[player].drop.addDrop(type,level,color)
+        }
+    }
     dropAll(type,level,color){
         for(let a=0,la=this.cardManagers.length;a<la;a++){
             this.cardManagers[a].discard.add(type,level,color)
@@ -387,6 +393,7 @@ class battle{
         if(userCombatant.getStatus('Card Play Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))
         }
+        this.combatantManager.playCardFront()
         this.relicManager.activate(4,[cardClass,player])
     }
     displayCurrency(){

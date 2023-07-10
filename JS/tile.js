@@ -111,9 +111,9 @@ class tile{
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(11)){
                         if(this.battle.turn.main>=this.battle.players){
-                            this.battle.combatantManager.combatants[this.combatant].randomStatus(1)
+                            this.battle.combatantManager.combatants[this.combatant].randomStatus(1,[0,1])
                         }else{
-                            this.battle.combatantManager.combatants[this.combatant].randomStatusInstant(1)
+                            this.battle.combatantManager.combatants[this.combatant].randomStatusInstant(1,[0,1])
                         }
                         this.anim.upPart[a]=false
                     }

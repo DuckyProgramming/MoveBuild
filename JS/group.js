@@ -413,6 +413,11 @@ class group{
             case -26:
                 this.drawEffects.push([4])
             break
+            case 288:
+                for(let a=0,la=effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Stream',types.card),0,types.card[findName('Stream',types.card)].list)
+                }
+            break
         }
     }
     deathEffect(){
