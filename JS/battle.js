@@ -990,11 +990,21 @@ class battle{
                             this.endTurn()
                         }
                     }
-                    if(key=='Q'&&game.dev){
-                        quickAdd('Telefrag')
-                    }
-                    if(key=='W'&&game.dev){
-                        save(graphics.main)
+                    if(game.dev){
+                        switch(key){
+                            case 'Q':
+                                quickAdd('Telefrag')
+                            break
+                            case 'W':
+                                save(graphics.main)
+                            break
+                            case 'E':
+                                this.cardManagers[0].allEffect(2,1)
+                            break
+                            case 'A':
+                                this.energy.main[0]=999999
+                            break
+                        }
                     }
                 }
             break

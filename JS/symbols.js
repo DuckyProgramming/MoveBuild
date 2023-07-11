@@ -744,6 +744,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,0,8,8)
             layer.line(-2*sqrt(2),2*sqrt(2),2*sqrt(2),-2*sqrt(2))
         break
+        case 91:
+            layer.fill(200,25,25,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+        break
     }
     layer.pop()
 }

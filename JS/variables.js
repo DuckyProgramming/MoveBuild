@@ -2009,9 +2009,15 @@ types={
                 {effect:[6],attack:342,cost:1,target:[5],spec:[0],class:1},
                 {effect:[9],attack:342,cost:1,target:[5],spec:[0],class:1},
             ],
+        },{
+            name:'Distract',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:348,cost:0,target:[5],spec:[1],class:4},
+                {effect:[],attack:348,cost:0,target:[5],spec:[1],class:4},
+            ],
         },
         
-        /*{
+        {
             name:'Apotheosis',rarity:2,list:0,
             levels:[
                 {effect:[],attack:45,cost:3,target:[0],spec:[14],class:4},
@@ -2023,8 +2029,55 @@ types={
                 {effect:[8,20],attack:61,cost:1,target:[2,1,1],spec:[0,1],class:1},
                 {effect:[12,25],attack:61,cost:1,target:[2,1,1],spec:[0,1],class:1},
             ],
-        },*/
-        //you know how it is
+        },{
+            name:'Strategist',rarity:2,list:0,
+            levels:[
+                {effect:[3],attack:8,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:8,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Metamor\nphosis',rarity:2,list:0,
+            levels:[
+                {effect:[3],attack:343,cost:2,target:[0],spec:[1],class:4},
+                {effect:[5],attack:343,cost:2,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Chrysalis',rarity:2,list:0,
+            levels:[
+                {effect:[3],attack:344,cost:2,target:[0],spec:[1],class:4},
+                {effect:[5],attack:344,cost:2,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Mind\nBlast',rarity:2,list:0,
+            levels:[
+                {effect:[],attack:345,cost:2,target:[2,1,6],spec:[3],class:1},
+                {effect:[],attack:345,cost:1,target:[2,1,6],spec:[3],class:1},
+            ],
+        },{
+            name:'Trasmutation',rarity:2,list:0,
+            levels:[
+                {effect:[1],attack:346,cost:-1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:346,cost:-1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Sadism',rarity:2,list:0,
+            levels:[
+                {effect:[6],attack:347,cost:0,target:[0],spec:[],class:4},
+                {effect:[8],attack:347,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Health\nPack',rarity:2,list:0,
+            levels:[
+                {effect:[],attack:349,cost:2,target:[0],spec:[15],limit:1,class:4},
+                {effect:[],attack:349,cost:1,target:[0],spec:[15],limit:1,class:4},
+            ],
+        },{
+            name:'Omniboost',rarity:2,list:0,
+            levels:[
+                {effect:[1,3,3],attack:350,cost:5,target:[0],spec:[],class:4},
+                {effect:[1,3,3],attack:350,cost:4,target:[0],spec:[],class:4},
+            ],
+        },
 
         {
             name:'Miracle',rarity:-1,list:0,

@@ -107,6 +107,11 @@ class group{
         this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
         this.cards.splice(this.cards.length-1,1)
     }
+    addFreeShuffle(type,level,color,variant){
+        this.addFree(type,level,color,variant)
+        this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
+        this.cards.splice(this.cards.length-1,1)
+    }
     resetAnim(){
         for(let a=0,la=this.cards.length;a<la;a++){
             this.cards[a].select=false
@@ -778,6 +783,24 @@ class group{
                     }
                     if(this.cards[a].spec.includes(1)||this.cards[a].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
                         this.cards[a].exhaust=true
+                    }
+                    if(this.cards[a].spec.includes(15)){
+                        this.cards[a].limit--
+                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
+                                this.battle.cardManagers[this.player].deck.cards[b].limit--
+                            }
+                        }
+                        if(this.cards[a].limit<=0){
+                            this.cards[a].exhaust=true
+                            for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                                if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
+                                    this.battle.cardManagers[this.player].deck.cards.splice(b,1)
+                                    b--
+                                    lb--
+                                }
+                            }
+                        }
                     }
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed())

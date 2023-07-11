@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[]}
+        this.listing={card:[],allPlayerCard:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -22,10 +22,15 @@ class cardManager{
         for(let a=0;a<game.playerNumber+4;a++){
             this.listing.card.push([[],[],[],[]])
         }
+        this.listing.allPlayerCard=[[],[],[],[]]
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity>=0&&types.card[a].list>=0){
                 this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
                 this.listing.card[types.card[a].list][3].push(a)
+                if(types.card[a].list>0&&types.card[a].list<=game.playerNumber){
+                    this.listing.allPlayerCard[types.card[a].rarity].push(a)
+                    this.listing.allPlayerCard[3].push(a)
+                }
             }
         }
     }
@@ -57,11 +62,14 @@ class cardManager{
     randomEffect(group,effect,args){
         this.getList(group).randomEffect(effect,args)
     }
-    addRandom(group,level,cardClass){
-        this.getList(group).add(this.listing.card[this.battle.player[this.player]][cardClass][floor(random(0,this.listing.card[this.battle.player[this.player]][3].length))],level,this.battle.player[this.player])
+    addRandom(group,level,rarity){
+        this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player])
     }
-    addRandomFree(group,level,cardClass,variant){
-        this.getList(group).addFree(this.listing.card[this.battle.player[this.player]][cardClass][floor(random(0,this.listing.card[this.battle.player[this.player]][3].length))],level,this.battle.player[this.player],variant)
+    addRandomFree(group,level,rarity,variant){
+        this.getList(group).addFree(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],variant)
+    }
+    addRandomColor(group,level,color,rarity){
+        this.getList(group).add(this.listing.card[color][rarity][floor(random(0,this.listing.card[color][rarity].length))],level,color)
     }
     addRandomClass(group,level,cardClass){
         let list=[]
@@ -74,7 +82,7 @@ class cardManager{
             this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
         }
     }
-    addRandomClassFree(group,level,cardClass){
+    addRandomClassFree(group,level,cardClass,variant){
         let list=[]
         for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
             if(types.card[this.listing.card[this.battle.player[this.player]][3][a]].levels[level].class==cardClass){
@@ -82,8 +90,19 @@ class cardManager{
             }
         }
         if(list.length>0){
-            this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
-            this.getList(group).cards[this.getList(group).cards.length-1].cost=0
+            this.getList(group).addFree(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant)
+        }
+    }
+    addRandomClassAllFreeShuffle(group,level,cardClass,variant){
+        let list=[]
+        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
+            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
+                list.push(this.listing.allPlayerCard[3][a])
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).addFreeShuffle(type,level,types.card[type].list,variant)
         }
     }
     draw(amount){

@@ -49,6 +49,9 @@ class card{
         if(this.spec.includes(12)){
             this.reality=types.card[this.type].levels[this.level].reality
         }
+        if(this.spec.includes(15)){
+            this.limit=types.card[this.type].levels[this.level].limit
+        }
 
         this.strike=this.name.includes('Strike')
         this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'
@@ -448,8 +451,19 @@ class card{
             case 340: string+='Put a Power\nFrom Your Draw\nPile into\nYour Hand'; break
             case 341: string+=`Enemies Move\nToward Point`; break
             case 342: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy`; break
+            case 343: string+=`Shuffle ${effect[0]} Random\nAttack${effect[0]!=1?`s`:``} Into\nYour Draw Pile\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
+            case 344: string+=`Shuffle ${effect[0]} Random\nDefense${effect[0]!=1?`s`:``} Into\nYour Draw Pile\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break            
+            case 345: string+=`Deal Damage Equal to\nNumber of Cards in\nYour Deck${this.player>=0&&this.player<this.battle.players?` (${this.battle.cardManagers[this.player].deck.cards.length})`:``}`; break
+            case 346: string+=`Add ${effect[0]}X Random\nColorless Cards\nto Your Hand`; break
+            case 347: string+=`When You\nApply a Debuff,\nDeal ${effect[0]} Damage`; break
 
-            
+            case 348: string+=`Target Rotates\n180 Degrees`; break
+            case 349: string+=`Heal All Health`; break
+            case 350: string+=`Gain ${effect[0]} Energy Per Turn\nGain ${effect[1]} Strength\nGain ${effect[2]} Dexterity`; break
+
+
+
+
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -478,6 +492,9 @@ class card{
         }
         if(this.spec.includes(1)){
             string+='\nExhaust'
+        }
+        if(this.spec.includes(15)){
+            string+=`\nVanishing ${this.limit}`
         }
         if(this.spec.includes(4)){
             string+='\nEthereal'
