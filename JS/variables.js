@@ -1,7 +1,7 @@
 types={
     card:[
         {
-            name:'Blind',rarity:-1,list:-1,
+            name:'Go For\nThe Eyes',rarity:-1,list:-1,
             levels:[
                 {effect:[3,1],attack:106,cost:0,target:[2,1,1],spec:[],class:1},
                 {effect:[4,2],attack:106,cost:0,target:[2,1,1],spec:[],class:1},
@@ -83,12 +83,6 @@ types={
             levels:[
                 {effect:[11,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[15,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Teleport',rarity:-1,list:-1,
-            levels:[
-                {effect:[],attack:54,cost:2,target:[6],spec:[1],class:3},
-                {effect:[],attack:54,cost:1,target:[6],spec:[1],class:3},
             ],
         },{
             name:'Stagger',rarity:-1,list:-1,
@@ -1968,6 +1962,56 @@ types={
                 {effect:[],attack:71,cost:1,target:[0],spec:[],class:4},
             ],
         },{
+            name:'Teleport',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:54,cost:2,target:[6],spec:[1],class:3},
+                {effect:[],attack:54,cost:1,target:[6],spec:[1],class:3},
+            ],
+        },{
+            name:'Entrance',rarity:1,list:0,
+            levels:[
+                {effect:[8],attack:336,cost:0,target:[0],spec:[0,1,3],class:1},
+                {effect:[12],attack:336,cost:0,target:[0],spec:[0,1,3],class:1},
+            ],
+        },{
+            name:'Secret\nWeapon',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:337,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:337,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Secret\nTool',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:338,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:338,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Secret\nPassage',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:339,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:339,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Secret\nTechnique',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:340,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:340,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Point',rarity:1,list:0,
+            levels:[
+                {effect:[],attack:341,cost:1,target:[9],spec:[1],class:4},
+                {effect:[],attack:341,cost:0,target:[9],spec:[1],class:4},
+            ],
+        },{
+            name:'Targetted\nStrike',rarity:1,list:0,
+            levels:[
+                {effect:[6],attack:342,cost:1,target:[5],spec:[0],class:1},
+                {effect:[9],attack:342,cost:1,target:[5],spec:[0],class:1},
+            ],
+        },
+        
+        /*{
             name:'Apotheosis',rarity:2,list:0,
             levels:[
                 {effect:[],attack:45,cost:3,target:[0],spec:[14],class:4},
@@ -1979,7 +2023,7 @@ types={
                 {effect:[8,20],attack:61,cost:1,target:[2,1,1],spec:[0,1],class:1},
                 {effect:[12,25],attack:61,cost:1,target:[2,1,1],spec:[0,1],class:1},
             ],
-        },
+        },*/
         //you know how it is
 
         {
@@ -5037,8 +5081,8 @@ shipyard visit for another time.`,
             [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
             //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
 
-            //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['One-Inch\nPunch',0,-1],['Combo\nBLock',0,-1],['Split\nKick',0,-1],['Ready\nUp',0,-1],['Painkillers',0,-1],['Jerk',0,-1]],
+            [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
+            //[['One-Inch\nPunch',0,-1],['Combo\nBlock',0,-1],['Split\nKick',0,-1],['Ready\nUp',0,-1],['Painkillers',0,-1],['Jerk',0,-1]],
 
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
             //[['Facade',0,-1],['Rampage',0,-1],['Outmaneuver',0,-1],['Clash',0,-1],['Survivor',0,-1],['Parasol',0,-1]],
@@ -7251,7 +7295,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[4],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[1],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}

@@ -3616,6 +3616,7 @@ class combatant{
                         this.goal.anim.sword=true
                     break
                     case 3: case 6: case 8: case 9: case 17: case 23: case 26: case 28: case 29: case 31:
+                    case 32:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -3995,6 +3996,13 @@ class combatant{
                             this.anim.legs[this.animSet.foot+a*(1-this.animSet.foot)].bottom=lsin(this.animSet.loop*90)*75*(1-a*2)
                             this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot)].top=(60-lsin(this.animSet.loop*90)*60)*(this.animSet.foot*2-1)*(1-a*2)
                             this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot)].bottom=(120-lsin(this.animSet.loop*90)*120)*(this.animSet.foot*2-1)*(1-a*2)
+                        }
+                    break
+                    case 32:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.arms[g].top=24+abs(lsin(this.animSet.loop*180))*81
+                            this.anim.arms[g].bottom=9+abs(lsin(this.animSet.loop*180))*126
                         }
                     break
                 }

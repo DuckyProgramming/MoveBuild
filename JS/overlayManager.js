@@ -25,12 +25,17 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[4,1,1])],//remove card, return through event (bonfire spirits)
             [new overlay(this.layer,this.battle,0,2,[11])],//bring in discard card as free, no return
             [new overlay(this.layer,this.battle,0,2,[12])],//bring in exhaust card, no return
+            [new overlay(this.layer,this.battle,0,2,[13])],//bring in draw card-attack, no return,20
+            [new overlay(this.layer,this.battle,0,2,[14])],//bring in draw card-defense, no return
+            [new overlay(this.layer,this.battle,0,2,[15])],//bring in draw card-movement, no return
+            [new overlay(this.layer,this.battle,0,2,[16])],//bring in draw card-power, no return
+
         )
         if(this.battle.players==2){
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[17,3,10,0,1,13,2,16,4,15,5,6,7,18,8,19,9,12,14,11]
+        this.priority=[17,3,10,0,1,13,2,16,4,15,5,6,7,18,8,19,20,21,22,23,9,12,14,11]
         this.anyActive=false
     }
     copyOverlays(){

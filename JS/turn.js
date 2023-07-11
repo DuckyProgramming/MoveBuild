@@ -7,6 +7,7 @@ class turn{
         this.user=user
         this.mover=mover
         this.attackClass=types.attack[this.type].class
+        this.setTarget=-1
 
         this.procedure=[]
 
@@ -561,9 +562,12 @@ class turn{
                     this.targetTile=-1
                     switch(this.type){
                         case 0: case 4:
-                            this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
-                            this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-
+                            if(this.setTarget!=-1){
+                                this.targetCombatant=this.setTarget
+                            }else{
+                                this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                            }
                             this.direction=round(atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)/60-random(0.4,0.6))*60+30
                             if(this.type==4){
                                 this.direction+=round(random(-2,2))*60

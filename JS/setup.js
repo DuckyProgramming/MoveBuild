@@ -12,8 +12,8 @@ function setup(){
         current.itemManager.addItem(2+a,0)
     }*/
 
-    //stage.scene='battle'
-    //current.setupBattle(types.encounter[1])
+    stage.scene='battle'
+    current.setupBattle(types.encounter[1])
     //current.nodeManager.world=2
 
     /*current.overlayManager.overlays[0][0].active=true

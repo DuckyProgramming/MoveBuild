@@ -26,7 +26,10 @@ class group{
                     //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
                 }
                 for(let a=0,la=6;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
+                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
+                }
+                for(let a=0,la=6;a<la;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.card[0][3][this.battle.cardManagers[this.player].listing.card[0][3].length-1-a],0,0)
                 }
                 for(let a=1,la=types.card.length-2;a<la;a++){
                     //this.add(a,0,0)
@@ -139,6 +142,9 @@ class group{
             this.cards.push(copyCard(cards[index]))
             cards.splice(index,1)
         }
+    }
+    out(){
+        this.cards.forEach(card=>print(card.name))
     }
     deStatus(value){
         let done=0
@@ -299,7 +305,7 @@ class group{
                     }
                 break
                 case 20:
-                    if(this.cards[a].class==2 ){
+                    if(this.cards[a].class==2){
                         this.cards[a].cost=0
                         this.cards[a].base.cost=0
                         this.cards[a].spec.push(1)
@@ -567,6 +573,15 @@ class group{
         }
         this.sorted=names.sort()
     }
+    sortClass(cardClass){
+        let names=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(!names.includes(this.cards[a].name)&&this.cards[a].class==cardClass){
+                names.push(this.cards[a].name)
+            }
+        }
+        this.sorted=names.sort()
+    }
     remove(index){
         let possible=!this.cards[index].spec.includes(7)
         if(possible){
@@ -578,7 +593,7 @@ class group{
         }
         return possible
     }
-    unremove(){
+    unRemove(){
         this.cards.push(this.removed[this.removed.length-1])
         this.removed.splice(this.removed.length-1,1)
     }
@@ -678,35 +693,56 @@ class group{
                 this.cards.forEach(card=>card.display())
             break
             case 'overlay':
-                if(args[0]==0){
-                    this.sort()
-                    let position=0
-                    for(let a=0,la=this.sorted.length;a<la;a++){
-                        for(let b=0,lb=this.cards.length;b<lb;b++){
-                            if(this.cards[b].name==this.sorted[a]){
-                                this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
-                                this.cards[b].fade=1
-                                this.cards[b].position.x=this.layer.width/2-200+position%5*100
-                                this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
-                                this.cards[b].anim.afford=1
-                                if(this.cards[b].size>=0){
-                                    this.cards[b].display()
+                let position=0
+                switch(args[0]){
+                    case 0:
+                        this.sort()
+                        for(let a=0,la=this.sorted.length;a<la;a++){
+                            for(let b=0,lb=this.cards.length;b<lb;b++){
+                                if(this.cards[b].name==this.sorted[a]){
+                                    this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                                    this.cards[b].fade=1
+                                    this.cards[b].position.x=this.layer.width/2-200+position%5*100
+                                    this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                    this.cards[b].anim.afford=1
+                                    if(this.cards[b].size>=0){
+                                        this.cards[b].display()
+                                    }
+                                    position++
                                 }
-                                position++
                             }
                         }
-                    }
-                }else{
-                    for(let a=0,la=this.cards.length;a<la;a++){
-                        this.cards[a].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
-                        this.cards[a].fade=1
-                        this.cards[a].position.x=this.layer.width/2-200+a%5*100
-                        this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
-                        this.cards[a].anim.afford=1
-                        if(this.cards[a].size>=0){
-                            this.cards[a].display()
+                    break
+                    case 2: case 3: case 4: case 5:
+                        this.sortClass(args[0]-1)
+                        for(let a=0,la=this.sorted.length;a<la;a++){
+                            for(let b=0,lb=this.cards.length;b<lb;b++){
+                                if(this.cards[b].name==this.sorted[a]){
+                                    this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
+                                    this.cards[b].fade=1
+                                    this.cards[b].position.x=this.layer.width/2-200+position%5*100
+                                    this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
+                                    this.cards[b].anim.afford=1
+                                    if(this.cards[b].size>=0){
+                                        this.cards[b].display()
+                                    }
+                                    position++
+                                }
+                            }
                         }
-                    }
+                    break
+                    default:
+                        for(let a=0,la=this.cards.length;a<la;a++){
+                            this.cards[a].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
+                            this.cards[a].fade=1
+                            this.cards[a].position.x=this.layer.width/2-200+a%5*100
+                            this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
+                            this.cards[a].anim.afford=1
+                            if(this.cards[a].size>=0){
+                                this.cards[a].display()
+                            }
+                        }
+                    break
                 }
             break
         }

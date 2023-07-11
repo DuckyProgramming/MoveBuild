@@ -371,9 +371,9 @@ class relicManager{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
             break
             case 151:
-                this.battle.cardManagers[player].deck.unremove()
-                this.battle.cardManagers[player].deck.unremove()
-                this.battle.cardManagers[player].deck.unremove()
+                this.battle.cardManagers[player].deck.unRemove()
+                this.battle.cardManagers[player].deck.unRemove()
+                this.battle.cardManagers[player].deck.unRemove()
             break
             case 154:
                 for(let a=0,la=this.battle.cardManagers[player].deck.cards.length;a<la;a++){

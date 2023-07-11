@@ -11,6 +11,7 @@ Impale through 2
 Kamikaze
 Advance to Range 2
 move at least 2
+step copies itself
 
 Interesting Target Zones
 

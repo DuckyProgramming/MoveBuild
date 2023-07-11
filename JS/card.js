@@ -441,8 +441,13 @@ class card{
             case 333: string+=`Swap With an\nRange 1-2 Target\nTarget Will Face User`; break
             case 334: string+=`Gain ${effect[0]} Energy and\nDraw ${effect[1]} Less Card${effect[1]!=1?`s`:``}\nEvery Turn`
             case 335: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Energy\nNext Turn`; break
-
-
+            case 336: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nRange 1-2`; break
+            case 337: string+='Put an Attack\nFrom Your Draw\nPile into\nYour Hand'; break
+            case 338: string+='Put a Defense\nFrom Your Draw\nPile into\nYour Hand'; break
+            case 339: string+='Put a Movement\nFrom Your Draw\nPile into\nYour Hand'; break
+            case 340: string+='Put a Power\nFrom Your Draw\nPile into\nYour Hand'; break
+            case 341: string+=`Enemies Move\nToward Point`; break
+            case 342: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy`; break
 
             
             /*

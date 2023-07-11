@@ -80,6 +80,17 @@ class turnManager{
             }
         }
     }
+    loadEnemyPoint(point){
+        this.auxiliary=true
+        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
+                for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Temporary Speed Up');b<lb;b++){
+                    this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
+                    this.turns[this.turns.length-1].setTarget=point
+                }
+            }
+        }
+    }
     unMoveTurn(id){
         for(let a=0,la=this.turns.length;a<la;a++){
             if(this.turns[a].action==1&&this.turns[a].user==id){

@@ -238,6 +238,14 @@ class combatantManager{
             }
         }
     }
+    damageArea2(damage,user,team,tilePosition,spec){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].team!=team&&distance>=0&&distance<=2){
+                this.combatants[a].takeDamage(damage,user,spec)
+            }
+        }
+    }
     damageAreaID(damage,user,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
