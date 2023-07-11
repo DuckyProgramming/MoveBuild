@@ -1,3 +1,6 @@
+Graphics:
+Phantasm
+
 Mechanics:
 Menu (and the rest of the start)
 
@@ -8,6 +11,7 @@ Copy
 Impale through 2
 Kamikaze
 Advance to Range 2
+move at least 2
 
 Interesting Target Zones
 
@@ -17,7 +21,6 @@ Gimmick Land
 Generality:
 Lira: most cards
 Sakura: all cards
-Certes: all cards
 First Character Gimmick (hp dealing)
 
 Dictionary Additions:
@@ -34,9 +37,9 @@ conditionin
 
 Bugs:
 
-Graphics:
-
 Partnership Cards:
 
 George:
+
+Certes:
 

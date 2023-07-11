@@ -445,6 +445,7 @@ types={
             ],
         },{
             name:'Punch-Kick\nCombo',rarity:1,list:1,
+
             levels:[
                 {effect:[10],attack:143,cost:2,target:[2,1,1],spec:[0],class:1},
                 {effect:[14],attack:143,cost:2,target:[2,1,1],spec:[0],class:1},
@@ -458,8 +459,8 @@ types={
         },{
             name:'Option\nAssault',rarity:1,list:1,
             levels:[
-                {effect:[[7],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],reality:[[0],[]],class:[1,3]},
-                {effect:[[11],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],reality:[[0],[]],class:[1,3]},
+                {effect:[[7],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],reality:[[0],[0]],class:[1,3]},
+                {effect:[[11],[1]],attack:[1,3],cost:1,target:[11,1,1],spec:[12],reality:[[0],[0]],class:[1,3]},
             ],
         },{
             name:'Dodge\nCounter',rarity:1,list:1,
@@ -1243,6 +1244,18 @@ types={
                 {effect:[1],attack:153,cost:1,target:[12,1,1],spec:[0],class:3},
                 {effect:[1],attack:153,cost:0,target:[12,1,1],spec:[0],class:3},
             ],
+        },{
+            name:'Diagonal\nStrike',rarity:0,list:3,
+            levels:[
+                {effect:[11],attack:329,cost:1,target:[14,1,1],spec:[0],class:1},
+                {effect:[16],attack:329,cost:1,target:[14,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Ruminate',rarity:1,list:3,
+            levels:[
+                {effect:[1,1],attack:334,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1,1],attack:334,cost:0,target:[0],spec:[1,3],class:4},
+            ],
         },
         //some bleed
         //tick
@@ -1771,7 +1784,7 @@ types={
                 {effect:[12],attack:320,cost:2,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Mantle',rarity:0,list:4,
+            name:'Mantle',rarity:1,list:4,
             levels:[
                 {effect:[10,4],attack:321,cost:1,target:[0],spec:[],class:2},
                 {effect:[14,6],attack:321,cost:1,target:[0],spec:[],class:2},
@@ -1812,11 +1825,43 @@ types={
                 {effect:[1],attack:328,cost:1,target:[13,1,1],spec:[0],class:3},
                 {effect:[1],attack:328,cost:1,target:[13,1,1],spec:[0],class:3},
             ],
+        },{
+            name:'Filedown',rarity:1,list:4,
+            levels:[
+                {effect:[[10],[1]],attack:[329,3],cost:1,target:[15,1,1],spec:[12],reality:[[0],[0]],class:[1,3]},
+                {effect:[[15],[1]],attack:[329,3],cost:1,target:[15,1,1],spec:[12],reality:[[0],[0]],class:[1,3]},
+            ],
+        },{
+            name:'Extended\nMove',rarity:1,list:4,
+            levels:[
+                {effect:[6],attack:330,cost:1,target:[16,1,6],spec:[0,1],class:3},
+                {effect:[6],attack:330,cost:1,target:[16,1,6],spec:[0,1],class:3},
+            ],
+        },{
+            name:'Shiv\nMove',rarity:0,list:4,
+            levels:[
+                {effect:[1,1],attack:331,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,2],attack:331,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Horizontal\nMove',rarity:1,list:4,
+            levels:[
+                {effect:[6],attack:332,cost:1,target:[17,1,6],spec:[0,1],class:3},
+                {effect:[6],attack:332,cost:1,target:[17,1,6],spec:[0,1],class:3},
+            ],
+        },{
+            name:'Long\nSwap',rarity:1,list:4,
+            levels:[
+                {effect:[],attack:333,cost:1,target:[2,1,2],spec:[0,1],class:3},
+                {effect:[],attack:333,cost:0,target:[2,1,2],spec:[0,1],class:3},
+            ],
+        },{
+            name:'Stepgap',rarity:0,list:4,
+            levels:[
+                {effect:[1,1],attack:335,cost:2,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:335,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
         },
-
-        //phantasm movement
-
-
 
         {
             name:'Telefrag',rarity:-3,list:-1,

@@ -49,7 +49,7 @@ class attack{
             case 255: case 260: case 263: case 265: case 266: case 267: case 268: case 269: case 271: case 272:
             case 273: case 274: case 275: case 277: case 280: case 282: case 287: case 288: case 290: case 292:
             case 293: case 295: case 296: case 297: case 301: case 304: case 310: case 314: case 316: case 319:
-            case 323: case 326: case 327:
+            case 323: case 326: case 327: case 333:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -60,7 +60,7 @@ class attack{
             break
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
-            case 256:
+            case 256: case 330: case 331: case 332: case 335:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -621,7 +621,7 @@ class attack{
                 }
             break
             case 3: case 20: case 51: case 52: case 56: case 58: case 59: case 60: case 91: case 182:
-            case 192: case 205: case 248: case 256:
+            case 192: case 205: case 248: case 256: case 330: case 331: case 332: case 335:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -657,6 +657,14 @@ class attack{
                         break
                         case 256:
                             this.battle.cardManagers[this.player].hand.discard(this.effect[1])
+                        break
+                        case 331:
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                            }
+                        break
+                        case 335:
+                            this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
                         break
                     }
                 }
@@ -933,7 +941,7 @@ class attack{
             case 199: case 207: case 209: case 210: case 213: case 214: case 227: case 229: case 230: case 232:
             case 233: case 253: case 254: case 259: case 276: case 279: case 284: case 285: case 289: case 291:
             case 294: case 298: case 300: case 302: case 305: case 308: case 309: case 313: case 315: case 317:
-            case 318:
+            case 318: case 334:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -1154,12 +1162,16 @@ class attack{
                         case 318:
                             this.userCombatant.statusEffect('Exhaust Draw',this.effect[0])
                         break
+                        case 334:
+                            this.battle.energy.gen[this.player]+=this.effect[0]
+                            this.userCombatant.statusEffect('Draw Up',-this.effect[1])
+                        break
                     }
                 }else if(this.timer>=20){
                     this.remove=true
                 }
             break
-            case 9:
+            case 9: case 333:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                     if(this.targetClass==2){
@@ -1174,7 +1186,7 @@ class attack{
                     this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/(15*this.targetDistance))
                 }
                 if(this.timer>=15*this.targetDistance){
-                    this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                    this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
                     this.battle.activate(1,this.userCombatant.id)
                     if(this.targetClass==2){
                         this.targetCombatant.moveTilePosition(this.tilePosition.x,this.tilePosition.y)
@@ -3829,6 +3841,30 @@ class attack{
                         this.battle.activate(1,this.userCombatant.id)
                         this.remove=true
                     }
+                }
+            break
+            case 329:
+                if(this.timer==1||this.timer==31){
+                    this.userCombatant.startAnimation(0)
+                }else if(this.timer==11){
+                    this.userCombatant.startAnimation(2)
+                }
+                if(this.timer<=10||this.timer>30){
+                    this.userCombatant.runAnimation(1/10,0)
+                }else if(this.timer>10&&this.timer<=30){
+                    this.userCombatant.runAnimation(1/20,2)
+                }
+                if(this.timer<=10){
+                    this.userCombatant.moveTile(this.direction,this.distance/30)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/30)
+                }else if(this.timer>30){
+                    this.userCombatant.moveTile(this.direction,-this.distance/30)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/30)
+                }
+                if(this.timer==20){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                }else if(this.timer>=40){
+                    this.remove=true
                 }
             break
             
