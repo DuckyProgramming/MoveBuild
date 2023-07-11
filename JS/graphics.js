@@ -1011,6 +1011,17 @@ function generateSprite(layer,type,direction){
 		case 38:
 			displayTrianglesBack(layer,data.parts.under.dress,direction,44,17,0.5,0.75,data.color.under.dressBack,1)
 		break
+		case 39:
+			controlSpin(data.parts.under.dressDamage,direction,0)
+			displayTrianglesFront(layer,data.parts.under.dressDamage,direction,44,17,0.5,0.75,data.color.under.dress,1)
+			layer.quad(-5,21,5,21,8.5,44,-8.5,44)
+			controlSpin(data.parts.under.dressAnti,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.under.dressAnti,direction,21,10,0.5,7/66,-1,1)
+		break
+		case 40:
+			displayTrianglesBack(layer,data.parts.under.dressDamage,direction,44,17,0,0.75,data.color.under.dressBack,1)
+			displayTrianglesBackMerge(layer,data.parts.under.dressAnti,direction,21,10,0.5,7/66,-1,1)
+		break
 		
 	}
 }
@@ -1546,8 +1557,8 @@ function setupCombatantGraphics(type){
 		case 2:
 			graphics.combatant.push({
 				spin:{tail:108},
-				sprites:{detail:15,genAmount:0,animDirection:0,temp:0,hair:{back:[],front:[],tail:[]},under:{dress:{back:[],front:[]}}},
-				parts:{under:{dress:[],dressDamage:[]}},
+				sprites:{detail:15,genAmount:0,animDirection:0,temp:0,hair:{back:[],front:[],tail:[]},under:{dress:{back:[],front:[]},dressDamage:{back:[],front:[]}}},
+				parts:{under:{dress:[],dressDamage:[],dressAnti:[]}},
 				color:{
                     hair:{back:[15,0,30],front:[10,0,20],glow:[40,0,80]},
                     skin:{head:[45,0,90],body:[40,0,80],legs:[35,0,70],arms:[35,0,70]},
@@ -1578,8 +1589,11 @@ function setupCombatantGraphics(type){
 			}
 			if(options.damage){
 				for(let g=0;g<12;g++){
-					graphics.combatant[graphics.combatant.length-1].parts.under.dress.push({spin:[-171+g*30,-159+g*30,-165+g*30],height:5-random(0,3)})
-					graphics.combatant[graphics.combatant.length-1].parts.under.dress.push({spin:[-189+g*30,-171+g*30,-180+g*30],height:7-random(0,5)})
+					graphics.combatant[graphics.combatant.length-1].parts.under.dressDamage.push({spin:[-171+g*30,-159+g*30,-165+g*30],height:5-random(0,3)})
+					graphics.combatant[graphics.combatant.length-1].parts.under.dressDamage.push({spin:[-189+g*30,-171+g*30,-180+g*30],height:7-random(0,5)})
+				}
+				for(let g=0;g<10;g++){
+					graphics.combatant[graphics.combatant.length-1].parts.under.dressAnti.push({spin:[-96-g*36,-52-g*36,-74-g*36],y:[-1,-1,3+((g+2)**3%5)/2-lcos(-80-g*20)*2]})
 				}
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
@@ -1611,6 +1625,23 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dress.back[g],38,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated S-UDB-'+(g+1))
+			}
+			if(options.damage){
+				graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage={front:[],back:[]}
+				for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
+					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front.push(createGraphics(150,250))
+					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front[g])
+					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front[g].translate(75,0)
+					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front[g].scale(5)
+					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.front[g],39,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					//print('Generated S-UDF-'+(g+1))
+					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back.push(createGraphics(150,250))
+					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back[g])
+					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back[g].translate(75,0)
+					graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back[g].scale(5)
+					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.under.dressDamage.back[g],40,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					//print('Generated S-UDB-'+(g+1))
+				}
 			}
 		break
 		case 10:
@@ -1868,6 +1899,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141-(player[a]-2)*45,lock:0}]
 				break
+				case 'Certes':
+					p1.anim.mouth.y+=0.5
+					p1.anim.legs=[
+						{top:30,bottom:24,length:{top:16,bottom:16}},
+						{top:12,bottom:6,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:33,bottom:84,length:{top:16,bottom:16}},
+						{top:33,bottom:84,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:42,lock:0},{top:0,bottom:0,lock:0}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -1893,7 +1937,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-180,bottom:-180,lock:0},{top:-60,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
-				case 'Lira': case 'Sakura': case 'Ume':
+				case 'Lira': case 'Sakura': case 'Certes': case 'Ume':
 					if(p1.name=='Sakura'){
 						p1.parts.mouth+=4
 						p1.spin.mouth+=180
@@ -1903,6 +1947,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs=[
 						{top:30-a*6,bottom:-60-a*24,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
 						{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:12,length:{top:16,bottom:16}},
+						{top:36+a*12,bottom:60-a*42,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'Certes':
+					p1.parts.mouth+=3
+					p1.spin.mouth+=156
+					p1.anim.mouth.y++
+					p1.anim.legs=[
+						{top:30-a*6,bottom:-60-a*24,length:{top:16,bottom:16}},
+						{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16}}
 					]
 					p1.anim.arms=[
 						{top:36,bottom:12,length:{top:16,bottom:16}},
@@ -1974,6 +2033,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:150,lock:0}]
 					p1.spin.arms=[{top:-75-a*15,bottom:-12-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
 				break
+				case 'Certes':
+					p1.anim.mouth.y+=0.5
+					p1.anim.legs=[
+						{top:30,bottom:87,length:{top:16,bottom:16}},
+						{top:30,bottom:87,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:60-a*30,length:{top:16,bottom:16}},
+						{top:24,bottom:60-a*30,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:150,lock:0}]
+					p1.spin.arms=[{top:-75-a*15,bottom:-12-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
+				break
 			}
 			p1.anim.eye=[1,1]
 			p1.anim.eyeStyle=[2,2]
@@ -2028,6 +2100,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
+				case 'Certes':
+					p1.anim.mouth.y++
+					p1.anim.legs=[
+						{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8}},
+						{top:6+a*36,bottom:12+a*9,length:{top:16,bottom:16-a*8}}
+					]
+					p1.anim.arms=[
+						{top:18+a*36,bottom:12+a*96,length:{top:16,bottom:16}},
+						{top:27-a*3,bottom:60-a*42,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -2071,6 +2156,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs=[
 						{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
 						{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+					]
+					p1.anim.arms=[
+						{top:24-a*3,bottom:36-a*12,length:{top:16,bottom:16}},
+						{top:24-a*3,bottom:36,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
+				break
+				case 'Certes':
+					p1.anim.mouth.y++
+					p1.anim.legs=[
+						{top:3+a*6,bottom:3,length:{top:16,bottom:16}},
+						{top:3+a*6,bottom:3,length:{top:16,bottom:16}}
 					]
 					p1.anim.arms=[
 						{top:24-a*3,bottom:36-a*12,length:{top:16,bottom:16}},
@@ -2134,6 +2232,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90+a*60,bottom:-75+a*60,lock:0},{top:30+a*60,bottom:15+a*60,lock:0}]
 				break
+				case 'Certes':
+					p1.anim.mouth.y+=1.5
+					p1.anim.legs=[
+						{top:6,bottom:12,length:{top:16,bottom:16}},
+						{top:6,bottom:12,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:36-a*15,bottom:54-a*15,length:{top:16,bottom:16}},
+						{top:24+a*9,bottom:36+a*27,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90+a*60,bottom:-75+a*60,lock:0},{top:30+a*60,bottom:15+a*60,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -2180,6 +2291,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
 					p1.spin.arms=[{top:-120,bottom:-141,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Certes':
+					p1.anim.mouth.y+=0.5
+					p1.anim.legs=[
+						{top:36,bottom:72,length:{top:16,bottom:16}},
+						{top:18,bottom:12,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:96,bottom:132,length:{top:16,bottom:16}},
+						{top:96,bottom:132,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-6,lock:0},{top:0,bottom:0,lock:0}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
 			}
 			p1.size=1.5

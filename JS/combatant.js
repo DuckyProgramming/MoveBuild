@@ -6921,7 +6921,11 @@ class combatant{
                         }
                     }
                     if(this.trigger.display.under.dress.back){
-                        this.layer.image(graphics.combatant[2].sprites.under.dress.back[this.sprites.spinDetail],-15*this.fade*this.fades.under.dress.back.x,this.parts.under.dress-15*this.fades.under.dress.back.y,30*this.fade*this.fades.under.dress.back.x,50*this.fade*this.fades.under.dress.back.y)
+                        if(this.trigger.display.extra.damage){
+                            this.layer.image(graphics.combatant[2].sprites.under.dressDamage.back[this.sprites.spinDetail],-15*this.fade*this.fades.under.dress.back.x,this.parts.under.dress-15*this.fades.under.dress.back.y,30*this.fade*this.fades.under.dress.back.x,50*this.fade*this.fades.under.dress.back.y)
+                        }else{
+                            this.layer.image(graphics.combatant[2].sprites.under.dress.back[this.sprites.spinDetail],-15*this.fade*this.fades.under.dress.back.x,this.parts.under.dress-15*this.fades.under.dress.back.y,30*this.fade*this.fades.under.dress.back.x,50*this.fade*this.fades.under.dress.back.y)
+                        }
                     }
                     if(this.trigger.display.skin.body){
                         this.layer.noStroke()
@@ -6947,7 +6951,11 @@ class combatant{
                         }
                     }
                     if(this.trigger.display.under.dress.front){
-                        this.layer.image(graphics.combatant[2].sprites.under.dress.front[this.sprites.spinDetail],-15*this.fade*this.fades.under.dress.front.x,this.parts.under.dress-15*this.fades.under.dress.front.y,30*this.fade*this.fades.under.dress.front.x,50*this.fade*this.fades.under.dress.front.y)
+                        if(this.trigger.display.extra.damage){
+                            this.layer.image(graphics.combatant[2].sprites.under.dressDamage.front[this.sprites.spinDetail],-15*this.fade*this.fades.under.dress.front.x,this.parts.under.dress-15*this.fades.under.dress.front.y,30*this.fade*this.fades.under.dress.front.x,50*this.fade*this.fades.under.dress.front.y)
+                        }else{
+                            this.layer.image(graphics.combatant[2].sprites.under.dress.front[this.sprites.spinDetail],-15*this.fade*this.fades.under.dress.front.x,this.parts.under.dress-15*this.fades.under.dress.front.y,30*this.fade*this.fades.under.dress.front.x,50*this.fade*this.fades.under.dress.front.y)
+                        }
                     }
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
