@@ -750,6 +750,45 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(255,50,50,fade)
             layer.triangle(9,0,-4.5,-3,-4.5,3)
         break
+        case 92:
+            layer.fill(150,0,0,fade)
+            layer.quad(-1,-1.5,-1,1.5,-5,4.5,-5,1.5)
+            layer.triangle(6,0,-1,6,-1,-6)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+        break
+        case 93:
+            layer.fill(150,0,0,fade)
+            layer.quad(-1,-1.5,-1,1.5,-5,4.5,-5,1.5)
+            layer.triangle(6,0,-1,6,-1,-6)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+        break
+        case 94:
+            layer.fill(255,225,75,fade)
+            layer.triangle(-2,-4,2,-4,0,8)
+            layer.rect(-4,0,3,3)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+        break
+        case 95:
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=17;a<la;a++){
+                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6),cos(a/(la-1)*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+            layer.fill(255,100,100,fade)
+            layer.rect(0,0,3,12)
+            layer.rect(0,0,12,3)
+        break
+
     }
     layer.pop()
 }

@@ -366,7 +366,7 @@ class battle{
         if(card.spec.includes(0)||card.spec.includes(12)&&card.reality[mode].includes(0)){
             this.cardManagers[player].fatigue()
         }
-        if(card.spec.includes(13)||card.spec.includes(12)&&card.reality[mode].includes(13)){
+        if(card.spec.includes(16)||card.spec.includes(12)&&card.reality[mode].includes(16)){
             this.cardManagers[player].fatigue()
             this.cardManagers[player].fatigue()
         }

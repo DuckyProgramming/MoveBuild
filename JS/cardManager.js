@@ -224,6 +224,13 @@ class cardManager{
             left-=this.hand.deFatigue(left)
         }
     }
+    deFatigueAll(){
+        let done=0
+        done+=this.reserve.deFatigue(-1)
+        done+=this.discard.deFatigue(-1)
+        done+=this.hand.deFatigue(-1)
+        return done
+    }
     transformCard(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][floor(random(0,this.listing.card[base.list][3].length))],base.level,base.color,base.id)
     }

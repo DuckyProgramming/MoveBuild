@@ -36,7 +36,7 @@ class turn{
                         switch(this.type){
                             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                             case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
-                            case 212:
+                            case 212: case 226:
                                 this.target=[[this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]]]
                             break
                             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
@@ -4002,6 +4002,17 @@ class turn{
                         if(this.timer>=10){
                             this.userCombatant.life=0
                             this.battle.quickReinforce(this.userCombatant.name)
+                            this.remove=true
+                        }
+                    break
+                    case 226:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(17)
+                        }
+                        this.userCombatant.runAnimation(1/30,17)
+                        if(this.timer==15){
+                            this.targetCombatant.statusEffect('Temporary Speed Up',-this.effect[0])
+                        }else if(this.timer>=30){
                             this.remove=true
                         }
                     break

@@ -459,10 +459,28 @@ class card{
             case 348: string+=`Target Rotates\n180 Degrees`; break
             case 349: string+=`Heal All Health`; break
             case 350: string+=`Gain ${effect[0]} Energy Per Turn\nGain ${effect[1]} Strength\nGain ${effect[2]} Dexterity`; break
-
             case 351: string+=`Ally Gains ${effect[0]}\nCompletely Random Card${effect[0]!=1?`s`:``}`; break
             case 352: string+=`Add to Ally's Hand:\nStrike Aid\nDefend Aid\nStep Aid`; break
             case 353: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nAround Ally`; break
+            case 354: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter Push 1\nTile Left`; break
+            case 355: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter Push 1\nTile Right`; break
+            case 356: string+=`Push 1 Tile Left\nin All Directions`; break
+            case 357: string+=`Push 1 Tile Right\nin All Directions`; break
+            case 358: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAnd to Another\nEnemy Behind`; break
+            case 359: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter Temporary\nSpeed Down ${effect[1]}`; break
+            case 360: string+=`Gain ${effect[0]} Max Health`; break
+            case 361: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Health`; break
+            case 362: string+=`Remove All Fatigues\nLose ${effect[0]} Health Each`; break
+            case 363: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 364: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nLose ${effect[1]}X Health`; break
+            case 365: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nLose ${effect[1]}X Health`; break
+
+            case 366: string+=`All Fatigues\nAre Ethereal`; break
+            case 367: string+=`Move All Fatigues\nto Your Hand`; break
+            case 368: string+=`Advance up to ${effect[0]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nEnds 2 Tiles Away`; break
+            case 369: string+=`Gain ${effect[0]} Regnereation`; break
+            case 370: string+=`Dealing Damage\nHeals ${this.calculateEffect(effect[0],4)} Health`; break
+            case 371: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDoubles When You\nare Below 50% Health`; break
 
 
 
@@ -473,7 +491,9 @@ class card{
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
             case 3: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 8: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 10: string+=`Heal ${this.calculateEffect(effect[0],4)} Health`; break
             case 64: string+=`Gain ${effect[0]} Control`; break
+            case 366: string+=``; break
             */
         }
         if(string[string.length-1]=='\n'){
@@ -485,7 +505,7 @@ class card{
         if(this.spec.includes(0)){
             string+='\nFatigue'
         }
-        if(this.spec.includes(13)){
+        if(this.spec.includes(16)){
             string+='\n2 Fatigue'
         }
         if(this.spec.includes(14)){

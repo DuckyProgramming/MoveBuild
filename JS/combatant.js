@@ -55,7 +55,7 @@ class combatant{
             'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
             'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
-            'Exhaust Draw','Debuff Damage',
+            'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -67,7 +67,7 @@ class combatant{
                 1,0,2,0,2,0,0,1,0,0,//7
                 0,0,2,2,0,2,0,2,0,1,//8
                 0,2,2,2,0,0,0,0,2,2,//9
-                0,0,
+                0,0,1,1,1,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -79,7 +79,7 @@ class combatant{
                 2,2,1,1,2,0,2,3,2,2,
                 2,2,2,0,2,0,2,1,0,3,
                 3,2,2,2,2,2,1,2,0,0,
-                2,2,
+                2,2,0,0,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3184,6 +3184,9 @@ class combatant{
             if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
                 damage+=4
             }
+            if(userCombatant.status.main[95]>0){
+                userCombatant.heal(userCombatant.status.main[95])
+            }
         }
         damage=round(damage*10)/10
         if(damage>0&&this.life>0){
@@ -3332,6 +3335,21 @@ class combatant{
                         this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
                         this.battle.turnManager.turns[1].target=[user]
                         this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,6,[this.status.main[73]],this.id))
+                    }
+                    if(this.status.main[92]>0){
+                        this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                        this.battle.turnManager.turns[1].target=[user]
+                        this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,122,[0],this.id))
+                    }
+                    if(this.status.main[93]>0){
+                        this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                        this.battle.turnManager.turns[1].target=[user]
+                        this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,121,[0],this.id))
+                    }
+                    if(this.status.main[94]>0){
+                        this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                        this.battle.turnManager.turns[1].target=[user]
+                        this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,226,[this.status.main[94]],this.id))
                     }
                     if(this.status.main[44]>0&&this.life<=0){
                         userCombatant.statusEffect('Weak',this.status.main[44])

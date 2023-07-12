@@ -4,6 +4,7 @@ class turnManager{
         this.battle=battle
         
         this.auxiliary=false
+        this.phase=false
 
         this.turns=[]
         this.turnsBack=[]
@@ -59,6 +60,7 @@ class turnManager{
     }
     loadEnemyTurns(){
         this.auxiliary=false
+        this.phase=true
         this.turns=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].moved&&this.battle.combatantManager.combatants[a].status.main[32]<=0){
@@ -67,6 +69,8 @@ class turnManager{
                     this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
             }
         }
+    }
+    loadEnemyTurnsMove(){
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
                 for(let b=0,lb=this.battle.combatantManager.combatants[a].move.speed+this.battle.combatantManager.combatants[a].getStatus('Speed Up')+this.battle.combatantManager.combatants[a].getStatus('Temporary Speed Up');b<lb;b++){
@@ -130,6 +134,9 @@ class turnManager{
             }else if(this.battle.turn.main>=this.battle.players){
                 if(this.auxiliary){
                     this.battle.turn.main=0
+                }else if(this.phase){
+                    this.phase=false
+                    this.loadEnemyTurnsMove()
                 }else{
                     this.battle.startTurn()
                 }

@@ -4,10 +4,7 @@ Mechanics:
 Menu (and the rest of the start)
 
 More Cards:
-Regeneration
-Shield bash
 Copy
-Impale through 2
 Kamikaze
 Advance to Range 2
 move at least 2

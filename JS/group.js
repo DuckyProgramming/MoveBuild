@@ -26,13 +26,13 @@ class group{
                     //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
                 }
                 for(let a=0,la=6;a<la;a++){
-                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
+                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
                 }
                 for(let a=0,la=6;a<la;a++){
                     //this.add(this.battle.cardManagers[this.player].listing.card[0][3][this.battle.cardManagers[this.player].listing.card[0][3].length-1-a],0,0)
                 }
                 for(let a=0,la=6;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[game.playerNumber+3][3][this.battle.cardManagers[this.player].listing.card[game.playerNumber+3][3].length-1-a],0,game.playerNumber+3)
+                    //this.add(this.battle.cardManagers[this.player].listing.card[game.playerNumber+3][3][this.battle.cardManagers[this.player].listing.card[game.playerNumber+3][3].length-1-a],0,game.playerNumber+3)
                 }
                 for(let a=1,la=types.card.length-2;a<la;a++){
                     //this.add(a,0,0)
@@ -187,7 +187,7 @@ class group{
                     la--
                 }
                 done++
-                if(done>=value){
+                if(done>=value&&value>=0){
                     a=la
                 }
             }
@@ -317,6 +317,11 @@ class group{
                         this.cards[a].cost=0
                         this.cards[a].base.cost=0
                         this.cards[a].spec.push(1)
+                    }
+                break
+                case 21:
+                    if(this.cards[a].name=='Fatigue'){
+                        this.cards[a].spec.push(4)
                     }
                 break
             }
@@ -464,6 +469,20 @@ class group{
                 case -8:
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.cards[a].effect[0],-1)
                 break
+            }
+        }
+    }
+    sendName(list,name){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].name==name){
+                list.push(copyCard(this.cards[a]))
+                list[list.length-1].size=0
+                list[list.length-1].position.x=1200
+                list[list.length-1].position.y=500
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
             }
         }
     }
