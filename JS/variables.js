@@ -2015,9 +2015,7 @@ types={
                 {effect:[],attack:348,cost:0,target:[5],spec:[1],class:4},
                 {effect:[],attack:348,cost:0,target:[5],spec:[1],class:4},
             ],
-        },
-        
-        {
+        },{
             name:'Apotheosis',rarity:2,list:0,
             levels:[
                 {effect:[],attack:45,cost:3,target:[0],spec:[14],class:4},
@@ -2417,9 +2415,13 @@ types={
                 {effect:[10],attack:-14,cost:0,target:[0],spec:[],class:6},
                 {effect:[5],attack:-14,cost:0,target:[0],spec:[],class:6},
             ],
-        },
-
-        {
+        },{
+            name:'Ally\nRandom',rarity:0,list:7,
+            levels:[
+                {effect:[1],attack:351,cost:0,target:[0],spec:[1],class:2},
+                {effect:[1],attack:351,cost:0,target:[0],spec:[1],class:2},
+            ],
+        },{
             name:'Ally\nHeal',rarity:0,list:7,
             levels:[
                 {effect:[6],attack:145,cost:1,target:[0],spec:[1],class:4},
@@ -2490,6 +2492,38 @@ types={
             levels:[
                 {effect:[],attack:165,cost:1,target:[6],spec:[1],class:3},
                 {effect:[],attack:165,cost:0,target:[6],spec:[1],class:3},
+            ],
+        },{
+            name:'Ally\nPack',rarity:1,list:7,
+            levels:[
+                {effect:[],attack:352,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:352,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Ally\nBurst',rarity:1,list:7,
+            levels:[
+                {effect:[7],attack:353,cost:1,target:[0],spec:[],class:1},
+                {effect:[11],attack:353,cost:1,target:[0],spec:[],class:1},
+            ],
+        },
+
+        {
+            name:'Strike\nAid',rarity:-3,list:-1,
+            levels:[
+                {effect:[6],attack:1,cost:0,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[9],attack:1,cost:0,target:[2,1,1],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Defend\nAid',rarity:-3,list:-1,
+            levels:[
+                {effect:[8],attack:2,cost:0,target:[0],spec:[1],class:2},
+                {effect:[12],attack:2,cost:0,target:[0],spec:[1],class:2},
+            ],
+        },{
+            name:'Step\nAid',rarity:-3,list:-1,
+            levels:[
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0,1],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[1],class:3},
             ],
         },
 
@@ -7348,7 +7382,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'map'}
-game={player:[1],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[1,4],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}

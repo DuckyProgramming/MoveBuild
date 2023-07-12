@@ -149,7 +149,7 @@ class attack{
                 }
             break
             case 145: case 146: case 147: case 148: case 158: case 159: case 160: case 161: case 162:
-            case 163: case 164:
+            case 163: case 164: case 351: case 352: case 353:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.battle.players-1-this.userCombatant.id]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1863,7 +1863,7 @@ class attack{
             break
             case 38: case 79: case 81: case 84: case 85: case 86: case 104: case 145: case 148: case 158:
             case 159: case 160: case 161: case 162: case 163: case 173: case 177: case 272: case 292: case 295:
-            case 297: case 314: case 326:
+            case 297: case 314: case 326: case 351: case 352:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -1961,6 +1961,14 @@ class attack{
                                     this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
                                 }
                             }
+                        break
+                        case 351:
+                            this.battle.cardManagers[this.targetCombatant.id].addRandomAll(2,0,3)
+                        break
+                        case 352:
+                            this.battle.cardManagers[this.targetCombatant.id].hand.add(findName('Strike\nAid',types.card),0,this.color)
+                            this.battle.cardManagers[this.targetCombatant.id].hand.add(findName('Defend\nAid',types.card),0,this.color)
+                            this.battle.cardManagers[this.targetCombatant.id].hand.add(findName('Step\nAid',types.card),0,this.color)
                         break
                     }
                 }else if(this.timer>=30){
@@ -3925,7 +3933,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 342: case 350:
+            case 342: case 350: case 353:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -3939,6 +3947,10 @@ class attack{
                             this.battle.energy.gen[this.player]+=this.effect[0]
                             this.userCombatant.statusEffect('Strength',this.effect[1])
                             this.userCombatant.statusEffect('Dexterity',this.effect[2])
+                        break
+                        case 353:
+                            this.battle.combatantManager.damageArea(this.effect[0],this.user,-1,this.targetCombatant.tilePosition)
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,36,[20]))
                         break
                     }
                 }else if(this.timer>=20){
