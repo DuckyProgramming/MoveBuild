@@ -103,7 +103,7 @@ class eventManager{
                         if(this.page==1&&a==0){
                             this.battle.relicManager.loseRandom(this.player)
                         }else if(this.page==2&&a==0){
-                            for(let a=0;a<this.effect[0];a++){
+                            for(let a=0;a<2;a++){
                                 let index=floor(random(0,this.battle.cardManagers[this.player].listing.card[0][3].length))
                                 this.battle.cardManagers[this.player].hand.add(this.battle.cardManagers[this.player].listing.card[0][3][index],0,0)
                             }

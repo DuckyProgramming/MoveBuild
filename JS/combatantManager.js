@@ -119,6 +119,13 @@ class combatantManager{
             }
         }
     }
+    clearStatusCombatants(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0){
+                this.combatants[a].clearStatus()
+            }
+        }
+    }
     randomizeCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){

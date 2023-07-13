@@ -1204,11 +1204,54 @@ types={
                 {effect:[7],attack:371,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[11],attack:371,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Retiring\nStrike',rarity:1,list:2,
+            levels:[
+                {effect:[10],attack:12,cost:-1,target:[2,1,1],spec:[17],class:1},
+                {effect:[15],attack:12,cost:-1,target:[2,1,1],spec:[17],class:1},
+            ],
         },
 
-        //all fatigues get ethereal
-        //move fatigues to hand
-        //when enemy damaged gain x hp
+        {
+            name:'Stiffen',rarity:2,list:2,
+            levels:[
+                {effect:[1,2],attack:372,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,1],attack:372,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Degrade',rarity:1,list:2,
+            levels:[
+                {effect:[16,1],attack:373,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[24,1],attack:373,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
+        },
+        
+        {
+            name:'',rarity:-2,list:-1,
+            levels:[
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+            ],
+        },{
+            name:'',rarity:-2,list:-1,
+            levels:[
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+            ],
+        },{
+            name:'',rarity:-2,list:-1,
+            levels:[
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+            ],
+        },{
+            name:'',rarity:-2,list:-1,
+            levels:[
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+            ],
+        },
+
         //health cards again
         //rare rules
 
@@ -6378,7 +6421,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:2,world:-1,
+            level:['Basic 5'],class:0,world:-1,
             name:'Placeholder',
             player:{position:[[{x:2,y:2}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
@@ -7503,8 +7546,8 @@ shipyard visit for another time.`,
         },
     ],
 }
-stage={scale:0,scene:'map'}
-game={player:[2],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+stage={scale:0,scene:'pack'}
+game={player:[1],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}

@@ -23,6 +23,7 @@ class card{
         this.select=false
         this.afford=false
         this.energyAfford=false
+        this.nonCalc=false
         this.discardEffect=[]
 
         this.anim={select:0,afford:0}
@@ -57,7 +58,7 @@ class card{
         this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'
     }
     calculateEffect(effect,type){
-        if(stage.scene=='battle'){
+        if(stage.scene=='battle'&&!this.nonCalc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv'])
         }else{
@@ -65,7 +66,7 @@ class card{
         }
     }
     calculateEffectAlly(effect,type){
-        if(stage.scene=='battle'){
+        if(stage.scene=='battle'&&!this.nonCalc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player)]
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv'])
         }else{
@@ -474,7 +475,6 @@ class card{
             case 363: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 364: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nLose ${effect[1]}X Health`; break
             case 365: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nLose ${effect[1]}X Health`; break
-
             case 366: string+=`All Fatigues\nAre Ethereal`; break
             case 367: string+=`Move All Fatigues\nto Your Hand`; break
             case 368: string+=`Advance up to ${effect[0]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nEnds 2 Tiles Away`; break
@@ -482,6 +482,8 @@ class card{
             case 370: string+=`Dealing Damage\nHeals ${this.calculateEffect(effect[0],4)} Health`; break
             case 371: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDoubles When You\nare Below 50% Health`; break
 
+            case 372: string+=`Gain ${effect[0]} Energy\nPer Turn\nAll Cards Cost\n${effect[1]} Health to Play`
+            case 373: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Max Health`; break
 
 
 
@@ -510,6 +512,9 @@ class card{
         }
         if(this.spec.includes(14)){
             string+='\n3 Fatigue'
+        }
+        if(this.spec.includes(17)){
+            string+='\nX Fatigue'
         }
         if(this.spec.includes(2)){
             string+='\nRetain'

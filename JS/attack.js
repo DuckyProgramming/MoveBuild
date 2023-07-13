@@ -3248,6 +3248,8 @@ class attack{
                 }
                 if(this.timer<=15){
                     this.userCombatant.runAnimation(2/15,31)
+                }else{
+                    this.remove=true
                 }
                 for(let a=0,la=this.targetCombatant.length;a<la;a++){
                     if(this.timer==10){

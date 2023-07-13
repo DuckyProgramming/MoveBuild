@@ -375,6 +375,11 @@ class battle{
             this.cardManagers[player].fatigue()
             this.cardManagers[player].fatigue()
         }
+        if(card.spec.includes(17)||card.spec.includes(12)&&card.reality[mode].includes(17)){
+            for(let a=0,la=this.energy.main[player];a<la;a++){
+                this.cardManagers[player].fatigue()
+            }
+        }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
         this.counter.turnPlayed[0]++
@@ -608,16 +613,16 @@ class battle{
             break
             case 'bossstash':
                 this.layer.image(graphics.backgrounds[6],0,0,this.layer.width,this.layer.height)
-                /*for(let a=0,la=this.players;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[6][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
-                }*/
+                }
                 this.relicManager.display(stage.scene)
             break
             case 'pack':
                 this.layer.image(graphics.backgrounds[7],0,0,this.layer.width,this.layer.height)
-                /*for(let a=0,la=this.players;a<la;a++){
+                for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[7][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
-                }*/
+                }
                 this.packManagers.forEach(packManager=>packManager.display())
                 this.overlayManager.display()
             break
@@ -1003,6 +1008,9 @@ class battle{
                             break
                             case 'A':
                                 this.energy.main[0]=999999
+                            break
+                            case 'Z':
+                                this.endTurn()
                             break
                         }
                     }

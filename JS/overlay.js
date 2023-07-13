@@ -91,6 +91,9 @@ class overlay{
                         }
                     break
                 }
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].nonCalc=true
+                }
             break
         }
     }
@@ -326,6 +329,7 @@ class overlay{
                     }
                     if(this.rewards.length<=0&&!this.battle.overlayManager.overlays[3].active&&this.active){
                         this.active=false
+                        this.battle.combatantManager.clearStatusCombatants()
                     }
                 break
                 case 2:
@@ -388,6 +392,7 @@ class overlay{
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-205},width:120,height:40})){
                         this.active=false
+                        this.battle.combatantManager.clearStatusCombatants()
                         for(let a=0,la=this.rewards.length;a<la;a++){
                             if(this.rewards[a].type==1){
                                 this.battle.relicManager.activate(8,[this.player])
@@ -601,6 +606,7 @@ class overlay{
                     }
                     if(code==ENTER){
                         this.active=false
+                        this.battle.combatantManager.clearStatusCombatants()
                         for(let a=0,la=this.rewards.length;a<la;a++){
                             if(this.rewards[a].type==1){
                                 this.battle.relicManager.activate(8,[this.player])
