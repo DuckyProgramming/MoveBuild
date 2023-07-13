@@ -1476,19 +1476,19 @@ types={
             name:'Revert',rarity:0,list:3,
             levels:[
                 {effect:[],attack:387,cost:0,target:[0],spec:[],class:4},
-                {effect:[],attack:387,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:387,cost:0,target:[0],spec:[2],class:4},
             ],
         },{
             name:'Inburst',rarity:1,list:3,
             levels:[
                 {effect:[2],attack:388,cost:1,target:[0],spec:[],class:2},
-                {effect:[2],attack:388,cost:1,target:[0],spec:[],class:2},
+                {effect:[3],attack:388,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Outburst',rarity:1,list:3,
             levels:[
                 {effect:[2],attack:389,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[2],attack:389,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:389,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Serenity',rarity:0,list:3,
@@ -1496,11 +1496,104 @@ types={
                 {effect:[2,3],attack:390,cost:0,target:[0],spec:[],class:4},
                 {effect:[3,3],attack:390,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Complete',rarity:2,list:3,
+            levels:[
+                {effect:[1],attack:391,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:391,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Evanescence',rarity:1,list:3,
+            levels:[
+                {effect:[1,5],attack:392,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1,5],attack:392,cost:1,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'Scuffle',rarity:0,list:3,
+            levels:[
+                {effect:[2,1],attack:393,cost:1,target:[0],spec:[],class:4},
+                {effect:[3,1],attack:393,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Windslash',rarity:0,list:3,
+            levels:[
+                {effect:[13,7],attack:394,cost:2,target:[0],spec:[0],class:1},
+                {effect:[18,7],attack:394,cost:2,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Bloodspin',rarity:0,list:3,
+            levels:[
+                {effect:[3],attack:395,cost:1,target:[0],spec:[0],class:1},
+                {effect:[5],attack:395,cost:1,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Pivot',rarity:0,list:3,
+            levels:[
+                {effect:[9],attack:396,cost:1,target:[0],spec:[],class:2},
+                {effect:[14],attack:396,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Cooldown',rarity:1,list:3,
+            levels:[
+                {effect:[1,-3],attack:397,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[2,-3],attack:397,cost:1,target:[1,1,2],spec:[0],class:3},
+            ],
+        },{
+            name:'Tick',rarity:0,list:3,
+            levels:[
+                {effect:[1],attack:398,cost:0,target:[0],spec:[],class:4},
+                {effect:[2],attack:398,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Diversion',rarity:0,list:3,
+            levels:[
+                {effect:[21],attack:399,cost:1,target:[0],spec:[],class:2},
+                {effect:[35],attack:399,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Sleeve\nSwipe',rarity:0,list:3,
+            levels:[
+                {effect:[6,2],attack:400,cost:1,target:[2,1,1],spec:[0,3],class:1},
+                {effect:[6,2],attack:400,cost:0,target:[2,1,1],spec:[0,3],class:1},
+            ],
+        },{
+            name:'Jumping\nStab',rarity:1,list:3,
+            levels:[
+                {effect:[12,6],attack:401,cost:2,target:[2,2,2],spec:[0,6],class:1},
+                {effect:[16,9],attack:401,cost:2,target:[2,2,2],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Siphon',rarity:0,list:3,
+            levels:[
+                {effect:[7],attack:402,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:402,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Extra\nCuts',rarity:1,list:3,
+            levels:[
+                {effect:[3],attack:403,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:403,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Hidden\nBlade',rarity:1,list:3,
+            levels:[
+                {effect:[4],attack:404,cost:1,target:[0],spec:[],class:4},
+                {effect:[6],attack:404,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Spikify',rarity:1,list:3,
+            levels:[
+                {effect:[1],attack:405,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:405,cost:1,target:[0],spec:[],class:4},
+            ],
         },
-        //cooldown move
-        //some bleed
-        //tick
 
+
+
+
+
+
+        
 
         {
             name:'Blade\nDance',rarity:0,list:4,

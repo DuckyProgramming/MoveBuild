@@ -500,7 +500,24 @@ class card{
             case 388: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Balance\nSet Balance to 0`; break
             case 389: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Balance\nSet Balance to 0`; break
             case 390: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\n${effect[1]} Balance`; break
-            
+            case 391: string+=`Heal ${this.calculateEffect(effect[0],9)} Health\nWhere X = Balance\nSet Balance to 0`; break
+            case 392: string+=`Gain ${effect[0]} Intangible\n${effect[1]} Balance`; break
+            case 393: string+=`Gain ${effect[0]} Dexterity\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\n${effect[1]} Balance`; break
+            case 394: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\n${effect[1]} Balance`; break
+            case 395: string+=`Apply ${effect[0]} Bleed\nin All Directions`; break
+            case 396: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRearm From\nAdjacent Tiles`; break
+            case 397: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n${effect[1]} Balance`; break
+            case 398: string+=`Tick Statuses\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 399: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDisarm`; break
+            case 400: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\n${effect[1]} Balance`; break
+            case 401: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nAdvance`; break
+            case 402: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal Health Equal\nto Target's Bleed`; break
+
+            case 403: string+=`Attacks This Turn\nApply ${effect[0]} Bleed`; break
+            case 404: string+=`Next Attack This Turn\nApply ${effect[0]} Bleed`; break
+            case 405: string+=`Attacks This Combat\nApply ${effect[0]} Bleed`; break
+
+
 
 
 

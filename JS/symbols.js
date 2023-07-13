@@ -825,6 +825,41 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.vertex(0,0)
             layer.endShape(CLOSE)
         break
+        case 98:
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=17;a<la;a++){
+                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6),cos(a/(la-1)*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+            layer.fill(200,0,0,fade)
+            layer.arc(0,0,6,6,-45,225)
+            layer.quad(0,0,sqrt(2)*1.5,-sqrt(2)*1.5,0,-sqrt(2)*3,-sqrt(2)*1.5,-sqrt(2)*1.5)
+            layer.rect(-5,0,3,3)
+        break
+        case 99:
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=17;a<la;a++){
+                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6),cos(a/(la-1)*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+            layer.fill(200,0,0,fade)
+            layer.arc(0,0,6,6,-45,225)
+            layer.quad(0,0,sqrt(2)*1.5,-sqrt(2)*1.5,0,-sqrt(2)*3,-sqrt(2)*1.5,-sqrt(2)*1.5)
+            layer.ellipse(5.5,0,4,4)
+        break
+        case 100:
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=17;a<la;a++){
+                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6),cos(a/(la-1)*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+            layer.fill(200,0,0,fade)
+            layer.arc(0,0,6,6,-45,225)
+            layer.quad(0,0,sqrt(2)*1.5,-sqrt(2)*1.5,0,-sqrt(2)*3,-sqrt(2)*1.5,-sqrt(2)*1.5)
+        break
         
     }
     layer.pop()

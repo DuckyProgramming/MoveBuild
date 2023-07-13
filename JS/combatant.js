@@ -55,7 +55,8 @@ class combatant{
             'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
             'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
-            'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage',
+            'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
+            'Attack Bleed Combat',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -67,7 +68,8 @@ class combatant{
                 1,0,2,0,2,0,0,1,0,0,//7
                 0,0,2,2,0,2,0,2,0,1,//8
                 0,2,2,2,0,0,0,0,2,2,//9
-                0,0,1,1,1,0,0,1,
+                0,0,1,1,1,0,0,1,2,0,//10
+                0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -79,7 +81,8 @@ class combatant{
                 2,2,1,1,2,0,2,3,2,2,
                 2,2,2,0,2,0,2,1,0,3,
                 3,2,2,2,2,2,1,2,0,0,
-                2,2,0,0,0,0,1,0,
+                2,2,0,0,0,0,1,0,0,0,
+                0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3271,8 +3274,21 @@ class combatant{
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][1]+=damage
                     }
-                    if(this.block<=0&&0<=user&&user<this.battle.players&&this.battle.relicManager.hasRelic(124,user)){
-                        this.statusEffect('Vulnerable',2)
+                    if(this.block<=0&&0<=user&&user<this.battle.players){
+                        let userCombatant=this.battle.combatantManager.combatants[user]
+                        if(this.battle.relicManager.hasRelic(124,user)){
+                            this.statusEffect('Vulnerable',2)
+                        }
+                        if(userCombatant.status.main[98]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[98])
+                        }
+                        if(userCombatant.status.main[99]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[99])
+                            userCombatant.status.main[99]=0
+                        }
+                        if(userCombatant.status.main[100]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[100])
+                        }
                     }
                 }else if(this.block>0&&spec!=2){
                     let damageLeft=damage-this.block
@@ -3287,8 +3303,21 @@ class combatant{
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
                     this.blocked=1
-                    if(0<=user&&user<this.battle.players&&this.battle.relicManager.hasRelic(124,user)){
-                        this.statusEffect('Vulnerable',2)
+                    if(0<=user&&user<this.battle.players){
+                        let userCombatant=this.battle.combatantManager.combatants[user]
+                        if(this.battle.relicManager.hasRelic(124,user)){
+                            this.statusEffect('Vulnerable',2)
+                        }
+                        if(userCombatant.status.main[98]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[98])
+                        }
+                        if(userCombatant.status.main[99]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[99])
+                            userCombatant.status.main[99]=0
+                        }
+                        if(userCombatant.status.main[100]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[100])
+                        }
                     }
                 }else{
                     this.life-=damage
@@ -3299,6 +3328,19 @@ class combatant{
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][2]+=damage
                         this.battle.cardManagers[this.id].allGroupEffect(16)
+                    }
+                    if(0<=user&&user<this.battle.players){
+                        let userCombatant=this.battle.combatantManager.combatants[user]
+                        if(userCombatant.status.main[98]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[98])
+                        }
+                        if(userCombatant.status.main[99]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[99])
+                            userCombatant.status.main[99]=0
+                        }
+                        if(userCombatant.status.main[100]>0){
+                            this.statusEffect('Bleed',userCombatant.status.main[100])
+                        }
                     }
                 }
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
@@ -3653,7 +3695,7 @@ class combatant{
                         this.goal.anim.sword=false
                     break
                     case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22: case 24: case 25:
-                    case 30:
+                    case 30: case 34:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -4043,6 +4085,13 @@ class combatant{
                             this.anim.arms[g].top=24+abs(lsin(this.animSet.loop*180))*111
                             this.anim.arms[g].bottom=9+abs(lsin(this.animSet.loop*180))*201
                         }
+                    break
+                    case 34:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.legs[g].top=9-abs(lsin(this.animSet.loop*180))*9
+                        }
+                        this.offset.position.y=-abs(lsin(this.animSet.loop*180))*30
                     break
                 }
             break
@@ -11994,6 +12043,8 @@ class combatant{
                 if(this.battle.turn.main==this.id){
                     this.battle.endTurn()
                 }
+            }else if(this.balance<0){
+                this.balance=0
             }
         }
         switch(this.name){
