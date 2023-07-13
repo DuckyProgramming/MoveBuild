@@ -41,7 +41,7 @@ class combatant{
         this.taken=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
 
         this.block=0
         this.dodges=[]
@@ -100,6 +100,7 @@ class combatant{
 
         this.combo=0
         this.armed=true
+        this.balance=0
 
         this.intent=0
         this.activated=false
@@ -2186,6 +2187,7 @@ class combatant{
 
         this.combo=0
         this.armed=true
+        this.balance=0
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -2194,7 +2196,7 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
-        this.infoAnim={life:1,block:0,size:1,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
     }
     initialBuff(){
         if(this.spec.includes(5)){
@@ -11600,7 +11602,6 @@ class combatant{
                         }
                     }
                 break
-            
             }
             this.layer.pop()
         }
@@ -11663,6 +11664,23 @@ class combatant{
                 this.layer.textSize(8*this.status.size[this.status.display[a]])
                 this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
             }
+        }
+        if(this.infoAnim.balance>0){
+            this.layer.noStroke()
+            for(let a=0,la=10;a<la;a++){
+                this.layer.fill(255,200*a/la,200*a/la,this.fade*this.infoAnim.balance)
+                this.layer.rect(-18+a*4,12,4,5)
+            }
+            this.layer.stroke(0,this.fade*this.infoAnim.balance)
+            this.layer.strokeWeight(1)
+            this.layer.noFill()
+            this.layer.rect(0,12,40,5,2)
+            this.layer.stroke(255,this.fade*this.infoAnim.balance)
+            this.layer.line(-19+3.8*constrain(this.balance,0,10),9,-19+3.8*constrain(this.balance,0,10),15)
+            this.layer.fill(255,this.fade*this.infoAnim.balance)
+            this.layer.noStroke()
+            this.layer.textSize(5)
+            this.layer.text(this.balance,0,12)
         }
     }
     displayInfo(scene){
@@ -11891,6 +11909,7 @@ class combatant{
         this.infoAnim.block=smoothAnim(this.infoAnim.block,this.block>0,0,1,5)
         this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)
         this.infoAnim.description=smoothAnim(this.infoAnim.description,this.infoAnim.upSize,0,1,5)
+        this.infoAnim.balance=smoothAnim(this.infoAnim.balance,this.balance>0,0,1,5)
         if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18||abs(this.anim.direction-this.goal.anim.direction-720)<=18||abs(this.anim.direction-this.goal.anim.direction+720)<=18){
             this.anim.direction=this.goal.anim.direction
         }else if(
@@ -11968,18 +11987,22 @@ class combatant{
                 la--
             }
         }
+        if(this.name=='George'||this.name=='Lira'||this.name=='Sakura'||this.name=='Certes'||this.name=='Ume'){
+            this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
+            if(this.balance>10){
+                this.balance=0
+                if(this.battle.turn.main==this.id){
+                    this.battle.endTurn()
+                }
+            }
+        }
         switch(this.name){
-            case 'George':
-                this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
-            break
             case 'Lira': case 'Ume':
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
-                this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
             break
             case 'Sakura':
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
                 this.anim.sword2=smoothAnim(this.anim.sword2,this.goal.anim.sword2,0,1,5)
-                this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
                 if(!this.armed){
                     this.goal.anim.sword=false
                 }else if(this.battle.attackManager.attacks.length<=0&&this.life>0){

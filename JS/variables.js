@@ -1433,8 +1433,8 @@ types={
         },{
             name:'Multi-Step',rarity:0,list:3,
             levels:[
-                {effect:[1,1],attack:374,cost:1,target:[1,1,1],spec:[],class:3},
-                {effect:[1,2],attack:374,cost:1,target:[1,1,1],spec:[],class:3},
+                {effect:[1,1],attack:374,cost:1,target:[1,1,1],spec:[1],class:3},
+                {effect:[1,2],attack:374,cost:1,target:[1,1,1],spec:[1],class:3},
             ],
         },{
             name:'Momentum',rarity:1,list:3,
@@ -1442,7 +1442,62 @@ types={
                 {effect:[2,3],attack:375,cost:1,target:[1,2,3],spec:[0],class:3},
                 {effect:[2,4],attack:375,cost:1,target:[1,2,4],spec:[0],class:3},
             ],
+        },{
+            name:'Petal\nCloud',rarity:0,list:3,
+            levels:[
+                {effect:[5,1],attack:382,cost:1,target:[2,1,2],spec:[0,1],class:1},
+                {effect:[10,1],attack:382,cost:1,target:[2,1,2],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Slide',rarity:0,list:3,
+            levels:[
+                {effect:[6],attack:383,cost:0,target:[18,1,6],spec:[],class:3},
+                {effect:[6],attack:383,cost:0,target:[18,1,6],spec:[2],class:3},
+            ],
+        },{
+            name:'Decisive\nStab',rarity:2,list:3,
+            levels:[
+                {effect:[16,6,1],attack:384,cost:2,target:[2,1,2],spec:[0,6],class:1},
+                {effect:[25,8,1],attack:384,cost:2,target:[2,1,2],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Danger',rarity:0,list:3,
+            levels:[
+                {effect:[9,4],attack:385,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[13,4],attack:385,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Peace',rarity:0,list:3,
+            levels:[
+                {effect:[12,4],attack:386,cost:1,target:[0],spec:[],class:2},
+                {effect:[16,4],attack:386,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Revert',rarity:0,list:3,
+            levels:[
+                {effect:[],attack:387,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:387,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Inburst',rarity:1,list:3,
+            levels:[
+                {effect:[2],attack:388,cost:1,target:[0],spec:[],class:2},
+                {effect:[2],attack:388,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Outburst',rarity:1,list:3,
+            levels:[
+                {effect:[2],attack:389,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2],attack:389,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Serenity',rarity:0,list:3,
+            levels:[
+                {effect:[2,3],attack:390,cost:0,target:[0],spec:[],class:4},
+                {effect:[3,3],attack:390,cost:0,target:[0],spec:[],class:4},
+            ],
         },
+        //cooldown move
         //some bleed
         //tick
 
