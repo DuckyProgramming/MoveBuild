@@ -50,7 +50,7 @@ class attack{
             case 273: case 274: case 275: case 277: case 280: case 282: case 287: case 288: case 290: case 292:
             case 293: case 295: case 296: case 297: case 301: case 304: case 310: case 314: case 316: case 319:
             case 323: case 326: case 327: case 333: case 342: case 345: case 348: case 361: case 364: case 368:
-            case 373:
+            case 373: case 376: case 378: case 379:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -330,6 +330,16 @@ class attack{
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }
                     break
+                    case 376:
+                        this.targetCombatant.takeDamage(this.effect[0]*ceil(this.userCombatant.life/this.effect[1]),this.user)
+                    break
+                    case 378:
+                        this.targetCombatant.takeDamage(this.effect[0]*round(this.userCombatant.life)/10,this.user)
+                        this.userCombatant.life-=round(this.userCombatant.life)/10
+                    break
+                    case 379:
+                        this.targetCombatant.takeDamage(this.effect[0]*this.battle.cardManagers[this.player].exhaust.fatigueNumber(),this.user)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -509,7 +519,7 @@ class attack{
             case 191: case 193: case 196: case 220: case 228: case 234: case 260: case 263: case 265: case 266:
             case 267: case 268: case 269: case 271: case 273: case 274: case 275: case 277: case 280: case 282:
             case 287: case 288: case 293: case 296: case 301: case 304: case 310: case 319: case 323: case 361:
-            case 364: case 371: case 373:
+            case 364: case 371: case 373: case 376: case 378: case 379:
                 if(this.targetDistance==1){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(2)
@@ -548,7 +558,7 @@ class attack{
             case 2: case 13: case 23: case 26: case 43: case 50: case 65: case 95: case 96: case 97:
             case 107: case 120: case 122: case 131: case 141: case 142: case 146: case 152: case 172: case 190:
             case 194: case 197: case 206: case 216: case 221: case 235: case 242: case 261: case 262: case 281:
-            case 303: case 320: case 321: case 322: case 354: case 355: case 359: case 365:
+            case 303: case 320: case 321: case 322: case 354: case 355: case 359: case 365: case 377:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -581,6 +591,9 @@ class attack{
                         case 365:
                             this.userCombatant.addBlock(this.effect[0]*this.energy)
                             this.userCombatant.life-=this.effect[1]*this.energy
+                        break
+                        case 377:
+                            this.userCombatant.addBlock(this.effect[0]*this.battle.cardManagers[this.player].fatigueNumber())
                         break
                         default:
                             this.userCombatant.addBlock(this.effect[0])
@@ -868,6 +881,7 @@ class attack{
             case 150: case 181: case 184: case 198: case 200: case 203: case 204: case 212: case 215: case 223:
             case 225: case 226: case 231: case 239: case 240: case 249: case 264: case 278: case 286: case 299:
             case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
+            case 381:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1006,6 +1020,9 @@ class attack{
                         case 372:
                             this.battle.energy.gen[this.player]+=this.effect[0]
                             this.userCombatant.statusEffect('Take Per Card Played Combat',this.effect[1])
+                        break
+                        case 381:
+                            this.userCombatant.statusEffect('Take 3/5 Damage',999)
                         break
                     }
                 }else if(this.timer>=20){
@@ -1307,7 +1324,7 @@ class attack{
             break
             case -13: case -21: case 10: case 64: case 72: case 73: case 74: case 164: case 166: case 167:
             case 168: case 169: case 170: case 171: case 180: case 195: case 202: case 224: case 283: case 349:
-            case 360: case 369:
+            case 360: case 369: case 380:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(6)
                 }
@@ -1401,6 +1418,10 @@ class attack{
                         break
                         case 369:
                             this.userCombatant.statusEffect('Regeneration',this.effect[0])
+                        break
+                        case 380:
+                            this.userCombatant.statusEffect('Strength',this.effect[0])
+                            this.userCombatant.loseMaxHP(this.effect[1])
                         break
                     }
                 }else if(this.timer>=20){

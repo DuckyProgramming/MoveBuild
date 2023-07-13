@@ -1222,6 +1222,42 @@ types={
                 {effect:[16,1],attack:373,cost:1,target:[2,1,1],spec:[],class:1},
                 {effect:[24,1],attack:373,cost:1,target:[2,1,1],spec:[],class:1},
             ],
+        },{
+            name:'Convect',rarity:0,list:2,
+            levels:[
+                {effect:[5],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[4],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Enervation',rarity:1,list:2,
+            levels:[
+                {effect:[3],attack:377,cost:1,target:[0],spec:[],class:2},
+                {effect:[5],attack:377,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Actuate',rarity:2,list:2,
+            levels:[
+                {effect:[3],attack:378,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[4],attack:378,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Resurgence',rarity:1,list:2,
+            levels:[
+                {effect:[6],attack:379,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:379,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Vexation',rarity:1,list:2,
+            levels:[
+                {effect:[3,1],attack:380,cost:0,target:[0],spec:[],class:4},
+                {effect:[5,1],attack:380,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Tanking',rarity:2,list:2,
+            levels:[
+                {effect:[],attack:381,cost:3,target:[0],spec:[],class:4},
+                {effect:[],attack:381,cost:2,target:[0],spec:[],class:4},
+            ],
         },
         
         {
@@ -1233,7 +1269,8 @@ types={
         },
 
         //health cards again
-        //rare rules
+        //rare rules (whenever x, y happens)
+        //gain max hp methods
 
         
 
@@ -7539,7 +7576,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'pack'}
-game={player:[2],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[3],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}

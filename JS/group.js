@@ -194,6 +194,15 @@ class group{
         }
         return done
     }
+    fatigueNumber(){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].name=='Fatigue'){
+                total++
+            }
+        }
+        return total
+    }
     allClass(cardClass){
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].class!=cardClass){

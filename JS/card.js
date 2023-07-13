@@ -486,6 +486,12 @@ class card{
             case 374: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nWhen Drawn, Add ${effect[1]}\nMulti-Step${effect[1]!=1?`s`:``} to Hand`; break
             case 375: string+=`Move Between ${effect[0]}\nand ${effect[1]} Tile${effect[0]!=1?`s`:``}`; break
 
+            case 376: string+=`Deal ${this.calculateEffect(1,0)} Damage\nFor Every ${effect[0]}\nHealth You Have`; break
+            case 377: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number\nof Fatigues`; break
+            case 378: string+=`Lose 10% Health\nDeal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Health Lost`; break
+            case 379: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Fatigues\nExhausted`; break
+            case 380: string+=`Gain ${effect[0]} Strength\nLose ${effect[1]} Max Health`; break
+            case 381: string+=`For the Rest\nof Combat, Take\n40% Less Damage`; break
 
 
 
