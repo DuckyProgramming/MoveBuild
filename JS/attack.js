@@ -50,6 +50,7 @@ class attack{
             case 273: case 274: case 275: case 277: case 280: case 282: case 287: case 288: case 290: case 292:
             case 293: case 295: case 296: case 297: case 301: case 304: case 310: case 314: case 316: case 319:
             case 323: case 326: case 327: case 333: case 342: case 345: case 348: case 361: case 364: case 368:
+            case 373:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -60,7 +61,7 @@ class attack{
             break
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
-            case 256: case 330: case 331: case 332: case 335: case 341:
+            case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -491,6 +492,9 @@ class attack{
                     case 361:
                         this.userCombatant.life-=this.effect[1]
                     break
+                    case 373:
+                        this.userCombatant.loseMaxHP(this.effect[1])
+                    break
                 }
             break
         }
@@ -505,7 +509,7 @@ class attack{
             case 191: case 193: case 196: case 220: case 228: case 234: case 260: case 263: case 265: case 266:
             case 267: case 268: case 269: case 271: case 273: case 274: case 275: case 277: case 280: case 282:
             case 287: case 288: case 293: case 296: case 301: case 304: case 310: case 319: case 323: case 361:
-            case 364: case 371:
+            case 364: case 371: case 373:
                 if(this.targetDistance==1){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(2)
@@ -673,7 +677,7 @@ class attack{
                 }
             break
             case 3: case 20: case 51: case 52: case 56: case 58: case 59: case 60: case 91: case 182:
-            case 192: case 205: case 248: case 256: case 330: case 331: case 332: case 335:
+            case 192: case 205: case 248: case 256: case 330: case 331: case 332: case 335: case 374: case 375:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -863,7 +867,7 @@ class attack{
             case -15: case 6: case 30: case 41: case 71: case 92: case 98: case 113: case 128: case 149:
             case 150: case 181: case 184: case 198: case 200: case 203: case 204: case 212: case 215: case 223:
             case 225: case 226: case 231: case 239: case 240: case 249: case 264: case 278: case 286: case 299:
-            case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370:
+            case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -998,6 +1002,10 @@ class attack{
                         break
                         case 370:
                             this.userCombatant.statusEffect('Heal on Hit',this.effect[0])
+                        break
+                        case 372:
+                            this.battle.energy.gen[this.player]+=this.effect[0]
+                            this.userCombatant.statusEffect('Take Per Card Played Combat',this.effect[1])
                         break
                     }
                 }else if(this.timer>=20){

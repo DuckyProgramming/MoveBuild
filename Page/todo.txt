@@ -1,14 +1,8 @@
-Bugs:
-
-Graphics:
-
 Mechanics:
 Menu (and the rest of the start)
 
 More Cards:
-Copy
 Kamikaze
-Advance to Range 2
 move at least 2
 step copies itself
 
@@ -33,6 +27,10 @@ conditionin
 
 
 
+
+Bugs:
+
+Graphics:
 
 Partnership Cards:
 

@@ -17,7 +17,7 @@ class group{
         switch(type){
             case 0:
                 for(let a=0,la=types.deck.start[player].length;a<la;a++){
-                    this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2]==-2?types.card[findName(types.deck.start[player][a][0],types.card)].list:types.deck.start[player][a][2]==-1?player:types.deck.start[player][a][2])
+                    //this.add(findName(types.deck.start[player][a][0],types.card),types.deck.start[player][a][1],types.deck.start[player][a][2]==-2?types.card[findName(types.deck.start[player][a][0],types.card)].list:types.deck.start[player][a][2]==-1?player:types.deck.start[player][a][2])
                 }
                 for(let a=0,la=8;a<la;a++){
                     //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][0].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
@@ -26,7 +26,7 @@ class group{
                     //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[/*this.player*/0]][1].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
                 }
                 for(let a=0,la=6;a<la;a++){
-                    //this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
+                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
                 }
                 for(let a=0,la=6;a<la;a++){
                     //this.add(this.battle.cardManagers[this.player].listing.card[0][3][this.battle.cardManagers[this.player].listing.card[0][3].length-1-a],0,0)
@@ -459,6 +459,11 @@ class group{
             case 288:
                 for(let a=0,la=effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Stream',types.card),0,types.card[findName('Stream',types.card)].list)
+                }
+            break
+            case 374:
+                for(let a=0,la=effect[1];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Multi-Step',types.card),0,types.card[findName('Multi-Step',types.card)].list)
                 }
             break
         }
