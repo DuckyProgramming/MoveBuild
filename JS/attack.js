@@ -53,7 +53,7 @@ class attack{
             case 373: case 376: case 378: case 379: case 382: case 384: case 385: case 401: case 402: case 408:
             case 409: case 412: case 414: case 415: case 417: case 419: case 420: case 427: case 429: case 432:
             case 433: case 435: case 436: case 437: case 438: case 441: case 444: case 447: case 449: case 452:
-            case 460: case 462:
+            case 460: case 462: case 465: case 466: case 467: case 468: case 469:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -576,7 +576,7 @@ class attack{
             case 267: case 268: case 269: case 271: case 273: case 274: case 275: case 277: case 280: case 282:
             case 287: case 288: case 293: case 296: case 301: case 304: case 310: case 319: case 323: case 361:
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
-            case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462:
+            case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462: case 469:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){
@@ -1515,7 +1515,7 @@ class attack{
             break
             case -13: case -21: case 10: case 64: case 72: case 73: case 74: case 164: case 166: case 167:
             case 168: case 169: case 170: case 171: case 180: case 195: case 202: case 224: case 283: case 349:
-            case 360: case 369: case 380: case 391: case 442: case 456:
+            case 360: case 369: case 380: case 391: case 442: case 456: case 470:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(6)
                 }
@@ -1633,6 +1633,9 @@ class attack{
                                     this.battle.itemManager.items[this.player][a].refresh()
                                 }
                             }
+                        break
+                        case 470:
+                            this.userCombatant.gainMaxHP(this.effect[0]*this.energy)
                         break
                     }
                 }else if(this.timer>=20){
@@ -2651,7 +2654,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 66: case 68: case 421:
+            case 66: case 68: case 421: case 465: case 466: case 467: case 468:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(22)
                 }
@@ -2669,6 +2672,22 @@ class attack{
                                 this.targetTile.anim.upPart[this.targetTile.type.indexOf(3)]=false
                                 this.userCombatant.armed=true
                             }
+                        break
+                        case 465:
+                            this.targetCombatant.goal.anim.direction-=60
+                            this.battle.updateTargetting()
+                        break
+                        case 466:
+                            this.targetCombatant.goal.anim.direction+=60
+                            this.battle.updateTargetting()
+                        break
+                        case 467:
+                            this.targetCombatant.goal.anim.direction-=120
+                            this.battle.updateTargetting()
+                        break
+                        case 468:
+                            this.targetCombatant.goal.anim.direction+=120
+                            this.battle.updateTargetting()
                         break
                     }
                 }else if(this.timer>=30){

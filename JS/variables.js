@@ -108,9 +108,32 @@ types={
                 {effect:[11,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[15,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Left\nNudge',rarity:-1,list:-1,
+            levels:[
+                {effect:[0],attack:465,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[0],attack:465,cost:0,target:[2,1,1],spec:[1],class:1},
+            ],
+        },{
+            name:'Right\nNudge',rarity:-1,list:-1,
+            levels:[
+                {effect:[0],attack:466,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[0],attack:466,cost:0,target:[2,1,1],spec:[1],class:1},
+            ],
+        },{
+            name:'Hard Left\nNudge',rarity:-1,list:-1,
+            levels:[
+                {effect:[0],attack:467,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[0],attack:467,cost:0,target:[2,1,1],spec:[1],class:1},
+            ],
+        },{
+            name:'Hard Right\nNudge',rarity:-1,list:-1,
+            levels:[
+                {effect:[0],attack:468,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[0],attack:468,cost:0,target:[2,1,1],spec:[1],class:1},
+            ],
         },
 
-        
         {
             name:'',rarity:-2,list:-1,
             levels:[
@@ -136,8 +159,6 @@ types={
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
             ],
         },
-        
-        
         
         {
             name:'Security\nPack',rarity:-3,list:1,
@@ -212,8 +233,6 @@ types={
                 {effect:[2],attack:180,cost:0,target:[0],spec:[1],class:4},
             ],
         },
-        
-        
         
         {
             name:'Electrify',rarity:1,list:1,
@@ -817,8 +836,6 @@ types={
                 {effect:[2],attack:249,cost:1,target:[0],spec:[1],class:4},
             ],
         },
-
-
         
         {
             name:'Twin\nStrike',rarity:0,list:2,
@@ -1332,6 +1349,18 @@ types={
                 {effect:[],attack:464,cost:0,target:[21],spec:[0],class:3},
                 {effect:[],attack:464,cost:0,target:[21],spec:[0],class:3},
             ],
+        },{
+            name:'Horizontal\nStrike',rarity:0,list:2,
+            levels:[
+                {effect:[12],attack:469,cost:1,target:[22,1,1],spec:[0],class:1},
+                {effect:[16],attack:469,cost:1,target:[22,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Excitant',rarity:0,list:2,
+            levels:[
+                {effect:[1],attack:470,cost:-1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:470,cost:-1,target:[0],spec:[1],class:4},
+            ],
         },
 
         
@@ -1344,10 +1373,7 @@ types={
         },
 
         //health cards again
-        //card that adds "fat fatigue" which costs 3
         //Interesting Target Zones
-        //promotion-promoted
-        //princess
 
         
 
