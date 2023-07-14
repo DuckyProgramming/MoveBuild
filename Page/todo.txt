@@ -9,7 +9,6 @@ Gimmick Land
 
 Generality:
 Lira: few cards
-Sakura: few cards
 
 Dictionary Additions:
 conditionin
@@ -30,6 +29,8 @@ Graphics:
 Partnership Cards:
 
 George:
+
+Sakura:
 
 Certes:
 

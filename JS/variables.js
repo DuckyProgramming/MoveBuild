@@ -1824,20 +1824,61 @@ types={
                 {effect:[4,3],attack:444,cost:0,target:[2,1,1],spec:[],class:1},
                 {effect:[6,3],attack:444,cost:0,target:[2,1,1],spec:[],class:1},
             ],
+        },{
+            name:'Absolution',rarity:1,list:3,
+            levels:[
+                {effect:[2],attack:445,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:445,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Resolution',rarity:1,list:3,
+            levels:[
+                {effect:[2],attack:446,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:446,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Wind\nPush',rarity:2,list:3,
+            levels:[
+                {effect:[],attack:447,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[],attack:447,cost:0,target:[2,1,1],spec:[2],class:1},
+            ],
+        },{
+            name:'Cutthrough',rarity:1,list:3,
+            levels:[
+                {effect:[4],attack:448,cost:1,target:[20,1,2],spec:[0,1],class:3},
+                {effect:[6],attack:448,cost:0,target:[20,1,2],spec:[0,1],class:3},
+            ],
+        },{
+            name:'Gather',rarity:0,list:3,
+            levels:[
+                {effect:[9],attack:449,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[14],attack:449,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Instability',rarity:0,list:3,
+            levels:[
+                {effect:[],attack:450,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:450,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'Analyze',rarity:1,list:3,
+            levels:[
+                {effect:[2],attack:451,cost:0,target:[0],spec:[3],class:4},
+                {effect:[3],attack:451,cost:0,target:[0],spec:[3],class:4},
+            ],
+        },{
+            name:'Mist',rarity:0,list:3,
+            levels:[
+                {effect:[10],attack:452,cost:1,target:[2,1,2],spec:[],class:1},
+                {effect:[15],attack:452,cost:1,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Slit',rarity:1,list:3,
+            levels:[
+                {effect:[2,3],attack:453,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4,3],attack:453,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
         },
-
-        //absolution
-        //resolution
-        //rare gust of wind pushes all enemies in one direction
-        //1 more movement
-        //grab scythe under target
-
-        //balancing
-
-
-
-
-
 
 
 

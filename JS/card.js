@@ -131,7 +131,7 @@ class card{
                 string+=`Pull Target Until Adjacent\nTarget Will Face User`; break
             case 12: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage`; break
             case 13: string+=`Add ${this.calculateEffect(effect[0],3)} Block`; break
-            case 14: string+=`Pass Through an\nAdjacent Target\nor\nMove ${effect[0]} Tile`; if(effect[0]!=1){string+=`s`} break
+            case 14: string+=`Pass Through an\nAdjacent Target\nor\nMove ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 15: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nMove Forward 1 Tile`; break
             case 17: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMove 1 Tile Away`; break
             case 18: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions`; break
@@ -549,13 +549,22 @@ class card{
             case 436: string+=`${effect[0]>0?`Apply ${effect[0]} Bleed\n`:`\n`}Push 1 Tile`; break
             case 437: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDisarm as\nNon-Reusable`; break
             case 438: string+=`Pull Target Until Adjacent\nTarget Will Face Away\nApply ${effect[0]} Confusion`; break
-
             case 439: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPer Turn When Armed`; break
             case 440: string+=`Gain ${effect[0]} Dodge\nGain ${effect[1]} Bleed`; break
             case 441: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nGain ${effect[2]} Bleed`; break
             case 442: string+=`Heal ${this.calculateEffect(effect[0],9)} Health\nWhere X = Self Bleed\nRemove All Self Bleed`; break
             case 443: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nReduce Balance\nLimit by ${effect[1]}`; break
             case 444: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Fury With\n-1 Damage to Hand\n${effect[1]} Balance`; break
+            case 445: string+=`Gain ${effect[0]}X Strength\nWhere X = Balance\nSet Balance to 0`; break
+            case 446: string+=`Gain ${effect[0]}X Dexterity\nWhere X = Balance\nSet Balance to 0`; break
+            case 447: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nto All Enemies`; break
+            case 448: string+=`Pass Through an\nAdjacent Target\nApply ${effect[0]} Bleed`; break
+            case 449: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRearm From Target Tile`; break
+            case 450: string+=`Double Balance`; break
+
+            case 451: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext Turn`; break
+            case 452: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd 1 Dazed\nto Draw Pile`; break
+            case 453: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\n3 Tiles Wide`; break
 
 
 
