@@ -474,6 +474,9 @@ class group{
             case -26:
                 this.drawEffects.push([4])
             break
+            case -27:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Temporary Strength',-effect[0])
+            break
             case 288:
                 for(let a=0,la=effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Stream',types.card),0,types.card[findName('Stream',types.card)].list)

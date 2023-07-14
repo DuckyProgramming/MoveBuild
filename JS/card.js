@@ -114,6 +114,7 @@ class card{
             case -24: string+=`When Drawn,\nAdd a Burn to Hand`; break
             case -25: string+=`When Drawn,\nAll Cards in Hand\nWill Exhaust`; break
             case -26: string+=`When Drawn,\nHalve Card Effects`; break
+            case -27: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength`; break
             case 1: case 25: case 32: case 36: case 57: case 327:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -537,7 +538,12 @@ class card{
             case 425: string+=`Apply ${effect[0]} Confuse\nto All Enemies`; break
             case 426: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nDisarm as\nNon-Reusable`; break
 
-
+            case 427: string+=`If Unarmed\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Confusion\nApply ${effect[2]} Vulnerable`; break
+            case 428: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} 3 Times`; break
+            case 429: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd 1 Winded\nto Discard`; break
+            case 430: string+=`Add ${this.calculateEffect(+effect[0],1)} Block\nRetain Block\nfor ${effect[1]} Turn${effect[1]!=1?`s`:``}\n${effect[2]} Balance`; break
+            case 431: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nRearm From\nAdjacent Tiles`; break
+            case 432: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDisarm on Own Tile`; break
 
 
 
@@ -550,6 +556,7 @@ class card{
             case 3: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 8: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 10: string+=`Heal ${this.calculateEffect(effect[0],4)} Health`; break
+            case 23: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}`; break
             case 64: string+=`Gain ${effect[0]} Control`; break
             case 366: string+=``; break
             */

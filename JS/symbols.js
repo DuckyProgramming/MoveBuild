@@ -878,6 +878,49 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(5,4,5,-0.5,-6,2.25)
             layer.ellipse(-8,0,3,3)
         break
+        case 103:
+            layer.fill(255,100,100,fade)
+            layer.rect(0,0,3,12)
+            layer.rect(0,0,12,3)
+            layer.stroke(0,fade)
+            layer.strokeWeight(0.6)
+            layer.noFill()
+            layer.ellipse(0,0,8,8)
+            layer.line(-3,-1,-1,1)
+            layer.line(-3,1,-1,-1)
+            layer.line(3,-1,1,1)
+            layer.line(3,1,1,-1)
+        break
+        case 104:
+            for(let a=0,la=10;a<la;a++){
+                layer.fill(255,200*a/la,200*a/la,fade)
+                layer.arc(0,0,10,10,a*36,a*36+36)
+            }
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1)
+            layer.ellipse(0,0,12,12)
+            layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
+        break
+        case 105:
+            for(let a=0,la=10;a<la;a++){
+                layer.fill(255,200*a/la,200*a/la,fade)
+                layer.arc(0,0,10,10,a*36,a*36+36)
+            }
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+        break
+        case 106:
+            layer.fill(150,0,0,fade)
+            layer.triangle(9,0,0,-2,0,2)
+            layer.triangle(3,-3,-6,-5,-6,-1)
+            layer.triangle(3,3,-6,1,-6,5)
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+        break
         
     }
     layer.pop()

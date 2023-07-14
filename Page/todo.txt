@@ -3,18 +3,13 @@ Menu (and the rest of the start)
 
 More Cards:
 Kamikaze
-move at least 2
-step copies itself
-
-Interesting Target Zones
 
 Ascensions:
 Gimmick Land
 
 Generality:
-Lira: most cards
-Sakura: all cards
-First Character Gimmick (hp dealing)
+Lira: few cards
+Sakura: few cards
 
 Dictionary Additions:
 conditionin

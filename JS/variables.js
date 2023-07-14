@@ -1272,7 +1272,8 @@ types={
         //rare rules (whenever x, y happens)
         //gain max hp methods
         //card that adds "fat fatigue" which costs 3
-        //another status-related card
+        //Interesting Target Zones
+        //deal damage, next card played returns to draw
 
         
 
@@ -1716,7 +1717,46 @@ types={
             ],
         },
 
+        {
+            name:'Throat\nSmack',rarity:1,list:3,
+            levels:[
+                {effect:[4,1,1],attack:427,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1,1],attack:427,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Fend\nOff',rarity:1,list:3,
+            levels:[
+                {effect:[8,2],attack:428,cost:1,target:[0],spec:[],class:2},
+                {effect:[10,4],attack:428,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Overexert',rarity:1,list:3,
+            levels:[
+                {effect:[14],attack:429,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[20],attack:429,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Sidestep',rarity:1,list:3,
+            levels:[
+                {effect:[10,1,2],attack:430,cost:1,target:[0],spec:[],class:2},
+                {effect:[14,1,2],attack:430,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Restrategize',rarity:0,list:3,
+            levels:[
+                {effect:[2],attack:431,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:431,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Boomerang',rarity:0,list:3,
+            levels:[
+                {effect:[12],attack:432,cost:1,target:[2,1,6],spec:[0,6],class:1},
+                {effect:[16],attack:432,cost:1,target:[2,1,6],spec:[0,6],class:1},
+            ],
+        },
+
         //some basic damage rares
+        //winded=temporary weak
 
 
 
@@ -2793,6 +2833,12 @@ types={
             levels:[
                 {effect:[],attack:-26,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[],attack:-26,cost:0,target:[0],spec:[4,5],class:5},
+            ],
+        },{
+            name:'Winded',rarity:0,list:5,
+            levels:[
+                {effect:[3],attack:-27,cost:0,target:[0],spec:[4,5],class:5},
+                {effect:[4],attack:-27,cost:0,target:[0],spec:[4,5],class:5},
             ],
         },
 
