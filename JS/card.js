@@ -515,16 +515,27 @@ class card{
             case 403: string+=`Attacks This Turn\nApply ${effect[0]} Bleed`; break
             case 404: string+=`Next Attack This Turn\nApply ${effect[0]} Bleed`; break
             case 405: string+=`Attacks This Combat\nApply ${effect[0]} Bleed`; break
-
             case 406: string+=`Gain ${effect[0]} Bleed\nGain ${effect[1]} Strength`; break
             case 407: string+=`Multiply All\nBleed by ${effect[0]}`; break
             case 408: string+=`Multiply Target\nBleed by ${effect[0]}`; break
             case 409: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Weak`; break
             case 410: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Confusion`; break
             case 411: string+=`Draw ${effect[0]} More\nCard${effect[0]!=1?`s`:``} Per Turn\n${effect[1]} Balance`; break
-
-
-
+            case 412: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nDisarm`; break
+            case 413: string+=`Apply ${effect[0]} Bleed\nDisarm`; break
+            case 414: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Attack Played\n${effect[1]} Balance`; break
+            case 415: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Skill Played`; break
+            case 416: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 1 Less\nWhen Attack Played`; break
+            case 417: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Confusion\n${effect[2]} Balance`; break
+            case 418: string+=`When Enemy Dies,\nHeal ${this.calculateEffect(effect[0],4)} Health`; break
+            case 419: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Hand\nExhaust Hand`; break
+            case 420: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nHeal ${this.calculateEffect(effect[0],4)} Health Each`; break
+            case 421: string+=`Rearm From Anywhere`; break
+            case 422: string+=`Balance Has No Effect`; break
+            case 423: string+=`Breaking Balance\nGives 1 Energy`; break
+            case 424: string+=`Existing Cards\nNo Longer\nRequire Armament`; break
+            case 425: string+=`Apply ${effect[0]} Confuse\nto All Enemies`; break
+            case 426: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nDisarm as\nNon-Reusable`; break
 
 
 
@@ -661,7 +672,7 @@ class card{
         this.battle.attackManager.level=this.level
         this.battle.attackManager.color=this.color
     }
-    anotherPlayed(){
+    anotherPlayed(cardClass){
         if(this.spec.includes(9)){
             this.deSize=true
         }
@@ -682,6 +693,19 @@ class card{
                     this.cost++
                 }
             break
+            case 414: case 416:
+                if(cardClass==1&&this.cost>0){
+                    this.cost--
+                    this.base.cost--
+                }
+            break
+            case 415:
+                if(cardClass==2&&this.cost>0){
+                    this.cost--
+                    this.base.cost--
+                }
+            break
+            
         }
     }
     playable(){

@@ -138,6 +138,9 @@ class combatantManager{
     multiplyStatus(name,multiplier){
         this.combatants.forEach(combatant=>combatant.multiplyStatus(name,multiplier))
     }
+    dead(){
+        this.combatants.forEach(combatant=>combatant.anotherDead())
+    }
     summonCombatant(tilePosition,type,direction){
         let list=[]
         for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
@@ -200,6 +203,9 @@ class combatantManager{
                     case 13:
                         this.combatants[a].statusEffect('Armor',args[0])
                     break
+                    case 14:
+                        this.combatants[a].statusEffect('Confusion',args[0])
+                    break
                 }
             }
         }
@@ -241,12 +247,15 @@ class combatantManager{
         return this.playerCombatantIndex[id]
     }
     damageArea(damage,user,team,tilePosition,spec){
+        let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
             if(this.combatants[a].team!=team&&distance>=0&&distance<=1){
                 this.combatants[a].takeDamage(damage,user,spec)
+                total++
             }
         }
+        return total
     }
     damageArea2(damage,user,team,tilePosition,spec){
         for(let a=0,la=this.combatants.length;a<la;a++){

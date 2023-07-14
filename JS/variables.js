@@ -1271,6 +1271,8 @@ types={
         //health cards again
         //rare rules (whenever x, y happens)
         //gain max hp methods
+        //card that adds "fat fatigue" which costs 3
+        //another status-related card
 
         
 
@@ -1409,8 +1411,8 @@ types={
         },{
             name:'Counter\nStab',rarity:1,list:3,
             levels:[
-                {effect:[6,5],attack:97,cost:1,target:[0],spec:[],class:2},
-                {effect:[8,8],attack:97,cost:1,target:[0],spec:[],class:2},
+                {effect:[6,5],attack:97,cost:1,target:[0,6],spec:[],class:2},
+                {effect:[8,8],attack:97,cost:1,target:[0,6],spec:[],class:2},
             ],
         },{
             name:'Stagger',rarity:0,list:3,
@@ -1517,14 +1519,14 @@ types={
         },{
             name:'Windslash',rarity:0,list:3,
             levels:[
-                {effect:[13,7],attack:394,cost:2,target:[0],spec:[0],class:1},
-                {effect:[18,7],attack:394,cost:2,target:[0],spec:[0],class:1},
+                {effect:[13,7],attack:394,cost:2,target:[0],spec:[0,6],class:1},
+                {effect:[18,7],attack:394,cost:2,target:[0],spec:[0,6],class:1},
             ],
         },{
             name:'Bloodspin',rarity:0,list:3,
             levels:[
-                {effect:[3],attack:395,cost:1,target:[0],spec:[0],class:1},
-                {effect:[5],attack:395,cost:1,target:[0],spec:[0],class:1},
+                {effect:[3],attack:395,cost:1,target:[0],spec:[0,6],class:1},
+                {effect:[5],attack:395,cost:1,target:[0],spec:[0,6],class:1},
             ],
         },{
             name:'Pivot',rarity:0,list:3,
@@ -1547,8 +1549,8 @@ types={
         },{
             name:'Diversion',rarity:0,list:3,
             levels:[
-                {effect:[21],attack:399,cost:1,target:[0],spec:[],class:2},
-                {effect:[35],attack:399,cost:1,target:[0],spec:[],class:2},
+                {effect:[21],attack:399,cost:1,target:[0],spec:[6],class:2},
+                {effect:[35],attack:399,cost:1,target:[0],spec:[6],class:2},
             ],
         },{
             name:'Sleeve\nSwipe',rarity:0,list:3,
@@ -1565,8 +1567,8 @@ types={
         },{
             name:'Siphon',rarity:0,list:3,
             levels:[
-                {effect:[7],attack:402,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[10],attack:402,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:402,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[10],attack:402,cost:1,target:[2,1,1],spec:[0,6],class:1},
             ],
         },{
             name:'Extra\nCuts',rarity:1,list:3,
@@ -1584,12 +1586,6 @@ types={
             name:'Spikify',rarity:1,list:3,
             levels:[
                 {effect:[1],attack:405,cost:1,target:[0],spec:[],class:4},
-                {effect:[2],attack:405,cost:1,target:[0],spec:[],class:4},
-            ],
-        },{
-            name:'Spikify',rarity:1,list:3,
-            levels:[
-                {effect:[4,4],attack:405,cost:1,target:[0],spec:[],class:4},
                 {effect:[2],attack:405,cost:1,target:[0],spec:[],class:4},
             ],
         },{
@@ -1628,7 +1624,100 @@ types={
                 {effect:[1,6],attack:411,cost:1,target:[0],spec:[],class:4},
                 {effect:[2,6],attack:411,cost:1,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Plunge',rarity:1,list:3,
+            levels:[
+                {effect:[30,8],attack:412,cost:4,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[44,12],attack:412,cost:4,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Penetrate',rarity:0,list:3,
+            levels:[
+                {effect:[9],attack:413,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[12],attack:413,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Final\nCut',rarity:2,list:3,
+            levels:[
+                {effect:[60,-10],attack:414,cost:6,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[80,-10],attack:414,cost:6,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Response\nStrike',rarity:1,list:3,
+            levels:[
+                {effect:[8],attack:415,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:415,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Self\nControl',rarity:1,list:3,
+            levels:[
+                {effect:[13],attack:416,cost:3,target:[0],spec:[],class:2},
+                {effect:[18],attack:416,cost:3,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Jumping\nConfuse',rarity:1,list:3,
+            levels:[
+                {effect:[20,2,3],attack:417,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[32,2,3],attack:417,cost:2,target:[2,2,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Embrace',rarity:2,list:3,
+            levels:[
+                {effect:[8],attack:418,cost:2,target:[0],spec:[],class:4},
+                {effect:[12],attack:418,cost:2,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Fiend\nFire',rarity:2,list:3,
+            levels:[
+                {effect:[7],attack:419,cost:2,target:[2,1,6],spec:[0],class:1},
+                {effect:[12],attack:419,cost:2,target:[2,1,6],spec:[0],class:1},
+            ],
+        },{
+            name:'Reap',rarity:2,list:3,
+            levels:[
+                {effect:[5,5],attack:420,cost:2,target:[0],spec:[0,1],class:1},
+                {effect:[7,7],attack:420,cost:2,target:[0],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Magnetise',rarity:2,list:3,
+            levels:[
+                {effect:[],attack:421,cost:1,target:[19],spec:[1,2],class:4},
+                {effect:[],attack:421,cost:1,target:[19],spec:[1],class:4},
+            ],
+        },{
+            name:'Decouple',rarity:2,list:3,
+            levels:[
+                {effect:[],attack:422,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:422,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Unbalanced',rarity:2,list:3,
+            levels:[
+                {effect:[],attack:423,cost:3,target:[0],spec:[1],class:4},
+                {effect:[],attack:423,cost:2,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Devolution',rarity:2,list:3,
+            levels:[
+                {effect:[],attack:424,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:424,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Disorient',rarity:2,list:3,
+            levels:[
+                {effect:[1],attack:425,cost:3,target:[0],spec:[1],class:4},
+                {effect:[1],attack:425,cost:2,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Internalize',rarity:2,list:3,
+            levels:[
+                {effect:[2,2],attack:426,cost:1,target:[0],spec:[1,6],class:4},
+                {effect:[3,3],attack:426,cost:1,target:[0],spec:[1,6],class:4},
+            ],
         },
+
+        //some basic damage rares
+
 
 
 

@@ -51,7 +51,7 @@ class attack{
             case 293: case 295: case 296: case 297: case 301: case 304: case 310: case 314: case 316: case 319:
             case 323: case 326: case 327: case 333: case 342: case 345: case 348: case 361: case 364: case 368:
             case 373: case 376: case 378: case 379: case 382: case 384: case 385: case 401: case 402: case 408:
-            case 409:
+            case 409: case 412: case 414: case 415: case 417: case 419: case 420:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -63,6 +63,7 @@ class attack{
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
+            case 421:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -510,7 +511,7 @@ class attack{
                     case 373:
                         this.userCombatant.loseMaxHP(this.effect[1])
                     break
-                    case 385:
+                    case 385: case 414:
                         this.userCombatant.balance+=this.effect[1]
                     break
                     case 402:
@@ -536,6 +537,7 @@ class attack{
             case 267: case 268: case 269: case 271: case 273: case 274: case 275: case 277: case 280: case 282:
             case 287: case 288: case 293: case 296: case 301: case 304: case 310: case 319: case 323: case 361:
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
+            case 414: case 415:
                 if(this.targetDistance==1){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(2)
@@ -575,7 +577,7 @@ class attack{
             case 107: case 120: case 122: case 131: case 141: case 142: case 146: case 152: case 172: case 190:
             case 194: case 197: case 206: case 216: case 221: case 235: case 242: case 261: case 262: case 281:
             case 303: case 320: case 321: case 322: case 354: case 355: case 359: case 365: case 377: case 386:
-            case 389: case 396: case 399: case 410:
+            case 389: case 396: case 399: case 410: case 416:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -720,8 +722,10 @@ class attack{
                             }
                         break
                         case 399:
-                            this.userCombatant.armed=false
-                            this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)].addType(3)
+                            if(this.userCombatant.armed){
+                                this.userCombatant.armed=false
+                                this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)].addType(3)
+                            }
                         break
                         case 410:
                             this.userCombatant.statusEffect('Counter Confusion',this.effect[1])
@@ -927,7 +931,7 @@ class attack{
             case 150: case 181: case 184: case 198: case 200: case 203: case 204: case 212: case 215: case 223:
             case 225: case 226: case 231: case 239: case 240: case 249: case 264: case 278: case 286: case 299:
             case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
-            case 381: case 393: case 406:
+            case 381: case 393: case 406: case 424:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1078,6 +1082,9 @@ class attack{
                             this.userCombatant.statusEffect('Bleed',this.effect[0])
                             this.userCombatant.statusEffect('Strength',this.effect[1])
                         break
+                        case 424:
+                            this.battle.cardManagers[this.player].allGroupEffect(23)
+                        break
                     }
                 }else if(this.timer>=20){
                     this.remove=true
@@ -1089,7 +1096,7 @@ class attack{
             case 233: case 253: case 254: case 259: case 276: case 279: case 284: case 285: case 289: case 291:
             case 294: case 298: case 300: case 302: case 305: case 308: case 309: case 313: case 315: case 317:
             case 318: case 334: case 337: case 338: case 339: case 340: case 343: case 344: case 346: case 363:
-            case 387: case 390: case 392: case 398:
+            case 387: case 390: case 392: case 398: case 418: case 422: case 423:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -1362,6 +1369,15 @@ class attack{
                         case 398:
                             this.battle.cardManagers[this.player].draw(this.effect[0])
                             this.battle.combatantManager.tick()
+                        break
+                        case 418:
+                            this.userCombatant.statusEffect('Heal on Death',this.effect[0])
+                        break
+                        case 422:
+                            this.userCombatant.statusEffect('Ignore Balance',1)
+                        break
+                        case 423:
+                            this.userCombatant.statusEffect('Balance Energy',1)
                         break
                     }
                 }else if(this.timer>=20){
@@ -1731,7 +1747,7 @@ class attack{
                     }
                 }
             break
-            case 18: case 394: case 395:
+            case 18: case 394: case 395: case 420:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(10)
                 }
@@ -1744,6 +1760,10 @@ class attack{
                         break
                         case 395:
                             this.battle.combatantManager.statusAreaBlock('Bleed',this.effect[0],this.userCombatant.team,this.userCombatant.tilePosition)
+                        break
+                        case 420:
+                            let total=this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                            this.userCombatant.heal(this.effect[0]*total)
                         break
                         default:
                             this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
@@ -2016,7 +2036,7 @@ class attack{
                     this.battle.activate(1,this.userCombatant.id)
                 }
             break
-            case 36: case 39: case 47: case 384:
+            case 36: case 39: case 47: case 384: case 412: case 413:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(16)
                 }
@@ -2038,6 +2058,21 @@ class attack{
                             this.targetCombatant.statusEffect('Bleed',this.effect[1])
                             this.battle.cardManagers[this.player].hand.discard(this.effect[2])
                         break
+                        case 412:
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.targetCombatant.statusEffect('Bleed',this.effect[1])
+                            if(this.userCombatant.armed){
+                                this.userCombatant.armed=false
+                                this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)].addType(3)
+                            }
+                        break
+                        case 413:
+                            this.targetCombatant.statusEffect('Bleed',this.effect[0])
+                            if(this.userCombatant.armed){
+                                this.userCombatant.armed=false
+                                this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)].addType(3)
+                            }
+                        break
                     }
                 }else if(this.timer>=30){
                     this.remove=true
@@ -2052,9 +2087,13 @@ class attack{
                 }
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,3,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
-                    this.userCombatant.armed=false
-                }else if(this.timer==10*this.targetDistance+15){
-                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                    if(this.userCombatant.armed){
+                        this.userCombatant.armed=false
+                        this.procedure[0]=1
+                    }else{
+                        this.procedure[0]=0
+                    }
+                }else if(this.timer==10*this.targetDistance+15&&this.procedure[0]==1){
                     this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)].addType(3)
                 }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true
@@ -2062,7 +2101,7 @@ class attack{
             break
             case 38: case 79: case 81: case 84: case 85: case 86: case 104: case 145: case 148: case 158:
             case 159: case 160: case 161: case 162: case 163: case 173: case 177: case 272: case 292: case 295:
-            case 297: case 314: case 326: case 351: case 352: case 382: case 408:
+            case 297: case 314: case 326: case 351: case 352: case 382: case 408: case 419:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -2176,6 +2215,10 @@ class attack{
                         break
                         case 408:
                             this.targetCombatant.multiplyStatus('Bleed',this.effect[0])
+                        break
+                        case 419:
+                            this.targetCombatant.takeDamage(this.effect[0]*this.battle.cardManagers[this.player].hand.cards.length,this.user)
+                            this.battle.cardManagers[this.player].allEffect(2,22)
                         break
                     }
                 }else if(this.timer>=30){
@@ -2443,7 +2486,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 66: case 68:
+            case 66: case 68: case 421:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(22)
                 }
@@ -2455,6 +2498,12 @@ class attack{
                         break
                         case 68:
                             this.targetCombatant.statusEffect('Strength',-this.effect[0])
+                        break
+                        case 421:
+                            if(this.targetTile.type.includes(3)){
+                                this.targetTile.anim.upPart[this.targetTile.type.indexOf(3)]=false
+                                this.userCombatant.armed=true
+                            }
                         break
                     }
                 }else if(this.timer>=30){
@@ -2660,7 +2709,7 @@ class attack{
                 }
             break
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
-            case 404: case 405:
+            case 404: case 405: case 426:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(26)
                 }
@@ -2720,6 +2769,13 @@ class attack{
                         break
                         case 405:
                             this.userCombatant.statusEffect('Attack Bleed Combat',this.effect[0])
+                        break
+                        case 426:
+                            this.userCombatant.statusEffect('Strength',this.effect[0])
+                            this.userCombatant.statusEffect('Dexterity',this.effect[1])
+                            if(this.userCombatant.armed){
+                                this.userCombatant.armed=false
+                            }
                         break
                     }
                 }else if(this.timer>=20){
@@ -4155,7 +4211,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 342: case 350: case 353: case 407:
+            case 342: case 350: case 353: case 407: case 425:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4175,7 +4231,11 @@ class attack{
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,36,[20]))
                         break
                         case 407:
-                            this.combatantManager.multiplyStatus('Bleed',this.effect[0])
+                            this.battle.combatantManager.multiplyStatus('Bleed',this.effect[0])
+                        break
+                        case 425:
+                            this.battle.combatantManager.allEffect(14,[this.effect[0]])
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,37,[20]))
                         break
                     }
                 }else if(this.timer>=20){
@@ -4338,7 +4398,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 401:
+            case 401: case 417:
                 if(this.timer==1&&this.targetDistance>1){
                     this.userCombatant.startAnimation(34)
                 }else if(this.timer==15*this.targetDistance-14){
@@ -4356,8 +4416,14 @@ class attack{
                     this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                 }else if(this.timer==15*this.targetDistance){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
-                    if(this.targetCombatant.block<=0){
-                        this.targetCombatant.statusEffect('Bleed',this.effect[1])
+                    switch(this.type){
+                        case 401:
+                            this.targetCombatant.statusEffect('Bleed',this.effect[1])
+                        break
+                        case 417:
+                            this.userCombatant.statusEffect('Confused',this.effect[1])
+                            this.userCombatant.balance+=this.effect[2]
+                        break
                     }
                 }else if(this.timer>=15*this.targetDistance+15){
                     this.remove=true

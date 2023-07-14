@@ -333,6 +333,15 @@ class group{
                         this.cards[a].spec.push(4)
                     }
                 break
+                case 22:
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                break
+                case 23:
+                    if(this.cards[a].spec.includes(6)){
+                        this.cards[a].spec.splice(this.cards[a].spec.indexOf(6))
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -839,7 +848,7 @@ class group{
                         }
                     }
                     this.cards[a].played()
-                    this.cards.forEach(card=>card.anotherPlayed())
+                    this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class))
                     this.battle.playCard(this.cards[a],this.player,0)
                     this.callInput(5,0)
                     this.battle.attackManager.execute()
@@ -888,7 +897,7 @@ class group{
                             }
                         }
                         this.cards[b].played()
-                        this.cards.forEach(card=>card.anotherPlayed())
+                        this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class))
                         if(this.spec.includes(12)){
                             this.battle.attackManager.type=this.battle.attackManager.type[1]
                             this.battle.attackManager.effect=this.battle.attackManager.effect[1]
@@ -931,7 +940,7 @@ class group{
                             }
                         }
                         this.cards[b].played()
-                        this.cards.forEach(card=>card.anotherPlayed())
+                        this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class))
                         if(this.spec.includes(12)){
                             let characteristic=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0
                             this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
@@ -1213,6 +1222,14 @@ class group{
                 }
             }
         }
+        if(this.battle.attackManager.targetInfo[0]==19){
+            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                if(this.battle.tileManager.tiles[a].type.includes(3)&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.callInput(2,a)
+                }
+            }
+        }
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
@@ -1359,6 +1376,14 @@ class group{
                 if(this.battle.tileManager.tiles[a].occupied==0&&
                     this.battle.tileManager.tiles[a].type.includes(3)&&
                     (legalTargetCombatant(this.battle.relicManager.active[150]?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)){
+                    this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==19){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
+                let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
+                if(this.battle.tileManager.tiles[a].typeincludes(3)){
                     this.callInput(2,a)
                 }
             }
