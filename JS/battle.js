@@ -24,7 +24,7 @@ class battle{
         this.energy={main:[],gen:[],base:[],temp:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         
-        this.turn={main:0,total:0,time:0,accelerate:0}
+        this.turn={main:0,total:0,time:0,accelerate:0,endReady:false}
         this.anim={reserve:1,discard:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],exit:1,sell:[],afford:0,upAfford:false}
         this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
         this.result={defeat:false,victory:false}
@@ -293,6 +293,7 @@ class battle{
         }
     }
     endTurn(){
+        this.turn.endReady=false
         this.combatantManager.tickEarly()
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
@@ -696,6 +697,9 @@ class battle{
                 if(this.anim.upAfford&&this.anim.afford>=1){
                     this.anim.upAfford=false
                 }
+                if(this.turn.endReady&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
+                    this.endTurn()
+                }
                 if(this.counter.killed>=this.counter.enemy&&!this.result.defeat){
                     if(this.result.victory){
                         let allClosed=true
@@ -991,7 +995,7 @@ class battle{
                         }else if(key=='d'||key=='D'){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
-                        }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0){
+                        }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
                             this.endTurn()
                         }
                     }

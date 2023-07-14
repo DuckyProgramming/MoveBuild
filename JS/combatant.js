@@ -56,7 +56,7 @@ class combatant{
             'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
-            'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times',
+            'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -69,7 +69,7 @@ class combatant{
                 0,0,2,2,0,2,0,2,0,1,//8
                 0,2,2,2,0,0,0,0,2,2,//9
                 0,0,1,1,1,0,0,1,2,0,//10
-                0,1,2,0,0,0,2,
+                0,0,2,0,0,0,2,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -82,7 +82,7 @@ class combatant{
                 2,2,2,0,2,0,2,1,0,3,
                 3,2,2,2,2,2,1,2,0,0,
                 2,2,0,0,0,0,1,0,0,0,
-                0,1,0,0,2,2,0,
+                0,1,0,0,2,2,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -104,6 +104,7 @@ class combatant{
         this.combo=0
         this.armed=true
         this.balance=0
+        this.balanceCap=10
 
         this.intent=0
         this.activated=false
@@ -2191,6 +2192,7 @@ class combatant{
         this.combo=0
         this.armed=true
         this.balance=0
+        this.balanceCap=10
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -3654,7 +3656,7 @@ class combatant{
                     case 86: this.life-=this.status.main[a]; break
                     case 88: this.status.main[findList('Intangible',this.status.name)]+=this.status.main[a]; break
                     case 89: this.status.main[findList('Block Next Turn',this.status.name)]+=this.status.main[a]; break
-
+                    case 107: if(this.armed){this.addBlock(this.status.main[a])} break
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
                     if(this.status.main[a]>0){
@@ -11762,7 +11764,7 @@ class combatant{
             this.layer.noFill()
             this.layer.rect(0,12,40,5,2)
             this.layer.stroke(255,this.fade*this.infoAnim.balance)
-            this.layer.line(-19+3.8*constrain(this.balance,0,10),9,-19+3.8*constrain(this.balance,0,10),15)
+            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),9,-19+3.8*constrain(this.balance,0,10),15)
             this.layer.fill(255,this.fade*this.infoAnim.balance)
             this.layer.noStroke()
             this.layer.textSize(5)
@@ -12076,14 +12078,14 @@ class combatant{
         }
         if(this.name=='George'||this.name=='Lira'||this.name=='Sakura'||this.name=='Certes'||this.name=='Ume'){
             this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
-            if(this.balance>10){
+            if(this.balance>this.balanceCap){
                 if(this.status.main[105]>0){
                     this.battle.energy.main[this.id]++
                 }else if(this.status.main[104]<=0){
                     this.balance=0
                 }
                 if(this.battle.turn.main==this.id){
-                    this.battle.endTurn()
+                    this.battle.turn.endReady=true
                 }
             }else if(this.balance<0){
                 this.balance=0

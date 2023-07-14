@@ -787,6 +787,7 @@ class turn{
                 break
                 case 2: case 4:
                     if(this.userCombatant.getStatus('Confusion')>0){
+                        this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
                         this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
                     }else{
                         this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
@@ -809,6 +810,7 @@ class turn{
                 break
                 case 3:
                     if(this.userCombatant.getStatus('Confusion')>0){
+                        this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
                         this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
                     }else{
                         this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]

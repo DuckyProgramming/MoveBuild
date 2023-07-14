@@ -313,6 +313,19 @@ class combatantManager{
             }
         }
     }
+    intentNerfArea(intent,effect,user,team,tilePosition,spec){
+        let total=0
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].team!=team&&distance>=0&&distance<=1){
+                if(types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==intent){
+                    this.combatants[a].attack[this.combatants[a].intent].effect[0]=max(0,this.combatants[a].attack[this.combatants[a].intent].effect[0]-effect)
+                }
+                total++
+            }
+        }
+        return total
+    }
     getArea(team,tilePosition,range){
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){

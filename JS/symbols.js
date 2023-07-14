@@ -921,6 +921,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(5,4,5,-0.5,-6,2.25)
             layer.ellipse(-8,0,3,3)
         break
+        case 107:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+            layer.fill(138,141,207,fade)
+            layer.rect(-2,0,2,12)
+            layer.triangle(-1,-6,-1,-3,8,-4.5)
+        break
         
     }
     layer.pop()

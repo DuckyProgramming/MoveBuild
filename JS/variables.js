@@ -1274,6 +1274,7 @@ types={
         //card that adds "fat fatigue" which costs 3
         //Interesting Target Zones
         //deal damage, next card played returns to draw
+        //repeatable hp costing cards
 
         
 
@@ -1715,9 +1716,7 @@ types={
                 {effect:[2,2],attack:426,cost:1,target:[0],spec:[1,6],class:4},
                 {effect:[3,3],attack:426,cost:1,target:[0],spec:[1,6],class:4},
             ],
-        },
-
-        {
+        },{
             name:'Throat\nSmack',rarity:1,list:3,
             levels:[
                 {effect:[4,1,1],attack:427,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -1753,10 +1752,87 @@ types={
                 {effect:[12],attack:432,cost:1,target:[2,1,6],spec:[0,6],class:1},
                 {effect:[16],attack:432,cost:1,target:[2,1,6],spec:[0,6],class:1},
             ],
+        },{
+            name:'Congeal',rarity:0,list:3,
+            levels:[
+                {effect:[9,4],attack:433,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[13,7],attack:433,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Snowburst',rarity:0,list:3,
+            levels:[
+                {effect:[4,1],attack:434,cost:1,target:[0],spec:[0],class:1},
+                {effect:[6,2],attack:434,cost:1,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Slipping\nSlash',rarity:1,list:3,
+            levels:[
+                {effect:[14],attack:435,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[18],attack:435,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Spiked\nKick',rarity:1,list:3,
+            levels:[
+                {effect:[3],attack:436,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[5],attack:436,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Declimate',rarity:2,list:3,
+            levels:[
+                {effect:[27],attack:437,cost:1,target:[2,1,2],spec:[0,6],class:1},
+                {effect:[36],attack:437,cost:1,target:[2,1,2],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Shock\nPull',rarity:1,list:3,
+            levels:[
+                {effect:[1],attack:438,cost:1,target:[2,2,2],spec:[1],class:1},
+                {effect:[2],attack:438,cost:1,target:[2,2,2],spec:[1],class:1},
+            ],
+        },{
+            name:'Sustain',rarity:2,list:3,
+            levels:[
+                {effect:[4],attack:439,cost:1,target:[0],spec:[1],class:4},
+                {effect:[6],attack:439,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Contortion',rarity:1,list:3,
+            levels:[
+                {effect:[2,3],attack:440,cost:1,target:[0],spec:[1],class:2},
+                {effect:[2,4],attack:440,cost:1,target:[0],spec:[1],class:2},
+            ],
+        },{
+            name:'Old\nWounds',rarity:1,list:3,
+            levels:[
+                {effect:[8,6,4],attack:441,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[12,8,5],attack:441,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            ],
+        },{
+            name:'Absorb\nBlood',rarity:1,list:3,
+            levels:[
+                {effect:[3],attack:442,cost:0,target:[0],spec:[1],class:4},
+                {effect:[4],attack:442,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Stress',rarity:0,list:3,
+            levels:[
+                {effect:[11,4],attack:443,cost:1,target:[0],spec:[1],class:2},
+                {effect:[16,4],attack:443,cost:1,target:[0],spec:[1],class:2},
+            ],
+        },{
+            name:'Fury',rarity:1,list:3,
+            levels:[
+                {effect:[4,3],attack:444,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[6,3],attack:444,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
         },
 
-        //some basic damage rares
-        //winded=temporary weak
+        //absolution
+        //resolution
+        //rare gust of wind pushes all enemies in one direction
+        //1 more movement
+        //grab scythe under target
+
+        //balancing
 
 
 
