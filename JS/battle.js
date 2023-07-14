@@ -376,6 +376,12 @@ class battle{
             this.cardManagers[player].fatigue()
             this.cardManagers[player].fatigue()
         }
+        if(card.spec.includes(18)||card.spec.includes(12)&&card.reality[mode].includes(18)){
+            this.cardManagers[player].fatigue()
+            this.cardManagers[player].fatigue()
+            this.cardManagers[player].fatigue()
+            this.cardManagers[player].fatigue()
+        }
         if(card.spec.includes(17)||card.spec.includes(12)&&card.reality[mode].includes(17)){
             for(let a=0,la=this.energy.main[player];a<la;a++){
                 this.cardManagers[player].fatigue()

@@ -561,12 +561,16 @@ class card{
             case 448: string+=`Pass Through an\nAdjacent Target\nApply ${effect[0]} Bleed`; break
             case 449: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRearm From Target Tile`; break
             case 450: string+=`Double Balance`; break
-
             case 451: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext Turn`; break
             case 452: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd 1 Dazed\nto Draw Pile`; break
             case 453: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\n3 Tiles Wide`; break
 
-
+            case 454: string+=`When Damage Taken\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
+            case 455: string+=`When You Heal,\nGain ${effect[0]} Max HP`; break
+            case 456: string+=`Remove All Items,\nGain ${effect[0]} Max HP Each`; break
+            case 457: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 458: string+=`Pass Through an\nAdjacent Target\nAnd Add a Chain\nShift to Your Hand\nor\nMove ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
+            case 459: string+=`Push 2 Tiles\nin All Directions`; break
 
 
             /*
@@ -594,6 +598,9 @@ class card{
         }
         if(this.spec.includes(14)){
             string+='\n3 Fatigue'
+        }
+        if(this.spec.includes(18)){
+            string+='\n4 Fatigue'
         }
         if(this.spec.includes(17)){
             string+='\nX Fatigue'

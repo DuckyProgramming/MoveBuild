@@ -983,7 +983,7 @@ types={
                 {effect:[],attack:29,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Shockwave',rarity:2,list:2,
+            name:'Shockwave',rarity:1,list:2,
             levels:[
                 {effect:[],attack:31,cost:1,target:[0],spec:[1],class:1},
                 {effect:[],attack:31,cost:1,target:[0],spec:[1],class:1},
@@ -1103,13 +1103,13 @@ types={
                 {effect:[16],attack:355,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Left\nVortex',rarity:1,list:2,
+            name:'Left\nVortex',rarity:2,list:2,
             levels:[
                 {effect:[],attack:356,cost:1,target:[0],spec:[0],class:1},
                 {effect:[],attack:356,cost:1,target:[0],spec:[0],class:1},
             ],
         },{
-            name:'Right\nVortex',rarity:1,list:2,
+            name:'Right\nVortex',rarity:2,list:2,
             levels:[
                 {effect:[],attack:357,cost:1,target:[0],spec:[0],class:1},
                 {effect:[],attack:357,cost:1,target:[0],spec:[0],class:1},
@@ -1257,6 +1257,42 @@ types={
             levels:[
                 {effect:[],attack:381,cost:3,target:[0],spec:[],class:4},
                 {effect:[],attack:381,cost:2,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Autoblock',rarity:2,list:2,
+            levels:[
+                {effect:[2],attack:454,cost:1,target:[0],spec:[1],class:4},
+                {effect:[3],attack:454,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Torpidity',rarity:2,list:2,
+            levels:[
+                {effect:[1],attack:455,cost:0,target:[0],spec:[],class:4},
+                {effect:[2],attack:455,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Chemistry',rarity:2,list:2,
+            levels:[
+                {effect:[3],attack:456,cost:1,target:[0],spec:[],class:4},
+                {effect:[5],attack:456,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Push\nAhead',rarity:2,list:2,
+            levels:[
+                {effect:[3,2],attack:457,cost:0,target:[0],spec:[1,18],class:4},
+                {effect:[3,2],attack:457,cost:0,target:[0],spec:[1,14],class:4},
+            ],
+        },{
+            name:'Chain\nShift',rarity:2,list:2,
+            levels:[
+                {effect:[1],attack:458,cost:1,target:[4,1,1],spec:[0,1],class:3},
+                {effect:[1],attack:458,cost:0,target:[4,1,1],spec:[0,1],class:3},
+            ],
+        },{
+            name:'Long\nShockwave',rarity:2,list:2,
+            levels:[
+                {effect:[],attack:459,cost:1,target:[0],spec:[1],class:1},
+                {effect:[],attack:459,cost:1,target:[0],spec:[1],class:1},
             ],
         },
         
@@ -1879,9 +1915,6 @@ types={
                 {effect:[4,3],attack:453,cost:0,target:[2,1,1],spec:[],class:1},
             ],
         },
-
-
-
 
         {
             name:'Blade\nDance',rarity:0,list:4,
@@ -8019,7 +8052,7 @@ shipyard visit for another time.`,
     ],
 }
 stage={scale:0,scene:'pack'}
-game={player:[3],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[2],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
 options={damage:false,alt:false,preGen:[]}
