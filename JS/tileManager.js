@@ -187,6 +187,9 @@ class tileManager{
     activateTiles(type,id){
         this.tiles.forEach(tile=>tile.activate(type,id))
     }
+    customActivate(type,effect){
+        this.tiles.forEach(tile=>tile.customActivate(type,effect))
+    }
     unTargetTiles(){
         this.tiles.forEach(tile=>tile.unTarget())
     }

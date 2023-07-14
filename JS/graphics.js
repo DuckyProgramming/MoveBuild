@@ -2329,8 +2329,9 @@ function setupGeneralGraphics(){
 	19-21 Ume Sandal Bottom
 	22-23 Ume Sandal Top
 	24-25 Sakura Parasol
+	26 Plant Tile
 	*/
-	for(let a=0,la=26;a<la;a++){
+	for(let a=0,la=27;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -2340,6 +2341,9 @@ function setupGeneralGraphics(){
 			break
 			case 25:
 				graphics.minor.push(createGraphics(400,200))
+			break
+			case 26:
+				graphics.minor.push(createGraphics(80,80))
 			break
 			default:
 				graphics.minor.push(createGraphics(160,160))
@@ -2536,6 +2540,14 @@ function setupGeneralGraphics(){
 	graphics.minor[25].vertex(0,20)
 	graphics.minor[25].vertex(400,20)
 	graphics.minor[25].endShape()
+	graphics.minor[26].fill(0,100,0)
+	graphics.minor[26].ellipse(40,40,54,54)
+	for(let a=0,la=40;a<la;a++){
+		b=360*a/la
+		c=sqrt(random(0,28**2))
+		graphics.minor[26].fill(random(0,50),100+random(0,100),random(0,50))
+		graphics.minor[26].ellipse(40+lsin(b)*c,40+lcos(b)*c,random(10,15))
+	}
 }
 function setupBackground(type,layer){
 	switch(type){

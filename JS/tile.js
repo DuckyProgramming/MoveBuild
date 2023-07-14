@@ -176,6 +176,25 @@ class tile{
             }
         }
     }
+    customActivate(type,effect){
+        for(let a=0,la=this.type.length;a<la;a++){
+            switch(this.type[a]){
+                case 19:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0){
+                        switch(type){
+                            case 0:
+                                this.battle.combatantManager.combatants[this.combatant].takeDamage(effect[0],-1)
+                            break
+                            case 1:
+                                this.battle.combatantManager.combatants[this.combatant].heal(effect[0])
+                            break
+                        }
+                    }
+                break
+            }
+        }
+    }
     fireAttack(){
         for(let a=0,la=2;a<la;a++){
             if(this.fire[a]>0){
@@ -361,6 +380,11 @@ class tile{
                     this.layer.rect(8,2,6,8)
                     this.layer.triangle(-16,2,0,2,-8,8)
                     this.layer.triangle(16,-2,0,-2,8,-8)
+                break
+                case 19:
+                    if(this.anim.part[a]>0){
+                        this.layer.image(graphics.minor[26],-30*this.fade*this.anim.part[a],-18*this.fade*this.anim.part[a],60*this.fade*this.anim.part[a],36*this.fade*this.anim.part[a])
+                    }
                 break
             }
         }

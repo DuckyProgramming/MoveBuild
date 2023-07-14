@@ -1311,9 +1311,7 @@ types={
                 {effect:[],attack:459,cost:1,target:[0],spec:[1],class:1},
                 {effect:[],attack:459,cost:1,target:[0],spec:[1],class:1},
             ],
-        },
-        
-        {
+        },{
             name:'Pain\nStrike',rarity:0,list:2,
             levels:[
                 {effect:[6,3],attack:460,cost:0,target:[2,1,1],spec:[0,1],class:1},
@@ -1361,8 +1359,49 @@ types={
                 {effect:[1],attack:470,cost:-1,target:[0],spec:[1],class:4},
                 {effect:[2],attack:470,cost:-1,target:[0],spec:[1],class:4},
             ],
+        },{
+            name:'Parade',rarity:2,list:2,
+            levels:[
+                {effect:[4],attack:471,cost:2,target:[0],spec:[0,1],class:1},
+                {effect:[8],attack:471,cost:2,target:[0],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Overgrow',rarity:0,list:2,
+            levels:[
+                {effect:[],attack:472,cost:0,target:[8,1,1],spec:[],class:4},
+                {effect:[],attack:472,cost:0,target:[8,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Thorns',rarity:0,list:2,
+            levels:[
+                {effect:[10],attack:473,cost:1,target:[0],spec:[],class:4},
+                {effect:[15],attack:473,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Sanctuary',rarity:1,list:2,
+            levels:[
+                {effect:[],attack:474,cost:1,target:[8,1,1],spec:[1],class:4},
+                {effect:[],attack:474,cost:1,target:[8,1,1],spec:[1],class:4},
+            ],
+        },{
+            name:'Blossom',rarity:0,list:2,
+            levels:[
+                {effect:[8],attack:475,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:475,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Harmony',rarity:1,list:2,
+            levels:[
+                {effect:[6],attack:476,cost:0,target:[0],spec:[1],class:4},
+                {effect:[10],attack:476,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Vine\nShield',rarity:0,list:2,
+            levels:[
+                {effect:[3],attack:477,cost:1,target:[0],spec:[],class:2},
+                {effect:[5],attack:477,cost:1,target:[0],spec:[],class:2},
+            ],
         },
-
         
         {
             name:'',rarity:-2,list:-1,

@@ -575,14 +575,22 @@ class card{
             case 462: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove ${effect[1]} Fatigue${effect[1]!=1?`s`:``}`; break
             case 463: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRemove ${effect[1]} Fatigue${effect[1]!=1?`s`:``}`; break
             case 464: string+=`Move in a L Shape`; break
-
             case 465: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Rotate Target Left`; break
             case 466: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Rotate Target Right`; break
             case 467: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Rotate Target Hard Left`; break
             case 468: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Rotate Target Hard Right`; break
             case 469: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHorizontally Only`; break
             case 470: string+=`Gain ${effect[0]}X Max HP`; break
+            case 471: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nTargets Will Face\nAway and Attack`; break
 
+            case 472: string+=`Create 1 Plant Tile`; break
+            case 473: string+=`Deal ${effect[0]} Damage\nto Targets on\nPlant Tiles`; break
+            case 474: string+=`Create 7 Plant Tiles\nin a Circle`; break
+            case 475: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nWhen Used on\na Plant Tile`; break
+            case 476: string+=`Heal ${effect[0]} Heal\nto Targets on\nPlant Tiles`; break
+            case 477: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number\nof Plant Tiles`; break
+
+            
 
 
 
