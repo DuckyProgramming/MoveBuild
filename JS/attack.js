@@ -53,6 +53,7 @@ class attack{
             case 373: case 376: case 378: case 379: case 382: case 384: case 385: case 401: case 402: case 408:
             case 409: case 412: case 414: case 415: case 417: case 419: case 420: case 427: case 429: case 432:
             case 433: case 435: case 436: case 437: case 438: case 441: case 444: case 447: case 449: case 452:
+            case 460: case 462:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -64,7 +65,7 @@ class attack{
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
-            case 421: case 448: case 458:
+            case 421: case 448: case 458: case 464:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -553,6 +554,13 @@ class attack{
                             }
                         }
                     break
+                    case 460:
+                        this.userCombatant.life-=this.effect[1]
+                        this.battle.drop(this.player,findName('Pain\nStrike',types.card),this.level,this.color)
+                    break
+                    case 462:
+                        this.battle.cardManagers[this.player].deFatigue(this.effect[1])
+                    break
                 }
             break
         }
@@ -568,7 +576,7 @@ class attack{
             case 267: case 268: case 269: case 271: case 273: case 274: case 275: case 277: case 280: case 282:
             case 287: case 288: case 293: case 296: case 301: case 304: case 310: case 319: case 323: case 361:
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
-            case 414: case 415: case 427: case 429: case 435: case 444: case 449:
+            case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){
@@ -610,7 +618,7 @@ class attack{
             case 107: case 120: case 122: case 131: case 141: case 142: case 146: case 152: case 172: case 190:
             case 194: case 197: case 206: case 216: case 221: case 235: case 242: case 261: case 262: case 281:
             case 303: case 320: case 321: case 322: case 354: case 355: case 359: case 365: case 377: case 386:
-            case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443:
+            case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443: case 461: case 463:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -774,6 +782,13 @@ class attack{
                         break
                         case 443:
                             this.userCombatant.balanceCap=max(1,this.userCombatant.balanceCap-this.effect[1])
+                        break
+                        case 461:
+                            this.userCombatant.life-=this.effect[1]
+                            this.battle.drop(this.player,findName('Pain\nStrike',types.card),this.level,this.color)
+                        break
+                        case 463:
+                            this.battle.cardManagers[this.player].deFatigue(this.effect[1])
                         break
                     }
                 }else if(this.timer>=30){
@@ -4777,6 +4792,19 @@ class attack{
                     }
                 }
                 if(this.timer>=36){
+                    this.remove=true
+                }
+            break
+            case 464:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(0)
+                }
+                this.userCombatant.moveTile(this.direction,this.distance/42)
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/42)
+                this.userCombatant.runAnimation(1/14,0)
+                if(this.timer>=42){
+                    this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                    this.battle.activate(1,this.userCombatant.id)
                     this.remove=true
                 }
             break

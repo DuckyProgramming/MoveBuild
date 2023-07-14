@@ -204,6 +204,24 @@ class cardManager{
             }
         }
     }
+    heavyFatigue(){
+        if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){
+            this.battle.relicManager.detail[108]=1
+        }else{
+            this.discard.add(findName('Heavy\nFatigue',types.card),0,game.playerNumber+1)
+            this.drop.addDrop(findName('Heavy\nFatigue',types.card),0,game.playerNumber+1)
+            if(this.battle.relicManager.hasRelic(142,this.player)){
+                this.discard.cards[this.discard.cards.length-1].cost++
+                this.discard.cards[this.discard.cards.length-1].base.cost++
+                this.drop.cards[this.drop.cards.length-1].cost++
+            }
+            if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))==0){
+                this.discard.cards[this.discard.cards.length-1].cost--
+                this.discard.cards[this.discard.cards.length-1].base.cost--
+                this.drop.cards[this.drop.cards.length-1].cost--
+            }
+        }
+    }
     deStatus(value){
         let left=value
         left-=this.reserve.deStatus(left)

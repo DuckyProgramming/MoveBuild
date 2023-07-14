@@ -177,7 +177,7 @@ class group{
     deFatigue(value){
         let done=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].name=='Fatigue'){
+            if(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'){
                 if(this.id==2){
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
@@ -197,7 +197,7 @@ class group{
     fatigueNumber(){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].name=='Fatigue'){
+            if(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'){
                 total++
             }
         }
@@ -265,7 +265,7 @@ class group{
                     la++
                 break
                 case 8:
-                    if(this.cards[a].name=='Fatigue'){
+                    if(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'){
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
                     }
@@ -329,7 +329,7 @@ class group{
                     }
                 break
                 case 21:
-                    if(this.cards[a].name=='Fatigue'){
+                    if(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'){
                         this.cards[a].spec.push(4)
                     }
                 break
@@ -1229,6 +1229,14 @@ class group{
                 }
             }
         }
+        if(this.battle.attackManager.targetInfo[0]==21){
+            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                if((arrayIncludes(constants.L,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y]))&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.callInput(2,a)
+                }
+            }
+        }
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
@@ -1383,6 +1391,14 @@ class group{
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
                 if(this.battle.tileManager.tiles[a].typeincludes(3)){
+                    this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==21){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
+                let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
+                if(this.battle.tileManager.tiles[a].occupied==0&&arrayIncludes(constants.L,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
                     this.callInput(2,a)
                 }
             }

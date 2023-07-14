@@ -205,7 +205,7 @@ class card{
             case 89: string+=`Remove All\nBlock of Target\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 90: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Attack Deals\n${effect[1]} More Damage`; break
             case 91: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
-            case 92: string+=`Remove ${effect[0]} Fatigues`; break
+            case 92: string+=`Remove ${effect[0]} Fatigue${effect[0]!=1?`s`:``}`; break
             case 93: string+=`Put a Card in Exhaust\nPile in Your Hand`; break
             case 94: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 95: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
@@ -564,7 +564,6 @@ class card{
             case 451: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext Turn`; break
             case 452: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd 1 Dazed\nto Draw Pile`; break
             case 453: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\n3 Tiles Wide`; break
-
             case 454: string+=`When Damage Taken\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
             case 455: string+=`When You Heal,\nGain ${effect[0]} Max HP`; break
             case 456: string+=`Remove All Items,\nGain ${effect[0]} Max HP Each`; break
@@ -572,6 +571,13 @@ class card{
             case 458: string+=`Pass Through an\nAdjacent Target\nAnd Add a Chain\nShift to Your Hand\nor\nMove ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 459: string+=`Push 2 Tiles\nin All Directions`; break
 
+            case 460: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Health\nAdd a Pain\nStrike to Hand`; break
+            case 461: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nLose ${effect[1]} Health\nAdd a Pain\nDefend to Hand`; break
+            case 462: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove ${effect[1]} Fatigue${effect[1]!=1?`s`:``}`; break
+            case 463: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRemove ${effect[1]} Fatigue${effect[1]!=1?`s`:``}`; break
+            case 464: string+=`Move in a L Shape`; break
+
+            //92
 
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
@@ -601,6 +607,9 @@ class card{
         }
         if(this.spec.includes(18)){
             string+='\n4 Fatigue'
+        }
+        if(this.spec.includes(19)){
+            string+='\nHeavy Fatigue'
         }
         if(this.spec.includes(17)){
             string+='\nX Fatigue'

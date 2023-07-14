@@ -148,6 +148,20 @@ function sign(value){
 function pointInsideBox(point,box){
 	return point.position.x>box.position.x-box.width/2&&point.position.x<box.position.x+box.width/2&&point.position.y>box.position.y-box.height/2&&point.position.y<box.position.y+box.height/2
 }
+function arrayIncludes(array,includes){
+	for(let a=0,la=array.length;a<la;a++){
+		let lb=includes.length
+		for(let b=0;b<lb;b++){
+			if(includes[b]!=array[a][b]){
+				lb=0
+			}
+		}
+		if(lb>0){
+			return true
+		}
+	}
+	return false
+}
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
 		case 0: case 2: case 5: case 7: case 8: case 10: case 11:

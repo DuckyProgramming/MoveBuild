@@ -1297,6 +1297,45 @@ types={
         },
         
         {
+            name:'Pain\nStrike',rarity:0,list:2,
+            levels:[
+                {effect:[6,3],attack:460,cost:0,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[9,3],attack:460,cost:0,target:[2,1,1],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Pain\nDefend',rarity:0,list:2,
+            levels:[
+                {effect:[8,3],attack:461,cost:0,target:[0],spec:[1],class:2},
+                {effect:[12,3],attack:461,cost:0,target:[0],spec:[1],class:2},
+            ],
+        },{
+            name:'Depleting\nStrike',rarity:0,list:2,
+            levels:[
+                {effect:[12],attack:1,cost:1,target:[2,1,1],spec:[19],class:1},
+                {effect:[16],attack:1,cost:1,target:[2,1,1],spec:[19],class:1},
+            ],
+        },{
+            name:'Relaxing\nStrike',rarity:1,list:2,
+            levels:[
+                {effect:[4,1],attack:462,cost:1,target:[0],spec:[],class:2},
+                {effect:[6,1],attack:462,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Relaxing\nDefend',rarity:1,list:2,
+            levels:[
+                {effect:[7,1],attack:463,cost:1,target:[0],spec:[],class:2},
+                {effect:[11,1],attack:463,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'L-Move',rarity:1,list:2,
+            levels:[
+                {effect:[],attack:464,cost:0,target:[21],spec:[0],class:3},
+                {effect:[],attack:464,cost:0,target:[21],spec:[0],class:3},
+            ],
+        },
+
+        
+        {
             name:'',rarity:-2,list:-1,
             levels:[
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
@@ -1305,12 +1344,10 @@ types={
         },
 
         //health cards again
-        //rare rules (whenever x, y happens)
-        //gain max hp methods
         //card that adds "fat fatigue" which costs 3
         //Interesting Target Zones
-        //deal damage, next card played returns to draw
-        //repeatable hp costing cards
+        //promotion-promoted
+        //princess
 
         
 
@@ -2857,6 +2894,12 @@ types={
             levels:[
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
                 {effect:[],attack:0,cost:1,target:[0],spec:[1],class:5},
+            ],
+        },{
+            name:'Heavy\nFatigue',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:0,cost:3,target:[0],spec:[1],class:5},
+                {effect:[],attack:0,cost:3,target:[0],spec:[1],class:5},
             ],
         },{
             name:'Dazed',rarity:0,list:5,
@@ -6926,11 +6969,11 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 5'],class:0,world:-1,
+            level:['Basic 7'],class:0,world:-1,
             name:'Placeholder',
-            player:{position:[[{x:2,y:2}],[{x:2,y:3},{x:3,y:2}]]},
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
-                {position:{x:1,y:1},name:'Duck'},
+                {position:{x:2,y:2},name:'Duck'},
 
             ],reinforce:[
 
@@ -8054,7 +8097,7 @@ shipyard visit for another time.`,
 stage={scale:0,scene:'pack'}
 game={player:[2],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
-constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345]}
+constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,preGen:[]}
 graphics={main:0,backgroundGen:8,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene}
