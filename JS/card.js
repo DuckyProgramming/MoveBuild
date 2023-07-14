@@ -491,7 +491,7 @@ class card{
             case 379: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Fatigues\nExhausted`; break
             case 380: string+=`Gain ${effect[0]} Strength\nLose ${effect[1]} Max Health`; break
             case 381: string+=`For the Rest\nof Combat, Take\n40% Less Damage`; break
-            case 382: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRotate Target Randomly`; break
+            case 382: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply 1 Confusion`; break
             case 383: string+=`Move to Scythe\nUp to ${effect[0]} Tile${effect[0]!=1?`s`:``} Away`; break
             case 384: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nDiscard ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 385: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Balance`; break
@@ -512,10 +512,19 @@ class card{
             case 400: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\n${effect[1]} Balance`; break
             case 401: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nAdvance`; break
             case 402: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal Health Equal\nto Target's Bleed`; break
-
             case 403: string+=`Attacks This Turn\nApply ${effect[0]} Bleed`; break
             case 404: string+=`Next Attack This Turn\nApply ${effect[0]} Bleed`; break
             case 405: string+=`Attacks This Combat\nApply ${effect[0]} Bleed`; break
+
+            case 406: string+=`Gain ${effect[0]} Bleed\nGain ${effect[1]} Strength`; break
+            case 407: string+=`Multiply All\nBleed by ${effect[0]}`; break
+            case 408: string+=`Multiply Target\nBleed by ${effect[0]}`; break
+            case 409: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Weak`; break
+            case 410: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Confusion`; break
+            case 411: string+=`Draw ${effect[0]} More\nCard${effect[0]!=1?`s`:``} Per Turn\n${effect[1]} Balance`; break
+
+
+
 
 
 

@@ -36,7 +36,7 @@ class turn{
                         switch(this.type){
                             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                             case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
-                            case 212: case 226:
+                            case 212: case 226: case 227:
                                 this.target=[[this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]]]
                             break
                             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
@@ -786,26 +786,34 @@ class turn{
                     }
                 break
                 case 2: case 4:
-                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
-                    this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                    this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
-                    let target=this.userCombatant.getTarget()[0]
-                    if(target>=0&&!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0&&floor(random(0,2)==0)){
-                        let remember=this.userCombatant.goal.anim.direction
-                        this.userCombatant.goal.anim.direction+=(floor(random(0,2))*2-1)*60
-                        if(!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0){
-                            this.userCombatant.goal.anim.direction=remember
+                    if(this.userCombatant.getStatus('Confusion')>0){
+                        this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
+                    }else{
+                        this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                        this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                        this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                        let target=this.userCombatant.getTarget()[0]
+                        if(target>=0&&!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0&&floor(random(0,2)==0)){
+                            let remember=this.userCombatant.goal.anim.direction
+                            this.userCombatant.goal.anim.direction+=(floor(random(0,2))*2-1)*60
+                            if(!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0){
+                                this.userCombatant.goal.anim.direction=remember
+                            }else{
+                                this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
+                            }
                         }else{
                             this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
                         }
-                    }else{
-                        this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
                     }
                     this.remove=true
                 break
                 case 3:
-                    this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                    this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                    if(this.userCombatant.getStatus('Confusion')>0){
+                        this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
+                    }else{
+                        this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                        this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                    }
                     this.remove=true
                 break
                 default:
@@ -4012,6 +4020,17 @@ class turn{
                         this.userCombatant.runAnimation(1/30,17)
                         if(this.timer==15){
                             this.targetCombatant.statusEffect('Temporary Speed Up',-this.effect[0])
+                        }else if(this.timer>=30){
+                            this.remove=true
+                        }
+                    break
+                    case 227:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(17)
+                        }
+                        this.userCombatant.runAnimation(1/30,17)
+                        if(this.timer==15){
+                            this.targetCombatant.statusEffect('Confusion',this.effect[0])
                         }else if(this.timer>=30){
                             this.remove=true
                         }

@@ -135,6 +135,9 @@ class combatantManager{
         }
         this.battle.updateTargetting()
     }
+    multiplyStatus(name,multiplier){
+        this.combatants.forEach(combatant=>combatant.multiplyStatus(name,multiplier))
+    }
     summonCombatant(tilePosition,type,direction){
         let list=[]
         for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){

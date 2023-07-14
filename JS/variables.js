@@ -1586,6 +1586,48 @@ types={
                 {effect:[1],attack:405,cost:1,target:[0],spec:[],class:4},
                 {effect:[2],attack:405,cost:1,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Spikify',rarity:1,list:3,
+            levels:[
+                {effect:[4,4],attack:405,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:405,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Blood\nPower',rarity:0,list:3,
+            levels:[
+                {effect:[4,3],attack:406,cost:1,target:[0],spec:[1],class:4},
+                {effect:[4,5],attack:406,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Blood\nMagic',rarity:1,list:3,
+            levels:[
+                {effect:[2],attack:407,cost:2,target:[0],spec:[1],class:4},
+                {effect:[2],attack:407,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Gush of\nBlood',rarity:0,list:3,
+            levels:[
+                {effect:[2],attack:408,cost:1,target:[2,1,2],spec:[0],class:4},
+                {effect:[3],attack:408,cost:1,target:[2,1,2],spec:[0],class:4},
+            ],
+        },{
+            name:'Disjoint',rarity:0,list:3,
+            levels:[
+                {effect:[14,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[20,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Petal\nShield',rarity:0,list:3,
+            levels:[
+                {effect:[10,1],attack:410,cost:1,target:[0],spec:[1],class:2},
+                {effect:[18,1],attack:410,cost:1,target:[0],spec:[1],class:2},
+            ],
+        },{
+            name:'Petal\nDance',rarity:1,list:3,
+            levels:[
+                {effect:[1,6],attack:411,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,6],attack:411,cost:1,target:[0],spec:[],class:4},
+            ],
         },
 
 
@@ -1593,7 +1635,7 @@ types={
 
 
 
-        
+
 
         {
             name:'Blade\nDance',rarity:0,list:4,
@@ -3255,6 +3297,7 @@ types={
         {name:'Left Chop',class:1},
         {name:'Redeploy',class:4},
         {name:'Slow Down',class:1},
+        {name:'Confusion',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},

@@ -56,7 +56,7 @@ class combatant{
             'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
-            'Attack Bleed Combat',
+            'Attack Bleed Combat','Confusion','Counter Confusion',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -69,7 +69,7 @@ class combatant{
                 0,0,2,2,0,2,0,2,0,1,//8
                 0,2,2,2,0,0,0,0,2,2,//9
                 0,0,1,1,1,0,0,1,2,0,//10
-                0,
+                0,1,2,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -82,7 +82,7 @@ class combatant{
                 2,2,2,0,2,0,2,1,0,3,
                 3,2,2,2,2,2,1,2,0,0,
                 2,2,0,0,0,0,1,0,0,0,
-                0,
+                0,1,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3401,6 +3401,11 @@ class combatant{
                         this.battle.turnManager.turns[1].target=[user]
                         this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,226,[this.status.main[94]],this.id))
                     }
+                    if(this.status.main[102]>0){
+                        this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                        this.battle.turnManager.turns[1].target=[user]
+                        this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,227,[this.status.main[102]],this.id))
+                    }
                     if(this.status.main[44]>0&&this.life<=0){
                         userCombatant.statusEffect('Weak',this.status.main[44])
                     }
@@ -3554,6 +3559,10 @@ class combatant{
                 this.battle.updateTargetting()
             }
         }
+    }
+    multiplyStatus(name,multiplier){
+        let status=findList(name,this.status.name)
+        this.status.main[status]*=multiplier
     }
     deStatus(name,value){
         this.statusEffect(name,-value)
@@ -3721,6 +3730,11 @@ class combatant{
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                         this.goal.anim.sword2=true
+                    break
+                    case 35:
+                        this.animSet.loop=0
+                        this.goal.anim.sword=false
+                        this.anim.eyeStyle=[1,1]
                     break
                 }
             break
@@ -4092,6 +4106,19 @@ class combatant{
                             this.anim.legs[g].top=9-abs(lsin(this.animSet.loop*180))*9
                         }
                         this.offset.position.y=-abs(lsin(this.animSet.loop*180))*30
+                    break
+                    case 35:
+                        this.animSet.loop+=rate
+                        this.goal.anim.direction+=rate*720
+                        this.anim.direction+=rate*720
+                        for(let g=0;g<2;g++){
+                            this.anim.arms[g].top=24+abs(lsin(this.animSet.loop*180))*72
+                            this.anim.arms[g].bottom=9+abs(lsin(this.animSet.loop*180))*111
+                            this.anim.eye[g]=lsin(this.animSet.loop*180)
+                        }
+                        if(this.name=='Sakura'){
+                            this.anim.mouth.y=5+lsin(this.animSet.loop*180)
+                        }
                     break
                 }
             break
