@@ -1066,7 +1066,7 @@ types={
                 {effect:[3],attack:92,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Exhume',rarity:0,list:2,
+            name:'Exhume',rarity:1,list:2,
             levels:[
                 {effect:[1],attack:93,cost:2,target:[0],spec:[1],class:4},
                 {effect:[1],attack:93,cost:1,target:[0],spec:[1],class:4},
@@ -1078,7 +1078,7 @@ types={
                 {effect:[],attack:11,cost:0,target:[2,2,3],spec:[1,2],class:1},
             ],
         },{
-            name:'Counter\nPush',rarity:0,list:2,
+            name:'Counter\nPush',rarity:1,list:2,
             levels:[
                 {effect:[10],attack:96,cost:1,target:[0],spec:[],class:2},
                 {effect:[16],attack:96,cost:1,target:[0],spec:[],class:2},
@@ -1240,7 +1240,7 @@ types={
                 {effect:[24,1],attack:373,cost:1,target:[2,1,1],spec:[],class:1},
             ],
         },{
-            name:'Convect',rarity:0,list:2,
+            name:'Convect',rarity:1,list:2,
             levels:[
                 {effect:[5],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[4],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -1330,13 +1330,13 @@ types={
                 {effect:[16],attack:1,cost:1,target:[2,1,1],spec:[19],class:1},
             ],
         },{
-            name:'Relaxing\nStrike',rarity:1,list:2,
+            name:'Relaxing\nStrike',rarity:0,list:2,
             levels:[
                 {effect:[4,1],attack:462,cost:1,target:[0],spec:[],class:2},
                 {effect:[6,1],attack:462,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Relaxing\nDefend',rarity:1,list:2,
+            name:'Relaxing\nDefend',rarity:0,list:2,
             levels:[
                 {effect:[7,1],attack:463,cost:1,target:[0],spec:[],class:2},
                 {effect:[11,1],attack:463,cost:1,target:[0],spec:[],class:2},
@@ -1384,7 +1384,7 @@ types={
                 {effect:[],attack:474,cost:1,target:[8,1,1],spec:[1],class:4},
             ],
         },{
-            name:'Blossom',rarity:0,list:2,
+            name:'Bloom',rarity:0,list:2,
             levels:[
                 {effect:[8],attack:475,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12],attack:475,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -1401,15 +1401,63 @@ types={
                 {effect:[3],attack:477,cost:1,target:[0],spec:[],class:2},
                 {effect:[5],attack:477,cost:1,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Blossom',rarity:1,list:2,
+            levels:[
+                {effect:[],attack:478,cost:1,target:[0],spec:[1],class:2},
+                {effect:[],attack:478,cost:1,target:[0],spec:[1],class:2},
+            ],
+        },{
+            name:'Acrimony',rarity:0,list:2,
+            levels:[
+                {effect:[14],attack:479,cost:1,target:[23],spec:[0],class:1},
+                {effect:[20],attack:479,cost:1,target:[23],spec:[0],class:1},
+            ],
+        },{
+            name:'Spring',rarity:1,list:2,
+            levels:[
+                {effect:[1,1],attack:480,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,2],attack:480,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Emerald\nVeil',rarity:1,list:2,
+            levels:[
+                {effect:[],attack:54,cost:1,target:[23],spec:[1],class:3},
+                {effect:[],attack:54,cost:0,target:[23],spec:[1],class:3},
+            ],
+        },{
+            name:'Toxin',rarity:1,list:2,
+            levels:[
+                {effect:[3],attack:481,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:481,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Irrigation',rarity:1,list:2,
+            levels:[
+                {effect:[],attack:482,cost:0,target:[8,1,1],spec:[],class:4},
+                {effect:[],attack:482,cost:0,target:[8,1,1],spec:[],class:4},
+            ],
         },
         
-        {
-            name:'',rarity:-2,list:-1,
+        /*{
+            name:'',rarity:1,list:2,
             levels:[
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
                 {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
             ],
-        },
+        },{
+            name:'',rarity:1,list:2,
+            levels:[
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+            ],
+        },{
+            name:'',rarity:1,list:2,
+            levels:[
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
+            ],
+        },*/
 
         //health cards again
         //Interesting Target Zones

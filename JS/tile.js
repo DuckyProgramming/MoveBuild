@@ -189,6 +189,15 @@ class tile{
                             case 1:
                                 this.battle.combatantManager.combatants[this.combatant].heal(effect[0])
                             break
+                            case 2:
+                                this.battle.combatantManager.combatants[this.combatant].goal.anim.direction=-30+floor(random(0,6))*60
+                            break
+                            case 3:
+                                this.battle.combatantManager.combatants[this.combatant].statusEffect('Strength',effect[0])
+                            break
+                            case 4:
+                                this.battle.combatantManager.combatants[this.combatant].statusEffect('Dexterity',effect[0])
+                            break
                         }
                     }
                 break

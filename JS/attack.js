@@ -65,7 +65,7 @@ class attack{
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
-            case 421: case 448: case 458: case 464: case 472: case 474:
+            case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -2270,7 +2270,7 @@ class attack{
             case 38: case 79: case 81: case 84: case 85: case 86: case 104: case 145: case 148: case 158:
             case 159: case 160: case 161: case 162: case 163: case 173: case 177: case 272: case 292: case 295:
             case 297: case 314: case 326: case 351: case 352: case 382: case 408: case 419: case 433: case 452:
-            case 472: case 474:
+            case 472: case 474: case 482:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -2404,6 +2404,15 @@ class attack{
                         case 474:
                             this.targetTile.addType(19)
                             this.battle.tileManager.typeArea(19,this.targetTile.tilePosition)
+                        break
+                        case 482:
+                            this.targetTile.addType(19)
+                            for(let a=0,la=5;a<la;a++){
+                                let index=this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x*(a+1)-this.userCombatant.tilePosition.x*a,this.targetTile.tilePosition.y*(a+1)-this.userCombatant.tilePosition.y*a)
+                                if(index>=0){
+                                    this.battle.tileManager.tiles[index].addType(19)
+                                }
+                            }
                         break
                     }
                 }else if(this.timer>=30){
@@ -4416,7 +4425,8 @@ class attack{
                     this.remove=true
                 }
             break
-            case 342: case 350: case 353: case 407: case 425: case 473: case 476: case 477:
+            case 342: case 350: case 353: case 407: case 425: case 473: case 476: case 477: case 478: case 479:
+            case 480:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4456,6 +4466,20 @@ class attack{
                                 }
                             }
                             this.userCombatant.addBlock(this.effect[0]*total)
+                        break
+                        case 478:
+                            this.battle.tileManager.customActivate(2,[])
+                            this.battle.updateTargetting()
+                        break
+                        case 479:
+                            let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                            if(index>=0){
+                                this.battle.combatantManager.combatants[index].takeDamage(this.effect[0],1)
+                            }
+                        break
+                        case 480:
+                            this.battle.tileManager.customActivate(3,[this.effect[0]])
+                            this.battle.tileManager.customActivate(4,[this.effect[1]])
                         break
                     }
                 }else if(this.timer>=20){
