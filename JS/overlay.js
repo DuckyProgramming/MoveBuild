@@ -40,6 +40,11 @@ class overlay{
                 this.page=0
                 this.battle.relicManager.relics.forEach(relic=>relic.fade=0)
             break
+            case 6:
+                this.text=''
+                this.possible='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+                this.suggestions=[]
+            break
         }
     }
     getPosKey(){
@@ -306,6 +311,33 @@ class overlay{
                 this.layer.textSize(20)
                 this.layer.text('Close',this.layer.width/2,this.layer.height/2+180)
                 this.battle.relicManager.display('overlay',[this.player,this.page])
+            break
+            case 6:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+50,480,540,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-250,120,40,10)
+                this.layer.fill(200,this.fade*0.8)
+                this.layer.stroke(0,this.fade*0.8)
+                this.layer.strokeWeight(3)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-180,440,30,5)
+                for(let a=0,la=this.suggestions.length;a<la;a++){
+                    this.layer.rect(this.layer.width/2,this.layer.height/2-130+a*60,400,50,5)
+                }
+                this.layer.textAlign(LEFT,CENTER)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.noStroke()
+                this.layer.textSize(20)
+                this.layer.text(this.text,this.layer.width/2-215,this.layer.height/2-180)
+                this.layer.textAlign(CENTER,CENTER)
+                this.layer.text('Close',this.layer.width/2,this.layer.height/2-250)
+                this.layer.textSize(12)
+                for(let a=0,la=this.suggestions.length;a<la;a++){
+                    this.layer.text(types.dictionary[this.suggestions[a]].name,this.layer.width/2,this.layer.height/2-145+a*60)
+                }
+                this.layer.textSize(8)
+                for(let a=0,la=this.suggestions.length;a<la;a++){
+                    this.layer.text(types.dictionary[this.suggestions[a]].desc,this.layer.width/2,this.layer.height/2-125+a*60)
+                }
             break
         }
     }
@@ -591,6 +623,11 @@ class overlay{
                     }
                     this.battle.relicManager.onClick('overlay',[this.player,this.page])
                 break
+                case 6:
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-250},width:120,height:40})){
+                        this.active=false
+                    }
+                break
             }
         }
     }
@@ -792,6 +829,27 @@ class overlay{
                         this.page++
                     }else if(code==ENTER){
                         this.active=false
+                    }
+                break
+                case 6:
+                    if(this.possible.includes(key)&&this.text.length<40){
+                        this.text+=key
+                        this.suggestions=[]
+                        for(let a=0,la=types.dictionary.length;a<la;a++){
+                            if(types.dictionary[a].name.substr(0,this.text.length).toUpperCase()==this.text.toUpperCase()){
+                                this.suggestions.push(a)
+                            }
+                        }
+                    }else if(code==BACKSPACE&&this.text.length>0){
+                        this.text=this.text.substring(0,this.text.length-1)
+                        this.suggestions=[]
+                        if(this.text.length>0){
+                            for(let a=0,la=types.dictionary.length;a<la;a++){
+                                if(types.dictionary[a].name.substr(0,this.text.length).toUpperCase()==this.text.toUpperCase()){
+                                    this.suggestions.push(a)
+                                }
+                            }
+                        }
                     }
                 break
             }

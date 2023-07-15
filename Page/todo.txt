@@ -1,19 +1,14 @@
 Mechanics:
+Ascensions: Gimmick Land
+Dictionary Additions: conditionin
 Menu (and the rest of the start)
 
 More Cards:
 Kamikaze
 
-Ascensions:
-Gimmick Land
 
 Generality:
-Lira: few cards
-
-the night
-
-Dictionary Additions:
-conditionin
+More Characters As needed
 
 
 
@@ -31,6 +26,8 @@ Graphics:
 Partnership Cards:
 
 George:
+
+Lira:
 
 Sakura:
 

@@ -148,7 +148,6 @@ class tile{
                 case 16:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
-                        this.battle.energy.main[this.battle.combatantManager.combatants[this.combatant].id]=0
                         this.anim.upPart[a]=false
                         if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length>0){
                             this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(2,14,[])

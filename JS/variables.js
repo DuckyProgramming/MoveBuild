@@ -8205,6 +8205,235 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },
+    ],dictionary:[
+        {name:'',desc:``,
+        },{name:'Energy',desc:
+`Energy is the fundamental currency used to play cards. Most cards cost energy.
+Energy is replenished at the start of each turn.`,
+        },{name:'Draw',desc:
+`Moves cards from draw pile to hand.
+When no cards are available, shuffles discard pile into draw pile.`,
+        },{name:'Discard',desc:
+`Moves cards to discard pile.`,
+        },{name:'Exhaust',desc:
+`Moves cards to exhaust pile, which is hidden.
+Exhausted cards are gone and can only be accessed through certain cards.`,
+        },{name:'Unplayable',desc:
+`Cards with unplayable cannot be played.
+They are essentially obstructions that take up place.`,
+        },{name:'Unremovable',desc:
+`Cards with unremovable cannot be removed in most ways.
+They can still be removed by transforming them or via other methods.`,
+        },{name:'Innate',desc:
+`Innate cards always start in your hand at the start of combat.
+This will deduct the number of normal cards drawn that turn.
+Appears naturally or applied by relics.`,
+        },{name:'Stapled',desc:
+`When another card is played, this card will be discarded.
+Applied by enemies.`,
+        },{name:'Range',desc:
+`Range specifies the distance at which something can be used.
+Most attack cards have range, as do most enemy attacks.`,
+        },{name:'Fatigue',desc:
+`When a card with fatigue is played, a fatigue will be added to you discard pile.
+Fatigue is a status that costs 1 energy to play, and exhausts when played.
+Most attack and movement cards have fatigue.`,
+        },{name:'# Fatigue',desc:
+`Specifies that a card will repeat the fatigue effect multiple times.`,
+        },{name:'Heavy Fatigue',desc:
+`A variant of fatigue, that costs 3 to play instead.`,
+        },{name:'X Fatigue',desc:
+`The amount of fatigue effects from this effect is equalt to the energy spent.`,
+        },{name:'X Cost',desc:
+`X cost cards spend all remaining energy when played.
+The card effects play out with X = the amount of energy.`,
+        },{name:'Retain',desc:
+`A card with retain will not be discarded at the end of each turn and will stay in the hand.
+Retained cards will not deduct from next turn's draw.
+Appears naturally or applied by cards.`,
+        },{name:'Exhaust (Card)',desc:
+`A card with exhaust will exhaust itself when played.
+This means it effectively leaves play and can only be accessed by certain cards.`,
+        },{name:'Slimed',desc:
+`Slimed cards do not display any useful text.
+Applied by enemies.`,
+        },{name:'Smoked',desc:
+`Smoked cards do not display any useful text. It wears off when the card is discarded.
+Applied by enemies.`,
+        },{name:'Vanishing',desc:
+`When played, vanishing number decreases by 1.
+When it reaches 0, card is exhausted and removed from deck (permanently).`,
+        },{name:'Ethereal',desc:
+`A card with ethereal will exhaust itself if it is left in the hand and discarded at the end of the turn.`,
+        },{name:'Strength',desc:
+`Deal 20% more damage for every positive stack of strength and 10% less per negative stack.
+Does not decay `,
+        },{name:'Dexterity',desc:
+`Add 20% more block for every positive stack of strength and 10% less per negative stack.
+Does not decay `,
+        },{name:'Damage',desc:
+`Reduces enemy health. Deducts block before health.
+A wide variety of things deal damage or edit its value.`,
+        },{name:'Block',desc:
+`Damage deducts block before health. Block is removed at the end of your turn.
+A wide variety of things add block, edit its value, or remove it.`,
+        },{name:'Move Tiles',desc:
+`Allows movement of character to adjacent tiles in a straight line.
+Can be used in six directions unless otherwise specified.`,
+        },{name:'Push',desc:
+`Pushed combatants will move in the direction they are pushed.
+If the tile is occupied, the pushed combatant (and the occupant if applicable) take collision damage (default 4).`,
+        },{name:'Double Damage',desc:
+`Next attack will deal twice as much damage.
+Removes after each distinct attack (attack card or counter).`,
+        },{name:'Fatal',desc:
+`An attack is fatal is the target's health is reduced to 0.`,
+        },{name:'Heal',desc:
+`Regain health, cannot go beyond maximum.
+Provided at rest sites, by relics, and in small quantities by cards.`,
+        },{name:'Lose Health',desc:
+`Distinct from Take Damage, is unblockable and ignores most effects.`,
+        },{name:'Gain Max Health',desc:
+`Increases Max Health. Normal Health will increase by the same amount.`,
+        },{name:'Lose Max Health',desc:
+`Decreases Max Health. Normal Health is only deducted if it is above maximum.`,
+        },{name:'In All Directions',desc:
+`Affects all 6 tiles/directions.`,
+        },{name:'Pull',desc:
+`Moves target toward user.`,
+        },{name:'Advance',desc:
+`Moves towards a set target. Typically ends 1 tile away.`,
+        },{name:'Counter',desc:
+`After taking damage, adds a counter attack against the aggressor.
+Counter all instantly deals damage back and does not initiate an attack.
+There are various types of counter, such as counter push.
+Counters are removed at the end of your turn.`,
+        },{name:'Dodge',desc:
+`Completely cancels an attack (with an originator).
+Lasts until used.`,
+        },{name:'Undamaged',desc:
+`Having health equal to maximum health.`,
+        },{name:'Disarm',desc:
+`Removes weapon from posession, thus disabling scythe-requiring cards.
+Creates rearmament point on target (if applicable) or self.`,
+        },{name:'Rearmament Point',desc:
+`Rearms when stepped on, if you are unarmed.
+Removes itself in the process.`,
+        },{name:'Target Will',desc:
+`Refers to the target's intent.
+Mouseover enemies to see their intent.`,
+        },{name:'Bleed',desc:
+`Deals damage every turn. Decreases by 1 afterward.`,
+        },{name:'Upgrade',desc:
+`Each card has an upgraded version that is typically better.
+Cards can be upgraded at rest sites, in events, by relics, or by other cards (usually temporary).`,
+        },{name:'Retain Block',desc:
+`Block is not removed at the end of your turn.
+Stacks degrade by 1 each turn.`,
+        },{name:'Control',desc:
+`When you would be debuffed, cancels the debuff.
+1 stack of control is deducted in the process.`,
+        },{name:'Weak',desc:
+`Lowers damage dealt by 25%, regardless of number of stacks.
+Stacks degrade by 1 each turn.`,
+        },{name:'Vulnerable',desc:
+`Increases damage taken by 50%, regardless of number of stacks.
+Stacks degrade by 1 each turn.`,
+        },{name:'Frail',desc:
+`Lowers block added by 25%, regardless of number of stacks.
+Stacks degrade by 1 each turn.`,
+        },{name:'Intangible',desc:
+`Lowers damage taken to 1.
+Stacks degrade by 1 each turn.`,
+        },{name:'Buffer',desc:
+`Completely cancels any damage taken.
+Lasts until used.`,
+        },{name:'Colorless',desc:
+`Colorless cards are special cards with generic effects.
+Obtained in the shop, in events, by relics, and by cards (usually temporary).`,
+        },{name:'Temporary',desc:
+`Most terms with temporary stop at the end of your turn.`,
+        },{name:'Special Move',desc:
+`Term for any moves that are not attacks or defenses.`,
+        },{name:'Shiv',desc:
+`Generatable card. Does a small amount of damage and is free.`,
+        },{name:'Item',desc:
+`Grants a benefit when used. Can be sold in the shop.
+Obtained through rewards or through events.`,
+        },{name:'Relic',desc:
+`Grants a small immediate or longer term benefit. Can be sold in the shop.
+Obtained through rewards, events, or through the shop.`,
+        },{name:'Elite',desc:
+`Stronger than a normal combat (typically).
+Grants more rewards, including a relic.`,
+        },{name:'Combo',desc:
+`Combo increases by 1 when an enemy is hit, and you are directly responsible.
+Some cards cost combo, or spend it in their effects. Others may generate it.`,
+        },{name:'Speed Up/Slow',desc:
+`Reduces the amount of movement turns an enemy gets on their turn.
+Most enemies have 1 by default, some have more or less.`,
+        },{name:'Status',desc:
+`Negative card that expends draw. Removed at the end of combat.`,
+        },{name:'Curse',desc:
+`Negative cards with various effects. Remain in deck until removed.`,
+        },{name:'Stun',desc:
+`Stunned enemies do not get a turn.
+Stacks debrade by 1 each turn.`,
+        },{name:'Conditioning',desc:
+`Increases block added by 50%.
+Expends 1 stack afterward.`,
+        },{name:'Selectively Discarded',desc:
+`Term for discards that do not occur as normal ones at the end of the turn.`,
+        },{name:'Duplicate',desc:
+`When a card is played, another copy is created and added to your hand.`,
+        },{name:'Regeneration',desc:
+`Heal for value of regeneration at the end of your turn.
+Stacks degrade by 1 each turn.`,
+        },{name:'Confusion',desc:
+`Confused enemies turn a random direction instead of looking at their target.
+Stacks degrade by 1 each turn.`
+        },{name:'Balance',desc:
+`Value that increases when certain cards are played. Other cards interact with it.
+When Balance exceeds its limit (default 10), your turn ends and it is reset to 0 (called Breaking).`,
+        },{name:'Plant Tile',desc:
+`Created by some cards. Have no effect but can interact with special cards.`,
+        },{name:'Mine Tile',desc:
+`Deals 10 damage when stepped on, to the target and in an area.
+Removes itself afterward.`,
+        },{name:'Spike Tile',desc:
+`Deals 5 damage when stepped on.`,
+        },{name:'Trench Tile',desc:
+`Adds 10 block when stepped on, to enemies only.`,
+        },{name:'Trap Tile',desc:
+`Deals 15 damage when stepped on.`,
+        },{name:'Slime Tile',desc:
+`Slimes a card when stepped on.`,
+        },{name:'Money Tile',desc:
+`Gives money when stepped on.
+If the Capitalist steps on it, he spawns a Bodyguard.`,
+        },{name:'Fire Tile',desc:
+`Adds a Burn when stepped on.`,
+        },{name:'Shield Tile',desc:
+`Adds 5 block when stepped on.`,
+        },{name:'Poison Tile',desc:
+`Applies 3 Poison when stepped on.`,
+        },{name:'Trash Tile',desc:
+`Applies 1 random status when stepped on.`,
+        },{name:'Barbed Wire Tile',desc:
+`Deals 25 damage when stepped on.`,
+        },{name:'Spike Spawn Tile',desc:
+`Becomes a spike tile when stepped on.`,
+        },{name:'Sludge Tile',desc:
+`Removes all energy when stepped on.`,
+        },{name:'Robot Spawn Tile',desc:
+`Spawns a Robot when stepped on.`,
+        },{name:'Transform Tile',desc:
+`Transforms a card when stepped on.`,
+        },{name:'Killzone Tile',desc:
+`Kills when stepped on.`,
+        },{name:'Redraw Tile',desc:
+`Redraws cards when stepped on.`,
+        },
     ],
 }
 stage={scale:0,scene:'pack'}
