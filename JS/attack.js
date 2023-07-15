@@ -4898,7 +4898,19 @@ class attack{
                     this.remove=true
                 }
             break
-            
+            case 483:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(36)
+                }
+                this.userCombatant.runAnimation(1/30,36)
+                if(this.timer==15){
+                    this.userCombatant.life=0
+                    this.battle.combatantManager.damageArea(this.effect[0],this.user,-1,this.userCombatant.tilePosition)
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,2,[20]))
+                }else if(this.timer>=30){
+                    this.remove=true
+                }
+            break
                     
             default:
                 this.remove=true

@@ -593,6 +593,7 @@ class card{
             case 480: string+=`Apply ${effect[0]} Strength\nApply ${effect[1]} Dexterity\nto Targets on\nPlant Tiles`; break
             case 481: string+=`Apply ${effect[0]} Poison\nto Targets on\nPlant Tiles`; break
             case 482: string+=`Create a Row of Up\nto 6 Plant Tiles`; break
+            case 483: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nDamage Around Self`; break
 
             
 

@@ -3717,7 +3717,7 @@ class combatant{
                         this.goal.anim.sword=true
                     break
                     case 3: case 6: case 8: case 9: case 17: case 23: case 26: case 28: case 29: case 31:
-                    case 32: case 33:
+                    case 32: case 33: case 36:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -4137,6 +4137,11 @@ class combatant{
                         if(this.name=='Sakura'){
                             this.anim.mouth.y=5+lsin(this.animSet.loop*180)
                         }
+                    break
+                    case 36:
+                        this.animSet.loop+=rate
+                        this.anim.arms[0].top=24+abs(lsin(this.animSet.loop*180))*114
+                        this.anim.arms[0].bottom=9+abs(lsin(this.animSet.loop*180))*186
                     break
                 }
             break

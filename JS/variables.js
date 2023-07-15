@@ -2674,6 +2674,12 @@ types={
                 {effect:[],attack:87,cost:0,target:[9],spec:[],class:3},
                 {effect:[],attack:87,cost:0,target:[9],spec:[2],class:3},
             ],
+        },{
+            name:'Kamikaze',rarity:-3,list:-1,
+            levels:[
+                {effect:[999],attack:483,cost:0,target:[0],spec:[],class:1},
+                {effect:[999],attack:483,cost:0,target:[0],spec:[],class:1},
+            ],
         },
 
         {

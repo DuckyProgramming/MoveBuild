@@ -1,11 +1,6 @@
 Mechanics:
 Ascensions: Gimmick Land
-Dictionary Additions: conditionin
 Menu (and the rest of the start)
-
-More Cards:
-Kamikaze
-
 
 Generality:
 More Characters As needed
@@ -23,6 +18,7 @@ Bugs:
 
 Graphics:
 
+More Cards:
 Partnership Cards:
 
 George:
