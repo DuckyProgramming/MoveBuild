@@ -1356,8 +1356,8 @@ types={
         },{
             name:'Relaxing\nStrike',rarity:0,list:2,
             levels:[
-                {effect:[4,1],attack:462,cost:1,target:[0],spec:[],class:2},
-                {effect:[6,1],attack:462,cost:1,target:[0],spec:[],class:2},
+                {effect:[4,1],attack:462,cost:1,target:[2,1,1],spec:[],class:2},
+                {effect:[6,1],attack:462,cost:1,target:[2,1,1],spec:[],class:2},
             ],
         },{
             name:'Relaxing\nDefend',rarity:0,list:2,

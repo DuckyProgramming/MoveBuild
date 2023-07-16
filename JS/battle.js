@@ -1062,7 +1062,7 @@ class battle{
             case 'title':
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
-                    transiiton.scene='menu'
+                    transition.scene='menu'
                 }
             break
             case 'menu':
@@ -1210,7 +1210,7 @@ class battle{
             case 'title':
                 if(code==ENTER){
                     transition.trigger=true
-                    transiiton.scene='menu'
+                    transition.scene='menu'
                 }
             break
             case 'menu':

@@ -271,7 +271,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.combo,this.user)
                     break
                     case 140:
-                        this.targetCombatant[a].takeDamage(this.effect[0],this.user,2)
+                        this.targetCombatant.takeDamage(this.effect[0],this.user,2)
                     break
                     case 144:
                         this.targetCombatant.takeDamage(this.effect[0]*this.battle.cardManagers[this.player].discard.cards.length,this.user)
@@ -3946,8 +3946,8 @@ class attack{
                     if(this.timer>15*this.targetDistance-5&&this.timer<=15*this.targetDistance+5){
                         this.targetCombatant.moveTile(this.procedure[1],this.tempDistance/10)
                         this.targetCombatant.moveRelativeTile(this.relativeDirection-120,this.relativeDistance/10/this.targetDistance)
-                        this.userCombatant.goal.anim.direction+=6
-                        this.userCombatant.anim.direction+=6
+                        this.userCombatant.goal.anim.direction-=6
+                        this.userCombatant.anim.direction-=6
                     }
                     if(this.timer==15*this.targetDistance+5){
                         let offset=transformDirection(0,this.relativeDirection-120)
@@ -3991,8 +3991,6 @@ class attack{
                             this.remove=true
                         }
                     }else{
-                        if(this.timer==20){
-                        }
                         if(this.timer>15*this.targetDistance+5){
                             this.targetCombatant.moveTile(this.direction,-this.distance/10)
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
@@ -4118,8 +4116,6 @@ class attack{
                             this.remove=true
                         }
                     }else{
-                        if(this.timer==20){
-                        }
                         if(this.timer>15*this.targetDistance+5){
                             this.targetCombatant.moveTile(this.direction,-this.distance/10)
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
