@@ -1,6 +1,5 @@
-Mechanics:
-Alternate Deck Options
-Title Screen
+Bugs:
+A lot
 
 Generality:
 More Characters As needed
@@ -14,7 +13,7 @@ More Characters As needed
 
 
 
-Bugs:
+Mechanics:
 
 Graphics:
 

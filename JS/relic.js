@@ -17,6 +17,7 @@ class relic{
         this.active=true
 
         switch(this.rarity){
+            case -1: this.value=20; break
             case 0: this.value=80; break
             case 1: this.value=120; break
             case 2: this.value=200; break

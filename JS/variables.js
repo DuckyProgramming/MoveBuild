@@ -808,8 +808,8 @@ types={
         },{
             name:'Frontal\nKick',rarity:0,list:1,
             levels:[
-                {effect:[5],attack:16,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[8],attack:16,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[5],attack:487,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[8],attack:487,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
             name:'Long\nCounter',rarity:0,list:1,

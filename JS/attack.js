@@ -53,7 +53,7 @@ class attack{
             case 373: case 376: case 378: case 379: case 382: case 384: case 385: case 401: case 402: case 408:
             case 409: case 412: case 414: case 415: case 417: case 419: case 420: case 427: case 429: case 432:
             case 433: case 435: case 436: case 437: case 438: case 441: case 444: case 447: case 449: case 452:
-            case 460: case 462: case 465: case 466: case 467: case 468: case 469: case 475:
+            case 460: case 462: case 465: case 466: case 467: case 468: case 469: case 475: case 487:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -3406,7 +3406,7 @@ class attack{
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,7,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
                 }else if(this.timer==10*this.targetDistance+15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
-                    this.battle.combatantManager.damageArea(this.effect[0],this.userCombatant.id,this.userCombatant.team,this.targetCombatant.tilePosition,2)
+                    this.battle.combatantManager.damageAreaID(this.effect[0],this.userCombatant.id,this.targetCombatant.id,this.targetCombatant.tilePosition,2)
                 }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true
                 }
@@ -4906,6 +4906,80 @@ class attack{
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,2,[20]))
                 }else if(this.timer>=30){
                     this.remove=true
+                }
+            break
+            case 487:
+                if(this.timer==1&&this.targetDistance>1){
+                    this.userCombatant.startAnimation(0)
+                }else if(this.timer==15*this.targetDistance-14){
+                    let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                    this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                    this.userCombatant.startAnimation(9)
+                }
+                if(this.timer>=15*this.targetDistance-14&&this.timer<15*this.targetDistance+6){
+                    this.userCombatant.runAnimation(1/10,9)
+                }else if(this.timer<15*this.targetDistance-14){
+                    this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                    this.userCombatant.runAnimation(1/15,0)
+                }
+                if(this.timer==15*this.targetDistance-15){
+                    let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                    this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                    this.battle.activate(1,this.userCombatant.id)
+                }else if(this.timer==15*this.targetDistance-5){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    switch(this.type){
+                        case 35:
+                            this.userCombatant.combo++
+                        break
+                        case 196:
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            }
+                        break
+                    }
+                }else if(this.timer>=15*this.targetDistance+15){
+                    this.remove=true
+                }
+                if(this.procedure[0]==2){
+                    if(this.timer>15*this.targetDistance-5&&this.timer<=15*this.targetDistance+3){
+                        this.targetCombatant.moveTile(this.direction,this.distance/40/this.targetDistance)
+                        this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/40/this.targetDistance)
+                    }else if(this.timer>15*this.targetDistance+3&&this.timer<=15*this.targetDistance+11){
+                        this.targetCombatant.moveTile(this.direction,-this.distance/40/this.targetDistance)
+                        this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/40/this.targetDistance)
+                    }
+                    if(this.timer>=15*this.targetDistance+11){
+                        this.remove=true
+                    }
+                }else if(this.procedure[0]==1){
+                    if(this.timer>15*this.targetDistance-5&&this.timer<=15*this.targetDistance+3){
+                        this.targetCombatant.moveTile(this.direction,this.distance/10/this.targetDistance)
+                        this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/10/this.targetDistance)
+                    }else if(this.timer>15*this.targetDistance+3&&this.timer<=15*this.targetDistance+11){
+                        this.targetCombatant.moveTile(this.direction,-this.distance/10/this.targetDistance)
+                        this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
+                    }
+                    if(this.timer==15*this.targetDistance+3){
+                        this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                        let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                        if(index>=0){
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                        }
+                    }else if(this.timer>=15*this.targetDistance+11){
+                        this.remove=true
+                    }
+                }else{
+                    if(this.timer>15*this.targetDistance-5){
+                        this.targetCombatant.moveTile(this.direction,this.distance/10/this.targetDistance)
+                        this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/10/this.targetDistance)
+                    }
+                    if(this.timer>=15*this.targetDistance+5){
+                        this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                        this.battle.activate(1,this.targetCombatant.id)
+                        this.remove=true
+                    }
                 }
             break
                     
