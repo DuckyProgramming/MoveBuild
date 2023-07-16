@@ -11,7 +11,7 @@ class purchaseManager{
                 if(this.battle.players==1){
                     let list=copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
                     let group=[0,0,0,0,1,1,1,2]
-                    let cost=[[80,100],[120,150],[200,250]]
+                    let cost=[[60,75],[100,125],[160,200]]
                     for(let a=0,la=group.length;a<la;a++){
                         let index=floor(random(0,list[group[a]].length))
                         this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,112.5+floor(a/4)*187.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[list[group[a]][index],0,this.battle.player[0]]))

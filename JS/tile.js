@@ -26,6 +26,9 @@ class tile{
             this.anim.part.push(0)
             this.anim.upPart.push(true)
         }
+        if(this.type.length==0&&game.ascend>=26&&floor(random(0,8))==0){
+            this.addType(20)
+        }
     }
     activate(type,id){
         for(let a=0,la=this.type.length;a<la;a++){
@@ -170,6 +173,12 @@ class tile{
                         let amount=this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].allEffect(2,2)
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].draw(amount)
+                    }
+                break
+                case 20:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                        this.battle.combatantManager.combatants[this.combatant].takeDamage(5,-1,0)
                     }
                 break
             }
@@ -392,6 +401,20 @@ class tile{
                 case 19:
                     if(this.anim.part[a]>0){
                         this.layer.image(graphics.minor[26],-30*this.fade*this.anim.part[a],-18*this.fade*this.anim.part[a],60*this.fade*this.anim.part[a],36*this.fade*this.anim.part[a])
+                    }
+                break
+                case 20:
+                    this.layer.fill(160,165,170,this.fade*this.anim.part[a])
+                    for(let b=0,lb=9;b<lb;b++){
+                        for(let c=0,lc=9-b%2-max(3,abs(b-4))*2;c<lc;c++){
+                            this.layer.triangle(-2+10-lc*10+c*20,2+3/2-lb*3/2+b*3,2+10-lc*10+c*20,2+3/2-lb*3/2+b*3,10-lc*10+c*20,-3+3/2-lb*3/2+b*3)
+                        }
+                    }
+                    this.layer.fill(150,255,175,this.fade*this.anim.part[a])
+                    for(let b=0,lb=9;b<lb;b++){
+                        for(let c=0,lc=9-b%2-max(3,abs(b-4))*2;c<lc;c++){
+                            this.layer.triangle(-1.5+10-lc*10+c*20,3/2-lb*3/2+b*3,1.5+10-lc*10+c*20,3/2-lb*3/2+b*3,10-lc*10+c*20,-3+3/2-lb*3/2+b*3)
+                        }
                     }
                 break
             }

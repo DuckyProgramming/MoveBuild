@@ -2182,7 +2182,9 @@ class combatant{
         if(this.team>0){
             this.fade=1
         }
-        this.initialBuff()
+        if(this.battle.players>0&&this.battle.initialized){
+            this.initialBuff()
+        }
     }
     reset(){
         this.size=this.base.size
@@ -2266,6 +2268,59 @@ class combatant{
             case 'Soul':
                 this.statusEffect('Dissipating',5)
             break
+        }
+        if(this.team==0){
+            if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
+                for(let a=0,la=this.attack.length;a<la;a++){
+                    if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
+                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.2)
+                    }
+                }
+            }
+            if(game.ascend>=7&&this.battle.encounter.class==0||game.ascend>=8&&this.battle.encounter.class==1||game.ascend>=9&&this.battle.encounter.class==2){
+                this.life=round(this.life*1.2)
+                this.base.life=round(this.base.life*1.2)
+                this.collect.life=round(this.collect.life*1.2)
+                for(let a=0,la=this.attack.length;a<la;a++){
+                    if((types.attack[this.attack[a].type].class==2)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
+                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.2)
+                    }
+                }
+            }
+            if(game.ascend>=17&&this.battle.encounter.class==0||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2){
+                for(let a=0,la=this.attack.length;a<la;a++){
+                    if((types.attack[this.attack[a].type].class==4)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
+                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.25)
+                    }
+                }
+            }
+            if(game.ascend>=27&&this.battle.encounter.class==0||game.ascend>=28&&this.battle.encounter.class==1){
+                this.randomStatus(2,[0])
+                this.randomStatus(2,[0])
+            }
+            if(game.ascend>=30&&this.battle.encounter.class==2&&this.battle.nodeManager.world==3){
+                if(this.spec.includes(2)){
+                    this.life=round(this.life*1.5)
+                    this.base.life=round(this.base.life*1.5)
+                    this.collect.life=round(this.collect.life*1.5)
+                }
+                for(let a=0,la=this.attack.length;a<la;a++){
+                    if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
+                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*2)
+                    }
+                }
+            }else if(game.ascend>=29&&this.battle.encounter.class==2){
+                this.statusEffect('Strength',2)
+                this.statusEffect('Dexterity',2)
+            }
+        }else{
+            if(game.ascend>=6){
+                this.life*=0.8
+                this.collect.life*=0.8
+            }
+            if(game.ascend>=14){
+                this.base.life*=0.9
+            }
         }
     }
     calculateParts(){
@@ -3219,6 +3274,16 @@ class combatant{
                     hit=false
                     this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
                 }
+                if(userCombatant.status.main[98]>0){
+                    this.statusEffect('Bleed',userCombatant.status.main[98])
+                }
+                if(userCombatant.status.main[99]>0){
+                    this.statusEffect('Bleed',userCombatant.status.main[99])
+                    userCombatant.status.main[99]=0
+                }
+                if(userCombatant.status.main[100]>0){
+                    this.statusEffect('Bleed',userCombatant.status.main[100])
+                }
             }
             if(this.status.main[21]>0){
                 this.status.main[21]--
@@ -3282,19 +3347,8 @@ class combatant{
                         this.battle.stats.taken[this.id][1]+=damage
                     }
                     if(this.block<=0&&0<=user&&user<this.battle.players){
-                        let userCombatant=this.battle.combatantManager.combatants[user]
                         if(this.battle.relicManager.hasRelic(124,user)){
                             this.statusEffect('Vulnerable',2)
-                        }
-                        if(userCombatant.status.main[98]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[98])
-                        }
-                        if(userCombatant.status.main[99]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[99])
-                            userCombatant.status.main[99]=0
-                        }
-                        if(userCombatant.status.main[100]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[100])
                         }
                     }
                 }else if(this.block>0&&spec!=2){
@@ -3310,22 +3364,6 @@ class combatant{
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
                     this.blocked=1
-                    if(0<=user&&user<this.battle.players){
-                        let userCombatant=this.battle.combatantManager.combatants[user]
-                        if(this.battle.relicManager.hasRelic(124,user)){
-                            this.statusEffect('Vulnerable',2)
-                        }
-                        if(userCombatant.status.main[98]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[98])
-                        }
-                        if(userCombatant.status.main[99]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[99])
-                            userCombatant.status.main[99]=0
-                        }
-                        if(userCombatant.status.main[100]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[100])
-                        }
-                    }
                 }else{
                     this.life-=damage
                     this.taken=damage
@@ -3335,19 +3373,6 @@ class combatant{
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][2]+=damage
                         this.battle.cardManagers[this.id].allGroupEffect(16)
-                    }
-                    if(0<=user&&user<this.battle.players){
-                        let userCombatant=this.battle.combatantManager.combatants[user]
-                        if(userCombatant.status.main[98]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[98])
-                        }
-                        if(userCombatant.status.main[99]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[99])
-                            userCombatant.status.main[99]=0
-                        }
-                        if(userCombatant.status.main[100]>0){
-                            this.statusEffect('Bleed',userCombatant.status.main[100])
-                        }
                     }
                 }
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)

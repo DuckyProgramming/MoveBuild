@@ -50,7 +50,7 @@ class nodeManager{
                 }
             }
         }else{
-            let possibilities=[0,0,0,1,3,4,5,5]
+            let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,4,4,5,5,5,5]:[0,0,0,1,3,4,5,5]
             for(let a=0,la=20;a<la;a++){
                 for(let b=0,lb=min(min(a+1,4),20-a);b<lb;b++){
                     this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,
@@ -102,7 +102,9 @@ class nodeManager{
                 this.battle.setupShop()
             break
             case 5:
-                let send=this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
+                let send=game.ascend>=15
+                ?this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
+                :this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
                 if(send==5){
                     transition.scene='event'
                     this.battle.setupEvent()
@@ -111,8 +113,13 @@ class nodeManager{
                 }
             break
             case 6:
-                transition.scene='stash'
-                this.battle.setupStash()
+                if(this.world==1&&game.ascend>=23){
+                    transition.scene='battle'
+                    this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][1][floor(random(0,this.listing.encounter[this.world][1].length))]])
+                }else{
+                    transition.scene='stash'
+                    this.battle.setupStash()
+                }
             break
         }
     }

@@ -229,6 +229,14 @@ class tileManager{
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if(this.battle.attackManager.targetInfo[0]==23&&this.tiles[a].type.includes(19)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==24)&&this.tiles[a].occupied==0&&
+            (this.battle.attackManager.tilePosition.y!=this.tiles[a].tilePosition.y||this.battle.attackManager.tilePosition.x>this.tiles[a].tilePosition.x)&&
+            (legalTargetCombatant(this.battle.relicManager.active[150]?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||this.battle.attackManager.targetInfo[0]==6)){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==25)&&this.tiles[a].occupied==0&&
+            (this.battle.attackManager.tilePosition.y!=this.tiles[a].tilePosition.y||this.battle.attackManager.tilePosition.x<this.tiles[a].tilePosition.x)&&
+            (legalTargetCombatant(this.battle.relicManager.active[150]?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||this.battle.attackManager.targetInfo[0]==6)){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }
         }
     }

@@ -594,10 +594,8 @@ class card{
             case 481: string+=`Apply ${effect[0]} Poison\nto Targets on\nPlant Tiles`; break
             case 482: string+=`Create a Row of Up\nto 6 Plant Tiles`; break
             case 483: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nDamage Around Self`; break
-
-            
-
-
+            case 484: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nCan't Move\nStraight Right`; break
+            case 485: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nCan't Move\nStraight Left`; break
 
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break

@@ -898,6 +898,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             }
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1)
+            layer.noFill()
             layer.ellipse(0,0,12,12)
             layer.line(-3*sqrt(2),3*sqrt(2),3*sqrt(2),-3*sqrt(2))
         break

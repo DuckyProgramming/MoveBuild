@@ -72,7 +72,7 @@ class combatantManager{
     bossHeal(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team>0){
-                this.combatants[a].heal(this.combatants[a].base.life-this.combatants[a].life)
+                this.combatants[a].heal(game.ascend>=5?(this.combatants[a].base.life-this.combatants[a].life)*0.75:(this.combatants[a].base.life-this.combatants[a].life))
             }
         }
     }

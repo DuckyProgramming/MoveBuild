@@ -59,7 +59,7 @@ class battle{
         for(let a=0,la=this.players;a<la;a++){
             this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
             this.colorDetail.push(types.color.card[this.player[a]])
-            this.currency.money.push(100)
+            this.currency.money.push(stage.ascend>=22?0:100)
             this.energy.main.push(0)
             this.energy.gen.push(0)
             this.energy.base.push(game.startEnergy)
@@ -748,17 +748,18 @@ class battle{
                             switch(this.encounter.class){
                                 case 0: case 3: case 4:
                                     this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
+                                        {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
                                         {type:0,value:[floor(random(40,81))]}]])
                                 break
                                 case 1:
                                     this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[1,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
+                                        {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
                                         {type:2,value:[]},
                                         {type:0,value:[floor(random(120,201))]}]])
                                 break
                                 case 2:
-                                    this.overlayManager.overlays[0][a].activate([0,[]])
+                                    this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[]:[
+                                        {type:0,value:[floor(random(240,401))]}]])
                                 break
                             }
                             if(this.encounter.class!=2){

@@ -158,6 +158,30 @@ types={
                 {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
             ],
+        },{
+            name:'Strike-',rarity:-2,list:-1,
+            levels:[
+                {effect:[5],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Defend-',rarity:-2,list:-1,
+            levels:[
+                {effect:[7],attack:2,cost:1,target:[0],spec:[],class:2},
+                {effect:[10],attack:2,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Step-L',rarity:-2,list:-1,
+            levels:[
+                {effect:[1],attack:484,cost:1,target:[24,1,1],spec:[0],class:3},
+                {effect:[1],attack:484,cost:1,target:[24,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Step-R',rarity:-2,list:-1,
+            levels:[
+                {effect:[1],attack:485,cost:1,target:[25,1,1],spec:[0],class:3},
+                {effect:[1],attack:485,cost:1,target:[25,1,1],spec:[0],class:3},
+            ],
         },
         
         {
@@ -3498,7 +3522,7 @@ types={
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
-        {name:'Wiz',life:110,behavior:0,spec:[0,2],move:{type:5,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Operation godhood`},
+        {name:'Wiz',life:110,behavior:0,spec:[0,2],move:{type:5,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
@@ -5997,21 +6021,8 @@ shipyard visit for another time.`,
         ],
     },deck:{
         start:[
-            [['Strike',0,0],['Strike',0,0],['Strike',0,0],['Strike',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Defend',0,0],['Step',0,0],['Step',0,0],['Step',0,0],['Step',0,0]],
-            //[['Discovery',0,0],['Blind',0,0],['Trip',0,0],['Shackle',0,0],['Jack of\nAll Trades',0,0],['Forethought',0,0]],
-
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            //[['One-Inch\nPunch',0,-1],['Combo\nBlock',0,-1],['Split\nKick',0,-1],['Ready\nUp',0,-1],['Painkillers',0,-1],['Jerk',0,-1]],
-
-            [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            //[['Facade',0,-1],['Rampage',0,-1],['Outmaneuver',0,-1],['Clash',0,-1],['Survivor',0,-1],['Parasol',0,-1]],
-            
-            //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Long\nPull',0,-1],['Ambush',0,-1],['Backup\nScythe',0,-1],['Consuming\nSlice',0,-1],['Glaciate',0,-1],['Drill',0,-1]],
-            
-            //[['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
-            [['Blade\nDance',0,-1],['In the\nFolds',0,-1],['Dagger\nSpray',0,-1],['Swap\nOut',0,-1],['Backstab',0,-1],['Blade\nSupply',0,-1]],
-            
+            [['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Step-L',0,-1],['Step-L',0,-1],['Step-R',0,-1],['Step-R',0,-1]],
         ]
     },level:[
         {
@@ -8439,11 +8450,47 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
 `Kills when stepped on.`,
         },{name:'Redraw Tile',desc:
 `Redraws cards when stepped on.`,
+        },{name:'Transform',desc:
+`Becomes a random card of the same color.`,
+        },{name:'Targetted Spike Tile',desc:
+`Deals 5 damage when stepped on, to players only.`,
         },
+    ],ascend:[
+        {name:'Base',desc:'No Changes'},//0
+        {name:'More Elites',desc:'Elites are More Likely to Spawn'},
+        {name:'Enemy Power',desc:'Normal Enemies Deal More Damage'},
+        {name:'Elite Power',desc:'Elites Deal More Damage'},
+        {name:'Boss Power',desc:'Bosses Deal More Damage'},
+        {name:'Boss Heal',desc:'Heal Less After Boss Battles'},
+        {name:'Start Injured',desc:'Lose 20% of Health at Start'},
+        {name:'Enemy HP',desc:'Normal Enemies Have More Health\nand Gain More Block'},
+        {name:'Elite HP',desc:'Elites Have More Health\nand Gain More Block'},
+        {name:'Boss HP',desc:'Bosses Have More Health\nand Gain More Block'},
+        {name:'Start Cursed',desc:'Start With Ascender Bane'},//10
+        {name:'Less Items',desc:'Lose 1 Item Slot'},
+        {name:'Less Upgrades',desc:'Upgraded Cards are Less Common'},
+        {name:'Poor Bosses',desc:'Bosses Do Not Drop Currency'},
+        {name:'Less Max Health',desc:'Lose 10% Max Health'},
+        {name:'Elite Unknowns',desc:'Unknowns are More Likely to be Elites'},
+        {name:'Expensive Shops',desc:'Shop Items Cost 10% More'},
+        {name:'Enemy Tactics',desc:'Normal Enemies Are More Dangerous'},
+        {name:'Elite Tactics',desc:'Elites Are More Dangerous'},
+        {name:'Boss Tactics',desc:'Bosses Are More Dangerous'},
+        {name:'Bad Cards',desc:'Strikes and Defends are Worse'},//20
+        {name:'Slow Start',desc:'Draw 1 Less Card at\nthe Start of Combat'},
+        {name:'Broke',desc:'Start With No Currency'},
+        {name:'Mimic',desc:'The Second Prize is an Elite'},
+        {name:'Dazed Deck',desc:'Every 2 Turns, Shuffle a\nDazed into Your Draw Pile'},
+        {name:'Start More Cursed',desc:'Start With Pride'},
+        {name:'Badlands',desc:'Battles Start With Randomly Positioned Obstacles'},
+        {name:'Enemy Buffs',desc:'Normal Enemies Get Random Buffs'},
+        {name:'Elite Buffs',desc:'Elites Get Random Buffs'},
+        {name:'Boss Buffs',desc:'Bosses Get Random Buffs'},
+        {name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
     ],
 }
 stage={scale:0,scene:'pack'}
-game={player:[2],playerNumber:4,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[2],playerNumber:4,ascend:30,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,preGen:[]}

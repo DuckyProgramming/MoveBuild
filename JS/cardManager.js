@@ -179,12 +179,15 @@ class cardManager{
         this.discard.allEffect(effect)
     }
     turnDraw(turn){
-        let tempDrawAmount=this.drawAmount+this.tempDraw
+        let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&game.ascend>=21?1:0)
         if(turn==1){
             tempDrawAmount-=this.drawInnate()
         }
         this.draw(tempDrawAmount)
         this.tempDraw=0
+        if(turn%2==0&&game.ascend>=24){
+            this.reserve.addShuffle(findName('Dazed',types.card),0,game.playerNumber+1)
+        }
     }
     fatigue(){
         if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){
