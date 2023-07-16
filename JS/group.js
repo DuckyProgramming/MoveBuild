@@ -27,6 +27,73 @@ class group{
                 }
             break
             case 1:
+                this.battle.overlayManager.overlays[0][this.player].active=true
+                this.battle.overlayManager.overlays[0][this.player].activate([0,[
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,0,0]},
+                    {type:1,value:[0,1,0]},
+                    {type:1,value:[0,1,0]},
+                    {type:1,value:[0,1,0]},
+                    {type:1,value:[0,1,0]},
+                    ]])
+            break
+            case 2:
+                for(let a=0,la=types.deck.start[game.ascend>=20?3:2].length;a<la;a++){
+                    this.add(findName(types.deck.start[game.ascend>=20?3:2][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?3:2][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?3:2][a][0],types.card)].list:types.deck.start[game.ascend>=20?3:2][a][2]==-1?player:types.deck.start[game.ascend>=20?3:2][a][2])
+                }
+            break
+            case 3:
+                for(let a=0,la=8;a<la;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.card[player][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[player][0].length))],0,player)
+                }
+                for(let a=0,la=2;a<la;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.card[player][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[player][1].length))],0,player)
+                }
+            break
+            case 4:
+                for(let a=0,la=8;a<la;a++){
+                    let type=this.battle.cardManagers[this.player].listing.allPlayerCard[0][floor(random(0,this.battle.cardManagers[this.player].listing.allPlayerCard[0].length))]
+                    this.add(type,0,types.card[type].list)
+                }
+                for(let a=0,la=2;a<la;a++){
+                    let type=this.battle.cardManagers[this.player].listing.allPlayerCard[1][floor(random(0,this.battle.cardManagers[this.player].listing.allPlayerCard[1].length))]
+                    this.add(type,0,types.card[type].list)
+                }
+            break
+            case 5:
+                for(let a=0,la=this.battle.cardManagers[this.player].listing.card[player][3].length;a<la;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.card[player][3][a],0,player)
+                }
+            break
+            case 6:
+                for(let a=0,la=this.battle.cardManagers[this.player].listing.allPlayerCard[3].length;a<la;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.allPlayerCard[3][a],0,types.card[this.battle.cardManagers[this.player].listing.allPlayerCard[3][a]].list)
+                }
+            break
+            case 7:
+                for(let a=0,la=this.battle.cardManagers[this.player].listing.card[player][2].length;a<la;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.card[player][2][a],0,player)
+                }
+            break
+            case 8:
+                for(let a=0,la=this.battle.cardManagers[this.player].listing.allPlayerCard[2].length;a<la;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.allPlayerCard[2][a],0,types.card[this.battle.cardManagers[this.player].listing.allPlayerCard[2][a]].list)
+                }
+            break
+            case 9:
+                for(let a=0,la=this.battle.cardManagers[this.player].listing.card[0][3].length;a<la;a++){
+                    this.add(this.battle.cardManagers[this.player].listing.card[0][3][a],0,0)
+                }
             break
         }
         /*for(let a=0,la=8;a<la;a++){

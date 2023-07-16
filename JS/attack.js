@@ -66,6 +66,7 @@ class attack{
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
             case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485:
+            case 486:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -2634,7 +2635,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 54: case 87:
+            case 54: case 87: case 486:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(19)
                 }

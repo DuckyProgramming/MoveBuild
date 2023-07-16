@@ -406,7 +406,7 @@ class card{
             case 292: string+=`Apply ${effect[0]} Weak\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 293: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} More\nCard${effect[1]!=1?`s`:``} Next Turn`; break
             case 294: string+=`All Cards Cost 0\nYou Cannot Draw\nCards This Turn`; break
-            case 295: string+=`Target Explodes\non Death For\nits Max Health`
+            case 295: string+=`Target Explodes\non Death For\nits Max Health`; break
             case 296: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nif Draw Pile\nis Empty`; break
             case 297: string+=`Remove ${effect[0]}X Strength\nApply ${effect[1]}X Weak`; break
             case 298: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}\nof a Card to\nYour Draw Pile\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
@@ -444,7 +444,7 @@ class card{
             case 331: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Shiv${effect[1]!=1?`s`:``}\nto Your Hand`; break
             case 332: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHorizontally Only`; break
             case 333: string+=`Swap With an\nRange 1-2 Target\nTarget Will Face User`; break
-            case 334: string+=`Gain ${effect[0]} Energy and\nDraw ${effect[1]} Less Card${effect[1]!=1?`s`:``}\nEvery Turn`
+            case 334: string+=`Gain ${effect[0]} Energy and\nDraw ${effect[1]} Less Card${effect[1]!=1?`s`:``}\nEvery Turn`; break
             case 335: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Energy\nNext Turn`; break
             case 336: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nRange 1-2`; break
             case 337: string+='Put an Attack\nFrom Your Draw\nPile into\nYour Hand'; break
@@ -596,6 +596,7 @@ class card{
             case 483: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nDamage Around Self`; break
             case 484: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nCan't Move\nStraight Right`; break
             case 485: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nCan't Move\nStraight Left`; break
+            case 486: string+=`Move to Any\nEmpty Plant Tile`; break
 
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break

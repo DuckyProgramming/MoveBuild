@@ -50,6 +50,7 @@ class battle{
         this.relicManager=new relicManager(this.layer,this)
         this.itemManager=new itemManager(this.layer,this)
         this.overlayManager=new overlayManager(this.layer,this)
+        this.initialManagersAfter()
         this.initialized=true
 
         this.encounter={class:0}
@@ -79,12 +80,14 @@ class battle{
             this.optionManagers.push(new optionManager(this.layer,this,a))
             this.perkManagers.push(new perkManager(this.layer,this,a))
             this.eventManagers.push(new eventManager(this.layer,this,a))
-            this.cardManagers[a].initialDeck()
             this.eventManagers[a].initial()
         }
         this.packManagers.forEach(packManager=>packManager.assemble())
         this.optionManagers.forEach(optionManager=>optionManager.assemble())
         this.perkManagers.forEach(perkManager=>perkManager.assemble())
+    }
+    initialManagersAfter(){
+        this.cardManagers.forEach(cardManager=>cardManager.initialDeck())
     }
     initial(){
         this.combatantManager.clearCombatants()

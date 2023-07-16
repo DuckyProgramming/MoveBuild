@@ -1446,8 +1446,8 @@ types={
         },{
             name:'Emerald\nVeil',rarity:1,list:2,
             levels:[
-                {effect:[],attack:54,cost:1,target:[23],spec:[1],class:3},
-                {effect:[],attack:54,cost:0,target:[23],spec:[1],class:3},
+                {effect:[],attack:486,cost:1,target:[23],spec:[1],class:3},
+                {effect:[],attack:486,cost:0,target:[23],spec:[1],class:3},
             ],
         },{
             name:'Toxin',rarity:1,list:2,
@@ -6023,6 +6023,8 @@ shipyard visit for another time.`,
         start:[
             [['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Strike',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1],['Step',0,-1]],
             [['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Strike-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Defend-',0,-1],['Step-L',0,-1],['Step-L',0,-1],['Step-R',0,-1],['Step-R',0,-1]],
+            [['Strike',0,-1],['Defend',0,-1],['Step',0,-1],['Step',0,-1]],
+            [['Strike-',0,-1],['Defend-',0,-1],['Step-L',0,-1],['Step-R',0,-1]],
         ]
     },level:[
         {
