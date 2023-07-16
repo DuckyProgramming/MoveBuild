@@ -11,9 +11,13 @@ class packManager{
     }
     assemble(){
         this.getPosKey()
-        this.addPack()
-        this.addPack()
-        this.addPack()
+        if(this.battle.deck[this.player]==0){
+            this.addPack()
+            this.addPack()
+            this.addPack()
+        }else{
+            this.complete=true
+        }
     }
     getPosKey(){
         this.posKey=0.5-this.battle.players*0.5+this.player*2.5

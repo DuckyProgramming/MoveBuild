@@ -2666,12 +2666,8 @@ function setupBackground(type,layer){
 				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+162.5,6,220,220,30)
 				for(let b=0,lb=20;b<lb;b++){
 					for(let c=0,lc=5+(b>=10?10-floor((b+1)/2):floor((b+1)/2));c<lc;c++){
-						let offset=noise(b*1.5+c*0.5-200)*60+noise(c*1.5+b*0.5-150)*60
-						if(b>=16){
-							layer.fill(100+random(0,5)+offset,180+random(0,5)+offset,100+random(0,5)+offset)
-						}else{
-							layer.fill(100+random(0,5)+offset,180+random(0,5)+offset,200+random(0,5)+offset)
-						}
+						let offset=noise(b*1.5+c*0.5-200-a*100)*60+noise(c*1.5+b*0.5-150-a*100)*60
+						layer.fill(100+random(0,5)+offset,180+random(0,5)+offset,(b>=16?100:200)+random(0,5)+offset)
 						regTriangle(layer,layer.width/4+a*layer.width/2-(-lc/2+0.5+c)*40,layer.height*0.3+b*17.5-b%2*5,24,24,b%2*60)
 					}
 				}
@@ -2950,6 +2946,96 @@ function setupBackground(type,layer){
 				layer.ellipse(a*19.5+9.75+random(-15,15),layer.height-255-a*2.4+random(-5,5)+random(0,1)**4*(200-a/la*150),random(10,15))
 			}
 		break
+		case 8:
+			for(let a=0,la=layer.height*4/5;a<la;a++){
+				layer.fill(mergeColor([200,255,200],[175,225,125],a/la))
+				layer.rect(layer.width/2,a+0.5,layer.width,2)
+			}
+			for(let a=0,la=layer.height/5;a<la;a++){
+				layer.fill(mergeColor([75,150,100],[50,100,75],a/la))
+				layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
+			}
+			
+		break
+		case 9:
+			for(let a=0,la=30;a<=la;a++){
+				for(let b=0,lb=20;b<=lb;b++){
+					let offset=noise(a/2+b/3+150)*20+noise(b/2+a/3+200)*20
+					layer.fill(30+random(0,5)+offset,40+random(0,5)+offset,50+random(0,5)+offset)
+					layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+				}
+			}
+			for(let a=0.5,la=30;a<=la;a++){
+				for(let b=0.5,lb=20;b<=lb;b++){
+					let offset=noise(a/2+b/3+150)*20+noise(b/2+a/3+200)*20
+					layer.fill(30+random(0,5)+offset,40+random(0,5)+offset,50+random(0,5)+offset)
+					layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+				}
+			}
+			for(let b=0,lb=5;b<lb;b++){
+				let bounce=random(-1,0)
+				for(let a=0,la=20;a<=la;a++){
+					let offset=noise(a*1.5+b*0.5-100)*20+noise(b*1.5+a*0.5-50)*20
+					layer.fill(random(0,5)+offset,random(0,5)+offset,10+random(0,5)+offset)
+					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.9+b/lb*0.2),layer.width*(a+1+bounce)/la+15,layer.height*(0.9+b/lb*0.2),layer.width*(a+1+bounce)/la-15,layer.height*(0.9+(b+1)/lb*0.2),layer.width*(a+bounce)/la-15,layer.height*(0.9+(b+1)/lb*0.2))
+				}
+			}
+			layer.fill(120)
+			layer.rect(layer.width/2,92.5,layer.width-40,145)
+			layer.rect(layer.width/2,215,layer.width-40,80)
+			layer.rect(layer.width/2,layer.height*0.6,125,125)
+			layer.rect(layer.width/2,layer.height*0.6+100,125,55)
+			layer.fill(0)
+			layer.rect(layer.width/2,60,layer.width-65,55)
+			layer.rect(layer.width/2,125,layer.width-65,55)
+			for(let a=0,la=types.ascend.length;a<la;a++){
+				layer.rect(25+(layer.width-50)*(0.5+a)/la,205,(layer.width-50)/la-12.5,35)
+			}
+			layer.rect(layer.width/2,layer.height*0.6,100,100)
+			layer.rect(layer.width/2,layer.height*0.6+100,100,30)
+			layer.fill(120)
+			regTriangle(layer,layer.width/2-5,layer.height*0.6,40,40,-30)
+			layer.fill(255)
+			layer.textSize(20)
+			for(let a=0,la=types.ascend.length;a<la;a++){
+				layer.text(a,25+(layer.width-50)*(0.5+a)/la,240)
+			}
+			layer.text('BEGIN',layer.width/2,layer.height*0.6+100)
+			for(let a=0,la=2;a<la;a++){
+				layer.fill(120)
+				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+162.5,6,220,220,30)
+				for(let b=0,lb=20;b<lb;b++){
+					for(let c=0,lc=5+(b>=10?10-floor((b+1)/2):floor((b+1)/2));c<lc;c++){
+						let offset=noise(b*1.5+c*0.5-200-a*100)*60+noise(c*1.5+b*0.5-150-a*100)*60
+						layer.fill(offset)
+						regTriangle(layer,layer.width/4+a*layer.width/2-(-lc/2+0.5+c)*40,layer.height*0.3+b*17.5-b%2*5,24,24,b%2*60)
+					}
+				}
+				layer.fill(120)
+				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+162.5,6,120,120,30)
+				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65,225,75)
+				layer.rect(layer.width/4+layer.width/2*a-160,layer.height*0.65,75,75)
+				layer.rect(layer.width/4+layer.width/2*a+160,layer.height*0.65,75,75)
+				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65+80,225,65)
+				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65+160,225,75)
+				layer.rect(layer.width/4+layer.width/2*a-160,layer.height*0.65+160,75,75)
+				layer.rect(layer.width/4+layer.width/2*a+160,layer.height*0.65+160,75,75)
+				layer.fill(0)
+				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+162.5,6,100,100,30)
+				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65,200,50)
+				layer.rect(layer.width/4+layer.width/2*a-160,layer.height*0.65,50,50)
+				layer.rect(layer.width/4+layer.width/2*a+160,layer.height*0.65,50,50)
+				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65+80,200,40)
+				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65+160,200,50)
+				layer.rect(layer.width/4+layer.width/2*a-160,layer.height*0.65+160,50,50)
+				layer.rect(layer.width/4+layer.width/2*a+160,layer.height*0.65+160,50,50)
+				layer.fill(120)
+				regTriangle(layer,layer.width/4+layer.width/2*a-157.5,layer.height*0.65,20,20,30)
+				regTriangle(layer,layer.width/4+layer.width/2*a+157.5,layer.height*0.65,20,20,-30)
+				regTriangle(layer,layer.width/4+layer.width/2*a-157.5,layer.height*0.65+160,20,20,30)
+				regTriangle(layer,layer.width/4+layer.width/2*a+157.5,layer.height*0.65+160,20,20,-30)
+			}
+		break
 	}
 }
 function setupOverlay(type,layer){
@@ -3001,6 +3087,8 @@ function setupGraphics(){
 	5-Event
 	6-Bossstash
 	7-Pack
+	8-Title
+	9-Menu
 	*/
 }
 function setupTrig(){

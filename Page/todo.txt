@@ -1,6 +1,6 @@
 Mechanics:
-Ascensions: Gimmick Land
-Menu (and the rest of the start)
+Alternate Deck Options
+Title Screen
 
 Generality:
 More Characters As needed

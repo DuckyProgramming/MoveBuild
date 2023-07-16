@@ -35,7 +35,7 @@ class cardManager{
         }
     }
     initialDeck(){
-        this.deck.initialCards(0,this.battle.player[this.player])
+        this.deck.initialCards(this.battle.deck[this.player],this.battle.player[this.player])
     }
     getList(type){
         switch(type){

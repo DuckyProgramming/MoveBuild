@@ -25,26 +25,28 @@ class group{
                 if(game.ascend>=25){
                     this.add(findName('Pride',types.card),0,game.playerNumber+2)
                 }
-                /*for(let a=0,la=8;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
-                }
-                for(let a=0,la=4;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
-                }
-                for(let a=0,la=6;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
-                }
-                for(let a=0,la=6;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[0][3][this.battle.cardManagers[this.player].listing.card[0][3].length-1-a],0,0)
-                }
-                for(let a=0,la=6;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[game.playerNumber+3][3][this.battle.cardManagers[this.player].listing.card[game.playerNumber+3][3].length-1-a],0,game.playerNumber+3)
-                }
-                for(let a=1,la=types.card.length-2;a<la;a++){
-                    this.add(a,0,0)
-                }*/
+            break
+            case 1:
             break
         }
+        /*for(let a=0,la=8;a<la;a++){
+            this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
+        }
+        for(let a=0,la=4;a<la;a++){
+            this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][1].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
+        }
+        for(let a=0,la=6;a<la;a++){
+            this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
+        }
+        for(let a=0,la=6;a<la;a++){
+            this.add(this.battle.cardManagers[this.player].listing.card[0][3][this.battle.cardManagers[this.player].listing.card[0][3].length-1-a],0,0)
+        }
+        for(let a=0,la=6;a<la;a++){
+            this.add(this.battle.cardManagers[this.player].listing.card[game.playerNumber+3][3][this.battle.cardManagers[this.player].listing.card[game.playerNumber+3][3].length-1-a],0,game.playerNumber+3)
+        }
+        for(let a=1,la=types.card.length-2;a<la;a++){
+            this.add(a,0,0)
+        }*/
     }
     reset(){
         this.cancel()

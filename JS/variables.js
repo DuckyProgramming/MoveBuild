@@ -3381,11 +3381,11 @@ types={
         },
 
     ],combatant:[
-        {name:'',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
-        {name:'George',identifier:['Brother','Mister'],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Experienced Management Agent,\ndisillusioned with the propaganda.\nTrained in a wide variety of techniques,\nbut undercover with few armaments.`},
-        {name:'Lira',identifier:['Sister','Miss'],life:70,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
-        {name:'Sakura',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relcaim her.`},
-        {name:'Certes',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`An experiment gone wrong... or right.\nDirector Stavresk wants his work\nback, but it appears he has failed.\nThe entity was allowed to go free.`},
+        {name:'',moniker:'Add Player 2',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
+        {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Experienced Management Agent,\ndisillusioned with the propaganda.\nTrained in a wide variety of techniques,\nbut undercover with few armaments.`},
+        {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:70,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
+        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relcaim her.`},
+        {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`An experiment gone wrong... or right.\nDirector Stavresk wants his work\nback, but it appears he has failed.\nThe entity was allowed to go free.`},
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
@@ -8463,9 +8463,9 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
         {name:'Boss Power',desc:'Bosses Deal More Damage'},
         {name:'Boss Heal',desc:'Heal Less After Boss Battles'},
         {name:'Start Injured',desc:'Lose 20% of Health at Start'},
-        {name:'Enemy HP',desc:'Normal Enemies Have More Health\nand Gain More Block'},
-        {name:'Elite HP',desc:'Elites Have More Health\nand Gain More Block'},
-        {name:'Boss HP',desc:'Bosses Have More Health\nand Gain More Block'},
+        {name:'Enemy HP',desc:'Normal Enemies Have More Healthand Gain More Block'},
+        {name:'Elite HP',desc:'Elites Have More Healthand Gain More Block'},
+        {name:'Boss HP',desc:'Bosses Have More Healthand Gain More Block'},
         {name:'Start Cursed',desc:'Start With Ascender Bane'},//10
         {name:'Less Items',desc:'Lose 1 Item Slot'},
         {name:'Less Upgrades',desc:'Upgraded Cards are Less Common'},
@@ -8477,24 +8477,35 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
         {name:'Elite Tactics',desc:'Elites Are More Dangerous'},
         {name:'Boss Tactics',desc:'Bosses Are More Dangerous'},
         {name:'Bad Cards',desc:'Strikes and Defends are Worse'},//20
-        {name:'Slow Start',desc:'Draw 1 Less Card at\nthe Start of Combat'},
+        {name:'Slow Start',desc:'Draw 1 Less Card atthe Start of Combat'},
         {name:'Broke',desc:'Start With No Currency'},
         {name:'Mimic',desc:'The Second Prize is an Elite'},
-        {name:'Dazed Deck',desc:'Every 2 Turns, Shuffle a\nDazed into Your Draw Pile'},
+        {name:'Dazed Deck',desc:'Every 2 Turns, Shuffle aDazed into Your Draw Pile'},
         {name:'Start More Cursed',desc:'Start With Pride'},
         {name:'Badlands',desc:'Battles Start With Randomly Positioned Obstacles'},
         {name:'Enemy Buffs',desc:'Normal Enemies Get Random Buffs'},
         {name:'Elite Buffs',desc:'Elites Get Random Buffs'},
         {name:'Boss Buffs',desc:'Bosses Get Random Buffs'},
         {name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
-    ],
+    ],deckmode:[
+        {name:'Standard Deck'},
+        {name:'Draft Deck'},
+        {name:'Basic Deck'},
+        {name:'Random Character Deck'},
+        {name:'Random Deck'},
+        {name:'Merged Deck'},
+        {name:'Hypermerged Deck'},
+        {name:'Rare Character Deck'},
+        {name:'Rare Deck'},
+        {name:'Colorless Deck'},
+    ]
 }
-stage={scale:0,scene:'pack'}
-game={player:[2],playerNumber:4,ascend:30,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+stage={scale:0,scene:'menu'}
+game={player:[],deck:[],playerNumber:4,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,preGen:[]}
-graphics={main:0,backgroundGen:8,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:10,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
