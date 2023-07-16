@@ -2947,15 +2947,51 @@ function setupBackground(type,layer){
 			}
 		break
 		case 8:
-			for(let a=0,la=layer.height*4/5;a<la;a++){
-				layer.fill(mergeColor([200,255,200],[175,225,125],a/la))
-				layer.rect(layer.width/2,a+0.5,layer.width,2)
+			for(let a=0,la=30;a<=la;a++){
+				for(let b=0,lb=20;b<=lb;b++){
+					let offset=noise(a/2+b/3+150)*20+noise(b/2+a/3+200)*20
+					layer.fill(100+random(0,5)+offset,110+random(0,5)+offset,120+random(0,5)+offset)
+					layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+				}
 			}
-			for(let a=0,la=layer.height/5;a<la;a++){
-				layer.fill(mergeColor([75,150,100],[50,100,75],a/la))
-				layer.rect(layer.width/2,a+0.5+layer.height*4/5,layer.width,2)
+			for(let a=0.5,la=30;a<=la;a++){
+				for(let b=0.5,lb=20;b<=lb;b++){
+					let offset=noise(a/2+b/3+150)*20+noise(b/2+a/3+200)*20
+					layer.fill(100+random(0,5)+offset,110+random(0,5)+offset,120+random(0,5)+offset)
+					layer.quad(layer.width*a/la-layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb-layer.height/lb/2,layer.width*a/la+layer.width/la/2,layer.height*b/lb,layer.width*a/la,layer.height*b/lb+layer.height/lb/2)
+				}
 			}
-			
+			for(let b=0,lb=10;b<lb;b++){
+				let bounce=random(-1,0)
+				for(let a=0,la=20;a<=la;a++){
+					let offset=noise(a*1.5+b*0.5-100)*20+noise(b*1.5+a*0.5-50)*20
+					layer.fill(60+random(0,5)+offset,70+random(0,5)+offset,80+random(0,5)+offset)
+					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2),layer.width*(a+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2))
+				}
+			}
+			layer.fill(180)
+			layer.rect(layer.width/2,layer.height*0.6,125,125)
+			layer.rect(layer.width/2,layer.height*0.6+100,125,55)
+			layer.rect(layer.width/2,layer.height*0.32,875,275)
+			layer.fill(20)
+			layer.rect(layer.width/2,layer.height*0.6,100,100)
+			layer.rect(layer.width/2,layer.height*0.6+100,100,30)
+			layer.rect(layer.width/2,layer.height*0.32,850,250)
+			layer.fill(180)
+			regTriangle(layer,layer.width/2-5,layer.height*0.6,40,40,-30)
+			layer.fill(255)
+			layer.textSize(20)
+			layer.text('BEGIN',layer.width/2,layer.height*0.6+100)
+			layer.textSize(180)
+			for(let a=0,la=10;a<la;a++){
+				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
+				layer.text('Movebuild',layer.width/2+a,layer.height*0.3+a)
+			}
+			layer.textSize(60)
+			for(let a=0,la=10;a<la;a++){
+				layer.fill(50-50*a/la,200-100*a/la,100-100*a/la)
+				layer.text('DuckyProgramming',layer.width/2+a,layer.height*0.38+a)
+			}
 		break
 		case 9:
 			for(let a=0,la=30;a<=la;a++){
@@ -3081,7 +3117,7 @@ function setupGraphics(){
 	/*
 	0-Perk
 	1-Loss
-	2-Win //
+	2-Win
 	3-Rest
 	4-Stash
 	5-Event

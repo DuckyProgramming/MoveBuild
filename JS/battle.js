@@ -679,7 +679,7 @@ class battle{
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.deck[a])
-                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck,20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
@@ -700,7 +700,7 @@ class battle{
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.deck[a])
-                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck,20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
@@ -717,7 +717,7 @@ class battle{
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.deck[a])
-                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck,20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.strokeWeight(3*this.anim.sell[a])
                     this.layer.rect(26+a*(this.layer.width-52),528,32*this.anim.sell[a],24*this.anim.sell[a],5*this.anim.sell[a])
                     this.layer.fill(0)
@@ -751,7 +751,7 @@ class battle{
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.deck[a])
-                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck,20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
@@ -770,7 +770,7 @@ class battle{
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.deck[a])
-                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck,20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
@@ -820,7 +820,7 @@ class battle{
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.deck[a])
-                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck,20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
@@ -841,8 +841,6 @@ class battle{
     }
     update(scene){
         switch(scene){
-            case 'title':
-            break
             case 'menu':
                 for(let a=0,la=game.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
@@ -1062,6 +1060,10 @@ class battle{
     onClick(scene){
         switch(scene){
             case 'title':
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                    transition.trigger=true
+                    transiiton.scene='menu'
+                }
             break
             case 'menu':
                 for(let a=0,la=2;a<la;a++){
@@ -1206,6 +1208,10 @@ class battle{
     onKey(scene,key,code){
         switch(scene){
             case 'title':
+                if(code==ENTER){
+                    transition.trigger=true
+                    transiiton.scene='menu'
+                }
             break
             case 'menu':
                 for(let a=0,la=2;a<la;a++){

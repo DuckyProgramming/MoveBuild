@@ -8465,9 +8465,9 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
         {name:'Boss Power',desc:'Bosses Deal More Damage'},
         {name:'Boss Heal',desc:'Heal Less After Boss Battles'},
         {name:'Start Injured',desc:'Lose 20% of Health at Start'},
-        {name:'Enemy HP',desc:'Normal Enemies Have More Healthand Gain More Block'},
-        {name:'Elite HP',desc:'Elites Have More Healthand Gain More Block'},
-        {name:'Boss HP',desc:'Bosses Have More Healthand Gain More Block'},
+        {name:'Enemy HP',desc:'Normal Enemies Have More Health and Gain More Block'},
+        {name:'Elite HP',desc:'Elites Have More Health and Gain More Block'},
+        {name:'Boss HP',desc:'Bosses Have More Health and Gain More Block'},
         {name:'Start Cursed',desc:'Start With Ascender Bane'},//10
         {name:'Less Items',desc:'Lose 1 Item Slot'},
         {name:'Less Upgrades',desc:'Upgraded Cards are Less Common'},
@@ -8479,10 +8479,10 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
         {name:'Elite Tactics',desc:'Elites Are More Dangerous'},
         {name:'Boss Tactics',desc:'Bosses Are More Dangerous'},
         {name:'Bad Cards',desc:'Strikes and Defends are Worse'},//20
-        {name:'Slow Start',desc:'Draw 1 Less Card atthe Start of Combat'},
+        {name:'Slow Start',desc:'Draw 1 Less Card at the Start of Combat'},
         {name:'Broke',desc:'Start With No Currency'},
         {name:'Mimic',desc:'The Second Prize is an Elite'},
-        {name:'Dazed Deck',desc:'Every 2 Turns, Shuffle aDazed into Your Draw Pile'},
+        {name:'Dazed Deck',desc:'Every 2 Turns, Shuffle a Dazed into Your Draw Pile'},
         {name:'Start More Cursed',desc:'Start With Pride'},
         {name:'Badlands',desc:'Battles Start With Randomly Positioned Obstacles'},
         {name:'Enemy Buffs',desc:'Normal Enemies Get Random Buffs'},
@@ -8502,7 +8502,7 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
         {name:'Colorless Deck'},
     ]
 }
-stage={scale:0,scene:'menu'}
+stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:4,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
