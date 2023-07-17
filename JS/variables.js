@@ -247,8 +247,8 @@ types={
         },{
             name:'Antitank\nRocket',rarity:-3,list:1,
             levels:[
-                {effect:[6],attack:179,cost:3,target:[2,1,6],spec:[1],class:1},
-                {effect:[8],attack:179,cost:3,target:[2,1,6],spec:[1],class:1},
+                {effect:[11],attack:179,cost:2,target:[2,1,6],spec:[1],class:1},
+                {effect:[15],attack:179,cost:2,target:[2,1,6],spec:[1],class:1},
             ],
         },{
             name:'Ammo\nBox',rarity:-3,list:1,
@@ -628,8 +628,8 @@ types={
         },{
             name:'Double\nDodge Punch',rarity:2,list:1,
             levels:[
-                {effect:[20],attack:211,cost:9,target:[2,1,1],spec:[0,11],class:1},
-                {effect:[28],attack:211,cost:9,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[20,1],attack:211,cost:9,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[28,1],attack:211,cost:9,target:[2,1,1],spec:[0,11],class:1},
             ],
         },{
             name:'Energy\nBooster',rarity:2,list:1,
@@ -1350,8 +1350,8 @@ types={
         },{
             name:'Depleting\nStrike',rarity:0,list:2,
             levels:[
-                {effect:[12],attack:1,cost:1,target:[2,1,1],spec:[19],class:1},
                 {effect:[16],attack:1,cost:1,target:[2,1,1],spec:[19],class:1},
+                {effect:[22],attack:1,cost:1,target:[2,1,1],spec:[19],class:1},
             ],
         },{
             name:'Relaxing\nStrike',rarity:0,list:2,
@@ -3490,7 +3490,7 @@ types={
         {name:'PhD',life:78,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
         {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[6]},{type:161,effect:[9]},{type:162,effect:[12]}],description:`Oh shiny`},
         {name:'Host Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
-        {name:'Host',life:22,behavior:12,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
+        {name:'Host',life:44,behavior:12,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
         {name:'Antihwurmp',life:25,behavior:0,spec:[10],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
         {name:'Junkie',life:40,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:79,effect:[6]},{type:167,effect:[1,3]}],description:`Purchases product`},
         {name:'Prestige',life:131,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:168,effect:[2]}],description:`Back for more?`},
@@ -3807,8 +3807,8 @@ types={
 
         {name:'',internal:'First Attack',id:31,rarity:0,list:0,description:'First Attack Deals\n8 More Damage'},
         {name:'',internal:'Upgrade Random Attacks',id:32,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Attacks'},
-        {name:'',internal:'Upgrade Random Defense',id:33,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Defense'},
-        {name:'',internal:'Upgrade Random Movement',id:34,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Movement'},
+        {name:'',internal:'Upgrade Random Defense',id:33,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Defenses'},
+        {name:'',internal:'Upgrade Random Movement',id:34,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Movements'},
         {name:'',internal:'Upgrade Random Powers',id:35,rarity:0,list:0,description:'When Taken, Upgrade\n2 Random Powers'},
         {name:'',internal:'Starting Block',id:36,rarity:0,list:0,description:'Add 10 Block\nat the Start of Combat'},
         {name:'',internal:'No Attack Energy',id:37,rarity:0,list:0,description:'When You Do Not Attack,\nGain 1 Energy Next Turn'},

@@ -36,6 +36,7 @@ class battle{
         this.create()
     }
     create(){
+        graphics.combatant=[]
         this.initialized=false
         this.players=this.player.length
         this.initialGraphics()
@@ -368,7 +369,7 @@ class battle{
         this.turn.total++
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            this.energy.main[a]=max(0,this.relicManager.hasRelic(28,a)&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]+this.energy.temp[a])
+            this.energy.main[a]=max(0,this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]+this.energy.temp[a])
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
@@ -719,7 +720,7 @@ class battle{
                     this.layer.strokeWeight(3*this.anim.deck[a])
                     this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.strokeWeight(3*this.anim.sell[a])
-                    this.layer.rect(26+a*(this.layer.width-52),528,32*this.anim.sell[a],24*this.anim.sell[a],5*this.anim.sell[a])
+                    this.layer.rect(26+a*(this.layer.width-52),528,32*this.anim.sell[a],20*this.anim.sell[a],5*this.anim.sell[a])
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
@@ -732,7 +733,7 @@ class battle{
                 this.layer.fill(this.player==1?this.colorDetail[0].fill:types.color.card[0].fill)
                 this.layer.stroke(this.player==1?this.colorDetail[0].stroke:types.color.card[0].stroke)
                 this.layer.strokeWeight(3*this.anim.exit)
-                this.layer.rect(26,560,32*this.anim.exit,24*this.anim.exit,5*this.anim.exit)
+                this.layer.rect(26,560,32*this.anim.exit,20*this.anim.exit,5*this.anim.exit)
                 this.layer.fill(0)
                 this.layer.noStroke()
                 this.layer.textSize(8*this.anim.exit)

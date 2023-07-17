@@ -2,6 +2,10 @@ function setup(){
     createCanvas(windowWidth-50,windowHeight-50)
     setupGraphics()
     
+    for(let a=0,la=types.relic.length;a<la;a++){
+        types.relic[a].name=types.relic[a].internal
+    }
+
     current=new battle(graphics.main,game.player)
 
     /*for(let a=1;a<=60;a++){
