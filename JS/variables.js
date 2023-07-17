@@ -1462,31 +1462,6 @@ types={
                 {effect:[],attack:482,cost:0,target:[8,1,1],spec:[],class:4},
             ],
         },
-        
-        /*{
-            name:'',rarity:1,list:2,
-            levels:[
-                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
-                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
-            ],
-        },{
-            name:'',rarity:1,list:2,
-            levels:[
-                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
-                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
-            ],
-        },{
-            name:'',rarity:1,list:2,
-            levels:[
-                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
-                {effect:[0],attack:0,cost:0,target:[0],spec:[],class:0},
-            ],
-        },*/
-
-        //health cards again
-        //Interesting Target Zones
-
-        
 
         {
             name:'Cut',rarity:0,list:3,
@@ -4048,19 +4023,19 @@ reach the end. You've learned some, but you feel weakened.`,
             name:'Unstable Building',id:2,list:0,
             pages:[
                 {
-                    desc:`
-You enter a building, looking for something of value.
+                    desc:
+`You enter a building, looking for something of value.
 But as soon as you step inside, the walls start shaking.
 You don't have much time, as the building will collapse any minute,
 but there's still enough to grab something before you leave.`,
-option:['Grab the briefcase','Grab the medical kit'],
+                    option:['Grab the briefcase','Grab the medical kit'],
                     optionDesc:['',''],
                     link:[1,2,3],
                 },{
                     desc:
 `The building collapses as you carry the heavy case out,
 but you get out without major injuries. You get the materials out
-of the box and they turn out to be potentitally valuable.`,
+of the box and they turn out to be potentially valuable.`,
                     option:['Collect the money'],
                     optionDesc:['Gain 300 Currency, Take 20 Damage'],
                     link:[-1],
