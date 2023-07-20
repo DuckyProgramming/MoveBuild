@@ -57,6 +57,7 @@ class combatant{
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
+            'Take Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -70,6 +71,7 @@ class combatant{
                 0,2,2,2,0,0,0,0,2,2,//9
                 0,0,1,1,1,0,0,1,2,0,//10
                 0,0,2,0,0,0,2,0,0,0,//11
+                0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -83,6 +85,7 @@ class combatant{
                 3,2,2,2,2,2,1,2,0,0,
                 2,2,0,0,0,0,1,0,0,0,
                 0,1,0,0,2,2,0,2,0,2,
+                1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -1389,6 +1392,13 @@ class combatant{
                 this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction,sword:false}}
             break
+            case 'Thornvine':
+                this.anim={direction:direction,glow:1}
+                this.color=[[25,150,25],[200,200,200]]
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+            break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
@@ -2449,7 +2459,7 @@ class combatant{
                     this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
                 }
             break
-            case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone':
+            case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp': break
             default:
                 for(let g=0;g<2;g++){
@@ -2492,7 +2502,7 @@ class combatant{
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
-            case 212:
+            case 212: case 229:
                 return [this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])]
             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
             case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 107:
@@ -2912,7 +2922,7 @@ class combatant{
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
-                        case 212:
+                        case 212: case 229:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[0].tilePosition.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[0].tilePosition.y){
@@ -3062,7 +3072,7 @@ class combatant{
             switch(this.attack[this.intent].type){
                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                 case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
-                case 150: case 181: case 209: case 212:
+                case 150: case 181: case 209: case 212: case 229:
                     if(this.targetTile[0].tilePosition.x>=0){
                         this.targetTile[0].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[0],this)))
                     }
@@ -3503,6 +3513,7 @@ class combatant{
             }
             if(this.status.main[65]>0){
                 block*=2
+                this.status.main[65]--
             }
             block=round(block*10)/10
             if(this.status.main[70]>0){
@@ -3644,6 +3655,18 @@ class combatant{
         }
     }
     heal(amount){
+        if(!this.battle.relicManager.hasRelic(163,this.id)&&amount>0&&this.life>0){
+            let gain=amount
+            if(this.battle.relicManager.hasRelic(53,this.id)){
+                gain*=1.5
+            }
+            if(this.status.main[109]>0){
+                this.gainMaxHP(1)
+            }
+            this.life=min(this.life+ceil(gain),this.base.life)
+        }
+    }
+    healLifable(amount){
         if(!this.battle.relicManager.hasRelic(163,this.id)&&amount>0){
             let gain=amount
             if(this.battle.relicManager.hasRelic(53,this.id)){
@@ -3656,8 +3679,10 @@ class combatant{
         }
     }
     gainMaxHP(amount){
-        this.base.life+=amount
-        this.life+=amount
+        if(this.life>0){
+            this.base.life+=amount
+            this.life+=amount
+        }
     }
     loseMaxHP(amount){
         this.base.life-=amount
@@ -3668,7 +3693,7 @@ class combatant{
             if(this.status.main[a]!=0){
                 switch(a){
                     case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
-                    case 5: case 31: case 49: case 52: case 62: this.takeDamage(this.status.main[a],-1); break
+                    case 5: case 31: case 49: case 52: case 62: case 110: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
@@ -3794,7 +3819,7 @@ class combatant{
                     break
                 }
             break
-            case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp': case 'Host': case 'Host Drone':
+            case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier': break
@@ -4282,7 +4307,7 @@ class combatant{
                     break
                 }
             break
-            case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core':
+            case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Thornvine':
                 this.animSet.loop+=rate
                 this.anim.glow=1+abs(lsin(this.animSet.loop*180))*0.5
             break
@@ -9471,16 +9496,6 @@ class combatant{
                         regPoly(this.layer,2,-30,6,18,18,0)
                     }
                 break
-                case 'Flame':
-                    this.layer.fill(this.flashColor(this.color)[0],this.flashColor(this.color)[1],this.flashColor(this.color)[2],this.fade)
-                    this.layer.quad(0,-30-6*this.anim.glow,-6*this.anim.glow,-30,0,-30+6*this.anim.glow,6*this.anim.glow,-30)
-                    regTriangle(this.layer,lsin(this.anim.direction)*18*this.anim.glow,-30+lcos(this.anim.direction)*18*this.anim.glow,3,3,this.anim.direction)
-                    this.layer.fill(this.flashColor(this.color)[0],this.flashColor(this.color)[1],this.flashColor(this.color)[2],this.fade/6)
-                    for(let a=0,la=5;a<la;a++){
-                        this.layer.quad(0,-30+(-7.5-a*1.5)*this.anim.glow,(-7.5-a*1.5)*this.anim.glow,-30,0,-30+(7.5+a*1.5)*this.anim.glow,(7.5+a*1.5)*this.anim.glow,-30)
-                        regTriangle(this.layer,lsin(this.anim.direction)*18*this.anim.glow,-30+lcos(this.anim.direction)*18*this.anim.glow,4.5+a*1.5,4.5+a*1.5,this.anim.direction)
-                    }
-                break
                 case 'Bronze Automaton':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -10448,6 +10463,16 @@ class combatant{
                             this.minorDisplayGeneral(0,g)
                         }
                     }
+                break
+                case 'Thornvine':
+					this.layer.fill(this.flashColor(this.color[1])[0],this.flashColor(this.color[1])[1],this.flashColor(this.color[1])[2],this.fade)
+					this.layer.triangle(0,-3,0,-12,-7.5-this.anim.glow*10,-7.5)
+					this.layer.triangle(0,-12,0,-21,7.5+this.anim.glow*10,-16.5)
+                    this.layer.triangle(0,-21,0,-30,-7.5-this.anim.glow*10,-25.5)
+					this.layer.triangle(0,-30,0,-39,7.5+this.anim.glow*10,-34.5)
+					this.layer.stroke(this.flashColor(this.color[0])[0],this.flashColor(this.color[0])[1],this.flashColor(this.color[0])[2],this.fade)
+					this.layer.strokeWeight(6)
+					this.layer.line(0,0,0,-48)
                 break
                 case '':
                     for(let g=0;g<2;g++){
@@ -11932,7 +11957,7 @@ class combatant{
                             if(this.battle.relicManager.active[81]<=0){
                                 this.battle.relicManager.deactivate(81)
                             }
-                            this.heal(round(this.base.life*5)/10)
+                            this.healLifable(round(this.base.life*5)/10)
                         }else{
                             this.dead=true
                             this.startAnimation(7)

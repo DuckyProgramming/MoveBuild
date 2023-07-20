@@ -16,7 +16,9 @@ function setup(){
         current.itemManager.addItem(2+a,0)
     }*/
 
+    //current.startGame()
     //stage.scene='battle'
+    //transition.trigger=false
     //current.setupBattle(types.encounter[1])
 
     /*current.overlayManager.overlays[0][0].active=true

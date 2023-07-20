@@ -945,6 +945,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             layer.rect(0,0,12.5,12.5)
         break
+        case 110:
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.fill(100,fade)
+            layer.triangle(4.5,0,-2.25,-1.5,-2.25,1.5)
+        break
         
     }
     layer.pop()
@@ -2740,7 +2746,17 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(-8,-1,8,-1,0,5)
             layer.triangle(-4,-1,4,-1,0,-5)
         break
-
+        case 228:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+        break
+        case 229:
+            layer.fill(255,50,50,fade)
+            layer.triangle(9,0,-4.5,-3,-4.5,3)
+            layer.fill(100,fade)
+            layer.triangle(4.5,0,-2.25,-1.5,-2.25,1.5)
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -2761,7 +2777,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 175: case 176: case 177: case 178: case 180: case 181: case 182: case 183: case 185: case 189:
             case 192: case 193: case 195: case 196: case 197: case 200: case 202: case 203: case 204: case 205:
             case 208: case 209: case 210: case 211: case 213: case 214: case 216: case 218: case 219: case 220:
-            case 221: case 222: case 223: case 224:
+            case 221: case 222: case 223: case 224: case 228: case 229:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 97: case 99: case 103: case 133: case 156:

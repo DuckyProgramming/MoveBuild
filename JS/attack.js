@@ -42,19 +42,19 @@ class attack{
             case 85: case 86: case 88: case 89: case 90: case 94: case 100: case 101: case 103: case 104:
             case 105: case 106: case 108: case 110: case 111: case 115: case 117: case 118: case 119: case 121:
             case 123: case 124: case 125: case 126: case 127: case 129: case 130: case 132: case 133: case 134:
-            case 135: case 136: case 137: case 143: case 144: case 151: case 154: case 155: case 156: case 157:
-            case 173: case 174: case 176: case 178: case 179: case 185: case 187: case 188: case 189: case 191:
-            case 193: case 196: case 208: case 211: case 217: case 218: case 220: case 228: case 234: case 236:
-            case 237: case 241: case 243: case 244: case 245: case 246: case 247: case 250: case 251: case 252:
-            case 255: case 260: case 263: case 265: case 266: case 267: case 268: case 269: case 271: case 272:
-            case 273: case 274: case 275: case 277: case 280: case 282: case 287: case 288: case 290: case 292:
-            case 293: case 295: case 296: case 297: case 301: case 304: case 310: case 314: case 316: case 319:
-            case 323: case 326: case 327: case 329: case 333: case 342: case 345: case 348: case 361: case 364:
-            case 368: case 373: case 376: case 378: case 379: case 382: case 384: case 385: case 401: case 402:
-            case 408: case 409: case 412: case 413: case 414: case 415: case 417: case 419: case 420: case 427:
-            case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441: case 444: case 447:
-            case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469: case 475:
-            case 487:
+            case 135: case 136: case 137: case 140: case 143: case 144: case 151: case 154: case 155: case 156:
+            case 157: case 173: case 174: case 176: case 178: case 179: case 185: case 187: case 188: case 189:
+            case 191: case 193: case 196: case 208: case 211: case 217: case 218: case 220: case 228: case 234:
+            case 236: case 237: case 241: case 243: case 244: case 245: case 246: case 247: case 250: case 251:
+            case 252: case 255: case 260: case 263: case 265: case 266: case 267: case 268: case 269: case 271:
+            case 272: case 273: case 274: case 275: case 277: case 280: case 282: case 287: case 288: case 290:
+            case 292: case 293: case 295: case 296: case 297: case 301: case 304: case 310: case 314: case 316:
+            case 319: case 323: case 326: case 327: case 329: case 333: case 342: case 345: case 348: case 361:
+            case 364: case 368: case 373: case 376: case 378: case 379: case 382: case 384: case 385: case 401:
+            case 402: case 408: case 409: case 412: case 413: case 414: case 415: case 417: case 419: case 420:
+            case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441: case 444:
+            case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
+            case 475: case 487:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1024,7 +1024,7 @@ class attack{
                         break
                         case 71:
                             this.battle.overlayManager.overlays[10][this.player].active=true
-                            this.battle.overlayManager.overlays[10][this.player].activate([0,3,1])
+                            this.battle.overlayManager.overlays[10][this.player].activate([0,3,2])
                         break
                         case 92:
                             this.battle.cardManagers[this.player].deFatigue(this.effect[0])

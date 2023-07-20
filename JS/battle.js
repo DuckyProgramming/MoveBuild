@@ -6,7 +6,7 @@ class battle{
     }
     createBasic(){
         this.title={}
-        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[]}}
+        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0}}
         for(let a=0,la=game.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
@@ -254,8 +254,8 @@ class battle{
         for(let a=0,la=amount;a<la;a++){
             this.reinforce.front.push({position:{x:size*(1+transformDirection(0,a*60-150)[0]),y:size*(1+transformDirection(0,a*60-150)[1])},name:floor(random(0,5))==0?name1:name2,minion:true})
             this.tileManager.tiles[this.tileManager.getTileIndex(size*(1+transformDirection(0,a*60-150)[0]),size*(1+transformDirection(0,a*60-150)[1]))].reinforce=true
+            this.counter.enemy++
         }
-        this.counter.enemy++
     }
     clearReinforce(){
         this.counter.enemy-=this.reinforce.back.length+this.reinforce.front.length
@@ -490,6 +490,128 @@ class battle{
             case 'menu':
                 this.layer.image(graphics.backgrounds[9],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=game.playerNumber;a<=la;a++){
+                    if(this.menu.anim.combatant[0][a]>0&&a>0){
+                        this.layer.push()
+                        this.layer.translate(this.layer.width/2,this.layer.height*0.3+81.25)
+                        switch(a){
+                            case 1:
+                                this.layer.fill(0,50,100,this.menu.anim.combatant[0][a])
+                            break
+                            case 2:
+                                this.layer.fill(125,200,125,this.menu.anim.combatant[0][a])
+                            break
+                            case 3:
+                                this.layer.fill(255,175,175,this.menu.anim.combatant[0][a])
+                            break
+                            case 4:
+                                this.layer.fill(100,0,150,this.menu.anim.combatant[0][a])
+                            break
+                        }
+                        this.layer.ellipse(0,0,50)
+                        this.layer.fill(255,this.menu.anim.combatant[0][a])
+                        switch(a){
+                            case 1:
+                                this.layer.beginShape()
+                                this.layer.vertex(-20,0)
+                                this.layer.vertex(0,-20/sqrt(3))
+                                this.layer.vertex(20,0)
+                                this.layer.vertex(10,-10*sqrt(3))
+                                this.layer.vertex(-10,-10*sqrt(3))
+                                this.layer.endShape()
+                                this.layer.beginShape()
+                                this.layer.vertex(-20,0)
+                                this.layer.vertex(0,20/sqrt(3))
+                                this.layer.vertex(20,0)
+                                this.layer.vertex(10,10*sqrt(3))
+                                this.layer.vertex(-10,10*sqrt(3))
+                                this.layer.endShape()
+                                this.layer.ellipse(0,0,10,10)
+                            break
+                            case 2:
+                                this.layer.rotate(45)
+                                this.layer.ellipse(0,0,32,42)
+                                this.layer.stroke(125,200,125,this.menu.anim.combatant[0][a])
+                                this.layer.strokeWeight(3)
+                                this.layer.line(0,17,0,-8)
+                                this.layer.line(0,10,-8,5)
+                                this.layer.line(0,10,8,5)
+                                this.layer.line(0,0,-6,-3.75)
+                                this.layer.line(0,0,6,-3.75)
+                                this.layer.rotate(-45)
+                            break
+                            case 3:
+                                for(let a=0,la=5;a<la;a++){
+                                    this.layer.beginShape()
+                                    this.layer.vertex(0,0)
+                                    this.layer.bezierVertex(-8,-7,-8,-14,-2,-21)
+                                    this.layer.vertex(0,-18)
+                                    this.layer.vertex(2,-21)
+                                    this.layer.bezierVertex(8,-14,8,-7,0,0)
+                                    this.layer.rotate(72)
+                                    this.layer.endShape()
+                                }
+                                this.layer.fill(255,175,175,this.menu.anim.combatant[0][a])
+                                this.layer.rotate(-12)
+                                for(let a=0;a<5;a++){
+                                    this.layer.quad(0,-1,-1,-6,0,-10,1,-6)
+                                    this.layer.rotate(72)
+                                }
+                                this.layer.ellipse(0,0,4,4)
+                            break
+                            case 4:
+                                for(let a=0,la=4;a<la;a++){
+                                    this.layer.rotate(90)
+                                    this.layer.triangle(-9,0,9,0,0,21)
+                                    this.layer.triangle(-5,-5,5,5,11,-11)
+                                }
+                                this.layer.fill(100,0,150,this.menu.anim.combatant[0][a])
+                                for(let a=0,la=4;a<la;a++){
+                                    this.layer.rotate(90)
+                                    this.layer.triangle(-4,0,4,0,0,8)
+                                }
+                            break
+                        }
+                        this.layer.pop()
+                    }
+                }
+                for(let a=0,la=game.playerNumber;a<=la;a++){
+                    if(this.menu.anim.combatant[0][a]>0){
+                        this.layer.fill(255,this.menu.anim.combatant[0][a])
+                        this.layer.textSize(10)
+                        this.layer.text(a==0?'000_BLANK':`00${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/2,this.layer.height*0.65)
+                        this.layer.textSize(9)
+                        this.layer.text(types.combatant[a].moniker.toUpperCase(),this.layer.width/2,this.layer.height*0.65+40)
+                    }
+                }
+                for(let a=0,la=types.deckmode.length;a<=la;a++){
+                    if(this.menu.anim.deck[0][a]>0){
+                        this.layer.fill(255,this.menu.anim.deck[0][a])
+                        this.layer.textSize(types.deckmode[a].name.length>20?8:10)
+                        this.layer.text(types.deckmode[a].name,this.layer.width/2,this.layer.height*0.65+80)
+                    }
+                }
+                this.layer.fill(255,this.menu.anim.ascendSingle)
+                this.layer.textSize(16)
+                this.layer.text('Difficult Options',this.layer.width/2,30)
+                this.layer.textSize(10)
+                this.layer.text('Mouseover 0-30 to Learn More',this.layer.width/2,62.5)
+                for(let a=0,la=types.ascend.length;a<la;a++){
+                    if(this.menu.anim.ascend[a]>0){
+                        this.layer.fill(255,0,0,this.menu.anim.ascend[a])
+                        this.layer.ellipse(12.5+(this.layer.width-25)*(0.5+a)/la,102.5,10)
+                    }
+                    if(this.menu.anim.ascendDesc[a]>0){
+                        this.layer.fill(255,this.menu.anim.ascendDesc[a])
+                        this.layer.textSize(16)
+                        this.layer.text(types.ascend[a].name,this.layer.width/2,30)
+                        this.layer.textSize(10)
+                        this.layer.text(types.ascend[a].desc,this.layer.width/2,62.5)
+                    }
+                }
+            break
+            case 'menu2':
+                this.layer.image(graphics.backgrounds[10],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=game.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         if(this.menu.anim.combatant[b][a]>0&&a>0){
                             this.layer.push()
@@ -596,6 +718,11 @@ class battle{
                         }
                     }
                 }
+                this.layer.fill(255,this.menu.anim.ascendSingle)
+                this.layer.textSize(16)
+                this.layer.text('Difficult Options',this.layer.width/2,30)
+                this.layer.textSize(10)
+                this.layer.text('Mouseover 0-30 to Learn More',this.layer.width/2,62.5)
                 for(let a=0,la=types.ascend.length;a<la;a++){
                     if(this.menu.anim.ascend[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.ascend[a])
@@ -844,6 +971,19 @@ class battle{
         switch(scene){
             case 'menu':
                 for(let a=0,la=game.playerNumber;a<=la;a++){
+                    this.menu.anim.combatant[0][a]=smoothAnim(this.menu.anim.combatant[0][a],this.menu.combatant[0]==a,-1,1,5)
+                }
+                for(let a=0,la=types.deckmode.length;a<=la;a++){
+                    this.menu.anim.deck[0][a]=smoothAnim(this.menu.anim.deck[0][a],this.menu.deck[0]==a,-1,1,5)
+                }
+                for(let a=0,la=types.ascend.length;a<=la;a++){
+                    this.menu.anim.ascend[a]=smoothAnim(this.menu.anim.ascend[a],game.ascend==a,0,1,5)
+                    this.menu.anim.ascendDesc[a]=smoothAnim(this.menu.anim.ascendDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
+                }
+                this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
+            break
+            case 'menu2':
+                for(let a=0,la=game.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         this.menu.anim.combatant[b][a]=smoothAnim(this.menu.anim.combatant[b][a],this.menu.combatant[b]==a,-1,1,5)
                     }
@@ -857,6 +997,7 @@ class battle{
                     this.menu.anim.ascend[a]=smoothAnim(this.menu.anim.ascend[a],game.ascend==a,0,1,5)
                     this.menu.anim.ascendDesc[a]=smoothAnim(this.menu.anim.ascendDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
                 }
+                this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'battle':
                 this.tileManager.update(scene)
@@ -1000,7 +1141,7 @@ class battle{
                 }
                 if(allClosed){
                     transition.trigger=true
-                    transition.scene='menu'
+                    transition.scene='title'
                 }
             break
             case 'stash':  case 'bossstash':
@@ -1061,14 +1202,41 @@ class battle{
     onClick(scene){
         switch(scene){
             case 'title':
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu'
                 }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                    transition.trigger=true
+                    transition.scene='menu2'
+                    this.menu.combatant[1]=1
+                }
             break
             case 'menu':
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[0]>1){
+                    this.menu.combatant[0]--
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[0]<game.playerNumber){
+                    this.menu.combatant[0]++
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65+80},width:37.5,height:37.5})&&this.menu.deck[0]>0){
+                    this.menu.deck[0]--
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65+80},width:37.5,height:37.5})&&this.menu.deck[0]<types.deckmode.length-1){
+                    this.menu.deck[0]++
+                }
+                for(let a=0,la=types.ascend.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
+                        game.ascend=a
+                    }
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+150,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                    this.startGame()
+                }
+            break
+            case 'menu2':
                 for(let a=0,la=2;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[a]>1-a){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[a]>1){
                         this.menu.combatant[a]--
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a+80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[a]<game.playerNumber){
@@ -1209,12 +1377,39 @@ class battle{
     onKey(scene,key,code){
         switch(scene){
             case 'title':
-                if(code==ENTER){
+                if(code==ENTER||key=='1'){
                     transition.trigger=true
                     transition.scene='menu'
                 }
+                if(key=='2'){
+                    transition.trigger=true
+                    transition.scene='menu2'
+                    this.menu.combatant[1]=1
+                }
             break
             case 'menu':
+                if(code==LEFT_ARROW&&this.menu.combatant[a]>1){
+                    this.menu.combatant[0]--
+                }
+                if(code==RIGHT_ARROW&&this.menu.combatant[a]<game.playerNumber){
+                    this.menu.combatant[0]++
+                }
+                if(key=='a'&&this.menu.deck[a]>0){
+                    this.menu.deck[0]--
+                }
+                if(key=='d'&&this.menu.deck[a]<types.deckmode.length-1){
+                    this.menu.deck[0]++
+                }
+                if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
+                    game.ascend++
+                }else if(code==DOWN_ARROW&&game.ascend>0){
+                    game.ascend--
+                }
+                if(code==ENTER){
+                    this.startGame()
+                }
+            break
+            case 'menu2':
                 for(let a=0,la=2;a<la;a++){
                     if((code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1)&&this.menu.combatant[a]>1-a){
                         this.menu.combatant[a]--

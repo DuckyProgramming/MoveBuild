@@ -257,7 +257,7 @@ class relic{
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('20',0,12)
+                    this.layer.text('14',0,12)
                 break
                 case '600 Currency':
                     displaySymbol(this.layer,0,0,28,0,1,this.fade)
@@ -342,7 +342,7 @@ class relic{
                     displaySymbol(this.layer,8,-5,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('10',8,10)
+                    this.layer.text('20',8,10)
                 break
                 case 'Turn 2 Block':
                     displaySymbol(this.layer,-8,0,27,0,1,this.fade)
@@ -382,7 +382,7 @@ class relic{
                     displaySymbol(this.layer,10,0,2,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('25',10,0)
+                    this.layer.text('100%',10,0)
                 break
                 case 'Extra Card Option':
                     displaySymbol(this.layer,-8,0,17,0,0.6,this.fade)

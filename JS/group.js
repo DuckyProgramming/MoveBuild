@@ -616,6 +616,8 @@ class group{
                     if(spec==6&&list[list.length-1].cost>0){
                         list[list.length-1].cost-=1
                     }
+                }else if(spec==7){
+                    list[list.length-1].cost=list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -643,6 +645,8 @@ class group{
                     if(spec==6&&list[list.length-1].cost>0){
                         list[list.length-1].cost-=1
                     }
+                }else if(spec==7){
+                    list[list.length-1].cost=list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
                 this.cards.splice(firstIndex,1)
@@ -1154,7 +1158,7 @@ class group{
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             if(userCombatant.getStatus('Cancel Exhaust')>0){
                                 userCombatant.status.main[findList('Cancel Exhaust',userCombatant.status.name)]--
-                                this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                                 a--
                                 la--
                             }else{
@@ -1170,7 +1174,7 @@ class group{
                                 la--
                             }
                         }else{
-                            this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                            this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                             a--
                             la--
                         }

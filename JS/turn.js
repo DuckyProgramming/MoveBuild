@@ -36,7 +36,7 @@ class turn{
                         switch(this.type){
                             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                             case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
-                            case 212: case 226: case 227:
+                            case 212: case 226: case 227: case 229:
                                 this.target=[[this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]]]
                             break
                             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
@@ -837,7 +837,7 @@ class turn{
                     case 1: case 6: case 8: case 13: case 14: case 15: case 22: case 23: case 24: case 27:
                     case 30: case 32: case 33: case 36: case 37: case 38: case 58: case 61: case 62: case 67:
                     case 79: case 83: case 100: case 112: case 113: case 152: case 172: case 178: case 183: case 193:
-                    case 205: case 214:
+                    case 205: case 214: case 229:
                         if(this.type==205&&this.timer==1){
                             this.userCombatant.goal.anim.direction=this.relativeDirection
                         }
@@ -874,6 +874,8 @@ class turn{
                                 this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
                             }else if(this.type==172){
                                 this.targetCombatant.takeDamage(this.effect[0]/100*this.targetCombatant.life,this.user)
+                            }else if(this.type==229){
+                                this.targetCombatant.statusEffect('Take Per Turn',this.effect[0])
                             }else{
                                 this.targetCombatant.takeDamage(this.effect[0],this.user)
                             }
@@ -1469,7 +1471,7 @@ class turn{
                         }
                     break
                     case 18: case 25: case 26: case 43: case 46: case 63: case 70: case 109: case 159: case 167:
-                    case 169: case 170: case 174: case 177: case 197: case 207: case 210: case 216: case 220:
+                    case 169: case 170: case 174: case 177: case 197: case 207: case 210: case 216: case 220: case 228:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(7)
                         }
@@ -1546,6 +1548,10 @@ class turn{
                                 case 220:
                                     this.userCombatant.statusEffectNext('Take Third Damage',this.effect[0])
                                 break
+                                case 228:
+                                    this.userCombatant.statusEffect('Counter All',this.effect[0])
+                                break
+
                             }
                             this.remove=true
                         }

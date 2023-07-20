@@ -423,8 +423,8 @@ types={
         },{
             name:'Option\nPlay',rarity:0,list:1,
             levels:[
-                {effect:[[8],[6]],attack:[1,2],cost:1,target:[10,1,1],spec:[12],reality:[[0],[]],class:[1,2]},
-                {effect:[[12],[9]],attack:[1,2],cost:1,target:[10,1,1],spec:[12],reality:[[0],[]],class:[1,2]},
+                {effect:[[8],[10]],attack:[1,2],cost:1,target:[10,1,1],spec:[12],reality:[[0],[]],class:[1,2]},
+                {effect:[[12],[15]],attack:[1,2],cost:1,target:[10,1,1],spec:[12],reality:[[0],[]],class:[1,2]},
             ],
         },{
             name:'Punch-Kick\nCombo',rarity:1,list:1,
@@ -3473,6 +3473,7 @@ types={
         {name:'Divine Guard',life:375,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:221,effect:[12]},{type:222,effect:[10]},{type:72,effect:[15,1]}],description:`You shall not pass`},
         {name:'Avant Guard',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:223,effect:[16]},{type:224,effect:[16]},{type:72,effect:[8,2]}],description:`Behind you!`},
         {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[5]},{type:204,effect:[4]},{type:21,effect:[]}],description:`Pretty bad`},
+        {name:'Thornvine',life:18,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[2]},{type:229,effect:[2]}],description:`Back and worse`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -3744,6 +3745,8 @@ types={
         {name:'Redeploy',class:4},
         {name:'Slow Down',class:1},
         {name:'Confusion',class:1},
+        {name:'Counter All',class:4},
+        {name:'Apply Take Per Turn',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -7578,12 +7581,12 @@ shipyard visit for another time.`,
             ],
         },{
             level:['Fat Trapezoid 5'],class:0,world:0,
-            name:'Rock Golem',
+            name:'Thornvine',
             player:{position:[[{x:2,y:0}],[{x:1,y:0},{x:3,y:0}]]},
             enemy:[
-                {position:{x:3,y:2},name:'Rock Golem'},
-                {position:{x:0,y:1},name:'Rock Golem'},
-                {position:{x:5,y:1},name:'Rock Golem'},
+                {position:{x:3,y:2},name:'Thornvine'},
+                {position:{x:0,y:1},name:'Thornvine'},
+                {position:{x:5,y:1},name:'Thornvine'},
             ],reinforce:[
             ],
         },{
@@ -8374,7 +8377,7 @@ Most enemies have 1 by default, some have more or less.`,
 `Stunned enemies do not get a turn.
 Stacks debrade by 1 each turn.`,
         },{name:'Conditioning',desc:
-`Increases block added by 50%.
+`Increases block added by 100%.
 Expends 1 stack afterward.`,
         },{name:'Selectively Discarded',desc:
 `Term for discards that do not occur as normal ones at the end of the turn.`,
@@ -8482,7 +8485,7 @@ game={player:[],deck:[],playerNumber:4,ascend:0,id:0,timer:0,animRate:1,targetRa
 startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,preGen:[]}
-graphics={main:0,backgroundGen:10,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

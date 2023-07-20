@@ -299,7 +299,7 @@ function intentDescription(attack,user,info){
 		case 36: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain 1 Combo Per Hit\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
 		case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage+${info?calculateIntent(attack.effect[1],user,0):`?`}*Combo\nGain 1 Combo Per Hit\nRange 1-1`
 		case 38: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
-		case 39: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[0]>0?`s`:``):`?`}`
+		case 39: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[0]!=1?`s`:``):`?`}`
 		case 40: return `Create ${info?attack.effect[0]:`?`} Landmine${attack.effect[0]!=1?`s`:``}`;
 		case 41: return `Create ${info?attack.effect[0]:`?`} Spike${attack.effect[0]!=1?`s`:``}`;
 		case 42: return `Create ${info?attack.effect[0]:`?`} Trenche${attack.effect[0]!=1?`s`:``}`;
@@ -427,7 +427,7 @@ function intentDescription(attack,user,info){
 		case 167: return `Gain ${info?attack.effect[0]:`?`}-${info?attack.effect[1]:`?`} Stacks of\n5 Random Buffs or Nerfs`
 		case 168: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\n3 Tiles Wide\nRange 1-2`
 		case 169: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Regen`
-		case 170: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Time`
+		case 170: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Buffer`
 		case 171: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bleed\n3 Tiles Wide\nRange 1-2`
 		case 172: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Percent Health as Damage\nRange 1-3`
 		case 174: return `Take Half Damage\nFor ${info?attack.effect[0]:`?`} Turns`
@@ -450,7 +450,7 @@ function intentDescription(attack,user,info){
 		case 191: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6\nNo Movement`
 		case 192: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-2`
 		case 193: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turns\nRange 1-6`
-		case 194: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
+		case 194: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
 		case 195: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nUsable in 3 Directions`
 		case 196: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
 		case 197: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Armor`

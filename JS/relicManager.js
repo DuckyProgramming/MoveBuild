@@ -106,7 +106,9 @@ class relicManager{
                 list.push(a)
             }
         }
-        this.lose(list[floor(random(0,list.length))],player)
+        let index=list[floor(random(0,list.length))]
+        this.active[index]-=1
+        this.lose(index,player)
     }
     addRandomRelic(player){
         let possible=[0,0,0,1,1,2]

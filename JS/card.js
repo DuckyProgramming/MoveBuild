@@ -8,7 +8,10 @@ class card{
         this.level=level
         this.color=color
         this.id=id
-        this.cost=cost||-1
+        this.cost=cost
+        if(cost==undefined){
+            this.cost=types.card[this.type].levels[this.level].cost
+        }
 
         this.width=90
         this.height=120
@@ -43,9 +46,9 @@ class card{
             this.list=this.color
         }
 
-        this.base={cost:cost||types.card[this.type].levels[this.level].cost}
-        if(this.cost==-1){
-            this.cost=this.base.cost
+        this.base={cost:cost}
+        if(this.base.cost==undefined){
+            this.base.cost=types.card[this.type].levels[this.level].cost
         }
         if(this.spec.includes(12)){
             this.reality=types.card[this.type].levels[this.level].reality
@@ -73,18 +76,18 @@ class card{
             return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
     }
-    description(attack,effect){
+    description(attack,effect,spec){
         let string=''
-        if(this.spec.includes(5)){
+        if(spec.includes(5)){
             string+='Unplayable\n'
         }
-        if(this.spec.includes(7)){
+        if(spec.includes(7)){
             string+='Unremovable\n'
         }
-        if(this.spec.includes(3)){
+        if(spec.includes(3)){
             string+='Innate\n'
         }
-        if(this.spec.includes(9)){
+        if(spec.includes(9)){
             string+='Stapled\n'
         }
         switch(attack){
@@ -616,34 +619,34 @@ class card{
         if(this.target[0]==2){
             string+='\nRange '+this.target[1]+'-'+this.target[2]
         }
-        if(this.spec.includes(0)){
+        if(spec.includes(0)){
             string+='\nFatigue'
         }
-        if(this.spec.includes(16)){
+        if(spec.includes(16)){
             string+='\n2 Fatigue'
         }
-        if(this.spec.includes(14)){
+        if(spec.includes(14)){
             string+='\n3 Fatigue'
         }
-        if(this.spec.includes(18)){
+        if(spec.includes(18)){
             string+='\n4 Fatigue'
         }
-        if(this.spec.includes(19)){
+        if(spec.includes(19)){
             string+='\nHeavy Fatigue'
         }
-        if(this.spec.includes(17)){
+        if(spec.includes(17)){
             string+='\nX Fatigue'
         }
-        if(this.spec.includes(2)){
+        if(spec.includes(2)){
             string+='\nRetain'
         }
-        if(this.spec.includes(1)){
+        if(spec.includes(1)){
             string+='\nExhaust'
         }
-        if(this.spec.includes(15)){
+        if(spec.includes(15)){
             string+=`\nVanishing ${this.limit}`
         }
-        if(this.spec.includes(4)){
+        if(spec.includes(4)){
             string+='\nEthereal'
         }
         if(string[0]=='\n'){
@@ -898,10 +901,10 @@ class card{
                 this.layer.fill(0,this.fade)
                 this.layer.textSize(8)
                 if(this.spec.includes(12)){
-                    this.layer.text(this.description(this.attack[0],this.effect[0]),0,-15)
-                    this.layer.text(this.description(this.attack[1],this.effect[1]),0,this.height/2-25)
+                    this.layer.text(this.description(this.attack[0],this.effect[0],this.reality[0]),0,-15)
+                    this.layer.text(this.description(this.attack[1],this.effect[1],this.reality[1]),0,this.height/2-25)
                 }else{
-                    this.layer.text(this.description(this.attack,this.effect),0,10)
+                    this.layer.text(this.description(this.attack,this.effect,this.spec),0,10)
                 }
                 this.layer.textSize(6)
                 this.layer.text(this.id,this.width/2-8,-this.height/2+8)
