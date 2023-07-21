@@ -48,13 +48,13 @@ class attack{
             case 236: case 237: case 241: case 243: case 244: case 245: case 246: case 247: case 250: case 251:
             case 252: case 255: case 260: case 263: case 265: case 266: case 267: case 268: case 269: case 271:
             case 272: case 273: case 274: case 275: case 277: case 280: case 282: case 287: case 288: case 290:
-            case 292: case 293: case 295: case 296: case 297: case 301: case 304: case 310: case 314: case 316:
-            case 319: case 323: case 326: case 327: case 329: case 333: case 342: case 345: case 348: case 361:
-            case 364: case 368: case 373: case 376: case 378: case 379: case 382: case 384: case 385: case 401:
-            case 402: case 408: case 409: case 412: case 413: case 414: case 415: case 417: case 419: case 420:
-            case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441: case 444:
-            case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
-            case 475: case 487:
+            case 292: case 293: case 295: case 296: case 297: case 301: case 304: case 305: case 310: case 314:
+            case 316: case 319: case 323: case 326: case 327: case 329: case 333: case 342: case 345: case 348:
+            case 361: case 364: case 368: case 373: case 376: case 378: case 379: case 382: case 384: case 385:
+            case 401: case 402: case 408: case 409: case 412: case 413: case 414: case 415: case 417: case 419:
+            case 420: case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441:
+            case 444: case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468:
+            case 469: case 475: case 487:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -304,11 +304,11 @@ class attack{
                     break
                     case 275:
                         if(this.energy%2==1){
-                            this.targetCombatant.takeDamage(this.effect[1],this.user)
-                            this.userCombatant.addBlock(this.effect[0])
+                            this.targetCombatant.takeDamage(this.effect[1]*this.energy,this.user)
+                            this.userCombatant.addBlock(this.effect[0]*this.energy)
                         }else{
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                            this.userCombatant.addBlock(this.effect[1])
+                            this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
+                            this.userCombatant.addBlock(this.effect[1]*this.energy)
                         }
                     break
                     case 280:

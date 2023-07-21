@@ -2290,8 +2290,8 @@ types={
         },{
             name:'Overflow',rarity:1,list:4,
             levels:[
-                {effect:[6],attack:277,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[8],attack:277,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6],attack:277,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:277,cost:0,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Carnage',rarity:0,list:4,
@@ -2548,8 +2548,8 @@ types={
         },{
             name:'Interior\nBurst',rarity:0,list:4,
             levels:[
-                {effect:[6,10],attack:314,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[8,16],attack:314,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[8,12],attack:314,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[10,18],attack:314,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
             name:'Respawn',rarity:1,list:4,
