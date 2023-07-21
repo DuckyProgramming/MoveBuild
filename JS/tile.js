@@ -244,9 +244,11 @@ class tile{
         this.anim.upPart.splice(index,1)
     }
     addType(type){
-        this.type.push(type)
-        this.anim.part.push(0)
-        this.anim.upPart.push(true)
+        if(!this.type.includes(type)){
+            this.type.push(type)
+            this.anim.part.push(0)
+            this.anim.upPart.push(true)
+        }
     }
     display(){
         this.layer.push()

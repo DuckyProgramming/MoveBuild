@@ -1388,16 +1388,16 @@ class battle{
                 }
             break
             case 'menu':
-                if(code==LEFT_ARROW&&this.menu.combatant[a]>1){
+                if(code==LEFT_ARROW&&this.menu.combatant[0]>1){
                     this.menu.combatant[0]--
                 }
-                if(code==RIGHT_ARROW&&this.menu.combatant[a]<game.playerNumber){
+                if(code==RIGHT_ARROW&&this.menu.combatant[0]<game.playerNumber){
                     this.menu.combatant[0]++
                 }
-                if(key=='a'&&this.menu.deck[a]>0){
+                if(key=='a'&&this.menu.deck[0]>0){
                     this.menu.deck[0]--
                 }
-                if(key=='d'&&this.menu.deck[a]<types.deckmode.length-1){
+                if(key=='d'&&this.menu.deck[0]<types.deckmode.length-1){
                     this.menu.deck[0]++
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){

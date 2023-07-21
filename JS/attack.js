@@ -2411,7 +2411,7 @@ class attack{
                         case 482:
                             this.targetTile.addType(19)
                             for(let a=0,la=5;a<la;a++){
-                                let index=this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x*(a+1)-this.userCombatant.tilePosition.x*a,this.targetTile.tilePosition.y*(a+1)-this.userCombatant.tilePosition.y*a)
+                                let index=this.battle.tileManager.getTileIndex(this.targetTile.tilePosition.x*(a+2)-this.userCombatant.tilePosition.x*(a+1),this.targetTile.tilePosition.y*(a+2)-this.userCombatant.tilePosition.y*(a+1))
                                 if(index>=0){
                                     this.battle.tileManager.tiles[index].addType(19)
                                 }

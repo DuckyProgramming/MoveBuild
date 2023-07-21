@@ -3489,7 +3489,7 @@ class combatant{
             this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
         }
         if(this.spec.includes(10)&&this.battle.turn.main<this.battle.players&&!this.aggressor){
-            this.battle.turnManager.loadEnemyAttackRepeat(this.id)
+            this.battle.turnManager.loadEnemyAttackRepeatBack(this.id)
             this.aggressor=true
         }
     }

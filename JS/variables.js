@@ -1170,8 +1170,8 @@ types={
         },{
             name:'Increment',rarity:0,list:2,
             levels:[
-                {effect:[1],attack:360,cost:2,target:[0],spec:[],class:4},
-                {effect:[1],attack:360,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:360,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:360,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Deplete',rarity:0,list:2,
@@ -1393,7 +1393,7 @@ types={
             name:'Overgrow',rarity:0,list:2,
             levels:[
                 {effect:[],attack:472,cost:0,target:[8,1,1],spec:[],class:4},
-                {effect:[],attack:472,cost:0,target:[8,1,1],spec:[],class:4},
+                {effect:[],attack:472,cost:0,target:[8,1,1],spec:[2],class:4},
             ],
         },{
             name:'Thorns',rarity:0,list:2,
@@ -1405,7 +1405,7 @@ types={
             name:'Sanctuary',rarity:1,list:2,
             levels:[
                 {effect:[],attack:474,cost:1,target:[8,1,1],spec:[1],class:4},
-                {effect:[],attack:474,cost:1,target:[8,1,1],spec:[1],class:4},
+                {effect:[],attack:474,cost:1,target:[8,1,1],spec:[],class:4},
             ],
         },{
             name:'Bloom',rarity:0,list:2,
@@ -1458,7 +1458,7 @@ types={
         },{
             name:'Irrigation',rarity:1,list:2,
             levels:[
-                {effect:[],attack:482,cost:0,target:[8,1,1],spec:[],class:4},
+                {effect:[],attack:482,cost:1,target:[8,1,1],spec:[],class:4},
                 {effect:[],attack:482,cost:0,target:[8,1,1],spec:[],class:4},
             ],
         },
@@ -3871,7 +3871,7 @@ types={
         {name:'',internal:'More Stashes',id:109,rarity:1,list:0,description:'Stashes Contain 2 More Relics'},
         {name:'',internal:'Upgrade Purchases',id:110,rarity:1,list:0,description:'Upgrade All Cards\nBought at the Shop'},
 
-        {name:'',internal:'3 Enemy 1 HP',id:111,rarity:2,list:0,description:'Next 3 Combats,\nEnemies Have 1 HP'},
+        {name:'',internal:'3 Enemy 1 HP',id:111,rarity:2,list:0,description:'Next 3 Non-Boss Combats,\nEnemies Have 1 HP'},
         {name:'',internal:'Turn 3 Block',id:112,rarity:2,list:0,description:'Add 24 Block at\nthe Start of Turn 3'},
         {name:'',internal:'Exhaust Random',id:113,rarity:2,list:0,description:'When a Card is Exhausted,\nAdd a Random Card to Your Hand'},
         {name:'',internal:'Reuse Card',id:114,rarity:2,list:0,description:'At the Start of Turn 2, Put a Card From\nYour Discard Pile in Your Hand'},

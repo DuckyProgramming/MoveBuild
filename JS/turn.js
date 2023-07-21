@@ -1356,13 +1356,13 @@ class turn{
                                         }
                                     break
                                     case 53: case 60:
-                                        for(let a=0,la=this.effect[1];a<la;a++){
+                                        for(let b=0,lb=this.effect[1];b<lb;b++){
                                             this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
                                         }
                                     break
                                     case 82:
                                         if(this.targetCombatant[a].blocked>0){
-                                            for(let a=0,la=this.effect[1];a<la;a++){
+                                            for(let b=0,lb=this.effect[1];b<lb;b++){
                                                 this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
                                             }
                                         }

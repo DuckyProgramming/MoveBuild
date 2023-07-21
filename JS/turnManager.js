@@ -34,6 +34,14 @@ class turnManager{
                 this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy,false))
         }
     }
+    loadEnemyAttackRepeatBack(enemy){
+        if(this.battle.combatantManager.combatants[enemy].team==0){
+            this.auxiliary=true
+            this.turnsBack.push(new turn(0,this.battle,
+                this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,
+                this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].effect,enemy,false))
+        }
+    }
     loadEnemyMove(enemy){
         this.auxiliary=true
         for(let a=0,la=this.battle.combatantManager.combatants[enemy].move.speed;a<la;a++){

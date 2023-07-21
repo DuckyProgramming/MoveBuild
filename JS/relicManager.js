@@ -485,7 +485,7 @@ class relicManager{
                         if(this.active[96]>0&&args[1]==1){
                             this.battle.combatantManager.allEffect(1,[1-this.active[96]*0.2])
                         }
-                        if(this.active[111]>0){
+                        if(this.active[111]>0&&args[1]!=2){
                             this.detail[111]++
                             if(this.detail[111]<=3){
                                 this.battle.combatantManager.allEffect(2,[1])
