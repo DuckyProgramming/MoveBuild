@@ -482,6 +482,8 @@ function intentDescription(attack,user,info){
 		case 223: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHits All Targets in Range\nPush 1 Tile Right\nRange 1-2`
 		case 224: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHits All Targets in Range\nPush 1 Tile Left\nRange 1-2`
 		case 225: return `Kill Self\nReturn Next Turn,\nHealed to Full`
+		case 228: return `Counter ${info?calculateIntent(attack.effect[0],user,0):`?`} All This Combat`
+		case 229: return `Apply ${info?calculateIntent(attack.effect[0],user,0):`?`} Take Per Turn`
 
 		default: return `INVALID`
 	}

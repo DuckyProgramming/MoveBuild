@@ -830,7 +830,7 @@ class relicManager{
     display(scene,args){
         let lea=this.displayRelics.length
         switch(scene){
-            case 'battle':
+            case 'battle': case 'map':
                 for(let a=0,la=this.relics.length;a<la;a++){
                     this.relics[a].display(this.total[this.relics[a].player])
                 }
@@ -942,7 +942,7 @@ class relicManager{
     }
     update(scene,args){
         switch(scene){
-            case 'battle':
+            case 'battle': case 'map':
                 this.relics.forEach(relic=>relic.update(this.up[relic.player],this.total[relic.player],inputs))
             break
             case 'stash': case 'bossstash':
@@ -969,7 +969,7 @@ class relicManager{
     }
     onClick(scene,args){
         switch(scene){
-            case 'battle':
+            case 'battle': case 'map':
                 if(dist(inputs.rel.x,inputs.rel.y,25,100)<20&&this.total[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }
@@ -1020,7 +1020,7 @@ class relicManager{
     }
     onKey(scene,key,code){
         switch(scene){
-            case 'battle':
+            case 'battle': case 'map':
                 if(key=='i'&&this.total[0]>0){
                     this.up[0]=toggle(this.up[0])
                 }

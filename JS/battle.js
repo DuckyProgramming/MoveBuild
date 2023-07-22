@@ -338,6 +338,7 @@ class battle{
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main['Extra Turn',findList(combatant.status.name)]--
         }else{
+            this.cardManagers[this.turn.main].reset()
             this.turn.main++
         }
         if(this.turn.main>=this.players){
@@ -817,6 +818,8 @@ class battle{
                 }
                 this.nodeManager.display()
                 this.overlayManager.display()
+                this.relicManager.display(stage.scene)
+                this.itemManager.display(stage.scene)
                 this.displayCurrency()
             break
             case 'rest':
@@ -1100,6 +1103,8 @@ class battle{
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
                     this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                 }
+                this.relicManager.update(stage.scene)
+                this.itemManager.update(stage.scene)
             break
             case 'rest':
                 this.optionManagers.forEach(optionManager=>optionManager.update())
@@ -1261,12 +1266,12 @@ class battle{
             break
             case 'battle':
                 if(!this.result.defeat){
-                    this.itemManager.onClick(stage.scene)
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onClick(stage.scene)
                     }else if(this.turn.main<this.players){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)
+                        this.itemManager.onClick(stage.scene)
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
@@ -1289,6 +1294,8 @@ class battle{
                     this.overlayManager.onClick()
                 }else{
                     this.nodeManager.onClick()
+                    this.relicManager.onClick(stage.scene)
+                    this.itemManager.onClick(stage.scene)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
                             this.overlayManager.overlays[4][a].active=true
@@ -1480,6 +1487,8 @@ class battle{
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onKey(key,code)
                 }else{
+                    this.relicManager.onKey(stage.scene,key,code)
+                    this.itemManager.onKey(stage.scene,key,code)
                     this.nodeManager.onKey(key,code)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){

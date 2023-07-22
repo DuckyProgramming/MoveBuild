@@ -2236,8 +2236,8 @@ types={
         },{
             name:'Extra\nBlade',rarity:0,list:4,
             levels:[
-                {effect:[1,1],attack:270,cost:0,target:[2,1,1],spec:[1],class:4},
-                {effect:[2,1],attack:270,cost:0,target:[2,1,1],spec:[1],class:4},
+                {effect:[1,1],attack:270,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,1],attack:270,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
             name:'The Best\nDefense',rarity:0,list:4,
@@ -2627,7 +2627,7 @@ types={
             name:'Varial\nMove',rarity:1,list:4,
             levels:[
                 {effect:[1],attack:328,cost:1,target:[13,1,1],spec:[0],class:3},
-                {effect:[1],attack:328,cost:1,target:[13,1,1],spec:[0],class:3},
+                {effect:[1],attack:328,cost:0,target:[13,1,1],spec:[0],class:3},
             ],
         },{
             name:'Filedown',rarity:1,list:4,
@@ -3473,7 +3473,7 @@ types={
         {name:'Divine Guard',life:375,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:221,effect:[12]},{type:222,effect:[10]},{type:72,effect:[15,1]}],description:`You shall not pass`},
         {name:'Avant Guard',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:223,effect:[16]},{type:224,effect:[16]},{type:72,effect:[8,2]}],description:`Behind you!`},
         {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[5]},{type:204,effect:[4]},{type:21,effect:[]}],description:`Pretty bad`},
-        {name:'Thornvine',life:18,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[2]},{type:229,effect:[2]}],description:`Back and worse`},
+        {name:'Thornvine',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[2]},{type:229,effect:[2]}],description:`Back and worse`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -8482,7 +8482,7 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:4,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}

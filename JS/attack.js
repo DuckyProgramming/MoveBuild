@@ -502,7 +502,7 @@ class attack{
                     case 319:
                         let list2=[]
                         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants.id!=this.targetCombatant.id){
+                            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants.id!=this.targetCombatant.id){
                                 list2.push(a)
                             }
                         }
@@ -1118,7 +1118,7 @@ class attack{
                             this.battle.energy.gen[this.player]+=this.effect[1]
                         break
                         case 311:
-                            this.userCombatant.multiplyStatus(this.effect[0],[0,2])
+                            this.userCombatant.multiplyStatusClass(this.effect[0],[0,2])
                         break
                         case 312:
                             this.userCombatant.statusEffect('Shiv on Hit',this.effect[0])
@@ -3894,6 +3894,8 @@ class attack{
                     this.userCombatant.startAnimation(3)
                     if(index>=0){
                         this.tempDistance=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant.position.x,this.targetCombatant.position.y)
+                    }else{
+                        this.tempDistance=this.distance
                     }
                 }
                 if(this.timer>=15*this.targetDistance-14&&this.timer<15*this.targetDistance+6){
@@ -3912,7 +3914,7 @@ class attack{
                     if(this.type==35){
                         this.userCombatant.combo++
                     }
-                }else if(this.timer>=15*this.targetDistance+15){
+                }else if(this.timer>=15*this.targetDistance+21){
                     this.remove=true
                 }
                 if(this.procedure[0]==2){
@@ -3936,7 +3938,7 @@ class attack{
                     }
                     if(this.timer==15*this.targetDistance+3){
                         this.targetCombatant.takeDamage(game.collisionDamage,-1)
-                        let offset=transformDirection(0,this.relativeDirection+120)
+                        let offset=transformDirection(0,this.relativeDirection-120)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                         if(index>=0){
                             this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
@@ -4019,6 +4021,8 @@ class attack{
                     this.userCombatant.startAnimation(3)
                     if(index>=0){
                         this.tempDistance=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant.position.x,this.targetCombatant.position.y)
+                    }else{
+                        this.tempDistance=this.distance
                     }
                 }
                 if(this.timer>=15*this.targetDistance-14&&this.timer<15*this.targetDistance+6){
@@ -4037,7 +4041,7 @@ class attack{
                     if(this.type==35){
                         this.userCombatant.combo++
                     }
-                }else if(this.timer>=15*this.targetDistance+15){
+                }else if(this.timer>=15*this.targetDistance+21){
                     this.remove=true
                 }
                 if(this.procedure[0]==2){

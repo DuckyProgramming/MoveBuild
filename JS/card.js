@@ -342,8 +342,7 @@ class card{
             case 224: string+=`Heal ${this.calculateEffect(effect[0],9)} Health`; break
             case 225: string+=`Gain ${effect[0]} Combo\nGain ${effect[1]} Energy\nNext Turn`; break
             case 226: string+=`Gain ${effect[0]} Combo\nLose All Combo\nat End of Turn`; break
-            case 227: case 281:
-                string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed are Duplicated`; break
+            case 227: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed are Duplicated`; break
             case 228: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],7)}\nDamage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 229: string+=`Add ${effect[0]} Random\nAttack${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0\nThis Turn`; break
             case 230: string+=`Add ${effect[0]} Random\nAttack${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break

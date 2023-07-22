@@ -3647,7 +3647,7 @@ class combatant{
             this.statusEffectNext(this.status.name[list[floor(random(0,list.length))]],effect)
         }
     }
-    multiplyStatus(effect,classes){
+    multiplyStatusClass(effect,classes){
         for(let a=0,la=this.status.class.length;a<la;a++){
             if(classes.includes(this.status.class[a])){
                 this.status.main[a]*=effect

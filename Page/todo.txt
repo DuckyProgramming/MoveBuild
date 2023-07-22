@@ -1,8 +1,9 @@
 Bugs:
 A lot
 
+relic menu in map
+
 Menu UI:
-2 Interfaces
 
 Generality:
 More Characters As needed
