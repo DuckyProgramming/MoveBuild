@@ -502,7 +502,7 @@ class attack{
                     case 319:
                         let list2=[]
                         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants.id!=this.targetCombatant.id){
+                            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].id!=this.targetCombatant.id){
                                 list2.push(a)
                             }
                         }
@@ -2257,6 +2257,7 @@ class attack{
                         this.procedure[0]=0
                     }
                 }else if(this.timer==10*this.targetDistance+15&&this.procedure[0]==1){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
                     switch(this.type){
                         case 37:
                             this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)].addType(3)

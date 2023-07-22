@@ -813,7 +813,9 @@ class turn{
                         this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
                         this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
                     }else{
-                        this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                        if(this.userCombatant.team==0){
+                            this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                        }
                         this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
                         this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
                     }

@@ -336,7 +336,7 @@ class battle{
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
-            combatant.status.main['Extra Turn',findList(combatant.status.name)]--
+            combatant.status.main[findList('Extra Turn',combatant.status.name)]--
         }else{
             this.cardManagers[this.turn.main].reset()
             this.turn.main++
