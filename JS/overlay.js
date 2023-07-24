@@ -372,6 +372,7 @@ class overlay{
                     }
                     if(this.rewards.length<=0&&!this.battle.overlayManager.overlays[3].active&&this.active){
                         this.active=false
+                        this.battle.combatantManager.clearBlockCombatants()
                         this.battle.combatantManager.clearStatusCombatants()
                     }
                 break
@@ -435,6 +436,7 @@ class overlay{
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-205},width:120,height:40})){
                         this.active=false
+                        this.battle.combatantManager.clearBlockCombatants()
                         this.battle.combatantManager.clearStatusCombatants()
                         for(let a=0,la=this.rewards.length;a<la;a++){
                             if(this.rewards[a].type==1){
@@ -494,7 +496,7 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                         break
                                         case 10:
-                                            if(!this.battle.cardManagers[this.player].deck.cards[a].includes(3)){
+                                            if(!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(3)){
                                                 this.battle.cardManagers[this.player].deck.cards[a].spec.push(3)
                                                 this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(3)
                                             }
@@ -636,7 +638,7 @@ class overlay{
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-215,y:this.layer.height/2},width:40,height:40})&&this.page>0){
                         this.page--
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+215,y:this.layer.height/2},width:40,height:40})&&
-                    this.page<ceil((this.battle.relicManager.total[this.player]-1)/30)-1){
+                    this.page<ceil(this.battle.relicManager.total[this.player]/30)-1){
                         this.page++
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+180},width:120,height:40})){
                         this.active=false
@@ -663,6 +665,7 @@ class overlay{
                     }
                     if(code==ENTER){
                         this.active=false
+                        this.battle.combatantManager.clearBlockCombatants()
                         this.battle.combatantManager.clearStatusCombatants()
                         for(let a=0,la=this.rewards.length;a<la;a++){
                             if(this.rewards[a].type==1){
@@ -715,7 +718,7 @@ class overlay{
                                             this.battle.cardManagers[this.player].deck.copySelf(a)
                                         break
                                         case 10:
-                                            if(!this.battle.cardManagers[this.player].deck.cards[a].includes(3)){
+                                            if(!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(3)){
                                                 this.battle.cardManagers[this.player].deck.cards[a].spec.push(3)
                                                 this.battle.cardManagers[this.player].deck.cards[a].additionalSpec.push(3)
                                             }
@@ -846,7 +849,7 @@ class overlay{
                     if(code==LEFT_ARROW&&this.page>0){
                         this.page--
                     }else if(code==RIGHT_ARROW&&
-                        this.page<ceil((this.battle.relicManager.total[this.player]-1)/30)-1){
+                        this.page<ceil(this.battle.relicManager.total[this.player]/30)-1){
                         this.page++
                     }else if(code==ENTER){
                         this.active=false

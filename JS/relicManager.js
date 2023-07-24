@@ -886,14 +886,14 @@ class relicManager{
                     transition.trigger=true
                     transition.scene='map'
                 }else if(this.battle.players==2){
-                    if(inputs.rel.x<this.displayRelics[a].position.x){
+                    if(inputs.rel.x<this.displayRelics[a].position.x||this.complete[1]){
                         this.addRelic(this.displayRelics[a].type,0)
                         this.complete[0]=true
                         if(this.complete[1]){
                             transition.trigger=true
                             transition.scene='map'
                         }
-                    }else if(inputs.rel.x>this.displayRelics[a].position.x){
+                    }else if(inputs.rel.x>this.displayRelics[a].position.x||this.complete[0]){
                         this.addRelic(this.displayRelics[a].type,1)
                         this.complete[1]=true
                         if(this.complete[0]){

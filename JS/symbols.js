@@ -583,6 +583,14 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.triangle(0,5,-1,8,1,8)
         break
+        case 73:
+            layer.fill(255,50,50,fade)
+            layer.rect(-6,-2.25,1,3.5)
+            layer.rect(6,2.25,1,3.5)
+            layer.triangle(-5,-4,-5,-0.5,6,-2.25)
+            layer.triangle(5,4,5,-0.5,-6,2.25)
+            layer.ellipse(-8,0,3,3)
+        break
         case 74:
             layer.fill(150,175,200,fade)
 			layer.triangle(-5,-3,5,-3,0,-6)
@@ -2798,8 +2806,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             break
             case 15: case 17: case 24: case 27: case 30: case 44: case 50: case 67: case 72: case 84:
             case 108: case 110: case 112: case 114: case 119: case 124: case 140: case 141: case 142: case 148:
-            case 150: case 151: case 154: case 158: case 163: case 187: case 190: case 198: case 199: case 201:
-            case 215: case 217:
+            case 150: case 151: case 154: case 158: case 163: case 187: case 198: case 199: case 201: case 215:
+            case 217:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:
@@ -2823,6 +2831,9 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             break
             case 188:
                 layer.text(`${effect[0]}xR`,0,0)
+            break
+            case 190:
+                layer.text(`${effect[0]}|${effect[1]}|${effect[2]}`,0,0)
             break
             case 207:
                 layer.text(`${effect[0]}+`,0,0)

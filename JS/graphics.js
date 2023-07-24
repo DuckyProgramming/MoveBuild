@@ -2122,19 +2122,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			}
 			return p1
 		case 5:
-			p1=new combatant(layer,graphics.proxyBattle,800-a*700,477.5,0,0,0,0,player[a],0,0,-30+a*60)
+			p1=new combatant(layer,graphics.proxyBattle,100+a*700,477.5,0,0,0,0,player[a],0,0,30-a*60)
 			switch(p1.name){
 				case 'George':
 					p1.anim.legs=[
-						{top:3+a*3,bottom:3+a*3,length:{top:18,bottom:18}},
-						{top:3+a*3,bottom:3+a*3,length:{top:18,bottom:18}}
+						{top:6-a*3,bottom:6-a*3,length:{top:18,bottom:18}},
+						{top:6-a*3,bottom:6-a*3,length:{top:18,bottom:18}}
 					]
 					p1.anim.arms=[
-						{top:33+a*9,bottom:-3-a*27,length:{top:18,bottom:18}},
-						{top:33+a*9,bottom:-3-a*27,length:{top:18,bottom:18}}
+						{top:42-a*9,bottom:-30+a*27,length:{top:18,bottom:18}},
+						{top:42-a*9,bottom:-30+a*27,length:{top:18,bottom:18}}
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
-					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
 				case 'Lira': case 'Sakura': case 'Ume':
 					switch(p1.name){
@@ -2154,28 +2154,28 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					}
 					p1.trigger.display.extra.sword=false
 					p1.anim.legs=[
-						{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
-						{top:3+a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+						{top:9-a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+						{top:9-a*6,bottom:3,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
 					]
 					p1.anim.arms=[
-						{top:24-a*3,bottom:36-a*12,length:{top:16,bottom:16}},
-						{top:24-a*3,bottom:36,length:{top:16,bottom:16}}
+						{top:21+a*3,bottom:24+a*12,length:{top:16,bottom:16}},
+						{top:21+a*3,bottom:36,length:{top:16,bottom:16}}
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
-					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
 				case 'Certes':
 					p1.anim.mouth.y++
 					p1.anim.legs=[
-						{top:3+a*6,bottom:3,length:{top:16,bottom:16}},
-						{top:3+a*6,bottom:3,length:{top:16,bottom:16}}
+						{top:9-a*6,bottom:3,length:{top:16,bottom:16}},
+						{top:9-a*6,bottom:3,length:{top:16,bottom:16}}
 					]
 					p1.anim.arms=[
-						{top:24-a*3,bottom:36-a*12,length:{top:16,bottom:16}},
-						{top:24-a*3,bottom:36,length:{top:16,bottom:16}}
+						{top:21+a*3,bottom:24+a*12,length:{top:16,bottom:16}},
+						{top:21+a*3,bottom:36,length:{top:16,bottom:16}}
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
-					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
 			}
 			p1.size=2.5

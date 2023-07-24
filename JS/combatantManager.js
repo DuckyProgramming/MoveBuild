@@ -120,6 +120,13 @@ class combatantManager{
             }
         }
     }
+    clearBlockCombatants(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0){
+                this.combatants[a].block=0
+            }
+        }
+    }
     clearStatusCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team>0){

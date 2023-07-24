@@ -1,8 +1,6 @@
 Bugs:
 A lot
 
-relic menu in map
-
 Menu UI:
 
 Generality:

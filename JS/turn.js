@@ -1219,6 +1219,7 @@ class turn{
                                     break
                                     case 190:
                                         this.userCombatant.statusEffect('Armor',this.effect[1])
+                                        this.userCombatant.statusEffect('Strength',this.effect[2])
                                     break
                                 }
                             }

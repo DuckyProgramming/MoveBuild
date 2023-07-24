@@ -324,7 +324,7 @@ class card{
             case 205: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDoesn't Trigger Enemies`; break
             case 206: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number of\nCards in Hand\nDiscard Your Hand`; break
             case 207: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Random\nCards to Your Hand`; break
-            case 208: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n4 Times`; break
+            case 208: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n4 Times\nAdvance`; break
             case 209: string+=`Add ${effect[0]} Random\nDefense${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0\nThis Turn`; break
             case 210: string+=`Add ${effect[0]} Random\nDefense${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 211: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nAdd ${effect[1]} Dodge`; break
@@ -906,7 +906,9 @@ class card{
                     this.layer.text(this.description(this.attack,this.effect,this.spec),0,10)
                 }
                 this.layer.textSize(6)
-                this.layer.text(this.id,this.width/2-8,-this.height/2+8)
+                if(options.id){
+                    this.layer.text(this.id,this.width/2-8,-this.height/2+8)
+                }
                 if(this.spec.includes(12)){
                     for(let a=0,la=2;a<la;a++){
                         switch(this.class[a]){

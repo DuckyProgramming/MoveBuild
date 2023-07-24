@@ -337,7 +337,7 @@ class attack{
                         }
                     break
                     case 376:
-                        this.targetCombatant.takeDamage(this.effect[0]*ceil(this.userCombatant.life/this.effect[1]),this.user)
+                        this.targetCombatant.takeDamage(ceil(this.userCombatant.life/this.effect[0]),this.user)
                     break
                     case 378:
                         this.targetCombatant.takeDamage(this.effect[0]*round(this.userCombatant.life)/10,this.user)
@@ -2272,8 +2272,8 @@ class attack{
             break
             case 38: case 79: case 81: case 84: case 85: case 86: case 104: case 145: case 148: case 158:
             case 159: case 160: case 161: case 162: case 163: case 173: case 177: case 272: case 292: case 295:
-            case 297: case 314: case 326: case 351: case 352: case 382: case 408: case 419: case 433: case 452:
-            case 472: case 474: case 482:
+            case 297: case 314: case 316: case 326: case 351: case 352: case 382: case 408: case 419: case 433:
+            case 452: case 472: case 474: case 482:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }

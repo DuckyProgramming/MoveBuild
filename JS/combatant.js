@@ -3614,7 +3614,7 @@ class combatant{
     }
     moveTilePosition(x,y){
         if(this.id<this.battle.players){
-            let distance=distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y)
+            let distance=max(0,max(distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y),distTargetDiagonal(0,x-this.tilePosition.x,y-this.tilePosition.y)))
             this.battle.stats.move[this.id]+=distance
             if(this.battle.relicManager.hasRelic(100,this.id)){
                 this.addBlock(2*distance*this.battle.relicManager.active[100])
@@ -11758,10 +11758,10 @@ class combatant{
                         }
                     }
                     if(this.name=='Junkie'&&this.trigger.display.hat){
-                        this.layer.fill(this.flashColor(this.color.hat[0])[0],this.flashColor(this.color.hat[0])[1],this.flashColor(this.color.hat[0])[2],this.fade*this.fades.hat)
+                        this.layer.fill(this.flashColor(this.color.hat)[0],this.flashColor(this.color.hat)[1],this.flashColor(this.color.hat)[2],this.fade*this.fades.hat)
                         this.layer.noStroke()
                         this.layer.rect(0,-91,30,12,3)
-                        this.layer.rect(lsin(this.anim.direction+180)*15,-86,24,4)
+                        this.layer.rect(lsin(this.anim.direction+180)*15,-87,24,4)
                     }
                     if((this.name=='Councilman'||this.name=='Lunaria')&&this.trigger.display.halo){
                         this.layer.noFill()

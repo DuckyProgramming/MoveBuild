@@ -1419,7 +1419,7 @@ class battle{
             break
             case 'menu2':
                 for(let a=0,la=2;a<la;a++){
-                    if((code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1)&&this.menu.combatant[a]>1-a){
+                    if((code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1)&&this.menu.combatant[a]>1){
                         this.menu.combatant[a]--
                     }
                     if((code==RIGHT_ARROW&&a==0||(key=='d'||key=='D')&&a==1)&&this.menu.combatant[a]<game.playerNumber){

@@ -1266,8 +1266,8 @@ types={
         },{
             name:'Convect',rarity:1,list:2,
             levels:[
-                {effect:[5],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[4],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2,5],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2,4],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Enervation',rarity:1,list:2,
@@ -2080,8 +2080,8 @@ types={
         },{
             name:'Dagger\nSpray',rarity:0,list:4,
             levels:[
-                {effect:[2],attack:217,cost:1,target:[2,1,6],spec:[0],class:1},
-                {effect:[3],attack:217,cost:1,target:[2,1,6],spec:[0],class:1},
+                {effect:[2],attack:217,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[3],attack:217,cost:1,target:[2,1,3],spec:[0],class:1},
             ],
         },{
             name:'Swap\nOut',rarity:0,list:4,
@@ -2116,8 +2116,8 @@ types={
         },{
             name:'Force\nPush',rarity:0,list:4,
             levels:[
-                {effect:[],attack:250,cost:1,target:[2,1,6],spec:[1],class:1},
-                {effect:[],attack:250,cost:1,target:[2,1,6],spec:[1,2],class:1},
+                {effect:[],attack:250,cost:1,target:[2,1,2],spec:[1],class:1},
+                {effect:[],attack:250,cost:1,target:[2,1,2],spec:[1,2],class:1},
             ],
         },{
             name:'Force\nPull',rarity:0,list:4,
@@ -2200,8 +2200,8 @@ types={
         },{
             name:'Knifing',rarity:1,list:4,
             levels:[
-                {effect:[4],attack:264,cost:1,target:[0],spec:[1],class:4},
-                {effect:[6],attack:264,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:264,cost:1,target:[0],spec:[1],class:4},
+                {effect:[3],attack:264,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Closer',rarity:0,list:4,
@@ -2266,8 +2266,8 @@ types={
         },{
             name:'Survivor',rarity:0,list:4,
             levels:[
-                {effect:[8,1],attack:120,cost:1,target:[0],spec:[],class:2},
-                {effect:[12,1],attack:120,cost:1,target:[0],spec:[],class:2},
+                {effect:[10,1],attack:120,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,1],attack:120,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Break\nOff',rarity:1,list:4,
@@ -2302,8 +2302,8 @@ types={
         },{
             name:'Pulsate',rarity:0,list:4,
             levels:[
-                {effect:[2],attack:278,cost:0,target:[2,1,1],spec:[],class:4},
-                {effect:[3],attack:278,cost:0,target:[2,1,1],spec:[],class:4},
+                {effect:[2],attack:278,cost:0,target:[0],spec:[],class:4},
+                {effect:[3],attack:278,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Havoc',rarity:0,list:4,
@@ -2326,8 +2326,8 @@ types={
         },{
             name:'Grit',rarity:0,list:4,
             levels:[
-                {effect:[12],attack:281,cost:1,target:[0],spec:[],class:2},
-                {effect:[16],attack:281,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,1],attack:281,cost:1,target:[0],spec:[],class:2},
+                {effect:[16,1],attack:281,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Trade',rarity:1,list:4,
@@ -2495,7 +2495,7 @@ types={
             name:'Spot\nWeakness',rarity:1,list:4,
             levels:[
                 {effect:[3],attack:305,cost:1,target:[2,1,6],spec:[],class:4},
-                {effect:[8],attack:305,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[4],attack:305,cost:1,target:[2,1,6],spec:[],class:4},
             ],
         },{
             name:'Swirl',rarity:1,list:4,
@@ -2572,8 +2572,8 @@ types={
         },{
             name:'Clarity',rarity:1,list:4,
             levels:[
-                {effect:[2],attack:318,cost:0,target:[0],spec:[1],class:4},
-                {effect:[3],attack:318,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1],attack:318,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:318,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Lodestone',rarity:0,list:4,
@@ -3247,7 +3247,7 @@ types={
             name:'Ally\nRandom',rarity:0,list:7,
             levels:[
                 {effect:[1],attack:351,cost:0,target:[0],spec:[1],class:2},
-                {effect:[1],attack:351,cost:0,target:[0],spec:[1],class:2},
+                {effect:[2],attack:351,cost:0,target:[0],spec:[1],class:2},
             ],
         },{
             name:'Ally\nHeal',rarity:0,list:7,
@@ -3419,7 +3419,7 @@ types={
         {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[12]},{type:86,effect:[5]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
-        {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Glued']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Use to have good aim`},
+        {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Glued']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Used to have good aim`},
         {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:34,effect:[2]},{type:32,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         {name:'Management Custodian',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[2]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
@@ -3514,7 +3514,7 @@ types={
         {name:'Purge X02',life:550,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[60]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
 
-        {name:'Rewriter',life:920,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:190,effect:[18,4]},{type:191,effect:[6]},{type:192,effect:[18]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        {name:'Rewriter',life:920,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:190,effect:[18,4,1]},{type:191,effect:[6]},{type:192,effect:[18]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:``},
     ],attack:[
         {name:'',class:0},//0
@@ -3707,7 +3707,7 @@ types={
         {name:'Drink Redbull',class:4},
         {name:'Tractor Beam',class:1},
         {name:'Randomized Corner Summon',class:4},
-        {name:'Block / Armor',class:2},//190
+        {name:'Block / Armor / Strengthen',class:2},//190
         {name:'Pentuple Godbeam',class:1},
         {name:'2 Tile Shockwave',class:1},
         {name:'6 Tile Shattering Strike',class:1},
@@ -7084,7 +7084,6 @@ shipyard visit for another time.`,
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
-
             ],reinforce:[
 
             ],
@@ -7158,6 +7157,10 @@ shipyard visit for another time.`,
             player:{position:[[{x:6,y:6}],[{x:5,y:6},{x:6,y:5}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Rewriter'},
+                {position:{x:0,y:2},name:'Nil'},
+                {position:{x:2,y:0},name:'Nil'},
+                {position:{x:1,y:4},name:'Glitch'},
+                {position:{x:4,y:1},name:'Glitch'},
             ],reinforce:[
             ],
         },{
@@ -8484,7 +8487,7 @@ stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:4,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
-options={damage:false,alt:false,preGen:[]}
+options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
