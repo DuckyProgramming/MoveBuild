@@ -252,7 +252,7 @@ class battle{
     }
     quickReinforceCorner(name1,name2,amount,size){
         for(let a=0,la=amount;a<la;a++){
-            this.reinforce.front.push({position:{x:size*(1+transformDirection(0,a*60-150)[0]),y:size*(1+transformDirection(0,a*60-150)[1])},name:floor(random(0,5))==0?name1:name2,minion:true})
+            this.reinforce.front.push({position:{x:size*(1+transformDirection(0,a*60-150)[0]),y:size*(1+transformDirection(0,a*60-150)[1])},name:floor(random(0,5))==0?name2:name1,minion:true})
             this.tileManager.tiles[this.tileManager.getTileIndex(size*(1+transformDirection(0,a*60-150)[0]),size*(1+transformDirection(0,a*60-150)[1]))].reinforce=true
             this.counter.enemy++
         }
