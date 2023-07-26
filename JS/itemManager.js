@@ -267,7 +267,9 @@ class itemManager{
             break
             case 102:
                 userCombatant.heal(15*this.effectiveness[player])
-                userCombatant.statusEffect('Cannot Gain Block',99)
+                if(stage.scene=='battle'){
+                    userCombatant.statusEffect('Cannot Gain Block',99)
+                }
             break
         }
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,2))==0){
@@ -323,17 +325,17 @@ class itemManager{
         }
     }
     onClick(scene){
+        if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
+            this.up[0]=toggle(this.up[0])
+        }
+        if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
+            this.up[1]=toggle(this.up[1])
+        }
         switch(scene){
-            case 'battle':
-                if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
-                    this.up[0]=toggle(this.up[0])
-                }
-                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
-                    this.up[1]=toggle(this.up[1])
-                }
+            case 'battle': case 'map':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.battle.attackManager.attacks.length<=0){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.battle.attackManager.attacks.length<=0&&!(!this.items[a][b].menu&&scene=='map')){
                             let type=this.items[a][b].type
                             this.total[a]--
                             this.items[a][b].type=1
@@ -344,21 +346,7 @@ class itemManager{
                     }
                 }
             break
-            case 'map':
-                if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
-                    this.up[0]=toggle(this.up[0])
-                }
-                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
-                    this.up[1]=toggle(this.up[1])
-                }
-            break
             case 'shop':
-                if(dist(inputs.rel.x,inputs.rel.y,25,50)<20&&this.items[0].length>0){
-                    this.up[0]=toggle(this.up[0])
-                }
-                if(this.battle.players==2&&dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,50)<20&&this.items[1].length>0){
-                    this.up[1]=toggle(this.up[1])
-                }
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
                         if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].altPosition.x,this.items[a][b].altPosition.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){

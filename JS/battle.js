@@ -6,7 +6,7 @@ class battle{
     }
     createBasic(){
         this.title={}
-        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0}}
+        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[]}}
         for(let a=0,la=game.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
@@ -20,6 +20,9 @@ class battle{
         for(let a=0,la=types.ascend.length;a<la;a++){
             this.menu.anim.ascend.push(-1)
             this.menu.anim.ascendDesc.push(-1)
+        }
+        for(let a=0,la=3;a<la;a++){
+            this.menu.anim.animRate.push(-1)
         }
     }
     startGame(){
@@ -610,6 +613,12 @@ class battle{
                         this.layer.text(types.ascend[a].desc,this.layer.width/2,62.5)
                     }
                 }
+                for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
+                    if(this.menu.anim.animRate[a]>0){
+                        this.layer.fill(255,0,0,this.menu.anim.animRate[a])
+                        this.layer.rect(this.layer.width/2-67.5+a*67.5,this.layer.height-30,60,4)
+                    }
+                }
             break
             case 'menu2':
                 this.layer.image(graphics.backgrounds[10],0,0,this.layer.width,this.layer.height)
@@ -656,6 +665,12 @@ class battle{
                         this.layer.text(types.ascend[a].name,this.layer.width/2,30)
                         this.layer.textSize(10)
                         this.layer.text(types.ascend[a].desc,this.layer.width/2,62.5)
+                    }
+                }
+                for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
+                    if(this.menu.anim.animRate[a]>0){
+                        this.layer.fill(255,0,0,this.menu.anim.animRate[a])
+                        this.layer.rect(this.layer.width/2-67.5+a*67.5,this.layer.height-30,60,4)
                     }
                 }
             break
@@ -904,6 +919,9 @@ class battle{
                     this.menu.anim.ascend[a]=smoothAnim(this.menu.anim.ascend[a],game.ascend==a,0,1,5)
                     this.menu.anim.ascendDesc[a]=smoothAnim(this.menu.anim.ascendDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
                 }
+                for(let a=0,la=this.menu.anim.animRate.length;a<=la;a++){
+                    this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
+                }
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'menu2':
@@ -920,6 +938,9 @@ class battle{
                 for(let a=0,la=types.ascend.length;a<=la;a++){
                     this.menu.anim.ascend[a]=smoothAnim(this.menu.anim.ascend[a],game.ascend==a,0,1,5)
                     this.menu.anim.ascendDesc[a]=smoothAnim(this.menu.anim.ascendDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
+                }
+                for(let a=0,la=this.menu.anim.animRate.length;a<=la;a++){
+                    this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
                 }
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
@@ -1156,6 +1177,11 @@ class battle{
                         game.ascend=a
                     }
                 }
+                for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-67.5+a*67.5,y:this.layer.height-30},width:60,height:27.5})){
+                        game.animRate=a+1
+                    }
+                }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+150,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     this.startGame()
                 }
@@ -1178,6 +1204,11 @@ class battle{
                 for(let a=0,la=types.ascend.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
                         game.ascend=a
+                    }
+                }
+                for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-67.5+a*67.5,y:this.layer.height-30},width:60,height:27.5})){
+                        game.animRate=a+1
                     }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){

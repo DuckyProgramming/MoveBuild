@@ -8,6 +8,7 @@ class item{
         this.size=size
 
         this.name=types.item[this.type].name
+        this.menu=types.item[this.type].menu
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
 
@@ -17,6 +18,7 @@ class item{
     }
     refresh(){
         this.name=types.item[this.type].name
+        this.menu=types.item[this.type].menu
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
     }
