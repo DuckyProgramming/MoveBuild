@@ -1670,14 +1670,14 @@ types={
         },{
             name:'Inburst',rarity:1,list:3,
             levels:[
-                {effect:[2],attack:388,cost:1,target:[0],spec:[],class:2},
-                {effect:[3],attack:388,cost:1,target:[0],spec:[],class:2},
+                {effect:[2],attack:389,cost:1,target:[0],spec:[],class:2},
+                {effect:[3],attack:389,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Outburst',rarity:1,list:3,
             levels:[
-                {effect:[2],attack:389,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[3],attack:389,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2],attack:388,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:388,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Serenity',rarity:0,list:3,
@@ -2060,8 +2060,8 @@ types={
         },{
             name:'Slit',rarity:1,list:3,
             levels:[
-                {effect:[2,3],attack:453,cost:0,target:[2,1,1],spec:[],class:1},
-                {effect:[4,3],attack:453,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[3,4],attack:453,cost:1,target:[2,1,1],spec:[6],class:1},
+                {effect:[4,5],attack:453,cost:1,target:[2,1,1],spec:[6],class:1},
             ],
         },
 
@@ -3289,7 +3289,7 @@ types={
             name:'Ally\nSwap',rarity:1,list:7,
             levels:[
                 {effect:[],attack:147,cost:0,target:[0],spec:[],class:3},
-                {effect:[],attack:147,cost:0,target:[0],spec:[],class:3},
+                {effect:[],attack:147,cost:0,target:[0],spec:[2],class:3},
             ],
         },{
             name:'Ally\nSap',rarity:1,list:7,
@@ -7947,7 +7947,7 @@ shipyard visit for another time.`,
         },{
             level:['Basic 5'],class:1,world:0,
             name:'Big Duck',
-            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:2,y:4}]]},
+            player:{position:[[{x:2,y:2}],[{x:4,y:2},{x:0,y:2}]]},
             enemy:[
                 {position:{x:2,y:4},name:'Duck'},
                 {position:{x:4,y:4},name:'Duck'},

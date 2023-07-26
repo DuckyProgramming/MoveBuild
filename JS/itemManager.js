@@ -277,7 +277,7 @@ class itemManager{
     activateDeath(player){
         for(let a=0,la=this.items[player].length;a<la;a++){
             if(this.items[player][a].name=='Bottled Fairy'){
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].heal(10*this.effectiveness[player])
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].healLifable(10*this.effectiveness[player])
                 this.items[player][a].type=1
             }
         }

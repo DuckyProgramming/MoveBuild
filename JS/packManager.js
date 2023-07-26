@@ -27,6 +27,9 @@ class packManager{
         this.packs.push(new pack(this.layer,this.player,this.battle,this.layer.width/2+this.packs.length*130,this.layer.height/4+this.posKey*60,this.packs.length))
     }
     display(){
+        if(this.battle.players>1){
+            displayPlayerSymbol(this.layer,40,40+this.player*60,this.battle.player[this.player],0,1,1)
+        }
         this.packs.forEach(pack=>pack.display())
     }
     update(){

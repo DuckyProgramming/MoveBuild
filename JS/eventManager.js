@@ -40,6 +40,9 @@ class eventManager{
         }
     }
     display(){
+        if(this.battle.players>1){
+            displayPlayerSymbol(this.layer,40+this.player*(this.layer.width-80),60,this.battle.player[this.player],0,1,1)
+        }
         this.layer.fill(200,this.primaryFade*0.5)
         this.layer.noStroke()
         if(this.battle.relicManager.hasRelic(103,this.player)){
@@ -337,9 +340,17 @@ class eventManager{
                     break
                     case 30:
                         if(this.page==0&&a<2){
-                            userCombatant.life-=8
+                            if(userCombatant.life<=0){
+                                tempPage=-this.pages[this.page].link[a]
+                            }else{
+                                userCombatant.life-=8
+                            }
                         }else if(this.page==0&&a==2){
-                            userCombatant.life-=24
+                            if(userCombatant.life<=0){
+                                tempPage=-this.pages[this.page].link[a]
+                            }else{
+                                userCombatant.life-=24
+                            }
                         }else if(this.page==1&&a==0){
                             this.battle.addCurrency(45,this.player)
                         }else if(this.page==2&&a==0){

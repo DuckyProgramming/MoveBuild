@@ -963,6 +963,91 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
     }
     layer.pop()
 }
+function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
+    layer.push()
+    layer.translate(x,y)
+    layer.rotate(direction)
+    layer.scale(size)
+    switch(type){
+        case 1:
+            layer.fill(0,50,100,fade)
+        break
+        case 2:
+            layer.fill(125,200,125,fade)
+        break
+        case 3:
+            layer.fill(255,175,175,fade)
+        break
+        case 4:
+            layer.fill(100,0,150,fade)
+        break
+    }
+    layer.ellipse(0,0,50)
+    layer.fill(255,fade)
+    switch(type){
+        case 1:
+            layer.beginShape()
+            layer.vertex(-20,0)
+            layer.vertex(0,-20/sqrt(3))
+            layer.vertex(20,0)
+            layer.vertex(10,-10*sqrt(3))
+            layer.vertex(-10,-10*sqrt(3))
+            layer.endShape()
+            layer.beginShape()
+            layer.vertex(-20,0)
+            layer.vertex(0,20/sqrt(3))
+            layer.vertex(20,0)
+            layer.vertex(10,10*sqrt(3))
+            layer.vertex(-10,10*sqrt(3))
+            layer.endShape()
+            layer.ellipse(0,0,10,10)
+        break
+        case 2:
+            layer.rotate(45)
+            layer.ellipse(0,0,32,42)
+            layer.stroke(125,200,125,fade)
+            layer.strokeWeight(3)
+            layer.line(0,17,0,-8)
+            layer.line(0,10,-8,5)
+            layer.line(0,10,8,5)
+            layer.line(0,0,-6,-3.75)
+            layer.line(0,0,6,-3.75)
+            layer.rotate(-45)
+        break
+        case 3:
+            for(let a=0,la=5;a<la;a++){
+                layer.beginShape()
+                layer.vertex(0,0)
+                layer.bezierVertex(-8,-7,-8,-14,-2,-21)
+                layer.vertex(0,-18)
+                layer.vertex(2,-21)
+                layer.bezierVertex(8,-14,8,-7,0,0)
+                layer.rotate(72)
+                layer.endShape()
+            }
+            layer.fill(255,175,175,fade)
+            layer.rotate(-12)
+            for(let a=0;a<5;a++){
+                layer.quad(0,-1,-1,-6,0,-10,1,-6)
+                layer.rotate(72)
+            }
+            layer.ellipse(0,0,4,4)
+        break
+        case 4:
+            for(let a=0,la=4;a<la;a++){
+                layer.rotate(90)
+                layer.triangle(-9,0,9,0,0,21)
+                layer.triangle(-5,-5,5,5,11,-11)
+            }
+            layer.fill(100,0,150,fade)
+            for(let a=0,la=4;a<la;a++){
+                layer.rotate(90)
+                layer.triangle(-4,0,4,0,0,8)
+            }
+        break
+    }
+    layer.pop()
+}
 function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
     layer.push()
     layer.translate(x,y)

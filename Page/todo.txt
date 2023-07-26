@@ -1,6 +1,9 @@
 Bugs:
 A lot
 
+animation speed meter
+use items from map (only a couple)
+
 Menu UI:
 
 Generality:

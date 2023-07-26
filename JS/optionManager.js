@@ -47,7 +47,7 @@ class optionManager{
             break
             case 1:
                 this.finishSelection()
-                this.battle.combatantManager.combatants[this.player].heal(this.battle.relicManager.hasRelic(65,this.id)?round(this.battle.combatantManager.combatants[this.player].base.life)*0.4+10:round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
+                this.battle.combatantManager.combatants[this.player].healLifable(this.battle.relicManager.hasRelic(65,this.id)?round(this.battle.combatantManager.combatants[this.player].base.life)*0.4+10:round(this.battle.combatantManager.combatants[this.player].base.life)*0.4)
             break
             case 2:
                 this.battle.overlayManager.overlays[5][this.player].active=true
@@ -85,6 +85,9 @@ class optionManager{
         }
     }
     display(){
+        if(this.battle.players>1){
+            displayPlayerSymbol(this.layer,40,40+this.player*60,this.battle.player[this.player],0,1,1)
+        }
         this.options.forEach(option=>option.display())
     }
     update(){

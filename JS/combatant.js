@@ -11887,18 +11887,18 @@ class combatant{
             this.layer.noStroke()
             for(let a=0,la=10;a<la;a++){
                 this.layer.fill(255,200*a/la,200*a/la,this.fade*this.infoAnim.balance)
-                this.layer.rect(-18+a*4,12,4,5)
+                this.layer.rect(-18+a*4,-8,4,5)
             }
             this.layer.stroke(0,this.fade*this.infoAnim.balance)
             this.layer.strokeWeight(1)
             this.layer.noFill()
-            this.layer.rect(0,12,40,5,2)
+            this.layer.rect(0,-8,40,5,2)
             this.layer.stroke(255,this.fade*this.infoAnim.balance)
-            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),9,-19+3.8*constrain(this.balance,0,10),15)
+            this.layer.line(-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-11,-19+38/this.balanceCap*constrain(this.balance,0,this.balanceCap),-5)
             this.layer.fill(255,this.fade*this.infoAnim.balance)
             this.layer.noStroke()
             this.layer.textSize(5)
-            this.layer.text(this.balance,0,12)
+            this.layer.text(this.balance,0,-8)
         }
     }
     displayInfo(scene){
@@ -12001,7 +12001,7 @@ class combatant{
             break
             case 'event':
                 this.layer.push()
-                this.layer.translate(800-this.id*700,510)
+                this.layer.translate(100+this.id*700,510)
                 this.layer.scale(1.5)
                 this.displayInfoInternal()
                 this.layer.pop()

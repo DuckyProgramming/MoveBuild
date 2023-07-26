@@ -426,17 +426,10 @@ class combatantManager{
                 this.combatants.forEach(combatant=>combatant.displayInfo('battle'))
                 this.combatants.forEach(combatant=>combatant.displayInfo('overlay'))
             break
-            case 'rest':
+            case 'rest': case 'event':
                 for(let a=0,la=this.combatants.length;a<la;a++){
                     if(this.combatants[a].team>0){
-                        this.combatants[a].displayInfo('rest')
-                    }
-                }
-            break
-            case 'event':
-                for(let a=0,la=this.combatants.length;a<la;a++){
-                    if(this.combatants[a].team>0){
-                        this.combatants[a].displayInfo('event')
+                        this.combatants[a].displayInfo(scene)
                     }
                 }
             break

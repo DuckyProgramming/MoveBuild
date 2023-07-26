@@ -163,7 +163,7 @@ class relic{
                     displaySymbol(this.layer,0,-6,10,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('14',0,12)
+                    this.layer.text('10',0,12)
                 break
                 case 'Death Boost':
                     displaySymbol(this.layer,-8,0,22,0,0.5,this.fade)

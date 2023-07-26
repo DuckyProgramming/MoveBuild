@@ -837,6 +837,11 @@ class relicManager{
                 this.relics.forEach(relic=>relic.displayInfo())
             break
             case 'stash':
+                if(this.battle.players>1){
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        displayPlayerSymbol(this.layer,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
+                    }
+                }
                 this.displayRelics.forEach(relic=>relic.display(lea-1))
                 this.displayRelics.forEach(relic=>relic.displayInfo())
                 this.layer.fill(200,this.fade)
@@ -846,6 +851,11 @@ class relicManager{
                 regTriangle(this.layer,this.layer.width/2,this.layer.height/2+40+this.displayRelics.length*50,20,20,90)
             break
             case 'bossstash':
+                if(this.battle.players>1){
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        displayPlayerSymbol(this.layer,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
+                    }
+                }
                 this.displayRelics.forEach(relic=>relic.display(lea-1))
                 this.displayRelics.forEach(relic=>relic.displayInfo())
                 this.layer.fill(200,this.fade)

@@ -327,7 +327,7 @@ class attack{
                     break
                     case 364:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
-                        this.userCombatant.life-=this.damage[1]*this.energy
+                        this.userCombatant.life-=this.effect[1]*this.energy
                     break
                     case 371:
                         if(this.userCombatant.life<this.userCombatan.base.life*0.5){
