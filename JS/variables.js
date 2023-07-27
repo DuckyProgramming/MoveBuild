@@ -596,12 +596,6 @@ types={
                 {effect:[1],attack:205,cost:1,target:[1,1,1],spec:[1],class:3},
             ],
         },{
-            name:'Big\nBlock',rarity:0,list:1,
-            levels:[
-                {effect:[20],attack:2,cost:2,target:[0],spec:[],class:2},
-                {effect:[28],attack:2,cost:2,target:[0],spec:[],class:2},
-            ],
-        },{
             name:'Recycle',rarity:1,list:1,
             levels:[
                 {effect:[6],attack:206,cost:1,target:[0],spec:[],class:4},
@@ -848,7 +842,7 @@ types={
                 {effect:[14,1],attack:247,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Set\nSelf',rarity:1,list:1,
+            name:'Set\nSelf',rarity:0,list:1,
             levels:[
                 {effect:[1,1],attack:248,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,2],attack:248,cost:1,target:[1,1,1],spec:[0],class:3},
@@ -858,6 +852,12 @@ types={
             levels:[
                 {effect:[3],attack:249,cost:1,target:[0],spec:[1],class:4},
                 {effect:[2],attack:249,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Juice\nUp',rarity:1,list:1,
+            levels:[
+                {effect:[3,1],attack:488,cost:1,target:[0],spec:[],class:4},
+                {effect:[5,1],attack:488,cost:1,target:[0],spec:[],class:4},
             ],
         },
         
@@ -1266,8 +1266,8 @@ types={
         },{
             name:'Convect',rarity:1,list:2,
             levels:[
-                {effect:[2,5],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[2,4],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2,8],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2,6],attack:376,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Enervation',rarity:1,list:2,
@@ -1296,8 +1296,8 @@ types={
         },{
             name:'Tanking',rarity:2,list:2,
             levels:[
-                {effect:[],attack:381,cost:3,target:[0],spec:[],class:4},
-                {effect:[],attack:381,cost:2,target:[0],spec:[],class:4},
+                {effect:[],attack:381,cost:3,target:[0],spec:[1],class:4},
+                {effect:[],attack:381,cost:2,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Autoblock',rarity:2,list:2,
@@ -1380,8 +1380,8 @@ types={
         },{
             name:'Excitant',rarity:0,list:2,
             levels:[
+                {effect:[0.5],attack:470,cost:-1,target:[0],spec:[1],class:4},
                 {effect:[1],attack:470,cost:-1,target:[0],spec:[1],class:4},
-                {effect:[2],attack:470,cost:-1,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Parade',rarity:2,list:2,
@@ -5695,10 +5695,10 @@ takes a chunk out of you.`,
             pages:[
                 {
                     desc:
-                    `You find a notebook,
-                    seemingly just left on the ground for no reason.
-                    After making sure that there are no traps nearby,
-                    you grab the notebook and read through the first few pages.`,
+`You find a notebook,
+seemingly just left on the ground for no reason.
+After making sure that there are no traps nearby,
+you grab the notebook and read through the first few pages.`,
                     option:['Read on','Leave it'],
                     optionDesc:['',''],
                     link:[2,1],

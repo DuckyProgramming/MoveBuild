@@ -1364,6 +1364,11 @@ class battle{
                 }else if(code==DOWN_ARROW&&game.ascend>0){
                     game.ascend--
                 }
+                for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
+                    if(a+1==int(key)){
+                        game.animRate=a+1
+                    }
+                }
                 if(code==ENTER){
                     this.startGame()
                 }
@@ -1387,6 +1392,11 @@ class battle{
                     game.ascend++
                 }else if(code==DOWN_ARROW&&game.ascend>0){
                     game.ascend--
+                }
+                for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
+                    if(a+1==int(key)){
+                        game.animRate=a+1
+                    }
                 }
                 if(code==ENTER){
                     this.startGame()

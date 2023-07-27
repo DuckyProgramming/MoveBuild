@@ -212,8 +212,8 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			bonus=round(bonus*10)/10
 			switch(type){
 				case 0: return damage==effect&&bonus==0?effect:effect+`(${damage+bonus})`
-				case 2: return (damage==effect&&bonus==0?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
-				case 5: return (damage==effect&&bonus==0?effect+'XX':effect+`(${damage})XX`)+(bonus>0?`(+${bonus})`:``)
+				case 2: return (damage==effect?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
+				case 5: return (damage==effect?effect+'XX':effect+`(${damage})XX`)+(bonus>0?`(+${bonus})`:``)
 				case 7: return effect==1?(damage==effect?'1*Combo':`1(${damage})*Combo`):(damage==effect?effect+'*Combo':effect+`(${damage})*Combo`)
 				case 8: return effect==1?(damage==effect&&bonus==0?effect+'1*Combo':effect+`1(${damage})*Combo`)+(bonus>0?`(+${bonus})`:``):(damage==effect&&bonus==0?effect+'*Combo':effect+`(${damage})*Combo`)+(bonus>0?`(+${bonus})`:``)
 				case 10: return damage==effect?effect:effect+`(${damage})`

@@ -1003,7 +1003,7 @@ class attack{
             case 225: case 226: case 231: case 239: case 240: case 249: case 264: case 278: case 286: case 299:
             case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
-            case 455: case 457:
+            case 455: case 457: case 488:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1184,6 +1184,10 @@ class attack{
                         case 457:
                             this.battle.energy.main[this.player]+=this.effect[0]
                             this.battle.cardManagers[this.player].draw(this.effect[1])
+                        break
+                        case 488:
+                            this.userCombatant.combo+=this.effect[0]
+                            this.battle.cardManagers[this.player].addRandomSpec(2,0,11)
                         break
                     }
                 }else if(this.timer>=20){
@@ -2373,7 +2377,9 @@ class attack{
                             }
                         break
                         case 351:
-                            this.battle.cardManagers[this.targetCombatant.id].addRandomAll(2,0,3)
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.cardManagers[this.targetCombatant.id].addRandomAll(2,0,3)
+                            }
                         break
                         case 352:
                             this.battle.cardManagers[this.targetCombatant.id].hand.add(findName('Strike\nAid',types.card),0,this.color)

@@ -76,10 +76,12 @@ class nodeManager{
         this.nodes.forEach(node=>node.scroll+=scroll-this.scroll)
         this.scroll=scroll
     }
-    enterNode(type,y){
-        this.battle.relicManager.activate(7,[type])
-        this.battle.stats.node[0]++
-        this.battle.stats.node[1+type]++
+    enterNode(type,y,chain){
+        if(!chain){
+            this.battle.relicManager.activate(7,[type])
+            this.battle.stats.node[0]++
+            this.battle.stats.node[1+type]++
+        }
         switch(type){
             case 0:
                 transition.scene='battle'
@@ -109,7 +111,7 @@ class nodeManager{
                     transition.scene='event'
                     this.battle.setupEvent()
                 }else{
-                    this.enterNode(send,y)
+                    this.enterNode(send,y,true)
                 }
             break
             case 6:
@@ -138,7 +140,7 @@ class nodeManager{
                 this.nodes[a].complete=true
                 transition.trigger=true
                 this.scrollDown(this.nodes[a].base.position.y)
-                this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y)
+                this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
                 break
             }
         }
@@ -151,7 +153,7 @@ class nodeManager{
                 this.nodes[a].complete=true
                 transition.trigger=true
                 this.scrollDown(this.nodes[a].base.position.y)
-                this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y)
+                this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
                 break
             }
         }

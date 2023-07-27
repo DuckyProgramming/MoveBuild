@@ -109,6 +109,17 @@ class cardManager{
             this.getList(group).addFreeShuffle(type,level,types.card[type].list,variant)
         }
     }
+    addRandomSpec(group,level,spec){
+        let list=[]
+        for(let a=0,la=types.card.length;a<la;a++){
+            if(types.card[a].levels[level].spec.includes(spec)){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
+        }
+    }
     draw(amount){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('No Draw')<=0){

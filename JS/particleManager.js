@@ -25,7 +25,9 @@ class particleManager{
     }
     update(){
         for(let a=0,la=this.particlesBack.length;a<la;a++){
-            this.particlesBack[a].update()
+            for(let b=0,lb=game.animRate;b<lb;b++){
+                this.particlesBack[a].update()
+            }
             if(this.particlesBack[a].remove){
                 delete this.particlesBack[a]
                 this.particlesBack.splice(a,1)
@@ -34,7 +36,9 @@ class particleManager{
             }
         }
         for(let a=0,la=this.particles.length;a<la;a++){
-            this.particles[a].update()
+            for(let b=0,lb=game.animRate;b<lb;b++){
+                this.particles[a].update()
+            }
             if(this.particles[a].remove){
                 delete this.particles[a]
                 this.particles.splice(a,1)
