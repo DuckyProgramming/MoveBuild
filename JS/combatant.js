@@ -19,7 +19,7 @@ class combatant{
         this.behavior=types.combatant[this.type].behavior
         this.spec=types.combatant[this.type].spec
         this.move=types.combatant[this.type].move
-        this.attack=copyArray(types.combatant[this.type].attack)
+        this.attack=copyArrayAttack(types.combatant[this.type].attack)
         this.description=types.combatant[this.type].description
 
         if(this.team==0&&this.battle.players>1){
@@ -2283,7 +2283,7 @@ class combatant{
             if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.2)
+                        this.attack[a].effect[a]=round(this.attack[a].effect[a]*1.2)
                     }
                 }
             }
@@ -2293,14 +2293,14 @@ class combatant{
                 this.collect.life=round(this.collect.life*1.2)
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==2)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.2)
+                        this.attack[a].effect[a]=round(this.attack[a].effect[a]*1.2)
                     }
                 }
             }
             if(game.ascend>=17&&this.battle.encounter.class==0||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2){
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==4)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.25)
+                        this.attack[a].effect[a]=round(this.attack[a].effect[a]*1.25)
                     }
                 }
             }
@@ -2316,7 +2316,7 @@ class combatant{
                 }
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*2)
+                        this.attack[a].effect[a]=round(this.attack[a].effect[a]*2)
                     }
                 }
             }else if(game.ascend>=29&&this.battle.encounter.class==2){

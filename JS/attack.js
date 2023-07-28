@@ -2345,7 +2345,7 @@ class attack{
                             this.targetTile.addType(2)
                         break
                         case 272:
-                            this.targetCombatant.randomStatus(this.effect[0],[1])
+                            this.targetCombatant.randomStatusInstant(this.effect[0],[1])
                         break
                         case 292:
                             this.targetCombatant.statusEffect('Weak',this.effect[0])
@@ -2366,7 +2366,7 @@ class attack{
                         break
                         case 316:
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
-                            this.targetCombatant.randomStatus(this.effect[1],[1])
+                            this.targetCombatant.randomStatusInstant(this.effect[1],[1])
                         break
                         case 326:
                             this.targetCombatant.takeDamage(this.effect[0],this.user)

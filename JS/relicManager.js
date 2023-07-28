@@ -791,11 +791,6 @@ class relicManager{
                             this.detail[93]=1
                         }
                     break
-                    case 5:
-                        if(this.active[99]>0){
-                            this.relicPlayer(99).heal(5*this.active[99])
-                        }
-                    break
                 }
             break
             case 8://skipping card [player]
@@ -810,7 +805,7 @@ class relicManager{
                 if(this.active[68]>0&&args[1]==this.player[68]){
                     let player=this.relicPlayer(68)
                     if(player.block<=0){
-                        player.addBlock(6)
+                        player.addBlock(6*this.active[68])
                     }
                 }
             break
@@ -825,6 +820,15 @@ class relicManager{
             case 11://removing card [player]
                 if(this.active[104]>0&&args[0]==this.player[104]){
                     this.relicPlayer(104).gainMaxHP(7*this.active[104])
+                }
+            break
+            case 12://preentering room [room]
+                switch(args[0]){
+                    case 5://event
+                        if(this.active[99]>0){
+                            this.relicPlayer(99).heal(5*this.active[99])
+                        }
+                    break
                 }
             break
         }

@@ -552,6 +552,13 @@ function copyArrayStack(base){
 	}
 	return list
 }
+function copyArrayAttack(base){
+	let list=[]
+	for(let a=0,la=base.length;a<la;a++){
+		list.push({type:base[a].type,effect:base[a].effect})
+	}
+	return list
+}
 function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){
 		case 0:

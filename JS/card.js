@@ -35,7 +35,8 @@ class card{
         this.name=name||types.card[this.type].name
         this.list=list||types.card[this.type].list
         this.rarity=types.card[this.type].rarity
-        this.effect=effect||copyArray(types.card[this.type].levels[this.level].effect)
+        this.effect=effect
+        this.effect=this.effect==undefined?copyArray(types.card[this.type].levels[this.level].effect):copyArray(this.effect)
         this.attack=attack||types.card[this.type].levels[this.level].attack
         this.target=target||types.card[this.type].levels[this.level].target
         this.spec=(spec||types.card[this.type].levels[this.level].spec).concat(additionalSpec||[])
@@ -508,7 +509,7 @@ class card{
             case 392: string+=`Gain ${effect[0]} Intangible\n${effect[1]} Balance`; break
             case 393: string+=`Gain ${effect[0]} Dexterity\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\n${effect[1]} Balance`; break
             case 394: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\n${effect[1]} Balance`; break
-            case 395: string+=`Apply ${effect[0]} Bleed\nin All Directions`; break
+            case 395: string+=`Apply ${effect[0]} Bleed\nin All Directions\nIf Targets Have\nNo Block`; break
             case 396: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRearm From\nAdjacent Tiles`; break
             case 397: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n${effect[1]} Balance`; break
             case 398: string+=`Tick Statuses\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
@@ -528,7 +529,7 @@ class card{
             case 412: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\nDisarm`; break
             case 413: string+=`Apply ${effect[0]} Bleed\nDisarm`; break
             case 414: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Attack Played\n${effect[1]} Balance`; break
-            case 415: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Skill Played`; break
+            case 415: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Defense Played`; break
             case 416: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 1 Less\nWhen Attack Played`; break
             case 417: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Confusion\n${effect[2]} Balance`; break
             case 418: string+=`When Enemy Dies,\nHeal ${this.calculateEffect(effect[0],4)} Health`; break

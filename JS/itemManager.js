@@ -272,7 +272,7 @@ class itemManager{
                 }
             break
         }
-        if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,2))==0){
+        if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<50*this.active[80]){
             this.addRandomItem(player)
         }
     }
