@@ -210,7 +210,7 @@ class itemManager{
                 this.battle.combatantManager.randomizeCombatants()
             break
             case 39:
-                this.battle.cardManagers[player].hand.callInput(6,[87,[3*this.effectiveness[player]],1,[0]])
+                this.battle.cardManagers[player].hand.callInput(6,[489,[3*this.effectiveness[player]],1,[0]])
             break
             case 40:
                 this.battle.cardManagers[player].reserve.removeAllName('Fatigue')

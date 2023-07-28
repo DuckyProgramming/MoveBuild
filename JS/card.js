@@ -149,7 +149,8 @@ class card{
             case 28: string+=`Put a Card in Discard\nPile in Your Hand`; break
             case 29: string+=`Put a Card in Draw\nPile in Your Hand`; break
             case 30: string+=`Add ${effect[0]} Dodge`; break
-            case 31: string+=`Push 1 Tile\nin All Directions`; break
+            case 31: case 489:
+                string+=`Push 1 Tile\nin All Directions`; break
             case 33: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdvance`; break
             case 34: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nNext Turn`; break
             case 35: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target is Undamaged,\nGain ${effect[1]} Energy`; break

@@ -111,7 +111,7 @@ class attack{
                     this.relativeDistance.push(sqrt((this.targetCombatant[a].relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant[a].relativePosition.y-this.relativePosition.y)**2))
                 }
             break
-            case 87:
+            case 489:
                 this.targetCombatant=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,2)
                 this.direction=[]
                 this.distance=[]
@@ -2832,7 +2832,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 87:
+            case 489:
                 if(this.timer==1){
                     for(let a=0,la=this.targetCombatant.length;a<la;a++){
                         let index=this.targetDistance[a]==1?this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant[a].tilePosition.y*2-this.userCombatant.tilePosition.y):this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant[a].tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
@@ -3737,7 +3737,7 @@ class attack{
                     }
                     if(this.timer==15*this.targetDistance+3){
                         this.targetCombatant.takeDamage(game.collisionDamage,-1)
-                        let offset=transformDirection(0,this.relativeDirection+120)
+                        let offset=transformDirection(0,this.relativeDirection-120)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                         if(index>=0){
                             this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
