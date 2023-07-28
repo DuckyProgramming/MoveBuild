@@ -52,9 +52,9 @@ class attack{
             case 316: case 319: case 323: case 326: case 327: case 329: case 333: case 342: case 345: case 348:
             case 361: case 364: case 368: case 373: case 376: case 378: case 379: case 382: case 384: case 385:
             case 401: case 402: case 408: case 409: case 412: case 413: case 414: case 415: case 417: case 419:
-            case 420: case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441:
-            case 444: case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468:
-            case 469: case 475: case 487:
+            case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441: case 444:
+            case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
+            case 475: case 487:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)

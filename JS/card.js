@@ -58,7 +58,7 @@ class card{
         }
 
         this.strike=this.name.includes('Strike')
-        this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'
+        this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'
     }
     calculateEffect(effect,type){
         if(stage.scene=='battle'&&!this.nonCalc){
