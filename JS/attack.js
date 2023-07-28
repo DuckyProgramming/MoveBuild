@@ -3002,7 +3002,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 132: case 136: case 190:
+            case 132: case 136: case 290:
                 if(this.timer==1&&this.targetDistance>1){
                     this.userCombatant.startAnimation(0)
                 }else if(this.timer==15*this.targetDistance-14){
@@ -3035,7 +3035,9 @@ class attack{
                         }
                     }
                 }else if(this.timer>=15*this.targetDistance+15){
-                    this.battle.activate(1,this.userCombatant.id)
+                    if(this.targetDistance>1){
+                        this.battle.activate(1,this.userCombatant.id)
+                    }
                     this.remove=true
                 }
             break
@@ -3415,6 +3417,7 @@ class attack{
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,7,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
                 }else if(this.timer==10*this.targetDistance+15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
                     this.battle.combatantManager.damageAreaID(this.effect[0],this.userCombatant.id,this.targetCombatant.id,this.targetCombatant.tilePosition,2)
                 }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true

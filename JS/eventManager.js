@@ -577,7 +577,7 @@ class eventManager{
                         }else if(this.page==4&&a==0){
                             userCombatant.safeDamage(6)
                         }else if(this.page==6&&a==0){
-                            this.battle.relicManager.addRandomRelic()
+                            this.battle.relicManager.addRandomRelic(this.player)
                         }
                     break
                     case 53:

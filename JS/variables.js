@@ -174,13 +174,13 @@ types={
             name:'Step-L',rarity:-2,list:-1,
             levels:[
                 {effect:[1],attack:484,cost:1,target:[24,1,1],spec:[0],class:3},
-                {effect:[1],attack:484,cost:1,target:[24,1,1],spec:[0],class:3},
+                {effect:[1],attack:484,cost:0,target:[24,1,1],spec:[0],class:3},
             ],
         },{
             name:'Step-R',rarity:-2,list:-1,
             levels:[
                 {effect:[1],attack:485,cost:1,target:[25,1,1],spec:[0],class:3},
-                {effect:[1],attack:485,cost:1,target:[25,1,1],spec:[0],class:3},
+                {effect:[1],attack:485,cost:0,target:[25,1,1],spec:[0],class:3},
             ],
         },
         
@@ -321,8 +321,8 @@ types={
         },{
             name:'Combo\nCounter',rarity:0,list:1,
             levels:[
-                {effect:[6,8,2],attack:131,cost:1,target:[0],spec:[],class:2},
-                {effect:[10,12,2],attack:131,cost:1,target:[0],spec:[],class:2},
+                {effect:[6,8,1],attack:131,cost:1,target:[0],spec:[],class:2},
+                {effect:[10,12,1],attack:131,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Combo\nStrike',rarity:0,list:1,
@@ -2116,8 +2116,8 @@ types={
         },{
             name:'Force\nPush',rarity:0,list:4,
             levels:[
-                {effect:[],attack:250,cost:1,target:[2,1,2],spec:[1],class:1},
-                {effect:[],attack:250,cost:1,target:[2,1,2],spec:[1,2],class:1},
+                {effect:[],attack:250,cost:1,target:[2,1,1],spec:[1],class:1},
+                {effect:[],attack:250,cost:1,target:[2,1,1],spec:[1,2],class:1},
             ],
         },{
             name:'Force\nPull',rarity:0,list:4,
@@ -2296,8 +2296,8 @@ types={
         },{
             name:'Carnage',rarity:0,list:4,
             levels:[
-                {effect:[20],attack:2,cost:2,target:[2,1,1],spec:[0,4],class:1},
-                {effect:[28],attack:2,cost:2,target:[2,1,1],spec:[0,4],class:1},
+                {effect:[20],attack:1,cost:2,target:[2,1,1],spec:[0,4],class:1},
+                {effect:[28],attack:1,cost:2,target:[2,1,1],spec:[0,4],class:1},
             ],
         },{
             name:'Pulsate',rarity:0,list:4,
@@ -2632,8 +2632,8 @@ types={
         },{
             name:'Filedown',rarity:1,list:4,
             levels:[
-                {effect:[[10],[1]],attack:[329,3],cost:1,target:[15,1,1],spec:[12],reality:[[0],[0]],class:[1,3]},
-                {effect:[[15],[1]],attack:[329,3],cost:1,target:[15,1,1],spec:[12],reality:[[0],[0]],class:[1,3]},
+                {effect:[[14],[1]],attack:[329,3],cost:1,target:[15,1,1],spec:[12],reality:[[0],[0]],class:[1,3]},
+                {effect:[[18],[1]],attack:[329,3],cost:1,target:[15,1,1],spec:[12],reality:[[0],[0]],class:[1,3]},
             ],
         },{
             name:'Extended\nMove',rarity:1,list:4,
@@ -3453,7 +3453,7 @@ types={
         {name:'Destructor Bot',life:81,behavior:0,spec:[],move:{type:0,speed:3},attack:[{type:136,effect:[40]}],description:`Has no regard for its nonexistent life`},
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[3,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
         {name:'Corrupt Detective',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:141,effect:[12,1]},{type:140,effect:[10,2]},{type:12,effect:[15]}],description:`Received tax benefits`},
-        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,3]},{type:10,effect:[8]}],description:`Not actually projectile spammer`},
+        {name:'Elf Archer',life:55,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:148,effect:[3,5]},{type:149,effect:[3,3]},{type:4,effect:[8]}],description:`Not actually projectile spammer`},
         {name:'Riot Police',life:147,behavior:0,spec:[9],move:{type:0,speed:1},attack:[{type:150,effect:[6,4]},{type:9,effect:[16]}],description:`Responds to everything except riots`},
         {name:'Reichswehr',life:43,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:151,effect:[6,1]},{type:12,effect:[10]},{type:152,effect:[2]}],description:`No historical context`},
         {name:'Louse',life:17,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:153,effect:[2]},{type:79,effect:[5]},{type:6,effect:[6]},{type:1,effect:[7]}],description:`Would rather not do anything`},
@@ -4079,7 +4079,9 @@ of what you were doing beforehand.`,
                     optionDesc:['Lose 2 Random Cards'],
                     link:[-1],
                 },{
-                    desc:`You land with a crash. After a minute of lying in pain, you get back up and leave.`,
+                    desc:
+`You land with a crash.
+After a minute of lying in pain, you get back up and leave.`,
                     option:['Get out of the hole'],
                     optionDesc:['Lose 13 Health'],
                     link:[-1],
@@ -5982,7 +5984,7 @@ shipyard visit for another time.`,
                 fill:[75,75,75],
                 stroke:[60,60,60],
                 text:[20,20,20],
-                active:[150,150,150],
+                active:[100,100,100],
             },{
                 fill:[255,150,150],
                 stroke:[225,125,125],

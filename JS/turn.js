@@ -939,7 +939,9 @@ class turn{
                                 break
                             }
                         }else if(this.timer>=15*this.targetDistance+15){
-                            this.battle.activate(1,this.userCombatant.id)
+                            if(this.targetDistance>1){
+                                this.battle.activate(1,this.userCombatant.id)
+                            }
                             this.remove=true
                         }
                     break
@@ -984,7 +986,9 @@ class turn{
                                 }
                             }
                         }else if(this.timer>=15*this.targetDistance+15){
-                            this.battle.activate(1,this.userCombatant.id)
+                            if(this.targetDistance>1){
+                                this.battle.activate(1,this.userCombatant.id)
+                            }
                             this.remove=true
                         }
                     break
@@ -1028,7 +1032,9 @@ class turn{
                                 }
                             }
                         }else if(this.timer>=15*this.targetDistance+15){
-                            this.battle.activate(1,this.userCombatant.id)
+                            if(this.targetDistance>1){
+                                this.battle.activate(1,this.userCombatant.id)
+                            }
                             this.remove=true
                         }
                     break
@@ -1051,7 +1057,9 @@ class turn{
                         }else if(this.timer==15*this.targetDistance-6||this.timer==15*this.targetDistance-2||this.timer==15*this.targetDistance+2||this.timer==15*this.targetDistance+6){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=15*this.targetDistance+15){
-                            this.battle.activate(1,this.userCombatant.id)
+                            if(this.targetDistance>1){
+                                this.battle.activate(1,this.userCombatant.id)
+                            }
                             this.remove=true
                         }
                     break
@@ -1074,7 +1082,9 @@ class turn{
                         }else if(this.timer==15*this.targetDistance-8||this.timer==15*this.targetDistance-4||this.timer==15*this.targetDistance||this.timer==15*this.targetDistance+4||this.timer==15*this.targetDistance+8){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=15*this.targetDistance+15){
-                            this.battle.activate(1,this.userCombatant.id)
+                            if(this.targetDistance>1){
+                                this.battle.activate(1,this.userCombatant.id)
+                            }
                             this.remove=true
                         }
                     break
@@ -1098,7 +1108,9 @@ class turn{
                             this.timer==15*this.targetDistance+2||this.timer==15*this.targetDistance+6||this.timer==15*this.targetDistance+10){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=15*this.targetDistance+15){
-                            this.battle.activate(1,this.userCombatant.id)
+                            if(this.targetDistance>1){
+                                this.battle.activate(1,this.userCombatant.id)
+                            }
                             this.remove=true
                         }
                     break

@@ -779,9 +779,6 @@ class relicManager{
                         if(this.active[38]>0&&this.detail[38]==0){
                             this.detail[38]=1
                         }
-                        if(this.active[99]>0){
-                            this.relicPlayer(99).heal(5*this.active[99])
-                        }
                     break
                     case 4://shop
                         if(this.active[91]>0){
@@ -792,6 +789,11 @@ class relicManager{
                         }
                         if(this.active[93]>0&&this.detail[93]==0){
                             this.detail[93]=1
+                        }
+                    break
+                    case 5:
+                        if(this.active[99]>0){
+                            this.relicPlayer(99).heal(5*this.active[99])
                         }
                     break
                 }

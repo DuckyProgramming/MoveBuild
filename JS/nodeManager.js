@@ -77,8 +77,10 @@ class nodeManager{
         this.scroll=scroll
     }
     enterNode(type,y,chain){
-        if(!chain){
+        if(type!=5){
             this.battle.relicManager.activate(7,[type])
+        }
+        if(!chain){
             this.battle.stats.node[0]++
             this.battle.stats.node[1+type]++
         }
@@ -108,6 +110,7 @@ class nodeManager{
                 ?this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
                 :this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
                 if(send==5){
+                    this.battle.relicManager.activate(7,[type])
                     transition.scene='event'
                     this.battle.setupEvent()
                 }else{
