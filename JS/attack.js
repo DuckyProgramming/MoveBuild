@@ -54,7 +54,7 @@ class attack{
             case 401: case 402: case 408: case 409: case 412: case 413: case 414: case 415: case 417: case 419:
             case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441: case 444:
             case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
-            case 475: case 487: case 491:
+            case 475: case 487: case 491: case 494: case 496:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -571,6 +571,9 @@ class attack{
                     case 462:
                         this.battle.cardManagers[this.player].deFatigue(this.effect[1])
                     break
+                    case 496:
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                    break
                 }
             break
         }
@@ -587,7 +590,7 @@ class attack{
             case 287: case 288: case 293: case 296: case 301: case 304: case 310: case 319: case 323: case 361:
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
             case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462: case 469:
-            case 475:
+            case 475: case 496:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){
@@ -4439,7 +4442,7 @@ class attack{
                 }
             break
             case 342: case 350: case 353: case 407: case 425: case 473: case 476: case 477: case 478: case 479:
-            case 480: case 490: case 491:
+            case 480: case 490: case 491: case 492: case 493: case 494: case 495:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4501,6 +4504,24 @@ class attack{
                         break
                         case 491:
                             this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]])
+                        break
+                        case 492:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(1)
+                            }
+                        break
+                        case 493:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(2)
+                            }
+                        break
+                        case 494:
+                            this.userCombatant.evoke(1,this.targetCombatant.id,[1])
+                        break
+                        case 495:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(3)
+                            }
                         break
                     }
                 }else if(this.timer>=20){

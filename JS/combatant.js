@@ -3667,23 +3667,38 @@ class combatant{
             }
         }
     }
+    subEvoke(type,target){
+        switch(type){
+            case 0:
+                this.battle.combatantManager.combatants[target].takeDamage(6,-1)
+            break
+            case 1:
+                this.battle.combatantManager.combatants[target].addBlock(8)
+            break
+            case 2:
+                this.battle.combatantManager.damageAreaRuleless(10,this.battle.combatantManager.combatants[target].tilePosition)
+            break
+            case 3:
+                this.battle.energy.main[target>=this.battle.players?this.id:target]+=2
+            break
+        }
+    }
     evoke(type,target,args){
         switch(type){
             case 0:
                 for(let a=0,la=args[0];a<la;a++){
-                    switch(this.orbs[0]){
-                        case 0:
-                            this.battle.combatantManager.combatants[target].takeDamage(6,-1)
-                        break
-                        case 1:
-                            this.battle.combatantManager.combatants[target].addBlock(5)
-                        break
-                    }
+                    this.subEvoke(this.orbs[0],target)
                 }
                 for(let a=0,la=this.orbs.length-1;a<la;a++){
                     this.orbs[a]=this.orbs[a+1]
                 }
                 this.orbs[this.orbs.length-1]=-1
+            break
+            case 1:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    this.subEvoke(this.orbs[a],target)
+                    this.orbs[a]=-1
+                }
             break
         }
         this.anyOrb=false

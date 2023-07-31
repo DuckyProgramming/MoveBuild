@@ -603,9 +603,17 @@ class card{
             case 486: string+=`Move to Any\nEmpty Plant Tile`; break
             case 487: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nAdvance`; break
             case 488: string+=`Gain ${effect[0]} Combo\nAdd ${effect[1]} Random\nCombo Card${effect[1]!=1?`s`:``}\nto Your Hand`; break
-
             case 490: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
             case 491: string+=`Evoke First Charge\n${this.calculateEffect(effect[0],0)} Time${effect[0]!=1?`s`:``}`; break
+            case 492: string+=`Hold ${effect[0]} Shield Orb${effect[0]!=1?`s`:``}`; break
+            case 493: string+=`Hold ${effect[0]} Explosive Orb${effect[0]!=1?`s`:``}`; break
+            case 494: string+=`Evoke All Orbs`; break
+            case 495: string+=`Hold ${effect[0]} Energy Orb${effect[0]!=1?`s`:``}`; break
+            case 496: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nAdvance`; break
+
+            case 497: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nClaw Up ${effect[1]}`; break
+
+
 
 
 
@@ -625,7 +633,7 @@ class card{
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
         }
-        if(this.target[0]==2){
+        if(this.target[0]==2||this.target[0]==26){
             string+='\nRange '+this.target[1]+'-'+this.target[2]
         }
         if(spec.includes(0)){
@@ -657,6 +665,9 @@ class card{
         }
         if(spec.includes(4)){
             string+='\nEthereal'
+        }
+        if(spec.includes(20)){
+            string+='\nClaw'
         }
         if(string[0]=='\n'){
             string=string.substring(1,string.length)

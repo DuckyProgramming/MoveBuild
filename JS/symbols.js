@@ -982,11 +982,25 @@ function displayOrb(layer,x,y,typeFades,direction,size,fade){
                     layer.line(-3,3*sqrt(3),3,-3*sqrt(3))
                 break
                 case 1:
+                    layer.noFill()
                     layer.stroke(100,255,255,fade*typeFades[a])
-                    layer.strokeWeight(3)
+                    layer.strokeWeight(2)
                     layer.quad(-4,0,0,-4,4,0,0,4)
                     layer.strokeWeight(1)
                     layer.quad(-7,0,0,-7,7,0,0,7)
+                break
+                case 2:
+                    layer.stroke(255,100,100,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    layer.line(-6,0,6,0)
+                    layer.line(-2,-3,-2,3)
+                    layer.line(2,-3,2,3)
+                break
+                case 3:
+                    layer.noFill()
+                    layer.stroke(255,255,100,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    layer.ellipse(0,0,10,10)
                 break
             }
         }

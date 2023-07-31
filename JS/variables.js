@@ -1,40 +1,10 @@
 types={
     card:[
         {
-            name:'Go For\nThe Eyes',rarity:-1,list:-1,
-            levels:[
-                {effect:[3,1],attack:106,cost:0,target:[2,1,1],spec:[],class:1},
-                {effect:[4,2],attack:106,cost:0,target:[2,1,1],spec:[],class:1},
-            ],
-        },{
-            name:'Smokescreen',rarity:-1,list:-1,
-            levels:[
-                {effect:[10,2],attack:107,cost:0,target:[0],spec:[],class:2},
-                {effect:[15,3],attack:107,cost:0,target:[0],spec:[],class:2},
-            ],
-        },{
-            name:'Streamline',rarity:-1,list:-1,
-            levels:[
-                {effect:[15],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
-                {effect:[20],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
-            ],
-        },{
-            name:'Overheat',rarity:-1,list:-1,
-            levels:[
-                {effect:[2],attack:109,cost:0,target:[0],spec:[],class:4},
-                {effect:[3],attack:109,cost:0,target:[0],spec:[],class:4},
-            ],
-        },{
             name:'Regulate',rarity:-1,list:-1,
             levels:[
                 {effect:[11,1],attack:110,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[15,1],attack:110,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Lightspeed',rarity:-1,list:-1,
-            levels:[
-                {effect:[5,2,1],attack:111,cost:0,target:[2,1,1],spec:[],class:1},
-                {effect:[6,3,1],attack:111,cost:0,target:[2,1,1],spec:[],class:1},
             ],
         },{
             name:'Stored\nEnergy',rarity:-1,list:-1,
@@ -2676,10 +2646,100 @@ types={
         },{
             name:'Dualcast',rarity:0,list:5,
             levels:[
-                {effect:[2],attack:491,cost:1,target:[10,1,2],spec:[],class:4},
-                {effect:[2],attack:491,cost:0,target:[10,1,2],spec:[],class:4},
+                {effect:[2],attack:491,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[2],attack:491,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },{
+            name:'Detonate',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:493,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:493,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Shield',rarity:0,list:5,
+            levels:[
+                {effect:[1],attack:492,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:492,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Expel',rarity:1,list:5,
+            levels:[
+                {effect:[],attack:494,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:494,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },{
+            name:'Energize',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:495,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:495,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Go For\nThe Eyes',rarity:0,list:5,
+            levels:[
+                {effect:[3,1],attack:106,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4,2],attack:106,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Smokescreen',rarity:0,list:5,
+            levels:[
+                {effect:[10,2],attack:107,cost:0,target:[0],spec:[],class:2},
+                {effect:[15,3],attack:107,cost:0,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Streamline',rarity:1,list:5,
+            levels:[
+                {effect:[15],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
+                {effect:[20],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Overheat',rarity:1,list:5,
+            levels:[
+                {effect:[2],attack:109,cost:0,target:[0],spec:[],class:4},
+                {effect:[3],attack:109,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Lightspeed',rarity:0,list:5,
+            levels:[
+                {effect:[5,2,1],attack:111,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[6,3,1],attack:111,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Beam\nSlap',rarity:0,list:5,
+            levels:[
+                {effect:[3,1],attack:496,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4,2],attack:496,cost:0,target:[2,1,1],spec:[],class:1},
             ],
         },
+        
+        /*{
+            name:'Claw',rarity:0,list:5,
+            levels:[
+                {effect:[3,2],attack:497,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[5,2],attack:497,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },*/
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
         
         {
             name:'Telefrag',rarity:-3,list:-1,
@@ -8506,7 +8566,7 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
     ]
 }
 stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:5,orbNumber:2,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:5,orbNumber:4,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
