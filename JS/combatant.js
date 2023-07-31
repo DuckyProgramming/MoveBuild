@@ -464,7 +464,7 @@ class combatant{
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:16.5,bottom:16.5}},{top:9,bottom:0,length:{top:16.5,bottom:16.5}}],
                     arms:[{top:24,bottom:9,length:{top:16.5,bottom:16.5}},{top:24,bottom:9,length:{top:16.5,bottom:16.5}}]}
-                this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+                this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216,sword:0}
                 this.color={skin:{head:[230,220,185],body:[85,75,65],legs:[80,70,60],arms:[80,70,60]},eye:{back:[80,0,0],front:[100,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},button:[70,60,50],hood:[60,50,40],hoodBack:[40,35,30],cape:[30,25,20]}
                 this.hood=[{spin:[0,180,105],height:15},{spin:[-180,0,-105],height:15}]
                 this.parts={eyeLevel:-75,mouth:-66,minor:15,
@@ -476,8 +476,8 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},button:1,hood:1,cape:1}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},button:true,hood:true,cape:true}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
-                this.goal={anim:{direction:this.anim.direction}}
+                this.animSet={loop:0,flip:0,hand:0,foot:1}
+                this.goal={anim:{direction:this.anim.direction,sword:false}}
             break
             case 'Ume':
                 this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},

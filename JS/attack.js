@@ -54,7 +54,7 @@ class attack{
             case 401: case 402: case 408: case 409: case 412: case 413: case 414: case 415: case 417: case 419:
             case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441: case 444:
             case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
-            case 475: case 487: case 491: case 494: case 496:
+            case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -67,7 +67,7 @@ class attack{
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
             case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485:
-            case 486:
+            case 486: case 503:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -574,6 +574,9 @@ class attack{
                     case 496:
                         this.targetCombatant.statusEffect('Weak',this.effect[1])
                     break
+                    case 497:
+                        this.battle.cardManagers[this.player].allGroupClaw(this.effect[1])
+                    break
                 }
             break
         }
@@ -590,7 +593,7 @@ class attack{
             case 287: case 288: case 293: case 296: case 301: case 304: case 310: case 319: case 323: case 361:
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
             case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462: case 469:
-            case 475: case 496:
+            case 475: case 496: case 497:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){
@@ -633,6 +636,7 @@ class attack{
             case 194: case 197: case 206: case 216: case 221: case 235: case 242: case 261: case 262: case 281:
             case 303: case 320: case 321: case 322: case 354: case 355: case 359: case 365: case 377: case 386:
             case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443: case 461: case 463:
+            case 502:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -804,6 +808,9 @@ class attack{
                         case 463:
                             this.battle.cardManagers[this.player].deFatigue(this.effect[1])
                         break
+                        case 502:
+                            this.battle.cardManagers[this.player].allGroupClaw(this.effect[0])
+                        break
                     }
                 }else if(this.timer>=30){
                     this.remove=true
@@ -811,7 +818,7 @@ class attack{
             break
             case 3: case 20: case 51: case 52: case 56: case 58: case 59: case 60: case 91: case 182:
             case 192: case 205: case 248: case 256: case 330: case 331: case 332: case 335: case 374: case 375:
-            case 383: case 397: case 484: case 485:
+            case 383: case 397: case 484: case 485: case 503:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -858,6 +865,9 @@ class attack{
                         break
                         case 397:
                             this.userCombatant.balance+=this.effect[1]
+                        break
+                        case 503:
+                            this.battle.cardManagers[this.player].allGroupClaw(this.effect[0])
                         break
                     }
                 }
@@ -1006,7 +1016,7 @@ class attack{
             case 225: case 226: case 231: case 239: case 240: case 249: case 264: case 278: case 286: case 299:
             case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
-            case 455: case 457: case 488:
+            case 455: case 457: case 488: case 500:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1192,6 +1202,9 @@ class attack{
                             this.userCombatant.combo+=this.effect[0]
                             this.battle.cardManagers[this.player].addRandomSpec(2,0,11)
                         break
+                        case 500:
+                            this.battle.cardManagers[this.player].allGroupClaw(this.effect[0])
+                        break
                     }
                 }else if(this.timer>=20){
                     this.remove=true
@@ -1203,7 +1216,7 @@ class attack{
             case 233: case 253: case 254: case 259: case 276: case 279: case 284: case 285: case 289: case 291:
             case 294: case 298: case 300: case 302: case 305: case 308: case 309: case 313: case 315: case 317:
             case 318: case 334: case 337: case 338: case 339: case 340: case 343: case 344: case 346: case 363:
-            case 387: case 390: case 392: case 398: case 418: case 422: case 423: case 431: case 451:
+            case 387: case 390: case 392: case 398: case 418: case 422: case 423: case 431: case 451: case 499:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -1501,6 +1514,10 @@ class attack{
                         break
                         case 451:
                             this.userCombatant.statusEffect('Temporary Draw',this.effect[0])
+                        break
+                        case 499:
+                            this.battle.cardManagers[this.player].draw(this.effect[0])
+                            this.battle.cardManagers[this.player].allGroupClaw(this.effect[1])
                         break
                     }
                 }else if(this.timer>=20){
@@ -2160,7 +2177,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 33: case 127: case 130: case 437:
+            case 33: case 127: case 130: case 437: case 504:
                 if(this.timer==1&&this.targetDistance>1){
                     this.userCombatant.startAnimation(0)
                 }else if(this.timer==15*this.targetDistance-14){
@@ -2194,6 +2211,9 @@ class attack{
                             if(this.userCombatant.armed){
                                 this.userCombatant.armed=false
                             }
+                        break
+                        case 504:
+                            this.battle.cardManagers[this.player].allGroupClaw(this.effect[0])
                         break
                     }
                 }else if(this.timer>=15*this.targetDistance+15){
@@ -3605,7 +3625,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 211:
+            case 211: case 501:
                 if(this.timer==1&&this.targetDistance>1){
                     this.userCombatant.startAnimation(0)
                 }else if(this.timer==15*this.targetDistance-14){
@@ -3627,6 +3647,9 @@ class attack{
                         switch(this.type){
                             case 211:
                                 this.userCombatant.statusEffect('Dodge',this.effect[1])
+                            break
+                            case 501:
+                                this.battle.cardManagers[this.player].allGroupClaw(this.effect[1])
                             break
                         }
                     }
@@ -4442,7 +4465,7 @@ class attack{
                 }
             break
             case 342: case 350: case 353: case 407: case 425: case 473: case 476: case 477: case 478: case 479:
-            case 480: case 490: case 491: case 492: case 493: case 494: case 495:
+            case 480: case 490: case 491: case 492: case 493: case 494: case 495: case 498:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4522,6 +4545,12 @@ class attack{
                             for(let a=0,la=this.effect[0];a<la;a++){
                                 this.userCombatant.holdOrb(3)
                             }
+                        break
+                        case 498:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(0)
+                            }
+                            this.battle.cardManagers[this.player].allGroupClaw(this.effect[1])
                         break
                     }
                 }else if(this.timer>=20){

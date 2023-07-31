@@ -189,6 +189,11 @@ class cardManager{
         this.hand.allEffect(effect)
         this.discard.allEffect(effect)
     }
+    allGroupClaw(effect){
+        this.reserve.allClaw(effect)
+        this.hand.allClaw(effect)
+        this.discard.allClaw(effect)
+    }
     turnDraw(turn){
         let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&game.ascend>=21?1:0)
         if(turn==1){

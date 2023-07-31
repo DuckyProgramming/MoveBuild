@@ -293,6 +293,13 @@ class group{
         }
         return true
     }
+    allClaw(effect){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].spec.includes(20)){
+                this.cards[a].effect[0]+=effect
+            }
+        }
+    }
     allEffect(effect){
         if(effect==1){
             this.cancel()
