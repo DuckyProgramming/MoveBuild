@@ -910,3 +910,9 @@ Rare:${current.cardManagers[0].listing.card[7][2].length}
 function shut(){
 	print('s')
 }
+function panic(text){
+	print(`
+!!!!!!!!!!-
+${text}
+!!!!!!!!!!-`)
+}

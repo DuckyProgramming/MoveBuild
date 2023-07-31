@@ -41,7 +41,7 @@ class combatant{
         this.taken=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,balance:0,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
 
         this.block=0
         this.dodges=[]
@@ -108,6 +108,8 @@ class combatant{
         this.armed=true
         this.balance=0
         this.balanceCap=10
+        this.orbs=[]
+        this.anyOrb=false
 
         this.intent=0
         this.activated=false
@@ -456,6 +458,25 @@ class combatant{
 
                 this.animSet={loop:0,flip:0,hand:0,foot:0}
 
+                this.goal={anim:{direction:this.anim.direction}}
+            break
+            case 'Azis':
+                this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
+                    legs:[{top:9,bottom:0,length:{top:16.5,bottom:16.5}},{top:9,bottom:0,length:{top:16.5,bottom:16.5}}],
+                    arms:[{top:24,bottom:9,length:{top:16.5,bottom:16.5}},{top:24,bottom:9,length:{top:16.5,bottom:16.5}}]}
+                this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+                this.color={skin:{head:[230,220,185],body:[85,75,65],legs:[80,70,60],arms:[80,70,60]},eye:{back:[80,0,0],front:[100,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},button:[70,60,50],hood:[60,50,40],hoodBack:[40,35,30],cape:[30,25,20]}
+                this.hood=[{spin:[0,180,105],height:15},{spin:[-180,0,-105],height:15}]
+                this.parts={eyeLevel:-75,mouth:-66,minor:15,
+                    legs:[{top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                    arms:[{top:{x:3.5,y:-58},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-58},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+                this.graphics={
+                    legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                    arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+                this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},button:1,hood:1,cape:1}
+                this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},button:true,hood:true,cape:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
             break
             case 'Ume':
@@ -2205,6 +2226,8 @@ class combatant{
         this.armed=true
         this.balance=0
         this.balanceCap=10
+        this.orbs=[-1,-1,-1]
+        this.anyOrb=false
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -2213,7 +2236,13 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
-        this.infoAnim={life:1,block:0,size:1,balance:0,description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            this.infoAnim.orbSpec.push([])
+            for(let b=0,lb=game.orbNumber;b<lb;b++){
+                this.infoAnim.orbSpec[a].push(0)
+            }
+        }
     }
     initialBuff(){
         if(this.spec.includes(5)){
@@ -3629,6 +3658,41 @@ class combatant{
             }
         }
     }
+    holdOrb(type){
+        this.anyOrb=true
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            if(this.orbs[a]==-1){
+                this.orbs[a]=type
+                a=la
+            }
+        }
+    }
+    evoke(type,target,args){
+        switch(type){
+            case 0:
+                for(let a=0,la=args[0];a<la;a++){
+                    switch(this.orbs[0]){
+                        case 0:
+                            this.battle.combatantManager.combatants[target].takeDamage(6,-1)
+                        break
+                        case 1:
+                            this.battle.combatantManager.combatants[target].addBlock(5)
+                        break
+                    }
+                }
+                for(let a=0,la=this.orbs.length-1;a<la;a++){
+                    this.orbs[a]=this.orbs[a+1]
+                }
+                this.orbs[this.orbs.length-1]=-1
+            break
+        }
+        this.anyOrb=false
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            if(this.orbs[a]>=0){
+                this.anyOrb=true
+            }
+        }
+    }
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -3822,7 +3886,7 @@ class combatant{
     }
     startAnimation(type){
         switch(this.name){
-            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Ume':
+            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -3911,7 +3975,7 @@ class combatant{
     }
     runAnimation(rate,type){
         switch(this.name){
-            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Ume':
+            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -5185,6 +5249,13 @@ class combatant{
             this.layer.translate(this.position.x+this.offset.position.x,this.position.y+this.offset.position.y)
             this.layer.rotate(this.direction)
             this.layer.scale(this.size)
+            if(this.infoAnim.orb>0){
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(lcos(this.time*2+360*a/la)<=0){
+                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],0,1,this.fade*this.infoAnim.orb)
+                    }
+                }
+            }
             switch(this.name){
                 case 'Placeholder':
                     this.layer.rotate(-this.anim.direction)
@@ -7263,6 +7334,117 @@ class combatant{
                         for(let g=0;g<6;g++){
                             this.layer.strokeWeight((3-g/2)*this.fade)
                             this.layer.arc(0,-75,30+g,30+g,-72+g*6,-12-g*6)
+                        }
+                    }
+                break
+                case 'Azis':
+                    if(this.trigger.display.cape&&lcos(this.anim.direction+180)<-0.1){
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.cape[0],this.color.cape[1],this.color.cape[2],this.fade*this.fades.cape)
+                        this.layer.arc(5*lsin(this.anim.direction+180),-54,12*lcos(this.anim.direction+180),12,-180,0)
+                        for(let a=0,la=3;a<la;a++){
+                            this.layer.triangle(5*lsin(this.anim.direction+180)-6*lcos(this.anim.direction+180),-54,5*lsin(this.anim.direction+180)+6*lcos(this.anim.direction+180),-54,8*lsin(this.anim.direction+180)+(-10+a*10)*lcos(this.anim.direction+180),-3)
+                        }
+                    }
+                    if(this.trigger.display.hood){
+                        this.layer.fill(this.flashColor(this.color.hoodBack)[0],this.flashColor(this.color.hoodBack)[1],this.flashColor(this.color.hoodBack)[2],this.fade*this.fades.hood)
+                        this.layer.stroke(this.flashColor(this.color.hoodBack)[0],this.flashColor(this.color.hoodBack)[1],this.flashColor(this.color.hoodBack)[2],this.fade*this.fades.hood)
+                        this.layer.strokeWeight(0.5)
+                        for(let a=0,la=10;a<la;a++){
+                            if(lcos(this.anim.direction+112.5+a*15)<0){
+                                this.layer.rect(lsin(this.anim.direction+122.5+a*15)*16,-70.5,5*lcos(this.anim.direction+122.5+a*15),15)
+                            }
+                        }
+                        displayTrianglesBack(this.layer,this.hood,this.anim.direction,-78,32,0.5,0.1,this.flashColor(this.color.hoodBack),this.fade)
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                    }
+                    if(this.trigger.display.skin.body){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
+                        this.layer.ellipse(0,-46,16,38)
+                    }
+                    if(this.trigger.display.button&&lcos(this.anim.direction+48)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.button)[0],this.flashColor(this.color.button)[1],this.flashColor(this.color.button)[2],this.fade*this.fades.button)
+                        this.layer.ellipse(lsin(this.anim.direction+48)*8,-46,3*lcos(this.anim.direction+48),3)
+                        this.layer.ellipse(lsin(this.anim.direction+48)*7.5,-52,3*lcos(this.anim.direction+48),3)
+                        this.layer.ellipse(lsin(this.anim.direction+48)*7.5,-40,3*lcos(this.anim.direction+48),3)
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                        for(let h=0;h<2;h++){
+                            if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                                if(this.trigger.display.skin.legs){
+                                    this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                    this.layer.strokeWeight(4)
+                                    this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
+                                    this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
+                                }
+                            }
+                        }
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                            this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                            this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        }
+                    }
+                    if(this.trigger.display.skin.head){
+                        this.layer.fill(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
+                        this.layer.noStroke()
+                        this.layer.ellipse(0,-78,30,30)
+                    }
+                    if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
+                        this.minorDisplayGeneral(1,0)
+                    }
+                    if(this.trigger.display.hood){
+                        this.layer.fill(this.flashColor(this.color.hood)[0],this.flashColor(this.color.hood)[1],this.flashColor(this.color.hood)[2],this.fade*this.fades.hood)
+                        this.layer.stroke(this.flashColor(this.color.hood)[0],this.flashColor(this.color.hood)[1],this.flashColor(this.color.hood)[2],this.fade*this.fades.hood)
+                        this.layer.strokeWeight(0.5)
+                        this.layer.arc(0,-78,32,32,-180,0)
+                        for(let a=0,la=10;a<la;a++){
+                            if(lcos(this.anim.direction+112.5+a*15)>0){
+                                this.layer.rect(lsin(this.anim.direction+122.5+a*15)*16,-70.5,5*lcos(this.anim.direction+122.5+a*15),15)
+                            }
+                        }
+                        displayTrianglesFront(this.layer,this.hood,this.anim.direction,-78,32,0.5,0.1,this.flashColor(this.color.hood),this.fade)
+                    }
+                    if(this.trigger.display.cape&&lcos(this.anim.direction+180)>0.1){
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.cape[0],this.color.cape[1],this.color.cape[2],this.fade*this.fades.cape)
+                        this.layer.arc(5*lsin(this.anim.direction+180),-54,12*lcos(this.anim.direction+180),12,-180,0)
+                        for(let a=0,la=3;a<la;a++){
+                            this.layer.triangle(5*lsin(this.anim.direction+180)-6*lcos(this.anim.direction+180),-54,5*lsin(this.anim.direction+180)+6*lcos(this.anim.direction+180),-54,8*lsin(this.anim.direction+180)+(-10+a*10)*lcos(this.anim.direction+180),-3)
+                        }
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                            this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                            this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        }
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                        if(this.trigger.display.eye[g]){
+                            this.minorDisplayGeneral(0,g)
                         }
                     }
                 break
@@ -11821,6 +12003,13 @@ class combatant{
                     }
                 break
             }
+            if(this.infoAnim.orb>0){
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(lcos(this.time*2+360*a/la)>0){
+                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],0,1,this.fade*this.infoAnim.orb)
+                    }
+                }
+            }
             this.layer.pop()
         }
     }
@@ -12129,6 +12318,12 @@ class combatant{
         this.infoAnim.size=smoothAnim(this.infoAnim.size,this.infoAnim.upSize,1,1.5,5)
         this.infoAnim.description=smoothAnim(this.infoAnim.description,this.infoAnim.upSize,0,1,5)
         this.infoAnim.balance=smoothAnim(this.infoAnim.balance,this.balance>0,0,1,5)
+        this.infoAnim.orb=smoothAnim(this.infoAnim.orb,this.anyOrb,0,1,5)
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            for(let b=0,lb=game.orbNumber;b<lb;b++){
+                this.infoAnim.orbSpec[a][b]=smoothAnim(this.infoAnim.orbSpec[a][b],this.orbs[a]==b,0,1,5)
+            }
+        }
         if(abs(this.anim.direction-this.goal.anim.direction)<=18||abs(this.anim.direction-this.goal.anim.direction-360)<=18||abs(this.anim.direction-this.goal.anim.direction+360)<=18||abs(this.anim.direction-this.goal.anim.direction-720)<=18||abs(this.anim.direction-this.goal.anim.direction+720)<=18){
             this.anim.direction=this.goal.anim.direction
         }else if(
@@ -12236,6 +12431,9 @@ class combatant{
                 if(this.battle.attackManager.attacks.length<=0){
                     this.goal.anim.sword2=false
                 }
+            break
+            case 'Azis':
+                controlSpin(this.hood,this.anim.direction,0)
             break
             case 'Slow King':
                 this.fades.shield=smoothAnim(this.fades.shield,this.block>0,0,1,5)

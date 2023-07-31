@@ -604,6 +604,13 @@ class card{
             case 487: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nAdvance`; break
             case 488: string+=`Gain ${effect[0]} Combo\nAdd ${effect[1]} Random\nCombo Card${effect[1]!=1?`s`:``}\nto Your Hand`; break
 
+            case 490: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
+            case 491: string+=`Evoke First Charge\n${this.calculateEffect(effect[0],0)} Time${effect[0]!=1?`s`:``}`; break
+
+
+
+
+
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break

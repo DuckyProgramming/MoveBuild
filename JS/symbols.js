@@ -963,6 +963,36 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
     }
     layer.pop()
 }
+function displayOrb(layer,x,y,typeFades,direction,size,fade){
+    layer.push()
+    layer.translate(x,y)
+    layer.rotate(direction)
+    layer.scale(size)
+    layer.fill(255,fade/5)
+    layer.noStroke()
+    layer.ellipse(0,0,20)
+    for(let a=0,la=game.orbNumber;a<la;a++){
+        if(typeFades[a]>=0.2){
+            switch(a){
+                case 0:
+                    layer.stroke(100,255,100,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    layer.line(-6,0,6,0)
+                    layer.line(-3,-3*sqrt(3),3,3*sqrt(3))
+                    layer.line(-3,3*sqrt(3),3,-3*sqrt(3))
+                break
+                case 1:
+                    layer.stroke(100,255,255,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    layer.quad(-4,0,0,-4,4,0,0,4)
+                    layer.strokeWeight(1)
+                    layer.quad(-7,0,0,-7,7,0,0,7)
+                break
+            }
+        }
+    }
+    layer.pop()
+}
 function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
     layer.push()
     layer.translate(x,y)
