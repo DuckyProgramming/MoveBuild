@@ -406,8 +406,8 @@ types={
         },{
             name:'One Last\nThing',rarity:0,list:1,
             levels:[
+                {effect:[1],attack:144,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[2],attack:144,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[3],attack:144,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Option\nAssault',rarity:1,list:1,
@@ -2718,8 +2718,8 @@ types={
         },{
             name:'Hyper\nClaw',rarity:1,list:5,
             levels:[
-                {effect:[3,6],attack:497,cost:1,target:[2,1,1],spec:[0,20],class:1},
-                {effect:[5,6],attack:497,cost:1,target:[2,1,1],spec:[0,20],class:1},
+                {effect:[3,4],attack:497,cost:1,target:[2,1,1],spec:[0,20],class:1},
+                {effect:[5,4],attack:497,cost:1,target:[2,1,1],spec:[0,20],class:1},
             ],
         },{
             name:'Clawcharge',rarity:1,list:5,
@@ -2763,30 +2763,124 @@ types={
                 {effect:[4,2],attack:504,cost:1,target:[2,1,2],spec:[0,20],class:1},
                 {effect:[6,2],attack:504,cost:1,target:[2,1,2],spec:[0,20],class:1},
             ],
+        },{
+            name:'Darkness',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:505,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:505,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Zap',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:506,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:506,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Clawchain',rarity:1,list:5,
+            levels:[
+                {effect:[4,1,2],attack:507,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6,1,2],attack:507,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Open\nFire',rarity:0,list:5,
+            levels:[
+                {effect:[7,1],attack:508,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:508,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Shield\nPush',rarity:0,list:5,
+            levels:[
+                {effect:[7,1],attack:509,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:509,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Barrage',rarity:0,list:5,
+            levels:[
+                {effect:[4],attack:510,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[6],attack:510,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Compile',rarity:0,list:5,
+            levels:[
+                {effect:[7],attack:511,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:511,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Reform',rarity:0,list:5,
+            levels:[
+                {effect:[1,1],attack:512,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,1],attack:512,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Vision',rarity:0,list:5,
+            levels:[
+                {effect:[5],attack:513,cost:1,target:[0],spec:[],class:2},
+                {effect:[8],attack:513,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Rebound',rarity:0,list:5,
+            levels:[
+                {effect:[9],attack:514,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:514,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Stack',rarity:0,list:5,
+            levels:[
+                {effect:[0],attack:515,cost:1,target:[0],spec:[],class:2},
+                {effect:[4],attack:515,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Arc\nSlash',rarity:0,list:5,
+            levels:[
+                {effect:[4,1],attack:516,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,1],attack:516,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Power\nReserves',rarity:0,list:5,
+            levels:[
+                {effect:[2],attack:517,cost:0,target:[0],spec:[],class:4},
+                {effect:[3],attack:517,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Aggregate',rarity:1,list:5,
+            levels:[
+                {effect:[1,4],attack:518,cost:1,target:[0],spec:[],class:2},
+                {effect:[1,3],attack:518,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Converge',rarity:0,list:5,
+            levels:[
+                {effect:[2],attack:519,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:519,cost:1,target:[0],spec:[],class:4},
+            ],
         },
-        
 
 
 
+        {
+            name:'Strike',rarity:-2,list:5,
+            levels:[
+                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Defend',rarity:-2,list:5,
+            levels:[
+                {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
+                {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Step',rarity:-2,list:5,
+            levels:[
+                {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
+            ],
+        },
 
 
 
+        //movement
 
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-        
         {
             name:'Telefrag',rarity:-3,list:-1,
             levels:[
@@ -8612,7 +8706,7 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
     ]
 }
 stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:5,orbNumber:4,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:5,orbNumber:6,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}

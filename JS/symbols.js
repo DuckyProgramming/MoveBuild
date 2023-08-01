@@ -959,11 +959,25 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(100,fade)
             layer.triangle(4.5,0,-2.25,-1.5,-2.25,1.5)
         break
+        case 111:
+            layer.fill(0,150,255,fade)
+            layer.ellipse(0,0,10,10)
+            for(let a=0,la=4;a<la;a++){
+                layer.rotate(90)
+                layer.triangle(0,-3,-3,0,-8,-8)
+            }
+            layer.fill(50,255,255,fade)
+            layer.ellipse(0,0,6,6)
+            for(let a=0,la=4;a<la;a++){
+                layer.rotate(90)
+                layer.triangle(0,-2,-2,0,-5,-5)
+            }
+        break
         
     }
     layer.pop()
 }
-function displayOrb(layer,x,y,typeFades,direction,size,fade){
+function displayOrb(layer,x,y,typeFades,detail,direction,size,fade){
     layer.push()
     layer.translate(x,y)
     layer.rotate(direction)
@@ -1001,6 +1015,23 @@ function displayOrb(layer,x,y,typeFades,direction,size,fade){
                     layer.stroke(255,255,100,fade*typeFades[a])
                     layer.strokeWeight(3)
                     layer.ellipse(0,0,10,10)
+                break
+                case 4:
+                    layer.noFill()
+                    layer.stroke(100,0,100,fade*typeFades[a])
+                    layer.strokeWeight(1.5)
+                    layer.triangle(4,0,-6,-2,-6,2)
+                    layer.fill(255,fade*typeFades[a])
+                    layer.noStroke()
+                    layer.textSize(10)
+                    layer.text(detail,0,0)
+                break
+                case 5:
+                    layer.stroke(255,175,100,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    layer.line(-3,0,3,0)
+                    layer.line(-3,0,0,-7)
+                    layer.line(3,0,0,7)
                 break
             }
         }

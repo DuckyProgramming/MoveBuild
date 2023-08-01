@@ -57,7 +57,7 @@ class combatant{
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
-            'Take Per Turn',
+            'Take Per Turn','Focus',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -71,7 +71,7 @@ class combatant{
                 0,2,2,2,0,0,0,0,2,2,//9
                 0,0,1,1,1,0,0,1,2,0,//10
                 0,0,2,0,0,0,2,0,0,0,//11
-                0,
+                0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -85,7 +85,7 @@ class combatant{
                 3,2,2,2,2,2,1,2,0,0,
                 2,2,0,0,0,0,1,0,0,0,
                 0,1,0,0,2,2,0,2,0,2,
-                1,
+                1,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -109,6 +109,7 @@ class combatant{
         this.balance=0
         this.balanceCap=10
         this.orbs=[]
+        this.orbDetail=[]
         this.anyOrb=false
 
         this.intent=0
@@ -2227,6 +2228,7 @@ class combatant{
         this.balance=0
         this.balanceCap=10
         this.orbs=[-1,-1,-1]
+        this.orbDetail=[0,0,0]
         this.anyOrb=false
         
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -3658,45 +3660,77 @@ class combatant{
             }
         }
     }
+    getOrbNumber(type){
+        let count=0
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            if(this.orbs[a]==type||type==-1&&this.orbs[a]>=0){
+                count++
+            }
+        }
+        return count
+    }
+    clearOrbs(){
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            this.orbs[a]=-1
+        }
+    }
     holdOrb(type){
         this.anyOrb=true
         for(let a=0,la=this.orbs.length;a<la;a++){
             if(this.orbs[a]==-1){
                 this.orbs[a]=type
+                if(type==4){
+                    this.orbDetail[a]=8
+                }
                 a=la
             }
         }
     }
-    subEvoke(type,target){
+    subEvoke(type,detail,target){
+        let multi=1
+        if(this.status.main[111]>0){
+            multi=1+this.status.main[111]*0.2
+        }else if(this.status.main[111]<0){
+            multi=max(0.2,1+this.status.main[111]*0.1)
+        }
         switch(type){
             case 0:
-                this.battle.combatantManager.combatants[target].takeDamage(6,-1)
+                this.battle.combatantManager.combatants[target].takeDamage(round(6)*multi,-1)
             break
             case 1:
-                this.battle.combatantManager.combatants[target].addBlock(8)
+                this.battle.combatantManager.combatants[target].addBlock(round(8)*multi)
             break
             case 2:
-                this.battle.combatantManager.damageAreaRuleless(10,this.battle.combatantManager.combatants[target].tilePosition)
+                this.battle.combatantManager.damageAreaRuleless(round(10)*multi,this.battle.combatantManager.combatants[target].tilePosition)
             break
             case 3:
-                this.battle.energy.main[target>=this.battle.players?this.id:target]+=2
+                this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(2)*multi
             break
+            case 4:
+                this.battle.combatantManager.combatants[target].takeDamage(round(detail)*multi,-1)
+            break
+            case 5:
+                this.battle.combatantManager.combatants[target].takeDamage(round(5)*multi,-1)
+            break
+
         }
     }
     evoke(type,target,args){
         switch(type){
             case 0:
                 for(let a=0,la=args[0];a<la;a++){
-                    this.subEvoke(this.orbs[0],target)
+                    this.subEvoke(this.orbs[0],this.orbDetail[0],target)
                 }
                 for(let a=0,la=this.orbs.length-1;a<la;a++){
                     this.orbs[a]=this.orbs[a+1]
+                    this.orbDetail[a]=this.orbDetail[a+1]
                 }
                 this.orbs[this.orbs.length-1]=-1
+                this.orbDetail[this.orbs.length-1]=-1
             break
             case 1:
                 for(let a=0,la=this.orbs.length;a<la;a++){
-                    this.subEvoke(this.orbs[a],target)
+                    this.subEvoke(this.orbs[a],this.orbDetail[a],target)
                     this.orbs[a]=-1
                 }
             break
@@ -3877,6 +3911,16 @@ class combatant{
             if(this.status.next[a]!=0){
                 this.status.main[a]+=this.status.next[a]
                 this.status.next[a]=0
+            }
+        }
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            switch(this.orbs[a]){
+                case 4:
+                    this.orbDetail[a]+=4
+                break
+                case 5:
+                    this.battle.combatantManager.randomEnemyEffect(0,[3])
+                break
             }
         }
     }
@@ -5267,7 +5311,7 @@ class combatant{
             if(this.infoAnim.orb>0){
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(lcos(this.time*2+360*a/la)<=0){
-                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],0,1,this.fade*this.infoAnim.orb)
+                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb)
                     }
                 }
             }
@@ -12021,7 +12065,7 @@ class combatant{
             if(this.infoAnim.orb>0){
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(lcos(this.time*2+360*a/la)>0){
-                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],0,1,this.fade*this.infoAnim.orb)
+                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb)
                     }
                 }
             }

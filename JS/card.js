@@ -618,9 +618,22 @@ class card{
             case 502: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nClaw Up ${effect[1]}`; break
             case 503: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nClaw Up ${effect[1]}`; break
             case 504: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nClaw Up ${effect[1]}\nAdvance`; break
+            case 505: string+=`Hold ${effect[0]} Dark Orb${effect[0]!=1?`s`:``}`; break
+            case 506: string+=`Hold ${effect[0]} Lightning Orb${effect[0]!=1?`s`:``}`; break
+            case 507: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\n${effect[1]} Energy\nClaw Up ${effect[2]}`; break
+            case 508: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Basic Orb${effect[1]!=1?`s`:``}`; break
+            case 509: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Shield Orb${effect[1]!=1?`s`:``}`; break
+            case 510: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Orbs`; break
+            case 511: string+=`Draw ${effect[0]}X Cards\nWhere X = Number\nof Orbs`; break
+            case 512: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nHold ${effect[1]} Shield Orb${effect[1]!=1?`s`:``}`; break
+            case 513: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPut a Card in Discard\nPile in Your Hand`; break
 
-
-
+            case 514: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Card Played\nReturns to Draw`; break
+            case 515: string+=`Add Block Equal\nto Number of Cards\nin Discard ${effect[0]>0?`+${effect[0]}`:``}`; break
+            case 516: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 517: string+=`Gain ${effect[0]} Energy\nAdd a Void\nto Discard`; break
+            case 518: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFor Every ${effect[1]} Cards\nin Draw Pile`; break
+            case 519: string+=`Gain ${effect[0]} Focus`; break
 
 
 
@@ -1011,6 +1024,10 @@ class card{
             }
             if(anim[4]>0){
                 this.layer.stroke(255,200,200,this.fade*anim[4])
+                this.layer.rect(0,0,this.width+2,this.height+2,5)
+            }
+            if(anim[5]>0){
+                this.layer.stroke(0,150,255,this.fade*anim[5])
                 this.layer.rect(0,0,this.width+2,this.height+2,5)
             }
             this.layer.pop()

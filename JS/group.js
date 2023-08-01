@@ -119,10 +119,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0}
     }
     addInitial(type,level,color){
         game.id++
@@ -220,6 +220,9 @@ class group{
     }
     nightmare(amount){
         this.status.nightmare+=amount
+    }
+    rebound(amount){
+        this.status.rebound+=amount
     }
     shuffle(){
         let cards=[]
@@ -825,13 +828,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound])
                     }
                 }
             break
@@ -1126,6 +1129,7 @@ class group{
                 this.anim.reserve=smoothAnim(this.anim.reserve,this.status.reserve!=0,0,1,5)
                 this.anim.duplicate=smoothAnim(this.anim.duplicate,this.status.duplicate!=0,0,1,5)
                 this.anim.nightmare=smoothAnim(this.anim.nightmare,this.status.nightmare!=0,0,1,5)
+                this.anim.rebound=smoothAnim(this.anim.rebound,this.status.rebound!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -1182,6 +1186,12 @@ class group{
                                 a--
                                 la--
                             }
+                        }else if(this.status.rebound>0){
+                            this.cards[a].discardEffect=[]
+                            this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
+                            a--
+                            la--
+                            this.status.rebound--
                         }else{
                             this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                             a--

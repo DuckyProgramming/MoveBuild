@@ -143,6 +143,19 @@ class combatantManager{
         }
         this.battle.updateTargetting()
     }
+    randomEnemyEffect(effect,args){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                list.push(a)
+            }
+        }
+        switch(effect){
+            case 0:
+                this.combatants[list[floor(random(0,list.length))]].takeDamage(args[0],-1)
+            break
+        }
+    }
     multiplyStatus(name,multiplier){
         this.combatants.forEach(combatant=>combatant.multiplyStatus(name,multiplier))
     }

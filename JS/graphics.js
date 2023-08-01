@@ -26,6 +26,7 @@ function displayTrianglesBack(layer,parts,direction,base,width,weight,slant,colo
 			layer.triangle(lsin(part.spin[0]+direction)*width/2,base,lsin(part.spin[1]+direction)*width/2,base,lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 		}
 	}
+	layer.strokeJoin(MITER)
 }
 function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,color,fade){
 	if(color==-1){
@@ -55,6 +56,7 @@ function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,col
 			layer.triangle(lsin(part.spin[0]+direction)*width/2,base,lsin(part.spin[1]+direction)*width/2,base,lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 		}
 	}
+	layer.strokeJoin(MITER)
 }
 function displayTrianglesBackMerge(layer,parts,direction,base,width,weight,slant,color1,color2,fade){
 	layer.strokeWeight(weight)
@@ -105,6 +107,7 @@ function displayTrianglesBackMerge(layer,parts,direction,base,width,weight,slant
 			layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2])
 		}
 	}
+	layer.strokeJoin(MITER)
 }
 function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slant,color1,color2,fade){
 	layer.strokeWeight(weight)
@@ -155,6 +158,7 @@ function displayTrianglesFrontMerge(layer,parts,direction,base,width,weight,slan
 			layer.triangle(lsin(part.spin[0]+direction)*(width/2+part.y[0]*slant),base+part.y[0],lsin(part.spin[1]+direction)*(width/2+part.y[1]*slant),base+part.y[1],lsin(part.spin[2]+direction)*(width/2+part.y[2]*slant),base+part.y[2])
 		}
 	}
+	layer.strokeJoin(MITER)
 }
 function controlSpin(set,direction,spec){
 	for(let g=0,lg=set.length;g<lg;g++){
