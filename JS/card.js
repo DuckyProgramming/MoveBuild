@@ -23,6 +23,7 @@ class card{
         this.upSize=false
         this.usable=true
         this.exhaust=false
+        this.retain=false
         this.select=false
         this.afford=false
         this.energyAfford=false
@@ -627,13 +628,20 @@ class card{
             case 511: string+=`Draw ${effect[0]}X Cards\nWhere X = Number\nof Orbs`; break
             case 512: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nHold ${effect[1]} Shield Orb${effect[1]!=1?`s`:``}`; break
             case 513: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nPut a Card in Discard\nPile in Your Hand`; break
-
             case 514: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Card Played\nReturns to Draw`; break
             case 515: string+=`Add Block Equal\nto Number of Cards\nin Discard ${effect[0]>0?`+${effect[0]}`:``}`; break
             case 516: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 517: string+=`Gain ${effect[0]} Energy\nAdd a Void\nto Discard`; break
             case 518: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFor Every ${effect[1]} Cards\nin Draw Pile`; break
             case 519: string+=`Gain ${effect[0]} Focus`; break
+            case 520: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nHold ${effect[1]} Dark Orb${effect[1]!=1?`s`:``}`; break
+            case 521: string+=`Double Your Energy`; break
+            case 522: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRetain Your Hand`; break
+            case 523: string+=`When Power Played,\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 524: string+=`Each Turn,\nAdd ${effect[0]} Random Power${effect[0]!=1?`s`:``}\nto Your Hand`; break
+            case 525: string+=`Lose ${effect[0]} Focus\nGain ${effect[1]} Strength\nGain ${effect[2]} Dexterity`; break
+
+
 
 
 

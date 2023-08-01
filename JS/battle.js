@@ -448,6 +448,11 @@ class battle{
                     this.cardManagers[player].draw(userCombatant.getStatus('Attack Draw'))
                 }
             break
+            case 4:
+                if(userCombatant.getStatus('Power Draw')>0){
+                    this.cardManagers[player].draw(userCombatant.getStatus('Power Draw'))
+                }
+            break
         }
         if(userCombatant.getStatus('Card Play Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))

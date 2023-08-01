@@ -961,17 +961,44 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         break
         case 111:
             layer.fill(0,150,255,fade)
-            layer.ellipse(0,0,10,10)
+            layer.ellipse(0,0,8,8)
             for(let a=0,la=4;a<la;a++){
                 layer.rotate(90)
-                layer.triangle(0,-3,-3,0,-8,-8)
+                layer.triangle(0,-2,-2,0,-6,-6)
             }
             layer.fill(50,255,255,fade)
-            layer.ellipse(0,0,6,6)
+            layer.ellipse(0,0,4,4)
             for(let a=0,la=4;a<la;a++){
                 layer.rotate(90)
-                layer.triangle(0,-2,-2,0,-5,-5)
+                layer.triangle(0,-1,-1,0,-4,-4)
             }
+        break
+        case 112:
+            layer.fill(125,125,125,fade)
+            layer.stroke(100,100,100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noFill()
+            layer.stroke(255,255,200,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            for(let a=0,la=8;a<la;a++){
+                layer.vertex(lsin(360*a/la)*(5-a%2*3),lcos(360*a/la)*(5-a%2*3))
+            }
+            layer.endShape(CLOSE)
+        break
+        case 113:
+            layer.fill(225,fade)
+            layer.rect(-3,0,9,3)
+            layer.triangle(1.5,-4.5,1.5,4.5,7.5,0)
+            layer.noFill()
+            layer.stroke(255,255,200,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            for(let a=0,la=8;a<la;a++){
+                layer.vertex(lsin(360*a/la)*(5-a%2*3),lcos(360*a/la)*(5-a%2*3))
+            }
+            layer.endShape(CLOSE)
         break
         
     }

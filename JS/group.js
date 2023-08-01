@@ -320,7 +320,10 @@ class group{
                 break
                 case 1:
                     this.cards[a].callDiscardEffect()
-                    if(this.cards[a].spec.includes(4)){
+                    if(this.cards[a].retain){
+                        this.cards[a].retain=false
+                        total++
+                    }else if(this.cards[a].spec.includes(4)){
                         this.cards[a].etherealed()
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
@@ -433,6 +436,9 @@ class group{
                     if(this.cards[a].spec.includes(6)){
                         this.cards[a].spec.splice(this.cards[a].spec.indexOf(6))
                     }
+                break
+                case 24:
+                    this.cards[a].retain=true
                 break
             }
         }
