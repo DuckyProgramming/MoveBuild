@@ -2919,6 +2919,48 @@ types={
                 {effect:[1],attack:530,cost:1,target:[0],spec:[],class:4},
                 {effect:[1],attack:530,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Fission',rarity:2,list:5,
+            levels:[
+                {effect:[],attack:531,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:532,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },{
+            name:'Hyper\nBeam',rarity:2,list:5,
+            levels:[
+                {effect:[26,3],attack:533,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[34,3],attack:533,cost:2,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Meteor\nBlast',rarity:2,list:5,
+            levels:[
+                {effect:[24,3],attack:534,cost:5,target:[2,1,2],spec:[0],class:1},
+                {effect:[32,3],attack:534,cost:4,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Multicast',rarity:2,list:5,
+            levels:[
+                {effect:[1],attack:535,cost:-1,target:[26,0,2],spec:[],class:4},
+                {effect:[2],attack:535,cost:-1,target:[26,0,2],spec:[],class:4},
+            ],
+        },{
+            name:'Rainbow',rarity:2,list:5,
+            levels:[
+                {effect:[1,1,1],attack:536,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1,1,1],attack:536,cost:2,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Cracked\nShards',rarity:1,list:5,
+            levels:[
+                {effect:[2],attack:537,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[3],attack:537,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Bullseye',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:538,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[2],attack:538,cost:1,target:[2,1,6],spec:[],class:4},
+            ],
         },
 
 

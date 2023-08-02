@@ -55,7 +55,8 @@ class attack{
             case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441: case 444:
             case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
             case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504: case 507:
-            case 508: case 509: case 510: case 514:
+            case 508: case 509: case 510: case 514: case 531: case 532: case 533: case 534: case 535: case 537:
+            case 538:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -2382,7 +2383,7 @@ class attack{
             case 38: case 79: case 81: case 84: case 85: case 86: case 104: case 145: case 148: case 158:
             case 159: case 160: case 161: case 162: case 163: case 173: case 177: case 272: case 292: case 295:
             case 297: case 314: case 316: case 326: case 351: case 352: case 382: case 408: case 419: case 433:
-            case 452: case 472: case 474: case 482:
+            case 452: case 472: case 474: case 482: case 533: case 537: case 538:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -2528,6 +2529,17 @@ class attack{
                                     this.battle.tileManager.tiles[index].addType(19)
                                 }
                             }
+                        break
+                        case 533:
+                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,33,[this.targetCombatant.position.x,this.targetCombatant.position.y-30]))
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.userCombatant.statusEffect('Focus',-this.effect[1])
+                        break
+                        case 537:
+                            this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.totalOrb,this.user)
+                        break
+                        case 538:
+                            this.targetCombatant.statusEffect('Lock-On',this.effect[0])
                         break
                     }
                 }else if(this.timer>=30){
@@ -4551,7 +4563,7 @@ class attack{
             break
             case 342: case 350: case 353: case 407: case 425: case 473: case 476: case 477: case 478: case 479:
             case 480: case 490: case 491: case 492: case 493: case 494: case 495: case 498: case 505: case 506:
-            case 520: case 526:
+            case 520: case 526: case 531: case 532: case 534: case 535: case 536:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4657,6 +4669,28 @@ class attack{
                         case 526:
                             for(let a=0,la=this.effect[0]*this.energy.main;a<la;a++){
                                 this.userCombatant.holdOrb(0)
+                            }
+                        break
+                        case 531:
+                            this.userCombatant.evoke(2,this.targetCombatant.id,[this.effect[0]])
+                        break
+                        case 532:
+                            this.userCombatant.evoke(3,this.targetCombatant.id,[this.effect[0]])
+                        break
+                        case 534:
+                            this.targetCombatant.takeDamage(this.effect[0],this.player)
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userCombatant.holdOrb(3)
+                            }
+                        break
+                        case 535:
+                            this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]*this.energy.main])
+                        break
+                        case 536:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(1)
+                                this.userCombatant.holdOrb(4)
+                                this.userCombatant.holdOrb(5)
                             }
                         break
                     }

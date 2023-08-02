@@ -63,7 +63,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 15:
+            case 15: case 38:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -459,6 +459,17 @@ class particle{
                     this.layer.fill(255,175,255,this.fade)
                     this.layer.ellipse(0,0,12,12)
                 break
+                case 38:
+                    this.layer.stroke(255,255,200,this.fade)
+                    this.layer.strokeWeight(10)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.line(
+                            map(a/la,0,1,0,this.position2.x)+(a==0?0:10*lcos(this.direction)*lsin(this.time*-10+a*60)),
+                            map(a/la,0,1,0,this.position2.y)+(a==0?0:-10*lsin(this.direction)*lsin(this.time*-10+a*60)),
+                            map((a+1)/la,0,1,0,this.position2.x)+(a==la-1?0:10*lcos(this.direction)*lsin(this.time*-10+a*60+60)),
+                            map((a+1)/la,0,1,0,this.position2.y)+(a==la-1?0:-10*lsin(this.direction)*lsin(this.time*-10+a*60+60)))
+                    }
+                break
             }
             this.layer.pop()
         }
@@ -532,7 +543,7 @@ class particle{
                     this.remove=true
                 }
             break
-            case 15: case 22: case 24: case 25: case 26:
+            case 15: case 22: case 24: case 25: case 26: case 38:
                 this.fade-=1/30
                 if(this.fade<=0){
                     this.remove=true

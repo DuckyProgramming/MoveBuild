@@ -57,7 +57,7 @@ class combatant{
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
-            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn',
+            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -71,7 +71,7 @@ class combatant{
                 0,2,2,2,0,0,0,0,2,2,//9
                 0,0,1,1,1,0,0,1,2,0,//10
                 0,0,2,0,0,0,2,0,0,0,//11
-                0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,1,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -85,7 +85,7 @@ class combatant{
                 3,2,2,2,2,2,1,2,0,0,
                 2,2,0,0,0,0,1,0,0,0,
                 0,1,0,0,2,2,0,2,0,2,
-                1,2,2,2,2,2,2,
+                1,2,2,2,2,2,2,3,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -111,6 +111,7 @@ class combatant{
         this.orbs=[]
         this.orbDetail=[]
         this.anyOrb=false
+        this.totalOrb=0
 
         this.intent=0
         this.activated=false
@@ -2230,6 +2231,7 @@ class combatant{
         this.orbs=[-1,-1,-1]
         this.orbDetail=[0,0,0]
         this.anyOrb=false
+        this.totalOrb=0
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -3264,6 +3266,9 @@ class combatant{
     safeDamage(value){
         this.life=max(min(1,this.life),this.life-value)
     }
+    orbTake(value,user,spec){
+        this.takeDamage(value*(this.status.main[117]>0?2:1),user,spec)
+    }
     takeDamage(value,user,spec=0){
         let damage=value
         if(value>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
@@ -3681,6 +3686,7 @@ class combatant{
     }
     holdOrb(type){
         this.anyOrb=true
+        this.totalOrb++
         for(let a=0,la=this.orbs.length;a<la;a++){
             if(this.orbs[a]==-1){
                 this.orbs[a]=type
@@ -3700,7 +3706,7 @@ class combatant{
         }
         switch(type){
             case 0:
-                this.battle.combatantManager.combatants[target].takeDamage(round(6)*multi,-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(6)*multi,-1)
             break
             case 1:
                 this.battle.combatantManager.combatants[target].addBlock(round(8)*multi)
@@ -3712,10 +3718,10 @@ class combatant{
                 this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(2)*multi
             break
             case 4:
-                this.battle.combatantManager.combatants[target].takeDamage(round(detail)*multi,-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(detail)*multi,-1)
             break
             case 5:
-                this.battle.combatantManager.combatants[target].takeDamage(round(5)*multi,-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(5)*multi,-1)
             break
 
         }
@@ -3735,8 +3741,29 @@ class combatant{
             break
             case 1:
                 for(let a=0,la=this.orbs.length;a<la;a++){
-                    this.subEvoke(this.orbs[a],this.orbDetail[a],target)
-                    this.orbs[a]=-1
+                    if(this.orbs[a]>=0){
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.orbs[a]=-1
+                    }
+                }
+            break
+            case 2:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        this.battle.energy.main[this.id]++
+                        this.battle.cardManagers[this.id].draw(1)
+                        this.orbs[a]=-1
+                    }
+                }
+            break
+            case 3:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        this.battle.energy.main[this.id]++
+                        this.battle.cardManagers[this.id].draw(1)
+                        this.subEvoke(this.orbs[a],this.orbDetail[a],target)
+                        this.orbs[a]=-1
+                    }
                 }
             break
         }

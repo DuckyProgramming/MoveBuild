@@ -642,12 +642,17 @@ class card{
             case 525: string+=`Lose ${effect[0]} Focus\nGain ${effect[1]} Strength\nGain ${effect[2]} Dexterity`; break
             case 526: string+=`Hold X Basic Orb${effect[0]!=1?`s`:``}`; break
             case 527: string+=`Add ${effect[0]} Random Power${effect[0]!=1?`s`:``}\nto Your Hand\nIt Costs 0 This Turn`; break
-
             case 528: string+=`When Power Played\nHold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
             case 529: string+=`When Damage Taken\nHold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
             case 530: string+=`Each Turn, Add ${effect[0]}\nRandom Common Card${effect[0]!=1?`s`:``}\nto Your Hand`; break
-
-
+            case 531: string+=`Remove All Orbs\nGain 1 Energy\nand Draw 1\nCard Each`; break
+            case 532: string+=`Evoke All Orbs\nGain 1 Energy\nand Draw 1\nCard Each`; break
+            case 533: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Focus`; break
+            case 534: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Energy Orb${effect[1]!=1?`s`:``}`; break
+            case 535: string+=`Evoke First Charge\n${this.calculateEffect(effect[0],0)}X Time${effect[0]!=1?`s`:``}`; break
+            case 536: string+=`Hold ${effect[0]} Shield Orb${effect[0]!=1?`s`:``}\nHold ${effect[1]} Dark Orb${effect[1]!=1?`s`:``}\nHold ${effect[2]} Lightning Orb${effect[2]!=1?`s`:``}`; break
+            case 537: string+=`Draw ${effect[0]}X Cards\nWhere X = Number\nof Orbs Held\nThis Combat`; break
+            case 538: string+=`Apply ${effect[0]} Lock-On`; break
 
 
 
