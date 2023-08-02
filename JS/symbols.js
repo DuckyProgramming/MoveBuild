@@ -1176,6 +1176,20 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
                     layer.strokeWeight(3)
                     layer.triangle(0,-5,-4,4,4,4)
                 break
+                case 10:
+                    layer.noFill()
+                    layer.stroke(255,50,50,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    layer.triangle(0,5,-4,-4,4,-4)
+                break
+                case 11:
+                    layer.stroke(150,175,50,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    layer.line(-3,-5,0,6)
+                    layer.line(3,-5,0,6)
+                    layer.line(-5,-2,0,6)
+                    layer.line(5,-2,0,6)
+                break
             }
         }
     }

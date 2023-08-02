@@ -3760,6 +3760,9 @@ class combatant{
             case 9:
                 this.battle.combatantManager.combatants[target].statusEffect('Strength',round(2*multi))
             break
+            case 10:
+                this.battle.combatantManager.combatants[target].statusEffect('Weak',round(2*multi))
+            break
         }
     }
     subMinorEvoke(type,detail,target){
@@ -3800,6 +3803,9 @@ class combatant{
             case 9:
                 this.battle.combatantManager.combatants[target].statusEffect('Strength',round(multi))
             break
+            case 10:
+                this.battle.combatantManager.combatants[target].statusEffect('Weak',round(multi))
+            break
         }
     }
     alternateEvoke(type,detail,target){
@@ -3818,6 +3824,9 @@ class combatant{
             break
             case 9:
                 this.battle.combatantManager.combatants[target].statusEffect('Double Damage',round(2*multi))
+            break
+            case 10:
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',-round(2*multi))
             break
         }
     }

@@ -683,7 +683,6 @@ class card{
             case 566: string+=`Alternate Evoke\nAll Shield Orbs`; break
             case 567: string+=`Alternate Evoke\nAll Explosive Orbs`; break
             case 568: string+=`Alternate Evoke\nAll Buff Orbs`; break
-
             case 569: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nEvoke All Orbs\non Target`; break
             case 570: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHold ${effect[1]} Basic Orb${effect[1]!=1?`s`:``}`; break
             case 571: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHold ${effect[1]} Explosive Orb${effect[1]!=1?`s`:``}`; break
@@ -691,8 +690,12 @@ class card{
             case 573: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd 1 Step\nNext Turn`; break
             case 574: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEvoke First Orb\non Self ${effect[1]} Time${effect[1]!=1?`s`:``}`; break
             case 575: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRemove All Orbs`; break
-
-
+            case 576: string+=`Push 1 Tile\nin All Directions\nHold ${effect[0]} Ice Orb${effect[0]!=1?`s`:``}`; break
+            case 577: string+=`Hold ${effect[0]} Nerf Orb${effect[0]!=1?`s`:``}`; break
+            case 578: string+=`Hold ${effect[0]} Poison Orb${effect[0]!=1?`s`:``}`; break
+            case 579: string+=`Alternate Evoke\nAll Nerf Orbs`; break
+            case 580: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Buff Orb${effect[1]!=1?`s`:``}`; break
+            case 581: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Nerf Orb${effect[1]!=1?`s`:``}`; break
 
 
 

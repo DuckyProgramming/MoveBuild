@@ -3022,7 +3022,7 @@ types={
                 {effect:[7,3],attack:548,cost:0,target:[2,1,2],spec:[],class:1},
             ],
         },{
-            name:'Chaos',rarity:1,list:5,
+            name:'Chaos',rarity:0,list:5,
             levels:[
                 {effect:[1],attack:549,cost:1,target:[0],spec:[],class:4},
                 {effect:[2],attack:549,cost:1,target:[0],spec:[],class:4},
@@ -3034,7 +3034,7 @@ types={
                 {effect:[1],attack:550,cost:0,target:[26,0,2],spec:[],class:4},
             ],
         },{
-            name:'Illuminate',rarity:1,list:5,
+            name:'Illuminate',rarity:0,list:5,
             levels:[
                 {effect:[1],attack:551,cost:1,target:[0],spec:[],class:4},
                 {effect:[2],attack:551,cost:1,target:[0],spec:[],class:4},
@@ -3112,7 +3112,7 @@ types={
                 {effect:[],attack:563,cost:1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Backups',rarity:1,list:5,
+            name:'Backups',rarity:0,list:5,
             levels:[
                 {effect:[2],attack:564,cost:1,target:[26,0,2],spec:[1,3],class:4},
                 {effect:[3],attack:564,cost:1,target:[26,0,2],spec:[1,3],class:4},
@@ -3177,9 +3177,45 @@ types={
                 {effect:[1],attack:575,cost:0,target:[1,1,1],spec:[0],class:3},
                 {effect:[2],attack:575,cost:0,target:[1,1,2],spec:[0],class:3},
             ],
+        },{
+            name:'Kelvin',rarity:2,list:5,
+            levels:[
+                {effect:[2],attack:576,cost:3,target:[0],spec:[1],class:1},
+                {effect:[3],attack:576,cost:3,target:[0],spec:[1],class:1},
+            ],
+        },{
+            name:'Nerfball',rarity:0,list:5,
+            levels:[
+                {effect:[1],attack:577,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:577,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Inject',rarity:0,list:5,
+            levels:[
+                {effect:[1],attack:578,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:578,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Denounce',rarity:1,list:5,
+            levels:[
+                {effect:[],attack:579,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:579,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },{
+            name:'Second\nOpinion',rarity:1,list:5,
+            levels:[
+                {effect:[8,1],attack:580,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:580,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Confab',rarity:1,list:5,
+            levels:[
+                {effect:[8,1],attack:581,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:581,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
-        //buff orb, ice orb (1 each)
+        //poison orb things
 
 
 
@@ -9035,7 +9071,7 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
     ]
 }
 stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:5,orbNumber:10,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:5,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
