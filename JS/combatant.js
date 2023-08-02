@@ -481,7 +481,7 @@ class combatant{
                     legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                     arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},button:1,hood:1,cape:1}
-                this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},button:true,hood:true,cape:true}}
+                this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},button:true,hood:true,cape:true,extra:{damage:false}}}
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0,hand:0,foot:1}
                 this.goal={anim:{direction:this.anim.direction,sword:false}}
