@@ -2706,56 +2706,56 @@ types={
         },{
             name:'Claw',rarity:0,list:5,
             levels:[
-                {effect:[3,2],attack:497,cost:0,target:[2,1,1],spec:[20],class:1},
-                {effect:[5,2],attack:497,cost:0,target:[2,1,1],spec:[20],class:1},
+                {effect:[3,1],attack:497,cost:0,target:[2,1,1],spec:[20],class:1},
+                {effect:[5,1],attack:497,cost:0,target:[2,1,1],spec:[20],class:1},
             ],
         },{
             name:'Hyper\nClaw',rarity:1,list:5,
             levels:[
-                {effect:[3,4],attack:497,cost:1,target:[2,1,1],spec:[0,20],class:1},
-                {effect:[5,4],attack:497,cost:1,target:[2,1,1],spec:[0,20],class:1},
+                {effect:[3,3],attack:497,cost:1,target:[2,1,1],spec:[0,20],class:1},
+                {effect:[5,3],attack:497,cost:1,target:[2,1,1],spec:[0,20],class:1},
             ],
         },{
             name:'Clawcharge',rarity:1,list:5,
             levels:[
-                {effect:[1,2],attack:498,cost:1,target:[0],spec:[],class:4},
-                {effect:[2,2],attack:498,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,1],attack:498,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,1],attack:498,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Clawgap',rarity:0,list:5,
             levels:[
-                {effect:[1,1],attack:499,cost:0,target:[0],spec:[1],class:4},
-                {effect:[1,2],attack:499,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1,1],attack:499,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1,2],attack:499,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Clawup',rarity:0,list:5,
             levels:[
+                {effect:[1],attack:500,cost:0,target:[0],spec:[],class:4},
                 {effect:[2],attack:500,cost:0,target:[0],spec:[],class:4},
-                {effect:[3],attack:500,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Double\nClaw',rarity:1,list:5,
             levels:[
-                {effect:[3,2],attack:501,cost:1,target:[2,1,1],spec:[0,20],class:1},
-                {effect:[5,2],attack:501,cost:1,target:[2,1,1],spec:[0,20],class:1},
+                {effect:[3,1],attack:501,cost:1,target:[2,1,1],spec:[0,20],class:1},
+                {effect:[5,1],attack:501,cost:1,target:[2,1,1],spec:[0,20],class:1},
             ],
         },{
             name:'Clawblock',rarity:0,list:5,
             levels:[
-                {effect:[5,2],attack:502,cost:1,target:[0],spec:[20],class:2},
-                {effect:[8,2],attack:502,cost:1,target:[0],spec:[20],class:2},
+                {effect:[5,1],attack:502,cost:1,target:[0],spec:[20],class:2},
+                {effect:[8,1],attack:502,cost:1,target:[0],spec:[20],class:2},
             ],
         },{
             name:'Clawstep',rarity:0,list:5,
             levels:[
-                {effect:[1,1],attack:503,cost:1,target:[1,1,1],spec:[0],class:3},
-                {effect:[1,2],attack:503,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:503,cost:1,target:[1,1,1],spec:[0,1],class:3},
+                {effect:[1,2],attack:503,cost:1,target:[1,1,1],spec:[0,1],class:3},
             ],
         },{
             name:'Advance\nClaw',rarity:1,list:5,
             levels:[
-                {effect:[4,2],attack:504,cost:1,target:[2,1,2],spec:[0,20],class:1},
-                {effect:[6,2],attack:504,cost:1,target:[2,1,2],spec:[0,20],class:1},
+                {effect:[4,1],attack:504,cost:1,target:[2,1,2],spec:[0,20],class:1},
+                {effect:[6,1],attack:504,cost:1,target:[2,1,2],spec:[0,20],class:1},
             ],
         },{
             name:'Darkness',rarity:1,list:5,
@@ -2782,7 +2782,7 @@ types={
                 {effect:[12,1],attack:508,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Shield\nPush',rarity:0,list:5,
+            name:'Shield\nPulse',rarity:0,list:5,
             levels:[
                 {effect:[7,1],attack:509,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12,1],attack:509,cost:1,target:[2,1,1],spec:[0],class:1},

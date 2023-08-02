@@ -2376,7 +2376,7 @@ class attack{
                             }
                         break
                         case 504:
-                            this.battle.cardManagers[this.player].allGroupClaw(this.effect[0])
+                            this.battle.cardManagers[this.player].allGroupClaw(this.effect[1])
                         break
                     }
                 }else if(this.timer>=15*this.targetDistance+15){

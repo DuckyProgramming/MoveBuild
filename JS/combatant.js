@@ -3689,10 +3689,19 @@ class combatant{
         }
         return count
     }
+    checkAnyOrb(){
+        this.anyOrb=false
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            if(this.orbs[a]>=0){
+                this.anyOrb=true
+            }
+        }
+    }
     clearOrbs(){
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.orbs[a]=-1
         }
+        this.checkAnyOrb()
     }
     replaceOrb(start,end){
         for(let a=0,la=this.orbs.length;a<la;a++){
@@ -3700,9 +3709,9 @@ class combatant{
                 this.orbs[a]=end
             }
         }
+        this.checkAnyOrb()
     }
     holdOrb(type){
-        this.anyOrb=true
         this.totalOrb++
         this.totalOrbClass[type]++
         this.lastOrb=type
@@ -3721,6 +3730,7 @@ class combatant{
             this.evoke(0,this.id,[1])
             this.holdOrb(type)
         }
+        this.checkAnyOrb()
     }
     subEvoke(type,detail,target){
         let multi=1
@@ -3905,12 +3915,7 @@ class combatant{
                 }
             break
         }
-        this.anyOrb=false
-        for(let a=0,la=this.orbs.length;a<la;a++){
-            if(this.orbs[a]>=0){
-                this.anyOrb=true
-            }
-        }
+        this.checkAnyOrb()
     }
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
