@@ -2994,14 +2994,14 @@ types={
         },{
             name:'Input',rarity:0,list:5,
             levels:[
-                {effect:[1,1],attack:543,cost:1,target:[2,1,6],spec:[],class:4},
-                {effect:[1,2],attack:543,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[1,1],attack:543,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[1,2],attack:543,cost:1,target:[26,0,2],spec:[],class:4},
             ],
         },{
             name:'Mergecast',rarity:0,list:5,
             levels:[
-                {effect:[],attack:545,cost:1,target:[2,1,6],spec:[],class:4},
-                {effect:[],attack:545,cost:0,target:[2,1,6],spec:[],class:4},
+                {effect:[],attack:545,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:545,cost:0,target:[26,0,2],spec:[],class:4},
             ],
         },{
             name:'Shield\nEcho',rarity:0,list:5,
