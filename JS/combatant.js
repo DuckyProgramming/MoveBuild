@@ -112,6 +112,7 @@ class combatant{
         this.orbDetail=[]
         this.anyOrb=false
         this.totalOrb=0
+        this.totalOrbClass=[]
 
         this.intent=0
         this.activated=false
@@ -2232,6 +2233,7 @@ class combatant{
         this.orbDetail=[0,0,0]
         this.anyOrb=false
         this.totalOrb=0
+        this.totalOrbClass=[]
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -2246,6 +2248,9 @@ class combatant{
             for(let b=0,lb=game.orbNumber;b<lb;b++){
                 this.infoAnim.orbSpec[a].push(0)
             }
+        }
+        for(let a=0,la=game.orbNumber;a<la;a++){
+            this.totalOrbClass.push(0)
         }
     }
     initialBuff(){
@@ -3687,6 +3692,7 @@ class combatant{
     holdOrb(type){
         this.anyOrb=true
         this.totalOrb++
+        this.totalOrbClass[type]++
         for(let a=0,la=this.orbs.length;a<la;a++){
             if(this.orbs[a]==-1){
                 this.orbs[a]=type
@@ -3765,6 +3771,17 @@ class combatant{
                         this.orbs[a]=-1
                     }
                 }
+            break
+            case 4:
+                let type=this.orbs[0]
+                for(let a=0,la=args[0];a<la;a++){
+                    this.subEvoke(this.orbs[0],this.orbDetail[0],target)
+                }
+                for(let a=0,la=this.orbs.length-1;a<la;a++){
+                    this.orbs[a]=this.orbs[a+1]
+                    this.orbDetail[a]=this.orbDetail[a+1]
+                }
+                this.holdOrb(type)
             break
         }
         this.anyOrb=false

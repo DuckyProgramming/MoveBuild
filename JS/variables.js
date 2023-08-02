@@ -2999,7 +2999,48 @@ types={
             ],
         },
 
+        {
+            name:'Mergecast',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:545,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[],attack:545,cost:0,target:[2,1,6],spec:[],class:4},
+            ],
+        },{
+            name:'Shield\nEcho',rarity:0,list:5,
+            levels:[
+                {effect:[4],attack:546,cost:1,target:[0],spec:[],class:2},
+                {effect:[6],attack:546,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Absorption',rarity:1,list:5,
+            levels:[
+                {effect:[10,2],attack:547,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,2],attack:547,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Pinpoint',rarity:0,list:5,
+            levels:[
+                {effect:[5,2],attack:548,cost:0,target:[2,1,2],spec:[],class:1},
+                {effect:[7,3],attack:548,cost:0,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Chaos',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:549,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:549,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Recursion',rarity:0,list:5,
+            levels:[
+                {effect:[1],attack:550,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[1],attack:550,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },
 
+        //perhaps light orb
+        //mirror orb
+        //freeze orb
+        //perhaps flame orb
 
         {
             name:'Strike',rarity:-2,list:5,

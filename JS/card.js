@@ -651,9 +651,8 @@ class card{
             case 534: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Energy Orb${effect[1]!=1?`s`:``}`; break
             case 535: string+=`Evoke First Charge\n${this.calculateEffect(effect[0],0)}X Time${effect[0]!=1?`s`:``}`; break
             case 536: string+=`Hold ${effect[0]} Shield Orb${effect[0]!=1?`s`:``}\nHold ${effect[1]} Dark Orb${effect[1]!=1?`s`:``}\nHold ${effect[2]} Lightning Orb${effect[2]!=1?`s`:``}`; break
-            case 537: string+=`Draw ${effect[0]}X Cards\nWhere X = Number\nof Orbs Held\nThis Combat`; break
+            case 537: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Orbs Held\nThis Combat`; break
             case 538: string+=`Apply ${effect[0]} Lock-On`; break
-
             case 539: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Lock-On`; break
             case 540: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn 0 Cost\nCards to Hand`; break
             case 541: string+=`Gain ${effect[0]} Focus\nLose ${effect[1]} Focus\nEvery Turn`; break
@@ -661,6 +660,12 @@ class card{
             case 543: string+=`Evoke First Charge\n${this.calculateEffect(effect[0],0)} Time${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 544: string+=`Hold ${effect[0]} Shield Orb${effect[0]!=1?`s`:``}\nFor Every Enemy`; break
 
+            case 545: string+=`Evoke First Charge\nFor Every Enemy`; break
+            case 546: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number\nof Shield Orbs\nHeld This Combat`; break
+            case 547: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nHold ${effect[1]} Shield Orb${effect[1]!=1?`s`:``}`; break
+            case 548: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMultiply Target's\nVulnerable by ${effect[1]}`; break
+            case 549: string+=`Hold ${effect[0]} Random Orb${effect[0]!=1?`s`:``}`; break
+            case 550: string+=`Evoke First Charge\n${this.calculateEffect(effect[0],0)} Time${effect[0]!=1?`s`:``}\nRehold it`; break
 
 
 
