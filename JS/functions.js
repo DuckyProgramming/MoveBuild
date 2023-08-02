@@ -555,7 +555,11 @@ function copyArrayStack(base){
 function copyArrayAttack(base){
 	let list=[]
 	for(let a=0,la=base.length;a<la;a++){
-		list.push({type:base[a].type,effect:base[a].effect})
+		let proxy={type:base[a].type,effect:[]}
+		for(let b=0,lb=base[a].effect.length;b<lb;b++){
+			proxy.effect.push(base[a].effect[b])
+		}
+		list.push(proxy)
 	}
 	return list
 }

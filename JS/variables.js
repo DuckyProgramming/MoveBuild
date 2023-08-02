@@ -1442,8 +1442,8 @@ types={
         },{
             name:'Lament',rarity:0,list:3,
             levels:[
-                {effect:[8,2],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12,3],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,2],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,3],attack:38,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Scratch',rarity:0,list:3,
@@ -1976,14 +1976,14 @@ types={
         },{
             name:'Absolution',rarity:1,list:3,
             levels:[
-                {effect:[2],attack:445,cost:1,target:[0],spec:[],class:4},
-                {effect:[2],attack:445,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:445,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:445,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Resolution',rarity:1,list:3,
             levels:[
-                {effect:[2],attack:446,cost:1,target:[0],spec:[],class:4},
-                {effect:[2],attack:446,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:446,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:446,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Wind\nPush',rarity:2,list:3,
@@ -2772,8 +2772,8 @@ types={
         },{
             name:'Clawchain',rarity:1,list:5,
             levels:[
-                {effect:[4,1,2],attack:507,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[6,1,2],attack:507,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[4,1,2],attack:507,cost:1,target:[2,1,1],spec:[0,20],class:1},
+                {effect:[6,1,2],attack:507,cost:1,target:[2,1,1],spec:[0,20],class:1},
             ],
         },{
             name:'Open\nFire',rarity:0,list:5,
@@ -2796,8 +2796,8 @@ types={
         },{
             name:'Compile',rarity:0,list:5,
             levels:[
-                {effect:[7],attack:511,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[10],attack:511,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,1],attack:511,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1],attack:511,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Reform',rarity:0,list:5,
@@ -3072,8 +3072,8 @@ types={
         },{
             name:'Shock',rarity:0,list:5,
             levels:[
-                {effect:[1,1],attack:557,cost:2,target:[2,1,1],spec:[0],class:1},
                 {effect:[2,1],attack:557,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[3,1],attack:557,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Eminence',rarity:1,list:5,
@@ -4491,7 +4491,7 @@ types={
         {name:'',internal:'View Draw',id:129,rarity:3,list:0,description:'Draw Pile Cards Are\nViewed in Order'},
         {name:'',internal:'Innate Card',id:130,rarity:3,list:0,description:'When Taken, Make a Card Innate'},
         
-        {name:'',internal:'Energy/Card Choice',id:131,rarity:4,list:0,description:'Gain 1 Base Energy, Have 2\nLess Cards to Choose From'},
+        {name:'',internal:'Energy/Card Choice',id:131,rarity:4,list:0,description:'Gain 1 Base Energy, Have 1\nLess Cards to Choose From'},
         {name:'',internal:'Energy/Rest Heal',id:132,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Heal at Rest'},
         {name:'',internal:'Energy/Rest Upgrade',id:133,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Upgrade at Rest'},
         {name:'',internal:'Energy/Curses',id:134,rarity:4,list:0,description:'Gain 1 Base Energy,\nAdd 2 Curses to Deck'},

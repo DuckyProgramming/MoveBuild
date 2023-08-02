@@ -330,7 +330,7 @@ class relic{
                     displaySymbol(this.layer,0,10,32,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('1',0,-6)
+                    this.layer.text('2',0,-6)
                 break
                 case 'Damage Taken Draw':
                     displaySymbol(this.layer,-8,0,33,0,1,this.fade)
@@ -1000,9 +1000,8 @@ class relic{
                     displaySymbol(this.layer,0,0,58,1.2,this.fade)
                 break
                 case 'Energy/Card Choice':
-                    displaySymbol(this.layer,0,0,9,0,1,this.fade)
-                    displaySymbol(this.layer,-13,0,8,0,0.6,this.fade)
-                    displaySymbol(this.layer,13,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,-5,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,8,0,0.8,this.fade)
                 break
                 case 'Energy/Rest Heal':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
