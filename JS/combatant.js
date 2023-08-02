@@ -57,7 +57,7 @@ class combatant{
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
-            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn',
+            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -71,7 +71,7 @@ class combatant{
                 0,2,2,2,0,0,0,0,2,2,//9
                 0,0,1,1,1,0,0,1,2,0,//10
                 0,0,2,0,0,0,2,0,0,0,//11
-                0,0,0,0,0,0,0,1,0,
+                0,0,0,0,0,0,0,1,0,1,//12
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -85,7 +85,7 @@ class combatant{
                 3,2,2,2,2,2,1,2,0,0,
                 2,2,0,0,0,0,1,0,0,0,
                 0,1,0,0,2,2,0,2,0,2,
-                1,2,2,2,2,2,2,3,2,
+                1,2,2,2,2,2,2,3,2,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -113,6 +113,7 @@ class combatant{
         this.anyOrb=false
         this.totalOrb=0
         this.totalOrbClass=[]
+        this.lastOrb=0
 
         this.intent=0
         this.activated=false
@@ -2234,6 +2235,7 @@ class combatant{
         this.anyOrb=false
         this.totalOrb=0
         this.totalOrbClass=[]
+        this.lastOrb=0
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -3104,7 +3106,7 @@ class combatant{
         }
     }
     markTarget(){
-        if(this.life>0&&!this.moved&&this.status.main[32]<=0&&this.status.main[51]<=0){
+        if(this.life>0&&!this.moved&&this.status.main[32]<=0&&this.status.main[51]<=0&&this.status.main[119]<=0){
             let target=this.getTarget()
             this.targetTile=this.convertTile(target)
             switch(this.attack[this.intent].type){
@@ -3689,18 +3691,32 @@ class combatant{
             this.orbs[a]=-1
         }
     }
+    replaceOrb(start,end){
+        for(let a=0,la=this.orbs.length;a<la;a++){
+            if(this.orbs[a]==start){
+                this.orbs[a]=end
+            }
+        }
+    }
     holdOrb(type){
         this.anyOrb=true
         this.totalOrb++
         this.totalOrbClass[type]++
+        this.lastOrb=type
+        let success=false
         for(let a=0,la=this.orbs.length;a<la;a++){
             if(this.orbs[a]==-1){
+                success=true
                 this.orbs[a]=type
                 if(type==4){
                     this.orbDetail[a]=8
                 }
                 a=la
             }
+        }
+        if(!success){
+            this.evoke(0,this.id,[1])
+            this.holdOrb(type)
         }
     }
     subEvoke(type,detail,target){
@@ -3712,24 +3728,35 @@ class combatant{
         }
         switch(type){
             case 0:
-                this.battle.combatantManager.combatants[target].orbTake(round(6)*multi,-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(6*multi),-1)
             break
             case 1:
-                this.battle.combatantManager.combatants[target].addBlock(round(8)*multi)
+                this.battle.combatantManager.combatants[target].addBlock(round(8*multi))
             break
             case 2:
-                this.battle.combatantManager.damageAreaRuleless(round(10)*multi,this.battle.combatantManager.combatants[target].tilePosition)
+                this.battle.combatantManager.damageAreaRuleless(round(10*multi),this.battle.combatantManager.combatants[target].tilePosition)
             break
             case 3:
-                this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(2)*multi
+                this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(2*multi)
             break
             case 4:
-                this.battle.combatantManager.combatants[target].orbTake(round(detail)*multi,-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi),-1)
             break
             case 5:
-                this.battle.combatantManager.combatants[target].orbTake(round(5)*multi,-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(5*multi),-1)
             break
-
+            case 6:
+                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(3*multi))
+            break
+            case 7:
+                this.battle.combatantManager.combatants[target].orbTake(round(15*multi),-1)
+            break
+            case 8:
+                this.battle.combatantManager.combatants[target].statusEffect('Freeze',1)
+            break
+            case 9:
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',round(2*multi))
+            break
         }
     }
     evoke(type,target,args){
@@ -3781,7 +3808,9 @@ class combatant{
                     this.orbs[a]=this.orbs[a+1]
                     this.orbDetail[a]=this.orbDetail[a+1]
                 }
-                this.holdOrb(type)
+                for(let a=0,la=args[1];a<la;a++){
+                    this.holdOrb(type)
+                }
             break
         }
         this.anyOrb=false
@@ -3973,6 +4002,11 @@ class combatant{
                 break
                 case 5:
                     this.battle.combatantManager.randomEnemyEffect(0,[3])
+                break
+                case 7:
+                    for(let b=0,lb=this.status.main[a];b<lb;b++){
+                        this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                    }
                 break
             }
         }
@@ -5364,7 +5398,7 @@ class combatant{
             if(this.infoAnim.orb>0){
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(lcos(this.time*2+360*a/la)<=0){
-                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb)
+                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
                     }
                 }
             }
@@ -12118,7 +12152,7 @@ class combatant{
             if(this.infoAnim.orb>0){
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(lcos(this.time*2+360*a/la)>0){
-                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb)
+                        displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
                     }
                 }
             }

@@ -56,7 +56,7 @@ class attack{
             case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
             case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504: case 507:
             case 508: case 509: case 510: case 514: case 531: case 532: case 533: case 534: case 535: case 537:
-            case 538: case 539: case 540: case 545: case 550:
+            case 538: case 539: case 540: case 545: case 550: case 557: case 558: case 559:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -605,6 +605,16 @@ class attack{
                         this.battle.cardManagers[this.player].discard.allEffect(25)
                         this.battle.cardManagers[this.player].reserve.allEffect(25)
                     break
+                    case 558:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(6)
+                        }
+                    break
+                    case 559:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.holdOrb(7)
+                        }
+                    break
                 }
             break
         }
@@ -621,7 +631,8 @@ class attack{
             case 287: case 288: case 293: case 296: case 301: case 304: case 310: case 319: case 323: case 361:
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
             case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462: case 469:
-            case 475: case 496: case 497: case 507: case 508: case 509: case 510: case 514: case 540:
+            case 475: case 496: case 497: case 507: case 508: case 509: case 510: case 514: case 540: case 558:
+            case 559:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){
@@ -3149,7 +3160,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 132: case 136: case 290:
+            case 132: case 136: case 290: case 557:
                 if(this.timer==1&&this.targetDistance>1){
                     this.userCombatant.startAnimation(0)
                 }else if(this.timer==15*this.targetDistance-14){
@@ -3178,6 +3189,11 @@ class attack{
                         switch(this.type){
                             case 132:
                                 this.userCombatant.combo=0
+                            break
+                            case 557:
+                                for(let a=0,la=this.effect[1];a<la;a++){
+                                    this.userCombatant.holdOrb(7)
+                                }
                             break
                         }
                     }
@@ -4594,7 +4610,7 @@ class attack{
             case 342: case 350: case 353: case 407: case 425: case 473: case 476: case 477: case 478: case 479:
             case 480: case 490: case 491: case 492: case 493: case 494: case 495: case 498: case 505: case 506:
             case 520: case 526: case 531: case 532: case 534: case 535: case 536: case 543: case 544: case 545:
-            case 549: case 550:
+            case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 560: case 561:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4720,7 +4736,11 @@ class attack{
                         case 536:
                             for(let a=0,la=this.effect[0];a<la;a++){
                                 this.userCombatant.holdOrb(1)
+                            }
+                            for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userCombatant.holdOrb(4)
+                            }
+                            for(let a=0,la=this.effect[2];a<la;a++){
                                 this.userCombatant.holdOrb(5)
                             }
                         break
@@ -4752,7 +4772,50 @@ class attack{
                             }
                         break
                         case 550:
-                            this.userCombatant.evoke(4,this.targetCombatant.id,[this.effect[0]])
+                            this.userCombatant.evoke(4,this.targetCombatant.id,[this.effect[0],1])
+                        break
+                        case 551:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(6)
+                            }
+                        break
+                        case 552:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(7)
+                            }
+                        break
+                        case 553:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(8)
+                            }
+                        break
+                        case 554:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(9)
+                            }
+                        break
+                        case 555:
+                            let type=this.userCombatant.lastOrb
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(type)
+                            }
+                        break
+                        case 556:
+                            this.userCombatant.evoke(4,this.targetCombatant.id,[this.effect[0],this.effect[1]])
+                        break
+                        case 560:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(7)
+                            }
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userCombatant.holdOrb(3)
+                            }
+                            for(let a=0,la=this.effect[2];a<la;a++){
+                                this.userCombatant.holdOrb(8)
+                            }
+                        break
+                        case 561:
+                            this.userCombatant.replaceOrb(0,2)
                         break
                     }
                 }else if(this.timer>=20){

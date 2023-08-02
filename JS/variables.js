@@ -2997,9 +2997,7 @@ types={
                 {effect:[1,1],attack:543,cost:1,target:[2,1,6],spec:[],class:4},
                 {effect:[1,2],attack:543,cost:1,target:[2,1,6],spec:[],class:4},
             ],
-        },
-
-        {
+        },{
             name:'Mergecast',rarity:0,list:5,
             levels:[
                 {effect:[],attack:545,cost:1,target:[2,1,6],spec:[],class:4},
@@ -3035,12 +3033,83 @@ types={
                 {effect:[1],attack:550,cost:1,target:[26,0,2],spec:[],class:4},
                 {effect:[1],attack:550,cost:0,target:[26,0,2],spec:[],class:4},
             ],
+        },{
+            name:'Illuminate',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:551,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:551,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Enflame',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:552,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:552,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Nucleation',rarity:2,list:5,
+            levels:[
+                {effect:[1],attack:553,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:553,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Buffball',rarity:0,list:5,
+            levels:[
+                {effect:[1],attack:554,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:554,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Mirrorb',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:555,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:555,cost:0,target:[0],spec:[1],class:4},
+            ],
         },
 
-        //perhaps light orb
-        //mirror orb
-        //freeze orb
-        //perhaps flame orb
+        {
+            name:'Hydra',rarity:0,list:5,
+            levels:[
+                {effect:[1,2],attack:556,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[1,3],attack:556,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },{
+            name:'Shock',rarity:0,list:5,
+            levels:[
+                {effect:[1,1],attack:557,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[2,1],attack:557,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Eminence',rarity:1,list:5,
+            levels:[
+                {effect:[12,1],attack:558,cost:3,target:[2,1,3],spec:[0],class:1},
+                {effect:[19,1],attack:558,cost:3,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Immolate',rarity:2,list:5,
+            levels:[
+                {effect:[12,3],attack:559,cost:3,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,3],attack:559,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Rainbow',rarity:2,list:5,
+            levels:[
+                {effect:[1,1,1],attack:560,cost:4,target:[0],spec:[1],class:4},
+                {effect:[1,1,1],attack:560,cost:3,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Infuse',rarity:2,list:5,
+            levels:[
+                {effect:[],attack:561,cost:2,target:[0],spec:[],class:4},
+                {effect:[],attack:561,cost:1,target:[0],spec:[],class:4},
+            ],
+        },
+
+        //opening\nlineup
+        //more ice and buff orbs
+
+
+
+
+
 
         {
             name:'Strike',rarity:-2,list:5,
@@ -8891,7 +8960,7 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
     ]
 }
 stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:5,orbNumber:6,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:5,orbNumber:10,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}

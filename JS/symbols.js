@@ -1061,11 +1061,19 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
                 layer.triangle(0,-1,-1,0,-4,-4)
             }
         break
+        case 119:
+            layer.fill(125,255,255,fade)
+            layer.rect(0,0,9,9)
+            layer.fill(175,255,255,fade)
+            layer.rect(0,0,6,6)
+            layer.fill(225,255,255,fade)
+            layer.rect(0,0,3,3)
+        break
         
     }
     layer.pop()
 }
-function displayOrb(layer,x,y,typeFades,detail,direction,size,fade){
+function displayOrb(layer,x,y,typeFades,detail,direction,size,fade,id){
     layer.push()
     layer.translate(x,y)
     layer.rotate(direction)
@@ -1073,6 +1081,9 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade){
     layer.fill(255,fade/5)
     layer.noStroke()
     layer.ellipse(0,0,20)
+    layer.fill(255,fade)
+    layer.textSize(10)
+    layer.text(id+1,0,20)
     for(let a=0,la=game.orbNumber;a<la;a++){
         if(typeFades[a]>=0.2){
             switch(a){
@@ -1120,6 +1131,36 @@ function displayOrb(layer,x,y,typeFades,detail,direction,size,fade){
                     layer.line(-3,0,3,0)
                     layer.line(-3,0,0,-7)
                     layer.line(3,0,0,7)
+                break
+                case 6:
+                    layer.noFill()
+                    layer.stroke(255,255,100,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    regTriangle(layer,0,0,6,6,60)
+                break
+                case 7:
+                    layer.stroke(150,0,0,fade*typeFades[a])
+                    layer.strokeWeight(2)
+                    layer.line(0,6,-6,2)
+                    layer.line(0,6,6,2)
+                    layer.line(-6,2,-3,-6)
+                    layer.line(0,0,-3,-6)
+                    layer.line(6,0,3,-6)
+                    layer.line(0,2,3,-6)
+                break
+                case 8:
+                    layer.noFill()
+                    layer.stroke(200,255,255,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    regPoly(layer,0,0,5,6,6,36)
+                    layer.strokeWeight(2)
+                    layer.line(0,4,0,-6)
+                break
+                case 9:
+                    layer.noFill()
+                    layer.stroke(255,50,50,fade*typeFades[a])
+                    layer.strokeWeight(3)
+                    layer.triangle(0,-5,-4,4,4,4)
                 break
             }
         }
