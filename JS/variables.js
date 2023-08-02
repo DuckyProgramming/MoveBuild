@@ -3012,8 +3012,8 @@ types={
         },{
             name:'Absorption',rarity:1,list:5,
             levels:[
-                {effect:[10,2],attack:547,cost:1,target:[0],spec:[],class:2},
-                {effect:[15,2],attack:547,cost:1,target:[0],spec:[],class:2},
+                {effect:[10,2],attack:547,cost:3,target:[0],spec:[],class:2},
+                {effect:[15,2],attack:547,cost:3,target:[0],spec:[],class:2},
             ],
         },{
             name:'Pinpoint',rarity:0,list:5,
@@ -3121,7 +3121,7 @@ types={
             name:'Minor\nEvoke',rarity:0,list:5,
             levels:[
                 {effect:[],attack:565,cost:1,target:[26,0,2],spec:[],class:4},
-                {effect:[],attack:565,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:565,cost:0,target:[26,0,2],spec:[],class:4},
             ],
         },{
             name:'Alternate\nShield',rarity:1,list:5,

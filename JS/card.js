@@ -632,7 +632,7 @@ class card{
             case 515: string+=`Add Block Equal\nto Number of Cards\nin Discard ${effect[0]>0?`+${effect[0]}`:``}`; break
             case 516: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 517: string+=`Gain ${effect[0]} Energy\nAdd a Void\nto Discard`; break
-            case 518: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nFor Every ${effect[1]} Cards\nin Draw Pile`; break
+            case 518: string+=`gain ${effect[0]} Energy\nFor Every ${effect[1]} Cards\nin Draw Pile`; break
             case 519: string+=`Gain ${effect[0]} Focus`; break
             case 520: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nHold ${effect[1]} Dark Orb${effect[1]!=1?`s`:``}`; break
             case 521: string+=`Double Your Energy`; break

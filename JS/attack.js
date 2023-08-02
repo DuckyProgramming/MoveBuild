@@ -56,8 +56,8 @@ class attack{
             case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
             case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504: case 507:
             case 508: case 509: case 510: case 514: case 531: case 532: case 533: case 534: case 535: case 537:
-            case 538: case 539: case 540: case 543: case 545: case 550: case 557: case 558: case 559: case 564:
-            case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581: case 582:
+            case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 557: case 558: case 559:
+            case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581: case 582:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -738,7 +738,7 @@ class attack{
                             this.userCombatant.addBlock(this.effect[0]+this.battle.cardManagers[this.player].discard.cards.length)
                         break
                         case 518:
-                            this.userCombatant.addBlock(floor(this.userCombatant.life/this.effect[0])*this.effect[1])
+                            this.battle.energy.main[this.player]+=floor(this.userCombatant.life/this.effect[1])*this.effect[0]
                         break
                         case 546:
                             this.userCombatant.addBlock(this.effect[0]*this.userCombatant.totalOrbClass[1])
@@ -1650,7 +1650,7 @@ class attack{
                         break
                         case 527:
                             for(let a=0,la=this.effect[0];a<la;a++){
-                                this.battle.cardManagers[this.id].addRandomClass(2,0,4,0)
+                                this.battle.cardManagers[this.player].addRandomClass(2,0,4,0)
                             }
                         break
                         case 528:
@@ -3239,7 +3239,7 @@ class attack{
                             break
                             case 557:
                                 for(let a=0,la=this.effect[1];a<la;a++){
-                                    this.userCombatant.holdOrb(7)
+                                    this.userCombatant.holdOrb(5)
                                 }
                             break
                         }
@@ -3494,9 +3494,6 @@ class attack{
                                 this.targetCombatant[a].takeDamage(this.effect[0],this.user)
                                 this.targetCombatant[a].statusEffect('Bleed',this.effect[1])
                             break
-                            case 516:
-                                this.battle.cardManagers[this.player].draw(this.effect[1])
-                            break
                             default:
                                 this.targetCombatant[a].takeDamage(this.effect[0],this.user)
                             break
@@ -3508,6 +3505,9 @@ class attack{
                         break
                         case 400:
                             this.userCombatant.balance+=this.effect[1]
+                        break
+                        case 516:
+                            this.battle.cardManagers[this.player].draw(this.effect[1])
                         break
                     }
                 }else if(this.timer>=30){

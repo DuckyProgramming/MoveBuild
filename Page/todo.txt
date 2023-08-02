@@ -1,8 +1,6 @@
 Bugs:
 A lot
 
-Paper Ball-lobster
-
 Menu UI:
 
 Generality:
