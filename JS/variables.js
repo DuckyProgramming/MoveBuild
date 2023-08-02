@@ -3123,9 +3123,7 @@ types={
                 {effect:[],attack:565,cost:1,target:[26,0,2],spec:[],class:4},
                 {effect:[],attack:565,cost:1,target:[26,0,2],spec:[],class:4},
             ],
-        },
-
-        {
+        },{
             name:'Alternate\nShield',rarity:1,list:5,
             levels:[
                 {effect:[],attack:566,cost:1,target:[26,0,2],spec:[],class:4},
@@ -3137,12 +3135,51 @@ types={
                 {effect:[],attack:567,cost:1,target:[26,0,2],spec:[],class:4},
                 {effect:[],attack:567,cost:0,target:[26,0,2],spec:[],class:4},
             ],
+        },{
+            name:'Elevate',rarity:1,list:5,
+            levels:[
+                {effect:[],attack:568,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:568,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },{
+            name:'Evoswap',rarity:2,list:5,
+            levels:[
+                {effect:[1],attack:569,cost:1,target:[3,1,1],spec:[0],class:3},
+                {effect:[1],attack:569,cost:0,target:[3,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Orbstep',rarity:1,list:5,
+            levels:[
+                {effect:[1,1],attack:570,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:571,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Ring\nMove',rarity:1,list:5,
+            levels:[
+                {effect:[2,1],attack:572,cost:1,target:[27,2,2,1,1],spec:[0],class:3},
+                {effect:[2,1],attack:572,cost:0,target:[27,2,2,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Reversible\nStep',rarity:0,list:5,
+            levels:[
+                {effect:[1],attack:573,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:573,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Restation',rarity:0,list:5,
+            levels:[
+                {effect:[1,1],attack:574,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,2],attack:574,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Drop and\nRun',rarity:0,list:5,
+            levels:[
+                {effect:[1],attack:575,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[2],attack:575,cost:0,target:[1,1,2],spec:[0],class:3},
+            ],
         },
 
-        
-
-        //opening\nlineup
-        //more ice and buff orbs
+        //buff orb, ice orb (1 each)
 
 
 

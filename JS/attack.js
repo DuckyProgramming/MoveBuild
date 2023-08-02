@@ -57,7 +57,7 @@ class attack{
             case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504: case 507:
             case 508: case 509: case 510: case 514: case 531: case 532: case 533: case 534: case 535: case 537:
             case 538: case 539: case 540: case 545: case 550: case 557: case 558: case 559: case 564: case 565:
-            case 566: case 567:
+            case 566: case 567: case 568: case 569:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -70,7 +70,7 @@ class attack{
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
             case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485:
-            case 486: case 503:
+            case 486: case 503: case 570: case 571: case 572: case 573: case 574: case 575:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -202,7 +202,7 @@ class attack{
                     this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
                 }
             break
-            case 328:
+            case 328: case 572:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.targetVariant=distTargetCombatant(0,this,this.targetTile)>0
@@ -879,7 +879,7 @@ class attack{
             break
             case 3: case 20: case 51: case 52: case 56: case 58: case 59: case 60: case 91: case 182:
             case 192: case 205: case 248: case 256: case 330: case 331: case 332: case 335: case 374: case 375:
-            case 383: case 397: case 484: case 485: case 503:
+            case 383: case 397: case 484: case 485: case 503: case 570: case 571: case 573: case 574: case 575:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -929,6 +929,25 @@ class attack{
                         break
                         case 503:
                             this.battle.cardManagers[this.player].allGroupClaw(this.effect[0])
+                        break
+                        case 570:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(0)
+                            }
+                        break
+                        case 571:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(2)
+                            }
+                        break
+                        case 573:
+                            this.userCombatant.statusEffect('Step Next Turn',1)
+                        break
+                        case 574:
+                            this.userCombatant.evoke(0,this.user,[this.effect[0]])
+                        break
+                        case 575:
+                            this.userCombatant.clearOrbs()
                         break
                     }
                 }
@@ -1641,7 +1660,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 9: case 333:
+            case 9: case 333: case 569:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                     if(this.targetClass==2){
@@ -1661,6 +1680,11 @@ class attack{
                     if(this.targetClass==2){
                         this.targetCombatant.moveTilePosition(this.tilePosition.x,this.tilePosition.y)
                         this.battle.activate(1,this.targetCombatant.id)
+                        switch(this.type){
+                            case 569:
+                                this.userCombatant.evoke(1,this.targetCombatant.id,[1])
+                            break
+                        }
                     }
                     this.remove=true
                 }
@@ -4542,7 +4566,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 328:
+            case 328: case 572:
                 if(this.targetVariant){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(0)
@@ -4612,7 +4636,7 @@ class attack{
             case 480: case 490: case 491: case 492: case 493: case 494: case 495: case 498: case 505: case 506:
             case 520: case 526: case 531: case 532: case 534: case 535: case 536: case 543: case 544: case 545:
             case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 560: case 561: case 562:
-            case 563: case 564: case 565: case 566: case 567:
+            case 563: case 564: case 565: case 566: case 567: case 568:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4839,6 +4863,9 @@ class attack{
                         break
                         case 567:
                             this.userCombatant.evoke(6,this.targetCombatant.id,[2])
+                        break
+                        case 568:
+                            this.userCombatant.evoke(6,this.targetCombatant.id,[9])
                         break
                     }
                 }else if(this.timer>=20){
