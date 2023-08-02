@@ -473,7 +473,7 @@ class combatant{
                     arms:[{top:24,bottom:9,length:{top:16.5,bottom:16.5}},{top:24,bottom:9,length:{top:16.5,bottom:16.5}}]}
                 this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216,sword:0}
                 this.color={skin:{head:[230,220,185],body:[85,75,65],legs:[80,70,60],arms:[80,70,60]},eye:{back:[80,0,0],front:[100,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]},button:[70,60,50],hood:[60,50,40],hoodBack:[40,35,30],cape:[30,25,20]}
-                this.hood=[{spin:[0,180,105],height:15},{spin:[-180,0,-105],height:15}]
+                this.hood=[{spin:[0,180,105],height:16},{spin:[-180,0,-105],height:16}]
                 this.parts={eyeLevel:-75,mouth:-66,minor:15,
                     legs:[{top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0}}],
                     arms:[{top:{x:3.5,y:-58},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-58},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
@@ -7591,7 +7591,7 @@ class combatant{
                         this.layer.strokeWeight(0.5)
                         for(let a=0,la=10;a<la;a++){
                             if(lcos(this.anim.direction+112.5+a*15)<0){
-                                this.layer.rect(lsin(this.anim.direction+122.5+a*15)*16,-70.5,5*lcos(this.anim.direction+122.5+a*15),15)
+                                this.layer.rect(lsin(this.anim.direction+122.5+a*15)*16,-70,5*lcos(this.anim.direction+122.5+a*15),16)
                             }
                         }
                         displayTrianglesBack(this.layer,this.hood,this.anim.direction,-78,32,0.5,0.1,this.flashColor(this.color.hoodBack),this.fade)
@@ -7650,26 +7650,6 @@ class combatant{
                     if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
                         this.minorDisplayGeneral(1,0)
                     }
-                    if(this.trigger.display.hood){
-                        this.layer.fill(this.flashColor(this.color.hood)[0],this.flashColor(this.color.hood)[1],this.flashColor(this.color.hood)[2],this.fade*this.fades.hood)
-                        this.layer.stroke(this.flashColor(this.color.hood)[0],this.flashColor(this.color.hood)[1],this.flashColor(this.color.hood)[2],this.fade*this.fades.hood)
-                        this.layer.strokeWeight(0.5)
-                        this.layer.arc(0,-78,32,32,-180,0)
-                        for(let a=0,la=10;a<la;a++){
-                            if(lcos(this.anim.direction+112.5+a*15)>0){
-                                this.layer.rect(lsin(this.anim.direction+122.5+a*15)*16,-70.5,5*lcos(this.anim.direction+122.5+a*15),15)
-                            }
-                        }
-                        displayTrianglesFront(this.layer,this.hood,this.anim.direction,-78,32,0.5,0.1,this.flashColor(this.color.hood),this.fade)
-                    }
-                    if(this.trigger.display.cape&&lcos(this.anim.direction+180)>0.1){
-                        this.layer.noStroke()
-                        this.layer.fill(this.color.cape[0],this.color.cape[1],this.color.cape[2],this.fade*this.fades.cape)
-                        this.layer.arc(5*lsin(this.anim.direction+180),-54,12*lcos(this.anim.direction+180),12,-180,0)
-                        for(let a=0,la=3;a<la;a++){
-                            this.layer.triangle(5*lsin(this.anim.direction+180)-6*lcos(this.anim.direction+180),-54,5*lsin(this.anim.direction+180)+6*lcos(this.anim.direction+180),-54,8*lsin(this.anim.direction+180)+(-10+a*10)*lcos(this.anim.direction+180),-3)
-                        }
-                    }
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -7684,6 +7664,26 @@ class combatant{
                         }
                         if(this.trigger.display.eye[g]){
                             this.minorDisplayGeneral(0,g)
+                        }
+                    }
+                    if(this.trigger.display.hood){
+                        this.layer.fill(this.flashColor(this.color.hood)[0],this.flashColor(this.color.hood)[1],this.flashColor(this.color.hood)[2],this.fade*this.fades.hood)
+                        this.layer.stroke(this.flashColor(this.color.hood)[0],this.flashColor(this.color.hood)[1],this.flashColor(this.color.hood)[2],this.fade*this.fades.hood)
+                        this.layer.strokeWeight(0.5)
+                        this.layer.arc(0,-78,32,32,-180,0)
+                        for(let a=0,la=10;a<la;a++){
+                            if(lcos(this.anim.direction+112.5+a*15)>0){
+                                this.layer.rect(lsin(this.anim.direction+122.5+a*15)*16,-70,5*lcos(this.anim.direction+122.5+a*15),16)
+                            }
+                        }
+                        displayTrianglesFront(this.layer,this.hood,this.anim.direction,-78,32,0.5,0.1,this.flashColor(this.color.hood),this.fade)
+                    }
+                    if(this.trigger.display.cape&&lcos(this.anim.direction+180)>0.1){
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.cape[0],this.color.cape[1],this.color.cape[2],this.fade*this.fades.cape)
+                        this.layer.arc(5*lsin(this.anim.direction+180),-54,12*lcos(this.anim.direction+180),12,-180,0)
+                        for(let a=0,la=3;a<la;a++){
+                            this.layer.triangle(5*lsin(this.anim.direction+180)-6*lcos(this.anim.direction+180),-54,5*lsin(this.anim.direction+180)+6*lcos(this.anim.direction+180),-54,8*lsin(this.anim.direction+180)+(-10+a*10)*lcos(this.anim.direction+180),-3)
                         }
                     }
                 break

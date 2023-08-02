@@ -506,87 +506,7 @@ class battle{
                 this.layer.image(graphics.backgrounds[9],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=game.playerNumber;a<=la;a++){
                     if(this.menu.anim.combatant[0][a]>0&&a>0){
-                        this.layer.push()
-                        this.layer.translate(this.layer.width/2,this.layer.height*0.3+81.25)
-                        switch(a){
-                            case 1:
-                                this.layer.fill(0,50,100,this.menu.anim.combatant[0][a])
-                            break
-                            case 2:
-                                this.layer.fill(125,200,125,this.menu.anim.combatant[0][a])
-                            break
-                            case 3:
-                                this.layer.fill(255,175,175,this.menu.anim.combatant[0][a])
-                            break
-                            case 4:
-                                this.layer.fill(100,0,150,this.menu.anim.combatant[0][a])
-                            break
-                        }
-                        this.layer.ellipse(0,0,50)
-                        this.layer.fill(255,this.menu.anim.combatant[0][a])
-                        switch(a){
-                            case 1:
-                                this.layer.beginShape()
-                                this.layer.vertex(-20,0)
-                                this.layer.vertex(0,-20/sqrt(3))
-                                this.layer.vertex(20,0)
-                                this.layer.vertex(10,-10*sqrt(3))
-                                this.layer.vertex(-10,-10*sqrt(3))
-                                this.layer.endShape()
-                                this.layer.beginShape()
-                                this.layer.vertex(-20,0)
-                                this.layer.vertex(0,20/sqrt(3))
-                                this.layer.vertex(20,0)
-                                this.layer.vertex(10,10*sqrt(3))
-                                this.layer.vertex(-10,10*sqrt(3))
-                                this.layer.endShape()
-                                this.layer.ellipse(0,0,10,10)
-                            break
-                            case 2:
-                                this.layer.rotate(45)
-                                this.layer.ellipse(0,0,32,42)
-                                this.layer.stroke(125,200,125,this.menu.anim.combatant[0][a])
-                                this.layer.strokeWeight(3)
-                                this.layer.line(0,17,0,-8)
-                                this.layer.line(0,10,-8,5)
-                                this.layer.line(0,10,8,5)
-                                this.layer.line(0,0,-6,-3.75)
-                                this.layer.line(0,0,6,-3.75)
-                                this.layer.rotate(-45)
-                            break
-                            case 3:
-                                for(let a=0,la=5;a<la;a++){
-                                    this.layer.beginShape()
-                                    this.layer.vertex(0,0)
-                                    this.layer.bezierVertex(-8,-7,-8,-14,-2,-21)
-                                    this.layer.vertex(0,-18)
-                                    this.layer.vertex(2,-21)
-                                    this.layer.bezierVertex(8,-14,8,-7,0,0)
-                                    this.layer.rotate(72)
-                                    this.layer.endShape()
-                                }
-                                this.layer.fill(255,175,175,this.menu.anim.combatant[0][a])
-                                this.layer.rotate(-12)
-                                for(let a=0;a<5;a++){
-                                    this.layer.quad(0,-1,-1,-6,0,-10,1,-6)
-                                    this.layer.rotate(72)
-                                }
-                                this.layer.ellipse(0,0,4,4)
-                            break
-                            case 4:
-                                for(let a=0,la=4;a<la;a++){
-                                    this.layer.rotate(90)
-                                    this.layer.triangle(-9,0,9,0,0,21)
-                                    this.layer.triangle(-5,-5,5,5,11,-11)
-                                }
-                                this.layer.fill(100,0,150,this.menu.anim.combatant[0][a])
-                                for(let a=0,la=4;a<la;a++){
-                                    this.layer.rotate(90)
-                                    this.layer.triangle(-4,0,4,0,0,8)
-                                }
-                            break
-                        }
-                        this.layer.pop()
+                        displayPlayerSymbol(this.layer,this.layer.width/2,this.layer.height*0.3+81.25,a,0,1,1)
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<=la;a++){
@@ -911,7 +831,7 @@ class battle{
             case 'graphic':
                 this.layer.image(graphics.backgrounds[graphics.test],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[graphics.test][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
+                    this.graphics.combatants[graphics.test][0][a].display()
                 }
             break
         }

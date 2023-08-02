@@ -3088,7 +3088,7 @@ types={
                 {effect:[12,3],attack:559,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Rainbow',rarity:2,list:5,
+            name:'Prism',rarity:2,list:5,
             levels:[
                 {effect:[1,1,1],attack:560,cost:4,target:[0],spec:[1],class:4},
                 {effect:[1,1,1],attack:560,cost:3,target:[0],spec:[1],class:4},
@@ -3142,7 +3142,7 @@ types={
                 {effect:[],attack:568,cost:0,target:[26,0,2],spec:[],class:4},
             ],
         },{
-            name:'Evoswap',rarity:2,list:5,
+            name:'Evoswap',rarity:1,list:5,
             levels:[
                 {effect:[1],attack:569,cost:1,target:[3,1,1],spec:[0],class:3},
                 {effect:[1],attack:569,cost:0,target:[3,1,1],spec:[0],class:3},
@@ -3213,9 +3213,27 @@ types={
                 {effect:[8,1],attack:581,cost:2,target:[2,1,1],spec:[0],class:1},
                 {effect:[15,1],attack:581,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Poison\nJet',rarity:1,list:5,
+            levels:[
+                {effect:[4,1],attack:582,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[6,1],attack:582,cost:0,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Colorflash',rarity:2,list:5,
+            levels:[
+                {effect:[1,1,1],attack:583,cost:3,target:[0],spec:[1],class:4},
+                {effect:[1,1,1],attack:583,cost:3,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Lightning\nAura',rarity:1,list:5,
+            levels:[
+                {effect:[2,4],attack:584,cost:3,target:[0],spec:[],class:2},
+                {effect:[3,4],attack:584,cost:3,target:[0],spec:[],class:2},
+            ],
         },
 
-        //poison orb things
+        //2 more
 
 
 

@@ -1213,6 +1213,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 4:
             layer.fill(100,0,150,fade)
         break
+        case 5:
+            layer.fill(255,200,100,fade)
+        break
     }
     layer.ellipse(0,0,50)
     layer.fill(255,fade)
@@ -1275,6 +1278,19 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             for(let a=0,la=4;a<la;a++){
                 layer.rotate(90)
                 layer.triangle(-4,0,4,0,0,8)
+            }
+        break
+        case 5:
+            for(let a=0,la=3;a<la;a++){
+                layer.ellipse(lsin(a*120)*12,-lcos(a*120)*12,16,16)
+            }
+            layer.stroke(255,200,100,fade)
+            layer.strokeWeight(2)
+            layer.noFill()
+            for(let a=0,la=3;a<la;a++){
+                layer.rotate(120)
+                layer.arc(0,-15,8,16,-90,75)
+                layer.point(-3,-13)
             }
         break
     }

@@ -57,7 +57,7 @@ class attack{
             case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504: case 507:
             case 508: case 509: case 510: case 514: case 531: case 532: case 533: case 534: case 535: case 537:
             case 538: case 539: case 540: case 545: case 550: case 557: case 558: case 559: case 564: case 565:
-            case 566: case 567: case 568: case 569: case 579: case 580: case 581:
+            case 566: case 567: case 568: case 569: case 579: case 580: case 581: case 582:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -626,6 +626,13 @@ class attack{
                             this.userCombatant.holdOrb(10)
                         }
                     break
+                    case 582:
+                        if(this.targetCombatant.life<=0){
+                            for(let a=0,la=this.effect[2];a<la;a++){
+                                this.userCombatant.holdOrb(11)
+                            }
+                        }
+                    break
                 }
             break
         }
@@ -643,7 +650,7 @@ class attack{
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
             case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462: case 469:
             case 475: case 496: case 497: case 507: case 508: case 509: case 510: case 514: case 540: case 558:
-            case 559: case 580: case 581:
+            case 559: case 580: case 581: case 582:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){
@@ -4651,7 +4658,8 @@ class attack{
             case 480: case 490: case 491: case 492: case 493: case 494: case 495: case 498: case 505: case 506:
             case 520: case 526: case 531: case 532: case 534: case 535: case 536: case 543: case 544: case 545:
             case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 560: case 561: case 562:
-            case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579:
+            case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579: case 583:
+            case 584:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4894,6 +4902,23 @@ class attack{
                         break
                         case 579:
                             this.userCombatant.evoke(6,this.targetCombatant.id,[10])
+                        break
+                        case 583:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(9)
+                            }
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userCombatant.holdOrb(11)
+                            }
+                            for(let a=0,la=this.effect[2];a<la;a++){
+                                this.userCombatant.holdOrb(6)
+                            }
+                        break
+                        case 584:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(5)
+                            }
+                            this.userCombatant.addBlock(this.effect[1]*this.userCombatant.getOrbNumber(5))
                         break
                     }
                 }else if(this.timer>=20){
