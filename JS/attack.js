@@ -1260,7 +1260,7 @@ class attack{
             case 294: case 298: case 300: case 302: case 305: case 308: case 309: case 313: case 315: case 317:
             case 318: case 334: case 337: case 338: case 339: case 340: case 343: case 344: case 346: case 363:
             case 387: case 390: case 392: case 398: case 418: case 422: case 423: case 431: case 451: case 499:
-            case 511: case 512: case 519: case 523: case 524: case 525:
+            case 511: case 512: case 519: case 523: case 524: case 525: case 527: case 528: case 529: case 530:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -1585,6 +1585,20 @@ class attack{
                             this.userCombatant.statusEffect('Strength',this.effect[0])
                             this.userCombatant.statusEffect('Dexterity',this.effect[0])
                             this.userCombatant.statusEffect('Focus',-this.effect[0])
+                        break
+                        case 527:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.cardManagers[this.id].addRandomClass(2,0,4,0)
+                            }
+                        break
+                        case 528:
+                            this.userCombatant.statusEffect('Power Basic',this.effect[0])
+                        break
+                        case 529:
+                            this.userCombatant.statusEffect('Damage Taken Basic',this.effect[0])
+                        break
+                        case 530:
+                            this.userCombatant.statusEffect('Random Common Per Turn',this.effect[0])
                         break
                         
                     }
@@ -4537,7 +4551,7 @@ class attack{
             break
             case 342: case 350: case 353: case 407: case 425: case 473: case 476: case 477: case 478: case 479:
             case 480: case 490: case 491: case 492: case 493: case 494: case 495: case 498: case 505: case 506:
-            case 520:
+            case 520: case 526:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -4638,6 +4652,11 @@ class attack{
                             this.battle.combatantManager.damageArea(this.effect[0],this.user,-1,this.userCombatant.tilePosition)
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.userCombatant.holdOrb(4)
+                            }
+                        break
+                        case 526:
+                            for(let a=0,la=this.effect[0]*this.energy.main;a<la;a++){
+                                this.userCombatant.holdOrb(0)
                             }
                         break
                     }

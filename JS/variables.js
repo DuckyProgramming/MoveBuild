@@ -1,12 +1,6 @@
 types={
     card:[
         {
-            name:'Regulate',rarity:-1,list:-1,
-            levels:[
-                {effect:[11,1],attack:110,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15,1],attack:110,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
             name:'Stored\nEnergy',rarity:-1,list:-1,
             levels:[
                 {effect:[1],attack:41,cost:0,target:[0],spec:[1],class:4},
@@ -2878,7 +2872,7 @@ types={
                 {effect:[2],attack:523,cost:1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Possilibities',rarity:1,list:5,
+            name:'Creativity',rarity:1,list:5,
             levels:[
                 {effect:[1],attack:524,cost:1,target:[0],spec:[],class:4},
                 {effect:[1],attack:524,cost:1,target:[0],spec:[2],class:4},
@@ -2888,6 +2882,42 @@ types={
             levels:[
                 {effect:[2,2,2],attack:525,cost:1,target:[0],spec:[1],class:4},
                 {effect:[3,3,3],attack:525,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Regulate',rarity:2,list:5,
+            levels:[
+                {effect:[11,1],attack:110,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:110,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Charge\nSource',rarity:1,list:5,
+            levels:[
+                {effect:[],attack:526,cost:-1,target:[0],spec:[1],class:4},
+                {effect:[],attack:526,cost:-1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'White\nNoise',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:527,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:527,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Storm',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:528,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:528,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Static\nDischarge',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:529,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:529,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Possibilities',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:530,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:530,cost:0,target:[0],spec:[],class:4},
             ],
         },
 

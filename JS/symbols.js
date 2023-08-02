@@ -1000,6 +1000,44 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             }
             layer.endShape(CLOSE)
         break
+        case 114:
+            layer.stroke(100,255,255,fade)
+            layer.strokeWeight(2)
+            layer.line(-4,0,4,0)
+            layer.line(-2,-2*sqrt(3),2,2*sqrt(3))
+            layer.line(-3,2*sqrt(3),2,-2*sqrt(3))
+            layer.stroke(255,255,200,fade)
+            layer.strokeWeight(1)
+            layer.beginShape()
+            for(let a=0,la=8;a<la;a++){
+                layer.vertex(lsin(360*a/la)*(5-a%2*3),lcos(360*a/la)*(5-a%2*3))
+            }
+            layer.endShape(CLOSE)
+        break
+        case 115:
+            layer.stroke(100,255,255,fade)
+            layer.strokeWeight(2)
+            layer.line(-4,0,4,0)
+            layer.line(-2,-2*sqrt(3),2,2*sqrt(3))
+            layer.line(-3,2*sqrt(3),2,-2*sqrt(3))
+            layer.noStroke()
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=17;a<la;a++){
+                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6)+0.5,cos(a/(la-1)*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+        break
+        case 116:
+            layer.fill(225,fade)
+            layer.rect(-3,0,9,3)
+            layer.triangle(1.5,-4.5,1.5,4.5,7.5,0)
+            layer.fill(125,125,125,fade)
+            layer.stroke(100,100,100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.rect(-0.75,1.5,3,3)
+        break
         
     }
     layer.pop()

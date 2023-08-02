@@ -452,6 +452,9 @@ class battle{
                 if(userCombatant.getStatus('Power Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Power Draw'))
                 }
+                if(userCombatant.getStatus('Power Basic')>0){
+                    userCombatant.holdOrb(0)
+                }
             break
         }
         if(userCombatant.getStatus('Card Play Block')>0){
