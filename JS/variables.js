@@ -2956,10 +2956,46 @@ types={
                 {effect:[3],attack:537,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
-            name:'Bullseye',rarity:1,list:5,
+            name:'Node',rarity:0,list:5,
             levels:[
                 {effect:[1],attack:538,cost:1,target:[2,1,6],spec:[],class:4},
                 {effect:[2],attack:538,cost:1,target:[2,1,6],spec:[],class:4},
+            ],
+        },{
+            name:'Bullseye',rarity:1,list:5,
+            levels:[
+                {effect:[4,1],attack:539,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6,1],attack:539,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Shieldweb',rarity:1,list:5,
+            levels:[
+                {effect:[1],attack:544,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:544,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'All For\nOne',rarity:2,list:5,
+            levels:[
+                {effect:[10],attack:540,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[14],attack:540,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Bias',rarity:2,list:5,
+            levels:[
+                {effect:[5,1],attack:541,cost:1,target:[0],spec:[],class:1},
+                {effect:[8,1],attack:541,cost:1,target:[0],spec:[],class:1},
+            ],
+        },{
+            name:'Rerun',rarity:1,list:5,
+            levels:[
+                {effect:[4],attack:542,cost:1,target:[0],spec:[],class:4},
+                {effect:[6],attack:542,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Input',rarity:0,list:5,
+            levels:[
+                {effect:[1,1],attack:543,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[1,2],attack:543,cost:1,target:[2,1,6],spec:[],class:4},
             ],
         },
 

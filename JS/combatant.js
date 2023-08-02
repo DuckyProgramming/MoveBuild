@@ -57,7 +57,7 @@ class combatant{
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
-            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On',
+            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -71,7 +71,7 @@ class combatant{
                 0,2,2,2,0,0,0,0,2,2,//9
                 0,0,1,1,1,0,0,1,2,0,//10
                 0,0,2,0,0,0,2,0,0,0,//11
-                0,0,0,0,0,0,0,1,
+                0,0,0,0,0,0,0,1,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -85,7 +85,7 @@ class combatant{
                 3,2,2,2,2,2,1,2,0,0,
                 2,2,0,0,0,0,1,0,0,0,
                 0,1,0,0,2,2,0,2,0,2,
-                1,2,2,2,2,2,2,3,
+                1,2,2,2,2,2,2,3,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3929,6 +3929,7 @@ class combatant{
                     case 107: if(this.armed){this.addBlock(this.status.main[a])} break
                     case 113: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomClass(2,0,4)} break
                     case 116: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandom(2,0,0)} break
+                    case 118: this.status.main[findList('Focus',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){

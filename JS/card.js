@@ -654,6 +654,12 @@ class card{
             case 537: string+=`Draw ${effect[0]}X Cards\nWhere X = Number\nof Orbs Held\nThis Combat`; break
             case 538: string+=`Apply ${effect[0]} Lock-On`; break
 
+            case 539: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Lock-On`; break
+            case 540: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn 0 Cost\nCards to Hand`; break
+            case 541: string+=`Gain ${effect[0]} Focus\nLose ${effect[1]} Focus\nEvery Turn`; break
+            case 542: string+=`Discard Your Hand\nReturn Discard to Draw\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 543: string+=`Evoke First Charge\n${this.calculateEffect(effect[0],0)} Time${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 544: string+=`Hold ${effect[0]} Shield Orb${effect[0]!=1?`s`:``}\nFor Every Enemy`; break
 
 
 
@@ -671,6 +677,7 @@ class card{
             case 64: string+=`Gain ${effect[0]} Control`; break
             case 490: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
             case 366: string+=``; break
+            case 491: string+=`Evoke First Charge\n${this.calculateEffect(effect[0],0)} Time${effect[0]!=1?`s`:``}`; break
             */
         }
         if(string[string.length-1]=='\n'){
