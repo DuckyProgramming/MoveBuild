@@ -2875,7 +2875,7 @@ types={
             name:'Creativity',rarity:1,list:5,
             levels:[
                 {effect:[1],attack:524,cost:1,target:[0],spec:[],class:4},
-                {effect:[1],attack:524,cost:1,target:[0],spec:[2],class:4},
+                {effect:[1],attack:524,cost:1,target:[0],spec:[3],class:4},
             ],
         },{
             name:'Reprogram',rarity:0,list:5,
@@ -3063,9 +3063,7 @@ types={
                 {effect:[1],attack:555,cost:1,target:[0],spec:[1],class:4},
                 {effect:[1],attack:555,cost:0,target:[0],spec:[1],class:4},
             ],
-        },
-
-        {
+        },{
             name:'Hydra',rarity:0,list:5,
             levels:[
                 {effect:[1,2],attack:556,cost:1,target:[26,0,2],spec:[],class:4},
@@ -3101,7 +3099,47 @@ types={
                 {effect:[],attack:561,cost:2,target:[0],spec:[],class:4},
                 {effect:[],attack:561,cost:1,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Truth',rarity:2,list:5,
+            levels:[
+                {effect:[],attack:562,cost:2,target:[0],spec:[],class:4},
+                {effect:[],attack:562,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Lies',rarity:2,list:5,
+            levels:[
+                {effect:[],attack:563,cost:2,target:[0],spec:[],class:4},
+                {effect:[],attack:563,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Backups',rarity:1,list:5,
+            levels:[
+                {effect:[2],attack:564,cost:1,target:[26,0,2],spec:[1,3],class:4},
+                {effect:[3],attack:564,cost:1,target:[26,0,2],spec:[1,3],class:4},
+            ],
+        },{
+            name:'Minor\nEvoke',rarity:0,list:5,
+            levels:[
+                {effect:[],attack:565,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:565,cost:1,target:[26,0,2],spec:[],class:4},
+            ],
         },
+
+        {
+            name:'Alternate\nShield',rarity:1,list:5,
+            levels:[
+                {effect:[],attack:566,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:566,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },{
+            name:'Concentrated\nBlast',rarity:1,list:5,
+            levels:[
+                {effect:[],attack:567,cost:1,target:[26,0,2],spec:[],class:4},
+                {effect:[],attack:567,cost:0,target:[26,0,2],spec:[],class:4},
+            ],
+        },
+
+        
 
         //opening\nlineup
         //more ice and buff orbs

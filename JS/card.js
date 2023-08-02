@@ -676,8 +676,12 @@ class card{
             case 559: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHold ${effect[1]} Flame Orb${effect[1]!=1?`s`:``}`; break
             case 560: string+=`Hold ${effect[0]} Flame Orb${effect[0]!=1?`s`:``}\nHold ${effect[1]} Energy Orb${effect[1]!=1?`s`:``}\nHold ${effect[2]} Ice Orb${effect[2]!=1?`s`:``}`; break
             case 561: string+=`Replace Basic Orbs\nWith Explosive Orbs`; break
-
-
+            case 562: string+=`Replace Basic Orbs\nWith Dark Orbs`; break
+            case 563: string+=`Replace Basic Orbs\nWith Light Orbs`; break
+            case 564: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}\nAnd Evoke 1`; break
+            case 565: string+=`Minor Evoke\nAll Orbs`; break
+            case 566: string+=`Alternate Evoke\nAll Shield Orbs`; break
+            case 567: string+=`Alternate Evoke\nAll Explosive Orbs`; break
 
 
 

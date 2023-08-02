@@ -3759,6 +3759,62 @@ class combatant{
             break
         }
     }
+    subMinorEvoke(type,detail,target){
+        let multi=1
+        if(this.status.main[111]>0){
+            multi=1+this.status.main[111]*0.2
+        }else if(this.status.main[111]<0){
+            multi=max(0.2,1+this.status.main[111]*0.1)
+        }
+        switch(type){
+            case 0:
+                this.battle.combatantManager.combatants[target].orbTake(round(3*multi),-1)
+            break
+            case 1:
+                this.battle.combatantManager.combatants[target].addBlock(round(4*multi))
+            break
+            case 2:
+                this.battle.combatantManager.damageAreaRuleless(round(5*multi),this.battle.combatantManager.combatants[target].tilePosition)
+            break
+            case 3:
+                this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(multi)
+            break
+            case 4:
+                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi/2),-1)
+            break
+            case 5:
+                this.battle.combatantManager.combatants[target].orbTake(round(2.5*multi),-1)
+            break
+            case 6:
+                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(1.5*multi))
+            break
+            case 7:
+                this.battle.combatantManager.combatants[target].orbTake(round(7.5*multi),-1)
+            break
+            case 8:
+                this.battle.combatantManager.combatants[target].statusEffect('Freeze',1)
+            break
+            case 9:
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',round(multi))
+            break
+        }
+    }
+    alternateEvoke(type,detail,target){
+        let multi=1
+        if(this.status.main[111]>0){
+            multi=1+this.status.main[111]*0.2
+        }else if(this.status.main[111]<0){
+            multi=max(0.2,1+this.status.main[111]*0.1)
+        }
+        switch(type){
+            case 1:
+                this.battle.combatantManager.combatants[target].statusEffect('Buffer',round(multi))
+            break
+            case 2:
+                this.battle.combatantManager.combatants[target].orbTake(round(20*multi),-1)
+            break
+        }
+    }
     evoke(type,target,args){
         switch(type){
             case 0:
@@ -3810,6 +3866,27 @@ class combatant{
                 }
                 for(let a=0,la=args[1];a<la;a++){
                     this.holdOrb(type)
+                }
+            break
+            case 5:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]>=0){
+                        this.subMinorEvoke(this.orbs[a],this.orbDetail[a],target)
+                    }
+                }
+            break
+            case 6:
+                for(let a=0,la=this.orbs.length;a<la;a++){
+                    if(this.orbs[a]==args[0]){
+                        this.alternateEvoke(this.orbs[a],this.orbDetail[a],target)
+                        for(let b=0,lb=this.orbs.length-1;b<lb;b++){
+                            this.orbs[b]=this.orbs[b+1]
+                            this.orbDetail[b]=this.orbDetail[b+1]
+                        }
+                        this.orbs[this.orbs.length-1]=-1
+                        this.orbDetail[this.orbs.length-1]=-1
+                        a--
+                    }
                 }
             break
         }
