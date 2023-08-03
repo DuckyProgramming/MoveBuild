@@ -1,8 +1,6 @@
 Bugs:
 A lot
 
-lament wtf
-
 Menu UI:
 
 Generality:

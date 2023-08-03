@@ -1020,7 +1020,7 @@ class turn{
                                     case 76:
                                         if(this.targetCombatant.blocked>0){
                                             for(let a=0,la=this.effect[1];a<la;a++){
-                                                this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
                                             }
                                         }
                                     break
@@ -1565,7 +1565,7 @@ class turn{
                                     this.userCombatant.statusEffectNext('Take Third Damage',this.effect[0])
                                 break
                                 case 228:
-                                    this.userCombatant.statusEffect('Counter All',this.effect[0])
+                                    this.userCombatant.statusEffect('Counter All Combat',this.effect[0])
                                 break
 
                             }

@@ -487,7 +487,7 @@ class battle{
     }
     addCurrency(amount,player){
         let multi=this.relicManager.hasRelic(135,player)?0.5:1*this.relicManager.hasRelic(165,player)?1.25:1
-        let bonus=this.relicManager.hasRelic(119,player)?10:0
+        let bonus=this.relicManager.hasRelic(119,player)?20:0
         this.stats.earned[player]+=round((amount+bonus)*multi)
         this.currency.money[player]+=round((amount+bonus)*multi)
     }

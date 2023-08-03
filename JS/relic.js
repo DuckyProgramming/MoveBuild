@@ -381,7 +381,7 @@ class relic{
                     displaySymbol(this.layer,-8,0,35,0,0.25,this.fade)
                     displaySymbol(this.layer,10,0,2,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
-                    this.layer.textSize(10)
+                    this.layer.textSize(8)
                     this.layer.text('100%',10,0)
                 break
                 case 'Extra Card Option':
@@ -920,7 +920,7 @@ class relic{
                     displaySymbol(this.layer,9,0,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('10',9,0)
+                    this.layer.text('20',9,0)
                 break
                 case 'Planned Attack':
                     displaySymbol(this.layer,-9,-2,8,0,1,this.fade)

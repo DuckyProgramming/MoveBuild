@@ -2273,7 +2273,7 @@ class combatant{
                 this.statusEffect('Strength Per Turn',1)
             break
             case 'Gangster':
-                this.statusEffect('Counter Combat',6)
+                this.statusEffect('Counter Combat',4)
             break
             case 'Slippery Gangster':
                 this.statusEffect('Dodge',3)
@@ -2286,7 +2286,7 @@ class combatant{
                 this.statusEffect('Strength on Hit',1)
             break
             case 'Spike Slime': case 'Big Spike Slime':
-                this.statusEffect('Counter All',1)
+                this.statusEffect('Counter All Combat',1)
             break
             case 'Moss Creature':
                 this.statusEffect('Metallicize',2)
@@ -2308,12 +2308,12 @@ class combatant{
                 this.statusEffect('Weak on Kill',2)
             break
             case 'Fireball':
-                this.statusEffect('Counter All',3)
+                this.statusEffect('Counter All Combat',3)
             break
             case 'Armored Ninja':
                 this.addBlock(18)
                 this.statusEffect('Retain Block',999)
-                this.statusEffect('Counter All',1)
+                this.statusEffect('Counter All Combat',1)
             break
             case 'Louse':
                 this.statusEffect('Single Counter Block',floor(random(3,8)))
@@ -3721,7 +3721,7 @@ class combatant{
                 success=true
                 this.orbs[a]=type
                 if(type==4){
-                    this.orbDetail[a]=8
+                    this.orbDetail[a]=6
                 }
                 a=la
             }
@@ -3733,6 +3733,52 @@ class combatant{
         this.checkAnyOrb()
     }
     subEvoke(type,detail,target){
+        let multi=1
+        if(this.status.main[111]>0){
+            multi=1+this.status.main[111]*0.2
+        }else if(this.status.main[111]<0){
+            multi=max(0.2,1+this.status.main[111]*0.1)
+        }
+        switch(type){
+            case 0:
+                this.battle.combatantManager.combatants[target].orbTake(round(12*multi),-1)
+            break
+            case 1:
+                this.battle.combatantManager.combatants[target].addBlock(round(16*multi))
+            break
+            case 2:
+                this.battle.combatantManager.damageAreaRuleless(round(20*multi),this.battle.combatantManager.combatants[target].tilePosition)
+            break
+            case 3:
+                this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(3*multi)
+            break
+            case 4:
+                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi),-1)
+            break
+            case 5:
+                this.battle.combatantManager.combatants[target].orbTake(round(8*multi),-1)
+            break
+            case 6:
+                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(4*multi))
+            break
+            case 7:
+                this.battle.combatantManager.combatants[target].orbTake(round(30*multi),-1)
+            break
+            case 8:
+                this.battle.combatantManager.combatants[target].statusEffect('Freeze',1)
+            break
+            case 9:
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',round(3*multi))
+            break
+            case 10:
+                this.battle.combatantManager.combatants[target].statusEffect('Weak',round(3*multi))
+            break
+            case 11:
+                this.battle.combatantManager.combatants[target].statusEffect('Poison',round(4*multi))
+            break
+        }
+    }
+    subMinorEvoke(type,detail,target){
         let multi=1
         if(this.status.main[111]>0){
             multi=1+this.status.main[111]*0.2
@@ -3753,13 +3799,13 @@ class combatant{
                 this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(2*multi)
             break
             case 4:
-                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi/2),-1)
             break
             case 5:
-                this.battle.combatantManager.combatants[target].orbTake(round(5*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(4*multi),-1)
             break
             case 6:
-                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(3*multi))
+                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(2*multi))
             break
             case 7:
                 this.battle.combatantManager.combatants[target].orbTake(round(15*multi),-1)
@@ -3768,53 +3814,13 @@ class combatant{
                 this.battle.combatantManager.combatants[target].statusEffect('Freeze',1)
             break
             case 9:
-                this.battle.combatantManager.combatants[target].statusEffect('Strength',round(2*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',round(1.5*multi))
             break
             case 10:
-                this.battle.combatantManager.combatants[target].statusEffect('Weak',round(2*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Weak',round(1.5*multi))
             break
-        }
-    }
-    subMinorEvoke(type,detail,target){
-        let multi=1
-        if(this.status.main[111]>0){
-            multi=1+this.status.main[111]*0.2
-        }else if(this.status.main[111]<0){
-            multi=max(0.2,1+this.status.main[111]*0.1)
-        }
-        switch(type){
-            case 0:
-                this.battle.combatantManager.combatants[target].orbTake(round(3*multi),-1)
-            break
-            case 1:
-                this.battle.combatantManager.combatants[target].addBlock(round(4*multi))
-            break
-            case 2:
-                this.battle.combatantManager.damageAreaRuleless(round(5*multi),this.battle.combatantManager.combatants[target].tilePosition)
-            break
-            case 3:
-                this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(multi)
-            break
-            case 4:
-                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi/2),-1)
-            break
-            case 5:
-                this.battle.combatantManager.combatants[target].orbTake(round(2.5*multi),-1)
-            break
-            case 6:
-                this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(1.5*multi))
-            break
-            case 7:
-                this.battle.combatantManager.combatants[target].orbTake(round(7.5*multi),-1)
-            break
-            case 8:
-                this.battle.combatantManager.combatants[target].statusEffect('Freeze',1)
-            break
-            case 9:
-                this.battle.combatantManager.combatants[target].statusEffect('Strength',round(multi))
-            break
-            case 10:
-                this.battle.combatantManager.combatants[target].statusEffect('Weak',round(multi))
+            case 11:
+                this.battle.combatantManager.combatants[target].statusEffect('Poison',round(2*multi))
             break
         }
     }
@@ -3827,16 +3833,16 @@ class combatant{
         }
         switch(type){
             case 1:
-                this.battle.combatantManager.combatants[target].statusEffect('Buffer',round(multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Buffer',round(2*multi))
             break
             case 2:
-                this.battle.combatantManager.combatants[target].orbTake(round(20*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(50*multi),-1)
             break
             case 9:
-                this.battle.combatantManager.combatants[target].statusEffect('Double Damage',round(2*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Double Damage',round(3*multi))
             break
             case 10:
-                this.battle.combatantManager.combatants[target].statusEffect('Strength',-round(2*multi))
+                this.battle.combatantManager.combatants[target].statusEffect('Strength',-round(3*multi))
             break
         }
     }
@@ -4096,10 +4102,10 @@ class combatant{
         for(let a=0,la=this.orbs.length;a<la;a++){
             switch(this.orbs[a]){
                 case 4:
-                    this.orbDetail[a]+=4
+                    this.orbDetail[a]+=6
                 break
                 case 5:
-                    this.battle.combatantManager.randomEnemyEffect(0,[3])
+                    this.battle.combatantManager.randomEnemyEffect(0,[4])
                 break
                 case 7:
                     for(let b=0,lb=this.status.main[a];b<lb;b++){

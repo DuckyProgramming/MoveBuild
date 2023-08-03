@@ -2862,8 +2862,8 @@ types={
         },{
             name:'Equilibrium',rarity:1,list:5,
             levels:[
-                {effect:[13],attack:522,cost:2,target:[0],spec:[],class:2},
-                {effect:[16],attack:522,cost:2,target:[0],spec:[],class:2},
+                {effect:[15],attack:522,cost:2,target:[0],spec:[],class:2},
+                {effect:[20],attack:522,cost:2,target:[0],spec:[],class:2},
             ],
         },{
             name:'Power\nBanks',rarity:1,list:5,
@@ -3102,14 +3102,14 @@ types={
         },{
             name:'Truth',rarity:2,list:5,
             levels:[
-                {effect:[],attack:562,cost:2,target:[0],spec:[],class:4},
-                {effect:[],attack:562,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:563,cost:2,target:[0],spec:[],class:4},
+                {effect:[],attack:563,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Lies',rarity:2,list:5,
             levels:[
-                {effect:[],attack:563,cost:2,target:[0],spec:[],class:4},
-                {effect:[],attack:563,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:562,cost:2,target:[0],spec:[],class:4},
+                {effect:[],attack:562,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Backups',rarity:0,list:5,
@@ -3986,7 +3986,7 @@ types={
         {name:'Batter',life:48,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:14,effect:[12,1,'Concussion']},{type:4,effect:[6]},{type:26,effect:[1]}],description:`Uses people as baseballs`},
         {name:'Slippery Gangster',life:36,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:20,effect:[3]}],description:`Can't hit this man`},
         {name:'Gangster Gunner',life:24,behavior:1,spec:[],move:{type:1,speed:1},attack:[{type:12,effect:[8]}],description:`Our ranged support`},
-        {name:'Spheron',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[10]},{type:4,effect:[20]},{type:27,effect:[10,2]},{type:30,effect:[10,10]}],description:`Block strategy`},
+        {name:'Spheron',life:20,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[10]},{type:4,effect:[15]},{type:27,effect:[10,2]},{type:30,effect:[10,5]}],description:`Block strategy`},
         {name:'Enforcer',life:80,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[9]},{type:28,effect:[8]},{type:29,effect:[8]}],description:`Doesn't make the rules`},
         {name:'Rock Golem',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:22,effect:[5,1,'Dazed']},{type:4,effect:[4]}],description:`Why is this alive?`},
         {name:'Big Slime',life:40,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:32,effect:[6,1,'Stuck']},{type:33,effect:[2]}],description:`Splitty boy`},
@@ -4036,7 +4036,7 @@ types={
         {name:'Big Slimoid',life:70,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[18]},{type:32,effect:[9,1,'Cemented']},{type:33,effect:[2]}],description:`Recursion`},
         {name:'Bush Thing',life:18,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:110,effect:[3,3]},{type:111,effect:[2]}],description:`Somewhat armored`},
         {name:'Fireball',life:30,behavior:10,spec:[],move:{type:0,speed:2},attack:[{type:112,effect:[4,2]},{type:21,effect:[]}],description:`Hurts to touch`},
-        {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[4]},{type:113,effect:[5]},{type:114,effect:[3,2]}],description:`More alive then intended`},
+        {name:'Dead Shell',life:34,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:20,effect:[6]},{type:113,effect:[8]},{type:114,effect:[5,3]}],description:`More alive then intended`},
         {name:'Management Drone',life:75,behavior:1,spec:[8],move:{type:0,speed:1},attack:[{type:10,effect:[6]},{type:115,effect:[10]}],description:`Automated pain`},
         {name:'Executive',life:125,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:12,effect:[15]},{type:120,effect:[1]},{type:6,effect:[8]}],description:`Thinks he outsmarted you`},
         {name:'Mechanized',life:130,behavior:0,spec:[0],move:{type:0,speed:2},attack:[{type:124,effect:[8,1]},{type:125,effect:[12]},{type:126,effect:[6]}],description:`More machine than man`},
@@ -4061,7 +4061,7 @@ types={
         {name:'Beekeeper',life:76,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
         {name:'PhD',life:78,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
-        {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[6]},{type:161,effect:[9]},{type:162,effect:[12]}],description:`Oh shiny`},
+        {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[4]},{type:161,effect:[6]},{type:162,effect:[8]}],description:`Oh shiny`},
         {name:'Host Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
         {name:'Host',life:44,behavior:12,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
         {name:'Antihwurmp',life:25,behavior:0,spec:[10],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
@@ -4077,7 +4077,7 @@ types={
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
         {name:'Hexaghost Orb',life:20,behavior:5,spec:[],move:{type:0,speed:0},attack:[{type:54,effect:[4,1,'Burn']},{type:72,effect:[3,1]},{type:70,effect:[10]}],description:`Should probably kill it`},
-        {name:'Bodyguard',life:60,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[20]},{type:77,effect:[4]},{type:13,effect:[8,1,'Dizzy']}],description:`Paid to die`},
+        {name:'Bodyguard',life:45,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[10]},{type:77,effect:[3]},{type:13,effect:[4,1,'Dizzy']}],description:`Paid to die`},
         {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
         {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
@@ -4477,7 +4477,7 @@ types={
         {name:'',internal:'Death Money',id:116,rarity:2,list:0,description:'Get 5 Currency\nWhen an Enemy Dies'},
         {name:'',internal:'Double Rest',id:117,rarity:2,list:0,description:'Can Pick 2 Different\nEffects When Resting'},
         {name:'',internal:'Buy One Get One',id:118,rarity:2,list:0,description:'After Purchasing a Card or a\nRelic, Another Becomes Free'},
-        {name:'',internal:'Premium',id:119,rarity:2,list:0,description:'Whenever You Gain\nCurrency, Gain 10 More'},
+        {name:'',internal:'Premium',id:119,rarity:2,list:0,description:'Whenever You Gain\nCurrency, Gain 20 More'},
         {name:'',internal:'Planned Attack',id:120,rarity:2,list:0,description:'Each Turn, If the First Card in Draw Pile\nis an Attack, Draw it, it Costs 1 Less'},
         
         {name:'',internal:'X 2 Increase',id:121,rarity:3,list:0,description:'X Cost Cards\nGet +2 to X'},
@@ -8138,7 +8138,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Triangle 3'],class:0,world:0,
+            level:['Triangle 3'],class:1,world:0,
             name:'Dead Shell',
             player:{position:[[{x:1,y:0}],[{x:0,y:0},{x:2,y:0}]]},
             enemy:[
@@ -8511,7 +8511,7 @@ shipyard visit for another time.`,
             ],reinforce:[
             ],
         },{
-            level:['Triangle 5'],class:1,world:0,
+            level:['Triangle 5'],class:0,world:0,
             name:'Spheron',
             player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:3,y:1}]]},
             enemy:[
@@ -9042,6 +9042,43 @@ If the Capitalist steps on it, he spawns a Bodyguard.`,
 `Becomes a random card of the same color.`,
         },{name:'Targetted Spike Tile',desc:
 `Deals 5 damage when stepped on, to players only.`,
+        },{name:'Hold Orb',desc:
+`Add an orb to first empty slot. If all slots are full, will evoke first orb on self.`,
+        },{name:'Evoke Orb',desc:
+`Spends orb, applying some sort of effect corresponding to that orb.`,
+        },{name:'Minor Evoke',desc:
+`Weaker than a normal evoke, usually with half effect.
+Does not spend the orb.`,
+        },{name:'Alternate Evoke',desc:
+`Spends orb, has a different effect from normal evoke.`,
+        },{name:'Basic Orb',desc:
+`On evoke, deals 12 damage.`,
+        },{name:'Shield Orb',desc:
+`On evoke, adds 16 block.`,
+        },{name:'Explosive Orb',desc:
+`On evoke, deals 20 splash damage.`,
+        },{name:'Energy Orb',desc:
+`On evoke, gain 3 energy.`,
+        },{name:'Dark Orb',desc:
+`On evoke, deals 6 damage. The amount of damage increases by 6 every turn.`,
+        },{name:'Lightning Orb',desc:
+`On evoke, deals 8 damage. Also deals 4 damage to a random enemy every turn.`,
+        },{name:'Light Orb',desc:
+`On evoke, draw 4 cards.`,
+        },{name:'Flame Orb',desc:
+`On evoke, deals 30 damage. Adds a Burn each turn it's not used.`,
+        },{name:'Ice Orb',desc:
+`On evoke, applies 1 Freeze.`,
+        },{name:'Buff Orb',desc:
+`On evoke, applies 3 Strength.`,
+        },{name:'Nerf Orb',desc:
+`On evoke, applies 3 Weak.`,
+        },{name:'Poison Orb',desc:
+`On evoke, applies 4 Poison.`,
+        },{name:'',desc:
+``,
+        },{name:'',desc:
+``,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0

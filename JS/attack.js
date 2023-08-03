@@ -4658,9 +4658,9 @@ class attack{
             case 342: case 350: case 353: case 407: case 425: case 473: case 476: case 477: case 478: case 479:
             case 480: case 490: case 491: case 492: case 493: case 494: case 495: case 498: case 505: case 506:
             case 520: case 526: case 531: case 532: case 534: case 535: case 536: case 543: case 544: case 545:
-            case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 560: case 561: case 562:
-            case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579: case 583:
-            case 584:
+            case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 556: case 560: case 561:
+            case 562: case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579:
+            case 583: case 584:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
