@@ -22,10 +22,13 @@ class combatant{
         this.attack=copyArrayAttack(types.combatant[this.type].attack)
         this.description=types.combatant[this.type].description
 
+        if(this.attack.length==0){
+            this.attack=[{type:0,effect:[]}]
+        }
         if(this.team==0&&this.battle.players>1){
             this.life*=1.5
             for(let a=0,la=this.attack.length;a<la;a++){
-                if(types.attack[this.attack[a].type].class==0){
+                if(types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2){
                     this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.5)
                 }
             }
@@ -117,6 +120,7 @@ class combatant{
         this.totalOrb=0
         this.totalOrbClass=[]
         this.lastOrb=0
+        this.metal=0
 
         this.intent=0
         this.activated=false
@@ -485,6 +489,18 @@ class combatant{
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0,hand:0,foot:1}
                 this.goal={anim:{direction:this.anim.direction,sword:false}}
+            break
+            case 'Donakho':
+                this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:10}},{top:24,length:{top:10}}],arms:[{top:54,length:{top:10}},{top:54,length:{top:10}}]}
+                this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1}}
+                this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
+                this.parts={eyeLevel:-40,beakLevel:-33,legs:[{top:{x:3,y:-15},middle:{x:0,y:0}},{top:{x:3,y:-15},middle:{x:0,y:0}}],arms:[{top:{x:3.5,y:-25},middle:{x:0,y:0}},{top:{x:3.5,y:-25},middle:{x:0,y:0}}]}
+                this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
+                this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true}},extra:{damage:false}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,235,25],body:[255,225,15],legs:[255,210,0],arms:[255,215,5]}}
             break
             case 'Ume':
                 this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},
@@ -2239,6 +2255,7 @@ class combatant{
         this.totalOrb=0
         this.totalOrbClass=[]
         this.lastOrb=0
+        this.metal=0
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -3739,30 +3756,35 @@ class combatant{
         }else if(this.status.main[111]<0){
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
+        let playerMulti=target==this.id?0.5:1
         switch(type){
             case 0:
-                this.battle.combatantManager.combatants[target].orbTake(round(12*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(12*multi*playerMulti),-1)
             break
             case 1:
                 this.battle.combatantManager.combatants[target].addBlock(round(16*multi))
             break
             case 2:
-                this.battle.combatantManager.damageAreaRuleless(round(20*multi),this.battle.combatantManager.combatants[target].tilePosition)
+                if(target==this.id){
+                    this.battle.combatantManager.damageAreaRulelessID(round(20*multi),this.id,this.battle.combatantManager.combatants[target].tilePosition)
+                }else{
+                    this.battle.combatantManager.damageAreaRuleless(round(20*multi),this.battle.combatantManager.combatants[target].tilePosition)
+                }
             break
             case 3:
                 this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(3*multi)
             break
             case 4:
-                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti),-1)
             break
             case 5:
-                this.battle.combatantManager.combatants[target].orbTake(round(8*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(8*multi*playerMulti),-1)
             break
             case 6:
                 this.battle.cardManagers[target>=this.battle.players?this.id:target].draw(round(4*multi))
             break
             case 7:
-                this.battle.combatantManager.combatants[target].orbTake(round(30*multi),-1)
+                this.battle.combatantManager.combatants[target].orbTake(round(30*multi*playerMulti),-1)
             break
             case 8:
                 this.battle.combatantManager.combatants[target].statusEffect('Freeze',1)
@@ -12517,6 +12539,7 @@ class combatant{
                 this.battle.combatantManager.dead()
                 if(this.name=='Prestige'&&this.base.life>10){
                     this.doubleHalf()
+                    this.battle.updateTargetting()
                     this.dead=false
                     this.battle.tileManager.activate()
                     this.battle.counter.killed--

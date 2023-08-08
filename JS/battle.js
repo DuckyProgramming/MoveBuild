@@ -54,6 +54,8 @@ class battle{
         this.relicManager=new relicManager(this.layer,this)
         this.itemManager=new itemManager(this.layer,this)
         this.overlayManager=new overlayManager(this.layer,this)
+        this.replayManager=new replayManager(this.layer,this)
+        
         this.initialManagersAfter()
         this.initialized=true
 
@@ -61,6 +63,7 @@ class battle{
         this.currency={money:[]}
         this.energy={main:[],gen:[],base:[],temp:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
+        this.lastEncounter=types.encounter[0]
         
         this.turn={main:0,total:0,time:0,accelerate:0,endReady:false}
         this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],exit:1,sell:[],afford:0,upAfford:false}
@@ -147,7 +150,30 @@ class battle{
             }
         }
     }
+    replay(){
+        transition.trigger=true
+        transition.scene='replay'
+        transition.convert=true
+        this.replayManager.reset()
+    }
+    convert(scene){
+        switch(scene){
+            case 'replay':
+                this.combatantManager.proxyCombatants()
+                this.setupBattle(this.lastEncounter)
+            break
+            case 'battle':
+                this.combatantManager.deproxyCombatants()
+            break
+        }
+    }
+    endReplay(){
+        transition.trigger=true
+        transition.scene='battle'
+        transition.convert=true
+    }
     setupBattle(encounter){
+        this.lastEncounter=encounter
         this.encounter.class=encounter.class
         for(let a=0,la=this.energy.base.length;a<la;a++){
             this.energy.gen[a]=this.energy.base[a]
@@ -668,6 +694,13 @@ class battle{
                     this.layer.rect(this.layer.width/2,this.layer.height/2,this.layer.width,this.layer.height)
                 }
             break
+            case 'replay':
+                this.layer.background(110,115,120)
+                this.tileManager.display(scene)
+                this.particleManager.display('back')
+                this.combatantManager.display(scene)
+                this.particleManager.display('front')
+            break
             case 'map':
                 this.layer.background(70,75,80)
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
@@ -967,6 +1000,12 @@ class battle{
                         this.relicManager.activate(1,[])
                     }
                 }
+            break
+            case 'replay':
+                this.tileManager.update(scene)
+                this.combatantManager.update(scene)
+                this.replayManager.update()
+                this.particleManager.update()
             break
             case 'map':
                 this.nodeManager.update()

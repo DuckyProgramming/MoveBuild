@@ -145,11 +145,17 @@ class overlay{
                     this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+max(0,this.rewards[this.rewards.length-1].position-250)/2,240,360+max(0,this.rewards[this.rewards.length-1].position-250),10)
                 }
                 this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-205,120,40,10)
+                if(this.args[0]==0){
+                    this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-250,120,40,10)
+                }
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 this.layer.text('Rewards',this.layer.width/2+225*this.posKey,this.layer.height/2-150)
                 this.layer.textSize(20)
                 this.layer.text('Close',this.layer.width/2+225*this.posKey,this.layer.height/2-205)
+                if(this.args[0]==0){
+                    this.layer.text('Replay',this.layer.width/2+225*this.posKey,this.layer.height/2-250)
+                }
                 for(let a=0,la=this.rewards.length;a<la;a++){
                     this.layer.noStroke()
                     this.layer.fill(120,this.fade*this.rewards[a].fade)
@@ -444,6 +450,9 @@ class overlay{
                             }
                         }
                     }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-250},width:120,height:40})&&this.args[0]==0){
+                        this.battle.replay()
+                    }
                 break
                 case 2:
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-285,y:this.layer.height/2},width:40,height:40})&&this.page>0){
@@ -672,6 +681,9 @@ class overlay{
                                 this.battle.relicManager.activate(8,[this.player])
                             }
                         }
+                    }
+                    if((key=='r'||key=='R')&&this.args[0]==0){
+                        this.battle.replay()
                     }
                 break
                 case 2:

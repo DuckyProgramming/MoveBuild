@@ -54,7 +54,7 @@ class relicManager{
             this.complete[a]=false
         }
         let relics=copyArrayStack(this.listing.relic)
-        let possible=[0,0,0/*,1,1,2*/]
+        let possible=[0,0,0,1,1,2]
         for(let a=0,la=this.active[109]>0?5:3;a<la;a++){
             let rarity=possible[floor(random(0,possible.length))]
             let index=floor(random(0,relics[rarity].length))
@@ -76,6 +76,13 @@ class relicManager{
         }
     }
     addRelic(type,player){
+        for(let a=0,la=this.listing.relic.length;a<la;a++){
+            for(let b=0,lb=this.listing.relic[a].length;b<lb;b++){
+                if(type==this.listing.relic[a][b]){
+                    this.listing.relic[a].splice(b,1)
+                }
+            }
+        }
         this.player[types.relic[type].id]=player
         this.active[types.relic[type].id]+=1
         if(this.battle.players==2){

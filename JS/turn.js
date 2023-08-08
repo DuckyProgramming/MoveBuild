@@ -13,9 +13,15 @@ class turn{
 
         this.timer=0
         this.remove=false
+        this.selfRemoved=false
+        this.replayed=false
+        this.directive='turn'
+    }
+    setBase(){
+        this.userCombatant=this.battle.combatantManager.combatants[this.user]
     }
     set(){
-        this.userCombatant=this.battle.combatantManager.combatants[this.user]
+        this.setBase()
         this.position={x:this.userCombatant.position.x,y:this.userCombatant.position.y}
         this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
         this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
@@ -807,6 +813,7 @@ class turn{
                         }
                     }
                     this.remove=true
+                    this.selfRemoved=true
                 break
                 case 3:
                     if(this.userCombatant.getStatus('Confusion')>0){
@@ -820,6 +827,7 @@ class turn{
                         this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
                     }
                     this.remove=true
+                    this.selfRemoved=true
                 break
                 default:
                     this.remove=true

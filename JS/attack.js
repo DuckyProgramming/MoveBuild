@@ -1,5 +1,5 @@
 class attack{
-    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo){
+    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData){
         this.type=type
         this.battle=battle
         this.player=player
@@ -13,11 +13,20 @@ class attack{
         this.targetDistance=targetDistance
         this.targetClass=targetClass
         this.combo=combo
+        this.replayData=replayData
 
         this.procedure=[]
 
         this.userCombatant=this.battle.combatantManager.combatants[this.user]
         
+        this.base()
+
+        this.timer=0
+        this.remove=false
+        this.replayed=false
+        this.directive='attack'
+    }
+    base(){
         this.position={x:this.userCombatant.position.x,y:this.userCombatant.position.y}
         this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
         this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
@@ -239,9 +248,13 @@ class attack{
                 }
             break
         }
-
-        this.timer=0
-        this.remove=false
+    }
+    set(){
+        if(this.replayData.replay==1){
+            this.userCombatant=this.battle.combatantManager.combatants[this.user]
+            this.userCombatant.goal.anim.direction=this.replayData.direction
+            this.base()
+        }
     }
     selfCall(type){
         switch(type){
@@ -1168,7 +1181,7 @@ class attack{
                             game.collisionDamage+=this.effect[0]
                         break
                         case 198:
-                            this.userCombatant.combo*=2
+                            this.userCombatant.combo*=this.effect[0]
                         break
                         case 200:
                             this.userCombatant.statusEffect('Conditioning',this.effect[0])
@@ -1352,7 +1365,7 @@ class attack{
                         case 44:
                             this.battle.cardManagers[this.player].send(3,1)
                             this.battle.cardManagers[this.player].shuffle(1)
-                            this.battle.draw(this.effect[0])
+                            this.battle.cardManagers[this.player].draw(this.effect[0])
                         break
                         case 45:
                             this.battle.cardManagers[this.player].allEffect(1,4)
@@ -1417,7 +1430,7 @@ class attack{
                             this.battle.cardManagers[this.player].allEffect(2,15)
                         break
                         case 207:
-                            this.battle.cardManagers[this.player].draw(this.effect[0])
+                            this.battle.cardManagers[this.player].discard(this.effect[0])
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.battle.cardManagers[this.player].addRandom(2,0,3)
                             }
@@ -1651,7 +1664,7 @@ class attack{
                         break
                         case 527:
                             for(let a=0,la=this.effect[0];a<la;a++){
-                                this.battle.cardManagers[this.player].addRandomClass(2,0,4,0)
+                                this.battle.cardManagers[this.player].addRandomClassFree(2,0,4,0)
                             }
                         break
                         case 528:
@@ -3307,16 +3320,16 @@ class attack{
                         this.procedure[2]=true
                     }
                 }
-                if(this.procedure[0]==1&&this.timer>=20){
+                if(this.procedure[1]==1&&this.timer>=20){
                     this.procedure[3]=true
-                }else if(this.procedure[0]==0){
+                }else if(this.procedure[1]==0){
                     if(this.timer>20){
                         this.userCombatant.runAnimation(1/10,0)
                         this.userCombatant.moveTile(this.direction,-this.distance/10)
                         this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                     }
                     if(this.timer==30){
-                        if(this.procedure[0]==0){
+                        if(this.procedure[1]==0){
                             this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x*3/2-this.targetCombatant.tilePosition.x/2,this.userCombatant.tilePosition.y*3/2-this.targetCombatant.tilePosition.y/2)
                         }else{
                             this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x*2-this.targetCombatant.tilePosition.x,this.userCombatant.tilePosition.y*2-this.targetCombatant.tilePosition.y)
@@ -4781,7 +4794,7 @@ class attack{
                             }
                         break
                         case 535:
-                            this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]*this.energy.main])
+                            this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]*this.energy])
                         break
                         case 536:
                             for(let a=0,la=this.effect[0];a<la;a++){

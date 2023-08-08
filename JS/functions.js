@@ -20,6 +20,10 @@ function displayTransition(layer,transition){
 		if(transition.anim>=1.1){
 			transition.trigger = false
 			stage.scene=transition.scene
+			if(transition.convert){
+				transition.convert=false
+				current.convert(stage.scene)
+			}
 		}
 	}
 	else if(transition.anim>0){
@@ -74,7 +78,7 @@ function flower(layer,size,color,width,height){
 				layer.vertex(0,0)
 				layer.bezierVertex(-width[0]*(1-a/la*2),-30,-width[1]*(1-a/la*2),-40,-width[2],-70)
 				layer.vertex(-width[2]*(1-(a+1)/la*2),-height[0])
-				layer.endShape()
+				layer.endShape(CLOSE)
 			}
 			layer.rotate(-72)
 			layer.beginShape()

@@ -126,6 +126,9 @@ class turnManager{
                 }
                 if(this.turns[0].timer==0){
                     this.turns[0].set()
+                    if(!this.turns[0].remove||this.turns[0].selfRemoved){
+                        this.battle.replayManager.list.push(this.turns[0])
+                    }
                 }
                 if(this.turns[0].remove){
                     delete this.turns[0]
@@ -152,6 +155,9 @@ class turnManager{
             if(this.turnsBack.length>0&&this.battle.attackManager.attacks.length<=0){
                 if(this.turnsBack[0].timer==0){
                     this.turnsBack[0].set()
+                    if(!this.turnsBack[0].remove||this.turnsBack[0].selfRemoved){
+                        this.battle.replayManager.list.push(this.turnsBack[0])
+                    }
                 }
                 if(this.turnsBack[0].remove){
                     delete this.turnsBack[0]

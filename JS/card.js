@@ -327,7 +327,7 @@ class card{
             case 204: string+=`Add ${effect[0]} Dodge\nGain ${effect[1]} Conditioning`; break
             case 205: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDoesn't Trigger Enemies`; break
             case 206: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number of\nCards in Hand\nDiscard Your Hand`; break
-            case 207: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Random\nCards to Your Hand`; break
+            case 207: string+=`Discard ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Random\nCards to Your Hand`; break
             case 208: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n4 Times\nAdvance`; break
             case 209: string+=`Add ${effect[0]} Random\nDefense${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0\nThis Turn`; break
             case 210: string+=`Add ${effect[0]} Random\nDefense${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
@@ -1038,6 +1038,9 @@ class card{
                             case 6:
                                 this.layer.text('Curse',0,4+a*(this.height/2-10))
                             break
+                            case 7:
+                                this.layer.text('Blueprint',0,4+a*(this.height/2-10))
+                            break
                         }
                     }
                 }else{
@@ -1059,6 +1062,9 @@ class card{
                         break
                         case 6:
                             this.layer.text('Curse',0,this.height/2-6)
+                        break
+                        case 7:
+                            this.layer.text('Blueprint',0,4+a*(this.height/2-10))
                         break
                     }
                 }

@@ -421,6 +421,11 @@ class tile{
                 break
             }
         }
+        this.layer.pop()
+    }
+    displayEffects(){
+        this.layer.push()
+        this.layer.translate(this.position.x,this.position.y)
         let stack=0
         if(this.anim.reinforce>0){
             this.layer.stroke(255,50,50,this.fade*this.anim.reinforce)

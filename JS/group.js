@@ -22,16 +22,10 @@ class group{
                 for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
                     this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?player:types.deck.start[game.ascend>=20?1:0][a][2])
                 }
-                if(game.ascend>=10){
-                    this.add(findName('Ascender\nBane',types.card),0,game.playerNumber+2)
-                }
-                if(game.ascend>=25){
-                    this.add(findName('Pride',types.card),0,game.playerNumber+2)
-                }
             break
             case 1:
-                this.battle.overlayManager.overlays[0][this.player].active=true
-                this.battle.overlayManager.overlays[0][this.player].activate([0,[
+                this.battle.overlayManager.overlays[25][this.player].active=true
+                this.battle.overlayManager.overlays[25][this.player].activate([0,[
                     {type:1,value:[0,0,0]},
                     {type:1,value:[0,0,0]},
                     {type:1,value:[0,0,0]},
@@ -49,10 +43,13 @@ class group{
                     {type:1,value:[0,1,0]},
                     {type:1,value:[0,1,0]},
                     ]])
+                for(let a=0,la=types.deck.start[game.ascend>=20?5:4].length;a<la;a++){
+                    this.addInitial(findName(types.deck.start[game.ascend>=20?5:4][a][0],types.card),types.deck.start[game.ascend>=20?5:4][a][1],types.deck.start[game.ascend>=20?5:4][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?5:4][a][0],types.card)].list:types.deck.start[game.ascend>=20?5:4][a][2]==-1?player:types.deck.start[game.ascend>=20?5:4][a][2])
+                }
             break
             case 2:
                 for(let a=0,la=types.deck.start[game.ascend>=20?3:2].length;a<la;a++){
-                    this.addInitial(findName(types.deck.start[game.ascend>=20?3:2][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?3:2][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?3:2][a][0],types.card)].list:types.deck.start[game.ascend>=20?3:2][a][2]==-1?player:types.deck.start[game.ascend>=20?3:2][a][2])
+                    this.addInitial(findName(types.deck.start[game.ascend>=20?3:2][a][0],types.card),types.deck.start[game.ascend>=20?3:2][a][1],types.deck.start[game.ascend>=20?3:2][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?3:2][a][0],types.card)].list:types.deck.start[game.ascend>=20?3:2][a][2]==-1?player:types.deck.start[game.ascend>=20?3:2][a][2])
                 }
             break
             case 3:
@@ -98,6 +95,12 @@ class group{
                     this.addInitial(this.battle.cardManagers[this.player].listing.card[0][3][a],0,0)
                 }
             break
+        }
+        if(game.ascend>=10){
+            this.add(findName('Ascender\nBane',types.card),0,game.playerNumber+2)
+        }
+        if(game.ascend>=25){
+            this.add(findName('Pride',types.card),0,game.playerNumber+2)
         }
         /*for(let a=0,la=8;a<la;a++){
             this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][0].length))],floor(random(0,1.5)),types.deck.start[player][0][2])
@@ -1153,7 +1156,7 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].update()
                     if(this.cards[a].position.x>a*100+100&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+100||a==0)){
-                        this.cards[a].position.x-=20
+                        this.cards[a].position.x-=25
                     }
                     this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected
                     if(this.cards[a].size<=0){

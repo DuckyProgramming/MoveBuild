@@ -6,6 +6,8 @@ class combatantManager{
         this.id=0
 
         this.combatants=[]
+        this.bank=[]
+        this.bankHP=[]
         this.playerCombatantIndex=[]
         this.sorted=[]
         this.proxyPlayer=new combatant(this.layer,this.battle,0,0,0,0,0,0,0,0,0,0)
@@ -41,6 +43,7 @@ class combatantManager{
         this.sort()
         for(let a=0,la=this.combatants.length;a<la;a++){
             this.combatants[a].id=a
+            this.bankHP.push(this.combatants[a].life)
         }
         this.id=this.combatants.length
     }
@@ -267,6 +270,27 @@ class combatantManager{
     getPlayerCombatantIndex(id){
         return this.playerCombatantIndex[id]
     }
+    proxyCombatants(){
+        this.bank=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0){
+                this.bank.push(this.combatants[a])
+                this.combatants.splice(a,1,new combatant(this.layer,this.battle,this.combatants[a].position.x,this.combatants[a].position.y,this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y,this.combatants[a].type,this.combatants[a].team,this.combatants[a].id,this.combatants[a].goal.anim.direction,this.combatants[a].minion))
+                this.combatants[a].life=this.bankHP[a]
+            }
+        }
+    }
+    deproxyCombatants(){
+        this.combatants=[]
+        for(let a=0,la=this.bank.length;a<la;a++){
+            if(this.bank[a].team>0){
+                this.combatants.push(this.bank[a])
+                this.bank.splice(a,1)
+                a--
+                la--
+            }
+        }
+    }
     damageArea(damage,user,team,tilePosition,spec){
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -298,6 +322,14 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
             if(distance>=0&&distance<=1){
+                this.combatants[a].takeDamage(damage,-1)
+            }
+        }
+    }
+    damageAreaRulelessID(damage,id,tilePosition){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].id!=id&&distance>=0&&distance<=1){
                 this.combatants[a].takeDamage(damage,-1)
             }
         }
@@ -430,7 +462,7 @@ class combatantManager{
     }
     display(scene){
         switch(scene){
-            case 'battle':
+            case 'battle': case 'replay':
                 for(let a=0,la=this.sorted.length;a<la;a++){
                     for(let b=0,lb=this.combatants.length;b<lb;b++){
                         if(this.combatants[b].position.y==this.sorted[a]){
@@ -458,7 +490,7 @@ class combatantManager{
     }
     update(scene){
         switch(scene){
-            case 'battle':
+            case 'battle': case 'replay':
                 for(let a=0,la=this.combatants.length;a<la;a++){
                     for(let b=0;b<game.animRate;b++){
                         this.combatants[a].update()

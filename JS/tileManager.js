@@ -265,6 +265,10 @@ class tileManager{
         switch(scene){
             case 'battle':
                 this.tiles.forEach(tile=>tile.display())
+                this.tiles.forEach(tile=>tile.displayEffects())
+            break
+            case 'replay':
+                this.tiles.forEach(tile=>tile.display())
             break
         }
     }
@@ -275,7 +279,7 @@ class tileManager{
     }
     update(scene){
         switch(scene){
-            case 'battle':
+            case 'battle': case 'replay':
                 this.tiles.forEach(tile=>tile.update())
                 this.anim.coordinate=smoothAnim(this.anim.coordinate,this.battle.attackManager.targetInfo[0]!=0,0,1,5)
             break

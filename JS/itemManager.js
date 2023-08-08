@@ -332,10 +332,24 @@ class itemManager{
             this.up[1]=toggle(this.up[1])
         }
         switch(scene){
-            case 'battle': case 'map':
+            case 'battle':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.battle.attackManager.attacks.length<=0&&!(!this.items[a][b].menu&&scene=='map')){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.battle.attackManager.attacks.length<=0&&this.battle.attackManager.targetInfo[0]==0){
+                            let type=this.items[a][b].type
+                            this.total[a]--
+                            this.items[a][b].type=1
+                            this.items[a][b].refresh()
+                            this.activateItem(type,a)
+                            this.battle.cardManagers[a].hand.callInput(7,0)
+                        }
+                    }
+                }
+            break
+            case 'map':
+                for(let a=0,la=this.items.length;a<la;a++){
+                    for(let b=0,lb=this.items[a].length;b<lb;b++){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.items[a][b].menu){
                             let type=this.items[a][b].type
                             this.total[a]--
                             this.items[a][b].type=1

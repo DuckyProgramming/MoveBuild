@@ -5,7 +5,7 @@ class overlayManager{
 
         this.overlays=[]
         this.overlays.push(
-            [new overlay(this.layer,this.battle,0,1,[])],//rewards,0
+            [new overlay(this.layer,this.battle,0,1,[0])],//rewards,0
             [new overlay(this.layer,this.battle,0,2,[0])],//view reserve
             [new overlay(this.layer,this.battle,0,2,[1])],//view discard
             [new overlay(this.layer,this.battle,0,3,[0])],//new card to deck
@@ -30,13 +30,14 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[15])],//bring in draw card-movement, no return
             [new overlay(this.layer,this.battle,0,2,[16])],//bring in draw card-power, no return
             [new overlay(this.layer,this.battle,0,6,[])],//dictionary
+            [new overlay(this.layer,this.battle,0,1,[1])],//rewards (draft)
 
         )
         if(this.battle.players==2){
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[24,17,3,10,0,1,13,2,16,4,15,5,6,7,18,8,19,20,21,22,23,9,12,14,11]
+        this.priority=[24,17,3,10,0,25,1,13,2,16,4,15,5,6,7,18,8,19,20,21,22,23,9,12,14,11]
         this.anyActive=false
     }
     copyOverlays(){

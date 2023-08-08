@@ -587,7 +587,7 @@ class relic{
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('3',-9,0)
-                    this.layer.text('1',9,0)
+                    this.layer.text('2',9,0)
                 break
                 case 'Unblocked Weaken':
                     displaySymbol(this.layer,-8,0,27,0,0.6,this.fade)
@@ -690,7 +690,7 @@ class relic{
                     displaySymbol(this.layer,6,-4,3,0,0.4,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',-10,0)
+                    this.layer.text('1',-10,0)
                 break
                 case '2 Turn Half Damage':
                     displaySymbol(this.layer,0,0,47,0,2.5,this.fade)

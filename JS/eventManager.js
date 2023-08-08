@@ -320,6 +320,7 @@ class eventManager{
                         }else if(this.page==5&&a==0){
                             this.battle.relicManager.addRelic(findInternal('Duplicate Random Turn',types.relic),this.player)
                         }
+                    break
                     case 28:
                         if(this.page==0&&a==0){
                             transition.scene='battle'
