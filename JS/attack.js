@@ -3329,7 +3329,7 @@ class attack{
                         this.userCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
                     }
                     if(this.timer==30){
-                        if(this.procedure[1]==0){
+                        if(this.procedure[0]==0){
                             this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x*3/2-this.targetCombatant.tilePosition.x/2,this.userCombatant.tilePosition.y*3/2-this.targetCombatant.tilePosition.y/2)
                         }else{
                             this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x*2-this.targetCombatant.tilePosition.x,this.userCombatant.tilePosition.y*2-this.targetCombatant.tilePosition.y)

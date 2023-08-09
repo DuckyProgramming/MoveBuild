@@ -16,7 +16,7 @@ function setup(){
         current.itemManager.addItem(2+a,0)
     }*/
 
-    /*current.menu.combatant=[1]
+    /*current.menu.combatant=[6]
     current.menu.deck=[1]
     current.startGame()
     transition.trigger=false

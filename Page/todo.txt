@@ -1,13 +1,10 @@
 Bugs:
 A lot
 
-open dictionary in reward screen
-
 Menu UI:
 
 Generality:
 More Characters As needed
-
 
 
 
