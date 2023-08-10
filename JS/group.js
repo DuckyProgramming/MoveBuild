@@ -16,12 +16,12 @@ class group{
     initialCards(type,player){
         switch(type){
             case 0:
-                for(let a=0,la=6;a<la;a++){
+                /*for(let a=0,la=6;a<la;a++){
                     this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
-                }
-                /*for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
-                    this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?player:types.deck.start[game.ascend>=20?1:0][a][2])
                 }*/
+                for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
+                    this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?player:types.deck.start[game.ascend>=20?1:0][a][2])
+                }
             break
             case 1:
                 this.battle.overlayManager.overlays[25][this.player].active=true
@@ -1186,7 +1186,7 @@ class group{
                             }
                         }else if(this.cards[a].exhaust){
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                            if(userCombatant.getStatus('Cancel Exhaust')>0){
+                            if(userCombatant.getStatus('Cancel Exhaust')>0&&this.cards[a].attack!=180){
                                 userCombatant.status.main[findList('Cancel Exhaust',userCombatant.status.name)]--
                                 this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                                 a--

@@ -17,7 +17,7 @@ function setup(){
     }*/
 
     /*current.menu.combatant=[6]
-    current.menu.deck=[1]
+    current.menu.deck=[0]
     current.startGame()
     transition.trigger=false
     //stage.scene='graphic'

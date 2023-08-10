@@ -6,7 +6,7 @@ class battle{
     }
     createBasic(){
         this.title={}
-        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[]}}
+        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[]}}
         for(let a=0,la=game.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
@@ -21,8 +21,9 @@ class battle{
             this.menu.anim.ascend.push(-1)
             this.menu.anim.ascendDesc.push(-1)
         }
-        for(let a=0,la=3;a<la;a++){
+        for(let a=0,la=4;a<la;a++){
             this.menu.anim.animRate.push(-1)
+            this.menu.anim.turnTime.push(-1)
         }
     }
     startGame(){
@@ -574,7 +575,13 @@ class battle{
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     if(this.menu.anim.animRate[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.animRate[a])
-                        this.layer.rect(this.layer.width/2-67.5+a*67.5,this.layer.height-30,60,4)
+                        this.layer.rect(this.layer.width/2-287.5+a*75,this.layer.height-30,67.5,4)
+                    }
+                }
+                for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
+                    if(this.menu.anim.turnTime[a]>0){
+                        this.layer.fill(255,0,0,this.menu.anim.turnTime[a])
+                        this.layer.rect(this.layer.width/2+62.5+a*75,this.layer.height-30,67.5,4)
                     }
                 }
             break
@@ -628,7 +635,13 @@ class battle{
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     if(this.menu.anim.animRate[a]>0){
                         this.layer.fill(255,0,0,this.menu.anim.animRate[a])
-                        this.layer.rect(this.layer.width/2-67.5+a*67.5,this.layer.height-30,60,4)
+                        this.layer.rect(this.layer.width/2-287.5+a*75,this.layer.height-30,67.5,4)
+                    }
+                }
+                for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
+                    if(this.menu.anim.turnTime[a]>0){
+                        this.layer.fill(255,0,0,this.menu.anim.turnTime[a])
+                        this.layer.rect(this.layer.width/2+62.5+a*75,this.layer.height-30,67.5,4)
                     }
                 }
             break
@@ -776,11 +789,11 @@ class battle{
                 this.layer.fill(this.player==1?this.colorDetail[0].fill:types.color.card[0].fill)
                 this.layer.stroke(this.player==1?this.colorDetail[0].stroke:types.color.card[0].stroke)
                 this.layer.strokeWeight(3*this.anim.exit)
-                this.layer.rect(26,560,32*this.anim.exit,20*this.anim.exit,5*this.anim.exit)
+                this.layer.rect(26,578,32*this.anim.exit,20*this.anim.exit,5*this.anim.exit)
                 this.layer.fill(0)
                 this.layer.noStroke()
                 this.layer.textSize(8*this.anim.exit)
-                this.layer.text('Exit',26,560)
+                this.layer.text('Exit',26,578)
                 this.purchaseManager.display()
                 this.overlayManager.display()
                 this.itemManager.display(stage.scene)
@@ -910,6 +923,9 @@ class battle{
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<=la;a++){
                     this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
+                }
+                for(let a=0,la=this.menu.anim.turnTime.length;a<=la;a++){
+                    this.menu.anim.turnTime[a]=smoothAnim(this.menu.anim.turnTime[a],game.turnTime==[0,900,1800,3600][a],0,1,5)
                 }
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
@@ -1072,7 +1088,7 @@ class battle{
                     this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                 }
-                this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:560},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:578},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
             break
             case 'victory': case 'defeat':
                 this.overlayManager.update()
@@ -1179,8 +1195,13 @@ class battle{
                     }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-67.5+a*67.5,y:this.layer.height-30},width:60,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-287.5+a*75,y:this.layer.height-30},width:67.5,height:27.5})){
                         game.animRate=a+1
+                    }
+                }
+                for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+62.5+a*75,y:this.layer.height-30},width:67.5,height:27.5})){
+                        game.turnTime=[0,900,1800,3600][a]
                     }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+150,y:this.layer.height*0.6},width:62.5,height:62.5})){
@@ -1208,8 +1229,13 @@ class battle{
                     }
                 }
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-67.5+a*67.5,y:this.layer.height-30},width:60,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-287.5+a*75,y:this.layer.height-30},width:67.5,height:27.5})){
                         game.animRate=a+1
+                    }
+                }
+                for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+62.5+a*75,y:this.layer.height-30},width:67.5,height:27.5})){
+                        game.turnTime=[0,900,1800,3600][a]
                     }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){
@@ -1382,6 +1408,11 @@ class battle{
                         game.animRate=a+1
                     }
                 }
+                for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
+                    if(a+5==int(key)){
+                        game.turnTime=[0,900,1800,3600][a]
+                    }
+                }
                 if(code==ENTER){
                     this.startGame()
                 }
@@ -1409,6 +1440,11 @@ class battle{
                 for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     if(a+1==int(key)){
                         game.animRate=a+1
+                    }
+                }
+                for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
+                    if(a+5==int(key)){
+                        game.turnTime=[0,900,1800,3600][a]
                     }
                 }
                 if(code==ENTER){

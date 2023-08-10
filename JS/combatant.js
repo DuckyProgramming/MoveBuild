@@ -3479,10 +3479,10 @@ class combatant{
                             this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id))
                         }
                         if(this.status.main[38]>0){
-                            this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
-                            this.battle.turnManager.turns[0].target=[user]
-                            this.battle.turnManager.auxiliary=true
-                            this.battle.turnManager.turns.push(new turn(0,this.battle,3,[0],this.id))
+                            this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
+                            this.battle.turnManager.turnsBack[0].target=[user]
+                            this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
+                            this.battle.turnManager.turnsBack.push(new turn(0,this.battle,3,[0],this.id))
                         }
                         if(this.status.main[39]>0){
                             this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))

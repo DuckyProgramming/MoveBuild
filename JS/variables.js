@@ -2104,7 +2104,7 @@ types={
         },{
             name:'After\nImage',rarity:1,list:4,
             levels:[
-                {effect:[2],attack:254,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:254,cost:1,target:[0],spec:[1,3],class:4},
                 {effect:[2],attack:254,cost:1,target:[0],spec:[1,3],class:4},
             ],
         },{
@@ -3809,7 +3809,7 @@ types={
             name:'Ascender\nBane',rarity:0,list:8,
             levels:[
                 {effect:[],attack:0,cost:0,target:[0],spec:[4,5,7],class:6},
-                {effect:[],attack:0,cost:0,target:[0],spec:[4,7],class:6},
+                {effect:[],attack:0,cost:0,target:[0],spec:[1,4,7],class:6},
             ],
         },{
             name:'Pride',rarity:0,list:8,
@@ -9117,7 +9117,7 @@ Does not spend the orb.`,
     ]
 }
 stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:900,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
 startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}

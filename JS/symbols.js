@@ -427,7 +427,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             layer.beginShape()
             for(let a=0,la=13;a<la;a++){
-                layer.vertex(lsin(180*a/(la-1))*(5-a%2*2.5),lcos(180*a/(la-1))*(5-a%2*2.5))
+                layer.vertex(lsin(270*a/(la-1))*(5-a%2*2.5),lcos(270*a/(la-1))*(5-a%2*2.5))
             }
             layer.vertex(0,0)
             layer.endShape(CLOSE)
@@ -435,7 +435,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             layer.beginShape()
             for(let a=0,la=5;a<la;a++){
-                layer.vertex(lsin(-270+180*a/(la-1))*(5-a%2*2.5),lcos(-270+180*a/(la-1))*(5-a%2*2.5))
+                layer.vertex(lsin(-90+90*a/(la-1))*(5-a%2*2.5),lcos(-90+90*a/(la-1))*(5-a%2*2.5))
             }
             layer.vertex(0,0)
             layer.endShape(CLOSE)

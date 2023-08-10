@@ -300,7 +300,7 @@ class card{
             case 177: string+=`Create 1 Landmine`; break
             case 178: string+=`Deal ${this.calculateEffect(effect[0],0)} Decrementing\nDamage 4 Times`; break
             case 179: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nPushes Without\nSplash at Range 1`; break
-            case 180: string+=`Your Next ${effect[0]} Exhausts\nDo Not Occur`; break
+            case 180: string+=`Your Next ${effect[0]} Exhausts\nDo Not Occur\nDoes Not Affect Self`; break
             case 181: string+=`Add ${effect[0]} Dodge\nCounter ${effect[1]}`; break
             case 182: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Combo\nTake ${effect[2]} Damage\nif You Don't Attack`; break
             case 183: string+=`Draw ${effect[0]}X${effect[1]>0?`+${effect[1]}`:``} Cards`; break
