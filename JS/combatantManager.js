@@ -30,7 +30,7 @@ class combatantManager{
     }
     resetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0||this.combatants[a].construct){
                 delete this.combatants[a]
                 this.combatants.splice(a,1)
                 a--
@@ -149,14 +149,16 @@ class combatantManager{
     randomEnemyEffect(effect,args){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 list.push(a)
             }
         }
-        switch(effect){
-            case 0:
-                this.combatants[list[floor(random(0,list.length))]].takeDamage(args[0],-1)
-            break
+        if(list.length>0){
+            switch(effect){
+                case 0:
+                    this.combatants[list[floor(random(0,list.length))]].takeDamage(args[0],-1)
+                break
+            }
         }
     }
     multiplyStatus(name,multiplier){
@@ -179,6 +181,15 @@ class combatantManager{
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
             this.battle.counter.enemy++
+        }
+    }
+    summonConstruct(tilePosition,type,team,direction){
+        let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
+        if(index>=0){
+            let tile=this.battle.tileManager.tiles[index]
+            this.addConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false)
+            this.battle.updateTargetting()
+            this.battle.tileManager.activate()
         }
     }
     allEffect(effect,args){
@@ -253,6 +264,16 @@ class combatantManager{
         this.sort()
         this.reorder()
     }
+    addConstruct(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
+        this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
+        this.combatants[this.combatants.length-1].construct=true
+        if(this.id<this.battle.players){
+            this.playerCombatantIndex[this.id]=this.combatants.length-1
+        }
+        this.id++
+        this.sort()
+        this.reorder()
+    }
     getCombatantIndex(tileX,tileY){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].tilePosition.x==tileX&&this.combatants[a].tilePosition.y==tileY&&this.combatants[a].life>0){
@@ -273,17 +294,21 @@ class combatantManager{
     proxyCombatants(){
         this.bank=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team>0){
+            if(this.combatants[a].life>0){
                 this.bank.push(this.combatants[a])
-                this.combatants.splice(a,1,new combatant(this.layer,this.battle,this.combatants[a].position.x,this.combatants[a].position.y,this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y,this.combatants[a].type,this.combatants[a].team,this.combatants[a].id,this.combatants[a].goal.anim.direction,this.combatants[a].minion))
-                this.combatants[a].life=this.bankHP[a]
+                if(this.combatants[a].team>0&&!this.combatants[a].construct){
+                    this.combatants.splice(a,1,new combatant(this.layer,this.battle,this.combatants[a].position.x,this.combatants[a].position.y,this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y,this.combatants[a].type,this.combatants[a].team,this.combatants[a].id,this.combatants[a].goal.anim.direction,this.combatants[a].minion))
+                    this.combatants[a].life=this.bankHP[a]
+                }else{
+                    this.combatants.splice(a,1)
+                }
             }
         }
     }
     deproxyCombatants(){
         this.combatants=[]
         for(let a=0,la=this.bank.length;a<la;a++){
-            if(this.bank[a].team>0){
+            if(this.bank[a].life>0){
                 this.combatants.push(this.bank[a])
                 this.bank.splice(a,1)
                 a--

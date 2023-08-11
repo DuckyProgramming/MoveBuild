@@ -80,7 +80,7 @@ class attack{
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
             case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485:
-            case 486: case 503: case 570: case 571: case 573: case 574: case 575:
+            case 486: case 503: case 570: case 571: case 573: case 574: case 575: case 585:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1130,7 +1130,7 @@ class attack{
             case 225: case 226: case 231: case 239: case 240: case 249: case 264: case 278: case 286: case 299:
             case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
-            case 455: case 457: case 488: case 500: case 517: case 521:
+            case 455: case 457: case 488: case 500: case 517: case 521: case 586:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1325,6 +1325,9 @@ class attack{
                         break
                         case 521:
                             this.battle.energy.main[this.player]*=2
+                        break
+                        case 586:
+                            this.userCombatant.metal+=this.effect[0]
                         break
                     }
                 }else if(this.timer>=20){
@@ -2477,7 +2480,7 @@ class attack{
             case 38: case 79: case 81: case 84: case 85: case 86: case 104: case 145: case 148: case 158:
             case 159: case 160: case 161: case 162: case 163: case 173: case 177: case 272: case 292: case 295:
             case 297: case 314: case 316: case 326: case 351: case 352: case 382: case 408: case 419: case 433:
-            case 452: case 472: case 474: case 482: case 533: case 537: case 538: case 539: case 548:
+            case 452: case 472: case 474: case 482: case 533: case 537: case 538: case 539: case 548: case 585:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -2642,6 +2645,9 @@ class attack{
                         case 548:
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.targetCombatant.multiplyStatus('Vulnerable',this.effect[1])
+                        break
+                        case 585:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall',types.combatant),this.userCombatant.team,this.direction)
                         break
                     }
                 }else if(this.timer>=30){
@@ -4777,7 +4783,7 @@ class attack{
                             }
                         break
                         case 526:
-                            for(let a=0,la=this.effect[0]*this.energy.main;a<la;a++){
+                            for(let a=0,la=this.effect[0]*this.energy;a<la;a++){
                                 this.userCombatant.holdOrb(0)
                             }
                         break

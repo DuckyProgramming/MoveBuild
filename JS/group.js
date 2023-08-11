@@ -16,11 +16,14 @@ class group{
     initialCards(type,player){
         switch(type){
             case 0:
-                /*for(let a=0,la=6;a<la;a++){
-                    this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
-                }*/
-                for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
-                    this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?player:types.deck.start[game.ascend>=20?1:0][a][2])
+                if(game.dev){
+                    for(let a=0,la=6;a<la;a++){
+                        this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],0,this.battle.player[this.player])
+                    }
+                }else{
+                    for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
+                        this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?player:types.deck.start[game.ascend>=20?1:0][a][2])
+                    }
                 }
             break
             case 1:
@@ -830,6 +833,8 @@ class group{
                 userCombatant.status.main[27]--
             }else if(spec.includes(11)){
                 userCombatant.combo-=cost
+            }else if(spec.includes(21)){
+                userCombatant.metal-=cost
             }else{
                 if(cost==-1){
                     this.battle.energy.main[this.player]=0

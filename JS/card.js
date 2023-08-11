@@ -359,7 +359,7 @@ class card{
             case 237: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage`:``}\nPush 1 Tile Left Back`; break
             case 239: string+=`Gain ${effect[0]} Combo\nPer Turn`; break
             case 240: string+=`Gain ${effect[0]} Combo\nNext Turn`; break
-            case 241: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[0],10)} More Damage\nWhen Up to Wall`; break
+            case 241: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[0],10)} More Damage\nWhen Up to Wall\nMove 1 Tile Away`; break
             case 242: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}\nat Range 1-2`; break
             case 243: string+=`Pull Target 1 Tile\nTarget Will Face User\nAdvance`; break
             case 244: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 2 Tiles\nAround Right`; break
@@ -700,6 +700,11 @@ class card{
             case 583: string+=`Hold ${effect[0]} Buff Orb${effect[0]!=1?`s`:``}\nHold ${effect[1]} Poison Orb${effect[1]!=1?`s`:``}\nHold ${effect[2]} Light Orb${effect[2]!=1?`s`:``}`; break
             case 584: string+=`Hold ${effect[0]} Lightning Orb${effect[0]!=1?`s`:``}\nAdd ${this.calculateEffect(effect[1],3)} Block\nWhere X = Number\nOf Lightning Orbs`; break
 
+            case 585: string+=`Build a Wall`; break
+            case 586: string+=`Gain ${effect[0]} Metal`; break
+
+
+
 
 
 
@@ -982,6 +987,11 @@ class card{
                     this.layer.arc(-this.width/2+10.5,-this.height/2+11.5,15,15,-135,45)
                     this.layer.arc(-this.width/2+9.5,-this.height/2+12.5,15,15,45,225)
                     this.layer.strokeCap(ROUND)
+                }else if(this.spec.includes(21)){
+                    this.layer.fill(140,120,160,this.fade)
+                    this.layer.stroke(120,100,140,this.fade)
+                    this.layer.strokeWeight(3)
+                    regPoly(this.layer,-this.width/2+10,-this.height/2+12,8,8,8,0)
                 }else if(!this.spec.includes(5)){
                     this.layer.fill(225,255,255,this.fade)
                     this.layer.stroke(200,255,255,this.fade)
@@ -992,6 +1002,8 @@ class card{
                 if(!this.spec.includes(5)){
                     if(this.spec.includes(11)){
                         this.layer.fill(mergeColor([255,0,0],[255,255,255],this.anim.afford),this.level/2,this.fade)
+                    }else if(this.spec.includes(21)){
+                        this.layer.fill(mergeColor([255,0,0],[50,40,60],this.anim.afford),this.level/2,this.fade)
                     }else{
                         this.layer.fill(mergeColor([255,0,0],[0,0,0],this.anim.afford),this.level/2,this.fade)
                     }
@@ -1111,9 +1123,9 @@ class card{
             this.upSize=true
         }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&
+        this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&
         !(this.spec.includes(6)&&!userCombatant.armed)
-        this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11))
+        this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))
         if(this.deSize&&this.size>0||this.downSize&&this.size>0.6||!this.upSize&&this.size>1){
             this.size=round(this.size*5-1)/5
         }else if(!this.deSize&&(!this.downSize&&this.size<1||this.size<0.6||this.upSize&&this.size<1.5)){

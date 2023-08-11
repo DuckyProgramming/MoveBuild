@@ -37,42 +37,6 @@ types={
                 {effect:[14],attack:152,cost:1,target:[0],spec:[4],class:2},
             ],
         },{
-            name:'Defensive\nReversal',rarity:-1,list:-1,
-            levels:[
-                {effect:[2],attack:154,cost:2,target:[2,1,1],spec:[0],class:1},
-                {effect:[3],attack:154,cost:2,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Stop Right\nThere',rarity:-1,list:-1,
-            levels:[
-                {effect:[7,1],attack:156,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[10,1],attack:156,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Progression',rarity:-1,list:-1,
-            levels:[
-                {effect:[7],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[10],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Clear\nUp',rarity:-1,list:-1,
-            levels:[
-                {effect:[7,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[11,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Disposal',rarity:-1,list:-1,
-            levels:[
-                {effect:[10,1],attack:95,cost:1,target:[0],spec:[],class:2},
-                {effect:[15,1],attack:95,cost:1,target:[0],spec:[],class:2},
-            ],
-        },{
-            name:'Drill',rarity:-1,list:-1,
-            levels:[
-                {effect:[11,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
             name:'Left\nNudge',rarity:-1,list:-1,
             levels:[
                 {effect:[0],attack:465,cost:0,target:[2,1,1],spec:[1],class:1},
@@ -3234,10 +3198,48 @@ types={
         },
 
         {
+            name:'Defensive\nReversal',rarity:1,list:6,
+            levels:[
+                {effect:[2],attack:154,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:154,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Stop Right\nThere',rarity:1,list:6,
+            levels:[
+                {effect:[7,1],attack:156,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1],attack:156,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Progression',rarity:0,list:6,
+            levels:[
+                {effect:[7],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Clear\nUp',rarity:0,list:6,
+            levels:[
+                {effect:[7,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:94,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Disposal',rarity:0,list:6,
+            levels:[
+                {effect:[10,1],attack:95,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,1],attack:95,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Drill',rarity:0,list:6,
+            levels:[
+                {effect:[11,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:105,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+        
+        {
             name:'Build\nWall',rarity:0,list:6,
             levels:[
-                {effect:[],attack:585,cost:3,target:[1,1,1],spec:[],class:7},
-                {effect:[],attack:585,cost:3,target:[1,1,1],spec:[],class:7},
+                {effect:[],attack:585,cost:3,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:585,cost:3,target:[1,1,1],spec:[21],class:7},
             ],
         },{
             name:'Scavenge',rarity:0,list:6,
@@ -3246,6 +3248,13 @@ types={
                 {effect:[4],attack:586,cost:1,target:[0],spec:[2],class:4},
             ],
         },
+
+
+
+
+
+
+
 
         {
             name:'Telefrag',rarity:-3,list:-1,
@@ -4097,7 +4106,10 @@ types={
         {name:'Lunaria',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
 
         {name:'Rewriter',life:920,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:190,effect:[18,4,1]},{type:191,effect:[6]},{type:192,effect:[18]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
-        {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`Shit`},
+
+        {name:'Wall',life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
+
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -6563,10 +6575,10 @@ shipyard visit for another time.`,
                 text:[80,20,0],
                 active:[255,225,200],
             },{
-                fill:[160,220,240],
-                stroke:[120,180,200],
+                fill:[200,230,240],
+                stroke:[160,190,200],
                 text:[0,30,60],
-                active:[200,255,255],
+                active:[225,255,255],
             },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
@@ -6584,12 +6596,6 @@ shipyard visit for another time.`,
                 active:[255,200,200],
             },
 
-            /*{
-                fill:[240,180,180],
-                stroke:[200,140,140],
-                text:[150,0,0],
-                active:[255,225,225],
-            },*/
         ],
     },deck:{
         start:[
@@ -9118,7 +9124,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}

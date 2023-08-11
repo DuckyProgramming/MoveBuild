@@ -69,8 +69,9 @@ class battle{
         this.turn={main:0,total:0,time:0,accelerate:0,endReady:false}
         this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],dictionaryMulti:[],exit:1,sell:[],afford:0,upAfford:false}
         this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
-        this.result={defeat:false,victory:false}
+        this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
+        this.first=true
 
         this.colorDetail=[]
         
@@ -162,10 +163,13 @@ class battle{
         switch(scene){
             case 'replay':
                 this.combatantManager.proxyCombatants()
-                this.setupBattle(this.lastEncounter)
+                this.setupBattle(this.lastEncounter,false)
+                this.result.victory=true
+                this.updateTargetting()
             break
             case 'battle':
                 this.combatantManager.deproxyCombatants()
+                this.updateTargetting()
             break
         }
     }
@@ -174,7 +178,7 @@ class battle{
         transition.scene='battle'
         transition.convert=true
     }
-    setupBattle(encounter){
+    setupBattle(encounter,first=true){
         this.lastEncounter=encounter
         this.encounter.class=encounter.class
         for(let a=0,la=this.energy.base.length;a<la;a++){
@@ -183,8 +187,9 @@ class battle{
         this.turn={main:0,total:0,time:0,accelerate:0}
         this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],defeat:0,deck:[],dictionaryMulti:[],sell:[],exit:1,afford:0,upAfford:false}
         this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
-        this.result={defeat:false,victory:false}
+        this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
+        this.first=first
 
         this.tileManager.generateTiles(types.level[findName(encounter.level[floor(random(0,encounter.level.length))],types.level)])
         
@@ -665,12 +670,12 @@ class battle{
                     this.layer.strokeWeight(3*this.anim.cancel)
                     this.layer.rect(-74+this.anim.extra[a]*100,414,32*this.anim.cancel,20*this.anim.cancel,5*this.anim.endTurn)
                     if(game.turnTime>0){
-                        this.layer.rect(58+game.turnTime/6,680-this.anim.turn[a]*100,game.turnTime/3+12,16,5)
+                        this.layer.rect(58+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5+12,16,5)
                         this.layer.fill(0)
                         this.layer.noStroke()
-                        this.layer.rect(58+game.turnTime/6,680-this.anim.turn[a]*100,game.turnTime/3,4,2)
+                        this.layer.rect(58+game.turnTime/9,680-this.anim.turn[a]*100,game.turnTime/4.5,4,2)
                         this.layer.fill(this.colorDetail[a].active)
-                        this.layer.rect(58+this.turn.time/6,680-this.anim.turn[a]*100,this.turn.time/3,4,2)
+                        this.layer.rect(58+this.turn.time/9,680-this.anim.turn[a]*100,this.turn.time/4.5,4,2)
                     }
                     this.layer.fill(0)
                     this.layer.noStroke()
@@ -921,10 +926,10 @@ class battle{
                     this.menu.anim.ascend[a]=smoothAnim(this.menu.anim.ascend[a],game.ascend==a,0,1,5)
                     this.menu.anim.ascendDesc[a]=smoothAnim(this.menu.anim.ascendDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
                 }
-                for(let a=0,la=this.menu.anim.animRate.length;a<=la;a++){
+                for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
                 }
-                for(let a=0,la=this.menu.anim.turnTime.length;a<=la;a++){
+                for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
                     this.menu.anim.turnTime[a]=smoothAnim(this.menu.anim.turnTime[a],game.turnTime==[0,900,1800,3600][a],0,1,5)
                 }
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
@@ -947,13 +952,16 @@ class battle{
                 for(let a=0,la=this.menu.anim.animRate.length;a<=la;a++){
                     this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
                 }
+                for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
+                    this.menu.anim.turnTime[a]=smoothAnim(this.menu.anim.turnTime[a],game.turnTime==[0,900,1800,3600][a],0,1,5)
+                }
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'battle':
                 this.tileManager.update(scene)
                 this.combatantManager.update(scene)
                 this.cardManagers.forEach(cardManager=>cardManager.update(scene))
-                if(!this.result.defeat){
+                if(!this.result.defeat&&!this.result.noAnim){
                     this.attackManager.update()
                     this.turnManager.update()
                 }
@@ -984,64 +992,65 @@ class battle{
                 if(this.turn.endReady&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
                     this.endTurn()
                 }
-                if(this.counter.killed>=this.counter.enemy&&!this.result.defeat){
-                    if(this.result.victory){
-                        let allClosed=true
-                        for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
-                            if(this.overlayManager.overlays[0][a].active){
-                                allClosed=false
-                            }
-                        }
-                        if(allClosed){
-                            transition.trigger=true
-                            if(this.encounter.class==2){
-                                if(this.nodeManager.world==3){
-                                    transition.scene='victory'
-                                    this.setupStats()
-                                }else{
-                                    transition.scene='bossstash'
-                                    this.combatantManager.bossHeal()
-                                    this.setupBossStash()
-                                }
-                            }else{
-                                transition.scene='map'
-                                this.replayManager.clear()
-                            }
-                        }
-                    }else{
-                        this.result.victory=true
-                        this.overlayManager.closeAll()
-                        for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
-                            this.overlayManager.overlays[0][a].active=true
-                            if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
-                                this.encounter.class=1
-                            }
-                            switch(this.encounter.class){
-                                case 0: case 3: case 4:
-                                    this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
-                                        {type:0,value:[floor(random(40,81))]}]])
-                                break
-                                case 1:
-                                    this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
-                                        {type:2,value:[]},
-                                        {type:0,value:[floor(random(120,201))]}]])
-                                break
-                                case 2:
-                                    this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[]:[
-                                        {type:0,value:[floor(random(240,401))]}]])
-                                break
-                            }
-                            if(this.encounter.class!=2){
-                                if(floor(random(0,3))==0||this.relicManager.hasRelic(83,a)){
-                                    this.overlayManager.overlays[0][a].activate([1,[
-                                        {type:3,value:[]}]])
-                                }
-                            }
-                        }
-                        this.relicManager.activate(1,[])
+                if(this.result.victory){
+                    if(this.attackManager.attacks.length==0&&this.turnManager.turns.length==0&&this.turnManager.turnsBack.length==0){
+                        this.result.noAnim=true
                     }
+                    let allClosed=true
+                    for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
+                        if(this.overlayManager.overlays[0][a].active){
+                            allClosed=false
+                        }
+                    }
+                    if(allClosed){
+                        transition.trigger=true
+                        if(this.encounter.class==2){
+                            if(this.nodeManager.world==3){
+                                transition.scene='victory'
+                                this.setupStats()
+                            }else{
+                                transition.scene='bossstash'
+                                this.combatantManager.bossHeal()
+                                this.setupBossStash()
+                            }
+                        }else{
+                            transition.scene='map'
+                            this.replayManager.clear()
+                        }
+                    }
+                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat){
+                    this.result.victory=true
+                    this.overlayManager.closeAll()
+                    for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
+                        this.overlayManager.overlays[0][a].active=true
+                        if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
+                            this.encounter.class=1
+                        }
+                        switch(this.encounter.class){
+                            case 0: case 3: case 4:
+                                this.overlayManager.overlays[0][a].activate([0,[
+                                    {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
+                                    {type:0,value:[floor(random(40,81))]}]])
+                            break
+                            case 1:
+                                this.overlayManager.overlays[0][a].activate([0,[
+                                    {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
+                                    {type:2,value:[]},
+                                    {type:0,value:[floor(random(120,201))]}]])
+                            break
+                            case 2:
+                                this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[]:[
+                                    {type:0,value:[floor(random(240,401))]}]])
+                            break
+                        }
+                        if(this.encounter.class!=2){
+                            if(floor(random(0,3))==0||this.relicManager.hasRelic(83,a)){
+                                this.overlayManager.overlays[0][a].activate([1,[
+                                    {type:3,value:[]}]])
+                            }
+                        }
+                    }
+                    this.relicManager.activate(1,[])
                 }
             break
             case 'replay':
@@ -1317,7 +1326,7 @@ class battle{
                             this.overlayManager.overlays[16][a].activate()
                         }
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:560},width:32,height:20})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:578},width:32,height:20})){
                         transition.trigger=true
                         transition.scene='map'
                     }
