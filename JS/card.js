@@ -702,6 +702,7 @@ class card{
 
             case 585: string+=`Build a Wall`; break
             case 586: string+=`Gain ${effect[0]} Metal`; break
+            case 587: string+=`Destroy a Construct\nMay Exhuast When a\nConstruct is Destroyed`; break
 
 
 

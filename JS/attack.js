@@ -67,7 +67,7 @@ class attack{
             case 508: case 509: case 510: case 511: case 514: case 531: case 532: case 533: case 534: case 535:
             case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 557: case 558:
             case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
-            case 582:
+            case 582: case 587:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -2648,6 +2648,7 @@ class attack{
                         break
                         case 585:
                             this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                     }
                 }else if(this.timer>=30){
@@ -3154,7 +3155,7 @@ class attack{
                 }
             break
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
-            case 404: case 405: case 426:
+            case 404: case 405: case 426: case 587:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(26)
                 }
@@ -3221,6 +3222,10 @@ class attack{
                             if(this.userCombatant.armed){
                                 this.userCombatant.armed=false
                             }
+                        break
+                        case 587:
+                            this.targetCombatant.life=0
+                            this.programmedDeath=true
                         break
                     }
                 }else if(this.timer>=20){
@@ -3863,8 +3868,10 @@ class attack{
                             break
                         }
                     }
-                }else if(this.timer>=15*this.targetDistance+15&&this.targetDistance>1){
-                    this.battle.activate(1,this.userCombatant.id)
+                }else if(this.timer>=15*this.targetDistance+15){
+                    if(this.targetDistance>1){
+                        this.battle.activate(1,this.userCombatant.id)
+                    }
                     this.remove=true
                 }
             break

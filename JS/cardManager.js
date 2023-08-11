@@ -268,6 +268,16 @@ class cardManager{
         done+=this.hand.deFatigue(-1)
         return done
     }
+    deCard(value,name){
+        let left=value
+        left-=this.reserve.deCard(left,name)
+        if(left>0){
+            left-=this.discard.deCard(left,name)
+        }
+        if(left>0){
+            left-=this.hand.deCard(left,name)
+        }
+    }
     fatigueNumber(){
         return this.reserve.fatigueNumber()+this.hand.fatigueNumber()+this.discard.fatigueNumber()
     }

@@ -77,6 +77,13 @@ class turnManager{
                     this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
             }
         }
+        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].moved&&this.battle.combatantManager.combatants[a].status.main[32]<=0&&this.battle.combatantManager.combatants[a].status.main[119]<=0){
+                this.turns.push(new turn(0,this.battle,
+                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
+                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
+            }
+        }
     }
     loadEnemyTurnsMove(){
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){

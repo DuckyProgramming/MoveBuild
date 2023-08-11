@@ -3241,11 +3241,20 @@ types={
                 {effect:[],attack:585,cost:3,target:[1,1,1],spec:[21],class:7},
                 {effect:[],attack:585,cost:3,target:[1,1,1],spec:[21],class:7},
             ],
-        },{
+        },
+        
+        
+        {
             name:'Scavenge',rarity:0,list:6,
             levels:[
                 {effect:[3],attack:586,cost:1,target:[0],spec:[],class:4},
                 {effect:[4],attack:586,cost:1,target:[0],spec:[2],class:4},
+            ],
+        },{
+            name:'Repair',rarity:0,list:6,
+            levels:[
+                {effect:[12],attack:588,cost:1,target:[0],spec:[],class:4},
+                {effect:[20],attack:588,cost:1,target:[0],spec:[2],class:4},
             ],
         },
 
@@ -3587,6 +3596,12 @@ types={
             levels:[
                 {effect:[3,3],attack:273,cost:0,target:[2,1,1],spec:[],class:1},
                 {effect:[5,5],attack:273,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Unbuild',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:587,cost:0,target:[28],spec:[1,2],class:4},
+                {effect:[],attack:587,cost:0,target:[28],spec:[1,2],class:4},
             ],
         },
 
@@ -4108,7 +4123,7 @@ types={
         {name:'Rewriter',life:920,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:190,effect:[18,4,1]},{type:191,effect:[6]},{type:192,effect:[18]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`Shit`},
 
-        {name:'Wall',life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
+        {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
 
     ],attack:[
         {name:'',class:0},//0
@@ -9124,7 +9139,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}

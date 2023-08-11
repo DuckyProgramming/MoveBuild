@@ -41,6 +41,7 @@ class combatant{
         this.respawn=false
         this.graphic=false
         this.construct=false
+        this.programmedDeath=false
         this.blocked=0
         this.taken=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
@@ -500,7 +501,7 @@ class combatant{
                 this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
                 this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},hat:true,coat:true,extra:{damage:false}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
             break
             case 'Ume':
@@ -4229,7 +4230,7 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2: case 4: case 17:
+                    case 2: case 4: case 17: case 26:
                         this.animSet.loop=0
                     break
                 }
@@ -4652,6 +4653,13 @@ class combatant{
                         for(let g=0;g<2;g++){
                             this.spin.arms[g].top=(-90+abs(lsin(this.animSet.loop*180)*66))*(g*2-1)
                             this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*42
+                        }
+                    break
+                    case 26:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.spin.arms[this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(this.animSet.hand*2-1)
+                            this.anim.arms[this.animSet.hand].top=54+abs(lsin(this.animSet.loop*180))*60
                         }
                     break
                 }
@@ -12503,7 +12511,7 @@ class combatant{
             this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
             this.layer.ellipse(-28,0,10,10)
         }
-        if(this.team==0){
+        if(this.team==0||this.construct){
             this.layer.fill(0,this.fade*this.infoAnim.life)
             this.layer.ellipse(28,0,11.5,11.5)
             this.layer.fill(200,100,100,this.fade*this.infoAnim.life)
@@ -12512,7 +12520,7 @@ class combatant{
         for(let a=0,la=this.status.display.length;a<la;a++){
             displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade*this.infoAnim.life)
         }
-        if(this.team==0){
+        if(this.team==0||this.construct){
             for(let a=0,la=this.attack.length;a<la;a++){
                 if(this.infoAnim.intent[a]>0){
                     displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
@@ -12668,7 +12676,7 @@ class combatant{
         this.updatePassive()
         this.tilePosition.x=round(this.tilePosition.x)
         this.tilePosition.y=round(this.tilePosition.y)
-        if(this.team>0){
+        if(this.team>0&&!this.construct){
             this.fade=1
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
@@ -12697,6 +12705,17 @@ class combatant{
                     }else{
                         this.runAnimation(1/15,7)
                     }
+                }
+            }
+        }else if(this.construct){
+            this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0,0,1,15)
+            this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
+            if(this.life<=0&&!this.dead){
+                this.dead=true
+                this.battle.tileManager.activate()
+                this.battle.updateTargetting()
+                if(!this.programmedDeath){
+                    this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
                 }
             }
         }else{

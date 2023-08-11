@@ -286,6 +286,26 @@ class group{
         }
         return done
     }
+    deCard(value,name){
+        let done=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].name==name){
+                if(this.id==2){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                }else{
+                    this.remove(a)
+                    a--
+                    la--
+                }
+                done++
+                if(done>=value&&value>=0){
+                    a=la
+                }
+            }
+        }
+        return done
+    }
     fatigueNumber(){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1011,7 +1031,7 @@ class group{
                             this.cards[b].select=false
                         }else{
                             this.cards[b].deSize=true
-                            if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
+                            if(this.cards[b].spec.includes(1)||(this.cards[b].spec.includes(5)&&this.battle.relicManager.hasRelic(11,this.player))){
                                 this.cards[b].exhaust=true
                             }
                         }
@@ -1402,6 +1422,14 @@ class group{
                 }
             }
         }
+         if(this.battle.attackManager.targetInfo[0]==28){
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team==this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&this.battle.combatantManager.combatants[a].construct&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
+                    this.callInput(3,a)
+                }
+            }
+        }
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
@@ -1601,6 +1629,16 @@ class group{
                 if(this.battle.tileManager.tiles[a].occupied==0&&
                     (legalTargetDiagonalCombatant(this.battle.relicManager.active[150]?2:0,this.battle.attackManager.targetInfo[3],this.battle.attackManager.targetInfo[4],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)){
                     this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==28){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team==this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&this.battle.combatantManager.combatants[a].construct&&
+                        this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
+                        this.callInput(3,a)
+                    }
                 }
             }
         }
