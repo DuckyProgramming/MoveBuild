@@ -130,6 +130,16 @@ class overlay{
                     case 3:
                         this.battle.itemManager.addRandomItem(this.player)
                     break
+                    case 4:
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(args.value[0])
+                    break
+                    case 5:
+                        this.battle.overlayManager.overlays[26][this.player].active=true
+                        this.battle.overlayManager.overlays[26][this.player].activate(args.value)
+                    break
+                    case 6:
+                        this.battle.nodeManager.freeMove=1
+                    break
                 }
             break
         }
@@ -174,8 +184,8 @@ class overlay{
                         break
                         case 1:
                             this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
-                            this.layer.fill(this.battle.colorDetail[this.player].fill)
-                            this.layer.stroke(this.battle.colorDetail[this.player].stroke)
+                            this.layer.fill(this.battle.colorDetail[this.player].fill,this.fade*this.rewards[a].fade)
+                            this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
                             this.layer.strokeWeight(3)
                             this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
                             this.layer.fill(0,this.fade*this.rewards[a].fade)
@@ -215,6 +225,59 @@ class overlay{
                             this.layer.noStroke()
                             this.layer.textSize(16)
                             this.layer.text('New Item',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
+                        break
+                        case 4:
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,60,40,10)
+                            this.layer.fill(255,100,100,this.fade*this.rewards[a].fade)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-10,this.layer.height/2-105+this.rewards[a].position,6,24)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-10,this.layer.height/2-105+this.rewards[a].position,24,6)
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.textSize(16)
+                            this.layer.textAlign(LEFT,CENTER)
+                            this.layer.text(this.rewards[a].value[0],this.layer.width/2+225*this.posKey,this.layer.height/2-103+this.rewards[a].position)
+                            this.layer.textAlign(CENTER,CENTER)
+                        break
+                        case 5:
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
+                            this.layer.fill(this.battle.colorDetail[this.player].fill,this.fade*this.rewards[a].fade)
+                            this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
+                            this.layer.strokeWeight(3)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
+                            this.layer.stroke(this.fade*this.rewards[a].fade)
+                            this.layer.strokeWeight(2)
+                            this.layer.push()
+                            this.layer.translate(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position)
+                            this.layer.line(-4,-10,4,-10)
+                            this.layer.line(-4,-10,-6,-9)
+                            this.layer.line(-6,-9,-6,-5)
+                            this.layer.line(-4,-4,-6,-5)
+                            this.layer.line(-4,-4,4,-4)
+                            this.layer.line(4,-4,6,-5)
+                            this.layer.line(6,-5,6,-9)
+                            this.layer.line(6,-9,4,-10)
+                            this.layer.rect(0,3,4,14)
+                            this.layer.pop()
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.noStroke()
+                            this.layer.textSize(16)
+                            this.layer.text('Upgrade',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
+                        break
+                        case 6:
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,150,40,10)
+                            this.layer.fill(200,this.fade*this.rewards[a].fade)
+                            this.layer.push()
+                            this.layer.translate(this.layer.width/2+225*this.posKey-40,this.layer.height/2-120+this.rewards[a].position)
+                            this.layer.rotate(-75)
+                            for(let a=0,la=4;a<la;a++){
+                                this.layer.rect(0,11.5,4,25)
+                                this.layer.triangle(-6,24,6,24,0,32)
+                                this.layer.rotate(50)
+                            }
+                            this.layer.pop()
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.noStroke()
+                            this.layer.textSize(16)
+                            this.layer.text('Free Move',this.layer.width/2+225*this.posKey+30,this.layer.height/2-103+this.rewards[a].position)
                         break
                     }
                 }

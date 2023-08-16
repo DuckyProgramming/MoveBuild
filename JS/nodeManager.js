@@ -9,6 +9,7 @@ class nodeManager{
         this.tilePosition={x:0,y:-1}
         this.scroll=this.layer.height-150
         this.world=0
+        this.freeMove=0
 
         this.initialListing()
     }
@@ -138,10 +139,13 @@ class nodeManager{
     }
     onClick(){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            if(dist(inputs.rel.x,inputs.rel.y,this.nodes[a].position.x,this.nodes[a].position.y)<25&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a))){
+            if(dist(inputs.rel.x,inputs.rel.y,this.nodes[a].position.x,this.nodes[a].position.y)<25&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0))){
                 this.tilePosition.x=this.nodes[a].tilePosition.x
                 this.tilePosition.y=this.nodes[a].tilePosition.y
                 this.nodes[a].complete=true
+                if(this.freeMove>0){
+                    this.freeMove--
+                }
                 transition.trigger=true
                 this.scrollDown(this.nodes[a].base.position.y)
                 this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)
@@ -151,10 +155,13 @@ class nodeManager{
     }
     onKey(key,code){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            if((int(key)+9)%10==this.nodes[a].tilePosition.x&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a))){
+            if((int(key)+9)%10==this.nodes[a].tilePosition.x&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0))){
                 this.tilePosition.x=this.nodes[a].tilePosition.x
                 this.tilePosition.y=this.nodes[a].tilePosition.y
                 this.nodes[a].complete=true
+                if(this.freeMove>0){
+                    this.freeMove--
+                }
                 transition.trigger=true
                 this.scrollDown(this.nodes[a].base.position.y)
                 this.enterNode(this.nodes[a].type,this.nodes[a].tilePosition.y,false)

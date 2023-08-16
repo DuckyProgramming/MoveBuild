@@ -929,3 +929,8 @@ function panic(text){
 ${text}
 !!!!!!!!!!-`)
 }
+function cursed(){
+	for(let a=0,la=current.combatantManager.combatants.length;a<la;a++){
+		current.combatantManager.combatants[a].goal.anim.direction=0
+	}
+}

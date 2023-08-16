@@ -67,7 +67,7 @@ class attack{
             case 508: case 509: case 510: case 511: case 514: case 531: case 532: case 533: case 534: case 535:
             case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 557: case 558:
             case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
-            case 582: case 587:
+            case 582: case 587: case 588:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -378,6 +378,9 @@ class attack{
                     case 510:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.getOrbNumber(-1),this.user)
                     break
+                    case 588:
+                        this.targetCombatant.heal(this.effect[0])
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -667,7 +670,7 @@ class attack{
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
             case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462: case 469:
             case 475: case 496: case 497: case 507: case 508: case 509: case 510: case 511: case 514: case 540:
-            case 558: case 559: case 580: case 581: case 582:
+            case 558: case 559: case 580: case 581: case 582: case 588:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){

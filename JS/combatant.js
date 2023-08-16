@@ -41,6 +41,7 @@ class combatant{
         this.respawn=false
         this.graphic=false
         this.construct=false
+        this.support=false
         this.programmedDeath=false
         this.blocked=0
         this.taken=0
@@ -126,7 +127,7 @@ class combatant{
 
         this.intent=0
         this.activated=false
-        this.target=floor(random(0,this.battle.players))
+        this.target=0
 
         switch(this.name){
             case 'George':
@@ -719,7 +720,7 @@ class combatant{
                     break
                 }
             break
-            case 'Pointy': case 'Little Guy':
+            case 'Pointy': case 'Little Guy': case 'Rich Kid':
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:12,bottom:0,length:{top:14,bottom:14}},{top:12,bottom:0,length:{top:14,bottom:14}}],
                     arms:[{top:27,bottom:12,length:{top:14,bottom:14}},{top:27,bottom:12,length:{top:14,bottom:14}}]}
@@ -747,6 +748,17 @@ class combatant{
                     case 'Little Guy':
                         this.color={skin:{head:[240,220,150],body:[120,80,40],legs:[110,70,30],arms:[150,200,200]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                         this.color.skin.upperBody=[150,200,200]
+                    break
+                    case 'Rich Kid':
+                        this.color={skin:{head:[240,220,180],body:[60,80,120],legs:[55,75,115],arms:[105,145,165]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.skin.upperBody=[100,140,160]
+                        this.color.tie=[[180,160,60],[200,255,50]]
+                        this.color.chocolate=[80,50,10]
+                        this.fades.tie=1
+                        this.fades.chocolate=1
+                        this.trigger.display.tie=true
+                        this.trigger.display.chocolate=true
+                        this.anim.eyeStyle=[4,4]
                     break
                 }
             break
@@ -2237,6 +2249,40 @@ class combatant{
                         this.fades.sword=1
                         this.trigger.display.extra={sword:true}
                     break
+                    case 'Medic':
+                        this.color={skin:{head:[240,220,180],body:[175,175,175],legs:[170,170,170],arms:[180,180,180]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.logo=[255,50,50]
+                        this.color.mask=[150,200,200]
+                        this.fades.logo=1
+                        this.fades.mask=1
+                        this.trigger.display.logo=true
+                        this.trigger.display.mask=true
+                        this.anim.eyeStyle=[4,4]
+                    break
+                    case 'Smith':
+                        this.color={skin:{head:[240,220,180],body:[75,85,95],legs:[70,80,90],arms:[80,90,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.belt=[75,25,0]
+                        this.color.apron=[220,220,220]
+                        this.color.hammer=[100,90,80]
+                        this.fades.belt=1
+                        this.fades.apron=1
+                        this.fades.hammer=1
+                        this.trigger.display.belt=true
+                        this.trigger.display.apron=true
+                        this.trigger.display.hammer=true
+                        this.anim.eyeStyle=[4,4]
+                    break
+                    case 'Navigator':
+                        this.color={skin:{head:[240,220,180],body:[80,70,60],legs:[75,65,55],arms:[85,75,65]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.goggles=[[50,76,80],[120,100,0]]
+                        this.color.midshirt=[180,190,200]
+                        this.fades.goggles=1
+                        this.fades.midshirt=1
+                        this.trigger.display.goggles=true
+                        this.trigger.display.clipboard=true
+                        this.trigger.display.midshirt=true
+                        this.anim.eyeStyle=[4,4]
+                    break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
@@ -3603,12 +3649,6 @@ class combatant{
                             this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,2,[this.status.main[106]],this.id))
                         }
                     }
-                    if(this.status.main[44]>0&&this.life<=0){
-                        userCombatant.statusEffect('Weak',this.status.main[44])
-                    }
-                    if(this.status.main[45]>0&&this.life<=0){
-                        userCombatant.statusEffect('Vulnerable',this.status.main[45])
-                    }
                     if(this.battle.relicManager.hasRelic(61,this.id)){
                         userCombatant.takeDamage(3*this.battle.relicManager.active[61],-1)
                     }
@@ -3631,6 +3671,18 @@ class combatant{
                     if(this.status.main[108]>0){
                         this.addBlock(this.status.main[108])
                     }
+                }
+                if(this.spec.includes(16)&&this.life<=0&&user>=0&&user<this.battle.players){
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        this.battle.overlayManager.overlays[0][a].active=true
+                        this.battle.overlayManager.overlays[0][a].activate([1,[{type:0,value:[5]}]])
+                    }
+                }
+                if(this.status.main[44]>0&&this.life<=0){
+                    userCombatant.statusEffect('Weak',this.status.main[44])
+                }
+                if(this.status.main[45]>0&&this.life<=0){
+                    userCombatant.statusEffect('Vulnerable',this.status.main[45])
                 }
             }
         }
@@ -4230,7 +4282,7 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2: case 4: case 17: case 26:
+                    case 2: case 4: case 17: case 19: case 26:
                         this.animSet.loop=0
                     break
                 }
@@ -4654,6 +4706,10 @@ class combatant{
                             this.spin.arms[g].top=(-90+abs(lsin(this.animSet.loop*180)*66))*(g*2-1)
                             this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*42
                         }
+                    break
+                    case 19:
+                        this.animSet.loop+=rate
+                        this.size=1-lsin(this.animSet.loop*180)
                     break
                     case 26:
                         this.animSet.loop+=rate
@@ -5519,6 +5575,44 @@ class combatant{
                     break
                 }
             break
+            case 'Navigator':
+                switch(type){
+                    case 1:
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x,this.graphics.arms[key].bottom.y)
+                        this.layer.noStroke()
+                        this.layer.fill(200,180,40,this.fade)
+                        this.layer.rect(0,10,12,18,2)
+                        this.layer.fill(200,160,20,this.fade)
+                        this.layer.rect(0,10,10,16)
+                        this.layer.fill(160,120,0,this.fade)
+                        this.layer.rect(0,6,1,6)
+                        this.layer.rect(0,14,1,6)
+                        this.layer.rect(-3,10,1,6)
+                        this.layer.rect(3,10,1,6)
+                        this.layer.pop()
+                    break
+                }
+            break
+            case 'Rich Kid':
+                switch(type){
+                    case 1:
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x,this.graphics.arms[key].bottom.y)
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.chocolate[0],this.color.chocolate[1],this.color.chocolate[2],this.fade*this.fades.chocolate)
+                        this.layer.rect(0,4,13,9)
+                        this.layer.fill(this.color.chocolate[0]-20,this.color.chocolate[1]-20,this.color.chocolate[2]-20,this.fade*this.fades.chocolate)
+                        this.layer.rect(-4,2,3,3)
+                        this.layer.rect(-4,6,3,3)
+                        this.layer.rect(0,2,3,3)
+                        this.layer.rect(0,6,3,3)
+                        this.layer.rect(4,2,3,3)
+                        this.layer.rect(4,6,3,3)
+                        this.layer.pop()
+                    break
+                }
+            break
         }
     }
     minorDisplayGeneral(type,key){
@@ -5557,10 +5651,15 @@ class combatant{
                     this.layer.strokeWeight((3-this.anim.eye[key]*2)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
                     this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
-                    if(this.anim.eye[key]==0){
+                    if(this.anim.eye[key]==0&&constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)>0){
                         this.layer.stroke(this.color.eye.glow[0],this.color.eye.glow[1],this.color.eye.glow[2],this.fade*this.fades.eye[key]/4)
                         this.layer.strokeWeight(0.6)
-                        this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,1.8,1.8,-72,-12)
+                        this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),1.8*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
+                        if(this.anim.eyeStyle[key]==4){
+                            this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                            this.layer.strokeWeight(0.5)
+                            this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),6.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
+                        }
                     }
                 }
             break
@@ -9069,7 +9168,7 @@ class combatant{
                         }
                     }
                 break
-                case 'Pointy': case 'Little Guy':
+                case 'Pointy': case 'Little Guy': case 'Rich Kid':
                     for(let g=0;g<2;g++){
                         if((this.name=='Pointy')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4){
                             this.minorDisplay(0,g)
@@ -9079,13 +9178,16 @@ class combatant{
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                            if(this.name=='Rich Kid'&&this.trigger.display.chocolate&&g==1){
+                                this.minorDisplay(1,g)
+                            }
                         }
                     }
                     if(this.trigger.display.skin.body){
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                         this.layer.ellipse(0,-45,13,33)
-                        if(this.name=='Pointy'||this.name=='Little Guy'){
+                        if(this.name=='Pointy'||this.name=='Little Guy'||this.name=='Rich Kid'){
                             this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                             this.layer.arc(0,-42,14,40,-180,0)
                         }
@@ -9096,6 +9198,9 @@ class combatant{
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                            if(this.name=='Rich Kid'&&this.trigger.display.chocolate&&g==1){
+                                this.minorDisplay(1,g)
+                            }
                         }
                         for(let h=0;h<2;h++){
                             if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
@@ -9108,6 +9213,13 @@ class combatant{
                             }
                         }
                     }
+                    if(this.name=='Rich Kid'&&this.trigger.display.tie&&lcos(this.anim.direction)>0){
+                        this.layer.fill(this.flashColor(this.color.tie[0])[0],this.flashColor(this.color.tie[0])[1],this.flashColor(this.color.tie[0])[2],this.fade*this.fades.tie)
+                        this.layer.noStroke()
+		    			this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-60,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-60,lsin(this.anim.direction)*9,-48)
+	    				this.layer.fill(this.flashColor(this.color.tie[1])[0],this.flashColor(this.color.tie[1])[1],this.flashColor(this.color.tie[1])[2],this.fade*this.fades.tie)
+                        this.layer.quad(lsin(this.anim.direction)*6-lcos(this.anim.direction)*1.5,-54,lsin(this.anim.direction)*3,-60,lsin(this.anim.direction)*6+lcos(this.anim.direction)*1.5,-54,lsin(this.anim.direction)*9,-48)
+                    }
                     for(let g=0;g<2;g++){
                         if((this.name=='Pointy')&&this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)){
                             this.minorDisplay(0,g)
@@ -9117,6 +9229,9 @@ class combatant{
                             this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                            if(this.name=='Rich Kid'&&this.trigger.display.chocolate&&g==1){
+                                this.minorDisplay(1,g)
+                            }
                         }
                     }
                     if(this.trigger.display.skin.head){
@@ -9136,11 +9251,17 @@ class combatant{
                             this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                            if(this.name=='Rich Kid'&&this.trigger.display.chocolate&&g==1){
+                                this.minorDisplay(1,g)
+                            }
                         }
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                            if(this.name=='Rich Kid'&&this.trigger.display.chocolate&&g==1){
+                                this.minorDisplay(1,g)
+                            }
                         }
                         if(this.trigger.display.eye[g]){
                             this.minorDisplayGeneral(0,g)
@@ -11439,7 +11560,7 @@ class combatant{
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0){
+                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                                 this.minorDisplay(1,g)
                             }
                             if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -11563,6 +11684,12 @@ class combatant{
                         this.layer.quad(lsin(this.anim.direction)*6.5-4*lcos(this.anim.direction),-58,lsin(this.anim.direction)*6.5-2*lcos(this.anim.direction),-58,lsin(this.anim.direction)*6.5+4*lcos(this.anim.direction),-50,lsin(this.anim.direction)*6.5+2*lcos(this.anim.direction),-50)
                         this.layer.quad(lsin(this.anim.direction)*6.5-4*lcos(this.anim.direction),-52,lsin(this.anim.direction)*6.5-2*lcos(this.anim.direction),-52,lsin(this.anim.direction)*6.5+4*lcos(this.anim.direction),-56,lsin(this.anim.direction)*6.5+2*lcos(this.anim.direction),-56)
                     }
+                    if(this.name=='Medic'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
+                        this.layer.rect(lsin(this.anim.direction)*6.5,-54,3*lcos(this.anim.direction),12)
+                        this.layer.rect(lsin(this.anim.direction)*6.5,-54,12*lcos(this.anim.direction),3)
+                    }
                     if((this.name=='Management Officer'||this.name=='Management Caller'||this.name=='Comrade')&&this.trigger.display.badge&&lcos(this.anim.direction+36)>0){
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.badge[0])[0],this.flashColor(this.color.badge[0])[1],this.flashColor(this.color.badge[0])[2],this.fade*this.fades.badge)
@@ -11605,6 +11732,22 @@ class combatant{
 					            this.layer.rect(lsin(a*30+this.anim.direction)*6.5,-48,lcos(a*30+this.anim.direction),3)
                             }
                         }
+                    }
+                    if(this.name=='Smith'&&this.trigger.display.belt){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
+                        this.layer.rect(0,-48,13,2)
+                        for(let a=0,la=8;a<la;a++){
+                            if(lcos(a*45+this.anim.direction)>0){
+                                this.layer.quad(lsin(a*45+this.anim.direction)*6.5,-51,lsin(a*45+this.anim.direction)*6.5+lcos(a*45+this.anim.direction)*2,-48,lsin(a*45+this.anim.direction)*6.5,-45,lsin(a*45+this.anim.direction)*6.5-lcos(a*45+this.anim.direction)*2,-48)
+                            }
+                        }
+                    }
+                    if(this.name=='Smith'&&this.trigger.display.hammer&&lcos(this.anim.direction-105)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.hammer)[0],this.flashColor(this.color.hammer)[1],this.flashColor(this.color.hammer)[2],this.fade*this.fades.hammer)
+                        this.layer.rect(lsin(this.anim.direction-105)*6.5,-46,2*lcos(this.anim.direction-105),8,2)
+                        this.layer.rect(lsin(this.anim.direction-105)*6.5,-52,8*lcos(this.anim.direction-105),4,2)
                     }
                     if((this.name=='Red'||this.name=='Management Custodian'||this.name=='Gas Man'||this.name=='Comrade')&&this.trigger.display.belt){
                         this.layer.noStroke()
@@ -11748,7 +11891,7 @@ class combatant{
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||this.name=='Assistant Hiring Officer'&&this.trigger.display.clipboard&&g==0){
+                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                                 this.minorDisplay(1,g)
                             }
                             if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -11805,6 +11948,11 @@ class combatant{
 		    			this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*9,-50)
 	    				this.layer.fill(this.flashColor(this.color.tie[1])[0],this.flashColor(this.color.tie[1])[1],this.flashColor(this.color.tie[1])[2],this.fade*this.fades.tie)
                         this.layer.quad(lsin(this.anim.direction)*6-lcos(this.anim.direction)*1.5,-60,lsin(this.anim.direction)*3,-70,lsin(this.anim.direction)*6+lcos(this.anim.direction)*1.5,-60,lsin(this.anim.direction)*9,-50)
+                    }
+                    if(this.name=='Navigator'&&this.trigger.display.midshirt&&lcos(this.anim.direction)>0.1){
+                        this.layer.fill(this.flashColor(this.color.midshirt)[0],this.flashColor(this.color.midshirt)[1],this.flashColor(this.color.midshirt)[2],this.fade*this.fades.midshirt)
+                        this.layer.noStroke()
+		    			this.layer.triangle(lsin(this.anim.direction)*3-lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*3+lcos(this.anim.direction)*3,-70,lsin(this.anim.direction)*9,-50)
                     }
                     if(this.name=='Lunar Shard'&&this.trigger.display.moon){
                         this.layer.fill(this.color.moon[0][0],this.color.moon[0][1],this.color.moon[0][2],this.fade*this.fades.moon)
@@ -11879,7 +12027,7 @@ class combatant{
                             this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
-                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||this.name=='Assistant Hiring Officer'&&this.trigger.display.clipboard&&g==0){
+                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                                 this.minorDisplay(1,g)
                             }
                             if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -12032,7 +12180,7 @@ class combatant{
                                 this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                                 this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                                 this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
-                                if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||this.name=='Assistant Hiring Officer'&&this.trigger.display.clipboard&&g==0){
+                                if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                                     this.minorDisplay(1,g)
                                 }
                                 if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -12056,7 +12204,7 @@ class combatant{
                                 this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                                if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||this.name=='Assistant Hiring Officer'&&this.trigger.display.clipboard&&g==0){
+                                if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                                     this.minorDisplay(1,g)
                                 }
                                 if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -12473,6 +12621,24 @@ class combatant{
                             }
                         }
                     }
+                    if(this.name=='Medic'&&this.trigger.display.mask&&lcos(this.anim.direction)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.mask)[0],this.flashColor(this.color.mask)[1],this.flashColor(this.color.mask)[2],this.fade*this.fades.mask)
+                        this.layer.rect(lsin(this.anim.direction)*14,-72,12*lcos(this.anim.direction),6,2)
+                    }
+                    if(this.name=='Smith'&&this.trigger.display.apron&&lcos(this.anim.direction)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.apron)[0],this.flashColor(this.color.apron)[1],this.flashColor(this.color.apron)[2],this.fade*this.fades.apron)
+                        this.layer.rect(lsin(this.anim.direction)*6,-42,12*lcos(this.anim.direction),36,4)
+                    }
+                    if(this.name=='Navigator'&&this.trigger.display.goggles&&lcos(this.anim.direction)>0){
+                        this.layer.fill(this.color.goggles[1][0],this.color.goggles[1][1],this.color.goggles[1][2],this.fade*this.fades.goggles/2)
+                        this.layer.stroke(this.color.goggles[0][0],this.color.goggles[0][1],this.color.goggles[0][2],this.fade*this.fades.goggles)
+                        this.layer.strokeWeight(1)
+	    				this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-84,6*lcos(this.anim.direction),5)
+		    			this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5,-84,6*lcos(this.anim.direction),5)
+			    		this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-84,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-84)
+                    }
                 break
             }
             if(this.infoAnim.orb>0){
@@ -12511,7 +12677,7 @@ class combatant{
             this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
             this.layer.ellipse(-28,0,10,10)
         }
-        if(this.team==0||this.construct){
+        if(this.team==0||this.construct||this.support){
             this.layer.fill(0,this.fade*this.infoAnim.life)
             this.layer.ellipse(28,0,11.5,11.5)
             this.layer.fill(200,100,100,this.fade*this.infoAnim.life)
@@ -12520,7 +12686,7 @@ class combatant{
         for(let a=0,la=this.status.display.length;a<la;a++){
             displayStatusSymbol(this.layer,this.status.position[this.status.display[a]],12,this.status.display[a],0,this.status.size[this.status.display[a]],this.fade*this.infoAnim.life)
         }
-        if(this.team==0||this.construct){
+        if(this.team==0||this.construct||this.support){
             for(let a=0,la=this.attack.length;a<la;a++){
                 if(this.infoAnim.intent[a]>0){
                     displayIntentSymbol(this.layer,0,-12,this.attack[a].type,this.attack[a].effect,0,1,this.fade*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
@@ -12575,7 +12741,7 @@ class combatant{
             break
             case 'overlay':
                 if(this.fade>0&&this.infoAnim.description>0){
-                    if(this.team>0&&!this.construct){
+                    if(this.team>0&&!this.construct&&!this.support){
                         this.layer.fill(mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[0],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[1],mergeColor(types.color.card[this.type].fill,[150,150,150],0.5)[2],this.fade*this.infoAnim.description)
                     }else{
                         this.layer.fill(150,this.fade*this.infoAnim.description)
@@ -12589,7 +12755,7 @@ class combatant{
                     this.layer.text(this.description,100,240)
                     this.layer.textSize(6)
                     this.layer.textAlign(LEFT,CENTER)
-                    if(this.team==0){
+                    if(this.team==0||this.construct||this.support){
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
                             this.layer.text(this.status.name[this.status.display[a]],50,305+a*20+this.spec.length*15)
                         }
@@ -12598,7 +12764,7 @@ class combatant{
                             this.layer.text(this.status.name[this.status.display[a]],50,305+a*20)
                         }
                     }
-                    if(this.team==0){
+                    if(this.team==0||this.construct||this.support){
                         for(let a=0,la=this.attack.length;a<la;a++){
                             this.layer.fill(0,this.fade*this.infoAnim.description*this.infoAnim.intent[a])
                             this.layer.text(intentDescription(this.attack[a],this,!this.battle.relicManager.hasRelic(136,-1)),60,280)
@@ -12619,12 +12785,16 @@ class combatant{
                                 case 10: this.layer.text('Attacks When Injured',40,305+a*15); break
                                 case 11: this.layer.text('Immune to Poison Tiles',40,305+a*15); break
                                 case 12: this.layer.text('Co-Boss',40,305+a*15); break
+                                case 13: this.layer.text('On Survival, Heal 10 HP',40,305+a*15); break
+                                case 14: this.layer.text('On Survival, Upgrade Card',40,305+a*15); break
+                                case 15: this.layer.text('On Survival, Move Freely',40,305+a*15); break
+                                case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*15); break
 
                             }
                         }
                     }
                     this.layer.textAlign(CENTER,CENTER)
-                    if(this.team==0){
+                    if(this.team==0||this.construct||this.support){
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
                             displayStatusSymbol(this.layer,40,305+a*20+this.spec.length*15,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
                         }
@@ -12635,7 +12805,7 @@ class combatant{
                     }
                     this.layer.fill(0,this.fade*this.infoAnim.description)
                     this.layer.textSize(12)
-                    if(this.team==0){
+                    if(this.team==0||this.construct||this.support){
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
                             this.layer.text(this.status.main[this.status.display[a]],40,305+a*20+this.spec.length*15)
                         }
@@ -12644,7 +12814,7 @@ class combatant{
                             this.layer.text(this.status.main[this.status.display[a]],40,305+a*20)
                         }
                     }
-                    if(this.team==0){
+                    if(this.team==0||this.construct||this.support){
                         for(let a=0,la=this.attack.length;a<la;a++){
                             if(this.infoAnim.intent[a]>0){
                                 displayIntentSymbol(this.layer,40,280,this.attack[a].type,this.attack[a].effect,0,1.5,this.fade*this.infoAnim.description*this.infoAnim.intent[a],!this.battle.relicManager.hasRelic(136,-1))
@@ -12676,7 +12846,7 @@ class combatant{
         this.updatePassive()
         this.tilePosition.x=round(this.tilePosition.x)
         this.tilePosition.y=round(this.tilePosition.y)
-        if(this.team>0&&!this.construct){
+        if(this.team>0&&!this.construct&&!this.support){
             this.fade=1
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
@@ -12717,6 +12887,15 @@ class combatant{
                 if(!this.programmedDeath){
                     this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
                 }
+            }
+        }else if(this.support){
+            this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0,0,1,15)
+            this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
+            if(this.life<=0&&!this.dead){
+                this.dead=true
+                this.deTarget()
+                this.battle.tileManager.activate()
+                this.battle.updateTargetting()
             }
         }else{
             this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0,0,1,15)

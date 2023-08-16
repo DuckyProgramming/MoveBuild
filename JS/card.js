@@ -703,6 +703,7 @@ class card{
             case 585: string+=`Build a Wall`; break
             case 586: string+=`Gain ${effect[0]} Metal`; break
             case 587: string+=`Destroy a Construct\nMay Exhuast When a\nConstruct is Destroyed`; break
+            case 588: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nto Construct`; break
 
 
 
@@ -726,7 +727,7 @@ class card{
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
         }
-        if(this.target[0]==2||this.target[0]==26){
+        if(this.target[0]==2||this.target[0]==26||this.target[0]==29){
             string+='\nRange '+this.target[1]+'-'+this.target[2]
         }
         if(spec.includes(0)){

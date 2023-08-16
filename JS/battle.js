@@ -60,7 +60,7 @@ class battle{
         this.initialManagersAfter()
         this.initialized=true
 
-        this.encounter={class:0}
+        this.encounter={class:0,custom:[0,0]}
         this.currency={money:[]}
         this.energy={main:[],gen:[],base:[],temp:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
@@ -229,7 +229,22 @@ class battle{
         this.attackManager.clear()
         this.turnManager.clear()
         this.particleManager.clear()
-
+        if(this.encounter.class==0){
+            if(this.first){
+                let tile=this.tileManager.getRandomTilePosition()
+                this.encounter.custom=tile==-1?[0,0]:[constrain(floor(random(-3,5)),0,4),tile]
+            }
+            if(this.encounter.custom[0]>0){
+                let list=['Medic','Smith','Navigator','Rich Kid']
+                this.addCombatantSupport(this.encounter.custom[1],findName(list[this.encounter.custom[0]-1],types.combatant),this.players+1,-30+floor(random(0,6))*60,false)
+                this.combatantManager.recount()
+                this.combatantManager.setTargets(this.players+1)
+            }else{
+                this.combatantManager.setTargets(this.players)
+            }
+        }else{
+            this.combatantManager.setTargets(this.players)
+        }
         this.startTurn()
 
         game.collisionDamage=constants.collisionDamage
@@ -266,6 +281,11 @@ class battle{
         let truePosition=this.tileManager.getTilePosition(position.x,position.y)
         let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
         this.combatantManager.addCombatant(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion)
+    }
+    addCombatantSupport(position,type,team,direction,minion){
+        let truePosition=this.tileManager.getTilePosition(position.x,position.y)
+        let relativePosition=this.tileManager.getTileRelativePosition(position.x,position.y)
+        this.combatantManager.addCombatantSupport(truePosition.x,truePosition.y,relativePosition.x,relativePosition.y,position.x,position.y,type,team,direction==0?(this.tileManager.getTileRelativeDirection(position.x,position.y,round((this.tileManager.width-1)/2),round((this.tileManager.height-1)/2))+random(-10,10)):direction,minion)
     }
     positionCombatant(combatant,position){
         if(position.x==-1){
@@ -1047,6 +1067,22 @@ class battle{
                             if(floor(random(0,3))==0||this.relicManager.hasRelic(83,a)){
                                 this.overlayManager.overlays[0][a].activate([1,[
                                     {type:3,value:[]}]])
+                            }
+                        }
+                        for(let b=0,lb=this.combatantManager.combatants.length;b<lb;b++){
+                            if(this.combatantManager.combatants[b].life>0){
+                                if(this.combatantManager.combatants[b].spec.includes(13)){
+                                    this.overlayManager.overlays[0][a].activate([1,[{type:4,value:[10]}]])
+                                }
+                                if(this.combatantManager.combatants[b].spec.includes(14)){
+                                    this.overlayManager.overlays[0][a].activate([1,[{type:5,value:[1]}]])
+                                }
+                                if(this.combatantManager.combatants[b].spec.includes(15)){
+                                    this.overlayManager.overlays[0][a].activate([1,[{type:6,value:[1]}]])
+                                }
+                                if(this.combatantManager.combatants[b].spec.includes(16)){
+                                    this.overlayManager.overlays[0][a].activate([1,[{type:0,value:[25]}]])
+                                }
                             }
                         }
                     }

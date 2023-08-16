@@ -30,7 +30,7 @@ class combatantManager{
     }
     resetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0||this.combatants[a].construct){
+            if(this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support){
                 delete this.combatants[a]
                 this.combatants.splice(a,1)
                 a--
@@ -69,6 +69,13 @@ class combatantManager{
             if(this.combatants[a].team==0&&this.combatants[a].life>0){
                 this.combatants[a].moved=false
                 this.combatants[a].activated=types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==5
+            }
+        }
+    }
+    setTargets(max){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                this.combatants[a].target=floor(random(0,max))
             }
         }
     }
@@ -114,9 +121,10 @@ class combatantManager{
                     this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].target(0,numeralizeDirection(0,directionCombatant(this.combatants[a],this.combatants[this.battle.attackManager.user])))
                 }
             }
-            if((this.battle.attackManager.targetInfo[0]==28)&&
+            if((this.battle.attackManager.targetInfo[0]==28||this.battle.attackManager.targetInfo[0]==29)&&
             this.combatants[a].life>0&&this.combatants[a].team==this.combatants[this.battle.attackManager.user].team&&this.combatants[a].construct&&
-            !(this.combatants[a].spec.includes(9)&&abs(this.combatants[a].goal.anim.direction-atan2(this.combatants[this.battle.attackManager.player].relativePosition.x-this.combatants[a].relativePosition.x,this.combatants[this.battle.attackManager.player].relativePosition.y-this.combatants[a].relativePosition.y))<30)){
+            !(this.combatants[a].spec.includes(9)&&abs(this.combatants[a].goal.anim.direction-atan2(this.combatants[this.battle.attackManager.player].relativePosition.x-this.combatants[a].relativePosition.x,this.combatants[this.battle.attackManager.player].relativePosition.y-this.combatants[a].relativePosition.y))<30)&&
+            (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.battle.attackManager.player)?1:this.battle.attackManager.targetInfo[2],this.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==28)){
                 if(this.combatants[a].tilePosition.x==this.battle.attackManager.tilePosition.x&&this.combatants[a].tilePosition.y==this.battle.attackManager.tilePosition.y){
                     this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].indescriptTarget(0,numeralizeDirection(0))
                 }else{
@@ -196,7 +204,7 @@ class combatantManager{
         let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
         if(index>=0){
             let tile=this.battle.tileManager.tiles[index]
-            this.addConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false)
+            this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false)
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
         }
@@ -273,7 +281,17 @@ class combatantManager{
         this.sort()
         this.reorder()
     }
-    addConstruct(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
+    addCombatantSupport(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
+        this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
+        this.combatants[this.combatants.length-1].support=true
+        if(this.id<this.battle.players){
+            this.playerCombatantIndex[this.id]=this.combatants.length-1
+        }
+        this.id++
+        this.sort()
+        this.reorder()
+    }
+    addCombatantConstruct(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
         this.combatants[this.combatants.length-1].construct=true
         if(this.id<this.battle.players){
@@ -324,6 +342,36 @@ class combatantManager{
                 la--
             }
         }
+    }
+    recount(){
+        this.bank=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].life>0){
+                this.bank.push(this.combatants[a])
+                this.combatants.splice(a,1)
+                a--
+                la--
+            }
+        }
+        let id=0
+        while(this.bank.length>0){
+            let minimum=64
+            for(let a=0,la=this.bank.length;a<la;a++){
+                minimum=min(minimum,(this.bank[a].team+63)%64)
+            }
+            for(let a=0,la=this.bank.length;a<la;a++){
+                if((this.bank[a].team+63)%64==minimum){
+                    this.bank[a].id=id
+                    id++
+                    this.combatants.push(this.bank[a])
+                    this.bank.splice(a,1)
+                    a--
+                    la--
+                }
+            }
+        }
+        this.bank=[]
+        this.assignPlayer()
     }
     damageArea(damage,user,team,tilePosition,spec){
         let total=0
