@@ -499,7 +499,7 @@ class combatant{
                 this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
                 this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,250,200],body:[120,130,130],legs:[255,235,175],arms:[255,240,180]},hat:[150,150,50],coat:[165,155,45]}
                 this.parts={eyeLevel:-48,beakLevel:-41,legs:[{top:{x:4,y:-18},middle:{x:0,y:0}},{top:{x:4,y:-18},middle:{x:0,y:0}}],arms:[{top:{x:3.75,y:-30.5},middle:{x:0,y:0}},{top:{x:3.75,y:-30.5},middle:{x:0,y:0}}]}
-                this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0}}]}
+                this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
                 this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},hat:true,coat:true,extra:{damage:false}}}
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0,hand:0,foot:0}
@@ -2536,7 +2536,30 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck': case 'Donakho':
+            case 'Donakho':
+                for(let g=0;g<2;g++){
+                    this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
+                    this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
+
+                    this.graphics.legs[g].top.x=this.parts.legs[g].top.x*lsin(this.spin.legs[g].top+this.anim.direction),
+                    this.graphics.legs[g].top.y=this.parts.legs[g].top.y
+                    this.graphics.legs[g].middle.x=this.parts.legs[g].middle.x*lsin(this.spin.legs[g].top+this.anim.direction),
+                    this.graphics.legs[g].middle.y=this.parts.legs[g].middle.y
+                    this.graphics.legs[g].bottom.x=this.graphics.legs[g].middle.x
+                    this.graphics.legs[g].bottom.y=this.graphics.legs[g].middle.y
+
+                    this.parts.arms[g].middle.x=this.parts.arms[g].top.x+lsin(this.anim.arms[g].top)*this.anim.arms[g].length.top
+                    this.parts.arms[g].middle.y=this.parts.arms[g].top.y+lcos(this.anim.arms[g].top)*this.anim.arms[g].length.top
+
+                    this.graphics.arms[g].top.x=this.parts.arms[g].top.x*lsin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].top.y=this.parts.arms[g].top.y
+                    this.graphics.arms[g].middle.x=this.parts.arms[g].middle.x*lsin(this.spin.arms[g].top+this.anim.direction),
+                    this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
+                    this.graphics.arms[g].bottom.x=this.graphics.arms[g].middle.x
+                    this.graphics.arms[g].bottom.y=this.graphics.arms[g].middle.y
+                }
+            break
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Big Duck': case 'Agent Duck': case 'General Duckion': case 'Blue Duck': case 'Management Autoduck':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4282,7 +4305,7 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2: case 4: case 17: case 19: case 26:
+                    case 2: case 4: case 17: case 19: case 25: case 26:
                         this.animSet.loop=0
                     break
                 }
@@ -4686,6 +4709,13 @@ class combatant{
                             this.spin.arms[g].top=(-90+lsin((this.animSet.loop+this.animSet.flip)*180)*60)*(g*2-1)
                         }
                     break
+                    case 1:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.spin.arms[g].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(g*2-1)
+                            this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*12
+                        }
+                    break
                     case 2:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
@@ -4711,12 +4741,15 @@ class combatant{
                         this.animSet.loop+=rate
                         this.size=1-lsin(this.animSet.loop*180)
                     break
+                    case 25:
+                        this.animSet.loop+=rate
+                        this.spin.arms[1-this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*90)*60))*(1-this.animSet.hand*2)
+                        this.anim.arms[1-this.animSet.hand].top=54+abs(lsin(this.animSet.loop*90))*48
+                    break
                     case 26:
                         this.animSet.loop+=rate
-                        for(let g=0;g<2;g++){
-                            this.spin.arms[this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(this.animSet.hand*2-1)
-                            this.anim.arms[this.animSet.hand].top=54+abs(lsin(this.animSet.loop*180))*60
-                        }
+                        this.spin.arms[this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(this.animSet.hand*2-1)
+                        this.anim.arms[this.animSet.hand].top=54+abs(lsin(this.animSet.loop*180))*60
                     break
                 }
             break

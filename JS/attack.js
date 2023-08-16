@@ -67,7 +67,7 @@ class attack{
             case 508: case 509: case 510: case 511: case 514: case 531: case 532: case 533: case 534: case 535:
             case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 557: case 558:
             case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
-            case 582: case 587: case 588:
+            case 582: case 587: case 588: case 589: case 590: case 591:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -713,7 +713,7 @@ class attack{
             case 194: case 197: case 206: case 216: case 221: case 235: case 242: case 261: case 262: case 281:
             case 303: case 320: case 321: case 322: case 354: case 355: case 359: case 365: case 377: case 386:
             case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443: case 461: case 463:
-            case 502: case 513: case 515: case 518: case 522: case 546: case 547:
+            case 502: case 513: case 515: case 518: case 522: case 546: case 547: case 589:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -762,6 +762,9 @@ class attack{
                         break
                         case 546:
                             this.userCombatant.addBlock(this.effect[0]*this.userCombatant.totalOrbClass[1])
+                        break
+                        case 589:
+                            this.targetCombatant.addBlock(this.effect[0])
                         break
                         default:
                             this.userCombatant.addBlock(this.effect[0])
@@ -3014,7 +3017,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 80:
+            case 80: case 590:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(25)
                 }
@@ -3025,7 +3028,11 @@ class attack{
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                 }else if(this.timer==5*this.targetDistance+15){
                     this.targetCombatant.takeDamage(this.effect[0],this.user,1)
-                    this.targetCombatant.statusEffect('Frail',this.effect[1])
+                    switch(this.type){
+                        case 80:
+                            this.targetCombatant.statusEffect('Frail',this.effect[1])
+                        break
+                    }
                 }else if(this.timer>=max(30,5*this.targetDistance+25)){
                     this.remove=true
                 }
@@ -5452,6 +5459,21 @@ class attack{
                         this.battle.activate(1,this.targetCombatant.id)
                         this.remove=true
                     }
+                }
+            break
+            case 591:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(25)
+                }
+                if(this.timer<=10||this.timer>20&&this.timer<=30){
+                    this.userCombatant.runAnimation(1/10,25)
+                }
+                if(this.timer>=12&&this.timer<18){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30)+random(-3,3),2.5*this.targetDistance-1]))
+                }else if(this.timer==5*this.targetDistance+15){
+                    this.targetCombatant.takeDamage(this.effect[0]-this.effect[1]*(this.targetDistance-1),this.user,1)
+                }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                    this.remove=true
                 }
             break
                     

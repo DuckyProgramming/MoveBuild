@@ -3256,7 +3256,27 @@ types={
                 {effect:[12],attack:588,cost:1,target:[29,1,1],spec:[],class:4},
                 {effect:[20],attack:588,cost:1,target:[29,1,1],spec:[2],class:4},
             ],
+        },{
+            name:'Duct\nTape',rarity:0,list:6,
+            levels:[
+                {effect:[16],attack:589,cost:1,target:[29,1,1],spec:[],class:4},
+                {effect:[25],attack:589,cost:1,target:[29,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Pistol',rarity:0,list:6,
+            levels:[
+                {effect:[7],attack:590,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[11],attack:590,cost:1,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Shotgun',rarity:0,list:6,
+            levels:[
+                {effect:[17,3],attack:591,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[27,5],attack:591,cost:2,target:[2,1,3],spec:[0],class:1},
+            ],
         },
+
+        
 
 
 
@@ -9145,7 +9165,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}

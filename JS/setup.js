@@ -16,13 +16,14 @@ function setup(){
         current.itemManager.addItem(2+a,0)
     }*/
 
-    current.menu.combatant=[6]
+    /*current.menu.combatant=[6]
     current.menu.deck=[0]
     current.startGame()
     transition.trigger=false
     //stage.scene='graphic'
     stage.scene='battle'
     current.setupBattle(types.encounter[1])
+    game.dev=true*/
 
     /*current.overlayManager.overlays[0][0].active=true
     current.overlayManager.overlays[0][1].active=true

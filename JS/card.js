@@ -120,7 +120,7 @@ class card{
             case -25: string+=`When Drawn,\nAll Cards in Hand\nWill Exhaust`; break
             case -26: string+=`When Drawn,\nHalve Card Effects`; break
             case -27: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength`; break
-            case 1: case 25: case 32: case 36: case 57: case 327:
+            case 1: case 25: case 32: case 36: case 57: case 327: case 590:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
             case 3: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
@@ -699,12 +699,13 @@ class card{
             case 582: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nHold ${effect[1]} Poison Orb${effect[1]!=1?`s`:``}`; break
             case 583: string+=`Hold ${effect[0]} Buff Orb${effect[0]!=1?`s`:``}\nHold ${effect[1]} Poison Orb${effect[1]!=1?`s`:``}\nHold ${effect[2]} Light Orb${effect[2]!=1?`s`:``}`; break
             case 584: string+=`Hold ${effect[0]} Lightning Orb${effect[0]!=1?`s`:``}\nAdd ${this.calculateEffect(effect[1],3)} Block\nWhere X = Number\nOf Lightning Orbs`; break
-
             case 585: string+=`Build a Wall`; break
             case 586: string+=`Gain ${effect[0]} Metal`; break
             case 587: string+=`Destroy a Construct\nMay Exhuast When a\nConstruct is Destroyed`; break
-            case 588: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nto Construct`; break
+            case 588: string+=`Heal ${effect[0]} Health\nto Construct`; break
+            case 589: string+=`Add ${effect[0]} Block\nto Construct`; break
 
+            case 591: string+=`Deal ${this.calculateEffect(effect[0],0)}-${this.calculateEffect(effect[1],2)} Damage\nWhere X = (Range-1)`; break
 
 
 
