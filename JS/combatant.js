@@ -64,7 +64,7 @@ class combatant{
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
-            'Step Next Turn',
+            'Step Next Turn','Jagged Bleed',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -79,7 +79,7 @@ class combatant{
                 0,0,1,1,1,0,0,1,2,0,//10
                 0,0,2,0,0,0,2,0,0,0,//11
                 0,0,0,0,0,0,0,1,0,1,//12
-                2,
+                2,1,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -94,7 +94,7 @@ class combatant{
                 2,2,0,0,0,0,1,0,0,0,
                 0,1,0,0,2,2,0,2,0,2,
                 1,2,2,2,2,2,2,3,2,1,
-                2,
+                2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4166,7 +4166,7 @@ class combatant{
             if(this.status.main[a]!=0){
                 switch(a){
                     case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
-                    case 5: case 31: case 49: case 52: case 62: case 110: this.takeDamage(this.status.main[a],-1); break
+                    case 5: case 31: case 49: case 52: case 62: case 110: case 121: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
@@ -4305,7 +4305,7 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2: case 4: case 17: case 19: case 25: case 26:
+                    case 2: case 4: case 16: case 17: case 19: case 25: case 26: case 32:
                         this.animSet.loop=0
                     break
                 }
@@ -4730,6 +4730,11 @@ class combatant{
                             this.anim.arms[g].top=54-abs(lsin(this.animSet.loop*180))*18
                         }
                     break
+                    case 16:
+                        this.animSet.loop+=rate
+                        this.spin.arms[this.animSet.hand].top=(-90+this.animSet.loop*360)*(this.animSet.hand*2-1)
+                        this.anim.arms[this.animSet.hand].top=54+abs(lsin(this.animSet.loop*180))*60
+                    break
                     case 17:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
@@ -4750,6 +4755,10 @@ class combatant{
                         this.animSet.loop+=rate
                         this.spin.arms[this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(this.animSet.hand*2-1)
                         this.anim.arms[this.animSet.hand].top=54+abs(lsin(this.animSet.loop*180))*60
+                    break
+                    case 32:
+                        this.animSet.loop+=rate
+                        this.offset.position.y=lsin(this.animSet.loop*180)*-10
                     break
                 }
             break

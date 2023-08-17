@@ -126,10 +126,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0}
     }
     addInitial(type,level,color){
         game.id++
@@ -230,6 +230,9 @@ class group{
     }
     rebound(amount){
         this.status.rebound+=amount
+    }
+    upgrade(amount){
+        this.status.upgrade+=amount
     }
     shuffle(){
         let cards=[]
@@ -472,6 +475,13 @@ class group{
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,0)
                         a--
                         la--
+                    }
+                break
+                case 26:
+                    if(this.cards[a].class==7){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        this.battle.energy.main[this.player]++
                     }
                 break
             }
@@ -870,13 +880,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade])
                     }
                 }
             break
@@ -1161,6 +1171,13 @@ class group{
                     this.status.nightmare=0
                 }
             break
+            case 11:
+                this.cards[a].deSize=true
+                this.cards[a].discardEffect.push(0)
+                if(this.status.upgrade>0){
+                    this.status.upgrade--
+                }
+            break
         }
     }
     update(scene,args){
@@ -1172,6 +1189,7 @@ class group{
                 this.anim.duplicate=smoothAnim(this.anim.duplicate,this.status.duplicate!=0,0,1,5)
                 this.anim.nightmare=smoothAnim(this.anim.nightmare,this.status.nightmare!=0,0,1,5)
                 this.anim.rebound=smoothAnim(this.anim.rebound,this.status.rebound!=0,0,1,5)
+                this.anim.upgrade=smoothAnim(this.anim.upgrade,this.status.upgrade!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -1460,6 +1478,10 @@ class group{
                                 this.callInput(10,a)
                                 break
                             }
+                            if(this.status.upgrade!=0){
+                                this.callInput(11,a)
+                                break
+                            }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                 if(this.cards[a].afford){
                                     this.callInput(0,a)
@@ -1681,6 +1703,10 @@ class group{
                             }
                             if(this.status.nightmare!=0){
                                 this.callInput(10,a)
+                                break
+                            }
+                            if(this.status.upgrade!=0){
+                                this.callInput(11,a)
                                 break
                             }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
