@@ -68,7 +68,7 @@ class attack{
             case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 557: case 558:
             case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
             case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
-            case 598: case 599: case 600: case 601:
+            case 598: case 599: case 600: case 601: case 604: case 606: case 609:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -281,7 +281,7 @@ class attack{
                         this.targetCombatant.block=0
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
-                    case 110:
+                    case 101:
                         if(this.battle.counter.turnPlayed[this.player]<=1){
                             this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
                         }else{
@@ -398,6 +398,9 @@ class attack{
                     break
                     case 596:
                         this.targetCombatant.gainMaxHP(this.effect[0])
+                    break
+                    case 604:
+                        this.targetCombatant.statusEffect('Regeneration',this.effect[0])
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -679,6 +682,11 @@ class attack{
                     case 601:
                         this.battle.cardManagers[this.player].hand.upgrade(this.effect[1])
                     break
+                    case 606:
+                        if(this.targetCombatant.blocked<=1){
+                            this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        }
+                    break
                 }
             break
         }
@@ -696,7 +704,8 @@ class attack{
             case 364: case 371: case 373: case 376: case 378: case 379: case 385: case 388: case 402: case 409:
             case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462: case 469:
             case 475: case 496: case 497: case 507: case 508: case 509: case 510: case 511: case 514: case 540:
-            case 558: case 559: case 580: case 581: case 582: case 588: case 596: case 597: case 601:
+            case 558: case 559: case 580: case 581: case 582: case 588: case 596: case 597: case 601: case 604:
+            case 606:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){
@@ -1381,7 +1390,7 @@ class attack{
             case 318: case 334: case 337: case 338: case 339: case 340: case 343: case 344: case 346: case 363:
             case 387: case 390: case 392: case 398: case 418: case 422: case 423: case 431: case 451: case 499:
             case 512: case 519: case 523: case 524: case 525: case 527: case 528: case 529: case 530: case 541:
-            case 542: case 595: case 603:
+            case 542: case 595: case 603: case 605: case 607:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -1734,6 +1743,14 @@ class attack{
                             this.battle.cardManagers[this.player].draw(this.effect[0])
                             this.battle.cardManagers[this.player].hand.upgrade(this.effect[1])
                         break
+                        case 605:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.battle.cardManagers[this.player].addRandomClassListless(2,0,7)
+                            }
+                        break
+                        case 607:
+                            this.battle.cardManagers[this.player].drawUpgrade(this.effect[0])
+                        break
                         
                     }
                 }else if(this.timer>=20){
@@ -1771,7 +1788,7 @@ class attack{
             break
             case -13: case -21: case 10: case 64: case 72: case 73: case 74: case 164: case 166: case 167:
             case 168: case 169: case 170: case 171: case 180: case 195: case 202: case 224: case 283: case 349:
-            case 360: case 369: case 380: case 391: case 442: case 456: case 470:
+            case 360: case 369: case 380: case 391: case 442: case 456: case 470: case 608:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(6)
                 }
@@ -1892,6 +1909,10 @@ class attack{
                         break
                         case 470:
                             this.userCombatant.gainMaxHP(this.effect[0]*this.energy)
+                        break
+                        case 608:
+                            this.userCombatant.heal(this.effect[0])
+                            this.battle.cardManagers[this.player].allEffect(2,5)
                         break
                     }
                 }else if(this.timer>=20){
@@ -3083,7 +3104,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 80: case 590:
+            case 80: case 590: case 609:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(25)
                 }
@@ -3097,6 +3118,9 @@ class attack{
                     switch(this.type){
                         case 80:
                             this.targetCombatant.statusEffect('Frail',this.effect[1])
+                        break
+                        case 609:
+                            this.targetCombatant.statusEffect('Temporary Strength',-this.effect[1])
                         break
                     }
                 }else if(this.timer>=max(30,5*this.targetDistance+25)){

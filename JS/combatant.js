@@ -494,11 +494,11 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction,sword:false}}
             break
             case 'Donakho':
-                this.anim={direction:direction,eye:[0,0],legs:[{top:24,length:{top:12.5}},{top:24,length:{top:12.5}}],arms:[{top:54,length:{top:12.5}},{top:54,length:{top:12.5}}]}
+                this.anim={direction:direction,eye:[0,0],eyeStyle:[0,0],legs:[{top:24,length:{top:12.5}},{top:24,length:{top:12.5}}],arms:[{top:54,length:{top:12.5}},{top:54,length:{top:12.5}}]}
                 this.fades={eye:[1,1],beak:{main:1,mouth:1,nostril:1},skin:{legs:1,arms:1,body:1,head:1},hat:1,coat:1}
                 this.spin={legs:[{top:-90},{top:90}],arms:[{top:-90},{top:90}],eye:[-18,18]}
-                this.color={eye:{back:[0,0,0]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,250,200],body:[120,130,130],legs:[255,235,175],arms:[255,240,180]},hat:[150,150,50],coat:[165,155,45]}
-                this.parts={eyeLevel:-48,beakLevel:-41,legs:[{top:{x:4,y:-18},middle:{x:0,y:0}},{top:{x:4,y:-18},middle:{x:0,y:0}}],arms:[{top:{x:3.75,y:-30.5},middle:{x:0,y:0}},{top:{x:3.75,y:-30.5},middle:{x:0,y:0}}]}
+                this.color={eye:{back:[0,0,0],front:[0,20,30],glow:[200,255,255]},beak:{main:[255,140,25],mouth:[0,0,0],nostril:[0,0,0]},skin:{head:[255,250,200],body:[120,130,130],legs:[255,235,175],arms:[255,240,180]},hat:[200,200,75],coat:[165,155,45]}
+                this.parts={eyeLevel:-48,beakLevel:-41,minor:13,legs:[{top:{x:4,y:-18},middle:{x:0,y:0}},{top:{x:4,y:-18},middle:{x:0,y:0}}],arms:[{top:{x:3.75,y:-30.5},middle:{x:0,y:0}},{top:{x:3.75,y:-30.5},middle:{x:0,y:0}}]}
                 this.graphics={legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
                 this.trigger={display:{eye:[true,true],beak:{main:true,mouth:true,nostril:true},skin:{legs:true,arms:true,body:true,head:true},hat:true,coat:true,extra:{damage:false}}}
                 this.calc={int:[0,0,0,0]}
@@ -3203,7 +3203,7 @@ class combatant{
     deTarget(){
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].target==this.id){
-                this.battle.combatantManager.combatants[a].target=this.battle.players-1-this.battle.combatantManager.combatants[a].target
+                this.battle.combatantManager.combatants[a].target=constrain(this.battle.players-1-this.battle.combatantManager.combatants[a].target,0,this.battle.players-1)
             }
         }
     }
@@ -3697,8 +3697,8 @@ class combatant{
                 }
                 if(this.spec.includes(16)&&this.life<=0&&user>=0&&user<this.battle.players){
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        this.battle.overlayManager.overlays[0][a].active=true
-                        this.battle.overlayManager.overlays[0][a].activate([1,[{type:0,value:[5]}]])
+                        this.battle.overlayManager.overlays[25][a].active=true
+                        this.battle.overlayManager.overlays[25][a].activate([0,[{type:0,value:[5]}]])
                     }
                 }
                 if(this.status.main[44]>0&&this.life<=0){
@@ -4305,8 +4305,12 @@ class combatant{
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
                     break
-                    case 2: case 4: case 16: case 17: case 19: case 25: case 26: case 32:
+                    case 2: case 4: case 6: case 16: case 17: case 19: case 25: case 26: case 32:
                         this.animSet.loop=0
+                    break
+                    case 5:
+                        this.animSet.loop=0
+                        this.anim.eyeStyle=[2,2]
                     break
                 }
             break
@@ -4730,6 +4734,17 @@ class combatant{
                             this.anim.arms[g].top=54-abs(lsin(this.animSet.loop*180))*18
                         }
                     break
+                    case 5:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.eye[g]=constrain(abs(lsin(this.animSet.loop*90))*1.5,0,1)
+                        }
+                    break
+                    case 6:
+                        this.animSet.loop+=rate
+                        this.spin.arms[1-this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*90)*150))*(this.animSet.hand*2-1)
+                        this.anim.arms[1-this.animSet.hand].top=54+abs(lsin(this.animSet.loop*90))*18
+                    break
                     case 16:
                         this.animSet.loop+=rate
                         this.spin.arms[this.animSet.hand].top=(-90+this.animSet.loop*360)*(this.animSet.hand*2-1)
@@ -4748,12 +4763,12 @@ class combatant{
                     break
                     case 25:
                         this.animSet.loop+=rate
-                        this.spin.arms[1-this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*90)*60))*(1-this.animSet.hand*2)
+                        this.spin.arms[1-this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*90)*60))*(this.animSet.hand*2-1)
                         this.anim.arms[1-this.animSet.hand].top=54+abs(lsin(this.animSet.loop*90))*48
                     break
                     case 26:
                         this.animSet.loop+=rate
-                        this.spin.arms[this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(1-this.animSet.hand*2)
                         this.anim.arms[this.animSet.hand].top=54+abs(lsin(this.animSet.loop*180))*60
                     break
                     case 32:
@@ -5717,6 +5732,52 @@ class combatant{
                 this.layer.arc(lsin(this.anim.direction)*(this.parts.minor-2),this.parts.mouth,this.anim.mouth.x*lcos(this.anim.direction),this.anim.mouth.y*(0.5+lcos(this.anim.direction)*0.5),this.spin.mouth,180-this.spin.mouth)
                 this.layer.strokeWeight(0.25*this.anim.mouth.open)
                 this.layer.line(lsin(this.anim.direction)*(this.parts.minor-2)-this.anim.mouth.x/2*lcos(this.anim.direction),this.parts.mouth,lsin(this.anim.direction)*(this.parts.minor-2)+this.anim.mouth.x/2*lcos(this.anim.direction),this.parts.mouth)
+            break
+            case 2:
+                this.layer.noFill()
+                if(this.anim.eyeStyle[key]==3&&this.anim.eye[key]>0){
+                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((2.5-this.anim.eye[key]*1.75)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
+                    this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel)
+                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((2-this.anim.eye[key]*1.25)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
+                    this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2+this.anim.eye[key]*2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2)
+                }else if(this.anim.eyeStyle[key]==2&&this.anim.eye[key]>0){
+                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((2.5-this.anim.eye[key]*1.75)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
+                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((2-this.anim.eye[key]*1.25)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel-1*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],30,150)
+                }else if(this.anim.eyeStyle[key]==1&&this.anim.eye[key]>0){                    
+                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((2.5-this.anim.eye[key]*1.75)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
+                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((2-this.anim.eye[key]*1.25)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5),this.parts.eyeLevel+2*this.anim.eye[key],3*this.anim.eye[key],4*this.anim.eye[key],-150,-30)
+                }else{
+                    this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((2.5-this.anim.eye[key]*1.75)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
+                    this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
+                    this.layer.stroke(this.color.eye.front[0],this.color.eye.front[1],this.color.eye.front[2],this.fade*this.fades.eye[key])
+                    this.layer.strokeWeight((2-this.anim.eye[key]*1.25)*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1))
+                    this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
+                    this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+0.2-this.anim.eye[key]*0.2,lsin(this.spin.eye[key]+this.anim.head)*((this.parts.minor+0.5)-this.anim.eye[key]*0.5)+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2+0.2-this.anim.eye[key]*0.2)
+                    if(this.anim.eye[key]==0&&constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1)>0){
+                        this.layer.stroke(this.color.eye.glow[0],this.color.eye.glow[1],this.color.eye.glow[2],this.fade*this.fades.eye[key]/4)
+                        this.layer.strokeWeight(0.4)
+                        this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*(this.parts.minor+0.5),this.parts.eyeLevel,1.2*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),1.2*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-72,-12)
+                        if(this.anim.eyeStyle[key]==4){
+                            this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[key])
+                            this.layer.strokeWeight(0.3)
+                            this.layer.arc(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor,this.parts.eyeLevel,4.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),4.5*constrain(lcos(this.spin.eye[key]+this.anim.head)*5,0,1),-165+key*90,-105+key*90)
+                        }
+                    }
+                }
             break
         }
     }
@@ -7994,10 +8055,7 @@ class combatant{
                             this.layer.ellipse(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,14,14)
                         }
                         if(this.trigger.display.eye[g]){
-                            this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[g])
-                            this.layer.strokeWeight((2.5-this.anim.eye[g]*1.5)*constrain(lcos(this.spin.eye[g]+this.anim.direction)*5,0,1))
-                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*13+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
-                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*13-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*13+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                            this.minorDisplayGeneral(2,g)
                         }
                     }
                     if(this.trigger.display.beak.main&&lcos(this.anim.direction)>0){
@@ -12961,8 +13019,8 @@ class combatant{
                     this.battle.clearReinforce()
                 }
                 if(this.status.main[42]>0){
-                    this.battle.overlayManager.overlays[0][floor(random(0,this.battle.players))].active=true
-                    this.battle.overlayManager.overlays[0][floor(random(0,this.battle.players))].activate([1,[
+                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].active=true
+                    this.battle.overlayManager.overlays[25][floor(random(0,this.battle.players))].activate([0,[
                             {type:0,value:[this.status.main[42]]}]])
                 }
                 if(this.status.main[80]>0){

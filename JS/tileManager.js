@@ -238,7 +238,7 @@ class tileManager{
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if(this.battle.attackManager.targetInfo[0]==19&&this.tiles[a].type.includes(3)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
-            }else if(this.battle.attackManager.targetInfo[0]==21&&arrayIncludes(constants.L,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
+            }else if(this.battle.attackManager.targetInfo[0]==21&&this.tiles[a].occupied==0&&arrayIncludes(constants.L,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if(this.battle.attackManager.targetInfo[0]==23&&this.tiles[a].type.includes(19)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))

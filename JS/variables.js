@@ -3344,10 +3344,48 @@ types={
                 {effect:[1,1],attack:603,cost:0,target:[0],spec:[],class:4},
                 {effect:[1,2],attack:603,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Fixing',rarity:0,list:6,
+            levels:[
+                {effect:[6],attack:604,cost:1,target:[29,1,1],spec:[],class:4},
+                {effect:[8],attack:604,cost:1,target:[29,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Concept',rarity:1,list:6,
+            levels:[
+                {effect:[2],attack:605,cost:0,target:[0],spec:[],class:4},
+                {effect:[3],attack:605,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Particulation',rarity:0,list:6,
+            levels:[
+                {effect:[7,3],attack:606,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9,5],attack:606,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Methods',rarity:0,list:6,
+            levels:[
+                {effect:[1],attack:607,cost:0,target:[0],spec:[],class:4},
+                {effect:[2],attack:607,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Drinks',rarity:2,list:6,
+            levels:[
+                {effect:[10],attack:608,cost:0,target:[0],spec:[],class:4},
+                {effect:[15],attack:608,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Surpressing\nFire',rarity:1,list:6,
+            levels:[
+                {effect:[6,4],attack:609,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[8,6],attack:609,cost:1,target:[2,1,3],spec:[0],class:1},
+            ],
         },
 
         //combo people with buildings
 
+        //get metal
+        
         //movements
 
         
@@ -8345,7 +8383,7 @@ shipyard visit for another time.`,
         },{
             level:['Randhole 5'],class:1,world:0,
             name:'Prison Guard',
-            player:{position:[[{x:2,y:2}],[{x:2,y:2},{x:3,y:3}]]},
+            player:{position:[[{x:2,y:2}],[{x:2,y:2},{x:0,y:0}]]},
             enemy:[
                 {position:{x:0,y:2},name:'Prison Guard'},
                 {position:{x:2,y:0},name:'Prison Guard'},
@@ -8536,7 +8574,8 @@ shipyard visit for another time.`,
             name:'Mugger',
             player:{position:[[{x:1,y:1}],[{x:0,y:0},{x:1,y:2}]]},
             enemy:[
-                {position:{x:3,y:1},name:'Mugger'},
+                {position:{x:2,y:0},name:'Mugger'},
+                {position:{x:3,y:2},name:'Mugger'},
             ],reinforce:[
             ],
         },{

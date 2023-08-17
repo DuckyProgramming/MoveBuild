@@ -659,7 +659,7 @@ class group{
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6){
+                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                     if(spec==2){
@@ -677,6 +677,10 @@ class group{
                     }
                     if(spec==6&&list[list.length-1].cost>0){
                         list[list.length-1].cost-=1
+                    }
+                    if(spec==8){
+                        list[list.length-1]=upgradeCard(list[list.length-1])
+                        if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                     }
                 }else if(spec==7){
                     list[list.length-1].cost=list[list.length-1].base.cost
@@ -688,7 +692,7 @@ class group{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6){
+                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                     if(spec==2){
@@ -706,6 +710,10 @@ class group{
                     }
                     if(spec==6&&list[list.length-1].cost>0){
                         list[list.length-1].cost-=1
+                    }
+                    if(spec==8){
+                        list[list.length-1]=upgradeCard(list[list.length-1])
+                        if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                     }
                 }else if(spec==7){
                     list[list.length-1].cost=list[list.length-1].base.cost
@@ -1397,7 +1405,8 @@ class group{
         }
         if(this.battle.attackManager.targetInfo[0]==21){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
-                if((arrayIncludes(constants.L,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y]))&&
+                if(this.battle.tileManager.tiles[a].occupied==0&&
+                    (arrayIncludes(constants.L,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y]))&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }

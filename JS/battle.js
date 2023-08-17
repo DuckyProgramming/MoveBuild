@@ -1038,7 +1038,7 @@ class battle{
                             this.replayManager.clear()
                         }
                     }
-                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat){
+                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive){
                     this.result.victory=true
                     this.overlayManager.closeAll()
                     for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){

@@ -397,7 +397,7 @@ class card{
             case 276: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed are Duplicated\nDiscard ${effect[0]} Random Card${effect[0]!=1?`s`:``}`; break
             case 277: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Overflow to\nDiscard Pile`; break
             case 278: string+=`Gain ${effect[0]}\nTemporary Strength`; break
-            case 279: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\n${this.effect[0]!=1?`They Cost`:`It Costs`} 0`; break
+            case 279: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 280: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],11)} Damage\nWhere X = Number of\nAttacks in Hand`; break
             case 281: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExhaust ${effect[1]} Random\nCard${effect[1]!=1?`s`:``}`; break
             case 282: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Damage Taken`; break
@@ -711,7 +711,6 @@ class card{
             case 595: string+=`Exhaust All Blueprints,\nGain 1 Energy Each`; break
             case 596: string+=`Construct Gains\n${effect[0]} Max Health`; break
             case 597: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Jagged Bleed`; break
-
             case 598: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Jagged Bleed\n3 Times`; break
             case 599: string+=`Apply ${effect[0]} Jagged Bleed`; break
             case 600: string+=`Deal Splash Damage\nEqual to Target\nConstruct Health`; break
@@ -719,6 +718,12 @@ class card{
             case 602: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 603: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             
+            case 604: string+=`Construct Gains\n${effect[0]} Regeneration`; break
+            case 605: string+=`Add ${effect[0]} Random\nBlueprint${effect[0]!=1?`s`:``}\nto Your Hand`; break
+            case 606: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Vulnerable`; break
+            case 607: string+=`Draw and Upgrade\n${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 608: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nBecome Confused`; break
+            case 609: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Strength Down`; break
 
 
 
