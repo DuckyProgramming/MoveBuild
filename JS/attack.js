@@ -68,7 +68,8 @@ class attack{
             case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 557: case 558:
             case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
             case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
-            case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610:
+            case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
+            case 618:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1196,6 +1197,7 @@ class attack{
             case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
+            case 619:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1395,7 +1397,7 @@ class attack{
                         case 521:
                             this.battle.energy.main[this.player]*=2
                         break
-                        case 586:
+                        case 586: case 619:
                             this.userCombatant.metal+=this.effect[0]
                         break
                         case 613:
@@ -2609,7 +2611,7 @@ class attack{
             case 159: case 160: case 161: case 162: case 163: case 173: case 177: case 272: case 292: case 295:
             case 297: case 314: case 316: case 326: case 351: case 352: case 382: case 408: case 419: case 433:
             case 452: case 472: case 474: case 482: case 533: case 537: case 538: case 539: case 548: case 585:
-            case 592:
+            case 592: case 620: case 621: case 622: case 623: case 624:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -2782,6 +2784,26 @@ class attack{
                         case 592:
                             this.targetCombatant.status.main[findList('Strength',this.targetCombatant.status.name)]=0
                             this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        break
+                        case 620:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 621:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Projector',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 622:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Turret',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 623:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Readout',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 624:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Strengthener',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                     }
                 }else if(this.timer>=30){
@@ -3982,7 +4004,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 211: case 501:
+            case 211: case 501: case 616: case 617: case 618:
                 if(this.timer==1&&this.targetDistance>1){
                     this.userCombatant.startAnimation(0)
                 }else if(this.timer==15*this.targetDistance-14){
@@ -4007,6 +4029,18 @@ class attack{
                             break
                             case 501:
                                 this.battle.cardManagers[this.player].allGroupClaw(this.effect[1])
+                            break
+                            case 616:
+                                this.battle.cardManagers[this.player].draw(this.effect[1])
+                            break
+                            case 617:
+                                this.battle.cardManagers[this.player].draw(this.effect[1])
+                                this.targetCombatant.goal.anim.direction=this.relativeDirection
+                                this.battle.turnManager.loadEnemyAttack(this.targetCombatant.id)
+                            break
+                            case 618:
+                                this.battle.cardManagers[this.player].draw(this.effect[1])
+                                this.targetCombatant.statusEffect('Frail',this.effect[2])
                             break
                         }
                     }

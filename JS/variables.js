@@ -3201,7 +3201,7 @@ types={
             name:'Build\nWall',rarity:0,list:6,
             levels:[
                 {effect:[],attack:585,cost:3,target:[1,1,1],spec:[21],class:7},
-                {effect:[],attack:585,cost:3,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:585,cost:3,target:[1,1,1],spec:[21,2],class:7},
             ],
         },
         
@@ -3416,15 +3416,65 @@ types={
                 {effect:[2],attack:615,cost:1,target:[0],spec:[],class:4},
                 {effect:[3],attack:615,cost:1,target:[0],spec:[],class:4},
             ],
-        },
-
-        /*{
+        },{
             name:'Slap',rarity:0,list:6,
             levels:[
                 {effect:[5,1],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[7,1],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
-        },*/
+        },{
+            name:'Slap\nParade',rarity:0,list:6,
+            levels:[
+                {effect:[4,1],attack:617,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[6,1],attack:617,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Thunder\nSlap',rarity:1,list:6,
+            levels:[
+                {effect:[10,1,4],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1,6],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },
+
+        {
+            name:'Upscale',rarity:0,list:6,
+            levels:[
+                {effect:[2,1],attack:619,cost:1,target:[0],spec:[],class:4},
+                {effect:[3,1],attack:619,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Build\nSpike Pillar',rarity:0,list:6,
+            levels:[
+                {effect:[],attack:620,cost:2,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:620,cost:2,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nProjector',rarity:0,list:6,
+            levels:[
+                {effect:[],attack:621,cost:4,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:621,cost:4,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nTurret',rarity:0,list:6,
+            levels:[
+                {effect:[],attack:622,cost:4,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:622,cost:4,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nReadout',rarity:0,list:6,
+            levels:[
+                {effect:[],attack:623,cost:2,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:623,cost:2,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nStrengthener',rarity:0,list:6,
+            levels:[
+                {effect:[],attack:624,cost:3,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:624,cost:3,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },
+
+        //miniturret
 
 
 
@@ -4144,7 +4194,7 @@ types={
         {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:55,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relcaim her.`},
         {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`An experiment gone wrong... or right.\nDirector Stavresk wants his work\nback, but it appears he has failed.\nThe entity was allowed to go free.`},
         {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Former Management-aligned free actor,\nhaving ended his partnership.\nNow on an indepdent research mission,\ndiscovering his capabilities.`},
-        {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Duck "transferral district" escapee,\nnow getting his revenge.\nDoesn't seem to have much motivation\nexcept for desire to take out his anger.`},
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
@@ -4302,6 +4352,11 @@ types={
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`Shit`},
 
         {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
+        {name:'Spike Pillar',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
+        {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Does your job for you`},
+        {name:'Turret',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Sentry goin' up`},
+        {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Big brain augmentation`},
+        {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Get ripped`},
 
 
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
@@ -9324,7 +9379,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
