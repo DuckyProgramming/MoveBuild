@@ -29,6 +29,7 @@ class card{
         this.energyAfford=false
         this.nonCalc=false
         this.discardEffect=[]
+        this.discardEffectBuffered=[]
 
         this.anim={select:0,afford:0}
         this.colorDetail=types.color.card[this.color]
@@ -717,13 +718,21 @@ class card{
             case 601: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 602: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 603: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
-            
             case 604: string+=`Construct Gains\n${effect[0]} Regeneration`; break
             case 605: string+=`Add ${effect[0]} Random\nBlueprint${effect[0]!=1?`s`:``}\nto Your Hand`; break
             case 606: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Vulnerable`; break
             case 607: string+=`Draw and Upgrade\n${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 608: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nBecome Confused`; break
             case 609: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Strength Down`; break
+            case 610: string+=`Construct Gains\n${effect[0]} Armor`; break
+            case 611: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTo All Targets`; break
+            case 612: string+=`Discard and\nUpgrade Your Hand\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 613: string+=`Add ${effect[0]} Random Card${effect[0]!=1?`s`:``}\nto Your Hand\nSkewed Odds`; break
+            case 614: string+=`Add ${effect[0]} Random Skill${effect[0]!=1?`s`:``}\nto Your Hand\nSkewed Odds`; break
+            case 615: string+=`Add ${effect[0]} Random Blueprint${effect[0]!=1?`s`:``}\nto Your Hand\nSkewed Odds`; break
+
+
+
 
 
 
@@ -747,7 +756,7 @@ class card{
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
         }
-        if(this.target[0]==2||this.target[0]==26||this.target[0]==29){
+        if(this.target[0]==2||this.target[0]==26||this.target[0]==29||this.target[0]==30){
             string+='\nRange '+this.target[1]+'-'+this.target[2]
         }
         if(spec.includes(0)){

@@ -4709,28 +4709,28 @@ class combatant{
                     case 0:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
-                            this.spin.legs[g].top=(-90+lsin((this.animSet.loop+this.animSet.flip)*180)*75)*(g*2-1)
-                            this.spin.arms[g].top=(-90+lsin((this.animSet.loop+this.animSet.flip)*180)*60)*(g*2-1)
+                            this.spin.legs[g].top=(90-lsin((this.animSet.loop+this.animSet.flip)*180)*75)*(g*2-1)
+                            this.spin.arms[g].top=(90-lsin((this.animSet.loop+this.animSet.flip)*180)*60)*(g*2-1)
                         }
                     break
                     case 1:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
-                            this.spin.arms[g].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(g*2-1)
+                            this.spin.arms[g].top=(90-abs(lsin(this.animSet.loop*180)*36))*(g*2-1)
                             this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*12
                         }
                     break
                     case 2:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
-                            this.spin.arms[g].top=(-90+abs(lsin(this.animSet.loop*180)*84))*(g*2-1)
+                            this.spin.arms[g].top=(90-abs(lsin(this.animSet.loop*180)*84))*(g*2-1)
                             this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*30
                         }
                     break
                     case 4:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
-                            this.spin.arms[g].top=-90*(g*2-1)+this.animSet.loop*360
+                            this.spin.arms[g].top=90*(g*2-1)+this.animSet.loop*360
                             this.anim.arms[g].top=54-abs(lsin(this.animSet.loop*180))*18
                         }
                     break
@@ -4742,18 +4742,18 @@ class combatant{
                     break
                     case 6:
                         this.animSet.loop+=rate
-                        this.spin.arms[1-this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*90)*150))*(this.animSet.hand*2-1)
+                        this.spin.arms[1-this.animSet.hand].top=(90-abs(lsin(this.animSet.loop*90)*150))*(1-this.animSet.hand*2)
                         this.anim.arms[1-this.animSet.hand].top=54+abs(lsin(this.animSet.loop*90))*18
                     break
                     case 16:
                         this.animSet.loop+=rate
-                        this.spin.arms[this.animSet.hand].top=(-90+this.animSet.loop*360)*(this.animSet.hand*2-1)
+                        this.spin.arms[this.animSet.hand].top=(90-this.animSet.loop*360)*(this.animSet.hand*2-1)
                         this.anim.arms[this.animSet.hand].top=54+abs(lsin(this.animSet.loop*180))*60
                     break
                     case 17:
                         this.animSet.loop+=rate
                         for(let g=0;g<2;g++){
-                            this.spin.arms[g].top=(-90+abs(lsin(this.animSet.loop*180)*66))*(g*2-1)
+                            this.spin.arms[g].top=(90-abs(lsin(this.animSet.loop*180)*66))*(g*2-1)
                             this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*42
                         }
                     break
@@ -4763,12 +4763,12 @@ class combatant{
                     break
                     case 25:
                         this.animSet.loop+=rate
-                        this.spin.arms[1-this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*90)*60))*(this.animSet.hand*2-1)
+                        this.spin.arms[1-this.animSet.hand].top=(90-abs(lsin(this.animSet.loop*90)*60))*(1-this.animSet.hand*2)
                         this.anim.arms[1-this.animSet.hand].top=54+abs(lsin(this.animSet.loop*90))*48
                     break
                     case 26:
                         this.animSet.loop+=rate
-                        this.spin.arms[this.animSet.hand].top=(-90+abs(lsin(this.animSet.loop*180)*36))*(1-this.animSet.hand*2)
+                        this.spin.arms[this.animSet.hand].top=(90-abs(lsin(this.animSet.loop*180)*36))*(this.animSet.hand*2-1)
                         this.anim.arms[this.animSet.hand].top=54+abs(lsin(this.animSet.loop*180))*60
                     break
                     case 32:

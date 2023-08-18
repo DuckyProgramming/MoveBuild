@@ -484,6 +484,10 @@ class group{
                         this.battle.energy.main[this.player]++
                     }
                 break
+                case 27:
+                    this.cards[a].deSize=true
+                    this.cards[a].discardEffectBuffered.push(0)
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -1261,6 +1265,10 @@ class group{
                             la--
                             this.status.rebound--
                         }else{
+                            if(this.cards[a].discardEffectBuffered.includes(0)){
+                                this.cards[a]=upgradeCard(this.cards[a])
+                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
+                            }
                             this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                             a--
                             la--

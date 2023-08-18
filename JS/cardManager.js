@@ -120,6 +120,38 @@ class cardManager{
             this.getList(group).addFreeShuffle(type,level,types.card[type].list,variant)
         }
     }
+    addRandomAllPriority(group,level){
+        let list=[]
+        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
+            list.push(this.listing.allPlayerCard[3][a])
+            if(types.card[this.listing.allPlayerCard[3][a]].list==this.battle.player[this.player]){
+                for(let b=0,lb=4;b<lb;b++){
+                    list.push(this.listing.allPlayerCard[3][a])
+                }
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).add(type,level,types.card[type].list)
+        }
+    }
+    addRandomClassAllPriority(group,level,cardClass){
+        let list=[]
+        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
+            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
+                list.push(this.listing.allPlayerCard[3][a])
+                if(types.card[this.listing.allPlayerCard[3][a]].list==this.battle.player[this.player]){
+                    for(let b=0,lb=4;b<lb;b++){
+                        list.push(this.listing.allPlayerCard[3][a])
+                    }
+                }
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).add(type,level,types.card[type].list)
+        }
+    }
     addRandomSpec(group,level,spec){
         let list=[]
         for(let a=0,la=types.card.length;a<la;a++){

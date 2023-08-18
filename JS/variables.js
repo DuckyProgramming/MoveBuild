@@ -3380,12 +3380,58 @@ types={
                 {effect:[6,4],attack:609,cost:1,target:[2,1,3],spec:[0],class:1},
                 {effect:[8,6],attack:609,cost:1,target:[2,1,3],spec:[0],class:1},
             ],
+        },{
+            name:'Harden',rarity:0,list:6,
+            levels:[
+                {effect:[4],attack:610,cost:1,target:[29,1,1],spec:[],class:4},
+                {effect:[6],attack:610,cost:1,target:[29,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Line\nUp',rarity:1,list:6,
+            levels:[
+                {effect:[5],attack:611,cost:1,target:[0],spec:[30,1,6],class:1},
+                {effect:[7],attack:611,cost:1,target:[0],spec:[30,1,6],class:1},
+            ],
+        },{
+            name:'Bide',rarity:1,list:6,
+            levels:[
+                {effect:[1],attack:612,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1],attack:612,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'Mystery\nBox',rarity:2,list:6,
+            levels:[
+                {effect:[4],attack:613,cost:1,target:[0],spec:[],class:4},
+                {effect:[6],attack:613,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Mystery\nToolbox',rarity:1,list:6,
+            levels:[
+                {effect:[2],attack:614,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:614,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Mystery\nDropbox',rarity:1,list:6,
+            levels:[
+                {effect:[2],attack:615,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:615,cost:1,target:[0],spec:[],class:4},
+            ],
         },
+
+        /*{
+            name:'Slap',rarity:0,list:6,
+            levels:[
+                {effect:[5,1],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,1],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },*/
+
+
 
         //combo people with buildings
 
         //get metal
-        
+
         //movements
 
         
