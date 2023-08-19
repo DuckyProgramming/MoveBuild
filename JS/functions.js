@@ -488,7 +488,9 @@ function intentDescription(attack,user,info){
 		case 225: return `Kill Self\nReturn Next Turn,\nHealed to Full`
 		case 228: return `Counter ${info?calculateIntent(attack.effect[0],user,0):`?`} All This Combat`
 		case 229: return `Apply ${info?calculateIntent(attack.effect[0],user,0):`?`} Take Per Turn`
-		case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Player`
+		case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Builder`
+		case 231: return `Draw ${info?attack.effect[0]:`?`} Less\nCard${attack.effect[0]!=1||info?`s`:``} Next Turn\nto Builder`
+		case 232: return `Builder Gains ${info?attack.effect[0]:`?`}\nTemporary Strength`
 
 		default: return `INVALID`
 	}

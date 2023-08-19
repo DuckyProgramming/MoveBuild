@@ -1494,25 +1494,25 @@ class combatant{
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
-                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:[125,125,125]}
+                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
             break
             case 'Readout':
-                /*this.anim={direction:direction}
-                this.fades={body:1}
-                this.trigger={display:{body:true}}
+                this.anim={direction:direction,light:1}
+                this.fades={body:1,light:1,glow:1}
+                this.trigger={display:{body:true,light:true,glow:true}}
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
-                this.color={in:[120,120,120],out:[100,100,100]}*/
+                this.color={in:[120,120,120],out:[100,100,100],light:[100,200,255],glow:[255,255,255]}
             break
             case 'Strengthener':
-                /*this.anim={direction:direction}
-                this.fades={body:1}
-                this.trigger={display:{body:true}}
+                this.anim={direction:direction,light:1}
+                this.fades={body:1,light:1}
+                this.trigger={display:{body:true,light:true}}
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
-                this.color={in:[120,120,120],out:[100,100,100]}*/
+                this.color={in:[120,120,120],out:[100,100,100],light:[255,100,100]}
             break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
@@ -4394,11 +4394,11 @@ class combatant{
                 }
             break
             case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine':
-            case 'Projector':
+            case 'Projector': case 'Readout': case 'Strengthener':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Strengthener': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -5060,12 +5060,12 @@ class combatant{
                     break
                 }
             break
-            case 'Projector':
+            case 'Projector': case 'Readout': case 'Strengthener':
                 this.animSet.loop+=rate
                 this.anim.light=lsin(this.animSet.loop*180)+1
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Strengthener': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': break
             default:
                 switch(type){
                     case 0:
@@ -11546,7 +11546,8 @@ class combatant{
                         }
                     }
                     if(this.trigger.display.dot){
-                        this.layer.fill(this.flashColor(this.color.dot)[0],this.flashColor(this.color.dot)[1],this.flashColor(this.color.dot)[2],this.fade*this.fades.dot)
+                        this.layer.fill(this.flashColor(this.color.dot.in)[0],this.flashColor(this.color.dot.in)[1],this.flashColor(this.color.dot.in)[2],this.fade*this.fades.dot)
+                        this.layer.stroke(this.flashColor(this.color.dot.out)[0],this.flashColor(this.color.dot.out)[1],this.flashColor(this.color.dot.out)[2],this.fade*this.fades.body)
                         this.layer.noStroke()
                         for(let a=0,la=2;a<la;a++){
                             if(lcos(this.anim.direction-90+a*180)>0){
@@ -11561,11 +11562,38 @@ class combatant{
                     }
                 break
                 case 'Readout':
+                    if(this.trigger.display.light){
+                        this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.light*0.5*this.anim.light)
+                        this.layer.rect(0,-35,40,70)
+                    }
+                    if(this.trigger.display.glow){
+                        this.layer.fill(this.flashColor(this.color.glow)[0],this.flashColor(this.color.glow)[1],this.flashColor(this.color.glow)[2],this.fade*this.fades.glow*0.5*this.anim.glow)
+                        this.layer.rect(0,-60,32,8)
+                        this.layer.rect(0,-44,32,8)
+                        this.layer.rect(0,-28,32,8)
+                    }
                     if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(4)
+                        this.layer.rect(0,-8,40,16)
                     }
                 break
                 case 'Strengthener':
                     if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(4)
+                        this.layer.rect(0,-32,48,64)
+                    }
+                    if(this.trigger.display.light){
+                        let color=[this.color.light[0],this.color.light[1]+this.anim.light*100,this.color.light[2]]
+                        this.layer.fill(this.flashColor(color)[0],this.flashColor(color)[1],this.flashColor(color)[2],this.fade*this.fades.light)
+                        this.layer.noStroke()
+                        this.layer.rect(-15,-32,5,48)
+                        this.layer.rect(-5,-32,5,48)
+                        this.layer.rect(5,-32,5,48)
+                        this.layer.rect(15,-32,5,48)
                     }
                 break
                 case '':

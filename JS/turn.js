@@ -1237,7 +1237,7 @@ class turn{
                         }
                     break
                     case 4: case 10: case 29: case 48: case 65: case 72: case 102: case 108: case 110: case 111:
-                    case 126: case 182: case 190: case 230:
+                    case 126: case 182: case 190: case 230: case 231: case 232:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(1)
                         }
@@ -1260,6 +1260,12 @@ class turn{
                                 break
                                 case 230:
                                     this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
+                                break
+                                case 231:
+                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[0])
+                                break
+                                case 232:
+                                    this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
                                 break
                                 default:
                                     this.userCombatant.addBlock(this.effect[0])

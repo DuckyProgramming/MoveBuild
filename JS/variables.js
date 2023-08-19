@@ -4365,8 +4365,8 @@ types={
         {name:'Spike Pillar',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
         {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:230,effect:[6]}],description:`Does your job for you`},
         {name:'Turret',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
-        {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Big brain augmentation`},
-        {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Get ripped`},
+        {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:231,effect:[1]}],description:`Big brain augmentation`},
+        {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:232,effect:[2]}],description:`Get ripped`},
 
 
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
@@ -4605,7 +4605,9 @@ types={
         {name:'Confusion',class:1},
         {name:'Counter All',class:4},
         {name:'Apply Take Per Turn',class:1},
-        {name:'Builer Block',class:2},//230
+        {name:'Builder Block',class:2},//230
+        {name:'Builder Draw',class:2},
+        {name:'Builder Temporary Strength',class:2},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
