@@ -82,7 +82,8 @@ class attack{
             case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
             case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485:
-            case 486: case 503: case 570: case 571: case 573: case 574: case 575: case 585:
+            case 486: case 503: case 570: case 571: case 573: case 574: case 575: case 585: case 619: case 620:
+            case 621: case 622: case 623: case 624:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1197,7 +1198,7 @@ class attack{
             case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
-            case 619:
+            case 619: case 625:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1414,6 +1415,10 @@ class attack{
                             for(let a=0,la=this.effect[0];a<la;a++){
                                 this.battle.cardManagers[this.player].addRandomClassAllPriority(2,0,7)
                             }
+                        break
+                        case 625:
+                            this.userCombatant.metal+=this.effect[0]
+                            this.battle.cardManagers[this.player].draw(this.effect[1])
                         break
                     }
                 }else if(this.timer>=20){
@@ -2778,7 +2783,7 @@ class attack{
                             this.targetCombatant.multiplyStatus('Vulnerable',this.effect[1])
                         break
                         case 585:
-                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                         case 592:
@@ -2786,23 +2791,23 @@ class attack{
                             this.targetCombatant.statusEffect('Weak',this.effect[0])
                         break
                         case 620:
-                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Spike Pillar',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                         case 621:
-                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Projector',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Projector',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                         case 622:
-                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Turret',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Turret',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                         case 623:
-                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Readout',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Readout',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                         case 624:
-                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Strengthener',types.combatant),this.userCombatant.team,this.direction)
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Strengthener',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                     }

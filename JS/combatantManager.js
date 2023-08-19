@@ -59,14 +59,14 @@ class combatantManager{
     }
     enableCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
                 this.combatants[a].endBlock()
             }
         }
     }
     unmoveCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
                 this.combatants[a].moved=false
                 this.combatants[a].activated=types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==2||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==4||types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==5
             }
@@ -74,7 +74,7 @@ class combatantManager{
     }
     setTargets(max){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if((this.combatants[a].team==0||this.combatants[a].construct)){
                 this.combatants[a].target=floor(random(0,max))
             }
         }
@@ -88,14 +88,14 @@ class combatantManager{
     }
     activateCombatants(type,id){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
                 this.combatants[a].activate(type,id)
             }
         }
     }
     targetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0&&this.combatants[a].life>0){
+            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
                 this.combatants[a].markTarget()
             }
             if((this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26)&&
@@ -200,11 +200,11 @@ class combatantManager{
             this.battle.counter.enemy++
         }
     }
-    summonConstruct(tilePosition,type,team,direction){
+    summonConstruct(tilePosition,type,team,direction,builder){
         let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
         if(index>=0){
             let tile=this.battle.tileManager.tiles[index]
-            this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false)
+            this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
         }
@@ -291,9 +291,17 @@ class combatantManager{
         this.sort()
         this.reorder()
     }
-    addCombatantConstruct(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion){
+    addCombatantConstruct(x,y,relativeX,relativeY,tileX,tileY,type,team,direction,minion,builder){
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
         this.combatants[this.combatants.length-1].construct=true
+        this.combatants[this.combatants.length-1].builder=builder
+        this.combatants[this.combatants.length-1].activated=
+            types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==2||
+            types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==4||
+            types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==5
+        if(this.combatants[this.combatants.length-1].name=='Turret'){
+            this.combatants[this.combatants.length-1].autoAim()
+        }
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }

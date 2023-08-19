@@ -488,6 +488,7 @@ function intentDescription(attack,user,info){
 		case 225: return `Kill Self\nReturn Next Turn,\nHealed to Full`
 		case 228: return `Counter ${info?calculateIntent(attack.effect[0],user,0):`?`} All This Combat`
 		case 229: return `Apply ${info?calculateIntent(attack.effect[0],user,0):`?`} Take Per Turn`
+		case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Player`
 
 		default: return `INVALID`
 	}

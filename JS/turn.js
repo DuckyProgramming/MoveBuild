@@ -853,6 +853,10 @@ class turn{
                     this.remove=true
                     this.selfRemoved=true
                 break
+                case 5:
+                    this.userCombatant.autoAim()
+                    this.remove=true
+                break
                 default:
                     this.remove=true
                 break
@@ -1233,51 +1237,61 @@ class turn{
                         }
                     break
                     case 4: case 10: case 29: case 48: case 65: case 72: case 102: case 108: case 110: case 111:
-                    case 126: case 182: case 190:
+                    case 126: case 182: case 190: case 230:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(1)
                         }
                         this.userCombatant.runAnimation(1/30,1)
                         if(this.timer==15){
-                            if(this.type==10||this.type==65||this.type==126){
-                                this.battle.combatantManager.allEffect(6,[this.effect[0]])
-                                if(this.type==65){
+                            switch(this.type){
+                                case 10:
+                                    this.battle.combatantManager.allEffect(6,[this.effect[0]])
+                                break
+                                case 65:
+                                    this.battle.combatantManager.allEffect(6,[this.effect[0]])
                                     this.battle.combatantManager.allEffect(9,[1])
-                                }else if(this.type==126){
+                                break
+                                case 126:
+                                    this.battle.combatantManager.allEffect(6,[this.effect[0]])
                                     this.battle.combatantManager.allEffect(9,[2])
-                                }
-                            }else if(this.type==111){
-                                this.userCombatant.statusEffect('Metallicize',this.effect[0])
-                            }else{
-                                this.userCombatant.addBlock(this.effect[0])
-                                switch(this.type){
-                                    case 29:
-                                        this.userCombatant.statusEffect('Retain Block',1)
-                                    break
-                                    case 48:
-                                        this.userCombatant.statusEffect('Retain Block',2)
-                                    break
-                                    case 72:
-                                        this.userCombatant.statusEffect('Strength',this.effect[1])
-                                    break
-                                    case 102:
-                                        this.userCombatant.statusEffect('Retain Block',3)
-                                    break
-                                    case 108:
-                                        this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
-                                    break
-                                    case 110:
-                                        this.userCombatant.statusEffect('Retain Block',1)
-                                        this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
-                                    break
-                                    case 182:
-                                        this.userCombatant.statusEffect('Retain Block',6)
-                                    break
-                                    case 190:
-                                        this.userCombatant.statusEffect('Armor',this.effect[1])
-                                        this.userCombatant.statusEffect('Strength',this.effect[2])
-                                    break
-                                }
+                                break
+                                case 111:
+                                    this.userCombatant.statusEffect('Metallicize',this.effect[0])
+                                break
+                                case 230:
+                                    this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
+                                break
+                                default:
+                                    this.userCombatant.addBlock(this.effect[0])
+                                    switch(this.type){
+                                        case 29:
+                                            this.userCombatant.statusEffect('Retain Block',1)
+                                        break
+                                        case 48:
+                                            this.userCombatant.statusEffect('Retain Block',2)
+                                        break
+                                        case 72:
+                                            this.userCombatant.statusEffect('Strength',this.effect[1])
+                                        break
+                                        case 102:
+                                            this.userCombatant.statusEffect('Retain Block',3)
+                                        break
+                                        case 108:
+                                            this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
+                                        break
+                                        case 110:
+                                            this.userCombatant.statusEffect('Retain Block',1)
+                                            this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
+                                        break
+                                        case 182:
+                                            this.userCombatant.statusEffect('Retain Block',6)
+                                        break
+                                        case 190:
+                                            this.userCombatant.statusEffect('Armor',this.effect[1])
+                                            this.userCombatant.statusEffect('Strength',this.effect[2])
+                                        break
+                                    }
+                                break
                             }
                         }else if(this.timer>=30){
                             this.remove=true

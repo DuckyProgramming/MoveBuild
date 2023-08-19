@@ -258,17 +258,21 @@ class battle{
     }
     setupStash(){
         this.relicManager.setupStash()
+        this.combatantManager.resetCombatants()
     }
     setupBossStash(){
         this.relicManager.setupBossStash()
+        this.combatantManager.resetCombatants()
     }
     setupEvent(){
         this.eventManagers.forEach(eventManager=>eventManager.pickEvent())
         this.eventManagers.forEach(eventManager=>eventManager.setup())
+        this.combatantManager.resetCombatants()
     }
     setupSpecificEvent(event){
         this.eventManagers.forEach(eventManager=>eventManager.event=event)
         this.eventManagers.forEach(eventManager=>eventManager.setup())
+        this.combatantManager.resetCombatants()
     }
     setupStats(){
         this.overlayManager.closeAll()

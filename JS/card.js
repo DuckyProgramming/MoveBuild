@@ -733,13 +733,14 @@ class card{
             case 616: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 617: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nTarget Will Face\nAway and Attack`; break
             case 618: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nApply ${effect[2]} Frail`; break
-
             case 619: string+=`Gain ${effect[0]} Metal\nIncreases by ${effect[1]}`; break
+
             case 620: string+=`Build a Spike Pillar`; break
             case 621: string+=`Build a Projector`; break
             case 622: string+=`Build a Turret`; break
             case 623: string+=`Build a Readout`; break
             case 624: string+=`Build a Strengthener`; break
+            case 625: string+=`Gain ${effect[0]} Metal\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
 
 
 

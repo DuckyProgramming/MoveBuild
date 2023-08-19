@@ -45,6 +45,7 @@ class combatant{
         this.programmedDeath=false
         this.blocked=0
         this.taken=0
+        this.builder=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
         this.collect={life:this.life}
         this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
@@ -1459,13 +1460,59 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
             break
             case 'Wall':
-                this.anim={direction:direction,body:0}
+                this.anim={direction:direction}
                 this.fades={body:1}
                 this.trigger={display:{body:true}}
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={in:[120,120,120],out:[100,100,100]}
+            break
+            case 'Spike Pillar':
+                this.anim={direction:direction}
+                this.fades={body:1}
+                this.trigger={display:{body:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[200,195,190],out:[160,155,150]}
+            break
+            case 'Projector':
+                this.anim={direction:direction,light:1}
+                this.fades={body:1,light:1}
+                this.trigger={display:{body:true,light:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[120,120,120],out:[100,100,100],light:[100,200,255]}
+            break
+            case 'Turret':
+                this.anim={direction:direction}
+                this.fades={base:1,body:1,dot:1}
+                this.graphics={arms:[{bottom:{x:0,y:-25}},{bottom:{x:0,y:-25}}]}
+                this.trigger={display:{base:true,body:true,dot:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:[125,125,125]}
+            break
+            case 'Readout':
+                /*this.anim={direction:direction}
+                this.fades={body:1}
+                this.trigger={display:{body:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[120,120,120],out:[100,100,100]}*/
+            break
+            case 'Strengthener':
+                /*this.anim={direction:direction}
+                this.fades={body:1}
+                this.trigger={display:{body:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[120,120,120],out:[100,100,100]}*/
             break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
@@ -2396,6 +2443,9 @@ class combatant{
             case 'Soul':
                 this.statusEffect('Dissipating',5)
             break
+            case 'Spike Pillar':
+                this.statusEffect('Counter All Combat',4)
+            break
         }
         if(this.team==0){
             if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
@@ -2441,7 +2491,7 @@ class combatant{
                 this.statusEffect('Strength',2)
                 this.statusEffect('Dexterity',2)
             }
-        }else{
+        }else if(!this.construct&&!this.support){
             if(game.ascend>=6){
                 this.life*=0.8
                 this.collect.life*=0.8
@@ -2600,9 +2650,12 @@ class combatant{
                     this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
                 }
             break
+            case 'Turret':
+                this.graphics={arms:[{bottom:{x:lsin(this.anim.direction)*40,y:-25}},{bottom:{x:lsin(this.anim.direction)*40,y:-25}}]}
+            break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp':
-            case 'Wall': break
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': break
             default:
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -3041,6 +3094,19 @@ class combatant{
             this.takeDamage(this.status.main[96],-1)
         }
     }
+    autoAim(){
+        let list=[]
+        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+            if(legalTargetCombatant(0,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].team!=this.team){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            let position=this.battle.combatantManager.combatants[list[floor(random(0,list.length))]].relativePosition
+            this.goal.anim.direction=round(atan2(position.x-this.relativePosition.x,position.y-this.relativePosition.y)/60-1/2)*60+30
+            this.activated=true
+        }
+    }
     activate(type,id){
         if(this.life>0&&!this.moved){
             if(this.spec.includes(0)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players){
@@ -3060,7 +3126,7 @@ class combatant{
             let target=this.getTarget()
             this.targetTile=this.convertTile(target)
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(this.battle.combatantManager.combatants[a].team>0&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2)){
+                if(this.battle.combatantManager.combatants[a].team!=this.team&&type==0||this.battle.combatantManager.combatants[a].id==id&&(type==1||type==2)){
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
@@ -4328,10 +4394,11 @@ class combatant{
                 }
             break
             case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine':
+            case 'Projector':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Strengthener': break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -4993,8 +5060,12 @@ class combatant{
                     break
                 }
             break
+            case 'Projector':
+                this.animSet.loop+=rate
+                this.anim.light=lsin(this.animSet.loop*180)+1
+            break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Strengthener': break
             default:
                 switch(type){
                     case 0:
@@ -11418,6 +11489,85 @@ class combatant{
                         this.layer.line(20,0,-16,-40)
                     }
 				break
+                case 'Spike Pillar':
+                    if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        for(let a=0,la=15;a<la;a++){
+                            if(lcos(a*96+this.anim.direction+this.time)<=0){
+                                this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*4,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
+                                this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*4,-47+a*3,lsin(a*96+this.anim.direction+this.time)*4,-43+a*3,lsin(a*96+this.anim.direction+this.time)*16,-45+a*3)
+                            }
+                        }
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.rect(0,-24,8,48,2)
+                        this.layer.fill(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        for(let a=0,la=15;a<la;a++){
+                            if(lcos(a*96+this.anim.direction+this.time)>0){
+                                this.layer.ellipse(lsin(a*96+this.anim.direction+this.time)*4,-45+a*3,lcos(a*96+this.anim.direction+this.time)*4,4)
+                                this.layer.triangle(lsin(a*96+this.anim.direction+this.time)*4,-47+a*3,lsin(a*96+this.anim.direction+this.time)*4,-43+a*3,lsin(a*96+this.anim.direction+this.time)*16,-45+a*3)
+                            }
+                        }
+                    }
+                break
+                case 'Projector':
+                    if(this.trigger.display.light){
+                        this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.light*0.1*this.anim.light)
+                        for(let a=0,la=10;a<la;a++){
+                            this.layer.quad(-16,-16,16,-16,18+a,-28-a*2,-18-a,-28-a*2)
+                        }
+                    }
+                    if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(4)
+                        this.layer.quad(-20,0,20,0,16,-16,-16,-16)
+                    }
+                break
+                case 'Turret':
+                    if(this.trigger.display.base){
+                        this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
+                        this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>0){
+                                this.layer.rect(15*lsin(this.anim.direction+a*90),-5,30*lcos(this.anim.direction+a*90),10)
+                            }
+                        }
+                        if(lcos(this.anim.direction)<=0.1){
+                            this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                        }
+                    }
+                    if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.body.in)[0],this.flashColor(this.color.body.in)[1],this.flashColor(this.color.body.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.body.out)[0],this.flashColor(this.color.body.out)[1],this.flashColor(this.color.body.out)[2],this.fade*this.fades.body)
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>0){
+                                this.layer.rect(20*lsin(this.anim.direction+a*90),-25,40*lcos(this.anim.direction+a*90),40)
+                            }
+                        }
+                    }
+                    if(this.trigger.display.dot){
+                        this.layer.fill(this.flashColor(this.color.dot)[0],this.flashColor(this.color.dot)[1],this.flashColor(this.color.dot)[2],this.fade*this.fades.dot)
+                        this.layer.noStroke()
+                        for(let a=0,la=2;a<la;a++){
+                            if(lcos(this.anim.direction-90+a*180)>0){
+                                this.layer.ellipse(20*lsin(this.anim.direction-90+a*180),-25,20*lcos(this.anim.direction-90+a*180),20)
+                            }
+                        }
+                    }
+                    if(this.trigger.display.base&&lcos(this.anim.direction)>0.1){
+                        this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
+                        this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
+                        this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                    }
+                break
+                case 'Readout':
+                    if(this.trigger.display.body){
+                    }
+                break
+                case 'Strengthener':
+                    if(this.trigger.display.body){
+                    }
+                break
                 case '':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
@@ -12964,7 +13114,7 @@ class combatant{
                             this.deTarget()
                             let allDead=true
                             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                                if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].life>0){
+                                if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].life>0&&!this.battle.combatantManager.combatants[a].support){
                                     allDead=false
                                 }
                             }

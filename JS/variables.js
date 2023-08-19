@@ -3434,13 +3434,19 @@ types={
                 {effect:[10,1,4],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
                 {effect:[15,1,6],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
-        },
-
-        {
+        },{
             name:'Upscale',rarity:0,list:6,
             levels:[
                 {effect:[2,1],attack:619,cost:1,target:[0],spec:[],class:4},
                 {effect:[3,1],attack:619,cost:1,target:[0],spec:[],class:4},
+            ],
+        },
+
+        {
+            name:'Supply\nCrate',rarity:1,list:6,
+            levels:[
+                {effect:[10,1],attack:625,cost:3,target:[0],spec:[],class:4},
+                {effect:[12,2],attack:625,cost:3,target:[0],spec:[],class:4},
             ],
         },{
             name:'Build\nSpike Pillar',rarity:0,list:6,
@@ -3482,7 +3488,11 @@ types={
 
         //get metal
 
+        //skim - move and get metal
+
         //movements
+
+        //gib- destroys building but returns metal
 
         
 
@@ -4300,7 +4310,7 @@ types={
         {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[4]},{type:161,effect:[6]},{type:162,effect:[8]}],description:`Oh shiny`},
         {name:'Host Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
         {name:'Host',life:44,behavior:12,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
-        {name:'Antihwurmp',life:25,behavior:0,spec:[10],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
+        {name:'Antihwurmp',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
         {name:'Junkie',life:40,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:9,effect:[8]},{type:79,effect:[6]},{type:167,effect:[1,3]}],description:`Purchases product`},
         {name:'Prestige',life:131,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:168,effect:[2]}],description:`Back for more?`},
         {name:'Darkblot',life:51,behavior:13,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:31,effect:[8]},{type:29,effect:[12]},{type:186,effect:[]}],description:`Blame the Lobster`},
@@ -4353,8 +4363,8 @@ types={
 
         {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Spike Pillar',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
-        {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Does your job for you`},
-        {name:'Turret',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Sentry goin' up`},
+        {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:230,effect:[6]}],description:`Does your job for you`},
+        {name:'Turret',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
         {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Big brain augmentation`},
         {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Get ripped`},
 
@@ -4595,6 +4605,7 @@ types={
         {name:'Confusion',class:1},
         {name:'Counter All',class:4},
         {name:'Apply Take Per Turn',class:1},
+        {name:'Builer Block',class:2},//230
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -9379,7 +9390,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
