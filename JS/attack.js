@@ -69,7 +69,7 @@ class attack{
             case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
             case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
             case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
-            case 618:
+            case 618: case 632: case 633: case 634:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -83,7 +83,7 @@ class attack{
             case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
             case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485:
             case 486: case 503: case 570: case 571: case 573: case 574: case 575: case 585: case 619: case 620:
-            case 621: case 622: case 623: case 624:
+            case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -267,6 +267,9 @@ class attack{
 
                     this.targetDistance.push(distTargetCombatant(0,this.userCombatant,this.targetCombatant[a]))
                 }
+                if(this.targetCombatant.length==0){
+                    this.remove=true
+                }
             break
         }
     }
@@ -288,11 +291,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
                     break
                     case 46:
-                        if(this.targetCombatant.getStatus('Bleed')>0){
-                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
-                        }else{
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Bleed')?2:1),this.user)
                     break
                     case 88:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy*this.energy,this.user)
@@ -302,18 +301,10 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     case 101:
-                        if(this.battle.counter.turnPlayed[this.player]<=1){
-                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
-                        }else{
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.battle.counter.turnPlayed[this.player]<=1?2:1),this.user)
                     break
                     case 117:
-                        if(this.userCombatant.getStatus('Weak')>0){
-                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
-                        }else{
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.getStatus('Weak')>0?2:1),this.user)
                     break
                     case 119:
                         if(this.battle.cardManagers[this.player].hand.allClass(1)){
@@ -336,11 +327,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*this.combo,this.user)
                     break
                     case 193:
-                        if(this.targetCombatant.spec.includes(2)||this.targetCombatant.spec.includes(12)){
-                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
-                        }else{
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*((this.targetCombatant.spec.includes(2)||this.targetCombatant.spec.includes(12))?2:1),this.user)
                     break
                     case 265:
                         this.targetCombatant.takeDamage(this.effect[0]*this.battle.counter.turnPlayed[1],this.user)
@@ -382,11 +369,7 @@ class attack{
                         this.userCombatant.life-=this.effect[1]*this.energy
                     break
                     case 371:
-                        if(this.userCombatant.life<this.userCombatan.base.life*0.5){
-                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
-                        }else{
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.life<this.userCombatan.base.life*0.5?2:1),this.user)
                     break
                     case 376:
                         this.targetCombatant.takeDamage(floor(this.userCombatant.life/this.effect[0])*this.effect[1],this.user)
@@ -404,11 +387,7 @@ class attack{
                     break
                     case 475:
                         let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
-                        if(index>=0&&this.battle.tileManager.tiles[index].type.includes(19)){
-                            this.targetCombatant.takeDamage(this.effect[0]*2,this.user)
-                        }else{
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*(index>=0&&this.battle.tileManager.tiles[index].type.includes(19)?2:1),this.user)
                     break
                     case 510:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.getOrbNumber(-1),this.user)
@@ -2616,7 +2595,8 @@ class attack{
             case 159: case 160: case 161: case 162: case 163: case 173: case 177: case 272: case 292: case 295:
             case 297: case 314: case 316: case 326: case 351: case 352: case 382: case 408: case 419: case 433:
             case 452: case 472: case 474: case 482: case 533: case 537: case 538: case 539: case 548: case 585:
-            case 592: case 620: case 621: case 622: case 623: case 624:
+            case 592: case 620: case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629:
+            case 630: case 631:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -2808,6 +2788,30 @@ class attack{
                         break
                         case 624:
                             this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Strengthener',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 626:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Explosive Turret',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 627:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Multiturret',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 628:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Barbed Pillar',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 629:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Gun Rack',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 630:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Repulse Turret',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 631:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Machine Gun',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                     }
@@ -3171,7 +3175,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 80: case 590: case 609:
+            case 80: case 590: case 609: case 632: case 633: case 634:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(25)
                 }
@@ -3181,13 +3185,27 @@ class attack{
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
                 }else if(this.timer==5*this.targetDistance+15){
-                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                    switch(this.type){
+                        case 634:
+                            this.targetCombatant.takeDamage((abs(this.direction-this.targetCombatant.goal.anim.direction)<30||abs(this.direction-this.targetCombatant.goal.anim.direction-360)<30||abs(this.direction-this.targetCombatant.goal.anim.direction+360)<30)?this.effect[0]+this.effect[1]:this.effect[0],this.user,1)
+                        break
+                        default:
+                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                        break
+                    }
                     switch(this.type){
                         case 80:
                             this.targetCombatant.statusEffect('Frail',this.effect[1])
                         break
                         case 609:
                             this.targetCombatant.statusEffect('Temporary Strength',-this.effect[1])
+                        break
+                        case 632:
+                            this.targetCombatant.statusEffect('Single Take Double Damage',this.effect[1])
+                        break
+                        case 633:
+                            this.targetCombatant.statusEffect('Single Take Double Damage',this.effect[1])
+                            this.battle.dropDraw(this.player,findName('1-Shooter',types.card),0,0)
                         break
                     }
                 }else if(this.timer>=max(30,5*this.targetDistance+25)){
@@ -5693,6 +5711,7 @@ class attack{
                         this.targetCombatant[0].takeDamage(this.effect[0],this.user,1)
                     }else if(this.timer>=max(30,5*this.targetDistance[0]+25)){
                         this.targetCombatant.splice(0,1)
+                        this.targetDistance.splice(0,1)
                         this.timer=0
                     }
                 }else{

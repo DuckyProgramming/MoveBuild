@@ -99,7 +99,7 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].name=='Turret'&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
+            if(this.battle.combatantManager.combatants[a].spec.includes(17)&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
                 this.turns.push(new turn(5,this.battle,0,0,a))
             }
         }

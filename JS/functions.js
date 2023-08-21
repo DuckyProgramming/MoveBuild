@@ -491,6 +491,7 @@ function intentDescription(attack,user,info){
 		case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Builder`
 		case 231: return `Draw ${info?attack.effect[0]:`?`} Less\nCard${attack.effect[0]!=1||info?`s`:``} Next Turn\nto Builder`
 		case 232: return `Builder Gains ${info?attack.effect[0]:`?`}\nTemporary Strength`
+		case 233: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTo All Targets`
 
 		default: return `INVALID`
 	}
@@ -833,6 +834,9 @@ function enemy(index){
 }
 function combo(value){
 	current.combatantManager.combatants[0].combo+=value
+}
+function metal(value){
+	current.combatantManager.combatants[0].metal+=value
 }
 function status(name){
 	return findList(name,current.combatantManager.combatants[0].status.name)

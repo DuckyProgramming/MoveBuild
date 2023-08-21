@@ -361,7 +361,7 @@ class card{
             case 237: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage`:``}\nPush 1 Tile Left Back`; break
             case 239: string+=`Gain ${effect[0]} Combo\nPer Turn`; break
             case 240: string+=`Gain ${effect[0]} Combo\nNext Turn`; break
-            case 241: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[0],10)} More Damage\nWhen Up to Wall\nMove 1 Tile Away`; break
+            case 241: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nWhen Up to Wall\nMove 1 Tile Away`; break
             case 242: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}\nat Range 1-2`; break
             case 243: string+=`Pull Target 1 Tile\nTarget Will Face User\nAdvance`; break
             case 244: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 2 Tiles\nAround Right`; break
@@ -734,13 +734,26 @@ class card{
             case 617: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nTarget Will Face\nAway and Attack`; break
             case 618: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nApply ${effect[2]} Frail`; break
             case 619: string+=`Gain ${effect[0]} Metal\nIncreases by ${effect[1]}`; break
-
             case 620: string+=`Build a Spike Pillar`; break
             case 621: string+=`Build a Projector`; break
             case 622: string+=`Build a Turret`; break
             case 623: string+=`Build a Readout`; break
             case 624: string+=`Build a Strengthener`; break
             case 625: string+=`Gain ${effect[0]} Metal\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+
+            case 626: string+=`Build an Explosive Turret`; break
+            case 627: string+=`Build a Multiturret`; break
+            case 628: string+=`Build a Barbed Pillar`; break
+            case 629: string+=`Build a Gun Rack`; break
+            case 630: string+=`Build a Repulse Turret`; break
+            case 631: string+=`Build a Machine Gun`; break
+
+            case 632: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes Double\nDamage Next Hit`; break
+            case 633: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes Double\nDamage Next Hit\nAdd a 1-Shooter\nto Draw`; break
+            case 634: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nFrom Directly Behind`; break
+
+
+
 
 
 

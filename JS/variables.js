@@ -3478,6 +3478,48 @@ types={
                 {effect:[],attack:624,cost:3,target:[1,1,1],spec:[21],class:7},
                 {effect:[],attack:624,cost:3,target:[1,1,1],spec:[21,2],class:7},
             ],
+        },{
+            name:'Build\nExplosive Turret',rarity:0,list:6,
+            levels:[
+                {effect:[],attack:626,cost:6,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:626,cost:6,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nMultiturret',rarity:0,list:6,
+            levels:[
+                {effect:[],attack:627,cost:8,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:627,cost:8,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nBarbed Pillar',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:628,cost:3,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:628,cost:3,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nGun Rack',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:629,cost:4,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:629,cost:4,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nRepulse Turret',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:630,cost:4,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:630,cost:4,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'Build\nMachine Gun',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:631,cost:10,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:631,cost:10,target:[1,1,1],spec:[21,2],class:7},
+            ],
+        },{
+            name:'2-Shooter',rarity:0,list:6,
+            levels:[
+                {effect:[5,1],attack:633,cost:1,target:[2,1,4],spec:[0,1],class:1},
+                {effect:[8,1],attack:633,cost:1,target:[2,1,4],spec:[0,1],class:1},
+            ],
         },
 
         //miniturret
@@ -3800,8 +3842,8 @@ types={
         },{
             name:'Ouroboros',rarity:-1,list:0,
             levels:[
-                {effect:[4,2],attack:79,cost:1,target:[2,1,2],spec:[],class:1},
                 {effect:[6,2],attack:79,cost:1,target:[2,1,2],spec:[],class:1},
+                {effect:[9,3],attack:79,cost:1,target:[2,1,2],spec:[],class:1},
             ],
         },{
             name:'Glock',rarity:-1,list:0,
@@ -3840,6 +3882,18 @@ types={
             levels:[
                 {effect:[],attack:587,cost:0,target:[28],spec:[1,2],class:4},
                 {effect:[],attack:587,cost:0,target:[28],spec:[1,2],class:4},
+            ],
+        },{
+            name:'1-Shooter',rarity:-1,list:0,
+            levels:[
+                {effect:[6,1],attack:632,cost:1,target:[2,1,4],spec:[0,1],class:1},
+                {effect:[9,1],attack:632,cost:1,target:[2,1,4],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Revolver',rarity:-1,list:0,
+            levels:[
+                {effect:[8,4],attack:634,cost:1,target:[2,1,3],spec:[0,1],class:1},
+                {effect:[12,6],attack:634,cost:1,target:[2,1,3],spec:[0,1],class:1},
             ],
         },
 
@@ -4364,10 +4418,16 @@ types={
         {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Spike Pillar',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
         {name:'Projector',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:230,effect:[6]}],description:`Does your job for you`},
-        {name:'Turret',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
+        {name:'Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
         {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:231,effect:[1]}],description:`Big brain augmentation`},
         {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:232,effect:[2]}],description:`Get ripped`},
-
+        {name:'Explosive Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:208,effect:[12]}],description:`Sentry goin' up`},
+        {name:'Multiturret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:233,effect:[8]}],description:`Sentry goin' up`},
+        {name:'Barbed Pillar',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
+        {name:'Gun Rack',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:234,effect:[1]}],description:`Big brain augmentation`},
+        {name:'Repulse Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:235,effect:[6]}],description:`Sentry goin' up`},
+        {name:'Machine Gun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:129,effect:[5]}],description:`Sentry goin' up`},
+        
 
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
@@ -4608,6 +4668,9 @@ types={
         {name:'Builder Block',class:2},//230
         {name:'Builder Draw',class:2},
         {name:'Builder Temporary Strength',class:2},
+        {name:'Gun All',class:5},
+        {name:'Builder Gun',class:2},
+        {name:'Push Repulse',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},

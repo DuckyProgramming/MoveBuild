@@ -299,7 +299,7 @@ class combatantManager{
             types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==2||
             types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==4||
             types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==5
-        if(this.combatants[this.combatants.length-1].name=='Turret'){
+        if(this.combatants[this.combatants.length-1].spec.includes(17)){
             this.combatants[this.combatants.length-1].autoAim()
         }
         if(this.id<this.battle.players){
@@ -480,7 +480,7 @@ class combatantManager{
     getArea(team,tilePosition,range){
         let combatants=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team!=team&&legalTargetCombatant(0,0,range,{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)){
+            if(this.combatants[a].team!=team&&this.combatants[a].life>0&&legalTargetCombatant(0,0,range,{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)){
                 combatants.push(this.combatants[a])
             }
         }
