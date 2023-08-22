@@ -740,17 +740,19 @@ class card{
             case 623: string+=`Build a Readout`; break
             case 624: string+=`Build a Strengthener`; break
             case 625: string+=`Gain ${effect[0]} Metal\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
-
             case 626: string+=`Build an Explosive Turret`; break
             case 627: string+=`Build a Multiturret`; break
             case 628: string+=`Build a Barbed Pillar`; break
             case 629: string+=`Build a Gun Rack`; break
             case 630: string+=`Build a Repulse Turret`; break
             case 631: string+=`Build a Machine Gun`; break
-
             case 632: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes Double\nDamage Next Hit`; break
             case 633: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes Double\nDamage Next Hit\nAdd a 1-Shooter\nto Draw`; break
             case 634: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nFrom Directly Behind`; break
+
+            case 635: string+=`Gain ${effect[0]} Dodge\nAdd ${this.calculateEffect(effect[1],1)} Block\nNext Turn`; break
+            case 636: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Dodge\nNext Turn`; break
+            case 637: string+=`Gain ${effect[0]} Currency`; break
 
 
 
@@ -814,6 +816,9 @@ class card{
         }
         if(spec.includes(20)){
             string+='\nClaw'
+        }
+        if(spec.includes(22)){
+            string+='\nQuickdraw'
         }
         if(string[0]=='\n'){
             string=string.substring(1,string.length)

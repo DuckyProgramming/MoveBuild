@@ -270,7 +270,7 @@ class cardManager{
         }
         this.draw(tempDrawAmount)
         this.tempDraw=0
-        if(turn%2==0&&game.ascend>=24){
+        if(turn%4==0&&game.ascend>=24){
             this.reserve.addShuffle(findName('Dazed',types.card),0,game.playerNumber+1)
         }
     }

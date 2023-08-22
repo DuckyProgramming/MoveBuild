@@ -11596,6 +11596,7 @@ class combatant{
                     if(this.trigger.display.base){
                         this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                         this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
+                        this.layer.strokeWeight(5)
                         for(let a=0,la=4;a<la;a++){
                             if(lcos(this.anim.direction+a*90)>0){
                                 this.layer.rect(15*lsin(this.anim.direction+a*90),-5,30*lcos(this.anim.direction+a*90),10)
@@ -11624,6 +11625,7 @@ class combatant{
                     if(this.trigger.display.body){
                         this.layer.fill(this.flashColor(this.color.body.in)[0],this.flashColor(this.color.body.in)[1],this.flashColor(this.color.body.in)[2],this.fade*this.fades.body)
                         this.layer.stroke(this.flashColor(this.color.body.out)[0],this.flashColor(this.color.body.out)[1],this.flashColor(this.color.body.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(5)
                         for(let a=0,la=4;a<la;a++){
                             if(lcos(this.anim.direction+a*90)>0){
                                 this.layer.rect(20*lsin(this.anim.direction+a*90),-25,40*lcos(this.anim.direction+a*90),40)
@@ -11633,6 +11635,7 @@ class combatant{
                     if(this.trigger.display.dot){
                         this.layer.fill(this.flashColor(this.color.dot.in)[0],this.flashColor(this.color.dot.in)[1],this.flashColor(this.color.dot.in)[2],this.fade*this.fades.dot)
                         this.layer.stroke(this.flashColor(this.color.dot.out)[0],this.flashColor(this.color.dot.out)[1],this.flashColor(this.color.dot.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(5)
                         this.layer.noStroke()
                         for(let a=0,la=2;a<la;a++){
                             if(lcos(this.anim.direction-90+a*180)>0){
@@ -11647,6 +11650,7 @@ class combatant{
                     if(this.trigger.display.base&&lcos(this.anim.direction)>0.05){
                         this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                         this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
+                        this.layer.strokeWeight(5)
                         if(this.name=='Machine Gun'){
                             this.layer.strokeWeight(1.5)
                             this.layer.rect(35*lsin(this.anim.direction),-35,30-10*lcos(this.anim.direction),3)
@@ -13262,10 +13266,20 @@ class combatant{
                 this.displayInfoInternal()
                 this.layer.pop()
             break
+            case 'food':
+                this.layer.push()
+                this.layer.translate(450,300)
+                this.layer.scale(1.5)
+                this.displayInfoInternal()
+                this.layer.pop()
+            break
         }
     }
     updatePassive(){
         this.collect.life=this.collect.life*0.9+this.life*0.1
+    }
+    updatePassiveAnimLife(){
+        this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
     }
     update(){
         this.updatePassive()

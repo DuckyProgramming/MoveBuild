@@ -21,7 +21,7 @@ class itemManager{
         }
         for(let a=0,la=this.battle.players;a<la;a++){
             this.items.push(game.ascend>=11?[
-                new item(this.layer,a,25+(this.layer.width-50)*a,50,25+(this.layer.width-50)*a,50,0,1),
+                new item(this.layer,a,25+(this.layer.width-50)*a,50,25+(this.layer.width-50)*a,100,0,1),
                 new item(this.layer,a,75+(this.layer.width-150)*a,50,25+(this.layer.width-50)*a,100,1,1),
                 new item(this.layer,a,125+(this.layer.width-250)*a,50,25+(this.layer.width-50)*a,150,1,1)]:[
                 new item(this.layer,a,25+(this.layer.width-50)*a,50,25+(this.layer.width-50)*a,50,0,1),
@@ -281,6 +281,7 @@ class itemManager{
             if(this.items[player][a].name=='Bottled Fairy'){
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].healLifable(10*this.effectiveness[player])
                 this.items[player][a].type=1
+                this.items[a][b].refresh()
             }
         }
     }
