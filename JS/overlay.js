@@ -28,7 +28,7 @@ class overlay{
                     break
                 }
                 switch(this.args[0]){
-                    case 3: this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0); break
+                    case 3: case 17: this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0); break
                 }
             break
             case 3:
@@ -464,7 +464,7 @@ class overlay{
                 this.layer.text('Heal 10 HP',this.layer.width/2,this.layer.height/2-40)
                 this.layer.text('Close',this.layer.width/2,this.layer.height/2+40)
                 this.layer.textSize(8)
-                this.layer.text('20 Currency',this.layer.width/2,this.layer.height/2-25)
+                this.layer.text('30 Currency',this.layer.width/2,this.layer.height/2-25)
                 this.battle.combatantManager.combatants[this.player].displayInfo('food')
             break
         
@@ -777,11 +777,10 @@ class overlay{
                     }
                 break
                 case 7:
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-40},width:120,height:40})&&this.battle.currency.money[this.player]>=20){
-                        this.battle.currency.money[this.player]-=20
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-40},width:120,height:40})&&this.battle.currency.money[this.player]>=30){
+                        this.battle.currency.money[this.player]-=30
                         this.battle.combatantManager.combatants[this.player].heal(10)
-                    }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+40},width:120,height:40})){
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+40},width:120,height:40})){
                         this.active=false
                     }
                 break
@@ -1014,6 +1013,14 @@ class overlay{
                                 }
                             }
                         }
+                    }
+                break
+                case 7:
+                    if(key==UP_ARROW&&this.battle.currency.money[this.player]>=30){
+                        this.battle.currency.money[this.player]-=30
+                        this.battle.combatantManager.combatants[this.player].heal(10)
+                    }else if(code==ENTER){
+                        this.active=false
                     }
                 break
             }

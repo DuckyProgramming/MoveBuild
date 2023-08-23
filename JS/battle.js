@@ -1088,7 +1088,7 @@ class battle{
                         for(let b=0,lb=this.combatantManager.combatants.length;b<lb;b++){
                             if(this.combatantManager.combatants[b].life>0){
                                 if(this.combatantManager.combatants[b].spec.includes(13)){
-                                    this.overlayManager.overlays[0][a].activate([1,[{type:4,value:[10]}]])
+                                    this.overlayManager.overlays[0][a].activate([1,[{type:4,value:[20]}]])
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(14)){
                                     this.overlayManager.overlays[0][a].activate([1,[{type:7,value:[1]}]])

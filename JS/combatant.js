@@ -13293,8 +13293,8 @@ class combatant{
                                 case 10: this.layer.text('Attacks When Injured',40,305+a*15); break
                                 case 11: this.layer.text('Immune to Poison Tiles',40,305+a*15); break
                                 case 12: this.layer.text('Co-Boss',40,305+a*15); break
-                                case 13: this.layer.text('On Survival, Heal 10 HP',40,305+a*15); break
-                                case 14: this.layer.text('On Survival, Upgrade Card',40,305+a*15); break
+                                case 13: this.layer.text('On Survival, Heal 20 HP',40,305+a*15); break
+                                case 14: this.layer.text('On Survival, Deluxe Upgrade Card',40,305+a*15); break
                                 case 15: this.layer.text('On Survival, Move Freely',40,305+a*15); break
                                 case 16: this.layer.text('On Survival, Gain 25 Currency',40,305+a*15); break
                                 case 17: this.layer.text('Auto-Aims',40,305+a*15); break
