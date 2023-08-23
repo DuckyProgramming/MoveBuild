@@ -1183,7 +1183,7 @@ class attack{
             case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367: case 370: case 372:
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
-            case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649:
+            case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1429,6 +1429,15 @@ class attack{
                         case 649:
                             this.userCombatant.statusEffect('Strength',floor(this.userCombatant.combo/this.effect[0]))
                             this.userCombatant.combo=this.effect[1]
+                        break
+                        case 655:
+                            this.battle.cardManagers[this.player].deFatigue(this.effect[0])
+                            this.battle.cardManagers[this.player].allGroupEffect(21)
+                        break
+                        case 656:
+                            this.battle.cardManagers[this.player].deFatigue(this.effect[0])
+                            this.battle.cardManagers[this.player].reserve.sendName(this.battle.cardManagers[this.player].hand.cards,'Fatigue')
+                            this.battle.cardManagers[this.player].discard.sendName(this.battle.cardManagers[this.player].hand.cards,'Fatigue')
                         break
                     }
                 }else if(this.timer>=20){

@@ -1049,7 +1049,7 @@ types={
             levels:[
                 {effect:[3],attack:21,cost:1,target:[2,2,4],spec:[],class:3},
                 {effect:[5],attack:21,cost:0,target:[2,2,6],spec:[],class:3},
-                {effect:[5.1],attack:651,cost:0,target:[30,1,1,2,6],spec:[],class:3},
+                {effect:[5,1],attack:651,cost:0,target:[30,1,1,2,6],spec:[],class:3},
             ],
         },{
             name:'Bloodletting',rarity:0,list:2,
@@ -1266,72 +1266,84 @@ types={
             levels:[
                 {effect:[8],attack:358,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12],attack:358,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:358,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Stalldown',rarity:0,list:2,
             levels:[
                 {effect:[9,1],attack:359,cost:1,target:[0],spec:[],class:2},
                 {effect:[13,2],attack:359,cost:1,target:[0],spec:[],class:2},
+                {effect:[16,3],attack:359,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Increment',rarity:0,list:2,
             levels:[
                 {effect:[1],attack:360,cost:2,target:[0],spec:[1],class:4},
                 {effect:[1],attack:360,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:360,cost:1,target:[0],spec:[1,2],class:4},
             ],
         },{
             name:'Deplete',rarity:0,list:2,
             levels:[
                 {effect:[12,3],attack:361,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[16,4],attack:361,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[18,4],attack:361,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[22,4],attack:361,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Transmute',rarity:1,list:2,
             levels:[
                 {effect:[2],attack:362,cost:0,target:[0],spec:[1],class:4},
                 {effect:[1],attack:362,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1],attack:362,cost:0,target:[0],spec:[1,22],class:4},
             ],
         },{
             name:'Overlook',rarity:1,list:2,
             levels:[
                 {effect:[6,1],attack:363,cost:1,target:[0],spec:[1],class:4},
                 {effect:[8,2],attack:363,cost:1,target:[0],spec:[1],class:4},
+                {effect:[9,3],attack:363,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Expending\nStrike',rarity:1,list:2,
             levels:[
                 {effect:[9,2],attack:364,cost:-1,target:[2,1,1],spec:[0],class:1},
                 {effect:[13,2],attack:364,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[16,2],attack:364,cost:-1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Expending\nBlock',rarity:1,list:2,
             levels:[
                 {effect:[12,2],attack:365,cost:-1,target:[0],spec:[],class:2},
                 {effect:[17,2],attack:365 ,cost:-1,target:[0],spec:[],class:2},
+                {effect:[21,2],attack:365 ,cost:-1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Straining\nStrike',rarity:0,list:2,
             levels:[
                 {effect:[10],attack:1,cost:1,target:[2,1,1],spec:[16],class:1},
                 {effect:[15],attack:1,cost:1,target:[2,1,1],spec:[16],class:1},
+                {effect:[18],attack:1,cost:1,target:[2,1,1],spec:[16],class:1},
             ],
         },{
             name:'Continuous\nRecovery',rarity:2,list:2,
             levels:[
                 {effect:[],attack:366,cost:1,target:[0],spec:[1],class:4},
                 {effect:[],attack:366,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1],attack:655,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Concatenate',rarity:2,list:2,
             levels:[
                 {effect:[],attack:367,cost:1,target:[0],spec:[],class:4},
                 {effect:[],attack:367,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:656,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Keep\nDistance',rarity:1,list:2,
             levels:[
                 {effect:[2],attack:368,cost:0,target:[2,2,4],spec:[],class:3},
                 {effect:[4],attack:368,cost:0,target:[2,2,6],spec:[2],class:3},
+                {effect:[4,1],attack:657,cost:0,target:[30,1,1,2,6],spec:[0],class:3},
             ],
         },{
             name:'Recoup',rarity:1,list:2,
@@ -9670,7 +9682,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
