@@ -782,8 +782,10 @@ class card{
             case 664: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose All Block\nExcept ${effect[1]}`; break
             case 665: string+=`End Your Turn\nGain X${effect[0]!=0?`+${effect[0]}`:``} Energy\nAnd ${effect[1]} Temporary Strength\nNext Turn`; break
             case 666: string+=`Move to Scythe\nUp to ${effect[0]} Tile${effect[0]!=1?`s`:``} Away\nor\nMove ${effect[1]} Tile${effect[1]!=1?`s`:``}`; break
-
-
+            case 667: string+=`Apply ${effect[0]}\nRandom Debuff\nApply ${effect[1]}\nRandom Debuff`; break
+            case 668: string+=`When Damage Taken,\nAdd ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand\nAdd ${effect[1]} Shivs\nto Your Hand`; break
+            case 669: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]}\nRandom Debuff\nApply ${effect[2]}\nRandom Debuff`; break
+            case 670: string+=`Add ${effect[0]}X+${effect[1]} Shivs\nto Your Hand`; break
 
 
 
@@ -911,10 +913,10 @@ class card{
             break
             case 282:
                 if(this.base.cost>0){
-                    this.base.cost++
+                    this.base.cost--
                 }
                 if(this.cost>0){
-                    this.cost++
+                    this.cost--
                 }
             break
         }

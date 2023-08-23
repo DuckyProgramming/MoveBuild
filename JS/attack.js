@@ -69,7 +69,7 @@ class attack{
             case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
             case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
             case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
-            case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662:
+            case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667: case 669:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1198,6 +1198,7 @@ class attack{
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
             case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656:
+            case 668:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1452,6 +1453,12 @@ class attack{
                             this.battle.cardManagers[this.player].deFatigue(this.effect[0])
                             this.battle.cardManagers[this.player].reserve.sendName(this.battle.cardManagers[this.player].hand.cards,'Fatigue')
                             this.battle.cardManagers[this.player].discard.sendName(this.battle.cardManagers[this.player].hand.cards,'Fatigue')
+                        break
+                        case 668:
+                            this.userCombatant.statusEffect('Shiv on Hit',this.effect[0])
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                            }
                         break
                     }
                 }else if(this.timer>=20){
@@ -2691,7 +2698,7 @@ class attack{
             case 297: case 314: case 316: case 326: case 351: case 352: case 382: case 408: case 419: case 433:
             case 452: case 472: case 474: case 482: case 533: case 537: case 538: case 539: case 548: case 585:
             case 592: case 620: case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629:
-            case 630: case 631:
+            case 630: case 631: case 667: case 669:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -2908,6 +2915,15 @@ class attack{
                         case 631:
                             this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Machine Gun',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 667:
+                            this.targetCombatant.randomStatusInstant(this.effect[0],[1])
+                            this.targetCombatant.randomStatusInstant(this.effect[1],[1])
+                        break
+                        case 669:
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.targetCombatant.randomStatusInstant(this.effect[1],[1])
+                            this.targetCombatant.randomStatusInstant(this.effect[2],[1])                            
                         break
                     }
                 }else if(this.timer>=30){
@@ -3447,7 +3463,7 @@ class attack{
                 }
             break
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
-            case 404: case 405: case 426: case 587: case 637:
+            case 404: case 405: case 426: case 587: case 637: case 670:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(26)
                 }
@@ -3521,6 +3537,11 @@ class attack{
                         break
                         case 637:
                             this.battle.addCurrency(this.effect[0],this.player)
+                        break
+                        case 670:
+                            for(let a=0,la=min(this.effect[0]*this.energy+this.effect[1],100);a<la;a++){
+                                this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                            }
                         break
                     }
                 }else if(this.timer>=20){
