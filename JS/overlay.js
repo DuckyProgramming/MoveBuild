@@ -68,7 +68,7 @@ class overlay{
                     case 12: this.battle.cardManagers[this.player].exhaust.resetAnim(); break
                 }
                 switch(this.args[0]){
-                    case 3: this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0); break
+                    case 3: case 17: this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0); break
                     case 4: this.activated=0; break
                 }
             break
@@ -306,6 +306,7 @@ class overlay{
                             this.layer.line(6,-5,6,-9)
                             this.layer.line(6,-9,4,-10)
                             this.layer.rect(0,3,4,14)
+                            this.layer.strokeWeight(1)
                             this.layer.line(0,-9,0,-5)
                             this.layer.line(-2,-7,2,-7)
                             this.layer.pop()
@@ -351,7 +352,7 @@ class overlay{
 
                 }
                 switch(this.args[0]){
-                    case 3: this.card.fade=1; this.card.anim.afford=1; this.card.display(); break
+                    case 3: case 17: this.card.fade=1; this.card.anim.afford=1; this.card.display(); break
                 }
             break
             case 3:
@@ -639,9 +640,11 @@ class overlay{
                                     this.battle.cardManagers[this.player].deck.cards[a].select=true
                                     switch(this.args[0]){
                                         case 3: case 17:
-                                            this.card=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
-                                            this.card.page=this.page
-                                            this.card.size=1
+                                            if(!(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)){
+                                                this.card=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                                this.card.page=this.page
+                                                this.card.size=1
+                                            }
                                         break
                                     }
                                 }
@@ -874,9 +877,11 @@ class overlay{
                                     this.battle.cardManagers[this.player].deck.cards[a].select=true
                                     switch(this.args[0]){
                                         case 3: case 17:
-                                            this.card=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
-                                            this.card.page=this.page
-                                            this.card.size=1
+                                            if(!(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)){
+                                                this.card=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                                this.card.page=this.page
+                                                this.card.size=1
+                                            }
                                         break
                                     }
                                 }

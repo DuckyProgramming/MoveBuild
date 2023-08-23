@@ -168,7 +168,8 @@ class card{
             case 44: string+=`Shuffle Discard Pile\nInto Draw Pile\nDraw ${effect[0]} Card${effect[1]!=1?`s`:``}`; break
             case 45: string+=`Upgrade All Cards\nTemporarily`; break
             case 46: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nif Target Has Bleed`; break
-            case 47: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed`; break
+            case 47: case 662:
+                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed`; break
             case 48: case 100:
                 string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage`:``}\nPush 2 Tiles`; break
             case 50: string+=`Add ${this.calculateEffect(+effect[0],1)} Block\nRetain Block\nfor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
@@ -550,10 +551,10 @@ class card{
             case 429: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd 1 Winded\nto Discard`; break
             case 430: string+=`Add ${this.calculateEffect(+effect[0],1)} Block\nRetain Block\nfor ${effect[1]} Turn${effect[1]!=1?`s`:``}\n${effect[2]} Balance`; break
             case 431: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nRearm From\nAdjacent Tiles`; break
-            case 432: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDisarm on Own Tile`; break
+            case 432: case 435:
+                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDisarm on Own Tile`; break
             case 433: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Defend,\nReduce Block by ${effect[1]}`; break
             case 434: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nIf Targets Will Attack,\nReduce Damage by ${effect[1]}`; break
-            case 435: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDisarm on Own Tile`; break
             case 436: string+=`${effect[0]>0?`Apply ${effect[0]} Bleed\n`:`\n`}Push 1 Tile`; break
             case 437: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDisarm as\nNon-Reusable`; break
             case 438: string+=`Pull Target Until Adjacent\nTarget Will Face Away\nApply ${effect[0]} Confusion`; break
@@ -776,6 +777,11 @@ class card{
             case 658: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 2 Tiles\nin All Directions`; break
             case 659: string+=`Gain ${effect[0]}X+${effect[1]} Max HP`; break
             case 660: string+=`Move to Any\nEmpty Plant Tile\nor Create One`; break
+            case 661: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nif Target Has Bleed\nApply ${effect[1]} Bleed`; break
+            case 663: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Dodge\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
+            case 664: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose All Block\nExcept ${effect[1]}`; break
+            case 665: string+=`End Your Turn\nGain X${effect[0]!=0?`+${effect[0]}`:``} Energy\nAnd ${effect[1]} Temporary Strength\nNext Turn`; break
+            case 666: string+=`Move to Scythe\nUp to ${effect[0]} Tile${effect[0]!=1?`s`:``} Away\nor\nMove ${effect[1]} Tile${effect[1]!=1?`s`:``}`; break
 
 
 
