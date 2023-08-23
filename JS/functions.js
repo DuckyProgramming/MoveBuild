@@ -822,6 +822,14 @@ function quickAdd(name){
 		return 'Invalid'
 	}
 }
+function quickAddL(name,level){
+	if(findName(name,types.card)>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),level,0)
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
 function quickSummon(name){
 	current.combatantManager.summonCombatant({x:0,y:0},findName(name,types.combatant),-30+floor(random(0,2))*60)
 }

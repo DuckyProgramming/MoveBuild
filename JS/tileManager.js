@@ -208,7 +208,7 @@ class tileManager{
     }
     retargetTiles(){
         for(let a=0,la=this.tiles.length;a<la;a++){
-            if((this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==30)&&this.tiles[a].occupied==0&&
+            if((this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==31)&&this.tiles[a].occupied==0&&
             (legalTargetCombatant(this.battle.relicManager.active[150]?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||this.battle.attackManager.targetInfo[0]==6)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==20)&&this.tiles[a].occupied==0&&legalTargetCombatant(1,this.battle.attackManager.targetInfo[1]+1,this.battle.attackManager.targetInfo[2]+1,this.tiles[a],this.battle.attackManager,this.tiles)){
@@ -238,7 +238,7 @@ class tileManager{
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if(this.battle.attackManager.targetInfo[0]==19&&this.tiles[a].type.includes(3)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
-            }else if(this.battle.attackManager.targetInfo[0]==21&&this.tiles[a].occupied==0&&arrayIncludes(constants.L,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
+            }else if((this.battle.attackManager.targetInfo[0]==21||this.battle.attackManager.targetInfo[0]==31)&&this.tiles[a].occupied==0&&arrayIncludes(constants.L,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if(this.battle.attackManager.targetInfo[0]==23&&this.tiles[a].type.includes(19)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))

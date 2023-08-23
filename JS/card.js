@@ -772,8 +772,11 @@ class card{
             case 654: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile Right\nin All Directions`; break
             case 655: string+=`Remove ${effect[0]} Fatigue${effect[0]!=1?`s`:``}\nAll Fatigues\nAre Ethereal`; break
             case 656: string+=`Remove ${effect[0]} Fatigue${effect[0]!=1?`s`:``}\nMove All Fatigues\nto Your Hand`; break
-            case 656: string+=`Advance up to ${effect[0]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nEnds 2 Tiles Away\nor\nMove ${effect[1]} Tile${effect[1]!=1?`s`:``}`; break
-            
+            case 657: string+=`Advance up to ${effect[0]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nEnds 2 Tiles Away\nor\nMove ${effect[1]} Tile${effect[1]!=1?`s`:``}`; break
+            case 658: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 2 Tiles\nin All Directions`; break
+            case 659: string+=`Gain ${effect[0]}X+${effect[1]} Max HP`; break
+            case 660: string+=`Move to Any\nEmpty Plant Tile\nor Create One`; break
+
 
 
 
