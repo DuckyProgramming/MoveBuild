@@ -70,6 +70,7 @@ class attack{
             case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
             case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
             case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667: case 669:
+            case 672: case 673:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -5016,7 +5017,7 @@ class attack{
             case 520: case 526: case 531: case 532: case 534: case 535: case 536: case 543: case 544: case 545:
             case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 556: case 560: case 561:
             case 562: case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579:
-            case 583: case 584: case 600:
+            case 583: case 584: case 600: case 671: case 672: case 673:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(32)
                 }
@@ -5280,6 +5281,21 @@ class attack{
                         case 600:
                             this.battle.combatantManager.damageArea(this.targetCombatant.life,this.user,-1,this.targetCombatant.tilePosition)
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,36,[20]))
+                        break
+                        case 671:
+                            for(let a=0,la=min(this.effect[0]*this.energy+this.effect[1],100);a<la;a++){
+                                this.userCombatant.holdOrb(0)
+                            }
+                        break
+                        case 672:
+                            this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]*this.energy+this.effect[1]])
+                        break
+                        case 673:
+                            for(let a=0,la=this.effect[0];a<la;a++){
+                                this.userCombatant.holdOrb(0)
+                            }
+                            this.userCombatant.subEvoke(0,0,this.targetCombatant.id)
+                            this.userCombatant.subEvoke(0,0,this.targetCombatant.id)
                         break
 
                     }

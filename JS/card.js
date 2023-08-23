@@ -786,6 +786,9 @@ class card{
             case 668: string+=`When Damage Taken,\nAdd ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand\nAdd ${effect[1]} Shivs\nto Your Hand`; break
             case 669: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]}\nRandom Debuff\nApply ${effect[2]}\nRandom Debuff`; break
             case 670: string+=`Add ${effect[0]}X+${effect[1]} Shivs\nto Your Hand`; break
+            case 671: string+=`Hold X Basic Orb${effect[0]!=1?`s`:``}+${effect[1]}`; break
+            case 672: string+=`Evoke First Orb\n${effect[0]}X+${effect[1]} Time${effect[0]!=1?`s`:``}}`; break
+            case 673: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}\nAnd Evoke 1`; break
 
 
 
