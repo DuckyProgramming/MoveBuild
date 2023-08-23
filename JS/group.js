@@ -126,10 +126,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0}
     }
     addInitial(type,level,color){
         game.id++
@@ -235,6 +235,9 @@ class group{
     }
     upgrade(amount){
         this.status.upgrade+=amount
+    }
+    transform(amount){
+        this.status.transform+=amount
     }
     shuffle(){
         let cards=[]
@@ -900,13 +903,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform])
                     }
                 }
             break
@@ -1198,6 +1201,13 @@ class group{
                     this.status.upgrade--
                 }
             break
+            case 12:
+                this.cards[a].deSize=true
+                this.cards[a].discardEffect.push(4)
+                if(this.status.transform>0){
+                    this.status.transform--
+                }
+            break
         }
     }
     update(scene,args){
@@ -1210,6 +1220,7 @@ class group{
                 this.anim.nightmare=smoothAnim(this.anim.nightmare,this.status.nightmare!=0,0,1,5)
                 this.anim.rebound=smoothAnim(this.anim.rebound,this.status.rebound!=0,0,1,5)
                 this.anim.upgrade=smoothAnim(this.anim.upgrade,this.status.upgrade!=0,0,1,5)
+                this.anim.transform=smoothAnim(this.anim.transform,this.status.transform!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -1229,6 +1240,10 @@ class group{
                                 if(this.cards[a].level==0){
                                     this.cards[a]=upgradeCard(this.cards[a])
                                 }
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0))
+                            }
+                            if(this.cards[a].discardEffect.includes(4)){
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCard(this.cards[a])
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0))
                             }
                             if(this.cards[a].discardEffect.includes(2)){
@@ -1511,6 +1526,10 @@ class group{
                                 this.callInput(11,a)
                                 break
                             }
+                            if(this.status.transform!=0){
+                                this.callInput(12,a)
+                                break
+                            }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                 if(this.cards[a].afford){
                                     this.callInput(0,a)
@@ -1736,6 +1755,10 @@ class group{
                             }
                             if(this.status.upgrade!=0){
                                 this.callInput(11,a)
+                                break
+                            }
+                            if(this.status.transform!=0){
+                                this.callInput(12,a)
                                 break
                             }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
