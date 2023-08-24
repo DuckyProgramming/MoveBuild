@@ -788,7 +788,6 @@ class card{
             case 671: string+=`Hold X Basic Orb${effect[0]!=1?`s`:``}+${effect[1]}`; break
             case 672: string+=`Evoke First Orb\n${effect[0]}X+${effect[1]} Time${effect[0]!=1?`s`:``}}`; break
             case 673: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}\nAnd Evoke 1`; break
-            
             case 674: string+=`Move to Any Tile\nSwap With its\nOccupants`; break
             case 675: string+=`Add ${effect[0]}X+${effect[1]} Random\nColorless Cards\nto Your Hand`; break
             case 676: string+=`Destroy a Construct\nMay Exhuast When a\nConstruct is Destroyed\nReturn ${effect[0]} Metal`; break
