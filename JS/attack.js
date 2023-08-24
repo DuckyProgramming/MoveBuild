@@ -1840,7 +1840,7 @@ class attack{
                             this.battle.cardManagers[this.player].draw(this.effect[0])
                         break
                         case 640:
-                            this.battle.cardManagers[this.player].draw(this.battle.cardManagers[this.player].hand.cards.length)
+                            this.battle.cardManagers[this.player].draw(this.battle.cardManagers[this.player].hand.cards.length+this.effect[0])
                         break
                         case 645:
                             this.userCombatant.statusEffect('Energy Next Turn',this.effect[0])
