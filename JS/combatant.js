@@ -46,7 +46,7 @@ class combatant{
         this.blocked=0
         this.taken=0
         this.builder=0
-        this.base={position:{x:this.position.x,y:this.position.y},life:this.life}
+        this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
         this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
 

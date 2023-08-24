@@ -756,7 +756,6 @@ class card{
             case 638: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTransform ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 639: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${effect[1]} Times\nMore Damage If\nTarget Has Block`; break
             case 640: string+=`Draw Cards Equal\nto Hand Size${effect[0]>0?`+${effect[0]}`:``}`; break
-            
             case 641: string+=`Add to Hand:\nRiot Shield\nPepper Spray\nShock Baton\nUpgrade 2\nat Random`; break
             case 642: string+=`Add to Hand:\nFlamethrower\nImpact Grenade\nLandmine\nUpgrade 2\nat Random`; break
             case 643: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box\nUpgrade 2\nat Random`; break
@@ -789,6 +788,10 @@ class card{
             case 671: string+=`Hold X Basic Orb${effect[0]!=1?`s`:``}+${effect[1]}`; break
             case 672: string+=`Evoke First Orb\n${effect[0]}X+${effect[1]} Time${effect[0]!=1?`s`:``}}`; break
             case 673: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}\nAnd Evoke 1`; break
+            
+            case 674: string+=`Move to Any Tile\nSwap With its\nOccupants`; break
+            case 675: string+=`Add ${effect[0]}X+${effect[1]} Random\nColorless Cards\nto Your Hand`; break
+            case 676: string+=`Destroy a Construct\nMay Exhuast When a\nConstruct is Destroyed\nReturn ${effect[0]} Metal`; break
 
 
 
@@ -851,6 +854,9 @@ class card{
         }
         if(spec.includes(22)){
             string+='\nQuickdraw'
+        }
+        if(spec.includes(23)){
+            string+='\nHolding 1'
         }
         if(string[0]=='\n'){
             string=string.substring(1,string.length)

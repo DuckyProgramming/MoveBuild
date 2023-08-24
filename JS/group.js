@@ -1296,6 +1296,9 @@ class group{
                                 }
                                 this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
                             }
+                            if(this.cards[a].spec.includes(23)){
+                                this.battle.cardManagers[this.player].draw(1)
+                            }
                             this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                             a--
                             la--

@@ -273,6 +273,28 @@ class attack{
                     this.remove=true
                 }
             break
+            case 674:
+                this.targetTile=this.battle.tileManager.tiles[this.target[0]]
+
+                this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                let index3=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                if(index3>=0){
+                    this.procedure[0]=1
+                    this.targetCombatant=this.battle.combatantManager.combatants[index3]
+
+                    this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                    this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+
+                    this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                    this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                }else{
+                    this.procedure[0]=0
+                }
+            break
         }
     }
     set(){
@@ -1475,6 +1497,7 @@ class attack{
             case 387: case 390: case 392: case 398: case 418: case 422: case 423: case 431: case 451: case 499:
             case 512: case 519: case 523: case 524: case 525: case 527: case 528: case 529: case 530: case 541:
             case 542: case 595: case 603: case 605: case 607: case 612: case 640: case 645: case 647: case 665:
+            case 675:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -1854,6 +1877,11 @@ class attack{
                             this.userCombatant.statusEffect('Energy Next Turn',this.effect[0]+this.energy)
                             this.userCombatant.statusEffect('Temporary Strength Next Turn',this.effect[1])
                             this.battle.attackManager.endAfter=true
+                        break
+                        case 675:
+                            for(let a=0;a<this.effect[0]*this.energy+this.effect[1];a++){
+                                this.battle.cardManagers[this.player].addRandomColor(2,0,0,3)
+                            }
                         break
                         
                     }
@@ -3464,7 +3492,7 @@ class attack{
                 }
             break
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
-            case 404: case 405: case 426: case 587: case 637: case 670:
+            case 404: case 405: case 426: case 587: case 637: case 670: case 676:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(26)
                 }
@@ -3534,7 +3562,7 @@ class attack{
                         break
                         case 587:
                             this.targetCombatant.life=0
-                            this.programmedDeath=true
+                            this.targetCombatant.programmedDeath=true
                         break
                         case 637:
                             this.battle.addCurrency(this.effect[0],this.player)
@@ -3543,6 +3571,11 @@ class attack{
                             for(let a=0,la=min(this.effect[0]*this.energy+this.effect[1],100);a<la;a++){
                                 this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
                             }
+                        break
+                        case 676:
+                            this.targetCombatant.life=0
+                            this.userCombatant.metal+=this.effect[0]
+                            this.targetCombatant.programmedDeath=true
                         break
                     }
                 }else if(this.timer>=20){
@@ -5934,6 +5967,40 @@ class attack{
                     if(this.timer==15){
                         this.targetTile.addType(19)
                     }else if(this.timer>=30){
+                        this.remove=true
+                    }
+                }
+            break
+            case 674:
+                if(this.procedure[0]==1){
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(19)
+                    }
+                    this.userCombatant.runAnimation(1/20,19)
+                    this.targetCombatant.size=this.userCombatant.size/this.userCombatant.base.size*this.targetCombatant.base.size
+                    if(this.timer==10){
+                        let userPosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
+                        this.userCombatant.moveTile(this.direction,this.distance)
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
+                        this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
+                        this.targetCombatant.moveTile(this.direction,-this.distance)
+                        this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance)
+                        this.targetCombatant.moveTilePosition(userPosition.x,userPosition.y)
+                        this.battle.activate(1,this.userCombatant.id)
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                }else{
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(19)
+                    }
+                    this.userCombatant.runAnimation(1/20,19)
+                    if(this.timer==10){
+                        this.userCombatant.moveTile(this.direction,this.distance)
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
+                        this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                        this.battle.activate(1,this.userCombatant.id)
+                    }else if(this.timer>=20){
                         this.remove=true
                     }
                 }
