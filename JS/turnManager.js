@@ -35,7 +35,7 @@ class turnManager{
         }
     }
     loadEnemyAttackRepeatBack(enemy){
-        if(this.battle.combatantManager.combatants[enemy].team==0){
+        if(this.battle.combatantManager.combatants[enemy].team==0||this.battle.combatantManager.combatants[enemy].construct){
             this.auxiliary=true
             this.turnsBack.push(new turn(0,this.battle,
                 this.battle.combatantManager.combatants[enemy].attack[this.battle.combatantManager.combatants[enemy].intent].type,

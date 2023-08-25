@@ -1081,7 +1081,7 @@ class battle{
                                 this.overlayManager.overlays[0][a].activate([1,[
                                     {type:3,value:[]}]])
                             }
-                            if(floor(random(0,3))==0){
+                            if(floor(random(0,6))==0){
                                 this.overlayManager.overlays[0][a].activate([1,[{type:5,value:[1]}]])
                             }
                         }

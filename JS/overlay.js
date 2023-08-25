@@ -577,7 +577,7 @@ class overlay{
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+285,y:this.layer.height/2},width:40,height:40})&&(
                     this.page<ceil(this.battle.cardManagers[this.player].reserve.cards.length/15)-1&&(this.args[0]==0||this.args[0]==6)||
                     this.page<ceil(this.battle.cardManagers[this.player].discard.cards.length/15)-1&&(this.args[0]==1||this.args[0]==5||this.args[0]==11)||
-                    this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||this.args[0]==10)||
+                    this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||this.args[0]==10||this.args[0]==17)||
                     this.page<ceil(this.battle.cardManagers[this.player].exhaust.cards.length/15)-1&&(this.args[0]==12)||
                     this.page<ceil(this.battle.cardManagers[this.player].reserve.sorted.length/15)-1&&(this.args[0]==13||this.args[0]==14||this.args[0]==15||this.args[0]==16))){
                         this.page++
@@ -820,7 +820,7 @@ class overlay{
                     }else if(code==RIGHT_ARROW&&(
                     this.page<ceil(this.battle.cardManagers[this.player].reserve.cards.length/15)-1&&(this.args[0]==0||this.args[0]==6)||
                     this.page<ceil(this.battle.cardManagers[this.player].discard.cards.length/15)-1&&(this.args[0]==1||this.args[0]==5||this.args[0]==11)||
-                    this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||this.args[0]==10)||
+                    this.page<ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1&&(this.args[0]==2||this.args[0]==3||this.args[0]==4||this.args[0]==7||this.args[0]==8||this.args[0]==10||this.args[0]==17)||
                     this.page<ceil(this.battle.cardManagers[this.player].exhaust.cards.length/15)-1&&(this.args[0]==12)||
                     this.page<ceil(this.battle.cardManagers[this.player].reserve.sorted.length/15)-1&&(this.args[0]==13||this.args[0]==14||this.args[0]==15||this.args[0]==16))){
                         this.page++

@@ -139,25 +139,27 @@ class group{
     }
     add(type,level,color){
         game.id++
-        if(this.battle.initialized&&types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
-            this.battle.relicManager.active[66]--
-            if(this.battle.relicManager.active[66]<=0){
-                this.battle.relicManager.deactivate(66)
-            }
-        }else{
-            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
-            if(this.battle.initialized&&this.id==0){
-                if(
-                    this.cards[this.cards.length-1].level==0&&(
-                    this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
-                    this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
-                    this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
-                    this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player))){
-                    this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+        if(type>=0&&type<types.card.length){
+            if(this.battle.initialized&&types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
+                this.battle.relicManager.active[66]--
+                if(this.battle.relicManager.active[66]<=0){
+                    this.battle.relicManager.deactivate(66)
                 }
-                this.battle.relicManager.activate(5,[this.player])
-                if(types.card[type].rarity>=0||types.card[type].list>=0){
-                    this.battle.stats.card[this.player]++
+            }else{
+                this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
+                if(this.battle.initialized&&this.id==0){
+                    if(
+                        this.cards[this.cards.length-1].level==0&&(
+                        this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
+                        this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
+                        this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
+                        this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player))){
+                        this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+                    }
+                    this.battle.relicManager.activate(5,[this.player])
+                    if(types.card[type].rarity>=0||types.card[type].list>=0){
+                        this.battle.stats.card[this.player]++
+                    }
                 }
             }
         }

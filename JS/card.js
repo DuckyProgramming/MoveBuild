@@ -390,7 +390,7 @@ class card{
             case 267: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDefenses in Hand`; break
             case 268: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Weak:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 269: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Vulnerable:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
-            case 270: string+=`Add ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand\nDraw ${effect[1]} Card ${effect[1]!=1?`s`:``}`; break
+            case 270: string+=`Add ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 271: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCounter ${effect[1]}`; break
             case 272: string+=`Apply ${effect[0]}\nRandom Debuff`; break
             case 273: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
@@ -791,7 +791,14 @@ class card{
             case 674: string+=`Move to Any Tile\nSwap With its\nOccupants`; break
             case 675: string+=`Add ${effect[0]}X+${effect[1]} Random\nColorless Cards\nto Your Hand`; break
             case 676: string+=`Destroy a Construct\nMay Exhuast When a\nConstruct is Destroyed\nReturn ${effect[0]} Metal`; break
+            case 677: string+=`Heal All Health\nto Construct`; break
+            case 678: string+=`Construct Takes\nExtra Turn`; break
+            case 679: string+=`Construct Gains\n${effect[0]} Ethereal`; break
+            case 680: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 681: string+=`Transform ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 682: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nTransform ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
 
+            case 683: string+=`Destroy a Construct\nReturn Used Metal`; break
 
 
 

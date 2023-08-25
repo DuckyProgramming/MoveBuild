@@ -70,7 +70,7 @@ class attack{
             case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
             case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
             case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667: case 669:
-            case 672: case 673:
+            case 672: case 673: case 677: case 678: case 679: case 682:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -431,6 +431,15 @@ class attack{
                     case 639:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.block>0?this.effect[1]:1),this.user)
                     break
+                    case 677:
+                        this.targetCombatant.life=this.targetCombatant.base.life
+                    break
+                    case 678:
+                        this.battle.turnManager.loadEnemyAttackRepeatBack(this.targetCombatant.id)
+                    break
+                    case 679:
+                        this.targetCombatant.statusEffect('Ethereal',this.effect[0])
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -742,7 +751,7 @@ class attack{
             case 414: case 415: case 427: case 429: case 435: case 444: case 449: case 460: case 462: case 469:
             case 475: case 496: case 497: case 507: case 508: case 509: case 510: case 511: case 514: case 540:
             case 558: case 559: case 580: case 581: case 582: case 588: case 596: case 597: case 601: case 604:
-            case 606: case 610: case 638: case 639: case 661:
+            case 606: case 610: case 638: case 639: case 661: case 677: case 678: case 679:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){
@@ -785,7 +794,7 @@ class attack{
             case 194: case 197: case 206: case 216: case 221: case 235: case 242: case 261: case 262: case 281:
             case 303: case 320: case 321: case 322: case 354: case 355: case 359: case 365: case 377: case 386:
             case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443: case 461: case 463:
-            case 502: case 513: case 515: case 518: case 522: case 546: case 547: case 589: case 602:
+            case 502: case 513: case 515: case 518: case 522: case 546: case 547: case 589: case 602: case 682:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(1)
                 }
@@ -986,6 +995,9 @@ class attack{
                         break
                         case 602:
                             this.battle.cardManagers[this.player].hand.upgrade(this.effect[1])
+                        break
+                        case 682:
+                            this.battle.cardManagers[this.player].hand.transform(this.effect[1])
                         break
                     }
                 }else if(this.timer>=30){
@@ -1497,7 +1509,7 @@ class attack{
             case 387: case 390: case 392: case 398: case 418: case 422: case 423: case 431: case 451: case 499:
             case 512: case 519: case 523: case 524: case 525: case 527: case 528: case 529: case 530: case 541:
             case 542: case 595: case 603: case 605: case 607: case 612: case 640: case 645: case 647: case 665:
-            case 675:
+            case 675: case 680: case 681:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(5)
                 }
@@ -1883,6 +1895,13 @@ class attack{
                                 this.battle.cardManagers[this.player].addRandomColor(2,0,0,3)
                             }
                         break
+                        case 680:
+                            this.battle.cardManagers[this.player].draw(this.effect[0])
+                            this.battle.cardManagers[this.player].hand.exhaust(this.effect[1])
+                        break
+                        case 681:
+                            this.battle.cardManagers[this.player].hand.transform(this.effect[0])
+                        break
                         
                     }
                 }else if(this.timer>=20){
@@ -1904,9 +1923,9 @@ class attack{
                     this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/(15*this.targetDistance))
                 }
                 if(this.timer>=15*this.targetDistance){
-                    this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
-                    this.battle.activate(1,this.userCombatant.id)
                     if(this.targetClass==2){
+                        this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
+                        this.battle.activate(1,this.userCombatant.id)
                         this.targetCombatant.moveTilePosition(this.tilePosition.x,this.tilePosition.y)
                         this.battle.activate(1,this.targetCombatant.id)
                         switch(this.type){
@@ -1914,6 +1933,9 @@ class attack{
                                 this.userCombatant.evoke(1,this.targetCombatant.id,[1])
                             break
                         }
+                    }else{
+                        this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                        this.battle.activate(1,this.userCombatant.id)
                     }
                     this.remove=true
                 }
