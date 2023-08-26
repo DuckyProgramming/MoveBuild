@@ -79,7 +79,7 @@ class itemManager{
             delete this.items[player][this.items[player].length-1]
             this.items[player].splice(this.items[player].length-1,1)
         }
-        this.position-=player
+        this.position-=amount
     }
     activateItem(type,player){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)]

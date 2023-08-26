@@ -797,11 +797,22 @@ class card{
             case 680: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 681: string+=`Transform ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 682: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nTransform ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
-
             case 683: string+=`Destroy a Construct\nReturn Used Metal`; break
+            case 684: string+=`Gain ${effect[0]} Metal\nGain ${effect[1]} Less Per\nBuilt Construct`; break
+            case 685: string+=`Build a Maintainer`; break
+            case 686: string+=`Build a Metal Box`; break
+            case 687: string+=`Build an Upgrader`; break
+            case 688: string+=`Build a Transformer`; break
 
+            case 689: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[0]} Metal`; break
+            case 690: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[0]} Metal`; break
+            case 691: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nConstructs Attack Target`; break
+            case 692: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\n${effect[1]} Metal`; break
+            case 693: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nUpward or Horizontally`; break
+            case 694: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDownward or Horizontally`; break
 
-
+            case 695: string+=`Build a Doubler`; break
+            case 696: string+=`Build an Exhauster`; break
 
 
 
@@ -1194,37 +1205,46 @@ class card{
             this.layer.scale(this.size)
             this.layer.noFill()
             this.layer.strokeWeight(3)
+            let stack=0
             if(anim[0]>0){
                 this.layer.stroke(255,0,0,this.fade*anim[0])
-                this.layer.rect(0,0,this.width+2,this.height+2,5)
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
             }
             if(anim[1]>0){
                 this.layer.stroke(100,255,255,this.fade*anim[1])
-                this.layer.rect(0,0,this.width+2,this.height+2,5)
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
             }
             if(anim[2]>0){
                 this.layer.stroke(255,225,0,this.fade*anim[2])
-                this.layer.rect(0,0,this.width+2,this.height+2,5)
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
             }
             if(anim[3]>0){
                 this.layer.stroke(255,100,255,this.fade*anim[3])
-                this.layer.rect(0,0,this.width+2,this.height+2,5)
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
             }
             if(anim[4]>0){
                 this.layer.stroke(255,200,200,this.fade*anim[4])
-                this.layer.rect(0,0,this.width+2,this.height+2,5)
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
             }
             if(anim[5]>0){
                 this.layer.stroke(0,150,255,this.fade*anim[5])
-                this.layer.rect(0,0,this.width+2,this.height+2,5)
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
             }
             if(anim[6]>0){
                 this.layer.stroke(200,225,255,this.fade*anim[6])
-                this.layer.rect(0,0,this.width+2,this.height+2,5)
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
             }
             if(anim[7]>0){
                 this.layer.stroke(255,255,150,this.fade*anim[7])
-                this.layer.rect(0,0,this.width+2,this.height+2,5)
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
             }
             this.layer.pop()
         }

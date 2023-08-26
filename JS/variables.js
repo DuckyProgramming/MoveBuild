@@ -3812,6 +3812,36 @@ types={
                 {effect:[],attack:631,cost:10,target:[1,1,1],spec:[21,2],class:7},
                 {effect:[],attack:631,cost:10,target:[1,1,1],spec:[21,2,22],class:7},
             ],
+        },{
+            name:'Build\nMiniturret',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:685,cost:2,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:685,cost:2,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:685,cost:2,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },{
+            name:'Build\nMetal Box',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:686,cost:4,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:686,cost:4,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:686,cost:4,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },
+        
+        {
+            name:'Build\nUpgrader',rarity:2,list:6,
+            levels:[
+                {effect:[],attack:687,cost:1,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:687,cost:1,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:687,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },{
+            name:'Build\nTransformer',rarity:2,list:6,
+            levels:[
+                {effect:[],attack:688,cost:1,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:688,cost:1,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:688,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
         },
         
         
@@ -4186,20 +4216,92 @@ types={
                 {effect:[14,1],attack:682,cost:1,target:[],spec:[],class:2},
                 {effect:[18,1],attack:682,cost:1,target:[],spec:[],class:2},
             ],
-        },
-
-        {
+        },{
             name:'Gib',rarity:1,list:6,
             levels:[
                 {effect:[],attack:683,cost:1,target:[28],spec:[],class:4},
                 {effect:[],attack:683,cost:0,target:[28],spec:[],class:4},
                 {effect:[],attack:683,cost:0,target:[28],spec:[22],class:4},
             ],
+        },{
+            name:'Starter\nPack',rarity:1,list:6,
+            levels:[
+                {effect:[4,2],attack:684,cost:1,target:[0],spec:[],class:4},
+                {effect:[5,2],attack:684,cost:1,target:[0],spec:[],class:4},
+                {effect:[6,2],attack:684,cost:1,target:[0],spec:[],class:4},
+            ],
         },
 
+        {
+            name:'Reuse',rarity:2,list:6,
+            levels:[
+                {effect:[6,1],attack:689,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[10,1],attack:689,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[13,1],attack:689,cost:1,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Skim',rarity:0,list:6,
+            levels:[
+                {effect:[1,1],attack:690,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,2],attack:690,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,2],attack:690,cost:1,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Shoot\nHim!',rarity:2,list:6,
+            levels:[
+                {effect:[5,1],attack:691,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[10,1],attack:691,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[14,1],attack:691,cost:2,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Material\nExchange',rarity:0,list:6,
+            levels:[
+                {effect:[8,1],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Upward\nMove',rarity:0,list:6,
+            levels:[
+                {effect:[1],attack:693,cost:1,target:[33,1,3],spec:[0],class:3},
+                {effect:[1],attack:693,cost:0,target:[33,1,3],spec:[0],class:3},
+                {effect:[1],attack:693,cost:0,target:[33,1,3],spec:[],class:3},
+            ],
+        },{
+            name:'Downward\nMove',rarity:0,list:6,
+            levels:[
+                {effect:[1],attack:694,cost:1,target:[34,1,3],spec:[0],class:3},
+                {effect:[1],attack:694,cost:0,target:[34,1,3],spec:[0],class:3},
+                {effect:[1],attack:694,cost:0,target:[34,1,3],spec:[],class:3},
+            ],
+        },
 
+        /*{
+            name:'Step',rarity:0,list:6,
+            levels:[
+                {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },
+        
+        {
+            name:'Build\nDoubler',rarity:2,list:6,
+            levels:[
+                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },{
+            name:'Build\nExhauster',rarity:2,list:6,
+            levels:[
+                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },*/
 
-        //miniturret
+        
 
 
 
@@ -4207,14 +4309,7 @@ types={
 
         //get metal
 
-        //skim - move and get metal
-
         //movements
-
-        //gib- destroys building but returns metal
-
-        
-
 
 
 
@@ -5215,13 +5310,19 @@ types={
         {name:'Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[10]}],description:`Sentry goin' up`},
         {name:'Readout',life:12,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:231,effect:[1]}],description:`Big brain augmentation`},
         {name:'Strengthener',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:232,effect:[2]}],description:`Get ripped`},
-        {name:'Explosive Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:208,effect:[12]}],description:`Sentry goin' up`},
-        {name:'Multiturret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:233,effect:[8]}],description:`Sentry goin' up`},
+        {name:'Explosive Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:208,effect:[12]}],description:`Sentry but exploding`},
+        {name:'Multiturret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:233,effect:[8]}],description:`Bullet spammer`},
         {name:'Barbed Pillar',life:16,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`They're walking into it`},
         {name:'Gun Rack',life:10,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:234,effect:[1]}],description:`Big brain augmentation`},
-        {name:'Repulse Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:235,effect:[6]}],description:`Sentry goin' up`},
-        {name:'Machine Gun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:129,effect:[5]}],description:`Sentry goin' up`},
-        
+        {name:'Repulse Turret',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:235,effect:[6]}],description:`Get off my property!`},
+        {name:'Machine Gun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:129,effect:[5]}],description:`More gun`},
+        {name:'Miniturret',life:8,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:236,effect:[2]}],description:`Less gun`},
+        {name:'Metal Box',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:237,effect:[1]}],description:`Turtling strat`},
+        {name:'Upgrader',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:238,effect:[1]}],description:`PoV: no upgrades`},
+        {name:'Transformer',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:239,effect:[1]}],description:`PoV: no good cards`},
+        {name:'Doubler',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:240,effect:[1]}],description:`PoV: only 1 copy`},
+        {name:'Exhauster',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1]}],description:`PoV: too many bad cards`},
+
 
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
@@ -5459,11 +5560,17 @@ types={
         {name:'Counter All',class:4},
         {name:'Apply Take Per Turn',class:1},
         {name:'Builder Block',class:2},//230
-        {name:'Builder Draw',class:2},
+        {name:'Builder Draw',class:4},
         {name:'Builder Temporary Strength',class:2},
         {name:'Gun All',class:5},
-        {name:'Builder Gun',class:2},
+        {name:'Builder Gun',class:4},
         {name:'Push Repulse',class:1},
+        {name:'Triple Gun',class:1},
+        {name:'Builder Metal',class:4},
+        {name:'Builder Upgrade',class:4},
+        {name:'Builder Transform',class:4},
+        {name:'Builder Duplicate',class:4},//240
+        {name:'Builder Exhaust',class:4},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},

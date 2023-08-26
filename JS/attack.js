@@ -70,7 +70,7 @@ class attack{
             case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
             case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
             case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667: case 669:
-            case 672: case 673: case 677: case 678: case 679: case 682:
+            case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -85,7 +85,7 @@ class attack{
             case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485:
             case 486: case 503: case 570: case 571: case 573: case 574: case 575: case 585: case 619: case 620:
             case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631:
-            case 660: case 663: case 664: case 666:
+            case 660: case 663: case 664: case 666: case 685: case 686: case 687: case 688:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1233,7 +1233,7 @@ class attack{
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
             case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656:
-            case 668:
+            case 668: case 684:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1494,6 +1494,15 @@ class attack{
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
                             }
+                        break
+                        case 684:
+                            let finalvalue=this.effect[0]
+                            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                                if(this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].life>0){
+                                    finalvalue-=this.effect[1]
+                                }
+                            }
+                            this.userCombatant.metal+=max(0,finalvalue)
                         break
                     }
                 }else if(this.timer>=20){
@@ -2749,7 +2758,7 @@ class attack{
             case 297: case 314: case 316: case 326: case 351: case 352: case 382: case 408: case 419: case 433:
             case 452: case 472: case 474: case 482: case 533: case 537: case 538: case 539: case 548: case 585:
             case 592: case 620: case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629:
-            case 630: case 631: case 667: case 669:
+            case 630: case 631: case 667: case 669: case 685: case 686: case 687: case 688:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -2975,6 +2984,22 @@ class attack{
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                             this.targetCombatant.randomStatusInstant(this.effect[1],[1])
                             this.targetCombatant.randomStatusInstant(this.effect[2],[1])                            
+                        break
+                        case 685:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Miniturret',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 686:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Metal Box',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 687:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Upgrader',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 688:
+                            this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Transformer',types.combatant),this.userCombatant.team,this.direction,this.user)
+                            this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
                         break
                     }
                 }else if(this.timer>=30){
@@ -3514,7 +3539,7 @@ class attack{
                 }
             break
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
-            case 404: case 405: case 426: case 587: case 637: case 670: case 676:
+            case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(26)
                 }
@@ -3598,6 +3623,15 @@ class attack{
                             this.targetCombatant.life=0
                             this.userCombatant.metal+=this.effect[0]
                             this.targetCombatant.programmedDeath=true
+                        break
+                        case 683:
+                            this.targetCombatant.life=0
+                            let index=findName(`Build\n${this.targetCombatant.name}`,types.card)
+                            if(index>=0){
+                                this.userCombatant.metal+=types.card[index].levels[0].cost
+                            }
+                            this.targetCombatant.programmedDeath=true
+                            this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
                         break
                     }
                 }else if(this.timer>=20){

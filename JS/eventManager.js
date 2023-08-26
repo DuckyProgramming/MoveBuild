@@ -377,6 +377,7 @@ class eventManager{
                         if(this.page==0&&a==0){
                             userCombatant.loseMaxHP(userCombatant.base.life/4)
                             this.battle.cardManagers[this.player].deck.removeAllName('Strike')
+                            this.battle.cardManagers[this.player].deck.removeAllName('Strike-')
                         }else if(this.page==1&&a==0){
                             for(let b=0,lb=5;b<lb;b++){
                                 this.battle.cardManagers[this.player].deck.add(findName('Bite',types.card),0,0)

@@ -1572,6 +1572,43 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,200,0],out:[0,240,0]},dot:{in:[125,125,125],out:[105,105,105]}}
             break
+            case 'Miniturret':
+                this.anim={direction:direction}
+                this.fades={base:1,body:1,dot:1}
+                this.graphics={arms:[{bottom:{x:0,y:-15}},{bottom:{x:0,y:-15}}]}
+                this.trigger={display:{base:true,body:true,dot:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+            break
+            case 'Metal Box':
+                this.anim={direction:direction,light:1}
+                this.fades={body:1,metal:1}
+                this.trigger={display:{body:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[120,120,120],out:[100,100,100],metal:[140,120,160]}
+            break
+            case 'Upgrader':
+                this.anim={direction:direction,light:1}
+                this.fades={body:1}
+                this.trigger={display:{body:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[120,120,120],out:[100,100,100],lightIn:[200,225,255],lightOut:[150,200,255]}
+            break
+            case 'Transformer':
+                this.anim={direction:direction,light:1}
+                this.fades={body:1}
+                this.trigger={display:{body:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[120,120,120],out:[100,100,100],lightIn:[255,255,150],lightOut:[255,255,100]}
+            break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
@@ -2711,12 +2748,12 @@ class combatant{
                     this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
                 }
             break
-            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun':
+            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret':
                 this.graphics={arms:[{bottom:{x:lsin(this.anim.direction)*40,y:-25}},{bottom:{x:lsin(this.anim.direction)*40,y:-25}}]}
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': break
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': break
             default:
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -2792,7 +2829,7 @@ class combatant{
             case 129: case 130: case 134: case 135: case 140: case 141: case 144: case 145: case 148: case 151:
             case 152: case 154: case 158: case 160: case 161: case 162: case 165: case 173: case 178: case 179:
             case 180: case 184: case 188: case 191: case 193: case 194: case 196: case 199: case 200: case 201:
-            case 202: case 206: case 208: case 235:
+            case 202: case 206: case 208: case 235: case 236:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
@@ -3252,7 +3289,7 @@ class combatant{
                         case 130: case 134: case 136: case 140: case 141: case 144: case 145: case 148: case 151: case 152:
                         case 158: case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184:
                         case 185: case 188: case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202:
-                        case 206: case 208: case 235:
+                        case 206: case 208: case 235: case 236:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3411,7 +3448,7 @@ class combatant{
                 case 130: case 134: case 140: case 141: case 144: case 145: case 148: case 151: case 152: case 158:
                 case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184: case 188:
                 case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
-                case 235:
+                case 235: case 236:
                     for(let b=0,lb=this.targetTile.length;b<lb;b++){
                         if(
                             this.targetTile[b].tilePosition.x>=0&&
@@ -4464,11 +4501,11 @@ class combatant{
                 }
             break
             case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine':
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -5130,12 +5167,12 @@ class combatant{
                     break
                 }
             break
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer':
                 this.animSet.loop+=rate
                 this.anim.light=lsin(this.animSet.loop*180)+1
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': break
             default:
                 switch(type){
                     case 0:
@@ -11746,6 +11783,48 @@ class combatant{
                         }
                     }
                 break
+                case 'Miniturret':
+                    if(this.trigger.display.base){
+                        this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
+                        this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
+                        this.layer.strokeWeight(5)
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>0){
+                                this.layer.rect(10*lsin(this.anim.direction+a*90),-5,20*lcos(this.anim.direction+a*90),10)
+                            }
+                        }
+                        if(lcos(this.anim.direction)<=0.05){
+                            this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                        }
+                    }
+                    if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.body.in)[0],this.flashColor(this.color.body.in)[1],this.flashColor(this.color.body.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.body.out)[0],this.flashColor(this.color.body.out)[1],this.flashColor(this.color.body.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(5)
+                        for(let a=0,la=4;a<la;a++){
+                            if(lcos(this.anim.direction+a*90)>0){
+                                this.layer.rect(15*lsin(this.anim.direction+a*90),-15,30*lcos(this.anim.direction+a*90),20)
+                            }
+                        }
+                    }
+                    if(this.trigger.display.dot){
+                        this.layer.fill(this.flashColor(this.color.dot.in)[0],this.flashColor(this.color.dot.in)[1],this.flashColor(this.color.dot.in)[2],this.fade*this.fades.dot)
+                        this.layer.stroke(this.flashColor(this.color.dot.out)[0],this.flashColor(this.color.dot.out)[1],this.flashColor(this.color.dot.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(5)
+                        this.layer.noStroke()
+                        for(let a=0,la=2;a<la;a++){
+                            if(lcos(this.anim.direction-90+a*180)>0){
+                                this.layer.ellipse(15*lsin(this.anim.direction-90+a*180),-15,12*lcos(this.anim.direction-90+a*180),12)
+                            }
+                        }
+                    }
+                    if(this.trigger.display.base&&lcos(this.anim.direction)>0.05){
+                        this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
+                        this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
+                        this.layer.strokeWeight(5)
+                        this.layer.rect(30*lsin(this.anim.direction),-15,30-15*lcos(this.anim.direction),10)
+                    }
+                break
                 case 'Readout':
                     if(this.trigger.display.light){
                         this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.light*0.5*this.anim.light)
@@ -11822,6 +11901,33 @@ class combatant{
                         this.layer.rect(2.5,-20,20,5)
                     }
                 break
+				case 'Metal Box':
+                    if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.metal)[0],this.flashColor(this.color.metal)[1],this.flashColor(this.color.metal)[2],this.fade*this.fades.metal*(2-this.anim.light))
+                        this.layer.noStroke()
+                        this.layer.ellipse(0,-25,24,24)
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(4)
+                        this.layer.quad(-20,0,20,0,20,-25,-20,-25)
+                        this.layer.line(-20,0,20,-25)
+                        this.layer.line(20,0,-20,-25)
+                    }
+				break
+				case 'Upgrader': case 'Transformer':
+                    if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(4)
+                        this.layer.rect(-25,-40,10,25)
+                        this.layer.rect(0,-65,25,10)
+                        this.layer.rect(0,-10,25,20)
+                        this.layer.rect(0,-40,40,40)
+                        this.layer.fill(this.flashColor(mergeColor(this.color.lightIn,[255,255,255],this.anim.light-1))[0],this.flashColor(mergeColor(this.color.lightIn,[255,255,255],this.anim.light-1))[1],this.flashColor(mergeColor(this.color.lightIn,[255,255,255],this.anim.light-1))[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(mergeColor(this.color.lightOut,[255,255,255],this.anim.light-1))[0],this.flashColor(mergeColor(this.color.lightOut,[255,255,255],this.anim.light-1))[1],this.flashColor(mergeColor(this.color.lightOut,[255,255,255],this.anim.light-1))[2],this.fade*this.fades.body)
+                        this.layer.ellipse(0,-40,20,20)
+                    }
+				break
                 case '':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){

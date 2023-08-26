@@ -140,7 +140,7 @@ class nodeManager{
     }
     onClick(){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            if(dist(inputs.rel.x,inputs.rel.y,this.nodes[a].position.x,this.nodes[a].position.y)<25&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0&&this.nodes[a].tilePosition.y==this.tilePosition.y+1))){
+            if(dist(inputs.rel.x,inputs.rel.y,this.nodes[a].position.x,this.nodes[a].position.y)<25&&!this.nodes[a].complete&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2))){
                 this.tilePosition.x=this.nodes[a].tilePosition.x
                 this.tilePosition.y=this.nodes[a].tilePosition.y
                 this.nodes[a].complete=true
@@ -156,7 +156,7 @@ class nodeManager{
     }
     onKey(key,code){
         for(let a=0,la=this.nodes.length;a<la;a++){
-            if((int(key)+9)%10==this.nodes[a].tilePosition.x&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0&&this.nodes[a].tilePosition.y==this.tilePosition.y+1))){
+            if((int(key)+9)%10==this.nodes[a].tilePosition.x&&!this.nodes[a].complete&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2))){
                 this.tilePosition.x=this.nodes[a].tilePosition.x
                 this.tilePosition.y=this.nodes[a].tilePosition.y
                 this.nodes[a].complete=true
