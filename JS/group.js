@@ -1239,9 +1239,7 @@ class group{
                         if(this.cards[a].discardEffect.length>0){
                             this.cards[a].deSize=false
                             if(this.cards[a].discardEffect.includes(0)){
-                                if(this.cards[a].level==0){
-                                    this.cards[a]=upgradeCard(this.cards[a])
-                                }
+                                this.cards[a]=upgradeCard(this.cards[a])
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0))
                             }
                             if(this.cards[a].discardEffect.includes(4)){
@@ -1293,9 +1291,7 @@ class group{
                             this.status.rebound--
                         }else{
                             if(this.cards[a].discardEffectBuffered.includes(0)){
-                                if(this.cards[a].level==0){
-                                    this.cards[a]=upgradeCard(this.cards[a])
-                                }
+                                this.cards[a]=upgradeCard(this.cards[a])
                                 this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
                             }
                             if(this.cards[a].spec.includes(23)){
@@ -1615,7 +1611,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==8){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
-                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(2,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
+                if(legalTargetCombatant(2,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
                     this.callInput(2,a)
                 }
             }

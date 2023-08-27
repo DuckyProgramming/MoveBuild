@@ -13,7 +13,7 @@ class cardManager{
         this.drop=new group(this.layer,this.battle,this.player,4)
         this.exhaust=new group(this.layer,this.battle,this.player,5)
 
-        this.drawAmount=6
+        this.drawAmount=variants.lowDraw?5:6
         this.tempDraw=0
 
         this.initialListing()
@@ -221,13 +221,13 @@ class cardManager{
             this.battle.stats.drawn[this.player]+=amount
             let amountLeft=amount-this.reserve.cards.length
             if(this.reserve.cards.length>0){
-                this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),5,this.hand)
+                this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),variant==1?6:5,this.hand)
             }
             if(amountLeft>0&&this.discard.cards.length>0){
-                this.discard.send(this.reserve.cards,0,-1,variant==1?6:4)
+                this.discard.send(this.reserve.cards,0,-1,4)
                 this.reserve.shuffle()
                 if(this.reserve.cards.length>0){
-                    this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),5,this.hand)
+                    this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),variant==1?6:5,this.hand)
                 }
             }
             if(this.battle.relicManager.hasRelic(106,this.player)){

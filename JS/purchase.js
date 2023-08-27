@@ -47,7 +47,7 @@ class purchase{
             switch(this.type){
                 case 1:
                     if(this.battle.relicManager.hasRelic(110,purchaser)){
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,max(types.card[this.card.type].levels.length-1,this.card.level+this.battle.relicManager.active[110]),this.card.color)
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color)
                     }else{
                         this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color)
                     }

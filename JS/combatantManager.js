@@ -82,7 +82,7 @@ class combatantManager{
     bossHeal(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team>0){
-                this.combatants[a].heal(game.ascend>=5?(this.combatants[a].base.life-this.combatants[a].life)*0.75:(this.combatants[a].base.life-this.combatants[a].life))
+                this.combatants[a].healLifable(game.ascend>=5?(this.combatants[a].base.life-this.combatants[a].life)*0.75:(this.combatants[a].base.life-this.combatants[a].life))
             }
         }
     }
@@ -439,7 +439,7 @@ class combatantManager{
     statusAreaBlock(name,amount,team,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].team!=team&&this.combatants[a].blocked<=0&&distance>=0&&distance<=1){
+            if(this.combatants[a].team!=team&&this.combatants[a].block<=0&&distance>=0&&distance<=1){
                 this.combatants[a].statusEffect(name,amount)
             }
         }

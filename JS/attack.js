@@ -70,7 +70,7 @@ class attack{
             case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
             case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
             case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667: case 669:
-            case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683:
+            case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 697:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -335,7 +335,7 @@ class attack{
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }
                     break
-                    case 129: case 229:
+                    case 129: case 228:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.combo,this.user)
                     break
                     case 140:
@@ -1609,7 +1609,7 @@ class attack{
                             this.battle.cardManagers[this.player].allEffect(2,15)
                         break
                         case 207:
-                            this.battle.cardManagers[this.player].discard(this.effect[0])
+                            this.battle.cardManagers[this.player].hand.discard(this.effect[0])
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.battle.cardManagers[this.player].addRandom(2,0,3)
                             }
@@ -2758,7 +2758,7 @@ class attack{
             case 297: case 314: case 316: case 326: case 351: case 352: case 382: case 408: case 419: case 433:
             case 452: case 472: case 474: case 482: case 533: case 537: case 538: case 539: case 548: case 585:
             case 592: case 620: case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629:
-            case 630: case 631: case 667: case 669: case 685: case 686: case 687: case 688:
+            case 630: case 631: case 667: case 669: case 685: case 686: case 687: case 688: case 697:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -3000,6 +3000,10 @@ class attack{
                         case 688:
                             this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Transformer',types.combatant),this.userCombatant.team,this.direction,this.user)
                             this.battle.cardManagers[this.player].hand.add(findName('Unbuild',types.card),0,0)
+                        break
+                        case 697:
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.battle.turnManager.loadEnemyRandomMove(this.targetCombatant.id)
                         break
                     }
                 }else if(this.timer>=30){
@@ -4036,20 +4040,24 @@ class attack{
                 }
             break
             case 165:
-                if(this.timer==1){
-                    this.targetCombatant.startAnimation(19)
-                }
-                this.targetCombatant.runAnimation(1/20,19)
-                if(this.timer==10){
-                    if(this.type==87){
-                        this.battle.combatantManager.clearTile(this.targetTile)
-                    }
-                    this.targetCombatant.moveTile(this.direction,this.distance)
-                    this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
-                    this.targetCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
-                    this.battle.activate(1,this.targetCombatant.id)
-                }else if(this.timer>=20){
+                if(this.targetCombatant.life<=0){
                     this.remove=true
+                }else{
+                    if(this.timer==1){
+                        this.targetCombatant.startAnimation(19)
+                    }
+                    this.targetCombatant.runAnimation(1/20,19)
+                    if(this.timer==10){
+                        if(this.type==87){
+                            this.battle.combatantManager.clearTile(this.targetTile)
+                        }
+                        this.targetCombatant.moveTile(this.direction,this.distance)
+                        this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
+                        this.targetCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                        this.battle.activate(1,this.targetCombatant.id)
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
                 }
             break
             case 176:

@@ -982,7 +982,7 @@ class battle{
                     this.menu.anim.ascend[a]=smoothAnim(this.menu.anim.ascend[a],game.ascend==a,0,1,5)
                     this.menu.anim.ascendDesc[a]=smoothAnim(this.menu.anim.ascendDesc[a],pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5}),-1,1,5)
                 }
-                for(let a=0,la=this.menu.anim.animRate.length;a<=la;a++){
+                for(let a=0,la=this.menu.anim.animRate.length;a<la;a++){
                     this.menu.anim.animRate[a]=smoothAnim(this.menu.anim.animRate[a],game.animRate==a+1,0,1,5)
                 }
                 for(let a=0,la=this.menu.anim.turnTime.length;a<la;a++){
@@ -1054,6 +1054,7 @@ class battle{
                 }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive){
                     this.result.victory=true
                     this.overlayManager.closeAll()
+                    let prefered=floor(random(0,this.overlayManager.overlays[0].length))
                     for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
                         this.overlayManager.overlays[0][a].active=true
                         if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
@@ -1093,7 +1094,7 @@ class battle{
                                 if(this.combatantManager.combatants[b].spec.includes(14)){
                                     this.overlayManager.overlays[0][a].activate([1,[{type:7,value:[1]}]])
                                 }
-                                if(this.combatantManager.combatants[b].spec.includes(15)){
+                                if(this.combatantManager.combatants[b].spec.includes(15)&&a==prefered){
                                     this.overlayManager.overlays[0][a].activate([1,[{type:6,value:[1]}]])
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(16)){

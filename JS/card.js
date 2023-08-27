@@ -9,7 +9,7 @@ class card{
         this.color=color
         this.id=id
         this.cost=cost
-        if(cost==undefined){
+        if(cost==undefined&&this.type<types.card.length){
             this.cost=types.card[this.type].levels[this.level].cost
         }
 
@@ -514,7 +514,7 @@ class card{
             case 392: string+=`Gain ${effect[0]} Intangible\n${effect[1]} Balance`; break
             case 393: string+=`Gain ${effect[0]} Dexterity\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\n${effect[1]} Balance`; break
             case 394: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\n${effect[1]} Balance`; break
-            case 395: string+=`Apply ${effect[0]} Bleed\nin All Directions\nIf Targets Have\nNo Block`; break
+            case 395: string+=`Apply ${effect[0]} Bleed\nin All Directions`; break
             case 396: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRearm From\nAdjacent Tiles`; break
             case 397: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n${effect[1]} Balance`; break
             case 398: string+=`Tick Statuses\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
@@ -814,6 +814,8 @@ class card{
             case 695: string+=`Build a Doubler`; break
             case 696: string+=`Build an Exhauster`; break
 
+            case 697: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Moves in\na Random Direction`; break
+
 
 
 
@@ -825,7 +827,7 @@ class card{
             case 10: string+=`Heal ${this.calculateEffect(effect[0],4)} Health`; break
             case 23: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}`; break
             case 64: string+=`Gain ${effect[0]} Control`; break
-            case 490: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
+            case 490: string+=c`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
             case 366: string+=``; break
             case 491: string+=`Evoke First Orb\n${effect[0]} Time${effect[0]!=1?`s`:``}`; break
             */
@@ -833,7 +835,7 @@ class card{
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
         }
-        if(this.target[0]==2||this.target[0]==26||this.target[0]==29||this.target[0]==30){
+        if(this.target[0]==2||this.target[0]==17||this.target[0]==22||this.target[0]==26||this.target[0]==29||this.target[0]==30){
             string+='\nRange '+this.target[1]+'-'+this.target[2]
         }
         if(spec.includes(0)){

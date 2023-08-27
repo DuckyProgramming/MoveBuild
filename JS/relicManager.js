@@ -251,7 +251,13 @@ class relicManager{
             case 154:
                 for(let a=0,la=this.battle.cardManagers[player].deck.cards.length;a<la;a++){
                     if(this.battle.cardManagers[player].deck.cards[a].basic){
-                        this.battle.cardManagers[player].deck.cards[a]=this.battle.cardManagers[player].transformCard(this.battle.cardManagers[player].deck.cards[a])
+                        if(this.battle.cardManagers[player].deck.cards[a].name=='Step'||this.battle.cardManagers[player].deck.cards[a].name=='Step-L'||this.battle.cardManagers[player].deck.cards[a].name=='Step-R'){
+                            if(this.battle.cardManagers[player].deck.cards[a].level==0){
+                                this.battle.cardManagers[player].deck.cards[a]=upgradeCard(this.battle.cardManagers[player].deck.cards[a])
+                            }
+                        }else{
+                            this.battle.cardManagers[player].deck.cards[a]=this.battle.cardManagers[player].transformCard(this.battle.cardManagers[player].deck.cards[a])
+                        }
                     }
                 }
             break

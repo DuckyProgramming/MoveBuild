@@ -2598,6 +2598,11 @@ class combatant{
                 this.base.life*=0.9
             }
         }
+        if(variants.lowhealth){
+            this.life=round(this.life*0.2)
+            this.base.life=round(this.base.life*0.2)
+            this.collect.life=round(this.collect.life*0.2)
+        }
     }
     calculateParts(){
         this.anim.head=this.anim.direction
