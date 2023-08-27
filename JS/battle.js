@@ -247,6 +247,7 @@ class battle{
         }else{
             this.combatantManager.setTargets(this.players)
         }
+        this.combatantManager.reID()
         this.startTurn()
 
         game.collisionDamage=constants.collisionDamage
@@ -1554,6 +1555,9 @@ class battle{
                             break
                             case 'Z':
                                 this.endTurn()
+                            break
+                            case 'X':
+                                massacre(1)
                             break
                         }
                     }

@@ -817,6 +817,8 @@ class card{
             case 697: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Moves in\na Random Direction`; break
             case 698: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nDiscard ${effect[1]}\nRandom Card`; break
 
+            case 699: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[0]} Metal`; break
+
 
 
 

@@ -853,6 +853,12 @@ function kill(index){
 		return 'Invalid'
 	}
 }
+function massacre(index){
+	for(let a=index,la=current.combatantManager.combatants.length;a<la;a++){
+		current.combatantManager.combatants[a].life=0
+	}
+	return 'Dead'
+}
 function player(index){
 	return current.combatantManager.combatants[index]
 }

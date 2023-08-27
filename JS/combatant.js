@@ -2589,7 +2589,7 @@ class combatant{
                 this.statusEffect('Strength',2)
                 this.statusEffect('Dexterity',2)
             }
-        }else if(!this.construct&&!this.support){
+        }else if(this.type<=game.playerNumber){
             if(game.ascend>=6){
                 this.life*=0.8
                 this.collect.life*=0.8

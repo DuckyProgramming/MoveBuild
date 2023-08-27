@@ -14,7 +14,7 @@ class combatantManager{
     }
     assignPlayer(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team>0){
+            if(this.combatants[a].team>0&&!this.combatants[a].construct){
                 this.playerCombatantIndex[this.combatants[a].id]=a
             }
         }
@@ -39,12 +39,15 @@ class combatantManager{
                 this.combatants[a].reset()
             }
         }
-        this.assignPlayer()
-        this.sort()
+        this.reID()
+    }
+    reID(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             this.combatants[a].id=a
             this.bankHP.push(this.combatants[a].life)
         }
+        this.assignPlayer()
+        this.sort()
         this.id=this.combatants.length
     }
     setupCombatants(){
@@ -343,7 +346,7 @@ class combatantManager{
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].life>0){
                 this.bank.push(this.combatants[a])
-                if(this.combatants[a].team>0&&!this.combatants[a].construct){
+                if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
                     this.combatants.splice(a,1,new combatant(this.layer,this.battle,this.combatants[a].position.x,this.combatants[a].position.y,this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y,this.combatants[a].type,this.combatants[a].team,this.combatants[a].id,this.combatants[a].goal.anim.direction,this.combatants[a].minion))
                     this.combatants[a].life=this.bankHP[a]
                 }else{
@@ -366,7 +369,7 @@ class combatantManager{
     recount(){
         this.bank=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].life>0){
+            if(!this.combatants[a].construct){
                 this.bank.push(this.combatants[a])
                 this.combatants.splice(a,1)
                 a--
@@ -463,7 +466,7 @@ class combatantManager{
     dropAreaID(variant,type,level,color,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].id!=id&&(variant==0||this.combatants[a].blocked>0)&&distance>=0&&distance<=1&&this.combatants[a].team>0){
+            if(this.combatants[a].id!=id&&(variant==0||this.combatants[a].blocked>0)&&distance>=0&&distance<=1&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
                 this.battle.drop(this.combatants[a].id,type,level,color)
             }
         }
@@ -471,7 +474,7 @@ class combatantManager{
     energyDownAreaID(effect,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].id!=id&&distance>=0&&distance<=1&&this.combatants[a].team>0){
+            if(this.combatants[a].id!=id&&distance>=0&&distance<=1&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
                 this.battle.energy.temp[this.combatants[a].id]-=effect
             }
         }

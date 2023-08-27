@@ -70,7 +70,7 @@ class tile{
                 break
                 case 6:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                         if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].reserve.cards.length>0){
                             this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(1,8,[])
                         }else{
@@ -81,7 +81,7 @@ class tile{
                 case 7:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
-                        if(this.battle.combatantManager.combatants[this.combatant].team>0){
+                        if(this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                             this.battle.addCurrency(10,this.battle.combatantManager.combatants[this.combatant].id)
                             this.anim.upPart[a]=false
                         }else if(this.battle.combatantManager.combatants[this.combatant].name=='Capitalist'){
@@ -92,7 +92,7 @@ class tile{
                 break
                 case 8:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                         this.battle.drop(this.battle.combatantManager.combatants[this.combatant].id,findName('Burn',types.card),0,game.playerNumber+1)
                     }
                 break
@@ -137,7 +137,7 @@ class tile{
                 break
                 case 14:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                         this.battle.energy.main[this.battle.combatantManager.combatants[this.combatant].id]=0
                         this.anim.upPart[a]=false
                     }
@@ -150,7 +150,7 @@ class tile{
                 break
                 case 16:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                         this.anim.upPart[a]=false
                         if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length>0){
                             this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(2,14,[])
@@ -169,7 +169,7 @@ class tile{
                 break
                 case 18:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                         let amount=this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].allEffect(2,2)
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].draw(amount)
@@ -177,7 +177,7 @@ class tile{
                 break
                 case 20:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&this.battle.combatantManager.combatants[this.combatant].team>0){
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                         this.battle.combatantManager.combatants[this.combatant].takeDamage(5,-1,0)
                     }
                 break
