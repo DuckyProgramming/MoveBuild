@@ -1542,6 +1542,16 @@ class group{
                 }
             }
         }
+        if(this.battle.attackManager.targetInfo[0]==35||this.battle.attackManager.targetInfo[0]==36){
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].life>0&&
+                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[2],this.battle.relicManager.hasRelic(145,this.player)?1:this.battle.attackManager.targetInfo[3],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==36)&&
+                    this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[1]&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
+                    this.callInput(3,a)
+                }
+            }
+        }
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
@@ -1810,6 +1820,18 @@ class group{
                 if(this.battle.tileManager.tiles[a].occupied==0&&this.battle.tileManager.tiles[a].tilePosition.y>=this.battle.attackManager.tilePosition.y&&
                     (legalTargetCombatant(this.battle.relicManager.active[150]?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)){
                     this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==35||this.battle.attackManager.targetInfo[0]==36){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    if(this.battle.combatantManager.combatants[a].life>0&&
+                        (legalTargetCombatant(0,this.battle.attackManager.targetInfo[2],this.battle.relicManager.hasRelic(145,this.player)?1:this.battle.attackManager.targetInfo[3],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==36)&&
+                        this.battle.combatantManager.combatants[a].name==this.battle.attackManager.targetInfo[1]&&
+                        this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
+                        this.callInput(3,a)
+                    }
                 }
             }
         }

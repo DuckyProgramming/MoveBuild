@@ -3194,6 +3194,18 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.strokeWeight(1)
             layer.rect(0,0,6,8,1)
         break
+        case 240:
+            layer.fill(200,200,200,fade)
+            layer.stroke(255,100,255,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
+        break
+        case 241:
+            layer.fill(200,200,200,fade)
+            layer.stroke(100,255,255,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,6,8,1)
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -3215,7 +3227,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 192: case 193: case 195: case 196: case 197: case 200: case 202: case 203: case 204: case 205:
             case 208: case 209: case 210: case 211: case 213: case 214: case 216: case 218: case 219: case 220:
             case 221: case 222: case 223: case 224: case 228: case 229: case 230: case 231: case 233: case 234:
-            case 235: case 237: case 238: case 239:
+            case 235: case 237: case 238: case 239: case 240:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 97: case 99: case 103: case 133: case 156:
@@ -3237,7 +3249,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 15: case 17: case 24: case 27: case 30: case 44: case 50: case 67: case 72: case 84:
             case 108: case 110: case 112: case 114: case 119: case 124: case 140: case 141: case 142: case 148:
             case 150: case 151: case 154: case 158: case 163: case 187: case 198: case 199: case 201: case 215:
-            case 217:
+            case 217: case 241:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:

@@ -3826,6 +3826,20 @@ types={
                 {effect:[],attack:686,cost:4,target:[1,1,1],spec:[21,2],class:7},
                 {effect:[],attack:686,cost:4,target:[1,1,1],spec:[21,2,22],class:7},
             ],
+        },{
+            name:'Build\nTeleporter-S',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:700,cost:2,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:700,cost:2,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:700,cost:2,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },{
+            name:'Build\nTeleporter-E',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:701,cost:2,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:701,cost:2,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:701,cost:2,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
         },
         
         {
@@ -3841,6 +3855,20 @@ types={
                 {effect:[],attack:688,cost:1,target:[1,1,1],spec:[21],class:7},
                 {effect:[],attack:688,cost:1,target:[1,1,1],spec:[21,2],class:7},
                 {effect:[],attack:688,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },{
+            name:'Build\nDoubler',rarity:2,list:6,
+            levels:[
+                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },{
+            name:'Build\nExhauster',rarity:2,list:6,
+            levels:[
+                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
             ],
         },
         
@@ -4266,20 +4294,29 @@ types={
                 {effect:[15,1],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Upward\nMove',rarity:0,list:6,
-            levels:[
-                {effect:[1],attack:693,cost:1,target:[33,1,3],spec:[0],class:3},
-                {effect:[1],attack:693,cost:0,target:[33,1,3],spec:[0],class:3},
-                {effect:[1],attack:693,cost:0,target:[33,1,3],spec:[],class:3},
-            ],
-        },{
             name:'Downward\nMove',rarity:0,list:6,
             levels:[
-                {effect:[1],attack:694,cost:1,target:[34,1,3],spec:[0],class:3},
-                {effect:[1],attack:694,cost:0,target:[34,1,3],spec:[0],class:3},
-                {effect:[1],attack:694,cost:0,target:[34,1,3],spec:[],class:3},
+                {effect:[1],attack:694,cost:1,target:[33,1,3],spec:[0],class:3},
+                {effect:[1],attack:694,cost:0,target:[33,1,3],spec:[0],class:3},
+                {effect:[1],attack:694,cost:0,target:[33,1,3],spec:[],class:3},
+            ],
+        },{
+            name:'Upward\nMove',rarity:0,list:6,
+            levels:[
+                {effect:[1],attack:693,cost:1,target:[34,1,3],spec:[0],class:3},
+                {effect:[1],attack:693,cost:0,target:[34,1,3],spec:[0],class:3},
+                {effect:[1],attack:693,cost:0,target:[34,1,3],spec:[],class:3},
+            ],
+        },{
+            name:'Reversible\nArmor',rarity:1,list:6,
+            levels:[
+                {effect:[7,1],attack:699,cost:1,target:[0],spec:[],class:2},
+                {effect:[11,1],attack:699,cost:1,target:[0],spec:[],class:2},
+                {effect:[14,1],attack:699,cost:1,target:[0],spec:[],class:2},
             ],
         },
+
+        
 
         /*{
             name:'Step',rarity:0,list:6,
@@ -4287,29 +4324,6 @@ types={
                 {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
-            ],
-        },
-        
-        {
-            name:'Build\nDoubler',rarity:2,list:6,
-            levels:[
-                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21],class:7},
-                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21,2],class:7},
-                {effect:[],attack:695,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
-            ],
-        },{
-            name:'Build\nExhauster',rarity:2,list:6,
-            levels:[
-                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21],class:7},
-                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21,2],class:7},
-                {effect:[],attack:696,cost:1,target:[1,1,1],spec:[21,2,22],class:7},
-            ],
-        },{
-            name:'Reversible\nArmor',rarity:1,list:6,a
-            levels:[
-                {effect:[7,1],attack:699,cost:1,target:[0],spec:[],class:2},
-                {effect:[11,1],attack:699,cost:1,target:[0],spec:[],class:2},
-                {effect:[14,1],attack:699,cost:1,target:[0],spec:[],class:2},
             ],
         },*/
 
@@ -4735,6 +4749,27 @@ types={
                 {effect:[8,4],attack:634,cost:1,target:[2,1,3],spec:[0,1],class:1},
                 {effect:[12,6],attack:634,cost:1,target:[2,1,3],spec:[0,1],class:1},
                 {effect:[14,7],attack:634,cost:1,target:[2,1,3],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Proxy\nTeleport',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:54,cost:0,target:[6],spec:[1],class:3},
+                {effect:[],attack:54,cost:0,target:[6],spec:[1,22],class:3},
+                {effect:[],attack:674,cost:0,target:[9],spec:[1,22],class:3},
+            ],
+        },{
+            name:'Use Teleporter\nStart',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:702,cost:0,target:[35,'Teleporter Start',1,1],spec:[1,2],class:4},
+                {effect:[],attack:702,cost:0,target:[35,'Teleporter Start',1,1],spec:[1,2,22],class:4},
+                {effect:[],attack:702,cost:0,target:[35,'Teleporter Start',1,1],spec:[1,2,24],class:4},
+            ],
+        },{
+            name:'Use Teleporter\nEnd',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:703,cost:0,target:[36,'Teleporter End'],spec:[1,2],class:4},
+                {effect:[],attack:703,cost:0,target:[36,'Teleporter End'],spec:[1,2,22],class:4},
+                {effect:[],attack:703,cost:0,target:[36,'Teleporter End'],spec:[1,2,24],class:4},
             ],
         },
 
@@ -5333,8 +5368,9 @@ types={
         {name:'Upgrader',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:238,effect:[1]}],description:`PoV: no upgrades`},
         {name:'Transformer',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:239,effect:[1]}],description:`PoV: no good cards`},
         {name:'Doubler',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:240,effect:[1]}],description:`PoV: only 1 copy`},
-        {name:'Exhauster',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1]}],description:`PoV: too many bad cards`},
-
+        {name:'Exhauster',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1,1]}],description:`PoV: too many bad cards`},
+        {name:'Teleporter Start',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`When entrance and exit both start with E`},
+        {name:'Teleporter End',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
 
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},

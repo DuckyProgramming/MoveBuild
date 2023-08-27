@@ -4,7 +4,7 @@ class card{
         this.battle=battle
         this.player=player
         this.position={x:x,y:y}
-        this.type=type
+        this.type=round(type)
         this.level=level
         this.color=color
         this.id=id
@@ -803,21 +803,23 @@ class card{
             case 686: string+=`Build a Metal Box`; break
             case 687: string+=`Build an Upgrader`; break
             case 688: string+=`Build a Transformer`; break
-
             case 689: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[0]} Metal`; break
             case 690: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[0]} Metal`; break
             case 691: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nConstructs Attack Target`; break
             case 692: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\n${effect[1]} Metal`; break
             case 693: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nUpward or Horizontally`; break
             case 694: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDownward or Horizontally`; break
-
             case 695: string+=`Build a Doubler`; break
             case 696: string+=`Build an Exhauster`; break
-
             case 697: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Moves in\na Random Direction`; break
             case 698: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nDiscard ${effect[1]}\nRandom Card`; break
-
             case 699: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[0]} Metal`; break
+            case 700: string+=`Build a Teleporter Start`; break
+            case 701: string+=`Build a Teleporter End`; break
+            case 702: string+=`Add a Proxy\nTeleport to Hand\nDestroys Teleporter Used`; break
+            case 703: string+=`Teleport to Teleporter\nDestroys Teleporter Used`; break
+
+
 
 
 
@@ -879,6 +881,9 @@ class card{
         }
         if(spec.includes(23)){
             string+='\nHolding 1'
+        }
+        if(spec.includes(24)){
+            string+='\nQuickdraw 2'
         }
         if(string[0]=='\n'){
             string=string.substring(1,string.length)

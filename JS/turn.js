@@ -1259,6 +1259,7 @@ class turn{
                     break
                     case 4: case 10: case 29: case 48: case 65: case 72: case 102: case 108: case 110: case 111:
                     case 126: case 182: case 190: case 230: case 231: case 232: case 234: case 237: case 238: case 239:
+                    case 240: case 241:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(1)
                         }
@@ -1301,6 +1302,13 @@ class turn{
                                 break
                                 case 239:
                                     this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.transform(this.effect[0])
+                                break
+                                case 240:
+                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.duplicate(this.effect[0])
+                                break
+                                case 241:
+                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.exhaust(this.effect[0])
+                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[1])
                                 break
                                 default:
                                     this.userCombatant.addBlock(this.effect[0])

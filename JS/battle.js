@@ -498,6 +498,9 @@ class battle{
         if(card.spec.includes(22)||card.spec.includes(12)&&card.reality[mode].includes(22)){
             this.cardManagers[player].draw(1)
         }
+        if(card.spec.includes(24)||card.spec.includes(12)&&card.reality[mode].includes(24)){
+            this.cardManagers[player].draw(2)
+        }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
         this.counter.turnPlayed[0]++

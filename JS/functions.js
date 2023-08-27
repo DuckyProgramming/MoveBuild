@@ -492,7 +492,7 @@ function intentDescription(attack,user,info){
 			case 228: return `Counter ${info?calculateIntent(attack.effect[0],user,0):`?`} All This Combat`
 			case 229: return `Apply ${info?calculateIntent(attack.effect[0],user,0):`?`} Take Per Turn`
 			case 230: return `Add ${info?attack.effect[0]:`?`} Block\nto Builder`
-			case 231: return `Draw ${info?attack.effect[0]:`?`} Less\nCard${attack.effect[0]!=1||info?`s`:``} Next Turn\nto Builder`
+			case 231: return `Builder Draws ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
 			case 232: return `Builder Gains ${info?attack.effect[0]:`?`}\nTemporary Strength`
 			case 233: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTo All Targets`
 			case 234: return `Builder Adds ${info?attack.effect[0]:`?`}\nGun Rack${attack.effect[0]!=1||info?`s`:``} to Hand`
@@ -500,7 +500,7 @@ function intentDescription(attack,user,info){
 			case 238: return `Builder Upgrades ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
 			case 239: return `Builder Transforms ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
 			case 240: return `Builder Duplicates ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
-			case 241: return `Builder Exhausts ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
+			case 241: return `Builder Exhausts ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}\nBuilder Draws ${info?attack.effect[1]:`?`}\nCard${attack.effect[1]!=1||info?`s`:``}`
 
 			default: return `INVALID`
 		}

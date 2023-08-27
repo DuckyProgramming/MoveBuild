@@ -1486,7 +1486,7 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={in:[120,120,120],out:[100,100,100],light:[100,200,255]}
             break
-            case 'Turret':
+            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun':
                 this.anim={direction:direction}
                 this.fades={base:1,body:1,dot:1}
                 this.graphics={arms:[{bottom:{x:0,y:-25}},{bottom:{x:0,y:-25}}]}
@@ -1494,7 +1494,23 @@ class combatant{
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
-                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+                switch(this.name){
+                    case 'Turret':
+                        this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,0,200],out:[0,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+                    break
+                    case 'Explosive Turret':
+                        this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[200,0,0],out:[240,0,0]},dot:{in:[125,125,125],out:[105,105,105]}}
+                    break
+                    case 'Multiturret':
+                        this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,200,200],out:[0,240,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+                    break
+                    case 'Repulse Turret':
+                        this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[200,0,200],out:[240,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
+                    break
+                    case 'Machine Gun':
+                        this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,200,0],out:[0,240,0]},dot:{in:[125,125,125],out:[105,105,105]}}
+                    break
+                }
             break
             case 'Readout':
                 this.anim={direction:direction,light:1}
@@ -1514,26 +1530,6 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={in:[120,120,120],out:[100,100,100],light:[255,100,100]}
             break
-            case 'Explosive Turret':
-                this.anim={direction:direction}
-                this.fades={base:1,body:1,dot:1}
-                this.graphics={arms:[{bottom:{x:0,y:-25}},{bottom:{x:0,y:-25}}]}
-                this.trigger={display:{base:true,body:true,dot:true}}
-                this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
-                this.goal={anim:{direction:this.anim.direction}}
-                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[200,0,0],out:[240,0,0]},dot:{in:[125,125,125],out:[105,105,105]}}
-            break
-            case 'Multiturret':
-                this.anim={direction:direction}
-                this.fades={base:1,body:1,dot:1}
-                this.graphics={arms:[{bottom:{x:0,y:-25}},{bottom:{x:0,y:-25}}]}
-                this.trigger={display:{base:true,body:true,dot:true}}
-                this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
-                this.goal={anim:{direction:this.anim.direction}}
-                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,200,200],out:[0,240,240]},dot:{in:[125,125,125],out:[105,105,105]}}
-            break
             case 'Barbed Pillar':
                 this.anim={direction:direction}
                 this.fades={body:1}
@@ -1551,26 +1547,6 @@ class combatant{
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={in:[120,120,120],out:[100,100,100],gun:[40,40,40]}
-            break
-            case 'Repulse Turret':
-                this.anim={direction:direction}
-                this.fades={base:1,body:1,dot:1}
-                this.graphics={arms:[{bottom:{x:0,y:-25}},{bottom:{x:0,y:-25}}]}
-                this.trigger={display:{base:true,body:true,dot:true}}
-                this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
-                this.goal={anim:{direction:this.anim.direction}}
-                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[200,0,200],out:[240,0,240]},dot:{in:[125,125,125],out:[105,105,105]}}
-            break
-            case 'Machine Gun':
-                this.anim={direction:direction}
-                this.fades={base:1,body:1,dot:1}
-                this.graphics={arms:[{bottom:{x:0,y:-25}},{bottom:{x:0,y:-25}}]}
-                this.trigger={display:{base:true,body:true,dot:true}}
-                this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
-                this.goal={anim:{direction:this.anim.direction}}
-                this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[0,200,0],out:[0,240,0]},dot:{in:[125,125,125],out:[105,105,105]}}
             break
             case 'Miniturret':
                 this.anim={direction:direction}
@@ -1591,23 +1567,43 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={in:[120,120,120],out:[100,100,100],metal:[140,120,160]}
             break
-            case 'Upgrader':
+            case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
                 this.anim={direction:direction,light:1}
                 this.fades={body:1}
                 this.trigger={display:{body:true}}
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
-                this.color={in:[120,120,120],out:[100,100,100],lightIn:[200,225,255],lightOut:[150,200,255]}
+                switch(this.name){
+                    case 'Upgrader':
+                        this.color={in:[120,120,120],out:[100,100,100],lightIn:[200,225,255],lightOut:[150,200,255]}
+                    break
+                    case 'Transformer':
+                        this.color={in:[120,120,120],out:[100,100,100],lightIn:[255,255,150],lightOut:[255,255,100]}
+                    break
+                    case 'Doubler':
+                        this.color={in:[120,120,120],out:[100,100,100],lightIn:[255,100,255],lightOut:[255,25,255]}
+                    break
+                    case 'Exhauster':
+                        this.color={in:[120,120,120],out:[100,100,100],lightIn:[100,255,255],lightOut:[25,255,255]}
+                    break
+                }
             break
-            case 'Transformer':
-                this.anim={direction:direction,light:1}
-                this.fades={body:1}
+            case 'Teleporter Start': case 'Teleporter End':
+                this.anim={direction:direction}
+                this.fades={body:1,metal:1}
                 this.trigger={display:{body:true}}
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
-                this.color={in:[120,120,120],out:[100,100,100],lightIn:[255,255,150],lightOut:[255,255,100]}
+                switch(this.name){
+                    case 'Teleporter Start':
+                        this.color={in:[120,120,120],out:[100,100,100],light:[50,200,50]}
+                    break
+                    case 'Teleporter End':
+                        this.color={in:[120,120,120],out:[100,100,100],light:[200,50,50]}
+                    break
+                }
             break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
@@ -2758,7 +2754,7 @@ class combatant{
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': break
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': break
             default:
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4507,11 +4503,11 @@ class combatant{
                 }
             break
             case 'Orb Walker': case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp': case 'Host': case 'Host Drone': case 'Thornvine':
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -5173,12 +5169,12 @@ class combatant{
                     break
                 }
             break
-            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer':
+            case 'Projector': case 'Readout': case 'Strengthener': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
                 this.animSet.loop+=rate
                 this.anim.light=lsin(this.animSet.loop*180)+1
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': break
             default:
                 switch(type){
                     case 0:
@@ -11920,7 +11916,7 @@ class combatant{
                         this.layer.line(20,0,-20,-25)
                     }
 				break
-				case 'Upgrader': case 'Transformer':
+				case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster':
                     if(this.trigger.display.body){
                         this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
                         this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
@@ -11934,6 +11930,18 @@ class combatant{
                         this.layer.ellipse(0,-40,20,20)
                     }
 				break
+                case 'Teleporter Start': case 'Teleporter End':
+                    if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.body*0.1)
+                        for(let a=0,la=10;a<la;a++){
+                            this.layer.quad(-20,-5,20,-5,25+a,-10-a,-25-a,-10-a)
+                        }
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(4)
+                        this.layer.quad(-15,0,15,0,25,-5,-25,-5)   
+                    }
+                break
                 case '':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
