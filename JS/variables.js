@@ -1040,9 +1040,9 @@ types={
         },{
             name:'Panic',rarity:1,list:2,
             levels:[
-                {effect:[2],attack:20,cost:0,target:[1,1,2],spec:[0],class:3},
-                {effect:[3],attack:20,cost:0,target:[1,1,3],spec:[0],class:3},
-                {effect:[3],attack:20,cost:0,target:[1,1,3],spec:[],class:3},
+                {effect:[2,1],attack:20,cost:0,target:[1,1,2],spec:[0],class:3},
+                {effect:[3,1],attack:20,cost:0,target:[1,1,3],spec:[0],class:3},
+                {effect:[3,1],attack:20,cost:0,target:[1,1,3],spec:[],class:3},
             ],
         },{
             name:'Close\nIn',rarity:1,list:2,
@@ -2715,13 +2715,6 @@ types={
                 {effect:[],attack:294,cost:2,target:[0],spec:[1,2],class:4},
             ],
         },{
-            name:'Death\nExplosion',rarity:1,list:4,
-            levels:[
-                {effect:[],attack:295,cost:2,target:[2,1,1],spec:[],class:4},
-                {effect:[],attack:295,cost:1,target:[2,1,1],spec:[],class:4},
-                {effect:[],attack:295,cost:1,target:[2,1,1],spec:[22],class:4},
-            ],
-        },{
             name:'Rampage',rarity:1,list:4,
             levels:[
                 {effect:[8,4],attack:118,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -3021,6 +3014,13 @@ types={
                 {effect:[1,1],attack:335,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,2],attack:335,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,2],attack:335,cost:1,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'All-Out\nAttack',rarity:1,list:4,
+            levels:[
+                {effect:[10,1],attack:698,cost:1,target:[0],spec:[0],class:1},
+                {effect:[14,1],attack:698,cost:1,target:[0],spec:[0],class:1},
+                {effect:[17,1],attack:698,cost:1,target:[0],spec:[0],class:1},
             ],
         },
 
@@ -4229,6 +4229,13 @@ types={
                 {effect:[4,2],attack:684,cost:1,target:[0],spec:[],class:4},
                 {effect:[5,2],attack:684,cost:1,target:[0],spec:[],class:4},
                 {effect:[6,2],attack:684,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Death\nExplosion',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:295,cost:2,target:[2,1,1],spec:[],class:4},
+                {effect:[],attack:295,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[],attack:295,cost:1,target:[2,1,1],spec:[22],class:4},
             ],
         },
 

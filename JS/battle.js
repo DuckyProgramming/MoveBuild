@@ -1035,7 +1035,7 @@ class battle{
                             allClosed=false
                         }
                     }
-                    if(allClosed){
+                    if(allClosed&&!this.result.defeat){
                         transition.trigger=true
                         if(this.encounter.class==2){
                             if(this.nodeManager.world==3){

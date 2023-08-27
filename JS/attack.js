@@ -1017,7 +1017,9 @@ class attack{
                 if(this.timer==10*this.targetDistance){
                     switch(this.type){
                         case 20:
-                            this.battle.cardManagers[this.player].randomEffect(2,0,[])
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.cardManagers[this.player].randomEffect(2,0,[])
+                            }
                         break
                         case 51:
                             this.userCombatant.statusEffect('Dodge',this.effect[1])
@@ -2349,7 +2351,7 @@ class attack{
                     }
                 }
             break
-            case 18: case 394: case 395: case 420: case 434:
+            case 18: case 394: case 395: case 420: case 434: case 698:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(10)
                 }
@@ -2370,6 +2372,12 @@ class attack{
                         case 434:
                             this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
                             this.battle.combatantManager.intentNerfArea(1,this.effect[1],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        break
+                        case 698:
+                            this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.cardManagers[this.player].randomEffect(2,0,[])
+                            }
                         break
                         default:
                             this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
