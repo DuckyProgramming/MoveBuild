@@ -4289,9 +4289,9 @@ types={
         },{
             name:'Material\nExchange',rarity:0,list:6,
             levels:[
-                {effect:[8,1],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12,1],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15,1],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,3],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,3],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,3],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Downward\nMove',rarity:0,list:6,

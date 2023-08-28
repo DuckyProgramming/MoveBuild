@@ -3196,7 +3196,7 @@ class combatant{
     autoAim(){
         let list=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(legalTargetCombatant(0,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].team!=this.team){
+            if(legalTargetCombatant(0,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].team!=this.team&&this.battle.combatantManager.combatants[a].life>0){
                 list.push(a)
             }
         }
