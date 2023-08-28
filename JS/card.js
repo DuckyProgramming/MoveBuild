@@ -818,7 +818,17 @@ class card{
             case 701: string+=`Build a Teleporter End`; break
             case 702: string+=`Add a Proxy\nTeleport to Hand\nDestroys Teleporter Used`; break
             case 703: string+=`Teleport to Teleporter\nDestroys Teleporter Used`; break
+            case 704: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nReturn ${effect[1]} Gun${effect[1]!=1?`s`:``}s\nFrom Discard to Hand`; break
+            case 705: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRemove Effects on\nTarget Tile`; break
+            case 706: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 707: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nor Diagonally Vertically`; break
+            case 708: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nor Diagonally Top\nRight or Bottom Left`; break
+            case 709: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nor Diagonally Top\nLeft or Bottom Right`; break
 
+            case 710: string+=`Destroy a Construct\nReturn Blueprint`; break
+            case 711: string+=`Gain ${effect[0]} Metal\nGain ${effect[1]} Buffer`; break
+            case 712: string+=`Gain Metal Equal\nto the Cost of the\nMost Expensive Blueprint\nin Your Hand${effect[0]>0?`+${effect[0]}`:``}\nMinimum 1`; break
+            case 713: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Metal`; break
 
 
 
@@ -876,14 +886,17 @@ class card{
         if(spec.includes(20)){
             string+='\nClaw'
         }
+        if(spec.includes(25)){
+            string+='\nGun'
+        }
         if(spec.includes(22)){
             string+='\nQuickdraw'
         }
-        if(spec.includes(23)){
-            string+='\nHolding 1'
-        }
         if(spec.includes(24)){
             string+='\nQuickdraw 2'
+        }
+        if(spec.includes(23)){
+            string+='\nHolding 1'
         }
         if(string[0]=='\n'){
             string=string.substring(1,string.length)

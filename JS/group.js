@@ -764,6 +764,25 @@ class group{
             this.drawEffects=[]
         }
     }
+    sendSpec(list,spec,number){
+        let left=number
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].spec.includes(spec)){
+                list.push(copyCard(this.cards[a]))
+                list[list.length-1].size=0
+                list[list.length-1].position.x=1200
+                list[list.length-1].position.y=500
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
+                left--
+                if(left<=0){
+                    la=0
+                }
+            }
+        }
+    }
     copy(list,firstIndex,lastIndex){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
@@ -1552,6 +1571,33 @@ class group{
                 }
             }
         }
+        if(this.battle.attackManager.targetInfo[0]==37){
+            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                if(this.battle.tileManager.tiles[a].occupied==0&&
+                    (arrayIncludes(constants.D1,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y]))&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==38){
+            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                if(this.battle.tileManager.tiles[a].occupied==0&&
+                    (arrayIncludes(constants.D2,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y]))&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==39){
+            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                if(this.battle.tileManager.tiles[a].occupied==0&&
+                    (arrayIncludes(constants.D3,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y]))&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
+                    this.callInput(2,a)
+                }
+            }
+        }
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
@@ -1832,6 +1878,30 @@ class group{
                         this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
                         this.callInput(3,a)
                     }
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==37){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
+                let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
+                if(this.battle.tileManager.tiles[a].occupied==0&&arrayIncludes(constants.D1,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
+                    this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==38){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
+                let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
+                if(this.battle.tileManager.tiles[a].occupied==0&&arrayIncludes(constants.D2,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
+                    this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==39){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
+                let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
+                if(this.battle.tileManager.tiles[a].occupied==0&&arrayIncludes(constants.D3,[this.battle.tileManager.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.battle.tileManager.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
+                    this.callInput(2,a)
                 }
             }
         }

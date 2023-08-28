@@ -243,6 +243,13 @@ class tile{
         this.anim.part.splice(index,1)
         this.anim.upPart.splice(index,1)
     }
+    clearTypes(){
+        for(let a=0,la=this.type.length;a<la;a++){
+            this.removeType(a)
+            a--
+            la--
+        }
+    }
     addType(type){
         if(!this.type.includes(type)){
             this.type.push(type)

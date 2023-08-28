@@ -71,7 +71,7 @@ class attack{
             case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
             case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667: case 669:
             case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 689: case 691:
-            case 692: case 697: case 702: case 703:
+            case 692: case 697: case 702: case 703: case 710:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -87,7 +87,8 @@ class attack{
             case 486: case 503: case 570: case 571: case 573: case 574: case 575: case 585: case 619: case 620:
             case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631:
             case 660: case 663: case 664: case 666: case 685: case 686: case 687: case 688: case 690: case 693:
-            case 694: case 695: case 696: case 700: case 701:
+            case 694: case 695: case 696: case 700: case 701: case 702: case 703: case 704: case 705: case 706:
+            case 707: case 708: case 709:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1018,7 +1019,8 @@ class attack{
             case 3: case 20: case 51: case 52: case 56: case 58: case 59: case 60: case 91: case 182:
             case 192: case 205: case 248: case 256: case 330: case 331: case 332: case 335: case 374: case 375:
             case 383: case 397: case 484: case 485: case 503: case 570: case 571: case 573: case 574: case 575:
-            case 663: case 664: case 666: case 690: case 693: case 694:
+            case 663: case 664: case 666: case 690: case 693: case 694: case 704: case 705: case 706: case 707:
+            case 708: case 709:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -1099,6 +1101,15 @@ class attack{
                         break
                         case 690:
                             this.userCombatant.metal+=this.effect[1]
+                        break
+                        case 704:
+                            this.battle.cardManagers[this.player].discard.sendSpec(this.battle.cardManagers[this.player].hand.cards,25,1)
+                        break
+                        case 705:
+                            this.targetTile.clearTypes()
+                        break
+                        case 706:
+                            this.battle.cardManagers[this.player].hand.upgrade(this.effect[1])
                         break
                     }
                 }
@@ -1249,7 +1260,7 @@ class attack{
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
             case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656:
-            case 668: case 684:
+            case 668: case 684: case 711: case 712: case 713:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(4)
                 }
@@ -1519,6 +1530,23 @@ class attack{
                                 }
                             }
                             this.userCombatant.metal+=max(0,finalvalue)
+                        break
+                        case 711:
+                            this.userCombatant.metal+=this.effect[0]
+                            this.userCombatant.statusEffect('Buffer',this.effect[1])
+                        break
+                        case 712:
+                            let maximum=1
+                            for(let a=0,la=this.battle.cardManagers[this.player].hand.cards.length;a<la;a++){
+                                if(this.battle.cardManagers[this.player].hand.cards[a].spec.includes(21)){
+                                    maximum=max(maximum,this.battle.cardManagers[this.player].hand.cards[a].cost+this.effect[0])
+                                }
+                            }
+                            this.userCombatant.metal+=maximum
+                        break
+                        case 713:
+                            this.userCombatant.heal(this.effect[0])
+                            this.userCombatant.metal+=this.effect[1]
                         break
                     }
                 }else if(this.timer>=20){
@@ -3594,7 +3622,7 @@ class attack{
                 }
             break
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
-            case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683:
+            case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683: case 710:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(26)
                 }
@@ -3687,6 +3715,14 @@ class attack{
                             }
                             this.targetCombatant.programmedDeath=true
                             this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
+                        break
+                        case 710:
+                            this.targetCombatant.life=0
+                            let index2=findName(`Build\n${this.targetCombatant.name}`,types.card)
+                            if(index2>=0){
+                                this.battle.cardManagers[this.player].hand.add(index2,0,types.card[index2].list)
+                            }
+                            this.targetCombatant.programmedDeath=true
                         break
                     }
                 }else if(this.timer>=20){
