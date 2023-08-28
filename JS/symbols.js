@@ -1249,6 +1249,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 5:
             layer.fill(255,200,100,fade)
         break
+        case 6:
+            layer.fill(100,225,255,fade)
+        break
     }
     layer.ellipse(0,0,50)
     layer.fill(255,fade)
@@ -1325,6 +1328,29 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
                 layer.arc(0,-15,8,16,-90,75)
                 layer.point(-3,-13)
             }
+        break
+        case 6:
+            layer.rotate(24)
+            layer.rect(0,0,5,16)
+            for(let a=0,la=2;a<la;a++){
+                layer.scale(1,-1)
+                layer.beginShape()
+                layer.vertex(0,-6)
+                layer.vertex(-8,-10)
+                layer.vertex(-8,-18)
+                layer.vertex(-5.8,-19)
+                layer.vertex(-3.6,-18)
+                layer.vertex(-3.6,-14)
+                layer.vertex(0,-12)
+                layer.vertex(3.6,-14)
+                layer.vertex(3.6,-18)
+                layer.vertex(5.8,-19)
+                layer.vertex(8,-18)
+                layer.vertex(8,-10)
+                layer.endShape()
+            }
+            regPoly(layer,-12,0,6,4,4,0)
+            regPoly(layer,12,0,6,4,4,0)
         break
     }
     layer.pop()

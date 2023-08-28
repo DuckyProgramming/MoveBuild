@@ -1926,6 +1926,10 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
                 	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
+				case 'Donakho':
+					p1.anim.arms[0].top=42
+					p1.anim.arms[1].top=84
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -1998,6 +2002,9 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-180,bottom:-180,lock:0},{top:-60,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
+				case 'Donakho':
+					p1.parts.eyeLevel++
+				break
 			}
 			p1.anim.eye=[1,1]
 			p1.size=2.5
@@ -2010,6 +2017,11 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 			return p1
 		case 2:
 			p1=new combatant(layer,graphics.proxyBattle,225+a*450,312.5,0,0,0,0,player[a],0,0,30-a*60)
+			switch(p1.name){
+				case 'Donakho':
+					p1.position.y+=5
+				break
+			}
 			p1.size=1
 			p1.fade=1
 			p1.graphic=true
@@ -2087,6 +2099,13 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-150+a*6,lock:0},{top:60,bottom:150-a*6,lock:0}]
 					p1.spin.arms=[{top:-84-a*3,bottom:-60-a*6,lock:0},{top:84+a*3,bottom:48+a*9,lock:0}]
+				break
+				case 'Donakho':
+					p1.position.y-=25
+					p1.anim.arms[0].top=33
+					p1.anim.arms[1].top=33
+					p1.anim.legs[0].top=54
+					p1.anim.legs[1].top=54
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -2168,6 +2187,11 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
+				case 'Donakho':
+					p1.anim.arms[0].top=15+a*60
+					p1.anim.arms[1].top=66-a*12
+					p1.position.y+=10-a*25
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -2243,6 +2267,13 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
+				break
+				case 'Donakho':
+					p1.anim.arms[0].top=15+a*51
+					p1.anim.arms[1].top=66-a*51
+					p1.anim.legs[0].top=18
+					p1.anim.legs[1].top=18
+					p1.position.y+=10
 				break
 			}
 			p1.size=2.5
@@ -2329,6 +2360,13 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:105-a*30,lock:0}]
 				break
+				case 'Donakho':
+					p1.anim.arms[0].top=24+a*36
+					p1.anim.arms[1].top=60-a*36
+					p1.anim.legs[0].top=30
+					p1.anim.legs[1].top=30
+					p1.position.y+=5
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -2398,6 +2436,10 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
                     p1.anim.arms=[{top:30,bottom:96,length:{top:16.5,bottom:16.5}},{top:30,bottom:3,length:{top:16.5,bottom:16.5}}]
                 	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:120}]
 					p1.spin.arms=[{top:-93,bottom:-90,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Donakho':
+					p1.anim.arms[0].top=45
+					p1.anim.arms[1].top=114
 				break
 			}
 			p1.size=1.5
@@ -2748,8 +2790,8 @@ function setupBackground(type,layer){
 				}
 			}
 			for(let b=0,lb=10;b<lb;b++){
-				let bounce=random(-1,0)
-				for(let a=0,la=20;a<=la;a++){
+				let bounce=random(-1.5,-0.5)
+				for(let a=0,la=20;a<=la+1;a++){
 					let offset=noise(a*1.5+b*0.5-100)*20+noise(b*1.5+a*0.5-50)*20
 					layer.fill(20+random(0,5)+offset,30+random(0,5)+offset,40+random(0,5)+offset)
 					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2),layer.width*(a+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2))
@@ -3056,8 +3098,8 @@ function setupBackground(type,layer){
 				}
 			}
 			for(let b=0,lb=10;b<lb;b++){
-				let bounce=random(-1,0)
-				for(let a=0,la=20;a<=la;a++){
+				let bounce=random(-1.5,-0.5)
+				for(let a=0,la=20;a<=la+1;a++){
 					let offset=noise(a*1.5+b*0.5-100)*20+noise(b*1.5+a*0.5-50)*20
 					layer.fill(60+random(0,5)+offset,70+random(0,5)+offset,80+random(0,5)+offset)
 					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la+15,layer.height*(0.8+b/lb*0.2),layer.width*(a+1+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2),layer.width*(a+bounce)/la-15,layer.height*(0.8+(b+1)/lb*0.2))
@@ -3109,8 +3151,8 @@ function setupBackground(type,layer){
 				}
 			}
 			for(let b=0,lb=5;b<lb;b++){
-				let bounce=random(-1,0)
-				for(let a=0,la=20;a<=la;a++){
+				let bounce=random(-1.5,-0.5)
+				for(let a=0,la=20;a<=la+1;a++){
 					let offset=noise(a*1.5+b*0.5-100)*20+noise(b*1.5+a*0.5-50)*20
 					layer.fill(random(0,5)+offset,random(0,5)+offset,10+random(0,5)+offset)
 					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.9+b/lb*0.2),layer.width*(a+1+bounce)/la+15,layer.height*(0.9+b/lb*0.2),layer.width*(a+1+bounce)/la-15,layer.height*(0.9+(b+1)/lb*0.2),layer.width*(a+bounce)/la-15,layer.height*(0.9+(b+1)/lb*0.2))
@@ -3217,8 +3259,8 @@ function setupBackground(type,layer){
 				}
 			}
 			for(let b=0,lb=5;b<lb;b++){
-				let bounce=random(-1,0)
-				for(let a=0,la=20;a<=la;a++){
+				let bounce=random(-1.5,-0.5)
+				for(let a=0,la=20;a<=la+1;a++){
 					let offset=noise(a*1.5+b*0.5-100)*20+noise(b*1.5+a*0.5-50)*20
 					layer.fill(random(0,5)+offset,random(0,5)+offset,10+random(0,5)+offset)
 					layer.quad(layer.width*(a+bounce)/la+15,layer.height*(0.9+b/lb*0.2),layer.width*(a+1+bounce)/la+15,layer.height*(0.9+b/lb*0.2),layer.width*(a+1+bounce)/la-15,layer.height*(0.9+(b+1)/lb*0.2),layer.width*(a+bounce)/la-15,layer.height*(0.9+(b+1)/lb*0.2))

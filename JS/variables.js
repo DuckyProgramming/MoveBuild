@@ -4384,8 +4384,59 @@ types={
                 {effect:[2,2],attack:713,cost:0,target:[0],spec:[],class:4},
                 {effect:[4,2],attack:713,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Repeater',rarity:1,list:6,
+            levels:[
+                {effect:[7,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
+        {
+            name:'Aggressive\nMonopolist',rarity:2,list:6,
+            levels:[
+                {effect:[16,1],attack:715,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[24,1],attack:715,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[30,1],attack:715,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Defensive\nMonopolist',rarity:2,list:6,
+            levels:[
+                {effect:[20,1],attack:716,cost:2,target:[0],spec:[],class:2},
+                {effect:[30,1],attack:716,cost:2,target:[0],spec:[],class:2},
+                {effect:[38,1],attack:716,cost:2,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Moving\nOut',rarity:1,list:6,
+            levels:[
+                {effect:[1,1],attack:717,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[2,1],attack:717,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[2,2],attack:717,cost:1,target:[1,1,2],spec:[0],class:3},
+            ],
+        },{
+            name:'Justice',rarity:1,list:6,
+            levels:[
+                {effect:[5],attack:718,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[8],attack:718,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[10],attack:718,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            ],
+        },{
+            name:'Decompose',rarity:2,list:6,
+            levels:[
+                {effect:[3,1,1],attack:719,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[5,2,2],attack:719,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[5,3,3],attack:719,cost:-1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Sabotage',rarity:1,list:6,
+            levels:[
+                {effect:[2],attack:720,cost:0,target:[2,1,3],spec:[],class:4},
+                {effect:[3],attack:720,cost:0,target:[2,1,3],spec:[],class:4},
+                {effect:[4],attack:720,cost:0,target:[2,1,3],spec:[],class:4},
+            ],
+        },
+        
 
 
         {
@@ -10448,7 +10499,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:6,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 variants={lowdraw:false,lowhealth:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

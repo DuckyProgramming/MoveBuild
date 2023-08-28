@@ -75,10 +75,19 @@ class combatantManager{
             }
         }
     }
-    setTargets(max){
+    setTargets(){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0&&!this.combatants[a].construct){
+                list.push(a)
+            }
+        }
+        if(list==[]){
+            list.push(0)
+        }
         for(let a=0,la=this.combatants.length;a<la;a++){
             if((this.combatants[a].team==0||this.combatants[a].construct)){
-                this.combatants[a].target=floor(random(0,max))
+                this.combatants[a].target=list[floor(random(0,list.length))]
             }
         }
     }
@@ -343,6 +352,13 @@ class combatantManager{
             }
         }
         return -1
+    }
+    resetIntents(type){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0&&types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==type){
+                this.combatants[a].intent=floor(random(0,this.combatants[a].attack.length))
+            }
+        }
     }
     playCard(){
         this.combatants.forEach(combatant=>combatant.playCard())

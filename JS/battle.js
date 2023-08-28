@@ -240,13 +240,9 @@ class battle{
                 let list=['Medic','Smith','Navigator','Rich Kid']
                 this.addCombatantSupport(this.encounter.custom[1],findName(list[this.encounter.custom[0]-1],types.combatant),this.players+1,-30+floor(random(0,6))*60,false)
                 this.combatantManager.recount()
-                this.combatantManager.setTargets(this.players+1)
-            }else{
-                this.combatantManager.setTargets(this.players)
             }
-        }else{
-            this.combatantManager.setTargets(this.players)
         }
+        this.combatantManager.setTargets()
         this.combatantManager.reID()
         this.startTurn()
 
