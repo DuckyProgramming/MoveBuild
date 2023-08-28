@@ -67,11 +67,12 @@ class attack{
             case 508: case 509: case 510: case 511: case 514: case 531: case 532: case 533: case 534: case 535:
             case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 557: case 558:
             case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
-            case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 596: case 597:
-            case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616: case 617:
-            case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667: case 669:
-            case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 689: case 691:
-            case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719: case 720:
+            case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 594: case 596:
+            case 597: case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616:
+            case 617: case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667:
+            case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 689:
+            case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719:
+            case 720:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -3472,7 +3473,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 80: case 590: case 609: case 632: case 633: case 634: case 689: case 691: case 718:
+            case 80: case 590: case 594: case 609: case 632: case 633: case 634: case 689: case 691: case 718:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(25)
                 }
@@ -3735,7 +3736,6 @@ class attack{
                         case 676:
                             this.targetCombatant.life=0
                             this.userCombatant.metal+=this.effect[0]
-                            this.targetCombatant.programmedDeath=true
                         break
                         case 683:
                             this.targetCombatant.life=0
@@ -3743,7 +3743,6 @@ class attack{
                             if(index>=0){
                                 this.userCombatant.metal+=types.card[index].levels[0].cost
                             }
-                            this.targetCombatant.programmedDeath=true
                             this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
                         break
                         case 710:
@@ -3752,7 +3751,6 @@ class attack{
                             if(index2>=0){
                                 this.battle.cardManagers[this.player].hand.add(index2,0,types.card[index2].list)
                             }
-                            this.targetCombatant.programmedDeath=true
                         break
                     }
                 }else if(this.timer>=20){

@@ -724,7 +724,7 @@ class card{
             case 606: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Vulnerable`; break
             case 607: string+=`Draw and Upgrade\n${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 608: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nBecome Confused`; break
-            case 609: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove ${effect[1]} Strength`; break
+            case 609: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove ${effect[1]}\nTemporary Strength`; break
             case 610: string+=`Construct Gains\n${effect[0]} Armor`; break
             case 611: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTo All Targets`; break
             case 612: string+=`Discard and\nUpgrade Your Hand\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
@@ -803,8 +803,8 @@ class card{
             case 686: string+=`Build a Metal Box`; break
             case 687: string+=`Build an Upgrader`; break
             case 688: string+=`Build a Transformer`; break
-            case 689: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[0]} Metal`; break
-            case 690: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[0]} Metal`; break
+            case 689: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Metal`; break
+            case 690: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Metal`; break
             case 691: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nConstructs Attack Target`; break
             case 692: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\n${effect[1]} Metal`; break
             case 693: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nUpward or Horizontally`; break
@@ -818,7 +818,7 @@ class card{
             case 701: string+=`Build a Teleporter End`; break
             case 702: string+=`Add a Proxy\nTeleport to Hand\nDestroys Teleporter Used`; break
             case 703: string+=`Teleport to Teleporter\nDestroys Teleporter Used`; break
-            case 704: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nReturn ${effect[1]} Gun${effect[1]!=1?`s`:``}s\nFrom Discard to Hand`; break
+            case 704: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nReturn ${effect[1]} Gun${effect[1]!=1?`s`:``}\nFrom Discard to Hand`; break
             case 705: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRemove Effects on\nTarget Tile`; break
             case 706: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 707: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nor Diagonally Vertically`; break
@@ -1135,8 +1135,8 @@ class card{
                 }else if(this.spec.includes(21)){
                     this.layer.fill(140,120,160,this.fade)
                     this.layer.stroke(120,100,140,this.fade)
-                    this.layer.strokeWeight(3)
-                    regPoly(this.layer,-this.width/2+10,-this.height/2+12,8,8,8,0)
+                    this.layer.strokeWeight(2)
+                    regPoly(this.layer,-this.width/2+10,-this.height/2+12,8,7,7,0)
                 }else if(!this.spec.includes(5)){
                     this.layer.fill(225,255,255,this.fade)
                     this.layer.stroke(200,255,255,this.fade)

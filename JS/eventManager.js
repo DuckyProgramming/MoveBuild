@@ -57,7 +57,7 @@ class eventManager{
         this.layer.textSize(30)
         this.layer.text(this.name,this.posKey,100)
         for(let a=0,la=this.pages.length;a<la;a++){
-            this.layer.fill(0,this.fade[a])
+            this.layer.fill(0,this.fade[a]*this.primaryFade)
             this.layer.textSize(10)
             this.layer.text(this.pages[a].desc
                 .replace('|0|',types.combatant[this.battle.player[this.player]].identifier[0])
@@ -72,7 +72,7 @@ class eventManager{
                 this.layer.text(this.pages[a].optionDesc[b],this.posKey,310+b*50)
             }
             this.layer.noFill()
-            this.layer.stroke(0,this.fade[a])
+            this.layer.stroke(0,this.fade[a]*this.primaryFade)
             this.layer.strokeWeight(1)
             for(let b=0,lb=this.pages[a].option.length;b<lb;b++){
                 this.layer.rect(this.posKey,300+b*50,180,30,5)

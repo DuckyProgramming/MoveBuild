@@ -3795,7 +3795,7 @@ types={
             name:'Build\nGun Rack',rarity:1,list:6,
             levels:[
                 {effect:[],attack:629,cost:4,target:[1,1,1],spec:[21],class:7},
-                {effect:[],attack:628,cost:3,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:629,cost:4,target:[1,1,1],spec:[21,2],class:7},
                 {effect:[],attack:629,cost:4,target:[1,1,1],spec:[21,2,22],class:7},
             ],
         },{
@@ -3965,7 +3965,7 @@ types={
                 {effect:[26,4,2],attack:593,cost:2,target:[2,1,3],spec:[0,25],class:1},
             ],
         },{
-            name:'Quickdraw',rarity:1,list:6,
+            name:'Quickerdraw',rarity:1,list:6,
             levels:[
                 {effect:[15],attack:594,cost:1,target:[2,1,3],spec:[0,1,3,25],class:1},
                 {effect:[20],attack:594,cost:1,target:[2,1,3],spec:[0,1,3,25],class:1},
@@ -4070,7 +4070,7 @@ types={
                 {effect:[18],attack:608,cost:0,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Surpressing\nFire',rarity:1,list:6,
+            name:'Suppressing\nFire',rarity:1,list:6,
             levels:[
                 {effect:[6,4],attack:609,cost:1,target:[2,1,3],spec:[0,25],class:1},
                 {effect:[8,6],attack:609,cost:1,target:[2,1,3],spec:[0,25],class:1},
@@ -4276,8 +4276,8 @@ types={
             name:'Skim',rarity:0,list:6,
             levels:[
                 {effect:[1,1],attack:690,cost:1,target:[1,1,1],spec:[0],class:3},
-                {effect:[1,2],attack:690,cost:1,target:[1,1,1],spec:[0],class:3},
-                {effect:[1,2],attack:690,cost:1,target:[1,1,1],spec:[],class:3},
+                {effect:[1,2],attack:690,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[1,2],attack:690,cost:1,target:[1,1,2],spec:[],class:3},
             ],
         },{
             name:'Shoot\nHim!',rarity:2,list:6,
@@ -4380,9 +4380,9 @@ types={
         },{
             name:'Quick\nPack',rarity:0,list:6,
             levels:[
-                {effect:[2,1],attack:713,cost:0,target:[0],spec:[],class:4},
-                {effect:[2,2],attack:713,cost:0,target:[0],spec:[],class:4},
-                {effect:[4,2],attack:713,cost:0,target:[0],spec:[],class:4},
+                {effect:[2,1],attack:713,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,2],attack:713,cost:0,target:[0],spec:[1],class:4},
+                {effect:[4,2],attack:713,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Repeater',rarity:1,list:6,
