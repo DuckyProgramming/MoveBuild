@@ -412,7 +412,7 @@ class battle{
         }else{
             if(this.turn.total==1){
                 if(!this.relicManager.hasRelic(141,this.turn.main)){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                    this.cardManagers[this.turn.main].hand.add(findName('Initative',types.card),0,0)
                 }
                 if(this.relicManager.hasRelic(107,this.turn.main)){
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
@@ -424,6 +424,7 @@ class battle{
             this.counter.turnPlayed=[0,0,0,0,0]
         }
         this.attackManager.clear()
+        this.updateTargetting()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
             this.endTurn()
         }

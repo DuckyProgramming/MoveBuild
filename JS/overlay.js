@@ -1018,6 +1018,8 @@ class overlay{
                                 }
                             }
                         }
+                    }else if(code==ENTER){
+                        this.active=false
                     }
                 break
                 case 7:

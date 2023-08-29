@@ -72,7 +72,7 @@ class attack{
             case 617: case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667:
             case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 689:
             case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719:
-            case 720:
+            case 720: case 721: case 723: case 725:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -752,6 +752,15 @@ class attack{
                         this.targetCombatant.statusEffect('Weak',this.effect[1]*this.energy)
                         this.targetCombatant.statusEffect('Vulnerable',this.effect[2]*this.energy)
                     break
+                    case 721:
+                        this.userCombatant.enterStance(1)
+                    break
+                    case 723:
+                        this.userCombatant.enterStance(3)
+                    break
+                    case 725:
+                        this.userCombatant.enterStance(0)
+                    break
                 }
             break
         }
@@ -771,7 +780,7 @@ class attack{
             case 475: case 496: case 497: case 507: case 508: case 509: case 510: case 511: case 514: case 540:
             case 558: case 559: case 580: case 581: case 582: case 588: case 596: case 597: case 601: case 604:
             case 606: case 610: case 638: case 639: case 661: case 677: case 678: case 679: case 692: case 714:
-            case 715: case 719:
+            case 715: case 719: case 721: case 723: case 725:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(this.targetDistance==1){

@@ -48,7 +48,7 @@ class combatant{
         this.builder=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[false,false,false,false,false,false]}
 
         this.block=0
         this.dodges=[]
@@ -125,6 +125,7 @@ class combatant{
         this.totalOrbClass=[]
         this.lastOrb=0
         this.metal=0
+        this.stance=0
 
         this.intent=0
         this.activated=false
@@ -505,6 +506,129 @@ class combatant{
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
+            break
+            case 'Setsuna':
+                this.anim={direction:direction,head:direction,sword:1,mouth:{x:8,y:5,open:0},
+                    eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{top:{position:{x:1,y:1},size:{x:1,y:1}},bottom:{position:{x:1,y:1},size:{x:1,y:1}}},under:{bottom:1}},
+                    kimono:{bow:{position:{x:1,y:1},size:{x:1,y:1}}},
+                    legs:[
+                        {top:9,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}},
+                        {top:9,bottom:0,length:{top:16,bottom:16,sandal:{back:15.5,front:14.5}}}
+                    ],arms:[
+                        {top:24,bottom:9,length:{top:16,bottom:16}},
+                        {top:24,bottom:9,length:{top:16,bottom:16}}
+                    ]}
+
+                this.kimono={decoration:[]}
+
+                this.spin={
+                    legs:[{top:-60,bottom:-120},{top:60,bottom:120}],
+                    arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],
+                    bow:{center:0,loop:[-24,24]},
+                    under:{top:[],bottom:[],tanga:24,piece:36,under:{top:[-40,40],button:[-39,39],bottom:[0,-15,15,-9,9]}},
+                    underBow:{top:{center:0,end:[-4,4],loop:[-12,12]},bottom:{center:0,end:[-5,5],loop:[-15,15]}},
+                    sandal:[6,-6],eye:[-18,18],flower:[54,48,56],button:0,sword:75,mouth:216}
+
+                this.color=graphics.combatant[3].color
+
+                this.parts={eyeLevel:-72,flowerLevel:[-77.5,-75,-71.5],mouth:-65,
+                    under:{top:-51,bottom:-31,bow:{top:2.75,bottom:-5}},
+                    kimono:{main:-58,outside:-59,bow:-53},
+                    minor:15,
+                    legs:[
+                        {top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0},sandal:{back:{x:0,y:0},front:{x:0,y:0}}},
+                        {top:{x:3,y:-32},middle:{x:0,y:0},bottom:{x:0,y:0},sandal:{back:{x:0,y:0},front:{x:0,y:0}}}
+                    ],arms:[
+                        {top:{x:3.5,y:-55},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                        {top:{x:3.5,y:-55},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                    ],}
+
+                this.graphics={
+                    legs:[
+                        {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},sandal:{back:{x:0,y:0},front:{x:0,y:0}}},
+                        {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},sandal:{back:{x:0,y:0},front:{x:0,y:0}}}
+                    ],arms:[
+                        {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},
+                        {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}
+                    ]}
+
+                this.fades={flower:[1,1,1],eye:[1,1],band:[1,1],mouth:1,
+                    sandal:{back:[1,1],front:[1,1]},
+                    skin:{legs:1,arms:1,body:1,head:1,button:1},
+                    kimono:{decoration:{fade:1,position:{x:1,y:1},size:{x:1,y:1}},
+                    main:{back:{x:1,y:1},front:{x:1,y:1}},outside:{back:{x:1,y:1},front:{x:1,y:1}},bow:1},
+                    under:{top:1,bottom:1,tanga:1,bow:{top:1,bottom:1},under:{top:1,button:1,bottom:1}},
+                }
+
+                if(options.alt){
+                    this.trigger={display:{flower:[true,true,true],band:[false,true],mouth:true,
+                        hair:{back:true,front:true,glow:true},eye:[true,true],sandal:{back:[false,false],front:[false,false]},
+                        skin:{legs:true,arms:true,body:true,head:true,button:false},
+                        kimono:{main:{back:false,front:false},outside:{back:false,front:false},bow:false,decoration:false},
+                        under:{top:true,bottom:true,tanga:false,bow:{top:true,bottom:true},under:{top:true,button:false,bottom:false}},
+                    }}
+                }else{
+                    this.trigger={display:{flower:[true,true,true],band:[true,true],mouth:true,
+                        hair:{back:true,front:true,glow:true},eye:[true,true],sandal:{back:[true,true],front:[true,true]},
+                        skin:{legs:true,arms:true,body:true,head:true,button:false},
+                        kimono:{main:{back:true,front:true},outside:{back:true,front:true},bow:true,decoration:true},
+                        under:{top:false,bottom:false,tanga:false,bow:{top:false,bottom:false},under:{top:true,button:false,bottom:false}},
+                    }}
+                }
+
+                this.trigger.display.mode={
+                    sandal:{edge:0},
+                }
+
+                this.trigger.display.extra={sword:true,damage:false}
+
+                this.calc={int:[0,0,0,0]}
+
+                this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
+
+                this.animSet={loop:0,flip:0,hand:1,foot:1}
+
+                this.goal={anim:{direction:this.anim.direction,sword:true}}
+
+                for(let g=0;g<25;g++){
+                    this.spin.under.top.push(g*72/5)
+                }
+                for(let g=0;g<20;g++){
+                    this.spin.under.bottom.push(g*18)
+                }
+                for(let g=0;g<2;g++){
+                    this.kimono.decoration.push({spin:90-g*47.5,rotate:random(0,360),y:46-g*4.5,width:0.2,height:1,type:0})
+                }
+                this.kimono.decoration.push({spin:134,rotate:random(0,360),y:49,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:180,rotate:random(0,360),y:50,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:226,rotate:random(0,360),y:49,width:0.2,height:1,type:0})
+                for(let g=0;g<7;g++){
+                    this.kimono.decoration.push({spin:270+g*47.5,rotate:random(0,360),y:46-g*4.5,width:0.2,height:1,type:0})
+                }
+            
+                this.kimono.decoration.push({spin:78,rotate:random(0,360),y:38,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:118,rotate:random(0,360),y:42,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:156,rotate:random(0,360),y:44,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:204,rotate:random(0,360),y:44,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:242,rotate:random(0,360),y:42,width:0.2,height:1,type:0})
+                for(let g=0;g<5;g++){
+                    this.kimono.decoration.push({spin:282+g*47.5,rotate:random(0,360),y:38-g*4.4,width:0.2,height:1,type:0})
+                }
+            
+                this.kimono.decoration.push({spin:96,rotate:random(0,360),y:34,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:138,rotate:random(0,360),y:36,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:180,rotate:random(0,360),y:38,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:222,rotate:random(0,360),y:36,width:0.2,height:1,type:0})
+                for(let g=0;g<4;g++){
+                    this.kimono.decoration.push({spin:264+g*47.5,rotate:random(0,360),y:32.5-g*4.4,width:0.2,height:1,type:0})
+                }
+            
+                this.kimono.decoration.push({spin:154,rotate:random(0,360),y:30,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:206,rotate:random(0,360),y:30,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:254,rotate:random(0,360),y:27,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:302,rotate:random(0,360),y:22,width:0.2,height:1,type:0})
+            
+                this.kimono.decoration.push({spin:218,rotate:random(0,360),y:24,width:0.2,height:1,type:0})
             break
             case 'Ume':
                 this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},
@@ -2452,6 +2576,7 @@ class combatant{
         this.totalOrbClass=[]
         this.lastOrb=0
         this.metal=0
+        this.stance=0
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -2603,7 +2728,7 @@ class combatant{
     calculateParts(){
         this.anim.head=this.anim.direction
         switch(this.name){
-            case 'Lira': case 'Sakura': case 'Ume':
+            case 'Lira': case 'Sakura': case 'Setsuna': case 'Ume':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -4207,6 +4332,12 @@ class combatant{
         }
         this.checkAnyOrb()
     }
+    enterStance(stance){
+        this.leaveStance(this.stance)
+        this.stance=stance
+    }
+    leaveStance(stance){
+    }
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -4421,7 +4552,7 @@ class combatant{
     }
     startAnimation(type){
         switch(this.name){
-            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Ume':
+            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -4527,7 +4658,7 @@ class combatant{
     }
     runAnimation(rate,type){
         switch(this.name){
-            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Ume':
+            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -13298,6 +13429,21 @@ class combatant{
                     }
                 }
             }
+            /*(if(this.team>0&!this.construct&&!this.support){
+                this.layer.translate(0,-36)
+                for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
+                    if(this.infoAnim.stance[a]>0){
+                        switch(a){
+                            case 1:
+                                this.layer.fill(255,75,75,this.fade*this.infoAnim.stance[a])
+                                for(let b=0,lb=12;b<lb;b++){
+                                    this.layer.triangle(-5,0,5,0,0,-40)
+                                }
+                            break
+                        }
+                    }
+                }
+            }*/
             this.layer.pop()
         }
     }
@@ -13492,6 +13638,8 @@ class combatant{
                 this.layer.push()
                 this.layer.translate(450,300)
                 this.layer.scale(1.5)
+                this.fade=1
+                this.infoAnim.life=1
                 this.displayInfoInternal()
                 this.layer.pop()
             break
@@ -13509,6 +13657,9 @@ class combatant{
         this.tilePosition.y=round(this.tilePosition.y)
         if(this.team>0&&!this.construct&&!this.support){
             this.fade=1
+            /*for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
+                this.infoAnim.stance[a]=smoothAnim(this.infoAnim.stance[a],a==this.stance,0,1,5)
+            }*/
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
                 if(this.life<=0){
@@ -13746,7 +13897,7 @@ class combatant{
             }
         }
         switch(this.name){
-            case 'Lira': case 'Ume':
+            case 'Lira': case 'Ume': case 'Setsuna':
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
             break
             case 'Sakura':

@@ -349,7 +349,7 @@ class card{
             case 224: string+=`Heal ${this.calculateEffect(effect[0],9)} Health`; break
             case 225: string+=`Gain ${effect[0]} Combo\nGain ${effect[1]} Energy\nNext Turn`; break
             case 226: string+=`Gain ${effect[0]} Combo\nLose All Combo\nat End of Turn`; break
-            case 227: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed are Duplicated`; break
+            case 227: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated`; break
             case 228: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],7)}\nDamage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 229: string+=`Add ${effect[0]} Random\nAttack${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0\nThis Turn`; break
             case 230: string+=`Add ${effect[0]} Random\nAttack${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
@@ -396,7 +396,7 @@ class card{
             case 273: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 274: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Chip to\nDiscard Pile`; break
             case 275: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nAdd ${this.calculateEffect(effect[1],3)} Block\nValues Swap\nWhen X is Odd`; break
-            case 276: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed are Duplicated\nDiscard ${effect[0]} Random Card${effect[0]!=1?`s`:``}`; break
+            case 276: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated\nDiscard ${effect[0]} Random Card${effect[0]!=1?`s`:``}`; break
             case 277: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Overflow to\nDiscard Pile`; break
             case 278: string+=`Gain ${effect[0]}\nTemporary Strength`; break
             case 279: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
@@ -828,8 +828,7 @@ class card{
             case 711: string+=`Gain ${effect[0]} Metal\nGain ${effect[1]} Buffer`; break
             case 712: string+=`Gain Metal Equal\nto the Cost of the\nMost Expensive Blueprint\nin Your Hand${effect[0]>0?`+${effect[0]}`:``}\nMinimum 1`; break
             case 713: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Metal`; break
-            case 714: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext ${effect[1]} Card${effect[1]!=1?`s`:``}\nPlayed are Duplicated`; break
-
+            case 714: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext ${effect[1]} Card${effect[1]!=1?`s`:``}\nPlayed ${effect[1]!=1?`are`:`is`} Duplicated`; break
             case 715: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSwap Attack Intents`; break
             case 716: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nSwap Defense Intents`; break
             case 717: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Random\nBlueprint${effect[1]!=1?`s`:``} to Hand`; break
@@ -837,7 +836,13 @@ class card{
             case 719: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]}X Weak\nApply ${effect[2]}X Vulnerable`; break
             case 720: string+=`Apply ${effect[0]} Weak Next Turn`; break
             
-
+            case 721: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Wrath`; break
+            case 722: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEnter Calm`; break
+            case 723: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Haste`; break
+            case 724: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEnter Firm`; break
+            case 725: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExit Stance`; break
+            case 726: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExit Stance`; break
+            
 
 
 

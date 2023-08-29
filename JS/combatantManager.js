@@ -78,7 +78,7 @@ class combatantManager{
     setTargets(){
         let list=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team>0&&!this.combatants[a].construct){
+            if(this.combatants[a].team>0&&!this.combatants[a].construct&&this.combatants[a].life>0){
                 list.push(a)
             }
         }
