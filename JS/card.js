@@ -5,6 +5,22 @@ class card{
         this.player=player
         this.position={x:x,y:y}
         this.type=round(type)
+        if(variants.speedcard){
+            switch(types.card[this.type].name){
+                case 'Step':
+                    this.type=round(findName('I-Step',types.card))
+                break
+                case 'Step-L':
+                    this.type=round(findName('I-Step-L',types.card))
+                break
+                case 'Step-R':
+                    this.type=round(findName('I-Step-R',types.card))
+                break
+                case 'Initiative':
+                    this.type=round(findName('I-Initiative',types.card))
+                break
+            }
+        }
         this.level=level
         this.color=color
         this.id=id
@@ -247,8 +263,7 @@ class card{
             case 124: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust ${effect[1]} Random Card${effect[1]!=1?`s`:``}`; break
             case 125: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 126: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak`; break
-            case 127: case 496:
-                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nAdvance`; break
+            case 127: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nAdvance`; break
             case 128: string+=`Gain ${effect[0]} Combo`; break
             case 129: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],7)}\nDamage`; break
             case 130: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],7)}\nDamage\nEnd Combo\nAdvance`; break
@@ -418,7 +433,7 @@ class card{
             case 295: string+=`Target Explodes\non Death For\nits Max Health`; break
             case 296: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nif Draw Pile\nis Empty`; break
             case 297: string+=`Remove ${effect[0]}X Strength\nApply ${effect[1]}X Weak`; break
-            case 298: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}\nof a Card to\nYour Draw Pile\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
+            case 298: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}\nof a Card to\nthe Bottom of\nYour Draw Pile\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 299: string+=`Deal Double Damage\nNext Turn`; break
             case 300: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``} and\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}\nEvery Turn`; break
             case 301: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscard Non-Attacks`; break
@@ -614,6 +629,7 @@ class card{
             case 493: string+=`Hold ${effect[0]} Explosive Orb${effect[0]!=1?`s`:``}`; break
             case 494: string+=`Evoke All Orbs`; break
             case 495: string+=`Hold ${effect[0]} Energy Orb${effect[0]!=1?`s`:``}`; break
+            case 496: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable`; break
             case 497: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nClaw Up ${effect[1]}`; break
             case 498: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}\nClaw Up ${effect[1]}`; break
             case 499: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nClaw Up ${effect[1]}`; break
@@ -835,7 +851,7 @@ class card{
             case 718: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDestroyed Constructs+1`; break
             case 719: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]}X Weak\nApply ${effect[2]}X Vulnerable`; break
             case 720: string+=`Apply ${effect[0]} Weak Next Turn`; break
-            
+
             case 721: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Wrath`; break
             case 722: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEnter Calm`; break
             case 723: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Haste`; break
@@ -843,6 +859,7 @@ class card{
             case 725: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExit Stance`; break
             case 726: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExit Stance`; break
             
+            case 727: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nor ${effect[1]} Tile${effect[1]!=1?`s`:``} Toward an Enemy`; break
 
 
 
@@ -1226,7 +1243,7 @@ class card{
                             this.layer.text('Curse',0,this.height/2-6)
                         break
                         case 7:
-                            this.layer.text('Blueprint',0,4+a*(this.height/2-10))
+                            this.layer.text('Blueprint',0,this.height/2-6)
                         break
                     }
                 }
@@ -1290,7 +1307,7 @@ class card{
             this.upSize=true
         }
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&
+        this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&!(userCombatant.stance==3&&this.class==1)&&
         !(this.spec.includes(6)&&!userCombatant.armed)
         this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))
         if(this.deSize&&this.size>0||this.downSize&&this.size>0.6||!this.upSize&&this.size>1){

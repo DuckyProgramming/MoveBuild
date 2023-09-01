@@ -3205,8 +3205,12 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         case 237:
             layer.fill(140,120,160,fade)
             layer.stroke(120,100,140,fade)
-            layer.strokeWeight(3)
+            layer.strokeWeight(2)
             regPoly(layer,0,0,8,8,8,0)
+            layer.fill(200,fade)
+            layer.noStroke()
+            layer.rect(0,0,12,3)
+            layer.rect(0,0,3,12)
         break
         case 238:
             layer.fill(200,200,200,fade)

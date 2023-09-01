@@ -1026,6 +1026,57 @@ function generateSprite(layer,type,direction){
 			displayTrianglesBack(layer,data.parts.under.dressDamage,direction,44,17,0,0.75,data.color.under.dressBack,1)
 			displayTrianglesBackMerge(layer,data.parts.under.dressAnti,direction,21,10,0.5,7/66,-1,1)
 		break
+		case 41:
+			controlSpin(data.parts.kimono.main,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.main,direction,20,9.25,0.5,0.12,data.color.kimono.main.start,data.color.kimono.main.end,1)
+		break
+		case 42:
+			displayTrianglesBackMerge(layer,data.parts.kimono.main,direction,20,9.25,0.5,0.12,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
+		break
+		case 43:
+			controlSpin(data.parts.kimono.outside,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outside,direction,20,9,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
+			controlSpin(data.parts.kimono.outsideTop,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideTop,direction,20,9,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
+		break
+		case 44:
+			displayTrianglesBackMerge(layer,data.parts.kimono.outside,direction,20,9,0.5,0.15,data.color.kimono.outsideBack.start,data.color.kimono.outsideBack.end,1)
+		break
+		case 45:
+			controlSpin(data.parts.kimono.mainDamage,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.mainDamage,direction,20,9.25,0.5,0.12,data.color.kimono.main.start,data.color.kimono.main.end,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.mainAnti,direction,20,9.25,0.5,0.12,-1,-1,1)
+		break
+		case 46:
+			displayTrianglesBackMerge(layer,data.parts.kimono.mainDamage,direction,20,9.25,0.5,0.12,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(layer,data.parts.kimono.mainAnti,direction,20,9.25,0.5,0.12,-1,-1,1)
+		break
+		case 47:
+			controlSpin(data.parts.kimono.outsideDamage,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideDamage,direction,20,9,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
+			controlSpin(data.parts.kimono.outsideTop,direction,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideTop,direction,20,9,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideAnti,direction,20,9,0.5,0.15,-1,-1,1)
+		break
+		case 48:
+			displayTrianglesBackMerge(layer,data.parts.kimono.outsideDamage,direction,20,9,0.5,0.15,data.color.kimono.outsideBack.start,data.color.kimono.outsideBack.end,1)
+			displayTrianglesBackMerge(layer,data.parts.kimono.outsideAnti,direction,20,9,0.5,0.15,-1,-1,1)
+		break
+		case 49:
+			controlSpin(data.parts.hair.inside,direction,0)
+			displayTrianglesFront(layer,data.parts.hair.inside,direction,0,33,1,-0.05,data.color.hair.insideFront,1)
+			controlSpin(data.parts.hair.main,direction,0)
+			displayTrianglesFront(layer,data.parts.hair.main,direction,0,35,1,-0.05,data.color.hair.front,1)
+			layer.arc(0,0,35,34,-180,0)
+			layer.line(-17.5,0,17.5,0)
+			controlSpin(data.parts.hair.reverse,direction,0)
+			displayTrianglesFront(layer,data.parts.hair.reverse,direction,0.5,34,0.1,0.1,-1,1)
+		break
+		case 50:
+			displayTrianglesBack(layer,data.parts.hair.main,direction,0,35,1,-0.05,data.color.hair.back,1)
+			displayTrianglesFront(layer,data.parts.hair.reverse,direction,0.5,34,0.1,0.1,data.color.hair.back,1)
+			displayTrianglesBack(layer,data.parts.hair.inside,direction,0,33,1,-0.05,data.color.hair.insideBack,1)
+		break
 		
 	}
 }
@@ -1654,83 +1705,87 @@ function setupCombatantGraphics(type){
 				parts:{kimono:{main:[],outside:[],outsideTop:[],mainDamage:[],outsideDamage:[],mainAnti:[],outsideAnti:[]}},
 				color:{
 					hair:{back:[84,46,55],front:[128,71,79],insideBack:[74,41,50],insideFront:[118,66,74],glow:[94,51,60]},
-					skin:{head:[255,239,224],body:[254,238,223],legs:[255,235,217],arms:[255,233,114],button:[245,180,145]},
+					skin:{head:[255,239,224],body:[254,238,223],legs:[255,235,217],arms:[255,233,214],button:[245,180,145]},
 					eye:{back:[175,121,123],front:[20,10,0],glow:[200,125,175]},
 					under:{under:{top:[250,195,170],button:[200,145,120],bottom:[[255,228,181],[241,178,131]]}},
 					kimono:{main:{start:[175,117,125],end:[169,155,182]},mainBack:{start:[108,76,87],end:[73,64,78]},ribbon:{start:[100,180,255],end:[125,200,255]},
 					outside:{start:[121,131,167],end:[127,131,167]},outsideBack:{start:[81,91,127],end:[87,91,127]},
 					bow:[185,103,161]},
-					band:[96,54,66],mouth:{in:[225,125,125],out:[0,0,0]},
+					band:[[96,54,66],[182,47,31],[87,101,124],[195,214,223]],mouth:{in:[225,125,125],out:[0,0,0]},
 				}
 			})
 
 			graphics.combatant[graphics.combatant.length-1].parts.hair={
 				main:[
-					{spin:[69,81,75],height:15},
-                    {spin:[-81,-69,-75],height:15},
-                    {spin:[0,150,75],height:9},
-                    {spin:[-150,0,-75],height:9},
-                    {spin:[105,255,180],height:27},
-                    {spin:[45,195,135],height:18},
-                    {spin:[-195,-45,-135],height:18},
-                    {spin:[75,225,150],height:21},
-                    {spin:[-225,-75,-150],height:21},
+					{spin:[66,87,75],height:13},
+                    {spin:[-87,-66,-75],height:13},
+                    {spin:[18,150,84],height:9},
+                    {spin:[-150,-18,-84],height:9},
+                    {spin:[135,225,180],height:44},
+					{spin:[135,225,165],height:35},
+					{spin:[135,225,195],height:35},
+                    {spin:[45,195,135],height:23},
+                    {spin:[-195,-45,-135],height:23},
+                    {spin:[75,225,150],height:27},
+                    {spin:[-225,-75,-150],height:27},
 				],inside:[
-					{spin:[0,75,45],height:4},
-					{spin:[-75,0,-45],height:4},
-					{spin:[75,147,111],height:7},
-					{spin:[-147,-75,-111],height:7},
-					{spin:[-189,-141,-165],height:17},
-					{spin:[141,189,165],height:17},
-				],
+					{spin:[15,75,51],height:4},
+					{spin:[-75,-15,-51],height:4},
+					{spin:[75,147,111],height:9},
+					{spin:[-147,-75,-111],height:9},
+					{spin:[-189,-141,-165],height:21},
+					{spin:[141,189,165],height:21},
+				],reverse:[
+					{spin:[-12,12,0],height:-1},
+				]
 			}
 		
 			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
 
 			for(let g=0;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,13.5+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[13.5+g*4.5,0,14+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,16+g*4.5,14+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,16+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[16+g*4.5,0,15.5+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*4.5,15.5+g*4.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-120+g*48,-96+g*48,-108+g*48],y:[0,0,11.5+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-108+g*48,-92+g*48,-87+g*48],y:[11.5+g*6.5,0,13+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-84+g*48,-87+g*48],y:[0,15+g*6.5,13+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-92+g*48,-68+g*48,-84+g*48],y:[0,0,15+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-84+g*48,-75+g*48,-72+g*48],y:[15+g*6.5,0,14.5+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[-75+g*48,-60+g*48,-72+g*48],y:[0,18+g*6.5,14.5+g*6.5]})
 			}
 			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[117,132,132],y:[0,0,36]})
 			for(let g=0;g<2;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,34,36+g*0.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,34]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[146+g*48,156+g*48,156+g*48],y:[34,0,35]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,34,35]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,34]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[166+g*48,180+g*48,180+g*48],y:[34,0,36.5-g*0.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,146+g*48,132+g*48],y:[0,44,45.5+g*0.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[132+g*48,156+g*48,146+g*48],y:[0,0,44]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[146+g*48,156+g*48,156+g*48],y:[44,0,45]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[156+g*48,166+g*48,156+g*48],y:[0,44,45]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[180+g*48,156+g*48,166+g*48],y:[0,0,44]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[166+g*48,180+g*48,180+g*48],y:[44,0,46-g*0.5]})
 			}
 			graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[228,243,228],y:[0,0,36]})
-			for(let g=4;g>=-3;g--){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*4.5,15.5+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[84-g*48,75-g*48,72-g*48],y:[16+g*4.5,0,15.5+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,16+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,16+g*4.5,14+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[108-g*48,92-g*48,87-g*48],y:[13.5+g*4.5,0,14+g*4.5]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,13.5+g*4.5]})
+			for(let g=4;g>=-2;g--){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[75-g*48,60-g*48,72-g*48],y:[0,18+g*6.5,14.5+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[84-g*48,75-g*48,72-g*48],y:[15+g*6.5,0,14.5+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,68-g*48,84-g*48],y:[0,0,15+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[92-g*48,84-g*48,87-g*48],y:[0,15+g*6.5,13+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[108-g*48,92-g*48,87-g*48],y:[11.5+g*6.5,0,13+g*6.5]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.main.push({spin:[120-g*48,96-g*48,108-g*48],y:[0,0,11.5+g*6.5]})
 			}
 			for(let g=1;g<5;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,17.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-90+g*48,-36+g*48,-48+g*48],y:[0,0,16+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-48+g*48,-32+g*48,-27+g*48],y:[16+g*8.5-15,0,18+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-32+g*48,-24+g*48,-27+g*48],y:[0,19+g*8.5-15,18+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-32+g*48,-8+g*48,-24+g*48],y:[0,0,19+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-24+g*48,-15+g*48,-12+g*48],y:[19+g*8.5-15,0,19.5+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[-15+g*48,g*48,-12+g*48],y:[0,24.5+g*8.5-15,19.5+g*8.5-15]})
 			}
 			for(let g=4;g>=0;g--){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[15-g*48,-g*48,12-g*48],y:[0,21.5+g*5.5-15,18+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[24-g*48,15-g*48,12-g*48],y:[17.5+g*5.5-15,0,18+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,17.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,17.5+g*5.5-15,16.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*5.5-15,0,16.5+g*5.5-15]})
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*5.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[15-g*48,-g*48,12-g*48],y:[0,24.5+g*8.5-15,19.5+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[24-g*48,15-g*48,12-g*48],y:[19+g*8.5-15,0,19.5+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[32-g*48,8-g*48,24-g*48],y:[0,0,19+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[32-g*48,24-g*48,27-g*48],y:[0,19+g*8.5-15,18+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[48-g*48,32-g*48,27-g*48],y:[16+g*8.5-15,0,18+g*8.5-15]})
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outside.push({spin:[60-g*48,36-g*48,48-g*48],y:[0,0,16+g*8.5-15]})
 			}
-			for(let g=0;g<12;g++){
-				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop.push({spin:[-90-g*30,-60-g*30,-75-g*30],y:[0,0,-0.5]})
+			for(let g=0;g<18;g++){
+				graphics.combatant[graphics.combatant.length-1].parts.kimono.outsideTop.push({spin:[-90-g*20,-70-g*20,-80-g*20],y:[0,0,-1]})
 			}
 			if(options.damage){
 				for(let g=0;g<5;g++){
@@ -1799,13 +1854,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(125,100)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],0,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],49,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated L-HF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(250,500))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(125,100)
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],1,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],50,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated L-HB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.main={front:[],back:[]}
@@ -1814,13 +1869,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],2,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.front[g],41,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated L-KMF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back.push(createGraphics(150,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],3,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.main.back[g],42,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated L-KMB-'+(g+1))
 			}
 			graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside={front:[],back:[]}
@@ -1829,13 +1884,13 @@ function setupCombatantGraphics(type){
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],4,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.front[g],43,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated L-KOF-'+(g+1))
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back.push(createGraphics(150,330))
 				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g])
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].translate(75,0)
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g].scale(5)
-				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],5,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outside.back[g],44,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated L-KOB-'+(g+1))
 			}
 			if(options.damage){
@@ -1845,13 +1900,13 @@ function setupCombatantGraphics(type){
 					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g])
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].translate(75,0)
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],6,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.front[g],45,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 					//print('Generated L-DMF-'+(g+1))
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back.push(createGraphics(150,330))
 					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g])
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].translate(75,0)
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],7,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.mainDamage.back[g],46,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 					//print('Generated L-DMB-'+(g+1))
 				}
 				graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage={front:[],back:[]}
@@ -1860,13 +1915,13 @@ function setupCombatantGraphics(type){
 					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g])
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].translate(75,0)
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],8,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.front[g],47,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 					//print('Generated L-DOF-'+(g+1))
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back.push(createGraphics(150,330))
 					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g])
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].translate(75,0)
 					graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g].scale(5)
-					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],9,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.kimono.outsideDamage.back[g],48,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 					//print('Generated L-DOB-'+(g+1))
 				}
 			}
@@ -2082,6 +2137,7 @@ function setupCombatantGraphics(type){
 				}
 			}
 		break
+		
 	}
 }
 function setupCombatantBackground(type,player,a,la,damage,layer){
@@ -2689,8 +2745,12 @@ function setupGeneralGraphics(){
 	22-23 Ume Sandal Top
 	24-25 Sakura Parasol
 	26 Plant Tile
+	27-29 Setsuna Sandal Bottom
+	30-31 Setsuna Sandal Top
+	32-33 Setsuna Bow
+	34-35 Setsuna Flower
 	*/
-	for(let a=0,la=27;a<la;a++){
+	for(let a=0,la=36;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -2763,7 +2823,6 @@ function setupGeneralGraphics(){
 		graphics.minor[7+a].strokeWeight(20)
 		graphics.minor[7+a].line(80+56*(a*2-1),46,80,150)
 	}
-
 	graphics.minor[9].translate(80,140)
 	flower(graphics.minor[9],0.4,[[136,61,92],[195,68,87],[124,41,51],[211,153,120]],[21,28,7,3],[56])
 	graphics.minor[9].translate(0,-30)
@@ -2906,6 +2965,62 @@ function setupGeneralGraphics(){
 		c=sqrt(random(0,28**2))
 		graphics.minor[26].fill(random(0,50),100+random(0,100),random(0,50))
 		graphics.minor[26].ellipse(40+lsin(b)*c,40+lcos(b)*c,random(10,15))
+	}
+	for(let a=0,la=3;a<la;a++){
+		graphics.minor[27+a].fill(155,176,150)
+		graphics.minor[27+a].rect(80,80,100,20)
+		graphics.minor[27+a].ellipse(80,70,100,100)
+		graphics.minor[27+a].ellipse(80,90,100,100)
+		graphics.minor[27+a].fill(107,117,105)
+		graphics.minor[27+a].rect(80,70,100,6)
+		graphics.minor[27+a].rect(80,90,100,6)
+		graphics.minor[27+a].quad(36,47,124,47,127,53,33,53)
+		graphics.minor[27+a].quad(36,113,124,113,127,107,33,107)
+		graphics.minor[27+a].quad(54,27,106,27,114,33,46,33)
+		graphics.minor[27+a].quad(54,133,106,133,114,127,46,127)
+	}
+	graphics.minor[28].erase()
+	graphics.minor[28].triangle(90,70,65,20,115,20)
+	graphics.minor[28].triangle(65,100,95,140,35,140)
+	graphics.minor[29].erase()
+	graphics.minor[29].triangle(70,50,25,20,115,20)
+	graphics.minor[29].triangle(95,85,75,140,115,140)
+	for(let a=0,la=2;a<la;a++){
+		graphics.minor[30+a].stroke(55,65,95)
+		graphics.minor[30+a].strokeWeight(20)
+		graphics.minor[30+a].line(80+56*(a*2-1),46,80,150)
+	}
+	for(let a=0,la=2;a<la;a++){
+		graphics.minor[32+a].translate(80,80)
+		graphics.minor[32+a].rotate(15)
+		for(let b=0,lb=16;b<lb;b++){
+			graphics.minor[32+a].fill(184+b*10,102+b*6,78+b*5)
+			for(let c=0,lc=4;c<lc;c++){
+				graphics.minor[32].rotate(90)
+				graphics.minor[32+a].triangle(-2,-2,20+b*0.5,45-b*1.25,45-b*1.25,20+b*0.5)
+			}
+		}
+	}
+	graphics.minor[33].erase()
+	graphics.minor[33].triangle(15,20,40,30,20,55)
+	graphics.minor[33].triangle(-15,-60,-40,-20,-20,-25)
+	for(let a=0,la=2;a<la;a++){
+		graphics.minor[2+a].translate(80,80)
+		for(let b=0,lb=8;b<lb;b++){
+			graphics.minor[2+a].rotate(19+a*7-b)
+			graphics.minor[2+a].fill(225-a*25+b*10,75+a*125+b*10,75+a*125+b*10)
+			for(let c=0,lc=5;c<lc;c++){
+				graphics.minor[2+a].rotate(72)
+				graphics.minor[2+a].ellipse(0,(24-b)*(1-b/lb),24*(1-b/lb),36*(1-b/lb))
+			}
+		}
+		graphics.minor[2+a].rotate(-12-a*36)
+		graphics.minor[2+a].fill(225,200,50)
+		for(let b=0,lb=9;b<lb;b++){
+			graphics.minor[2+a].rotate(40)
+			graphics.minor[2+a].rect(0,-5,1,10)
+			graphics.minor[2+a].ellipse(0,-10,3,3)
+		}
 	}
 }
 function setupBackground(type,layer){

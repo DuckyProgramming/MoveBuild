@@ -128,6 +128,27 @@ types={
                 {effect:[1],attack:485,cost:0,target:[25,1,1],spec:[0],class:3},
                 {effect:[1],attack:485,cost:0,target:[25,1,1],spec:[],class:3},
             ],
+        },{
+            name:'I-Step',rarity:-2,list:-1,
+            levels:[
+                {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'I-Step-L',rarity:-2,list:-1,
+            levels:[
+                {effect:[2],attack:484,cost:1,target:[24,1,2],spec:[0],class:3},
+                {effect:[2],attack:484,cost:0,target:[24,1,2],spec:[0],class:3},
+                {effect:[2],attack:484,cost:0,target:[24,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'I-Step-R',rarity:-2,list:-1,
+            levels:[
+                {effect:[2],attack:485,cost:1,target:[25,1,2],spec:[0],class:3},
+                {effect:[2],attack:485,cost:0,target:[25,1,2],spec:[0],class:3},
+                {effect:[2],attack:485,cost:0,target:[25,1,2],spec:[],class:3},
+            ],
         },
         
         {
@@ -4023,9 +4044,9 @@ types={
         },{
             name:'Coffee',rarity:0,list:6,
             levels:[
-                {effect:[1,1],attack:603,cost:0,target:[0],spec:[],class:4},
-                {effect:[1,2],attack:603,cost:0,target:[0],spec:[],class:4},
-                {effect:[1,3],attack:603,cost:0,target:[0],spec:[],class:4},
+                {effect:[1,1],attack:603,cost:0,target:[0],spec:[0],class:4},
+                {effect:[1,2],attack:603,cost:0,target:[0],spec:[0],class:4},
+                {effect:[1,3],attack:603,cost:0,target:[0],spec:[0],class:4},
             ],
         },{
             name:'Fixing',rarity:1,list:6,
@@ -4114,9 +4135,9 @@ types={
         },{
             name:'Slap',rarity:0,list:6,
             levels:[
-                {effect:[5,1],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[7,1],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[8,2],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[4,1],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6,1],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,2],attack:616,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Slap\nTeam',rarity:1,list:6,
@@ -4128,9 +4149,9 @@ types={
         },{
             name:'Thunder\nSlap',rarity:1,list:6,
             levels:[
-                {effect:[10,1,4],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
-                {effect:[15,1,6],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
-                {effect:[18,1,8],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,1,4],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1,6],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[13,1,8],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Upscale',rarity:0,list:6,
@@ -4850,6 +4871,13 @@ types={
                 {effect:[4],attack:56,cost:0,target:[1,1,4],spec:[1,4],class:3},
             ],
         },{
+            name:'I-Initiative',rarity:-1,list:0,
+            levels:[
+                {effect:[3],attack:56,cost:0,target:[1,1,3],spec:[1,4],class:3},
+                {effect:[4],attack:56,cost:0,target:[1,1,4],spec:[1,4],class:3},
+                {effect:[5],attack:56,cost:0,target:[1,1,5],spec:[1,4],class:3},
+            ],
+        },{
             name:'Shiv',rarity:-1,list:0,
             levels:[
                 {effect:[4],attack:327,cost:0,target:[2,1,1],spec:[1],class:1},
@@ -4860,8 +4888,8 @@ types={
             name:'Stride',rarity:-1,list:0,
             levels:[
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0,1],class:3},
-                {effect:[1],attack:3,cost:0,target:[1,1,2],spec:[0,1],class:3},
-                {effect:[1],attack:3,cost:0,target:[1,1,2],spec:[1],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[0,1],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[1],class:3},
             ],
         },{
             name:'Chip',rarity:-1,list:0,
@@ -4911,6 +4939,13 @@ types={
                 {effect:[],attack:703,cost:0,target:[36,'Teleporter End'],spec:[1,2],class:4},
                 {effect:[],attack:703,cost:0,target:[36,'Teleporter End'],spec:[1,2,22],class:4},
                 {effect:[],attack:703,cost:0,target:[36,'Teleporter End'],spec:[1,2,24],class:4},
+            ],
+        },{
+            name:'Speed',rarity:-1,list:0,
+            levels:[
+                {effect:[1,2],attack:727,cost:0,target:[40,1,1,1,3],spec:[0,1],class:3},
+                {effect:[2,3],attack:727,cost:0,target:[40,1,2,1,4],spec:[0,1],class:3},
+                {effect:[2,3],attack:727,cost:0,target:[40,1,2,1,4],spec:[1],class:3},
             ],
         },
 
@@ -5424,7 +5459,7 @@ types={
         {name:'Intern',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[4]},{type:1,effect:[5]},{type:4,effect:[3]}],description:`Working for exposure`},
         {name:'Assistant Hiring Officer',life:180,behavior:1,spec:[],move:{type:1,speed:2},attack:[{type:39,effect:[3,'Intern']},{type:130,effect:[9]}],description:`Cutting costs everywhere`},
         {name:'Gangster Machinegunner',life:48,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`Realized he can hold down the trigger`},
-        {name:'Bolt',life:8,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:131,effect:[10]},{type:132,effect:[1,'Electrocuted']},{type:133,effect:[3]}],description:`Literally electricity`},
+        {name:'Bolt',life:12,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:131,effect:[6]},{type:132,effect:[1,'Electrocuted']},{type:133,effect:[3]}],description:`Literally electricity`},
         {name:'Jet',life:192,behavior:0,spec:[1],move:{type:1,speed:2},attack:[{type:134,effect:[18,1]},{type:135,effect:[8,2,'Burn']}],description:`Technology difference`},
         {name:'Armored Ninja',life:72,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:137,effect:[9]},{type:138,effect:[6]},{type:139,effect:[6]},{type:10,effect:[6]}],description:`Not a spike slime?`},
         {name:'Destructor Bot',life:81,behavior:0,spec:[],move:{type:0,speed:3},attack:[{type:136,effect:[40]}],description:`Has no regard for its nonexistent life`},
@@ -8478,7 +8513,7 @@ shipyard visit for another time.`,
             name:'Crushed Hole 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
-                [{type:[]},{type:-1},{type:[]},{type:-1},{type:[]}],
+                [{type:[]},{type:-1},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
@@ -8506,7 +8541,7 @@ shipyard visit for another time.`,
             name:'Randhole 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
-                [{type:[]},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:[]}],
                 [{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
@@ -9296,7 +9331,7 @@ shipyard visit for another time.`,
         },{
             level:['Lanes 3'],class:3,world:0,
             name:'Bolt',
-            player:{position:[[{x:1,y:1}],[{x:0,y:1},{x:1,y:1}]]},
+            player:{position:[[{x:1,y:1}],[{x:1,y:1},{x:0,y:1}]]},
             enemy:[
                 {position:{x:3,y:0},name:'Bolt'},
                 {position:{x:4,y:2},name:'Bolt'},
@@ -10552,7 +10587,7 @@ Does not spend the orb.`,
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:7,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,lowhealth:false}
+variants={lowdraw:false,lowhealth:false,midhealth:false,shortmap:false,speedmove:false,speedcard:false,nobasicanim:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

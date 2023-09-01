@@ -889,6 +889,507 @@ class turn{
             }
         }
     }
+    selfCall(type){
+        switch(type){
+            case 0:
+                switch(this.type){
+                    case 8:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[1],types.card),0,game.playerNumber+1)
+                        }
+                    break
+                    case 23: case 33: case 152:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                    break
+                    case 37:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userCombatant.combo,this.user)
+                        this.userCombatant.combo=0
+                    break
+                    case 58:
+                        if(this.targetCombatant.block<=0){
+                            this.targetCombatant.statusEffect('Bleed',this.effect[0])
+                        }
+                    break
+                    case 61:
+                        this.targetCombatant.statusEffect('Frail',this.effect[0])
+                    break
+                    case 62:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                    break
+                    case 172:
+                        this.targetCombatant.takeDamage(this.effect[0]/100*this.targetCombatant.life,this.user)
+                    break
+                    case 229:
+                        this.targetCombatant.statusEffect('Take Per Turn',this.effect[0])
+                    break
+                    default:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    break
+                }
+                switch(this.type){
+                    case 13: case 14: case 178:
+                        if(this.targetCombatant.blocked>0){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            }
+                        }
+                    break
+                    case 15:
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                    break
+                    case 22: case 32: case 83:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                        }
+                    break
+                    case 24:
+                        if(this.targetCombatant.blocked>0){
+                            this.targetCombatant.statusEffect('Bleed',this.effect[1])
+                        }
+                    break
+                    case 27:
+                        this.targetCombatant.statusEffect('Frail',this.effect[1])
+                    break
+                    case 30:
+                        this.userCombatant.addBlock(this.effect[1])
+                    break
+                    case 67:
+                        if(this.targetCombatant.id<this.battle.players){
+                            this.userCombatant.statusEffect('Currency',this.effect[1])
+                            this.battle.loseCurrency(this.effect[1],this.targetCombatant.id)
+                        }
+                    break
+                    case 36:
+                        this.userCombatant.combo++
+                        if(this.targetCombatant.blocked>0){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            }
+                        }
+                    break
+                    case 112:
+                        this.userCombatant.statusEffect('Strength',this.effect[1])
+                    break
+                    case 113:
+                        this.userCombatant.heal(this.effect[0])
+                    break
+                    case 183:
+                        for(let a=0,la=this.effect[1]*(3-this.targetDistance);a<la;a++){
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                        }
+                    break
+                    case 193:
+                        this.targetCombatant.statusEffect('Cannot Gain Block Next Turn',this.effect[1])
+                    break
+                }
+            break
+            case 1:
+                switch(this.type){
+                    case 10:
+                        this.battle.combatantManager.allEffect(6,[this.effect[0]])
+                    break
+                    case 65:
+                        this.battle.combatantManager.allEffect(6,[this.effect[0]])
+                        this.battle.combatantManager.allEffect(9,[1])
+                    break
+                    case 126:
+                        this.battle.combatantManager.allEffect(6,[this.effect[0]])
+                        this.battle.combatantManager.allEffect(9,[2])
+                    break
+                    case 111:
+                        this.userCombatant.statusEffect('Metallicize',this.effect[0])
+                    break
+                    case 230:
+                        this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
+                    break
+                    case 231:
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[0])
+                    break
+                    case 232:
+                        this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
+                    break
+                    case 234:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.add(findName('Revolver',types.card),0,0)
+                        }
+                    break
+                    case 237:
+                        this.battle.combatantManager.combatants[this.userCombatant.builder].metal+=this.effect[0]
+                    break
+                    case 238:
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.upgrade(this.effect[0])
+                    break
+                    case 239:
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.transform(this.effect[0])
+                    break
+                    case 240:
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.duplicate(this.effect[0])
+                    break
+                    case 241:
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.exhaust(this.effect[0])
+                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[1])
+                    break
+                    default:
+                        this.userCombatant.addBlock(this.effect[0])
+                        switch(this.type){
+                            case 29:
+                                this.userCombatant.statusEffect('Retain Block',1)
+                            break
+                            case 48:
+                                this.userCombatant.statusEffect('Retain Block',2)
+                            break
+                            case 72:
+                                this.userCombatant.statusEffect('Strength',this.effect[1])
+                            break
+                            case 102:
+                                this.userCombatant.statusEffect('Retain Block',3)
+                            break
+                            case 108:
+                                this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
+                            break
+                            case 110:
+                                this.userCombatant.statusEffect('Retain Block',1)
+                                this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
+                            break
+                            case 182:
+                                this.userCombatant.statusEffect('Retain Block',6)
+                            break
+                            case 190:
+                                this.userCombatant.statusEffect('Armor',this.effect[1])
+                                this.userCombatant.statusEffect('Strength',this.effect[2])
+                            break
+                        }
+                    break
+                }
+            break
+            case 2:
+                switch(this.type){
+                    case 5:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropAll(findName(this.effect[1],types.card),0,game.playerNumber+1)
+                        }
+                    break
+                    case 39:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.quickReinforce(this.effect[1])
+                        }
+                    break
+                    case 40:
+                        this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,2)
+                    break
+                    case 41:
+                        this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,1)
+                    break
+                    case 42:
+                        this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,4)
+                    break
+                    case 51:
+                        this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,5)
+                    break
+                    case 52:
+                        this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,6)
+                        this.battle.tileManager.spawnAmountDouble(this.effect[0],this.userCombatant.tilePosition,6)
+                    break
+                    case 56:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,findName('Shield Particle',types.combatant),this.userCombatant.goal.anim.direction)
+                        }
+                    break
+                    case 57:
+                        let amount=this.battle.combatantManager.killAll('Shield Particle')
+                        this.userCombatant.addBlock(amount)
+                    break
+                    case 74:
+                        this.battle.cardManagers.forEach(cardManager=>cardManager.allGroupEffect(9))
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropAll(findName(this.effect[1],types.card),0,game.playerNumber+1)
+                        }
+                    break
+                    case 75:
+                        this.battle.tileManager.allEffect(0,[7])
+                    break
+                    case 78:
+                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                            if(legalTargetCombatant(2,1,6,this.userCombatant,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].name==this.userCombatant.name&&distTargetCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a])>1){
+                                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,12,[this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y-30]))
+                                let direction=targetDirectionCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a])
+                                for(let b=1,lb=distTargetCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a]);b<lb;b++){
+                                    let index=this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,-direction*60+90)[0]*b,this.userCombatant.tilePosition.y+transformDirection(0,-direction*60+90)[1]*b)
+                                    if(index>=0){
+                                        this.battle.combatantManager.combatants[index].takeDamage(this.effect[0],-1)
+                                    }
+                                }
+                            }
+                        }
+                    break
+                    case 88:
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Cannot Move Next Turn',this.effect[0])
+                    break
+                    case 92:
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Temporary Draw',-this.effect[0])
+                    break
+                    case 93:
+                        this.battle.energy.temp[this.userCombatant.target]-=this.effect[0]
+                    break
+                    case 94:
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Anti-Control',this.effect[0])
+                    break
+                    case 155:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,findName(this.effect[1],types.combatant),this.userCombatant.goal.anim.direction)
+                        }
+                    break
+                    case 186:
+                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                            if(this.battle.combatantManager.combatants[a].name==this.userCombatant.name&&this.battle.combatantManager.combatants[a].life<=0&&!this.battle.combatantManager.combatants[a].respawn){
+                                this.battle.combatantManager.combatants[a].respawn=true
+                                this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,this.userCombatant.type,this.userCombatant.goal.anim.direction)
+                            }
+                        }
+                    break
+                    case 189:
+                        this.battle.quickReinforceCorner(this.effect[1],this.effect[2],this.effect[0],3)
+                    break
+                }
+            break
+            case 3:
+                for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                    switch(this.type){
+                        case 64:
+                            this.targetCombatant[a].takeDamage(this.effect[0],this.user,2)
+                        break
+                        case 105:
+                            for(let b=0,lb=this.effect[0];b<lb;b++){
+                                this.battle.drop(this.targetCombatant[a].id,findName(this.effect[1],types.card),0,game.playerNumber+1)
+                            }
+                        break
+                        case 153:
+                            this.targetCombatant[a].statusEffect('Weak',this.effect[0])
+                        break
+                        default:
+                            this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                        break
+                    }
+                    switch(this.type){
+                        case 44:
+                            if(this.targetCombatant[a].blocked>0){
+                                this.targetCombatant[a].statusEffect('Bleed',this.effect[1])
+                            }
+                        break
+                        case 53: case 60:
+                            for(let b=0,lb=this.effect[1];b<lb;b++){
+                                this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            }
+                        break
+                        case 82:
+                            if(this.targetCombatant[a].blocked>0){
+                                for(let b=0,lb=this.effect[1];b<lb;b++){
+                                    this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                                }
+                            }
+                        break
+                        case 84:
+                            this.targetCombatant[a].statusEffect('Weak',this.effect[1])
+                        break
+                        case 114:
+                            this.targetCombatant[a].statusEffect('Frail',this.effect[1])
+                        break
+                        case 124:
+                            if(this.targetCombatant[a].id<this.battle.players){
+                                this.battle.energy.temp[this.userCombatant.target]-=this.effect[1]
+                            }
+                        break
+                    }
+                }
+            break
+            case 4:
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                switch(this.type){
+                    case 50:
+                        this.targetCombatant.statusEffect('Cannot Gain Block Next Turn',this.effect[1])
+                    break
+                    case 81:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                        }
+                    break
+                    case 89:
+                        if(this.targetCombatant.blocked>0){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            }
+                        }
+                    break
+                    case 140:
+                        this.targetCombatant.statusEffect('Cannot Move Next Turn',this.effect[1])
+                    break
+                    case 141:
+                        if(this.targetCombatant.id<this.battle.players){
+                            this.targetCombatant.statusEffect('Energy Next Turn',-this.effect[1])
+                        }
+                    break
+                    case 151:
+                        this.targetCombatant.statusEffect('Burn',this.effect[1])
+                    break
+                }
+            break
+            case 5:
+                switch(this.type){
+                    case 18:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                    break
+                    case 25:
+                        this.battle.combatantManager.allEffect(7,[this.effect[0]])
+                    break
+                    case 26:
+                        this.battle.combatantManager.allEffect(3,[this.effect[0]])
+                    break
+                    case 43:
+                        this.battle.tileManager.fireArea(0,this.effect[0],this.targetCombatant.tilePosition,this.effect[1])
+                    break
+                    case 46:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            if(a==0){
+                                this.battle.tileManager.fireRandomTarget(0,this.effect[0],this.targetCombatant.tilePosition)
+                            }else{
+                                this.battle.tileManager.fireRandomSet(0,this.effect[0])
+                            }
+                        }
+                    break
+                    case 63:
+                        this.battle.combatantManager.allEffect(8,[this.effect[0]])
+                    break
+                    case 70:
+                        this.battle.combatantManager.allEffect(10,[this.effect[0],'Hexaghost Core'])
+                    break
+                    case 109:
+                        this.userCombatant.heal(this.effect[0])
+                    break
+                    case 159:
+                        this.userCombatant.randomStatus(this.effect[0],[0,1])
+                    break
+                    case 167:
+                        for(let a=0,la=5;a<la;a++){
+                            this.userCombatant.randomStatus(floor(random(this.effect[0],this.effect[1]+1)),[1])
+                        }
+                    break
+                    case 169:
+                        this.battle.combatantManager.allEffect(11,[this.effect[0]])
+                    break
+                    case 170:
+                        this.battle.combatantManager.allEffect(12,[this.effect[0]])
+                    break
+                    case 174:
+                        this.userCombatant.statusEffectNext('Take Half Damage',this.effect[0])
+                    break
+                    case 177:
+                        this.userCombatant.statusEffect('Invisible',this.effect[0])
+                    break
+                    case 197:
+                        this.battle.combatantManager.allEffect(13,[this.effect[0]])
+                    break
+                    case 207:
+                        this.userCombatant.statusEffect('Strength',this.effect[0]*(this.userCombatant.life<this.userCombatant.base.life/2?2:1))
+                    break
+                    case 210:
+                        this.userCombatant.statusEffect('Speed Up',this.effect[0])
+                    break
+                    case 216:
+                        this.userCombatant.life-=this.effect[0]
+                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                            if(this.battle.combatantManager.combatants[a].spec.includes(2)){
+                                this.battle.combatantManager.combatants[a].heal(this.effect[0])
+                            }
+                        }
+                    break
+                    case 220:
+                        this.userCombatant.statusEffectNext('Take Third Damage',this.effect[0])
+                    break
+                    case 228:
+                        this.userCombatant.statusEffect('Counter All Combat',this.effect[0])
+                    break
+
+                }
+            break
+            case 6:
+                switch(this.type){
+                    case 66:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                        }
+                    break
+                    case 103:
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                    break
+                    case 107:
+                        this.userCombatant.statusEffect('Strength',this.effect[1])
+                    break
+                    case 194:
+                        if(this.targetCombatant.blocked>0){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            }
+                        }
+                    break
+                }
+            break
+            case 7:
+                switch(this.type){
+                    case 76:
+                        if(this.targetCombatant.blocked>0){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
+                            }
+                        }
+                    break
+                    case 149:
+                        if(this.targetCombatant.blocked>0){
+                            this.targetCombatant.statusEffect('Bleed',this.effect[1])
+                        }
+                    break
+                }
+            break
+            case 8:
+                if(this.type==132){
+                    for(let a=0,la=this.effect[0];a<la;a++){
+                        this.battle.combatantManager.dropAreaID(0,findName(this.effect[1],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
+                    }
+                }else{
+                    this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
+                }
+                switch(this.type){
+                    case 17:
+                        this.battle.combatantManager.statusAreaID('Cannot Move Next Turn',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                    break
+                    case 54:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.combatantManager.dropAreaID(0,findName(this.effect[2],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
+                        }
+                    break
+                    case 128:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.combatantManager.dropAreaID(1,findName(this.effect[2],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
+                        }
+                    break
+                    case 198:
+                        this.battle.combatantManager.energyDownAreaID(this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                    break
+                    case 215:
+                        this.battle.combatantManager.statusAreaID('Dissipating',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                    break
+                    case 217:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.combatantManager.summonCombatant(this.targetCombatant.tilePosition,findName(this.effect[2],types.combatant),this.targetCombatant.goal.anim.direction)
+                        }
+                    break
+                }
+            break
+
+
+
+
+        }
+    }
     update(){
         this.timer++
         switch(this.action){
@@ -901,210 +1402,141 @@ class turn{
                         if(this.type==205&&this.timer==1){
                             this.userCombatant.goal.anim.direction=this.relativeDirection
                         }
-                        if(this.timer==1&&this.targetDistance>1){
-                            this.userCombatant.startAnimation(0)
-                        }else if(this.timer==15*this.targetDistance-14){
-                            this.userCombatant.startAnimation(2)
-                        }
-                        if(this.timer>=15*this.targetDistance-14){
-                            this.userCombatant.runAnimation(1/30,2)
-                        }else{
-                            this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
-                            this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
-                            this.userCombatant.runAnimation(1/15,0)
-                        }
-                        if(this.timer==15*this.targetDistance-15){
-                            let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
-                            this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
-                        }else if(this.timer==15*this.targetDistance){
-                            switch(this.type){
-                                case 8:
-                                    for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[1],types.card),0,game.playerNumber+1)
-                                    }
-                                break
-                                case 23: case 33: case 152:
-                                    this.targetCombatant.statusEffect('Weak',this.effect[0])
-                                break
-                                case 37:
-                                    this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userCombatant.combo,this.user)
-                                    this.userCombatant.combo=0
-                                break
-                                case 58:
-                                    if(this.targetCombatant.block<=0){
-                                        this.targetCombatant.statusEffect('Bleed',this.effect[0])
-                                    }
-                                break
-                                case 61:
-                                    this.targetCombatant.statusEffect('Frail',this.effect[0])
-                                break
-                                case 62:
-                                    this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
-                                break
-                                case 172:
-                                    this.targetCombatant.takeDamage(this.effect[0]/100*this.targetCombatant.life,this.user)
-                                break
-                                case 229:
-                                    this.targetCombatant.statusEffect('Take Per Turn',this.effect[0])
-                                break
-                                default:
-                                    this.targetCombatant.takeDamage(this.effect[0],this.user)
-                                break
+                        if(variants.nobasicanim){
+                            if(this.targetDistance>1){
+                                this.userCombatant.moveTile(this.direction,this.distance*(this.targetDistance-1)/this.targetDistacne)
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance*(this.targetDistance-1)/this.targetDistacne)
+                                let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                                this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                             }
-                            switch(this.type){
-                                case 13: case 14: case 178:
-                                    if(this.targetCombatant.blocked>0){
-                                        for(let a=0,la=this.effect[1];a<la;a++){
-                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                        }
-                                    }
-                                break
-                                case 15:
-                                    this.targetCombatant.statusEffect('Weak',this.effect[1])
-                                break
-                                case 22: case 32: case 83:
-                                    for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                    }
-                                break
-                                case 24:
-                                    if(this.targetCombatant.blocked>0){
-                                        this.targetCombatant.statusEffect('Bleed',this.effect[1])
-                                    }
-                                break
-                                case 27:
-                                    this.targetCombatant.statusEffect('Frail',this.effect[1])
-                                break
-                                case 30:
-                                    this.userCombatant.addBlock(this.effect[1])
-                                break
-                                case 67:
-                                    if(this.targetCombatant.id<this.battle.players){
-                                        this.userCombatant.statusEffect('Currency',this.effect[1])
-                                        this.battle.loseCurrency(this.effect[1],this.targetCombatant.id)
-                                    }
-                                break
-                                case 36:
-                                    this.userCombatant.combo++
-                                    if(this.targetCombatant.blocked>0){
-                                        for(let a=0,la=this.effect[1];a<la;a++){
-                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                        }
-                                    }
-                                break
-                                case 112:
-                                    this.userCombatant.statusEffect('Strength',this.effect[1])
-                                break
-                                case 113:
-                                    this.userCombatant.heal(this.effect[0])
-                                break
-                                case 183:
-                                    for(let a=0,la=this.effect[1]*(3-this.targetDistance);a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                    }
-                                break
-                                case 193:
-                                    this.targetCombatant.statusEffect('Cannot Gain Block Next Turn',this.effect[1])
-                                break
-                            }
-                        }else if(this.timer>=15*this.targetDistance+15){
+                            this.selfCall(0)
                             if(this.targetDistance>1){
                                 this.battle.activate(1,this.userCombatant.id)
                             }
                             this.remove=true
+                        }else{
+                            if(this.timer==1&&this.targetDistance>1){
+                                this.userCombatant.startAnimation(0)
+                            }else if(this.timer==15*this.targetDistance-14){
+                                this.userCombatant.startAnimation(2)
+                            }
+                            if(this.timer>=15*this.targetDistance-14){
+                                this.userCombatant.runAnimation(1/30,2)
+                            }else{
+                                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                                this.userCombatant.runAnimation(1/15,0)
+                            }
+                            if(this.timer==15*this.targetDistance-15){
+                                let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                                this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                            }else if(this.timer==15*this.targetDistance){
+                                this.selfCall(0)
+                            }else if(this.timer>=15*this.targetDistance+15){
+                                if(this.targetDistance>1){
+                                    this.battle.activate(1,this.userCombatant.id)
+                                }
+                                this.remove=true
+                            }
                         }
                     break
                     case 20: case 31: case 59: case 66: case 99: case 103: case 107: case 194:
-                        if(this.timer==1&&this.targetDistance>1){
-                            this.userCombatant.startAnimation(0)
-                        }else if(this.timer==15*this.targetDistance-14){
-                            this.userCombatant.startAnimation(2)
-                        }
-                        if(this.timer>=15*this.targetDistance-14){
-                            this.userCombatant.runAnimation(1/15,2)
-                        }else{
-                            this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
-                            this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
-                            this.userCombatant.runAnimation(1/15,0)
-                        }
-                        if(this.timer==15*this.targetDistance-15){
-                            let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
-                            this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
-                        }else if(this.timer==15*this.targetDistance-3||this.timer==15*this.targetDistance+3){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                            if(this.timer==15*this.targetDistance-3){
-                                switch(this.type){
-                                    case 66:
-                                        for(let a=0,la=this.effect[1];a<la;a++){
-                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                        }
-                                    break
-                                    case 103:
-                                        this.targetCombatant.statusEffect('Weak',this.effect[1])
-                                    break
-                                    case 107:
-                                        this.userCombatant.statusEffect('Strength',this.effect[1])
-                                    break
-                                    case 194:
-                                        if(this.targetCombatant.blocked>0){
-                                            for(let a=0,la=this.effect[1];a<la;a++){
-                                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                            }
-                                        }
-                                    break
-                                }
+                        if(variants.nobasicanim){
+                            if(this.targetDistance>1){
+                                this.userCombatant.moveTile(this.direction,this.distance*(this.targetDistance-1)/this.targetDistacne)
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance*(this.targetDistance-1)/this.targetDistacne)
+                                let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                                this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                             }
-                        }else if(this.timer>=15*this.targetDistance+15){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.selfCall(6)
                             if(this.targetDistance>1){
                                 this.battle.activate(1,this.userCombatant.id)
                             }
                             this.remove=true
+                        }else{
+                            if(this.timer==1&&this.targetDistance>1){
+                                this.userCombatant.startAnimation(0)
+                            }else if(this.timer==15*this.targetDistance-14){
+                                this.userCombatant.startAnimation(2)
+                            }
+                            if(this.timer>=15*this.targetDistance-14){
+                                this.userCombatant.runAnimation(1/15,2)
+                            }else{
+                                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                                this.userCombatant.runAnimation(1/15,0)
+                            }
+                            if(this.timer==15*this.targetDistance-15){
+                                let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                                this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                            }else if(this.timer==15*this.targetDistance-3||this.timer==15*this.targetDistance+3){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                if(this.timer==15*this.targetDistance-3){
+                                    this.selfCall(6)
+                                }
+                            }else if(this.timer>=15*this.targetDistance+15){
+                                if(this.targetDistance>1){
+                                    this.battle.activate(1,this.userCombatant.id)
+                                }
+                                this.remove=true
+                            }
                         }
                     break
                     case 2: case 19: case 34: case 45: case 76: case 149:
-                        if(this.timer==1&&this.targetDistance>1){
-                            this.userCombatant.startAnimation(0)
-                        }else if(this.timer==15*this.targetDistance-14){
-                            this.userCombatant.startAnimation(2)
-                        }
-                        if(this.timer>=15*this.targetDistance-14){
-                            this.userCombatant.runAnimation(1/10,2)
-                        }else{
-                            this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
-                            this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
-                            this.userCombatant.runAnimation(1/15,0)
-                        }
-                        if(this.timer==15*this.targetDistance-15){
-                            let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
-                            this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
-                        }else if(this.timer==15*this.targetDistance-5||this.timer==15*this.targetDistance||this.timer==15*this.targetDistance+5){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                            switch(this.type){
-                                case 34:
-                                    this.userCombatant.combo++
-                                break
+                        if(variants.nobasicanim){
+                            if(this.targetDistance>1){
+                                this.userCombatant.moveTile(this.direction,this.distance*(this.targetDistance-1)/this.targetDistacne)
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance*(this.targetDistance-1)/this.targetDistacne)
+                                let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                                this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                             }
-                            if(this.timer==15*this.targetDistance-5){
+                            for(let a=0,la=3;a<la;a++){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
                                 switch(this.type){
-                                    case 76:
-                                        if(this.targetCombatant.blocked>0){
-                                            for(let a=0,la=this.effect[1];a<la;a++){
-                                                this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                            }
-                                        }
-                                    break
-                                    case 149:
-                                        if(this.targetCombatant.blocked>0){
-                                            this.targetCombatant.statusEffect('Bleed',this.effect[1])
-                                        }
+                                    case 34:
+                                        this.userCombatant.combo++
                                     break
                                 }
                             }
-                        }else if(this.timer>=15*this.targetDistance+15){
+                            this.selfCall(7)
                             if(this.targetDistance>1){
                                 this.battle.activate(1,this.userCombatant.id)
                             }
                             this.remove=true
+                        }else{
+                            if(this.timer==1&&this.targetDistance>1){
+                                this.userCombatant.startAnimation(0)
+                            }else if(this.timer==15*this.targetDistance-14){
+                                this.userCombatant.startAnimation(2)
+                            }
+                            if(this.timer>=15*this.targetDistance-14){
+                                this.userCombatant.runAnimation(1/10,2)
+                            }else{
+                                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                                this.userCombatant.runAnimation(1/15,0)
+                            }
+                            if(this.timer==15*this.targetDistance-15){
+                                let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                                this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                            }else if(this.timer==15*this.targetDistance-5||this.timer==15*this.targetDistance||this.timer==15*this.targetDistance+5){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                switch(this.type){
+                                    case 34:
+                                        this.userCombatant.combo++
+                                    break
+                                }
+                                if(this.timer==15*this.targetDistance-5){
+                                    this.selfCall(7)
+                                }
+                            }else if(this.timer>=15*this.targetDistance+15){
+                                if(this.targetDistance>1){
+                                    this.battle.activate(1,this.userCombatant.id)
+                                }
+                                this.remove=true
+                            }
                         }
                     break
                     case 77: case 101:
@@ -1260,428 +1692,113 @@ class turn{
                     case 4: case 10: case 29: case 48: case 65: case 72: case 102: case 108: case 110: case 111:
                     case 126: case 182: case 190: case 230: case 231: case 232: case 234: case 237: case 238: case 239:
                     case 240: case 241:
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(1)
-                        }
-                        this.userCombatant.runAnimation(1/30,1)
-                        if(this.timer==15){
-                            switch(this.type){
-                                case 10:
-                                    this.battle.combatantManager.allEffect(6,[this.effect[0]])
-                                break
-                                case 65:
-                                    this.battle.combatantManager.allEffect(6,[this.effect[0]])
-                                    this.battle.combatantManager.allEffect(9,[1])
-                                break
-                                case 126:
-                                    this.battle.combatantManager.allEffect(6,[this.effect[0]])
-                                    this.battle.combatantManager.allEffect(9,[2])
-                                break
-                                case 111:
-                                    this.userCombatant.statusEffect('Metallicize',this.effect[0])
-                                break
-                                case 230:
-                                    this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
-                                break
-                                case 231:
-                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[0])
-                                break
-                                case 232:
-                                    this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
-                                break
-                                case 234:
-                                    for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.add(findName('Revolver',types.card),0,0)
-                                    }
-                                break
-                                case 237:
-                                    this.battle.combatantManager.combatants[this.userCombatant.builder].metal+=this.effect[0]
-                                break
-                                case 238:
-                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.upgrade(this.effect[0])
-                                break
-                                case 239:
-                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.transform(this.effect[0])
-                                break
-                                case 240:
-                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.duplicate(this.effect[0])
-                                break
-                                case 241:
-                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.exhaust(this.effect[0])
-                                    this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[1])
-                                break
-                                default:
-                                    this.userCombatant.addBlock(this.effect[0])
-                                    switch(this.type){
-                                        case 29:
-                                            this.userCombatant.statusEffect('Retain Block',1)
-                                        break
-                                        case 48:
-                                            this.userCombatant.statusEffect('Retain Block',2)
-                                        break
-                                        case 72:
-                                            this.userCombatant.statusEffect('Strength',this.effect[1])
-                                        break
-                                        case 102:
-                                            this.userCombatant.statusEffect('Retain Block',3)
-                                        break
-                                        case 108:
-                                            this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
-                                        break
-                                        case 110:
-                                            this.userCombatant.statusEffect('Retain Block',1)
-                                            this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
-                                        break
-                                        case 182:
-                                            this.userCombatant.statusEffect('Retain Block',6)
-                                        break
-                                        case 190:
-                                            this.userCombatant.statusEffect('Armor',this.effect[1])
-                                            this.userCombatant.statusEffect('Strength',this.effect[2])
-                                        break
-                                    }
-                                break
-                            }
-                        }else if(this.timer>=30){
+                        if(variants.nobasicanim){
+                            this.selfCall(1)
                             this.remove=true
+                        }else{
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(1)
+                            }
+                            this.userCombatant.runAnimation(1/30,1)
+                            if(this.timer==15){
+                                this.selfCall(1)
+                            }else if(this.timer>=30){
+                                this.remove=true
+                            }
                         }
                     break
                     case 5: case 39: case 40: case 41: case 42: case 51: case 52: case 56: case 57: case 74:
                     case 75: case 78: case 88: case 92: case 93: case 94: case 155: case 186: case 189:
-                        if(this.userCombatant.name=='General Duckion'||
-                        this.type!=39&&this.type!=56&&this.type!=74&&this.type!=75&&this.type!=78&&this.type!=92&&this.type!=93&&this.type!=94&&this.type!=155&&this.type!=186&&
-                        this.type!=189){
-                            if(this.timer==1){
-                                this.userCombatant.startAnimation(3)
-                            }
-                            this.userCombatant.runAnimation(1/15,3)
-                        }else{
-                            if(this.timer==1){
-                                this.userCombatant.startAnimation(8)
-                            }
-                            this.userCombatant.runAnimation(1/15,8)
-                        }
-                        if(this.timer>=15){
-                            switch(this.type){
-                                case 5:
-                                    for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.battle.dropAll(findName(this.effect[1],types.card),0,game.playerNumber+1)
-                                    }
-                                break
-                                case 39:
-                                    for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.battle.quickReinforce(this.effect[1])
-                                    }
-                                break
-                                case 40:
-                                    this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,2)
-                                break
-                                case 41:
-                                    this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,1)
-                                break
-                                case 42:
-                                    this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,4)
-                                break
-                                case 51:
-                                    this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,5)
-                                break
-                                case 52:
-                                    this.battle.tileManager.spawnAmount(this.effect[0],this.userCombatant.tilePosition,6)
-                                    this.battle.tileManager.spawnAmountDouble(this.effect[0],this.userCombatant.tilePosition,6)
-                                break
-                                case 56:
-                                    for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,findName('Shield Particle',types.combatant),this.userCombatant.goal.anim.direction)
-                                    }
-                                break
-                                case 57:
-                                    let amount=this.battle.combatantManager.killAll('Shield Particle')
-                                    this.userCombatant.addBlock(amount)
-                                break
-                                case 74:
-                                    this.battle.cardManagers.forEach(cardManager=>cardManager.allGroupEffect(9))
-                                    for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.battle.dropAll(findName(this.effect[1],types.card),0,game.playerNumber+1)
-                                    }
-                                break
-                                case 75:
-                                    this.battle.tileManager.allEffect(0,[7])
-                                break
-                                case 78:
-                                    for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                                        if(legalTargetCombatant(2,1,6,this.userCombatant,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].name==this.userCombatant.name&&distTargetCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a])>1){
-                                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,12,[this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y-30]))
-                                            let direction=targetDirectionCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a])
-                                            for(let b=1,lb=distTargetCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a]);b<lb;b++){
-                                                let index=this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x+transformDirection(0,-direction*60+90)[0]*b,this.userCombatant.tilePosition.y+transformDirection(0,-direction*60+90)[1]*b)
-                                                if(index>=0){
-                                                    this.battle.combatantManager.combatants[index].takeDamage(this.effect[0],-1)
-                                                }
-                                            }
-                                        }
-                                    }
-                                break
-                                case 88:
-                                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Cannot Move Next Turn',this.effect[0])
-                                break
-                                case 92:
-                                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Temporary Draw',-this.effect[0])
-                                break
-                                case 93:
-                                    this.battle.energy.temp[this.userCombatant.target]-=this.effect[0]
-                                break
-                                case 94:
-                                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].statusEffect('Anti-Control',this.effect[0])
-                                break
-                                case 155:
-                                    for(let a=0,la=this.effect[0];a<la;a++){
-                                        this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,findName(this.effect[1],types.combatant),this.userCombatant.goal.anim.direction)
-                                    }
-                                break
-                                case 186:
-                                    for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                                        if(this.battle.combatantManager.combatants[a].name==this.userCombatant.name&&this.battle.combatantManager.combatants[a].life<=0&&!this.battle.combatantManager.combatants[a].respawn){
-                                            this.battle.combatantManager.combatants[a].respawn=true
-                                            this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,this.userCombatant.type,this.userCombatant.goal.anim.direction)
-                                        }
-                                    }
-                                break
-                                case 189:
-                                    this.battle.quickReinforceCorner(this.effect[1],this.effect[2],this.effect[0],3)
-                                break
-                            }
+                        if(variants.nobasicanim){
+                            this.selfCall(2)
                             this.remove=true
+                        }else{
+                            if(this.userCombatant.name=='General Duckion'||
+                            this.type!=39&&this.type!=56&&this.type!=74&&this.type!=75&&this.type!=78&&this.type!=92&&this.type!=93&&this.type!=94&&this.type!=155&&this.type!=186&&
+                            this.type!=189){
+                                if(this.timer==1){
+                                    this.userCombatant.startAnimation(3)
+                                }
+                                this.userCombatant.runAnimation(1/15,3)
+                            }else{
+                                if(this.timer==1){
+                                    this.userCombatant.startAnimation(8)
+                                }
+                                this.userCombatant.runAnimation(1/15,8)
+                            }
+                            if(this.timer>=15){
+                                this.selfCall(2)
+                                this.remove=true
+                            }
                         }
                     break
                     case 9: case 28: case 44: case 53: case 60: case 64: case 82: case 84: case 85: case 105:
                     case 114: case 124: case 153: case 204:
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(4)
-                        }
-                        this.userCombatant.runAnimation(1/30,4)
-                        if(this.timer==15){
-                            for(let a=0,la=this.targetCombatant.length;a<la;a++){
-                                switch(this.type){
-                                    case 64:
-                                        this.targetCombatant[a].takeDamage(this.effect[0],this.user,2)
-                                    break
-                                    case 105:
-                                        for(let b=0,lb=this.effect[0];b<lb;b++){
-                                            this.battle.drop(this.targetCombatant[a].id,findName(this.effect[1],types.card),0,game.playerNumber+1)
-                                        }
-                                    break
-                                    case 153:
-                                        this.targetCombatant[a].statusEffect('Weak',this.effect[0])
-                                    break
-                                    default:
-                                        this.targetCombatant[a].takeDamage(this.effect[0],this.user)
-                                    break
-                                }
-                                switch(this.type){
-                                    case 44:
-                                        if(this.targetCombatant[a].blocked>0){
-                                            this.targetCombatant[a].statusEffect('Bleed',this.effect[1])
-                                        }
-                                    break
-                                    case 53: case 60:
-                                        for(let b=0,lb=this.effect[1];b<lb;b++){
-                                            this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                        }
-                                    break
-                                    case 82:
-                                        if(this.targetCombatant[a].blocked>0){
-                                            for(let b=0,lb=this.effect[1];b<lb;b++){
-                                                this.battle.drop(this.targetCombatant[a].id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                            }
-                                        }
-                                    break
-                                    case 84:
-                                        this.targetCombatant[a].statusEffect('Weak',this.effect[1])
-                                    break
-                                    case 114:
-                                        this.targetCombatant[a].statusEffect('Frail',this.effect[1])
-                                    break
-                                    case 124:
-                                        if(this.targetCombatant[a].id<this.battle.players){
-                                            this.battle.energy.temp[this.userCombatant.target]-=this.effect[1]
-                                        }
-                                    break
-                                }
-                            }
-                        }else if(this.timer>=30){
+                        if(variants.nobasicanim){
+                            this.selfCall(3)
                             this.remove=true
+                        }else{
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(4)
+                            }
+                            this.userCombatant.runAnimation(1/30,4)
+                            if(this.timer==15){
+                                this.selfCall(3)
+                            }else if(this.timer>=30){
+                                this.remove=true
+                            }
                         }
                     break
                     case 12: case 50: case 81: case 89: case 140: case 141: case 151:
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(5)
-                        }
-                        if(this.timer<=10||this.timer>20&&this.timer<=30){
-                            this.userCombatant.runAnimation(1/10,5)
-                        }
-                        if(this.timer==15){
-                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
-                        }else if(this.timer==5*this.targetDistance+15){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                            switch(this.type){
-                                case 50:
-                                    this.targetCombatant.statusEffect('Cannot Gain Block Next Turn',this.effect[1])
-                                break
-                                case 81:
-                                    for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                    }
-                                break
-                                case 89:
-                                    if(this.targetCombatant.blocked>0){
-                                        for(let a=0,la=this.effect[1];a<la;a++){
-                                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                                        }
-                                    }
-                                break
-                                case 140:
-                                    this.targetCombatant.statusEffect('Cannot Move Next Turn',this.effect[1])
-                                break
-                                case 141:
-                                    if(this.targetCombatant.id<this.battle.players){
-                                        this.targetCombatant.statusEffect('Energy Next Turn',-this.effect[1])
-                                    }
-                                break
-                                case 151:
-                                    this.targetCombatant.statusEffect('Burn',this.effect[1])
-                                break
-                            }
-                        }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                        if(variants.nobasicanim){
+                            this.selfCall(4)
                             this.remove=true
+                        }else{
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(5)
+                            }
+                            if(this.timer<=10||this.timer>20&&this.timer<=30){
+                                this.userCombatant.runAnimation(1/10,5)
+                            }
+                            if(this.timer==15){
+                                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                            }else if(this.timer==5*this.targetDistance+15){
+                                this.selfCall(4)
+                            }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                                this.remove=true
+                            }
                         }
                     break
                     case 16: case 17: case 54: case 128: case 132: case 198: case 215: case 217:
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(6)
-                        }
-                        this.userCombatant.runAnimation(1/10,6)
-                        if(this.timer==10){
-                            if(this.type==132){
-                                for(let a=0,la=this.effect[0];a<la;a++){
-                                    this.battle.combatantManager.dropAreaID(0,findName(this.effect[1],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
-                                }
-                            }else{
-                                this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
-                            }
-                            switch(this.type){
-                                case 17:
-                                    this.battle.combatantManager.statusAreaID('Cannot Move Next Turn',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
-                                break
-                                case 54:
-                                    for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.combatantManager.dropAreaID(0,findName(this.effect[2],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
-                                    }
-                                break
-                                case 128:
-                                    for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.combatantManager.dropAreaID(1,findName(this.effect[2],types.card),0,game.playerNumber+1,this.userCombatant.id,this.userCombatant.tilePosition)
-                                    }
-                                break
-                                case 198:
-                                    this.battle.combatantManager.energyDownAreaID(this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
-                                break
-                                case 215:
-                                    this.battle.combatantManager.statusAreaID('Dissipating',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
-                                break
-                                case 217:
-                                    for(let a=0,la=this.effect[1];a<la;a++){
-                                        this.battle.combatantManager.summonCombatant(this.targetCombatant.tilePosition,findName(this.effect[2],types.combatant),this.targetCombatant.goal.anim.direction)
-                                    }
-                                break
-                            }
-                        }else if(this.timer>=20){
+                        if(variants.nobasicanim){
+                            this.selfCall(8)
                             this.remove=true
+                        }else{
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(6)
+                            }
+                            this.userCombatant.runAnimation(1/10,6)
+                            if(this.timer==10){
+                                this.selfCall(8)
+                            }else if(this.timer>=20){
+                                this.remove=true
+                            }
                         }
                     break
                     case 18: case 25: case 26: case 43: case 46: case 63: case 70: case 109: case 159: case 167:
                     case 169: case 170: case 174: case 177: case 197: case 207: case 210: case 216: case 220: case 228:
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(7)
-                        }
-                        this.userCombatant.runAnimation(1/15,7)
-                        if(this.timer>=15){
-                            switch(this.type){
-                                case 18:
-                                    this.userCombatant.statusEffect('Strength',this.effect[0])
-                                break
-                                case 25:
-                                    this.battle.combatantManager.allEffect(7,[this.effect[0]])
-                                break
-                                case 26:
-                                    this.battle.combatantManager.allEffect(3,[this.effect[0]])
-                                break
-                                case 43:
-                                    this.battle.tileManager.fireArea(0,this.effect[0],this.targetCombatant.tilePosition,this.effect[1])
-                                break
-                                case 46:
-                                    for(let a=0,la=this.effect[1];a<la;a++){
-                                        if(a==0){
-                                            this.battle.tileManager.fireRandomTarget(0,this.effect[0],this.targetCombatant.tilePosition)
-                                        }else{
-                                            this.battle.tileManager.fireRandomSet(0,this.effect[0])
-                                        }
-                                    }
-                                break
-                                case 63:
-                                    this.battle.combatantManager.allEffect(8,[this.effect[0]])
-                                break
-                                case 70:
-                                    this.battle.combatantManager.allEffect(10,[this.effect[0],'Hexaghost Core'])
-                                break
-                                case 109:
-                                    this.userCombatant.heal(this.effect[0])
-                                break
-                                case 159:
-                                    this.userCombatant.randomStatus(this.effect[0],[0,1])
-                                break
-                                case 167:
-                                    for(let a=0,la=5;a<la;a++){
-                                        this.userCombatant.randomStatus(floor(random(this.effect[0],this.effect[1]+1)),[1])
-                                    }
-                                break
-                                case 169:
-                                    this.battle.combatantManager.allEffect(11,[this.effect[0]])
-                                break
-                                case 170:
-                                    this.battle.combatantManager.allEffect(12,[this.effect[0]])
-                                break
-                                case 174:
-                                    this.userCombatant.statusEffectNext('Take Half Damage',this.effect[0])
-                                break
-                                case 177:
-                                    this.userCombatant.statusEffect('Invisible',this.effect[0])
-                                break
-                                case 197:
-                                    this.battle.combatantManager.allEffect(13,[this.effect[0]])
-                                break
-                                case 207:
-                                    this.userCombatant.statusEffect('Strength',this.effect[0]*(this.userCombatant.life<this.userCombatant.base.life/2?2:1))
-                                break
-                                case 210:
-                                    this.userCombatant.statusEffect('Speed Up',this.effect[0])
-                                break
-                                case 216:
-                                    this.userCombatant.life-=this.effect[0]
-                                    for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                                        if(this.battle.combatantManager.combatants[a].spec.includes(2)){
-                                            this.battle.combatantManager.combatants[a].heal(this.effect[0])
-                                        }
-                                    }
-                                break
-                                case 220:
-                                    this.userCombatant.statusEffectNext('Take Third Damage',this.effect[0])
-                                break
-                                case 228:
-                                    this.userCombatant.statusEffect('Counter All Combat',this.effect[0])
-                                break
-
-                            }
+                        if(variants.nobasicanim){
+                            this.selfCall(5)
                             this.remove=true
+                        }else{
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(7)
+                            }
+                            this.userCombatant.runAnimation(1/15,7)
+                            if(this.timer>=15){
+                                this.selfCall(5)
+                                this.remove=true
+                            }
                         }
                     break
                     case 47: case 179:

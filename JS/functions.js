@@ -16,7 +16,11 @@ function displayTransition(layer,transition){
 	layer.rect(layer.width/2,transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
 	layer.rect(layer.width/2,layer.height-transition.anim*layer.height/4,layer.width,transition.anim*layer.height/2)
 	if(transition.trigger){
-		transition.anim=round(transition.anim*10+1)/10
+		if(variants.speedmove){
+			transition.anim=round(transition.anim*5+1)/5
+		}else{
+			transition.anim=round(transition.anim*10+1)/10
+		}
 		if(transition.anim>=1.1){
 			transition.trigger = false
 			stage.scene=transition.scene
@@ -27,7 +31,11 @@ function displayTransition(layer,transition){
 		}
 	}
 	else if(transition.anim>0){
-		transition.anim=round(transition.anim*10-1)/10
+		if(variants.speedmove){
+			transition.anim=round(transition.anim*5-1)/5
+		}else{
+			transition.anim=round(transition.anim*10-1)/10
+		}
 	}
 }
 function regTriangle(layer,x,y,radiusX,radiusY,direction){
@@ -870,6 +878,9 @@ function combo(value){
 }
 function metal(value){
 	current.combatantManager.combatants[0].metal+=value
+}
+function stance(value){
+	current.combatantManager.combatants[0].enterStance(value)
 }
 function status(name){
 	return findList(name,current.combatantManager.combatants[0].status.name)

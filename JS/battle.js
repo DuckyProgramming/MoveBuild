@@ -134,7 +134,8 @@ class battle{
             if(
                 a==0&&this.player.includes(2)||
                 a==1&&this.player.includes(3)||
-                a==2&&this.player.includes(4)
+                a==2&&this.player.includes(4)||
+                a==3&&this.player.includes(7)
             ){
                 setupCombatantGraphics(a)
             }else{
@@ -412,7 +413,7 @@ class battle{
         }else{
             if(this.turn.total==1){
                 if(!this.relicManager.hasRelic(141,this.turn.main)){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initative',types.card),0,0)
+                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                 }
                 if(this.relicManager.hasRelic(107,this.turn.main)){
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)

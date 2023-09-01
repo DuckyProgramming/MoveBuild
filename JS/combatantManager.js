@@ -27,6 +27,8 @@ class combatantManager{
             la--
         }
         this.combatants=[]
+        this.battle.turnManager.turns=[]
+        this.battle.turnManager.turnsBack=[]
     }
     resetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
