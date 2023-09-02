@@ -870,13 +870,20 @@ class card{
             case 737: string+=`Add ${effect[0]} Smite\nto Your Hand\nEvery Turn`; break
             case 738: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds ${effect[1]} Times More\nWhen in Wrath`; break
             case 739: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nEnd Turn`; break
-
             case 740: string+=`Enter Wrath`; break
             case 741: string+=`Enter Calm`; break
             case 742: string+=`Enter Haste`; break
             case 743: string+=`Enter Strudy`; break
             case 744: string+=`Gain ${effect[0]} Faith`; break
             case 745: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Safety\nto Hand`; break
+            case 746: string+=`Wrath: Apply ${effect[0]} Weak\nElse: Enter Wrath`; break
+            case 747: string+=`Calm: Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nElse: Enter Calm`; break
+            case 748: string+=`Put a\nDiscarded Card\ninto Your Hand\nEnter Calm\nEnd Turn`; break
+            case 749: string+=`Put a\nDiscarded Card\ninto Your Hand\nEnter Calm\nEnd Turn\nGain ${effect[0]} Energy Next Turn`; break
+            case 750: string+=`Haste: Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nElse: Enter Haste`; break
+            case 751: string+=`Sturdy: Apply ${effect[0]} Frail\nand Gain ${effect[1]} Dexterity\nElse: Enter Sturdy`; break
+            case 752: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext Turn\nEnter Sturdy\nEnd Turn`; break
+            case 753: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext Turn\nEnter Sturdy\nEnd Turn\nGain ${effect[1]} Energy Next Turn`; break
 
 
 

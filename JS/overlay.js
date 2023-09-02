@@ -7,6 +7,7 @@ class overlay{
         this.args=args
         this.fade=0
         this.active=false
+        this.endAfter=false
         switch(this.type){
             case 1:
                 this.rewards=[]
@@ -656,6 +657,10 @@ class overlay{
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
                                     switch(this.args[0]){
                                         case 5:
+                                            if(this.endAfter){
+                                                this.endAfter=false
+                                                this.battle.endTurn()
+                                            }
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--
@@ -893,6 +898,10 @@ class overlay{
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
                                     switch(this.args[0]){
                                         case 5:
+                                            if(this.endAfter){
+                                                this.endAfter=false
+                                                this.battle.endTurn()
+                                            }
                                             this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                                             a--
                                             la--

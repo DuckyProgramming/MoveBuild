@@ -73,7 +73,7 @@ class attack{
             case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 689:
             case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719:
             case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733: case 734:
-            case 736: case 739:
+            case 736: case 739: case 746:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -90,7 +90,7 @@ class attack{
             case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631:
             case 660: case 663: case 664: case 666: case 685: case 686: case 687: case 688: case 690: case 693:
             case 694: case 695: case 696: case 700: case 701: case 702: case 703: case 704: case 705: case 706:
-            case 717:
+            case 717: case 750:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1805,6 +1805,30 @@ class attack{
                     case 744:
                         this.userCombatant.faith+=this.effect[0]
                     break
+                    case 748:
+                        this.battle.overlayManager.overlays[7][this.player].active=true
+                        this.battle.overlayManager.overlays[7][this.player].endAfter=true
+                        this.battle.overlayManager.overlays[7][this.player].activate()
+                        this.userCombatant.enterStance(2)
+                    break
+                    case 749:
+                        this.battle.overlayManager.overlays[7][this.player].active=true
+                        this.battle.overlayManager.overlays[7][this.player].endAfter=true
+                        this.battle.overlayManager.overlays[7][this.player].activate()
+                        this.userCombatant.enterStance(2)
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[0])
+                    break
+                    case 752:
+                        this.userCombatant.enterStance(4)
+                        this.userCombatant.statusEffect('Temporary Draw',this.effect[0])
+                        this.battle.attackManager.endAfter=true
+                    break
+                    case 753:
+                        this.userCombatant.enterStance(4)
+                        this.userCombatant.statusEffect('Temporary Draw',this.effect[0])
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                        this.battle.attackManager.endAfter=true
+                    break
                     
                 }
             break
@@ -2782,7 +2806,7 @@ class attack{
                     break
                     case 739:
                         this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
-                        this.battle.endTurn()
+                        this.battle.attackManager.endAfter=true
                     break
                     default:
                         this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
@@ -3069,7 +3093,8 @@ class attack{
             case 387: case 390: case 392: case 398: case 418: case 422: case 423: case 431: case 451: case 499:
             case 512: case 519: case 523: case 524: case 525: case 527: case 528: case 529: case 530: case 541:
             case 542: case 595: case 603: case 605: case 607: case 612: case 640: case 645: case 647: case 665:
-            case 675: case 680: case 681: case 728: case 740: case 741: case 742: case 743: case 744:
+            case 675: case 680: case 681: case 728: case 740: case 741: case 742: case 743: case 744: case 748:
+            case 749: case 752: case 753:
                 if(variants.nobasicanim){
                     this.selfCall(4)
                     this.remove=true
@@ -6410,6 +6435,129 @@ class attack{
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                 }else if(this.timer>=45){
                     this.remove=true
+                }
+            break
+            case 746:
+                this.procedure[0]=this.userCombatant.stance==1?1:0
+                if(variants.nobasicanim){
+                    this.remove=true
+                    if(this.procedure[0]==1){
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                    }else{
+                        this.userCombatant.enterStance(1)
+                    }
+                }else if(this.procedure[0]==1){
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(17)
+                    }
+                    this.userCombatant.runAnimation(1/30,17)
+                    if(this.timer==15){
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                    }else if(this.timer>=30){
+                        this.remove=true
+                    }
+                }else{
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(5)
+                    }
+                    this.userCombatant.runAnimation(1/10,5)
+                    if(this.timer==10){
+                        this.userCombatant.enterStance(1)
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                }
+            break
+            case 747:
+                this.procedure[0]=this.userCombatant.stance==1?1:0
+                if(variants.nobasicanim){
+                    this.remove=true
+                    if(this.procedure[0]==1){
+                        this.battle.cardManagers[this.player].draw(this.effect[0])
+                    }else{
+                        this.userCombatant.enterStance(1)
+                    }
+                }else{
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(5)
+                    }
+                    this.userCombatant.runAnimation(1/10,5)
+                    if(this.timer==10){
+                        if(this.procedure[0]==1){
+                            this.battle.cardManagers[this.player].draw(this.effect[0])
+                        }else{
+                            this.userCombatant.enterStance(1)
+                        }
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                }
+            break
+            case 750:
+                if(variants.nobasicanim){
+                    this.userCombatant.moveTile(this.direction,this.distance)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
+                    this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                    this.battle.activate(1,this.userCombatant.id)
+                    this.remove=true
+                }else if(this.procedure[0]==3){
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(0)
+                    }
+                    this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                    this.userCombatant.runAnimation(1/15,0)
+                    if(this.timer==10*this.targetDistance){
+                        this.selfCall(2)
+                    }
+                    if(this.timer>=15*this.targetDistance){
+                        this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                        this.battle.activate(1,this.userCombatant.id)
+                        this.remove=true
+                    }
+                }else{
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(5)
+                    }
+                    this.userCombatant.runAnimation(1/10,5)
+                    if(this.timer==10){
+                        this.userCombatant.enterStance(3)
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                }
+            break
+            case 751:
+                this.procedure[0]=this.userCombatant.stance==1?1:0
+                if(variants.nobasicanim){
+                    this.remove=true
+                    if(this.procedure[0]==4){
+                        this.targetCombatant.statusEffect('Frail',this.effect[0])
+                        this.targetCombatant.statusEffect('Dexterity',this.effect[1])
+                    }else{
+                        this.userCombatant.enterStance(1)
+                    }
+                }else if(this.procedure[0]==4){
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(17)
+                    }
+                    this.userCombatant.runAnimation(1/30,17)
+                    if(this.timer==15){
+                        this.targetCombatant.statusEffect('Frail',this.effect[0])
+                        this.targetCombatant.statusEffect('Dexterity',this.effect[1])
+                    }else if(this.timer>=30){
+                        this.remove=true
+                    }
+                }else{
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(5)
+                    }
+                    this.userCombatant.runAnimation(1/10,5)
+                    if(this.timer==10){
+                        this.userCombatant.enterStance(1)
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
                 }
             break
             

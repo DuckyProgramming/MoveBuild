@@ -4617,9 +4617,52 @@ types={
                 {effect:[12],attack:745,cost:1,target:[0],spec:[],class:2},
                 {effect:[16],attack:745,cost:1,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Indignation',rarity:0,list:7,
+            levels:[
+                {effect:[3],attack:746,cost:1,target:[2,1,2],spec:[],class:0},
+                {effect:[5],attack:746,cost:1,target:[2,1,2],spec:[],class:0},
+                {effect:[6],attack:746,cost:1,target:[2,1,2],spec:[],class:0},
+            ],
+        },{
+            name:'Regulate',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:747,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:747,cost:1,target:[0],spec:[],class:4},
+                {effect:[5],attack:747,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Meditate',rarity:1,list:7,
+            levels:[
+                {effect:[],attack:748,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:748,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:749,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Bolt',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:750,cost:1,target:[1,1,3],spec:[],class:3},
+                {effect:[4],attack:750,cost:1,target:[1,1,4],spec:[],class:3},
+                {effect:[5],attack:750,cost:1,target:[1,1,5],spec:[],class:3},
+            ],
+        },{
+            name:'Impede',rarity:0,list:7,
+            levels:[
+                {effect:[3,1],attack:751,cost:1,target:[2,1,2],spec:[],class:0},
+                {effect:[5,2],attack:751,cost:1,target:[2,1,2],spec:[],class:0},
+                {effect:[6,3],attack:751,cost:1,target:[2,1,2],spec:[],class:0},
+            ],
+        },{
+            name:'Hold\nDown',rarity:0,list:7,
+            levels:[
+                {effect:[2],attack:752,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:752,cost:0,target:[0],spec:[],class:4},
+                {effect:[2,1],attack:753,cost:0,target:[0],spec:[],class:4},
+            ],
         },
+        
 
-        //belief
+        //move
 
 
 
