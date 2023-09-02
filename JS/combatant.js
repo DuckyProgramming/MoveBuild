@@ -66,6 +66,7 @@ class combatant{
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
+            'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -81,6 +82,7 @@ class combatant{
                 0,0,2,0,0,0,2,0,0,0,//11
                 0,0,0,0,0,0,0,1,0,1,//12
                 2,1,0,0,2,0,0,0,2,0,//13
+                1,1,1,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -96,6 +98,7 @@ class combatant{
                 0,1,0,0,2,2,0,2,0,2,
                 1,2,2,2,2,2,2,3,2,1,
                 2,0,0,1,0,2,2,2,1,2,
+                2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4532,6 +4535,10 @@ class combatant{
                     case 124: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[a]; break
                     case 125: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)} break
                     case 129: this.faith+=this.status.main[a]; break
+                    case 130: this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0); break
+                    case 131: this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0); break
+                    case 132: this.enterStance(1); break
+                    case 133: this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0); break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){

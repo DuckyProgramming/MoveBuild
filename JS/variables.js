@@ -4765,7 +4765,7 @@ types={
                 {effect:[2],attack:768,cost:1,target:[0],spec:[22],class:4},
             ],
         },{
-            name:'Spirit\nShield',rarity:0,list:0,
+            name:'Spirit\nShield',rarity:0,list:7,
             levels:[
                 {effect:[],attack:769,cost:2,target:[0],spec:[3],class:2},
                 {effect:[],attack:769,cost:1,target:[0],spec:[3],class:2},
@@ -4785,10 +4785,97 @@ types={
                 {effect:[10],attack:771,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[13],attack:771,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Amass',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:772,cost:-1,target:[0],spec:[],class:4},
+                {effect:[1],attack:773,cost:-1,target:[0],spec:[],class:4},
+                {effect:[1],attack:773,cost:-1,target:[0],spec:[22],class:4},
+            ],
+        },{
+            name:'Fasting',rarity:1,list:7,
+            levels:[
+                {effect:[4,4,1],attack:774,cost:1,target:[0],spec:[],class:4},
+                {effect:[5,5,1],attack:774,cost:1,target:[0],spec:[],class:4},
+                {effect:[6,6,1],attack:774,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Cycle\nStrike',rarity:0,list:7,
+            levels:[
+                {effect:[6,2],attack:775,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,4],attack:775,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,6],attack:775,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Perseverance',rarity:0,list:7,
+            levels:[
+                {effect:[8,2],attack:776,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,4],attack:776,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,6],attack:776,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Dipolar',rarity:1,list:7,
+            levels:[
+                {effect:[[],[]],attack:[740,741],cost:1,target:[0],spec:[12],reality:[[1],[1]],class:[4,4]},
+                {effect:[[],[]],attack:[740,741],cost:0,target:[0],spec:[12],reality:[[1],[1]],class:[4,4]},
+                {effect:[[],[]],attack:[740,741],cost:0,target:[0],spec:[12],reality:[[1,22],[1,22]],class:[4,4]},
+            ],
+        },{
+            name:'Bipolar',rarity:1,list:7,
+            levels:[
+                {effect:[[],[]],attack:[742,743],cost:1,target:[0],spec:[12],reality:[[1],[1]],class:[4,4]},
+                {effect:[[],[]],attack:[742,743],cost:0,target:[0],spec:[12],reality:[[1],[1]],class:[4,4]},
+                {effect:[[],[]],attack:[742,743],cost:0,target:[0],spec:[12],reality:[[1,22],[1,22]],class:[4,4]},
+            ],
+        },{
+            name:'Originality',rarity:1,list:7,
+            levels:[
+                {effect:[],attack:777,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:778,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:778,cost:0,target:[0],spec:[1,22],class:4},
+            ],
+        },{
+            name:'Start\nOff',rarity:1,list:7,
+            levels:[
+                {effect:[10],attack:779,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[16],attack:779,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[20],attack:779,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Signature\nMove',rarity:1,list:7,
+            levels:[
+                {effect:[30],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[40],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[48],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Simmering\nFury',rarity:1,list:7,
+            levels:[
+                {effect:[2,1],attack:781,cost:1,target:[0],spec:[],class:4},
+                {effect:[3,1],attack:781,cost:1,target:[0],spec:[],class:4},
+                {effect:[4,1],attack:781,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Knowledge',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:782,cost:2,target:[0],spec:[],class:4},
+                {effect:[1],attack:782,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:782,cost:1,target:[0],spec:[22],class:4},
+            ],
+        },{
+            name:'Swivel',rarity:1,list:7,
+            levels:[
+                {effect:[9,1],attack:783,cost:2,target:[0],spec:[],class:2},
+                {effect:[15,1],attack:783,cost:2,target:[0],spec:[],class:2},
+                {effect:[20,1],attack:783,cost:2,target:[0],spec:[],class:2},
+            ],
         },
         
+        //fix the number of cards for each stance
 
         //move
+
+        //sisterhood cards
 
 
 
@@ -5262,6 +5349,13 @@ types={
                 {effect:[16],attack:2,cost:1,target:[0],spec:[1,2],class:2},
                 {effect:[22],attack:2,cost:1,target:[0],spec:[1,2],class:2},
                 {effect:[27],attack:2,cost:1,target:[0],spec:[1,2],class:2},
+            ],
+        },{
+            name:'End\nUp',rarity:-1,list:0,
+            levels:[
+                {effect:[20],attack:1,cost:0,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[30],attack:1,cost:0,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[36],attack:1,cost:0,target:[2,1,1],spec:[0,1],class:1},
             ],
         },
 

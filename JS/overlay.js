@@ -76,6 +76,7 @@ class overlay{
             case 3:
                 this.cards=[]
                 let list=[]
+                let sublist=[]
                 this.taken=0
                 switch(args[2]){
                     case 0:
@@ -104,6 +105,37 @@ class overlay{
                             this.cards[a].cost=0
                             this.cards[a].upSize=true
                             list[args[1]].splice(index,1)
+                        }
+                    break
+                    case 3:
+                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        sublist=[]
+                        for(let a=0,la=list[3].length;a<la;a++){
+                            if(types.card[list[3][a]].levels[args[0]].class==args[1]){
+                                sublist.push(list[3][a])
+                            }
+                        }
+                        for(let a=0,la=this.options;a<la;a++){
+                            let index=floor(random(0,sublist.length))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],types.card[sublist[index]].list,-1))
+                            this.cards[a].upSize=true
+                            sublist.splice(index,1)
+                        }
+                    break
+                    case 4:
+                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        sublist=[]
+                        for(let a=0,la=list[3].length;a<la;a++){
+                            if(types.card[list[3][a]].levels[args[0]].class==args[1]){
+                                sublist.push(list[3][a])
+                            }
+                        }
+                        for(let a=0,la=this.options;a<la;a++){
+                            let index=floor(random(0,sublist.length))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],types.card[sublist[index]].list,-1))
+                            this.cards[a].cost=0
+                            this.cards[a].upSize=true
+                            sublist.splice(index,1)
                         }
                     break
                 }
@@ -730,14 +762,14 @@ class overlay{
                         if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].deSize){
                             switch(this.args[0]){
                                 case 0:
-                                    if(this.setupArgs[2]==2){
+                                    if(this.setupArgs[2]==2||this.setupArgs[2]==4){
                                         this.battle.cardManagers[this.player].deck.addFree(this.cards[a].type,this.cards[a].level,this.cards[a].color,1)
                                     }else{
                                         this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
                                     }
                                 break
                                 case 1:
-                                    if(this.setupArgs[2]==2){
+                                    if(this.setupArgs[2]==2||this.setupArgs[2]==4){
                                         this.battle.cardManagers[this.player].hand.addFree(this.cards[a].type,this.cards[a].level,this.cards[a].color,1)
                                     }else{
                                         this.battle.cardManagers[this.player].hand.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
@@ -971,7 +1003,18 @@ class overlay{
                         if((int(key)+9)%10==a&&!this.cards[a].deSize){
                             switch(this.args[0]){
                                 case 0:
-                                    this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+                                    if(this.setupArgs[2]==2||this.setupArgs[2]==4){
+                                        this.battle.cardManagers[this.player].deck.addFree(this.cards[a].type,this.cards[a].level,this.cards[a].color,1)
+                                    }else{
+                                        this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+                                    }
+                                break
+                                case 1:
+                                    if(this.setupArgs[2]==2||this.setupArgs[2]==4){
+                                        this.battle.cardManagers[this.player].hand.addFree(this.cards[a].type,this.cards[a].level,this.cards[a].color,1)
+                                    }else{
+                                        this.battle.cardManagers[this.player].hand.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+                                    }
                                 break
                             }
                             this.cards[a].deSize=true

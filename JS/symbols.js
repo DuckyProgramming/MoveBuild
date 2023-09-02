@@ -1169,7 +1169,44 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(80,fade)
             layer.triangle(-2,-1.5,-2,1.5,4,0)
         break
-        
+        case 130:
+            layer.stroke(255,100,200,fade)
+            layer.strokeWeight(1)
+            for(let a=0,la=12;a<la;a++){
+                layer.line(lsin(a*30)*3,lcos(a*30)*3,lsin(a*30)*6,lcos(a*30)*6)
+            }
+            layer.fill(255,100,200,fade)
+            layer.noStroke()
+            layer.triangle(0,7,-1,10,1,10)
+        break
+        case 131:
+            layer.stroke(255,100,200,fade)
+            layer.strokeWeight(1)
+            for(let a=0,la=12;a<la;a++){
+                layer.line(lsin(a*30)*3,lcos(a*30)*3,lsin(a*30)*6,lcos(a*30)*6)
+            }
+            layer.fill(255,100,200,fade)
+            layer.noStroke()
+            layer.triangle(0,7,-1,10,1,10)
+            layer.triangle(0,-10,-1,-7,1,-7)
+        break
+        case 132:
+            layer.stroke(255,75,75,fade)
+            layer.strokeWeight(1)
+            layer.quad(0,-4*sqrt(2),-4*sqrt(2),0,0,4*sqrt(2),4*sqrt(2),0)
+            layer.rect(0,0,8,8)
+            layer.fill(255,75,75,fade)
+            layer.noStroke()
+            layer.triangle(0,6.5,-1,9.5,1,9.5)
+        break
+        case 133:
+            layer.fill(125,125,125,fade)
+            layer.stroke(100,100,100,fade)
+            layer.strokeWeight(1)
+            layer.rect(-2,0,4.5,6,1)
+            layer.rect(3,0,3,4,1)
+        break
+
     }
     layer.pop()
 }

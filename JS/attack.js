@@ -73,7 +73,8 @@ class attack{
             case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 689:
             case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719:
             case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733: case 734:
-            case 736: case 739: case 746: case 757: case 758: case 762: case 764: case 766: case 771:
+            case 736: case 739: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775:
+            case 779: case 780:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -804,7 +805,10 @@ class attack{
                     case 771:
                         this.battle.cardManagers[this.player].hand.add(findName('Smite',types.card),0,0)
                     break
-                
+                    case 779:
+                        this.battle.cardManagers[this.player].reserve.addShuffle(findName('End\nUp',types.card),0,0)
+                    break
+
                 }
             break
             case 1:
@@ -1038,6 +1042,9 @@ class attack{
                     case 770:
                         this.userCombatant.faith+=this.effect[0]
                         this.userCombatant.addBlock(this.effect[1])
+                    break
+                    case 783:
+                        this.userCombatant.statusEffect('Free Attack',this.effect[1])
                     break
 
                 }
@@ -1435,6 +1442,14 @@ class attack{
                     case 763:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
                         this.userCombatant.enterStance(2)
+                    break
+                    case 777:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,1,3])
+                    break
+                    case 778:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,1,4])
                     break
                     
                 }
@@ -1883,7 +1898,27 @@ class attack{
                     break
                     case 769:
                         this.userCombatant.addBlock(this.battle.cardManagers[this.player].deck.cards.length)
-                    break            
+                    break
+                    case 772:
+                        this.userCombatant.statusEffect('Miracle Time',this.energy)
+                        this.battle.energy.main[this.player]+=this.effect[0]
+                    break
+                    case 773:
+                        this.userCombatant.statusEffect('Miracle+ Time',this.energy)
+                        this.battle.energy.main[this.player]+=this.effect[0]
+                    break
+                    case 774:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Dexterity',this.effect[1])
+                        this.battle.energy.gen[this.player]-=this.effect[2]
+                    break
+                    case 781:
+                        this.userCombatant.statusEffect('Temporary Draw',this.effect[0])
+                        this.userCombatant.statusEffect('Wrath Time',this.effect[1])
+                    break
+                    case 782:
+                        this.userCombatant.statusEffect('Insight Per Turn',this.effect[0])
+                    break
 
                 }
             break
@@ -2892,7 +2927,18 @@ class attack{
             case 558: case 559: case 580: case 581: case 582: case 588: case 596: case 597: case 601: case 604:
             case 606: case 610: case 638: case 639: case 661: case 677: case 678: case 679: case 692: case 714:
             case 715: case 719: case 721: case 723: case 725: case 730: case 731: case 732: case 733: case 734:
-            case 736: case 757: case 758: case 771:
+            case 736: case 757: case 758: case 771: case 779: case 780:
+                if(this.type==780){
+                    let failed=false
+                    for(let a=0,la=this.battle.cardManagers[this.player].hand.cards.length;a<la;a++){
+                        if(this.battle.cardManagers[this.player].hand.cards[a].class==1){
+                            failed=true
+                        }
+                    }
+                    if(failed){
+                        break
+                    }
+                }
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -2940,6 +2986,7 @@ class attack{
             case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443: case 461: case 463:
             case 502: case 513: case 515: case 518: case 522: case 546: case 547: case 589: case 602: case 682:
             case 699: case 716: case 722: case 724: case 726: case 735: case 738: case 745: case 765: case 770:
+            case 783:
                 if(variants.nobasicanim){
                     this.selfCall(1)
                     this.remove=true
@@ -3135,7 +3182,7 @@ class attack{
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
             case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656:
             case 668: case 684: case 711: case 712: case 713: case 737: case 754: case 755: case 760: case 761:
-            case 763:
+            case 763: case 777: case 778:
                 if(variants.nobasicanim){
                     this.selfCall(3)
                     this.remove=true
@@ -3161,7 +3208,8 @@ class attack{
             case 512: case 519: case 523: case 524: case 525: case 527: case 528: case 529: case 530: case 541:
             case 542: case 595: case 603: case 605: case 607: case 612: case 640: case 645: case 647: case 665:
             case 675: case 680: case 681: case 728: case 740: case 741: case 742: case 743: case 744: case 748:
-            case 749: case 752: case 753: case 756: case 756: case 759: case 768: case 769:
+            case 749: case 752: case 753: case 756: case 756: case 759: case 768: case 769: case 772: case 773:
+            case 774: case 781: case 782:
                 if(variants.nobasicanim){
                     this.selfCall(4)
                     this.remove=true
