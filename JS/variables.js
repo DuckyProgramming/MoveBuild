@@ -4743,6 +4743,48 @@ types={
                 {effect:[4],attack:765,cost:2,target:[0],spec:[],class:2},
                 {effect:[5],attack:765,cost:2,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Brilliance',rarity:1,list:7,
+            levels:[
+                {effect:[6,2],attack:766,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,4],attack:766,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,6],attack:766,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Deus Ex\nMachina',rarity:2,list:7,
+            levels:[
+                {effect:[2],attack:767,cost:0,target:[0],spec:[1],class:4},
+                {effect:[3],attack:767,cost:0,target:[0],spec:[1],class:4},
+                {effect:[4],attack:767,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Devotion',rarity:0,list:7,
+            levels:[
+                {effect:[1],attack:768,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:768,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:768,cost:1,target:[0],spec:[22],class:4},
+            ],
+        },{
+            name:'Spirit\nShield',rarity:0,list:0,
+            levels:[
+                {effect:[],attack:769,cost:2,target:[0],spec:[3],class:2},
+                {effect:[],attack:769,cost:1,target:[0],spec:[3],class:2},
+                {effect:[],attack:769,cost:1,target:[0],spec:[2,3],class:2},
+            ],
+        },{
+            name:'Credence',rarity:0,list:7,
+            levels:[
+                {effect:[3,6],attack:770,cost:1,target:[0],spec:[],class:4},
+                {effect:[4,8],attack:770,cost:1,target:[0],spec:[],class:4},
+                {effect:[5,9],attack:770,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Secure\nBlade',rarity:1,list:7,
+            levels:[
+                {effect:[6],attack:771,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:771,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[13],attack:771,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
         
 

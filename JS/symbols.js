@@ -650,8 +650,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 80:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6)+0.5,cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6)+0.5,cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
             layer.stroke(0,fade)
@@ -702,16 +702,16 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(9,0,-4.5,-3,-4.5,3)
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6)+0.5,cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6)+0.5,cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
         break
         case 87:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6)+0.5,cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6)+0.5,cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
             layer.fill(255,200,255,fade)
@@ -788,8 +788,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 95:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6),cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6),cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
             layer.fill(255,100,100,fade)
@@ -836,8 +836,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 98:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6),cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6),cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
             layer.fill(200,0,0,fade)
@@ -848,8 +848,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 99:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6),cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6),cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
             layer.fill(200,0,0,fade)
@@ -860,8 +860,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 100:
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6),cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6),cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
             layer.fill(200,0,0,fade)
@@ -1022,8 +1022,8 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6)+0.5,cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6)+0.5,cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
         break
@@ -1151,15 +1151,23 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,4.5,6,1)
         break
         case 128:
-            layer.fill(255,50,50,fade)
-            layer.rect(-3,0,9,3)
-            layer.triangle(1.5,-4.5,1.5,4.5,7.5,0)
             layer.fill(150,0,0,fade)
             layer.beginShape()
-            for(let a=0,la=17;a<la;a++){
-                layer.vertex(sin(a/(la-1)*360)*(6-a%2*3.6)+0.5,cos(a/(la-1)*360)*(6-a%2*3.6))
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6)+0.5,cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
+            layer.triangle(0,6.5,-1,9.5,1,9.5)
+        break
+        case 129:
+            layer.fill(255,200,255,fade)
+            layer.beginShape()
+            for(let a=0,la=8;a<la;a++){
+                layer.vertex(sin(a/la*360)*(4-a%2*3)+0.5,cos(a/la*360)*(4-a%2*3))
+            }
+            layer.endShape()
+            layer.fill(80,fade)
+            layer.triangle(-2,-1.5,-2,1.5,4,0)
         break
         
     }

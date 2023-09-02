@@ -858,7 +858,7 @@ class card{
             case 724: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEnter Sturdy`; break
             case 725: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExit Stance`; break
             case 726: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExit Stance`; break
-            case 727: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nor ${effect[1]} Tile${effect[1]!=1?`s`:``} Toward an Enemy`; break
+            case 727: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``} or\n${effect[1]} Tile${effect[1]!=1?`s`:``} Toward an Enemy`; break
             case 728: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nExit Stance`; break
             case 730: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nEnter Wrath`; break
             case 731: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nEnter Calm`; break
@@ -896,8 +896,16 @@ class card{
             case 763: string+=`Gain ${effect[0]} Dodge\nEnter Calm`; break
             case 764: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nEnter Haste`; break
             case 765: string+=`Gain ${effect[0]} Armor\nEnter Sturdy`; break
-            
+            case 766: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],12)}\nDamage`; break
+            case 767: string+=`Add ${effect[0]} Miracles${effect[0]!=1?`s`:``}\nto Hand`; break
+            case 768: string+=`Gain ${effect[0]} Faith\nPer Turn`; break
+            case 769: string+=`Add Block Equal to\nNumber of Cards in\nYour Deck${this.player>=0&&this.player<this.battle.players?` (${this.battle.cardManagers[this.player].deck.cards.length})`:``}`; break
+            case 770: string+=`Gain ${effect[0]} Faith\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 771: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Smite\nto Hand`; break
 
+
+
+            
 
 
 
