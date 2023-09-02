@@ -884,6 +884,19 @@ class card{
             case 751: string+=`Sturdy: Apply ${effect[0]} Frail\nand Gain ${effect[1]} Dexterity\nElse: Enter Sturdy`; break
             case 752: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext Turn\nEnter Sturdy\nEnd Turn`; break
             case 753: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext Turn\nEnter Sturdy\nEnd Turn\nGain ${effect[1]} Energy Next Turn`; break
+            case 754: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen You Change Stance`; break
+            case 755: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nWhen You Change Stance`; break
+            case 756: string+=`Gain ${effect[0]} Faith\nShuffle an Insight\ninto Draw Pile`; break
+            case 757: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Retained`; break
+            case 758: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain Block Equal to\nTarget's Health Lost`; break
+            case 759: string+=`Gain ${effect[0]} Faith\nGain ${effect[1]} Strength`; break
+            case 760: string+=`Next Attack Deals\n${effect[0]} More Damage`; break
+            case 761: string+=`Gain ${effect[0]} Faith\nLose ${effect[1]} Health\nNext Turn`; break
+            case 762: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\nEnter Wrath`; break
+            case 763: string+=`Gain ${effect[0]} Dodge\nEnter Calm`; break
+            case 764: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nEnter Haste`; break
+            case 765: string+=`Gain ${effect[0]} Armor\nEnter Sturdy`; break
+            
 
 
 
@@ -1088,6 +1101,16 @@ class card{
             break
             case 152:
                 this.battle.cardManagers[this.player].hand.add(findName('Operational\nStrike',types.card),this.level,this.color)
+            break
+        }
+    }
+    retained(){
+        switch(this.attack){
+            case 757:
+                if(this.cost>0){
+                    this.cost--
+                    this.base.cost--
+                }
             break
         }
     }

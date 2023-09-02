@@ -4659,6 +4659,90 @@ types={
                 {effect:[2],attack:752,cost:0,target:[0],spec:[],class:4},
                 {effect:[2,1],attack:753,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Mental\nFortress',rarity:1,list:7,
+            levels:[
+                {effect:[4],attack:754,cost:1,target:[0],spec:[],class:4},
+                {effect:[6],attack:754,cost:1,target:[0],spec:[],class:4},
+                {effect:[8],attack:754,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Rush',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:755,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:755,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:755,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Hope',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:756,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:756,cost:1,target:[0],spec:[],class:4},
+                {effect:[5],attack:756,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Sands\nof Time',rarity:2,list:7,
+            levels:[
+                {effect:[24],attack:757,cost:4,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[36],attack:757,cost:4,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[44],attack:757,cost:4,target:[2,1,1],spec:[0,2],class:1},
+            ],
+        },{
+            name:'Blade\nBash',rarity:0,list:7,
+            levels:[
+                {effect:[9],attack:758,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:758,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14],attack:758,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Conviction',rarity:1,list:7,
+            levels:[
+                {effect:[5,1],attack:759,cost:1,target:[0],spec:[],class:4},
+                {effect:[5,1],attack:759,cost:1,target:[0],spec:[2],class:4},
+                {effect:[6,1],attack:759,cost:1,target:[0],spec:[2],class:4},
+            ],
+        },{
+            name:'Wreath\nof Flame',rarity:0,list:7,
+            levels:[
+                {effect:[6],attack:760,cost:1,target:[0],spec:[],class:4},
+                {effect:[10],attack:760,cost:1,target:[0],spec:[],class:4},
+                {effect:[13],attack:760,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Finality',rarity:0,list:7,
+            levels:[
+                {effect:[8,30],attack:761,cost:1,target:[0],spec:[],class:4},
+                {effect:[8,20],attack:761,cost:1,target:[0],spec:[],class:4},
+                {effect:[8,15],attack:761,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Tantrum',rarity:1,list:7,
+            levels:[
+                {effect:[2],attack:762,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:762,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[4],attack:762,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Poise',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:763,cost:2,target:[0],spec:[],class:2},
+                {effect:[1],attack:763,cost:2,target:[0],spec:[2],class:2},
+                {effect:[1],attack:763,cost:2,target:[0],spec:[22],class:2},
+            ],
+        },{
+            name:'Disentangle',rarity:1,list:7,
+            levels:[
+                {effect:[5],attack:764,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:764,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:764,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Absorber',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:765,cost:2,target:[0],spec:[],class:2},
+                {effect:[4],attack:765,cost:2,target:[0],spec:[],class:2},
+                {effect:[5],attack:765,cost:2,target:[0],spec:[],class:2},
+            ],
         },
         
 

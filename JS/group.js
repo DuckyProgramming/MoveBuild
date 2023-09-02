@@ -358,6 +358,7 @@ class group{
                 case 1:
                     this.cards[a].callDiscardEffect()
                     if(this.cards[a].retain){
+                        this.cards[a].retained()
                         this.cards[a].retain=false
                         total++
                     }else if(this.cards[a].spec.includes(4)){
@@ -365,6 +366,7 @@ class group{
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
                     }else if(this.cards[a].spec.includes(2)||this.battle.relicManager.hasRelic(128,this.player)){
+                        this.cards[a].retained()
                         total++
                     }else{
                         this.cards[a].deSize=true
