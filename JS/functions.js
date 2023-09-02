@@ -882,6 +882,9 @@ function metal(value){
 function stance(value){
 	current.combatantManager.combatants[0].enterStance(value)
 }
+function faith(value){
+	current.combatantManager.combatants[0].faith+=value
+}
 function status(name){
 	return findList(name,current.combatantManager.combatants[0].status.name)
 }
@@ -959,21 +962,26 @@ Rare:${current.cardManagers[0].listing.card[5][2].length}
 Uncommon:${current.cardManagers[0].listing.card[6][1].length}
 Rare:${current.cardManagers[0].listing.card[6][2].length}
 	Total:${current.cardManagers[0].listing.card[6][3].length}
-		Status:
-Common:${current.cardManagers[0].listing.card[7][0].length}
+		${types.combatant[7].name}:
+	Common:${current.cardManagers[0].listing.card[7][0].length}
 Uncommon:${current.cardManagers[0].listing.card[7][1].length}
 Rare:${current.cardManagers[0].listing.card[7][2].length}
 	Total:${current.cardManagers[0].listing.card[7][3].length}
+		Status:
+Common:${current.cardManagers[0].listing.card[game.playerNumber+1][0].length}
+Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+1][1].length}
+Rare:${current.cardManagers[0].listing.card[game.playerNumber+1][2].length}
+	Total:${current.cardManagers[0].listing.card[game.playerNumber+1][3].length}
 		Curse:
-Common:${current.cardManagers[0].listing.card[8][0].length}
-Uncommon:${current.cardManagers[0].listing.card[8][1].length}
-Rare:${current.cardManagers[0].listing.card[8][2].length}
-	Total:${current.cardManagers[0].listing.card[8][3].length}
+Common:${current.cardManagers[0].listing.card[game.playerNumber+2][0].length}
+Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+2][1].length}
+Rare:${current.cardManagers[0].listing.card[game.playerNumber+2][2].length}
+	Total:${current.cardManagers[0].listing.card[game.playerNumber+2][3].length}
 		Partnership:
-Common:${current.cardManagers[0].listing.card[9][0].length}
-Uncommon:${current.cardManagers[0].listing.card[9][1].length}
-Rare:${current.cardManagers[0].listing.card[9][2].length}
-	Total:${current.cardManagers[0].listing.card[9][3].length}
+Common:${current.cardManagers[0].listing.card[game.playerNumber+3][0].length}
+Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}
+Rare:${current.cardManagers[0].listing.card[game.playerNumber+3][2].length}
+	Total:${current.cardManagers[0].listing.card[game.playerNumber+3][3].length}
 			`)
 }
 function shut(){

@@ -48,7 +48,7 @@ class combatant{
         this.builder=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0]}
 
         this.block=0
         this.dodges=[]
@@ -65,7 +65,7 @@ class combatant{
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
-            'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn',
+            'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -80,7 +80,7 @@ class combatant{
                 0,0,1,1,1,0,0,1,2,0,//10
                 0,0,2,0,0,0,2,0,0,0,//11
                 0,0,0,0,0,0,0,1,0,1,//12
-                2,1,0,0,2,
+                2,1,0,0,2,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -95,7 +95,7 @@ class combatant{
                 2,2,0,0,0,0,1,0,0,0,
                 0,1,0,0,2,2,0,2,0,2,
                 1,2,2,2,2,2,2,3,2,1,
-                2,0,0,1,0,
+                2,0,0,1,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -126,6 +126,7 @@ class combatant{
         this.lastOrb=0
         this.metal=0
         this.stance=0
+        this.faith=0
 
         this.intent=0
         this.activated=false
@@ -2537,6 +2538,7 @@ class combatant{
         this.lastOrb=0
         this.metal=0
         this.stance=0
+        this.faith=0
         switch(this.name){
             case 'Donakho':
                 this.anim.fat=1
@@ -2550,7 +2552,7 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0]}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
             for(let b=0,lb=game.orbNumber;b<lb;b++){
@@ -3766,6 +3768,23 @@ class combatant{
             if(this.stance==1){
                 damage*=2
             }
+            if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
+                if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
+                    if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==4){
+                        damage/=2
+                    }
+                }
+            }
+            if(this.stance==4){
+                damage/=2
+            }
+            if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
+                if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
+                    if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==5){
+                        damage*=3
+                    }
+                }
+            }
             if(this.id<this.battle.players){
                 this.battle.stats.taken[this.id][0]+=damage
             }
@@ -4327,10 +4346,16 @@ class combatant{
     }
     enterStance(stance){
         this.leaveStance(this.stance)
+        this.battle.cardManagers[this.id].discard.allEffect(28)
+        this.battle.cardManagers[this.id].reserve.allEffect(28)
         this.stance=stance
         switch(stance){
             case 3:
                 this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
+            break
+            case 5:
+                this.battle.energy.main[this.id]+=3
+                this.battle.cardManagers[this.id].draw(3)
             break
         }
     }
@@ -4499,6 +4524,7 @@ class combatant{
                     case 118: this.status.main[findList('Focus',this.status.name)]+=this.status.main[a]; break
                     case 120: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Step',types.card),0,this.type)} break
                     case 124: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[a]; break
+                    case 125: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)} break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
@@ -4581,7 +4607,7 @@ class combatant{
                         this.goal.anim.sword=false
                     break
                     case 4: case 12: case 14: case 15: case 18: case 19: case 20: case 22: case 24: case 25:
-                    case 30: case 34:
+                    case 30: case 34: case 37:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -5026,6 +5052,13 @@ class combatant{
                         this.animSet.loop+=rate
                         this.anim.arms[0].top=24+abs(lsin(this.animSet.loop*180))*114
                         this.anim.arms[0].bottom=9+abs(lsin(this.animSet.loop*180))*186
+                    break
+                    case 37:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1-this.animSet.hand].top=24+abs(lsin((this.animSet.loop+this.animSet.flip+(1-this.animSet.hand))*180))*36
+                        this.anim.arms[1-this.animSet.hand].bottom=9+abs(lsin((this.animSet.loop+this.animSet.flip+(1-this.animSet.hand))*180))*96
+                        this.spin.arms[1-this.animSet.hand].top=(93-abs(lsin((this.animSet.loop+this.animSet.flip+(1-this.animSet.hand))*180))*63)*((1-this.animSet.hand)*2-1)
+                        this.spin.arms[1-this.animSet.hand].bottom=(75-abs(lsin((this.animSet.loop+this.animSet.flip+(1-this.animSet.hand))*180))*90)*((1-this.animSet.hand)*2-1)
                     break
                 }
             break
@@ -6239,21 +6272,21 @@ class combatant{
                     if(this.infoAnim.stance[a]>0){
                         switch(a){
                             case 1:
-                                this.layer.fill(255,75,75,this.fade*this.infoAnim.stance[a]*0.25)
+                                this.layer.fill(255,75,75,this.fade*this.infoAnim.stance[a]*0.5)
                                 for(let b=0,lb=12;b<lb;b++){
                                     this.layer.rotate(30)
                                     this.layer.triangle(-5,0,5,0,0,-50)
                                 }
                             break
                             case 2:
-                                this.layer.fill(150,255,255,this.fade*this.infoAnim.stance[a]*0.25)
+                                this.layer.fill(150,255,255,this.fade*this.infoAnim.stance[a]*0.5)
                                 for(let b=0,lb=12;b<lb;b++){
                                     this.layer.rotate(30)
                                     this.layer.rect(0,-27,9,45)
                                 }
                             break
                             case 3:
-                                this.layer.stroke(240,this.fade*this.infoAnim.stance[a]*0.25)
+                                this.layer.stroke(240,this.fade*this.infoAnim.stance[a]*0.5)
                                 this.layer.strokeWeight(4)
                                 this.layer.noFill()
                                 for(let b=0,lb=12;b<lb;b++){
@@ -6267,15 +6300,34 @@ class combatant{
                                 }
                             break
                             case 4:
+                                this.layer.fill(150,75,0,this.fade*this.infoAnim.stance[a]*0.5)
+                                this.layer.rect(0,0,40)
+                                this.layer.rotate(45)
+                                this.layer.rect(0,0,40)
+                                this.layer.rect(-30,-30,15,15)
+                                this.layer.rect(-30,30,15,15)
+                                this.layer.rect(30,-30,15,15)
+                                this.layer.rect(30,30,15,15)
+                                this.layer.rotate(-45)
+                                this.layer.rect(-30,-30,15,15)
+                                this.layer.rect(-30,30,15,15)
+                                this.layer.rect(30,-30,15,15)
+                                this.layer.rect(30,30,15,15)
                             break
                             case 5:
-                                this.layer.fill(255,200,255,this.fade*this.infoAnim.stance[a]*0.25)
+                                this.layer.fill(255,200,255,this.fade*this.infoAnim.stance[a]*0.5)
                                 for(let b=0,lb=12;b<lb;b++){
                                     this.layer.rotate(30)
-                                    this.layer.triangle(-6,-45,6,45,0,0)
+                                    this.layer.triangle(-6,-45,6,-45,0,0)
                                 }
                             break
                         }
+                    }
+                }
+                this.layer.fill(255,200,255,this.fade*0.5)
+                for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
+                    if(this.infoAnim.faith[a]>0){
+                        this.layer.ellipse(lsin(a*45+22.5)*60,cos(a*45+22.5)*-60,12)
                     }
                 }
                 this.layer.translate(0,48)
@@ -14107,6 +14159,13 @@ class combatant{
             for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
                 this.infoAnim.stance[a]=smoothAnim(this.infoAnim.stance[a],a==this.stance,0,1,5)
             }
+            for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
+                this.infoAnim.faith[a]=smoothAnim(this.infoAnim.faith[a],this.faith>a,0,1,5)
+            }
+            if(this.faith>=8&&this.infoAnim.faith[7]>=1){
+                this.faith-=8
+                this.enterStance(5)
+            }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)
                 if(this.life<=0){
@@ -14347,7 +14406,7 @@ class combatant{
             }
         }
         switch(this.name){
-            case 'Lira': case 'Ume': case 'Setsuna':
+            case 'Lira': case 'Setsuna': case 'Ume':
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
             break
             case 'Sakura':

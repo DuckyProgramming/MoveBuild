@@ -1384,10 +1384,7 @@ class turn{
                     break
                 }
             break
-
-
-
-
+    
         }
     }
     update(){

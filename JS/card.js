@@ -141,7 +141,8 @@ class card{
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
             case 3: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
-            case 4: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times`; break
+            case 4: case 729:
+                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times`; break
             case 5: case 16:
                 string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile`; break
             case 6: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} Double\nDamage`; break
@@ -851,15 +852,33 @@ class card{
             case 718: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDestroyed Constructs+1`; break
             case 719: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]}X Weak\nApply ${effect[2]}X Vulnerable`; break
             case 720: string+=`Apply ${effect[0]} Weak Next Turn`; break
-
             case 721: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Wrath`; break
             case 722: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEnter Calm`; break
             case 723: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Haste`; break
-            case 724: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEnter Firm`; break
+            case 724: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nEnter Sturdy`; break
             case 725: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExit Stance`; break
             case 726: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExit Stance`; break
-            
             case 727: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nor ${effect[1]} Tile${effect[1]!=1?`s`:``} Toward an Enemy`; break
+            case 728: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nExit Stance`; break
+            case 730: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nEnter Wrath`; break
+            case 731: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nEnter Calm`; break
+            case 732: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nEnter Haste`; break
+            case 733: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nEnter Sturdy`; break
+            case 734: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Enemies`; break
+            case 735: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nShuffle an Insight\ninto Draw Pile`; break
+            case 736: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn on Stance Change`; break
+            case 737: string+=`Add ${effect[0]} Smite\nto Your Hand\nEvery Turn`; break
+            case 738: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds ${effect[1]} Times More\nWhen in Wrath`; break
+            case 739: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nEnd Turn`; break
+
+            case 740: string+=`Enter Wrath`; break
+            case 741: string+=`Enter Calm`; break
+            case 742: string+=`Enter Haste`; break
+            case 743: string+=`Enter Strudy`; break
+            case 744: string+=`Gain ${effect[0]} Faith`; break
+            case 745: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Safety\nto Hand`; break
+
+
 
 
 

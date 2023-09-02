@@ -497,6 +497,13 @@ class group{
                     this.cards[a].deSize=true
                     this.cards[a].discardEffectBuffered.push(0)
                 break
+                case 28:
+                    if(this.cards[a].attack==736){
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,0)
+                        a--
+                        la--
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){

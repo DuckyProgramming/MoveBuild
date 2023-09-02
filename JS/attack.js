@@ -72,7 +72,8 @@ class attack{
             case 617: case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667:
             case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 689:
             case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719:
-            case 720: case 721: case 723: case 725:
+            case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733: case 734:
+            case 736: case 739:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -444,6 +445,15 @@ class attack{
                     case 679:
                         this.targetCombatant.statusEffect('Ethereal',this.effect[0])
                     break
+                    case 734:
+                        this.number=0
+                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                            if(this.battle.combatantManager.combatants.team==0){
+                                this.number++
+                            }
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*this.number,this.user)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -761,6 +771,26 @@ class attack{
                     case 725:
                         this.userCombatant.enterStance(0)
                     break
+                    case 730:
+                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                            this.userCombatant.enterStance(1)
+                        }
+                    break
+                    case 731:
+                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                            this.userCombatant.enterStance(2)
+                        }
+                    break
+                    case 732:
+                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                            this.userCombatant.enterStance(3)
+                        }
+                    break
+                    case 733:
+                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                            this.userCombatant.enterStance(4)
+                        }
+                    break
                 }
             break
             case 1:
@@ -810,6 +840,9 @@ class attack{
                     break
                     case 589:
                         this.targetCombatant.addBlock(this.effect[0])
+                    break
+                    case 738:
+                        this.userCombatant.addBlock(this.effect[0]*(this.userCombatant.stance==1?this.effect[1]:1))
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -977,6 +1010,12 @@ class attack{
                     break
                     case 726:
                         this.userCombatant.enterStance(0)
+                    break
+                    case 735:
+                        this.battle.cardManagers[this.player].reserve.addShuffle(findName('Insight',types.card),0,0)
+                    break
+                    case 745:
+                        this.battle.cardManagers[this.player].hand.add(findName('Safety',types.card),0,0)
                     break
                 }
             break
@@ -1353,6 +1392,9 @@ class attack{
                     case 713:
                         this.userCombatant.heal(this.effect[0])
                         this.userCombatant.metal+=this.effect[1]
+                    break
+                    case 737:
+                        this.userCombatant.statusEffect('Smite Per Turn',this.effect[0])
                     break
                 }
             break
@@ -1743,6 +1785,25 @@ class attack{
                     break
                     case 681:
                         this.battle.cardManagers[this.player].hand.transform(this.effect[0])
+                    break
+                    case 728:
+                        this.battle.cardManagers[this.player].draw(this.effect[0])
+                        this.userCombatant.enterStance(0)
+                    break
+                    case 740:
+                        this.userCombatant.enterStance(1)
+                    break
+                    case 741:
+                        this.userCombatant.enterStance(2)
+                    break
+                    case 742:
+                        this.userCombatant.enterStance(3)
+                    break
+                    case 743:
+                        this.userCombatant.enterStance(4)
+                    break
+                    case 744:
+                        this.userCombatant.faith+=this.effect[0]
                     break
                     
                 }
@@ -2696,10 +2757,38 @@ class attack{
 
                 }
             break
-
-
-
-
+            case 13:
+                switch(this.type){
+                    case 394:
+                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.userCombatant.balance+=this.effect[1]
+                    break
+                    case 395:
+                        this.battle.combatantManager.statusAreaBlock('Bleed',this.effect[0],this.userCombatant.team,this.userCombatant.tilePosition)
+                    break
+                    case 420:
+                        let total=this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.userCombatant.heal(this.effect[0]*total)
+                    break
+                    case 434:
+                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.intentNerfArea(1,this.effect[1],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                    break
+                    case 698:
+                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.cardManagers[this.player].randomEffect(2,0,[])
+                        }
+                    break
+                    case 739:
+                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.endTurn()
+                    break
+                    default:
+                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                    break
+                }
+            break
 
         }
     }
@@ -2718,7 +2807,8 @@ class attack{
             case 475: case 496: case 497: case 507: case 508: case 509: case 510: case 511: case 514: case 540:
             case 558: case 559: case 580: case 581: case 582: case 588: case 596: case 597: case 601: case 604:
             case 606: case 610: case 638: case 639: case 661: case 677: case 678: case 679: case 692: case 714:
-            case 715: case 719: case 721: case 723: case 725:
+            case 715: case 719: case 721: case 723: case 725: case 730: case 731: case 732: case 733: case 734:
+            case 736:
                 if(this.type==427&&this.userCombatant.armed){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -2765,7 +2855,7 @@ class attack{
             case 303: case 320: case 321: case 322: case 354: case 355: case 359: case 365: case 377: case 386:
             case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443: case 461: case 463:
             case 502: case 513: case 515: case 518: case 522: case 546: case 547: case 589: case 602: case 682:
-            case 699: case 716: case 722: case 724: case 726:
+            case 699: case 716: case 722: case 724: case 726: case 735: case 738: case 745:
                 if(variants.nobasicanim){
                     this.selfCall(1)
                     this.remove=true
@@ -2954,7 +3044,7 @@ class attack{
             case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446: case 450: case 454:
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
             case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656:
-            case 668: case 684: case 711: case 712: case 713:
+            case 668: case 684: case 711: case 712: case 713: case 737:
                 if(variants.nobasicanim){
                     this.selfCall(3)
                     this.remove=true
@@ -2979,7 +3069,7 @@ class attack{
             case 387: case 390: case 392: case 398: case 418: case 422: case 423: case 431: case 451: case 499:
             case 512: case 519: case 523: case 524: case 525: case 527: case 528: case 529: case 530: case 541:
             case 542: case 595: case 603: case 605: case 607: case 612: case 640: case 645: case 647: case 665:
-            case 675: case 680: case 681:
+            case 675: case 680: case 681: case 728: case 740: case 741: case 742: case 743: case 744:
                 if(variants.nobasicanim){
                     this.selfCall(4)
                     this.remove=true
@@ -3291,40 +3381,20 @@ class attack{
                     }
                 }
             break
-            case 18: case 394: case 395: case 420: case 434: case 698:
-                if(this.timer==1){
-                    this.userCombatant.startAnimation(10)
-                }
-                this.userCombatant.runAnimation(1/10,10)
-                if(this.timer==10){
-                    switch(this.type){
-                        case 394:
-                            this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
-                            this.userCombatant.balance+=this.effect[1]
-                        break
-                        case 395:
-                            this.battle.combatantManager.statusAreaBlock('Bleed',this.effect[0],this.userCombatant.team,this.userCombatant.tilePosition)
-                        break
-                        case 420:
-                            let total=this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
-                            this.userCombatant.heal(this.effect[0]*total)
-                        break
-                        case 434:
-                            this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
-                            this.battle.combatantManager.intentNerfArea(1,this.effect[1],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
-                        break
-                        case 698:
-                            this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
-                            for(let a=0,la=this.effect[1];a<la;a++){
-                                this.battle.cardManagers[this.player].randomEffect(2,0,[])
-                            }
-                        break
-                        default:
-                            this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
-                        break
-                    }
-                }else if(this.timer>=20){
+            case 18: case 394: case 395: case 420: case 434: case 698: case 739:
+                if(variants.nobasicanim){
+                    this.selfCall(13)
                     this.remove=true
+                }else{
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(10)
+                    }
+                    this.userCombatant.runAnimation(1/10,10)
+                    if(this.timer==10){
+                        this.selfCall(13)
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
                 }
             break
             case 19:
@@ -6329,7 +6399,20 @@ class attack{
                     this.remove=true
                 }
             break
-                    
+            case 729:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(2)
+                }
+                if(this.timer>10&&this.timer<=15||this.timer>30&&this.timer<=35){
+                    this.userCombatant.runAnimation(1/20,37)
+                }
+                if(this.timer==15||this.timer==30){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                }else if(this.timer>=45){
+                    this.remove=true
+                }
+            break
+            
             default:
                 this.remove=true
             break
