@@ -1089,6 +1089,12 @@ class attack{
                     case 794:
                         this.userCombatant.statusEffect('Cannot Die',1)
                     break
+                    case 810:
+                        this.userCombatant.statusEffect('Single Damage Block Convert',this.effect[1])
+                    break
+                    case 811:
+                        this.userCombatant.statusEffect('Triple Block',this.effect[1])
+                    break
 
                 }
             break
@@ -3086,7 +3092,7 @@ class attack{
             case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443: case 461: case 463:
             case 502: case 513: case 515: case 518: case 522: case 546: case 547: case 589: case 602: case 682:
             case 699: case 716: case 722: case 724: case 726: case 735: case 738: case 745: case 765: case 770:
-            case 783: case 794: case 800: case 809:
+            case 783: case 794: case 800: case 809: case 810: case 811:
                 if(this.type==809&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){

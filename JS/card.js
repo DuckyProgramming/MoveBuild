@@ -940,7 +940,12 @@ class card{
             case 807: string+=`Calm: Gain ${effect[0]} Energy`; break
             case 808: string+=`Haste: Move ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 809: string+=`Sturdy: Add ${this.calculateEffect(effect[0],1)} Block`; break
-            
+            case 810: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]} Block${effect[1]!=1?`s`:``} Add\nis Tripled`; break
+            case 811: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]} Damage${effect[1]!=1?`s`:``} Deal\nAdd Equivalent Block`; break
+
+
+
+
 
 
 

@@ -5044,15 +5044,26 @@ types={
                 {effect:[22],attack:809,cost:2,target:[0],spec:[],class:2},
                 {effect:[28],attack:809,cost:2,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Twirl',rarity:0,list:7,
+            levels:[
+                {effect:[7,1],attack:810,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,1],attack:810,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,2],attack:810,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Spiral',rarity:0,list:7,
+            levels:[
+                {effect:[8,1],attack:811,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,1],attack:811,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,2],attack:811,cost:1,target:[0],spec:[],class:2},
+            ],
         },
 
         //fix the number of cards for each stance
 
         //4 other moves
         
-        //twirl
-        //spiral
-
         //sisterhood cards
 
         //graphic pain

@@ -250,6 +250,12 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[9]>0){
 				block*=0.75
 			}
+			if(user.status.main[65]>0){
+				block*=2
+			}
+			if(user.status.main[138]>0){
+				block*=3
+			}
 			block=round(block*10)/10
 			switch(type){
 				case 1: return block==effect?effect:effect+` (${block})`

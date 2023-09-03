@@ -66,7 +66,7 @@ class combatant{
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
-            'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die',
+            'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -82,7 +82,7 @@ class combatant{
                 0,0,2,0,0,0,2,0,0,0,//11
                 0,0,0,0,0,0,0,1,0,1,//12
                 2,1,0,0,2,0,0,0,2,0,//13
-                1,1,1,0,0,0,0,0,
+                1,1,1,0,0,0,0,0,0,0,//14
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -98,7 +98,7 @@ class combatant{
                 0,1,0,0,2,2,0,2,0,2,
                 1,2,2,2,2,2,2,3,2,1,
                 2,0,0,1,0,2,2,2,1,2,
-                2,2,2,2,1,2,2,0,
+                2,2,2,2,1,2,2,0,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3862,6 +3862,10 @@ class combatant{
                     if(this.status.main[134]>0){
                         userCombatant.addBlock(this.status.main[134])
                     }
+                    if(userCombatant.status.main[139]>0){
+                        userCombatant.addBlock(damage)
+                        userCombatant.status.main[139]--
+                    }
                     if(this.life>0){
                         if(this.battle.turnManager.turns.length==0){
                             if(this.status.main[1]>0&&distance<=1){
@@ -4058,6 +4062,10 @@ class combatant{
             if(this.status.main[65]>0){
                 block*=2
                 this.status.main[65]--
+            }
+            if(this.status.main[138]>0){
+                block*=3
+                this.status.main[138]--
             }
             block=round(block*10)/10
             if(this.status.main[70]>0){
