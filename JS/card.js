@@ -932,8 +932,15 @@ class card{
             case 799: string+=`If Turn 3 Or Later,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 800: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds ${effect[1]} Times More\nWhen in Calm`; break
             case 801: string+=`Target Loses Health\nEqual to Your\nMissing Health`; break
-
-
+            case 802: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEnter Wrath`; break
+            case 803: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEnter Calm`; break
+            case 804: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEnter Haste`; break
+            case 805: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEnter Sturdy`; break
+            case 806: string+=`Wrath: Deal ${this.calculateEffect(effect[0],0)} Damage`; break
+            case 807: string+=`Calm: Gain ${effect[0]} Energy`; break
+            case 808: string+=`Haste: Move ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
+            case 809: string+=`Sturdy: Add ${this.calculateEffect(effect[0],1)} Block`; break
+            
 
 
 

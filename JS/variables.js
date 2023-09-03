@@ -4988,18 +4988,74 @@ types={
                 {effect:[],attack:801,cost:1,target:[2,1,2],spec:[0],class:1},
                 {effect:[],attack:801,cost:1,target:[2,1,2],spec:[],class:1},
             ],
+        },{
+            name:'Wrathful\nStep',rarity:0,list:7,
+            levels:[
+                {effect:[1],attack:802,cost:2,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:802,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:802,cost:1,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Calm\nStep',rarity:0,list:7,
+            levels:[
+                {effect:[1],attack:803,cost:2,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:803,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:803,cost:1,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Hasty\nStep',rarity:0,list:7,
+            levels:[
+                {effect:[1],attack:804,cost:2,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:804,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:804,cost:1,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Sturdy\nStep',rarity:0,list:7,
+            levels:[
+                {effect:[1],attack:805,cost:2,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:805,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:805,cost:1,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Agitate',rarity:0,list:7,
+            levels:[
+                {effect:[12],attack:806,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[18],attack:806,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[22],attack:806,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Rest',rarity:0,list:7,
+            levels:[
+                {effect:[2],attack:807,cost:0,target:[0],spec:[],class:4},
+                {effect:[3],attack:807,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:807,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Departure',rarity:0,list:7,
+            levels:[
+                {effect:[4],attack:808,cost:0,target:[1,1,4],spec:[0],class:3},
+                {effect:[6],attack:808,cost:0,target:[1,1,6],spec:[0],class:3},
+                {effect:[6],attack:808,cost:0,target:[1,1,6],spec:[0,22],class:3},
+            ],
+        },{
+            name:'Preservation',rarity:0,list:7,
+            levels:[
+                {effect:[15],attack:809,cost:2,target:[0],spec:[],class:2},
+                {effect:[22],attack:809,cost:2,target:[0],spec:[],class:2},
+                {effect:[28],attack:809,cost:2,target:[0],spec:[],class:2},
+            ],
         },
 
         //fix the number of cards for each stance
 
-        //move
-        //1 move for each stance
-        //1 specific for each stance
-
+        //4 other moves
+        
         //twirl
         //spiral
 
         //sisterhood cards
+
+        //graphic pain
 
 
 
@@ -11141,7 +11197,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:7,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 variants={lowdraw:false,lowhealth:false,midhealth:false,shortmap:false,speedmove:false,speedcard:false,nobasicanim:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
