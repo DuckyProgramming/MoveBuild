@@ -1,5 +1,4 @@
 Bugs:
-A lot
 
 !!!
 All Builder Cards Past the Monopolist Cards Have Been Disbanded
@@ -15,6 +14,9 @@ Orlando
 DICTIONARY:
 Builder
 Duelist
+
+Sister Cards
+Graphics for Setsuna
 
 More Characters As needed
 Donakho

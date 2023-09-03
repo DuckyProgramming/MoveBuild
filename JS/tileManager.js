@@ -280,6 +280,9 @@ class tileManager{
             }else if((this.battle.attackManager.targetInfo[0]==43)&&this.tiles[a].occupied==0&&arrayIncludes(constants.HG3,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])&&
             (legalTargetCombatant(0,1,6,this.tiles[a],this.battle.attackManager,this.tiles)||legalTargetDiagonalCombatant(0,1,6,this.tiles[a],this.battle.attackManager,this.tiles))){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==44)&&this.tiles[a].occupied==0&&
+            legalTargetCombatant(2,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }
         }
     }

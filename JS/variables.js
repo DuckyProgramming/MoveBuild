@@ -4716,7 +4716,7 @@ types={
                 {effect:[13],attack:760,cost:1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Finality',rarity:0,list:7,
+            name:'Finality',rarity:2,list:7,
             levels:[
                 {effect:[8,30],attack:761,cost:1,target:[0],spec:[],class:4},
                 {effect:[8,20],attack:761,cost:1,target:[0],spec:[],class:4},
@@ -4849,11 +4849,11 @@ types={
                 {effect:[20],attack:779,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Signature\nMove',rarity:1,list:7,
+            name:'Signature\nMove',rarity:2,list:7,
             levels:[
-                {effect:[30],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
-                {effect:[40],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
-                {effect:[48],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[38],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[50],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[60],attack:780,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Simmering\nFury',rarity:1,list:7,
@@ -5094,7 +5094,7 @@ types={
                 {effect:[1,4],attack:816,cost:1,target:[1,1,2],spec:[0],class:3},
             ],
         },{
-            name:'Stacked\nMove',rarity:1,list:7,
+            name:'Stacked\nMove',rarity:0,list:7,
             levels:[
                 {effect:[1],attack:817,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[0],class:3},
@@ -5128,30 +5128,35 @@ types={
                 {effect:[4],attack:822,cost:0,target:[0],spec:[],class:4},
                 {effect:[5],attack:822,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Phase\nDash',rarity:2,list:7,
+            levels:[
+                {effect:[],attack:823,cost:0,target:[44,1,6],spec:[1],class:3},
+                {effect:[],attack:823,cost:0,target:[44,1,6],spec:[1],class:3},
+                {effect:[],attack:823,cost:0,target:[44,1,6],spec:[1],class:3},
+            ],
+        },{
+            name:'Rushed\nStrike',rarity:0,list:7,
+            levels:[
+                {effect:[8],attack:824,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:824,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:824,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Get\nOut',rarity:1,list:7,
+            levels:[
+                {effect:[6],attack:825,cost:1,target:[2,1,3],spec:[],class:1},
+                {effect:[10],attack:825,cost:1,target:[2,1,3],spec:[2],class:1},
+                {effect:[16],attack:825,cost:1,target:[2,1,3],spec:[2,22],class:1},
+            ],
+        },{
+            name:'Assurance',rarity:0,list:7,
+            levels:[
+                {effect:[6,3],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9,4],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,5],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
-
-        //2 haste
-        //1 sturdy
-        //1 faith
-
-        //push?
-        //pull?
-
-        //fix the number of cards for each stance
-
-        //sisterhood cards
-
-        //graphic pain
-
-
-
-
-
-
-
-
-
-
 
         {
             name:'Telefrag',rarity:-3,list:-1,
@@ -11283,7 +11288,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:7,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 variants={lowdraw:false,lowhealth:false,midhealth:false,shortmap:false,speedmove:false,speedcard:false,nobasicanim:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

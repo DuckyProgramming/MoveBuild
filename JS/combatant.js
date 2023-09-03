@@ -4095,7 +4095,9 @@ class combatant{
         this.relativePosition.x+=lsin(direction)*speed
         this.relativePosition.y+=lcos(direction)*speed
     }
-    moveTilePosition(x,y){
+    moveTilePosition(preX,preY){
+        let x=round(preX)
+        let y=round(preY)
         if(this.id<this.battle.players){
             let distance=max(0,max(distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y),distTargetDiagonal(0,x-this.tilePosition.x,y-this.tilePosition.y)))
             this.battle.stats.move[this.id]+=distance
