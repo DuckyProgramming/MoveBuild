@@ -70,6 +70,13 @@ types={
                 {effect:[0],attack:468,cost:0,target:[2,1,1],spec:[1,2],class:1},
                 {effect:[0],attack:468,cost:0,target:[2,1,1],spec:[1,2,22],class:1},
             ],
+        },{
+            name:'Spectral\nGrasp',rarity:-1,list:-1,
+            levels:[
+                {effect:[16],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
+                {effect:[22],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
+                {effect:[27],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
+            ],
         },
 
         {
@@ -4098,7 +4105,7 @@ types={
                 {effect:[7],attack:610,cost:1,target:[29,1,1],spec:[],class:4},
             ],
         },{
-            name:'Line\nUp',rarity:1,list:6,
+            name:'Line\nUp',rarity:0,list:6,
             levels:[
                 {effect:[5],attack:611,cost:1,target:[0],spec:[0],class:1},
                 {effect:[7],attack:611,cost:1,target:[0],spec:[0],class:1},
@@ -4925,11 +4932,72 @@ types={
                 {effect:[1],attack:792,cost:-1,target:[0],spec:[1],class:4},
                 {effect:[2],attack:792,cost:-1,target:[0],spec:[1],class:4},
             ],
+        },{
+            name:'Endure',rarity:2,list:7,
+            levels:[
+                {effect:[14],attack:794,cost:1,target:[0],spec:[1],class:2},
+                {effect:[20],attack:794,cost:1,target:[0],spec:[1],class:2},
+                {effect:[25],attack:794,cost:1,target:[0],spec:[1],class:2},
+            ],
+        },{
+            name:'Veiled\nEdge',rarity:1,list:7,
+            levels:[
+                {effect:[19],attack:795,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[27],attack:795,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[33],attack:795,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Flagrant\nEdge',rarity:1,list:7,
+            levels:[
+                {effect:[10],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[19],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Time\nSkip',rarity:1,list:7,
+            levels:[
+                {effect:[1,1],attack:797,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,2],attack:797,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,2],attack:797,cost:1,target:[0],spec:[2],class:4},
+            ],
+        },{
+            name:'Omen',rarity:0,list:7,
+            levels:[
+                {effect:[6,1],attack:798,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,2],attack:798,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9,3],attack:798,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Patience',rarity:1,list:7,
+            levels:[
+                {effect:[1,1],attack:799,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,2],attack:799,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,3],attack:799,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Desist',rarity:0,list:7,
+            levels:[
+                {effect:[3,2],attack:800,cost:0,target:[0],spec:[],class:2},
+                {effect:[4,3],attack:800,cost:0,target:[0],spec:[],class:2},
+                {effect:[5,4],attack:800,cost:0,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Sorrow',rarity:2,list:7,
+            levels:[
+                {effect:[],attack:801,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[],attack:801,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[],attack:801,cost:1,target:[2,1,2],spec:[],class:1},
+            ],
         },
-        
+
         //fix the number of cards for each stance
 
         //move
+        //1 move for each stance
+        //1 specific for each stance
+
+        //twirl
+        //spiral
 
         //sisterhood cards
 
@@ -11073,7 +11141,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:7,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 variants={lowdraw:false,lowhealth:false,midhealth:false,shortmap:false,speedmove:false,speedcard:false,nobasicanim:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

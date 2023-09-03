@@ -66,7 +66,7 @@ class combatant{
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
-            'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce',
+            'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -82,7 +82,7 @@ class combatant{
                 0,0,2,0,0,0,2,0,0,0,//11
                 0,0,0,0,0,0,0,1,0,1,//12
                 2,1,0,0,2,0,0,0,2,0,//13
-                1,1,1,0,0,0,0,
+                1,1,1,0,0,0,0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -98,7 +98,7 @@ class combatant{
                 0,1,0,0,2,2,0,2,0,2,
                 1,2,2,2,2,2,2,3,2,1,
                 2,0,0,1,0,2,2,2,1,2,
-                2,2,2,2,1,2,2,
+                2,2,2,2,1,2,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -14174,6 +14174,9 @@ class combatant{
         this.updatePassive()
         this.tilePosition.x=round(this.tilePosition.x)
         this.tilePosition.y=round(this.tilePosition.y)
+        if(this.life<=0&&this.status.main[137]>0){
+            this.life=1
+        }
         if(this.team>0&&!this.construct&&!this.support){
             this.fade=1
             for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
