@@ -271,6 +271,15 @@ class tileManager{
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==39)&&this.tiles[a].occupied==0&&arrayIncludes(constants.D3,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==41)&&this.tiles[a].occupied==0&&arrayIncludes(constants.HG1,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])&&
+            (legalTargetCombatant(0,1,6,this.tiles[a],this.battle.attackManager,this.tiles)||legalTargetDiagonalCombatant(0,1,6,this.tiles[a],this.battle.attackManager,this.tiles))){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==42)&&this.tiles[a].occupied==0&&arrayIncludes(constants.HG2,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])&&
+            (legalTargetCombatant(0,1,6,this.tiles[a],this.battle.attackManager,this.tiles)||legalTargetDiagonalCombatant(0,1,6,this.tiles[a],this.battle.attackManager,this.tiles))){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
+            }else if((this.battle.attackManager.targetInfo[0]==43)&&this.tiles[a].occupied==0&&arrayIncludes(constants.HG3,[this.tiles[a].tilePosition.x-this.battle.attackManager.tilePosition.x,this.tiles[a].tilePosition.y-this.battle.attackManager.tilePosition.y])&&
+            (legalTargetCombatant(0,1,6,this.tiles[a],this.battle.attackManager,this.tiles)||legalTargetDiagonalCombatant(0,1,6,this.tiles[a],this.battle.attackManager,this.tiles))){
+                this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }
         }
     }

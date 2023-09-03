@@ -92,7 +92,8 @@ class attack{
             case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631:
             case 660: case 663: case 664: case 666: case 685: case 686: case 687: case 688: case 690: case 693:
             case 694: case 695: case 696: case 700: case 701: case 702: case 703: case 704: case 705: case 706:
-            case 717: case 750: case 802: case 803: case 804: case 805: case 808:
+            case 717: case 750: case 802: case 803: case 804: case 805: case 808: case 812: case 813: case 814:
+            case 815: case 816: case 817:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1198,6 +1199,12 @@ class attack{
                     break
                     case 805:
                         this.userCombatant.enterStance(4)
+                    break
+                    case 812:
+                        this.userCombatant.enterStance(0)
+                    break
+                    case 816:
+                        this.userCombatant.faith+=this.effect[1]
                     break
 
                 }
@@ -3114,7 +3121,7 @@ class attack{
             case 192: case 205: case 248: case 256: case 330: case 331: case 332: case 335: case 374: case 375:
             case 383: case 397: case 484: case 485: case 503: case 570: case 571: case 573: case 574: case 575:
             case 663: case 664: case 666: case 690: case 693: case 694: case 704: case 705: case 706: case 717:
-            case 802: case 803: case 804: case 805: case 808:
+            case 802: case 803: case 804: case 805: case 808: case 812: case 816: case 817:
                 if(this.type==808&&this.userCombatant.stance!=3){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5881,7 +5888,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 328: case 572: case 707: case 708: case 709:
+            case 328: case 572: case 707: case 708: case 709: case 813: case 814: case 815:
                 if(this.targetVariant){
                     if(this.timer==1){
                         this.userCombatant.startAnimation(0)

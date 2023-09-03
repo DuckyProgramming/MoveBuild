@@ -4359,23 +4359,23 @@ types={
         },{
             name:'Diamond\nMove A',rarity:1,list:6,
             levels:[
-                {effect:[1],attack:707,cost:1,target:[37,1,1],spec:[0],class:3},
-                {effect:[1],attack:707,cost:0,target:[37,1,1],spec:[0],class:3},
-                {effect:[1],attack:707,cost:0,target:[37,1,1],spec:[],class:3},
+                {effect:[1],attack:707,cost:1,target:[37],spec:[0],class:3},
+                {effect:[1],attack:707,cost:0,target:[37],spec:[0],class:3},
+                {effect:[1],attack:707,cost:0,target:[37],spec:[],class:3},
             ],
         },{
             name:'Diamond\nMove B',rarity:1,list:6,
             levels:[
-                {effect:[1],attack:708,cost:1,target:[38,1,1],spec:[0],class:3},
-                {effect:[1],attack:708,cost:0,target:[38,1,1],spec:[0],class:3},
-                {effect:[1],attack:708,cost:0,target:[38,1,1],spec:[],class:3},
+                {effect:[1],attack:708,cost:1,target:[38],spec:[0],class:3},
+                {effect:[1],attack:708,cost:0,target:[38],spec:[0],class:3},
+                {effect:[1],attack:708,cost:0,target:[38],spec:[],class:3},
             ],
         },{
             name:'Diamond\nMove C',rarity:1,list:6,
             levels:[
-                {effect:[1],attack:709,cost:1,target:[39,1,1],spec:[0],class:3},
-                {effect:[1],attack:709,cost:0,target:[39,1,1],spec:[0],class:3},
-                {effect:[1],attack:709,cost:0,target:[39,1,1],spec:[],class:3},
+                {effect:[1],attack:709,cost:1,target:[39],spec:[0],class:3},
+                {effect:[1],attack:709,cost:0,target:[39],spec:[0],class:3},
+                {effect:[1],attack:709,cost:0,target:[39],spec:[],class:3},
             ],
         },{
             name:'Rebuild',rarity:1,list:6,
@@ -4793,14 +4793,14 @@ types={
                 {effect:[13],attack:771,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Amass',rarity:1,list:7,
+            name:'Amass',rarity:2,list:7,
             levels:[
                 {effect:[1],attack:772,cost:-1,target:[0],spec:[],class:4},
                 {effect:[1],attack:773,cost:-1,target:[0],spec:[],class:4},
                 {effect:[1],attack:773,cost:-1,target:[0],spec:[22],class:4},
             ],
         },{
-            name:'Fasting',rarity:1,list:7,
+            name:'Fasting',rarity:2,list:7,
             levels:[
                 {effect:[4,4,1],attack:774,cost:1,target:[0],spec:[],class:4},
                 {effect:[5,5,1],attack:774,cost:1,target:[0],spec:[],class:4},
@@ -5045,20 +5045,65 @@ types={
                 {effect:[28],attack:809,cost:2,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Twirl',rarity:0,list:7,
+            name:'Twirl',rarity:1,list:7,
             levels:[
                 {effect:[7,1],attack:810,cost:1,target:[0],spec:[],class:2},
                 {effect:[12,1],attack:810,cost:1,target:[0],spec:[],class:2},
                 {effect:[12,2],attack:810,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Spiral',rarity:0,list:7,
+            name:'Spiral',rarity:1,list:7,
             levels:[
                 {effect:[8,1],attack:811,cost:1,target:[0],spec:[],class:2},
                 {effect:[13,1],attack:811,cost:1,target:[0],spec:[],class:2},
                 {effect:[13,2],attack:811,cost:1,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Empty\nFoot',rarity:0,list:7,
+            levels:[
+                {effect:[2],attack:812,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:812,cost:0,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:812,cost:0,target:[1,1,2],spec:[],class:3},
+            ],
+        },{
+            name:'Hourglass A',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:813,cost:1,target:[41],spec:[0],class:3},
+                {effect:[1],attack:813,cost:0,target:[41],spec:[0],class:3},
+                {effect:[1],attack:813,cost:0,target:[41],spec:[],class:3},
+            ],
+        },{
+            name:'Hourglass B',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:814,cost:1,target:[42],spec:[0],class:3},
+                {effect:[1],attack:814,cost:0,target:[42],spec:[0],class:3},
+                {effect:[1],attack:814,cost:0,target:[42],spec:[],class:3},
+            ],
+        },{
+            name:'Hourglass C',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:815,cost:1,target:[43],spec:[0],class:3},
+                {effect:[1],attack:815,cost:0,target:[43],spec:[0],class:3},
+                {effect:[1],attack:815,cost:0,target:[43],spec:[],class:3},
+            ],
+        },{
+            name:'Faith\nMove',rarity:0,list:7,
+            levels:[
+                {effect:[1,2],attack:816,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[1,3],attack:816,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[1,4],attack:816,cost:1,target:[1,1,2],spec:[0],class:3},
+            ],
+        },{
+            name:'Stacked\nMove',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:817,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[],class:3},
+            ],
         },
+
+        //push?
+        //pull?
 
         //fix the number of cards for each stance
 
@@ -11214,7 +11259,10 @@ constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],
     D2:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[-1,1],[1,-1]],
-    D3:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[2,1],[-2,-1]]}
+    D3:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[2,1],[-2,-1]],
+    HG1:[[-2,-2],[-1,-1],[0,-2],[0,-1],[-1,-2],[2,2],[1,1],[0,2],[0,1],[1,2]],
+    HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
+    HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:11,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}

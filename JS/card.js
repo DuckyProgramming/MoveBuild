@@ -942,8 +942,12 @@ class card{
             case 809: string+=`Sturdy: Add ${this.calculateEffect(effect[0],1)} Block`; break
             case 810: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]} Block${effect[1]!=1?`s`:``} Add\nis Tripled`; break
             case 811: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext ${effect[1]} Damage${effect[1]!=1?`s`:``} Deal\nAdd Equivalent Block`; break
-
-
+            case 812: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nExit Stance`; break
+            case 813: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nin Triangles Vertically`; break
+            case 814: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nin Triangles Top\nRight or Bottom Left`; break
+            case 815: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nin Triangles Top\nLeft or Bottom Right`; break
+            case 816: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Faith`; break
+            case 817: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nCosts 0 at\nLeft of Hand`; break
 
 
 
