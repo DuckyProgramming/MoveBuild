@@ -252,7 +252,9 @@ class itemManager{
                 userCombatant.heal(10*this.effectiveness[player])
             break
             case 50:
-                this.battle.cardManagers[player].hand.callInput(6,[88,[6*this.effectiveness[player]],1,[0]])
+                for(let a=0,la=15;a<la;a++){
+                    this.battle.combatantManager.randomEnemyEffect(0,[6])
+                }
             break
             case 51:
                 for(let a=0,la=this.items[player].length;a<la;a++){

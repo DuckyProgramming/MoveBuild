@@ -145,6 +145,7 @@ class group{
                 if(this.battle.relicManager.active[66]<=0){
                     this.battle.relicManager.deactivate(66)
                 }
+                return false
             }else{
                 this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
                 if(this.battle.initialized&&this.id==0){
@@ -161,6 +162,7 @@ class group{
                         this.battle.stats.card[this.player]++
                     }
                 }
+                return true
             }
         }
     }
@@ -171,6 +173,7 @@ class group{
             if(this.battle.relicManager.active[66]<=0){
                 this.battle.relicManager.deactivate(66)
             }
+            return false
         }else{
             this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
             this.cards[this.cards.length-1].cost=0
@@ -191,6 +194,7 @@ class group{
                     this.battle.stats.card[this.player]++
                 }
             }
+            return true
         }
     }
     addDrop(type,level,color){
@@ -199,14 +203,23 @@ class group{
         this.cards[this.cards.length-1].downSize=true
     }
     addShuffle(type,level,color){
-        this.add(type,level,color)
-        this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
-        this.cards.splice(this.cards.length-1,1)
+        if(this.add(type,level,color)){
+            this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
+            this.cards.splice(this.cards.length-1,1)
+        }
     }
     addFreeShuffle(type,level,color,variant){
-        this.addFree(type,level,color,variant)
-        this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
-        this.cards.splice(this.cards.length-1,1)
+        if(this.addFree(type,level,color,variant)){
+            this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
+            this.cards.splice(this.cards.length-1,1)
+        }
+    }
+    addShuffleEffect_1(type,level,color,effect_1){
+        if(this.add(type,level,color)){
+            this.cards[this.cards.length-1].effect[1]=effect_1
+            this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
+            this.cards.splice(this.cards.length-1,1)
+        }
     }
     resetAnim(){
         for(let a=0,la=this.cards.length;a<la;a++){

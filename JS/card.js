@@ -914,6 +914,16 @@ class card{
             case 781: string+=`Next Turn,\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nand Enter Wrath`; break
             case 782: string+=`Shuffle ${effect[0]} Insight${effect[0]!=1?`s`:``}\ninto Draw Per Turn`; break
             case 783: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext Attack is Free`; break
+            case 784: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Target is Hit,\nAttacker Gains ${effect[1]} Block`; break
+            case 785: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nDamage ${effect[1]} Times`; break
+            case 786: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Upgrade\na Card Permanently`; break
+            case 787: string+=`If Target Has\nLess Than ${effect[0]} Health\nIt Dies`; break
+            case 788: string+=`Gain ${effect[0]} Energy\nPer Turn Per Turn`; break
+            case 789: string+=`When Any Card is\nRetained, Its Cost is\nReduced By ${effect[0]}`; break
+            case 790: string+=`Shuffle a Beta\ninto Draw Pile`; break
+            case 791: string+=`Shuffle an Omega\ninto Draw Pile`; break
+            case 792: string+=`Shuffle an Expunger\nWith X${effect[0]>0?`+${effect[1]}`:``} into Draw Pile`; break
+            case 793: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Times`; break
 
 
 
@@ -1133,6 +1143,12 @@ class card{
             case 775: case 776:
                 this.effect[1]+=this.effect[0]
             break
+        }
+        if(this.cost>0){
+            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+            if(userCombatant.status.main[findList('Retain Cost Reduce',userCombatant.status.name)]>0){
+                this.cost=max(0,this.cost-userCombatant.status.main[findList('Retain Cost Reduce',userCombatant.status.name)])
+            }
         }
     }
     display(){
