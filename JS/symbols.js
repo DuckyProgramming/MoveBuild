@@ -1400,6 +1400,9 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 6:
             layer.fill(100,225,255,fade)
         break
+        case 7:
+            layer.fill(200,50,150,fade)
+        break
     }
     layer.ellipse(0,0,50)
     layer.fill(255,fade)
@@ -1499,6 +1502,19 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             }
             regPoly(layer,-12,0,6,4,4,0)
             regPoly(layer,12,0,6,4,4,0)
+        break
+        case 7:
+            layer.ellipse(-12,0,5,5)
+            layer.ellipse(0,-12,5,5)
+            layer.ellipse(12,0,5,5)
+            layer.ellipse(0,12,5,5)
+            layer.stroke(255,fade)
+            layer.strokeWeight(2)
+            layer.noFill()
+            layer.ellipse(-10,0,20,20)
+            layer.ellipse(0,-10,20,20)
+            layer.ellipse(10,0,20,20)
+            layer.ellipse(0,10,20,20)
         break
     }
     layer.pop()

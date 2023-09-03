@@ -2209,6 +2209,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.arms[0].top=42
 					p1.anim.arms[1].top=84
 				break
+				case 'Setsuna':
+					p1.parts.mouth-=4
+					p1.spin.mouth-=180
+					p1.spin.sword=21
+					p1.anim.legs=[
+						{top:24,bottom:12,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}},
+						{top:12,bottom:36,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}}
+					]
+					p1.anim.arms=[
+						{top:69,bottom:144,length:{top:17,bottom:17}},
+						{top:33,bottom:9,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-81,lock:0},{top:90,bottom:84,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -2283,6 +2298,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				break
 				case 'Donakho':
 					p1.parts.eyeLevel++
+				break
+				case 'Setsuna':
+					p1.anim.mouth.y++
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:30-a*6,bottom:-60-a*24,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}},
+						{top:6-a*18,bottom:-24-a*42,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:12,length:{top:17,bottom:17}},
+						{top:36+a*12,bottom:60-a*42,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -2386,6 +2415,24 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[0].top=54
 					p1.anim.legs[1].top=54
 				break
+				case 'Setsuna':
+					p1.position.y-=2
+					p1.parts.mouth-=4
+					p1.spin.mouth-=180
+					p1.fades.kimono.main.front={x:1,y:0.975}
+					p1.fades.kimono.main.back={x:1,y:0.975}
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:12,bottom:87,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}},
+						{top:12,bottom:87,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:60-a*30,length:{top:17,bottom:17}},
+						{top:24,bottom:60-a*30,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:165,lock:0}]
+					p1.spin.arms=[{top:-75-a*15,bottom:-16-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
+				break
 			}
 			p1.anim.eye=[1,1]
 			p1.anim.eyeStyle=[2,2]
@@ -2471,6 +2518,23 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.arms[1].top=66-a*12
 					p1.position.y+=10-a*25
 				break
+				case 'Setsuna':
+					p1.position.y-=a*15
+					p1.parts.mouth-=3
+					p1.spin.mouth-=180
+					p1.anim.mouth.y-=2
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:6+a*24,bottom:12+a*6,length:{top:17,bottom:17-a*4,sandal:{back:16.5-a*4,front:15.5-a*4}}},
+						{top:6+a*24,bottom:12+a*6,length:{top:17,bottom:17-a*4,sandal:{back:16.5-a*4,front:15.5-a*4}}}
+					]
+					p1.anim.arms=[
+						{top:18+a*36,bottom:12+a*96,length:{top:17,bottom:17}},
+						{top:27-a*3,bottom:60-a*42,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -2553,6 +2617,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[0].top=18
 					p1.anim.legs[1].top=18
 					p1.position.y+=10
+				break
+				case 'Setsuna':
+					p1.parts.mouth-=3
+					p1.spin.mouth-=180
+					p1.anim.mouth.y-=2
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:9-a*6,bottom:3,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}},
+						{top:9-a*6,bottom:3,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}}
+					]
+					p1.anim.arms=[
+						{top:21+a*3,bottom:24+a*12,length:{top:17,bottom:17}},
+						{top:21+a*3,bottom:36,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -2646,6 +2726,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.legs[1].top=30
 					p1.position.y+=5
 				break
+				case 'Setsuna':
+					p1.parts.mouth-=3
+					p1.spin.mouth-=180
+					p1.anim.mouth.y-=2
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:6,bottom:12,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}},
+						{top:6,bottom:12,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}}
+					]
+					p1.anim.arms=[
+						{top:36-a*15,bottom:54-a*15,length:{top:17,bottom:17}},
+						{top:24+a*9,bottom:36+a*27,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90+a*60,bottom:-75+a*60,lock:0},{top:30+a*60,bottom:15+a*60,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -2719,6 +2815,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				case 'Donakho':
 					p1.anim.arms[0].top=45
 					p1.anim.arms[1].top=114
+				break
+				case 'Setsuna':
+					p1.parts.mouth-=4
+					p1.spin.mouth-=180
+					p1.spin.sword=-147
+					p1.anim.legs=[
+						{top:3-(player[a]-2)*3,bottom:24-(player[a]-2)*9,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}},
+						{top:15-(player[a]-2)*6,bottom:6-(player[a]-2)*3,length:{top:17,bottom:17,sandal:{back:16.5,front:15.5}}}
+					]
+					p1.anim.arms=[
+						{top:60-(player[a]-2)*3,bottom:72+(player[a]-2)*84,length:{top:17,bottom:17}},
+						{top:21+(player[a]-2)*6,bottom:150-(player[a]-2)*111,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+					p1.spin.arms=[{top:-120,bottom:-135,lock:0},{top:93,bottom:75,lock:0}]
 				break
 			}
 			p1.size=1.5
@@ -3005,21 +3116,21 @@ function setupGeneralGraphics(){
 	graphics.minor[33].triangle(15,20,40,30,20,55)
 	graphics.minor[33].triangle(-15,-60,-40,-20,-20,-25)
 	for(let a=0,la=2;a<la;a++){
-		graphics.minor[2+a].translate(80,80)
+		graphics.minor[34+a].translate(80,80)
 		for(let b=0,lb=8;b<lb;b++){
-			graphics.minor[2+a].rotate(19+a*7-b)
-			graphics.minor[2+a].fill(225-a*25+b*10,75+a*125+b*10,75+a*125+b*10)
+			graphics.minor[34+a].rotate(19+a*7-b)
+			graphics.minor[34+a].fill(225-a*25+b*10,75+a*125+b*10,75+a*125+b*10)
 			for(let c=0,lc=5;c<lc;c++){
-				graphics.minor[2+a].rotate(72)
-				graphics.minor[2+a].ellipse(0,(24-b)*(1-b/lb),24*(1-b/lb),36*(1-b/lb))
+				graphics.minor[34+a].rotate(72)
+				graphics.minor[34+a].ellipse(0,(24-b)*(1-b/lb),24*(1-b/lb),36*(1-b/lb))
 			}
 		}
-		graphics.minor[2+a].rotate(-12-a*36)
-		graphics.minor[2+a].fill(225,200,50)
+		graphics.minor[34+a].rotate(-12-a*36)
+		graphics.minor[34+a].fill(225,200,50)
 		for(let b=0,lb=9;b<lb;b++){
-			graphics.minor[2+a].rotate(40)
-			graphics.minor[2+a].rect(0,-5,1,10)
-			graphics.minor[2+a].ellipse(0,-10,3,3)
+			graphics.minor[34+a].rotate(40)
+			graphics.minor[34+a].rect(0,-5,1,10)
+			graphics.minor[34+a].ellipse(0,-10,3,3)
 		}
 	}
 }

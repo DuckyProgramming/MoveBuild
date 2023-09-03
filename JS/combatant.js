@@ -531,11 +531,11 @@ class combatant{
                     bow:{center:0,loop:[-24,24]},
                     under:{top:[],bottom:[],tanga:24,piece:36,under:{top:[-40,40],button:[-39,39],bottom:[0,-15,15,-9,9]}},
                     underBow:{top:{center:0,end:[-4,4],loop:[-12,12]},bottom:{center:0,end:[-5,5],loop:[-15,15]}},
-                    sandal:[6,-6],eye:[-18,18],flower:[-54,-48,-56],button:0,sword:75,mouth:216}
+                    sandal:[6,-6],eye:[-18,18],flower:[-57,-60,-42],button:0,sword:75,mouth:216}
 
                 this.color=graphics.combatant[3].color
 
-                this.parts={eyeLevel:-78,flowerLevel:[-83.5,-81,-77.5],mouth:-71,
+                this.parts={eyeLevel:-78,flowerLevel:[-85,-81,-84],mouth:-71,
                     under:{top:-55,bottom:-34,bow:{top:2.75,bottom:-5}},
                     kimono:{main:-63,outside:-64,bow:-57},
                     minor:15,
@@ -8980,12 +8980,12 @@ class combatant{
                     }
                     if(this.trigger.display.flower[2]&&this.fades.flower[2]>0){
                         if(constrain((pow(lcos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1)>0){
-                            this.layer.image(graphics.minor[35],lsin(this.spin.flower[2]+this.anim.head)*18.5-5*this.fade*this.fades.flower[2]*constrain((pow(lcos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[2]-5*this.fade*this.fades.flower[2],10*this.fade*this.fades.flower[2]*constrain((pow(lcos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),10*this.fade*this.fades.flower[2])
+                            this.layer.image(graphics.minor[35],lsin(this.spin.flower[2]+this.anim.head)*18.5-8*this.fade*this.fades.flower[2]*constrain((pow(lcos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[2]-8*this.fade*this.fades.flower[2],16*this.fade*this.fades.flower[2]*constrain((pow(lcos(this.spin.flower[2]+this.anim.head),1.5)*2-0.2),0,1),16*this.fade*this.fades.flower[2])
                         }
                     }
                     if(this.trigger.display.flower[1]&&this.fades.flower[1]>0){
                         if(constrain((pow(lcos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1)>0){
-                            this.layer.image(graphics.minor[34],lsin(this.spin.flower[1]+this.anim.head)*18.5-8*this.fade*this.fades.flower[1]*constrain((pow(lcos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[1]-8*this.fade*this.fades.flower[1],16*this.fade*this.fades.flower[1]*constrain((pow(lcos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),16*this.fade*this.fades.flower[1])
+                            this.layer.image(graphics.minor[34],lsin(this.spin.flower[1]+this.anim.head)*18.5-9*this.fade*this.fades.flower[1]*constrain((pow(lcos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),this.parts.flowerLevel[1]-9*this.fade*this.fades.flower[1],18*this.fade*this.fades.flower[1]*constrain((pow(lcos(this.spin.flower[1]+this.anim.head),1.5)*2-0.2),0,1),18*this.fade*this.fades.flower[1])
                         }
                     }
                     if(this.trigger.display.flower[0]&&this.fades.flower[0]>0){
