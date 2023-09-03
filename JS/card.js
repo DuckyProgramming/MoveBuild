@@ -949,6 +949,12 @@ class card{
             case 816: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Faith`; break
             case 817: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nCosts 0 at\nLeft of Hand`; break
 
+            case 818: string+=`Calm: Add to Hand:\nCrescendo\nForward\nStandstill`; break
+            case 819: string+=`Calm: Add to Hand:\nCrescendo+\nForward+\nStandstill+`; break
+            case 820: string+=`Wrath: Gain ${effect[0]} Energy`; break
+            case 821: string+=`Haste: Gain ${effect[0]} Energy`; break
+            case 822: string+=`Sturdy: Gain ${effect[0]} Energy`; break
+
 
 
 

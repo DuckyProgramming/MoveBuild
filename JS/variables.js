@@ -5024,11 +5024,11 @@ types={
                 {effect:[22],attack:806,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Rest',rarity:0,list:7,
+            name:'Rest',rarity:1,list:7,
             levels:[
-                {effect:[2],attack:807,cost:0,target:[0],spec:[],class:4},
                 {effect:[3],attack:807,cost:0,target:[0],spec:[],class:4},
                 {effect:[4],attack:807,cost:0,target:[0],spec:[],class:4},
+                {effect:[5],attack:807,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Departure',rarity:0,list:7,
@@ -5100,15 +5100,45 @@ types={
                 {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[0],class:3},
                 {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[],class:3},
             ],
+        },{
+            name:'Branch\nOut',rarity:1,list:7,
+            levels:[
+                {effect:[],attack:818,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:818,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:818,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Press',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:820,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:820,cost:0,target:[0],spec:[],class:4},
+                {effect:[5],attack:820,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Impulse',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:821,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:821,cost:0,target:[0],spec:[],class:4},
+                {effect:[5],attack:821,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Steel',rarity:1,list:7,
+            levels:[
+                {effect:[3],attack:822,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:822,cost:0,target:[0],spec:[],class:4},
+                {effect:[5],attack:822,cost:0,target:[0],spec:[],class:4},
+            ],
         },
+
+        //2 haste
+        //1 sturdy
+        //1 faith
 
         //push?
         //pull?
 
         //fix the number of cards for each stance
 
-        //4 other moves
-        
         //sisterhood cards
 
         //graphic pain

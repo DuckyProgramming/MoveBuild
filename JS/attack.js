@@ -1220,7 +1220,7 @@ class attack{
                     case 30:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
                     break
-                    case 41: case 807:
+                    case 41: case 807: case 820: case 821: case 822:
                         this.battle.energy.main[this.player]+=this.effect[0]
                     break
                     case 71:
@@ -2011,6 +2011,16 @@ class attack{
                         if(this.battle.counter.turnPlayed[0]==1){
                             this.battle.cardManagers[this.player].draw(this.effect[1],0)
                         }
+                    break
+                    case 818:
+                        this.battle.cardManagers[this.player].hand.add(findName('Crescendo',types.card),0,types.card[findName('Crescendo',types.card)].list)
+                        this.battle.cardManagers[this.player].hand.add(findName('Forward',types.card),0,types.card[findName('Forward',types.card)].list)
+                        this.battle.cardManagers[this.player].hand.add(findName('Standstill',types.card),0,types.card[findName('Standstill',types.card)].list)
+                    break
+                    case 819:
+                        this.battle.cardManagers[this.player].hand.add(findName('Crescendo',types.card),1,types.card[findName('Crescendo',types.card)].list)
+                        this.battle.cardManagers[this.player].hand.add(findName('Forward',types.card),1,types.card[findName('Forward',types.card)].list)
+                        this.battle.cardManagers[this.player].hand.add(findName('Standstill',types.card),1,types.card[findName('Standstill',types.card)].list)
                     break
                     
                 }
@@ -3300,8 +3310,8 @@ class attack{
             case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613: case 614: case 615:
             case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656:
             case 668: case 684: case 711: case 712: case 713: case 737: case 754: case 755: case 760: case 761:
-            case 763: case 777: case 778: case 788: case 799: case 807:
-                if(this.type==807&&this.userCombatant.stance!=2){
+            case 763: case 777: case 778: case 788: case 799: case 807: case 820: case 821: case 822:
+                if(this.type==807&&this.userCombatant.stance!=2||this.type==820&&this.userCombatant.stance!=1||this.type==821&&this.userCombatant.stance!=3||this.type==822&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
                     this.selfCall(3)
@@ -3329,8 +3339,10 @@ class attack{
             case 542: case 595: case 603: case 605: case 607: case 612: case 640: case 645: case 647: case 665:
             case 675: case 680: case 681: case 728: case 740: case 741: case 742: case 743: case 744: case 748:
             case 749: case 752: case 753: case 756: case 756: case 759: case 768: case 769: case 772: case 773:
-            case 774: case 781: case 782: case 789: case 790: case 791: case 797:
-                if(variants.nobasicanim){
+            case 774: case 781: case 782: case 789: case 790: case 791: case 797: case 818: case 819:
+                if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
+                    this.remove=true
+                }else if(variants.nobasicanim){
                     this.selfCall(4)
                     this.remove=true
                 }else{
