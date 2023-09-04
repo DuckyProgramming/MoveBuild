@@ -5649,6 +5649,13 @@ types={
                 {effect:[15,0],attack:793,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[20,0],attack:793,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Restrike',rarity:-1,list:0,
+            levels:[
+                {effect:[6],attack:1,cost:0,target:[2,1,1],spec:[1,2],class:1},
+                {effect:[9],attack:1,cost:0,target:[2,1,1],spec:[1,2],class:1},
+                {effect:[11],attack:1,cost:0,target:[2,1,1],spec:[1,2],class:1},
+            ],
         },
 
         {
@@ -6043,25 +6050,39 @@ types={
         },
 
         {
-            name:'Strike\nShard L',rarity:-4,list:2,
+            name:'Attack\nShard L1',rarity:-4,list:2,
             levels:[
-                {effect:[10],attack:827,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[16],attack:827,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[20],attack:827,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:827,cost:1,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[14],attack:827,cost:1,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[18],attack:827,cost:1,target:[2,1,1],spec:[0,26],class:1},
             ],
         },{
-            name:'Strike\nShard S',rarity:-4,list:7,
+            name:'Attack\nShard L2',rarity:-4,list:2,
             levels:[
-                {effect:[8,4],attack:828,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12,5],attack:828,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15,6],attack:828,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,0.5],attack:828,cost:1,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[12,0.5],attack:828,cost:1,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[15,0.5],attack:828,cost:1,target:[2,1,1],spec:[0,26],class:1},
             ],
         },{
-            name:'Strike\nConvocation',rarity:-5,list:-1,
+            name:'Attack\nShard S1',rarity:-4,list:7,
             levels:[
-                {effect:[14],attack:829,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[20],attack:829,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[25],attack:829,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:829,cost:1,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[17,1],attack:829,cost:1,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[22,1],attack:829,cost:1,target:[2,1,1],spec:[0,26],class:1},
+            ],
+        },{
+            name:'Attack\nShard S2',rarity:-4,list:7,
+            levels:[
+                {effect:[10],attack:830,cost:1,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[15],attack:830,cost:1,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[19],attack:830,cost:1,target:[2,1,1],spec:[0,26],class:1},
+            ],
+        },{
+            name:'Amalgamate',rarity:-4,list:27,
+            levels:[
+                {effect:[14],attack:1,cost:2,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[20],attack:1,cost:2,target:[2,1,1],spec:[0,26],class:1},
+                {effect:[25],attack:1,cost:2,target:[2,1,1],spec:[0,26],class:1},
             ],
         },
 
@@ -6087,7 +6108,6 @@ types={
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[1,2],class:3},
             ],
         },
-
     ],combatant:[
         {name:'',moniker:'Add Player 2',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
         {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Experienced Management Agent,\ndisillusioned with the propaganda.\nTrained in a wide variety of techniques,\nbut undercover with few armaments.`},

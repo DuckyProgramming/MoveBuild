@@ -519,6 +519,11 @@ class group{
                         la--
                     }
                 break
+                case 29:
+                    if(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'){
+                        this.cards[a].spec.push(22)
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -694,7 +699,7 @@ class group{
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8){
+                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                     if(spec==2){
@@ -717,6 +722,10 @@ class group{
                         if(list[list.length-1].level==0){
                             list[list.length-1]=upgradeCard(list[list.length-1])
                         }
+                        if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
+                    }
+                    if(spec==9){
+                        list[list.length-1].retain=true
                         if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                     }
                 }else if(spec==7){
@@ -729,7 +738,7 @@ class group{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex]))
                 list[list.length-1].size=0
-                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8){
+                if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
                     if(spec==2){
@@ -752,6 +761,10 @@ class group{
                         if(list[list.length-1].level==0){
                             list[list.length-1]=upgradeCard(list[list.length-1])
                         }
+                        if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
+                    }
+                    if(spec==9){
+                        list[list.length-1].retain=true
                         if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
                     }
                 }else if(spec==7){
@@ -937,6 +950,37 @@ class group{
                 }else{
                     this.battle.energy.main[this.player]-=cost
                 }
+            }
+        }
+    }
+    callAmalgums(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].spec.includes(26)){
+                this.battle.attackManager.type=this.cards[a].attack
+                this.battle.attackManager.effect=copyArray(this.cards[a].effect)
+                this.battle.attackManager.attackClass=this.cards[a].class
+                this.battle.attackManager.player=this.player
+
+                this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
+                this.battle.attackManager.energy=this.battle.energy.main[this.player]+(this.battle.relicManager.hasRelic(121,this.player)?2:0)
+                this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
+                this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
+                this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
+                this.battle.attackManager.relativePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.y
+                this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
+                this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
+                this.battle.attackManager.combo=this.battle.combatantManager.combatants[this.battle.attackManager.user].combo
+
+                this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
+                this.battle.attackManager.targetDistance=0
+                this.battle.attackManager.cost=this.cards[a].cost
+                this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.combatantManager.combatants[this.battle.attackManager.target[0]].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[this.battle.attackManager.target[0]].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
+                this.battle.attackManager.targetDistance=distTargetCombatant(0,this.battle.combatantManager.combatants[this.battle.attackManager.target[0]],this.battle.attackManager)
+                this.battle.attackManager.targetInfo[0]=0
+                this.battle.attackManager.targetClass=2
+                this.spec=[]
+                this.battle.attackManager.execute()
+                this.battle.updateTargetting()
             }
         }
     }
@@ -1167,6 +1211,11 @@ class group{
                     this.battle.attackManager.execute()
                     this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
                     this.battle.updateTargetting()
+                    for(let b=0,lb=this.cards.length;b<lb;b++){
+                        if(!this.cards[b].usable&&this.cards[b].spec.includes(26)){
+                            this.battle.cardManagers[this.battle.players-1-this.player].callAmalgums(this.battle.attackManager)
+                        }
+                    }
                 }
             break
             case 4:

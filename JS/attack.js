@@ -75,7 +75,7 @@ class attack{
             case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733: case 734:
             case 736: case 739: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775:
             case 779: case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798:
-            case 801: case 806: case 824: case 825: case 826:
+            case 801: case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -848,6 +848,18 @@ class attack{
                     break
                     case 826:
                         this.userCombatant.faith+=this.effect[1]
+                    break
+                    case 827:
+                        this.battle.cardManagers[this.player].hand.allEffect(29)
+                    break
+                    case 828:
+                        this.userCombatant.gainMaxHP(this.effect[1])
+                    break
+                    case 829:
+                        this.battle.cardManagers[this.player].drawRetain(this.effect[1])
+                    break
+                    case 830:
+                        this.battle.cardManagers[this.player].hand.add(findName('Restrike',types.card),0,0)
                     break
 
                 }
@@ -3053,7 +3065,7 @@ class attack{
             case 606: case 610: case 638: case 639: case 661: case 677: case 678: case 679: case 692: case 714:
             case 715: case 719: case 721: case 723: case 725: case 730: case 731: case 732: case 733: case 734:
             case 736: case 757: case 758: case 771: case 779: case 780: case 784: case 786: case 795: case 796:
-            case 798: case 806: case 824: case 826:
+            case 798: case 806: case 824: case 826: case 827: case 828: case 829: case 830:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.battle.cardManagers[this.player].hand.cards.length;a<la;a++){
