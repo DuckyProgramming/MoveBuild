@@ -6691,7 +6691,7 @@ class attack{
                     this.userCombatant.startAnimation(2)
                 }
                 if(this.timer>10&&this.timer<=15||this.timer>30&&this.timer<=35){
-                    this.userCombatant.runAnimation(1/20,37)
+                    this.userCombatant.runAnimation(1/10,37)
                 }
                 if(this.timer==15||this.timer==30){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)

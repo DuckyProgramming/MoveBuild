@@ -2542,6 +2542,8 @@ class combatant{
         this.metal=0
         this.stance=0
         this.faith=0
+        this.startAnimation(0)
+        this.runAnimation(0,0)
         switch(this.name){
             case 'Donakho':
                 this.anim.fat=1

@@ -760,7 +760,7 @@ class battle{
                     this.layer.strokeWeight(3*this.anim.deck[a])
                     this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.strokeWeight(3*this.anim.dictionaryMulti[a])
-                    this.layer.rect(26+a*(this.layer.width-52),522,32*this.anim.dictionary,20*this.anim.dictionaryMulti[a],5*this.anim.dictionaryMulti[a])
+                    this.layer.rect(26+a*(this.layer.width-52),522,32*this.anim.dictionaryMulti[a],20*this.anim.dictionaryMulti[a],5*this.anim.dictionaryMulti[a])
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])

@@ -4809,16 +4809,16 @@ types={
         },{
             name:'Cycle\nStrike',rarity:0,list:7,
             levels:[
-                {effect:[6,2],attack:775,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[8,4],attack:775,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[8,6],attack:775,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6,2],attack:775,cost:1,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[8,4],attack:775,cost:1,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[8,6],attack:775,cost:1,target:[2,1,1],spec:[0,2],class:1},
             ],
         },{
             name:'Perseverance',rarity:0,list:7,
             levels:[
-                {effect:[8,2],attack:776,cost:1,target:[0],spec:[],class:2},
-                {effect:[12,4],attack:776,cost:1,target:[0],spec:[],class:2},
-                {effect:[12,6],attack:776,cost:1,target:[0],spec:[],class:2},
+                {effect:[8,2],attack:776,cost:1,target:[0],spec:[2],class:2},
+                {effect:[12,4],attack:776,cost:1,target:[0],spec:[2],class:2},
+                {effect:[12,6],attack:776,cost:1,target:[0],spec:[2],class:2},
             ],
         },{
             name:'Dipolar',rarity:1,list:7,
