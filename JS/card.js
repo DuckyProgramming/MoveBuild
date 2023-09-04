@@ -283,8 +283,8 @@ class card{
             case 142: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Strength\nWhen Attacked`; break
             case 143: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n2 Times\n`:`\n`}Push 1 Tile`; break
             case 144: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)`; break
-            case 145: string+=`Heal ${this.calculateEffectAlly(effect[0],4)} Health\nto Ally`; break
-            case 146: string+=`Add ${this.calculateEffectAlly(effect[0],1)} Block\nto Ally`; break
+            case 145: string+=`Heal ${effect[0]} Health\nto Ally`; break
+            case 146: string+=`Add ${effect[0]} Block\nto Ally`; break
             case 147: string+=`Swap Places\nWith Ally`; break
             case 148: string+=`Heal ${this.calculateEffectAlly(effect[0],4)} Health\nRemove ${effect[1]} Health\nfrom Ally`; break
             case 149: string+=`Take 25% Less\nDamage For ${effect[0]} Turn${effect[0]!=1?`s`:``}`; break
@@ -957,6 +957,10 @@ class card{
             case 824: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPlayable in Haste`; break
             case 825: string+=`Push 1 Tile\nSturdy: Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 826: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Faith`; break
+
+            case 827: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nStacks With Ally`; break
+            case 828: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Block\nto Ally`; break
+            case 829: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nStacks With Ally\nAdd ${effect[1]} Block\nto Ally`; break
 
 
 

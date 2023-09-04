@@ -2638,7 +2638,7 @@ types={
                 {effect:[3],attack:279,cost:1,target:[0],spec:[1,22],class:4},
             ],
         },{
-            name:'Combined\nStrike',rarity:0,list:4,
+            name:'Merged\nStrike',rarity:0,list:4,
             levels:[
                 {effect:[6,2],attack:280,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[6,4],attack:280,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -3853,14 +3853,14 @@ types={
                 {effect:[],attack:686,cost:4,target:[1,1,1],spec:[21,2,22],class:7},
             ],
         },{
-            name:'Build\nTeleporter S',rarity:1,list:6,
+            name:'Build\nTeleporter Start',rarity:1,list:6,
             levels:[
                 {effect:[],attack:700,cost:2,target:[1,1,1],spec:[21],class:7},
                 {effect:[],attack:700,cost:2,target:[1,1,1],spec:[21,2],class:7},
                 {effect:[],attack:700,cost:2,target:[1,1,1],spec:[21,2,22],class:7},
             ],
         },{
-            name:'Build\nTeleporter E',rarity:1,list:6,
+            name:'Build\nTeleporter End',rarity:1,list:6,
             levels:[
                 {effect:[],attack:701,cost:2,target:[1,1,1],spec:[21],class:7},
                 {effect:[],attack:701,cost:2,target:[1,1,1],spec:[21,2],class:7},
@@ -4107,9 +4107,9 @@ types={
         },{
             name:'Line\nUp',rarity:0,list:6,
             levels:[
-                {effect:[5],attack:611,cost:1,target:[0],spec:[0],class:1},
-                {effect:[7],attack:611,cost:1,target:[0],spec:[0],class:1},
-                {effect:[8],attack:611,cost:1,target:[0],spec:[0],class:1},
+                {effect:[5],attack:611,cost:1,target:[0],spec:[0,25],class:1},
+                {effect:[7],attack:611,cost:1,target:[0],spec:[0,25],class:1},
+                {effect:[8],attack:611,cost:1,target:[0],spec:[0,25],class:1},
             ],
         },{
             name:'Biding',rarity:1,list:6,
@@ -4297,8 +4297,8 @@ types={
             name:'Skim',rarity:0,list:6,
             levels:[
                 {effect:[1,1],attack:690,cost:1,target:[1,1,1],spec:[0],class:3},
-                {effect:[1,2],attack:690,cost:1,target:[1,1,2],spec:[0],class:3},
-                {effect:[1,2],attack:690,cost:1,target:[1,1,2],spec:[],class:3},
+                {effect:[1,2],attack:690,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[2,2],attack:690,cost:1,target:[1,1,2],spec:[],class:3},
             ],
         },{
             name:'Shoot\nHim!',rarity:2,list:6,
@@ -6039,6 +6039,29 @@ types={
                 {effect:[7],attack:353,cost:1,target:[0],spec:[],class:1},
                 {effect:[11],attack:353,cost:1,target:[0],spec:[],class:1},
                 {effect:[15],attack:353,cost:1,target:[0],spec:[],class:1},
+            ],
+        },
+
+        {
+            name:'Strike\nShard L',rarity:-4,list:2,
+            levels:[
+                {effect:[10],attack:827,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[16],attack:827,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[20],attack:827,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Strike\nShard S',rarity:-4,list:7,
+            levels:[
+                {effect:[8,4],attack:828,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,5],attack:828,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,6],attack:828,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Strike\nConvocation',rarity:-5,list:-1,
+            levels:[
+                {effect:[14],attack:829,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[20],attack:829,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[25],attack:829,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },
 
@@ -11240,6 +11263,38 @@ Does not spend the orb.`,
 `Draw a Card When Discarded`,
         },{name:'Quickdraw',desc:
 `Draw 1 Card`,
+        },{name:'Metal',desc:
+`Resource gained through cards. Used to play Blueprints.`,
+        },{name:'Construct',desc:
+`Ally, buffs player or attacks enemy. Effects vary by type.`,
+        },{name:'Blueprint',desc:
+`Card that builds Constructs.`,
+        },{name:'Jagged Bleed',desc:
+`Similar to Bleed, but also causes enemy to turn more randomly.`,
+        },{name:'Swap Intents',desc:
+`If enemies have an intent to do said action, they will do something else instead.`,
+        },{name:'Wrath',desc:
+`Stance. Deal double damage and take double damage.`,
+        },{name:'Calm',desc:
+`Stance. Gain 2 energy when you leave this stance.`,
+        },{name:'Haste',desc:
+`Stance. Gives you more movement options, but you cannot attack.`,
+        },{name:'Sturdy',desc:
+`Stance. Deal half damage and take half damage. `,
+        },{name:'Divinity',desc:
+`Stance. When entered, gain 3 energy and draw 3 cards. Deal triple damage.`,
+        },{name:'Faith',desc:
+`Gained through cards. When you gain 8 faith, enter Divinity.`,
+        },{name:'Safety',desc:
+`Card that gives block, exhausts and retains.`,
+        },{name:'Insight',desc:
+`Card that draws cards, exhausts and retains.`,
+        },{name:'Smite',desc:
+`Card that deals damage, exhausts and retains.`,
+        },{name:'Miracle',desc:
+`Card that gives energy, exhausts and retains.`,
+        },{name:'Obstruction',desc:
+`Anything blocking movement, mainly combatants.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0

@@ -333,7 +333,7 @@ class relicManager{
                 this.battle.optionManagers[player].removeOption(7)
             break
             case 67:
-                this.battle.itemManager.RemoveItemSlots(2,player)
+                this.battle.itemManager.removeItemSlots(2,player)
             break
             case 77:
                 this.battle.itemManager.effectiveness[player]/=2

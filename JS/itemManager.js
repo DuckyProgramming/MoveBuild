@@ -28,7 +28,7 @@ class itemManager{
                 new item(this.layer,a,75+(this.layer.width-150)*a,50,25+(this.layer.width-50)*a,100,1,1),
                 new item(this.layer,a,125+(this.layer.width-250)*a,50,25+(this.layer.width-50)*a,150,1,1),
                 new item(this.layer,a,175+(this.layer.width-350)*a,50,25+(this.layer.width-50)*a,200,1,1)])
-            this.position.push(0)
+            this.position.push(game.ascend>=11?-1:0)
             this.up.push(true)
             this.total.push(0)
             this.effectiveness.push(1)
@@ -76,8 +76,10 @@ class itemManager{
     }
     removeItemSlots(amount,player){
         for(let a=0;a<amount;a++){
-            delete this.items[player][this.items[player].length-1]
-            this.items[player].splice(this.items[player].length-1,1)
+            if(this.items[player].length>0){
+                delete this.items[player][this.items[player].length-1]
+                this.items[player].splice(this.items[player].length-1,1)
+            }
         }
         this.position[player]-=amount
     }

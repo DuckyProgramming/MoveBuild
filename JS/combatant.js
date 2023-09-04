@@ -2699,7 +2699,7 @@ class combatant{
             this.base.life=round(this.base.life*0.5)
             this.collect.life=round(this.collect.life*0.5)
         }
-        if(variants.shortmap){
+        if(variants.shortmap&&this.team==0){
             this.life=round(this.life*(1-this.battle.nodeManager.world*0.2))
             this.base.life=round(this.base.life*(1-this.battle.nodeManager.world*0.2))
             this.collect.life=round(this.collect.life*(1-this.battle.nodeManager.world*0.2))
@@ -4017,18 +4017,18 @@ class combatant{
                             this.addBlock(this.status.main[108])
                         }
                     }
+                    if(this.status.main[44]>0&&this.life<=0){
+                        userCombatant.statusEffect('Weak',this.status.main[44])
+                    }
+                    if(this.status.main[45]>0&&this.life<=0){
+                        userCombatant.statusEffect('Vulnerable',this.status.main[45])
+                    }
                 }
                 if(this.spec.includes(16)&&this.life<=0&&user>=0&&user<this.battle.players){
                     for(let a=0,la=this.battle.players;a<la;a++){
                         this.battle.overlayManager.overlays[25][a].active=true
                         this.battle.overlayManager.overlays[25][a].activate([0,[{type:0,value:[5]}]])
                     }
-                }
-                if(this.status.main[44]>0&&this.life<=0){
-                    userCombatant.statusEffect('Weak',this.status.main[44])
-                }
-                if(this.status.main[45]>0&&this.life<=0){
-                    userCombatant.statusEffect('Vulnerable',this.status.main[45])
                 }
             }
         }
@@ -14240,11 +14240,11 @@ class combatant{
                 this.battle.updateTargetting()
                 if(!this.programmedDeath){
                     this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
-                    if(this.name=='Teleporter Start'){
-                        this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nStart')
-                    }else if(this.name=='Teleporter End'){
-                        this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nEnd')
-                    }
+                }
+                if(this.name=='Teleporter Start'){
+                    this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nStart')
+                }else if(this.name=='Teleporter End'){
+                    this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nEnd')
                 }
             }
         }else if(this.support){

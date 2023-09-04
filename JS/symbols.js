@@ -3359,12 +3359,12 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
         break
         case 236:
             layer.fill(255,50,50,fade)
-            layer.rect(-3,-3,6,4)
-            layer.arc(0,-3,9,4,-90,90)
-            layer.rect(-3,3,6,4)
-            layer.arc(0,3,9,4,-90,90)
-            layer.rect(3,0,6,4)
-            layer.arc(6,0,9,4,-90,90)
+            layer.rect(-3,-3,4.5,3)
+            layer.arc(-0.75,-3,9,4,-90,90)
+            layer.rect(-3,3,4.5,3)
+            layer.arc(-0.75,3,9,4,-90,90)
+            layer.rect(3,0,4.5,3)
+            layer.arc(5.25,0,6.75,3,-90,90)
         break
         case 237:
             layer.fill(140,120,160,fade)
@@ -3789,11 +3789,11 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(4,4,3,3)
         break
         case 44:
-            layer.fill(255,125,0,this.fade)
+            layer.fill(255,125,0,fade)
             layer.rect(-1.5,-1.5,7,7)
-            layer.fill(255,255,0,this.fade)
+            layer.fill(255,255,0,fade)
             layer.rect(0,0,7,7)
-            layer.fill(125,255,0,this.fade)
+            layer.fill(125,255,0,fade)
             layer.rect(1.5,1.5,7,7)
         break
         case 45:
