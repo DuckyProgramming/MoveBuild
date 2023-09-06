@@ -4594,6 +4594,9 @@ class combatant{
                 this.status.next[a]=0
             }
         }
+        if(this.stance==5){
+            this.stance=0
+        }
         for(let a=0,la=this.orbs.length;a<la;a++){
             switch(this.orbs[a]){
                 case 4:

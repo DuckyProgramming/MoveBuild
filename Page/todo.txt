@@ -9,6 +9,8 @@ Duelist Vanishing Cards
 Maybe Also Be Requisitioned
 !!!
 
+2 tile pull strike causes walking animation errors
+
 Orlando
 
 More Characters As needed

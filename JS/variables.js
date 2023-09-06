@@ -4711,9 +4711,9 @@ types={
         },{
             name:'Wreath\nof Flame',rarity:0,list:7,
             levels:[
-                {effect:[6],attack:760,cost:1,target:[0],spec:[],class:4},
-                {effect:[10],attack:760,cost:1,target:[0],spec:[],class:4},
-                {effect:[13],attack:760,cost:1,target:[0],spec:[],class:4},
+                {effect:[8],attack:760,cost:1,target:[0],spec:[],class:4},
+                {effect:[12],attack:760,cost:1,target:[0],spec:[],class:4},
+                {effect:[15],attack:760,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Finality',rarity:2,list:7,
@@ -4774,9 +4774,9 @@ types={
         },{
             name:'Spirit\nShield',rarity:0,list:7,
             levels:[
+                {effect:[],attack:769,cost:2,target:[0],spec:[1,3],class:2},
                 {effect:[],attack:769,cost:2,target:[0],spec:[3],class:2},
-                {effect:[],attack:769,cost:1,target:[0],spec:[3],class:2},
-                {effect:[],attack:769,cost:1,target:[0],spec:[2,3],class:2},
+                {effect:[],attack:769,cost:2,target:[0],spec:[2,3],class:2},
             ],
         },{
             name:'Credence',rarity:0,list:7,
@@ -4970,9 +4970,9 @@ types={
         },{
             name:'Patience',rarity:1,list:7,
             levels:[
-                {effect:[1,1],attack:799,cost:1,target:[0],spec:[],class:4},
-                {effect:[1,2],attack:799,cost:1,target:[0],spec:[],class:4},
-                {effect:[1,3],attack:799,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,1],attack:799,cost:0,target:[0],spec:[],class:4},
+                {effect:[1,2],attack:799,cost:0,target:[0],spec:[],class:4},
+                {effect:[1,3],attack:799,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Desist',rarity:0,list:7,
@@ -5104,8 +5104,8 @@ types={
             name:'Branch\nOut',rarity:1,list:7,
             levels:[
                 {effect:[],attack:818,cost:0,target:[0],spec:[],class:4},
-                {effect:[],attack:818,cost:0,target:[0],spec:[],class:4},
-                {effect:[],attack:818,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:818,cost:0,target:[0],spec:[2],class:4},
+                {effect:[],attack:818,cost:0,target:[0],spec:[2,22],class:4},
             ],
         },{
             name:'Press',rarity:1,list:7,
@@ -5334,7 +5334,8 @@ types={
                 {effect:[16,4],attack:858,cost:2,target:[0],spec:[],class:2},
             ],
         },
-
+        
+        //magic missile
 
 
 

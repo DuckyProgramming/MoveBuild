@@ -1216,7 +1216,7 @@ class card{
                 }
             break
             case 775: case 776:
-                this.effect[1]+=this.effect[0]
+                this.effect[0]+=this.effect[1]
             break
         }
         if(this.cost>0){

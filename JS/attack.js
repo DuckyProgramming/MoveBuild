@@ -2042,7 +2042,7 @@ class attack{
                     break
                     case 759:
                         this.userCombatant.faith+=this.effect[0]
-                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Strength',this.effect[1])
                     break
                     case 768:
                         this.userCombatant.statusEffect('Faith Per Turn',this.effect[0])
