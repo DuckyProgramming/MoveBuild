@@ -125,6 +125,7 @@ class attack{
                 }
             break
             case 31: case 356: case 357: case 459: case 471: case 576: case 652: case 653: case 654: case 658:
+            case 856:
                 this.targetCombatant=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,1)
                 this.direction=[]
                 this.distance=[]
@@ -948,6 +949,9 @@ class attack{
                     case 800:
                         this.userCombatant.addBlock(this.effect[0]*(this.userCombatant.stance==2?this.effect[1]:1))
                     break
+                    case 853:
+                        this.userCombatant.addBlock(this.userCombatant.charge+this.effect[0])
+                    break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -1146,7 +1150,10 @@ class attack{
                             this.userCombatant.statusEffect('Block Next Turn',this.effect[1])
                         }
                     break
-
+                    case 858:
+                        this.userCombatant.charge+=this.effect[1]
+                    break
+                    
                 }
             break
             case 2:
@@ -2095,7 +2102,10 @@ class attack{
                         this.battle.energy.main[this.player]+=floor(ceil(this.battle.cardManagers[this.player].discard.cards.length/2)/this.effect[0])
                         this.battle.cardManagers[this.player].discard.halfEffect(0)
                     break
-                    
+                    case 855:
+                        this.userCombatant.statusEffect('Amplify Return',this.effect[0])
+                    break
+
                 }
             break
             case 5:
@@ -3124,7 +3134,21 @@ class attack{
                             }
                         }
                     break
-
+                    case 854:
+                        this.userCombatant.statusEffect('Draw Up',this.effect[0])
+                        this.userCombatant.statusEffect('Burn Per Turn',this.effect[1])
+                    break
+                    case 856:
+                        for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                            this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                            if(this.amplify){
+                                if(this.targetCombatant[a].life<this.effect[1]){
+                                    this.targetCombatant[a].life=0
+                                }
+                            }
+                        }
+                    break
+                    
                 }
             break
             case 13:
@@ -3239,7 +3263,7 @@ class attack{
             case 389: case 396: case 399: case 410: case 416: case 428: case 430: case 443: case 461: case 463:
             case 502: case 513: case 515: case 518: case 522: case 546: case 547: case 589: case 602: case 682:
             case 699: case 716: case 722: case 724: case 726: case 735: case 738: case 745: case 765: case 770:
-            case 783: case 794: case 800: case 809: case 810: case 811: case 831:
+            case 783: case 794: case 800: case 809: case 810: case 811: case 831: case 853: case 858:
                 if(this.type==809&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -3471,7 +3495,7 @@ class attack{
             case 675: case 680: case 681: case 728: case 740: case 741: case 742: case 743: case 744: case 748:
             case 749: case 752: case 753: case 756: case 756: case 759: case 768: case 769: case 772: case 773:
             case 774: case 781: case 782: case 789: case 790: case 791: case 797: case 818: case 819: case 832:
-            case 835:
+            case 835: case 855:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -6106,6 +6130,7 @@ class attack{
             case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 556: case 560: case 561:
             case 562: case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579:
             case 583: case 584: case 600: case 671: case 672: case 673: case 767: case 785: case 847: case 851:
+            case 854: case 856:
                 if(variants.nobasicanim){
                     this.selfCall(12)
                     this.remove=true

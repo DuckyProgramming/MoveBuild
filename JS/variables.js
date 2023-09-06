@@ -5284,6 +5284,55 @@ types={
                 {effect:[5,3],attack:851,cost:0,target:[0],spec:[1,27],class:4},
                 {effect:[6,4],attack:851,cost:0,target:[0],spec:[1,27],class:4},
             ],
+        },{
+            name:'Energy\nFlow',rarity:0,list:8,
+            levels:[
+                {effect:[2],attack:852,cost:1,target:[0],spec:[1],class:4},
+                {effect:[3],attack:852,cost:1,target:[0],spec:[1],class:4},
+                {effect:[4],attack:852,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Energy\nRecoil',rarity:0,list:8,
+            levels:[
+                {effect:[0],attack:853,cost:1,target:[0],spec:[],class:2},
+                {effect:[3],attack:853,cost:1,target:[0],spec:[],class:2},
+                {effect:[5],attack:853,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Escape\nVelocity',rarity:1,list:8,
+            levels:[
+                {effect:[2,1],attack:854,cost:2,target:[0],spec:[],class:4},
+                {effect:[2,1],attack:854,cost:2,target:[0],spec:[3],class:4},
+                {effect:[3,1],attack:854,cost:2,target:[0],spec:[3],class:4},
+            ],
+        },{
+            name:'Event\nHorizon',rarity:1,list:8,
+            levels:[
+                {effect:[],attack:855,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:855,cost:1,target:[0],spec:[3],class:4},
+                {effect:[],attack:855,cost:1,target:[0],spec:[3,22],class:4},
+            ],
+        },{
+            name:'Fairy\nBurst',rarity:1,list:4,
+            levels:[
+                {effect:[5,18],attack:856,cost:0,target:[0],spec:[28],class:1},
+                {effect:[7,24],attack:856,cost:0,target:[0],spec:[28],class:1},
+                {effect:[8,30],attack:856,cost:0,target:[0],spec:[28],class:1},
+            ],
+        },{
+            name:'Spark\nBall',rarity:2,list:4,
+            levels:[
+                {effect:[40],attack:857,cost:7,target:[0],spec:[28],class:1},
+                {effect:[48],attack:857,cost:6,target:[0],spec:[28],class:1},
+                {effect:[54],attack:857,cost:5,target:[0],spec:[28],class:1},
+            ],
+        },{
+            name:'Halo',rarity:0,list:4,
+            levels:[
+                {effect:[12,2],attack:858,cost:2,target:[0],spec:[],class:2},
+                {effect:[15,3],attack:858,cost:2,target:[0],spec:[],class:2},
+                {effect:[16,4],attack:858,cost:2,target:[0],spec:[],class:2},
+            ],
         },
 
 
@@ -11548,8 +11597,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:8,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:false,shortmap:false,speedmove:false,speedcard:false,nobasicanim:false}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,speedmove:false,speedcard:false,nobasicanim:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

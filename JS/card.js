@@ -982,7 +982,13 @@ class card{
             case 849: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Spark+ to Hand`; break
             case 850: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],4)}X\nDamage\nWhere X = Number\nof Cards in\nExhaust Pile`; break
             case 851: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAmplify:\nReturn ${effect[1]} Random Card${effect[1]!=1?`s`:``}\nto Your Hand\nFrom Discard Pile`; break
-
+            case 852: string+=`Gain ${effect[0]} Charge\nPer Turn`; break
+            case 853: string+=`Add ${this.calculateEffect(1,3)} Block\nWhere X = Charge${effect[0]>0?`+${effect[0]}`:``}`; break
+            case 854: string+=`Draw ${effect[0]} More\nCard${effect[0]!=1?`s`:``} Per Turn\n${effect[1]} Balance`; break
+            case 855: string+=`When You Amplify,\nPut a Card in Discard\nPile in Your Hand`; break
+            case 856: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nAmplify 2:\nInstantly Kill Those\nWith ${effect[1]} or Less Health`; break
+            case 857: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Spark Played`; break
+            case 858: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Charge`; break
 
 
 
@@ -1143,7 +1149,7 @@ class card{
         this.battle.attackManager.level=this.level
         this.battle.attackManager.color=this.color
     }
-    anotherPlayed(cardClass){
+    anotherPlayed(cardClass,name){
         if(this.spec.includes(9)){
             this.deSize=true
         }
@@ -1172,6 +1178,12 @@ class card{
             break
             case 415:
                 if(cardClass==2&&this.cost>0){
+                    this.cost--
+                    this.base.cost--
+                }
+            break
+            case 857:
+                if(name=='Spark'&&this.cost>0){
                     this.cost--
                     this.base.cost--
                 }

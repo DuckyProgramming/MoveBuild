@@ -970,6 +970,18 @@ class group{
             if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
                 this.battle.energy.main[this.player]--
                 this.battle.attackManager.amplify=true
+                if(userCombatant.status.main[144]>0){
+                    this.battle.overlayManager.overlays[7][this.player].active=true
+                    this.battle.overlayManager.overlays[7][this.player].activate()
+                }
+            }
+            if(this.battle.energy.main[this.player]>1&&spec.includes(28)){
+                this.battle.energy.main[this.player]-=2
+                this.battle.attackManager.amplify=true
+                if(userCombatant.status.main[144]>0){
+                    this.battle.overlayManager.overlays[7][this.player].active=true
+                    this.battle.overlayManager.overlays[7][this.player].activate()
+                }
             }
         }
     }
@@ -1130,7 +1142,7 @@ class group{
                         }
                     }
                     this.cards[a].played()
-                    this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class))
+                    this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class,this.cards[a].name))
                     this.battle.playCard(this.cards[a],this.player,0)
                     this.lastPlayed[0]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
                     this.lastPlayed[this.cards[a].class]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
@@ -1179,7 +1191,7 @@ class group{
                             }
                         }
                         this.cards[b].played()
-                        this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class))
+                        this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name))
                         if(this.spec.includes(12)){
                             this.battle.attackManager.type=this.battle.attackManager.type[1]
                             this.battle.attackManager.effect=this.battle.attackManager.effect[1]
@@ -1223,7 +1235,7 @@ class group{
                                 }
                             }
                             this.cards[b].played()
-                            this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class))
+                            this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name))
                             if(this.spec.includes(12)){
                                 let characteristic=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0
                                 this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
