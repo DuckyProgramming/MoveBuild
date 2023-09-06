@@ -10,6 +10,7 @@ class group{
         this.drawEffects=[]
         this.spec=[]
         this.lastDuplicate=''
+        this.lastPlayed=[0,0,0,0,0,0]
 
         this.reset()
     }
@@ -350,6 +351,19 @@ class group{
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].spec.includes(20)){
                 this.cards[a].effect[0]+=effect
+            }
+        }
+    }
+    halfEffect(effect){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if((a+la)%2==0){
+                switch(effect){
+                    case 0:
+                        this.cards.splice(a,1)
+                        a--
+                        la--
+                    break
+                }
             }
         }
     }
@@ -934,22 +948,25 @@ class group{
         }
     }
     cost(cost,cardClass,spec){
-        if(cost!=0){
-            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            if(cardClass==1&&userCombatant.status.main[22]>0){
-                userCombatant.status.main[22]--
-            }else if(userCombatant.status.main[27]>0){
-                userCombatant.status.main[27]--
-            }else if(spec.includes(11)){
-                userCombatant.combo-=cost
-            }else if(spec.includes(21)){
-                userCombatant.metal-=cost
+        this.battle.attackManager.amplify=false
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(cardClass==1&&userCombatant.status.main[22]>0){
+            userCombatant.status.main[22]--
+        }else if(userCombatant.status.main[27]>0){
+            userCombatant.status.main[27]--
+        }else if(spec.includes(11)){
+            userCombatant.combo-=cost
+        }else if(spec.includes(21)){
+            userCombatant.metal-=cost
+        }else{
+            if(cost==-1){
+                this.battle.energy.main[this.player]=0
             }else{
-                if(cost==-1){
-                    this.battle.energy.main[this.player]=0
-                }else{
-                    this.battle.energy.main[this.player]-=cost
-                }
+                this.battle.energy.main[this.player]-=cost
+            }
+            if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
+                this.battle.energy.main[this.player]--
+                this.battle.attackManager.amplify=true
             }
         }
     }
@@ -970,6 +987,7 @@ class group{
                 this.battle.attackManager.tilePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.x
                 this.battle.attackManager.tilePosition.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].tilePosition.y
                 this.battle.attackManager.combo=this.battle.combatantManager.combatants[this.battle.attackManager.user].combo
+                this.battle.attackManager.amplify=false
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                 this.battle.attackManager.targetDistance=0
@@ -1111,9 +1129,11 @@ class group{
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class))
                     this.battle.playCard(this.cards[a],this.player,0)
+                    this.lastPlayed[0]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
+                    this.lastPlayed[this.cards[a].class]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
                     this.callInput(5,0)
-                    this.battle.attackManager.execute()
                     this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec)
+                    this.battle.attackManager.execute()
                 }else{
                     this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                     this.battle.attackManager.targetDistance=0
@@ -1163,10 +1183,12 @@ class group{
                             this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[1]
                         }
                         this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
+                        this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
+                        this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
                     }
                 }
-                this.battle.attackManager.execute()
                 this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
+                this.battle.attackManager.execute()
                 this.battle.updateTargetting()
             break
             case 3:
@@ -1206,10 +1228,12 @@ class group{
                                 this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
                             }
                             this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
+                            this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
+                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
                         }
                     }
-                    this.battle.attackManager.execute()
                     this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
+                    this.battle.attackManager.execute()
                     this.battle.updateTargetting()
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable&&this.cards[b].spec.includes(26)){

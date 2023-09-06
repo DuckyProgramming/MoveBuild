@@ -67,6 +67,7 @@ class combatant{
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
+            'Block Spark','Block Spark+',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -83,6 +84,7 @@ class combatant{
                 0,0,0,0,0,0,0,1,0,1,//12
                 2,1,0,0,2,0,0,0,2,0,//13
                 1,1,1,0,0,0,0,0,0,0,//14
+                0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -99,6 +101,7 @@ class combatant{
                 1,2,2,2,2,2,2,3,2,1,
                 2,0,0,1,0,2,2,2,1,2,
                 2,2,2,2,1,2,2,0,0,0,
+                2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -130,6 +133,7 @@ class combatant{
         this.metal=0
         this.stance=0
         this.faith=0
+        this.charge=0
 
         this.intent=0
         this.activated=false
@@ -2542,6 +2546,7 @@ class combatant{
         this.metal=0
         this.stance=0
         this.faith=0
+        this.charge=0
         this.startAnimation(0)
         this.runAnimation(0,0)
         switch(this.name){
@@ -4073,6 +4078,16 @@ class combatant{
             if(this.status.main[70]>0){
                 this.combo+=this.status.main[70]
             }
+            if(this.status.main[140]>0){
+                for(let a=0,la=this.status.main[140];a<la;a++){
+                    this.battle.cardManagers[this.id].hand.add(findName('Spark',types.card),0,0)
+                }
+            }
+            if(this.status.main[141]>0){
+                for(let a=0,la=this.status.main[141];a<la;a++){
+                    this.battle.cardManagers[this.id].hand.add(findName('Spark',types.card),1,0)
+                }
+            }
             if(block>=0){
                 this.block+=block
                 if(this.id<this.battle.players){
@@ -4521,6 +4536,7 @@ class combatant{
         this.life=min(this.life,this.base.life)
     }
     tick(){
+        this.charge++
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
                 switch(a){
