@@ -5242,6 +5242,48 @@ types={
                 {effect:[13],attack:844,cost:1,target:[2,1,1],spec:[0,3],class:1},
                 {effect:[16],attack:844,cost:1,target:[2,1,1],spec:[0,3],class:1},
             ],
+        },{
+            name:'Dark\nMatter',rarity:1,list:8,
+            levels:[
+                {effect:[2,7],attack:845,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[2,10],attack:845,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[2,12],attack:845,cost:0,target:[0],spec:[1,4],class:4},
+            ],
+        },{
+            name:'Dark\nSpark',rarity:1,list:8,
+            levels:[
+                {effect:[5,7],attack:846,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[8,8],attack:846,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[10,9],attack:846,cost:2,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Depth',rarity:1,list:8,
+            levels:[
+                {effect:[7,2],attack:847,cost:1,target:[0],spec:[0,27],class:1},
+                {effect:[9,3],attack:847,cost:1,target:[0],spec:[0,27],class:1},
+                {effect:[10,4],attack:847,cost:1,target:[0],spec:[0,27],class:1},
+            ],
+        },{
+            name:'Double\nSpark',rarity:0,list:8,
+            levels:[
+                {effect:[6],attack:848,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:849,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:849,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Comet',rarity:1,list:8,
+            levels:[
+                {effect:[14,2],attack:850,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[18,3],attack:850,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[20,4],attack:850,cost:2,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Earth\nPower',rarity:1,list:8,
+            levels:[
+                {effect:[3,2],attack:851,cost:0,target:[0],spec:[1,27],class:4},
+                {effect:[5,3],attack:851,cost:0,target:[0],spec:[1,27],class:4},
+                {effect:[6,4],attack:851,cost:0,target:[0],spec:[1,27],class:4},
+            ],
         },
 
 
@@ -5788,9 +5830,9 @@ types={
         },{
             name:'Spark',rarity:-1,list:0,
             levels:[
-                {effect:[6],attack:327,cost:0,target:[2,1,1],spec:[0,1],class:1},
-                {effect:[9],attack:327,cost:0,target:[2,1,1],spec:[0,1],class:1},
-                {effect:[11],attack:327,cost:0,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[6],attack:327,cost:0,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[9],attack:327,cost:0,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[11],attack:327,cost:0,target:[2,1,1],spec:[0,2],class:1},
             ],
         },
 

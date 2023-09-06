@@ -625,6 +625,9 @@ class group{
                             this.cards[index].effect[a]=min(this.cards[index].effect[a],1)
                         }
                     break
+                    case 16:
+                        this.send(args[0],index,index+1,1)
+                    break
                 }
             }
         }

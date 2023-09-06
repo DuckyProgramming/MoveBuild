@@ -77,7 +77,7 @@ class attack{
             case 736: case 739: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775:
             case 779: case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798:
             case 801: case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833:
-            case 834: case 837: case 840:
+            case 834: case 837: case 840: case 846: case 848: case 849: case 850:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -316,7 +316,7 @@ class attack{
 
                 this.procedure[0]=this.battle.cardManagers[this.player].discard.cards.length==0
             break
-            
+
         }
     }
     set(){
@@ -884,6 +884,12 @@ class attack{
                             this.battle.energy.main[this.player]+=this.effect[2]
                             this.battle.cardManagers[this.player].draw(this.effect[3])
                         }
+                    break
+                    case 848:
+                        this.battle.cardManagers[this.player].reserve.add(findName('Spark',types.card),0,0)
+                    break
+                    case 849:
+                        this.battle.cardManagers[this.player].reserve.add(findName('Spark',types.card),1,0)
                     break
 
                 }
@@ -2587,6 +2593,25 @@ class attack{
                     case 843:
                         this.targetCombatant.takeDamage(this.effect[0]*floor(this.battle.relicManager.total[this.player]/this.effect[1]),this.user)
                     break
+                    case 846:
+                        let attacks=[]
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            if(this.battle.cardManagers[this.player].reserve.cards.length>0){
+                                this.battle.cardManagers[this.player].reserve.cards.splice(0,1)
+                                a--
+                                la--
+                                if(this.battle.cardManagers[this.player].reserve.cards[0].class==1){
+                                    attacks++
+                                }
+                            }
+                        }
+                        if(attacks>0){
+                            this.targetCombatant.takeDamage(this.effect[1]*attacks,this.user)
+                        }
+                    break
+                    case 850:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.battle.cardManagers[this.player].exhaust.cards.length,this.user)
+                    break
 
                 }
             break
@@ -2758,6 +2783,11 @@ class attack{
                     break
                     case 792:
                         this.battle.cardManagers[this.player].reserve.addShuffleEffect_1(findName('Expunger',types.card),0,0,this.energy+this.effect[0])
+                    break
+                    case 845:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.cardManagers[this.player].reserve.add(findName('Dark Matter',types.card),0,this.color)
+                        }
                     break
 
                 }
@@ -3080,6 +3110,20 @@ class attack{
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x+random(-50,50),this.targetCombatant.position.y+random(-50,50),40,[10]))
                         }
                     break
+                    case 847:
+                        this.battle.combatantManager.randomEnemyEffect(1,[this.effect[0],this.effect[1]])
+                        if(this.amplify){
+                            this.battle.combatantManager.randomEnemyEffect(1,[this.effect[0],this.effect[1]])
+                        }
+                    break
+                    case 851:
+                        this.userCombatant.heal(this.effect[0])
+                        if(this.amplify){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.battle.cardManagers[this.player].discard.randomEffect(16,[this.battle.cardManagers[this.player].hand.cards])
+                            }
+                        }
+                    break
 
                 }
             break
@@ -3136,6 +3180,7 @@ class attack{
             case 715: case 719: case 721: case 723: case 725: case 730: case 731: case 732: case 733: case 734:
             case 736: case 757: case 758: case 771: case 779: case 780: case 784: case 786: case 795: case 796:
             case 798: case 806: case 824: case 826: case 827: case 828: case 829: case 830: case 840: case 844:
+            case 848: case 849:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.battle.cardManagers[this.player].hand.cards.length;a<la;a++){
@@ -4087,7 +4132,7 @@ class attack{
             case 592: case 620: case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629:
             case 630: case 631: case 667: case 669: case 685: case 686: case 687: case 688: case 695: case 696:
             case 697: case 700: case 701: case 702: case 720: case 787: case 801: case 833: case 834: case 837:
-            case 843:
+            case 843: case 846: case 850:
                 if(variants.nobasicanim){
                     this.selfCall(7)
                     this.remove=true
@@ -4596,6 +4641,7 @@ class attack{
             break
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
             case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683: case 710: case 792:
+            case 845:
                 if(variants.nobasicanim){
                     this.selfCall(10)
                     this.remove=true
@@ -6059,7 +6105,7 @@ class attack{
             case 520: case 526: case 531: case 532: case 534: case 535: case 536: case 543: case 544: case 545:
             case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 556: case 560: case 561:
             case 562: case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579:
-            case 583: case 584: case 600: case 671: case 672: case 673: case 767: case 785:
+            case 583: case 584: case 600: case 671: case 672: case 673: case 767: case 785: case 847: case 851:
                 if(variants.nobasicanim){
                     this.selfCall(12)
                     this.remove=true

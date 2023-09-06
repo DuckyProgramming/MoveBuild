@@ -209,9 +209,14 @@ class combatantManager{
             }
         }
         if(list.length>0){
+            let index=list[floor(random(0,list.length))]
             switch(effect){
                 case 0:
-                    this.combatants[list[floor(random(0,list.length))]].takeDamage(args[0],-1)
+                    this.combatants[index].takeDamage(args[0],-1)
+                break
+                case 1:
+                    this.combatants[index].takeDamage(args[0],-1)
+                    this.combatants[index].statusEffect('Weak',args[1])
                 break
             }
         }
