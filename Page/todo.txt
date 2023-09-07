@@ -9,13 +9,24 @@ Duelist Vanishing Cards
 Maybe Also Be Requisitioned
 !!!
 
-2 tile pull strike causes walking animation errors
+To this day, no fix for the Corruption Bug has been found.
+This report is dated to 9/7/2023
+If the bug is not reported by October, it can be considered fixed
+
+speed never work
+activate works 10% of the time
+counters cancel attacking
+draw 0 on creation
+ghost unbuilds return (the gap)
+setsunakimonosymbols
+targetting overall goofy
+text in upgrade card screen has status effects
+
+https://github.com/lf201014/STS_ThMod_MRS/tree/master
 
 Orlando
 
 More Characters As needed
-Donakho
-(Duelist)
 (Opticist)
 
 

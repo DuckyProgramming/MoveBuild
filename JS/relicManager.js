@@ -688,7 +688,7 @@ class relicManager{
                     this.relicPlayer(95).statusEffect('Dexterity',2*this.active[95])
                 }
                 if(this.active[116]>0){
-                    this.battle.addCurrency(5*this.active[116],this.player[116])
+                    this.battle.addCurrency(10*this.active[116],this.player[116])
                 }
             break
             case 4://playing card [class,plauer]

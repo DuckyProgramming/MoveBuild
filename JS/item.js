@@ -54,7 +54,7 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('0',8,0)
                 break
-                case 'Skill Box':
+                case 'Defense Box':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,19,0,0.6,this.fade)
                     displaySymbol(this.layer,8,0,9,0,1,this.fade)

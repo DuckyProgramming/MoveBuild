@@ -70,7 +70,7 @@ class itemManager{
     }
     addItemSlots(amount,player){
         for(let a=0;a<amount;a++){
-            this.items[player].push(new item(this.layer,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,25+(this.layer.width-50)*player,250+this.position[player],1,1))
+            this.items[player].push(new item(this.layer,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,25+(this.layer.width-50)*player,250+this.position[player]*50,1,1))
             this.position[player]++
         }
     }
@@ -285,7 +285,7 @@ class itemManager{
             if(this.items[player][a].name=='Bottled Fairy'){
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].healLifable(10*this.effectiveness[player])
                 this.items[player][a].type=1
-                this.items[a][b].refresh()
+                this.items[player][a].refresh()
             }
         }
     }

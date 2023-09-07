@@ -50,34 +50,41 @@ class card{
         this.anim={select:0,afford:0}
         this.colorDetail=types.color.card[this.color]
 
-        this.name=name||types.card[this.type].name
-        this.list=list||types.card[this.type].list
-        this.rarity=types.card[this.type].rarity
-        this.effect=effect
-        this.effect=this.effect==undefined?copyArray(types.card[this.type].levels[this.level].effect):copyArray(this.effect)
-        this.attack=attack||types.card[this.type].levels[this.level].attack
-        this.target=target||types.card[this.type].levels[this.level].target
-        this.spec=(spec||types.card[this.type].levels[this.level].spec).concat(additionalSpec||[])
-        this.class=cardClass||types.card[this.type].levels[this.level].class
-        this.levels=types.card[this.type].levels.length
-        this.additionalSpec=additionalSpec||[]
-        if(this.list==-1){
-            this.list=this.color
-        }
+        try{
+            this.name=name||types.card[this.type].name
+            this.list=list||types.card[this.type].list
+            this.rarity=types.card[this.type].rarity
+            this.effect=effect
+            this.effect=this.effect==undefined?copyArray(types.card[this.type].levels[this.level].effect):copyArray(this.effect)
+            this.attack=attack||types.card[this.type].levels[this.level].attack
+            this.target=target||types.card[this.type].levels[this.level].target
+            this.spec=(spec||types.card[this.type].levels[this.level].spec).concat(additionalSpec||[])
+            this.class=cardClass||types.card[this.type].levels[this.level].class
+            this.levels=types.card[this.type].levels.length
+            this.additionalSpec=additionalSpec||[]
+            if(this.list==-1){
+                this.list=this.color
+            }
 
-        this.base={cost:cost}
-        if(this.base.cost==undefined){
-            this.base.cost=types.card[this.type].levels[this.level].cost
-        }
-        if(this.spec.includes(12)){
-            this.reality=types.card[this.type].levels[this.level].reality
-        }
-        if(this.spec.includes(15)){
-            this.limit=types.card[this.type].levels[this.level].limit
-        }
+            this.base={cost:cost}
+            if(this.base.cost==undefined){
+                this.base.cost=types.card[this.type].levels[this.level].cost
+            }
+            if(this.spec.includes(12)){
+                this.reality=types.card[this.type].levels[this.level].reality
+            }
+            if(this.spec.includes(15)){
+                this.limit=types.card[this.type].levels[this.level].limit
+            }
 
-        this.strike=this.name.includes('Strike')
-        this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'
+            this.strike=this.name.includes('Strike')
+            this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'
+
+            this.remove=false
+        }catch(error){
+            print('!!!',this.type,error)
+            this.remove=true
+        }
     }
     calculateEffect(effect,type){
         if(stage.scene=='battle'&&!this.nonCalc){
@@ -746,7 +753,7 @@ class card{
             case 611: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTo All Targets`; break
             case 612: string+=`Discard and\nUpgrade Your Hand\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 613: string+=`Add ${effect[0]} Random Card${effect[0]!=1?`s`:``}\nto Your Hand\nSkewed Odds`; break
-            case 614: string+=`Add ${effect[0]} Random Skill${effect[0]!=1?`s`:``}\nto Your Hand\nSkewed Odds`; break
+            case 614: string+=`Add ${effect[0]} Random Defense${effect[0]!=1?`s`:``}\nto Your Hand\nSkewed Odds`; break
             case 615: string+=`Add ${effect[0]} Random Blueprint${effect[0]!=1?`s`:``}\nto Your Hand\nSkewed Odds`; break
             case 616: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 617: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 2 Times\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nTarget Will Face\nAway and Attack`; break
@@ -830,7 +837,7 @@ class card{
             case 696: string+=`Build an Exhauster`; break
             case 697: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Moves in\na Random Direction`; break
             case 698: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nDiscard ${effect[1]}\nRandom Card`; break
-            case 699: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[0]} Metal`; break
+            case 699: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Metal`; break
             case 700: string+=`Build a Teleporter Start`; break
             case 701: string+=`Build a Teleporter End`; break
             case 702: string+=`Add a Proxy\nTeleport to Hand\nDestroys Teleporter Used`; break
@@ -897,7 +904,7 @@ class card{
             case 764: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nEnter Haste`; break
             case 765: string+=`Gain ${effect[0]} Armor\nEnter Sturdy`; break
             case 766: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],12)}\nDamage`; break
-            case 767: string+=`Add ${effect[0]} Miracles${effect[0]!=1?`s`:``}\nto Hand`; break
+            case 767: string+=`Add ${effect[0]} Miracle${effect[0]!=1?`s`:``}\nto Hand`; break
             case 768: string+=`Gain ${effect[0]} Faith\nPer Turn`; break
             case 769: string+=`Add Block Equal to\nNumber of Cards in\nYour Deck${this.player>=0&&this.player<this.battle.players?` (${this.battle.cardManagers[this.player].deck.cards.length})`:``}`; break
             case 770: string+=`Gain ${effect[0]} Faith\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
@@ -990,6 +997,8 @@ class card{
             case 857: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Spark Played`; break
             case 858: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Charge`; break
 
+            case 859: string+=`Add to Hand:\nInstant Wrath\nInstant Calm`; break
+            case 860: string+=`Add to Hand:\nInstant Haste\nInstant Sturdy`; break
 
 
 

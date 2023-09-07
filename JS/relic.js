@@ -900,7 +900,7 @@ class relic{
                     displaySymbol(this.layer,10,0,28,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('5',10,0)
+                    this.layer.text('10',10,0)
                 break
                 case 'Double Rest':
                     displaySymbol(this.layer,-8,0,32,0,1,this.fade)
@@ -925,7 +925,7 @@ class relic{
                 case 'Planned Attack':
                     displaySymbol(this.layer,-9,-2,8,0,1,this.fade)
                     displaySymbol(this.layer,-9,-2,18,0,0.8,this.fade)
-                    displaySymbol(this.layer,9,-2,28,0,0.6,this.fade)
+                    displaySymbol(this.layer,9,-2,9,0,0.6,this.fade)
                     displaySymbol(this.layer,0,12,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)

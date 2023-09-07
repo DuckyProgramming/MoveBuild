@@ -146,6 +146,7 @@ class tile{
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1){
                         this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),-150+floor(random(0,6))*60)
+                        this.anim.upPart[a]=false
                     }
                 break
                 case 16:

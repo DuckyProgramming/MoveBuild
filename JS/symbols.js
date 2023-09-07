@@ -3400,6 +3400,13 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(100,200,225,fade)
             layer.ellipse(0,0,5,5)
         break
+        case 232:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+            layer.fill(100,200,225,fade)
+            layer.ellipse(0,0,5,5)
+        break
         case 233:
             layer.fill(255,50,50,fade)
             layer.rect(3.5,0,3,3)

@@ -5,7 +5,7 @@ class combatant{
         this.position={x:x,y:y}
         this.relativePosition={x:relativeX,y:relativeY}
         this.tilePosition={x:tileX,y:tileY}
-        this.type=type
+        this.type=round(type)
         this.team=team
         this.id=id
         this.minion=minion
@@ -14,13 +14,25 @@ class combatant{
         this.fade=0
         this.time=0
 
-        this.name=types.combatant[this.type].name
-        this.life=types.combatant[this.type].life
-        this.behavior=types.combatant[this.type].behavior
-        this.spec=types.combatant[this.type].spec
-        this.move=types.combatant[this.type].move
-        this.attack=copyArrayAttack(types.combatant[this.type].attack)
-        this.description=types.combatant[this.type].description
+        try{
+            this.name=types.combatant[this.type].name
+            this.life=types.combatant[this.type].life
+            this.behavior=types.combatant[this.type].behavior
+            this.spec=types.combatant[this.type].spec
+            this.move=types.combatant[this.type].move
+            this.attack=copyArrayAttack(types.combatant[this.type].attack)
+            this.description=types.combatant[this.type].description
+        }catch(error){
+            print('!!!',this.type,error)
+            this.type=0
+            this.name=types.combatant[this.type].name
+            this.life=types.combatant[this.type].life
+            this.behavior=types.combatant[this.type].behavior
+            this.spec=types.combatant[this.type].spec
+            this.move=types.combatant[this.type].move
+            this.attack=copyArrayAttack(types.combatant[this.type].attack)
+            this.description=types.combatant[this.type].description
+        }
 
         if(this.attack.length==0){
             this.attack=[{type:0,effect:[]}]
@@ -83,7 +95,7 @@ class combatant{
                 0,0,2,0,0,0,2,0,0,0,//11
                 0,0,0,0,0,0,0,1,0,1,//12
                 2,1,0,0,2,0,0,0,2,0,//13
-                1,1,1,0,0,0,0,0,0,0,//14
+                1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,
             ],
             class:[
@@ -2547,13 +2559,7 @@ class combatant{
         this.stance=0
         this.faith=0
         this.charge=0
-        this.startAnimation(0)
-        this.runAnimation(0,0)
-        switch(this.name){
-            case 'Donakho':
-                this.anim.fat=1
-            break
-        }
+        this.resetAnim()
         
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -2571,6 +2577,15 @@ class combatant{
         }
         for(let a=0,la=game.orbNumber;a<la;a++){
             this.totalOrbClass.push(0)
+        }
+    }
+    resetAnim(){
+        this.startAnimation(0)
+        this.runAnimation(0,0)
+        switch(this.name){
+            case 'Donakho':
+                this.anim.fat=1
+            break
         }
     }
     initialBuff(){
@@ -3781,12 +3796,12 @@ class combatant{
             if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
                 if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
                     if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==4){
-                        damage/=2
+                        damage*=0.6
                     }
                 }
             }
             if(this.stance==4){
-                damage/=2
+                damage*=0.4
             }
             if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
                 if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
@@ -4521,6 +4536,9 @@ class combatant{
             }
             if(this.status.main[109]>0){
                 this.gainMaxHP(1)
+            }
+            if(this.life<0){
+                this.life=0
             }
             this.life=min(this.life+ceil(gain),this.base.life)
         }
@@ -12112,8 +12130,7 @@ class combatant{
                         if(this.trigger.display.eye[g]){
                             this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[g])
                             this.layer.strokeWeight((5-this.anim.eye[g]*3)*constrain(lcos(this.spin.eye[g]+this.anim.direction)*5,0,1))
-                            if(this.anim.eye[g]==0){935
-
+                            if(this.anim.eye[g]==0){
                                 this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*40-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
                                 this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*40-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
                             }else{
@@ -12173,8 +12190,13 @@ class combatant{
                         if(this.trigger.display.eye[g]){
                             this.layer.stroke(this.color.eye.back[0],this.color.eye.back[1],this.color.eye.back[2],this.fade*this.fades.eye[g])
                             this.layer.strokeWeight((5-this.anim.eye[g]*3)*constrain(lcos(this.spin.eye[g]+this.anim.direction)*5,0,1))
-                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*21-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*21+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
-                            this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*21-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*21+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                            if(this.anim.eye[g]==0){
+                                this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*21-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                                this.layer.point(lsin(this.spin.eye[g]+this.anim.direction)*21-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel)
+                            }else{
+                                this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*21-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*21+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel-this.anim.eye[g]*2)
+                                this.layer.line(lsin(this.spin.eye[g]+this.anim.direction)*21-(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel,lsin(this.spin.eye[g]+this.anim.direction)*21+(g*2-1)*lcos(this.spin.eye[g]+this.anim.direction)*this.anim.eye[g]*2,this.parts.eyeLevel+this.anim.eye[g]*2)
+                            }
                         }
                     }
                 break
@@ -14025,7 +14047,7 @@ class combatant{
             this.layer.fill(150,175,200,this.fade*this.infoAnim.block)
             this.layer.ellipse(-28,0,10,10)
         }
-        if(this.team==0||this.construct||this.support){
+        if(this.team==0){
             this.layer.fill(0,this.fade*this.infoAnim.life)
             this.layer.ellipse(28,0,11.5,11.5)
             this.layer.fill(200,100,100,this.fade*this.infoAnim.life)
@@ -14238,7 +14260,7 @@ class combatant{
                             this.deTarget()
                             let allDead=true
                             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                                if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].life>0&&!this.battle.combatantManager.combatants[a].support){
+                                if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].life>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                                     allDead=false
                                 }
                             }

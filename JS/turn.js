@@ -459,7 +459,8 @@ class turn{
                                     }
                                 }else{
                                     let targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
-                                    if(!((abs(this.userCombatant.goal.anim.direction-targetCombatant+180)<10||abs(this.userCombatant.goal.anim.direction-targetCombatant-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0)){
+                                    let direction=atan2(targetCombatant.relativePosition.x-this.x,targetCombatant.relativePosition.y-this.y)
+                                    if(!((abs(direction-targetCombatant.goal.anim.direction+180)<10||abs(direction-targetCombatant.goal.anim.direction-180)<10)&&targetCombatant.getStatus('Untargettable From Front')>0)){
                                         this.targetCombatant.push(targetCombatant)
 
                                         this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
@@ -484,7 +485,8 @@ class turn{
                                     }
                                 }else{
                                     let targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
-                                    if(!((abs(this.userCombatant.goal.anim.direction-this.targetCombatant+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0)){
+                                    let direction=atan2(targetCombatant.relativePosition.x-this.x,targetCombatant.relativePosition.y-this.y)
+                                    if(!((abs(direction-targetCombatant.goal.anim.direction+180)<10||abs(direction-targetCombatant.goal.anim.direction-180)<10)&&targetCombatant.getStatus('Untargettable From Front')>0)){
                                         this.direction=atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y)
                                     }
                                 }
@@ -1010,7 +1012,9 @@ class turn{
                     break
                     case 234:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].hand.add(findName('Revolver',types.card),0,0)
+                            for(let b=0,lb=this.battle.cardManagers.length;b<lb;b++){
+                                this.battle.cardManagers[b].hand.add(findName('Revolver',types.card),0,0)
+                            }
                         }
                     break
                     case 237:
@@ -3321,7 +3325,7 @@ class turn{
                                 this.battle.activate(1,this.targetCombatant.id)
                                 this.userCombatant.startAnimation(2)
                             }
-                            if(this.timer<=60){
+                            if(this.timer>30&&this.timer<=60){
                                 this.userCombatant.runAnimation(1/15,2)
                             }
                             if(this.timer==42||this.timer==48){

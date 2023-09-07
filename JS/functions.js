@@ -892,6 +892,9 @@ function stance(value){
 function faith(value){
 	current.combatantManager.combatants[0].faith+=value
 }
+function fight(name){
+	current.setupBattle(types.encounter[findName(name,types.encounter)])
+}
 function status(name){
 	return findList(name,current.combatantManager.combatants[0].status.name)
 }
