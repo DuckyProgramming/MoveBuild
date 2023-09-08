@@ -5738,9 +5738,9 @@ types={
         },{
             name:'Speed',rarity:-1,list:0,
             levels:[
-                {effect:[1,2],attack:727,cost:0,target:[40,1,1,1,3],spec:[0,1],class:3},
-                {effect:[2,3],attack:727,cost:0,target:[40,1,2,1,4],spec:[0,1],class:3},
-                {effect:[2,3],attack:727,cost:0,target:[40,1,2,1,4],spec:[1],class:3},
+                {effect:[1,2],attack:727,cost:0,target:[30,1,1,2,3],spec:[0,1],class:3},
+                {effect:[2,3],attack:727,cost:0,target:[30,1,2,2,4],spec:[0,1],class:3},
+                {effect:[2,3],attack:727,cost:0,target:[30,1,2,2,4],spec:[1],class:3},
             ],
         },{
             name:'Insight',rarity:-1,list:0,

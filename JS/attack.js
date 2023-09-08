@@ -94,8 +94,8 @@ class attack{
             case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631:
             case 660: case 663: case 664: case 666: case 685: case 686: case 687: case 688: case 690: case 693:
             case 694: case 695: case 696: case 700: case 701: case 702: case 703: case 704: case 705: case 706:
-            case 717: case 727: case 750: case 802: case 803: case 804: case 805: case 808: case 812: case 813:
-            case 814: case 815: case 816: case 817: case 823:
+            case 717: case 750: case 802: case 803: case 804: case 805: case 808: case 812: case 813: case 814:
+            case 815: case 816: case 817: case 823:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -6733,13 +6733,10 @@ class attack{
                     this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
                     this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                     this.userCombatant.runAnimation(1/15,0)
-                    if(this.timer>=15*this.targetDistance){
-                        this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
-                        if(this.type==205){
-                            this.battle.activateTile(1,this.userCombatant.id)
-                        }else{
-                            this.battle.activate(1,this.userCombatant.id)
-                        }
+                    if(this.timer>=15*this.targetDistance-15){
+                        let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                        this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
+                        this.battle.activate(1,this.userCombatant.id)
                         this.remove=true
                     }
                 }else{

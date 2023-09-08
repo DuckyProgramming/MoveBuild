@@ -1008,7 +1008,11 @@ class turn{
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[0])
                     break
                     case 232:
-                        this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
+                        if(this.battle.turnManager.auxiliary){
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength',this.effect[0])
+                        }else{
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
+                        }
                     break
                     case 234:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -1284,7 +1288,11 @@ class turn{
                         this.battle.combatantManager.allEffect(12,[this.effect[0]])
                     break
                     case 174:
-                        this.userCombatant.statusEffectNext('Take Half Damage',this.effect[0])
+                        if(this.battle.turnManager.auxiliary){
+                            this.userCombatant.statusEffect('Take Half Damage',this.effect[0])
+                        }else{
+                            this.userCombatant.statusEffectNext('Take Half Damage',this.effect[0])
+                        }
                     break
                     case 177:
                         this.userCombatant.statusEffect('Invisible',this.effect[0])
@@ -1307,7 +1315,11 @@ class turn{
                         }
                     break
                     case 220:
-                        this.userCombatant.statusEffectNext('Take Third Damage',this.effect[0])
+                        if(this.battle.turnManager.auxiliary){
+                            this.userCombatant.statusEffect('Take Third Damage',this.effect[0])
+                        }else{
+                            this.userCombatant.statusEffectNext('Take Third Damage',this.effect[0])
+                        }
                     break
                     case 228:
                         this.userCombatant.statusEffect('Counter All Combat',this.effect[0])
