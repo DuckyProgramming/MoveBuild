@@ -1370,14 +1370,14 @@ class group{
                         selected=true
                     }
                 }
-                let cap=0
+                let cap=100
                 if(this.cards.length>0&&this.cards[0].attack==817){
                     this.cards[0].cost=0
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].update()
-                    let length=a==0?100:this.cards[a].name=='Unbuild'&&this.cards[a-1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100
-                    if(this.cards[a].position.x>cap+length&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0)){
+                    let length=a>=la-1?100:this.cards[a].name=='Unbuild'&&this.cards[a+1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100
+                    if(this.cards[a].position.x>cap&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0)){
                         this.cards[a].position.x-=25
                     }
                     cap+=length

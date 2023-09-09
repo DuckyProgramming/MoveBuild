@@ -576,7 +576,7 @@ class combatant{
                     sandal:{back:[1,1],front:[1,1]},
                     skin:{legs:1,arms:1,body:1,head:1,button:1},
                     kimono:{decoration:{fade:1,position:{x:1,y:1},size:{x:1,y:1}},
-                    main:{back:{x:1,y:1},front:{x:1,y:1}},outside:{back:{x:1,y:1},front:{x:1,y:1}},bow:1},
+                    main:{back:{x:1,y:1},front:{x:1,y:1}},outside:{back:{x:1,y:1},front:{x:1,y:1}},bow:1,ribbon:1},
                     under:{top:1,bottom:1,tanga:1,bow:{top:1,bottom:1},under:{top:1,button:1,bottom:1}},
                 }
 
@@ -584,14 +584,14 @@ class combatant{
                     this.trigger={display:{flower:[true,true,true],band:[false,true],mouth:true,
                         hair:{back:true,front:true,glow:true},eye:[true,true],sandal:{back:[false,false],front:[false,false]},
                         skin:{legs:true,arms:true,body:true,head:true,button:false},
-                        kimono:{main:{back:false,front:false},outside:{back:false,front:false},bow:false,decoration:false},
+                        kimono:{main:{back:false,front:false},outside:{back:false,front:false},bow:false,decoration:false,ribbon:true},
                         under:{top:true,bottom:true,tanga:false,bow:{top:true,bottom:true},under:{top:true,button:false,bottom:false}},
                     }}
                 }else{
                     this.trigger={display:{flower:[true,true,true],band:[true,true],mouth:true,
                         hair:{back:true,front:true,glow:true},eye:[true,true],sandal:{back:[true,true],front:[true,true]},
                         skin:{legs:true,arms:true,body:true,head:true,button:false},
-                        kimono:{main:{back:true,front:true},outside:{back:true,front:true},bow:true,decoration:true},
+                        kimono:{main:{back:true,front:true},outside:{back:true,front:true},bow:true,decoration:true,ribbon:true},
                         under:{top:false,bottom:false,tanga:false,bow:{top:false,bottom:false},under:{top:true,button:false,bottom:false}},
                     }}
                 }
@@ -609,6 +609,25 @@ class combatant{
                 this.animSet={loop:0,flip:0,hand:0,foot:0}
 
                 this.goal={anim:{direction:this.anim.direction,sword:true}}
+
+                for(let g=0;g<2;g++){
+                    this.kimono.decoration.push({spin:90-g*47.5,rotate:random(0,360),y:50-g*6,width:0.2,height:1,type:0})
+                }
+                this.kimono.decoration.push({spin:134,rotate:random(0,360),y:57,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:180,rotate:random(0,360),y:59,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:226,rotate:random(0,360),y:57,width:0.2,height:1,type:0})
+                for(let g=0;g<7;g++){
+                    this.kimono.decoration.push({spin:270+g*47.5,rotate:random(0,360),y:50-g*6,width:0.2,height:1,type:0})
+                }
+            
+                this.kimono.decoration.push({spin:78,rotate:random(0,360),y:42,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:118,rotate:random(0,360),y:48,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:156,rotate:random(0,360),y:51,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:204,rotate:random(0,360),y:51,width:0.2,height:1,type:0})
+                this.kimono.decoration.push({spin:242,rotate:random(0,360),y:48,width:0.2,height:1,type:0})
+                for(let g=0;g<5;g++){
+                    this.kimono.decoration.push({spin:282+g*47.5,rotate:random(0,360),y:42-g*5.9,width:0.2,height:1,type:0})
+                }
             break
             case 'Ume':
                 this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},
@@ -3891,126 +3910,126 @@ class combatant{
                     if(this.life>0){
                         if(this.battle.turnManager.turns.length==0){
                             if(this.status.main[1]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[0].target=[user]
                                 this.battle.turnManager.turns[0].auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[1]],this.id))
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
                             }
                             if(this.status.main[36]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                 this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
                             }
                             if(this.status.main[38]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turnsBack[0].target=[user]
                                 this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].auxiliary=true
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,3,[0],this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,3,[0],this.id,false))
                             }
                             if(this.status.main[39]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[0].target=[user]
                                 this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,58,[this.status.main[39]],this.id))
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,58,[this.status.main[39]],this.id,false))
                             }
                             if(this.status.main[47]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                 this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id,false))
                             }
                             if(this.status.main[73]>0&&distance<=2){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[0].target=[user]
                                 this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,6,[this.status.main[73]],this.id))
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,6,[this.status.main[73]],this.id,false))
                             }
                             if(this.status.main[92]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[0].target=[user]
                                 this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,122,[0],this.id))
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,122,[0],this.id,false))
                             }
                             if(this.status.main[93]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[0].target=[user]
                                 this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,121,[0],this.id))
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,121,[0],this.id,false))
                             }
                             if(this.status.main[94]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[0].target=[user]
                                 this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,226,[this.status.main[94]],this.id))
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,226,[this.status.main[94]],this.id,false))
                             }
                             if(this.status.main[102]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[0].target=[user]
                                 this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,227,[this.status.main[102]],this.id))
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,227,[this.status.main[102]],this.id,false))
                             }
                             if(this.status.main[106]>0&&distance<=1){
-                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[0].target=[user]
                                 this.battle.turnManager.auxiliary=true
-                                this.battle.turnManager.turns.push(new turn(0,this.battle,2,[this.status.main[106]],this.id))
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
                             }
                         }else{
                             if(this.status.main[1]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,1,[this.status.main[1]],this.id,false))
                             }
                             if(this.status.main[36]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[36]],this.id,false))
                             }
                             if(this.status.main[38]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,3,[0],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,3,[0],this.id,false))
                             }
                             if(this.status.main[39]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,58,[this.status.main[39]],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,58,[this.status.main[39]],this.id,false))
                             }
                             if(this.status.main[47]>0&&distance<=1){
-                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
-                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id))
+                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[47]],this.id,false))
                             }
                             if(this.status.main[73]>0&&distance<=2){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,6,[this.status.main[73]],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,6,[this.status.main[73]],this.id,false))
                             }
                             if(this.status.main[92]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,122,[0],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,122,[0],this.id,false))
                             }
                             if(this.status.main[93]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,121,[0],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,121,[0],this.id,false))
                             }
                             if(this.status.main[94]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,226,[this.status.main[94]],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,226,[this.status.main[94]],this.id,false))
                             }
                             if(this.status.main[102]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,227,[this.status.main[102]],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,227,[this.status.main[102]],this.id,false))
                             }
                             if(this.status.main[106]>0&&distance<=1){
-                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id))
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
-                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,2,[this.status.main[106]],this.id))
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
                             }
                         }
                         if(this.battle.relicManager.hasRelic(61,this.id)){
@@ -8719,6 +8738,18 @@ class combatant{
                     if(this.trigger.display.hair.back){
                         this.layer.image(graphics.combatant[3].sprites.hair.back[this.sprites.spinDetailHead],-25*this.fade,-81-20*this.fade,50*this.fade,100*this.fade)
                     }
+                    if(this.trigger.display.kimono.ribbon){
+                        this.layer.strokeWeight(3)
+                        for(let a=0,la=8;a<la;a++){
+                            for(let b=0,lb=3;b<lb;b++){
+                                this.layer.stroke(
+                                    mergeColor(this.color.kimono.ribbon.start,this.color.kimono.ribbon.end,(a-5+b*5)/(la-1))[0],
+                                    mergeColor(this.color.kimono.ribbon.start,this.color.kimono.ribbon.end,(a-5+b*5)/(la-1))[1],
+                                    mergeColor(this.color.kimono.ribbon.start,this.color.kimono.ribbon.end,(a-5+b*5)/(la-1))[2],this.fade*this.fades.kimono.ribbon)
+                                this.layer.line(lsin(this.anim.direction-45+b*45)*-(4+a*2),-42+[0,-3,3][b]+lsin(this.time*4+a*60+b*105)*2,lsin(this.anim.direction-45+b*45)*-(6+a*2),-42+[0,-3,3][b]+lsin(this.time*4+a*60+60+b*105)*2)
+                            }
+                        }
+                    }
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.6&&g==0){
                             this.minorDisplay(0,g)
@@ -8745,6 +8776,31 @@ class combatant{
                             this.layer.image(graphics.combatant[3].sprites.kimono.mainDamage.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
                         }else{
                             this.layer.image(graphics.combatant[3].sprites.kimono.main.back[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
+                        }
+                    }
+                    if(this.trigger.display.kimono.decoration){
+                        this.layer.noStroke()
+                        for(let g=0,lg=this.kimono.decoration.length;g<lg;g++){
+                            if(lcos(this.kimono.decoration[g].spin+this.anim.direction)<=0&&!(this.trigger.display.extra.damage&&this.kimono.decoration[g].y<20)){
+                                this.layer.push()
+                                this.layer.translate((2.2+this.kimono.decoration[g].y*0.12)*lsin(this.kimono.decoration[g].spin+this.anim.direction)*this.fades.kimono.decoration.position.x,this.parts.kimono.main-13*this.fades.kimono.decoration.position.y+this.kimono.decoration[g].y*this.fades.kimono.decoration.position.y)
+                                this.layer.rotate(-9*lsin(this.kimono.decoration[g].spin+this.anim.direction))
+                                this.layer.scale(this.fades.kimono.decoration.size.x*lcos(this.kimono.decoration[g].spin+this.anim.direction),this.fades.kimono.decoration.size.y)
+                                this.layer.rotate(this.kimono.decoration[g].rotate)
+                                for(let h=0,lh=5;h<lh;h++){
+                                    this.layer.fill(
+                                        mergeColor(this.color.kimono.decoration.back[this.kimono.decoration[g].type],this.color.kimono.decoration.back[this.kimono.decoration[g].type+1],h/lh)[0],
+                                        mergeColor(this.color.kimono.decoration.back[this.kimono.decoration[g].type],this.color.kimono.decoration.back[this.kimono.decoration[g].type+1],h/lh)[1],
+                                        mergeColor(this.color.kimono.decoration.back[this.kimono.decoration[g].type],this.color.kimono.decoration.back[this.kimono.decoration[g].type+1],h/lh)[2],this.fade*this.fades.kimono.decoration.fade)
+                                    for(let i=0;i<4;i++){
+                                        this.layer.rotate(45)
+                                        this.layer.quad(0,0,this.kimono.decoration[g].width*0.5*(1-h/lh),-this.kimono.decoration[g].height*0.6,0,-this.kimono.decoration[g].height*1.5*(1-h/lh),-this.kimono.decoration[g].width*0.5*(1-h/lh),-this.kimono.decoration[g].height*0.6)
+                                        this.layer.quad(0,0,this.kimono.decoration[g].width*0.5*(1-h/lh),this.kimono.decoration[g].height*0.6,0,this.kimono.decoration[g].height*1.5*(1-h/lh),-this.kimono.decoration[g].width*0.5*(1-h/lh),this.kimono.decoration[g].height*0.6)
+                                    }
+                                    this.layer.rotate(-180)
+                                }
+                                this.layer.pop()
+                            }
                         }
                     }
                     if(this.trigger.display.under.under.button&&lcos(this.spin.under.under.button[0]+this.anim.direction)<=0){
@@ -8928,6 +8984,31 @@ class combatant{
                             this.layer.image(graphics.combatant[3].sprites.kimono.mainDamage.front[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
                         }else{
                             this.layer.image(graphics.combatant[3].sprites.kimono.main.front[this.sprites.spinDetail],-15*this.fade*this.fades.kimono.main.back.x,this.parts.kimono.main-15*this.fades.kimono.main.back.y,30*this.fade*this.fades.kimono.main.back.x,66*this.fade*this.fades.kimono.main.back.y)
+                        }
+                    }
+                    if(this.trigger.display.kimono.decoration){
+                        this.layer.noStroke()
+                        for(let g=0,lg=this.kimono.decoration.length;g<lg;g++){
+                            if(lcos(this.kimono.decoration[g].spin+this.anim.direction)>0&&!(this.trigger.display.extra.damage&&this.kimono.decoration[g].y<20)){
+                                this.layer.push()
+                                this.layer.translate((2.2+this.kimono.decoration[g].y*0.12)*lsin(this.kimono.decoration[g].spin+this.anim.direction)*this.fades.kimono.decoration.position.x,this.parts.kimono.main-13*this.fades.kimono.decoration.position.y+this.kimono.decoration[g].y*this.fades.kimono.decoration.position.y)
+                                this.layer.rotate(-9*lsin(this.kimono.decoration[g].spin+this.anim.direction))
+                                this.layer.scale(this.fades.kimono.decoration.size.x*lcos(this.kimono.decoration[g].spin+this.anim.direction),this.fades.kimono.decoration.size.y)
+                                this.layer.rotate(this.kimono.decoration[g].rotate)
+                                for(let h=0,lh=5;h<lh;h++){
+                                    this.layer.fill(
+                                        mergeColor(this.color.kimono.decoration.front[this.kimono.decoration[g].type],this.color.kimono.decoration.front[this.kimono.decoration[g].type+1],h/lh)[0],
+                                        mergeColor(this.color.kimono.decoration.front[this.kimono.decoration[g].type],this.color.kimono.decoration.front[this.kimono.decoration[g].type+1],h/lh)[1],
+                                        mergeColor(this.color.kimono.decoration.front[this.kimono.decoration[g].type],this.color.kimono.decoration.front[this.kimono.decoration[g].type+1],h/lh)[2],this.fade*this.fades.kimono.decoration.fade)
+                                    for(let i=0;i<4;i++){
+                                        this.layer.rotate(45)
+                                        this.layer.quad(0,0,this.kimono.decoration[g].width*0.5*(1-h/lh),-this.kimono.decoration[g].height*0.6,0,-this.kimono.decoration[g].height*1.5*(1-h/lh),-this.kimono.decoration[g].width*0.5*(1-h/lh),-this.kimono.decoration[g].height*0.6)
+                                        this.layer.quad(0,0,this.kimono.decoration[g].width*0.5*(1-h/lh),this.kimono.decoration[g].height*0.6,0,this.kimono.decoration[g].height*1.5*(1-h/lh),-this.kimono.decoration[g].width*0.5*(1-h/lh),this.kimono.decoration[g].height*0.6)
+                                    }
+                                    this.layer.rotate(-180)
+                                }
+                                this.layer.pop()
+                            }
                         }
                     }
                     if(this.trigger.display.kimono.outside.front){

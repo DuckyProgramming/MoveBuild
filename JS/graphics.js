@@ -1028,39 +1028,39 @@ function generateSprite(layer,type,direction){
 		break
 		case 41:
 			controlSpin(data.parts.kimono.main,direction,1)
-			displayTrianglesFrontMerge(layer,data.parts.kimono.main,direction,20,9.25,0.5,0.12,data.color.kimono.main.start,data.color.kimono.main.end,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.main,direction,20,10,0.5,0.12,data.color.kimono.main.start,data.color.kimono.main.end,1)
 		break
 		case 42:
-			displayTrianglesBackMerge(layer,data.parts.kimono.main,direction,20,9.25,0.5,0.12,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(layer,data.parts.kimono.main,direction,20,10,0.5,0.12,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
 		break
 		case 43:
 			controlSpin(data.parts.kimono.outside,direction,1)
-			displayTrianglesFrontMerge(layer,data.parts.kimono.outside,direction,20,9,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outside,direction,20,9.75,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
 			controlSpin(data.parts.kimono.outsideTop,direction,1)
-			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideTop,direction,20,9,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideTop,direction,20,9.75,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
 		break
 		case 44:
 			displayTrianglesBackMerge(layer,data.parts.kimono.outside,direction,20,9,0.5,0.15,data.color.kimono.outsideBack.start,data.color.kimono.outsideBack.end,1)
 		break
 		case 45:
 			controlSpin(data.parts.kimono.mainDamage,direction,1)
-			displayTrianglesFrontMerge(layer,data.parts.kimono.mainDamage,direction,20,9.25,0.5,0.12,data.color.kimono.main.start,data.color.kimono.main.end,1)
-			displayTrianglesFrontMerge(layer,data.parts.kimono.mainAnti,direction,20,9.25,0.5,0.12,-1,-1,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.mainDamage,direction,20,10,0.5,0.12,data.color.kimono.main.start,data.color.kimono.main.end,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.mainAnti,direction,20,10,0.5,0.12,-1,-1,1)
 		break
 		case 46:
-			displayTrianglesBackMerge(layer,data.parts.kimono.mainDamage,direction,20,9.25,0.5,0.12,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
-			displayTrianglesBackMerge(layer,data.parts.kimono.mainAnti,direction,20,9.25,0.5,0.12,-1,-1,1)
+			displayTrianglesBackMerge(layer,data.parts.kimono.mainDamage,direction,20,10,0.5,0.12,data.color.kimono.mainBack.start,data.color.kimono.mainBack.end,1)
+			displayTrianglesBackMerge(layer,data.parts.kimono.mainAnti,direction,20,10,0.5,0.12,-1,-1,1)
 		break
 		case 47:
 			controlSpin(data.parts.kimono.outsideDamage,direction,1)
-			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideDamage,direction,20,9,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideDamage,direction,20,9.75,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
 			controlSpin(data.parts.kimono.outsideTop,direction,1)
-			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideTop,direction,20,9,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
-			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideAnti,direction,20,9,0.5,0.15,-1,-1,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideTop,direction,20,9.75,0.5,0.15,data.color.kimono.outside.start,data.color.kimono.outside.end,1)
+			displayTrianglesFrontMerge(layer,data.parts.kimono.outsideAnti,direction,20,9.75,0.5,0.15,-1,-1,1)
 		break
 		case 48:
-			displayTrianglesBackMerge(layer,data.parts.kimono.outsideDamage,direction,20,9,0.5,0.15,data.color.kimono.outsideBack.start,data.color.kimono.outsideBack.end,1)
-			displayTrianglesBackMerge(layer,data.parts.kimono.outsideAnti,direction,20,9,0.5,0.15,-1,-1,1)
+			displayTrianglesBackMerge(layer,data.parts.kimono.outsideDamage,direction,20,9.75,0.5,0.15,data.color.kimono.outsideBack.start,data.color.kimono.outsideBack.end,1)
+			displayTrianglesBackMerge(layer,data.parts.kimono.outsideAnti,direction,20,9.75,0.5,0.15,-1,-1,1)
 		break
 		case 49:
 			controlSpin(data.parts.hair.inside,direction,0)
@@ -1708,7 +1708,7 @@ function setupCombatantGraphics(type){
 					skin:{head:[255,239,224],body:[254,238,223],legs:[255,235,217],arms:[255,233,214],button:[245,180,145]},
 					eye:{back:[175,121,123],front:[20,10,0],glow:[200,125,175]},
 					under:{under:{top:[250,195,170],button:[200,145,120],bottom:[[255,228,181],[241,178,131]]}},
-					kimono:{main:{start:[175,117,125],end:[169,155,182]},mainBack:{start:[108,76,87],end:[73,64,78]},ribbon:{start:[100,180,255],end:[125,200,255]},
+					kimono:{main:{start:[175,117,125],end:[169,155,182]},mainBack:{start:[108,76,87],end:[73,64,78]},ribbon:{start:[100,180,255],end:[125,200,255]},decoration:{back:[[50,200,255],[100,225,255]],front:[[125,255,255],[175,255,255]]},
 					outside:{start:[121,131,167],end:[127,131,167]},outsideBack:{start:[81,91,127],end:[87,91,127]},
 					bow:[185,103,161]},
 					band:[[96,54,66],[182,47,31],[87,101,124],[195,214,223]],mouth:{in:[225,125,125],out:[0,0,0]},

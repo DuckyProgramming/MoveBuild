@@ -8,6 +8,7 @@ class turn{
         this.mover=mover
         this.attackClass=types.attack[this.type].class
         this.setTarget=-1
+        this.target=[]
 
         this.procedure=[]
 
@@ -867,7 +868,7 @@ class turn{
                         works2=false
                     }
                     if(works2){
-                        if(this.userCombatant.team==0){
+                        if(this.userCombatant.team==0&&this.target==[]){
                             this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
                         }
                         this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
