@@ -13,6 +13,8 @@ To this day, no fix for the Corruption Bug has been found.
 This report is dated to 9/7/2023
 If the bug is not reported by October, it can be considered fixed
 
+damage taken stat
+
 https://github.com/lf201014/STS_ThMod_MRS/tree/master
 
 Orlando

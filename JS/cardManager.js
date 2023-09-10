@@ -104,6 +104,17 @@ class cardManager{
             this.getList(group).addFree(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant)
         }
     }
+    addRandomClassFreeSpec(group,level,cardClass,variant,spec){
+        let list=[]
+        for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
+            if(types.card[this.listing.card[this.battle.player[this.player]][3][a]].levels[level].class==cardClass){
+                list.push(this.listing.card[this.battle.player[this.player]][3][a])
+            }
+        }
+        if(list.length>0){
+            this.getList(group).addFreeSpec(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant,spec)
+        }
+    }
     addRandomClassListless(group,level,cardClass){
         let list=[]
         for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){

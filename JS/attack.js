@@ -77,7 +77,8 @@ class attack{
             case 736: case 739: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775:
             case 779: case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798:
             case 801: case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833:
-            case 834: case 837: case 840: case 846: case 848: case 849: case 850:
+            case 834: case 837: case 840: case 846: case 848: case 849: case 850: case 862: case 863: case 865:
+            case 866: case 872:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -507,6 +508,9 @@ class attack{
                     case 844:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.procedure[0]==0?2:1),this.user)
                     break
+                    case 872:
+                        this.targetCombatant.takeDamage(this.amplify?this.effect[0]+this.effect[1]:this.effect[0],this.user)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -892,6 +896,9 @@ class attack{
                     case 849:
                         this.battle.cardManagers[this.player].reserve.add(findName('Spark',types.card),1,0)
                     break
+                    case 863:
+                        this.battle.energy.main[this.player]+=floor(this.battle.cardManagers[this.player].deck.cards.length/this.effect[1])
+                    break
 
                 }
             break
@@ -1153,7 +1160,13 @@ class attack{
                     case 858:
                         this.userCombatant.charge+=this.effect[1]
                     break
-                    
+                    case 861:
+                        this.battle.drop(this.player,findName('Burn',types.card),0,game.playerNumber+1)
+                    break
+                    case 867:
+                        this.userCombatant.removeRandomStatus([1,3])
+                    break
+
                 }
             break
             case 2:
@@ -1602,7 +1615,13 @@ class attack{
                     case 842:
                         this.userCombatant.charge+=this.amplify?this.effect[0]+this.effect[1]:this.effect[0]
                     break
-
+                    case 864:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.cardManagers[this.player].addRandomAllPriority(2,0)
+                        }
+                        this.battle.cardManagers[this.player].hand.badreserve(this.effect[1])
+                    break
+                    
                 }
             break
             case 4:
@@ -2113,7 +2132,25 @@ class attack{
                         this.battle.cardManagers[this.player].hand.add(findName('Instant\nHaste',types.card),0,0)
                         this.battle.cardManagers[this.player].hand.add(findName('Instant\nSturdy',types.card),0,0)
                     break
-
+                    case 868:
+                        this.battle.overlayManager.overlays[29][this.player].active=true
+                        this.battle.overlayManager.overlays[29][this.player].activate()
+                    break
+                    case 869:
+                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.cardManagers[this.player].hand.exhaust(this.effect[1])
+                    break
+                    case 870:
+                        for(let a=0,la=this.energy;a<la;a++){
+                            this.battle.cardManagers[this.player].addRandomClassFreeSpec(2,0,1,1,[1])
+                        }
+                    break
+                    case 871:
+                        for(let a=0,la=this.energy;a<la;a++){
+                            this.battle.cardManagers[this.player].addRandomClassFreeSpec(2,1,1,1,[1])
+                        }
+                    break
+                    
                 }
             break
             case 5:
@@ -2629,6 +2666,12 @@ class attack{
                     break
                     case 850:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.battle.cardManagers[this.player].exhaust.cards.length,this.user)
+                    break
+                    case 857:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    break
+                    case 865:
+                        this.targetClass.takeDamage(this.amplify?this.battle.energy.main[this.player]*this.effect[0]:this.battle.cardManagers[this.player].hand.cards.length+this.effect[0],this.user)
                     break
 
                 }
@@ -3212,7 +3255,7 @@ class attack{
             case 715: case 719: case 721: case 723: case 725: case 730: case 731: case 732: case 733: case 734:
             case 736: case 757: case 758: case 771: case 775: case 779: case 780: case 784: case 786: case 795:
             case 796: case 798: case 806: case 824: case 826: case 827: case 828: case 829: case 830: case 840:
-            case 844: case 848: case 849:
+            case 844: case 848: case 849: case 862: case 863: case 872:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.battle.cardManagers[this.player].hand.cards.length;a<la;a++){
@@ -3272,6 +3315,7 @@ class attack{
             case 502: case 513: case 515: case 518: case 522: case 546: case 547: case 589: case 602: case 682:
             case 699: case 716: case 722: case 724: case 726: case 735: case 738: case 745: case 765: case 770:
             case 776: case 783: case 794: case 800: case 809: case 810: case 811: case 831: case 853: case 858:
+            case 861: case 867:
                 if(this.type==809&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -3473,7 +3517,7 @@ class attack{
             case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649: case 655: case 656:
             case 668: case 684: case 711: case 712: case 713: case 737: case 754: case 755: case 760: case 761:
             case 763: case 777: case 778: case 788: case 799: case 807: case 820: case 821: case 822: case 836:
-            case 838: case 839: case 841: case 842:
+            case 838: case 839: case 841: case 842: case 864:
                 if(this.type==807&&this.userCombatant.stance!=2||this.type==820&&this.userCombatant.stance!=1||this.type==821&&this.userCombatant.stance!=3||this.type==822&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -3503,7 +3547,7 @@ class attack{
             case 675: case 680: case 681: case 728: case 740: case 741: case 742: case 743: case 744: case 748:
             case 749: case 752: case 753: case 756: case 756: case 759: case 768: case 769: case 772: case 773:
             case 774: case 781: case 782: case 789: case 790: case 791: case 797: case 818: case 819: case 832:
-            case 835: case 855: case 859: case 860:
+            case 835: case 855: case 859: case 860: case 868: case 869: case 870: case 871:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -4164,7 +4208,7 @@ class attack{
             case 592: case 620: case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629:
             case 630: case 631: case 667: case 669: case 685: case 686: case 687: case 688: case 695: case 696:
             case 697: case 700: case 701: case 702: case 720: case 787: case 801: case 833: case 834: case 837:
-            case 843: case 846: case 850:
+            case 843: case 846: case 850: case 857: case 865:
                 if(variants.nobasicanim){
                     this.selfCall(7)
                     this.remove=true
@@ -7037,7 +7081,18 @@ class attack{
                     }
                 }
             break
-            
+            case 866:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(17)
+                }
+                this.userCombatant.runAnimation(1/10,17)
+                if(this.timer%10==5){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                }else if(this.timer>=min(100,this.effect[1]*10)){
+                    this.remove=true
+                }
+            break
+
             default:
                 this.remove=true
             break

@@ -996,9 +996,23 @@ class card{
             case 856: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nAmplify 2:\nInstantly Kill Those\nWith ${effect[1]} or Less Health`; break
             case 857: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Spark Played`; break
             case 858: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Charge`; break
-
             case 859: string+=`Add to Hand:\nInstant Wrath\nInstant Calm`; break
             case 860: string+=`Add to Hand:\nInstant Haste\nInstant Sturdy`; break
+            case 861: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Burn\nto Your Hand`; break
+            case 862: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 When\na Card is Amplified`; break
+            case 863: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain 1 Energy \nPer ${effect[1]} Card${effect[1]!=1?`s`:``}\nin Your Deck`; break
+            case 864: string+=`Add ${effect[0]} Random Card${effect[0]!=1?`s`:``}\nto Your Hand\nSkewed Odds\nPlace a Card\non Top of Your\nDraw Pile`; break
+            case 865: string+=`Deal ${this.calculateEffect(1,2)}${effect[0]!=0?`+${this.calculateEffect(effect[0],10)}`:``} Damage\nWhere X = Number\nof Cards in Hand\nAmplify:\nDeal ${this.calculateEffect(effect[1],2)} Damage\nWhere X = Current Energy`; break
+            case 866: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Time${effect[1]!=1?`s`:``}`; break
+            case 867: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRemove a\nRandom Debuff`; break
+            case 868: string+=`Put a Card in Draw\nPile in Your Hand\nUpgrade It`; break
+            case 869: string+=`Gain ${effect[0]} Energy\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 870: string+=`Add X Random\nAttacks to Your Hand\nThey Cost 0\nand Exhaust`; break
+            case 871: string+=`Add X Random Upgraded\nAttacks to Your Hand\nThey Cost 0\nand Exhaust`; break
+            case 872: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify: Deal ${this.calculateEffect(effect[1],10)} More`; break
+
+
+
 
 
 
@@ -1198,6 +1212,15 @@ class card{
                 }
             break
             
+        }
+    }
+    anotherAmplified(){
+        switch(this.attack){
+            case 862:
+                if(this.cost>0){
+                    this.cost=0
+                }
+            break
         }
     }
     playable(){
@@ -1466,6 +1489,11 @@ class card{
             }
             if(anim[7]>0){
                 this.layer.stroke(255,255,150,this.fade*anim[7])
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
+            }
+            if(anim[8]>0){
+                this.layer.stroke(255,225,100,this.fade*anim[8])
                 this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                 stack++
             }

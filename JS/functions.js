@@ -853,6 +853,14 @@ function quickAddL(name,level){
 		return 'Invalid'
 	}
 }
+function quickAddR(name){
+	if(findName(name,types.card)>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].reserve.add(findName(name,types.card),0,0)
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
 function quickSummon(name){
 	current.combatantManager.summonCombatant({x:0,y:0},findName(name,types.combatant),-30+floor(random(0,2))*60)
 }
@@ -936,48 +944,20 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 	`)
 }
 function outListing(){
-	print(`
-		Colorless:
+	let box=``
+	for(let a=0,la=game.playerNumber;a<la;a++){
+		box+=`		${types.combatant[a+1].name}:
+Common:${current.cardManagers[0].listing.card[a+1][0].length}
+Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}
+Rare:${current.cardManagers[0].listing.card[a+1][2].length}
+	Total:${current.cardManagers[0].listing.card[a+1][3].length}\n`
+	}
+	print(`		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}
 Uncommon:${current.cardManagers[0].listing.card[0][1].length}
 Rare:${current.cardManagers[0].listing.card[0][2].length}
 	Total:${current.cardManagers[0].listing.card[0][3].length}
-		${types.combatant[1].name}:
-Common:${current.cardManagers[0].listing.card[1][0].length}
-Uncommon:${current.cardManagers[0].listing.card[1][1].length}
-Rare:${current.cardManagers[0].listing.card[1][2].length}
-	Total:${current.cardManagers[0].listing.card[1][3].length}
-		${types.combatant[2].name}:
-Common:${current.cardManagers[0].listing.card[2][0].length}
-Uncommon:${current.cardManagers[0].listing.card[2][1].length}
-Rare:${current.cardManagers[0].listing.card[2][2].length}
-	Total:${current.cardManagers[0].listing.card[2][3].length}
-		${types.combatant[3].name}:
-Common:${current.cardManagers[0].listing.card[3][0].length}
-Uncommon:${current.cardManagers[0].listing.card[3][1].length}
-Rare:${current.cardManagers[0].listing.card[3][2].length}
-	Total:${current.cardManagers[0].listing.card[3][3].length}
-		${types.combatant[4].name}:
-Common:${current.cardManagers[0].listing.card[4][0].length}
-Uncommon:${current.cardManagers[0].listing.card[4][1].length}
-Rare:${current.cardManagers[0].listing.card[4][2].length}
-	Total:${current.cardManagers[0].listing.card[4][3].length}
-		${types.combatant[5].name}:
-Common:${current.cardManagers[0].listing.card[5][0].length}
-Uncommon:${current.cardManagers[0].listing.card[5][1].length}
-Rare:${current.cardManagers[0].listing.card[5][2].length}
-	Total:${current.cardManagers[0].listing.card[5][3].length}
-		${types.combatant[6].name}:
-	Common:${current.cardManagers[0].listing.card[6][0].length}
-Uncommon:${current.cardManagers[0].listing.card[6][1].length}
-Rare:${current.cardManagers[0].listing.card[6][2].length}
-	Total:${current.cardManagers[0].listing.card[6][3].length}
-		${types.combatant[7].name}:
-	Common:${current.cardManagers[0].listing.card[7][0].length}
-Uncommon:${current.cardManagers[0].listing.card[7][1].length}
-Rare:${current.cardManagers[0].listing.card[7][2].length}
-	Total:${current.cardManagers[0].listing.card[7][3].length}
-		Status:
+${box}		Status:
 Common:${current.cardManagers[0].listing.card[game.playerNumber+1][0].length}
 Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+1][1].length}
 Rare:${current.cardManagers[0].listing.card[game.playerNumber+1][2].length}

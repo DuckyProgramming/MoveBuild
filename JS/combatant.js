@@ -2568,8 +2568,8 @@ class combatant{
         this.armed=true
         this.balance=0
         this.balanceCap=10
-        this.orbs=[-1,-1,-1]
-        this.orbDetail=[0,0,0]
+        this.orbs=[-1,-1,-1,-1]
+        this.orbDetail=[0,0,0,0]
         this.anyOrb=false
         this.totalOrb=0
         this.totalOrbClass=[]
@@ -4526,6 +4526,17 @@ class combatant{
         }
         if(list.length>0){
             this.statusEffectNext(this.status.name[list[floor(random(0,list.length))]],effect)
+        }
+    }
+    removeRandomStatus(classes){
+        let list=[]
+        for(let a=0,la=this.status.class.length;a<la;a++){
+            if(classes.includes(this.status.class[a])&&this.status.main[a]>0||!classes.includes(this.status.class[a])&&this.status.main[a]<0){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            this.status.main[list[floor(random(0,list.length))]]=0
         }
     }
     multiplyStatusClass(effect,classes){

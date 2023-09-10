@@ -5243,9 +5243,9 @@ types={
         },{
             name:'Spark\nBall',rarity:2,list:8,
             levels:[
-                {effect:[40],attack:857,cost:7,target:[0],spec:[28],class:1},
-                {effect:[48],attack:857,cost:6,target:[0],spec:[28],class:1},
-                {effect:[54],attack:857,cost:5,target:[0],spec:[28],class:1},
+                {effect:[40],attack:857,cost:7,target:[2,1,2],spec:[28],class:1},
+                {effect:[48],attack:857,cost:6,target:[2,1,2],spec:[28],class:1},
+                {effect:[54],attack:857,cost:5,target:[2,1,2],spec:[28],class:1},
             ],
         },{
             name:'Halo',rarity:0,list:8,
@@ -5254,13 +5254,91 @@ types={
                 {effect:[15,3],attack:858,cost:2,target:[0],spec:[],class:2},
                 {effect:[16,4],attack:858,cost:2,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Gas\nGiant',rarity:1,list:8,
+            levels:[
+                {effect:[18],attack:861,cost:1,target:[0],spec:[],class:2},
+                {effect:[24],attack:861,cost:1,target:[0],spec:[],class:2},
+                {effect:[28],attack:861,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Cross',rarity:1,list:8,
+            levels:[
+                {effect:[13],attack:862,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[18],attack:862,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[22],attack:862,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Gravity\nBounce',rarity:0,list:8,
+            levels:[
+                {effect:[6,15],attack:863,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,12],attack:863,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,10],attack:863,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Illusion\nStar',rarity:1,list:8,
+            levels:[
+                {effect:[2,1],attack:864,cost:0,target:[0],spec:[],class:4},
+                {effect:[3,1],attack:864,cost:0,target:[0],spec:[],class:4},
+                {effect:[4,1],attack:864,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Luminous',rarity:0,list:8,
+            levels:[
+                {effect:[0,4],attack:865,cost:0,target:[2,1,2],spec:[],class:1},
+                {effect:[2,5],attack:865,cost:0,target:[2,1,2],spec:[],class:1},
+                {effect:[3,6],attack:865,cost:0,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Spam\nSpark',rarity:1,list:8,
+            levels:[
+                {effect:[2,4],attack:866,cost:1,target:[2,1,2],spec:[0,1],class:1},
+                {effect:[2,5],attack:866,cost:1,target:[2,1,2],spec:[0,1],class:1},
+                {effect:[2,6],attack:866,cost:1,target:[2,1,2],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Magic\nAbsorb',rarity:0,list:8,
+            levels:[
+                {effect:[11],attack:867,cost:1,target:[0],spec:[],class:2},
+                {effect:[15],attack:867,cost:1,target:[0],spec:[],class:2},
+                {effect:[18],attack:867,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Magic\nChant',rarity:1,list:8,
+            levels:[
+                {effect:[],attack:868,cost:1,target:[0],spec:[1,4],class:4},
+                {effect:[],attack:868,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[],attack:868,cost:0,target:[0],spec:[1,2,4],class:4},
+            ],
+        },{
+            name:'Mana\nConvect',rarity:1,list:8,
+            levels:[
+                {effect:[1,1],attack:869,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,1],attack:869,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,2],attack:869,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Frenzy',rarity:1,list:8,
+            levels:[
+                {effect:[],attack:870,cost:-1,target:[0],spec:[],class:4},
+                {effect:[],attack:871,cost:-1,target:[0],spec:[],class:4},
+                {effect:[],attack:871,cost:-1,target:[0],spec:[22],class:4},
+            ],
+        },{
+            name:'Highball',rarity:0,list:8,
+            levels:[
+                {effect:[8,7],attack:872,cost:1,target:[0],spec:[27],class:2},
+                {effect:[11,9],attack:872,cost:1,target:[0],spec:[27],class:2},
+                {effect:[13,11],attack:872,cost:1,target:[0],spec:[27],class:2},
+            ],
         },
-        
+
+
+
+
         //magic missile
-
-
-
         //binary stars
+        //JA
 
 
 
@@ -11626,8 +11704,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:8,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,speedmove:false,speedcard:false,nobasicanim:false}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:false,shortmap:false,speedmove:false,speedcard:false,nobasicanim:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],
