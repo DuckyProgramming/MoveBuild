@@ -1010,8 +1010,12 @@ class card{
             case 870: string+=`Add X Random\nAttacks to Your Hand\nThey Cost 0\nand Exhaust`; break
             case 871: string+=`Add X Random Upgraded\nAttacks to Your Hand\nThey Cost 0\nand Exhaust`; break
             case 872: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify: Deal ${this.calculateEffect(effect[1],10)} More`; break
-
-
+            case 873: string+=`Convert Charge to Energy`; break
+            case 874: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Time${effect[1]!=1?`s`:``}\nExhaust ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
+            case 875: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nGain ${effect[2]} Temporary\nStrength`; break
+            case 876: string+=`Amplifies Are Free`; break
+            case 877: string+=`Add a Random Attack\nto Your Hand\nDeal Damage Equal\nto Its Effect`; break
+            
 
 
 

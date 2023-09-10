@@ -271,6 +271,39 @@ class group{
             this.cards.splice(this.cards.length-1,1)
         }
     }
+    addReturn(type,level,color){
+        game.id++
+        if(type>=0&&type<types.card.length){
+            if(this.battle.initialized&&types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
+                this.battle.relicManager.active[66]--
+                if(this.battle.relicManager.active[66]<=0){
+                    this.battle.relicManager.deactivate(66)
+                }
+                return {type:-1}
+            }else{
+                this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
+                if(this.id==0){
+                    this.cards[this.cards.length-1].nonCalc=true
+                }
+                if(this.battle.initialized&&this.id==0){
+                    if(
+                        this.cards[this.cards.length-1].level==0&&(
+                        this.cards[this.cards.length-1].class==1&&this.battle.relicManager.hasRelic(12,this.player)||
+                        this.cards[this.cards.length-1].class==2&&this.battle.relicManager.hasRelic(13,this.player)||
+                        this.cards[this.cards.length-1].class==3&&this.battle.relicManager.hasRelic(14,this.player)||
+                        this.cards[this.cards.length-1].class==4&&this.battle.relicManager.hasRelic(15,this.player))){
+                        this.cards[this.cards.length-1]=upgradeCard(this.cards[this.cards.length-1])
+                    }
+                    this.battle.relicManager.activate(5,[this.player])
+                    if(types.card[type].rarity>=0||types.card[type].list>=0){
+                        this.battle.stats.card[this.player]++
+                    }
+                }
+                return this.cards[this.cards.length-1]
+            }
+        }
+        return {type:-1}
+    }
     resetAnim(){
         for(let a=0,la=this.cards.length;a<la;a++){
             this.cards[a].select=false
@@ -1028,7 +1061,9 @@ class group{
             }else{
                 this.battle.energy.main[this.player]-=cost
             }
-            if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
+            if(userCombatant.getStatus('Free Amplify')>0){
+                this.battle.attackManager.amplify=true
+            }else if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
                 this.battle.energy.main[this.player]--
                 this.battle.attackManager.amplify=true
                 this.cards.forEach(card=>card.anotherAmplified())

@@ -126,6 +126,17 @@ class cardManager{
             this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
         }
     }
+    addRandomClassReturn(group,level,cardClass){
+        let list=[]
+        for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
+            if(types.card[this.listing.card[this.battle.player[this.player]][3][a]].levels[level].class==cardClass){
+                list.push(this.listing.card[this.battle.player[this.player]][3][a])
+            }
+        }
+        if(list.length>0){
+            return this.getList(group).addReturn(list[floor(random(0,list.length))],level,this.battle.player[this.player])
+        }
+    }
     addRandomAll(group,level,rarity){
         let type=this.listing.allPlayerCard[rarity][floor(random(0,this.listing.allPlayerCard[rarity].length))]
         this.getList(group).add(type,level,types.card[type].list)

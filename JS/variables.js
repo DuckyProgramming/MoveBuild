@@ -5327,9 +5327,44 @@ types={
         },{
             name:'Highball',rarity:0,list:8,
             levels:[
-                {effect:[8,7],attack:872,cost:1,target:[0],spec:[27],class:2},
-                {effect:[11,9],attack:872,cost:1,target:[0],spec:[27],class:2},
-                {effect:[13,11],attack:872,cost:1,target:[0],spec:[27],class:2},
+                {effect:[8,7],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
+                {effect:[11,9],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
+                {effect:[13,11],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
+            ],
+        },{
+            name:'Max\nPower',rarity:2,list:8,
+            levels:[
+                {effect:[],attack:873,cost:3,target:[0],spec:[1],class:4},
+                {effect:[],attack:873,cost:3,target:[0],spec:[],class:4},
+                {effect:[],attack:873,cost:2,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Meteor\nShower',rarity:0,list:8,
+            levels:[
+                {effect:[2,4,2],attack:874,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[3,4,2],attack:874,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[4,4,2],attack:874,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Milky\nWay',rarity:1,list:8,
+            levels:[
+                {effect:[5,1,1],attack:875,cost:1,target:[0],spec:[],class:2},
+                {effect:[7,1,2],attack:875,cost:1,target:[0],spec:[],class:2},
+                {effect:[8,1,3],attack:875,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Millisecond\nPulsars',rarity:2,list:8,
+            levels:[
+                {effect:[],attack:876,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:876,cost:2,target:[0],spec:[1,3],class:4},
+                {effect:[],attack:876,cost:1,target:[0],spec:[1,3],class:4},
+            ],
+        },{
+            name:'Mysterious\nBeam',rarity:1,list:8,
+            levels:[
+                {effect:[6],attack:877,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[9],attack:877,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[11],attack:877,cost:1,target:[2,1,2],spec:[0,22],class:1},
             ],
         },
 
@@ -9122,10 +9157,10 @@ shipyard visit for another time.`,
                 text:[80,0,40],
                 active:[255,200,225],
             },{
-                fill:[255,200,255],
-                stroke:[255,175,1255],
+                fill:[255,210,255],
+                stroke:[255,175,255],
                 text:[100,0,100],
-                active:[255,225,255],
+                active:[255,240,255],
             },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
