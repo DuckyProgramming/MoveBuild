@@ -256,12 +256,14 @@ class group{
         if(this.add(type,level,color)){
             this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
             this.cards.splice(this.cards.length-1,1)
+            this.shuffled()
         }
     }
     addFreeShuffle(type,level,color,variant){
         if(this.addFree(type,level,color,variant)){
             this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
             this.cards.splice(this.cards.length-1,1)
+            this.shuffled()
         }
     }
     addShuffleEffect_1(type,level,color,effect_1){
@@ -269,6 +271,7 @@ class group{
             this.cards[this.cards.length-1].effect[1]=effect_1
             this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
             this.cards.splice(this.cards.length-1,1)
+            this.shuffled()
         }
     }
     addReturn(type,level,color){
@@ -350,6 +353,16 @@ class group{
             let index=floor(random(0,cards.length))
             this.cards.push(copyCard(cards[index]))
             cards.splice(index,1)
+        }
+        this.shuffled()
+    }
+    shuffled(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(userCombatant.status.main[151]>0){
+            this.battle.energy.main[this.player]+=userCombatant.status.main[151]
+        }
+        if(userCombatant.status.main[152]>0){
+            this.battle.cardManagers[this.player].draw(userCombatant.status.main[152])
         }
     }
     out(){
@@ -638,6 +651,17 @@ class group{
         }
         if(effect==1&&total>0&&this.battle.relicManager.hasRelic(76,this.player)){
             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(4*total)
+        }
+    }
+    allEffectArgs(effect,args){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            switch(effect){
+                case 0:
+                    if(this.cards[a].name=='Spark'){
+                        this.cards[a].effect[0]+=args[0]
+                    }
+                break
+            }
         }
     }
     randomEffect(effect,args){

@@ -5429,6 +5429,48 @@ types={
                 {effect:[1],attack:896,cost:1,target:[0],spec:[15],limit:1,class:4},
                 {effect:[1],attack:896,cost:1,target:[0],spec:[15],limit:1,class:4},
             ],
+        },{
+            name:'Pulse\nMagic',rarity:1,list:8,
+            levels:[
+                {effect:[1],attack:898,cost:0,target:[0],spec:[27],class:4},
+                {effect:[2],attack:898,cost:0,target:[0],spec:[27],class:4},
+                {effect:[2],attack:898,cost:0,target:[0],spec:[27,22],class:4},
+            ],
+        },{
+            name:'Refraction\nSpark',rarity:2,list:8,
+            levels:[
+                {effect:[4,7],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[5,10],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[6,12],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Robbery',rarity:1,list:8,
+            levels:[
+                {effect:[7],attack:900,cost:1,target:[2,1,1],spec:[0,27],class:1},
+                {effect:[10],attack:900,cost:1,target:[2,1,1],spec:[0,27],class:1},
+                {effect:[12],attack:900,cost:1,target:[2,1,1],spec:[0,27],class:1},
+            ],
+        },{
+            name:'Satellite',rarity:2,list:8,
+            levels:[
+                {effect:[1,2],attack:901,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,4],attack:901,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,4],attack:901,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Moonbeam',rarity:0,list:8,
+            levels:[
+                {effect:[8,15],attack:902,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[11,20],attack:902,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[13,24],attack:902,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Shooting\nEcho',rarity:0,list:8,
+            levels:[
+                {effect:[10,1,1],attack:903,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,1,1],attack:903,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[17,1,1],attack:903,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
 
@@ -5438,6 +5480,7 @@ types={
         //binary stars
         //JA
         //charge consume!
+        //get sparks
         //movement cards
 
 
@@ -6011,9 +6054,9 @@ types={
         },{
             name:'Spark',rarity:-1,list:0,
             levels:[
-                {effect:[6],attack:327,cost:0,target:[2,1,1],spec:[0,2],class:1},
-                {effect:[9],attack:327,cost:0,target:[2,1,1],spec:[0,2],class:1},
-                {effect:[11],attack:327,cost:0,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[5],attack:327,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[8],attack:327,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[10],attack:327,cost:0,target:[2,1,1],spec:[1],class:1},
             ],
         },{
             name:'Instant\nWrath',rarity:-1,list:0,

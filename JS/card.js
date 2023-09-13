@@ -597,8 +597,8 @@ class card{
             case 452: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd 1 Dazed\nto Draw Pile`; break
             case 453: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bleed\n3 Tiles Wide`; break
             case 454: string+=`When Damage Taken\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
-            case 455: string+=`When You Heal,\nGain ${effect[0]} Max HP`; break
-            case 456: string+=`Remove All Items,\nGain ${effect[0]} Max HP Each`; break
+            case 455: string+=`When You Heal,\nGain ${effect[0]} Max Health`; break
+            case 456: string+=`Remove All Items,\nGain ${effect[0]} Max Health Each`; break
             case 457: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 458: string+=`Pass Through an\nAdjacent Target\nAnd Add a Chain\nShift to Your Hand\nor\nMove ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 459: string+=`Push 2 Tiles\nin All Directions`; break
@@ -612,7 +612,7 @@ class card{
             case 467: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Rotate Target Hard Left`; break
             case 468: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Rotate Target Hard Right`; break
             case 469: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHorizontally Only`; break
-            case 470: string+=`Gain ${effect[0]}X Max HP`; break
+            case 470: string+=`Gain ${effect[0]}X Max Health`; break
             case 471: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nTargets Will Face\nAway and Attack`; break
             case 472: string+=`Create 1 Plant Tile`; break
             case 473: string+=`Deal ${effect[0]} Damage\nto Targets on\nPlant Tiles`; break
@@ -798,7 +798,7 @@ class card{
             case 656: string+=`Remove ${effect[0]} Fatigue${effect[0]!=1?`s`:``}\nMove All Fatigues\nto Your Hand`; break
             case 657: string+=`Advance up to ${effect[0]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nEnds 2 Tiles Away\nor\nMove ${effect[1]} Tile${effect[1]!=1?`s`:``}`; break
             case 658: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 2 Tiles\nin All Directions`; break
-            case 659: string+=`Gain ${effect[0]}X+${effect[1]} Max HP`; break
+            case 659: string+=`Gain ${effect[0]}X+${effect[1]} Max Health`; break
             case 660: string+=`Move to Any\nEmpty Plant Tile\nor Create One`; break
             case 661: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nif Target Has Bleed\nApply ${effect[1]} Bleed`; break
             case 663: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Dodge\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
@@ -965,7 +965,7 @@ class card{
             case 825: string+=`Push 1 Tile\nSturdy: Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 826: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Faith`; break
             case 827: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFatigues in\nHand Gain Quickdraw`; break
-            case 828: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Max HP`; break
+            case 828: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Max Health`; break
             case 829: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nand Retain it`; break
             case 830: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle a Restrike\ninto Discard Pile`; break
             case 831: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAmplify:\nAdd ${this.calculateEffect(effect[1],1)} Block\nNext Turn`; break
@@ -1035,7 +1035,12 @@ class card{
             case 895: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Deal Double`; break
             case 896: string+=`Gain ${effect[0]} Relic${effect[0]!=1?`s`:``}`; break
             case 897: string+=`Roll ${effect[0]} Di${effect[0]!=1?`c`:``}e and\nDeal That Much Damage`; break
-
+            case 898: string+=`Gain ${effect[0]} Energy\nNext Turn\nAmplify:\nAmplifying is Free\nThis Turn`; break
+            case 899: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSparks in Hand\nGain Power Equal to\nTarget's Health Lost\nAmplify:\nDeal ${this.calculateEffect(effect[1],0)} Damage Instead`; break
+            case 900: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain Currency Equal to\nTarget's Health Lost\nAmplify:\nGain Double Currency`; break
+            case 901: string+=`When Draw Pile Shuffled\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 902: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove a Buff\nFrom Target\nAmplify:\nDeal ${this.calculateEffect(effect[1],0)} Damage Instead`; break
+            case 903: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd a Burn to Hand`; break
 
 
 
