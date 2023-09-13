@@ -910,7 +910,7 @@ class card{
             case 770: string+=`Gain ${effect[0]} Faith\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 771: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Smite\nto Hand`; break
             case 772: string+=`Add a Miracle to Your\nHand For X Turns\nGain ${effect[0]} Energy`; break
-            case 773: string+=`Add a Miracle+ to Your\nHand For X Turns\nGain ${effect[0]} Energy`; break
+            case 773: string+=`Add an Upgraded\nMiracle to Your\nHand For X Turns\nGain ${effect[0]} Energy`; break
             case 774: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nLose ${effect[2]} Energy\nPer Turn`; break
             case 775: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen Retained`; break
             case 776: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]}\nWhen Retained`; break
@@ -976,7 +976,7 @@ class card{
             case 836: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`} of\nthe Last Attack\nto Your Hand`; break
             case 837: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[1],4)} More For\nEvery Burn in Hand\nAmplify:\nDeal Double Damage`; break
             case 838: string+=`When You Add Block,\nAdd ${effect[0]} Spark${effect[0]!=1?`s`:``} to Hand`; break
-            case 839: string+=`When You Add Block,\nAdd ${effect[0]} Spark${effect[0]!=1?`s`:``}+ to Hand`; break
+            case 839: string+=`When You Add Block,\nAdd ${effect[0]} Upgraded\nSpark${effect[0]!=1?`s`:``} to Hand`; break
             case 840: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Possible:\nSpend ${effect[1]} Charge\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${effect[3]!=1?`s`:``}`; break
             case 841: string+=`Gain ${effect[0]} Charge`; break
             case 842: string+=`Gain ${effect[0]} Charge\nAmplify:\nGain ${effect[1]} More`; break
@@ -1041,7 +1041,15 @@ class card{
             case 901: string+=`When Draw Pile Shuffled\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 902: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove a Buff\nFrom Target\nAmplify:\nDeal ${this.calculateEffect(effect[1],0)} Damage Instead`; break
             case 903: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd a Burn to Hand`; break
-
+            case 904: string+=`All Attacks Are Free\nLose ${effect[0]} Temporary Strength`; break
+            case 905: string+=`Apply ${effect[0]} Vulnerable\nAmplify:\nAffects All Enemies`; break
+            case 906: string+=`Target Becomes\nIndefinitely Weak`; break
+            case 907: string+=`Target Becomes\nIndefinitely Vulnerable`; break
+            case 908: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n${effect[1]} Time${effect[1]!=1?`s`:``}\nAmount of Times\nIncreases by ${effect[2]}`; break
+            case 909: string+=`Return Your Hand\nto Draw Pile\nAdd That Many\nRandom Cards to\nYour Hand`; break
+            case 910: string+=`Return Your Hand\nto Draw Pile\nAdd That Many\nRandom Upgraded Cards\nto Your Hand`; break
+            case 911: string+=`Exhaust Non-Attacks\nAdd That Many\nSparks to Hand`; break
+            case 912: string+=`Exhaust Non-Attacks\nAdd That Many\nUpgraded Sparks to Hand`; break
 
 
 
@@ -1201,6 +1209,9 @@ class card{
             break
             case 118: case 619:
                 this.effect[0]+=this.effect[1]
+            break
+            case 908:
+                this.effect[1]+=this.effect[2]
             break
         }
         this.battle.attackManager.level=this.level

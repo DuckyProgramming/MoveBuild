@@ -308,6 +308,9 @@ class combatantManager{
                         this.combatants[a].takeDamage(args[0],-1)
                         this.combatants[a].statusEffect('Burn',args[1])
                     break
+                    case 16:
+                        this.combatants[a].statusEffect('Vulnerable',args[0])
+                    break
                 }
             }
         }

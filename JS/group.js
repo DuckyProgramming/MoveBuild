@@ -644,6 +644,29 @@ class group{
                         this.cards[a].effect[0]++
                     }
                 break
+                case 31:
+                    if(this.cards[a].class==1){
+                        this.cards[a].cost=0
+                    }
+                break
+                case 32:
+                    this.cards[a].deSize=true
+                    this.cards[a].discardEffect.push(1)
+                break
+                case 33:
+                    if(this.cards[a].class!=1){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        this.add(findName('Spark',types.card),0,0)
+                    }
+                break
+                case 34:
+                    if(this.cards[a].class!=1){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        this.add(findName('Spark',types.card),1,0)
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
