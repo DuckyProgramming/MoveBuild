@@ -13,7 +13,7 @@ class cardManager{
         this.drop=new group(this.layer,this.battle,this.player,4)
         this.exhaust=new group(this.layer,this.battle,this.player,5)
 
-        this.drawAmount=variants.lowDraw?5:6
+        this.drawAmount=variants.lowDraw?5:6-(types.combatant[this.player].identifier=='The Gentleman'?4:0)
         this.tempDraw=0
 
         this.initialListing()

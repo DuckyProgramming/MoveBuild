@@ -626,6 +626,11 @@ class group{
                         this.cards[a].spec.push(22)
                     }
                 break
+                case 30:
+                    if(!this.cards[a].spec.includes(12)&&this.cards[a].effect.length>0&&this.cards[a].effect[0]>0){
+                        this.cards[a].effect[0]++
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -1061,24 +1066,26 @@ class group{
             }else{
                 this.battle.energy.main[this.player]-=cost
             }
-            if(userCombatant.getStatus('Free Amplify')>0){
-                this.battle.attackManager.amplify=true
-            }else if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
-                this.battle.energy.main[this.player]--
-                this.battle.attackManager.amplify=true
-                this.cards.forEach(card=>card.anotherAmplified())
-                if(userCombatant.status.main[144]>0){
-                    this.battle.overlayManager.overlays[7][this.player].active=true
-                    this.battle.overlayManager.overlays[7][this.player].activate()
+            if(userCombatant.getStatus('No Amplify')<=0){
+                if(userCombatant.getStatus('Free Amplify')>0){
+                    this.battle.attackManager.amplify=true
+                }else if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
+                    this.battle.energy.main[this.player]--
+                    this.battle.attackManager.amplify=true
+                    this.cards.forEach(card=>card.anotherAmplified())
+                    if(userCombatant.status.main[144]>0){
+                        this.battle.overlayManager.overlays[7][this.player].active=true
+                        this.battle.overlayManager.overlays[7][this.player].activate()
+                    }
                 }
-            }
-            if(this.battle.energy.main[this.player]>1&&spec.includes(28)){
-                this.battle.energy.main[this.player]-=2
-                this.battle.attackManager.amplify=true
-                this.cards.forEach(card=>card.anotherAmplified())
-                if(userCombatant.status.main[144]>0){
-                    this.battle.overlayManager.overlays[7][this.player].active=true
-                    this.battle.overlayManager.overlays[7][this.player].activate()
+                if(this.battle.energy.main[this.player]>1&&spec.includes(28)){
+                    this.battle.energy.main[this.player]-=2
+                    this.battle.attackManager.amplify=true
+                    this.cards.forEach(card=>card.anotherAmplified())
+                    if(userCombatant.status.main[144]>0){
+                        this.battle.overlayManager.overlays[7][this.player].active=true
+                        this.battle.overlayManager.overlays[7][this.player].activate()
+                    }
                 }
             }
         }

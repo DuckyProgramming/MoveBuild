@@ -25,7 +25,7 @@ class card{
         this.color=color
         this.id=id
         this.cost=cost
-        if(cost==undefined&&this.type<types.card.length){
+        if(cost==undefined&&this.type<types.card.length&&this.type>=0){
             this.cost=types.card[this.type].levels[this.level].cost
         }
 
@@ -977,7 +977,7 @@ class card{
             case 837: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[1],4)} More For\nEvery Burn in Hand\nAmplify:\nDeal Double Damage`; break
             case 838: string+=`When You Add Block,\nAdd ${effect[0]} Spark${effect[0]!=1?`s`:``} to Hand`; break
             case 839: string+=`When You Add Block,\nAdd ${effect[0]} Spark${effect[0]!=1?`s`:``}+ to Hand`; break
-            case 840: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Possible:\nSpend ${effect[1]} Charge Up\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${effect[3]!=1?`s`:``}`; break
+            case 840: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Possible:\nSpend ${effect[1]} Charge\nGain ${effect[2]} Energy\nDraw ${effect[3]} Card${effect[3]!=1?`s`:``}`; break
             case 841: string+=`Gain ${effect[0]} Charge`; break
             case 842: string+=`Gain ${effect[0]} Charge\nAmplify:\nGain ${effect[1]} More`; break
             case 843: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Every ${effect[1]}\nRelics You Have`; break
@@ -1024,10 +1024,19 @@ class card{
             case 884: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[0]} Energy\nNext 2 Turns`; break
             case 885: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[0]} Energy\nNext 2 Turns`; break
             case 886: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nReturn ${effect[1]} Gun${effect[1]!=1?`s`:``}\nFrom Discard to Hand`; break
-            
             case 887: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Burn`; break
             case 888: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn`; break
             case 889: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nto All Enemies`; break
+            case 890: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nNext Turn,\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``},\nBut You Cannot Amplify`; break
+            case 891: string+=`Add ${effect[0]} Random Card${effect[0]!=1?`s`:``}\nto Draw Pile\nSkewed Odds\n${effect[1]}% Upgrade Chance\nDraw ${effect[2]} Card${effect[2]?`s`:``}`; break
+            case 892: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nWhen Exhausted,\nReturn Exhaust\nPile to Hand`; break
+            case 893: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nWhen Charge Consumed`; break
+            case 894: string+=`For All Cards in Hand,\nIncrease First Numerical\nValue by ${effect[0]}`; break
+            case 895: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Deal Double`; break
+            case 896: string+=`Gain ${effect[0]} Relic${effect[0]!=1?`s`:``}`; break
+            case 897: string+=`Roll ${effect[0]} Di${effect[0]!=1?`c`:``}e and\nDeal That Much Damage`; break
+
+
 
 
 
@@ -1141,7 +1150,10 @@ class card{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].combo+=this.effect[1]
             break
             case 303:
-                this.battle.energy.main[this.id]+=this.effect[1]
+                this.battle.energy.main[this.player]+=this.effect[1]
+            break
+            case 892:
+                this.battle.cardManagers[this.player].exhaust.send(this.battle.cardManagers[this.player].hand.cards,0,-1,1)
             break
         }
     }

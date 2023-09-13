@@ -6,7 +6,7 @@ class particle{
         this.remove=false
         this.time=0
         switch(this.type){
-            case 0:
+            case 0: case 41:
                 this.value=args[0]
                 this.direction=random(0,360)
                 this.speed=2.5
@@ -481,6 +481,11 @@ class particle{
                     this.layer.fill(120,100,80,this.fade)
                     this.layer.ellipse(0,0,10,10)
                 break
+                case 41:
+                    this.layer.fill(200,this.fade)
+                    this.layer.textSize(20)
+                    this.layer.text('-'+this.value,0,0)
+                break
 
             }
             this.layer.pop()
@@ -489,7 +494,7 @@ class particle{
     update(){
         this.time++
         switch(this.type){
-            case 0:
+            case 0: case 41:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed
                 if(!this.trigger){

@@ -13,6 +13,9 @@ class particleManager{
     createDamageNumber(x,y,value){
         this.particles.push(new particle(this.layer,x,y,0,[value]))
     }
+    createAuxNumber(x,y,value){
+        this.particles.push(new particle(this.layer,x,y,41,[value]))
+    }
     display(scene){
         switch(scene){
             case 'back':
