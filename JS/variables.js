@@ -2722,9 +2722,9 @@ types={
         },{
             name:'Rematerialize',rarity:0,list:4,
             levels:[
-                {effect:[1],attack:284,cost:1,target:[0],spec:[],class:4},
-                {effect:[2],attack:284,cost:1,target:[0],spec:[],class:4},
-                {effect:[2],attack:284,cost:1,target:[0],spec:[2],class:4},
+                {effect:[2,1],attack:284,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,3],attack:284,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,4],attack:284,cost:1,target:[0],spec:[2],class:4},
             ],
         },{
             name:'Unload',rarity:1,list:4,
@@ -5366,6 +5366,29 @@ types={
                 {effect:[9],attack:877,cost:1,target:[2,1,2],spec:[0],class:1},
                 {effect:[11],attack:877,cost:1,target:[2,1,2],spec:[0,22],class:1},
             ],
+        },{
+            name:`Nondirectional\nBeam`,rarity:1,list:8,
+            levels:[
+                {effect:[5,5],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[7,7],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[9,8],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Occultation',rarity:1,list:8,
+            levels:[
+                {effect:[0],attack:879,cost:2,target:[0],spec:[],class:2},
+                {effect:[0],attack:879,cost:1,target:[0],spec:[],class:2},
+                {effect:[4],attack:879,cost:1,target:[0],spec:[],class:2},
+            ],
+        },
+
+        {
+            name:'Oort\nCloud',rarity:1,list:8,
+            levels:[
+                {effect:[4,3],attack:880,cost:1,target:[0],spec:[27],class:2},
+                {effect:[5,4],attack:880,cost:1,target:[0],spec:[27],class:2},
+                {effect:[5,5],attack:880,cost:1,target:[0],spec:[27],class:2},
+            ],
         },
 
 
@@ -5374,6 +5397,8 @@ types={
         //magic missile
         //binary stars
         //JA
+
+        //oort cloud
 
 
 
@@ -6476,7 +6501,92 @@ types={
                 {effect:[22],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
                 {effect:[27],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
             ],
+        },{
+            name:'Lighter',rarity:-1,list:-1,
+            levels:[
+                {effect:[6],attack:881,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[8],attack:881,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[10],attack:881,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Firespin',rarity:-1,list:-1,
+            levels:[
+                {effect:[4],attack:882,cost:1,target:[0],spec:[0],class:1},
+                {effect:[6],attack:882,cost:1,target:[0],spec:[0],class:1},
+                {effect:[7],attack:882,cost:1,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Oil\nUp',rarity:-1,list:-1,
+            levels:[
+                {effect:[2],attack:883,cost:1,target:[2,1,1],spec:[1],class:1},
+                {effect:[3],attack:883,cost:1,target:[2,1,1],spec:[1],class:1},
+                {effect:[4],attack:883,cost:1,target:[2,1,1],spec:[1],class:1},
+            ],
+        },{
+            name:'Riposte',rarity:-1,list:-1,
+            levels:[
+                {effect:[6,1],attack:884,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9,1],attack:884,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:884,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Garrison',rarity:-1,list:-1,
+            levels:[
+                {effect:[8,1],attack:885,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,1],attack:885,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,1],attack:885,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Secret\nStash',rarity:-1,list:-1,
+            levels:[
+                {effect:[1,1],attack:886,cost:0,target:[0],spec:[1],class:3},
+                {effect:[1,2],attack:886,cost:0,target:[0],spec:[1],class:3},
+                {effect:[2,2],attack:886,cost:0,target:[0],spec:[1],class:3},
+            ],
+        },{
+            name:'Scorched\nEarth',rarity:-1,list:-1,
+            levels:[
+                {effect:[10,6],attack:887,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,8],attack:887,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,10],attack:887,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:`You're\nFired`,rarity:-1,list:-1,
+            levels:[
+                {effect:[12,6],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[16,9],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[18,12],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:`Downsizing`,rarity:-1,list:-1,
+            levels:[
+                {effect:[6,3],attack:889,cost:3,target:[0],spec:[0,1],class:1},
+                {effect:[8,4],attack:889,cost:3,target:[0],spec:[0,1],class:1},
+                {effect:[8,5],attack:889,cost:3,target:[0],spec:[0,1],class:1},
+            ],
         },
+
+        //scrap metal
+        //metal supply
+
+        //Cafffeine high
+        //best guess
+        //revise
+
+        //overcharge
+        //augment
+        //advanced adhesive
+        //welding
+        //move and improve nearby constructs
+        //construct buffer
+
+        //credit taker
+        //on a roll
+        //lucky bullet
+        //timeout
+        //close in, but renamed
+
+        //retain 1 card forever
     ],combatant:[
         {name:'',moniker:'Add Player 2',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
         {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Experienced Management Agent,\ndisillusioned with the propaganda.\nTrained in a wide variety of techniques,\nbut undercover with few armaments.`},
@@ -6629,7 +6739,7 @@ types={
         {name:'Wiz',life:110,behavior:0,spec:[0,2],move:{type:5,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
-        {name:'Sharpshot',life:330,behavior:0,spec:[1,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
+        {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
         {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[5]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
         {name:'Councilman',life:270,behavior:0,spec:[1,2],move:{type:1,speed:1},attack:[{type:174,effect:[3]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
@@ -6913,6 +7023,7 @@ types={
         {name:'Builder Transform',class:4},
         {name:'Builder Duplicate',class:4},//240
         {name:'Builder Exhaust',class:4},
+        {name:'Burn',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -11739,8 +11850,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:8,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:false,shortmap:false,speedmove:false,speedcard:false,nobasicanim:false}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,shortermap:true,speedmove:false,speedcard:false,nobasicanim:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

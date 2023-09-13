@@ -304,6 +304,10 @@ class combatantManager{
                     case 14:
                         this.combatants[a].statusEffect('Confusion',args[0])
                     break
+                    case 15:
+                        this.combatants[a].takeDamage(args[0],-1)
+                        this.combatants[a].statusEffect('Burn',args[1])
+                    break
                 }
             }
         }
@@ -477,10 +481,10 @@ class combatantManager{
             }
         }
     }
-    statusAreaBlock(name,amount,team,tilePosition){
+    statusAreaIDBlock(name,amount,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].team!=team&&this.combatants[a].block<=0&&distance>=0&&distance<=1){
+            if(this.combatants[a].id!=id&&this.combatants[a].block<=0&&distance>=0&&distance<=1){
                 this.combatants[a].statusEffect(name,amount)
             }
         }

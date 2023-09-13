@@ -427,7 +427,7 @@ class card{
             case 281: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nExhaust ${effect[1]} Random\nCard${effect[1]!=1?`s`:``}`; break
             case 282: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Damage Taken`; break
             case 283: string+=`Gain ${effect[0]} Energy\nLose ${effect[1]} Health`; break
-            case 284: string+=`Gain ${effect[0]} Energy\nFor the Next\n2 Turns`; break
+            case 284: string+=`Gain ${effect[0]} Energy\nGain ${effect[1]} Dexterity\nNext Turn`; break
             case 285: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 286: string+=`Counter ${effect[0]} All\nThis Combat`; break
             case 287: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
@@ -1015,7 +1015,20 @@ class card{
             case 875: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nGain ${effect[2]} Temporary\nStrength`; break
             case 876: string+=`Amplifies Are Free`; break
             case 877: string+=`Add a Random Attack\nto Your Hand\nDeal Damage Equal\nto Its Effect`; break
+            case 878: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage`; break
+            case 879: string+=`Discard Draw Pile\nGain Block Equal\nto Number of\nCards Discarded${effect[0]>0?`+${effect[0]}`:``}`; break
+            case 880: string+=`Gain ${effect[0]} Armor\nAmplify:\nGain ${effect[1]} More`; break
+            case 881: string+=`Apply ${effect[0]} Burn`; break
+            case 882: string+=`Apply ${effect[0]} Burn\nin All Directions`; break
+            case 883: string+=`Multiply Target\nBurn by ${effect[0]}`; break
+            case 884: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[0]} Energy\nNext 2 Turns`; break
+            case 885: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[0]} Energy\nNext 2 Turns`; break
+            case 886: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nReturn ${effect[1]} Gun${effect[1]!=1?`s`:``}\nFrom Discard to Hand`; break
             
+            case 887: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Burn`; break
+            case 888: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn`; break
+            case 889: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nto All Enemies`; break
+
 
 
 

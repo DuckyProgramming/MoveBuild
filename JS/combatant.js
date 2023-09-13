@@ -79,7 +79,7 @@ class combatant{
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
-            'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify',
+            'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -96,7 +96,7 @@ class combatant{
                 0,0,0,0,0,0,0,1,0,1,//12
                 2,1,0,0,2,0,0,0,2,0,//13
                 1,1,1,0,0,0,0,1,0,0,//14
-                0,0,0,0,0,1,
+                0,0,0,0,0,1,2,2,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -113,7 +113,7 @@ class combatant{
                 1,2,2,2,2,2,2,3,2,1,
                 2,0,0,1,0,2,2,2,1,2,
                 2,2,2,2,1,2,2,0,0,0,
-                2,2,2,3,2,2,
+                2,2,2,3,2,2,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2741,9 +2741,19 @@ class combatant{
             this.collect.life=round(this.collect.life*0.5)
         }
         if(variants.shortmap&&this.team==0){
-            this.life=round(this.life*(1-this.battle.nodeManager.world*0.2))
-            this.base.life=round(this.base.life*(1-this.battle.nodeManager.world*0.2))
-            this.collect.life=round(this.collect.life*(1-this.battle.nodeManager.world*0.2))
+            this.life=round(this.life*0.8**this.battle.nodeManager.world)
+            this.base.life=round(this.base.life*0.8**this.battle.nodeManager.world)
+            this.collect.life=round(this.collect.life*0.8**this.battle.nodeManager.world)
+            if(this.battle.encounter.class==2){
+                this.life=round(this.life*0.9)
+                this.base.life=round(this.base.life*0.9)
+                this.collect.life=round(this.collect.life*0.9)
+            }
+        }
+        if(variants.shortermap&&this.team==0){
+            this.life=round(this.life*0.7**this.battle.nodeManager.world)
+            this.base.life=round(this.base.life*0.7**this.battle.nodeManager.world)
+            this.collect.life=round(this.collect.life*0.7**this.battle.nodeManager.world)
             if(this.battle.encounter.class==2){
                 this.life=round(this.life*0.8)
                 this.base.life=round(this.base.life*0.8)
@@ -3829,9 +3839,6 @@ class combatant{
                     }
                 }
             }
-            if(this.id<this.battle.players){
-                this.battle.stats.taken[this.id][0]+=damage
-            }
             if(this.status.main[51]>0){
                 this.status.main[51]=0
             }
@@ -3975,6 +3982,12 @@ class combatant{
                                 this.battle.turnManager.auxiliary=true
                                 this.battle.turnManager.turns.push(new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
                             }
+                            if(this.status.main[147]>0&&distance<=1){
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turns[0].target=[user]
+                                this.battle.turnManager.auxiliary=true
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
+                            }
                         }else{
                             if(this.status.main[1]>0&&distance<=1){
                                 this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -4030,6 +4043,11 @@ class combatant{
                                 this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
                                 this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,2,[this.status.main[106]],this.id,false))
+                            }
+                            if(this.status.main[147]>0&&distance<=1){
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turns[1].target=[user]
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
                             }
                         }
                         if(this.battle.relicManager.hasRelic(61,this.id)){
@@ -4595,7 +4613,7 @@ class combatant{
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
                     case 30: case 55: this.status.main[findList('Strength',this.status.name)]+=this.status.main[a]; break
                     case 33: this.heal(this.status.main[a]); break
-                    case 34: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
+                    case 34: case 146: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Gain Block',this.status.name)]+=this.status.main[a]; break
                     case 41: case 84: this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]; break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
