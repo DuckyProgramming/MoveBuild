@@ -1050,6 +1050,14 @@ class card{
             case 910: string+=`Return Your Hand\nto Draw Pile\nAdd That Many\nRandom Upgraded Cards\nto Your Hand`; break
             case 911: string+=`Exhaust Non-Attacks\nAdd That Many\nSparks to Hand`; break
             case 912: string+=`Exhaust Non-Attacks\nAdd That Many\nUpgraded Sparks to Hand`; break
+            case 913: string+=`Upgrade ${effect[0]} Card${effect[0]!=1?`s`:``}\nGain ${effect[1]} Buffer`; break
+            case 914: string+=`Discard Your Hand\nDraw That Many Cards\nGain ${effect[0]} Strength`; break
+            case 915: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Draw\n${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 916: string+=`Construct Takes\nX${effect[0]>0?`+${effect[0]}`:``} Extra Turns`; break
+            case 917: string+=`Construct Gains\n${effect[0]} Max Health\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 918: string+=`Add ${effect[0]} Block\nto Construct\nIt Retains Block\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
+            case 919: string+=`Add ${effect[0]} Block\nto Construct\nConstruct Gains\n${effect[1]} Max Health`; break
+            case 920: string+=`Construct Gains\n${effect[0]} Buffer`; break
 
 
 

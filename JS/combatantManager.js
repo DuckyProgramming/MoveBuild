@@ -44,7 +44,11 @@ class combatantManager{
         this.reID()
     }
     resetCombatantsAnim(){
-        this.combatants.forEach(combatant=>combatant.resetAnim())
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].life>0){
+                this.combatants[a].resetAnim()
+            }
+        }
     }
     reID(){
         for(let a=0,la=this.combatants.length;a<la;a++){
