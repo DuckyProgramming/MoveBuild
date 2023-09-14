@@ -127,10 +127,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0}
     }
     addInitial(type,level,color){
         game.id++
@@ -343,6 +343,9 @@ class group{
     badreserve(amount){
         this.status.badreserve+=amount
     }
+    retain2(amount){
+        this.status.retain2+=amount
+    }
     shuffle(){
         let cards=[]
         while(this.cards.length>0){
@@ -482,7 +485,10 @@ class group{
                 break
                 case 1:
                     this.cards[a].callDiscardEffect()
-                    if(this.cards[a].retain){
+                    if(this.cards[a].retain2){
+                        this.cards[a].retained()
+                        total++
+                    }else if(this.cards[a].retain){
                         this.cards[a].retained()
                         this.cards[a].retain=false
                         total++
@@ -666,6 +672,10 @@ class group{
                         this.cards[a].exhaust=true
                         this.add(findName('Spark',types.card),1,0)
                     }
+                break
+                case 35:
+                    this.cards[a].deSize=true
+                    this.cards[a].discardEffect.push(4)
                 break
             }
         }
@@ -1175,13 +1185,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve])
+                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2])
                     }
                 }
             break
@@ -1498,6 +1508,12 @@ class group{
                     this.status.badreserve--
                 }
             break
+            case 14:
+                this.cards[a].retain2=true
+                if(this.status.retain2>0){
+                    this.status.retain2--
+                }
+            break
         }
     }
     update(scene,args){
@@ -1512,6 +1528,7 @@ class group{
                 this.anim.upgrade=smoothAnim(this.anim.upgrade,this.status.upgrade!=0,0,1,5)
                 this.anim.transform=smoothAnim(this.anim.transform,this.status.transform!=0,0,1,5)
                 this.anim.badreserve=smoothAnim(this.anim.badreserve,this.status.badreserve!=0,0,1,5)
+                this.anim.retain2=smoothAnim(this.anim.retain2,this.status.retain2!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -1964,6 +1981,10 @@ class group{
                                 this.callInput(13,a)
                                 break
                             }
+                            if(this.status.retain2!=0){
+                                this.callInput(14,a)
+                                break
+                            }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                 if(this.cards[a].afford){
                                     this.callInput(0,a)
@@ -2306,6 +2327,10 @@ class group{
                             }
                             if(this.status.badreserve!=0){
                                 this.callInput(13,a)
+                                break
+                            }
+                            if(this.status.retain2!=0){
+                                this.callInput(14,a)
                                 break
                             }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){

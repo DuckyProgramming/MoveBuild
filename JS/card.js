@@ -40,6 +40,7 @@ class card{
         this.usable=true
         this.exhaust=false
         this.retain=false
+        this.retain2=false
         this.select=false
         this.afford=false
         this.energyAfford=false
@@ -432,7 +433,7 @@ class card{
             case 286: string+=`Counter ${effect[0]} All\nThis Combat`; break
             case 287: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
             case 288: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Drawn, Add ${effect[1]}\nStream${effect[1]!=1?`s`:``} to Hand`; break
-            case 289: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nIf Last Card\nis a Defense,\nGain ${this.calculateEffect(effect[1],1)} Block`; break
+            case 289: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nIf Last Card\nis a Defense,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 290: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nCosts 1 Less This\nTurn When a\nCard is Discarded`; break
             case 291: string+=`Draw to ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 292: string+=`Apply ${effect[0]} Weak\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
@@ -1058,6 +1059,16 @@ class card{
             case 918: string+=`Add ${effect[0]} Block\nto Construct\nIt Retains Block\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
             case 919: string+=`Add ${effect[0]} Block\nto Construct\nConstruct Gains\n${effect[1]} Max Health`; break
             case 920: string+=`Construct Gains\n${effect[0]} Buffer`; break
+            case 921: string+=`Add ${effect[0]} Completely\nRandom Power${effect[0]!=1?`s`:``}\nto Your Hand`; break
+            case 922: string+=`Transform Your Hand`; break
+            case 923: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nConstructs Next to\nYou After Moving\nGain ${effect[1]} Max Health`; break
+            case 924: string+=`Remove All\nBlock of Target\nApply ${effect[0]} Vulnerable`; break
+            case 925: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nIf Last Card\nis an Attack,\nGain ${effect[2]} Strength`; break
+            case 926: string+=`Apply ${effect[0]} Distracted`; break
+            case 927: string+=`Add ${effect[0]} Scrap Metal${effect[0]!=1?`s`:``}\nto Your Hand`; break
+            case 928: string+=`Next ${effect[0]} Hit${effect[0]!=1?`s`:``} Taken\nHeal${effect[0]!=1?``:`s`} You Instead`; break
+            case 929: string+=`Retain ${effect[0]} Card${effect[0]!=1?`s`:``}\nUntil ${effect[0]!=1?`They Are`:`it is`} Played`; break
+
 
 
 
@@ -1103,6 +1114,10 @@ class card{
         }
         if(spec.includes(2)){
             string+='\nRetain'
+        }else if(this.retain){
+            string+='\nRetain Once'
+        }else if(this.retain2){
+            string+='\nRetain Until Played'
         }
         if(spec.includes(1)){
             string+='\nExhaust'
@@ -1224,6 +1239,8 @@ class card{
         }
         this.battle.attackManager.level=this.level
         this.battle.attackManager.color=this.color
+        this.retain=false
+        this.retain2=false
     }
     anotherPlayed(cardClass,name){
         if(this.spec.includes(9)){
@@ -1547,6 +1564,11 @@ class card{
             }
             if(anim[8]>0){
                 this.layer.stroke(255,225,100,this.fade*anim[8])
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
+            }
+            if(anim[9]>0){
+                this.layer.stroke(255,125,0,this.fade*anim[9])
                 this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                 stack++
             }

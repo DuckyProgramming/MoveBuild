@@ -141,6 +141,18 @@ class cardManager{
         let type=this.listing.allPlayerCard[rarity][floor(random(0,this.listing.allPlayerCard[rarity].length))]
         this.getList(group).add(type,level,types.card[type].list)
     }
+    addRandomAllClass(group,level,cardClass){
+        let list=[]
+        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
+            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
+                list.push(this.listing.allPlayerCard[3][a])
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).add(type,level,types.card[type].list)
+        }
+    }
     addRandomClassAllFreeShuffle(group,level,cardClass,variant){
         let list=[]
         for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
