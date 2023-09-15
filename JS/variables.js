@@ -5581,16 +5581,29 @@ types={
                 {effect:[7],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[8],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Warming\nUp',rarity:1,list:8,
+            levels:[
+                {effect:[4],attack:943,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[4],attack:944,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[8],attack:944,cost:1,target:[2,1,3],spec:[0],class:1},
+            ],
         },
 
 
 
 
+
         //binary stars
-        //JA
+
+        //[2]
         //charge consume!
         //get sparks
+
+        //[6]
         //movement cards
+        
+        //[3]
         //take burns
 
 
@@ -5677,7 +5690,43 @@ types={
                 {effect:[3],attack:614,cost:1,target:[0],spec:[],class:4},
                 {effect:[4],attack:614,cost:1,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Buster',rarity:0,list:9,
+            levels:[
+                {effect:[8],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Bap',rarity:0,list:9,
+            levels:[
+                {effect:[7,1],attack:946,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1],attack:946,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,2],attack:946,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Handout',rarity:0,list:9,
+            levels:[
+                {effect:[9],attack:947,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:947,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:947,cost:0,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Crit\nCasino',rarity:0,list:9,
+            levels:[
+                {effect:[1],attack:948,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:948,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:948,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Trash',rarity:2,list:9,
+            levels:[
+                {effect:[],attack:949,cost:4,target:[0],spec:[1],class:4},
+                {effect:[],attack:949,cost:3,target:[0],spec:[1],class:4},
+                {effect:[],attack:949,cost:2,target:[0],spec:[1],class:4},
+            ],
         },
+
 
 
 
@@ -12223,7 +12272,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:9,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,shortermap:true,speedmove:true,speedcard:false,nobasicanim:false,prism:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

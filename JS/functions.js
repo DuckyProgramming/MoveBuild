@@ -220,6 +220,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage*=2
 				bonus*=2
 			}
+			if(user.status.main[154]>0){
+				damage*=3
+				bonus*=3
+			}
 			damage=round(damage*10)/10
 			bonus=round(bonus*10)/10
 			switch(type){

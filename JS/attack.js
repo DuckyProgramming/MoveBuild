@@ -41,6 +41,9 @@ class attack{
                 if(this.userCombatant.getStatus('Single Damage')>0){
                     this.clearAttack[1]=true
                 }
+                if(this.userCombatant.getStatus('Triple Damage')>0){
+                    this.clearAttack[2]=true
+                }
             break
         }
         let targetCombatant=-1
@@ -81,7 +84,7 @@ class attack{
             case 866: case 872: case 874: case 877: case 881: case 883: case 885: case 888: case 895: case 897:
             case 899: case 900: case 903: case 905: case 906: case 907: case 908: case 915: case 916: case 917:
             case 918: case 919: case 920: case 924: case 926: case 930: case 934: case 935: case 938: case 939:
-            case 940: case 942:
+            case 940: case 942: case 943: case 944: case 945: case 946: case 947:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -995,6 +998,9 @@ class attack{
                     case 940:
                         this.battle.cardManagers[this.player].hand.add(findName('Burn',types.card),0,game.playerNumber+1)
                     break
+                    case 946:
+                        this.battle.energy.main[this.player]=this.effect[1]
+                    break
 
                 }
             break
@@ -1796,6 +1802,11 @@ class attack{
                         this.battle.energy.main[this.player]+=this.effect[0]
                         this.userCombatant.charge+=this.effect[1]
                     break
+                    case 948:
+                        if(floor(random(0,2))==0){
+                            this.userCombatant.statusEffect('Triple Damage',this.effect[0])
+                        }
+                    break
 
                 }
             break
@@ -2379,6 +2390,10 @@ class attack{
                     case 932:
                         this.battle.cardManagers[this.player].allGroupEffectArgs(1,[this.effect[0]])
                     break
+                    case 949:
+                        this.battle.overlayManager.overlays[6][this.player].active=true
+                        this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
+                    break
                     
                 }
             break
@@ -2957,6 +2972,18 @@ class attack{
                     case 939:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userCombatant.charge+=this.effect[1]
+                    break
+                    case 943:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.battle.cardManagers[this.player].hand.add(findName('Spark',types.card),0,0)
+                        this.battle.cardManagers[this.player].hand.add(findName('Rising\nSweep',types.card),0,this.color)
+                        this.battle.cardManagers[this.player].hand.add(findName('Leyline',types.card),0,this.color)
+                    break
+                    case 944:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.battle.cardManagers[this.player].hand.add(findName('Spark',types.card),1,0)
+                        this.battle.cardManagers[this.player].hand.add(findName('Rising\nSweep',types.card),1,this.color)
+                        this.battle.cardManagers[this.player].hand.add(findName('Leyline',types.card),1,this.color)
                     break
                     
                 }
@@ -3564,7 +3591,8 @@ class attack{
             case 732: case 733: case 734: case 736: case 757: case 758: case 771: case 775: case 779: case 780:
             case 784: case 786: case 795: case 796: case 798: case 806: case 824: case 826: case 827: case 828:
             case 829: case 830: case 840: case 844: case 848: case 849: case 862: case 863: case 872: case 884:
-            case 895: case 897: case 900: case 916: case 917: case 930: case 934: case 940: case 942:
+            case 895: case 897: case 900: case 916: case 917: case 930: case 934: case 940: case 942: case 945:
+            case 946: case 947:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.battle.cardManagers[this.player].hand.cards.length;a<la;a++){
@@ -3576,7 +3604,7 @@ class attack{
                         break
                     }
                 }
-                if(this.type==427&&this.userCombatant.armed||this.type==806&&this.userCombatant.stance!=1){
+                if(this.type==427&&this.userCombatant.armed||this.type==806&&this.userCombatant.stance!=1||this.type==947&&this.battle.energy.main[this.player]>0){
                     this.remove=true
                 }else if(variants.nobasicanim){
                     this.selfCall(0)
@@ -3829,7 +3857,7 @@ class attack{
             case 668: case 684: case 711: case 712: case 713: case 737: case 754: case 755: case 760: case 761:
             case 763: case 777: case 778: case 788: case 799: case 807: case 820: case 821: case 822: case 836:
             case 838: case 839: case 841: case 842: case 864: case 873: case 876: case 886: case 893: case 896:
-            case 898: case 901: case 914: case 937:
+            case 898: case 901: case 914: case 937: case 948:
                 if(this.type==807&&this.userCombatant.stance!=2||this.type==820&&this.userCombatant.stance!=1||this.type==821&&this.userCombatant.stance!=3||this.type==822&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -3861,7 +3889,7 @@ class attack{
             case 774: case 781: case 782: case 789: case 790: case 791: case 797: case 818: case 819: case 832:
             case 835: case 855: case 859: case 860: case 868: case 869: case 870: case 871: case 891: case 892:
             case 904: case 909: case 910: case 911: case 912: case 913: case 921: case 922: case 926: case 928:
-            case 929: case 932:
+            case 929: case 932: case 949:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -4523,7 +4551,7 @@ class attack{
             case 630: case 631: case 667: case 669: case 685: case 686: case 687: case 688: case 695: case 696:
             case 697: case 700: case 701: case 702: case 720: case 787: case 801: case 833: case 834: case 837:
             case 843: case 846: case 850: case 857: case 865: case 877: case 878: case 881: case 883: case 899:
-            case 902: case 903: case 905: case 906: case 907: case 935: case 939:
+            case 902: case 903: case 905: case 906: case 907: case 935: case 939: case 943: case 944:
                 if(variants.nobasicanim){
                     this.selfCall(7)
                     this.remove=true
@@ -7433,10 +7461,13 @@ class attack{
             switch(this.attackClass){
                 case 1:
                     if(this.userCombatant.getStatus('Double Damage')>0&&this.clearAttack[0]){
-                        this.userCombatant.status.main[0]--
+                        this.userCombatant.status.main[findName('Double Damage',this.userCombatant.status.name)]--
                     }
                     if(this.userCombatant.getStatus('Single Damage')>0&&this.clearAttack[1]){
-                        this.userCombatant.status.main[12]=0
+                        this.userCombatant.status.main[findName('Single Damage',this.userCombatant.status.name)]=0
+                    }
+                    if(this.userCombatant.getStatus('Triple Damage')>0&&this.clearAttack[2]){
+                        this.userCombatant.status.main[findName('Triple Damage',this.userCombatant.status.name)]--
                     }
                 break
             }

@@ -13,7 +13,8 @@ class cardManager{
         this.drop=new group(this.layer,this.battle,this.player,4)
         this.exhaust=new group(this.layer,this.battle,this.player,5)
 
-        this.drawAmount=variants.lowDraw?5:6-(types.combatant[this.player].identifier=='The Gentleman'?4:0)
+        this.altDraw=this.battle.player[this.player]==game.playerNumber
+        this.drawAmount=variants.lowDraw?5:6-(this.altDraw?3:0)
         this.tempDraw=0
 
         this.initialListing()
@@ -224,7 +225,7 @@ class cardManager{
             if(this.reserve.cards.length>0){
                 this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),3,this.hand)
             }
-            if(amountLeft>0&&this.discard.cards.length>0){
+            if(amountLeft>0&&this.discard.cards.length>0&&!this.altDraw){
                 this.discard.send(this.reserve.cards,0,-1,2)
                 this.reserve.shuffle()
                 if(this.reserve.cards.length>0){
@@ -348,9 +349,13 @@ class cardManager{
         this.discard.allClaw(effect)
     }
     turnDraw(turn){
-        let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&game.ascend>=21?1:0)
+        let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&(this.altDraw||game.ascend>=21)?1:0)
         if(turn==1){
             tempDrawAmount-=this.drawInnate()
+        }
+        if(this.altDraw){
+            this.discard.send(this.reserve.cards,0,-1,2)
+            this.reserve.shuffle()
         }
         this.draw(tempDrawAmount)
         this.tempDraw=0
@@ -466,6 +471,12 @@ class cardManager{
             case 'battle':
                 this.hand.update('battle',[])
                 this.drop.update('drop',[])
+                if(this.altDraw&&this.hand.cards.length<this.drawAmount&&this.battle.turn.main==this.player){
+                    this.draw(this.drawAmount-this.hand.cards.length)
+                    if(this.hand.cards.length<this.drawAmount){
+                        this.discard.sendAttack(this.hand.cards,945,1)
+                    }
+                }
             break
         }
     }

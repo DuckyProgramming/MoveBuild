@@ -874,6 +874,20 @@ class group{
             }
         }
     }
+    sendAttack(list,attack){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].attack==attack){
+                list.push(copyCard(this.cards[a]))
+                list[list.length-1].size=0
+                list[list.length-1].position.x=1200
+                list[list.length-1].position.y=500
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
+            }
+        }
+    }
     send(list,firstIndex,lastIndex,spec,parent){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
