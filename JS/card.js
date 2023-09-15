@@ -1076,8 +1076,14 @@ class card{
             case 934: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal on an Elite,\nGain ${effect[1]} Relic${effect[1]!=1?`s`:``}`; break
             case 935: string+=`Constructs Face Target`; break
             case 936: string+=`Create ${effect[0]} Metal Tile${effect[0]!=1?`s`:``}`; break
-
-
+            case 937: string+=`Gain ${effect[0]} Energy\nGain ${effect[1]} Charge\nBoth Increase by ${effect[2]}`; break
+            case 938: string+=`Deal ${this.calculateEffect(effect[0],0)}-${this.calculateEffect(effect[1],0)} Damage\n${effect[2]} Time${effect[2]!=1?`s`:``}`; break
+            case 939: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Charge`; break
+            case 940: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Burn to Hand`; break
+            case 941: string+=`Gain ${effect[0]} Currency\nLose ${effect[1]} Strength`; break
+            case 942: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain Armor Equal to\nHalf of Target's\nHealth Lost`; break
+            
+            case 758: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain Block Equal to\nTarget's Health Lost`; break
 
 
 
@@ -1246,6 +1252,10 @@ class card{
                 this.effect[0]+=this.effect[1]
             break
             case 908:
+                this.effect[1]+=this.effect[2]
+            break
+            case 937:
+                this.effect[0]+=this.effect[2]
                 this.effect[1]+=this.effect[2]
             break
         }

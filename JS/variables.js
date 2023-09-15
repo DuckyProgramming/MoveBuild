@@ -5539,6 +5539,48 @@ types={
                 {effect:[17,1],attack:934,cost:2,target:[2,1,1],spec:[0],class:1},
                 {effect:[21,1],attack:934,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Shortwave',rarity:0,list:8,
+            levels:[
+                {effect:[1,1,1],attack:937,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,2,1],attack:937,cost:1,target:[0],spec:[],class:4},
+                {effect:[1,2,1],attack:937,cost:1,target:[0],spec:[22],class:4},
+            ],
+        },{
+            name:'Unstable',rarity:0,list:8,
+            levels:[
+                {effect:[1,4,4],attack:938,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[1,6,4],attack:938,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[1,7,4],attack:938,cost:1,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Rising\nSweep',rarity:0,list:8,
+            levels:[
+                {effect:[7,1],attack:939,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[9,2],attack:939,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[10,3],attack:939,cost:1,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Leyline',rarity:0,list:8,
+            levels:[
+                {effect:[11],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[18],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Greed',rarity:1,list:8,
+            levels:[
+                {effect:[20,4],attack:941,cost:1,target:[0],spec:[1,4],class:4},
+                {effect:[35,5],attack:941,cost:1,target:[0],spec:[1,4],class:4},
+                {effect:[45,6],attack:941,cost:1,target:[0],spec:[1,4],class:4},
+            ],
+        },{
+            name:'6A',rarity:0,list:8,
+            levels:[
+                {effect:[5],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
 
@@ -12181,7 +12223,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:9,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,shortermap:true,speedmove:true,speedcard:false,nobasicanim:false,prism:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
