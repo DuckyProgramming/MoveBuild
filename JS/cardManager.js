@@ -337,6 +337,11 @@ class cardManager{
         this.hand.allEffect(effect)
         this.discard.allEffect(effect)
     }
+    allGroupEffectArgs(effect,args){
+        this.reserve.allEffectArgs(effect,args)
+        this.hand.allEffectArgs(effect,args)
+        this.discard.allEffectArgs(effect,args)
+    }
     allGroupClaw(effect){
         this.reserve.allClaw(effect)
         this.hand.allClaw(effect)

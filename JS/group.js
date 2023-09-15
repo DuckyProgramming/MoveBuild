@@ -694,6 +694,13 @@ class group{
                         this.cards[a].effect[0]+=args[0]
                     }
                 break
+                case 1:
+                    if(this.cards[a].name=='Burn'){
+                        this.cards[a].spec.push(4)
+                        this.cards[a].attack=-28
+                        this.cards[a].effect=[args[0]]
+                    }
+                break
             }
         }
     }
@@ -826,6 +833,9 @@ class group{
             case -27:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Temporary Strength',-effect[0])
             break
+            case -28:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Strength',effect[0])
+            break
             case 288:
                 for(let a=0,la=effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Stream',types.card),0,types.card[findName('Stream',types.card)].list)
@@ -835,6 +845,9 @@ class group{
                 for(let a=0,la=effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Multi-Step',types.card),0,types.card[findName('Multi-Step',types.card)].list)
                 }
+            break
+            case 933:
+                this.battle.energy.main[this.player]+=effect[0]
             break
         }
     }

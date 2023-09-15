@@ -3963,20 +3963,6 @@ types={
                 {effect:[1],attack:612,cost:0,target:[0],spec:[1,2,22],class:4},
             ],
         },{
-            name:'Mystery\nBox',rarity:2,list:6,
-            levels:[
-                {effect:[4],attack:613,cost:1,target:[0],spec:[],class:4},
-                {effect:[6],attack:613,cost:1,target:[0],spec:[],class:4},
-                {effect:[8],attack:613,cost:1,target:[0],spec:[],class:4},
-            ],
-        },{
-            name:'Mystery\nToolbox',rarity:1,list:6,
-            levels:[
-                {effect:[2],attack:614,cost:1,target:[0],spec:[],class:4},
-                {effect:[3],attack:614,cost:1,target:[0],spec:[],class:4},
-                {effect:[4],attack:614,cost:1,target:[0],spec:[],class:4},
-            ],
-        },{
             name:'Mystery\nDropbox',rarity:1,list:6,
             levels:[
                 {effect:[2],attack:615,cost:1,target:[0],spec:[],class:4},
@@ -3998,11 +3984,11 @@ types={
                 {effect:[8,1],attack:617,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Thunder\nSlap',rarity:1,list:6,
+            name:'Thunder\nSlap',rarity:2,list:6,
             levels:[
-                {effect:[8,1,4],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
-                {effect:[11,1,6],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
-                {effect:[13,1,8],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[9,1,4],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1,6],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,1,8],attack:618,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Upscale',rarity:0,list:6,
@@ -4119,9 +4105,9 @@ types={
         },{
             name:'Death\nExplosion',rarity:1,list:6,
             levels:[
-                {effect:[],attack:295,cost:2,target:[2,1,1],spec:[],class:4},
-                {effect:[],attack:295,cost:1,target:[2,1,1],spec:[],class:4},
-                {effect:[],attack:295,cost:1,target:[2,1,1],spec:[22],class:4},
+                {effect:[],attack:295,cost:2,target:[2,1,6],spec:[],class:4},
+                {effect:[],attack:295,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[],attack:295,cost:1,target:[2,1,6],spec:[22],class:4},
             ],
         },{
             name:'Skim',rarity:0,list:6,
@@ -4375,7 +4361,23 @@ types={
                 {effect:[4],attack:927,cost:0,target:[0],spec:[],class:4},
                 {effect:[5],attack:927,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Remote\nControl',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:935,cost:0,target:[5],spec:[],class:4},
+                {effect:[],attack:935,cost:0,target:[5],spec:[2],class:4},
+                {effect:[],attack:935,cost:0,target:[5],spec:[2,22],class:4},
+            ],
+        },{
+            name:'Mining',rarity:1,list:6,
+            levels:[
+                {effect:[2],attack:936,cost:1,target:[0],spec:[1],class:4},
+                {effect:[3],attack:936,cost:1,target:[0],spec:[1],class:4},
+                {effect:[4],attack:936,cost:1,target:[0],spec:[1],class:4},
+            ],
         },
+
+        //add 2
 
 
 
@@ -5055,9 +5057,9 @@ types={
         },{
             name:'Phase\nDash',rarity:2,list:7,
             levels:[
-                {effect:[],attack:823,cost:0,target:[44,1,6],spec:[1],class:3},
-                {effect:[],attack:823,cost:0,target:[44,1,6],spec:[1],class:3},
-                {effect:[],attack:823,cost:0,target:[44,1,6],spec:[1],class:3},
+                {effect:[6],attack:823,cost:1,target:[44,1,6],spec:[1],class:3},
+                {effect:[6],attack:823,cost:1,target:[44,1,6],spec:[1],class:3},
+                {effect:[6],attack:823,cost:1,target:[44,1,6],spec:[1],class:3},
             ],
         },{
             name:'Rushed\nStrike',rarity:0,list:7,
@@ -5516,17 +5518,38 @@ types={
                 {effect:[],attack:912,cost:1,target:[0],spec:[],class:4},
                 {effect:[],attack:912,cost:1,target:[0],spec:[22],class:4},
             ],
+        },{
+            name:'Supernova',rarity:2,list:8,
+            levels:[
+                {effect:[1],attack:932,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:932,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:932,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Perseids',rarity:2,list:8,
+            levels:[
+                {effect:[1,24],attack:933,cost:0,target:[0],spec:[5],class:4},
+                {effect:[1,40],attack:933,cost:0,target:[0],spec:[5],class:4},
+                {effect:[1,52],attack:933,cost:0,target:[0],spec:[5],class:4},
+            ],
+        },{
+            name:'Treasure\nHunt',rarity:2,list:8,
+            levels:[
+                {effect:[12,1],attack:934,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[17,1],attack:934,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[21,1],attack:934,cost:2,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
 
 
 
-        //magic missile
         //binary stars
         //JA
         //charge consume!
         //get sparks
         //movement cards
+        //take burns
 
 
 
@@ -5585,11 +5608,32 @@ types={
                 {effect:[4],attack:897,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Bore',rarity:0,list:9,
+            name:'Strefend',rarity:0,list:9,
             levels:[
-                {effect:[1],attack:926,cost:1,target:[2,1,2],spec:[],class:1},
-                {effect:[1],attack:926,cost:1,target:[2,1,2],spec:[22],class:1},
-                {effect:[1],attack:926,cost:0,target:[2,1,2],spec:[22],class:1},
+                {effect:[12,16],attack:930,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[18,24],attack:930,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[22,30],attack:930,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Inconsistent\nStep',rarity:0,list:9,
+            levels:[
+                {effect:[1],attack:931,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:931,cost:0,target:[1,1,1],spec:[],class:3},
+                {effect:[1],attack:931,cost:0,target:[1,1,1],spec:[2],class:3},
+            ],
+        },{
+            name:'Mystery\nBox',rarity:1,list:9,
+            levels:[
+                {effect:[4],attack:613,cost:1,target:[0],spec:[],class:4},
+                {effect:[6],attack:613,cost:1,target:[0],spec:[],class:4},
+                {effect:[8],attack:613,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Mystery\nToolbox',rarity:1,list:9,
+            levels:[
+                {effect:[2],attack:614,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:614,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:614,cost:1,target:[0],spec:[],class:4},
             ],
         },
 
@@ -5600,7 +5644,7 @@ types={
 
         //the gentleman
         //gambler's fallacy: when you fail luck roll, try again
-        //either 2 strikes or 2 defends
+        //attack a man but chance of swap with him instead
 
 
 
@@ -6787,6 +6831,13 @@ types={
                 {effect:[7],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[10],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12],attack:157,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Bore',rarity:-1,list:-1,
+            levels:[
+                {effect:[1],attack:926,cost:1,target:[2,1,2],spec:[],class:1},
+                {effect:[1],attack:926,cost:1,target:[2,1,2],spec:[22],class:1},
+                {effect:[1],attack:926,cost:0,target:[2,1,2],spec:[22],class:1},
             ],
         },
 
@@ -12130,8 +12181,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:9,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:false,shortmap:false,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,shortermap:true,speedmove:true,speedcard:false,nobasicanim:false,prism:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

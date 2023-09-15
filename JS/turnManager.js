@@ -125,6 +125,15 @@ class turnManager{
                     this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
             }
         }
+        this.battle.updateTargetting()
+    }
+    aimInConstructs(target){
+        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+            if(this.battle.combatantManager.combatants[a].team>0&&this.battle.combatantManager.combatants[a].construct){
+                this.battle.combatantManager.combatants[a].goal.anim.direction=round(atan2(target.relativePosition.x-this.battle.combatantManager.combatants[a].relativePosition.x,target.relativePosition.y-this.battle.combatantManager.combatants[a].relativePosition.y)/60-1/2)*60+30
+            }
+        }
+        this.battle.updateTargetting()
     }
     unMoveTurn(id){
         for(let a=0,la=this.turns.length;a<la;a++){

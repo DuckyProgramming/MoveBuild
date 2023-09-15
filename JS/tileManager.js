@@ -108,6 +108,9 @@ class tileManager{
             }
         }
     }
+    randomType(type){
+        this.tiles[floor(random(0,this.tiles.length))].addType(type)
+    }
     typeArea(type,tilePosition){
         for(let a=0,la=this.tiles.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.tiles[a])

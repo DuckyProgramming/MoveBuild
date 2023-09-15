@@ -182,6 +182,13 @@ class tile{
                         this.battle.combatantManager.combatants[this.combatant].takeDamage(5,-1,0)
                     }
                 break
+                case 21:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                        this.battle.combatantManager.combatants[this.combatant].metal+=3
+                        this.anim.upPart[a]=false
+                    }
+                break
             }
         }
     }
@@ -426,6 +433,15 @@ class tile{
                             this.layer.triangle(-1.5+10-lc*10+c*20,3/2-lb*3/2+b*3,1.5+10-lc*10+c*20,3/2-lb*3/2+b*3,10-lc*10+c*20,-3+3/2-lb*3/2+b*3)
                         }
                     }
+                break
+                case 21:
+                    this.layer.fill(140,this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,30)
+                    this.layer.fill(255,205,105,this.fade*this.anim.part[a])
+                    this.layer.ellipse(-7,-5,6.5)
+                    this.layer.ellipse(8,-4,7.5)
+                    this.layer.ellipse(-4,8,7)
+                    this.layer.ellipse(6,6,6)
                 break
             }
         }

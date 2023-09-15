@@ -145,6 +145,7 @@ class card{
             case -25: string+=`When Drawn,\nAll Cards in Hand\nWill Exhaust`; break
             case -26: string+=`When Drawn,\nHalve Card Effects`; break
             case -27: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength`; break
+            case -28: string+=`When Drawn,\nGain ${effect[0]} Strength`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -1068,6 +1069,14 @@ class card{
             case 927: string+=`Add ${effect[0]} Scrap Metal${effect[0]!=1?`s`:``}\nto Your Hand`; break
             case 928: string+=`Next ${effect[0]} Hit${effect[0]!=1?`s`:``} Taken\nHeal${effect[0]!=1?``:`s`} You Instead`; break
             case 929: string+=`Retain ${effect[0]} Card${effect[0]!=1?`s`:``}\nUntil ${effect[0]!=1?`They Are`:`it is`} Played`; break
+            case 930: string+=`Randomly\nDeal ${this.calculateEffect(effect[0],0)} Damage\nor\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 931: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n50%: Move 1 Extra Tile`; break
+            case 932: string+=`Existing Burns Are Ethereal\nand Give ${effect[0]} Strength`; break
+            case 933: string+=`When Drawn,\nGain ${effect[0]} Energy\nWhen Exhausted,\nDeal ${effect[1]} Damage\nto a Random Eenmy`; break
+            case 934: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal on an Elite,\nGain ${effect[1]} Relic${effect[1]!=1?`s`:``}`; break
+            case 935: string+=`Constructs Face Target`; break
+            case 936: string+=`Create ${effect[0]} Metal Tile${effect[0]!=1?`s`:``}`; break
+
 
 
 
@@ -1190,6 +1199,9 @@ class card{
             break
             case 892:
                 this.battle.cardManagers[this.player].exhaust.send(this.battle.cardManagers[this.player].hand.cards,0,-1,1)
+            break
+            case 933:
+                this.battle.combatantManager.randomEnemyEffect(0,[this.effect[1]])
             break
         }
     }
