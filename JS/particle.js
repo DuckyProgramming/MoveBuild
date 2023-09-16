@@ -48,7 +48,8 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 6: case 11: case 14: case 16: case 18: case 19: case 20: case 21: case 39:
+            case 6: case 11: case 14: case 16: case 18: case 19: case 20: case 21: case 39: case 42:
+            case 43: case 44:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=15
@@ -486,6 +487,36 @@ class particle{
                     this.layer.textSize(20)
                     this.layer.text('-'+this.value,0,0)
                 break
+                case 42:
+                    this.layer.fill(255,100,0,this.fade)
+                    this.layer.ellipse(0,0,12)
+                    this.layer.fill(255,100,0,this.fade*0.5)
+                    this.layer.beginShape()
+                    for(let a=0,la=24;a<la;a++){
+                        this.layer.vertex(sin(a/la*360)*(6+a%2*12),cos(a/la*360)*(6+a%2*12))
+                    }
+                    this.layer.endShape()
+                break
+                case 43:
+                    this.layer.fill(0,100,255,this.fade)
+                    this.layer.ellipse(0,0,12)
+                    this.layer.fill(0,100,255,this.fade*0.5)
+                    this.layer.beginShape()
+                    for(let a=0,la=24;a<la;a++){
+                        this.layer.vertex(sin(a/la*360)*(6+a%2*12),cos(a/la*360)*(6+a%2*12))
+                    }
+                    this.layer.endShape()
+                break
+                case 44:
+                    this.layer.fill(50,255,50,this.fade)
+                    this.layer.ellipse(0,0,12)
+                    this.layer.fill(50,255,50,this.fade*0.5)
+                    this.layer.beginShape()
+                    for(let a=0,la=24;a<la;a++){
+                        this.layer.vertex(sin(a/la*360)*(6+a%2*12),cos(a/la*360)*(6+a%2*12))
+                    }
+                    this.layer.endShape()
+                break
 
             }
             this.layer.pop()
@@ -510,7 +541,7 @@ class particle{
                 }
             break
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
-            case 19: case 20: case 21: case 32: case 35: case 39:
+            case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){

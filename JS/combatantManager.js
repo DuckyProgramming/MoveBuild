@@ -176,6 +176,13 @@ class combatantManager{
                     this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].target(0,numeralizeDirection(0,directionCombatant(this.combatants[a],this.combatants[this.battle.attackManager.user])))
                 }
             }
+            if(this.battle.attackManager.targetInfo[0]==45&&this.combatants[a].life>0){
+                if(this.combatants[a].tilePosition.x==this.battle.attackManager.tilePosition.x&&this.combatants[a].tilePosition.y==this.battle.attackManager.tilePosition.y){
+                    this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].indescriptTarget(0,numeralizeDirection(0))
+                }else{
+                    this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].target(0,numeralizeDirection(0,directionCombatant(this.combatants[a],this.combatants[this.battle.attackManager.user])))
+                }
+            }
         }
     }
     deTargetCombatants(){

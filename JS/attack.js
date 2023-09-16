@@ -84,7 +84,8 @@ class attack{
             case 866: case 872: case 874: case 877: case 881: case 883: case 885: case 888: case 895: case 897:
             case 899: case 900: case 903: case 905: case 906: case 907: case 908: case 915: case 916: case 917:
             case 918: case 919: case 920: case 924: case 926: case 930: case 934: case 935: case 938: case 939:
-            case 940: case 942: case 943: case 944: case 945: case 946: case 947: case 950:
+            case 940: case 942: case 943: case 944: case 945: case 946: case 947: case 950: case 956: case 957:
+            case 958: case 959:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -2566,6 +2567,23 @@ class attack{
                         this.battle.cardManagers[this.player].hand.add(findName('White\nDwarf',types.card),2,0)
                         this.battle.cardManagers[this.player].hand.add(findName('Black\nDwarf',types.card),2,0)
                     break
+                    case 960:
+                        this.battle.cardManagers[this.player].hand.add(findName('Fire\nBall',types.card),0,this.color)
+                        this.battle.cardManagers[this.player].hand.add(findName('Water\nBall',types.card),0,this.color)
+                        this.battle.cardManagers[this.player].hand.add(findName('Grass\nBall',types.card),0,this.color)
+                    break
+                    case 961:
+                        this.number=floor(random(0,3))
+                        this.battle.cardManagers[this.player].hand.add(findName('Fire\nBall',types.card),this.number==0?1:0,this.color)
+                        this.battle.cardManagers[this.player].hand.add(findName('Water\nBall',types.card),this.number==1?1:0,this.color)
+                        this.battle.cardManagers[this.player].hand.add(findName('Grass\nBall',types.card),this.number==2?1:0,this.color)
+                    break
+                    case 962:
+                        this.number=floor(random(0,3))
+                        this.battle.cardManagers[this.player].hand.add(findName('Fire\nBall',types.card),this.number==0?0:1,this.color)
+                        this.battle.cardManagers[this.player].hand.add(findName('Water\nBall',types.card),this.number==1?0:1,this.color)
+                        this.battle.cardManagers[this.player].hand.add(findName('Grass\nBall',types.card),this.number==2?0:1,this.color)
+                    break
                 }
             break
             case 6:
@@ -3286,7 +3304,7 @@ class attack{
                             this.userCombatant.holdOrb(0)
                         }
                     break
-                    case 491:
+                    case 491: case 956:
                         this.userCombatant.evoke(0,this.targetCombatant.id,[this.effect[0]])
                     break
                     case 492:
@@ -3965,7 +3983,7 @@ class attack{
             case -13: case -21: case 10: case 64: case 72: case 73: case 74: case 164: case 166: case 167:
             case 168: case 169: case 170: case 171: case 180: case 195: case 202: case 224: case 283: case 349:
             case 360: case 369: case 380: case 391: case 442: case 456: case 470: case 608: case 641: case 642:
-            case 643: case 659: case 924: case 952: case 953: case 954:
+            case 643: case 659: case 924: case 952: case 953: case 954: case 960: case 961: case 962:
                 if(variants.nobasicanim){
                     this.selfCall(5)
                     this.remove=true
@@ -6550,7 +6568,7 @@ class attack{
             case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 556: case 560: case 561:
             case 562: case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579:
             case 583: case 584: case 600: case 671: case 672: case 673: case 767: case 785: case 847: case 851:
-            case 854: case 856: case 879: case 894:
+            case 854: case 856: case 879: case 894: case 956:
                 if(variants.nobasicanim){
                     this.selfCall(12)
                     this.remove=true
@@ -7473,6 +7491,66 @@ class attack{
                 if(this.timer%5==0&&this.timer>=15&&this.timer<=10+this.effect[2]*5){
                     this.targetCombatant.takeDamage(floor(random(this.effect[0],this.effect[1]+1)),this.user)
                 }else if(this.timer>=25+this.effect[2]*5){
+                    this.remove=true
+                }
+            break
+            case 957:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(7)
+                }
+                if(this.timer<=10||this.timer>20&&this.timer<=30){
+                    this.userCombatant.runAnimation(1/10,7)
+                }
+                if(this.timer==15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                        this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                        this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    42,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                }else if(this.timer==5*this.targetDistance+15){
+                    this.targetCombatant.takeDamage((this.userCombatant.charge>=3?2:1)*this.effect[0],this.user)
+                }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                    this.remove=true
+                }
+            break
+            case 958:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(7)
+                }
+                if(this.timer<=10||this.timer>20&&this.timer<=30){
+                    this.userCombatant.runAnimation(1/10,7)
+                }
+                if(this.timer==15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                        this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                        this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    43,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                }else if(this.timer==5*this.targetDistance+15){
+                    this.targetCombatant.takeDamage((this.userCombatant.charge<3?2:1)*this.effect[0],this.user)
+                }else if(this.timer>=max(30,5*this.targetDistance+25)){
+                    this.remove=true
+                }
+            break
+            case 959:
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(7)
+                }
+                if(this.timer<=10||this.timer>20&&this.timer<=30){
+                    this.userCombatant.runAnimation(1/10,7)
+                }
+                if(this.timer==15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                        this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                        this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    44,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),2.5*this.targetDistance-1]))
+                }else if(this.timer==5*this.targetDistance+15){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    if(this.userCombatant.charge>=3){
+                        this.userCombatant.charge-=3
+                        this.userCombatant.chargeConsumed()
+                    }else if(this.userCombatant.charge<3){
+                        this.userCombatant.charge+=3
+                    }
+                }else if(this.timer>=max(30,5*this.targetDistance+25)){
                     this.remove=true
                 }
             break
