@@ -5679,19 +5679,57 @@ types={
                 {effect:[20,2],attack:968,cost:1,target:[0],spec:[],class:2},
                 {effect:[25,2],attack:968,cost:1,target:[0],spec:[],class:2},
             ],
+        },{
+            name:'Sparkball',rarity:0,list:8,
+            levels:[
+                {effect:[2],attack:969,cost:1,target:[0],spec:[0],class:4},
+                {effect:[3],attack:969,cost:1,target:[0],spec:[0],class:4},
+                {effect:[4],attack:969,cost:1,target:[0],spec:[0],class:4},
+            ],
+        },{
+            name:'Firecracker',rarity:1,list:8,
+            levels:[
+                {effect:[1,1],attack:970,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,1],attack:970,cost:1,target:[0],spec:[],class:4},
+                {effect:[2,2],attack:970,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Spark\nSphere',rarity:0,list:8,
+            levels:[
+                {effect:[6,1],attack:971,cost:2,target:[0],spec:[0],class:1},
+                {effect:[10,1],attack:971,cost:2,target:[0],spec:[0],class:1},
+                {effect:[13,1],attack:971,cost:2,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Vitiate',rarity:1,list:8,
+            levels:[
+                {effect:[8],attack:972,cost:1,target:[2,1,1],spec:[0,1,27],class:1},
+                {effect:[12],attack:972,cost:1,target:[2,1,1],spec:[0,1,27],class:1},
+                {effect:[15],attack:972,cost:1,target:[2,1,1],spec:[0,1,27],class:1},
+            ],
+        },{
+            name:'Forceful\nStep',rarity:0,list:8,
+            levels:[
+                {effect:[1,4],attack:973,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,8],attack:973,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,8],attack:973,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Spam\nPush',rarity:1,list:8,
+            levels:[
+                {effect:[],attack:974,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[],attack:974,cost:0,target:[2,1,1],spec:[1,2],class:1},
+                {effect:[],attack:974,cost:0,target:[2,1,1],spec:[1,2,22],class:1},
+            ],
         },
 
 
 
 
-
-        //[2]
-        //get sparks
-
-        //[4]
+        //[5]
         //movement cards
         
-        //[1]
+        //[2]
         //take burns
 
 
@@ -5859,6 +5897,9 @@ types={
                 {effect:[9],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },
+
+        //strength push: push a person, or another
+        //work out: push and gain strength
         
         
 

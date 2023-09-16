@@ -988,7 +988,7 @@ class card{
             case 846: string+=`Exhaust the Top ${effect[0]}\nCard${effect[0]!=1?`s`:``} of Your Draw Pile\nDeal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Attacks Exhausted`; break
             case 847: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove ${effect[1]} Strength\nto a Random Enemy\nAmplify:\nRepeat`; break
             case 848: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Spark to Hand`; break
-            case 849: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Spark+ to Hand`; break
+            case 849: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Upgraded\nSpark to Hand`; break
             case 850: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],4)}X\nDamage\nWhere X = Number\nof Cards in\nExhaust Pile`; break
             case 851: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAmplify:\nReturn ${effect[1]} Random Card${effect[1]!=1?`s`:``}\nto Your Hand\nFrom Discard Pile`; break
             case 852: string+=`Gain ${effect[0]} Charge\nPer Turn`; break
@@ -1108,7 +1108,13 @@ class card{
             case 966: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\n${effect[1]} Charge`; break
             case 967: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRemove ${effect[1]} Burn${effect[1]!=1?`s`:``}`; break
             case 968: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Burn${effect[1]!=1?`s`:``} to Hand`; break
+            case 969: string+=`Add ${effect[0]} Spark${effect[0]!=1?`s`:``}\nto Your Hand`; break
+            case 970: string+=`Exhaust ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Spark${effect[1]!=1?`s`:``}\nto Your Hand`; break
+            case 971: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd a Spark to Hand\nFor Each Enemy Hit`; break
+            case 972: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify: Heal Equal\nto Target's\nHealth Lost`; break
 
+            case 973: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Enemy is Ahead,\nDeal ${this.calculateEffect(effect[1],0)} Damage`; break
+            case 974: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nIf Target Unmoved,\nPush Again`; break
 
 
 
