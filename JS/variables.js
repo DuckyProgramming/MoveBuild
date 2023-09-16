@@ -5143,9 +5143,9 @@ types={
         },{
             name:'Charge\nSpray',rarity:0,list:8,
             levels:[
-                {effect:[8,3,1,2],attack:840,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[11,3,1,3],attack:840,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[13,3,1,4],attack:840,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,4,1,1],attack:840,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,4,1,2],attack:840,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[13,4,1,3],attack:840,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Charge\nUp',rarity:0,list:8,
@@ -5637,22 +5637,61 @@ types={
                 {effect:[],attack:961,cost:0,target:[0],spec:[],class:4},
                 {effect:[],attack:962,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Ampstep',rarity:0,list:8,
+            levels:[
+                {effect:[1,1],attack:963,cost:0,target:[1,1,1],spec:[27,0],class:3},
+                {effect:[1,2],attack:963,cost:0,target:[1,1,1],spec:[27,0],class:3},
+                {effect:[1,2],attack:963,cost:0,target:[1,1,1],spec:[27],class:3},
+            ],
+        },{
+            name:'Power\nLeak',rarity:0,list:8,
+            levels:[
+                {effect:[10],attack:964,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[14],attack:964,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[17],attack:964,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Charge\nFlare',rarity:0,list:8,
+            levels:[
+                {effect:[12,6],attack:965,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[17,6],attack:965,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[18,5],attack:965,cost:2,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Sap\nEssence',rarity:0,list:8,
+            levels:[
+                {effect:[7,3],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,3],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,5],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Burn\nCare',rarity:0,list:8,
+            levels:[
+                {effect:[10,1],attack:967,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,1],attack:967,cost:1,target:[0],spec:[],class:2},
+                {effect:[18,2],attack:967,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Firewall',rarity:1,list:8,
+            levels:[
+                {effect:[14,1],attack:968,cost:1,target:[0],spec:[],class:2},
+                {effect:[20,2],attack:968,cost:1,target:[0],spec:[],class:2},
+                {effect:[25,2],attack:968,cost:1,target:[0],spec:[],class:2},
+            ],
         },
 
 
 
 
 
-        //[1]
-        //charge consume!
-
         //[2]
         //get sparks
 
-        //[5]
+        //[4]
         //movement cards
         
-        //[2]
+        //[1]
         //take burns
 
 
