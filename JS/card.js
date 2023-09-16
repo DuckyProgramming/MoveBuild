@@ -1089,6 +1089,18 @@ class card{
             case 947: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf No Energy`; break
             case 948: string+=`50%: Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} Triple Damage`; break
             case 949: string+=`Remove a Card\nPermanently`; break
+            case 950: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)\nAdd ${effect[1]} Burn${effect[1]!=1?`s`:``} to Hand`; break
+            case 951: string+=`Discard Any\nNumber of Cards\nAdd ${this.calculateEffect(effect[0],3)} Block Each`; break
+            case 952: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf`; break
+            case 953: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf\nUpgrade Them`; break
+            case 954: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf\nUpgrade Them Twice`; break
+            case 955: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Charge`; break
+
+
+
+
+
+
 
 
 
@@ -1596,6 +1608,11 @@ class card{
             }
             if(anim[9]>0){
                 this.layer.stroke(255,125,0,this.fade*anim[9])
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
+            }
+            if(anim[10]>0){
+                this.layer.stroke(255,0,50,this.fade*anim[10])
                 this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                 stack++
             }
