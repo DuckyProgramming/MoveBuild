@@ -443,6 +443,15 @@ class group{
         }
         return total
     }
+    cardNumber(name){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].name==name){
+                total++
+            }
+        }
+        return total
+    }
     allClass(cardClass){
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].class!=cardClass){
@@ -1155,6 +1164,9 @@ class group{
             }
             if(userCombatant.getStatus('No Amplify')<=0){
                 if(userCombatant.getStatus('Free Amplify')>0){
+                    this.battle.attackManager.amplify=true
+                }else if(userCombatant.getStatus('Single Free Amplify')>0){
+                    userCombatant.status.main[findName('Single Free Amplify',userCombatant.status.name)]--
                     this.battle.attackManager.amplify=true
                 }else if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
                     this.battle.energy.main[this.player]--

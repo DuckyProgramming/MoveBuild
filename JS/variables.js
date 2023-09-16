@@ -5675,9 +5675,9 @@ types={
         },{
             name:'Firewall',rarity:1,list:8,
             levels:[
-                {effect:[14,1],attack:968,cost:1,target:[0],spec:[],class:2},
-                {effect:[20,2],attack:968,cost:1,target:[0],spec:[],class:2},
-                {effect:[25,2],attack:968,cost:1,target:[0],spec:[],class:2},
+                {effect:[14,1],attack:968,cost:-1,target:[0],spec:[],class:2},
+                {effect:[20,2],attack:968,cost:-1,target:[0],spec:[],class:2},
+                {effect:[25,2],attack:968,cost:-1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Sparkball',rarity:0,list:8,
@@ -5721,16 +5721,74 @@ types={
                 {effect:[],attack:974,cost:0,target:[2,1,1],spec:[1,2],class:1},
                 {effect:[],attack:974,cost:0,target:[2,1,1],spec:[1,2,22],class:1},
             ],
+        },{
+            name:'Limited\nStep',rarity:0,list:8,
+            levels:[
+                {effect:[1,1],attack:975,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:975,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:975,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Burning\nTeleport',rarity:1,list:8,
+            levels:[
+                {effect:[2],attack:976,cost:1,target:[6],spec:[1],class:3},
+                {effect:[2],attack:976,cost:0,target:[6],spec:[1],class:3},
+                {effect:[1],attack:976,cost:0,target:[6],spec:[1],class:3},
+            ],
+        },{
+            name:'Lateral\nCharge',rarity:1,list:8,
+            levels:[
+                {effect:[1,2],attack:977,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,2],attack:977,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,3],attack:977,cost:0,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Magnifying\nStep',rarity:0,list:8,
+            levels:[
+                {effect:[1],attack:978,cost:1,target:[1,1,1],spec:[0,1],class:3},
+                {effect:[1],attack:978,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:978,cost:0,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Teleburst',rarity:2,list:8,
+            levels:[
+                {effect:[8],attack:979,cost:3,target:[6],spec:[1],class:3},
+                {effect:[8],attack:979,cost:2,target:[6],spec:[1],class:3},
+                {effect:[12],attack:979,cost:2,target:[6],spec:[1],class:3},
+            ],
+        },{
+            name:'Internal\nFire',rarity:0,list:8,
+            levels:[
+                {effect:[4],attack:980,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[6],attack:980,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[7],attack:980,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Firestorm',rarity:2,list:8,
+            levels:[
+                {effect:[18,3],attack:981,cost:3,target:[0],spec:[0],class:1},
+                {effect:[24,3],attack:981,cost:3,target:[0],spec:[0],class:1},
+                {effect:[24,3],attack:981,cost:2,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Long Distance\nGift',rarity:1,list:8,
+            levels:[
+                {effect:[],attack:982,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:983,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:983,cost:0,target:[0],spec:[1,22],class:4},
+            ],
+        },{
+            name:'Pentacolor\nTalisman',rarity:2,list:8,
+            levels:[
+                {effect:[],attack:984,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:985,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:985,cost:0,target:[0],spec:[1,22],class:4},
+            ],
         },
 
 
 
-
-        //[5]
-        //movement cards
         
-        //[2]
-        //take burns
 
 
 
@@ -12423,7 +12481,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,shortermap:true,speedmove:true,speedcard:false,nobasicanim:false,prism:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

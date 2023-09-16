@@ -1107,15 +1107,24 @@ class card{
             case 965: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Possible:\nSpend ${effect[1]} Charge\nDeals Triple Damage`; break
             case 966: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Gain\n${effect[1]} Charge`; break
             case 967: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRemove ${effect[1]} Burn${effect[1]!=1?`s`:``}`; break
-            case 968: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Burn${effect[1]!=1?`s`:``} to Hand`; break
+            case 968: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nAdd ${effect[1]} Burn${effect[1]!=1?`s`:``} to Hand`; break
             case 969: string+=`Add ${effect[0]} Spark${effect[0]!=1?`s`:``}\nto Your Hand`; break
             case 970: string+=`Exhaust ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Spark${effect[1]!=1?`s`:``}\nto Your Hand`; break
             case 971: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd a Spark to Hand\nFor Each Enemy Hit`; break
             case 972: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify: Heal Equal\nto Target's\nHealth Lost`; break
-
             case 973: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Enemy is Ahead,\nDeal ${this.calculateEffect(effect[1],0)} Damage`; break
             case 974: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nIf Target Unmoved,\nPush Again`; break
-
+            case 975: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Control`; break
+            case 976: string+=`Move to Any\nEmpty Tile\nAdd ${effect[0]} Burn${effect[0]!=1?`s`:``} to Hand`; break
+            case 977: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Charge\nNext Turn`; break
+            case 978: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nNext Amplify is Free`; break
+            case 979: string+=`Move to Any\nEmpty Tile\nDeal ${this.calculateEffect(effect[0],0)} Splash Damage`; break
+            case 980: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number\nof Burns`; break
+            case 981: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd ${effect[1]} Burn${effect[1]!=1?`s`:``} to Hand`; break
+            case 982: string+=`Exhaust a Random Card\nChoose a Replacement`; break
+            case 983: string+=`Exhaust a Random Card\nChoose a Replacement\nUpgrade Said Replacement`; break
+            case 984: string+=`Add a Random\nDefense to Hand\nEvery Turn`; break
+            case 985: string+=`Add a Random\nUpgraded Defense to\nHand Every Turn`; break
 
 
 

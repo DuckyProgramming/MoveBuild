@@ -116,17 +116,6 @@ class cardManager{
             this.getList(group).addFreeSpec(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant,spec)
         }
     }
-    addRandomClassListless(group,level,cardClass){
-        let list=[]
-        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
-            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
-                list.push(this.listing.allPlayerCard[3][a])
-            }
-        }
-        if(list.length>0){
-            this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
-        }
-    }
     addRandomClassReturn(group,level,cardClass){
         let list=[]
         for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){
@@ -438,6 +427,9 @@ class cardManager{
     }
     fatigueNumber(){
         return this.reserve.fatigueNumber()+this.hand.fatigueNumber()+this.discard.fatigueNumber()
+    }
+    cardNumber(name){
+        return this.reserve.cardNumber(name)+this.hand.cardNumber(name)+this.discard.cardNumber(name)
     }
     transformCard(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][floor(random(0,this.listing.card[base.list][3].length))],base.level,base.color,base.id)

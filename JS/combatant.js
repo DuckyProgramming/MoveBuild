@@ -80,7 +80,7 @@ class combatant{
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
-            'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage',
+            'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -98,7 +98,7 @@ class combatant{
                 2,1,0,0,2,0,0,0,2,0,//13
                 1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,1,2,2,2,1,//15
-                0,0,0,0,0,
+                0,0,0,0,0,2,0,0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -116,7 +116,7 @@ class combatant{
                 2,0,0,1,0,2,2,2,1,2,
                 2,2,2,2,1,2,2,0,0,0,
                 2,2,2,3,2,2,0,0,3,3,
-                2,2,2,0,0,
+                2,2,2,0,0,2,2,2,3,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4656,6 +4656,9 @@ class combatant{
                     case 142: this.charge+=this.status.main[a]; break
                     case 143: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)} break
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
+                    case 155: this.status.main[findList('Charge Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 157: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,0,2)} break
+                    case 158: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,1,2)} break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){

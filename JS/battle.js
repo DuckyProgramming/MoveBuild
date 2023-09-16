@@ -1076,8 +1076,12 @@ class battle{
                                     {type:0,value:[floor(random(120,201))]}]])
                             break
                             case 2:
-                                this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[]:[
-                                    {type:0,value:[floor(random(240,401))]}]])
+                                this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[
+                                    {type:1,value:[0,2,0]},
+                                ]:[
+                                    {type:1,value:[0,2,0]},
+                                    {type:0,value:[floor(random(240,401))]}
+                                ]])
                             break
                         }
                         if(this.encounter.class!=2){
