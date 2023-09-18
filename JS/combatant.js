@@ -80,7 +80,8 @@ class combatant{
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
-            'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn',
+            'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
+            '1.5x Block',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -98,7 +99,8 @@ class combatant{
                 2,1,0,0,2,0,0,0,2,0,//13
                 1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,1,2,2,2,1,//15
-                0,0,0,0,0,2,0,0,0,
+                0,0,0,0,0,2,0,0,0,0,//16
+                0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -116,7 +118,8 @@ class combatant{
                 2,0,0,1,0,2,2,2,1,2,
                 2,2,2,2,1,2,2,0,0,0,
                 2,2,2,3,2,2,0,0,3,3,
-                2,2,2,0,0,2,2,2,3,
+                2,2,2,0,0,2,2,2,3,0,
+                0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3757,6 +3760,9 @@ class combatant{
                 if(userCombatant.status.main[154]>0){
                     damage*=3
                 }
+                if(userCombatant.status.main[159]>0){
+                    damage*=1.5
+                }
                 if(this.status.main[3]>0){
                     this.status.main[3]--
                     hit=false
@@ -4134,6 +4140,10 @@ class combatant{
             if(this.status.main[138]>0){
                 block*=3
                 this.status.main[138]--
+            }
+            if(this.status.main[160]>0){
+                block*=1.5
+                this.status.main[160]--
             }
             block=round(block*10)/10
             if(this.status.main[70]>0){

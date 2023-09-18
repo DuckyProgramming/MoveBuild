@@ -224,6 +224,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage*=3
 				bonus*=3
 			}
+			if(user.status.main[159]>0){
+				damage*=1.5
+				bonus*=1.5
+			}
 			damage=round(damage*10)/10
 			bonus=round(bonus*10)/10
 			switch(type){
@@ -259,6 +263,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			}
 			if(user.status.main[138]>0){
 				block*=3
+			}
+			if(user.status.main[160]>0){
+				block*=1.5
 			}
 			block=round(block*10)/10
 			switch(type){

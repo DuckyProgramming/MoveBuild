@@ -1128,18 +1128,16 @@ class card{
             case 986: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nCan Push 2 Targets`; break
             case 987: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nGain ${effect[1]} Strength`; break
             case 988: string+=`Move to a Random\nEmpty Tile`; break
-
             case 989: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas an Attack\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 990: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Defense\nGain ${effect[1]} Energy`; break
             case 991: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Defense\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 992: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas an Attack\nGain ${effect[1]} Energy`; break
             case 993: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas an Attack\nApply ${effect[1]} Weak`; break
             case 994: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Defense\nApply ${effect[1]} Vulnerable`; break
-
             case 995: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas an Attack\nGain ${effect[1]} Strength`; break
             case 996: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Defense\nGain ${effect[1]} Dexterity`; break
-            case 997: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas an Attack\nNext ${effect[1]} Attack${effect[1]!=1?`s`:``}\nDeals Double Damage`; break
-            case 998: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas a Defense\nGain ${effect[1]} Conditioning`; break
+            case 997: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas an Attack\nNext ${effect[1]} Damage Deal${effect[1]!=1?`s`:``}\nDo 50% More`; break
+            case 998: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas a Defense\nNext ${effect[1]} Block Add${effect[1]!=1?`s`:``}\nDo 50% More`; break
             case 999: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas a Movement\nGain ${effect[1]} Energy`; break
             case 1000: string+=`Kill All Enemies`; break
 

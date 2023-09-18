@@ -5926,9 +5926,7 @@ types={
                 {effect:[0,2],attack:987,cost:0,target:[2,1,1],spec:[0],class:1},
                 {effect:[0,2],attack:987,cost:0,target:[2,1,1],spec:[],class:1},
             ],
-        },
-
-        {
+        },{
             name:'Sanctity',rarity:0,list:9,
             levels:[
                 {effect:[9,2],attack:989,cost:1,target:[0],spec:[],class:2},
@@ -5936,7 +5934,7 @@ types={
                 {effect:[16,3],attack:989,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Cyclic\nShield',rarity:0,list:9,
+            name:'Cyclic\nShield',rarity:1,list:9,
             levels:[
                 {effect:[9,1],attack:990,cost:1,target:[0],spec:[],class:2},
                 {effect:[13,1],attack:990,cost:1,target:[0],spec:[],class:2},
@@ -5950,7 +5948,7 @@ types={
                 {effect:[15,3],attack:991,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Follow\nUp',rarity:0,list:9,
+            name:'Follow\nUp',rarity:1,list:9,
             levels:[
                 {effect:[7,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[11,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -5969,6 +5967,41 @@ types={
                 {effect:[8,1],attack:994,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[10,2],attack:994,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[11,3],attack:994,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Holding\nBounceback',rarity:0,list:9,
+            levels:[
+                {effect:[10,1],attack:995,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,2],attack:995,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,3],attack:995,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Holding\nReinforcement',rarity:0,list:9,
+            levels:[
+                {effect:[10,1],attack:996,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,2],attack:996,cost:1,target:[0],spec:[],class:2},
+                {effect:[15,3],attack:996,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Re-Aggressive\nStep',rarity:0,list:9,
+            levels:[
+                {effect:[1,1],attack:997,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:997,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:997,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Re-Defensive\nStep',rarity:0,list:9,
+            levels:[
+                {effect:[1,1],attack:998,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:998,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:998,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Chain\nStep',rarity:1,list:9,
+            levels:[
+                {effect:[1,1],attack:999,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:999,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:999,cost:0,target:[1,1,1],spec:[],class:3},
             ],
         },
 
@@ -6118,9 +6151,9 @@ types={
         },{
             name:'End\nIt',rarity:-3,list:-1,
             levels:[
-                {effect:[],attack:1000,cost:0,target:[9],spec:[],class:3},
-                {effect:[],attack:1000,cost:0,target:[9],spec:[2],class:3},
-                {effect:[],attack:1000,cost:0,target:[9],spec:[2,22],class:3},
+                {effect:[],attack:1000,cost:0,target:[0],spec:[],class:1},
+                {effect:[],attack:1000,cost:0,target:[0],spec:[2],class:1},
+                {effect:[],attack:1000,cost:0,target:[0],spec:[2,22],class:1},
             ],
         },
 

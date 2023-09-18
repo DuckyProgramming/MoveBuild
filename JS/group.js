@@ -1348,11 +1348,11 @@ class group{
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class,this.cards[a].name))
                     this.battle.playCard(this.cards[a],this.player,0)
-                    this.lastPlayed[0]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
-                    this.lastPlayed[this.cards[a].class]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
                     this.callInput(5,0)
                     this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec)
                     this.battle.attackManager.execute()
+                    this.lastPlayed[0]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
+                    this.lastPlayed[this.cards[a].class]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
                 }else{
                     this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                     this.battle.attackManager.targetDistance=0
@@ -1402,13 +1402,17 @@ class group{
                             this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[1]
                         }
                         this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
-                        this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
-                        this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
                     }
                 }
                 this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
                 this.battle.attackManager.execute()
                 this.battle.updateTargetting()
+                for(let b=0,lb=this.cards.length;b<lb;b++){
+                    if(!this.cards[b].usable){
+                        this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
+                        this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
+                    }
+                }
             break
             case 3:
                 this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
@@ -1447,16 +1451,18 @@ class group{
                                 this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
                             }
                             this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
-                            this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
-                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
                         }
                     }
                     this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
                     this.battle.attackManager.execute()
                     this.battle.updateTargetting()
                     for(let b=0,lb=this.cards.length;b<lb;b++){
-                        if(!this.cards[b].usable&&this.cards[b].spec.includes(26)){
-                            this.battle.cardManagers[this.battle.players-1-this.player].callAmalgums(this.battle.attackManager)
+                        if(!this.cards[b].usable){
+                            this.lastPlayed[0]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
+                            this.lastPlayed[this.cards[b].class]=[this.cards[b].type,this.cards[b].level,this.cards[b].color]
+                            if(this.cards[b].spec.includes(26)){
+                                this.battle.cardManagers[this.battle.players-1-this.player].callAmalgums(this.battle.attackManager)
+                            }
                         }
                     }
                 }

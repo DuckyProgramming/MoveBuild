@@ -322,6 +322,11 @@ class combatantManager{
                     case 16:
                         this.combatants[a].statusEffect('Vulnerable',args[0])
                     break
+                    case 17:
+                        if(this.combatants[a].team==0){
+                            this.combatants[a].life=0
+                        }
+                    break
                 }
             }
         }
