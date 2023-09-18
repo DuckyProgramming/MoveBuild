@@ -536,6 +536,7 @@ function findList(entry,list){
 			return a
 		}
 	}
+	return -1
 }
 function findName(name,list){
 	for(let a=0,la=list.length;a<la;a++){
@@ -543,6 +544,7 @@ function findName(name,list){
 			return a
 		}
 	}
+	return -1
 }
 function findInternal(internal,list){
 	for(let a=0,la=list.length;a<la;a++){
@@ -550,6 +552,7 @@ function findInternal(internal,list){
 			return a
 		}
 	}
+	return -1
 }
 function multiplyString(base,multiply){
 	if(multiply==0){

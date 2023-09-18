@@ -579,7 +579,7 @@ class battle{
                     if(this.menu.anim.combatant[0][a]>0){
                         this.layer.fill(255,this.menu.anim.combatant[0][a])
                         this.layer.textSize(10)
-                        this.layer.text(a==0?'000_BLANK':`00${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/2,this.layer.height*0.65)
+                        this.layer.text(a==0?'000_BLANK':`0${a<10?`0`:``}${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/2,this.layer.height*0.65)
                         this.layer.textSize(9)
                         this.layer.text(types.combatant[a].moniker.toUpperCase(),this.layer.width/2,this.layer.height*0.65+40)
                     }
@@ -636,7 +636,7 @@ class battle{
                         if(this.menu.anim.combatant[b][a]>0){
                             this.layer.fill(255,this.menu.anim.combatant[b][a])
                             this.layer.textSize(10)
-                            this.layer.text(a==0?'000_BLANK':`00${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65)
+                            this.layer.text(a==0?'000_BLANK':`0${a<10?`0`:``}${a}_${types.combatant[a].name.toUpperCase()}`,this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65)
                             this.layer.textSize(9)
                             this.layer.text(types.combatant[a].moniker.toUpperCase(),this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65+40)
                         }

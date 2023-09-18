@@ -1166,7 +1166,7 @@ class group{
                 if(userCombatant.getStatus('Free Amplify')>0){
                     this.battle.attackManager.amplify=true
                 }else if(userCombatant.getStatus('Single Free Amplify')>0){
-                    userCombatant.status.main[findName('Single Free Amplify',userCombatant.status.name)]--
+                    userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
                     this.battle.attackManager.amplify=true
                 }else if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
                     this.battle.energy.main[this.player]--

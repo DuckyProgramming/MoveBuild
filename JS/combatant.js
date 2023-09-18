@@ -60,7 +60,7 @@ class combatant{
         this.builder=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
 
         this.block=0
         this.dodges=[]
@@ -2590,7 +2590,7 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
             for(let b=0,lb=game.orbNumber;b<lb;b++){
@@ -6464,7 +6464,7 @@ class combatant{
                 this.layer.fill(255,200,255,this.fade*0.5)
                 for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
                     if(this.infoAnim.faith[a]>0){
-                        this.layer.ellipse(lsin(a*45+22.5)*60,cos(a*45+22.5)*-60,12)
+                        this.layer.ellipse(lsin(a*36+18)*60,cos(a*36+18)*-60,12)
                     }
                 }
                 this.layer.translate(0,48)
@@ -14368,8 +14368,8 @@ class combatant{
             for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
                 this.infoAnim.faith[a]=smoothAnim(this.infoAnim.faith[a],this.faith>a,0,1,5)
             }
-            if(this.faith>=8&&this.infoAnim.faith[7]>=1){
-                this.faith-=8
+            if(this.faith>=10&&this.infoAnim.faith[9]>=1){
+                this.faith-=10
                 this.enterStance(5)
             }
             if(this.life<=0){

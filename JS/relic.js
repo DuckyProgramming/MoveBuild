@@ -25,7 +25,7 @@ class relic{
             case 4: this.value=600; break
         }
     }
-    display(total,position=this.position,value=false){
+    display(total,active=0,position=this.position,value=false){
         if(this.fade>0){
             this.layer.push()
             this.layer.translate(position.x,position.y)
@@ -1224,12 +1224,36 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('-1',8,0)
                 break
+                case 'No Effect':
+                    this.layer.fill(160,160,40,this.fade)
+                    this.layer.rect(-3,-9,3,9)
+                    this.layer.rect(-3,9,3,9)
+                    this.layer.rect(3,-9,3,9)
+                    this.layer.rect(3,9,3,9)
+                    this.layer.rect(-9,-3,9,3)
+                    this.layer.rect(-9,3,9,3)
+                    this.layer.rect(9,-3,9,3)
+                    this.layer.rect(9,3,9,3)
+                    this.layer.rect(-6,0,3,27)
+                    this.layer.rect(6,0,3,27)
+                    this.layer.rect(-12,0,3,27)
+                    this.layer.rect(12,0,3,27)
+                    this.layer.rect(0,-6,27,3)
+                    this.layer.rect(0,6,27,3)
+                    this.layer.rect(0,-12,27,3)
+                    this.layer.rect(0,12,27,3)
+                break
 
             }
             if(value){
-                this.layer.fill(230,230,210)
+                this.layer.fill(230,230,210,this.fade)
                 this.layer.textSize(12)
                 this.layer.text(this.value,0,29)
+            }
+            if(active!=0&&active>1&&this.type!=0){
+                this.layer.fill(0,this.fade)
+                this.layer.textSize(6)
+                this.layer.text(`x${active}`,0,19)
             }
             this.layer.pop()
         }

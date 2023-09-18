@@ -72,7 +72,10 @@ class overlay{
                     case 12: this.battle.cardManagers[this.player].exhaust.resetAnim(); break
                 }
                 switch(this.args[0]){
-                    case 3: case 17: this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0); break
+                    case 3: case 17:
+                        this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
+                        this.card.nonCalc=true
+                    break
                     case 4: this.activated=0; break
                 }
             break
@@ -533,6 +536,23 @@ class overlay{
                 break
                 case 2:
                     switch(this.args[0]){
+                        case 0: case 6: case 9: case 18:
+                            this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].reserve.cards.length/15)-1)
+                        break
+                        case 1: case 5: case 11:
+                            this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].discard.cards.length/15)-1)
+                        break
+                        case 2: case 3: case 4: case 7: case 8: case 10: case 17:
+                            this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].deck.cards.length/15)-1)
+                        break
+                        case 12:
+                            this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].exhaust.cards.length/15)-1)
+                        break
+                        case 13: case 14: case 15: case 16:
+                            this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].reserve.sorted.length/15)-1)
+                        break
+                    }
+                    switch(this.args[0]){
                         case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: this.battle.cardManagers[this.player].reserve.update('overlay',[this.page]); break
                         case 1: case 5: case 11: this.battle.cardManagers[this.player].discard.update('overlay',[this.page]); break
                         case 2: case 3: case 4: case 7: case 8: case 10: case 17: this.battle.cardManagers[this.player].deck.update('overlay',[this.page]); break
@@ -678,6 +698,7 @@ class overlay{
                                         case 3: case 17:
                                             if(!(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)){
                                                 this.card=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                                this.card.nonCalc=true
                                                 this.card.page=this.page
                                                 this.card.size=1
                                             }
@@ -924,6 +945,7 @@ class overlay{
                                         case 3: case 17:
                                             if(!(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)){
                                                 this.card=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
+                                                this.card.nonCalc=true
                                                 this.card.page=this.page
                                                 this.card.size=1
                                             }

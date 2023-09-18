@@ -3,10 +3,12 @@ Bugs:
 !!!
 Duelist Chaining Cards
 Duelist Vanishing Cards
-Maybe Also Be Requisitioned
+Maybe Also Be Requisitioned-
 
 Bring back memory cards?
 !!!
+
+relic death - stuffed duck has no purpose
 
 To this day, no fix for the Corruption Bug has been found.
 This report is dated to 9/7/2023

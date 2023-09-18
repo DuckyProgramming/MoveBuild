@@ -33,7 +33,7 @@ class relicManager{
             this.player.push(-1)
             switch(types.relic[a].id){
                 case 4: case 17: case 37: case 38: case 39: case 42: case 43: case 44: case 60: case 63:
-                case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111:
+                case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111: case 118:
                     this.detail.push(0)
                 break
                 default:
@@ -133,9 +133,13 @@ class relicManager{
         let list=[]
         let relics=copyArrayStack(this.listing.relic)
         for(let a=0,la=rarity.length;a<la;a++){
-            let index=floor(random(0,relics[rarity[a]].length))
-            list.push(relics[rarity[a]][index])
-            relics[rarity[a]].splice(index,1)
+            if(relics[rarity[a]].length>0){
+                let index=floor(random(0,relics[rarity[a]].length))
+                list.push(relics[rarity[a]][index])
+                relics[rarity[a]].splice(index,1)
+            }else{
+                list.push(findName('Menger Square',types.relic))
+            }
         }
         return list
     }
@@ -803,6 +807,9 @@ class relicManager{
                         if(this.active[93]>0&&this.detail[93]==0){
                             this.detail[93]=1
                         }
+                        if(this.active[118]>0&&this.detail[118]==1){
+                            this.detail[118]=0
+                        }
                     break
                 }
             break
@@ -851,14 +858,14 @@ class relicManager{
         switch(scene){
             case 'battle': case 'map':
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    this.relics[a].display(this.total[this.relics[a].player])
+                    this.relics[a].display(this.total[this.relics[a].player],this.active[types.relic[this.relics[a].type].id])
                 }
                 this.relics.forEach(relic=>relic.displayInfo())
             break
             case 'stash':
                 if(this.battle.players>1){
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        displayPlayerSymbol(this.layer,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
+                        displayPlayerSymbol(this.layer,0,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
                     }
                 }
                 this.displayRelics.forEach(relic=>relic.display(lea-1))
@@ -872,7 +879,7 @@ class relicManager{
             case 'bossstash':
                 if(this.battle.players>1){
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        displayPlayerSymbol(this.layer,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
+                        displayPlayerSymbol(this.layer,0,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
                     }
                 }
                 this.displayRelics.forEach(relic=>relic.display(lea-1))
@@ -887,7 +894,7 @@ class relicManager{
                 let position=0
                 for(let a=0,la=this.relics.length;a<la;a++){
                     if(this.player[this.relics[a].type]==args[0]&&this.relics[a].type!=0){
-                        this.relics[a].display(la-1,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60},true)
+                        this.relics[a].display(la-1,this.active[types.relic[this.relics[a].type].id],{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60},true)
                         position++
                         if(position>=30){
                             position-=30

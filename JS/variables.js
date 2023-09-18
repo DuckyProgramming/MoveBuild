@@ -1290,9 +1290,9 @@ types={
         },{
             name:'Keep\nDistance',rarity:1,list:2,
             levels:[
-                {effect:[2],attack:368,cost:0,target:[2,2,4],spec:[],class:3},
-                {effect:[4],attack:368,cost:0,target:[2,2,6],spec:[2],class:3},
-                {effect:[4,1],attack:657,cost:0,target:[30,1,1,2,6],spec:[0],class:3},
+                {effect:[2],attack:368,cost:0,target:[2,3,4],spec:[],class:3},
+                {effect:[4],attack:368,cost:0,target:[2,3,6],spec:[2],class:3},
+                {effect:[4,1],attack:657,cost:0,target:[30,1,1,3,6],spec:[0],class:3},
             ],
         },{
             name:'Recoup',rarity:1,list:2,
@@ -1367,9 +1367,9 @@ types={
         },{
             name:'Vexation',rarity:1,list:2,
             levels:[
-                {effect:[3,1],attack:380,cost:0,target:[0],spec:[],class:4},
                 {effect:[5,1],attack:380,cost:0,target:[0],spec:[],class:4},
-                {effect:[6,1],attack:380,cost:0,target:[0],spec:[],class:4},
+                {effect:[8,1],attack:380,cost:0,target:[0],spec:[],class:4},
+                {effect:[10,1],attack:380,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Tanking',rarity:2,list:2,
@@ -5015,9 +5015,9 @@ types={
         },{
             name:'Faith\nMove',rarity:0,list:7,
             levels:[
-                {effect:[1,2],attack:816,cost:1,target:[1,1,2],spec:[0],class:3},
-                {effect:[1,3],attack:816,cost:1,target:[1,1,2],spec:[0],class:3},
-                {effect:[1,4],attack:816,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[1,2],attack:816,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,3],attack:816,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,4],attack:816,cost:1,target:[1,1,1],spec:[0],class:3},
             ],
         },{
             name:'Stacked\nMove',rarity:0,list:7,
@@ -5157,9 +5157,9 @@ types={
         },{
             name:'Collector',rarity:1,list:8,
             levels:[
-                {effect:[9,4],attack:843,cost:2,target:[2,1,2],spec:[0],class:1},
-                {effect:[9,3],attack:843,cost:2,target:[2,1,2],spec:[0],class:1},
-                {effect:[12,3],attack:843,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[4,4],attack:843,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[4,3],attack:843,cost:2,target:[2,1,2],spec:[0],class:1},
+                {effect:[5,3],attack:843,cost:2,target:[2,1,2],spec:[0],class:1},
             ],
         },{
             name:'DC',rarity:0,list:8,
@@ -5786,48 +5786,6 @@ types={
             ],
         },
 
-
-
-        
-
-
-
-
-
-
-
-
-
-        /*{
-            name:'Strike',rarity:0,list:8,
-            levels:[
-                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Defend',rarity:0,list:8,
-            levels:[
-                {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
-                {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
-                {effect:[15],attack:2,cost:1,target:[0],spec:[],class:2},
-            ],
-        },{
-            name:'Step',rarity:0,list:8,
-            levels:[
-                {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
-            ],
-        },{
-            name:'Think',rarity:0,list:8,
-            levels:[
-                {effect:[3],attack:8,cost:1,target:[0],spec:[],class:4},
-                {effect:[4],attack:8,cost:1,target:[0],spec:[],class:4},
-                {effect:[5],attack:8,cost:1,target:[0],spec:[],class:4},
-            ],
-        },*/
-
         {
             name:'Lighter',rarity:0,list:9,
             levels:[
@@ -5954,10 +5912,22 @@ types={
                 {effect:[8],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[9],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Ripped\nPush',rarity:1,list:9,
+            levels:[
+                {effect:[],attack:986,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[],attack:986,cost:0,target:[2,1,1],spec:[1,2],class:1},
+                {effect:[],attack:986,cost:0,target:[2,1,1],spec:[1,2,22],class:1},
+            ],
+        },{
+            name:'Workout',rarity:0,list:9,
+            levels:[
+                {effect:[0,1],attack:987,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[0,2],attack:987,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[0,2],attack:987,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
         },
 
-        //strength push: push a person, or another
-        //work out: push and gain strength
         
         
 
@@ -6047,6 +6017,13 @@ types={
                 {effect:[],attack:949,cost:3,target:[0],spec:[1],class:4},
                 {effect:[],attack:949,cost:2,target:[0],spec:[1],class:4},
             ],
+        },{
+            name:'Outta\nHere',rarity:1,list:10,
+            levels:[
+                {effect:[],attack:988,cost:1,target:[0],spec:[1],class:3},
+                {effect:[],attack:988,cost:0,target:[0],spec:[1],class:3},
+                {effect:[],attack:988,cost:0,target:[0],spec:[1,22],class:3},
+            ],
         },
 
 
@@ -6057,7 +6034,6 @@ types={
 
         //the gentleman
         //gambler's fallacy: when you fail luck roll, try again
-        //attack a man but chance of swap with him instead
 
 
 
@@ -7222,8 +7198,8 @@ types={
         {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:65,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Once motivated by a desire for revenge.\nNot anymore, they're all dead.\nMakes it's time for her to stop?\nShe doesn't seem to think so.`},
 
         {name:'',moniker:'The Magician',identifier:[],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'The Conservative',identifier:[],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'The Gentleman',identifier:[],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Disgraced CEO',identifier:[],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Chip',moniker:'The Gentleman',identifier:[],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
 
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -7781,7 +7757,7 @@ types={
         {name:'',internal:'Always Back Up',id:115,rarity:2,list:0,description:'At the Start of Your Turn,\nAdd a Back Up to Your Hand'},
         {name:'',internal:'Death Money',id:116,rarity:2,list:0,description:'Get 10 Currency\nWhen an Enemy Dies'},
         {name:'',internal:'Double Rest',id:117,rarity:2,list:0,description:'Can Pick 2 Different\nEffects When Resting'},
-        {name:'',internal:'Buy One Get One',id:118,rarity:2,list:0,description:'After Purchasing a Card or a\nRelic, Another Becomes Free'},
+        {name:'',internal:'Buy One Get One',id:118,rarity:2,list:0,description:'After Purchasing a Card or a\nRelic (Cap 1 Relic Per Shop),\nAnother Becomes Free'},
         {name:'',internal:'Premium',id:119,rarity:2,list:0,description:'Whenever You Gain\nCurrency, Gain 20 More'},
         {name:'',internal:'Planned Attack',id:120,rarity:2,list:0,description:'Each Turn, If the First Card in Draw Pile\nis an Attack, Draw it, it Costs 1 Less'},
         
@@ -7828,7 +7804,7 @@ types={
         {name:'',internal:'3 Starting Miracles',id:158,rarity:4,list:0,description:'Add 3 Miracles\nat the Start of Combat'},
         {name:'',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n200 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
         {name:'',internal:'30 Max HP',id:160,rarity:4,list:0,description:'When Taken,\nGain 30 Max HP'},
-       
+        
         {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
         {name:'Audric Codex',internal:'Duplicate Random Turn',id:162,rarity:-1,list:0,description:'Every Turn, Duplicate a Random\nCard in Your Hand'},
         {name:'Mark of Infinition',internal:'No Heal',id:163,rarity:-1,list:0,description:'You Can No Longer Heal'},
@@ -7836,6 +7812,7 @@ types={
         {name:'Gold Bar',internal:'More Currency',id:165,rarity:-1,list:0,description:'Gain 25% More Currency'},
         {name:'Stocks',internal:'Currency Per Room',id:166,rarity:-1,list:0,description:'Gain 10 Currency Every Room'},
         {name:'Survival Notes',internal:'Random Fatigue Cost Decrease',id:167,rarity:-1,list:0,description:'25% of Fatigue is Cheaper'},
+        {name:'Menger Square',internal:'No Effect',id:168,rarity:-1,list:-1,description:'Ran Out of Relics to Spawn'},
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,description:'None'},
@@ -9899,6 +9876,11 @@ shipyard visit for another time.`,
                 text:[100,0,100],
                 active:[255,240,255],
             },{
+                fill:[200,80,60],
+                stroke:[180,60,40],
+                text:[60,20,0],
+                active:[255,160,140],
+            },{
                 fill:[200,200,160],
                 stroke:[160,160,120],
                 text:[60,60,40],
@@ -11009,6 +10991,7 @@ shipyard visit for another time.`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
+                {position:{x:1,y:1},name:'Duck'},
                 {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
 
@@ -12481,8 +12464,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,shortermap:true,speedmove:true,speedcard:false,nobasicanim:false,prism:false}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,shortermap:false,speedmove:true,speedcard:false,nobasicanim:false,prism:true}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

@@ -398,17 +398,21 @@ class combatantManager{
         return this.playerCombatantIndex[id]
     }
     proxyCombatants(){
-        this.bank=[]
-        for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].life>0){
-                this.bank.push(this.combatants[a])
-                if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
-                    this.combatants.splice(a,1,new combatant(this.layer,this.battle,this.combatants[a].position.x,this.combatants[a].position.y,this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y,this.combatants[a].type,this.combatants[a].team,this.combatants[a].id,this.combatants[a].goal.anim.direction,this.combatants[a].minion))
-                    this.combatants[a].life=this.bankHP[a]
-                }else{
-                    this.combatants.splice(a,1)
+        try{
+            this.bank=[]
+            for(let a=0,la=this.combatants.length;a<la;a++){
+                if(this.combatants[a].life>0){
+                    this.bank.push(this.combatants[a])
+                    if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
+                        this.combatants.splice(a,1,new combatant(this.layer,this.battle,this.combatants[a].position.x,this.combatants[a].position.y,this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y,this.combatants[a].type,this.combatants[a].team,this.combatants[a].id,this.combatants[a].goal.anim.direction,this.combatants[a].minion))
+                        this.combatants[a].life=this.bankHP[a]
+                    }else{
+                        this.combatants.splice(a,1)
+                    }
                 }
             }
+        }catch(error){
+            stage.scene='battle'
         }
     }
     deproxyCombatants(){

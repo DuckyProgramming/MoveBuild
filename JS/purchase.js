@@ -61,8 +61,9 @@ class purchase{
                 break
                 case 3:
                     this.battle.relicManager.addRelic(this.relic.type,purchaser)
-                    if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0){
+                    if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0&&this.battle.relicManager.detail[118]==0){
                         this.battle.purchaseManager.bogo(purchaser,3)
+                        this.battle.relicManager.detail[118]=1
                     }
                 break
             }
