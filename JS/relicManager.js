@@ -865,7 +865,7 @@ class relicManager{
             case 'stash':
                 if(this.battle.players>1){
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        displayPlayerSymbol(this.layer,0,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
+                        displayPlayerSymbol(this.layer,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
                     }
                 }
                 this.displayRelics.forEach(relic=>relic.display(lea-1))
@@ -879,7 +879,7 @@ class relicManager{
             case 'bossstash':
                 if(this.battle.players>1){
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        displayPlayerSymbol(this.layer,0,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
+                        displayPlayerSymbol(this.layer,40+a*(this.layer.width-80),40,this.battle.player[a],0,1,1)
                     }
                 }
                 this.displayRelics.forEach(relic=>relic.display(lea-1))

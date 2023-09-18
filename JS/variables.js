@@ -5928,18 +5928,80 @@ types={
             ],
         },
 
-        
-        
+        {
+            name:'Sanctity',rarity:0,list:9,
+            levels:[
+                {effect:[9,2],attack:989,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,2],attack:989,cost:1,target:[0],spec:[],class:2},
+                {effect:[16,3],attack:989,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Cyclic\nShield',rarity:0,list:9,
+            levels:[
+                {effect:[9,1],attack:990,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,1],attack:990,cost:1,target:[0],spec:[],class:2},
+                {effect:[16,1],attack:990,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Retrograde',rarity:0,list:9,
+            levels:[
+                {effect:[8,2],attack:991,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,2],attack:991,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,3],attack:991,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Follow\nUp',rarity:0,list:9,
+            levels:[
+                {effect:[7,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,1],attack:992,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Belt\nWhip',rarity:0,list:9,
+            levels:[
+                {effect:[8,1],attack:993,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,2],attack:993,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,3],attack:993,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Crush\nJoints',rarity:0,list:9,
+            levels:[
+                {effect:[8,1],attack:994,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,2],attack:994,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,3],attack:994,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },
 
 
 
 
+
+
+        /*{
+            name:'Strike',rarity:0,list:9,
+            levels:[
+                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Defend',rarity:0,list:9,
+            levels:[
+                {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
+                {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
+                {effect:[15],attack:2,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Step',rarity:0,list:9,
+            levels:[
+                {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },*/
         
-        
-        
-        
-        
-        
+
+
         {
             name:'Lucky\nStrike',rarity:0,list:10,
             levels:[
@@ -6052,6 +6114,13 @@ types={
                 {effect:[999],attack:483,cost:0,target:[0],spec:[],class:1},
                 {effect:[9999],attack:483,cost:0,target:[0],spec:[],class:1},
                 {effect:[99999],attack:483,cost:0,target:[0],spec:[],class:1},
+            ],
+        },{
+            name:'End\nIt',rarity:-3,list:-1,
+            levels:[
+                {effect:[],attack:1000,cost:0,target:[9],spec:[],class:3},
+                {effect:[],attack:1000,cost:0,target:[9],spec:[2],class:3},
+                {effect:[],attack:1000,cost:0,target:[9],spec:[2,22],class:3},
             ],
         },
 
@@ -9876,8 +9945,8 @@ shipyard visit for another time.`,
                 text:[100,0,100],
                 active:[255,240,255],
             },{
-                fill:[200,80,60],
-                stroke:[180,60,40],
+                fill:[240,100,80],
+                stroke:[200,80,60],
                 text:[60,20,0],
                 active:[255,160,140],
             },{
@@ -12464,7 +12533,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:false,shortermap:false,speedmove:true,speedcard:false,nobasicanim:false,prism:true}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

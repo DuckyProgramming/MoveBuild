@@ -8,11 +8,12 @@ Maybe Also Be Requisitioned-
 Bring back memory cards?
 !!!
 
-relic death - stuffed duck has no purpose
-
 To this day, no fix for the Corruption Bug has been found.
 This report is dated to 9/7/2023
 If the bug is not reported by October, it can be considered fixed
+
+first steps but its Sibiea 1B
+ERS the game
 
 https://github.com/lf201014/STS_ThMod_MRS/tree/master
 

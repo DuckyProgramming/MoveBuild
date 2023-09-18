@@ -896,7 +896,7 @@ class overlay{
                     switch(this.args[0]){
                         case 3: case 4: case 7: case 8: case 10: case 17:
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
-                                if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
+                                if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
                                 !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)&&
                                 !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2)){
                                     this.battle.cardManagers[this.player].deck.cards[a].select=false
@@ -939,7 +939,7 @@ class overlay{
                                     this.battle.cardManagers[this.player].deck.cards[a].size=size
                                 }
                                 this.battle.cardManagers[this.player].deck.cards[a].select=false
-                                if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5){
+                                if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5){
                                     this.battle.cardManagers[this.player].deck.cards[a].select=true
                                     switch(this.args[0]){
                                         case 3: case 17:
@@ -956,7 +956,7 @@ class overlay{
                         break
                         case 5: case 11:
                             for(let a=0,la=this.battle.cardManagers[this.player].discard.cards.length;a<la;a++){
-                                if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&this.battle.cardManagers[this.player].discard.cards[a].select){
+                                if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5&&this.battle.cardManagers[this.player].discard.cards[a].select){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
                                     switch(this.args[0]){
                                         case 5:
@@ -978,7 +978,7 @@ class overlay{
                                 }
                                 if(a>=0){
                                     this.battle.cardManagers[this.player].discard.cards[a].select=false
-                                    if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5){
+                                    if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].discard.cards[a].size>0.5){
                                         this.battle.cardManagers[this.player].discard.cards[a].select=true
                                     }
                                 }
@@ -986,7 +986,7 @@ class overlay{
                         break
                         case 6: case 13: case 14: case 15: case 16: case 18:
                             for(let a=0,la=this.battle.cardManagers[this.player].reserve.cards.length;a<la;a++){
-                                if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select){
+                                if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select){
                                     this.battle.cardManagers[this.player].reserve.cards[a].select=false
                                     switch(this.args[0]){
                                         case 6: case 13: case 14: case 15: case 16:
@@ -1004,7 +1004,7 @@ class overlay{
                                 }
                                 if(a>=0){
                                     this.battle.cardManagers[this.player].reserve.cards[a].select=false
-                                    if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5){
+                                    if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5){
                                         this.battle.cardManagers[this.player].reserve.cards[a].select=true
                                     }
                                 }
@@ -1012,7 +1012,7 @@ class overlay{
                         break
                         case 12:
                             for(let a=0,la=this.battle.cardManagers[this.player].exhaust.cards.length;a<la;a++){
-                                if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].exhaust.cards[a].size>0.5&&this.battle.cardManagers[this.player].exhaust.cards[a].select){
+                                if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].exhaust.cards[a].size>0.5&&this.battle.cardManagers[this.player].exhaust.cards[a].select){
                                     this.battle.cardManagers[this.player].exhaust.cards[a].select=false
                                     switch(this.args[0]){
                                         case 12:
@@ -1025,7 +1025,7 @@ class overlay{
                                 }
                                 if(a>=0){
                                     this.battle.cardManagers[this.player].exhaust.cards[a].select=false
-                                    if(key==inputs.hexadec[a]&&this.battle.cardManagers[this.player].exhaust.cards[a].size>0.5){
+                                    if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].exhaust.cards[a].size>0.5){
                                         this.battle.cardManagers[this.player].exhaust.cards[a].select=true
                                     }
                                 }
