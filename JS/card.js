@@ -1136,8 +1136,8 @@ class card{
             case 994: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Last Card Played\nWas a Defense\nApply ${effect[1]} Vulnerable`; break
             case 995: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas an Attack\nGain ${effect[1]} Strength`; break
             case 996: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Last Card Played\nWas a Defense\nGain ${effect[1]} Dexterity`; break
-            case 997: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas an Attack\nNext ${effect[1]} Damage Deal${effect[1]!=1?`s`:``}\nDo 50% More`; break
-            case 998: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas a Defense\nNext ${effect[1]} Block Add${effect[1]!=1?`s`:``}\nDo 50% More`; break
+            case 997: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas an Attack\nNext ${effect[1]} Damage Deal${effect[1]!=1?`s`:``}\n${effect[1]!=1?`are`:`is`} 50% More`; break
+            case 998: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas a Defense\nNext ${effect[1]} Block Add${effect[1]!=1?`s`:``}\n${effect[1]!=1?`are`:`is`} 50% More`; break
             case 999: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas a Movement\nGain ${effect[1]} Energy`; break
             case 1000: string+=`Kill All Enemies`; break
             case 1001: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nTarget Will Face Away`; break
@@ -1145,7 +1145,12 @@ class card{
             case 1003: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 at\nLeft of Hand`; break
             case 1004: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double at\nLeft of Hand`; break
             case 1005: string+=`Upgrade All Cards\nCreated This Combat`; break
-
+            case 1006: string+=`20X%:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
+            case 1007: string+=`Roll ${effect[0]} Di${effect[0]!=1?`c`:``}e and\nDeal That Much Damage\nRoll ${effect[1]} More Di${effect[1]!=1?`c`:``}e And\nDamage Random\nOther Enemies`; break
+            case 1008: string+=`Gain ${effect[0]} Strength\nWhen You Lowroll`; break
+            case 1009: string+=`50%: Deal ${this.calculateEffect(effect[0],0)} Damage`; break
+            case 1010: string+=`50%: Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain ${effect[1]} Energy`; break
+            case 1011: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIn a Random Direction`; break
 
 
 

@@ -99,6 +99,15 @@ class tileManager{
         }
         return list
     }
+    getArea(tilePosition,range){
+        let tiles=[]
+        for(let a=0,la=this.tiles.length;a<la;a++){
+            if(this.tiles[a].occupied==0&&legalTargetCombatant(0,1,range,{tilePosition:tilePosition},this.tiles[a],this.tiles)){
+                tiles.push(this.tiles[a])
+            }
+        }
+        return tiles
+    }
     allEffect(type,args){
         for(let a=0,la=this.tiles.length;a<la;a++){
             switch(type){

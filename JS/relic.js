@@ -1253,7 +1253,7 @@ class relic{
             if(active!=0&&active>1&&this.type!=0){
                 this.layer.fill(0,this.fade)
                 this.layer.textSize(6)
-                this.layer.text(`x${active}`,0,19)
+                this.layer.text(`x${active}`,0,18)
             }
             this.layer.pop()
         }

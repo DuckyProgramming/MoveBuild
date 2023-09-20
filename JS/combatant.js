@@ -81,7 +81,7 @@ class combatant{
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
-            '1.5x Block','Upgrade Created',
+            '1.5x Block','Upgrade Created','Lowroll Strength',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -100,7 +100,7 @@ class combatant{
                 1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
-                0,0,
+                0,0,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -119,7 +119,7 @@ class combatant{
                 2,2,2,2,1,2,2,0,0,0,
                 2,2,2,3,2,2,0,0,3,3,
                 2,2,2,0,0,2,2,2,3,0,
-                0,2,
+                0,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2687,7 +2687,11 @@ class combatant{
             if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[a]=round(this.attack[a].effect[a]*1.2)
+                        for(let b=0,lb=this.attack[a].effect.length;b<lb;b++){
+                            if(this.attack[a].effect[b]<0||this.attack[a].effect[b]>0){
+                                this.attack[a].effect[b]=round(this.attack[a].effect[b]*1.2)
+                            }
+                        }
                     }
                 }
             }
@@ -2697,14 +2701,22 @@ class combatant{
                 this.collect.life=round(this.collect.life*1.2)
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==2)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[a]=round(this.attack[a].effect[a]*1.2)
+                        for(let b=0,lb=this.attack[a].effect.length;b<lb;b++){
+                            if(this.attack[a].effect[b]<0||this.attack[a].effect[b]>0){
+                                this.attack[a].effect[b]=round(this.attack[a].effect[b]*1.2)
+                            }
+                        }
                     }
                 }
             }
             if(game.ascend>=17&&this.battle.encounter.class==0||game.ascend>=18&&this.battle.encounter.class==1||game.ascend>=19&&this.battle.encounter.class==2){
                 for(let a=0,la=this.attack.length;a<la;a++){
-                    if((types.attack[this.attack[a].type].class==4)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[a]=round(this.attack[a].effect[a]*1.25)
+                    if((types.attack[this.attack[a].type].class==4)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1&&this.attack[a].effect[0]<0){
+                        for(let b=0,lb=this.attack[a].effect.length;b<lb;b++){
+                            if(this.attack[a].effect[b]<0||this.attack[a].effect[b]>0){
+                                this.attack[a].effect[b]=round(this.attack[a].effect[b]*1.25)
+                            }
+                        }
                     }
                 }
             }
@@ -2720,7 +2732,7 @@ class combatant{
                 }
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[a]=round(this.attack[a].effect[a]*2)
+                        this.attack[a].effect[0]=round(this.attack[a].effect[0])
                     }
                 }
             }else if(game.ascend>=29&&this.battle.encounter.class==2){
@@ -3710,6 +3722,11 @@ class combatant{
     }
     orbTake(value,user,spec){
         this.takeDamage(value*(this.status.main[117]>0?2:1),user,spec)
+    }
+    lowRoll(){
+        if(this.status.main[162]>0){
+            this.statusEffect('Strength',this.status.main[162])
+        }
     }
     takeDamage(value,user,spec=0){
         let damage=value

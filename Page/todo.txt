@@ -7,16 +7,16 @@ Maybe Also Be Requisitioned-
 Bring back memory cards?
 !!!
 
-To this day, no fix for the Corruption Bug has been found.
-This report is dated to 9/7/2023
-If the bug is not reported by October, it can be considered fixed
+{
+    To this day, no fix for the Corruption Bug has been found.
+    This report is dated to 9/7/2023
+    If the bug is not reported by October 5, it can be considered fixed
+
+    Corruption Bug Report, 9/20/2023
+    Fix has been implemented
+}
 
 first steps but its Sibiea 1B
-
-counter relic hell
-
-X% chance to do damage
-Lodstone but with a random amount
 
 https://github.com/lf201014/STS_ThMod_MRS/tree/master
 

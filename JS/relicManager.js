@@ -573,7 +573,7 @@ class relicManager{
                 if(this.active[148]>0&&args[0]>=2){
                     this.relicPlayer(148).statusEffect('Dexterity',-this.active[148])
                 }
-                if(this.active[152]>0&&args[1]>0){
+                if(this.active[152]>0&&(args[1]==1||args[1]==2)){
                     this.battle.energy.main[this.player[152]]+=2*this.active[152]
                 }
             break

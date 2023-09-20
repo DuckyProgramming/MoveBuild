@@ -6096,6 +6096,10 @@ types={
             ],
         },
 
+        //shout
+        //gossip
+        //mob justice
+
         
 
 
@@ -6294,6 +6298,48 @@ types={
                 {effect:[1,2],attack:886,cost:0,target:[0],spec:[1],class:3},
                 {effect:[2,2],attack:886,cost:0,target:[0],spec:[1],class:3},
             ],
+        },{
+            name:'Rigged\nRoll',rarity:1,list:10,
+            levels:[
+                {effect:[30],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[40],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[48],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Dice\nBombs',rarity:1,list:10,
+            levels:[
+                {effect:[1,2],attack:1007,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[1,3],attack:1007,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[1,4],attack:1007,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Fallacy',rarity:2,list:10,
+            levels:[
+                {effect:[1],attack:1008,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:1008,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:1008,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Accuracy\nCheck',rarity:0,list:10,
+            levels:[
+                {effect:[15],attack:1009,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[23],attack:1009,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[30],attack:1009,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            ],
+        },{
+            name:'Riskless\nStrike',rarity:0,list:10,
+            levels:[
+                {effect:[10,1],attack:1010,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,1],attack:1010,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[17,1],attack:1010,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Wander',rarity:0,list:10,
+            levels:[
+                {effect:[1],attack:1011,cost:0,target:[0],spec:[],class:3},
+                {effect:[1],attack:1011,cost:0,target:[0],spec:[22],class:3},
+                {effect:[1],attack:1011,cost:0,target:[0],spec:[2,22],class:3},
+            ],
         },
 
 
@@ -6303,7 +6349,7 @@ types={
 
 
         //the gentleman
-        //gambler's fallacy: when you fail luck roll, try again
+        //rolls
 
 
 
@@ -7932,7 +7978,7 @@ types={
         {name:'',internal:'Energy/Max HP',id:143,rarity:4,list:0,description:'Gain 1 Base Energy,\nLose 10 Max HP'},
         {name:'',internal:'Energy/Electrocuted',id:144,rarity:4,list:0,description:'Gain 1 Base Energy, Shuffle 1 Electrocuted\nInto Draw at the Start of Combat'},
         {name:'',internal:'Energy/Range',id:145,rarity:4,list:0,description:'Gain 1 Base Energy\nCan Only Attack at Range 1'},
-        {name:'',internal:'Energy/Counter',id:146,rarity:4,list:0,description:'Gain 1 Base Energy,\nAll Enemies Counter All 1'},
+        {name:'',internal:'Energy/Counter',id:146,rarity:4,list:0,description:'Gain 1 Base Energy,\nAll Enemies Counter 1 All'},
         {name:'',internal:'Energy/Enemy Health',id:147,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies Have 20% More Health'},
         {name:'',internal:'Energy/Dexterity',id:148,rarity:4,list:0,description:'Gain 1 Base Energy,\nLose 1 Dexterity Every Turn'},
         {name:'',internal:'2 Free Cards',id:149,rarity:4,list:0,description:'The First 2 Cards Played\nEvery Combat are Free'},
@@ -12608,7 +12654,7 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:true}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

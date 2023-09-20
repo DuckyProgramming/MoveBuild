@@ -75,24 +75,25 @@ class attack{
             case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
             case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504: case 507:
             case 508: case 509: case 510: case 511: case 514: case 531: case 532: case 533: case 534: case 535:
-            case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 557: case 558:
-            case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580: case 581:
-            case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 594: case 596:
-            case 597: case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610: case 616:
-            case 617: case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662: case 667:
-            case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683: case 689:
-            case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719:
-            case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733: case 734:
-            case 736: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775: case 779:
-            case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798: case 801:
-            case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833: case 834:
-            case 837: case 840: case 843: case 846: case 848: case 849: case 850: case 862: case 863: case 865:
-            case 866: case 872: case 874: case 877: case 881: case 883: case 885: case 888: case 895: case 897:
-            case 899: case 900: case 903: case 905: case 906: case 907: case 908: case 915: case 916: case 917:
-            case 918: case 919: case 920: case 924: case 926: case 930: case 934: case 935: case 938: case 939:
-            case 940: case 942: case 943: case 944: case 945: case 946: case 947: case 950: case 956: case 957:
-            case 958: case 959: case 964: case 965: case 966: case 972: case 974: case 980: case 987: case 991:
-            case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004:
+            case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 556: case 557:
+            case 558: case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580:
+            case 581: case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 594:
+            case 596: case 597: case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610:
+            case 616: case 617: case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662:
+            case 667: case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683:
+            case 689: case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718:
+            case 719: case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733:
+            case 734: case 736: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775:
+            case 779: case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798:
+            case 801: case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833:
+            case 834: case 837: case 840: case 843: case 846: case 848: case 849: case 850: case 862: case 863:
+            case 865: case 866: case 872: case 874: case 877: case 881: case 883: case 885: case 888: case 895:
+            case 897: case 899: case 900: case 902: case 903: case 905: case 906: case 907: case 908: case 915:
+            case 916: case 917: case 918: case 919: case 920: case 924: case 926: case 930: case 934: case 935:
+            case 938: case 939: case 940: case 942: case 943: case 944: case 945: case 946: case 947: case 950:
+            case 956: case 957: case 958: case 959: case 964: case 965: case 966: case 972: case 974: case 980:
+            case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004: case 1006:
+            case 1007: case 1009: case 1010:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -373,6 +374,19 @@ class attack{
                     this.remove=true
                 }
             break
+            case 1011:
+                let tiles=this.battle.tileManager.getArea(this.userCombatant.tilePosition,1)
+                if(tiles.length>0){
+                    this.targetTile=tiles[floor(random(0,tiles.length))]
+
+                    this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                    this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                    this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                    this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                    this.targetDistance=distTargetCombatant(0,this,this.targetTile)
+                }
+            break
 
         }
     }
@@ -576,14 +590,21 @@ class attack{
                         this.targetCombatant.takeDamage(this.amplify?this.effect[0]+this.effect[1]:this.effect[0],this.user)
                     break
                     case 895:
-                        this.targetCombatant.takeDamage(this.effect[0]*floor(random(1,3)),this.user)
+                        let roll=floor(random(1,3))
+                        this.targetCombatant.takeDamage(this.effect[0]*roll,this.user)
+                        if(roll==1){
+                            this.userCombatant.lowRoll()
+                        }
                     break
-                    case 897:
+                    case 897: case 1007:
                         let total=0
                         for(let a=0,la=this.effect[0];a<la;a++){
                             let roll=floor(random(1,7))
                             this.battle.particleManager.createAuxNumber(this.userCombatant.position.x,this.userCombatant.position.y,roll)
                             total+=roll
+                        }
+                        if(total<this.effect[0]*3.5){
+                            this.userCombatant.lowRoll()
                         }
                         this.targetCombatant.takeDamage(total,this.user)
                     break
@@ -628,6 +649,14 @@ class attack{
                     break
                     case 1004:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.relPos[0]==0?2:1),this.user)
+                    break
+                    case 1010:
+                        if(floor(random(0,2))==0){
+                            this.userCombatant.lowRoll()
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                        }else{
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1069,6 +1098,28 @@ class attack{
                     case 994:
                         if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==2){
                             this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        }
+                    break
+                    case 1007:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            let list3=[]
+                            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                                if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].id!=this.targetCombatant.id){
+                                    list3.push(a)
+                                }
+                            }
+                            if(list3.length>0){
+                                let tempTargetCombatant=this.battle.combatantManager.combatants[list3[floor(random(0,list3.length))]]
+                                let total=0
+                                let roll=floor(random(1,7))
+                                if(total<3.5){
+                                    this.userCombatant.lowRoll()
+                                }
+                                this.battle.particleManager.createAuxNumber(tempTargetCombatant.position.x,tempTargetCombatant.position.y,roll)
+                                total+=roll
+                                tempTargetCombatant.takeDamage(total,this.user)
+                                tempTargetCombatant.takeDamage(this.effect[1],this.user)
+                            }
                         }
                     break
 
@@ -1544,12 +1595,12 @@ class attack{
                     break
                     case 997:
                         if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==1){
-                            this.targetCombatant.statusEffect('1.5x Damage',this.effect[1])
+                            this.userCombatant.statusEffect('1.5x Damage',this.effect[1])
                         }
                     break
                     case 998:
                         if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==2){
-                            this.targetCombatant.statusEffect('1.5x Block',this.effect[1])
+                            this.userCombatant.statusEffect('1.5x Block',this.effect[1])
                         }
                     break
                     case 999:
@@ -1947,7 +1998,12 @@ class attack{
                     case 948:
                         if(floor(random(0,2))==0){
                             this.userCombatant.statusEffect('Triple Damage',this.effect[0])
+                        }else{
+                            this.userCombatant.lowRoll()
                         }
+                    break
+                    case 1008:
+                        this.userCombatant.statusEffect('Lowroll Strength',this.effect[0])
                     break
 
                 }
@@ -3243,6 +3299,13 @@ class attack{
                     case 1002:
                         this.targetCombatant.takeDamage(this.relPos[0]==this.relPos[1]/2?this.effect[0]*2:this.effect[0],this.user,1)
                     break
+                    case 1009:
+                        if(floor(random(0,2))==0){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                        }else{
+                            this.userCombatant.lowRoll()
+                        }
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                     break
@@ -3831,7 +3894,7 @@ class attack{
             case 829: case 830: case 840: case 844: case 848: case 849: case 862: case 863: case 872: case 884:
             case 895: case 897: case 900: case 916: case 917: case 930: case 934: case 940: case 942: case 945:
             case 946: case 947: case 950: case 966: case 972: case 991: case 992: case 993: case 994: case 1003:
-            case 1004:
+            case 1004: case 1006: case 1007: case 1010:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
@@ -3843,8 +3906,11 @@ class attack{
                         break
                     }
                 }
-                if(this.type==427&&this.userCombatant.armed||this.type==806&&this.userCombatant.stance!=1||this.type==947&&this.battle.energy.main[this.player]>0){
+                if(this.type==427&&this.userCombatant.armed||this.type==806&&this.userCombatant.stance!=1||this.type==947&&this.battle.energy.main[this.player]>0||this.timer==1&&this.type==1006&&floor(random(0,100))>=20*this.energy){
                     this.remove=true
+                    if(this.type==1006){
+                        this.userCombatant.lowRoll()
+                    }
                 }else if(variants.nobasicanim){
                     this.selfCall(0)
                     this.remove=true
@@ -3916,6 +3982,7 @@ class attack{
             case 663: case 664: case 666: case 690: case 693: case 694: case 704: case 705: case 706: case 717:
             case 802: case 803: case 804: case 805: case 808: case 812: case 816: case 817: case 823: case 923:
             case 931: case 955: case 963: case 973: case 975: case 977: case 978: case 997: case 998: case 999:
+            case 1011:
                    if(this.type==808&&this.userCombatant.stance!=3){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -4101,7 +4168,7 @@ class attack{
             case 668: case 684: case 711: case 712: case 713: case 737: case 754: case 755: case 760: case 761:
             case 763: case 777: case 778: case 788: case 799: case 807: case 820: case 821: case 822: case 836:
             case 838: case 839: case 841: case 842: case 864: case 873: case 876: case 886: case 893: case 896:
-            case 898: case 901: case 914: case 937: case 948:
+            case 898: case 901: case 914: case 937: case 948: case 1008:
                 if(this.type==807&&this.userCombatant.stance!=2||this.type==820&&this.userCombatant.stance!=1||this.type==821&&this.userCombatant.stance!=3||this.type==822&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5173,7 +5240,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 80: case 590: case 594: case 609: case 632: case 633: case 634: case 915: case 1002:
+            case 80: case 590: case 594: case 609: case 632: case 633: case 634: case 915: case 1002: case 1009:
                 if(variants.nobasicanim){
                     this.selfCall(9)
                     this.remove=true
