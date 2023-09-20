@@ -63,6 +63,13 @@ class group{
                 for(let a=0,la=2;a<la;a++){
                     this.addInitial(this.battle.cardManagers[this.player].listing.card[player][1][floor(random(0,this.battle.cardManagers[this.player].listing.card[player][1].length))],0,player)
                 }
+                if(game.ascend>=20){
+                    this.addInitial(findName('Step-L',types.card),0,this.battle.player[this.player])
+                    this.addInitial(findName('Step-R',types.card),0,this.battle.player[this.player])
+                }else{
+                    this.addInitial(findName('Step',types.card),0,this.battle.player[this.player])
+                    this.addInitial(findName('Step',types.card),0,this.battle.player[this.player])
+                }
             break
             case 4:
                 for(let a=0,la=8;a<la;a++){
@@ -72,6 +79,13 @@ class group{
                 for(let a=0,la=2;a<la;a++){
                     let type=this.battle.cardManagers[this.player].listing.allPlayerCard[1][floor(random(0,this.battle.cardManagers[this.player].listing.allPlayerCard[1].length))]
                     this.addInitial(type,0,types.card[type].list)
+                }
+                if(game.ascend>=20){
+                    this.addInitial(findName('Step-L',types.card),0,this.battle.player[this.player])
+                    this.addInitial(findName('Step-R',types.card),0,this.battle.player[this.player])
+                }else{
+                    this.addInitial(findName('Step',types.card),0,this.battle.player[this.player])
+                    this.addInitial(findName('Step',types.card),0,this.battle.player[this.player])
                 }
             break
             case 5:
@@ -135,7 +149,7 @@ class group{
     addInitial(type,level,color){
         game.id++
         if(!types.card[type].levels[level].spec.includes(3)){
-            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
+            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
             if(this.id==0){
                 this.cards[this.cards.length-1].nonCalc=true
             }
@@ -151,7 +165,7 @@ class group{
                 }
                 return false
             }else{
-                this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
+                this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
                 if(this.id==0){
                     this.cards[this.cards.length-1].nonCalc=true
                 }
@@ -182,7 +196,7 @@ class group{
             }
             return false
         }else{
-            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
+            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
             if(this.id==0){
                 this.cards[this.cards.length-1].nonCalc=true
             }
@@ -216,7 +230,7 @@ class group{
             }
             return false
         }else{
-            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
+            this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
             if(this.id==0){
                 this.cards[this.cards.length-1].nonCalc=true
             }
@@ -369,6 +383,18 @@ class group{
         }
         if(userCombatant.status.main[152]>0){
             this.battle.cardManagers[this.player].draw(userCombatant.status.main[152])
+        }
+    }
+    selfLevel(type,level){
+        if(this.battle.combatantManager.combatants.length>0){
+            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+            if(userCombatant.status.main[161]>0){
+                return min(level+userCombatant.status.main[161],types.card[type].levels.length-1)
+            }else{
+                return level
+            }
+        }else{
+            return level
         }
     }
     out(){
@@ -1302,6 +1328,7 @@ class group{
                 this.battle.attackManager.effect=copyArray(this.cards[a].effect)
                 this.battle.attackManager.attackClass=this.cards[a].class
                 this.battle.attackManager.player=this.player
+                this.battle.attackManager.relPos=[a,this.cards.length-1]
                 if(this.cards[a].strike&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
@@ -1593,7 +1620,7 @@ class group{
                     }
                 }
                 let cap=100
-                if(this.cards.length>0&&this.cards[0].attack==817){
+                if(this.cards.length>0&&(this.cards[0].attack==817||this.cards[0].attack==1003)){
                     this.cards[0].cost=0
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){

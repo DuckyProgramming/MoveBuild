@@ -1,5 +1,5 @@
 class attack{
-    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData,amplify){
+    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData,amplify,relPos){
         this.type=type
         this.battle=battle
         this.player=player
@@ -15,6 +15,7 @@ class attack{
         this.combo=combo
         this.replayData=replayData
         this.amplify=amplify
+        this.relPos=relPos
 
         this.procedure=[]
 
@@ -91,7 +92,7 @@ class attack{
             case 918: case 919: case 920: case 924: case 926: case 930: case 934: case 935: case 938: case 939:
             case 940: case 942: case 943: case 944: case 945: case 946: case 947: case 950: case 956: case 957:
             case 958: case 959: case 964: case 965: case 966: case 972: case 974: case 980: case 987: case 991:
-            case 992: case 993: case 994:
+            case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -624,6 +625,9 @@ class attack{
                         if(this.targetCombatant.life<prelife4&&this.amplify){
                             this.userCombatant.heal(floor((prelife4-this.targetCombatant.life)/2))
                         }
+                    break
+                    case 1004:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.relPos[0]==0?2:1),this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1349,7 +1353,7 @@ class attack{
                         this.userCombatant.removeRandomStatus([1,3])
                     break
                     case 875:
-                        this.userManager.hand.draw(this.effect[1])
+                        this.userManager.draw(this.effect[1])
                         this.userCombatant.statusEffect('Temporary Strength',this.effect[2])
                     break
                     case 885:
@@ -2548,6 +2552,9 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([1,3,0])
                     break
+                    case 1005:
+                        this.userCombatant.statusEffect('Upgrade Created',1)
+                    break
                     
                 }
             break
@@ -3233,6 +3240,9 @@ class attack{
                     case 634:
                         this.targetCombatant.takeDamage((abs(this.direction-this.targetCombatant.goal.anim.direction)<30||abs(this.direction-this.targetCombatant.goal.anim.direction-360)<30||abs(this.direction-this.targetCombatant.goal.anim.direction+360)<30)?this.effect[0]+this.effect[1]:this.effect[0],this.user,1)
                     break
+                    case 1002:
+                        this.targetCombatant.takeDamage(this.relPos[0]==this.relPos[1]/2?this.effect[0]*2:this.effect[0],this.user,1)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user,1)
                     break
@@ -3820,7 +3830,8 @@ class attack{
             case 784: case 786: case 795: case 796: case 798: case 806: case 824: case 826: case 827: case 828:
             case 829: case 830: case 840: case 844: case 848: case 849: case 862: case 863: case 872: case 884:
             case 895: case 897: case 900: case 916: case 917: case 930: case 934: case 940: case 942: case 945:
-            case 946: case 947: case 950: case 966: case 972: case 991: case 992: case 993: case 994:
+            case 946: case 947: case 950: case 966: case 972: case 991: case 992: case 993: case 994: case 1003:
+            case 1004:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
@@ -4122,7 +4133,7 @@ class attack{
             case 774: case 781: case 782: case 789: case 790: case 791: case 797: case 818: case 819: case 832:
             case 835: case 855: case 859: case 860: case 868: case 869: case 870: case 871: case 891: case 892:
             case 904: case 909: case 910: case 911: case 912: case 913: case 921: case 922: case 926: case 928:
-            case 929: case 932: case 949: case 970: case 982: case 983:
+            case 929: case 932: case 949: case 970: case 982: case 983: case 1005:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -4350,7 +4361,7 @@ class attack{
                     }
                 }
             break
-            case 16: case 436:
+            case 16: case 436: case 1001:
                 if(this.timer==1){
                     let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                     this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
@@ -4361,6 +4372,10 @@ class attack{
                             if(this.targetCombatant.block<=0){
                                 this.targetCombatant.statusEffect('Bleed',this.effect[0])
                             }
+                        break
+                        case 1001:
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.targetCombatant.goal.anim.direction=this.relativeDirection
                         break
                         default:
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -5158,7 +5173,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 80: case 590: case 594: case 609: case 632: case 633: case 634: case 915:
+            case 80: case 590: case 594: case 609: case 632: case 633: case 634: case 915: case 1002:
                 if(variants.nobasicanim){
                     this.selfCall(9)
                     this.remove=true
@@ -7699,10 +7714,10 @@ class attack{
             break
             case 957:
                 if(this.timer==1){
-                    this.userCombatant.startAnimation(7)
+                    this.userCombatant.startAnimation(17)
                 }
                 if(this.timer<=10||this.timer>20&&this.timer<=30){
-                    this.userCombatant.runAnimation(1/10,7)
+                    this.userCombatant.runAnimation(1/10,17)
                 }
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,
@@ -7717,10 +7732,10 @@ class attack{
             break
             case 958:
                 if(this.timer==1){
-                    this.userCombatant.startAnimation(7)
+                    this.userCombatant.startAnimation(17)
                 }
                 if(this.timer<=10||this.timer>20&&this.timer<=30){
-                    this.userCombatant.runAnimation(1/10,7)
+                    this.userCombatant.runAnimation(1/10,17)
                 }
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,
@@ -7735,10 +7750,10 @@ class attack{
             break
             case 959:
                 if(this.timer==1){
-                    this.userCombatant.startAnimation(7)
+                    this.userCombatant.startAnimation(17)
                 }
                 if(this.timer<=10||this.timer>20&&this.timer<=30){
-                    this.userCombatant.runAnimation(1/10,7)
+                    this.userCombatant.runAnimation(1/10,17)
                 }
                 if(this.timer==15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,

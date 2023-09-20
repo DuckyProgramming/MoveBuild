@@ -1140,7 +1140,11 @@ class card{
             case 998: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas a Defense\nNext ${effect[1]} Block Add${effect[1]!=1?`s`:``}\nDo 50% More`; break
             case 999: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Last Card Played\nWas a Movement\nGain ${effect[1]} Energy`; break
             case 1000: string+=`Kill All Enemies`; break
-
+            case 1001: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nTarget Will Face Away`; break
+            case 1002: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nin Center of Hand`; break
+            case 1003: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 at\nLeft of Hand`; break
+            case 1004: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double at\nLeft of Hand`; break
+            case 1005: string+=`Upgrade All Cards\nCreated This Combat`; break
 
 
 

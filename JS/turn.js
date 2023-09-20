@@ -871,8 +871,10 @@ class turn{
                         if(this.userCombatant.team==0&&this.target==[]){
                             this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
                         }
-                        this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                        this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                        if(this.target.length>0){
+                            this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                            this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                        }
                     }
                     this.remove=true
                     this.selfRemoved=true

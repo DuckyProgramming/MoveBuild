@@ -1,7 +1,6 @@
 Bugs:
 
 !!!
-Duelist Chaining Cards
 Duelist Vanishing Cards
 Maybe Also Be Requisitioned-
 
@@ -13,7 +12,11 @@ This report is dated to 9/7/2023
 If the bug is not reported by October, it can be considered fixed
 
 first steps but its Sibiea 1B
-ERS the game
+
+counter relic hell
+
+X% chance to do damage
+Lodstone but with a random amount
 
 https://github.com/lf201014/STS_ThMod_MRS/tree/master
 
