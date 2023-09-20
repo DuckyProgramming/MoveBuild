@@ -81,7 +81,7 @@ class combatant{
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
-            '1.5x Block','Upgrade Created','Lowroll Strength',
+            '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -100,7 +100,7 @@ class combatant{
                 1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
-                0,0,0,
+                0,0,0,1,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -119,7 +119,7 @@ class combatant{
                 2,2,2,2,1,2,2,0,0,0,
                 2,2,2,3,2,2,0,0,3,3,
                 2,2,2,0,0,2,2,2,3,0,
-                0,2,2,
+                0,2,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -152,6 +152,7 @@ class combatant{
         this.stance=0
         this.faith=0
         this.charge=0
+        this.ammo=0
 
         this.intent=0
         this.activated=false
@@ -2584,6 +2585,7 @@ class combatant{
         this.stance=0
         this.faith=0
         this.charge=0
+        this.ammo=0
         this.resetAnim()
         
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -3347,6 +3349,9 @@ class combatant{
             break
         }
     }
+    randomIntent(){
+        this.intent=floor(random(0,this.attack.length))
+    }
     convertTile(target){
         let targetTile=[]
         for(let a=0,la=target.length;a<la;a++){
@@ -3747,6 +3752,9 @@ class combatant{
             }
             if(userCombatant.status.main[17]!=0){
                 totalStr+=userCombatant.status.main[17]
+            }
+            if(userCombatant.status.main[163]!=0){
+                totalStr+=userCombatant.status.main[163]
             }
             if(totalStr>0){
                 damage*=1+totalStr*0.1

@@ -1174,6 +1174,9 @@ class group{
     cost(cost,cardClass,spec){
         this.battle.attackManager.amplify=false
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(spec.includes(25)&&userCombatant.ammo>0){
+            userCombatant.ammo--
+        }
         if(cardClass==1&&userCombatant.status.main[22]>0){
             userCombatant.status.main[22]--
         }else if(userCombatant.status.main[27]>0){
@@ -1620,7 +1623,7 @@ class group{
                     }
                 }
                 let cap=100
-                if(this.cards.length>0&&(this.cards[0].attack==817||this.cards[0].attack==1003)){
+                if(this.cards.length>0&&(this.cards[0].attack==817||this.cards[0].attack==1003||this.cards[0].attack==1012)){
                     this.cards[0].cost=0
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){

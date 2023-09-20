@@ -5838,9 +5838,9 @@ types={
         },{
             name:'Shotgun',rarity:0,list:9,
             levels:[
-                {effect:[17,3],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
-                {effect:[27,5],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
-                {effect:[32,6],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[14,2],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[21,4],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[25,5],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
             ],
         },{
             name:'Fire\nAway',rarity:1,list:9,
@@ -6094,11 +6094,88 @@ types={
                 {effect:[9],attack:1004,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[11],attack:1004,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Stacked\nDefense',rarity:0,list:9,
+            levels:[
+                {effect:[8],attack:1012,cost:1,target:[0],spec:[],class:4},
+                {effect:[12],attack:1012,cost:1,target:[0],spec:[],class:4},
+                {effect:[15],attack:1012,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Skewed\nDefense',rarity:0,list:9,
+            levels:[
+                {effect:[8],attack:1013,cost:1,target:[0],spec:[],class:4},
+                {effect:[12],attack:1013,cost:1,target:[0],spec:[],class:4},
+                {effect:[15],attack:1013,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Hit the\nSpot',rarity:1,list:9,
+            levels:[
+                {effect:[7,1],attack:1014,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:1014,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,1],attack:1014,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Chink',rarity:1,list:9,
+            levels:[
+                {effect:[7,1],attack:1015,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:1015,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,1],attack:1015,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Slidebuffer',rarity:1,list:9,
+            levels:[
+                {effect:[1],attack:1016,cost:0,target:[0],spec:[],class:3},
+                {effect:[1],attack:1016,cost:0,target:[0],spec:[2],class:3},
+                {effect:[1],attack:1016,cost:0,target:[0],spec:[2,22],class:3},
+            ],
+        },{
+            name:'Upward\nKick',rarity:1,list:9,
+            levels:[
+                {effect:[3],attack:1017,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6],attack:1017,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:1017,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Uppercut',rarity:0,list:9,
+            levels:[
+                {effect:[7],attack:1018,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:1018,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14],attack:1018,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Redbull',rarity:0,list:9,
+            levels:[
+                {effect:[3],attack:1019,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:1019,cost:1,target:[0],spec:[],class:4},
+                {effect:[5],attack:1019,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Bullet\nSupply',rarity:0,list:9,
+            levels:[
+                {effect:[3],attack:1020,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:1020,cost:1,target:[0],spec:[],class:4},
+                {effect:[5],attack:1020,cost:1,target:[0],spec:[],class:4},
+            ],
         },
+        /*{
+            name:'Steak\nSandwich',rarity:2,list:9,
+            levels:[
+                {effect:[3],attack:1021,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:1021,cost:0,target:[0],spec:[],class:4},
+                {effect:[5],attack:1021,cost:0,target:[0],spec:[],class:4},
+            ],
+        },*/
 
         //shout
         //gossip
         //mob justice
+
+        //brag
+        //selfpromotion
+
+        //heavyweapons
+        //ammo mechanic
 
         
 

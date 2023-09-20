@@ -201,6 +201,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[17]!=0){
 				totalStr+=user.status.main[17]
 			}
+			if(user.status.main[163]!=0){
+				totalStr+=user.status.main[163]
+			}
 			if(totalStr>0){
 				damage*=1+totalStr*0.1
 				bonus*=1+totalStr*0.1
