@@ -58,7 +58,8 @@ class card{
             this.effect=effect
             this.effect=this.effect==undefined?copyArray(types.card[this.type].levels[this.level].effect):copyArray(this.effect)
             this.attack=attack||types.card[this.type].levels[this.level].attack
-            this.target=target||types.card[this.type].levels[this.level].target
+            this.target=target
+            this.target=this.target==undefined?copyArray(types.card[this.type].levels[this.level].target):copyArray(this.target)
             this.spec=(spec||types.card[this.type].levels[this.level].spec).concat(additionalSpec||[])
             this.class=cardClass||types.card[this.type].levels[this.level].class
             this.levels=types.card[this.type].levels.length
@@ -1177,7 +1178,16 @@ class card{
             case 1035: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCenter of Hand:\nGain ${effect[1]} Armor`; break
             case 1036: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}*Hand Size\nCenter of Hand:\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1037: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 at\nCenter of Hand`; break
+            case 1038: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Strike${effect[1]!=1?`s`:``}\nto Draw Pile`; break
+            case 1039: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Defend${effect[1]!=1?`s`:``}\nto Draw Pile`; break
+            case 1040: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less This\nTurn When a Basic\nCard is Played`; break
+            case 1041: string+=`Strikes and Defends\nHave ${effect[0]} More Effect`; break
+            case 1042: string+=`Make ${effect[0]} Card${effect[0]!=1?`s`:``}\nFree This Combat`; break
+            case 1043: string+=`Strikes Get +1 Range`; break
+            case 1044: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nFrom the Bottom`; break
+            case 1045: string+=`Send 1 of Every ${effect[0]}\nCards in Discard\nto Hand`; break
             
+
 
 
             
@@ -1358,7 +1368,7 @@ class card{
         this.retain=false
         this.retain2=false
     }
-    anotherPlayed(cardClass,name){
+    anotherPlayed(cardClass,name,basic){
         if(this.spec.includes(9)){
             this.deSize=true
         }
@@ -1393,6 +1403,12 @@ class card{
             break
             case 857:
                 if(name=='Spark'&&this.cost>0){
+                    this.cost--
+                    this.base.cost--
+                }
+            break
+            case 1040:
+                if(basic&&this.cost>0){
                     this.cost--
                     this.base.cost--
                 }
@@ -1690,6 +1706,11 @@ class card{
             }
             if(anim[10]>0){
                 this.layer.stroke(255,0,50,this.fade*anim[10])
+                this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
+                stack++
+            }
+            if(anim[11]>0){
+                this.layer.stroke(0,150,0,this.fade*anim[11])
                 this.layer.rect(0,0,this.width+2-stack*6,this.height+2-stack*6,max(0,5-stack*3))
                 stack++
             }
