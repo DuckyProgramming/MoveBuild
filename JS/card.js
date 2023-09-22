@@ -995,7 +995,7 @@ class card{
             case 853: string+=`Add ${this.calculateEffect(1,3)} Block\nWhere X = Charge${effect[0]>0?`+${effect[0]}`:``}`; break
             case 854: string+=`Draw ${effect[0]} More\nCard${effect[0]!=1?`s`:``} Per Turn\n${effect[1]} Balance`; break
             case 855: string+=`When You Amplify,\nPut a Card in Discard\nPile in Your Hand`; break
-            case 856: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nAmplify 2:\nInstantly Kill Those\nWith ${effect[1]} or Less Health`; break
+            case 856: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nAmplify 2:\nInstantly Kill Those\nWith ${effect[1]} or Less Health`; break
             case 857: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Spark Played`; break
             case 858: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Charge`; break
             case 859: string+=`Add to Hand:\nInstant Wrath\nInstant Calm`; break
@@ -1160,6 +1160,12 @@ class card{
             case 1018: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRandomize Target Intent`; break
             case 1019: string+=`Gain ${effect[0]} Deprecating\nStrength`; break
             case 1020: string+=`Gain ${effect[0]} Ammo`; break
+            case 1021: string+=`Discard Your Hand\nGain ${effect[0]} Vulnerable\nAdd ${effect[1]} Anger Punch${effect[1]?`es`:``}`; break
+            case 1022: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext ${effect[1]} Damage Deal${effect[1]!=1?`s`:``}\n${effect[1]!=1?`are`:`is`} 50% More\nAdvance`; break
+            case 1023: string+=`50%:\nPush 1 Tile\n50%:\nApply ${effect[0]} Confusion`; break
+            case 1024: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Ammo`; break
+            case 1025: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nMove a Card From\nDiscard to Draw`; break
+
 
 
 
@@ -1687,7 +1693,7 @@ class card{
         if(this.player>=0&&this.player<this.battle.players){
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&!(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
-            !(this.spec.includes(6)&&!userCombatant.armed)&&!(this.spec.indlues(25)&&this.userCombatant.ammo<=0)
+            !(this.spec.includes(6)&&!userCombatant.armed)&&!(this.spec.includes(25)&&userCombatant.ammo<=0)
             this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))
         }else{
             this.afford=false

@@ -929,7 +929,11 @@ class group{
     send(list,firstIndex,lastIndex,spec,parent){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
-                list.push(copyCard(this.cards[firstIndex]))
+                if(spec==11){
+                    list.splice(0,0,copyCard(this.cards[firstIndex]))
+                }else{
+                    list.push(copyCard(this.cards[firstIndex]))
+                }
                 list[list.length-1].size=0
                 if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10){
                     list[list.length-1].position.x=1200
@@ -971,7 +975,11 @@ class group{
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
-                list.push(copyCard(this.cards[firstIndex]))
+                if(spec==11){
+                    list.splice(0,0,copyCard(this.cards[firstIndex]))
+                }else{
+                    list.push(copyCard(this.cards[firstIndex]))
+                }
                 list[list.length-1].size=0
                 if(spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10){
                     list[list.length-1].position.x=1200

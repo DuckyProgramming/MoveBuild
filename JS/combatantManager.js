@@ -100,6 +100,18 @@ class combatantManager{
             }
         }
     }
+    setSpecificTarget(id){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0&&!this.combatants[a].construct&&this.combatants[a].life>0){
+                list.push(a)
+            }
+        }
+        if(list==[]){
+            list.push(0)
+        }
+        this.combatants[id].target=list[floor(random(0,list.length))]
+    }
     bossHeal(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team>0){
@@ -346,6 +358,7 @@ class combatantManager{
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
+        this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()
         this.reorder()
@@ -374,6 +387,7 @@ class combatantManager{
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
+        this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()
         this.reorder()

@@ -152,7 +152,7 @@ class combatant{
         this.stance=0
         this.faith=0
         this.charge=0
-        this.ammo=0
+        this.ammo=3
 
         this.intent=0
         this.activated=false
@@ -2585,7 +2585,7 @@ class combatant{
         this.stance=0
         this.faith=0
         this.charge=0
-        this.ammo=0
+        this.ammo=3
         this.resetAnim()
         
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -3551,8 +3551,8 @@ class combatant{
     }
     deTarget(){
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].target==this.id){
-                this.battle.combatantManager.combatants[a].target=constrain(this.battle.players-1-this.battle.combatantManager.combatants[a].target,0,this.battle.players-1)
+            if((this.battle.combatantManager.combatants[a].team==0||this.battle.combatantManager.combatants[a].construct)&&this.battle.combatantManager.combatants[a].target==this.id){
+                this.battle.combatantManager.setSpecificTarget(a)
             }
         }
     }
