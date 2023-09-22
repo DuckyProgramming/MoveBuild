@@ -176,7 +176,7 @@ function arrayIncludes(array,includes){
 }
 function calculateEffect(effect,user,type,player,relicManager,variant,args){
 	switch(type){
-		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12:
+		case 0: case 2: case 5: case 7: case 8: case 10: case 11: case 12: case 13:
 			let damage=effect
 			let bonus=0
 			let totalStr=0
@@ -242,6 +242,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 10: return damage==effect?effect:effect+`(${damage})`
 				case 11: return (damage==effect?effect+'X':effect+`(${damage})X`)
 				case 12: return effect==1?(damage==effect?'1*Faith':`1(${damage})*Faith`):(damage==effect?effect+'*Faith':effect+`(${damage})*Faith`)
+				case 13: return effect==1?(damage==effect?'1':`1(${damage})`):(damage==effect?effect+'':effect+`(${damage})`)
 
 			}
 		case 1: case 3: case 6:

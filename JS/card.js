@@ -249,7 +249,7 @@ class card{
             case 99: string+=`Gain ${effect[0]} Energy\nNext Turn`; break
             case 101: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDoes Double\nDamage if\nPlayed First`; break
             case 102: string+=`Rearm or Create\na Rearmament Point`; break
-            case 103: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Less\nCards Next Turn`; break
+            case 103: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Less\nCard${effect[1]?`s`:``} Next Turn`; break
             case 104: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will\nUse a Special Move,\nReduce Damage by ${effect[1]}`; break
             case 105: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nLose ${effect[1]} Energy`; break
             case 106: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nApply ${effect[1]} Weak`; break
@@ -1152,7 +1152,7 @@ class card{
             case 1010: string+=`50%: Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain ${effect[1]} Energy`; break
             case 1011: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIn a Random Direction`; break
             case 1012: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 at\nLeft of Hand`; break
-            case 1013: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDeals Double at\nLeft of Hand`; break
+            case 1013: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Double at\nLeft of Hand`; break
             case 1014: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCenter of Hand:\nApply ${effect[1]} Weak`; break
             case 1015: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCenter of Hand:\nApply ${effect[1]} Vulnerable`; break
             case 1016: string+=`Discard ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd a Copy of\nThis Card to Hand`; break
@@ -1165,9 +1165,19 @@ class card{
             case 1023: string+=`50%:\nPush 1 Tile\n50%:\nApply ${effect[0]} Confusion`; break
             case 1024: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Ammo`; break
             case 1025: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nMove a Card From\nDiscard to Draw`; break
-
-
-
+            case 1026: string+=`Gain ${effect[0]} Energy\nSwap Draw and Discard\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1027: string+=`Deal Damage Equal\nto the Your\nHand's Cost`; break
+            case 1028: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nSend ${effect[2]} Card${effect[2]!=1?`s`:``} From\nHand to Draw Pile`; break
+            case 1029: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[0]} Energy\nNext 3 Turns`; break
+            case 1030: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nNext Turn`; break
+            case 1031: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to\nDraw Pile`; break
+            case 1032: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nNext Turn`; break
+            case 1033: string+=`Gain ${effect[0]} Temporary\nDexterity`; break
+            case 1034: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 at\nCenter of Hand`; break
+            case 1035: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCenter of Hand:\nGain ${effect[1]} Armor`; break
+            case 1036: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}*Hand Size\nCenter of Hand:\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1037: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 at\nCenter of Hand`; break
+            
 
 
             

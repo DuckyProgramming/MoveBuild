@@ -1642,6 +1642,9 @@ class group{
                     }
                     cap+=length
                     this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected
+                    if(this.cards.length>0&&abs((this.cards.length-1)/2-a)<=0.5&&(this.cards[a].attack==1034||this.cards[a].attack==1037)){
+                        this.cards[a].cost=0
+                    }
                     if(this.cards[a].size<=0){
                         if(this.cards[a].discardEffect.length>0){
                             this.cards[a].deSize=false
@@ -1668,7 +1671,7 @@ class group{
                                 this.send(this.battle.cardManagers[this.battle.players-1-this.player].hand.cards,a,a+1,1)
                                 a--
                                 la--
-                            }else if(this.cards[a].discardEffect.includes(5)){
+                            }else if(this.cards[a].discardEffect.includes(5)||this.cards[a].attack==1031){
                                 this.cards[a].discardEffect=[]
                                 this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                                 a--

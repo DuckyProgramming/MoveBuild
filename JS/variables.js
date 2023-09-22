@@ -6178,6 +6178,41 @@ types={
                 {effect:[1,2],attack:1024,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,3],attack:1024,cost:1,target:[1,1,1],spec:[0],class:3},
             ],
+        },{
+            name:'Coalescence',rarity:0,list:9,
+            levels:[
+                {effect:[3],attack:1033,cost:0,target:[0],spec:[],class:4},
+                {effect:[4],attack:1033,cost:0,target:[0],spec:[],class:4},
+                {effect:[5],attack:1033,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Snapshot',rarity:1,list:9,
+            levels:[
+                {effect:[12],attack:1034,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[18],attack:1034,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[22],attack:1034,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            ],
+        },{
+            name:'Dive',rarity:0,list:9,
+            levels:[
+                {effect:[10,1],attack:1035,cost:1,target:[0],spec:[],class:4},
+                {effect:[14,2],attack:1035,cost:1,target:[0],spec:[],class:4},
+                {effect:[16,3],attack:1035,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Called\nShot',rarity:1,list:9,
+            levels:[
+                {effect:[2,2],attack:1036,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[4,2],attack:1036,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[5,2],attack:1036,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            ],
+        },{
+            name:'Shutter',rarity:1,list:9,
+            levels:[
+                {effect:[20],attack:1037,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[27],attack:1037,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[32],attack:1037,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            ],
         },
 
         //reload-like cards
@@ -6191,6 +6226,12 @@ types={
 
         //heavyweapons
         //ammo mechanic
+
+        //kill random enemies, if fatal, repeat
+
+        //add block, add more if first card played
+
+        //BUILDER SWAPS: LOSE MONEY, DO DAMAGE
 
         
 
@@ -6438,6 +6479,55 @@ types={
                 {effect:[13],attack:1025,cost:1,target:[0],spec:[],class:2},
                 {effect:[18],attack:1025,cost:1,target:[0],spec:[],class:2},
                 {effect:[22],attack:1025,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Disorder',rarity:1,list:10,
+            levels:[
+                {effect:[2,2],attack:1026,cost:0,target:[0],spec:[],class:2},
+                {effect:[3,3],attack:1026,cost:0,target:[0],spec:[],class:2},
+                {effect:[3,4],attack:1026,cost:0,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Annotation',rarity:1,list:10,
+            levels:[
+                {effect:[],attack:1027,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[],attack:1027,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[],attack:1027,cost:1,target:[2,1,1],spec:[0,22],class:1},
+            ],
+        },{
+            name:'Groan',rarity:0,list:10,
+            levels:[
+                {effect:[8,1,1],attack:1028,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1,1],attack:1028,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1,1],attack:1028,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Partial',rarity:1,list:10,
+            levels:[
+                {effect:[12,1],attack:1029,cost:3,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:1029,cost:3,target:[2,1,1],spec:[0],class:1},
+                {effect:[18,1],attack:1029,cost:3,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Nap',rarity:0,list:10,
+            levels:[
+                {effect:[14,1],attack:1030,cost:1,target:[0],spec:[4],class:2},
+                {effect:[20,1],attack:1030,cost:1,target:[0],spec:[4],class:2},
+                {effect:[25,1],attack:1030,cost:1,target:[0],spec:[4],class:2},
+            ],
+        },{
+            name:'Obsession',rarity:0,list:9,
+            levels:[
+                {effect:[10],attack:1031,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14],attack:1031,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[17],attack:1031,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Dismay',rarity:0,list:2,
+            levels:[
+                {effect:[2,2],attack:1032,cost:1,target:[0],spec:[],class:4},
+                {effect:[3,2],attack:1032,cost:1,target:[0],spec:[],class:4},
+                {effect:[3,3],attack:1032,cost:1,target:[0],spec:[],class:4},
             ],
         },
 

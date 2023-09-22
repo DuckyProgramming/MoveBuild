@@ -65,6 +65,12 @@ class cardManager{
     copy(group1,group2){
         this.getList(group1).copy(this.getList(group2).cards,0,-1)
     }
+    swap(group1,group2){
+        let list=[]
+        this.getList(group1).send(list,0,-1)
+        this.getList(group2).send(this.getList(group1).cards,0,-1)
+        this.getList(group2).cards=list
+    }
     shuffle(group){
         this.getList(group).shuffle()
     }
