@@ -4208,11 +4208,11 @@ types={
                 {effect:[4,2],attack:713,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Repeater',rarity:1,list:6,
+            name:'Moneybag',rarity:1,list:6,
             levels:[
-                {effect:[7,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[10,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,5],attack:1046,cost:0,target:[2,1,3],spec:[0],class:1},
+                {effect:[20,5],attack:1046,cost:0,target:[2,1,3],spec:[0],class:1},
+                {effect:[25,5],attack:1046,cost:0,target:[2,1,3],spec:[0],class:1},
             ],
         },{
             name:'Aggressive\nMonopolist',rarity:2,list:6,
@@ -4376,11 +4376,6 @@ types={
                 {effect:[4],attack:936,cost:1,target:[0],spec:[1],class:4},
             ],
         },
-
-        //add 2
-
-
-
 
         {
             name:'Eruption',rarity:0,list:7,
@@ -6213,7 +6208,24 @@ types={
                 {effect:[27],attack:1037,cost:2,target:[2,1,3],spec:[0,25],class:1},
                 {effect:[32],attack:1037,cost:2,target:[2,1,3],spec:[0,25],class:1},
             ],
+        },{
+            name:'Repeater',rarity:1,list:9,
+            levels:[
+                {effect:[7,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:714,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Refire',rarity:2,list:9,
+            levels:[
+                {effect:[9,1,1],attack:1047,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[13,1,1],attack:1047,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[16,1,1],attack:1047,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            ],
         },
+
+
+        
 
         //reload-like cards
         //more guns
@@ -6227,11 +6239,12 @@ types={
         //heavyweapons
         //ammo mechanic
 
+        //monkeybag
+        //glass cannonc
+
         //kill random enemies, if fatal, repeat
 
         //add block, add more if first card played
-
-        //BUILDER SWAPS: LOSE MONEY, DO DAMAGE
 
         //deals more per curse
 
@@ -6964,6 +6977,13 @@ types={
                 {effect:[6,2],attack:79,cost:1,target:[2,1,2],spec:[],class:1},
                 {effect:[9,3],attack:79,cost:1,target:[2,1,2],spec:[],class:1},
                 {effect:[10,4],attack:79,cost:1,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Ourostep',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:1048,cost:1,target:[1,1,1],spec:[],class:3},
+                {effect:[2],attack:1048,cost:1,target:[1,1,2],spec:[],class:3},
+                {effect:[2],attack:1048,cost:1,target:[1,1,2],spec:[22],class:3},
             ],
         },{
             name:'Glock',rarity:-1,list:0,

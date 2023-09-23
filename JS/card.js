@@ -1186,6 +1186,9 @@ class card{
             case 1043: string+=`Strikes Get +1 Range`; break
             case 1044: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nFrom the Bottom`; break
             case 1045: string+=`Send 1 of Every ${effect[0]}\nCards in Discard\nto Hand`; break
+            case 1046: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency`; break
+            case 1047: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nNext ${effect[2]} Card${effect[2]!=1?`s`:``}\nPlayed ${effect[1]!=1?`are`:`is`} Duplicated`; break
+            case 1048: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd an Ourostep\nto Discard`; break
             
 
 

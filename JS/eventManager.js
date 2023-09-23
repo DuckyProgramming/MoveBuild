@@ -623,6 +623,7 @@ class eventManager{
                         }else if(this.page==0&&a==1){
                             this.battle.cardManagers[this.player].deck.cards=[]
                             this.battle.cardManagers[this.player].deck.add(findName('Ouroboros',types.card),0,0)
+                            this.battle.cardManagers[this.player].deck.add(findName('Ourostep',types.card),0,0)
                         }
                     break
                     case 58:
