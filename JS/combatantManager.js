@@ -367,6 +367,9 @@ class combatantManager{
                             this.battle.turnManager.loadEnemyAttack(a)
                         }
                     break
+                    case 19:
+                        this.combatants[a].takeDamage(args[0],-1)
+                    break
                 }
             }
         }

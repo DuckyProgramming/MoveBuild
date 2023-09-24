@@ -914,6 +914,9 @@ class group{
             case 933:
                 this.battle.energy.main[this.player]+=effect[0]
             break
+            case 1064:
+                this.battle.cardManagers[this.player].draw()
+            break
         }
     }
     deathEffect(){

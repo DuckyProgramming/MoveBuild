@@ -6680,6 +6680,48 @@ types={
                 {effect:[4],attack:1060,cost:3,target:[0],spec:[1],class:4},
                 {effect:[5],attack:1060,cost:3,target:[0],spec:[1],class:4},
             ],
+        },{
+            name:'Spectral\nGrasp',rarity:0,list:10,
+            levels:[
+                {effect:[16],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
+                {effect:[22],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
+                {effect:[27],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
+            ],
+        },{
+            name:'Circling\nRevenant',rarity:0,list:10,
+            levels:[
+                {effect:[20],attack:2,cost:1,target:[0],spec:[15],limit:4,class:2},
+                {effect:[27],attack:2,cost:1,target:[0],spec:[15],limit:4,class:2},
+                {effect:[33],attack:2,cost:1,target:[0],spec:[15],limit:4,class:2},
+            ],
+        },{
+            name:'Illusory\nGrace',rarity:1,list:10,
+            levels:[
+                {effect:[1],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[2],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[3],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
+            ],
+        },{
+            name:'Glimpse of\nEmptiness',rarity:1,list:10,
+            levels:[
+                {effect:[1],attack:1063,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[2],attack:1063,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[3],attack:1063,cost:0,target:[0],spec:[15],limit:3,class:4},
+            ],
+        },{
+            name:'Dreams\nof Power',rarity:2,list:10,
+            levels:[
+                {effect:[30,15],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
+                {effect:[45,20],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
+                {effect:[60,24],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
+            ],
+        },{
+            name:'Dreams\nof Intelligence',rarity:2,list:10,
+            levels:[
+                {effect:[2],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
+                {effect:[4],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
+                {effect:[6],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
+            ],
         },
 
 
@@ -6691,6 +6733,15 @@ types={
 
         //the gentleman
         //rolls
+
+        //exile and release
+
+        //credit card
+        //time card
+        //official trump card
+        //loyalty card
+        //business card
+        //the victim card
 
         //add blackjack
 
@@ -7722,15 +7773,6 @@ types={
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0,1],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[1],class:3},
                 {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[1,2],class:3},
-            ],
-        },
-
-        {
-            name:'Spectral\nGrasp',rarity:-1,list:-1,
-            levels:[
-                {effect:[16],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
-                {effect:[22],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
-                {effect:[27],attack:1,cost:1,target:[2,1,1],spec:[0,15],limit:4,class:1},
             ],
         },
     ],combatant:[
@@ -13011,8 +13053,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:true}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],
