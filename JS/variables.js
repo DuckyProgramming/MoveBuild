@@ -6271,13 +6271,32 @@ types={
                 {effect:[8],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
                 {effect:[10],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
             ],
+        },{
+            name:'Spray\nand Pray',rarity:2,list:9,
+            levels:[
+                {effect:[10],attack:1056,cost:1,target:[0],spec:[0,25],class:1},
+                {effect:[17],attack:1056,cost:1,target:[0],spec:[0,25],class:1},
+                {effect:[22],attack:1056,cost:1,target:[0],spec:[0,25],class:1},
+            ],
+        },{
+            name:'Stay\nBack',rarity:0,list:9,
+            levels:[
+                {effect:[7,5],attack:1057,cost:1,target:[0],spec:[],class:2},
+                {effect:[11,7],attack:1057,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,11],attack:1057,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Diamond\nPlate',rarity:0,list:9,
+            levels:[
+                {effect:[3,1],attack:1061,cost:1,target:[0],spec:[],class:2},
+                {effect:[5,1],attack:1061,cost:1,target:[0],spec:[],class:2},
+                {effect:[6,1],attack:1061,cost:1,target:[0],spec:[],class:2},
+            ],
         },
 
 
         
 
-        //gossip
-        //mob justice
 
         //brag
         //selfpromotion
@@ -6288,16 +6307,8 @@ types={
         //monkeybag
         //glass cannonc
 
-        //kill random enemies, if fatal, repeat
-
-        //add block, add more if first card played
-
-        //deals more per curse
-
         //deal damage, add impending doom to hand
-        //gain armor, in center: gain money
-        
-
+        //flat block bonus
 
 
 
@@ -6647,6 +6658,27 @@ types={
                 {effect:[6],attack:1045,cost:1,target:[0],spec:[],class:4},
                 {effect:[5],attack:1045,cost:1,target:[0],spec:[],class:4},
                 {effect:[4],attack:1045,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Cursed\nStrike',rarity:0,list:10,
+            levels:[
+                {effect:[5,5],attack:1058,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,8],attack:1058,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,10],attack:1058,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Gossip',rarity:1,list:10,
+            levels:[
+                {effect:[],attack:1059,cost:2,target:[2,1,3],spec:[1],class:4},
+                {effect:[],attack:1059,cost:1,target:[2,1,3],spec:[1],class:4},
+                {effect:[],attack:1059,cost:1,target:[2,1,3],spec:[1,22],class:4},
+            ],
+        },{
+            name:'MobJustice',rarity:2,list:10,
+            levels:[
+                {effect:[3],attack:1060,cost:3,target:[0],spec:[1],class:4},
+                {effect:[4],attack:1060,cost:3,target:[0],spec:[1],class:4},
+                {effect:[5],attack:1060,cost:3,target:[0],spec:[1],class:4},
             ],
         },
 
@@ -7896,6 +7928,7 @@ types={
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
         {name:'Navigator',life:20,behavior:0,spec:[15],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Where we droppin boys`},
         {name:'Rich Kid',life:20,behavior:0,spec:[16],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
+        {name:'MobMan',life:10,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`No brain?`},
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -12978,8 +13011,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:true}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

@@ -95,7 +95,7 @@ class attack{
             case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004: case 1006:
             case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023: case 1027:
             case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
-            case 1050: case 1052: case 1054: case 1055:
+            case 1050: case 1052: case 1054: case 1055: case 1058: case 1059:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -670,6 +670,9 @@ class attack{
                     case 1049:
                         this.targetCombatant.statusEffect('Bruise',this.effect[1])
                     break
+                    case 1058:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userManager.hand.classNumber([6]),this.user)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -1238,8 +1241,18 @@ class attack{
                     case 1013:
                         this.userCombatant.addBlock(this.effect[0]*(this.relPos[0]==0?2:1))
                     break
-                    default:
+                    case 1057:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.battle.counter.turnPlayed[this.player]<=1?2:1),this.user)
                         this.userCombatant.addBlock(this.effect[0])
+                    break
+                    case 1061:
+                        this.userCombatant.statusEffect('Armor',this.effect[0])
+                        if(this.relPos[0]==this.relPos[1]/2){
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                        }
+                    break
+                    default:
+                        this.userCombatant.addBlock(this.battle.counter.turnPlayed[this.player]<=1?this.effect[0]+this.effect[1]:this.effect[0])
                     break
                 }
                 switch(this.type){
@@ -3374,6 +3387,9 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.battle.currency.main[this.player]-=this.effect[1]
                     break
+                    case 1059:
+                        this.battle.combatantManager.allEffect(18,[this.targetCombatant.id])
+                    break
                     
                 }
             break
@@ -3963,6 +3979,18 @@ class attack{
                     case 1000:
                         this.battle.combatantManager.allEffect(17)
                     break
+                    case 1056:
+                        if(this.battle.combatantManager.randomEnemyEffect(2,[this.effect[0]])){
+                            if(this.battle.combatantManager.randomEnemyEffect(2,[this.effect[0]])){
+                                this.battle.combatantManager.randomEnemyEffect(0,[this.effect[0]])
+                            }
+                        }
+                    break
+                    case 1060:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.combatantManager.summonConstructRandom(this.userCombatant.tilePosition,findName('MobMan',types.combatant),this.userCombatant.team,-30+floor(random(0,6))*60,this.user)
+                        }
+                    break
 
                 }
             break
@@ -4035,7 +4063,7 @@ class attack{
             case 895: case 897: case 900: case 916: case 917: case 930: case 934: case 940: case 942: case 945:
             case 946: case 947: case 950: case 966: case 972: case 991: case 992: case 993: case 994: case 1003:
             case 1004: case 1006: case 1007: case 1010: case 1014: case 1015: case 1018: case 1022: case 1027: case 1029:
-            case 1031: case 1038: case 1040: case 1049: case 1050:
+            case 1031: case 1038: case 1040: case 1049: case 1050: case 1058:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
@@ -4100,7 +4128,7 @@ class attack{
             case 776: case 783: case 794: case 800: case 809: case 810: case 811: case 831: case 853: case 858:
             case 861: case 867: case 875: case 880: case 885: case 887: case 890: case 918: case 919: case 920:
             case 925: case 951: case 967: case 968: case 989: case 990: case 995: case 996: case 1012: case 1013:
-            case 1025: case 1030: case 1035: case 1037: case 1039:
+            case 1025: case 1030: case 1035: case 1037: case 1039: case 1057: case 1061:
                 if(this.type==809&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5017,7 +5045,7 @@ class attack{
             case 697: case 700: case 701: case 702: case 720: case 787: case 801: case 833: case 834: case 837:
             case 843: case 846: case 850: case 857: case 865: case 877: case 878: case 881: case 883: case 899:
             case 902: case 903: case 905: case 906: case 907: case 935: case 939: case 943: case 944: case 964:
-            case 965: case 980: case 1028: case 1046:
+            case 965: case 980: case 1028: case 1046: case 1059:
                 if(variants.nobasicanim){
                     this.selfCall(7)
                     this.remove=true
@@ -7002,7 +7030,7 @@ class attack{
             case 549: case 550: case 551: case 552: case 553: case 554: case 555: case 556: case 560: case 561:
             case 562: case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578: case 579:
             case 583: case 584: case 600: case 671: case 672: case 673: case 767: case 785: case 847: case 851:
-            case 854: case 856: case 879: case 894: case 956: case 971: case 1000:
+            case 854: case 856: case 879: case 894: case 956: case 971: case 1000: case 1056: case 1060:
                 if(variants.nobasicanim){
                     this.selfCall(12)
                     this.remove=true

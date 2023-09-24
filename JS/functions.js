@@ -248,8 +248,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 13: return effect==1?(damage==effect?'1':`1(${damage})`):(damage==effect?effect+'':effect+`(${damage})`)
 
 			}
-		case 1: case 3: case 6:
+		case 1: case 3: case 6: case 14:
 			let block=effect
+			let bonusB=0
 			let totalDex=0
 			if(user.status.main[7]!=0){
 				totalDex+=user.status.main[7]
@@ -274,11 +275,13 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[160]>0){
 				block*=1.5
 			}
+			//SCAFFOLD: 14 is unaffected by flat adds
 			block=round(block*10)/10
 			switch(type){
-				case 1: return block==effect?effect:effect+` (${block})`
-				case 3: return block==effect?effect+'X':effect+`(${block})X`
-				case 6: return block==effect?effect+'*Combo':effect+`(${block})*Combo`
+				case 1: return block==effect&&bonusB==0?effect:effect+`(${block+bonusB})`
+				case 3: return (block==effect?effect+'X':effect+`(${block})X`)+(bonusB>0?`(+${bonusB})`:``)
+				case 6: return effect==1?(block==effect?'1*Combo':`1(${block})*Combo`):(block==effect?effect+'*Combo':effect+`(${block})*Combo`)
+				case 14: return block==effect?effect:effect+`(${block})`
 
 			}
 		case 4: case 9:

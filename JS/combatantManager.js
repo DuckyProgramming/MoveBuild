@@ -244,6 +244,10 @@ class combatantManager{
                     this.combatants[index].takeDamage(args[0],-1)
                     this.combatants[index].statusEffect('Weak',args[1])
                 break
+                case 2:
+                    this.combatants[index].takeDamage(args[0],-1)
+                    return this.combatants[index].life<=0
+                break
             }
         }
     }
@@ -273,6 +277,21 @@ class combatantManager{
         let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
         if(index>=0){
             let tile=this.battle.tileManager.tiles[index]
+            this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
+            this.battle.updateTargetting()
+            this.battle.tileManager.activate()
+        }
+    }
+    summonConstructRandom(tilePosition,type,team,direction,builder){
+        let list=[]
+        for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+            let length=distTargetCombatant(0,{tilePosition:tilePosition},this.battle.tileManager.tiles[a])
+            if(length<=1&&length>=0&&this.battle.tileManager.tiles[a].occupied==0){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            let tile=this.battle.tileManager.tiles[list[floor(random(0,list.length))]]
             this.addCombatantConstruct(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,team,direction,false,builder)
             this.battle.updateTargetting()
             this.battle.tileManager.activate()
@@ -337,6 +356,15 @@ class combatantManager{
                     case 17:
                         if(this.combatants[a].team==0){
                             this.combatants[a].life=0
+                        }
+                    break
+                    case 18:
+                        if(this.combatants[a].team==0){
+                            this.battle.turnManager.loadEnemyRotate(a)
+                            this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,a,false))
+                            this.battle.turnManager.turns[this.battle.turnManager.turns.length-1].target=[args[0]]
+                            this.battle.turnManager.turns[this.battle.turnManager.turns.length-1].auxiliary=true
+                            this.battle.turnManager.loadEnemyAttack(a)
                         }
                     break
                 }
