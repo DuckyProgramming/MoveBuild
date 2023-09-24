@@ -6153,7 +6153,7 @@ types={
                 {effect:[5],attack:1020,cost:1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Secret\nStash',rarity:0,list:10,
+            name:'Secret\nStash',rarity:0,list:9,
             levels:[
                 {effect:[1,1],attack:886,cost:0,target:[0],spec:[1],class:3},
                 {effect:[1,2],attack:886,cost:0,target:[0],spec:[1],class:3},
@@ -6222,13 +6222,59 @@ types={
                 {effect:[13,1,1],attack:1047,cost:1,target:[2,1,3],spec:[0,25],class:1},
                 {effect:[16,1,1],attack:1047,cost:1,target:[2,1,3],spec:[0,25],class:1},
             ],
+        },{
+            name:'Thud',rarity:0,list:9,
+            levels:[
+                {effect:[3],attack:1049,cost:0,target:[2,1,1],spec:[],class:4},
+                {effect:[4],attack:1049,cost:0,target:[2,1,1],spec:[],class:4},
+                {effect:[5],attack:1049,cost:0,target:[2,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Smack',rarity:0,list:9,
+            levels:[
+                {effect:[6,1],attack:1050,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,2],attack:1050,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9,3],attack:1050,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Spinbash',rarity:1,list:9,
+            levels:[
+                {effect:[2],attack:1051,cost:0,target:[0],spec:[],class:1},
+                {effect:[3],attack:1051,cost:0,target:[0],spec:[],class:1},
+                {effect:[4],attack:1051,cost:0,target:[0],spec:[],class:1},
+            ],
+        },{
+            name:'Chaingun',rarity:1,list:9,
+            levels:[
+                {effect:[4,1],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[6,2],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[8,2],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            ],
+        },{
+            name:'Gunnery',rarity:1,list:9,
+            levels:[
+                {effect:[3],attack:1053,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:1053,cost:1,target:[0],spec:[],class:4},
+                {effect:[5],attack:1053,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Sniper',rarity:0,list:9,
+            levels:[
+                {effect:[8,4],attack:1054,cost:2,target:[2,1,6],spec:[0,25],class:1},
+                {effect:[10,5],attack:1054,cost:2,target:[2,1,6],spec:[0,25],class:1},
+                {effect:[10,6],attack:1054,cost:2,target:[2,1,6],spec:[0,25],class:1},
+            ],
+        },{
+            name:'Triple\nTap',rarity:1,list:9,
+            levels:[
+                {effect:[5],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[8],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[10],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            ],
         },
 
 
         
-
-        //reload-like cards
-        //more guns
 
         //gossip
         //mob justice
@@ -6248,9 +6294,6 @@ types={
 
         //deals more per curse
 
-        //bruise (increases damage taken, lwoers by 1)
-        //deal damage and bruise
-        //bruise explosion
         //deal damage, add impending doom to hand
         //gain armor, in center: gain money
         

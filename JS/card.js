@@ -91,7 +91,7 @@ class card{
     calculateEffect(effect,type){
         if(stage.scene=='battle'&&!this.nonCalc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv'])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv',this.spec.includes(25)])
         }else{
             return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
@@ -99,7 +99,7 @@ class card{
     calculateEffectAlly(effect,type){
         if(stage.scene=='battle'&&!this.nonCalc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player)]
-            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv'])
+            return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv',this.spec.includes(25)])
         }else{
             return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
@@ -283,7 +283,7 @@ class card{
             case 133: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nMove 1 Tile Away`; break
             case 134: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage`:``}\nPush 1 Tile Right`; break
             case 135: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage`:``}\nPush 1 Tile Left`; break
-            case 136: case 217:
+            case 136: case 217: case 1055:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times`; break
             case 137: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Strength\nNext Turn`; break
             case 138: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide`; break
@@ -1189,7 +1189,13 @@ class card{
             case 1046: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency`; break
             case 1047: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nNext ${effect[2]} Card${effect[2]!=1?`s`:``}\nPlayed ${effect[1]!=1?`are`:`is`} Duplicated`; break
             case 1048: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd an Ourostep\nto Discard`; break
-            
+            case 1049: string+=`Apply ${effect[0]} Bruise`; break
+            case 1050: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Bruise`; break
+            case 1051: string+=`Apply ${effect[0]} Bruise\nin All Directions`; break
+            case 1052: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturn ${effect[1]} Gun${effect[1]!=1?`s`:``}\nFrom Discard to Hand`; break
+            case 1053: string+=`Guns Deal ${effect[0]}\nMore Damage`; break
+            case 1054: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],2)} Damage\nWhere X = (Range-1)`; break
+
 
 
 
@@ -1205,7 +1211,7 @@ class card{
             case 10: string+=`Heal ${this.calculateEffect(effect[0],4)} Health`; break
             case 23: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}`; break
             case 64: string+=`Gain ${effect[0]} Control`; break
-            case 490: string+=c`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
+            case 490: string+=`Hold ${effect[0]} Basic Orb${effect[0]!=1?`s`:``}`; break
             case 366: string+=``; break
             case 491: string+=`Evoke First Orb\n${effect[0]} Time${effect[0]!=1?`s`:``}`; break
             */

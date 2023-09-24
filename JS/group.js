@@ -1367,6 +1367,12 @@ class group{
                         this.battle.attackManager.effect[0]+=userCombatant.status.main[76]
                     }
                 }
+                if(this.cards[a].spec.includes(25)){
+                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                    if(userCombatant.status.main[166]>0){
+                        this.battle.attackManager.effect[0]+=userCombatant.status.main[166]
+                    }
+                }
                 this.cards[a].usable=false
                 if(this.status.duplicate>0){
                     this.status.duplicate--

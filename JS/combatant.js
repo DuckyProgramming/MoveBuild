@@ -81,7 +81,7 @@ class combatant{
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
-            '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn',
+            '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -100,7 +100,7 @@ class combatant{
                 1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
-                0,0,0,1,2,
+                0,0,0,1,2,2,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -119,7 +119,7 @@ class combatant{
                 2,2,2,2,1,2,2,0,0,0,
                 2,2,2,3,2,2,0,0,3,3,
                 2,2,2,0,0,2,2,2,3,0,
-                0,2,2,0,2,
+                0,2,2,0,2,1,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -788,7 +788,7 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 switch(this.name){
                     case 'Drunk Boss':
@@ -865,7 +865,7 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 switch(this.name){
                     case 'Pointy':
@@ -975,7 +975,7 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 switch(this.name){
                     case 'Monkey':
@@ -1108,7 +1108,7 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 switch(this.name){
                     case 'Goblin':
                         this.color={skin:{head:[150,200,50],body:[100,150,50],legs:[95,145,45],arms:[90,140,40]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
@@ -1200,7 +1200,7 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 switch(this.name){
                     case 'Fat Scrapper':
@@ -1302,7 +1302,7 @@ class combatant{
                 this.fades={eye:[1,1],skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 switch(this.name){
                     case 'Management Prototype':
@@ -1439,7 +1439,7 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={skin:{head:[240,220,180],body:[20,60,80],legs:[15,55,75],arms:[215,215,215]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                 this.color.skin.upperBody=[220,220,220]
@@ -1461,7 +1461,7 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={skin:{in:[120,120,120],out:[100,100,100],limb:[95,95,95],head:[240,220,180]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
             break
@@ -1749,7 +1749,7 @@ class combatant{
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
                 this.calc={int:[0,0,0,0]}
-                this.animSet={loop:0,flip:0}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
                 switch(this.name){
                     case 'Bouncer':
@@ -3845,6 +3845,10 @@ class combatant{
             }
             if(this.status.main[97]>0){
                 damage*=0.6
+            }
+            if(this.status.main[165]>0){
+                damage+=this.status.main[165]
+                this.status.main[165]--
             }
             if(this.status.main[25]>0&&damage>1){
                 damage=1
