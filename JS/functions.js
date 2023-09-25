@@ -252,6 +252,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			let block=effect
 			let bonusB=0
 			let totalDex=0
+			if(user.status.main[168]>0){
+				bonusB+=user.status.main[168]
+			}
 			if(user.status.main[7]!=0){
 				totalDex+=user.status.main[7]
 			}

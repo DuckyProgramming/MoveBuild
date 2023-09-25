@@ -901,6 +901,9 @@ class group{
             case -28:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Strength',effect[0])
             break
+            case -29:
+                this.battle.energy.main[this.player]=0
+            break
             case 288:
                 for(let a=0,la=effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Stream',types.card),0,types.card[findName('Stream',types.card)].list)
@@ -914,8 +917,11 @@ class group{
             case 933:
                 this.battle.energy.main[this.player]+=effect[0]
             break
-            case 1064:
+            case 1064: case 1065:
                 this.battle.cardManagers[this.player].draw()
+            break
+            case 1076:
+                this.battle.combatantManager.allEffect(19,[effect[0]])
             break
         }
     }

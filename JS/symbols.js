@@ -281,6 +281,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(255,50,50,fade)
             layer.triangle(2,-6,4,3,0,3)
             layer.quad(-4.5,0,-3,-1.5,-1.5,0,-3,1.5)
+            layer.rect(3,0,3,3)
         break
         case 41:
             layer.fill(125,fade)
@@ -1547,6 +1548,17 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(100,fade)
             layer.rect(-4,1,2,6)
             layer.rect(2,-1,10,2)
+        break
+        case 167:
+            layer.fill(0,150,255,fade)
+            layer.triangle(-3,6,-5,-3,-1,-3)
+            layer.triangle(3,6,5,-3,1,-3)
+            layer.rect(0,-4,10,1)
+        break
+        case 168:
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.quad(-4.5,0,-3,-1.5,-1.5,0,-3,1.5)
         break
 
     }

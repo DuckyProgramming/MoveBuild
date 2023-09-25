@@ -81,7 +81,7 @@ class combatant{
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
-            '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost',
+            '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -100,7 +100,7 @@ class combatant{
                 1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
-                0,0,0,1,2,2,0,
+                0,0,0,1,2,2,0,1,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -119,7 +119,7 @@ class combatant{
                 2,2,2,2,1,2,2,0,0,0,
                 2,2,2,3,2,2,0,0,3,3,
                 2,2,2,0,0,2,2,2,3,0,
-                0,2,2,0,2,1,2,
+                0,2,2,0,2,1,2,1,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -961,7 +961,7 @@ class combatant{
                     break
                 }
             break
-            case 'Monkey': case 'Monkey Gangster':
+            case 'Monkey': case 'Monkey Gangster': case 'AllyMonkey':
                 this.anim={direction:direction,head:direction,mouth:{x:12,y:8,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:9,bottom:9}},{top:9,bottom:0,length:{top:9,bottom:9}}],
                     arms:[{top:24,bottom:9,length:{top:9,bottom:9}},{top:24,bottom:9,length:{top:9,bottom:9}}]}
@@ -989,6 +989,12 @@ class combatant{
                         this.fades.hat=1
                         this.trigger.display.tie=true
                         this.trigger.display.hat=true
+                    break
+                    case 'AllyMonkey':
+                        this.color={skin:{head:[190,155,0],body:[170,145,0],legs:[160,140,0],arms:[160,140,0]},eye:{back:[0,50,0],front:[0,25,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.spin.eye=[-27,27]
+                        this.parts.eyeLevel+=3
+                        this.trigger.display.sprig=true
                     break
                 }
             break
@@ -3837,6 +3843,9 @@ class combatant{
                 damage*=2
                 this.status.main[123]--
             }
+            if(this.status.main[167]>0){
+                damage*=2
+            }
             if(this.battle.relicManager.hasRelic(55,this.id)){
                 damage=max(min(damage,1),damage-this.battle.relicManager.active[55])
             }
@@ -4160,6 +4169,9 @@ class combatant{
         if(value>0&&this.status.main[16]<=0){
             let block=value
             let totalDex=0
+            if(this.status.main[168]>0){
+                block+=this.status.main[168]
+            }
             if(this.status.main[7]!=0){
                 totalDex+=this.status.main[7]
             }
@@ -10480,7 +10492,7 @@ class combatant{
                         }
                     }
                 break
-                case 'Monkey': case 'Monkey Gangster':
+                case 'Monkey': case 'Monkey Gangster': case 'AllyMonkey':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -10531,6 +10543,12 @@ class combatant{
                         this.layer.fill(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
                         this.layer.noStroke()
                         this.layer.ellipse(0,-54,40,40)
+                    }
+                    if(this.name=='AllyMonkey'&&this.trigger.display.sprig){
+                        this.layer.stroke(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
+                        this.layer.strokeWeight(2)
+                        this.layer.noFill()
+                        this.layer.arc(6,-74,12,3,-180,0)
                     }
                     if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
                         this.minorDisplayGeneral(1,0)

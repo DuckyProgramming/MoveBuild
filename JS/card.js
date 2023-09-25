@@ -147,6 +147,7 @@ class card{
             case -26: string+=`When Drawn,\nHalve Card Effects`; break
             case -27: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength`; break
             case -28: string+=`When Drawn,\nGain ${effect[0]} Strength`; break
+            case -29: string+=`When Drawn,\nLose All Energy`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -1204,12 +1205,21 @@ class card{
             case 1062: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext ${effect[1]} Card${effect[1]!=1?`s`:``}\nPlayed are Free`; break
             case 1063: string+=`Exhaust Your Hand\nGain ${effect[0]} Strength Each`; break
             case 1064: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Target\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto All Enemies\nWhen Drawn,\nDraw 1 Card`; break
-            case 1065: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAll Cards in Hand\nCost 0 This Turn`; break
+            case 1065: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAll Cards in Hand\nCost 0 This Turn\nWhen Drawn,\nDraw 1 Card`; break
             case 1066: string+=`Gain ${effect[0]} Strength\nTarget Does Too\nFails if Not\nTargetting Enemy`; break
             case 1067: string+=`Target Wants to\nDie Temporarily`; break
             case 1068: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Ammo`; break
             case 1069: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTo All Targets\nGain ${effect[1]} Ammo Each`; break
             case 1070: string+=`Return Target\nConstruct's Blueprint`; break
+            case 1071: string+=`Summon in an AllyMonkey`; break
+            case 1072: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDoes 0 After\nYou Take Damage`; break
+            case 1073: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal Double Damage\nand Take Double Damage\nThis Turn`; break
+            case 1074: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd an Out of Time\nto Draw Pile`; break
+            case 1075: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Impending Doom\nto Draw Pile`; break
+            case 1076: string+=`When Drawn,\nAll Enemeis Take\n${effect[0]} Damage`; break
+            case 1077: string+=`Gain ${effect[0]}\nBlock Up`; break
+            case 1078: string+=`Exhaust Your Hand\nGain ${effect[0]} Ammo Each`; break
+            case 1079: string+=`Gain ${effect[0]} Energy\nPer Enemy`; break
 
 
 
@@ -1366,6 +1376,9 @@ class card{
                 if(this.cost>0){
                     this.cost--
                 }
+            break
+            case 1072:
+                this.effect[0]=0
             break
         }
     }
