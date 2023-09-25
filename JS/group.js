@@ -10,7 +10,7 @@ class group{
         this.drawEffects=[]
         this.spec=[]
         this.lastDuplicate=''
-        this.lastPlayed=[0,0,0,0,0,0]
+        this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
 
         this.reset()
     }

@@ -384,7 +384,7 @@ class turn{
                                 this.targetTile.push(this.battle.tileManager.getTileIndex(this.target[a][0],this.target[a][1]))
                             }
                         }
-                        if(this.type==117||this.type==135||this.type==154||this.type==162||this.type==175){
+                        if(this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243){
                             this.direction=this.userCombatant.goal.anim.direction
                         }else if(this.type==127||this.type==150||this.type==181||this.type==209){
                             if(this.targetIndex[0]==-1){
@@ -929,6 +929,9 @@ class turn{
                     break
                     case 242:
                         this.targetCombatant.statusEffect('Burn',this.effect[0])
+                    break
+                    case 243:
+                        this.userCombatant.takeDamage(this.effect[0],this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -4407,7 +4410,22 @@ class turn{
                             this.remove=true
                         }
                     break
-                    
+                    case 243:
+                        if(variants.nobasicanim){
+                            this.selfCall(0)
+                            this.remove=true
+                        }else{
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(2)
+                            }
+                            this.userCombatant.runAnimation(1/30,2)
+                            if(this.timer==15){
+                                this.selfCall(0)
+                            }else if(this.timer>=30){
+                                this.remove=true
+                            }
+                        }
+                    break
 
                     default:
                         this.remove=true

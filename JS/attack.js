@@ -95,7 +95,8 @@ class attack{
             case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004: case 1006:
             case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023: case 1027:
             case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
-            case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064:
+            case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067: case 1068:
+            case 1070:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -283,7 +284,7 @@ class attack{
                     this.targetDistance.push(distTargetCombatant(0,this,targetCombatant))
                 }
             break
-            case 611:
+            case 611: case 1069:
                 this.targetCombatant=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,6)
                 this.direction=[]
                 this.distance=[]
@@ -1166,6 +1167,9 @@ class attack{
                     break
                     case 1064:
                         this.battle.combatantManager.allEffect(19,[this.effect[1]])
+                    break
+                    case 1068:
+                        this.userCombatant.ammo+=this.effect[1]
                     break
 
                 }
@@ -2744,6 +2748,15 @@ class attack{
                         this.userManager.draw(this.effect[0])
                         this.userManager.hand.allEffect(17)
                     break
+                    case 1066:
+                        if(this.targetCombatant.team==0){
+                            this.userCombatant.statusEffect('Strength',this.effect[0])
+                            this.targetCombatant.statusEffect('Strength',this.effect[0])
+                        }
+                    break
+                    case 1067:
+                        this.battle.turnManager.loadEnemySudoku(this.targetCombatant.id)
+                    break
                     
                 }
             break
@@ -3413,6 +3426,12 @@ class attack{
                     break
                     case 1059:
                         this.battle.combatantManager.allEffect(18,[this.targetCombatant.id])
+                    break
+                    case 1070:
+                        let index2=findName(`Build\n${this.targetCombatant.name}`,types.card)
+                        if(index2>=0){
+                            this.userManager.hand.add(index2,0,types.card[index2].list)
+                        }
                     break
                     
                 }
@@ -4087,7 +4106,7 @@ class attack{
             case 895: case 897: case 900: case 916: case 917: case 930: case 934: case 940: case 942: case 945:
             case 946: case 947: case 950: case 966: case 972: case 991: case 992: case 993: case 994: case 1003:
             case 1004: case 1006: case 1007: case 1010: case 1014: case 1015: case 1018: case 1022: case 1027: case 1029:
-            case 1031: case 1038: case 1040: case 1049: case 1050: case 1058: case 1064:
+            case 1031: case 1038: case 1040: case 1049: case 1050: case 1058: case 1064: case 1068:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
@@ -4395,7 +4414,7 @@ class attack{
             case 835: case 855: case 859: case 860: case 868: case 869: case 870: case 871: case 891: case 892:
             case 904: case 909: case 910: case 911: case 912: case 913: case 921: case 922: case 926: case 928:
             case 929: case 932: case 949: case 970: case 982: case 983: case 1005: case 1016: case 1026: case 1032:
-            case 1042: case 1044: case 1045: case 1063: case 1064: case 1065:
+            case 1042: case 1044: case 1045: case 1063: case 1064: case 1065: case 1066: case 1067:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5069,7 +5088,7 @@ class attack{
             case 697: case 700: case 701: case 702: case 720: case 787: case 801: case 833: case 834: case 837:
             case 843: case 846: case 850: case 857: case 865: case 877: case 878: case 881: case 883: case 899:
             case 902: case 903: case 905: case 906: case 907: case 935: case 939: case 943: case 944: case 964:
-            case 965: case 980: case 1028: case 1046: case 1059:
+            case 965: case 980: case 1028: case 1046: case 1059: case 1070:
                 if(variants.nobasicanim){
                     this.selfCall(7)
                     this.remove=true
@@ -7619,7 +7638,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 611:
+            case 611: case 1069:
                 if(this.targetCombatant.length>0){
                     if(this.timer==1){
                         this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant[0].relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant[0].relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
@@ -7632,6 +7651,9 @@ class attack{
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant[0].position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant[0].position.y+30),2.5*this.targetDistance[0]-1]))
                     }else if(this.timer==5*this.targetDistance[0]+15){
                         this.targetCombatant[0].takeDamage(this.effect[0],this.user,1)
+                        if(this.type==1069){
+                            this.userCombatant.ammo+=this.effect[1]
+                        }
                     }else if(this.timer>=max(30,5*this.targetDistance[0]+25)){
                         this.targetCombatant.splice(0,1)
                         this.targetDistance.splice(0,1)
