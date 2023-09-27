@@ -732,6 +732,11 @@ class group{
                         this.cards[a].target[2]++
                     }
                 break
+                case 37:
+                    if(this.cards[a].class==7){
+                        this.cards[a].deSize=true
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -1104,10 +1109,12 @@ class group{
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex+a]))
+                list[list.length-1].limit=this.cards[firstIndex+a].limit
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex+1;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex+a]))
+                list[list.length-1].limit=this.cards[firstIndex+a].limit
             }
         }
     }
@@ -1403,9 +1410,9 @@ class group{
                         this.cards[a].usable=true
                     }else{
                         this.cards[a].deSize=true
-                    }
-                    if(this.cards[a].spec.includes(1)||this.cards[a].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
-                        this.cards[a].exhaust=true
+                        if(this.cards[a].spec.includes(1)||this.cards[a].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
+                            this.cards[a].exhaust=true
+                        }
                     }
                     if(this.cards[a].spec.includes(15)){
                         this.cards[a].limit--
@@ -1474,6 +1481,24 @@ class group{
                                 this.cards[b].exhaust=true
                             }
                         }
+                        if(this.cards[b].spec.includes(15)){
+                            this.cards[b].limit--
+                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                    this.battle.cardManagers[this.player].deck.cards[c].limit--
+                                }
+                            }
+                            if(this.cards[b].limit<=0){
+                                this.cards[b].exhaust=true
+                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                        this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                        c--
+                                        lc--
+                                    }
+                                }
+                            }
+                        }
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
                         if(this.spec.includes(12)){
@@ -1520,6 +1545,24 @@ class group{
                                 this.cards[b].deSize=true
                                 if(this.cards[b].spec.includes(1)||this.cards[b].spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)){
                                     this.cards[b].exhaust=true
+                                }
+                            }
+                            if(this.cards[b].spec.includes(15)){
+                                this.cards[b].limit--
+                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                        this.battle.cardManagers[this.player].deck.cards[c].limit--
+                                    }
+                                }
+                                if(this.cards[b].limit<=0){
+                                    this.cards[b].exhaust=true
+                                    for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                        if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                            this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                            c--
+                                            lc--
+                                        }
+                                    }
                                 }
                             }
                             this.cards[b].played()

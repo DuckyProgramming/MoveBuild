@@ -4117,20 +4117,6 @@ types={
                 {effect:[15,3],attack:692,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Downward\nMove',rarity:0,list:6,
-            levels:[
-                {effect:[3],attack:694,cost:1,target:[33,1,3],spec:[0],class:3},
-                {effect:[3],attack:694,cost:0,target:[33,1,3],spec:[0],class:3},
-                {effect:[3],attack:694,cost:0,target:[33,1,3],spec:[],class:3},
-            ],
-        },{
-            name:'Upward\nMove',rarity:0,list:6,
-            levels:[
-                {effect:[3],attack:693,cost:1,target:[34,1,3],spec:[0],class:3},
-                {effect:[3],attack:693,cost:0,target:[34,1,3],spec:[0],class:3},
-                {effect:[3],attack:693,cost:0,target:[34,1,3],spec:[],class:3},
-            ],
-        },{
             name:'Reversible\nArmor',rarity:1,list:6,
             levels:[
                 {effect:[7,1],attack:699,cost:1,target:[0],spec:[],class:2},
@@ -4362,7 +4348,7 @@ types={
                 {effect:[4],attack:936,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Copy\nPaste',rarity:1,list:6,
+            name:'Copy\nPaste',rarity:0,list:6,
             levels:[
                 {effect:[],attack:1070,cost:0,target:[29,1,1],spec:[],class:4},
                 {effect:[],attack:1070,cost:0,target:[29,1,1],spec:[2],class:4},
@@ -4374,6 +4360,20 @@ types={
                 {effect:[2],attack:1077,cost:1,target:[0],spec:[],class:4},
                 {effect:[3],attack:1077,cost:1,target:[0],spec:[],class:4},
                 {effect:[4],attack:1077,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Scatterbrain',rarity:0,list:6,
+            levels:[
+                {effect:[1],attack:1084,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:1084,cost:0,target:[1,1,1],spec:[],class:3},
+                {effect:[1],attack:1084,cost:0,target:[1,1,1],spec:[22],class:3},
+            ],
+        },{
+            name:'Remodel',rarity:1,list:6,
+            levels:[
+                {effect:[1,1],attack:1085,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:1085,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:1085,cost:0,target:[1,1,1],spec:[],class:3},
             ],
         },
 
@@ -6341,6 +6341,34 @@ types={
                 {effect:[1],attack:1078,cost:0,target:[0],spec:[1],class:4},
                 {effect:[1],attack:1078,cost:0,target:[0],spec:[1,2],class:4},
             ],
+        },{
+            name:'Run & Gun',rarity:1,list:9,
+            levels:[
+                {effect:[1,5],attack:1082,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,8],attack:1082,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,10],attack:1082,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'Downward\nMove',rarity:0,list:9,
+            levels:[
+                {effect:[3],attack:694,cost:1,target:[33,1,3],spec:[0],class:3},
+                {effect:[3],attack:694,cost:0,target:[33,1,3],spec:[0],class:3},
+                {effect:[3],attack:694,cost:0,target:[33,1,3],spec:[],class:3},
+            ],
+        },{
+            name:'Upward\nMove',rarity:0,list:9,
+            levels:[
+                {effect:[3],attack:693,cost:1,target:[34,1,3],spec:[0],class:3},
+                {effect:[3],attack:693,cost:0,target:[34,1,3],spec:[0],class:3},
+                {effect:[3],attack:693,cost:0,target:[34,1,3],spec:[],class:3},
+            ],
+        },{
+            name:'Clear\nthe Way',rarity:2,list:9,
+            levels:[
+                {effect:[1,4],attack:1086,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,9],attack:1086,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,12],attack:1086,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
         },
 
 
@@ -6807,6 +6835,27 @@ types={
                 {effect:[1],attack:1079,cost:0,target:[0],spec:[],class:4},
                 {effect:[1],attack:1079,cost:0,target:[0],spec:[22],class:4},
             ],
+        },{
+            name:'Attack-Containing\nStep',rarity:0,list:10,
+            levels:[
+                {effect:[1,1],attack:1080,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:1080,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:1080,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Defense-Containing\nStep',rarity:0,list:10,
+            levels:[
+                {effect:[1,1],attack:1081,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:1081,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:1081,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Scratch\nCard',rarity:1,list:10,
+            levels:[
+                {effect:[9],attack:1083,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[13],attack:1083,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[16],attack:1083,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
 
@@ -6826,10 +6875,13 @@ types={
         //loyalty card
         //business card
         //the victim card
+        //4 mana 7 / 7
 
         //recall crescent - deals more on successful recalls
 
         //add blackjack
+
+        //movement
 
 
         /*
@@ -7436,7 +7488,7 @@ types={
                 {effect:[15,1],attack:1022,cost:0,target:[2,1,2],spec:[0,1,4],class:1},
             ],
         },{
-            name:'Anger\nPunch',rarity:-1,list:0,
+            name:'Impending\nDoom',rarity:-1,list:0,
             levels:[
                 {effect:[4],attack:1076,cost:0,target:[0],spec:[5],class:4},
                 {effect:[6],attack:1076,cost:0,target:[0],spec:[5],class:4},

@@ -611,6 +611,15 @@ class combatantManager{
         }
         return combatants
     }
+    getAreaCapped(team,tilePosition,range){
+        let combatants=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team!=team&&this.combatants[a].life>0&&legalTargetCombatant(0,0,range,{tilePosition:tilePosition},this.combatants[a],this.battle.tileManager.tiles)){
+                combatants.push(this.combatants[a])
+                return combatants
+            }
+        }
+    }
     randomEffectArea(loop,type,args,team,tilePosition){
         for(let b=0,lb=loop;b<lb;b++){
             for(let a=0,la=this.combatants.length;a<la;a++){

@@ -77,6 +77,8 @@ class card{
             }
             if(this.spec.includes(15)){
                 this.limit=types.card[this.type].levels[this.level].limit
+            }else{
+                this.limit=0
             }
 
             this.strike=this.name.includes('Strike')
@@ -1220,6 +1222,13 @@ class card{
             case 1077: string+=`Gain ${effect[0]}\nBlock Up`; break
             case 1078: string+=`Exhaust Your Hand\nGain ${effect[0]} Ammo Each`; break
             case 1079: string+=`Gain ${effect[0]} Energy\nPer Enemy`; break
+            case 1080: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Strike${effect[1]!=1?`s`:``}\nof Equivalent Level\nto Draw Pile`; break
+            case 1081: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Defend${effect[1]!=1?`s`:``}\nof Equivalent Level\nto Draw Pile`; break
+            case 1082: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDeal ${this.calculateEffect(effect[1],0)} Damage\nat any Range\nif Possible`; break
+            case 1083: string+=`Deal 1-${this.calculateEffect(effect[0],0)} Damage\nand Gain That\nMuch Currency`; break
+            case 1084: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDiscard All Blueprints`; break
+            case 1085: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nTransform ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1086: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage`; break
 
 
 
