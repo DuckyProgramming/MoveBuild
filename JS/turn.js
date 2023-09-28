@@ -384,7 +384,7 @@ class turn{
                                 this.targetTile.push(this.battle.tileManager.getTileIndex(this.target[a][0],this.target[a][1]))
                             }
                         }
-                        if(this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243){
+                        if(this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243){
                             this.direction=this.userCombatant.goal.anim.direction
                         }else if(this.type==127||this.type==150||this.type==181||this.type==209){
                             if(this.targetIndex[0]==-1){

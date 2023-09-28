@@ -4238,9 +4238,9 @@ types={
         },{
             name:'Reuse',rarity:2,list:6,
             levels:[
-                {effect:[6,1],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[10,1],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[13,1],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[8,2],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[12,2],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[15,2],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
             name:'Justice',rarity:0,list:6,
@@ -5045,9 +5045,9 @@ types={
         },{
             name:'Phase\nDash',rarity:2,list:7,
             levels:[
-                {effect:[6],attack:823,cost:1,target:[44,1,6],spec:[1],class:3},
-                {effect:[6],attack:823,cost:1,target:[44,1,6],spec:[1],class:3},
-                {effect:[6],attack:823,cost:1,target:[44,1,6],spec:[1],class:3},
+                {effect:[4],attack:823,cost:1,target:[44,1,4],spec:[1],class:3},
+                {effect:[4],attack:823,cost:0,target:[44,1,4],spec:[1],class:3},
+                {effect:[6],attack:823,cost:0,target:[44,1,6],spec:[1],class:3},
             ],
         },{
             name:'Rushed\nStrike',rarity:0,list:7,
@@ -6295,9 +6295,9 @@ types={
         },{
             name:'Brag',rarity:1,list:9,
             levels:[
-                {effect:[2],attack:1062,cost:1,target:[2,1,6],spec:[],class:4},
-                {effect:[3],attack:1062,cost:1,target:[2,1,6],spec:[],class:4},
-                {effect:[4],attack:1062,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[2],attack:1066,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[3],attack:1066,cost:1,target:[2,1,6],spec:[],class:4},
+                {effect:[4],attack:1066,cost:1,target:[2,1,6],spec:[],class:4},
             ],
         },{
             name:'Hotgrab',rarity:0,list:9,
@@ -6368,6 +6368,13 @@ types={
                 {effect:[1,4],attack:1086,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,9],attack:1086,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,12],attack:1086,cost:1,target:[1,1,1],spec:[0],class:3},
+            ],
+        },{
+            name:'King Credit\nTaker',rarity:2,list:9,
+            levels:[
+                {effect:[1],attack:1088,cost:3,target:[0],spec:[1],class:4},
+                {effect:[1],attack:1088,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:1088,cost:2,target:[0],spec:[1,22],class:4},
             ],
         },
 
@@ -6572,9 +6579,9 @@ types={
         },{
             name:'Rigged\nRoll',rarity:1,list:10,
             levels:[
-                {effect:[30],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
-                {effect:[40],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
-                {effect:[48],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[50],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[64],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
+                {effect:[75],attack:1006,cost:-1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Dice\nBombs',rarity:1,list:10,
@@ -6768,9 +6775,9 @@ types={
         },{
             name:'Illusory\nGrace',rarity:1,list:10,
             levels:[
-                {effect:[1],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
-                {effect:[2],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
-                {effect:[3],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[1,1],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[2,1],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[3,1],attack:1062,cost:0,target:[0],spec:[15],limit:3,class:4},
             ],
         },{
             name:'Glimpse of\nEmptiness',rarity:1,list:10,
@@ -6855,6 +6862,13 @@ types={
                 {effect:[9],attack:1083,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[13],attack:1083,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[16],attack:1083,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Credit\nCard',rarity:1,list:9,
+            levels:[
+                {effect:[5],attack:1087,cost:1,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[8],attack:1087,cost:1,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[10],attack:1087,cost:1,target:[2,1,1],spec:[0,1],class:1},
             ],
         },
 
@@ -7493,6 +7507,13 @@ types={
                 {effect:[4],attack:1076,cost:0,target:[0],spec:[5],class:4},
                 {effect:[6],attack:1076,cost:0,target:[0],spec:[5],class:4},
                 {effect:[7],attack:1076,cost:0,target:[0],spec:[5],class:4},
+            ],
+        },{
+            name:'Credit',rarity:-1,list:0,
+            levels:[
+                {effect:[5],attack:10,cost:1,target:[0],spec:[1],class:4},
+                {effect:[8],attack:10,cost:1,target:[0],spec:[1],class:4},
+                {effect:[10],attack:10,cost:1,target:[0],spec:[1],class:4},
             ],
         },
 

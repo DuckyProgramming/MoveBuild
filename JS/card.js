@@ -1229,8 +1229,9 @@ class card{
             case 1084: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDiscard All Blueprints`; break
             case 1085: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nTransform ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1086: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage`; break
-
-
+            case 1087: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Credit\nof Equivalent Level\nto Draw Pile`; break
+            case 1088: string+=`All Hits Taken\nNext ${effect[0]} Turn${effect[0]!=1?`s`:``}\nHeal${effect[0]!=1?``:`s`} You Instead`; break
+            
 
 
 

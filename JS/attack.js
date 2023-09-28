@@ -96,7 +96,7 @@ class attack{
             case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023: case 1027:
             case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
             case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067: case 1068:
-            case 1070: case 1072: case 1073: case 1075: case 1083:
+            case 1070: case 1072: case 1073: case 1075: case 1083: case 1087:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1216,6 +1216,11 @@ class attack{
                         this.userCombatant.statusEffect('Double Damage Turn',1)
                         this.userCombatant.statusEffect('Take Double Damage Turn',1)
                     break
+                    case 1087:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.reserve.add(findName('Credit',types.card),this.level,this.color)
+                        }
+                    break
 
                 }
             break
@@ -1294,7 +1299,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]*(this.relPos[0]==0?2:1))
                     break
                     case 1057:
-                        this.targetCombatant.takeDamage(this.effect[0]*(this.battle.counter.turnPlayed[this.player]<=1?2:1),this.user)
+                        this.targetCombatant.takeDamage(this.battle.counter.turnPlayed[this.player]<=1?this.effect[0]+this.effect[1]:this.effect[0],this.user)
                         this.userCombatant.addBlock(this.effect[0])
                     break
                     case 1061:
@@ -1307,7 +1312,7 @@ class attack{
                         this.userCombatant.statusEffect('Block Up',this.effect[0])
                     break
                     default:
-                        this.userCombatant.addBlock(this.battle.counter.turnPlayed[this.player]<=1?this.effect[0]+this.effect[1]:this.effect[0])
+                        this.userCombatant.addBlock(this.effect[0])
                     break
                 }
                 switch(this.type){
@@ -1907,7 +1912,7 @@ class attack{
                         this.userManager.draw(this.effect[1])
                     break
                     case 406:
-                        if(this.targetCombatant.block<=0){
+                        if(this.userCombatant.block<=0){
                             this.userCombatant.statusEffect('Bleed',this.effect[0])
                         }
                         this.userCombatant.statusEffect('Strength',this.effect[1])
@@ -2837,6 +2842,9 @@ class attack{
                     case 1078:
                         this.userCombatant.ammo+=this.userManager.hand.cards.length*this.effect[0]
                         this.userManager.hand.allEffect(22)
+                    break
+                    case 1088:
+                        this.userCombatant.statusEffect('Take Credit Turn',this.effect[0])
                     break
                     
                 }
@@ -4195,6 +4203,7 @@ class attack{
             case 946: case 947: case 950: case 966: case 972: case 991: case 992: case 993: case 994: case 1003:
             case 1004: case 1006: case 1007: case 1010: case 1014: case 1015: case 1018: case 1022: case 1027: case 1029:
             case 1031: case 1038: case 1040: case 1049: case 1050: case 1058: case 1064: case 1068: case 1073: case 1083:
+            case 1087:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
@@ -4503,7 +4512,7 @@ class attack{
             case 835: case 855: case 859: case 860: case 868: case 869: case 870: case 871: case 891: case 892:
             case 904: case 909: case 910: case 911: case 912: case 913: case 921: case 922: case 926: case 928:
             case 929: case 932: case 949: case 970: case 982: case 983: case 1005: case 1016: case 1026: case 1032:
-            case 1042: case 1044: case 1045: case 1062: case 1064: case 1065: case 1066: case 1067: case 1078:
+            case 1042: case 1044: case 1045: case 1062: case 1064: case 1065: case 1066: case 1067: case 1078: case 1088:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){

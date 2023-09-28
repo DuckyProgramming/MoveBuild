@@ -81,7 +81,7 @@ class combatant{
             'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
-            '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up',
+            '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -100,7 +100,7 @@ class combatant{
                 1,1,1,0,0,0,0,1,0,0,//14
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
-                0,0,0,1,2,2,0,1,0,
+                0,0,0,1,2,2,0,1,0,1,//17
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -119,7 +119,7 @@ class combatant{
                 2,2,2,2,1,2,2,0,0,0,
                 2,2,2,3,2,2,0,0,3,3,
                 2,2,2,0,0,2,2,2,3,0,
-                0,2,2,0,2,1,2,1,0,
+                0,2,2,0,2,1,2,1,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3576,145 +3576,159 @@ class combatant{
     }
     markTarget(){
         if(this.life>0&&!this.moved&&this.status.main[32]<=0&&this.status.main[51]<=0&&this.status.main[119]<=0){
-            let target=this.getTarget()
-            this.targetTile=this.convertTile(target)
-            switch(this.attack[this.intent].type){
-                case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
-                case 150: case 181: case 209: case 212: case 229:
-                    if(this.targetTile[0].tilePosition.x>=0){
-                        this.targetTile[0].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[0],this)))
-                    }
-                break
-                case 6: case 7: case 14: case 15: case 19: case 20: case 24: case 27: case 30: case 32:
-                case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99: case 107:
-                case 112: case 137: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
-                case 224:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+            if(this.attack[this.intent].type==78){
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    if(legalTargetCombatant(2,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].name==this.name&&distTargetCombatant(0,this,this.battle.combatantManager.combatants[a])>1){
+                        let direction=targetDirectionCombatant(0,this,this.battle.combatantManager.combatants[a])
+                        for(let b=1,lb=distTargetCombatant(0,this,this.battle.combatantManager.combatants[a]);b<lb;b++){
+                            let index=this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,-direction*60+90)[0]*b,this.tilePosition.y+transformDirection(0,-direction*60+90)[1]*b)
+                            if(index>=0){
+                                this.battle.tileManager.tiles[index].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.battle.tileManager.tiles[index],this)))
+                            }
                         }
                     }
-                break
-                case 8:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b==1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                }
+            }else{
+                let target=this.getTarget()
+                this.targetTile=this.convertTile(target)
+                switch(this.attack[this.intent].type){
+                    case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
+                    case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
+                    case 150: case 181: case 209: case 212: case 229:
+                        if(this.targetTile[0].tilePosition.x>=0){
+                            this.targetTile[0].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[0],this)))
+                        }
+                    break
+                    case 6: case 7: case 14: case 15: case 19: case 20: case 24: case 27: case 30: case 32:
+                    case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99: case 107:
+                    case 112: case 137: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
+                    case 224:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
+                        }
+                    break
+                    case 8:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b==1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                                    this.targetTile[b].target(this.activated?4:3,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
+                        }
+                    break
+                    case 71: case 73: case 79: case 143: case 172:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
+                                !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
+                        }
+                    break
+                    case 100:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
+                                !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))&&
+                                !(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
+                        }
+                    break
+                    case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
+                    case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 114: case 117:
+                    case 120: case 124: case 128: case 131: case 133: case 135: case 136: case 142: case 146: case 147:
+                    case 153: case 154: case 157: case 168: case 171: case 175: case 176: case 192: case 198: case 204:
+                    case 213: case 215: case 217: case 222:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(this.targetTile[b].tilePosition.x>=0){
+                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
+                        }
+                    break
+                    case 105: case 132:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?4:3,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
                         }
-                    }
-                break
-                case 71: case 73: case 79: case 143: case 172:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                            !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                    break
+                    case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
+                    case 90: case 91: case 98: case 106: case 115: case 118: case 119: case 123: case 125: case 129:
+                    case 130: case 134: case 140: case 141: case 144: case 145: case 148: case 151: case 152: case 158:
+                    case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184: case 188:
+                    case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
+                    case 235: case 236:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
+                                !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))&&
+                                !(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0))&&
+                                !(b>=4&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))&&
+                                !(b>=5&&(this.targetTile[4].tilePosition.x<0||this.targetTile[4].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
                         }
-                    }
-                break
-                case 100:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                            !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))&&
-                            !(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                    break
+                    case 49: case 164: case 185: case 195: case 205: case 219:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b%6>=1&&(this.targetTile[floor(b/6)*6].tilePosition.x<0||this.targetTile[floor(b/6)*6].occupied>0))&&
+                                !(b%6>=2&&(this.targetTile[floor(b/6)*6+1].tilePosition.x<0||this.targetTile[floor(b/6)*6+1].occupied>0))&&
+                                !(b%6>=3&&(this.targetTile[floor(b/6)*6+2].tilePosition.x<0||this.targetTile[floor(b/6)*6+2].occupied>0))&&
+                                !(b%6>=4&&(this.targetTile[floor(b/6)*6+3].tilePosition.x<0||this.targetTile[floor(b/6)*6+3].occupied>0))&&
+                                !(b%6>=5&&(this.targetTile[floor(b/6)*6+4].tilePosition.x<0||this.targetTile[floor(b/6)*6+4].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
                         }
-                    }
-                break
-                case 9: case 16: case 17: case 28: case 44: case 53: case 54: case 55: case 60: case 64:
-                case 69: case 82: case 84: case 85: case 86: case 87: case 95: case 104: case 114: case 117:
-                case 120: case 124: case 128: case 131: case 133: case 135: case 136: case 142: case 146: case 147:
-                case 153: case 154: case 157: case 168: case 171: case 175: case 176: case 192: case 198: case 204:
-                case 213: case 215: case 217: case 222:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(this.targetTile[b].tilePosition.x>=0){
-                            this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                    break
+                    case 166:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b%2==1&&(this.targetTile[floor(b/2)*2].tilePosition.x<0||this.targetTile[floor(b/2)*2].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
                         }
-                    }
-                break
-                case 105: case 132:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(this.targetTile[b].tilePosition.x>=0){
-                            this.targetTile[b].target(this.activated?4:3,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                    break
+                    case 214:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b==3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
                         }
-                    }
-                break
-                case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
-                case 90: case 91: case 98: case 106: case 115: case 118: case 119: case 123: case 125: case 129:
-                case 130: case 134: case 140: case 141: case 144: case 145: case 148: case 151: case 152: case 158:
-                case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184: case 188:
-                case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
-                case 235: case 236:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                            !(b>=2&&(this.targetTile[1].tilePosition.x<0||this.targetTile[1].occupied>0))&&
-                            !(b>=3&&(this.targetTile[2].tilePosition.x<0||this.targetTile[2].occupied>0))&&
-                            !(b>=4&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))&&
-                            !(b>=5&&(this.targetTile[4].tilePosition.x<0||this.targetTile[4].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                    break
+                    case 218:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=18&&(this.targetTile[b-18].tilePosition.x<0||this.targetTile[b-18].occupied>0))&&
+                                !(b>=36&&(this.targetTile[b-36].tilePosition.x<0||this.targetTile[b-36].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
                         }
-                    }
-                break
-                case 49: case 164: case 185: case 195: case 205: case 219:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b%6>=1&&(this.targetTile[floor(b/6)*6].tilePosition.x<0||this.targetTile[floor(b/6)*6].occupied>0))&&
-                            !(b%6>=2&&(this.targetTile[floor(b/6)*6+1].tilePosition.x<0||this.targetTile[floor(b/6)*6+1].occupied>0))&&
-                            !(b%6>=3&&(this.targetTile[floor(b/6)*6+2].tilePosition.x<0||this.targetTile[floor(b/6)*6+2].occupied>0))&&
-                            !(b%6>=4&&(this.targetTile[floor(b/6)*6+3].tilePosition.x<0||this.targetTile[floor(b/6)*6+3].occupied>0))&&
-                            !(b%6>=5&&(this.targetTile[floor(b/6)*6+4].tilePosition.x<0||this.targetTile[floor(b/6)*6+4].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                    break
+                    case 221:
+                        for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                            if(
+                                this.targetTile[b].tilePosition.x>=0&&
+                                !(b>=3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
+                                !(b>=6&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))){
+                                    this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                            }
                         }
-                    }
-                break
-                case 166:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b%2==1&&(this.targetTile[floor(b/2)*2].tilePosition.x<0||this.targetTile[floor(b/2)*2].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
-                        }
-                    }
-                break
-                case 214:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b==3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
-                        }
-                    }
-                break
-                case 218:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b>=18&&(this.targetTile[b-18].tilePosition.x<0||this.targetTile[b-18].occupied>0))&&
-                            !(b>=36&&(this.targetTile[b-36].tilePosition.x<0||this.targetTile[b-36].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
-                        }
-                    }
-                break
-                case 221:
-                    for(let b=0,lb=this.targetTile.length;b<lb;b++){
-                        if(
-                            this.targetTile[b].tilePosition.x>=0&&
-                            !(b>=3&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))&&
-                            !(b>=6&&(this.targetTile[3].tilePosition.x<0||this.targetTile[3].occupied>0))){
-                                this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
-                        }
-                    }
-                break
+                    break
+                }
             }
         }
     }
@@ -3918,7 +3932,9 @@ class combatant{
                 }
             }
             if(hit){
-                if(this.status.main[153]>0){
+                if(this.status.main[169]>0){
+                    this.heal(damage)
+                }else if(this.status.main[153]>0){
                     this.status.main[153]--
                     this.heal(damage)
                 }else if(this.block>=damage&&spec!=2){
