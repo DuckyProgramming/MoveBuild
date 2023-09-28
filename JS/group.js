@@ -288,6 +288,11 @@ class group{
             this.shuffled()
         }
     }
+    addRetain(type,level,color){
+        if(this.add(type,level,color)){
+            this.cards[this.cards.length-1].retain2=true
+        }
+    }
     addReturn(type,level,color){
         game.id++
         if(type>=0&&type<types.card.length){

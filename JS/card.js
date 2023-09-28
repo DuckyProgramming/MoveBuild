@@ -1231,6 +1231,14 @@ class card{
             case 1086: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage`; break
             case 1087: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Credit\nof Equivalent Level\nto Draw Pile`; break
             case 1088: string+=`All Hits Taken\nNext ${effect[0]} Turn${effect[0]!=1?`s`:``}\nHeal${effect[0]!=1?``:`s`} You Instead`; break
+            case 1089: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nApply ${effect[2]} Bleed`; break
+            case 1090: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
+            case 1091: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nHeal ${this.calculateEffect(effect[2],4)} Health`; break
+            case 1092: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nGain ${effect[3]} Currency`; break
+            
+            case 1093: string+=`Add a Random\nAce of Equivalent\nLevel to Your Hand\nand Retain It\nUntil Played`; break
+            
+            case 1094: string+=`Reverse All Your\nStat Changes`; break
             
 
 

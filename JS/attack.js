@@ -96,7 +96,7 @@ class attack{
             case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023: case 1027:
             case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
             case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067: case 1068:
-            case 1070: case 1072: case 1073: case 1075: case 1083: case 1087:
+            case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091: case 1092:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -715,6 +715,9 @@ class attack{
                         this.targetCombatant.takeDamage(roll2,this.user)
                         this.battle.currency.money[this.player]+=roll2
                     break
+                    case 1089: case 1090: case 1091: case 1092:
+                        this.targetCombatant.takeDamage(this.targetCombatant.life<=this.effect[0]?this.effect[1]:this.effect[0],this.user)
+                    break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -1220,6 +1223,18 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.reserve.add(findName('Credit',types.card),this.level,this.color)
                         }
+                    break
+                    case 1089:
+                        this.targetCombatant.statusEffect('Bleed',this.effect[2])
+                    break
+                    case 1090:
+                        this.userCombatant.addBlock(this.effect[2])
+                    break
+                    case 1091:
+                        this.userCombatant.heal(this.effect[2])
+                    break
+                    case 1092:
+                        this.battle.currency.money[this.player]+=this.effect[2]
                     break
 
                 }
@@ -2189,6 +2204,13 @@ class attack{
                             }
                         }
                         this.battle.energy.main[this.player]+=this.effect[0]*this.number
+                    break
+                    case 1093:
+                        let possible=['Ace of\nSpades','Ace of\nClubs','Ace of\nHearts','Ace of\nDiamonds']
+                        this.userManager.hand.addRetain(findName(possible[floor(random(0,possible.length))],types.card),this.level,this.color)
+                    break
+                    case 1094:
+                        this.userCombatant.reverseStatus()
                     break
 
                 }
@@ -4203,7 +4225,7 @@ class attack{
             case 946: case 947: case 950: case 966: case 972: case 991: case 992: case 993: case 994: case 1003:
             case 1004: case 1006: case 1007: case 1010: case 1014: case 1015: case 1018: case 1022: case 1027: case 1029:
             case 1031: case 1038: case 1040: case 1049: case 1050: case 1058: case 1064: case 1068: case 1073: case 1083:
-            case 1087:
+            case 1087: case 1089: case 1090: case 1091: case 1092:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
@@ -4479,7 +4501,7 @@ class attack{
             case 763: case 777: case 778: case 788: case 799: case 807: case 820: case 821: case 822: case 836:
             case 838: case 839: case 841: case 842: case 864: case 873: case 876: case 886: case 893: case 896:
             case 898: case 901: case 914: case 937: case 948: case 1008: case 1019: case 1033: case 1053: case 1063:
-            case 1074: case 1079:
+            case 1074: case 1079: case 1093: case 1094:
                 if(this.type==807&&this.userCombatant.stance!=2||this.type==820&&this.userCombatant.stance!=1||this.type==821&&this.userCombatant.stance!=3||this.type==822&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){

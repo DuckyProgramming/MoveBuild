@@ -20,7 +20,7 @@ class cardManager{
         this.initialListing()
     }
     initialListing(){
-        for(let a=0;a<game.playerNumber+4;a++){
+        for(let a=0;a<game.playerNumber+5;a++){
             this.listing.card.push([[],[],[],[]])
         }
         this.listing.allPlayerCard=[[],[],[],[]]

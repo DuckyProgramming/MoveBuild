@@ -4607,6 +4607,11 @@ class combatant{
         let status=findList(name,this.status.name)
         this.status.main[status]*=multiplier
     }
+    reverseStatus(){
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            this.status.main[a]*=-1
+        }
+    }
     deStatus(name,value){
         this.statusEffect(name,-value)
         let status=findList(name,this.status.name)
