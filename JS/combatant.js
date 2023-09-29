@@ -60,7 +60,7 @@ class combatant{
         this.builder=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
 
         this.block=0
         this.dodges=[]
@@ -82,13 +82,14 @@ class combatant{
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
             '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
+            'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
                 1,0,0,2,0,0,1,2,2,0,//2
                 2,0,0,0,1,1,2,0,1,2,//3
                 0,1,1,1,0,0,0,2,1,2,//4
-                2,2,0,0,0,0,2,0,0,0,//5
+                2,2,0,0,0,0,0,0,0,0,//5
                 0,1,0,1,0,2,2,1,2,2,//6
                 1,0,2,0,2,0,0,1,0,0,//7
                 0,0,2,2,0,2,0,2,0,1,//8
@@ -101,6 +102,7 @@ class combatant{
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
                 0,0,0,1,2,2,0,1,0,1,//17
+                1,0,1,0,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -120,6 +122,7 @@ class combatant{
                 2,2,2,3,2,2,0,0,3,3,
                 2,2,2,0,0,2,2,2,3,0,
                 0,2,2,0,2,1,2,1,0,0,
+                2,1,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -1741,6 +1744,15 @@ class combatant{
                     break
                 }
             break
+            case 'Antizone':
+                this.anim={direction:direction}
+                this.fades={body:1}
+                this.trigger={display:{body:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[100,255,255]}
+            break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
@@ -1754,6 +1766,7 @@ class combatant{
                     arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
                 this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1}}
                 this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true}}}
+                this.trigger.display.extra={sdamage:false}
                 this.calc={int:[0,0,0,0]}
                 this.animSet={loop:0,flip:0,hand:0,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
@@ -2613,7 +2626,7 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0],upFlash:[false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
             for(let b=0,lb=game.orbNumber;b<lb;b++){
@@ -2953,7 +2966,7 @@ class combatant{
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': break
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': break
             default:
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -3825,6 +3838,12 @@ class combatant{
                     hit=false
                     this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
                 }
+                if(this.status.main[173]>0){
+                    this.status.main[173]--
+                    hit=false
+                    this.infoAnim.upFlash[3]=true
+                    userCombatant.takeDamage(damage)
+                }
                 if(userCombatant.status.main[98]>0){
                     this.statusEffect('Bleed',userCombatant.status.main[98])
                 }
@@ -3834,6 +3853,9 @@ class combatant{
                 }
                 if(userCombatant.status.main[100]>0){
                     this.statusEffect('Bleed',userCombatant.status.main[100])
+                }
+                if(userCombatant.status.main[171]>0){
+                    this.statusEffect('Regeneration',userCombatant.status.main[171])
                 }
             }
             if(this.status.main[21]>0){
@@ -3937,6 +3959,8 @@ class combatant{
                 }else if(this.status.main[153]>0){
                     this.status.main[153]--
                     this.heal(damage)
+                }else if(this.status.main[172]>0){
+                    this.statusEffect('Block Next Turn',damage)
                 }else if(this.block>=damage&&spec!=2){
                     this.block-=damage
                     this.infoAnim.upFlash[1]=true
@@ -3975,7 +3999,7 @@ class combatant{
                     }
                 }
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
-                if(this.battle.turn.main<this.battle.players&&this.team==0){
+                if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.damage[this.battle.turn.main]+=damage
                     if(user>=0&&user<this.battle.combatantManager.combatants.length){
                         let userCombatant=this.battle.combatantManager.combatants[user]
@@ -3994,6 +4018,9 @@ class combatant{
                     if(userCombatant.status.main[139]>0){
                         userCombatant.addBlock(damage)
                         userCombatant.status.main[139]--
+                    }
+                    if(userCombatant.status.main[170]>0&&userCombatant.id<this.battle.players){
+                        this.battle.currency.money[userCombatant.id]+=damage
                     }
                     if(this.life>0){
                         if(this.battle.turnManager.turns.length==0){
@@ -4803,8 +4830,10 @@ class combatant{
         }
     }
     flashColor(color){
-        return mergeColor(mergeColor(mergeColor(
-            color,[125,255,0],this.infoAnim.flash[2]),
+        return mergeColor(mergeColor(mergeColor(mergeColor(
+            color,
+            [0,125,255],this.infoAnim.flash[3]),
+            [125,255,0],this.infoAnim.flash[2]),
             [150,150,150],this.infoAnim.flash[1]),
             [200,0,0],this.infoAnim.flash[0])
     }
@@ -4896,7 +4925,7 @@ class combatant{
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -5590,7 +5619,7 @@ class combatant{
                 this.anim.light=lsin(this.animSet.loop*180)+1
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': break
             default:
                 switch(type){
                     case 0:
@@ -12902,6 +12931,27 @@ class combatant{
                         this.layer.quad(-15,0,15,0,25,-5,-25,-5)   
                     }
                 break
+				case 'Antizone':
+                    if(this.trigger.display.body){
+                        this.layer.noFill()
+                        this.layer.stroke(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(2)
+                        this.layer.ellipse(0,-25,40,40)
+                        this.layer.arc(0,-25,40,20,-180,0)
+                        this.layer.line(-20,-25,20,-25)
+                        this.layer.arc(0,-25,40,20,0,180)
+                        if(this.time%20==0){
+                            this.layer.arc(0,-25,20,40,90,270)
+                            this.layer.line(0,-5,0,-45)
+                            this.layer.arc(0,-25,20,40,-90,90)
+                        }else{
+                            this.layer.arc(0,-25,40-this.time%20,40,90,270)
+                            this.layer.arc(0,-25,20-this.time%20,40,90,270)
+                            this.layer.arc(0,-25,this.time%20,40,-90,90)
+                            this.layer.arc(0,-25,20+this.time%20,40,-90,90)
+                        }
+                    }
+				break
                 case '':
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){

@@ -476,6 +476,13 @@ class cardManager{
     reset(){
         this.hand.reset()
     }
+    checkCompact(){
+        for(let a=0,la=this.deck.cards.length;a<la;a++){
+            if(this.deck.cards[a].attack==1113||this.deck.cards[a].attack==1114){
+                this.hand.compact=true
+            }
+        }
+    }
     display(scene,args){
         switch(scene){
             case 'battle':

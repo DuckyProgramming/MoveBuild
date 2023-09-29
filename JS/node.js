@@ -149,6 +149,21 @@ class node{
                 this.layer.textSize(12)
                 this.layer.text('Stash',0,25)
             break
+            case 7:
+                this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.ellipse(0,0,30,30)
+                this.layer.strokeWeight(1.5)
+                this.layer.arc(0,0,21,21,-195,-150)
+                this.layer.arc(0,0,21,21,-215,-210)
+                this.layer.noStroke()
+                this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.rect(0,24,36,14,3)
+                this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(12)
+                this.layer.text('Fortune',0,25)
+            break
         }
         this.layer.pop()
     }

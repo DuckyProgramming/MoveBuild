@@ -11,6 +11,7 @@ class group{
         this.spec=[]
         this.lastDuplicate=''
         this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+        this.compact=false
 
         this.reset()
     }
@@ -534,7 +535,7 @@ class group{
         for(let a=0,la=this.cards.length;a<la;a++){
             switch(effect){
                 case 0:
-                    if(!this.cards[a].spec.includes(2)){
+                    if(!this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0){
                         this.cards[a].deSize=true
                     }
                 break
@@ -551,7 +552,7 @@ class group{
                         this.cards[a].etherealed()
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
-                    }else if(this.cards[a].spec.includes(2)||this.battle.relicManager.hasRelic(128,this.player)){
+                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.battle.relicManager.hasRelic(128,this.player)){
                         this.cards[a].retained()
                         total++
                     }else{
@@ -742,6 +743,9 @@ class group{
                         this.cards[a].deSize=true
                     }
                 break
+                case 38:
+                    this.copySelfInput(a)
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -776,6 +780,13 @@ class group{
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                     }
                 break
+                case 4:
+                    if(this.cards[a].class!=3){
+                        for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
+                            this.cards[a].effect[b]+=args[0]
+                        }
+                    }
+                break
             }
         }
     }
@@ -791,15 +802,16 @@ class group{
                 &&!(effect==8&&this.cards[a].spec.includes(8))
                 &&!(effect==10&&this.cards[a].spec.includes(9))
                 &&!(effect==11&&this.cards[a].spec.includes(10))
-                &&!(effect==15&&this.cards[a].effect.length==0)){
+                &&!(effect==15&&this.cards[a].effect.length==0)
+                &&!(effect==38&&this.cards[a].attack==1115)){
                     list.push(a)
                 }
             }
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
                 switch(effect){
-                    case 0:
-                        if(!this.cards[index].spec.includes(2)){
+                    case 0: case 38:
+                        if(!this.cards[index].spec.includes(2)||this.cards[index].spec.includes(29)&&floor(random(0,5))!=0){
                             this.cards[index].deSize=true
                         }
                     break
@@ -927,11 +939,17 @@ class group{
             case 933:
                 this.battle.energy.main[this.player]+=effect[0]
             break
-            case 1064: case 1065:
-                this.battle.cardManagers[this.player].draw()
+            case 1064: case 1065: case 1114:
+                this.battle.cardManagers[this.player].draw(1)
             break
             case 1076:
                 this.battle.combatantManager.allEffect(19,[effect[0]])
+            break
+            case 1115:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(effect[0])
+                for(let a=0,la=effect[1];a<la;a++){
+                    this.drawEffects.push([0,38,[]])
+                }
             break
         }
     }
@@ -1070,6 +1088,7 @@ class group{
             for(let a=0,la=this.drawEffects.length;a<la;a++){
                 switch(this.drawEffects[a][0]){
                     case 0:
+                        print('b')
                         parent.randomEffect(this.drawEffects[a][1],this.drawEffects[a][2])
                     break
                     case 1:
@@ -1168,6 +1187,15 @@ class group{
     unRemove(){
         this.cards.push(this.removed[this.removed.length-1])
         this.removed.splice(this.removed.length-1,1)
+    }
+    removeAllType(type){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].type==type){
+                this.cards.splice(a,1)
+                a--
+                la--
+            }
+        }
     }
     removeType(type){
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1361,6 +1389,18 @@ class group{
                                     }
                                     position++
                                 }
+                            }
+                        }
+                    break
+                    case 6:
+                        for(let a=0,la=min(args[2],this.cards.length);a<la;a++){
+                            this.cards[a].deSize=!(a>=args[1]*15&&a<args[1]*15+15)
+                            this.cards[a].fade=1
+                            this.cards[a].position.x=this.layer.width/2-200+a%5*100
+                            this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
+                            this.cards[a].anim.afford=1
+                            if(this.cards[a].size>=0){
+                                this.cards[a].display()
                             }
                         }
                     break
@@ -1733,10 +1773,10 @@ class group{
                     this.cards[0].cost=0
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].update()
-                    let length=a>=la-1?100:this.cards[a].name=='Unbuild'&&this.cards[a+1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100
+                    this.cards[a].update(this.compact?0.7:1)
+                    let length=(a>=la-1?100:this.cards[a].name=='Unbuild'&&this.cards[a+1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100)*(this.compact?0.7:1)
                     if(this.cards[a].position.x>cap&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0)){
-                        this.cards[a].position.x-=25
+                        this.cards[a].position.x-=25*(this.compact?0.7:1)
                     }
                     cap+=length
                     this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected

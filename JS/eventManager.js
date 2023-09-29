@@ -650,6 +650,10 @@ class eventManager{
                             userCombatant.heal(12)
                         }
                     break
+                    case 61:
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate([0,3,6])
+                    break
                 }
                 this.page=this.pages[this.page].link[a]+tempPage
                 if(this.page==-1){

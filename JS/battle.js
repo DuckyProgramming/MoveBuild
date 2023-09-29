@@ -226,6 +226,7 @@ class battle{
             this.cardManagers[a].reset()
             this.cardManagers[a].clear()
             this.cardManagers[a].copy(0,1)
+            this.cardManagers[a].checkCompact()
             this.cardManagers[a].shuffle(1)
         }
         this.combatantManager.deTargetCombatants()

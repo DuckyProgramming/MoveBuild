@@ -370,7 +370,25 @@ class combatantManager{
                     case 19:
                         this.combatants[a].takeDamage(args[0],-1)
                     break
+                    case 20:
+                        this.combatants[a].statusEffect('Cannot Die',args[0])
+                    break
+                    case 21:
+                        this.combatants[a].statusEffect('Invisible',args[0])
+                    break
                 }
+            }
+        }
+    }
+    fullAllEffect(effect,args){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            switch(effect){
+                case 1:
+                    this.combatants[a].heal(args[0])
+                break
+                case 2:
+                    this.combatants[a].statusEffect('Burn',args[0])
+                break
             }
         }
     }

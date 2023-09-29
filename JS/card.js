@@ -33,6 +33,7 @@ class card{
         this.height=120
         this.size=0
         this.fade=1
+        this.sizeCap=1
         this.deSize=false
         this.deFade=false
         this.downSize=false
@@ -150,6 +151,7 @@ class card{
             case -27: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength`; break
             case -28: string+=`When Drawn,\nGain ${effect[0]} Strength`; break
             case -29: string+=`When Drawn,\nLose All Energy`; break
+            case -30: string+=`When Card Played,\nDiscard ${effect[0]} Random Card${effect[0]!=1?`s`:``}`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -224,7 +226,7 @@ class card{
             case 68: string+=`Remove ${effect[0]} Strength\nTemporarily`; break
             case 69: string+=`Add ${effect[0]} Random\nColorless Card${effect[0]!=1?`s`:``}\nto Your Hand`; break
             case 70: string+=`Place a Card\non Top of Your\nDraw Pile\nIt Costs 0\nTemporarily`; break
-            case 71: string+=`Choose Between 3\nCards to Add\nto Your Hand\nIt Costs 0`; break
+            case 71: string+=`Choose a Card to Add\nto Your Hand\nIt Costs 0`; break
             case 72: string+=`Gain ${effect[0]} Strength\nLose ${effect[1]} Health`; break
             case 73: string+=`Gain ${effect[0]} Dexterity\nLose ${effect[1]} Health`; break
             case 74: string+=`Gain ${effect[0]} Buffer\nLose ${effect[1]} Health`; break
@@ -920,8 +922,8 @@ class card{
             case 774: string+=`Gain ${effect[0]} Strength\nGain ${effect[1]} Dexterity\nLose ${effect[2]} Energy\nPer Turn`; break
             case 775: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen Retained`; break
             case 776: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]}\nWhen Retained`; break
-            case 777: string+=`Choose Between 3\nAttacks to Add\nto Your Hand`; break
-            case 778: string+=`Choose Between 3\nAttacks to Add\nto Your Hand\nIt Costs 0`; break
+            case 777: string+=`Choose an Attacks to Add\nto Your Hand`; break
+            case 778: string+=`Choose an Attacks to Add\nto Your Hand\nIt Costs 0`; break
             case 779: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle a End Up\ninto Draw`; break
             case 780: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have\nNo Other Attacks\nin Hand`; break
             case 781: string+=`Next Turn,\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nand Enter Wrath`; break
@@ -1218,7 +1220,7 @@ class card{
             case 1073: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal Double Damage\nand Take Double Damage\nThis Turn`; break
             case 1074: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd an Out of Time\nto Draw Pile`; break
             case 1075: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Impending Doom\nto Draw Pile`; break
-            case 1076: string+=`When Drawn,\nAll Enemeis Take\n${effect[0]} Damage`; break
+            case 1076: string+=`When Drawn,\nAll Enemies Take\n${effect[0]} Damage`; break
             case 1077: string+=`Gain ${effect[0]}\nBlock Up`; break
             case 1078: string+=`Exhaust Your Hand\nGain ${effect[0]} Ammo Each`; break
             case 1079: string+=`Gain ${effect[0]} Energy\nPer Enemy`; break
@@ -1230,21 +1232,60 @@ class card{
             case 1085: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nTransform ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1086: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage`; break
             case 1087: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Credit\nof Equivalent Level\nto Draw Pile`; break
-            case 1088: string+=`All Hits Taken\nNext ${effect[0]} Turn${effect[0]!=1?`s`:``}\nHeal${effect[0]!=1?``:`s`} You Instead`; break
+            case 1088: string+=`All Hits Taken\nNext ${effect[0]} Turn${effect[0]!=1?`s`:``}\nHeals You Instead`; break
             case 1089: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nApply ${effect[2]} Bleed`; break
             case 1090: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
             case 1091: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nHeal ${this.calculateEffect(effect[2],4)} Health`; break
             case 1092: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nGain ${effect[3]} Currency`; break
-            
             case 1093: string+=`Add a Random\nAce of Equivalent\nLevel to Your Hand\nand Retain It\nUntil Played`; break
-            
             case 1094: string+=`Reverse All Your\nStat Changes`; break
+
+            case 1095: string+=`Discard Your Hand\nDraw That Many Cards\nAdd a Redraw\nof Equivalent\nLevel to Hand`; break
+            case 1096: string+=`Add Magic Tricks\nof Equivalent Level\nCard to Your Draw\nand Discard Piles`; break
+            case 1097: string+=`50%:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\n50%:\nDeal ${this.calculateEffect(effect[2],0)} Damage\nAdd ${this.calculateEffect(effect[3],1)} Block`; break
+            case 1098: string+=`Put a Card From\nFirst 3 Cards in Draw\nPile in Your Hand\nIt Costs 0 This Turn`; break
+            case 1099: string+=`Add ${effect[0]} Queen${effect[0]!=1?`s`:``} of Hearts\nto Your Hand`; break
+            case 1100: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nHeal ${this.calculateEffect(effect[1],4)} Health`; break
+            case 1101: string+=`Damage Dealt This\nTurn Converts to\nCurrency`; break
+            case 1102: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nDamage Dealt Gives\nTarget ${effect[1]} Regeneration`; break
+            case 1103: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nto Everything`; break
+            case 1104: string+=`Move to End of Board,\nDeal ${this.calculateEffect(effect[0],0)} Damage Damage\nto All Targets and Swap`; break
+            case 1105: string+=`Deal Double Damage\nThis Turn\nBut No Enemies\nCan Die`; break
+            case 1106: string+=`Move to Any\nEmpty Tile\nPush 1 Tile\nin All Directions`; break
+            case 1107: string+=`${effect[0]} Spin${effect[0]!=1?`s`:``}\n12.5% Each:\n10 Currency, 1 Item\n2 Strength, 2 Dexterity\n${this.calculateEffect(5,1)} Block, 1 Buffer\n1 Energy, 2 Cards`; break
+            case 1108: string+=`Gain ${effect[0]} Strength\nAdd ${effect[1]} Basicit${effect[1]!=1?`ies`:`y`}\nto Draw Pile`; break
+            case 1109: string+=`All Hits Taken\nNext ${effect[0]} Turn${effect[0]!=1?`s`:``}\nAdds Block You Instead`; break
+            case 1110: string+=`Remove All Cards\nof a Name\nPermanently`; break
+            case 1111: string+=`You Cannot Be Nerfed\nTarget Cannot Be Buffed`; break
+            case 1112: string+=`Deal Double Damage\nThis Turn\nLose ${effect[0]} Health`; break
+            case 1113: string+=`When Owned,\nCompact Cards`; break
+            case 1114: string+=`When Owned,\nCompact Cards\nWhen Drawn,\nDraw 1 Card`; break
+            case 1115: string+=`When Drawn,\nHeal ${this.calculateEffect(effect[0],4)} Health\nDiscard ${effect[1]}\nRandom Card${effect[1]!=1?`s`:``}`; break
+            case 1116: string+=`Deal Double Damage\nNext Turn\nBut All Enemies\nare Invisible`; break
+            case 1117: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nApply ${effect[1]} Burn\nto Everything`; break
+            case 1118: string+=`Reflect Next Hit Taken`; break
+            case 1119: string+=`Build an Antizone`; break
+            case 1120: string+=`All Non-Movement Cards in\nHand Get +${effect[0]} to\nAll Numerical Values`; break
+            case 1121: string+=`Duplicate Your Hand`; break
+            case 1122: string+=`Choose a Nothings\nto Add to Hand`; break
+            case 1123: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[0]} Currency\nDraw 1 Card`; break
+            case 1124: string+=`Choose Between More\nCards of Equivalent\nLevel to Add\nto Your Hand`; break
+            case 1125: string+=`Choose an Arcana of\nEquivalent Level to\nAdd to Your Hand`; break
+
+
+
+
+
+
+
             
 
 
 
 
             
+
+
 
 
             /*
@@ -1291,6 +1332,8 @@ class card{
             string+='\nRetain Once'
         }else if(this.retain2){
             string+='\nRetain Until Played'
+        }else if(spec.includes(29)){
+            string+='\n80%: Retain'
         }
         if(spec.includes(1)){
             string+='\nExhaust'
@@ -1438,6 +1481,9 @@ class card{
                     this.battle.cardManagers[this.player].allEffect(2,2)
                 }
             break
+            case -30:
+                this.battle.cardManagers[this.player].hand.randomEffect(0)
+            break
             case 52: case 220: case 594:
                 this.deSize=true
             break
@@ -1521,7 +1567,7 @@ class card{
         if(this.size>0&&this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
-            this.layer.scale(this.size)
+            this.layer.scale(this.size*this.sizeCap)
             this.layer.fill(this.colorDetail.active[0],this.colorDetail.active[1],this.colorDetail.active[2],this.fade*this.anim.select)
             this.layer.noStroke()
             this.layer.rect(0,0,this.width+15,this.height+15,10)
@@ -1707,7 +1753,7 @@ class card{
         if(this.size>0&&this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
-            this.layer.scale(this.size)
+            this.layer.scale(this.sizeCap)
             this.layer.noFill()
             this.layer.strokeWeight(3)
             let stack=0
@@ -1774,7 +1820,8 @@ class card{
             this.layer.pop()
         }
     }
-    update(){
+    update(sizeCap=1){
+        this.sizeCap=sizeCap
         if(this.select){
             this.upSize=true
         }

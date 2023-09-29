@@ -56,7 +56,7 @@ class nodeManager{
             for(let a=0,la=length;a<la;a++){
                 for(let b=0,lb=min(min(a+1,4),la-a);b<lb;b++){
                     this.nodes.push(new node(this.layer,this.battle,this.layer.width/2+60-lb*60+b*120,this.layer.height/2+a*100-150-min(3,a)*10,b,a,
-                    game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:possibilities[floor(random(0,possibilities.length))]))
+                    game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:possibilities[floor(random(0,possibilities.length))]))
                 }
             }
             let side=[floor(random(0,2)),floor(random(0,4)),floor(random(0,4)),floor(random(0,2))]
@@ -128,6 +128,10 @@ class nodeManager{
                     transition.scene='stash'
                     this.battle.setupStash()
                 }
+            break
+            case 7:
+                transition.scene='event'
+                this.battle.setupSpecificEvent(findName('Fortune Teller',types.event))
             break
         }
     }

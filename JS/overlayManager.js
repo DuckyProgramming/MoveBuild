@@ -36,13 +36,15 @@ class overlayManager{
             [new overlay(this.layer,this.battle,0,2,[17])],//upgrade card, no return, out of rewards, SOLITAIRE
             [new overlay(this.layer,this.battle,0,2,[18])],//bring in draw card, upgrade, no return
             [new overlay(this.layer,this.battle,0,2,[19])],//bring in discard card to draw, no return,30
+            [new overlay(this.layer,this.battle,0,2,[20])],//bring in first 3 draw card as free, no return
+            [new overlay(this.layer,this.battle,0,2,[4,1,2])],//remove card, obliterative
 
         )
         if(this.battle.players==2){
             this.copyOverlays()
         }
         this.positionOverlays()
-        this.priority=[24,17,3,26,28,10,0,25,1,13,2,16,4,15,5,6,7,18,30,8,19,20,21,22,23,29,9,12,14,11,27]
+        this.priority=[24,17,3,26,28,10,0,25,1,13,2,16,4,15,5,6,32,7,18,30,8,19,20,21,22,23,29,31,9,12,14,11,27]
         this.anyActive=false
     }
     copyOverlays(){

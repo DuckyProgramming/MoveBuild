@@ -6930,45 +6930,196 @@ types={
 
         //movement
 
-
-        /*
-        The Magician - Add 2 Magic Trick Cards
-        -Magic Trick Card
-        The Priestess - Take a card from the first 3 in your draw pile into your hand, and its free
-        The Empress
-        The Emperor
-        The Hierophant - Damage you deal to enemies this turn heals you instead
-        The Lovers - Heal everything on the map
-        The Chariot
-        Justice
-        The Hermit
-        Wheel of Fortune - literally rng
-        Strength
-        The Hanged Man
-        Death - Remove all cards of a single name from your deck
-        Temperance
-        The Devil - Deal double damage this turn, but lose health
-        The Tower
-        The Star
-        The Moon - Deal double damage this turn, but enemies all become invisible
-        The Sun
-        Judgement
-        The World
-
-        The Glitch
-        The Programmer
-        THe Infinity - Choose another arcana
-        */
-
         {
-            name:'The\nFool',rarity:2,list:14,
+            name:'0 - The\nFool',rarity:2,list:14,
             levels:[
-                {effect:[],attack:1094,cost:1,target:[0],spec:[1],class:4},
-                {effect:[],attack:1094,cost:1,target:[0],spec:[1],class:4},
-                {effect:[],attack:1094,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:1095,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:1095,cost:0,target:[0],spec:[1,2,22],class:4},
+                {effect:[],attack:1095,cost:0,target:[0],spec:[2,22],class:4},
+            ],
+        },{
+            name:'I - The\nMagician',rarity:2,list:14,
+            levels:[
+                {effect:[1,1],attack:1096,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1,2],attack:1096,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,2],attack:1096,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'II - The\nPriestess',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1098,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:1098,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:1098,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'III - The\nEmpress',rarity:2,list:14,
+            levels:[
+                {effect:[3],attack:1099,cost:0,target:[0],spec:[1],class:4},
+                {effect:[4],attack:1099,cost:0,target:[0],spec:[1],class:4},
+                {effect:[5],attack:1099,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'IV - The\nEmperor',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1101,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:1101,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:1101,cost:0,target:[0],spec:[1,22],class:4},
+            ],
+        },{
+            name:'V - The\nHierophant',rarity:2,list:14,
+            levels:[
+                {effect:[8,2],attack:1102,cost:0,target:[0],spec:[1],class:4},
+                {effect:[12,2],attack:1102,cost:0,target:[0],spec:[1],class:4},
+                {effect:[15,2],attack:1102,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'VI - The\nLovers',rarity:2,list:14,
+            levels:[
+                {effect:[8],attack:1103,cost:0,target:[0],spec:[1],class:4},
+                {effect:[12],attack:1103,cost:0,target:[0],spec:[1],class:4},
+                {effect:[15],attack:1103,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'VII - The\nChariot',rarity:2,list:14,
+            levels:[
+                {effect:[10],attack:1104,cost:1,target:[8,1,1],spec:[0],class:1},
+                {effect:[15],attack:1104,cost:1,target:[8,1,1],spec:[0],class:1},
+                {effect:[18],attack:1104,cost:1,target:[8,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'VIII - Justice',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1105,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:1105,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:1105,cost:1,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'IX - The\nHermit',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1106,cost:2,target:[6],spec:[1],class:3},
+                {effect:[],attack:1106,cost:1,target:[6],spec:[1],class:3},
+                {effect:[],attack:1106,cost:1,target:[6],spec:[1,22],class:3},
+            ],
+        },{
+            name:'X - Wheel\nof Fortune',rarity:2,list:14,
+            levels:[
+                {effect:[1],attack:1107,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2],attack:1107,cost:0,target:[0],spec:[1],class:4},
+                {effect:[3],attack:1107,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'XI - Strength',rarity:2,list:14,
+            levels:[
+                {effect:[3,2],attack:1108,cost:0,target:[0],spec:[1],class:4},
+                {effect:[5,2],attack:1108,cost:0,target:[0],spec:[1],class:4},
+                {effect:[6,2],attack:1108,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'XII - The\nHanged Man',rarity:2,list:14,
+            levels:[
+                {effect:[1],attack:1109,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:1109,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:1109,cost:1,target:[0],spec:[1,22],class:4},
+            ],
+        },{
+            name:'XIII - Death',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1110,cost:3,target:[0],spec:[1],class:4},
+                {effect:[],attack:1110,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:1110,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'XIV -\nTemperance',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1111,cost:1,target:[2,1,3],spec:[1],class:4},
+                {effect:[],attack:1111,cost:0,target:[2,1,3],spec:[1],class:4},
+                {effect:[],attack:1111,cost:0,target:[2,1,3],spec:[1,22],class:4},
+            ],
+        },{
+            name:'XV - The\nDevil',rarity:2,list:14,
+            levels:[
+                {effect:[10],attack:1112,cost:0,target:[0],spec:[1],class:4},
+                {effect:[8],attack:1112,cost:0,target:[0],spec:[1],class:4},
+                {effect:[6],attack:1112,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'XVI - The\nTower',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1113,cost:0,target:[0],spec:[5],class:4},
+                {effect:[],attack:1113,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[],attack:1114,cost:0,target:[0],spec:[4,5],class:4},
+            ],
+        },{
+            name:'XVII - The\nStar',rarity:2,list:14,
+            levels:[
+                {effect:[17,5],attack:1115,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[17,4],attack:1115,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[17,3],attack:1115,cost:0,target:[0],spec:[4,5],class:4},
+            ],
+        },{
+            name:'XVIII - The\nMoon',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1116,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:1116,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:1116,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'XIX - The\nSun',rarity:2,list:14,
+            levels:[
+                {effect:[10,3],attack:1117,cost:1,target:[0],spec:[1],class:4},
+                {effect:[16,4],attack:1117,cost:1,target:[0],spec:[1],class:4},
+                {effect:[20,5],attack:1117,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'XX -\nJudgement',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1118,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:1118,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:1118,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'XXI - The\nWorld',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1119,cost:1,target:[6],spec:[1],class:1},
+                {effect:[],attack:1119,cost:1,target:[6],spec:[1],class:1},
+                {effect:[],attack:1119,cost:1,target:[6],spec:[1],class:1},
+            ],
+        },{
+            name:'-I - The\nGlitch',rarity:2,list:14,
+            levels:[
+                {effect:[1],attack:1120,cost:1,target:[0],spec:[1],class:1},
+                {effect:[1],attack:1120,cost:1,target:[0],spec:[1,2],class:1},
+                {effect:[1],attack:1120,cost:1,target:[0],spec:[1,2,22],class:1},
+            ],
+        },{
+            name:'XXXVII - The\nDev',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1122,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1122,cost:0,target:[0],spec:[2],class:4},
+                {effect:[],attack:1122,cost:0,target:[0],spec:[2,22],class:4},
+            ],
+        },{
+            name:'LXIV - The\nStack',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1121,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1121,cost:0,target:[0],spec:[2],class:4},
+                {effect:[],attack:1121,cost:0,target:[0],spec:[2,22],class:4},
+            ],
+        },{
+            name:'C - The\nPrefect',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1124,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1124,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1124,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'CCLVI - The\nLimit',rarity:2,list:14,
+            levels:[
+                {effect:[],attack:1125,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1125,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1125,cost:0,target:[0],spec:[],class:4},
             ],
         },
-
 
         {
             name:'Telefrag',rarity:-3,list:-1,
@@ -7559,6 +7710,97 @@ types={
                 {effect:[8],attack:10,cost:1,target:[0],spec:[1],class:4},
                 {effect:[10],attack:10,cost:1,target:[0],spec:[1],class:4},
             ],
+        },{
+            name:'Magic\nTrick Card',rarity:-1,list:0,
+            levels:[
+                {effect:[10,2,7,7],attack:1097,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[13,3,9,9],attack:1097,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[15,4,10,10],attack:1097,cost:1,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Queen of\nHearts',rarity:-1,list:0,
+            levels:[
+                {effect:[10,10],attack:1100,cost:1,target:[2,1,1],spec:[0,29],class:1},
+                {effect:[14,14],attack:1100,cost:1,target:[2,1,1],spec:[0,29],class:1},
+                {effect:[16,16],attack:1100,cost:1,target:[2,1,1],spec:[0,29],class:1},
+            ],
+        },{
+            name:'1 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[1],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[1],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'2 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[2],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'3 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[3],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'4 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[4],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[4],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[4],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'5 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[5],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[5],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[5],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'6 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[6],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'7 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[7],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'8 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[8],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'9 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[9],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'10 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[10],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'11 of Nothings',rarity:-1,list:0,
+            levels:[
+                {effect:[11],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
         {
@@ -7742,6 +7984,13 @@ types={
                 {effect:[1],attack:-29,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[1],attack:-29,cost:0,target:[0],spec:[4,5],class:5},
                 {effect:[1],attack:-29,cost:0,target:[0],spec:[4,5],class:5},
+            ],
+        },{
+            name:'Basicity',rarity:0,list:11,
+            levels:[
+                {effect:[1],attack:-30,cost:0,target:[0],spec:[5],class:5},
+                {effect:[1],attack:-30,cost:0,target:[0],spec:[5,4],class:5},
+                {effect:[1],attack:-30,cost:0,target:[0],spec:[5,4,23],class:5},
             ],
         },
 
@@ -8215,6 +8464,7 @@ types={
         {name:'Rich Kid',life:20,behavior:0,spec:[16],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
         {name:'MobMan',life:10,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
+        {name:'Antizone',life:999,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indistructable`},
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -10661,6 +10911,20 @@ shipyard visit for another time.`,
                     link:[-1],
                 },
             ],
+        },{
+            name:'Fortune Teller',id:61,list:-1,
+            pages:[
+                {
+                    desc:
+`In a hidden spot in a dark alley of the city,
+you spot a strange little tent, nestled among similar other tents.
+It seems the other tents are just shops, but this one is a "Fortune Teller".
+Entering, you're offered a chance to glimpse your future...`,
+                    option:['View'],
+                    optionDesc:['Gain 1 Card'],
+                    link:[-1],
+                },
+            ],
         },
     ],color:{
         card:[
@@ -10734,6 +10998,11 @@ shipyard visit for another time.`,
                 stroke:[225,125,125],
                 text:[100,25,25],
                 active:[255,200,200],
+            },{
+                fill:[160,160,140],
+                stroke:[120,120,100],
+                text:[40,40,30],
+                active:[200,200,180],
             },
 
         ],
@@ -13298,8 +13567,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:true}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],
