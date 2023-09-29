@@ -1239,7 +1239,6 @@ class card{
             case 1092: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nGain ${effect[3]} Currency`; break
             case 1093: string+=`Add a Random\nAce of Equivalent\nLevel to Your Hand\nand Retain It\nUntil Played`; break
             case 1094: string+=`Reverse All Your\nStat Changes`; break
-
             case 1095: string+=`Discard Your Hand\nDraw That Many Cards\nAdd a Redraw\nof Equivalent\nLevel to Hand`; break
             case 1096: string+=`Add Magic Tricks\nof Equivalent Level\nCard to Your Draw\nand Discard Piles`; break
             case 1097: string+=`50%:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\n50%:\nDeal ${this.calculateEffect(effect[2],0)} Damage\nAdd ${this.calculateEffect(effect[3],1)} Block`; break
@@ -1271,8 +1270,12 @@ class card{
             case 1123: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[0]} Currency\nDraw 1 Card`; break
             case 1124: string+=`Choose Between More\nCards of Equivalent\nLevel to Add\nto Your Hand`; break
             case 1125: string+=`Choose an Arcana of\nEquivalent Level to\nAdd to Your Hand`; break
-
-
+            case 1126: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Not Fatal,\nGain ${effect[1]} Ammo`; break
+            case 1127: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n50%: Add Double`; break
+            case 1128: string+=`50%:\nPush 1 Tile\n50%:\nPush 2 Tiles`; break
+            case 1129: string+=`Gain ${effect[0]} Currency\nWhen Another Card\nis Played`; break
+            case 1130: string+=`Taking Damage This\nTurn Takes ${effect[0]} Currency\nInstead`; break
+            case 1131: string+=`Counter ${effect[0]} Damage Down`; break
 
 
 
@@ -1515,6 +1518,9 @@ class card{
                     this.cost--
                     this.base.cost--
                 }
+            break
+            case 1129:
+                this.battle.currency.money[this.player]+=this.effect[0]
             break
             
         }

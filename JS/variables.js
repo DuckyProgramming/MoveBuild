@@ -6120,9 +6120,9 @@ types={
         },{
             name:'Slidebuffer',rarity:1,list:9,
             levels:[
-                {effect:[1],attack:1016,cost:0,target:[0],spec:[],class:3},
-                {effect:[1],attack:1016,cost:0,target:[0],spec:[2],class:3},
-                {effect:[1],attack:1016,cost:0,target:[0],spec:[2,22],class:3},
+                {effect:[1],attack:1016,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:1016,cost:0,target:[0],spec:[2],class:4},
+                {effect:[1],attack:1016,cost:0,target:[0],spec:[2,22],class:4},
             ],
         },{
             name:'Upward\nKick',rarity:1,list:9,
@@ -6155,9 +6155,9 @@ types={
         },{
             name:'Secret\nStash',rarity:0,list:9,
             levels:[
-                {effect:[1,1],attack:886,cost:0,target:[0],spec:[1],class:3},
-                {effect:[1,2],attack:886,cost:0,target:[0],spec:[1],class:3},
-                {effect:[2,2],attack:886,cost:0,target:[0],spec:[1],class:3},
+                {effect:[1,1],attack:886,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1,2],attack:886,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2,2],attack:886,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Steak\nSandwich',rarity:2,list:9,
@@ -6376,6 +6376,13 @@ types={
                 {effect:[1],attack:1088,cost:2,target:[0],spec:[1],class:4},
                 {effect:[1],attack:1088,cost:2,target:[0],spec:[1,22],class:4},
             ],
+        },{
+            name:'Safety\nNet',rarity:1,list:9,
+            levels:[
+                {effect:[6],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[9],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[11],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            ],
         },
 
 
@@ -6384,7 +6391,6 @@ types={
 
 
         //heavyweapons
-        //ammo mechanic
 
         //MAKE RARES!
 
@@ -6905,6 +6911,41 @@ types={
                 {effect:[],attack:1093,cost:0,target:[0],spec:[],class:4},
                 {effect:[],attack:1093,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Lucky\nDefend',rarity:0,list:10,
+            levels:[
+                {effect:[6],attack:1127,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:1127,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:1127,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Inconsistent\nPush',rarity:1,list:10,
+            levels:[
+                {effect:[],attack:1128,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[],attack:1128,cost:0,target:[2,1,1],spec:[2],class:1},
+                {effect:[],attack:1128,cost:0,target:[2,1,1],spec:[2,22],class:1},
+            ],
+        },{
+            name:'Time\nCard',rarity:2,list:10,
+            levels:[
+                {effect:[10],attack:1129,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[16],attack:1129,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[20],attack:1129,cost:0,target:[0],spec:[4,5],class:4},
+            ],
+        },{
+            name:'Official\nTrump Card',rarity:2,list:10,
+            levels:[
+                {effect:[5],attack:1130,cost:0,target:[0],spec:[2],class:2},
+                {effect:[4],attack:1130,cost:0,target:[0],spec:[2],class:2},
+                {effect:[3],attack:1130,cost:0,target:[0],spec:[2],class:2},
+            ],
+        },{
+            name:'Victim\nCard',rarity:1,list:10,
+            levels:[
+                {effect:[1],attack:1131,cost:1,target:[0],spec:[],class:4},
+                {effect:[1],attack:1131,cost:0,target:[0],spec:[],class:4},
+                {effect:[2],attack:1131,cost:0,target:[0],spec:[],class:4},
+            ],
         },
 
 
@@ -6918,13 +6959,10 @@ types={
 
         //exile and release
 
-        //credit card
-        //time card
-        //official trump card
         //loyalty card
         //business card
-        //the victim card
         //4 mana 7 / 7
+        //retains, gets stronger when you take damage
 
         //recall crescent - deals more on successful recalls
 
@@ -13567,8 +13605,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:true}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

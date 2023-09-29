@@ -82,7 +82,7 @@ class combatant{
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
             '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
-            'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect',
+            'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -102,7 +102,7 @@ class combatant{
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
                 0,0,0,1,2,2,0,1,0,1,//17
-                1,0,1,0,
+                1,0,1,0,2,0,2,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -122,7 +122,7 @@ class combatant{
                 2,2,2,3,2,2,0,0,3,3,
                 2,2,2,0,0,2,2,2,3,0,
                 0,2,2,0,2,1,2,1,0,0,
-                2,1,0,0,
+                2,1,0,0,2,1,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3792,6 +3792,9 @@ class combatant{
             if(userCombatant.status.main[75]>0){
                 damage-=userCombatant.status.main[75]
             }
+            if(userCombatant.status.main[175]>0){
+                damage-=userCombatant.status.main[175]
+            }
             if(userCombatant.status.main[6]!=0){
                 totalStr+=userCombatant.status.main[6]
             }
@@ -3961,6 +3964,8 @@ class combatant{
                     this.heal(damage)
                 }else if(this.status.main[172]>0){
                     this.statusEffect('Block Next Turn',damage)
+                }else if(this.status.main[174]>0){
+                    this.battle.currency.money[this.id]-=damage*this.status.main[174]
                 }else if(this.block>=damage&&spec!=2){
                     this.block-=damage
                     this.infoAnim.upFlash[1]=true
@@ -4175,6 +4180,9 @@ class combatant{
                         }
                         if(this.status.main[122]>0){
                             userCombatant.statusEffect('Bleed',this.status.main[122])
+                        }
+                        if(this.status.main[176]>0){
+                            userCombatant.statusEffect('Damage Down',this.status.main[176])
                         }
                         if(this.status.main[50]>0){
                             this.addBlock(this.status.main[50])

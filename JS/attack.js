@@ -97,7 +97,7 @@ class attack{
             case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
             case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067: case 1068:
             case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091: case 1092:
-            case 1097: case 1100: case 1111: case 1123:
+            case 1097: case 1100: case 1111: case 1123: case 1126: case 1128:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1363,6 +1363,19 @@ class attack{
                     break
                     case 1118:
                         this.userCombatant.statusEffect('Reflect',1)
+                    break
+                    case 1127:
+                        let roll=floor(random(1,3))
+                        this.userCombatant.addBlock(this.effect[0]*roll)
+                        if(roll==1){
+                            this.userCombatant.lowRoll()
+                        }
+                    break
+                    case 1130:
+                        this.userCombatant.statusEffect('Currency Tank',this.effect[0])
+                    break
+                    case 1131:
+                        this.userCombatant.statusEffect('Counter Damage Down All',this.effect[0])
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -3748,6 +3761,11 @@ class attack{
                     case 1052:
                         this.userManager.discard.sendSpec(this.userManager.hand.cards,25,this.effect[1])
                     break
+                    case 1126:
+                        if(this.targetCombatant.life>0){
+                            this.userCombatant.ammo++
+                        }
+                    break
                 }
             break
             case 10:
@@ -4437,7 +4455,8 @@ class attack{
             case 776: case 783: case 794: case 800: case 809: case 810: case 811: case 831: case 853: case 858:
             case 861: case 867: case 875: case 880: case 885: case 887: case 890: case 918: case 919: case 920:
             case 925: case 951: case 967: case 968: case 989: case 990: case 995: case 996: case 1012: case 1013:
-            case 1025: case 1030: case 1035: case 1037: case 1039: case 1057: case 1061: case 1077: case 1118:
+            case 1025: case 1030: case 1035: case 1037: case 1039: case 1057: case 1061: case 1077: case 1118: case 1127:
+            case 1130: case 1131:
                 if(this.type==809&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5373,7 +5392,7 @@ class attack{
                     }
                 }
             break
-            case 48: case 100:
+            case 48: case 100: case 1128:
                 if(this.targetDistance==1){
                     if(this.timer==1){
                         let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
@@ -5419,7 +5438,14 @@ class attack{
                             this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/10)
                         }
                         if(this.timer==20){
-                            this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                            if(this.type==1128&&floor(random(0,2))==0){
+                                this.remove=true
+                                this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                                this.battle.activate(1,this.targetCombatant.id)
+                                this.remove=true
+                            }else{
+                                this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                            }
                         } 
                         if(this.timer==21){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
@@ -5728,7 +5754,7 @@ class attack{
                 }
             break
             case 80: case 590: case 594: case 609: case 632: case 633: case 634: case 915: case 1002: case 1009:
-            case 1034: case 1036: case 1047: case 1052:
+            case 1034: case 1036: case 1047: case 1052: case 1126:
                 if(variants.nobasicanim){
                     this.selfCall(9)
                     this.remove=true
