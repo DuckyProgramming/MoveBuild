@@ -192,6 +192,17 @@ class tile{
             }
         }
     }
+    tick(){
+        for(let a=0,la=this.type.length;a<la;a++){
+            switch(this.type[a]){
+                case 22:
+                    this.battle.combatantManager.damageArea(5,-1,-1,this.tilePosition)
+                    this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[15]))
+                    this.anim.upPart[a]=false
+                break
+            }
+        }
+    }
     customActivate(type,effect){
         for(let a=0,la=this.type.length;a<la;a++){
             switch(this.type[a]){
@@ -442,6 +453,14 @@ class tile{
                     this.layer.ellipse(8,-4,7.5)
                     this.layer.ellipse(-4,8,7)
                     this.layer.ellipse(6,6,6)
+                break
+                case 22:
+                    this.layer.fill(140,this.fade*this.anim.part[a])
+                    this.layer.rect(0,0,12,12,3)
+                    this.layer.fill(200,50,50,this.fade*this.anim.part[a])
+                    this.layer.rect(0,0,6,6,2)
+                    this.layer.fill(255,50,50,this.fade*this.anim.part[a])
+                    this.layer.rect(0,0,4,4,2)
                 break
             }
         }

@@ -316,6 +316,9 @@ class tileManager{
             }
         }
     }
+    tick(){
+        this.tiles.forEach(tile=>tile.tick())
+    }
     display(scene){
         switch(scene){
             case 'battle':

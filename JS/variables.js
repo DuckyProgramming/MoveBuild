@@ -4014,9 +4014,9 @@ types={
         },{
             name:'Business',rarity:2,list:6,
             levels:[
-                {effect:[30],attack:637,cost:1,target:[0],spec:[1],class:4},
-                {effect:[50],attack:637,cost:1,target:[0],spec:[1],class:4},
-                {effect:[60],attack:637,cost:1,target:[0],spec:[1],class:4},
+                {effect:[30],attack:637,cost:2,target:[0],spec:[1],class:4},
+                {effect:[50],attack:637,cost:2,target:[0],spec:[1],class:4},
+                {effect:[60],attack:637,cost:2,target:[0],spec:[1],class:4},
             ],
         },{
             name:'Genevon',rarity:2,list:6,
@@ -5565,9 +5565,9 @@ types={
         },{
             name:'Greed',rarity:1,list:8,
             levels:[
-                {effect:[20,4],attack:941,cost:1,target:[0],spec:[1,4],class:4},
-                {effect:[35,5],attack:941,cost:1,target:[0],spec:[1,4],class:4},
-                {effect:[45,6],attack:941,cost:1,target:[0],spec:[1,4],class:4},
+                {effect:[20,4],attack:941,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[35,5],attack:941,cost:0,target:[0],spec:[1,4],class:4},
+                {effect:[45,6],attack:941,cost:0,target:[0],spec:[1,4],class:4},
             ],
         },{
             name:'6A',rarity:0,list:8,
@@ -6379,9 +6379,51 @@ types={
         },{
             name:'Safety\nNet',rarity:1,list:9,
             levels:[
-                {effect:[6],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
-                {effect:[9],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
-                {effect:[11],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[6,1],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[9,1],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[11,1],attack:1126,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            ],
+        },{
+            name:'Trailing\nStep',rarity:0,list:9,
+            levels:[
+                {effect:[1],attack:1136,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:1136,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:1136,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Gunless',rarity:2,list:9,
+            levels:[
+                {effect:[],attack:1138,cost:1,target:[0],spec:[],class:1},
+                {effect:[],attack:1138,cost:1,target:[0],spec:[],class:1},
+                {effect:[],attack:1138,cost:1,target:[0],spec:[],class:1},
+            ],
+        },{
+            name:'Ammo\nReserv',rarity:2,list:9,
+            levels:[
+                {effect:[5,9],attack:1140,cost:2,target:[0],spec:[1],class:4},
+                {effect:[7,12],attack:1140,cost:2,target:[0],spec:[1],class:4},
+                {effect:[9,14],attack:1140,cost:2,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Bullet\nGeneration',rarity:1,list:9,
+            levels:[
+                {effect:[10,1],attack:1141,cost:1,target:[0],spec:[],class:4},
+                {effect:[15,1],attack:1141,cost:1,target:[0],spec:[],class:4},
+                {effect:[18,1],attack:1141,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'High-Grade',rarity:1,list:9,
+            levels:[
+                {effect:[2,1],attack:1142,cost:1,target:[0],spec:[],class:4},
+                {effect:[3,1],attack:1142,cost:1,target:[0],spec:[],class:4},
+                {effect:[4,1],attack:1142,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'C4\nStep',rarity:2,list:9,
+            levels:[
+                {effect:[1],attack:1143,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:1143,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1],attack:1143,cost:0,target:[1,1,1],spec:[],class:3},
             ],
         },
 
@@ -6389,12 +6431,9 @@ types={
         
 
 
-
         //heavyweapons
 
         //MAKE RARES!
-
-        //movements
 
         //position in hand cards
 
@@ -6914,9 +6953,9 @@ types={
         },{
             name:'Lucky\nDefend',rarity:0,list:10,
             levels:[
-                {effect:[6],attack:1127,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[9],attack:1127,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[11],attack:1127,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[6],attack:1127,cost:1,target:[0],spec:[],class:2},
+                {effect:[9],attack:1127,cost:1,target:[0],spec:[],class:2},
+                {effect:[11],attack:1127,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Inconsistent\nPush',rarity:1,list:10,
@@ -6946,6 +6985,34 @@ types={
                 {effect:[1],attack:1131,cost:0,target:[0],spec:[],class:4},
                 {effect:[2],attack:1131,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Exile',rarity:1,list:10,
+            levels:[
+                {effect:[5],attack:1132,cost:1,target:[0],spec:[],class:4},
+                {effect:[5],attack:1132,cost:0,target:[0],spec:[],class:4},
+                {effect:[8],attack:1132,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Baseball\nCard',rarity:1,list:10,
+            levels:[
+                {effect:[10],attack:1133,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[13],attack:1133,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[15],attack:1133,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Loyalty\nCard',rarity:2,list:10,
+            levels:[
+                {effect:[50],attack:1135,cost:1,target:[2,1,1],spec:[0,30],limit:0,class:1},
+                {effect:[64],attack:1135,cost:1,target:[2,1,1],spec:[0,30],limit:0,class:1},
+                {effect:[75],attack:1135,cost:1,target:[2,1,1],spec:[0,30],limit:0,class:1},
+            ],
+        },{
+            name:'Discounted\nStep',rarity:0,list:10,
+            levels:[
+                {effect:[1,1],attack:1137,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:1137,cost:0,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,1],attack:1137,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
         },
 
 
@@ -6955,18 +7022,20 @@ types={
 
 
 
+
         //rolls-a lot of them
+        //when in discard pile, has effect every turn
+        //ichor - stacking damage multiplier, decreases after each hit taken
+        //deal damage, when exhausted, deal damage anyway
+        //get ANY card
 
-        //exile and release
-
-        //loyalty card
-        //business card
         //4 mana 7 / 7
         //retains, gets stronger when you take damage
 
+        //bash n cash
+
         //recall crescent - deals more on successful recalls
 
-        //movement
 
         {
             name:'0 - The\nFool',rarity:2,list:14,
@@ -7111,9 +7180,9 @@ types={
         },{
             name:'XX -\nJudgement',rarity:2,list:14,
             levels:[
-                {effect:[],attack:1118,cost:2,target:[0],spec:[1],class:4},
                 {effect:[],attack:1118,cost:1,target:[0],spec:[1],class:4},
-                {effect:[],attack:1118,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:1118,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:1118,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'XXI - The\nWorld',rarity:2,list:14,
@@ -7839,6 +7908,27 @@ types={
                 {effect:[11],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[11],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Card\nSleeve',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:1134,cost:1,target:[0],spec:[15],limit:1,class:4},
+                {effect:[],attack:1134,cost:0,target:[0],spec:[15],limit:1,class:4},
+                {effect:[],attack:1134,cost:0,target:[0],spec:[15,22],limit:1,class:4},
+            ],
+        },{
+            name:'Worthless\nBaseball Card',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:0,cost:0,target:[0],spec:[5],class:4},
+                {effect:[],attack:0,cost:0,target:[0],spec:[5],class:4},
+                {effect:[],attack:0,cost:0,target:[0],spec:[5],class:4},
+            ],
+        },{
+            name:'Throw\nBullet',rarity:-1,list:0,
+            levels:[
+                {effect:[5],attack:1139,cost:0,target:[2,1,2],spec:[25],class:1},
+                {effect:[8],attack:1139,cost:0,target:[2,1,2],spec:[25],class:1},
+                {effect:[10],attack:1139,cost:0,target:[2,1,2],spec:[25],class:1},
+            ],
         },
 
         {
@@ -8381,7 +8471,7 @@ types={
         {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:34,effect:[2]},{type:32,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         {name:'Management Custodian',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[2]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
-        {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[8]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
+        {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
         {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[9]}],description:`Helping the prisoners for some reason`},
         {name:'Lightspeed',life:85,behavior:1,spec:[1],move:{type:0,speed:3},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[12]}],description:`He be fast`},
         {name:'Swordmaster',life:105,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:102,effect:[20]},{type:79,effect:[16]},{type:103,effect:[5,2]},{type:21,effect:[]}],description:`Mastered something`},

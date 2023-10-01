@@ -47,7 +47,7 @@ class turnManager{
         this.auxiliary=true
         for(let a=0,la=this.battle.combatantManager.combatants[enemy].attack.length;a<la;a++){
             if(this.battle.combatantManager.combatants[enemy].attack[a].effect.length>0){
-                this.damageMax=max(this.damageMax,this.battle.combatantManager.combatants[enemy].attack[a].effect[0])
+                damageMax=max(damageMax,this.battle.combatantManager.combatants[enemy].attack[a].effect[0])
             }
         }
         this.turns.push(new turn(0,this.battle,findName('Self-Kill',types.attack),[damageMax],enemy))

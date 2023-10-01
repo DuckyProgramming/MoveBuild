@@ -1,5 +1,5 @@
 class attack{
-    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData,amplify,relPos){
+    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData,amplify,relPos,limit){
         this.type=type
         this.battle=battle
         this.player=player
@@ -16,6 +16,7 @@ class attack{
         this.replayData=replayData
         this.amplify=amplify
         this.relPos=relPos
+        this.limit=limit
 
         this.procedure=[]
 
@@ -97,7 +98,7 @@ class attack{
             case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
             case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067: case 1068:
             case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091: case 1092:
-            case 1097: case 1100: case 1111: case 1123: case 1126: case 1128:
+            case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -117,7 +118,7 @@ class attack{
             case 717: case 750: case 802: case 803: case 804: case 805: case 808: case 812: case 813: case 814:
             case 815: case 816: case 817: case 823: case 923: case 955: case 963: case 973: case 975: case 976:
             case 977: case 978: case 979: case 997: case 998: case 999: case 1024: case 1048: case 1071: case 1080:
-            case 1081: case 1084: case 1085: case 1086: case 1104: case 1119:
+            case 1081: case 1084: case 1085: case 1086: case 1104: case 1119: case 1136: case 1137: case 1143:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -350,7 +351,7 @@ class attack{
                     let offset=transformDirection(0,this.relativeDirection)
                     let position=[this.targetTile.tilePosition.x+offset[0],this.targetTile.tilePosition.y+offset[1]]
                     let index=this.battle.tileManager.getTileIndex(position[0],position[1])
-                    if(index>=0){
+                    if(index>=0&&this.battle.tileManager.tiles[index].occupied<=0){
                         this.targetTile=this.battle.tileManager.tiles[index]
                         this.targetDistance++
                         this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -744,6 +745,9 @@ class attack{
                     break
                     case 1089: case 1090: case 1091: case 1092:
                         this.targetCombatant.takeDamage(this.targetCombatant.life<=this.effect[0]?this.effect[1]:this.effect[0],this.user)
+                    break
+                    case 1135:
+                        this.targetCombatant.takeDamage(this.limit%4==3?this.effect[0]:0,this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1650,6 +1654,9 @@ class attack{
                             this.battle.dropDraw(this.player,findName('Defend',types.card),0,this.color)
                         }
                     break
+                    case 1141:
+                        this.userCombatant.statusEffect('Temporary Ammo on Hit',this.effect[1])
+                    break
 
                 }
             break
@@ -1831,6 +1838,25 @@ class attack{
                     case 1086:
                         this.battle.combatantManager.damageAreaID(this.effect[1],this.user,this.userCombatant.id,this.targetTile.tilePosition)
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetTile.position.x,this.targetTile.position.y,10,[10]))
+                    break
+                    case 1136:
+                        let index2=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
+                        if(index2>=0){
+                            this.battle.tileManager.tiles[index2].addType(1)
+                        }
+                    break
+                    case 1137:
+                        if(floor(random(0,2))==0){
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                        }else{
+                            this.userCombatant.lowRoll()
+                        }
+                    break
+                    case 1143:
+                        let index3=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
+                        if(index3>=0){
+                            this.battle.tileManager.tiles[index3].addType(22)
+                        }
                     break
 
                 }
@@ -2276,6 +2302,11 @@ class attack{
                     case 1125:
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([this.level,3,6])
+                    break
+                    case 1138:
+                        for(let a=0,la=this.userCombatant.ammo;a<la;a++){
+                            this.userManager.hand.add(findName('Throw\nBullet',types.card),this.level,0)
+                        }
                     break
 
                 }
@@ -2959,6 +2990,10 @@ class attack{
                     break
                     case 1121:
                         this.userManager.hand.allEffect(38)
+                    break
+                    case 1134:
+                        this.battle.overlayManager.overlays[14][this.player].active=true
+                        this.battle.overlayManager.overlays[14][this.player].activate([])
                     break
                     
                 }
@@ -3672,6 +3707,9 @@ class attack{
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Antizone',types.combatant),this.userCombatant.team,this.direction,this.user)
                         this.userManager.hand.add(findName('Unbuild',types.card),0,0)
                     break
+                    case 1139:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    break
                     
                 }
             break
@@ -3897,7 +3935,7 @@ class attack{
                         }
                     break
                     case 1020:
-                        this.userCombatantant.ammo+=this.effect[0]
+                        this.userCombatant.ammo+=this.effect[0]
                     break
                     case 1099:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -3918,6 +3956,18 @@ class attack{
                                 case 7: this.userManager.draw(2); break
                             }
                         }
+                    break
+                    case 1132:
+                        this.userManager.hand.exhaustBlock(this.effect[0])
+                    break
+                    case 1140:
+                        this.userCombatant.ammo+=this.effect[0]
+                        this.userCombatatn.statusEffect('Regeneration',this.effect[1])
+                        this.battle.attackManager.endAfter=true
+                    break
+                    case 1142:
+                        this.userCombatant.ammo+=this.effect[0]
+                        this.userManager.hand.upgrade(this.effect[1])
                     break
 
                 }
@@ -4390,11 +4440,11 @@ class attack{
             case 946: case 947: case 950: case 966: case 972: case 991: case 992: case 993: case 994: case 1003:
             case 1004: case 1006: case 1007: case 1010: case 1014: case 1015: case 1018: case 1022: case 1027: case 1029:
             case 1031: case 1038: case 1040: case 1049: case 1050: case 1058: case 1064: case 1068: case 1073: case 1083:
-            case 1087: case 1089: case 1090: case 1091: case 1092: case 1100: case 1123:
+            case 1087: case 1089: case 1090: case 1091: case 1092: case 1100: case 1123: case 1133: case 1135:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
-                        if(this.userManager.hand.cards[a].class==1){
+                        if(this.userManager.hand.cards[a].class==1&&this.userManager.hand.cards[a].attack!=this.type){
                             failed=true
                         }
                     }
@@ -4456,7 +4506,7 @@ class attack{
             case 861: case 867: case 875: case 880: case 885: case 887: case 890: case 918: case 919: case 920:
             case 925: case 951: case 967: case 968: case 989: case 990: case 995: case 996: case 1012: case 1013:
             case 1025: case 1030: case 1035: case 1037: case 1039: case 1057: case 1061: case 1077: case 1118: case 1127:
-            case 1130: case 1131:
+            case 1130: case 1131: case 1141:
                 if(this.type==809&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -4480,7 +4530,8 @@ class attack{
             case 663: case 664: case 666: case 690: case 693: case 694: case 704: case 705: case 706: case 717:
             case 802: case 803: case 804: case 805: case 808: case 812: case 816: case 817: case 823: case 923:
             case 931: case 955: case 963: case 973: case 975: case 977: case 978: case 997: case 998: case 999:
-            case 1011: case 1024: case 1048: case 1080: case 1081: case 1084: case 1085: case 1086:
+            case 1011: case 1024: case 1048: case 1080: case 1081: case 1084: case 1085: case 1086: case 1136: case 1137:
+            case 1143:
                 if(this.type==808&&this.userCombatant.stance!=3){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -4667,7 +4718,7 @@ class attack{
             case 763: case 777: case 778: case 788: case 799: case 807: case 820: case 821: case 822: case 836:
             case 838: case 839: case 841: case 842: case 864: case 873: case 876: case 886: case 893: case 896:
             case 898: case 901: case 914: case 937: case 948: case 1008: case 1019: case 1033: case 1053: case 1063:
-            case 1074: case 1079: case 1093: case 1094: case 1108: case 1124: case 1125:
+            case 1074: case 1079: case 1093: case 1094: case 1108: case 1124: case 1125: case 1138:
                 if(this.type==807&&this.userCombatant.stance!=2||this.type==820&&this.userCombatant.stance!=1||this.type==821&&this.userCombatant.stance!=3||this.type==822&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -4701,7 +4752,7 @@ class attack{
             case 904: case 909: case 910: case 911: case 912: case 913: case 921: case 922: case 926: case 928:
             case 929: case 932: case 949: case 970: case 982: case 983: case 1005: case 1016: case 1026: case 1032:
             case 1042: case 1044: case 1045: case 1062: case 1064: case 1065: case 1066: case 1067: case 1078: case 1088:
-            case 1095: case 1096: case 1098: case 1109: case 1110: case 1120: case 1121:
+            case 1095: case 1096: case 1098: case 1109: case 1110: case 1120: case 1121: case 1134:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5376,7 +5427,7 @@ class attack{
             case 843: case 846: case 850: case 857: case 865: case 877: case 878: case 881: case 883: case 899:
             case 902: case 903: case 905: case 906: case 907: case 935: case 939: case 943: case 944: case 964:
             case 965: case 980: case 1028: case 1046: case 1059: case 1070: case 1071: case 1075: case 1097: case 1111:
-            case 1119:
+            case 1119: case 1139:
                 if(variants.nobasicanim){
                     this.selfCall(7)
                     this.remove=true
@@ -5904,6 +5955,7 @@ class attack{
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
             case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683: case 710: case 792:
             case 845: case 888: case 889: case 927: case 936: case 941: case 969: case 1020: case 1099: case 1107:
+            case 1132: case 1140: case 1142:
                 if(variants.nobasicanim){
                     this.selfCall(10)
                     this.remove=true
@@ -6324,7 +6376,7 @@ class attack{
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[this.userCombatant.animSet.hand].bottom.y,7,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
                 }else if(this.timer==10*this.targetDistance+15){
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,10,[10]))
-                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.targetCombatant.takeDamage(this.effect[0],this.user,2)
                     this.battle.combatantManager.damageAreaID(this.effect[0],this.userCombatant.id,this.targetCombatant.id,this.targetCombatant.tilePosition,2)
                 }else if(this.timer>=10*this.targetDistance+25){
                     this.remove=true

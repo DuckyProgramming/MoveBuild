@@ -769,7 +769,7 @@ class turn{
                             this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
                             this.movable=[]
                             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
-                                if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)==1){
+                                if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)==1&&this.battle.tileManager.tiles[a].occupied<=0){
                                     this.movable.push(a)
                                 }
                             }
@@ -795,7 +795,7 @@ class turn{
                             this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
                             this.movable=[]
                             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
-                                if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)>0){
+                                if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)>0&&this.battle.tileManager.tiles[a].occupied<=0){
                                     this.movable.push(a)
                                 }
                             }

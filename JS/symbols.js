@@ -1625,6 +1625,18 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(5,4,5,-0.5,-6,2.25)
             layer.ellipse(-8,0,3,3)
         break
+        case 177:
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(lsin(360*a/la)*(6-a%2*3),lcos(360*a/la)*(6-a%2*3))
+            }
+            layer.endShape()
+            layer.fill(180,fade)
+            layer.rect(0,0,4,6)
+            layer.arc(-2,0,4,6,90,270)
+            layer.arc(2,0,4,6,-90,90)
+        break
 
     }
     layer.pop()
