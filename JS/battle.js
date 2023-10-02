@@ -314,9 +314,12 @@ class battle{
     }
     quickReinforceCorner(name1,name2,amount,size){
         for(let a=0,la=amount;a<la;a++){
-            this.reinforce.front.push({position:{x:size*(1+transformDirection(0,a*60-150)[0]),y:size*(1+transformDirection(0,a*60-150)[1])},name:floor(random(0,5))==0?name2:name1,minion:true})
-            this.tileManager.tiles[this.tileManager.getTileIndex(size*(1+transformDirection(0,a*60-150)[0]),size*(1+transformDirection(0,a*60-150)[1]))].reinforce=true
-            this.counter.enemy++
+            let index=this.tileManager.getTileIndex(size*(1+transformDirection(0,a*60-150)[0]),size*(1+transformDirection(0,a*60-150)[1]))
+            if(index>=0){
+                this.reinforce.front.push({position:{x:size*(1+transformDirection(0,a*60-150)[0]),y:size*(1+transformDirection(0,a*60-150)[1])},name:floor(random(0,5))==0?name2:name1,minion:true})
+                this.tileManager.tiles[index].reinforce=true
+                this.counter.enemy++
+            }
         }
     }
     clearReinforce(){
@@ -346,9 +349,11 @@ class battle{
             }else{
                 this.tileManager.tiles[this.tileManager.getTileIndex(this.reinforce.front[a].position.x,this.reinforce.front[a].position.y)].reinforce=false
                 let empty=this.tileManager.getEmptyTiles()
-                let tile=empty[floor(random(0,empty.length))]
-                this.reinforce.front[a].position={x:this.tileManager.tiles[tile].tilePosition.x,y:this.tileManager.tiles[tile].tilePosition.y}
-                this.tileManager.tiles[tile].reinforce=true
+                if(empty.length>0){
+                    let tile=empty[floor(random(0,empty.length))]
+                    this.reinforce.front[a].position={x:this.tileManager.tiles[tile].tilePosition.x,y:this.tileManager.tiles[tile].tilePosition.y}
+                    this.tileManager.tiles[tile].reinforce=true
+                }
             }
         }
     }

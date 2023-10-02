@@ -30,6 +30,7 @@ class turn{
             this.remove=true
         }else if(this.userCombatant.getStatus('Distracted')>0){
             this.userCombatant.statusEffect('Distracted',-1)
+            this.remove=true
         }else{
             switch(this.action){
                 case 0:
@@ -1127,7 +1128,7 @@ class turn{
                     break
                     case 78:
                         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                            if(legalTargetCombatant(2,1,6,this.userCombatant,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].name==this.userCombatant.name&&distTargetCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a])>1){
+                            if(legalTargetCombatant(2,1,6,this.userCombatant,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].name==this.userCombatant.name&&distTargetCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a])>1&&this.battle.combatantManager.combatants[a].life>0){
                                 this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-30,12,[this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y-30]))
                                 let direction=targetDirectionCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a])
                                 for(let b=1,lb=distTargetCombatant(0,this.userCombatant,this.battle.combatantManager.combatants[a]);b<lb;b++){

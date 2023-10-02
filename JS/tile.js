@@ -81,7 +81,7 @@ class tile{
                 case 7:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
-                        if(this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                        if(this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support&&this.battle.combatantManager.combatants[this.combatant].id<this.battle.players){
                             this.battle.addCurrency(10,this.battle.combatantManager.combatants[this.combatant].id)
                             this.anim.upPart[a]=false
                         }else if(this.battle.combatantManager.combatants[this.combatant].name=='Capitalist'){

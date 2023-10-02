@@ -6561,25 +6561,11 @@ types={
                 {effect:[],attack:949,cost:2,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Outta\nHere',rarity:1,list:10,
+            name:'Outta\nHere',rarity:2,list:10,
             levels:[
                 {effect:[],attack:988,cost:1,target:[0],spec:[1],class:3},
                 {effect:[],attack:988,cost:0,target:[0],spec:[1],class:3},
                 {effect:[],attack:988,cost:0,target:[0],spec:[1,22],class:3},
-            ],
-        },{
-            name:'Operational\nStrike',rarity:-1,list:-1,
-            levels:[
-                {effect:[8],attack:151,cost:1,target:[2,1,1],spec:[0,4],class:1},
-                {effect:[12],attack:151,cost:1,target:[2,1,1],spec:[0,4],class:1},
-                {effect:[14],attack:151,cost:1,target:[2,1,1],spec:[0,4],class:1},
-            ],
-        },{
-            name:'Operational\nDefend',rarity:-1,list:-1,
-            levels:[
-                {effect:[10],attack:152,cost:1,target:[0],spec:[4],class:2},
-                {effect:[14],attack:152,cost:1,target:[0],spec:[4],class:2},
-                {effect:[16],attack:152,cost:1,target:[0],spec:[4],class:2},
             ],
         },{
             name:'Left\nNudge',rarity:0,list:10,
@@ -6848,20 +6834,6 @@ types={
                 {effect:[3],attack:1063,cost:0,target:[0],spec:[15],limit:3,class:4},
             ],
         },{
-            name:'Dreams\nof Power',rarity:2,list:10,
-            levels:[
-                {effect:[30,15],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
-                {effect:[45,20],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
-                {effect:[60,24],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
-            ],
-        },{
-            name:'Dreams\nof Intelligence',rarity:2,list:10,
-            levels:[
-                {effect:[2],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
-                {effect:[4],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
-                {effect:[6],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
-            ],
-        },{
             name:'Self-Promotion',rarity:2,list:10,
             levels:[
                 {effect:[],attack:1067,cost:1,target:[2,1,2],spec:[1],class:4},
@@ -7058,14 +7030,14 @@ types={
                 {effect:[10],attack:1152,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'The Die\nis Cast',rarity:1,list:10,
+            name:'The Die\nis Cast',rarity:2,list:10,
             levels:[
                 {effect:[4,2],attack:1153,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[6,2],attack:1153,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[8,2],attack:1153,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Diamond\nStrike',rarity:0,list:10,
+            name:'Diamond\nStrike',rarity:1,list:10,
             levels:[
                 {effect:[6],attack:1154,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[9],attack:1154,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -7107,20 +7079,6 @@ types={
                 {effect:[16],attack:1161,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Liquorice',rarity:1,list:10,
-            levels:[
-                {effect:[2,3],attack:1162,cost:0,target:[2,1,2],spec:[],class:1},
-                {effect:[2,2],attack:1162,cost:0,target:[2,1,2],spec:[],class:1},
-                {effect:[3,2],attack:1162,cost:0,target:[2,1,2],spec:[],class:1},
-            ],
-        },{
-            name:'Poison\nSplash',rarity:0,list:10,
-            levels:[
-                {effect:[4],attack:1163,cost:1,target:[2,1,2],spec:[],class:1},
-                {effect:[6],attack:1163,cost:1,target:[2,1,2],spec:[],class:1},
-                {effect:[7],attack:1163,cost:1,target:[2,1,2],spec:[],class:1},
-            ],
-        },{
             name:'Heat\nSink',rarity:1,list:10,
             levels:[
                 {effect:[4,2],attack:1164,cost:1,target:[2,1,1],spec:[],class:1},
@@ -7147,13 +7105,6 @@ types={
                 {effect:[8,8],attack:1167,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12,12],attack:1167,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[15,15],attack:1167,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Monoxide',rarity:1,list:10,
-            levels:[
-                {effect:[2],attack:1168,cost:1,target:[2,1,3],spec:[],class:1},
-                {effect:[3],attack:1168,cost:1,target:[2,1,3],spec:[],class:1},
-                {effect:[4],attack:1168,cost:1,target:[2,1,3],spec:[],class:1},
             ],
         },{
             name:'Oblivion',rarity:1,list:10,
@@ -7196,6 +7147,41 @@ types={
                 {effect:[14,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[20,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[25,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Punchline',rarity:1,list:10,
+            levels:[
+                {effect:[5],attack:1179,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[8],attack:1179,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[10],attack:1179,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Jack in\nthe Box',rarity:1,list:10,
+            levels:[
+                {effect:[10,3],attack:1180,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,4],attack:1180,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[17,5],attack:1180,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Operational\nStrike',rarity:0,list:10,
+            levels:[
+                {effect:[8],attack:151,cost:1,target:[2,1,1],spec:[0,4],class:1},
+                {effect:[12],attack:151,cost:1,target:[2,1,1],spec:[0,4],class:1},
+                {effect:[14],attack:151,cost:1,target:[2,1,1],spec:[0,4],class:1},
+            ],
+        },{
+            name:'Operational\nDefend',rarity:0,list:10,
+            levels:[
+                {effect:[10],attack:152,cost:1,target:[0],spec:[4],class:2},
+                {effect:[14],attack:152,cost:1,target:[0],spec:[4],class:2},
+                {effect:[16],attack:152,cost:1,target:[0],spec:[4],class:2},
+            ],
+        },{
+            name:'Pass',rarity:1,list:10,
+            levels:[
+                {effect:[8],attack:1183,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:1183,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:1183,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },
 
@@ -7417,6 +7403,69 @@ types={
                 {effect:[100],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
                 {effect:[150],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
                 {effect:[180],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Guster',rarity:-3,list:-1,
+            levels:[
+                {effect:[8],attack:1181,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:1181,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:1181,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Dreams\nof Power',rarity:-3,list:-1,
+            levels:[
+                {effect:[30,15],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
+                {effect:[45,20],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
+                {effect:[60,24],attack:1064,cost:0,target:[2,1,3],spec:[15],limit:1,class:1},
+            ],
+        },{
+            name:'Dreams\nof Intelligence',rarity:-3,list:-1,
+            levels:[
+                {effect:[2],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
+                {effect:[4],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
+                {effect:[6],attack:1065,cost:0,target:[0],spec:[15],limit:1,class:1},
+            ],
+        },{
+            name:'Liquorice',rarity:-3,list:-1,
+            levels:[
+                {effect:[2,3],attack:1162,cost:0,target:[2,1,2],spec:[],class:1},
+                {effect:[2,2],attack:1162,cost:0,target:[2,1,2],spec:[],class:1},
+                {effect:[3,2],attack:1162,cost:0,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Monoxide',rarity:-3,list:-1,
+            levels:[
+                {effect:[2],attack:1168,cost:1,target:[2,1,3],spec:[],class:1},
+                {effect:[3],attack:1168,cost:1,target:[2,1,3],spec:[],class:1},
+                {effect:[4],attack:1168,cost:1,target:[2,1,3],spec:[],class:1},
+            ],
+        },{
+            name:'Poison\nSplash',rarity:-3,list:-1,
+            levels:[
+                {effect:[4],attack:1163,cost:1,target:[2,1,2],spec:[],class:1},
+                {effect:[6],attack:1163,cost:1,target:[2,1,2],spec:[],class:1},
+                {effect:[7],attack:1163,cost:1,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Your\nBalls',rarity:-3,list:-1,
+            levels:[
+                {effect:[2],attack:1184,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2],attack:1184,cost:0,target:[0],spec:[1],class:4},
+                {effect:[2],attack:1184,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'The Final\nBoss',rarity:-3,list:-1,
+            levels:[
+                {effect:[],attack:1185,cost:0,target:[1,1,1],spec:[1],class:4},
+                {effect:[],attack:1185,cost:0,target:[1,1,1],spec:[1,2],class:4},
+                {effect:[],attack:1185,cost:0,target:[1,1,1],spec:[1,2,22],class:4},
+            ],
+        },{
+            name:'God\nMode',rarity:-3,list:-1,
+            levels:[
+                {effect:[],attack:1186,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:1186,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:1186,cost:0,target:[0],spec:[1,2,22],class:4},
             ],
         },
 
@@ -8083,6 +8132,13 @@ types={
                 {effect:[11],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
+            name:'-11 of Diamonds',rarity:-1,list:0,
+            levels:[
+                {effect:[11,1],attack:1182,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:1182,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[11,1],attack:1182,cost:0,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
             name:'Card\nSleeve',rarity:-1,list:0,
             levels:[
                 {effect:[],attack:1134,cost:1,target:[0],spec:[15],limit:1,class:4},
@@ -8111,6 +8167,10 @@ types={
                 {effect:[8,4],attack:1173,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },
+
+
+        //1 uncommon gentleman
+        //1 rando card here
 
         {
             name:'Hurt',rarity:0,list:11,
@@ -8733,7 +8793,7 @@ types={
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
         {name:'Bronze Automaton',life:220,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:39,effect:[2,'Bronze Orb A']},{type:39,effect:[2,'Bronze Orb C']},{type:20,effect:[7]},{type:18,effect:[1]},{type:79,effect:[40]},{type:21,effect:[]}],description:`Lazer games`},
         {name:'Comrade',life:280,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:171,effect:[6,4]},{type:39,effect:[1,'Red']},{type:169,effect:[5]},{type:170,effect:[1]},{type:172,effect:[25]}],description:`Not a step back!`},
-        {name:'Councilman',life:270,behavior:0,spec:[1,2],move:{type:1,speed:1},attack:[{type:174,effect:[3]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
+        {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[3]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
@@ -13876,8 +13936,8 @@ Does not spend the orb.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:true}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

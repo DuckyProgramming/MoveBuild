@@ -229,8 +229,10 @@ class cardManager{
     addRandomCompleteAllContain(group,level,contain){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            if(types.card[this.listing.allListableCard[3][a]].name.includes(contain)){
-                list.push(this.listing.allListableCard[3][a])
+            for(let b=0,lb=contain.length;b<lb;b++){
+                if(types.card[this.listing.allListableCard[3][a]].name.includes(contain[b])){
+                    list.push(this.listing.allListableCard[3][a])
+                }
             }
         }
         if(list.length>0){

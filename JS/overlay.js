@@ -16,6 +16,7 @@ class overlay{
                 this.page=0
                 switch(this.args[0]){
                     case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
+                    case 23:
                         this.battle.cardManagers[this.player].reserve.cards.forEach(card=>card.size=0)
                     break
                     case 1: case 5: case 11: case 19: case 21:
@@ -72,7 +73,8 @@ class overlay{
             break
             case 2:
                 switch(this.args[0]){
-                    case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22: this.battle.cardManagers[this.player].reserve.resetAnim(); break
+                    case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
+                    case 23: this.battle.cardManagers[this.player].reserve.resetAnim(); break
                     case 1: case 5: case 11: case 19: case 21: this.battle.cardManagers[this.player].discard.resetAnim(); break
                     case 2: case 3: case 4: case 7: case 8: case 10: case 17: this.battle.cardManagers[this.player].deck.resetAnim(); break
                     case 12: this.battle.cardManagers[this.player].exhaust.resetAnim(); break
@@ -422,7 +424,7 @@ class overlay{
                 }
                 this.layer.textSize(20)
                 switch(this.args[0]){
-                    case 0: case 1: case 2: case 9:
+                    case 0: case 1: case 2: case 9: case 23:
                         this.layer.text('Close',this.layer.width/2,this.layer.height/2+225); break
                     case 3: case 4: case 5: case 6: case 7: case 8: case 10: case 11: case 13: case 14:
                     case 15: case 16: case 12: case 17: case 18: case 19: case 20: case 21: case 22:
@@ -439,6 +441,7 @@ class overlay{
                     case 15: this.battle.cardManagers[this.player].reserve.display('overlay',[4,this.page]); break
                     case 16: this.battle.cardManagers[this.player].reserve.display('overlay',[5,this.page]); break
                     case 20: this.battle.cardManagers[this.player].reserve.display('overlay',[6,this.page,3]); break
+                    case 23: this.battle.cardManagers[this.player].reserve.display('overlay',[7,this.args[1]]); break
 
                 }
                 switch(this.args[0]){
@@ -627,18 +630,20 @@ class overlay{
                         case 13: case 14: case 15: case 16:
                             this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].reserve.sorted.length/15)-1)
                         break
-                        case 20:
+                        case 20: case 23:
                             this.page=0
                         break
                     }
                     switch(this.args[0]){
-                        case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22: this.battle.cardManagers[this.player].reserve.update('overlay',[this.page]); break
+                        case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
+                        case 23: this.battle.cardManagers[this.player].reserve.update('overlay',[this.page]); break
                         case 1: case 5: case 11: case 19: case 21: this.battle.cardManagers[this.player].discard.update('overlay',[this.page]); break
                         case 2: case 3: case 4: case 7: case 8: case 10: case 17: this.battle.cardManagers[this.player].deck.update('overlay',[this.page]); break
                         case 12: this.battle.cardManagers[this.player].exhaust.update('overlay',[this.page]); break
                     }
                     switch(this.args[0]){
                         case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
+                        case 23:
                             for(let a=0,la=this.battle.cardManagers[this.player].reserve.cards.length;a<la;a++){
                                 this.battle.cardManagers[this.player].reserve.cards[a].size=constrain(this.battle.cardManagers[this.player].reserve.cards[a].size,0,this.fade)
                             }

@@ -982,7 +982,8 @@ Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}
 Rare:${current.cardManagers[0].listing.card[a+1][2].length}
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}\n`
 	}
-	print(`		Colorless:
+	print(`	Total Cards: ${types.card.length}
+		Colorless:
 Common:${current.cardManagers[0].listing.card[0][0].length}
 Uncommon:${current.cardManagers[0].listing.card[0][1].length}
 Rare:${current.cardManagers[0].listing.card[0][2].length}

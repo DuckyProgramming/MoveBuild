@@ -61,7 +61,7 @@ class combatantManager{
     }
     setupCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0){
+            if(this.combatants[a].team==0||this.combatants[a].construct){
                 this.combatants[a].setIntent(0)
             }else{
                 this.combatants[a].endBlock()
@@ -441,6 +441,9 @@ class combatantManager{
             types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==2||
             types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==4||
             types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==5
+        if(this.combatants[this.combatants.length-1].name=='Rewriter'){
+            this.combatants[this.combatants.length-1].spec.push(17)
+        }
         if(this.combatants[this.combatants.length-1].spec.includes(17)){
             this.combatants[this.combatants.length-1].autoAim()
         }
