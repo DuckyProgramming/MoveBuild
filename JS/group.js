@@ -9,6 +9,7 @@ class group{
         this.sorted=[]
         this.drawEffects=[]
         this.spec=[]
+        this.target=[]
         this.lastDuplicate=''
         this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
         this.compact=false
@@ -749,6 +750,9 @@ class group{
                 case 38:
                     this.copySelfInput(a)
                 break
+                case 39:
+                    this.cards[a].callInDiscardEffect()
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -788,6 +792,16 @@ class group{
                         for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
                             this.cards[a].effect[b]+=args[0]
                         }
+                    }
+                break
+                case 5:
+                    if(this.cards[a].basic&&this.cards[a].class==1){
+                        this.cards[a].effect[0]+=args[0]
+                    }
+                break
+                case 6:
+                    if(this.cards[a].basic&&this.cards[a].class==2){
+                        this.cards[a].effect[0]+=args[0]
                     }
                 break
             }
@@ -1258,10 +1272,10 @@ class group{
             }
         }
     }
-    cost(cost,cardClass,spec){
+    cost(cost,cardClass,spec,target){
         this.battle.attackManager.amplify=false
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        if(spec.includes(25)&&userCombatant.ammo>0){
+        if(spec.includes(25)&&userCombatant.ammo>0&&!(target[0]==46&&this.battle.attackManager.targetDistance<=1)){
             userCombatant.ammo--
         }
         if(cardClass==1&&userCombatant.status.main[22]>0){
@@ -1334,6 +1348,7 @@ class group{
                 this.battle.attackManager.targetInfo[0]=0
                 this.battle.attackManager.targetClass=2
                 this.spec=[]
+                this.target=[]
                 this.battle.attackManager.execute()
                 this.battle.updateTargetting()
             }
@@ -1510,12 +1525,19 @@ class group{
                             this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[a].level,this.cards[a].color)
                             this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,this.cards[a].color)
                         }
+                    }else if(this.cards[a].attack==1146){
+                        this.cards[a].effect[0]+=this.cards[a].effect[1]
+                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
+                                this.battle.cardManagers[this.player].deck.cards[b].effect[0]+=this.cards[a].effect[1]
+                            }
+                        }
                     }
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class,this.cards[a].name,this.cards[a].basic))
                     this.battle.playCard(this.cards[a],this.player,0)
                     this.callInput(5,0)
-                    this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec)
+                    this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target)
                     this.battle.attackManager.execute()
                     this.lastPlayed[0]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
                     this.lastPlayed[this.cards[a].class]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
@@ -1546,10 +1568,12 @@ class group{
                 this.battle.attackManager.targetClass=1
                 this.battle.attackManager.target[0]=a
                 this.spec=[]
+                this.target=[]
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                         this.spec=this.cards[b].spec
+                        this.target=this.cards[b].target
                         if(userCombatant.status.main[23]>0){
                             userCombatant.status.main[23]--
                             this.cards[b].usable=true
@@ -1605,6 +1629,13 @@ class group{
                                 this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                 this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
                             }
+                        }else if(this.cards[b].attack==1146){
+                            this.cards[b].effect[0]+=this.cards[b].effect[1]
+                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                    this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[1]
+                                }
+                            }
                         }
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
@@ -1616,7 +1647,7 @@ class group{
                         this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
                     }
                 }
-                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
+                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target)
                 this.battle.attackManager.execute()
                 this.battle.updateTargetting()
                 for(let b=0,lb=this.cards.length;b<lb;b++){
@@ -1640,10 +1671,12 @@ class group{
                     this.battle.attackManager.targetClass=2
                     this.battle.attackManager.target[0]=a
                     this.spec=[]
+                    this.target=[]
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             this.spec=this.cards[b].spec
+                            this.target=this.cards[b].target
                             if(userCombatant.status.main[23]>0){
                                 userCombatant.status.main[23]--
                                 this.cards[b].usable=true
@@ -1699,6 +1732,13 @@ class group{
                                     this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                     this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
                                 }
+                            }else if(this.cards[b].attack==1146){
+                                this.cards[b].effect[0]+=this.cards[b].effect[1]
+                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                        this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[1]
+                                    }
+                                }
                             }
                             this.cards[b].played()
                             this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
@@ -1711,7 +1751,7 @@ class group{
                             this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
                         }
                     }
-                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec)
+                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target)
                     this.battle.attackManager.execute()
                     this.battle.updateTargetting()
                     for(let b=0,lb=this.cards.length;b<lb;b++){
@@ -2285,6 +2325,16 @@ class group{
                 }
             }
         }
+        if(this.battle.attackManager.targetInfo[0]==46){
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                if(this.battle.combatantManager.combatants[a].life>0&&(
+                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.player)?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles))||
+                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[3],this.battle.relicManager.hasRelic(145,this.player)?1:this.battle.attackManager.targetInfo[4],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].ammo>0))&&
+                    dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
+                    this.callInput(3,a)
+                }
+            }
+        }
         if(this.battle.attackManager.targetInfo[0]==0){
             switch(scene){
                 case 'battle':
@@ -2642,6 +2692,18 @@ class group{
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
                 if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(2,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
                     this.callInput(2,a)
+                }
+            }
+        }
+        if(this.battle.attackManager.targetInfo[0]==46){
+            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    if(this.battle.combatantManager.combatants[a].life>0&&(
+                        (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.player)?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles))||
+                        (legalTargetCombatant(0,this.battle.attackManager.targetInfo[3],this.battle.relicManager.hasRelic(145,this.player)?1:this.battle.attackManager.targetInfo[4],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].ammo>0))&&
+                        this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
+                        this.callInput(3,a)
+                    }
                 }
             }
         }

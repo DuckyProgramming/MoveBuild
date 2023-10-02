@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -24,6 +24,8 @@ class cardManager{
             this.listing.card.push([[],[],[],[]])
         }
         this.listing.allPlayerCard=[[],[],[],[]]
+        this.listing.allListableCard=[[],[],[],[]]
+        this.listing.coc=[[],[],[],[]]
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity>=0&&types.card[a].list>=0){
                 this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
@@ -31,6 +33,10 @@ class cardManager{
                 if(types.card[a].list>0&&types.card[a].list<=game.playerNumber){
                     this.listing.allPlayerCard[types.card[a].rarity].push(a)
                     this.listing.allPlayerCard[3].push(a)
+                }
+                if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber+5){
+                    this.listing.allListableCard[types.card[a].rarity].push(a)
+                    this.listing.allListableCard[3].push(a)
                 }
             }
             if(types.card[a].rarity==-4&&this.battle.player.includes(2)&&this.battle.player.includes(7)){
@@ -42,6 +48,33 @@ class cardManager{
                 }else{
                     this.listing.card[types.card[a].list][2].push(a)
                     this.listing.card[types.card[a].list][3].push(a)
+                }
+            }
+        }
+        let list=[]
+        for(let a=0,la=game.playerNumber+1;a<la;a++){
+            list=[]
+            for(let b=0,lb=types.card.length;b<lb;b++){
+                if(types.card[b].rarity>=0&&types.card[b].list==(a+1)%(game.playerNumber+1)){
+                    list.push(b)
+                }
+            }
+            let names=[]
+            for(let b=0,lb=list.length;b<lb;b++){
+                if(!names.includes(types.card[list[b]].name)){
+                    names.push(types.card[list[b]].name)
+                }
+            }
+            let sorted=names.sort()
+            for(let b=0,lb=names.length;b<lb;b++){
+                for(let c=0,lc=list.length;c<lc;c++){
+                    if(types.card[list[c]].name==names[b]){
+                        this.listing.coc[types.card[list[c]].rarity].push(list[c])
+                        this.listing.coc[3].push(list[c])
+                        list.splice(c,1)
+                        c--
+                        lc--
+                    }
                 }
             }
         }
@@ -193,6 +226,18 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
+    addRandomCompleteAllContain(group,level,contain){
+        let list=[]
+        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
+            if(types.card[this.listing.allListableCard[3][a]].name.includes(contain)){
+                list.push(this.listing.allListableCard[3][a])
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).add(type,level,types.card[type].list)
+        }
+    }
     addRandomSpec(group,level,spec){
         let list=[]
         for(let a=0,la=types.card.length;a<la;a++){
@@ -202,6 +247,15 @@ class cardManager{
         }
         if(list.length>0){
             this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
+        }
+    }
+    addRandomCurse(group,level){
+        let list=[]
+        for(let a=0,la=this.listing.card[game.playerNumber+2][3].length;a<la;a++){
+            list.push(this.listing.card[game.playerNumber+2][3][a])
+        }
+        if(list.length>0){
+            this.getList(group).add(list[floor(random(0,list.length))],level,game.playerNumber+2)
         }
     }
     callAmalgums(attackManager){

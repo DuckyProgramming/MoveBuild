@@ -385,6 +385,18 @@ class battle{
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
+    dropDrawShuffle(player,type,level,color){
+        if(player<this.cardManagers.length){
+            this.cardManagers[player].reserve.addShuffle(type,level,color)
+            this.cardManagers[player].drop.addDrop(type,level,color)
+        }
+    }
+    dropDrawShuffleEffect_1(player,type,level,color){
+        if(player<this.cardManagers.length){
+            this.cardManagers[player].reserve.addShuffleEffect_1(type,level,color)
+            this.cardManagers[player].drop.addDrop(type,level,color)
+        }
+    }
     dropAll(type,level,color){
         for(let a=0,la=this.cardManagers.length;a<la;a++){
             this.cardManagers[a].discard.add(type,level,color)
@@ -395,6 +407,7 @@ class battle{
         this.turn.endReady=false
         this.combatantManager.tickEarly()
         this.cardManagers[this.turn.main].allEffect(2,1)
+        this.cardManagers[this.turn.main].allEffect(3,39)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
@@ -1568,6 +1581,9 @@ class battle{
                             break
                             case 'X':
                                 massacre(1)
+                            break
+                            case 'C':
+                                this.cardManagers[this.turn.main].hand.allEffect(2)
                             break
                         }
                     }

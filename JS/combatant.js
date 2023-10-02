@@ -82,7 +82,8 @@ class combatant{
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
             '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
-            'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit',
+            'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
+            'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,1,//1
@@ -102,7 +103,8 @@ class combatant{
                 0,0,0,0,0,1,2,2,2,1,//15
                 0,0,0,0,0,2,0,0,0,0,//16
                 0,0,0,1,2,2,0,1,0,1,//17
-                1,0,1,0,2,0,2,2,
+                1,0,1,0,2,0,2,2,0,2,//18
+                2,2,2,
             ],
             class:[
                 0,0,0,0,2,1,0,0,1,1,
@@ -122,7 +124,8 @@ class combatant{
                 2,2,2,3,2,2,0,0,3,3,
                 2,2,2,0,0,2,2,2,3,0,
                 0,2,2,0,2,1,2,1,0,0,
-                2,1,0,0,2,1,0,2,
+                2,1,0,0,2,1,0,2,1,1,
+                1,1,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3888,6 +3891,10 @@ class combatant{
             if(this.status.main[167]>0){
                 damage*=2
             }
+            if(this.status.main[173]>0){
+                damage*=1+this.status.main[173]*0.25
+                this.status.main[173]--
+            }
             if(this.battle.relicManager.hasRelic(55,this.id)){
                 damage=max(min(damage,1),damage-this.battle.relicManager.active[55])
             }
@@ -4743,7 +4750,7 @@ class combatant{
             if(this.status.main[a]!=0){
                 switch(a){
                     case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
-                    case 5: case 31: case 49: case 52: case 62: case 110: case 121: this.takeDamage(this.status.main[a],-1); break
+                    case 5: case 31: case 49: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
@@ -4782,6 +4789,9 @@ class combatant{
                     case 157: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,0,2)} break
                     case 158: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,1,2)} break
                     case 164: this.status.main[findList('Energy Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 180: this.status.main[findList('Take Damage',this.status.name)]+=this.status.main[a]; break
+                    case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 182: this.status.main[findList('Block Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
