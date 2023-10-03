@@ -1,12 +1,5 @@
 Bugs:
 
-!!!
-Duelist Vanishing Cards
-Maybe Also Be Requisitioned-
-
-Bring back memory cards?
-!!!
-
 {
     To this day, no fix for the Corruption Bug has been found.
     This report is dated to 9/7/2023
@@ -16,15 +9,4 @@ Bring back memory cards?
     Fix has been implemented
 }
 
-first steps but its Sibiea 1B
-default page, relaxing and basic
-
-Orlando
-
-More Characters As needed
-(Opticist)
-
-
-
-
-
+GRAPHICS ARE ALL THAT'S LEFT!

@@ -1327,6 +1327,7 @@ class card{
             case 1184: string+=`Add ${effect[0]} Random Cards\nof Equivalent Level\nContaining 'Ball' to Hand`; break
             case 1185: string+=`Summon in an Rewriter`; break
             case 1186: string+=`Have 999999 Max HP`; break
+            case 1187: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target is\nSmall and Humanoid\nit Dies Instantly`; break
 
 
 
