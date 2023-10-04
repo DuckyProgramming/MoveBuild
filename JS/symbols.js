@@ -1813,6 +1813,15 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
         case 7:
             layer.fill(200,50,150,fade)
         break
+        case 8:
+            layer.fill(150,255,150,fade)
+        break
+        case 9:
+            layer.fill(240,80,60,fade)
+        break
+        case 10:
+            layer.fill(160,160,80,fade)
+        break
     }
     layer.ellipse(0,0,50)
     layer.fill(255,fade)
@@ -1925,6 +1934,14 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,-10,20,20)
             layer.ellipse(10,0,20,20)
             layer.ellipse(0,10,20,20)
+        break
+        case 8:
+        break
+        case 9:
+            layer.rotate(-18)
+            layer.quad(0,-20,-5,-15,0,-10,5,-15)
+        break
+        case 10:
         break
     }
     layer.pop()

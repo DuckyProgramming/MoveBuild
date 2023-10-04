@@ -654,6 +654,17 @@ class combatant{
                     this.kimono.decoration.push({spin:282+g*47.5,rotate:random(0,360),y:42-g*5.9,width:0.2,height:1,type:0})
                 }
             break
+            //case 'Airi':
+                /*
+                black hair with a bit of brown
+                mint ice cream cone ahirpins
+                light green halo
+                sailor-style uniform, blue cuffs, mint green bow
+                Miniskirt, blue strijke, frilly black underlayer
+                White knee-highs with black bows on the sides
+                black loafers
+                */
+            //break
             case 'Edgar':
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
@@ -3940,9 +3951,9 @@ class combatant{
             if(this.status.main[167]>0){
                 damage*=2
             }
-            if(this.status.main[173]>0){
-                damage*=1+this.status.main[173]*0.25
-                this.status.main[173]--
+            if(this.status.main[178]>0){
+                damage*=1+this.status.main[178]*0.25
+                this.status.main[178]--
             }
             if(this.battle.relicManager.hasRelic(55,this.id)){
                 damage=max(min(damage,1),damage-this.battle.relicManager.active[55])
@@ -3998,6 +4009,9 @@ class combatant{
                         damage*=3
                     }
                 }
+            }
+            if(this.status.main[48]>0){
+                this.status.main[48]=0
             }
             if(this.status.main[51]>0){
                 this.status.main[51]=0
@@ -4913,7 +4927,7 @@ class combatant{
     }
     startAnimation(type){
         switch(this.name){
-            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Ume':
+            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -5019,7 +5033,7 @@ class combatant{
     }
     runAnimation(rate,type){
         switch(this.name){
-            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Ume':
+            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -9423,10 +9437,12 @@ class combatant{
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.belt[0])[0],this.flashColor(this.color.belt[0])[1],this.flashColor(this.color.belt[0])[2],this.fade*this.fades.belt)
                         this.layer.rect(0,-48,13,2)
-                        this.layer.fill(this.flashColor(this.color.belt[1])[0],this.flashColor(this.color.belt[1])[1],this.flashColor(this.color.belt[1])[2],this.fade*this.fades.belt)
-                        this.layer.ellipse(lsin(this.anim.direction)*6.5,-48,4*lcos(this.anim.direction),4)
-                        this.layer.fill(this.flashColor(this.color.belt[2])[0],this.flashColor(this.color.belt[2])[1],this.flashColor(this.color.belt[2])[2],this.fade*this.fades.belt)
-                        this.layer.rect(lsin(this.anim.direction)*6.5,-48,2*lcos(this.anim.direction),2)
+                        if(lcos(this.anim.direction)>=0){
+                            this.layer.fill(this.flashColor(this.color.belt[1])[0],this.flashColor(this.color.belt[1])[1],this.flashColor(this.color.belt[1])[2],this.fade*this.fades.belt)
+                            this.layer.ellipse(lsin(this.anim.direction)*6.5,-48,4*lcos(this.anim.direction),4)
+                            this.layer.fill(this.flashColor(this.color.belt[2])[0],this.flashColor(this.color.belt[2])[1],this.flashColor(this.color.belt[2])[2],this.fade*this.fades.belt)
+                            this.layer.rect(lsin(this.anim.direction)*6.5,-48,2*lcos(this.anim.direction),2)
+                        }
                     }
                     if(this.trigger.display.tie&&lcos(this.anim.direction)>0.1){
                         this.layer.fill(this.flashColor(this.color.tie[0])[0],this.flashColor(this.color.tie[0])[1],this.flashColor(this.color.tie[0])[2],this.fade*this.fades.tie)
@@ -9501,6 +9517,18 @@ class combatant{
                         this.layer.strokeWeight(1)
                         this.layer.ellipse(lsin(this.anim.direction-18)*16,-78,6*lcos(this.anim.direction-16),6)
                     }
+                    if(!this.graphic){
+                        this.layer.noStroke()
+                        this.layer.fill(60,75,90,this.fade)
+                        this.layer.rect(-2,10,12,12)
+                        this.layer.arc(4,10,12,12,-90,90)
+                        this.layer.fill(80,100,120,this.fade)
+                        this.layer.rect(-1,10,10,8)
+                        this.layer.arc(4,10,8,8,-90,90)
+                        this.layer.fill(20,25,30,this.fade)
+                        this.layer.textSize(12)
+                        this.layer.text(this.ammo,0,10)
+                    }
                 break
                 case 'Chip':
                     for(let g=0;g<2;g++){
@@ -9544,7 +9572,7 @@ class combatant{
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                         }
                     }
-                    if(this.trigger.display.rose){
+                    if(this.trigger.display.rose&&lcos(this.anim.direction-54)>=0){
                         this.layer.noStroke()
                         this.layer.fill(this.color.rose[0][0],this.color.rose[0][1],this.color.rose[0][2],this.fade)
                         this.layer.rect(lsin(this.anim.direction-54)*6,-54,1*lcos(this.anim.direction-54),4)

@@ -673,7 +673,7 @@ class eventManager{
     onClick(){
         if(this.page>=0){
             for(let a=0,la=this.pages[this.page].option.length;a<la;a++){
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:120,height:30})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.posKey,y:300+a*50},width:180,height:30})){
                     this.callInput(0,a)
                 }
             }

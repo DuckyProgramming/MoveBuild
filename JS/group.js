@@ -748,7 +748,9 @@ class group{
                     }
                 break
                 case 38:
-                    this.copySelfInput(a)
+                    if(this.cards[a].name!='LXIV - The\nStack'){
+                        this.copySelfInput(a)
+                    }
                 break
                 case 39:
                     this.cards[a].callInDiscardEffect()
@@ -1386,7 +1388,7 @@ class group{
                                     this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
                                     this.cards[b].anim.afford=1
                                     if(this.cards[b].size>=0){
-                                        this.cards[b].display()
+                                        this.cards[b].display(this.id==0)
                                     }
                                     position++
                                 }
@@ -1404,7 +1406,7 @@ class group{
                                     this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
                                     this.cards[b].anim.afford=1
                                     if(this.cards[b].size>=0){
-                                        this.cards[b].display()
+                                        this.cards[b].display(this.id==0)
                                     }
                                     position++
                                 }
@@ -1419,7 +1421,7 @@ class group{
                             this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
                             this.cards[a].anim.afford=1
                             if(this.cards[a].size>=0){
-                                this.cards[a].display()
+                                this.cards[a].display(this.id==0)
                             }
                         }
                     break
@@ -1431,7 +1433,7 @@ class group{
                             this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
                             this.cards[a].anim.afford=1
                             if(this.cards[a].size>=0){
-                                this.cards[a].display()
+                                this.cards[a].display(this.id==0)
                             }
                         }
                     break
@@ -1443,7 +1445,7 @@ class group{
                             this.cards[a].position.y=this.layer.height/2-130+floor(a/5)%3*130
                             this.cards[a].anim.afford=1
                             if(this.cards[a].size>=0){
-                                this.cards[a].display()
+                                this.cards[a].display(this.id==0)
                             }
                         }
                     break

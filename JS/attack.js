@@ -100,8 +100,8 @@ class attack{
             case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091: case 1092:
             case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139: case 1144:
             case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156: case 1160:
-            case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1172: case 1173: case 1174: case 1775:
-            case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187:
+            case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1172: case 1173: case 1174: case 1175:
+            case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -2351,7 +2351,7 @@ class attack{
                     case 1033:
                         this.userCombatant.statusEffect('Temporary Dexterity',this.effect[0])
                     break
-                    case 1054:
+                    case 1053:
                         this.userCombatant.statusEffect('Gun Boost',this.effect[0])
                     break
                     case 1063:
@@ -3390,6 +3390,9 @@ class attack{
                             this.targetCombatant.life-=this.targetCombatant.getStatus('Bleed')
                         }
                     break
+                    case 1188:
+                        this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userCombatant.balance,this.user)
+                    break
                 }
             break
             case 7:
@@ -3928,7 +3931,7 @@ class attack{
                             this.userManager.draw(this.effect[1])
                         }
                     break
-                    case 1053:
+                    case 1054:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*(this.targetDistance-1),this.user,1)
                     break
                     default:
@@ -5542,7 +5545,7 @@ class attack{
                     }
                 }
             break
-            case 36: case 39: case 47: case 384: case 412: case 413: case 441: case 599: case 1157:
+            case 36: case 39: case 47: case 384: case 412: case 413: case 441: case 599: case 1157: case 1188:
                 if(variants.nobasicanim){
                     this.selfCall(6)
                     this.remove=true

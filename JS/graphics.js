@@ -1926,6 +1926,8 @@ function setupCombatantGraphics(type){
 				}
 			}
 		break
+		case 4:
+		break
 		case 10:
 			graphics.combatant.push({
 				spin:{tail:[-96,96]},
@@ -2816,7 +2818,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.mouth.x++
 					p1.anim.mouth.y-=3
 					p1.parts.mouth-=3
-					p1.position.y-=5
+					p1.position.y+=2.5
 					p1.anim.legs=[
 						{top:6,bottom:0,length:{top:17,bottom:17}},
 						{top:6,bottom:0,length:{top:17,bottom:17}}

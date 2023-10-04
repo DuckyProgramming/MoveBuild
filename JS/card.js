@@ -46,6 +46,7 @@ class card{
         this.afford=false
         this.energyAfford=false
         this.nonCalc=false
+        this.cancelDesc=false
         this.discardEffect=[]
         this.discardEffectBuffered=[]
 
@@ -89,20 +90,22 @@ class card{
         }
     }
     calculateEffect(effect,type){
-        if(stage.scene=='battle'&&!this.nonCalc){
+        if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv',this.spec.includes(25)])
         }else{
             return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
+        this.cancelDesc=false
     }
     calculateEffectAlly(effect,type){
-        if(stage.scene=='battle'&&!this.nonCalc){
+        if(stage.scene=='battle'&&!this.nonCalc&&!this.cancelDesc){
             let user=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.players-1-this.player)]
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv',this.spec.includes(25)])
         }else{
             return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
+        this.cancelDesc=false
     }
     description(attack,effect,spec){
         let string=''
@@ -1263,7 +1266,7 @@ class card{
             case 1118: string+=`Reflect Next Hit Taken`; break
             case 1119: string+=`Build an Antizone`; break
             case 1120: string+=`All Non-Movement Cards\nin Hand Get +${effect[0]} to\nAll Numerical Values`; break
-            case 1121: string+=`Duplicate Your Hand`; break
+            case 1121: string+=`Duplicate Your Hand\nCannot Duplicate Itself`; break
             case 1122: string+=`Choose a Nothings\nto Add to Hand`; break
             case 1123: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[0]} Currency\nDraw 1 Card`; break
             case 1124: string+=`Choose Between More\nCards of Equivalent\nLevel to Add\nto Your Hand`; break
@@ -1328,6 +1331,7 @@ class card{
             case 1185: string+=`Summon in an Rewriter`; break
             case 1186: string+=`Have 999999 Max HP`; break
             case 1187: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target is\nSmall and Humanoid\nit Dies Instantly`; break
+            case 1188: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}*Balance`; break
 
 
 
@@ -1640,7 +1644,8 @@ class card{
             }
         }
     }
-    display(){
+    display(cancelDesc=false){
+        this.cancelDesc=cancelDesc
         if(this.size>0&&this.fade>0){
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
@@ -1910,7 +1915,7 @@ class card{
         if(this.player>=0&&this.player<this.battle.players){
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&!(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
-            !(this.spec.includes(6)&&!userCombatant.armed)&&!(this.spec.includes(25)&&userCombatant.ammo<=0&&!this.target[0]==46)
+            !(this.spec.includes(6)&&!userCombatant.armed)&&!(this.spec.includes(25)&&userCombatant.ammo<=0&&this.target[0]!=46)
             this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))
         }else{
             this.afford=false
