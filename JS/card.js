@@ -1332,7 +1332,11 @@ class card{
             case 1186: string+=`Have 999999 Max HP`; break
             case 1187: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target is\nSmall and Humanoid\nit Dies Instantly`; break
             case 1188: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}*Balance`; break
+            case 1189: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nDiscards to Draw Pile`; break
+            case 1190: string+=`Gain ${effect[0]} Currency\nAll Enemies Gain ${effect[1]} Strength`; break
 
+
+            case 888: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn`; break
 
 
 
@@ -1766,6 +1770,9 @@ class card{
                 this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
                 this.layer.fill(0,this.fade)
                 this.layer.textSize(8)
+                if(this.name=='Charred\nLizard'){
+                    this.layer.textSize(6)
+                }
                 if(this.spec.includes(12)){
                     this.layer.text(this.description(this.attack[0],this.effect[0],this.reality[0]),0,-15)
                     this.layer.text(this.description(this.attack[1],this.effect[1],this.reality[1]),0,this.height/2-25)

@@ -101,7 +101,7 @@ class attack{
             case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139: case 1144:
             case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156: case 1160:
             case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1172: case 1173: case 1174: case 1175:
-            case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188:
+            case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188: case 1189:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -3875,6 +3875,10 @@ class attack{
                     case 1185:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Rewriter',types.combatant),this.userCombatant.team,this.direction,this.user)
                     break
+                    case 1189:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Burn',this.effect[1])
+                    break
                     
                 }
             break
@@ -4138,6 +4142,10 @@ class attack{
                     case 1142:
                         this.userCombatant.ammo+=this.effect[0]
                         this.userManager.hand.upgrade(this.effect[1])
+                    break
+                    case 1190:
+                        this.battle.addCurrency(this.effect[0],this.player)
+                        this.battle.combatantManager.allEffect(3,[this.effect[1]])
                     break
 
                 }
@@ -5600,7 +5608,7 @@ class attack{
             case 843: case 846: case 850: case 857: case 865: case 877: case 878: case 881: case 883: case 899:
             case 902: case 903: case 905: case 906: case 907: case 935: case 939: case 943: case 944: case 964:
             case 965: case 980: case 1028: case 1046: case 1059: case 1070: case 1071: case 1075: case 1097: case 1111:
-            case 1119: case 1139: case 1150: case 1162: case 1163: case 1182: case 1185:
+            case 1119: case 1139: case 1150: case 1162: case 1163: case 1182: case 1185: case 1189:
                 if(variants.nobasicanim){
                     this.selfCall(7)
                     this.remove=true
@@ -6128,7 +6136,7 @@ class attack{
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
             case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683: case 710: case 792:
             case 845: case 888: case 889: case 927: case 936: case 941: case 969: case 1020: case 1099: case 1107:
-            case 1132: case 1140: case 1142:
+            case 1132: case 1140: case 1142: case 1190:
                 if(variants.nobasicanim){
                     this.selfCall(10)
                     this.remove=true

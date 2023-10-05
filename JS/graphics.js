@@ -4036,7 +4036,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2-350,layer.height-137.5,200,30)
 			layer.rect(layer.width/2+350,layer.height-137.5,200,30)
 			layer.fill(120)
-			regTriangle(layer,layer.width/2,layer.height*0.6,40,40,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.6,40,40,-30)
 			regTriangle(layer,layer.width/2-575,layer.height-60,22.5,22.5,-30)
 			regTriangle(layer,layer.width/2-437.5,layer.height-60,22.5,22.5,-30)
 			regTriangle(layer,layer.width/2-412.5,layer.height-60,22.5,22.5,-30)
@@ -4125,7 +4125,6 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2-350,layer.height/2-180+a*90,350,80)
 				layer.rect(layer.width/2+350,layer.height/2-180+a*90,350,80)
 			}
-			
 			layer.fill(0)
 			layer.rect(layer.width/2,layer.height*0.6,100,100)
 			layer.rect(layer.width/2,layer.height*0.6+100,100,30)
@@ -4136,7 +4135,7 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2+485,layer.height/2-180+a*90,55,55)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2,layer.height*0.6,40,40,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.6,40,40,-30)
 			layer.fill(255)
 			layer.textSize(20)
 			layer.text('BACK',layer.width/2,layer.height*0.6+100)

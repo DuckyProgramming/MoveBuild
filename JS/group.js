@@ -27,6 +27,9 @@ class group{
                     for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
                         this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?player:types.deck.start[game.ascend>=20?1:0][a][2])
                     }
+                    if(this.battle.cardManagers[this.player].altDraw){
+                        this.addInitial(findName('Buster',types.card),0,this.battle.player[this.player])
+                    }
                 }
             break
             case 1:
@@ -1960,7 +1963,7 @@ class group{
                                 this.send(this.battle.cardManagers[this.battle.players-1-this.player].hand.cards,a,a+1,1)
                                 a--
                                 la--
-                            }else if(this.cards[a].discardEffect.includes(5)||this.cards[a].attack==1031){
+                            }else if(this.cards[a].discardEffect.includes(5)){
                                 this.cards[a].discardEffect=[]
                                 this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                                 a--
@@ -1968,6 +1971,10 @@ class group{
                             }else{
                                 this.cards[a].discardEffect=[]
                             }
+                        }else if(this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189&&!this.cards[a].exhaust){
+                            this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
+                            a--
+                            la--
                         }else if(this.cards[a].exhaust){
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             if(userCombatant.getStatus('Cancel Exhaust')>0&&this.cards[a].attack!=180){

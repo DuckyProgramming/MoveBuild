@@ -6526,13 +6526,6 @@ types={
                 {effect:[4],attack:614,cost:1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Buster',rarity:0,list:10,
-            levels:[
-                {effect:[8],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
             name:'Bap',rarity:0,list:10,
             levels:[
                 {effect:[7,1],attack:946,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -6848,7 +6841,7 @@ types={
                 {effect:[18],attack:608,cost:1,target:[0],spec:[],class:4},
             ],
         },{
-            name:'Expulsion',rarity:1,list:10,
+            name:'Expulsion',rarity:0,list:10,
             levels:[
                 {effect:[12],attack:1073,cost:2,target:[2,1,1],spec:[0],class:1},
                 {effect:[12],attack:1073,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -6953,11 +6946,11 @@ types={
                 {effect:[],attack:1128,cost:0,target:[2,1,1],spec:[2,22],class:1},
             ],
         },{
-            name:'Time\nCard',rarity:2,list:10,
+            name:'Time\nCard',rarity:1,list:10,
             levels:[
+                {effect:[5],attack:1129,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[8],attack:1129,cost:0,target:[0],spec:[4,5],class:4},
                 {effect:[10],attack:1129,cost:0,target:[0],spec:[4,5],class:4},
-                {effect:[16],attack:1129,cost:0,target:[0],spec:[4,5],class:4},
-                {effect:[20],attack:1129,cost:0,target:[0],spec:[4,5],class:4},
             ],
         },{
             name:'Official\nTrump Card',rarity:2,list:10,
@@ -7182,6 +7175,13 @@ types={
                 {effect:[8],attack:1183,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[12],attack:1183,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[15],attack:1183,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Charred\nLizard',rarity:2,list:10,
+            levels:[
+                {effect:[[10,2],[25,2]],attack:[1189,1190],cost:1,target:[10,1,1],spec:[12],reality:[[0],[1]],class:[1,2]},
+                {effect:[[12,3],[35,2]],attack:[1189,1190],cost:1,target:[10,1,1],spec:[12],reality:[[0],[1]],class:[1,2]},
+                {effect:[[12,4],[40,2]],attack:[1189,1190],cost:1,target:[10,1,1],spec:[12],reality:[[0],[1]],class:[1,2]},
             ],
         },
 
@@ -7743,6 +7743,13 @@ types={
                 {effect:[3],attack:56,cost:0,target:[1,1,3],spec:[1,4],class:3},
                 {effect:[4],attack:56,cost:0,target:[1,1,4],spec:[1,4],class:3},
                 {effect:[5],attack:56,cost:0,target:[1,1,5],spec:[1,4],class:3},
+            ],
+        },{
+            name:'Buster',rarity:-1,list:0,
+            levels:[
+                {effect:[8],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Shiv',rarity:-1,list:0,
@@ -13945,7 +13952,7 @@ Does not spend the orb.`,
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,altDraw:false,lowhealth:false,midhealth:false,shortmap:false,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false,ultraprism:true}
+variants={lowdraw:false,altDraw:false,lowhealth:false,midhealth:false,shortmap:false,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false,ultraprism:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],
