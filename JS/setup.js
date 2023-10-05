@@ -22,10 +22,10 @@ function setup(){
     current.menu.deck=[0,0]
     current.startGame()
     transition.trigger=false
-    //stage.scene='graphic'
-    //graphics.test=7
-    stage.scene='battle'
-    current.setupBattle(types.encounter[1])
+    stage.scene='graphic'
+    graphics.test=0
+    //stage.scene='battle'
+    //current.setupBattle(types.encounter[1])
 
     /*current.overlayManager.overlays[0][0].active=true
     current.overlayManager.overlays[0][1].active=true

@@ -16,7 +16,7 @@ class cardManager{
         this.altDraw=this.battle.player[this.player]==game.playerNumber
         this.drawAmount=variants.lowDraw?5:6-(this.altDraw?2:0)
         this.tempDraw=0
-        this.baseDrops=5
+        this.baseDrops=this.altDraw?3:0
         this.drops=0
 
         this.initialListing()
@@ -413,6 +413,7 @@ class cardManager{
         this.drops--
         if(this.hand.cards.length>0){
             this.hand.cards[0].deSize=true
+            this.hand.cards[0].exhaust=true
         }
     }
     allGroupEffect(effect){
@@ -539,6 +540,12 @@ class cardManager{
     }
     reset(){
         this.hand.reset()
+    }
+    regenDrops(){
+        this.drops=min(this.drops+1,this.baseDrops)
+    }
+    standardBase(){
+        this.checkCompact()
         this.drops=this.baseDrops
     }
     checkCompact(){

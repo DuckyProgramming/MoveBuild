@@ -5626,7 +5626,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     }
                     if(this.timer<=20){
-                        this.userCombatant.runAnimation(1/10,this.type==100?3:9)
+                        this.userCombatant.runAnimation(1/10,this.type==48?9:3)
                     }
                     if(this.procedure[0]==2){
                         if(this.timer>10&&this.timer<=18){
@@ -8690,8 +8690,8 @@ class attack{
                     }
                     this.userCombatant.startAnimation(3)
                 }
-                if(this.timer<=15){
-                    this.userCombatant.runAnimation(1/15,3)
+                if(this.timer<=20){
+                    this.userCombatant.runAnimation(1/10,3)
                 }
                 for(let a=0,la=this.targetCombatant.length;a<la;a++){
                     if(this.procedure[a]==2){
@@ -8795,7 +8795,7 @@ class attack{
                     if(this.timer==15){
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,6,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+30),1.25*this.targetDistance-1]))
                         this.battle.particleManager.particles[this.battle.particleManager.particles.length-1].speed*=2
-                    }else if(this.timer==2.5*this.targetDistance+15){
+                    }else if(this.timer==round(2.5*this.targetDistance+15)){
                         this.selfCall(9)
                     }else if(this.timer>=max(30,2.5*this.targetDistance+25)){
                         this.remove=true

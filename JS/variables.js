@@ -6148,9 +6148,9 @@ types={
         },{
             name:'Steak\nSandwich',rarity:2,list:9,
             levels:[
+                {effect:[2,2],attack:1021,cost:1,target:[0],spec:[],class:4},
                 {effect:[2,3],attack:1021,cost:1,target:[0],spec:[],class:4},
                 {effect:[2,4],attack:1021,cost:1,target:[0],spec:[],class:4},
-                {effect:[2,5],attack:1021,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Ground\nRound',rarity:0,list:9,
@@ -6190,9 +6190,9 @@ types={
         },{
             name:'Shutter',rarity:1,list:9,
             levels:[
-                {effect:[20],attack:1037,cost:2,target:[2,1,3],spec:[0,25],class:1},
-                {effect:[27],attack:1037,cost:2,target:[2,1,3],spec:[0,25],class:1},
-                {effect:[32],attack:1037,cost:2,target:[2,1,3],spec:[0,25],class:1},
+                {effect:[20],attack:1037,cost:2,target:[0],spec:[],class:2},
+                {effect:[27],attack:1037,cost:2,target:[0],spec:[],class:2},
+                {effect:[32],attack:1037,cost:2,target:[0],spec:[],class:2},
             ],
         },{
             name:'Repeater',rarity:1,list:9,
@@ -6745,9 +6745,9 @@ types={
         },{
             name:'Collective',rarity:1,list:10,
             levels:[
-                {effect:[12],attack:1040,cost:3,target:[2,1,1],spec:[0],class:1},
-                {effect:[17],attack:1040,cost:3,target:[2,1,1],spec:[0],class:1},
-                {effect:[21],attack:1040,cost:3,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:1040,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[17],attack:1040,cost:2,target:[2,1,1],spec:[0],class:1},
+                {effect:[21],attack:1040,cost:2,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Maintenance',rarity:1,list:10,
@@ -7088,9 +7088,9 @@ types={
         },{
             name:'Oracle',rarity:2,list:10,
             levels:[
-                {effect:[],attack:1165,cost:4,target:[0],spec:[1],class:4},
-                {effect:[],attack:1165,cost:4,target:[0],spec:[1],class:4},
-                {effect:[],attack:1165,cost:4,target:[0],spec:[1],class:4},
+                {effect:[],attack:1165,cost:3,target:[0],spec:[1],class:4},
+                {effect:[],attack:1165,cost:3,target:[0],spec:[1],class:4},
+                {effect:[],attack:1165,cost:3,target:[0],spec:[1],class:4},
             ],
         },{
             name:'4 Mana 7/7',rarity:2,list:10,
@@ -13943,9 +13943,9 @@ Does not spend the orb.`,
     ]
 }
 stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:1800,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
-variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:true}
+game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+variants={lowdraw:false,lowhealth:false,midhealth:true,shortmap:true,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],

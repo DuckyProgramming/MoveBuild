@@ -136,7 +136,8 @@ class battle{
                 a==0&&this.player.includes(2)||
                 a==1&&this.player.includes(3)||
                 a==2&&this.player.includes(4)||
-                a==3&&this.player.includes(7)
+                a==3&&this.player.includes(7)||
+                a==4&&this.player.includes(8)
             ){
                 setupCombatantGraphics(a)
             }else{
@@ -228,7 +229,7 @@ class battle{
             this.cardManagers[a].reset()
             this.cardManagers[a].clear()
             this.cardManagers[a].copy(0,1)
-            this.cardManagers[a].checkCompact()
+            this.cardManagers[a].standardBase()
             this.cardManagers[a].shuffle(1)
         }
         this.combatantManager.deTargetCombatants()
@@ -477,6 +478,7 @@ class battle{
             }
         }
         this.cardManagers[0].turnDraw(this.turn.total)
+        this.cardManagers[0].regenDrops()
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
         this.counter.turnPlayed=[0,0,0,0,0]
@@ -743,6 +745,9 @@ class battle{
                             this.layer.fill(this.colorDetail[a].active)
                             this.layer.rect(58+this.turn.time/9,680-this.anim.turn[a]*100,this.turn.time/4.5,4,2)
                         }
+                    }else if(this.cardManagers[a].baseDrops>0){
+                        this.layer.strokeWeight(3*this.anim.drop[a])
+                        this.layer.rect(66,680-this.anim.turn[a]*100,32*this.anim.drop[a],20*this.anim.drop[a],5*this.anim.drop[a])
                     }
                     this.layer.fill(0)
                     this.layer.noStroke()
@@ -759,7 +764,7 @@ class battle{
                     this.layer.text('('+this.turn.total+')',-74+this.anim.turn[a]*100,578+4*this.anim.endTurn)
                     this.layer.textSize(8*this.anim.cancel)
                     this.layer.text('Stop',-74+this.anim.extra[a]*100,414)
-                    if(game.turnTime>0&&this.cardManagers[a].baseDrops>0){
+                    if(this.cardManagers[a].baseDrops>0){
                         this.layer.textSize(7*this.anim.drop[a])
                         this.layer.text('Drop First',66,680-this.anim.turn[a]*100-4*this.anim.drop[a])
                         this.layer.text('('+this.cardManagers[a].drops+' Left)',66,680-this.anim.turn[a]*100+4*this.anim.drop[a])
@@ -1588,6 +1593,8 @@ class battle{
                             this.overlayManager.overlays[24][this.turn.main].activate()
                         }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
                             this.endTurn()
+                        }else if(key=='/'&&this.cardManagers[this.turn.main].drops>0){
+                            this.cardManagers[this.turn.main].dropFirst()
                         }
                     }
                     if(game.dev){

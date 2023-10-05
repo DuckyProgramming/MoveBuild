@@ -1175,7 +1175,7 @@ class card{
             case 1026: string+=`Gain ${effect[0]} Energy\nSwap Draw and Discard\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1027: string+=`Deal Damage Equal\nto the Your\nHand's Cost`; break
             case 1028: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nSend ${effect[2]} Card${effect[2]!=1?`s`:``} From\nHand to Draw Pile`; break
-            case 1029: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[0]} Energy\nNext 3 Turns`; break
+            case 1029: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nNext 3 Turns`; break
             case 1030: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nNext Turn`; break
             case 1031: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to\nDraw Pile`; break
             case 1032: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nNext Turn`; break

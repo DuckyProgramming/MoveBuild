@@ -1533,7 +1533,6 @@ class group{
                                     lb--
                                 }
                             }
-                            this.add(findName('Card\nSleeve',types.card),this.cards[a].level,this.cards[a].color)
                             this.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,this.cards[a].color)
                             this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[a].level,this.cards[a].color)
                             this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,this.cards[a].color)
@@ -1637,7 +1636,6 @@ class group{
                                         lc--
                                     }
                                 }
-                                this.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                 this.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
                                 this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                 this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
@@ -1740,7 +1738,6 @@ class group{
                                             lc--
                                         }
                                     }
-                                    this.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                     this.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
                                     this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                     this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
