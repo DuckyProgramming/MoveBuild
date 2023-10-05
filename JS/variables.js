@@ -8046,7 +8046,7 @@ types={
                 {effect:[11],attack:1123,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'-11 of Diamonds',rarity:-1,list:0,
+            name:'Negative 11\nof Diamonds',rarity:-1,list:0,
             levels:[
                 {effect:[11,1],attack:1182,cost:0,target:[2,1,1],spec:[0],class:1},
                 {effect:[11,1],attack:1182,cost:0,target:[2,1,1],spec:[0],class:1},

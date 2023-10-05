@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -28,7 +28,11 @@ class cardManager{
         this.listing.allPlayerCard=[[],[],[],[]]
         this.listing.allListableCard=[[],[],[],[]]
         this.listing.coc=[[],[],[],[]]
+        this.listing.all=[[],[],[],[]]
         for(let a=0,la=types.card.length;a<la;a++){
+            for(let b=0,lb=this.listing.all.length;b<lb;b++){
+                this.listing.all[b].push(a)
+            }
             if(types.card[a].rarity>=0&&types.card[a].list>=0){
                 this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
                 this.listing.card[types.card[a].list][3].push(a)

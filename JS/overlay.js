@@ -99,10 +99,10 @@ class overlay{
                 }
                 switch(args[2]){
                     case 0: case 7:
-                        list=variants.ultraprism?[types.card,types.card,types.card,types.card]:variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                         for(let a=0,la=this.options;a<la;a++){
                             let index=floor(random(0,list[args[1]].length))
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,variants.ultraprism?index:list[args[1]][index],args[0],variants.ultraprism?(types.card[index].list<0?0:types.card[index].list>=types.color.length?0:types.card[index].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
                             this.cards[a].upSize=true
                             list[args[1]].splice(index,1)
                         }
@@ -123,7 +123,6 @@ class overlay{
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],types.card[list[args[1]][index]].list,-1))
                             this.cards[a].cost=0
                             this.cards[a].upSize=true
-                            list[args[1]].splice(index,1)
                         }
                     break
                     case 3:
