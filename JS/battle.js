@@ -6,7 +6,7 @@ class battle{
     }
     createBasic(){
         this.title={}
-        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[]}}
+        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[]}}
         for(let a=0,la=game.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
@@ -24,6 +24,9 @@ class battle{
         for(let a=0,la=4;a<la;a++){
             this.menu.anim.animRate.push(-1)
             this.menu.anim.turnTime.push(-1)
+        }
+        for(let a=0,la=10;a<la;a++){
+            this.menu.anim.variants.push(0)
         }
     }
     startGame(){
@@ -706,6 +709,15 @@ class battle{
                     }
                 }
             break
+            case 'variants':
+                this.layer.image(graphics.backgrounds[11],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
+                    if(this.menu.anim.variants[a]>0){
+                        this.layer.fill(255,this.menu.anim.variants[a])
+                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-90+floor(a/2)*45,10)
+                    }
+                }
+            break
             case 'battle':
                 this.layer.background(110,115,120)
                 for(let a=0,la=this.players;a<la;a++){
@@ -1038,6 +1050,12 @@ class battle{
                 }
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
+            case 'variants':
+                let variantNames=['lowDraw','altDraw','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism']
+                for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
+                    this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
+                }
+            break
             case 'battle':
                 this.tileManager.update(scene)
                 this.combatantManager.update(scene)
@@ -1284,14 +1302,18 @@ class battle{
     onClick(scene){
         switch(scene){
             case 'title':
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-105,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu2'
                     this.menu.combatant[1]=1
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+105,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                    transition.trigger=true
+                    transition.scene='variants'
                 }
             break
             case 'menu':
@@ -1358,6 +1380,18 @@ class battle{
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     this.startGame()
+                }
+            break
+            case 'variants':
+                let variantNames=['lowDraw','altDraw','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism']
+                for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-90+floor(a/2)*45},width:27.5,height:27.5})){
+                        variants[variantNames[a]]=toggle(variants[variantNames[a]])
+                    }
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                    transition.trigger=true
+                    transition.scene='title'
                 }
             break
             case 'battle':
@@ -1507,6 +1541,10 @@ class battle{
                     transition.scene='menu2'
                     this.menu.combatant[1]=1
                 }
+                if(key=='3'){
+                    transition.trigger=true
+                    transition.scene='variants'
+                }
             break
             case 'menu':
                 if(code==LEFT_ARROW&&this.menu.combatant[0]>1){
@@ -1572,6 +1610,18 @@ class battle{
                 }
                 if(code==ENTER){
                     this.startGame()
+                }
+            break
+            case 'variants':
+                let variantNames=['lowDraw','altDraw','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism']
+                for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
+                    if((a+1)%10==int(key)){
+                        variants[variantNames[a]]=toggle(variants[variantNames[a]])
+                    }
+                }
+                if(code==ENTER){
+                    transition.trigger=true
+                    transition.scene='title'
                 }
             break
             case 'battle':

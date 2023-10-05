@@ -9590,14 +9590,13 @@ class combatant{
                                 if(this.trigger.display.sock&&lcos(this.anim.direction-90+h*180)<=0){
                                     this.layer.fill(upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.sock)
                                     this.layer.noStroke()
-                                    this.layer.triangle(
-                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65,
-                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65-1.2,
-                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65+1.2)
-                                    this.layer.triangle(
-                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65,
-                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65-2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65-1.2,
-                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65-2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65+1.2)
+                                    this.layer.push()
+                                    this.layer.translate(this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.6)
+                                    this.layer.scale(lcos(this.anim.direction-90+h*180),1)
+                                    this.layer.rotate(atan2(this.graphics.legs[h].top.x-this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y-this.graphics.legs[h].top.y))
+                                    this.layer.triangle(0,0,-2.4,-1.2,-2.4,1.2)
+                                    this.layer.triangle(0,0,2.4,-1.2,2.4,1.2)
+                                    this.layer.pop()
                                 }
                                 if(this.trigger.display.skin.legs){
                                     this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
@@ -9616,14 +9615,13 @@ class combatant{
                                     if(lcos(this.anim.direction-90+h*180)>0){
                                         this.layer.fill(upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.sock)
                                         this.layer.noStroke()
-                                        this.layer.triangle(
-                                            this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65,
-                                            this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65-1.2,
-                                            this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65+1.2)
-                                        this.layer.triangle(
-                                            this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65,
-                                            this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65-2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65-1.2,
-                                            this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65-2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65+1.2)
+                                        this.layer.push()
+                                        this.layer.translate(this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.6)
+                                        this.layer.scale(lcos(this.anim.direction-90+h*180),1)
+                                        this.layer.rotate(atan2(this.graphics.legs[h].top.x-this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y-this.graphics.legs[h].top.y))
+                                        this.layer.triangle(0,0,-2.4,-1.2,-2.4,1.2)
+                                        this.layer.triangle(0,0,2.4,-1.2,2.4,1.2)
+                                        this.layer.pop()
                                     }
                                 }
                                 if(this.trigger.display.shoe){

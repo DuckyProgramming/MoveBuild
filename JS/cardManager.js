@@ -13,7 +13,7 @@ class cardManager{
         this.drop=new group(this.layer,this.battle,this.player,4)
         this.exhaust=new group(this.layer,this.battle,this.player,5)
 
-        this.altDraw=this.battle.player[this.player]==game.playerNumber
+        this.altDraw=variants.altDraw
         this.drawAmount=variants.lowDraw?5:6-(this.altDraw?2:0)
         this.tempDraw=0
         this.baseDrops=this.altDraw?3:0
