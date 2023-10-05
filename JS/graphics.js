@@ -1946,7 +1946,7 @@ function setupCombatantGraphics(type){
 				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[]}},
 				parts:{},
 				color:{
-					hair:{back:[78,69,64],front:[85,74,69],insideBack:[45,36,34],insideFront:[62,51,48],glow:[96,82,82],pin:[[130,185,169],[120,107,107]]},
+					hair:{back:[62,51,48],front:[85,74,69],insideBack:[45,36,34],insideFront:[78,69,64],glow:[96,82,82],pin:[[130,185,169],[120,107,107]]},
 					skin:{head:[251,250,239],body:[255,254,244],legs:[252,250,237],arms:[251,242,231],button:[238,208,197],blush:[254,244,234]},
 					eye:{back:[81,134,116],front:[13,19,22],glow:[178,233,214]},
 					mouth:{in:[225,125,125],out:[0,0,0]},halo:[229,255,247],
@@ -1954,9 +1954,6 @@ function setupCombatantGraphics(type){
 					sock:[[225,227,231],[100,95,97]],shoe:[72,63,61],
 				}
 			})
-
-			//uniform:
-			//underskirt
 
 			graphics.combatant[graphics.combatant.length-1].parts.hair={
 				main:[
@@ -2331,6 +2328,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
                 	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
+				case 'Airi':
+					p1.anim.mouth.y--
+					p1.parts.mouth++
+					p1.position.x-=15
+					p1.anim.legs=[
+						{top:6,bottom:3,length:{top:16,bottom:16}},
+						{top:12,bottom:15,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:75,length:{top:16,bottom:16}},
+						{top:27,bottom:48,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -2432,6 +2444,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 						{top:18+a*6,bottom:30-a*21,length:{top:17,bottom:17}}
 					]
 					p1.spin.legs=[{top:-180,bottom:-180,lock:0},{top:-60,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'Airi':
+					p1.parts.mouth+=3
+					p1.spin.mouth+=180
+					p1.anim.mouth.y--
+					p1.anim.legs=[
+						{top:30-a*6,bottom:-60-a*24,length:{top:16,bottom:16}},
+						{top:6-a*18,bottom:-24-a*42,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:12,length:{top:16,bottom:16}},
+						{top:36+a*12,bottom:60-a*42,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
 			}
@@ -2567,6 +2594,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-150+a*15,lock:0},{top:60,bottom:150-a*15,lock:0}]
 					p1.spin.arms=[{top:-84-a*3,bottom:-60,lock:0},{top:84+a*3,bottom:12,lock:0}]
 				break
+				case 'Airi':
+					p1.anim.mouth.y--
+					p1.parts.mouth++
+					p1.position.y-=40
+					p1.anim.legs=[
+						{top:-18,bottom:-12,length:{top:16,bottom:16}},
+						{top:9,bottom:-27,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:60-a*30,length:{top:16,bottom:16}},
+						{top:24,bottom:60-a*30,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:30,lock:0}]
+					p1.spin.arms=[{top:-75-a*15,bottom:-30-a*48,lock:0},{top:75+a*15,bottom:-12+a*120,lock:0}]
+				break
 			}
 			p1.anim.eye=[1,1]
 			p1.anim.eyeStyle=[2,2]
@@ -2682,6 +2724,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
+				case 'Airi':
+					p1.anim.mouth.y++
+					p1.position.y-=a*10
+					p1.anim.legs=[
+						{top:3+a*24,bottom:9+a*6,length:{top:16,bottom:16-a*8}},
+						{top:3+a*24,bottom:9+a*6,length:{top:16,bottom:16-a*8}}
+					]
+					p1.anim.arms=[
+						{top:24+a*48,bottom:54+a*36,length:{top:16,bottom:16}},
+						{top:36-a*12,bottom:84-a*30,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -2789,6 +2845,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.arms=[
 						{top:24-a*3,bottom:12+a*6,length:{top:17,bottom:17}},
 						{top:24-a*3,bottom:12+a*6,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
+				break
+				case 'Airi':
+					p1.anim.mouth.y+=2
+					p1.anim.eye=[1,1]
+					p1.anim.eyeStyle=[1,1]
+					p1.anim.legs=[
+						{top:3-a*1.5,bottom:3,length:{top:16,bottom:16}},
+						{top:3-a*1.5,bottom:3,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:36-a*3,bottom:48+a*18,length:{top:16,bottom:16}},
+						{top:36-a*3,bottom:72,length:{top:16,bottom:16}}
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
@@ -2918,6 +2989,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90-a*15,bottom:-75-a*15,lock:0},{top:120-a*30,bottom:90-a*15,lock:0}]
 				break
+				case 'Airi':
+					p1.anim.mouth.y++
+					p1.anim.eye=[1,1]
+					p1.anim.eyeStyle=[1,1]
+					p1.anim.legs=[
+						{top:6,bottom:3,length:{top:16,bottom:16}},
+						{top:6,bottom:3,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:108-a*6,bottom:135-a*12,length:{top:16,bottom:16}},
+						{top:108-a*6,bottom:135-a*12,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -3016,6 +3102,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
                     p1.anim.arms=[{top:18,bottom:48,length:{top:17,bottom:17}},{top:36,bottom:-24,length:{top:17,bottom:17}}]
                 	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:120}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Airi':
+					p1.anim.mouth.y++
+					p1.anim.eye=[1,1]
+					p1.anim.eyeStyle=[1,1]
+					p1.anim.legs=[
+						{top:36,bottom:24,length:{top:16,bottom:16}},
+						{top:6,bottom:-6,length:{top:16,bottom:16}}
+					]
+					p1.anim.arms=[
+						{top:108-a*6,bottom:135-a*12,length:{top:16,bottom:16}},
+						{top:60-a*6,bottom:72-a*12,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 				break
 			}
 			p1.size=1.5

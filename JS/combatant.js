@@ -9587,6 +9587,18 @@ class combatant{
                                     this.layer.noStroke()
                                     this.layer.ellipse(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1,6,4.5)
                                 }
+                                if(this.trigger.display.sock&&lcos(this.anim.direction-90+h*180)<=0){
+                                    this.layer.fill(upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.sock)
+                                    this.layer.noStroke()
+                                    this.layer.triangle(
+                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65,
+                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65-1.2,
+                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65+1.2)
+                                    this.layer.triangle(
+                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65,
+                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65-2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65-1.2,
+                                        this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65-2.4*lcos(this.anim.direction-90+h*180)+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.65+1.2)
+                                }
                                 if(this.trigger.display.skin.legs){
                                     this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
                                     this.layer.strokeWeight(4)
@@ -9692,11 +9704,11 @@ class combatant{
                                     this.layer.stroke(this.flashColor(this.color.uniform.stripe)[0],this.flashColor(this.color.uniform.stripe)[1],this.flashColor(this.color.uniform.stripe)[2],this.fade*this.fades.uniform.stripeShirt)
                                     this.layer.strokeWeight(0.5)
                                     this.layer.line(
-                                        this.graphics.arms[g].middleStack.x*0.275+this.graphics.arms[g].bottomStack.x*0.725-diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middleStack.y*0.275+this.graphics.arms[g].bottomStack.y*0.725+diff[0]/sqrt(diff[0]**2+diff[1]**2)*2,
-                                        this.graphics.arms[g].middleStack.x*0.275+this.graphics.arms[g].bottomStack.x*0.725+diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middleStack.y*0.275+this.graphics.arms[g].bottomStack.y*0.725-diff[0]/sqrt(diff[0]**2+diff[1]**2)*2)
+                                        this.graphics.arms[g].middle.x*0.275+this.graphics.arms[g].bottom.x*0.725-diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middle.y*0.275+this.graphics.arms[g].bottom.y*0.725+diff[0]/sqrt(diff[0]**2+diff[1]**2)*2,
+                                        this.graphics.arms[g].middle.x*0.275+this.graphics.arms[g].bottom.x*0.725+diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middle.y*0.275+this.graphics.arms[g].bottom.y*0.725-diff[0]/sqrt(diff[0]**2+diff[1]**2)*2)
                                     this.layer.line(
-                                        this.graphics.arms[g].middleStack.x*0.35+this.graphics.arms[g].bottomStack.x*0.65-diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middleStack.y*0.35+this.graphics.arms[g].bottomStack.y*0.65+diff[0]/sqrt(diff[0]**2+diff[1]**2)*2,
-                                        this.graphics.arms[g].middleStack.x*0.35+this.graphics.arms[g].bottomStack.x*0.65+diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middleStack.y*0.35+this.graphics.arms[g].bottomStack.y*0.65-diff[0]/sqrt(diff[0]**2+diff[1]**2)*2)
+                                        this.graphics.arms[g].middle.x*0.35+this.graphics.arms[g].bottom.x*0.65-diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middle.y*0.35+this.graphics.arms[g].bottom.y*0.65+diff[0]/sqrt(diff[0]**2+diff[1]**2)*2,
+                                        this.graphics.arms[g].middle.x*0.35+this.graphics.arms[g].bottom.x*0.65+diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middle.y*0.35+this.graphics.arms[g].bottom.y*0.65-diff[0]/sqrt(diff[0]**2+diff[1]**2)*2)
                                 }
                                 this.layer.strokeCap(ROUND)
                             }
@@ -9754,18 +9766,18 @@ class combatant{
                                 this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].middleStack.x*0.5+this.graphics.arms[g].bottomStack.x*0.5,this.graphics.arms[g].middleStack.y*0.5+this.graphics.arms[g].bottomStack.y*0.5)
                                 this.layer.strokeCap(SQUARE)
                                 this.layer.line(
-                                    this.graphics.arms[g].middleStack.x*0.5+this.graphics.arms[g].bottomStack.x*0.4,this.graphics.arms[g].middleStack.y*0.5+this.graphics.arms[g].bottomStack.y*0.5,
+                                    this.graphics.arms[g].middleStack.x*0.5+this.graphics.arms[g].bottomStack.x*0.5,this.graphics.arms[g].middleStack.y*0.5+this.graphics.arms[g].bottomStack.y*0.5,
                                     this.graphics.arms[g].middleStack.x*0.2+this.graphics.arms[g].bottomStack.x*0.8,this.graphics.arms[g].middleStack.y*0.2+this.graphics.arms[g].bottomStack.y*0.8)
                                 if(this.trigger.display.uniform.stripeShirt){
                                     let diff=[this.graphics.arms[g].middleStack.x-this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].middleStack.y-this.graphics.arms[g].bottomStack.y]
                                     this.layer.stroke(this.flashColor(this.color.uniform.stripe)[0],this.flashColor(this.color.uniform.stripe)[1],this.flashColor(this.color.uniform.stripe)[2],this.fade*this.fades.uniform.stripeShirt)
                                     this.layer.strokeWeight(0.5)
                                     this.layer.line(
-                                        this.graphics.arms[g].middleStack.x*0.275+this.graphics.arms[g].bottomStack.x*0.725-diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middleStack.y*0.275+this.graphics.arms[g].bottomStack.y*0.725+diff[0]/sqrt(diff[0]**2+diff[1]**2)*2,
-                                        this.graphics.arms[g].middleStack.x*0.275+this.graphics.arms[g].bottomStack.x*0.725+diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middleStack.y*0.275+this.graphics.arms[g].bottomStack.y*0.725-diff[0]/sqrt(diff[0]**2+diff[1]**2)*2)
+                                        this.graphics.arms[g].middle.x*0.275+this.graphics.arms[g].bottom.x*0.725-diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middle.y*0.275+this.graphics.arms[g].bottom.y*0.725+diff[0]/sqrt(diff[0]**2+diff[1]**2)*2,
+                                        this.graphics.arms[g].middle.x*0.275+this.graphics.arms[g].bottom.x*0.725+diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middle.y*0.275+this.graphics.arms[g].bottom.y*0.725-diff[0]/sqrt(diff[0]**2+diff[1]**2)*2)
                                     this.layer.line(
-                                        this.graphics.arms[g].middleStack.x*0.35+this.graphics.arms[g].bottomStack.x*0.65-diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middleStack.y*0.35+this.graphics.arms[g].bottomStack.y*0.65+diff[0]/sqrt(diff[0]**2+diff[1]**2)*2,
-                                        this.graphics.arms[g].middleStack.x*0.35+this.graphics.arms[g].bottomStack.x*0.65+diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middleStack.y*0.35+this.graphics.arms[g].bottomStack.y*0.65-diff[0]/sqrt(diff[0]**2+diff[1]**2)*2)
+                                        this.graphics.arms[g].middle.x*0.35+this.graphics.arms[g].bottom.x*0.65-diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middle.y*0.35+this.graphics.arms[g].bottom.y*0.65+diff[0]/sqrt(diff[0]**2+diff[1]**2)*2,
+                                        this.graphics.arms[g].middle.x*0.35+this.graphics.arms[g].bottom.x*0.65+diff[1]/sqrt(diff[0]**2+diff[1]**2)*2,this.graphics.arms[g].middle.y*0.35+this.graphics.arms[g].bottom.y*0.65-diff[0]/sqrt(diff[0]**2+diff[1]**2)*2)
                                 }
                                 this.layer.strokeCap(ROUND)
                             }
@@ -9858,13 +9870,32 @@ class combatant{
                         this.layer.line(-15*lcos(75),15*lsin(75),-18*lcos(75),18*lsin(75))
                         this.layer.fill(this.color.halo[0],this.color.halo[1],this.color.halo[2],this.fade*this.fades.halo)
                         this.layer.noStroke()
+                        for(let a=0,la=5;a<la;a++){
+                            this.layer.ellipse(-14*lcos(-27+a*13.5),-14*lsin(-27+a*13.5),2.5,2.5)
+                            this.layer.ellipse(14*lcos(-27+a*13.5),14*lsin(-27+a*13.5),2.5,2.5)
+                        }
                         for(let a=0,la=4;a<la;a++){
-                            this.layer.ellipse(-14*lcos(-27+a*18),-14*lsin(-27+a*18),3,3)
-                            this.layer.ellipse(-18*lcos(-27+a*18),-18*lsin(-27+a*18),3.6,3.6)
-                            this.layer.ellipse(14*lcos(-27+a*18),14*lsin(-27+a*18),3,3)
-                            this.layer.ellipse(18*lcos(-27+a*18),18*lsin(-27+a*18),3.6,3.6)
+                            this.layer.ellipse(-16.5*lcos(-20.25+a*13.5),-16.5*lsin(-20.25+a*13.5),2.5,2.5)
+                            this.layer.ellipse(16.5*lcos(-20.25+a*13.5),16.5*lsin(-20.25+a*13.5),2.5,2.5)
                         }
                         this.layer.pop()
+                    }
+                    if(!this.graphic){
+                        this.layer.stroke(240,255,250,this.fade)
+                        this.layer.strokeWeight(1)
+                        this.layer.noFill()
+                        this.layer.translate(0,10)
+                        this.layer.ellipse(0,0,10)
+                        for(let a=0,la=5;a<la;a++){
+                            this.layer.rotate(72)
+                            this.layer.line(0,5,0,8)
+                            this.layer.line(0,8,-2,7)
+                        }
+                        this.layer.translate(0,-10)
+                        this.layer.noStroke()
+                        this.layer.fill(240,255,250,this.fade)
+                        this.layer.textSize(8)
+                        this.layer.text(this.charge,0,10.5)
                     }
                 break
                 case 'Edgar':

@@ -9,11 +9,6 @@ Bugs:
     Fix has been implemented
 }
 
-can't see charge
-
 activate low health
 activate prism mode
 
-strokecap
-
-GRAPHICS ARE ALL THAT'S LEFT!

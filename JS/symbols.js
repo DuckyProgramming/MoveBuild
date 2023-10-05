@@ -1820,7 +1820,7 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(240,80,60,fade)
         break
         case 10:
-            layer.fill(160,160,80,fade)
+            layer.fill(180,180,80,fade)
         break
     }
     layer.ellipse(0,0,50)
@@ -1936,12 +1936,56 @@ function displayPlayerSymbol(layer,x,y,type,direction,size,fade){
             layer.ellipse(0,10,20,20)
         break
         case 8:
+            layer.scale(1.2)
+            layer.stroke(255,fade)
+            layer.noFill()
+            layer.strokeWeight(2)
+            layer.ellipse(0,0,20,20)
+            layer.strokeWeight(3)
+            layer.arc(0,0,30,30,-135,-45)
+            layer.arc(0,0,30,30,45,75)
+            layer.arc(0,0,30,30,-255,-225)
+            layer.line(3,-3,-3,3)
+            layer.line(15*lcos(75),15*lsin(75),18*lcos(75),18*lsin(75))
+            layer.line(-15*lcos(75),15*lsin(75),-18*lcos(75),18*lsin(75))
+            layer.fill(255,fade)
+            layer.noStroke()
+            for(let a=0,la=5;a<la;a++){
+                layer.ellipse(-14*lcos(-27+a*13.5),-14*lsin(-27+a*13.5),2.5,2.5)
+                layer.ellipse(14*lcos(-27+a*13.5),14*lsin(-27+a*13.5),2.5,2.5)
+            }
+            for(let a=0,la=4;a<la;a++){
+                layer.ellipse(-16.5*lcos(-20.25+a*13.5),-16.5*lsin(-20.25+a*13.5),2.5,2.5)
+                layer.ellipse(16.5*lcos(-20.25+a*13.5),16.5*lsin(-20.25+a*13.5),2.5,2.5)
+            }
         break
         case 9:
             layer.rotate(-18)
-            layer.quad(0,-20,-5,-15,0,-10,5,-15)
+            layer.quad(0,-22,-8,-14,0,-6,8,-14)
+            layer.beginShape()
+            layer.vertex(0,-3)
+            layer.vertex(3,-6)
+            layer.vertex(6,15)
+            layer.vertex(0,21)
+            layer.vertex(-6,15)
+            layer.vertex(-3,-6)
+            layer.endShape()
+            layer.fill(240,80,60,fade)
+            layer.rect(3,0,8,1)
+            layer.rect(3,2,8,1)
         break
         case 10:
+            layer.arc(-12,2,16,16,90,270)
+            layer.arc(12,2,16,16,-90,90)
+            layer.arc(0,-12,16,16,-180,0)
+            layer.triangle(-8,-12,8,-12,0,6)
+            layer.triangle(-12,-6,-12,10,4,2)
+            layer.triangle(12,-6,12,10,-4,2)
+            layer.triangle(0,-4,4,20,-4,20)
+            layer.fill(180,180,80,fade)
+            layer.quad(-12,-2,-14,2,-12,6,-10,2)
+            layer.quad(12,-2,14,2,12,6,10,2)
+            layer.quad(0,-16,-2,-12,0,-8,2,-12)
         break
     }
     layer.pop()
@@ -4190,7 +4234,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(6,-1.5,6,1.5,10.5,0)
         break
         case 38:
-            layer.fill(255,50,50,this.fade)
+            layer.fill(255,50,50,fade)
             layer.triangle(-7.5,-6,-7.5,-0.75,9,-3.375)
             layer.triangle(7.5,6,7.5,-0.75,-9,3.375)
         break
@@ -4353,7 +4397,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.endShape()
         break
         case 61:        
-            layer.fill(255,50,50,this.fade)
+            layer.fill(255,50,50,fade)
             layer.triangle(-7.5,-6,-7.5,-0.75,9,-3.375)
             layer.triangle(7.5,6,7.5,-0.75,-9,3.375)
             layer.ellipse(-12,0,4.5,4.5)
