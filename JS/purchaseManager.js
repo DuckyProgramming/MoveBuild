@@ -14,7 +14,7 @@ class purchaseManager{
                     let cost=[[60,75],[100,125],[160,200]]
                     for(let a=0,la=group.length;a<la;a++){
                         let index=floor(random(0,list[group[a]].length))
-                        this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,112.5+floor(a/4)*187.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[list[group[a]][index],0,variants.ultraprism?(types.card[index].list<0?0:types.card[list[group[a]][index]].list>=types.color.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0]]))
+                        this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,112.5+floor(a/4)*187.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[list[group[a]][index],0,variants.ultraprism?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0]]))
                         list[group[a]].splice(index,1)
                     }
                     list=copyArrayStack(this.battle.cardManagers[0].listing.card[0])
@@ -41,7 +41,7 @@ class purchaseManager{
                         for(let b=0,lb=group.length;b<lb;b++){
                             let index=floor(random(0,list[group[b]].length))
                             let price=round(random(cost[group[b]][0],cost[group[b]][1]))
-                            this.purchases.push(new purchase(this.layer,this.battle,a,this.layer.width*a+(100+(b%4*100))*(1-a*2),350+floor(b/4)*150,1,[price,price],[list[group[b]][index],0,variants.ultraprism?(types.card[index].list<0?0:types.card[list[group[a]][index]].list>=types.color.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a]]))
+                            this.purchases.push(new purchase(this.layer,this.battle,a,this.layer.width*a+(100+(b%4*100))*(1-a*2),350+floor(b/4)*150,1,[price,price],[list[group[b]][index],0,variants.ultraprism?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a]]))
                             list[group[b]].splice(index,1)
                         }
                     }

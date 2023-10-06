@@ -5868,9 +5868,9 @@ types={
         },{
             name:'2-Shooter',rarity:0,list:9,
             levels:[
-                {effect:[5,1],attack:633,cost:1,target:[2,1,4,25],spec:[0,1],class:1},
-                {effect:[8,1],attack:633,cost:1,target:[2,1,4,25],spec:[0,1],class:1},
-                {effect:[10,1],attack:633,cost:1,target:[2,1,4,25],spec:[0,1],class:1},
+                {effect:[5,1],attack:633,cost:1,target:[2,1,4,25],spec:[0,25],class:1},
+                {effect:[8,1],attack:633,cost:1,target:[2,1,4,25],spec:[0,25],class:1},
+                {effect:[10,1],attack:633,cost:1,target:[2,1,4,25],spec:[0,25],class:1},
             ],
         },{
             name:'Lucky\nBullet',rarity:0,list:9,
@@ -6407,9 +6407,9 @@ types={
         },{
             name:'C4\nStep',rarity:2,list:9,
             levels:[
-                {effect:[1],attack:1143,cost:1,target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:1143,cost:0,target:[1,1,1],spec:[0],class:3},
-                {effect:[1],attack:1143,cost:0,target:[1,1,1],spec:[],class:3},
+                {effect:[2],attack:1143,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:1143,cost:0,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:1143,cost:0,target:[1,1,2],spec:[],class:3},
             ],
         },{
             name:'Monkeywrench',rarity:1,list:9,
@@ -7554,9 +7554,9 @@ types={
         },{
             name:'Apotheosis',rarity:2,list:0,
             levels:[
-                {effect:[],attack:45,cost:3,target:[0],spec:[14],class:4},
-                {effect:[],attack:45,cost:3,target:[0],spec:[16],class:4},
-                {effect:[],attack:45,cost:3,target:[0],spec:[0],class:4},
+                {effect:[],attack:45,cost:3,target:[0],spec:[1,14],class:4},
+                {effect:[],attack:45,cost:3,target:[0],spec:[1,16],class:4},
+                {effect:[],attack:45,cost:3,target:[0],spec:[1,0],class:4},
             ],
         },{
             name:'Entertainer',rarity:2,list:0,
@@ -7782,9 +7782,9 @@ types={
         },{
             name:'1-Shooter',rarity:-1,list:0,
             levels:[
-                {effect:[6,1],attack:632,cost:1,target:[2,1,4,25],spec:[0,1],class:1},
-                {effect:[9,1],attack:632,cost:1,target:[2,1,4,25],spec:[0,1],class:1},
-                {effect:[11,1],attack:632,cost:1,target:[2,1,4,25],spec:[0,1],class:1},
+                {effect:[6,1],attack:632,cost:1,target:[2,1,4,25],spec:[0,1,25],class:1},
+                {effect:[9,1],attack:632,cost:1,target:[2,1,4,25],spec:[0,1,25],class:1},
+                {effect:[11,1],attack:632,cost:1,target:[2,1,4,25],spec:[0,1,25],class:1},
             ],
         },{
             name:'Revolver',rarity:-1,list:0,
@@ -7880,9 +7880,9 @@ types={
         },{
             name:'Spark',rarity:-1,list:0,
             levels:[
-                {effect:[5],attack:327,cost:0,target:[2,1,1],spec:[1],class:1},
-                {effect:[8],attack:327,cost:0,target:[2,1,1],spec:[1],class:1},
-                {effect:[10],attack:327,cost:0,target:[2,1,1],spec:[1],class:1},
+                {effect:[5],attack:1191,cost:0,target:[2,1,2],spec:[1],class:1},
+                {effect:[8],attack:1191,cost:0,target:[2,1,2],spec:[1],class:1},
+                {effect:[10],attack:1191,cost:0,target:[2,1,2],spec:[1],class:1},
             ],
         },{
             name:'Instant\nWrath',rarity:-1,list:0,
@@ -8571,9 +8571,9 @@ types={
         },{
             name:'Rickroll',rarity:-5,list:-1,
             levels:[
-                {effect:[100],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
-                {effect:[150],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
-                {effect:[180],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[21.2],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[33.2],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
+                {effect:[39],attack:1178,cost:0,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Guster',rarity:-5,list:-1,
@@ -8724,7 +8724,7 @@ types={
         {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[12]},{type:86,effect:[5]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
         {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Glued']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Used to have good aim`},
-        {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:34,effect:[2]},{type:32,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
+        {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:34,effect:[2]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
         {name:'Management Custodian',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[2]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
@@ -11353,10 +11353,10 @@ Entering, you're offered a chance to glimpse your future...`,
                 text:[80,0,40],
                 active:[255,200,225],
             },{
-                fill:[210,255,210],
-                stroke:[175,255,175],
+                fill:[175,255,175],
+                stroke:[150,255,150],
                 text:[50,150,50],
-                active:[240,255,240],
+                active:[225,255,225],
             },{
                 fill:[240,100,80],
                 stroke:[200,80,60],
@@ -13903,6 +13903,37 @@ Does not spend the orb.`,
 `Card that gives energy, exhausts and retains.`,
         },{name:'Obstruction',desc:
 `Anything blocking movement, mainly combatants.`,
+        },{name:'Lowroll',desc:
+`When a randomness-based card has an unfavorable outcome.`,
+        },{name:'Charge',desc:
+`Charge increases by 1 each turn.
+Some card spend it in their effects. Others may generate it.`
+        },{name:'Burn (Card)',desc:
+`Status, unplayable, makes you take damage at the end of your turn.`,
+        },{name:'Burn (Status)',desc:
+`Deals damage each turn, does not decrement.`,
+        },{name:'Amplify',desc:
+`Spend 1 Energy if possible to get a bonus effect on card.
+Amplify 2 means that 2 Energy will be spent instead.`,
+        },{name:'Take Credit',desc:
+`When you take damage, heals you instead. Typically lasts for one hit.`,
+        },{name:'Ichor',desc:
+`Take 25% more damage per stack.
+Deprecates after each hit taken.`,
+        },{name:'Gun',desc:
+`Class of cards, typically ranged.
+Using most guns costs 1 Ammo.`,
+        },{name:'Ammo',desc:
+`Resource gained through cards. Used to play Guns.`,
+        },{name:'Bruise',desc:
+`Take 1 more damage per stack.
+Deprecates after each hit taken.`,
+        },{name:'Reflect',desc:
+`Causes the attacker to take damage instead.
+Only works if an attacker is identifiably designated.`,
+        },{name:'Arcana',desc:
+`Set of cards, accessible only through the predetermined Fortune Tellar event.\n
+Vary greatly in effect.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
@@ -13952,7 +13983,7 @@ Does not spend the orb.`,
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
-variants={lowdraw:false,altDraw:false,lowhealth:false,midhealth:false,shortmap:false,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false,ultraprism:false}
+variants={lowdraw:false,altDraw:false,lowhealth:false,midhealth:false,shortmap:false,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false,ultraprism:false,prismrule:[]}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
     D1:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[1,2],[-1,-2]],
@@ -13962,7 +13993,7 @@ constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
-graphics={main:0,backgroundGen:12,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:13,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

@@ -4074,6 +4074,8 @@ class combatant{
             }
             if(this.status.main[51]>0){
                 this.status.main[51]=0
+                this.battle.updateTargetting()
+                this.battle.tileManager.activate()
             }
             if(this.status.main[14]>0){
                 this.status.main[14]--
@@ -9645,6 +9647,8 @@ class combatant{
                         for(let a=0,la=18;a<la;a++){
                             this.layer.ellipse(lcos(a*10+5)*10,-29+lsin(a*10+5)*1.5,2*lsin(a*10+5),1.5)
                         }
+                        this.layer.fill(this.flashColor(this.color.uniform.main)[0],this.flashColor(this.color.uniform.main)[1],this.flashColor(this.color.uniform.main)[2],this.fade*this.fades.uniform.shirt)
+                        this.layer.quad(-5.75,-42,5.75,-42,10,-30,-10,-30)
                         for(let a=0,la=9;a<la;a++){
                             this.layer.fill(this.flashColor(this.color.uniform.main)[0]-a%2*10,this.flashColor(this.color.uniform.main)[1]-a%2*10,this.flashColor(this.color.uniform.main)[2]-a%2*10,this.fade*this.fades.uniform.shirt)
                             this.layer.quad(-5.75+11.5*a/la,-42,-5.75+11.5*(a+1)/la,-42,-10+20*(a+1)/la,-30,-10+20*a/la,-30)

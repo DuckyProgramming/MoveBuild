@@ -6,7 +6,7 @@ class battle{
     }
     createBasic(){
         this.title={}
-        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[]}}
+        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[],prismrule:[]}}
         for(let a=0,la=game.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
@@ -27,6 +27,10 @@ class battle{
         }
         for(let a=0,la=10;a<la;a++){
             this.menu.anim.variants.push(0)
+        }
+        for(let a=-1,la=game.playerNumber+5;a<la;a++){
+            this.menu.anim.prismrule.push(0)
+            variants.prismrule.push(a)
         }
     }
     startGame(){
@@ -615,7 +619,7 @@ class battle{
                     if(this.menu.anim.deck[0][a]>0){
                         this.layer.fill(255,this.menu.anim.deck[0][a])
                         this.layer.textSize(types.deckmode[a].name.length>20?8:10)
-                        this.layer.text(types.deckmode[a].name,this.layer.width/2,this.layer.height*0.65+80)
+                        this.layer.text(types.deckmode[a].name.toUpperCase(),this.layer.width/2,this.layer.height*0.65+80)
                     }
                 }
                 this.layer.fill(255,this.menu.anim.ascendSingle)
@@ -674,7 +678,7 @@ class battle{
                         if(this.menu.anim.deck[b][a]>0){
                             this.layer.fill(255,this.menu.anim.deck[b][a])
                             this.layer.textSize(types.deckmode[a].name.length>20?8:10)
-                            this.layer.text(types.deckmode[a].name,this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65+80)
+                            this.layer.text(types.deckmode[a].name.toUpperCase(),this.layer.width/4+b*this.layer.width/2,this.layer.height*0.65+80)
                         }
                     }
                 }
@@ -715,6 +719,21 @@ class battle{
                     if(this.menu.anim.variants[a]>0){
                         this.layer.fill(255,this.menu.anim.variants[a])
                         this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-90+floor(a/2)*45,10)
+                    }
+                }
+            break
+            case 'custom':
+                this.layer.image(graphics.backgrounds[12],0,0,this.layer.width,this.layer.height)
+                for(let a=0,la=6;a<la;a++){
+                    if(this.menu.anim.prismrule[a]>0){
+                        this.layer.fill(255,this.menu.anim.prismrule[a])
+                        this.layer.ellipse(this.layer.width/2-107.5,this.layer.height/2-190+a*45,10)
+                    }
+                }
+                for(let a=0,la=game.playerNumber;a<la;a++){
+                    if(this.menu.anim.prismrule[a+6]>0){
+                        this.layer.fill(255,this.menu.anim.prismrule[a+6])
+                        this.layer.ellipse(this.layer.width/2+242.5,this.layer.height/2-190+a*45,10)
                     }
                 }
             break
@@ -1056,6 +1075,15 @@ class battle{
                     this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
                 }
             break
+            case 'custom':
+                let prismrules=[-1,0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4]
+                for(let a=0,la=prismrules.length;a<la;a++){
+                    this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(prismrules[a]),0,1,5)
+                }
+                for(let a=0,la=game.playerNumber;a<la;a++){
+                    this.menu.anim.prismrule[a+6]=smoothAnim(this.menu.anim.prismrule[a+6],variants.prismrule.includes(a+1),0,1,5)
+                }
+            break
             case 'battle':
                 this.tileManager.update(scene)
                 this.combatantManager.update(scene)
@@ -1393,6 +1421,36 @@ class battle{
                     transition.trigger=true
                     transition.scene='title'
                 }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.8},width:125,height:25})){
+                    transition.trigger=true
+                    transition.scene='custom'
+                    variants.ultraprism=true
+                }
+            break
+            case 'custom':
+                let prismrules=[-1,0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4]
+                for(let a=0,la=prismrules.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
+                        if(variants.prismrule.includes(prismrules[a])){
+                            variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
+                        }else{
+                            variants.prismrule.push(prismrules[a])
+                        }
+                    }
+                }
+                for(let a=0,la=game.playerNumber;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+242.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
+                        if(variants.prismrule.includes(a+1)){
+                            variants.prismrule.splice(variants.prismrule.indexOf(a+1),1)
+                        }else{
+                            variants.prismrule.push(a+1)
+                        }
+                    }
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-175,y:this.layer.height*0.7},width:62.5,height:62.5})){
+                    transition.trigger=true
+                    transition.scene='variants'
+                }
             break
             case 'battle':
                 if(!this.result.defeat){
@@ -1622,6 +1680,36 @@ class battle{
                 if(code==ENTER){
                     transition.trigger=true
                     transition.scene='title'
+                }
+                if(key=='c'){
+                    transition.trigger=true
+                    transition.scene='custom'
+                    variants.ultraprism=true
+                }
+            break
+            case 'custom':
+                let prismrules=[-1,0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4]
+                for(let a=0,la=prismrules.length;a<la;a++){
+                    if(key=='abcdef'[a]){
+                        if(variants.prismrule.includes(prismrules[a])){
+                            variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
+                        }else{
+                            variants.prismrule.push(prismrules[a])
+                        }
+                    }
+                }
+                for(let a=0,la=game.playerNumber;a<la;a++){
+                    if((a+1)%10==int(key)){
+                        if(variants.prismrule.includes(a+1)){
+                            variants.prismrule.splice(variants.prismrule.indexOf(a+1),1)
+                        }else{
+                            variants.prismrule.push(a+1)
+                        }
+                    }
+                }
+                if(code==ENTER){
+                    transition.trigger=true
+                    transition.scene='variants'
                 }
             break
             case 'battle':

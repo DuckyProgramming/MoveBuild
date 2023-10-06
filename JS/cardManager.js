@@ -30,8 +30,15 @@ class cardManager{
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
         for(let a=0,la=types.card.length;a<la;a++){
-            for(let b=0,lb=this.listing.all.length;b<lb;b++){
-                this.listing.all[b].push(a)
+            if(variants.prismrule.includes(types.card[a].list)||variants.prismrule.includes(-1)&&types.card[a].list<0){
+                if(types.card[a].rarity<0){
+                    this.listing.all[0].push(a)
+                    this.listing.all[1].push(a)
+                    this.listing.all[2].push(a)
+                }else{
+                    this.listing.all[types.card[a].rarity].push(a)
+                }
+                this.listing.all[3].push(a)
             }
             if(types.card[a].rarity>=0&&types.card[a].list>=0){
                 this.listing.card[types.card[a].list][types.card[a].rarity].push(a)
@@ -47,12 +54,12 @@ class cardManager{
             }
             if(types.card[a].rarity==-4&&this.battle.player.includes(2)&&this.battle.player.includes(7)){
                 if(types.card[a].list==27){
-                    this.listing.card[2][2].push(a)
+                    this.listing.card[2][1].push(a)
                     this.listing.card[2][3].push(a)
-                    this.listing.card[7][2].push(a)
+                    this.listing.card[7][1].push(a)
                     this.listing.card[7][3].push(a)
                 }else{
-                    this.listing.card[types.card[a].list][2].push(a)
+                    this.listing.card[types.card[a].list][1].push(a)
                     this.listing.card[types.card[a].list][3].push(a)
                 }
             }

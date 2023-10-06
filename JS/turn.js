@@ -1306,6 +1306,8 @@ class turn{
                     break
                     case 177:
                         this.userCombatant.statusEffect('Invisible',this.effect[0])
+                        this.battle.updateTargetting()
+                        this.battle.tileManager.activate()
                     break
                     case 197:
                         this.battle.combatantManager.allEffect(13,[this.effect[0]])

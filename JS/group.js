@@ -577,7 +577,9 @@ class group{
                 break
                 case 3:
                     this.cards[a].deSize=true
-                    this.cards[a].discardEffect.push(0)
+                    if(this.cards[a].usable){
+                        this.cards[a].discardEffect.push(0)
+                    }
                 break
                 case 4:
                     if(this.cards[a].level==0){
@@ -709,7 +711,7 @@ class group{
                     }
                 break
                 case 30:
-                    if(!this.cards[a].spec.includes(12)&&this.cards[a].effect.length>0&&this.cards[a].effect[0]>0){
+                    if(!this.cards[a].spec.includes(12)&&this.cards[a].effect.length>0&&this.cards[a].effect[0]>0&&this.cards[a].class!=3){
                         this.cards[a].effect[0]++
                     }
                 break
