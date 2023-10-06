@@ -627,7 +627,9 @@ class group{
                 break
                 case 13:
                     this.cards[a].deSize=true
-                    this.cards[a].discardEffect.push(3)
+                    if(this.cards[a].usable){
+                        this.cards[a].discardEffect.push(3)
+                    }
                 break
                 case 14:
                     if(this.cards[a].cost>0){

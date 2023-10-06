@@ -88,20 +88,21 @@ class attack{
             case 779: case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798:
             case 801: case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833:
             case 834: case 837: case 840: case 843: case 846: case 848: case 849: case 850: case 862: case 863:
-            case 865: case 866: case 872: case 874: case 877: case 881: case 883: case 884: case 888: case 895:
-            case 897: case 899: case 900: case 902: case 903: case 905: case 906: case 907: case 908: case 915:
-            case 916: case 917: case 918: case 919: case 920: case 924: case 926: case 930: case 934: case 935:
-            case 938: case 939: case 940: case 942: case 943: case 944: case 945: case 946: case 947: case 950:
-            case 956: case 957: case 958: case 959: case 964: case 965: case 966: case 972: case 974: case 980:
-            case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004: case 1006:
-            case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023: case 1027:
-            case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
-            case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067: case 1068:
-            case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091: case 1092:
-            case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139: case 1144:
-            case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156: case 1160:
-            case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1172: case 1173: case 1174: case 1175:
-            case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188: case 1189: case 1191:
+            case 865: case 866: case 872: case 874: case 877: case 878: case 881: case 883: case 884: case 888:
+            case 895: case 897: case 899: case 900: case 902: case 903: case 905: case 906: case 907: case 908:
+            case 915: case 916: case 917: case 918: case 919: case 920: case 924: case 926: case 930: case 934:
+            case 935: case 938: case 939: case 940: case 942: case 943: case 944: case 945: case 946: case 947:
+            case 950: case 956: case 957: case 958: case 959: case 964: case 965: case 966: case 972: case 974:
+            case 980: case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004:
+            case 1006: case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023:
+            case 1027: case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047:
+            case 1049: case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067:
+            case 1068: case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091:
+            case 1092: case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139:
+            case 1144: case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156:
+            case 1160: case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1172: case 1173: case 1174:
+            case 1175: case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188: case 1189:
+            case 1191:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)

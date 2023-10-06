@@ -85,12 +85,29 @@ class relicManager{
         }
         this.player[types.relic[type].id]=player
         this.active[types.relic[type].id]+=1
-        if(this.battle.players==2){
-            this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),100+floor(this.position[player]/8)*50,types.relic[type].id,1))
+        if(types.relic[type].name=='Menger Square'){
+            stop=false
+            for(let a=0,la=this.relics.length;a<la;a++){
+                if(this.relics[a].player==player&&this.relics[a].name=='Menger Square'){
+                    stop=true
+                }
+            }
+            if(!stop){
+                if(this.battle.players==2){
+                    this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),100+floor(this.position[player]/8)*50,types.relic[type].id,1))
+                }else{
+                    this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,100+floor(this.position[player]/18)*50,types.relic[type].id,1))
+                }
+                this.position[player]++
+            }
         }else{
-            this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,100+floor(this.position[player]/18)*50,types.relic[type].id,1))
+            if(this.battle.players==2){
+                this.relics.push(new relic(this.layer,player,this.layer.width*player+(25+(this.position[player]%8)*50)*(1-2*player),100+floor(this.position[player]/8)*50,types.relic[type].id,1))
+            }else{
+                this.relics.push(new relic(this.layer,player,25+(this.position[player]%18)*50,100+floor(this.position[player]/18)*50,types.relic[type].id,1))
+            }
+            this.position[player]++
         }
-        this.position[player]++
         this.get(types.relic[type].id,player)
         if(type>0){
             this.battle.stats.relic[player]++
@@ -120,14 +137,20 @@ class relicManager{
     addRandomRelic(player){
         let possible=[0,0,0,1,1,2]
         let rarity=possible[floor(random(0,possible.length))]
-        let index=floor(random(0,this.listing.relic[rarity].length))
-        this.addRelic(this.listing.relic[rarity][index],player)
-        this.listing.relic[rarity].splice(index,1)
+        if(this.listing.relic[rarity]==0){
+            this.addRelic(findName('Menger Square',types.relic),player)
+        }else{
+            let index=floor(random(0,this.listing.relic[rarity].length))
+            this.addRelic(this.listing.relic[rarity][index],player)
+        }
     }
     addSetRelic(rarity,player){
-        let index=floor(random(0,this.listing.relic[rarity].length))
-        this.addRelic(this.listing.relic[rarity][index],player)
-        this.listing.relic[rarity].splice(index,1)
+        if(this.listing.relic[rarity]==0){
+            this.addRelic(findName('Menger Square',types.relic),player)
+        }else{
+            let index=floor(random(0,this.listing.relic[rarity].length))
+            this.addRelic(this.listing.relic[rarity][index],player)
+        }
     }
     makeRelicSelection(rarity){
         let list=[]
@@ -909,13 +932,6 @@ class relicManager{
         switch(type){
             case 0:
                 this.displayRelics[a].deFade=true
-                for(let b=0,lb=this.listing.relic.length;b<lb;b++){
-                    for(let c=0,lc=this.listing.relic[b].length;c<lc;c++){
-                        if(this.listing.relic[b][c]==this.displayRelics[a].type){
-                            this.listing.relic[b].splice(c,1)
-                        }
-                    }
-                }
                 if(this.battle.players==1){
                     this.addRelic(this.displayRelics[a].type,0)
                     this.complete[0]=true
@@ -941,13 +957,6 @@ class relicManager{
             break
             case 1:
                 this.displayRelics[a].deFade=true
-                for(let b=0,lb=this.listing.relic.length;b<lb;b++){
-                    for(let c=0,lc=this.listing.relic[b].length;c<lc;c++){
-                        if(this.listing.relic[b][c]==this.displayRelics[a].type){
-                            this.listing.relic[b].splice(c,1)
-                        }
-                    }
-                }
                 if(this.battle.players==1){
                     this.addRelic(this.displayRelics[a].type,0)
                     this.complete[0]=true

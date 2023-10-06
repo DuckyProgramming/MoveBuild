@@ -1076,7 +1076,7 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[-1,0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4]
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1]
                 for(let a=0,la=prismrules.length;a<la;a++){
                     this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(prismrules[a]),0,1,5)
                 }
@@ -1428,7 +1428,7 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[-1,0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4]
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1]
                 for(let a=0,la=prismrules.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
                         if(variants.prismrule.includes(prismrules[a])){
@@ -1688,7 +1688,7 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[-1,0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4]
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1]
                 for(let a=0,la=prismrules.length;a<la;a++){
                     if(key=='abcdef'[a]){
                         if(variants.prismrule.includes(prismrules[a])){

@@ -1027,7 +1027,7 @@ class card{
             case 875: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nGain ${effect[2]} Temporary\nStrength`; break
             case 876: string+=`Amplifies Are Free`; break
             case 877: string+=`Add a Random Attack\nto Your Hand\nDeal Damage Equal\nto Its Effect`; break
-            case 878: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage`; break
+            case 878: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal ${this.calculateEffect(effect[1],0)} Splash Damage\nAround Self`; break
             case 879: string+=`Discard Draw Pile\nGain Block Equal\nto Number of\nCards Discarded${effect[0]>0?`+${effect[0]}`:``}`; break
             case 880: string+=`Gain ${effect[0]} Armor\nAmplify:\nGain ${effect[1]} More`; break
             case 881: string+=`Apply ${effect[0]} Burn`; break
