@@ -2741,6 +2741,12 @@ class combatant{
                         this.fades.logo=1
                         this.trigger.display.logo=true
                     break
+                    case 'MoveDummy':
+                        this.color={skin:{head:[240,220,180],body:[70,80,90],legs:[60,70,80],arms:[65,75,85]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.logo=[255,0,255]
+                        this.fades.logo=1
+                        this.trigger.display.logo=true
+                    break
                     case '💀':
                         this.color={skin:{head:[230,230,210],body:[220,220,200],legs:[210,210,190],arms:[205,205,185]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[0,0,0],out:[0,0,0]}}
                         this.anim.eyeStyle=[5,5]
@@ -14331,34 +14337,27 @@ class combatant{
                         this.layer.rect(lsin(this.anim.direction)*6.5,-54,3*lcos(this.anim.direction),12)
                         this.layer.rect(lsin(this.anim.direction)*6.5,-54,12*lcos(this.anim.direction),3)
                     }
-                    if(this.name=='NumberDummy'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
+                    if((this.name=='NumberDummy'||this.name=='AttackDummy'||this.name=='BlockDummy'||this.name=='MoveDummy')&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
                         this.layer.noStroke()
                         this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
                         this.layer.textSize(12)
                         this.layer.push()
                         this.layer.translate(lsin(this.anim.direction)*6.5,-50)
                         this.layer.scale(lcos(this.anim.direction),1)
-                        this.layer.text(this.base.life,0,0)
-                        this.layer.pop()
-                    }
-                    if(this.name=='AttackDummy'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
-                        this.layer.noStroke()
-                        this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
-                        this.layer.textSize(12)
-                        this.layer.push()
-                        this.layer.translate(lsin(this.anim.direction)*6.5,-50)
-                        this.layer.scale(lcos(this.anim.direction),1)
-                        this.layer.text(this.attack[0].effect[0],0,0)
-                        this.layer.pop()
-                    }
-                    if(this.name=='BlockDummy'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
-                        this.layer.noStroke()
-                        this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
-                        this.layer.textSize(12)
-                        this.layer.push()
-                        this.layer.translate(lsin(this.anim.direction)*6.5,-50)
-                        this.layer.scale(lcos(this.anim.direction),1)
-                        this.layer.text(this.lastBlock,0,0)
+                        switch(this.name){
+                            case 'NumberDummy':
+                                this.layer.text(this.base.life,0,0)
+                            break
+                            case 'AttackDummy':
+                                this.layer.text(this.attack[0].effect[0],0,0)
+                            break
+                            case 'BlockDummy':
+                                this.layer.text(this.lastBlock,0,0)
+                            break
+                            case 'MoveDummy':
+                                this.layer.text(this.move.speed,0,0)
+                            break
+                        }
                         this.layer.pop()
                     }
                     if((this.name=='Management Officer'||this.name=='Management Caller'||this.name=='Comrade')&&this.trigger.display.badge&&lcos(this.anim.direction+36)>0){

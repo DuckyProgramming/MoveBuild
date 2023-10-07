@@ -102,7 +102,7 @@ class attack{
             case 1144: case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156:
             case 1160: case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1172: case 1173: case 1174:
             case 1175: case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188: case 1189:
-            case 1191:
+            case 1191: case 1194: case 1195: case 1196:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -3397,6 +3397,24 @@ class attack{
                     case 1188:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userCombatant.balance,this.user)
                     break
+                    case 1194:
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                    break
+                    case 1195:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                    break
+                    case 1196:
+                        this.targetCombatant.statusEffect('Stun',this.effect[0])
+                    break
+                    case 1197:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                    break
+                    case 1198:
+                        this.userCombatant.statusEffect('Dexterity',this.effect[0])
+                    break
+                    case 1199:
+                        this.userCombatant.statusEffect('Buffer',this.effect[0])
+                    break
                 }
             break
             case 7:
@@ -5561,6 +5579,7 @@ class attack{
                 }
             break
             case 36: case 39: case 47: case 384: case 412: case 413: case 441: case 599: case 1157: case 1188:
+            case 1194: case 1195: case 1196: case 1197: case 1198: case 1199:
                 if(variants.nobasicanim){
                     this.selfCall(6)
                     this.remove=true

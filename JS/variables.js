@@ -7731,9 +7731,86 @@ types={
         },{
             name:'Better\nCard',rarity:-1,list:0,
             levels:[
-                {effect:[],attack:1191,cost:0,target:[0],spec:[],class:4},
-                {effect:[],attack:1191,cost:0,target:[0],spec:[],class:4},
-                {effect:[],attack:1191,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1193,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:1193,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:1193,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Strike But\nExhaust',rarity:-1,list:0,
+            levels:[
+                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0,1],class:1},
+                {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0,1],class:1},
+            ],
+        },{
+            name:'Strike But\nRetain',rarity:-1,list:0,
+            levels:[
+                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0,2],class:1},
+                {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0,2],class:1},
+            ],
+        },{
+            name:'Strike But\nInnate',rarity:-1,list:0,
+            levels:[
+                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0,3],class:1},
+                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0,3],class:1},
+                {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0,3],class:1},
+            ],
+        },{
+            name:'Strike But\nEthereal',rarity:-1,list:0,
+            levels:[
+                {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0,4],class:1},
+                {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0,4],class:1},
+                {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0,4],class:1},
+            ],
+        },{
+            name:'Placeholder\nUnplayable',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:0,cost:0,target:[0],spec:[5],class:4},
+                {effect:[],attack:0,cost:0,target:[0],spec:[5,2],class:4},
+                {effect:[],attack:0,cost:0,target:[0],spec:[5,22],class:4},
+            ],
+        },{
+            name:'Apply\nWeak',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[2],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[3],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Apply\nVulnerable',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[2],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[3],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Apply\nStun',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[2],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[3],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+            ],
+        },{
+            name:'Get\nStrength',rarity:-1,list:0,
+            levels:[
+                {effect:[2],attack:1197,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:1197,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:1197,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Get\nDexterity',rarity:-1,list:0,
+            levels:[
+                {effect:[2],attack:1198,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:1198,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:1198,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Get\nBuffer',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:1199,cost:1,target:[0],spec:[],class:4},
+                {effect:[2],attack:1199,cost:1,target:[0],spec:[],class:4},
+                {effect:[3],attack:1199,cost:1,target:[0],spec:[],class:4},
             ],
         },
         
@@ -8897,6 +8974,7 @@ types={
         {name:'NumberDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Takes damage`},
         {name:'AttackDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Does damage`},
         {name:'BlockDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
+        {name:'MoveDummy',life:1,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:21,effect:[]}],description:`Can move`},
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -13666,6 +13744,14 @@ Entering, you're offered a chance to glimpse your future...`,
             player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
             enemy:[
                 {position:{x:1,y:1},name:'NumberDummy'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialHotkey',
+            player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'MoveDummy'},
             ],reinforce:[
             ],
         },

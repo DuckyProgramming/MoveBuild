@@ -4187,8 +4187,8 @@ function setupBackground(type,layer){
 			layer.text('BASIC',layer.width/2-382.5,layer.height*0.5-380)
 			layer.text('LOCATIONS',layer.width/2-382.5,layer.height*0.5-290)
 			layer.text('KEYWORDS',layer.width/2-382.5,layer.height*0.5-200)
-			layer.text('2 PLAYER',layer.width/2-382.5,layer.height*0.5-110)
-			layer.text('ENEMIES',layer.width/2-382.5,layer.height*0.5-20)
+			layer.text('HOTKEYS',layer.width/2-382.5,layer.height*0.5-110)
+			layer.text('',layer.width/2-382.5,layer.height*0.5-20)
 			layer.text('STATUSES',layer.width/2-382.5,layer.height*0.5+70)
 			for(let a=0,la=game.playerNumber;a<la;a++){
 				layer.text(types.combatant[a+1].name.toUpperCase(),layer.width/2+317.5,layer.height*0.5-380+a*90)

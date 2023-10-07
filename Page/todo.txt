@@ -16,3 +16,5 @@ dice gun (low dice)
 discount step -> discount strike
 
 hotkeys on overlays issues?
+
+calamari game card
