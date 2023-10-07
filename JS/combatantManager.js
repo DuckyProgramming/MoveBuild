@@ -293,6 +293,16 @@ class combatantManager{
             this.battle.tileManager.activate()
         }
     }
+    summonCombatantDefinite(tilePosition,type,direction){
+        let index=this.battle.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
+        if(index>=0){
+            let tile=this.battle.tileManager.tiles[index]
+            this.addCombatant(tile.position.x,tile.position.y,tile.relativePosition.x,tile.relativePosition.y,tile.tilePosition.x,tile.tilePosition.y,type,0,direction,false)
+            this.battle.updateTargetting()
+            this.battle.tileManager.activate()
+            this.battle.counter.enemy++
+        }
+    }
     summonConstructRandom(tilePosition,type,team,direction,builder){
         let list=[]
         for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){

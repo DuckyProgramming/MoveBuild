@@ -63,6 +63,7 @@ class combatant{
         this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
 
         this.block=0
+        this.lastBlock=0
         this.dodges=[]
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
@@ -177,6 +178,25 @@ class combatant{
     }
     setupGraphics(direction){
         switch(this.name){
+            case 'Joe':
+                this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
+                    legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
+                    arms:[{top:24,bottom:9,length:{top:17,bottom:17}},{top:24,bottom:9,length:{top:17,bottom:17}}]}
+                this.spin={legs:[{top:-60,bottom:-120},{top:60,bottom:120}],arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],eye:[-18,18],mouth:216}
+                this.parts={eyeLevel:-78,mouth:-70,minor:15,
+                    legs:[{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:3.5,y:-34},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                    arms:[{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:4,y:-61},middle:{x:0,y:0},bottom:{x:0,y:0}}]}
+                this.graphics={
+                    legs:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}],
+                    arms:[{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},{top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}]}
+                this.fades={eye:[1,1],mouth:1,skin:{legs:1,arms:1,body:1,head:1},logo:1}
+                this.trigger={display:{mouth:true,eye:[true,true],skin:{legs:true,arms:true,body:true,head:true},logo:true}}
+                this.trigger.display.extra={damage:false}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={skin:{head:[240,220,180],body:[180,170,160],legs:[160,150,140],arms:[100,180,200],upperBody:[120,200,220]},logo:[0,255,50],belt:[180,100,20],eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+            break
             case 'George':
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:18,bottom:18}},{top:9,bottom:0,length:{top:18,bottom:18}}],
@@ -2703,6 +2723,24 @@ class combatant{
                         this.fades.tie=1
                         this.trigger.display.tie=true
                     break
+                    case 'NumberDummy':
+                        this.color={skin:{head:[240,220,180],body:[70,80,90],legs:[60,70,80],arms:[65,75,85]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.logo=[255,255,0]
+                        this.fades.logo=1
+                        this.trigger.display.logo=true
+                    break
+                    case 'AttackDummy':
+                        this.color={skin:{head:[240,220,180],body:[70,80,90],legs:[60,70,80],arms:[65,75,85]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.logo=[255,0,0]
+                        this.fades.logo=1
+                        this.trigger.display.logo=true
+                    break
+                    case 'BlockDummy':
+                        this.color={skin:{head:[240,220,180],body:[70,80,90],legs:[60,70,80],arms:[65,75,85]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.logo=[0,0,255]
+                        this.fades.logo=1
+                        this.trigger.display.logo=true
+                    break
                     case '💀':
                         this.color={skin:{head:[230,230,210],body:[220,220,200],legs:[210,210,190],arms:[205,205,185]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[0,0,0],out:[0,0,0]}}
                         this.anim.eyeStyle=[5,5]
@@ -4398,6 +4436,7 @@ class combatant{
                 }
             }
             if(block>=0){
+                this.lastBlock=block
                 this.block+=block
                 if(this.id<this.battle.players){
                     this.battle.stats.block[this.id]+=block
@@ -4988,7 +5027,7 @@ class combatant{
     }
     startAnimation(type){
         switch(this.name){
-            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Ume':
+            case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -5094,7 +5133,7 @@ class combatant{
     }
     runAnimation(rate,type){
         switch(this.name){
-            case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Ume':
+            case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -6785,6 +6824,84 @@ class combatant{
                     this.layer.fill(this.flashColor([200,200,200])[0],this.flashColor([200,200,200])[1],this.flashColor([200,200,200])[2],this.fade)
                     this.layer.noStroke()
                     this.layer.triangle(-6,-8,6,-8,0,12)
+                break
+                case 'Joe':
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                    }
+                    if(this.trigger.display.skin.body){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
+                        this.layer.ellipse(0,-48,13,39)
+                        this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
+                        this.layer.arc(0,-48,13.5,39,-180,0)
+                    }
+                    if(this.trigger.display.belt){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
+                        this.layer.rect(0,-48,13,2)
+                    }
+                    if(this.trigger.display.logo&&lcos(this.anim.direction)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
+                        this.layer.rect(lsin(this.anim.direction)*6.5,-54,8*lcos(this.anim.direction),2)
+                        this.layer.ellipse(lsin(this.anim.direction)*6.5,-54,4*lcos(this.anim.direction),4)
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                        for(let h=0;h<2;h++){
+                            if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                                if(this.trigger.display.skin.legs){
+                                    this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                    this.layer.strokeWeight(4)
+                                    this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
+                                    this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
+                                }
+                            }
+                        }
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                            this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                            this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        }
+                    }
+                    if(this.trigger.display.skin.head){
+                        this.layer.fill(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
+                        this.layer.noStroke()
+                        this.layer.ellipse(0,-81,30,30)
+                    }
+                    if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
+                        this.minorDisplayGeneral(1,0)
+                    }
+                    for(let g=0;g<2;g++){
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                            this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                            this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        }
+                        if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
+                            this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                            this.layer.strokeWeight(4)
+                            this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        }
+                        if(this.trigger.display.eye[g]){
+                            this.minorDisplayGeneral(0,g)
+                        }
+                    }
                 break
                 case 'George':
                     if(this.trigger.display.visor&&lcos(this.anim.direction)<0){
@@ -14213,6 +14330,36 @@ class combatant{
                         this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
                         this.layer.rect(lsin(this.anim.direction)*6.5,-54,3*lcos(this.anim.direction),12)
                         this.layer.rect(lsin(this.anim.direction)*6.5,-54,12*lcos(this.anim.direction),3)
+                    }
+                    if(this.name=='NumberDummy'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
+                        this.layer.textSize(12)
+                        this.layer.push()
+                        this.layer.translate(lsin(this.anim.direction)*6.5,-50)
+                        this.layer.scale(lcos(this.anim.direction),1)
+                        this.layer.text(this.base.life,0,0)
+                        this.layer.pop()
+                    }
+                    if(this.name=='AttackDummy'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
+                        this.layer.textSize(12)
+                        this.layer.push()
+                        this.layer.translate(lsin(this.anim.direction)*6.5,-50)
+                        this.layer.scale(lcos(this.anim.direction),1)
+                        this.layer.text(this.attack[0].effect[0],0,0)
+                        this.layer.pop()
+                    }
+                    if(this.name=='BlockDummy'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
+                        this.layer.textSize(12)
+                        this.layer.push()
+                        this.layer.translate(lsin(this.anim.direction)*6.5,-50)
+                        this.layer.scale(lcos(this.anim.direction),1)
+                        this.layer.text(this.lastBlock,0,0)
+                        this.layer.pop()
                     }
                     if((this.name=='Management Officer'||this.name=='Management Caller'||this.name=='Comrade')&&this.trigger.display.badge&&lcos(this.anim.direction+36)>0){
                         this.layer.noStroke()

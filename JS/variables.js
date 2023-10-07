@@ -77,6 +77,27 @@ types={
                 {effect:[2],attack:485,cost:0,target:[25,1,2],spec:[0],class:3},
                 {effect:[2],attack:485,cost:0,target:[25,1,2],spec:[],class:3},
             ],
+        },{
+            name:'Better\nCard 1',rarity:-2,list:-1,
+            levels:[
+                {effect:[12],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[18],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[22],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Better\nCard 2',rarity:-2,list:-1,
+            levels:[
+                {effect:[16],attack:2,cost:1,target:[0],spec:[],class:2},
+                {effect:[24],attack:2,cost:1,target:[0],spec:[],class:2},
+                {effect:[30],attack:2,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Better\nCard 3',rarity:-2,list:-1,
+            levels:[
+                {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[],class:3},
+            ],
         },
         
         {
@@ -8654,7 +8675,7 @@ types={
             ],
         },
     ],combatant:[
-        {name:'',moniker:'Add Player 2',life:20,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:0,effect:[]}],description:``},
+        {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Tutorial man!`},
         {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Experienced Management Agent,\ndisillusioned with the propaganda.\nTrained in a wide variety of techniques,\nbut undercover with few armaments.`},
         {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
         {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:55,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relcaim her.`},
@@ -8849,6 +8870,10 @@ types={
         {name:'MobMan',life:10,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
         {name:'Antizone',life:999,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indistructable`},
+
+        {name:'NumberDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Takes damage`},
+        {name:'AttackDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:1,effect:[1]}],description:`Does damage`},
+        {name:'BlockDummy',life:1,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:2,effect:[1]}],description:`Gains block`},
     ],attack:[
         {name:'',class:0},//0
         {name:'Strike',class:1},
@@ -13601,6 +13626,14 @@ Entering, you're offered a chance to glimpse your future...`,
                 {position:{x:4,y:5},name:'Duckforce'},
             ],reinforce:[
             ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialBasic',
+            player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'NumberDummy'},
+            ],reinforce:[
+            ],
         },
     ],dictionary:[
         {name:'',desc:``,
@@ -13978,7 +14011,7 @@ Vary greatly in effect.`,
         {name:'Rare Character Deck'},
         {name:'Rare Deck'},
         {name:'Colorless Deck'},
-    ]
+    ],
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
@@ -13993,7 +14026,7 @@ constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
-graphics={main:0,backgroundGen:13,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:14,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

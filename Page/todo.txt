@@ -1,3 +1,16 @@
 Bugs:
 
 f*cking tutorial
+
+tier list cards
+
+blind mode: card name only; no information text
+blackjack draw system
+
+blammo: do damage, if 2 at once, autoplay
+lose 1 card, if you have 0 energy get 2 energy (lollipop)
+heal, convert excss to damage
+dice gun (low dice)
+discount step -> discount strike
+
+hotkeys on overlays issues?

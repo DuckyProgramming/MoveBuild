@@ -32,6 +32,7 @@ class battle{
             this.menu.anim.prismrule.push(0)
             variants.prismrule.push(a)
         }
+        this.tutorialManager=new tutorialManager(this.layer,this)
     }
     startGame(){
         game.player=[this.menu.combatant[0]]
@@ -440,15 +441,17 @@ class battle{
             this.turnManager.loadEnemyTurns()
             this.combatantManager.enableCombatants()
         }else{
-            if(this.turn.total==1){
-                if(!this.relicManager.hasRelic(141,this.turn.main)){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+            if(!this.tutorialManager.active){
+                if(this.turn.total==1){
+                    if(!this.relicManager.hasRelic(141,this.turn.main)){
+                        this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                    }
+                    if(this.relicManager.hasRelic(107,this.turn.main)){
+                        this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                    }
                 }
-                if(this.relicManager.hasRelic(107,this.turn.main)){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
-                }
+                this.cardManagers[this.turn.main].turnDraw(this.turn.total)
             }
-            this.cardManagers[this.turn.main].turnDraw(this.turn.total)
             this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
             this.turn.time=game.turnTime
             this.counter.turnPlayed=[0,0,0,0,0]
@@ -476,15 +479,17 @@ class battle{
         this.combatantManager.activateCombatants(0,0)
         this.updateTargetting()
         this.turnManager.clear()
-        if(this.turn.total==1){
-            if(!this.relicManager.hasRelic(141,this.turn.main)){
-                this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+        if(!this.tutorialManager.active){
+            if(this.turn.total==1){
+                if(!this.relicManager.hasRelic(141,this.turn.main)){
+                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                }
+                if(this.relicManager.hasRelic(107,this.turn.main)){
+                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                }
             }
-            if(this.relicManager.hasRelic(107,this.turn.main)){
-                this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
-            }
+            this.cardManagers[0].turnDraw(this.turn.total)
         }
-        this.cardManagers[0].turnDraw(this.turn.total)
         this.cardManagers[0].regenDrops()
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
@@ -737,6 +742,9 @@ class battle{
                     }
                 }
             break
+            case 'tutorial':
+                this.layer.image(graphics.backgrounds[13],0,0,this.layer.width,this.layer.height)
+            break
             case 'battle':
                 this.layer.background(110,115,120)
                 for(let a=0,la=this.players;a<la;a++){
@@ -815,6 +823,7 @@ class battle{
                 this.overlayManager.display()
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)
+                this.tutorialManager.display()
                 this.displayCurrency()
                 if(this.anim.defeat>0){
                     this.layer.fill(0,this.anim.defeat)
@@ -1096,6 +1105,7 @@ class battle{
                 this.overlayManager.update()
                 this.relicManager.update(stage.scene)
                 this.itemManager.update(stage.scene)
+                this.tutorialManager.update()
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
@@ -1146,7 +1156,7 @@ class battle{
                             this.replayManager.clear()
                         }
                     }
-                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive){
+                }else if(this.counter.killed>=this.counter.enemy&&!this.result.defeat&&!this.overlayManager.anyActive&&!this.tutorialManager.active){
                     this.result.victory=true
                     this.overlayManager.closeAll()
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
@@ -1330,18 +1340,22 @@ class battle{
     onClick(scene){
         switch(scene){
             case 'title':
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-105,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-157.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu2'
                     this.menu.combatant[1]=1
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+105,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+157.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
+                    transition.trigger=true
+                    transition.scene='tutorial'
                 }
             break
             case 'menu':
@@ -1429,27 +1443,26 @@ class battle{
             break
             case 'custom':
                 let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1]
-                for(let a=0,la=prismrules.length;a<la;a++){
+                
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-175,y:this.layer.height*0.7},width:62.5,height:62.5})){
+                    transition.trigger=true
+                    transition.scene='variants'
+                }
+            break
+            case 'tutorial':
+                for(let a=0,la=6;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
-                        if(variants.prismrule.includes(prismrules[a])){
-                            variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
-                        }else{
-                            variants.prismrule.push(prismrules[a])
-                        }
+                        this.tutorialManager.setupTutorial(a)
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+242.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
-                        if(variants.prismrule.includes(a+1)){
-                            variants.prismrule.splice(variants.prismrule.indexOf(a+1),1)
-                        }else{
-                            variants.prismrule.push(a+1)
-                        }
+                        this.tutorialManager.setupTutorial(a+6)
                     }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-175,y:this.layer.height*0.7},width:62.5,height:62.5})){
                     transition.trigger=true
-                    transition.scene='variants'
+                    transition.scene='title'
                 }
             break
             case 'battle':
@@ -1464,6 +1477,7 @@ class battle{
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)
                         this.itemManager.onClick(stage.scene)
+                        this.tutorialManager.onClick()
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
@@ -1603,6 +1617,10 @@ class battle{
                     transition.trigger=true
                     transition.scene='variants'
                 }
+                if(key=='4'){
+                    transition.trigger=true
+                    transition.scene='tutorial'
+                }
             break
             case 'menu':
                 if(code==LEFT_ARROW&&this.menu.combatant[0]>1){
@@ -1690,7 +1708,7 @@ class battle{
             case 'custom':
                 let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1]
                 for(let a=0,la=prismrules.length;a<la;a++){
-                    if(key=='abcdef'[a]){
+                    if(key=='abcdef'[a]||key=='ABCDEF'[a]){
                         if(variants.prismrule.includes(prismrules[a])){
                             variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
                         }else{
@@ -1712,9 +1730,26 @@ class battle{
                     transition.scene='variants'
                 }
             break
+            case 'tutorial':
+                for(let a=0,la=6;a<la;a++){
+                    if(key=='abcdef'[a]||key=='ABCDEF'[a]){
+                        this.tutorialManager.setupTutorial(a)
+                    }
+                }
+                for(let a=0,la=game.playerNumber;a<la;a++){
+                    if((a+1)%10==int(key)){
+                        this.tutorialManager.setupTutorial(a+6)
+                    }
+                }
+                if(code==ENTER){
+                    transition.trigger=true
+                    transition.scene='title'
+                }
+            break
             case 'battle':
                 if(!this.result.defeat){
                     this.itemManager.onKey(stage.scene,key,code)
+                    this.tutorialManager.onKey(key,code)
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onKey(key,code)
                     }else if(this.turn.main<this.players){

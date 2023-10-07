@@ -177,6 +177,12 @@ class overlay{
                             list[args[1]].splice(index,1)
                         }
                     break
+                    case 8:
+                        for(let a=0,la=this.options;a<la;a++){
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Better\nCard 1','Better\nCard 2','Better\nCard 3'][a],types.card),0,0,-1))
+                            this.cards[a].upSize=true
+                        }
+                    break
                 }
                 this.setupArgs=args
                 for(let a=0,la=this.cards.length;a<la;a++){
