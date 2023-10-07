@@ -77,27 +77,6 @@ types={
                 {effect:[2],attack:485,cost:0,target:[25,1,2],spec:[0],class:3},
                 {effect:[2],attack:485,cost:0,target:[25,1,2],spec:[],class:3},
             ],
-        },{
-            name:'Better\nCard 1',rarity:-2,list:-1,
-            levels:[
-                {effect:[12],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[18],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[22],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Better\nCard 2',rarity:-2,list:-1,
-            levels:[
-                {effect:[16],attack:2,cost:1,target:[0],spec:[],class:2},
-                {effect:[24],attack:2,cost:1,target:[0],spec:[],class:2},
-                {effect:[30],attack:2,cost:1,target:[0],spec:[],class:2},
-            ],
-        },{
-            name:'Better\nCard 3',rarity:-2,list:-1,
-            levels:[
-                {effect:[2],attack:3,cost:1,target:[1,1,2],spec:[0],class:3},
-                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[0],class:3},
-                {effect:[2],attack:3,cost:0,target:[1,1,2],spec:[],class:3},
-            ],
         },
         
         {
@@ -6058,8 +6037,8 @@ types={
             name:'Bore',rarity:1,list:9,
             levels:[
                 {effect:[1],attack:926,cost:1,target:[2,1,2],spec:[],class:1},
-                {effect:[1],attack:926,cost:1,target:[2,1,2],spec:[22],class:1},
-                {effect:[1],attack:926,cost:0,target:[2,1,2],spec:[22],class:1},
+                {effect:[1],attack:926,cost:1,target:[2,1,2],spec:[2],class:1},
+                {effect:[1],attack:926,cost:0,target:[2,1,2],spec:[2],class:1},
             ],
         },{
             name:'Endure',rarity:2,list:9,
@@ -6676,7 +6655,7 @@ types={
             name:'Wander',rarity:0,list:10,
             levels:[
                 {effect:[1],attack:1011,cost:0,target:[0],spec:[],class:3},
-                {effect:[1],attack:1011,cost:0,target:[0],spec:[22],class:3},
+                {effect:[1],attack:1011,cost:0,target:[0],spec:[2],class:3},
                 {effect:[1],attack:1011,cost:0,target:[0],spec:[2,22],class:3},
             ],
         },{
@@ -7210,7 +7189,7 @@ types={
             name:'0 - The\nFool',rarity:2,list:14,
             levels:[
                 {effect:[],attack:1095,cost:0,target:[0],spec:[1,2],class:4},
-                {effect:[],attack:1095,cost:0,target:[0],spec:[1,2,22],class:4},
+                {effect:[],attack:1095,cost:0,target:[0],spec:[2],class:4},
                 {effect:[],attack:1095,cost:0,target:[0],spec:[2,22],class:4},
             ],
         },{
@@ -7749,6 +7728,50 @@ types={
                 {effect:[16,3],attack:80,cost:1,target:[2,1,6],spec:[25],class:1},
                 {effect:[20,4],attack:80,cost:1,target:[2,1,6],spec:[25],class:1},
             ],
+        },{
+            name:'Better\nCard',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:1191,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1191,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1191,cost:0,target:[0],spec:[],class:4},
+            ],
+        },
+        
+        {
+            name:'Placeholder\nCommon',rarity:0,list:-1,
+            levels:[
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Placeholder\nUncommon',rarity:1,list:-1,
+            levels:[
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Placeholder\nRare',rarity:2,list:-1,
+            levels:[
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Colorless\nUncommon',rarity:1,list:-1,
+            levels:[
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Colorless\nRare',rarity:2,list:-1,
+            levels:[
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1192,cost:0,target:[0],spec:[],class:4},
+            ],
         },
         
         {
@@ -7817,9 +7840,9 @@ types={
         },{
             name:'Proxy\nTeleport',rarity:-1,list:0,
             levels:[
+                {effect:[],attack:54,cost:0,target:[6],spec:[1,4],class:3},
                 {effect:[],attack:54,cost:0,target:[6],spec:[1],class:3},
-                {effect:[],attack:54,cost:0,target:[6],spec:[1,22],class:3},
-                {effect:[],attack:674,cost:0,target:[9],spec:[1,22],class:3},
+                {effect:[],attack:674,cost:0,target:[9],spec:[1],class:3},
             ],
         },{
             name:'Use Teleporter\nStart',rarity:-1,list:0,
@@ -9306,6 +9329,7 @@ types={
         {name:'Stocks',internal:'Currency Per Room',id:166,rarity:-1,list:0,description:'Gain 10 Currency Every Room'},
         {name:'Survival Notes',internal:'Random Fatigue Cost Decrease',id:167,rarity:-1,list:0,description:'25% of Fatigue is Cheaper'},
         {name:'Menger Square',internal:'No Effect',id:168,rarity:-1,list:-1,description:'Ran Out of Relics to Spawn'},
+        {name:'Placeholder Relic',internal:'Placeholder',id:169,rarity:-1,list:-1,description:'${description()}'},
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,description:'None'},
@@ -11331,6 +11355,16 @@ It seems the other tents are just shops, but this one is a "Fortune Teller".
 Entering, you're offered a chance to glimpse your future...`,
                     option:['View'],
                     optionDesc:['Gain 1 Card'],
+                    link:[-1],
+                },
+            ],
+        },{
+            name:'Placeholder Event',id:62,list:-1,
+            pages:[
+                {
+                    desc:'${description()}',
+                    option:['Exit'],
+                    optionDesc:[''],
                     link:[-1],
                 },
             ],

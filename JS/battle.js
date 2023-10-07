@@ -183,6 +183,9 @@ class battle{
                 this.combatantManager.deproxyCombatants()
                 this.updateTargetting()
             break
+            case 'title':
+                this.tutorialManager.active=false
+            break
         }
     }
     endReplay(){
@@ -823,7 +826,6 @@ class battle{
                 this.overlayManager.display()
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)
-                this.tutorialManager.display()
                 this.displayCurrency()
                 if(this.anim.defeat>0){
                     this.layer.fill(0,this.anim.defeat)
@@ -1033,6 +1035,7 @@ class battle{
                 }
             break
         }
+        this.tutorialManager.display()
     }
     update(scene){
         switch(scene){
@@ -1105,7 +1108,6 @@ class battle{
                 this.overlayManager.update()
                 this.relicManager.update(stage.scene)
                 this.itemManager.update(stage.scene)
-                this.tutorialManager.update()
                 for(let a=0,la=this.anim.turn.length;a<la;a++){
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
@@ -1336,6 +1338,7 @@ class battle{
                 }
             break
         }
+        this.tutorialManager.update()
     }
     onClick(scene){
         switch(scene){
@@ -1477,7 +1480,6 @@ class battle{
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)
                         this.itemManager.onClick(stage.scene)
-                        this.tutorialManager.onClick()
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
@@ -1600,6 +1602,7 @@ class battle{
                 }
             break
         }
+        this.tutorialManager.onClick()
     }
     onKey(scene,key,code){
         switch(scene){
@@ -1749,7 +1752,6 @@ class battle{
             case 'battle':
                 if(!this.result.defeat){
                     this.itemManager.onKey(stage.scene,key,code)
-                    this.tutorialManager.onKey(key,code)
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onKey(key,code)
                     }else if(this.turn.main<this.players){
@@ -1926,5 +1928,6 @@ class battle{
                 }
             break
         }
+        this.tutorialManager.onKey(key,code)
     }
 }

@@ -53,13 +53,19 @@ class relicManager{
         for(let a=0,la=this.complete.length;a<la;a++){
             this.complete[a]=false
         }
-        let relics=copyArrayStack(this.listing.relic)
-        let possible=[0,0,0,1,1,2]
-        for(let a=0,la=this.active[109]>0?5:3;a<la;a++){
-            let rarity=possible[floor(random(0,possible.length))]
-            let index=floor(random(0,relics[rarity].length))
-            this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
-            relics[rarity].splice(index,1)
+        if(this.battle.tutorialManager.active){
+            for(let a=0,la=3;a<la;a++){
+                this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findInternal('Placeholder',types.relic),2))
+            }
+        }else{
+            let relics=copyArrayStack(this.listing.relic)
+            let possible=[0,0,0,1,1,2]
+            for(let a=0,la=this.active[109]>0?5:3;a<la;a++){
+                let rarity=possible[floor(random(0,possible.length))]
+                let index=floor(random(0,relics[rarity].length))
+                this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
+                relics[rarity].splice(index,1)
+            }
         }
     }
     setupBossStash(){
@@ -67,12 +73,18 @@ class relicManager{
         for(let a=0,la=this.complete.length;a<la;a++){
             this.complete[a]=false
         }
-        let relics=copyArrayStack(this.listing.relic)
-        for(let a=0,la=3;a<la;a++){
-            let rarity=4
-            let index=floor(random(0,relics[rarity].length))
-            this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,relics[rarity][index],2))
-            relics[rarity].splice(index,1)
+        if(this.battle.tutorialManager.active){
+            for(let a=0,la=3;a<la;a++){
+                this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findInternal('Placeholder',types.relic),2))
+            }
+        }else{
+            let relics=copyArrayStack(this.listing.relic)
+            for(let a=0,la=3;a<la;a++){
+                let rarity=4
+                let index=floor(random(0,relics[rarity].length))
+                this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2+50-la*50+a*100,this.layer.height/2-45,relics[rarity][index],2))
+                relics[rarity].splice(index,1)
+            }
         }
     }
     addRelic(type,player){

@@ -10,7 +10,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    current.tutorialManager.setupTutorial(1)
+    current.tutorialManager.setupTutorial(2)
 
     /*for(let a=1;a<=60;a++){
         current.relicManager.addRelic(a,0)

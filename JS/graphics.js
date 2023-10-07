@@ -2335,7 +2335,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-81,lock:0},{top:90,bottom:84,lock:0}]
 				break
-				case 'Edgar': case 'Chip':
+				case 'Edgar': case 'Chip': case 'Joe':
 					p1.position.y-=2.5
 					switch(p1.name){
 						case 'Edgar':
@@ -2456,7 +2456,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
-				case 'Edgar': case 'Chip':
+				case 'Edgar': case 'Chip': case 'Joe':
 					p1.position.y+=10
 					p1.anim.mouth.y++
 					p1.anim.legs=[
@@ -2605,7 +2605,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:165,lock:0}]
 					p1.spin.arms=[{top:-75-a*15,bottom:-16-a*48,lock:0},{top:75+a*15,bottom:-30+a*120,lock:0}]
 				break
-				case 'Edgar': case 'Chip':
+				case 'Edgar': case 'Chip': case 'Joe':
 					p1.position.y-=42.5
 					p1.anim.legs=[
 						{top:6,bottom:6,length:{top:18,bottom:18}},
@@ -2735,7 +2735,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
 				break
-				case 'Edgar': case 'Chip':
+				case 'Edgar': case 'Chip': case 'Joe':
 					p1.position.y-=a*22.5
 					p1.anim.legs=[
 						{top:3+a*24,bottom:6+a*6,length:{top:17,bottom:17}},
@@ -2861,7 +2861,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
-				case 'Edgar': case 'Chip':
+				case 'Edgar': case 'Chip': case 'Joe':
 					p1.anim.legs=[
 						{top:12-a*3,bottom:a*3,length:{top:17,bottom:17}},
 						{top:12-a*3,bottom:a*3,length:{top:17,bottom:17}}
@@ -2996,7 +2996,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90+a*60,bottom:-75+a*60,lock:0},{top:30+a*60,bottom:15+a*60,lock:0}]
 				break
-				case 'Edgar': case 'Chip':
+				case 'Edgar': case 'Chip': case 'Joe':
 					p1.spin.mouth-=180
 					p1.anim.mouth.x++
 					p1.anim.mouth.y-=3
@@ -3117,7 +3117,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
 					p1.spin.arms=[{top:-120,bottom:-135,lock:0},{top:93,bottom:75,lock:0}]
 				break
-				case 'Edgar': case 'Chip':
+				case 'Edgar': case 'Chip': case 'Joe':
 					p1.parts.mouth-=4
 					p1.anim.mouth.x+=3
 					p1.anim.mouth.y--
@@ -4189,9 +4189,15 @@ function setupBackground(type,layer){
 			layer.text('KEYWORDS',layer.width/2-382.5,layer.height*0.5-200)
 			layer.text('2 PLAYER',layer.width/2-382.5,layer.height*0.5-110)
 			layer.text('ENEMIES',layer.width/2-382.5,layer.height*0.5-20)
-			layer.text('CARD MANIPULATION',layer.width/2-382.5,layer.height*0.5+70)
+			layer.text('STATUSES',layer.width/2-382.5,layer.height*0.5+70)
 			for(let a=0,la=game.playerNumber;a<la;a++){
 				layer.text(types.combatant[a+1].name.toUpperCase(),layer.width/2+317.5,layer.height*0.5-380+a*90)
+			}
+			layer.textSize(60)
+			for(let a=0,la=10;a<la;a++){
+				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
+				layer.text('Mechanics',layer.width/2-355+a,layer.height*0.1+a)
+				layer.text('Characters',layer.width/2+345+a,layer.height*0.1+a)
 			}
 		break
 

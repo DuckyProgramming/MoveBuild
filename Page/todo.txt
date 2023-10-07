@@ -7,9 +7,11 @@ tier list cards
 blind mode: card name only; no information text
 blackjack draw system
 
+ORGANIZE INTO ONE EVENT:
 blammo: do damage, if 2 at once, autoplay
 lose 1 card, if you have 0 energy get 2 energy (lollipop)
-heal, convert excss to damage
+heal, convert excess to damage
+
 dice gun (low dice)
 discount step -> discount strike
 

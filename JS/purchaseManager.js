@@ -8,7 +8,26 @@ class purchaseManager{
         this.purchases=[]
         switch(type){
             case 0:
-                if(this.battle.players==1){
+                if(this.battle.tutorialManager.active){
+                    let group=[0,0,0,0,1,1,1,2]
+                    let cost=[[60,75],[100,125],[160,200]]
+                    for(let a=0,la=group.length;a<la;a++){
+                        this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,112.5+floor(a/4)*187.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[findName(['Placeholder\nCommon','Placeholder\nUncommon','Placeholder\nRare'][group[a]],types.card),0,0]))
+                    }
+                    group=[1,1,2]
+                    cost=[[120,150],[180,225],[300,375]]
+                    for(let a=0,la=group.length;a<la;a++){
+                        this.purchases.push(new purchase(this.layer,this.battle,0,100+a*150,487.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[findName(['','Colorless\nUncommon','Colorless\nRare'][group[a]],types.card),0,0]))
+                    }
+                    group=[0,0,0,1,1,1,2,2,3,3]
+                    cost=[[160,200],[240,300],[400,500],[200,250]]
+                    let list=findInternal('Placeholder',types.relic)
+                    let index=floor(random(0,group.length))
+                    for(let a=0,la=group.length;a<la;a++){
+                        this.purchases.push(new purchase(this.layer,this.battle,0,700+(a%2)*100,100+floor(a/2)*100,3,[this.battle.relicManager.hasRelic(85,-1)&&a==index?0:round(random(cost[group[a]][0],cost[group[a]][1]))],[list]))
+                    }
+                    this.purchases.push(new purchase(this.layer,this.battle,0,550,487.5,2,[200],[]))
+                }else if(this.battle.players==1){
                     let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
                     let group=[0,0,0,0,1,1,1,2]
                     let cost=[[60,75],[100,125],[160,200]]

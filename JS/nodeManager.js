@@ -74,6 +74,20 @@ class nodeManager{
             }
         }
     }
+    setupTutorialMap(){
+        this.nodes=[]
+        let list=[3,4,5,6]
+        for(let a=0,la=4;a<la;a++){
+            this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150,0,a,game.allMap>=0?game.allMap:list[a]))
+        }
+        for(let a=0,la=this.nodes.length;a<la;a++){
+            for(let b=0,lb=this.nodes.length;b<lb;b++){
+                if(this.nodes[a].tilePosition.y==this.nodes[b].tilePosition.y-1){
+                    this.nodes[a].connections.push(b)
+                }
+            }
+        }
+    }
     scrollDown(scroll){
         this.nodes.forEach(node=>node.scroll+=scroll-this.scroll)
         this.scroll=scroll
@@ -109,15 +123,20 @@ class nodeManager{
                 this.battle.setupShop()
             break
             case 5:
-                let send=game.ascend>=15
-                ?this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
-                :this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
-                if(send==5){
-                    this.battle.relicManager.activate(7,[type])
+                if(this.battle.tutorialManager.active){
                     transition.scene='event'
-                    this.battle.setupEvent()
+                    this.battle.setupSpecificEvent(findName('Placeholder Event',types.event))
                 }else{
-                    this.enterNode(send,y,true)
+                    let send=game.ascend>=15
+                    ?this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
+                    :this.battle.relicManager.hasRelic(98,-1)?[3,4,5,5,5,5,5,5][floor(random(0,8))]:[0,0,0,0,0,1,3,4,5,5,5,5,5,5,5,5][floor(random(0,16))]
+                    if(send==5){
+                        this.battle.relicManager.activate(7,[type])
+                        transition.scene='event'
+                        this.battle.setupEvent()
+                    }else{
+                        this.enterNode(send,y,true)
+                    }
                 }
             break
             case 6:

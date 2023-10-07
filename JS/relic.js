@@ -1243,6 +1243,11 @@ class relic{
                     this.layer.rect(0,-12,27,3)
                     this.layer.rect(0,12,27,3)
                 break
+                case 'Placeholder':
+                    this.layer.fill(100,this.fade)
+                    this.layer.quad(-6,-8,-8,-6,6,8,8,6)
+                    this.layer.quad(-6,8,-8,6,6,-8,8,-6)
+                break
 
             }
             if(value){

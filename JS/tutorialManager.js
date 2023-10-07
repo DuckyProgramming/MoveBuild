@@ -72,6 +72,38 @@ Relics (permanent buff), Items (single use), Upgrade a Card`,
 ]
             break
             case 1:
+                transition.scene='map'
+                game.player=[0]
+                game.deck=[0]
+                this.battle.player=[0]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.nodeManager.setupTutorialMap()
+                this.popups=[
+                    [],
+                    [],
+                    [],
+                    [{x:26,y:550,size:30},{x:26,y:578,size:30}],
+                    [],
+                    [],
+                    [],
+                ]
+                this.pages=[
+`Most tiles will be either fights, elites or bosses.
+Those tiles all involve combat against various levels of enemies.`,
+`Here are some of the non-combat nodes.
+First, enter the rest site.`,
+`Rest sites give you several options for benefits.
+Typically, you get Heal (HP) and Upgrade (a card) as options.
+You may get more option from relics.`,
+`At a shop, you can buy cards, remove a card, or buy relics.
+Alternate options at the shop (highlighted) include:
+Selling relics, Heal (10 HP for 60 Currency)`,
+`Unknowns are completely random.
+They may be an event, which vary by quality.`,
+`Finally, the stash gives you a relic for free.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 2:
             break
@@ -142,10 +174,6 @@ Relics (permanent buff), Items (single use), Upgrade a Card`,
                             {type:1,value:[0,0,8]},
                             {type:0,value:[50]}]])
                     break
-                }
-            break
-            case 1:
-                switch(this.page){
                 }
             break
             case 2:
@@ -242,6 +270,7 @@ Relics (permanent buff), Items (single use), Upgrade a Card`,
             if(this.page==this.pages.length-1){
                 transition.trigger=true
                 transition.scene='title'
+                transition.convert=true
             }else{
                 this.page++
                 this.nextPage()
@@ -253,6 +282,7 @@ Relics (permanent buff), Items (single use), Upgrade a Card`,
             if(this.page==this.pages.length-1){
                 transition.trigger=true
                 transition.scene='title'
+                transition.convert=true
             }else{
                 this.page++
                 this.nextPage()

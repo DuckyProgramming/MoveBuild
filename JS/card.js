@@ -1337,6 +1337,8 @@ class card{
             case 1188: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}*Balance`; break
             case 1189: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nDiscards to Draw Pile`; break
             case 1190: string+=`Gain ${effect[0]} Currency\nAll Enemies Gain ${effect[1]} Strength`; break
+            case 1191: string+=`Just Better`; break
+            case 1192: string+='${this.description()}'; break
 
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
