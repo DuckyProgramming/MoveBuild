@@ -883,6 +883,14 @@ function quickAddL(name,level){
 		return 'Invalid'
 	}
 }
+function quickAddLC(name,level,color){
+	if(findName(name,types.card)>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),level,color)
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
 function quickAddR(name){
 	if(findName(name,types.card)>=0){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].reserve.add(findName(name,types.card),0,0)

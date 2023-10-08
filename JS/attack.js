@@ -119,10 +119,10 @@ class attack{
             case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631:
             case 660: case 663: case 664: case 666: case 685: case 686: case 687: case 688: case 690: case 693:
             case 694: case 695: case 696: case 700: case 701: case 702: case 703: case 704: case 705: case 706:
-            case 717: case 750: case 802: case 803: case 804: case 805: case 808: case 812: case 813: case 814:
-            case 815: case 816: case 817: case 823: case 923: case 955: case 963: case 973: case 975: case 976:
-            case 977: case 978: case 979: case 997: case 998: case 999: case 1024: case 1048: case 1071: case 1080:
-            case 1081: case 1084: case 1085: case 1086: case 1104: case 1119: case 1136: case 1137: case 1143: case 1185:
+            case 717: case 750: case 802: case 803: case 804: case 805: case 808: case 812: case 816: case 817:
+            case 823: case 923: case 955: case 963: case 973: case 975: case 976: case 977: case 978: case 979:
+            case 997: case 998: case 999: case 1024: case 1048: case 1071: case 1080: case 1081: case 1084: case 1085:
+            case 1086: case 1104: case 1119: case 1136: case 1137: case 1143: case 1185:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -254,7 +254,7 @@ class attack{
                     this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
                 }
             break
-            case 328: case 572: case 707: case 708: case 709:
+            case 328: case 572: case 707: case 708: case 709: case 813: case 814: case 815:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.targetVariant=distTargetCombatant(0,this,this.targetTile)>0
@@ -2274,7 +2274,9 @@ class attack{
                     break
                     case 836:
                         let encode=this.lastPlayed[1]
-                        this.userManager.hand.add(encode[0],encode[1],encode[2])
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(encode[0],encode[1],encode[2])
+                        }
                     break
                     case 838:
                         this.userCombatant.statusEffect('Block Spark',this.effect[0])
@@ -3743,7 +3745,7 @@ class attack{
                     break
                     case 878:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.combatantManager.damageArea(this.effect[1],this.user,-1,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[1],this.user,thsi.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 881:
                         this.targetCombatant.statusEffect('Burn',this.effect[0])

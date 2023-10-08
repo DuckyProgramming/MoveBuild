@@ -1003,7 +1003,7 @@ class card{
             case 851: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAmplify:\nReturn ${effect[1]} Random Card${effect[1]!=1?`s`:``}\nto Your Hand\nFrom Discard Pile`; break
             case 852: string+=`Gain ${effect[0]} Charge\nPer Turn`; break
             case 853: string+=`Add ${this.calculateEffect(1,3)} Block\nWhere X = Charge${effect[0]>0?`+${effect[0]}`:``}`; break
-            case 854: string+=`Draw ${effect[0]} More\nCard${effect[0]!=1?`s`:``} Per Turn\n${effect[1]} Balance`; break
+            case 854: string+=`Draw ${effect[0]} More\nCard${effect[0]!=1?`s`:``} Per Turn\nand Add a Burn to\nHand Per Turn`; break
             case 855: string+=`When You Amplify,\nPut a Card in Discard\nPile in Your Hand`; break
             case 856: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nAmplify 2:\nInstantly Kill Those\nWith ${effect[1]} or Less Health`; break
             case 857: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Spark Played`; break
@@ -1302,7 +1302,7 @@ class card{
             case 1152: string+=`Put a Card in Draw\nPile in Your Hand\nAdd ${this.calculateEffect(effect[0],3)} Block Where\nX = Cost of Card`; break
             case 1153: string+=`Roll ${effect[0]} Di${effect[0]!=1?`c`:``}e and\nDeal That Much Damage\nYou Cannot Move\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
             case 1154: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle a Diamond\ninto Draw Hand`; break
-            case 1155: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Random (Temporary)\nCurse to Hand`; break
+            case 1155: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Random\n(Temporary)\nCurse to Hand`; break
             case 1156: string+=`Apply ${effect[0]} Weak\nApply ${effect[1]} Frail\nApply ${effect[2]} Vulnerable\nApply ${effect[3]} Poison`; break
             case 1157: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Loses Health\nEqual to its Bleed`; break
             case 1158: string+=`Add ${effect[0]} Random Cards\nof Equivalent Level\nContaining 'Strike' to Hand`; break
@@ -1345,6 +1345,7 @@ class card{
             case 1197: string+=`Gain ${effect[0]} Strength`; break
             case 1198: string+=`Gain ${effect[0]} Dexterity`; break
             case 1199: string+=`Gain ${effect[0]} Buffer`; break
+            case 1200: string+=`Used by ${types.combatant[this.color].name}`; break
 
             /*
             case 1: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
@@ -1760,7 +1761,7 @@ class card{
                 }
                 this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(10)
-                this.layer.text(this.name+multiplyString('+',this.level),0,-this.height/2+15)
+                this.layer.text(this.name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,-this.height/2+15)
                 this.layer.fill(0,this.fade)
                 this.layer.textSize(8)
                 if(this.name=='Charred\nLizard'){
@@ -1921,10 +1922,12 @@ class card{
             this.afford=false
             this.energyAfford=false
         }
-        if(this.deSize&&this.size>0||this.downSize&&this.size>0.6||!this.upSize&&this.size>1){
-            this.size=round(this.size*5-1)/5
-        }else if(!this.deSize&&(!this.downSize&&this.size<1||this.size<0.6||this.upSize&&this.size<1.5)){
-            this.size=min(round(this.size*5+1)/5,1.5)
+        for(let a=0,la=game.animRate;a<la;a++){
+            if(this.deSize&&this.size>0||this.downSize&&this.size>0.6||!this.upSize&&this.size>1){
+                this.size=round(this.size*5-1)/5
+            }else if(!this.deSize&&(!this.downSize&&this.size<1||this.size<0.6||this.upSize&&this.size<1.5)){
+                this.size=min(round(this.size*5+1)/5,1.5)
+            }
         }
         this.fade=smoothAnim(this.fade,!this.deFade,0,1,5)
         this.anim.select=smoothAnim(this.anim.select,this.select,0,1,5)

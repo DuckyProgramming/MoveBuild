@@ -6097,7 +6097,7 @@ types={
                 {effect:[14,1],attack:1014,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Chink',rarity:1,list:9,
+            name:'Dislink',rarity:1,list:9,
             levels:[
                 {effect:[7,1],attack:1015,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[11,1],attack:1015,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -7771,6 +7771,13 @@ types={
                 {effect:[],attack:0,cost:0,target:[0],spec:[5,22],class:4},
             ],
         },{
+            name:'Placeholder\n$colorcharacter Card',rarity:-1,list:0,
+            levels:[
+                {effect:[],attack:1200,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:1200,cost:1,target:[0],spec:[],class:4},
+                {effect:[],attack:1200,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
             name:'Apply\nWeak',rarity:-1,list:0,
             levels:[
                 {effect:[1],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
@@ -7780,16 +7787,16 @@ types={
         },{
             name:'Apply\nVulnerable',rarity:-1,list:0,
             levels:[
-                {effect:[1],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
-                {effect:[2],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
-                {effect:[3],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[1],attack:1195,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[2],attack:1195,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[3],attack:1195,cost:1,target:[2,1,1],spec:[],class:4},
             ],
         },{
             name:'Apply\nStun',rarity:-1,list:0,
             levels:[
-                {effect:[1],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
-                {effect:[2],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
-                {effect:[3],attack:1194,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[1],attack:1196,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[2],attack:1196,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[3],attack:1196,cost:1,target:[2,1,1],spec:[],class:4},
             ],
         },{
             name:'Get\nStrength',rarity:-1,list:0,
@@ -13752,6 +13759,31 @@ Entering, you're offered a chance to glimpse your future...`,
             player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
             enemy:[
                 {position:{x:0,y:0},name:'MoveDummy'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialStatus',
+            player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'AttackDummy'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialTactic',
+            player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'NumberDummy'},
+                {position:{x:3,y:3},name:'NumberDummy'},
+                {position:{x:3,y:4},name:'NumberDummy'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialBlank',
+            player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
+            enemy:[
             ],reinforce:[
             ],
         },
