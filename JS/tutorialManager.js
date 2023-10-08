@@ -26,6 +26,8 @@ class tutorialManager{
                 this.battle.deck=[0]
                 this.battle.create()
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                 this.popups=[
                     [],
@@ -119,6 +121,8 @@ They may be an event, which vary by quality.`,
                 this.battle.energy.gen[0]=99
                 this.battle.energy.base[0]=99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
                 this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
@@ -154,6 +158,8 @@ Sometimes, they have passive effects, other times, they are useless.`,
                 this.battle.energy.gen[0]=99
                 this.battle.energy.base[0]=99
                 this.battle.setupBattle(types.encounter[findName('TutorialHotkey',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
                 this.battle.nodeManager.setupTutorialMap()
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                 this.popups=[[],[],[],[],[],[],[],[],[]]
@@ -189,6 +195,8 @@ Try these out in those places.`,
                 this.battle.energy.gen[0]=99
                 this.battle.energy.base[0]=99
                 this.battle.setupBattle(types.encounter[findName('TutorialStatus',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
                 this.popups=[
@@ -272,7 +280,8 @@ enemy to play them in.`,
                 this.battle.energy.gen[0]=99
                 this.battle.energy.base[0]=99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
-                this.battle.nodeManager.setupTutorialMap()
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
                 this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
@@ -309,7 +318,8 @@ Each one has a different utility, so pick your pack wisely.`,
                 this.battle.energy.gen[0]=99
                 this.battle.energy.base[0]=99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
-                this.battle.nodeManager.setupTutorialMap()
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                 this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
@@ -346,7 +356,8 @@ But still, Fatigue remains an issue during longer battles.`,
                 this.battle.energy.gen[0]=99
                 this.battle.energy.base[0]=99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
-                this.battle.nodeManager.setupTutorialMap()
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(100)
                 this.popups=[[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
@@ -376,8 +387,86 @@ Because they rarely face the player, confused enemies are not really a threat.`,
                 ]
             break
             case 9:
+                transition.scene='battle'
+                game.player=[4]
+                game.deck=[0]
+                this.battle.player=[4]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialStatus',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(35)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=5
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Certes, the Phantasm, is one of the more confined characters,
+but while she may have limited abilities, they can be build in many ways.
+her gimmicks include: Shivs, Choice Discard, Manipulatable Cards.`,
+`Shivs are the central mechanic of her strategy. They are a free, low-damage card.
+The mechanics around shivs relate to getting more of them, and increasing their damage.
+Getting Shivs as Certes is not hard, but getting them economically is a challenge.`,
+`It is important to not get to many Shivs, as they are not Ethereal.
+If a target for a Shiv is not found, it will remain in your deck, wasting draw.`,
+`Choice discard refers to being able to choose a certain number of cards to discard.
+This appears as a red outline over your cards as long as discarding remains active.`,
+`Sometimes, this can be useful just to get rid of cards,
+but some cards benefit from being discarded, or another card being discarded.`,
+`While not exactly a gimmick, many cards relate to the motif of changing values.
+These can either gain or lose cost due to stimuli, or rely on the card context.`,
+`Some of these function best after something else has happened,
+or when the card states are a certain way.`,
+`There's also a minor gimmick with X cost cards and gaining energy.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 10:
+                transition.scene='battle'
+                game.player=[5]
+                game.deck=[0]
+                this.battle.player=[5]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(100)
+                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Azis, the Executor, is one of the harder characters to play.
+Nearly all of his strategies revolve around Orbs, his primary gimmick.`,
+`Orbs are held in orb slots. Typically, you have four.
+Holding an orb means putting in the first available slot.`,
+`If no slot is available, the first orb you have will be evoked.
+Evoke causes an orb's effect to trigger, the orb is then removed.
+Orbs can be evoked in other ways, such as through cards.`,
+`When an orb is evoked because you are out of slots, it evokes on yourself.
+Most evoking cards let you choose between yourself and some enemies.`,
+`The effect of an orb when evoked varies by type of orb.
+Some do damage, some give block, some are buffs, some are nerfs.
+The following are the types of orbs:`,
+`The basic orb does 12 damage.
+The shield orb adds 16 block.
+The explosive orb deals 20 splash damage.`,
+`The energy orb gives 3 energy.
+The dark orb's damage increases every turn, starting at 6 and increasing by 6.
+The lightning orb deals 8 damage, and also deals 4 passive damage per turn.`,
+`The light orb draws 4 cards.
+The fire orb deals 30 damage, but every turn adds a burn to your deck.
+The ice orb applies 1 freeze (effectively a stun).`,
+`The buff orb applies 3 strength.
+The nerf orb applies 3 weak.
+The poison orb applies 4 poison.`,
+`Orbs can be improved through focus,
+and enemies can be made weak to orbs using lock-on.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 11:
             break
@@ -600,6 +689,7 @@ Because they rarely face the player, confused enemies are not really a threat.`,
                         this.battle.cardManagers[0].hand.add(findName('Combo\nFinish',types.card),0,1)
                     break
                     case 3:
+                        this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -614,6 +704,7 @@ Because they rarely face the player, confused enemies are not really a threat.`,
                         this.battle.cardManagers[0].hand.add(findName('Ready\nUp',types.card),0,1)
                     break
                     case 5:
+                        this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -633,6 +724,7 @@ Because they rarely face the player, confused enemies are not really a threat.`,
                         this.battle.cardManagers[0].hand.add(findName('Overlook',types.card),0,1)
                     break
                     case 4:
+                        this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -678,10 +770,88 @@ Because they rarely face the player, confused enemies are not really a threat.`,
             break
             case 9:
                 switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Shiv',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Blade\nDance',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Knifing',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Borrowed\nBlade',types.card),0,4)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Survivor',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Prepared',types.card),0,4)
+                    break
+                    case 4:
+                        this.battle.cardManagers[0].hand.add(findName('Eviscerate',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Tactician',types.card),0,4)
+                    break
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Masterful\nStab',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Trade',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Finale',types.card),0,4)
+                    break
+                    case 7:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(1000)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Malaise',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Square\nStrike',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Incision',types.card),0,4)
+                    break
                 }
             break
             case 10:
                 switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Charge',types.card),0,5)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].hand.add(findName('Dualcast',types.card),0,5)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Charge',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Shield',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Detonate',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Dualcast',types.card),0,5)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Energize',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Darkness',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Zap',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Dualcast',types.card),0,5)
+                    break
+                    case 7:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Illuminate',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Enflame',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Nucleation',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Dualcast',types.card),0,5)
+                    break
+                    case 8:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Buffball',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Nerfball',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Inject',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Dualcast',types.card),0,5)
+                    break
+                    case 9:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Converge',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Node',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Charge',types.card),0,5)
+                        this.battle.cardManagers[0].hand.add(findName('Dualcast',types.card),0,5)
+                    break
                 }
             break
             case 11:

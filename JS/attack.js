@@ -3745,7 +3745,7 @@ class attack{
                     break
                     case 878:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.combatantManager.damageAreaID(this.effect[1],this.user,thsi.userCombatant.id,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[1],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 881:
                         this.targetCombatant.statusEffect('Burn',this.effect[0])

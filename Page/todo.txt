@@ -25,6 +25,7 @@ ccp membership card
 
 mirror wall
 
+2 range shivs
 
 shooting star (damage, minor self confuse)
 dark shadow (damage, random self status)
