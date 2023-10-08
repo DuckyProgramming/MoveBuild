@@ -892,7 +892,7 @@ class card{
             case 740: string+=`Enter Wrath`; break
             case 741: string+=`Enter Calm`; break
             case 742: string+=`Enter Haste`; break
-            case 743: string+=`Enter Strudy`; break
+            case 743: string+=`Enter Sturdy`; break
             case 744: string+=`Gain ${effect[0]} Faith`; break
             case 745: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd a Safety\nto Hand`; break
             case 746: string+=`Wrath: Apply ${effect[0]} Weak\nElse: Enter Wrath`; break

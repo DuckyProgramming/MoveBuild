@@ -469,10 +469,126 @@ and enemies can be made weak to orbs using lock-on.`,
                 ]
             break
             case 11:
+                transition.scene='battle'
+                game.player=[6]
+                game.deck=[0]
+                this.battle.player=[6]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Donakho, the Builder is a unique character, as he doesn't do everything himself.
+He can build constructs, which fight on your side. These constructs vary in use.`,
+`First, to build constructs, you need both metal and a blueprint.
+Metal is a basic resource that can be gained in a number of ways.
+Blueprints are a type of card that costs metal and creates a construct.`,
+`Get some metal and build a turret.
+Constructs attack during the enemies' turn. They do not move.
+Kill the enemy using it.`,
+`After building a construct, you get Unbuild.
+Unbuild can be used to destroy a construct if it gets in your way.`,
+`Constructs do not all attack enemies. Many are defensive in nature.
+Some constructs also provide a buff to the player.
+No constructs are intended to be relied upon.`,
+`For the ones that do attack, they have very little control over their targetting.
+they will attack anything other than other constructs and yourself.
+(e.g. They can target medics, and allies on 2-player)`,
+`Building a lot of constructs offers great utility.
+They will, however, cost metal, and there is only so much space to build.
+Constructs must also be built on empty tiles, so you cannot build while surrounded.`,
+`The builder also has minor card motif with card modification.
+This covers changing other cards in your hand.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 12:
+                transition.scene='battle'
+                game.player=[7]
+                game.deck=[0]
+                this.battle.player=[7]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Setsuna, the Duelist, is a character that can be focused on many things.
+This occurs by changing stances, with each stance having a specific focus.
+Namely, the stances are: Wrath, Calm, Haste, Sturdy, Divinity. No stance also exists.`,
+`Entering a stance causes you to be in that stance. Entering a stance from itself counts.
+Exiting stance means not being in that stance. Exit Stance as a keyword removes stance.
+As in, Exit Stance puts you in no stance, but stances can be exited to other stances`,
+`Wrath is a stance that focuses on aggression. It doubles damage dealt during your turn,
+but also doubles damage taken. It is very powerful on high-damage turns.
+However, the added vulnerability makes it important to have a way to get out of Wrath.`,
+`Calm is the setup stance. It has no passive benefits or downsides.
+However, when you leave calm, you gain 2 energy. Rapid entry and exit can farm energy,
+or you can stay in calm to get a big turn later.`,
+`Haste is the movement stance. While in Haste, you get a Speed every turn.
+However, you cannot attack at all in Haste. Being able to leave it is very important.`,
+`Sturdy is the defense stance. You take 60% less damage in Haste.
+However, you deal 40% less damage in Sturdy. While it is not required,
+being able to leave Sturdy is always beneficial.`,
+`Divinity is the final stance. There are few ways to instantly enter Divinity.
+Entering divinity requires building up 10 faith, which is gained through cards.
+When 10 faith is gained, you lose 10 faith and enter Divinity.`,
+`You deal 3x damage in Divinity, and when you enter Divinity,
+you also gain 3 energy and draw 3 cards. Divinity is very powerful.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 13:
+                transition.scene='battle'
+                game.player=[8]
+                game.deck=[0]
+                this.battle.player=[8]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(15)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Airi, the Enchanter, is built around a few distinct archetypes.
+Each of these is intended to easily mix with the others, so a deck can use multiple.
+They are: Amplify, Burns, and Charge.`,
+`Of the characters, Airi has the least health. There's no real counter for this;
+she's just harder to play. But building synergies with her is very easy,
+as most of her cards are able to fit together in some way.`,
+`Amplify is the first gimmick. It is a bonus effect that improves a card,
+However, they cost 1 extra energy to activate. If you can't afford it,
+nothing unique will happen, it will just be the regular card.`,
+`Some amplifies are marked as "2" which means they spend 2 energy instead.
+Be aware that the energy will always be spent if possible,
+so there are times where amplify is detrimental.`,
+`Burn is a status, that causes you to take 2 damage at the end of your turn,
+if it remains in your hand. Burn can often be afflicted by enemies.`,
+`But as Airi, you can use burn to your advantage. Some cards benefit from Burns,
+and other cards create more Burns to use. But be careful, as Burn is still a status
+and still wastes draw, so plan accordingly.`,
+`Charge is just a number, similar to combo, metal, or ammo. It increases by 1 each turn.
+While charge does grow passively, it may also be obtained through cards.
+Various cards use charge, but no card requires charge to be played.`,
+`She also has a small gimmick regarding relics.
+She can capitalize off owning them or even gain more.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 14:
             break
@@ -599,7 +715,13 @@ and enemies can be made weak to orbs using lock-on.`,
             break
             case 5:
                 switch(this.page){
+                    case 1:
+                        for(let a=0,la=11;a<la;a++){
+                            this.battle.cardManagers[0].hand.add(findName('Placeholder\n$colorcharacter Card',types.card),0,a)
+                        }
+                    break
                     case 2:
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Initiative',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Push',types.card),0,types.card[findName('Push',types.card)].list)
@@ -615,6 +737,7 @@ and enemies can be made weak to orbs using lock-on.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.combatantManager.summonCombatantDefinite({x:2,y:3},findName('NumberDummy',types.combatant),150)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Shiv',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Positioning\nMove',types.card),0,types.card[findName('Positioning\nMove',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Pistol',types.card),0,types.card[findName('Pistol',types.card)].list)
@@ -632,6 +755,7 @@ and enemies can be made weak to orbs using lock-on.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
                         this.battle.combatantManager.summonCombatantDefinite({x:2,y:3},findName('NumberDummy',types.combatant),150)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Nondirectional\nBeam',types.card),0,types.card[findName('Nondirectional\nBeam',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Shotgun',types.card),0,types.card[findName('Shotgun',types.card)].list)
@@ -653,6 +777,7 @@ and enemies can be made weak to orbs using lock-on.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.combatantManager.summonCombatantDefinite({x:4,y:3},findName('NumberDummy',types.combatant),90)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Close\nIn',types.card),0,types.card[findName('Close\nIn',types.card)].list)
@@ -670,6 +795,7 @@ and enemies can be made weak to orbs using lock-on.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Lightspeed',types.card),0,types.card[findName('Lightspeed',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Blaze',types.card),0,types.card[findName('Blaze',types.card)].list)
@@ -856,14 +982,141 @@ and enemies can be made weak to orbs using lock-on.`,
             break
             case 11:
                 switch(this.page){
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Scavenge',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nMiniturret',types.card),0,6)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.combatantManager.summonConstruct({x:1,y:1},findName('Wall',types.combatant),1,30,0)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Unbuild',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Breaking\nShot',types.card),0,6)
+                    break
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Supply\nCrate',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nWall',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nTurret',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nStrengthener',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nUpgrader',types.card),0,6)
+                    break
+                    case 6:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Supply\nCrate',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nSpike Pillar',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nTeleporter Start',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nReadout',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Build\nGun Rack',types.card),0,6)
+                    break
+                    case 7:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Phase\nShift',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Clear\nUp',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Extend',types.card),0,6)
+                    break
                 }
             break
             case 12:
                 switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Crescendo',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Empty\nFist',types.card),0,7)
+                    break
+                    case 2:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Crescendo',types.card),0,7)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].hand.add(findName('Tranquility',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Empty\nFist',types.card),0,7)
+                    break
+                    case 4:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Forward',types.card),0,7)
+                    break
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Standstill',types.card),0,7)
+                    break
+                    case 7:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
+                    break
                 }
             break
             case 13:
                 switch(this.page){
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Highball',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Asteroid',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Ampstep',types.card),0,8)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Fairy\nBurst',types.card),0,8)
+                    break
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Burn',types.card),0,game.playerNumber+1)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].hand.add(findName('Leyline',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Gas\nGiant',types.card),0,8)
+                    break
+                    case 6:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Charge\nUp',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Charge\nUp',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Charge\nFlare',types.card),0,8)
+                    break
+                    case 7:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Collector',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Propbag',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Treasure\nHunt',types.card),0,8)
+                    break
                 }
             break
             case 14:

@@ -41,6 +41,7 @@ class combatantManager{
                 this.combatants[a].reset()
             }
         }
+        this.battle.tileManager.activate()
         this.reID()
     }
     resetCombatantsAnim(){

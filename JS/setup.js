@@ -10,7 +10,7 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    current.tutorialManager.setupTutorial(10)
+    current.tutorialManager.setupTutorial(14)
 
     /*current.menu.combatant=[8]
     current.menu.deck=[0,0]

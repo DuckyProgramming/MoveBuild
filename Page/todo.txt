@@ -1,4 +1,6 @@
 Bugs:
+PLAY GUNS WITHOUT ENERGY
+
 
 f*cking tutorial
 
@@ -26,6 +28,11 @@ ccp membership card
 mirror wall
 
 2 range shivs
+
+attack that costs metal
+short circuit!
+
+enter a random stance?
 
 shooting star (damage, minor self confuse)
 dark shadow (damage, random self status)

@@ -6288,9 +6288,9 @@ types={
         },{
             name:'Hotgrab',rarity:0,list:9,
             levels:[
-                {effect:[8],attack:1068,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12],attack:1068,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15],attack:1068,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,1],attack:1068,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:1068,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:1068,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Line\nUp',rarity:1,list:9,

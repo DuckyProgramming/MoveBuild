@@ -1932,7 +1932,7 @@ class group{
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].update(this.compact?0.7:1)
-                    let length=(a>=la-1?100:this.cards[a].name=='Unbuild'&&this.cards[a+1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100)*(this.compact?0.7:1)
+                    let length=(a>=la-1?100:this.cards[a].name=='Unbuild'&&this.cards[a+1].name=='Unbuild'&&this.cards[a].level==this.cards[a+1].level&&this.cards[a].color==this.cards[a+1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a+1].additionalSpec.length==0?50:100)*(this.compact?0.7:1)
                     if(this.cards[a].position.x>cap&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0)){
                         this.cards[a].position.x-=25*(this.compact?0.7:1)
                     }
