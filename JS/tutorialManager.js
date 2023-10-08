@@ -252,7 +252,7 @@ Those characters often have status effects that they use often.`,
 to kill every enemy in one turn. If you fail, going to the next page will
 go to the next round, so you can only try again by replaying the tutorial.`,
 `Energy is unlimited, the goal is to find the order of the cards and which
-enemy to play them on.`,
+enemy to play them in.`,
 `Puzzle 1`,
 `Puzzle 2`,
 `Puzzle 3`,
@@ -262,10 +262,118 @@ enemy to play them on.`,
                 ]
             break
             case 6:
+                transition.scene='battle'
+                game.player=[1]
+                game.deck=[0]
+                this.battle.player=[1]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.nodeManager.setupTutorialMap()
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
+                this.popups=[[],[],[],[],[],[],[],[]]
+                this.pages=[
+`George, the Agent, is fairly simple, but can unleash deadly combos.
+His gimmicks include: Combo, Conditioning, Packs`,
+`Combo, at its base, is a counter that increases by one each time you hit an enemy.
+There is no limit to combo, and it does not reset after each turn.
+Combo can also be gained through certain cards.`,
+`Some other cards cost combo to play. These cards will spend the combo after use.
+They might also say End Combo, which means you will lose all combo after use.
+Using the cards given, kill the enemy.`,
+`Because Combo never decays and each hit generates more, getting a lot is easy.
+See how much combo you can get!`,
+`Conditioning, in comparison, is much simpler. It doubles one block add.
+After doubling one block add, one stack of conditioning is removed.
+More stacks of conditioning increase the number of block adds doubled.`,
+`At the Perk screen, George behaves differently from the other characters.
+Rather than being completely random, one card of each option is set.
+These are the pack cards. You can typically only get one per game.`,
+`The pack cards each give you a selection of other cards to play.
+These cards are typically powerful, but fit a distinct theme.
+Each one has a different utility, so pick your pack wisely.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 7:
+                transition.scene='battle'
+                game.player=[2]
+                game.deck=[0]
+                this.battle.player=[2]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.nodeManager.setupTutorialMap()
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                this.popups=[[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Lira, the Apprentice, is designed to be fairly simple to play,
+possessing many basic cards. However, she still has few gimmicks.
+They include: Health, Plant Tiles, Fatigue Manipulation`,
+`While Lira doesn't have much health, that can be increased.
+Each point of health is also very valuable because of certain cards.`,
+`Some cards, such as Increment, can increase your max health.
+They are slow, but keep in mind that they can be played every battle.
+Getting Max HP is useful for survival and for having more HP to use for other cards.`,
+`Many of Lira's cards either heal or harm you, more often the latter.
+Sacrificing HP for damage or block is a tradeoff, but often worth it.
+With a lot of HP (sometimes sacrificed), Lira can be very powerful.`,
+`For a shorter-term strategy, Lira can access plant tiles.
+These tiles have no effect and must be created through certain cards.`,
+`Once the tiles are created, however, they can be accessed for various effects.
+These can be beneficial or detrimental, so check the characters on plant tiles
+before using them, as those characters will be afflicted.`,
+`Finally, we have Fatigue manipulation. Most other characters are stuck with Fatigue,
+but as Lira, there are ways to remove fatigue or capitalize off of it.
+But still, Fatigue remains an issue during longer battles.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 8:
+                transition.scene='battle'
+                game.player=[3]
+                game.deck=[0]
+                this.battle.player=[3]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.nodeManager.setupTutorialMap()
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(100)
+                this.popups=[[],[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Sakura, the Creation, has gimmicks that are harmful and helpful.
+Namely, they are Bleed, Armament, Balance, and Confusion,`,
+`Bleed is a status effect that can be applied. It does damage each turn.
+After dealing damage, bleed decrements by 1. This means that bleed is not infinite.
+Still, bleed can be maintained by applying more bleed, which can be done in various ways.`,
+`Often, using bleed boils down to getting as much of it as possible on enemies.
+Typically, enemies with block cannot get bleed, so remove their block first.
+Otherwise, simply spamming is a good way to stack bleed.`,
+`Afterward, playing a bleed build involves surviving while the bleed chips away.
+The more bleed, the faster the enemy dies, and the less time you have to survive.`,
+`The armament system is fairly complex. At the start of combat, you are armed.
+Cards may require armament, but they have powerful effects.`,
+`Cards may be labeled with Rearm or Disarm to indicate if they change armament.
+When you Disarm, an armament point is created somewhere. Moving there Rearms you.
+Many powerful cards involve Disarming, so it is recommended to find a way to Rearm.`,
+`Balance is a counter, starting from 0, that can go up to 10.
+Cards marked as X Balance will increase balance by X.
+If balance ever goes above 10, it breaks, causing it to reset to 0 but ending your turn.`,
+`Balance cards are often powerful, but you must keep in mind how much balance they give.
+If you must break balance, do so when you were going to end your turn anyway.`,
+`Confusion is a status effect that causes enemies to face random directions.
+Because they rarely face the player, confused enemies are not really a threat.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 9:
             break
@@ -376,21 +484,26 @@ enemy to play them on.`,
                         this.battle.cardManagers[0].hand.add(findName('Apply\nWeak',types.card),0,0)
                     break
                     case 2:
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Apply\nVulnerable',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
                     break
                     case 3:
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Apply\nStun',types.card),0,0)
                     break
                     case 4:
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Get\nStrength',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,0)
                     break
                     case 5:
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Get\nDexterity',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,0)
                     break
                     case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Get\nBuffer',types.card),0,0)
                     break
                 }
@@ -480,14 +593,87 @@ enemy to play them on.`,
             break
             case 6:
                 switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Jolt',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Combo\nFinish',types.card),0,1)
+                    break
+                    case 3:
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Triple\nPunch',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Jerk',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Virtuous\nCircle',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Combo\nJuice',types.card),0,1)
+                    break
+                    case 4:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Ready\nUp',types.card),0,1)
+                    break
+                    case 5:
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(50)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Security\nPack',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Sapper\nPack',types.card),0,1)
+                        this.battle.cardManagers[0].hand.add(findName('Infantry\nPack',types.card),0,1)
+                    break
                 }
             break
             case 7:
                 switch(this.page){
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Increment',types.card),0,2)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].hand.add(findName('Convect',types.card),0,2)
+                        this.battle.cardManagers[0].hand.add(findName('Overlook',types.card),0,1)
+                    break
+                    case 4:
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Overgrow',types.card),0,2)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].hand.add(findName('Thorns',types.card),0,2)
+                        this.battle.cardManagers[0].hand.add(findName('Spring',types.card),0,2)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Recover',types.card),0,2)
+                        this.battle.cardManagers[0].hand.add(findName('Continuous\nRecovery',types.card),0,2)
+                    break
                 }
             break
             case 8:
                 switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Quick\nStab',types.card),0,3)
+                        this.battle.cardManagers[0].hand.add(findName('Scratch',types.card),0,3)
+                        this.battle.cardManagers[0].hand.add(findName('Gush of\nBlood',types.card),0,3)
+                    break
+                    case 4:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Cut',types.card),0,3)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].hand.add(findName('Throw\nScythe',types.card),0,3)
+                        this.battle.cardManagers[0].hand.add(findName('Gather',types.card),0,3)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Danger',types.card),0,3)
+                        this.battle.cardManagers[0].hand.add(findName('Peace',types.card),0,3)
+                        this.battle.cardManagers[0].hand.add(findName('Windslash',types.card),0,3)
+                    break
+                    case 8:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Petal\nCloud',types.card),0,3)
+                    break
                 }
             break
             case 9:
@@ -525,17 +711,17 @@ enemy to play them on.`,
             this.layer.fill(180)
             this.layer.stroke(150)
             this.layer.strokeWeight(5)
-            this.layer.rect(675,50,430,80,5)
-            this.layer.rect(675,115,30,30,5)
+            this.layer.rect(625,50,480,80,5)
+            this.layer.rect(625,115,30,30,5)
             this.layer.fill(60)
             this.layer.noStroke()
-            regTriangle(this.layer,672.5,115,10,10,-30)
+            regTriangle(this.layer,622.5,115,10,10,-30)
             this.layer.textSize(12)
             for(let a=0,la=this.pages.length;a<la;a++){
                 if(this.anim.pages[a]>0){
                     this.layer.noStroke()
                     this.layer.fill(0,this.anim.pages[a])
-                    this.layer.text(this.pages[a],675,50)
+                    this.layer.text(this.pages[a],625,50)
                     this.layer.stroke(200,0,0,this.anim.pages[a])
                     this.layer.strokeWeight(5)
                     this.layer.noFill()
@@ -552,7 +738,7 @@ enemy to play them on.`,
         }
     }
     onClick(){
-        if(this.active&&pointInsideBox({position:inputs.rel},{position:{x:675,y:115},width:30,height:30})){
+        if(this.active&&pointInsideBox({position:inputs.rel},{position:{x:625,y:115},width:30,height:30})){
             if(this.page==this.pages.length-1){
                 transition.trigger=true
                 transition.scene='title'

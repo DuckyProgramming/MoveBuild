@@ -5,7 +5,9 @@ f*cking tutorial
 tier list cards
 
 blind mode: card name only; no information text
+
 blackjack draw system
+brings with it a card that lowers score
 
 ORGANIZE INTO ONE EVENT:
 blammo: do damage, if 2 at once, autoplay
@@ -22,3 +24,7 @@ calamari game card
 ccp membership card
 
 mirror wall
+
+
+shooting star (damage, minor self confuse)
+dark shadow (damage, random self status)

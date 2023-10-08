@@ -1241,9 +1241,9 @@ types={
         },{
             name:'Transmute',rarity:1,list:2,
             levels:[
-                {effect:[2],attack:362,cost:0,target:[0],spec:[1],class:4},
                 {effect:[1],attack:362,cost:0,target:[0],spec:[1],class:4},
-                {effect:[1],attack:362,cost:0,target:[0],spec:[1,22],class:4},
+                {effect:[0.5],attack:362,cost:0,target:[0],spec:[1],class:4},
+                {effect:[0.5],attack:362,cost:0,target:[0],spec:[1,22],class:4},
             ],
         },{
             name:'Overlook',rarity:1,list:2,
