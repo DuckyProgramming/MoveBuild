@@ -358,7 +358,7 @@ But still, Fatigue remains an issue during longer battles.`,
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
-                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(100)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
                 this.popups=[[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Sakura, the Creation, has gimmicks that are harmful and helpful.
@@ -436,7 +436,7 @@ or when the card states are a certain way.`,
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
-                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(100)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
                 this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Azis, the Executor, is one of the harder characters to play.
@@ -591,8 +591,82 @@ She can capitalize off owning them or even gain more.`,
                 ]
             break
             case 14:
+                transition.scene='battle'
+                game.player=[9]
+                game.deck=[0]
+                this.battle.player=[9]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialEdgar',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                for(let a=0,la=6;a<la;a++){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1-a].setMaxHP(5)
+                }
+                this.popups=[[],[],[],[],[],[],[]]
+                this.pages=[
+`Edgar, the Disgraced CEO, is a character with a focus on aggression.
+In terms of strategy, he is fairly simple, but he has a few gimmicks.
+They are: Guns+Ammo, Chaining Cards, and Positioned Cards.`,
+`Guns are a class of attack. They typically have longer range.
+Guns are powerful in terms of damage and range compared to normal cards.
+The weakness of guns is that each gun use spends 1 ammo.`,
+`Ammo is a numerical value, and is only really used for guns.
+Ammo is gained through cards. A gun-heavy deck is abl to deal a lot of damage,
+but becomes reliant on an ammo source to remain functional.`,
+`Chaining cards are cards that have an extra effect based on the previous card.
+They vary greatly in normal effect, bonus effect, and the condition.
+Using them is effectively a puzzle of finding the right order.`,
+`Positioned cards are cards that have an extra effect based on their position.
+Using them often requires playing cards to get them in the right place.`,
+`As Edgar, each turn is almost played out separately, even more than in normal runs.
+Finding the right way to play the cards you get as Edgar is simple, but key.`,
+`END OF TUTORIAL`,
+                ]
             break
             case 15:
+                transition.scene='battle'
+                game.player=[10]
+                game.deck=[0]
+                this.battle.player=[10]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Chip, the Gentleman, has cards that fit into distinct and specific groups.
+It's difficult to build a synergy as him because many cards are self-contained.`,
+`Rather, the focus is to construct a decent deck with a few strong combos.
+His gimmicks are: Randomness, Strikes and Defends, Vanishing Cards, Meta Cards`,
+`Many of his cards rely on having random effects. These effects are mostly beneficial,
+but their inconsistency holds them back. Sometimes, bad outcomes can be mitigated.
+It's recommended to not lean too heavily on these cards. But they can come in handy.`,
+`A synergy can still be built around randomness-based cards, but it'll be imperfect.
+Some of them are designed with less randomness and more definite effects.
+Some cards that have inconsistent function aren't random at all.`,
+`Strike and Defend are the most basic cards in the game, along with Step.
+Because Step is a movement card, it is best removed from the basic card group.
+All characters gain access to Strike and Defend, and they are seen as weak cards.`,
+`But for Chip, they can be used as the core of a strategy.
+Because you start with many of them, a deck only requires adding a few more cards.
+They can be made stronger, or more of them can be created, using other cards.`,
+`Vanishing cards are cards that can only be used a certain number of times.
+Unlike exhaust, cards that vanish are gone forever; they do not appear next battle.
+It's worth noting that upgrading them resets their counter.`,
+`Meta cards are not a gimmick, but rather an archetype.
+Chip has more of them than any other character.
+Meta cards apply to the more general flow of the game, or are referential in nature.`,
+`END OF TUTORIAL`,
+                ]
             break
         }
         this.anim.pages=[]
@@ -1121,10 +1195,79 @@ She can capitalize off owning them or even gain more.`,
             break
             case 14:
                 switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Pistol',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Shotgun',types.card),0,9)
+                    break
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Bullet\nSupply',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('2-Shooter',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Lucky\nBullet',types.card),0,9)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        for(let a=0,la=6;a<la;a++){
+                            this.battle.combatantManager.summonCombatantDefinite({x:2-transformDirection(0,30+a*60)[0],y:2-transformDirection(0,30+a*60)[1]},findName('NumberDummy',types.combatant),30+a*60)
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        }
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Follow\nUp',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Crush\nJoints',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Chain\nStep',types.card),0,9)
+                    break
+                    case 4:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Stacked\nStrike',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Snapshot',types.card),0,9)
+                        this.battle.cardManagers[0].hand.add(findName('Hit the\nSpot',types.card),0,9)
+                    break
                 }
             break
             case 15:
                 switch(this.page){
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Lucky\nStrike',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Strefend',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Jack in\nthe Box',types.card),0,10)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Fallacy',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Loyalty\nCard',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Baseball\nCard',types.card),0,10)
+                    break
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,10)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].hand.add(findName('High\nPower',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Maintenance',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Long\nReach',types.card),0,10)
+                    break
+                    case 6:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Spectral\nGrasp',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Illusory\nGrace',types.card),0,10)
+                    break
+                    case 7:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Oracle',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Trash',types.card),0,10)
+                        this.battle.cardManagers[0].hand.add(findName('Charred\nLizard',types.card),0,10)
+                    break
                 }
             break
         }

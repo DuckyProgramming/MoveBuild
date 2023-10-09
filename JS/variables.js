@@ -13786,6 +13786,19 @@ Entering, you're offered a chance to glimpse your future...`,
             enemy:[
             ],reinforce:[
             ],
+        },{
+            level:['Basic 5'],class:-1,world:-1,
+            name:'TutorialEdgar',
+            player:{position:[[{x:2,y:2}],[{x:0,y:0},{x:0,y:0}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'NumberDummy'},
+                {position:{x:0,y:2},name:'NumberDummy'},
+                {position:{x:2,y:4},name:'NumberDummy'},
+                {position:{x:3,y:3},name:'NumberDummy'},
+                {position:{x:3,y:2},name:'NumberDummy'},
+                {position:{x:2,y:1},name:'NumberDummy'},
+            ],reinforce:[
+            ],
         },
     ],dictionary:[
         {name:'',desc:``,
