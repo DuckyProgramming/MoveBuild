@@ -10,7 +10,9 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    /*current.menu.combatant=[8]
+    //stage.scene='tier'
+
+    /*current.menu.combatant=[1]
     current.menu.deck=[0,0]
     current.startGame()
     transition.trigger=false

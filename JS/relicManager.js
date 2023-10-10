@@ -320,6 +320,9 @@ class relicManager{
             case 160:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(30)
             break
+            case 168:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(0.5)
+            break
 
         }
     }

@@ -60,7 +60,7 @@ class purchaseManager{
                         for(let b=0,lb=group.length;b<lb;b++){
                             let index=floor(random(0,list[group[b]].length))
                             let price=round(random(cost[group[b]][0],cost[group[b]][1]))
-                            this.purchases.push(new purchase(this.layer,this.battle,a,this.layer.width*a+(100+(b%4*100))*(1-a*2),350+floor(b/4)*150,1,[price,price],[list[group[b]][index],0,variants.ultraprism?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a]]))
+                            this.purchases.push(new purchase(this.layer,this.battle,a,this.layer.width*a+(100+(b%4*100))*(1-a*2),350+floor(b/4)*150,1,[price,price],[list[group[b]][index],0,variants.ultraprism?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[b]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a]]))
                             list[group[b]].splice(index,1)
                         }
                     }

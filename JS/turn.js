@@ -596,6 +596,12 @@ class turn{
                             let works=true
                             if(this.setTarget!=-1){
                                 this.targetCombatant=this.setTarget
+                            }else if(this.userCombatant.construct){
+                                this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                                if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                    works=false
+                                }
                             }else{
                                 this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
                                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
@@ -837,20 +843,33 @@ class turn{
                         works=false
                     }
                     if(works){
-                        this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
-                        this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                        this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
-                        let target=this.userCombatant.getTarget()[0]
-                        if(target>=0&&!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0&&floor(random(0,2)==0)){
-                            let remember=this.userCombatant.goal.anim.direction
-                            this.userCombatant.goal.anim.direction+=(floor(random(0,2))*2-1)*60
-                            if(!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0){
-                                this.userCombatant.goal.anim.direction=remember
+                        if(this.userCombatant.construct){
+                            this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                            this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                            if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                this.remove=true
+                            }
+                        }else{
+                            this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                            this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                            if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                this.remove=true
+                            }
+                        }
+                        if(!this.remove){
+                            this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                            let target=this.userCombatant.getTarget()[0]
+                            if(target>=0&&!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0&&floor(random(0,2)==0)){
+                                let remember=this.userCombatant.goal.anim.direction
+                                this.userCombatant.goal.anim.direction+=(floor(random(0,2))*2-1)*60
+                                if(!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0){
+                                    this.userCombatant.goal.anim.direction=remember
+                                }else{
+                                    this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
+                                }
                             }else{
                                 this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
                             }
-                        }else{
-                            this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
                         }
                     }
                     this.remove=true
@@ -1596,11 +1615,11 @@ class turn{
                             this.userCombatant.startAnimation(2)
                         }
                         if(this.timer>=15*this.targetDistance-14){
-                            this.userCombatant.runAnimation(1/12,2)
+                            this.userCombatant.runAnimation(1/10,2)
                         }else{
                             this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
                             this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
-                            this.userCombatant.runAnimation(1/6,0)
+                            this.userCombatant.runAnimation(1/15,0)
                         }
                         if(this.timer==15*this.targetDistance-15){
                             let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
@@ -1645,7 +1664,7 @@ class turn{
                             this.userCombatant.startAnimation(0)
                         }else if(this.timer==15*this.targetDistance-14){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                         }
                         if(this.timer>=15*this.targetDistance-14&&this.timer<15*this.targetDistance+6){
@@ -2071,7 +2090,7 @@ class turn{
                         if(this.timer==1){
                             for(let a=0,la=this.targetCombatant.length;a<la;a++){
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x*(1+1/this.targetDistance[a])-this.userCombatant.tilePosition.x/this.targetDistance[a],this.targetCombatant[a].tilePosition.y*(1+1/this.targetDistance[a])-this.userCombatant.tilePosition.y/this.targetDistance[a])
-                                this.procedure[a]=this.targetCombatant[a].getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                this.procedure[a]=this.targetCombatant[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             }
                             if(this.type==146){
                                 this.userCombatant.startAnimation(3)
@@ -2137,7 +2156,7 @@ class turn{
                     case 90: case 91:
                         if(this.timer==1){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.targetCombatant.tilePosition.y+transformDirection(0,this.direction)[1])
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(5)
                         }
                         if(this.timer<=10||this.timer>20&&this.timer<=30){
@@ -2261,7 +2280,7 @@ class turn{
                     case 97:
                         if(this.timer==1){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(2)
                         }else if(this.timer==21){
                             this.userCombatant.startAnimation(3)
@@ -2332,7 +2351,7 @@ class turn{
                         }else if(this.timer==15*this.targetDistance-14){
                             this.upTargetDistance=this.targetDistance
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                         }
                         if(this.timer>=15*this.targetDistance-14&&this.timer<15*this.targetDistance+6){
@@ -2387,7 +2406,7 @@ class turn{
                                 this.battle.activate(1,this.targetCombatant.id)
                                 this.upTargetDistance++
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*(1/(this.upTargetDistance-this.targetDistance+1)+1)-this.userCombatant.tilePosition.x/(this.upTargetDistance-this.targetDistance+1),this.targetCombatant.tilePosition.y*(1/(this.upTargetDistance-this.targetDistance+1)+1)-this.userCombatant.tilePosition.y/(this.upTargetDistance-this.targetDistance+1))
-                                this.procedure.push(this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1)
+                                this.procedure.push(this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1)
                             }
                         }
                     break
@@ -2534,7 +2553,7 @@ class turn{
                             let offset=transformDirection(0,this.relativeDirection-60)
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             this.procedure[1]=atan2(sin(this.relativeDirection-60)*6/5,cos(this.relativeDirection-60)/sqrt(3))
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                             if(index>=0){
                                 this.distance=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant.position.x,this.targetCombatant.position.y)
@@ -2608,7 +2627,7 @@ class turn{
                             let offset=transformDirection(0,this.relativeDirection+60)
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             this.procedure[1]=atan2(sin(this.relativeDirection+60)*6/5,cos(this.relativeDirection+60)/sqrt(3))
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                             if(index>=0){
                                 this.distance=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant.position.x,this.targetCombatant.position.y)
@@ -2682,7 +2701,7 @@ class turn{
                             let offset=transformDirection(0,this.relativeDirection-120)
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             this.procedure[1]=atan2(sin(this.relativeDirection-120)*6/5,cos(this.relativeDirection-120)/sqrt(3))
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(12)
                             if(index>=0){
                                 this.distance=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant.position.x,this.targetCombatant.position.y)
@@ -2756,7 +2775,7 @@ class turn{
                             let offset=transformDirection(0,this.relativeDirection+120)
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             this.procedure[1]=atan2(sin(this.relativeDirection+120)*6/5,cos(this.relativeDirection+120)/sqrt(3))
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(12)
                             if(index>=0){
                                 this.distance=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant.position.x,this.targetCombatant.position.y)
@@ -2917,7 +2936,7 @@ class turn{
                         }
                         if(this.timer==1){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*(1+1/this.targetDistance)-this.userCombatant.tilePosition.x/this.targetDistance,this.targetCombatant.tilePosition.y*(1+1/this.targetDistance)-this.userCombatant.tilePosition.y/this.targetDistance)
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                         }
                         if(this.timer<=20){
@@ -3085,7 +3104,7 @@ class turn{
                         if(this.timer==1){
                             for(let a=0,la=this.targetCombatant.length;a<la;a++){
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant[a].tilePosition.y*2-this.userCombatant.tilePosition.y)
-                                this.procedure[a]=this.targetCombatant[a].getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                this.procedure[a]=this.targetCombatant[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             }
                             this.userCombatant.startAnimation(13)
                         }
@@ -3143,7 +3162,7 @@ class turn{
                             this.userCombatant.startAnimation(0)
                         }else if(this.timer==15*this.targetDistance-14){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(12)
                         }
                         if(this.timer>=15*this.targetDistance-14&&this.timer<15*this.targetDistance+6){
@@ -3201,7 +3220,7 @@ class turn{
                             }
                             if(this.timer==15*this.targetDistance+6){
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
-                                this.procedure[1]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                this.procedure[1]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             }
                             if(this.procedure[1]==2){
                                 if(this.timer>15*this.targetDistance+5&&this.timer<=15*this.targetDistance+13){
@@ -3456,7 +3475,7 @@ class turn{
                             for(let a=0,la=this.targetCombatant.length;a<la;a++){
                                 if(this.targetDistance[a]==2){
                                     let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x/2+this.userCombatant.tilePosition.x/2,this.targetCombatant[a].tilePosition.y/2+this.userCombatant.tilePosition.y/2)
-                                    this.procedure[a]=this.targetCombatant[a].getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                    this.procedure[a]=this.targetCombatant[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                                 }
                             }
                             this.userCombatant.startAnimation(9)
@@ -3731,7 +3750,7 @@ class turn{
                             let offset=transformDirection(0,this.relativeDirection+this.procedure[2]*60)
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x+offset[0],this.targetCombatant.tilePosition.y+offset[1])
                             this.procedure[1]=atan2(sin(this.relativeDirection+this.procedure[2]*60)*6/5,cos(this.relativeDirection+this.procedure[2]*60)/sqrt(3))
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                             if(index>=0){
                                 this.distance=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant.position.x,this.targetCombatant.position.y)
@@ -3848,7 +3867,7 @@ class turn{
                                 this.userCombatant.startAnimation(0)
                             }else if(this.timer==15*this.targetDistance-14){
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                                this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                                 this.userCombatant.startAnimation(3)
                             }
                             if(this.timer>=15*this.targetDistance-14&&this.timer<15*this.targetDistance+6){
@@ -3952,7 +3971,7 @@ class turn{
                             this.userCombatant.startAnimation(0)
                         }else if(this.timer==15*this.targetDistance-14){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(3)
                         }
                         if(this.timer>=15*this.targetDistance-14&&this.timer<15*this.targetDistance+6){
@@ -4012,7 +4031,7 @@ class turn{
                                 this.userCombatant.startAnimation(0)
                             }else if(this.timer==15*this.targetDistance+21){
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
-                                this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                                 this.userCombatant.startAnimation(3)
                             }
                             if(this.timer>15*this.targetDistance+20&&this.timer<=15*this.targetDistance+40){
@@ -4079,7 +4098,7 @@ class turn{
                                 let offset=transformDirection(0,this.relativeDirection[a]+60)
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x+offset[0],this.targetCombatant[a].tilePosition.y+offset[1])
                                 this.procedure[1][a]=atan2(sin(this.relativeDirection[a]+60)*6/5,cos(this.relativeDirection[a]+60)/sqrt(3))
-                                this.procedure[0][a]=this.targetCombatant[a].getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                this.procedure[0][a]=this.targetCombatant[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                                 if(index>=0){
                                     this.distance[a]=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant[a].position.x,this.targetCombatant[a].position.y)
                                 }
@@ -4168,7 +4187,7 @@ class turn{
                                 let offset=transformDirection(0,this.relativeDirection[a]+120)
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x+offset[0],this.targetCombatant[a].tilePosition.y+offset[1])
                                 this.procedure[1][a]=atan2(sin(this.relativeDirection[a]+120)*6/5,cos(this.relativeDirection[a]+120)/sqrt(3))
-                                this.procedure[0][a]=this.targetCombatant[a].getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                this.procedure[0][a]=this.targetCombatant[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                                 if(index>=0){
                                     this.distance[a]=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant[a].position.x,this.targetCombatant[a].position.y)
                                 }
@@ -4230,7 +4249,7 @@ class turn{
                                 let offset=transformDirection(0,this.relativeDirection[a]-120)
                                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x+offset[0],this.targetCombatant[a].tilePosition.y+offset[1])
                                 this.procedure[1][a]=atan2(sin(this.relativeDirection[a]-120)*6/5,cos(this.relativeDirection[a]-120)/sqrt(3))
-                                this.procedure[0][a]=this.targetCombatant[a].getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                                this.procedure[0][a]=this.targetCombatant[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                                 if(index>=0){
                                     this.distance[a]=dist(this.battle.tileManager.tiles[index].position.x,this.battle.tileManager.tiles[index].position.y,this.targetCombatant[a].position.x,this.targetCombatant[a].position.y)
                                 }
@@ -4346,7 +4365,7 @@ class turn{
                     case 235:
                         if(this.timer==1){
                             let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.targetCombatant.tilePosition.y+transformDirection(0,this.direction)[1])
-                            this.procedure[0]=this.targetCombatant.getStatus('Cannot be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                            this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
                             this.userCombatant.startAnimation(5)
                         }
                         if(this.timer<=10||this.timer>20&&this.timer<=30){
@@ -4456,30 +4475,46 @@ class turn{
             case 1:
                 switch(this.type){
                     case 0: case 1: case 2: case 4:
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(0)
-                        }
-                        this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
-                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
-                        this.userCombatant.runAnimation(1/15,0)
-                        if(this.timer>=15*this.targetDistance){
+                        if(variants.nobasicanim){
+                            this.userCombatant.moveTile(this.direction,this.distance)
+                            this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
                             this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                             this.battle.activateTile(1,this.userCombatant.id)
                             this.remove=true
+                        }else{
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(0)
+                            }
+                            this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
+                            this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                            this.userCombatant.runAnimation(1/15,0)
+                            if(this.timer>=15*this.targetDistance){
+                                this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                this.battle.activateTile(1,this.userCombatant.id)
+                                this.remove=true
+                            }
                         }
                     break
                     case 3: case 5:
-                        if(this.timer==1){
-                            this.userCombatant.startAnimation(10)
-                        }
-                        this.userCombatant.runAnimation(1/20,10)
-                        if(this.timer==10){
+                        if(variants.nobasicanim){
                             this.userCombatant.moveTile(this.direction,this.distance)
                             this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
                             this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                             this.battle.activate(1,this.userCombatant.id)
-                        }else if(this.timer>=20){
                             this.remove=true
+                        }else{
+                            if(this.timer==1){
+                                this.userCombatant.startAnimation(10)
+                            }
+                            this.userCombatant.runAnimation(1/20,10)
+                            if(this.timer==10){
+                                this.userCombatant.moveTile(this.direction,this.distance)
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
+                                this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                this.battle.activate(1,this.userCombatant.id)
+                            }else if(this.timer>=20){
+                                this.remove=true
+                            }
                         }
                     break
                     default:

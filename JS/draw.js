@@ -6,6 +6,7 @@ function draw(){
         case 'title': case 'menu': case 'menu2': case 'variants': case 'custom': case 'tutorial':  case 'graphic':
         case 'battle': case 'map': case 'shop': case 'replay':
         case 'victory': case 'defeat': case 'rest': case 'stash': case 'pack': case 'perk': case 'event': case 'bossstash':
+        case 'tier':
             current.display(stage.scene)
             current.update(stage.scene)
         break

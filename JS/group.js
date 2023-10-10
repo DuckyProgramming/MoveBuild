@@ -402,10 +402,14 @@ class group{
         }
     }
     selfLevel(type,level){
-        if(this.battle.combatantManager.combatants.length>0){
-            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            if(userCombatant.status.main[161]>0){
-                return min(level+userCombatant.status.main[161],types.card[type].levels.length-1)
+        if(this.battle.initialized){
+            if(this.battle.combatantManager.combatants.length>0){
+                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                if(userCombatant.status.main[161]>0){
+                    return min(level+userCombatant.status.main[161],types.card[type].levels.length-1)
+                }else{
+                    return level
+                }
             }else{
                 return level
             }
@@ -1409,6 +1413,7 @@ class group{
                                 if(this.cards[b].name==this.sorted[a]){
                                     this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
                                     this.cards[b].fade=1
+                                    this.cards[b].relIndex=position
                                     this.cards[b].position.x=this.layer.width/2-200+position%5*100
                                     this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
                                     this.cards[b].anim.afford=1
@@ -1458,6 +1463,19 @@ class group{
                     break
                 }
             break
+            case 'tier':
+                for(let a=0,la=this.cards.length;a<la;a++){
+                    this.cards[a].size=0.6
+                    this.cards[a].fade=1
+                    this.cards[a].position.x=50+a*20
+                    this.cards[a].position.y=60+this.id*60
+                    this.cards[a].anim.afford=1
+                    if(this.cards[a].size>=0){
+                        this.cards[a].display()
+                    }
+                }
+            break
+        
         }
     }
     callInput(type,a){
@@ -1931,7 +1949,7 @@ class group{
                     this.cards[0].cost=0
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].update(this.compact?0.7:1)
+                    this.cards[a].update(1)
                     let length=(a>=la-1?100:this.cards[a].name=='Unbuild'&&this.cards[a+1].name=='Unbuild'&&this.cards[a].level==this.cards[a+1].level&&this.cards[a].color==this.cards[a+1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a+1].additionalSpec.length==0?50:100)*(this.compact?0.7:1)
                     if(this.cards[a].position.x>cap&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0)){
                         this.cards[a].position.x-=25*(this.compact?0.7:1)
@@ -1964,6 +1982,7 @@ class group{
                                 la--
                             }else if(this.cards[a].discardEffect.includes(3)){
                                 this.cards[a].discardEffect=[]
+                                this.cards[a].player=this.battle.players-1-this.cards[a].player
                                 this.send(this.battle.cardManagers[this.battle.players-1-this.player].hand.cards,a,a+1,1)
                                 a--
                                 la--

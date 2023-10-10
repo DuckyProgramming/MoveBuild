@@ -22,7 +22,7 @@ class card{
             }
         }
         this.level=level
-        this.color=color
+        this.color=constrain(color,0,types.color.card.length-1)
         this.id=id
         this.cost=cost
         if(cost==undefined&&this.type<types.card.length&&this.type>=0){
@@ -49,6 +49,7 @@ class card{
         this.cancelDesc=false
         this.discardEffect=[]
         this.discardEffectBuffered=[]
+        this.relIndex=0
 
         this.anim={select:0,afford:0}
         this.colorDetail=types.color.card[this.color]
@@ -97,7 +98,7 @@ class card{
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv',this.spec.includes(25)])
         }else{
             this.cancelDesc=false
-            return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
+            return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
     }
     calculateEffectAlly(effect,type){
@@ -107,7 +108,7 @@ class card{
             return calculateEffect(effect,user,type,this.player,this.battle.relicManager,true,[this.strike,this.name=='Shiv',this.spec.includes(25)])
         }else{
             this.cancelDesc=false
-            return calculateEffect(effect,this.battle.combatantManager.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
+            return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
         }
     }
     description(attack,effect,spec){
@@ -183,7 +184,7 @@ class card{
             case 22: string+=`Gain ${effect[0]} Energy\nTake ${effect[1]} Damage`; break
             case 23: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}`; break
             case 24: string+=`Make an Enemy Attack\nThey Will Not Attack\non Their Turn`; break
-            case 26: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCannot be Pushed\nThis Turn`; break
+            case 26: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCannot Be Pushed\nThis Turn`; break
             case 27: string+=`Advance up to ${effect[1]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 28: string+=`Put a Card in Discard\nPile in Your Hand`; break
             case 29: string+=`Put a Card in Draw\nPile in Your Hand`; break
@@ -756,7 +757,7 @@ class card{
             case 602: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 603: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 604: string+=`Construct Gains\n${effect[0]} Regeneration`; break
-            case 605: string+=`Add ${effect[0]} Random\nBlueprint${effect[0]!=1?`s`:``}\nto Your Hand`; break
+            case 605: string+=`Choose Between\n${effect[0]} Random Blueprint${effect[0]!=1?`s`:``}to\nAdd to Your Hand`; break
             case 606: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Vulnerable`; break
             case 607: string+=`Draw and Upgrade\n${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 608: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nBecome Confused`; break
@@ -1090,7 +1091,7 @@ class card{
             case 938: string+=`Deal ${this.calculateEffect(effect[0],0)}-${this.calculateEffect(effect[1],0)} Damage\n${effect[2]} Time${effect[2]!=1?`s`:``}`; break
             case 939: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Charge`; break
             case 940: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Burn to Hand`; break
-            case 941: string+=`Gain ${effect[0]} Currency\nLose ${effect[1]} Strength`; break
+            case 941: string+=`Gain ${effect[0]} Currency\nGain ${effect[1]} Weak`; break
             case 942: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain Armor Equal to\nHalf of Target's\nHealth Lost`; break
             case 943: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd to Hand:\nSpark\nRising Sweep\nLeyline`; break
             case 944: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd to Hand:\nSpark\nRising Sweep\nLeyline\nand Upgrade Them`; break
@@ -1101,7 +1102,7 @@ class card{
             case 949: string+=`Remove a Card\nPermanently`; break
             case 950: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards in Discard\n(Including This Card)\nAdd ${effect[1]} Burn${effect[1]!=1?`s`:``} to Hand`; break
             case 951: string+=`Discard Any\nNumber of Cards\nAdd ${this.calculateEffect(effect[0],3)} Block Each`; break
-            case 952: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf`; break
+            case 952: string+=`Choose to\nAdd to Hand:\nWhite Dwarf\nBlack Dwarf\nof Equivalent Level`; break
             case 953: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf\nUpgrade Them`; break
             case 954: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf\nUpgrade Them Twice`; break
             case 955: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Charge`; break
@@ -1223,7 +1224,7 @@ class card{
             case 1072: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDoes 0 After\nYou Take Damage`; break
             case 1073: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeal Double Damage\nand Take Double Damage\nThis Turn`; break
             case 1074: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd an Out of Time\nto Draw Pile`; break
-            case 1075: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Impending Doom\nto Draw Pile`; break
+            case 1075: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Impending Doom\nof Equivalent Level\nto Draw Pile`; break
             case 1076: string+=`When Drawn,\nAll Enemies Take\n${effect[0]} Damage`; break
             case 1077: string+=`Gain ${effect[0]}\nBlock Up`; break
             case 1078: string+=`Exhaust Your Hand\nGain ${effect[0]} Ammo Each`; break

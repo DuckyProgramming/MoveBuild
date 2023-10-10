@@ -245,9 +245,9 @@ types={
         },{
             name:'Combo\nStrike',rarity:0,list:1,
             levels:[
-                {effect:[9],attack:1,cost:3,target:[2,1,1],spec:[0,11],class:1},
-                {effect:[14],attack:1,cost:3,target:[2,1,1],spec:[0,11],class:1},
-                {effect:[18],attack:1,cost:3,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[9],attack:1,cost:2,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[14],attack:1,cost:2,target:[2,1,1],spec:[0,11],class:1},
+                {effect:[18],attack:1,cost:2,target:[2,1,1],spec:[0,11],class:1},
             ],
         },{
             name:'Palm\nStrike',rarity:0,list:1,
@@ -3916,9 +3916,9 @@ types={
         },{
             name:'Concept',rarity:1,list:6,
             levels:[
-                {effect:[2],attack:605,cost:0,target:[0],spec:[],class:4},
                 {effect:[3],attack:605,cost:0,target:[0],spec:[],class:4},
                 {effect:[4],attack:605,cost:0,target:[0],spec:[],class:4},
+                {effect:[5],attack:605,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Particulation',rarity:0,list:6,
@@ -4357,9 +4357,9 @@ types={
         },{
             name:'Lattice',rarity:0,list:6,
             levels:[
-                {effect:[2],attack:1077,cost:1,target:[0],spec:[],class:4},
-                {effect:[3],attack:1077,cost:1,target:[0],spec:[],class:4},
                 {effect:[4],attack:1077,cost:1,target:[0],spec:[],class:4},
+                {effect:[6],attack:1077,cost:1,target:[0],spec:[],class:4},
+                {effect:[7],attack:1077,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Scatterbrain',rarity:0,list:6,
@@ -4723,9 +4723,9 @@ types={
         },{
             name:'Fasting',rarity:2,list:7,
             levels:[
-                {effect:[4,4,1],attack:774,cost:1,target:[0],spec:[],class:4},
                 {effect:[5,5,1],attack:774,cost:1,target:[0],spec:[],class:4},
-                {effect:[6,6,1],attack:774,cost:1,target:[0],spec:[],class:4},
+                {effect:[8,8,1],attack:774,cost:1,target:[0],spec:[],class:4},
+                {effect:[10,10,1],attack:774,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Cycle\nStrike',rarity:0,list:7,
@@ -5587,8 +5587,8 @@ types={
             name:'Binary\nStars',rarity:1,list:8,
             levels:[
                 {effect:[4],attack:952,cost:1,target:[0],spec:[],class:4},
-                {effect:[4],attack:953,cost:1,target:[0],spec:[],class:4},
-                {effect:[8],attack:954,cost:1,target:[0],spec:[],class:4},
+                {effect:[4],attack:952,cost:1,target:[0],spec:[],class:4},
+                {effect:[8],attack:952,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Charge\nStep',rarity:0,list:8,
@@ -6316,9 +6316,9 @@ types={
         },{
             name:'Dark\nCloud',rarity:2,list:9,
             levels:[
-                {effect:[10],attack:1075,cost:2,target:[2,1,3],spec:[0],class:1},
-                {effect:[15],attack:1075,cost:2,target:[2,1,3],spec:[0],class:1},
                 {effect:[18],attack:1075,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[24],attack:1075,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[28],attack:1075,cost:2,target:[2,1,3],spec:[0],class:1},
             ],
         },{
             name:'Cardshot',rarity:1,list:9,
@@ -6962,9 +6962,9 @@ types={
         },{
             name:'Victim\nCard',rarity:0,list:10,
             levels:[
-                {effect:[1],attack:1131,cost:1,target:[0],spec:[],class:4},
                 {effect:[1],attack:1131,cost:0,target:[0],spec:[],class:4},
                 {effect:[2],attack:1131,cost:0,target:[0],spec:[],class:4},
+                {effect:[3],attack:1131,cost:0,target:[0],spec:[],class:4},
             ],
         },{
             name:'Exile',rarity:0,list:10,
@@ -8071,9 +8071,9 @@ types={
         },{
             name:'Impending\nDoom',rarity:-1,list:0,
             levels:[
-                {effect:[4],attack:1076,cost:0,target:[0],spec:[5],class:4},
-                {effect:[6],attack:1076,cost:0,target:[0],spec:[5],class:4},
-                {effect:[7],attack:1076,cost:0,target:[0],spec:[5],class:4},
+                {effect:[5],attack:1076,cost:0,target:[0],spec:[5],class:4},
+                {effect:[8],attack:1076,cost:0,target:[0],spec:[5],class:4},
+                {effect:[10],attack:1076,cost:0,target:[0],spec:[5],class:4},
             ],
         },{
             name:'Credit',rarity:-1,list:0,
@@ -8858,7 +8858,7 @@ types={
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
         {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[9]}],description:`Helping the prisoners for some reason`},
         {name:'Lightspeed',life:85,behavior:1,spec:[1],move:{type:0,speed:3},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[12]}],description:`He be fast`},
-        {name:'Swordmaster',life:105,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:102,effect:[20]},{type:79,effect:[16]},{type:103,effect:[5,2]},{type:21,effect:[]}],description:`Mastered something`},
+        {name:'Swordmaster',life:90,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:102,effect:[12]},{type:79,effect:[10]},{type:103,effect:[4,2]},{type:21,effect:[]}],description:`Mastered something`},
         {name:'Gas Man',life:84,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
         {name:'Gremlin',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:32,effect:[5,1,'Dazed']},{type:21,effect:[]},{type:9,effect:[10]}],description:`Repetitive`},
         {name:'Flying Rock',life:14,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:22,effect:[2,1,'Dazed']},{type:6,effect:[7]}],description:`Vaguely spherical`},
@@ -8974,7 +8974,7 @@ types={
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
         {name:'Navigator',life:20,behavior:0,spec:[15],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Where we droppin boys`},
         {name:'Rich Kid',life:20,behavior:0,spec:[16],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Still barely pays you`},
-        {name:'MobMan',life:10,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`No brain?`},
+        {name:'MobMan',life:16,behavior:0,spec:[17],move:{type:0,speed:1},attack:[{type:1,effect:[8]}],description:`No brain?`},
         {name:'AllyMonkey',life:24,behavior:0,spec:[17],move:{type:0,speed:2},attack:[{type:11,effect:[2]}],description:`Your best friend`},
         {name:'Antizone',life:999,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Basically indistructable`},
 
@@ -14180,7 +14180,7 @@ Vary greatly in effect.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 variants={lowdraw:false,altDraw:false,lowhealth:false,midhealth:false,shortmap:false,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false,ultraprism:false,prismrule:[]}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

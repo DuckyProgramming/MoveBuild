@@ -10,7 +10,6 @@ class combatantManager{
         this.bankHP=[]
         this.playerCombatantIndex=[]
         this.sorted=[]
-        this.proxyPlayer=new combatant(this.layer,this.battle,0,0,0,0,0,0,0,0,0,0)
     }
     assignPlayer(){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -480,12 +479,22 @@ class combatantManager{
                 this.combatants[a].intent=floor(random(0,this.combatants[a].attack.length))
             }
         }
+        this.battle.updateTargetting()
     }
     playCard(){
         this.combatants.forEach(combatant=>combatant.playCard())
     }
     playCardFront(){
         this.combatants.forEach(combatant=>combatant.playCardFront())
+    }
+    getRandomNonplayerCombatantIndex(){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                list.push(a)
+            }
+        }
+        return list.length>0?list[floor(random(0,list.length))]:-1
     }
     getPlayerCombatantIndex(id){
         return this.playerCombatantIndex[id]

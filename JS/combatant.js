@@ -37,7 +37,7 @@ class combatant{
         if(this.attack.length==0){
             this.attack=[{type:0,effect:[]}]
         }
-        if(this.team==0&&this.battle.players>1){
+        if(this.battle.initialized&&this.team==0&&this.battle.players>1){
             this.life*=1.5
             for(let a=0,la=this.attack.length;a<la;a++){
                 if(types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2){
@@ -3524,7 +3524,7 @@ class combatant{
                         this.intent=this.battle.turn.total<=1?this.attack.length-1:floor(random(0,this.attack.length-1))
                     break
                     case 11:
-                        this.intent=this.battle.turn.total%2==1?this.attack.length-1:(this.battle.turn.total/2+this.attack.length-2)%(this.attack.length-1)
+                        this.intent=this.battle.turn.total%3==1?this.attack.length-1:(floor(this.battle.turn.total*2/3)+this.attack.length-2)%(this.attack.length-1)
                     break
                     case 12:
                         this.intent=this.battle.turn.total<=3?this.attack.length-1:floor(random(0,this.attack.length))
@@ -3577,7 +3577,7 @@ class combatant{
     autoAim(){
         let list=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-            if(legalTargetCombatant(0,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].team!=this.team&&this.battle.combatantManager.combatants[a].life>0){
+            if(legalTargetCombatant(0,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].team!=this.team&!(this.construct&&this.battle.combatantManager.combatants[a].team>0)&&this.battle.combatantManager.combatants[a].life>0){
                 list.push(a)
             }
         }
@@ -5453,10 +5453,10 @@ class combatant{
                     case 31:
                         this.animSet.loop+=rate
                         for(let a=0,la=2;a<la;a++){
-                            this.anim.legs[this.animSet.foot+a*(1-this.animSet.foot)].top=9+lsin(this.animSet.loop*90)*81*(1-a*2)
-                            this.anim.legs[this.animSet.foot+a*(1-this.animSet.foot)].bottom=lsin(this.animSet.loop*90)*75*(1-a*2)
-                            this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot)].top=(60-lsin(this.animSet.loop*90)*60)*(this.animSet.foot*2-1)*(1-a*2)
-                            this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot)].bottom=(120-lsin(this.animSet.loop*90)*120)*(this.animSet.foot*2-1)*(1-a*2)
+                            this.anim.legs[this.animSet.foot+a*(1-this.animSet.foot*2)].top=9+lsin(this.animSet.loop*90)*81*(1-a*2)
+                            this.anim.legs[this.animSet.foot+a*(1-this.animSet.foot*2)].bottom=lsin(this.animSet.loop*90)*75*(1-a*2)
+                            this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot*2)].top=(60-lsin(this.animSet.loop*90)*60)*(this.animSet.foot*2-1)*(1-a*2)
+                            this.spin.legs[this.animSet.foot+a*(1-this.animSet.foot*2)].bottom=(120-lsin(this.animSet.loop*90)*120)*(this.animSet.foot*2-1)*(1-a*2)
                         }
                     break
                     case 32:
@@ -14065,7 +14065,7 @@ class combatant{
                     if(this.name=='Riot Police'&&this.trigger.display.shield&&lcos(this.anim.direction)<0){
                         this.layer.fill(this.flashColor(this.color.shield[0])[0],this.flashColor(this.color.shield[0])[1],this.flashColor(this.color.shield[0])[2],this.fade*this.fades.shield)
                         this.layer.noStroke()
-                        this.layer.rect((this.graphics.arms[0].bottom.x+this.graphics.arms[1].bottom.x)/2,(this.graphics.arms[0].bottom.y+this.graphics.arms[1].bottom.y)/2,36*lcos(this.anim.direction),48,3)
+                        this.layer.rect((this.graphics.arms[0].bottom.x+this.graphics.arms[1].bottom.x)/2+sin(this.anim.direction)*3,(this.graphics.arms[0].bottom.y+this.graphics.arms[1].bottom.y)/2,2-32*lcos(this.anim.direction),48,3)
                     }
                     if(this.name=='Jet'&&this.trigger.display.pack&&lcos(this.anim.direction+180)<0){
                         this.layer.fill(this.color.pack[0],this.color.pack[1],this.color.pack[2],this.fade*this.fades.pack)
@@ -15211,9 +15211,9 @@ class combatant{
                     if(this.name=='Riot Police'&&this.trigger.display.shield&&lcos(this.anim.direction)>=0){
                         this.layer.fill(this.flashColor(this.color.shield[0])[0],this.flashColor(this.color.shield[0])[1],this.flashColor(this.color.shield[0])[2],this.fade*this.fades.shield)
                         this.layer.noStroke()
-                        this.layer.rect((this.graphics.arms[0].bottom.x+this.graphics.arms[1].bottom.x)/2,(this.graphics.arms[0].bottom.y+this.graphics.arms[1].bottom.y)/2,36*lcos(this.anim.direction),48,3)
+                        this.layer.rect((this.graphics.arms[0].bottom.x+this.graphics.arms[1].bottom.x)/2+sin(this.anim.direction)*3,(this.graphics.arms[0].bottom.y+this.graphics.arms[1].bottom.y)/2,2+34*lcos(this.anim.direction),48,3)
                         this.layer.fill(this.flashColor(this.color.shield[1])[0],this.flashColor(this.color.shield[1])[1],this.flashColor(this.color.shield[1])[2],this.fade*this.fades.shield)
-                        this.layer.rect((this.graphics.arms[0].bottom.x+this.graphics.arms[1].bottom.x)/2,(this.graphics.arms[0].bottom.y+this.graphics.arms[1].bottom.y)/2-15,24*lcos(this.anim.direction),6,3)
+                        this.layer.rect((this.graphics.arms[0].bottom.x+this.graphics.arms[1].bottom.x)/2+sin(this.anim.direction)*3,(this.graphics.arms[0].bottom.y+this.graphics.arms[1].bottom.y)/2-15,1+23*lcos(this.anim.direction),6,3)
                     }
                     if(this.name=='Reichswehr'&&this.trigger.display.helmet){
                         this.layer.noStroke()

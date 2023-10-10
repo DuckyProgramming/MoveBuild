@@ -4116,7 +4116,7 @@ function setupBackground(type,layer){
 			layer.text('SHORT MAP',layer.width/2-382.5,layer.height*0.5)
 			layer.text('SHORTEST MAP',layer.width/2+317.5,layer.height*0.5)
 			layer.text('QUICK MODE',layer.width/2-382.5,layer.height*0.5+90)
-			layer.text('MIMIZE ANIMATION',layer.width/2+317.5,layer.height*0.5+90)
+			layer.text('MINIMIZE ANIMATION',layer.width/2+317.5,layer.height*0.5+90)
 			layer.text('PRISM',layer.width/2-382.5,layer.height*0.5+180)
 			layer.text('ULTRAPRISM',layer.width/2+317.5,layer.height*0.5+180)
 		break

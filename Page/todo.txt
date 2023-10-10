@@ -1,5 +1,7 @@
 Bugs:
 
+
+
 tier list cards
 
 blind mode: card name only; no information text
@@ -32,3 +34,13 @@ enter a random stance?
 
 shooting star (damage, minor self confuse)
 dark shadow (damage, random self status)
+
+
+
+777
+valentine's card
+blood donor card
+
+
+spin to win as a joke card
+nuclear bomb

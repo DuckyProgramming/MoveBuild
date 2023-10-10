@@ -92,7 +92,7 @@ class overlay{
                 this.cards=[]
                 let sublist=[]
                 this.taken=0
-                if(args[2]==7){
+                if(args[2]==7||args[2]==9||args[2]==10){
                     this.options=args[3]
                 }else{
                     this.options=3
@@ -140,7 +140,7 @@ class overlay{
                             sublist.splice(index,1)
                         }
                     break
-                    case 4:
+                    case 4: case 10:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                         sublist=[]
                         for(let a=0,la=list[3].length;a<la;a++){
@@ -151,7 +151,9 @@ class overlay{
                         for(let a=0,la=this.options;a<la;a++){
                             let index=floor(random(0,sublist.length))
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,sublist[index],args[0],types.card[sublist[index]].list,-1))
-                            this.cards[a].cost=0
+                            if(args[2]==4){
+                                this.cards[a].cost=0
+                            }
                             this.cards[a].upSize=true
                             sublist.splice(index,1)
                         }
@@ -180,6 +182,12 @@ class overlay{
                     case 8:
                         for(let a=0,la=this.options;a<la;a++){
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName('Better\nCard',types.card),0,0,-1))
+                            this.cards[a].upSize=true
+                        }
+                    break
+                    case 9:
+                        for(let a=0,la=this.options;a<la;a++){
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['White\nDwarf','Black\nDwarf'][a%2],types.card),0,0,-1))
                             this.cards[a].upSize=true
                         }
                     break
@@ -805,6 +813,8 @@ class overlay{
                                                 this.card.nonCalc=true
                                                 this.card.page=this.page
                                                 this.card.size=1
+                                            }else{
+                                                this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
                                             }
                                         break
                                     }
@@ -1140,6 +1150,8 @@ class overlay{
                                                 this.card.nonCalc=true
                                                 this.card.page=this.page
                                                 this.card.size=1
+                                            }else{
+                                                this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
                                             }
                                         break
                                     }
@@ -1193,7 +1205,10 @@ class overlay{
                         break
                         case 6: case 13: case 14: case 15: case 16: case 18: case 22:
                             for(let a=0,la=this.battle.cardManagers[this.player].reserve.cards.length;a<la;a++){
-                                if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select){
+                                if((
+                                    key==inputs.hexadec[a%15]&&!(this.args[0]>=13&&this.args[0]<=17)||
+                                    key==inputs.hexadec[this.battle.cardManagers[this.player].reserve.cards[a].relIndex%15]&&this.args[0]>=13&&this.args[0]<=17
+                                    )&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select){
                                     this.battle.cardManagers[this.player].reserve.cards[a].select=false
                                     switch(this.args[0]){
                                         case 6: case 13: case 14: case 15: case 16:
@@ -1217,7 +1232,10 @@ class overlay{
                                 }
                                 if(a>=0){
                                     this.battle.cardManagers[this.player].reserve.cards[a].select=false
-                                    if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5){
+                                    if((
+                                        key==inputs.hexadec[a%15]&&!(this.args[0]>=13&&this.args[0]<=17)||
+                                        key==inputs.hexadec[this.battle.cardManagers[this.player].reserve.cards[a].relIndex%15]&&this.args[0]>=13&&this.args[0]<=17
+                                        )&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5){
                                         this.battle.cardManagers[this.player].reserve.cards[a].select=true
                                     }
                                 }
