@@ -26,7 +26,7 @@ class tile{
             this.anim.part.push(0)
             this.anim.upPart.push(true)
         }
-        if(this.type.length==0&&game.ascend>=26&&floor(random(0,8))==0){
+        if(this.type.length==0&&game.ascend>=26&&floor(random(0,12))==0){
             this.addType(20)
         }
     }

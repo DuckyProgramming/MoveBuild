@@ -1,6 +1,14 @@
 Bugs:
 
 
+nerf nil
+add 2 phases to rewriter
+makes glitches special
+only 1 card can kill rewriter
+rewriter can change the map
+
+
+
 
 tier list cards
 
@@ -21,7 +29,7 @@ hotkeys on overlays issues?
 
 calamari game card
 
-ccp membership card
+ccp membership card - flag background
 
 mirror wall
 
@@ -44,3 +52,22 @@ blood donor card
 
 spin to win as a joke card
 nuclear bomb
+
+
+
+from dicey:
+chisel
+tetraphobia
+wrecking ball
+
+countdowns in general
+
+peashooter
+
+rubyweapon
+
+missing score-deal damage, has chance to return energy and card
+
+spare 4
+
+laugh track

@@ -2904,7 +2904,7 @@ types={
         },{
             name:'Shivstream',rarity:1,list:4,
             levels:[
-                {effect:[1],attack:325,cost:-1,target:[0],spec:[],class:4},
+                {effect:[1.5],attack:325,cost:-1,target:[0],spec:[],class:4},
                 {effect:[2],attack:325,cost:-1,target:[0],spec:[],class:4},
                 {effect:[2,1],attack:670,cost:-1,target:[0],spec:[],class:4},
             ],
@@ -6934,9 +6934,9 @@ types={
         },{
             name:'Lucky\nDefend',rarity:0,list:10,
             levels:[
-                {effect:[6],attack:1127,cost:1,target:[0],spec:[],class:2},
-                {effect:[9],attack:1127,cost:1,target:[0],spec:[],class:2},
-                {effect:[11],attack:1127,cost:1,target:[0],spec:[],class:2},
+                {effect:[8],attack:1127,cost:1,target:[0],spec:[],class:2},
+                {effect:[12],attack:1127,cost:1,target:[0],spec:[],class:2},
+                {effect:[15],attack:1127,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Inconsistent\nPush',rarity:0,list:10,
@@ -8916,7 +8916,7 @@ types={
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
         {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
         {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:215,effect:[4,1]},{type:216,effect:[10]}],description:`Stolen`},
-        {name:'Glitch',life:25,behavior:5,spec:[],move:{type:4,speed:2},attack:[{type:6,effect:[4]},{type:9,effect:[6]}],description:`Intended`},
+        {name:'Glitch',life:25,behavior:5,spec:[],move:{type:4,speed:3},attack:[{type:6,effect:[4]},{type:9,effect:[6]}],description:`Intended`},
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[6]},{type:28,effect:[9]}],description:`Not intended`},
         {name:'Nil',life:141,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[8,1,'Empty']},{type:198,effect:[10,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
         {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:225,effect:[]},{type:1,effect:[7]},{type:2,effect:[2]},{type:3,effect:[5]},{type:4,effect:[6]}],description:`Stuck in the ground`},
@@ -8946,7 +8946,7 @@ types={
         {name:'Purge X02',life:550,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[60]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
 
-        {name:'Rewriter',life:920,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:190,effect:[18,4,1]},{type:191,effect:[6]},{type:192,effect:[18]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        {name:'Rewriter',life:840,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:190,effect:[18,4,1]},{type:191,effect:[6]},{type:192,effect:[18]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
         {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
@@ -14180,7 +14180,7 @@ Vary greatly in effect.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
 variants={lowdraw:false,altDraw:false,lowhealth:false,midhealth:false,shortmap:false,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false,ultraprism:false,prismrule:[]}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

@@ -1,54 +1,71 @@
 class overlayManager{
-    constructor(layer,battle){
+    constructor(layer,battle,initMode){
         this.layer=layer
         this.battle=battle
 
         this.overlays=[]
-        this.overlays.push(
-            [new overlay(this.layer,this.battle,0,1,[0])],//rewards,0
-            [new overlay(this.layer,this.battle,0,2,[0])],//view reserve
-            [new overlay(this.layer,this.battle,0,2,[1])],//view discard
-            [new overlay(this.layer,this.battle,0,3,[0])],//new card to deck
-            [new overlay(this.layer,this.battle,0,2,[2])],//view deck
-            [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return
-            [new overlay(this.layer,this.battle,0,2,[4,1,0])],//remove card, no return
-            [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
-            [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
-            [new overlay(this.layer,this.battle,0,2,[7])],//transform card, no return
-            [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand,10
-            [new overlay(this.layer,this.battle,0,4,[])],//end stats
-            [new overlay(this.layer,this.battle,0,2,[8])],//duplicate card, no return
-            [new overlay(this.layer,this.battle,0,2,[9])],//view reserve (ordered)
-            [new overlay(this.layer,this.battle,0,2,[10])],//make card innate
-            [new overlay(this.layer,this.battle,0,2,[4,3,0])],//remove 3 cards, no return
-            [new overlay(this.layer,this.battle,0,5,[0])],//sell relic, no return
-            [new overlay(this.layer,this.battle,0,2,[4,1,1])],//remove card, return through event (bonfire spirits)
-            [new overlay(this.layer,this.battle,0,2,[11])],//bring in discard card as free, no return
-            [new overlay(this.layer,this.battle,0,2,[12])],//bring in exhaust card, no return
-            [new overlay(this.layer,this.battle,0,2,[13])],//bring in draw card-attack, no return,20
-            [new overlay(this.layer,this.battle,0,2,[14])],//bring in draw card-defense, no return
-            [new overlay(this.layer,this.battle,0,2,[15])],//bring in draw card-movement, no return
-            [new overlay(this.layer,this.battle,0,2,[16])],//bring in draw card-power, no return
-            [new overlay(this.layer,this.battle,0,6,[])],//dictionary
-            [new overlay(this.layer,this.battle,0,1,[1])],//rewards (draft)
-            [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return, out of rewards
-            [new overlay(this.layer,this.battle,0,7,[])],//food
-            [new overlay(this.layer,this.battle,0,2,[17])],//upgrade card, no return, out of rewards, SOLITAIRE
-            [new overlay(this.layer,this.battle,0,2,[18])],//bring in draw card, upgrade, no return
-            [new overlay(this.layer,this.battle,0,2,[19])],//bring in discard card to draw, no return,30
-            [new overlay(this.layer,this.battle,0,2,[20])],//bring in first 3 draw card as free, no return
-            [new overlay(this.layer,this.battle,0,2,[4,1,2])],//remove card, obliterative
-            [new overlay(this.layer,this.battle,0,2,[21])],//bring in discard card, no return
-            [new overlay(this.layer,this.battle,0,2,[22])],//bring in draw card, no return
-            [new overlay(this.layer,this.battle,0,8,[1])],//new card to hand, allcard
-            [new overlay(this.layer,this.battle,0,2,[23,3])],//view reserve (ordered, only 3)
-
-        )
-        if(this.battle.players==2){
-            this.copyOverlays()
+        switch(initMode){
+            case 0:
+                this.overlays.push(
+                    [new overlay(this.layer,this.battle,0,1,[0])],//rewards,0
+                    [new overlay(this.layer,this.battle,0,2,[0])],//view reserve
+                    [new overlay(this.layer,this.battle,0,2,[1])],//view discard
+                    [new overlay(this.layer,this.battle,0,3,[0])],//new card to deck
+                    [new overlay(this.layer,this.battle,0,2,[2])],//view deck
+                    [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return
+                    [new overlay(this.layer,this.battle,0,2,[4,1,0])],//remove card, no return
+                    [new overlay(this.layer,this.battle,0,2,[5])],//bring in discard card, no return
+                    [new overlay(this.layer,this.battle,0,2,[6])],//bring in draw card, no return
+                    [new overlay(this.layer,this.battle,0,2,[7])],//transform card, no return
+                    [new overlay(this.layer,this.battle,0,3,[1])],//new card to hand,10
+                    [new overlay(this.layer,this.battle,0,4,[])],//end stats
+                    [new overlay(this.layer,this.battle,0,2,[8])],//duplicate card, no return
+                    [new overlay(this.layer,this.battle,0,2,[9])],//view reserve (ordered)
+                    [new overlay(this.layer,this.battle,0,2,[10])],//make card innate
+                    [new overlay(this.layer,this.battle,0,2,[4,3,0])],//remove 3 cards, no return
+                    [new overlay(this.layer,this.battle,0,5,[0])],//sell relic, no return
+                    [new overlay(this.layer,this.battle,0,2,[4,1,1])],//remove card, return through event (bonfire spirits)
+                    [new overlay(this.layer,this.battle,0,2,[11])],//bring in discard card as free, no return
+                    [new overlay(this.layer,this.battle,0,2,[12])],//bring in exhaust card, no return
+                    [new overlay(this.layer,this.battle,0,2,[13])],//bring in draw card-attack, no return,20
+                    [new overlay(this.layer,this.battle,0,2,[14])],//bring in draw card-defense, no return
+                    [new overlay(this.layer,this.battle,0,2,[15])],//bring in draw card-movement, no return
+                    [new overlay(this.layer,this.battle,0,2,[16])],//bring in draw card-power, no return
+                    [new overlay(this.layer,this.battle,0,6,[])],//dictionary
+                    [new overlay(this.layer,this.battle,0,1,[1])],//rewards (draft)
+                    [new overlay(this.layer,this.battle,0,2,[3])],//upgrade card, no return, out of rewards
+                    [new overlay(this.layer,this.battle,0,7,[])],//food
+                    [new overlay(this.layer,this.battle,0,2,[17])],//upgrade card, no return, out of rewards, SOLITAIRE
+                    [new overlay(this.layer,this.battle,0,2,[18])],//bring in draw card, upgrade, no return
+                    [new overlay(this.layer,this.battle,0,2,[19])],//bring in discard card to draw, no return,30
+                    [new overlay(this.layer,this.battle,0,2,[20])],//bring in first 3 draw card as free, no return
+                    [new overlay(this.layer,this.battle,0,2,[4,1,2])],//remove card, obliterative
+                    [new overlay(this.layer,this.battle,0,2,[21])],//bring in discard card, no return
+                    [new overlay(this.layer,this.battle,0,2,[22])],//bring in draw card, no return
+                    [new overlay(this.layer,this.battle,0,8,[1])],//new card to hand, allcard
+                    [new overlay(this.layer,this.battle,0,2,[23,3])],//view reserve (ordered, only 3)
+                )
+                if(this.battle.players==2){
+                    this.copyOverlays()
+                }
+                this.positionOverlays()
+                this.priority=[24,17,3,26,28,10,35,0,25,1,13,36,2,16,4,15,5,6,32,7,18,30,33,8,34,19,20,21,22,23,29,31,9,12,14,11,27]
+            break
+            case 1:
+                this.overlays.push(
+                    [new overlay(this.layer,this.battle,0,2,[24,0])],//view tier 1
+                    [new overlay(this.layer,this.battle,0,2,[24,1])],//view tier 2
+                    [new overlay(this.layer,this.battle,0,2,[24,2])],//view tier 3
+                    [new overlay(this.layer,this.battle,0,2,[24,3])],//view tier 4,
+                    [new overlay(this.layer,this.battle,0,2,[24,4])],//view tier 5
+                    [new overlay(this.layer,this.battle,0,2,[24,5])],//view tier 6
+                    [new overlay(this.layer,this.battle,0,2,[24,6])],//view tier 7
+                    [new overlay(this.layer,this.battle,0,2,[24,7])],//view tier 8
+                    [new overlay(this.layer,this.battle,0,2,[24,8])],//view tier 9
+                )
+                this.priority=[0,1,2,3,4,5,6,7,8]
+            break
         }
-        this.positionOverlays()
-        this.priority=[24,17,3,26,28,10,35,0,25,1,13,36,2,16,4,15,5,6,32,7,18,30,33,8,34,19,20,21,22,23,29,31,9,12,14,11,27]
         this.anyActive=false
     }
     copyOverlays(){

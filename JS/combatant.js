@@ -79,16 +79,16 @@ class combatant{
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
-            'Miracle Time','Miracle+ Time','Wrath Time','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
+            'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
             '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
             'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
-            'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn',
+            'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
-                0,2,1,0,2,1,0,0,3,1,//1
-                1,0,0,2,0,0,1,2,2,0,//2
+                0,2,1,0,2,1,0,0,3,3,//1
+                3,0,0,2,0,0,1,2,2,0,//2
                 2,0,0,0,1,1,2,0,1,2,//3
                 0,1,1,1,0,0,0,2,1,2,//4
                 2,2,0,0,0,0,0,2,0,0,//5
@@ -105,28 +105,28 @@ class combatant{
                 0,0,0,0,0,2,0,0,0,0,//16
                 0,0,0,1,2,2,0,1,0,1,//17
                 1,0,1,0,2,0,2,2,0,2,//18
-                2,2,2,
+                2,2,2,0,0,2,0,
             ],
             class:[
-                0,0,0,0,2,1,0,0,1,1,
+                0,2,0,0,2,1,0,0,1,1,
                 0,0,0,0,0,0,1,0,0,0,
                 1,0,2,2,0,0,0,2,3,1,
-                0,1,1,0,0,2,0,1,0,0,
+                0,1,1,0,0,2,0,1,2,2,
                 0,2,3,0,2,2,1,0,1,1,
                 0,0,3,0,2,0,0,0,0,1,
                 2,2,1,1,2,0,2,3,2,2,
-                2,2,2,0,2,0,2,1,0,3,
+                2,2,2,2,2,0,2,1,0,3,
                 3,2,2,2,2,2,1,2,0,0,
-                2,2,0,0,0,0,1,0,0,0,
-                0,1,0,0,2,2,0,2,0,2,
+                2,2,2,2,2,0,1,0,0,0,
+                0,1,2,0,2,2,2,2,0,2,
                 1,2,2,2,2,2,2,3,2,1,
-                2,0,0,1,0,2,2,2,1,2,
+                2,0,2,1,0,2,2,2,1,2,
                 2,2,2,2,1,2,2,0,0,0,
-                2,2,2,3,2,2,0,0,3,3,
+                2,2,2,3,2,2,0,2,3,3,
                 2,2,2,0,0,2,2,2,3,0,
                 0,2,2,0,2,1,2,1,0,0,
-                2,1,0,0,2,1,0,2,1,1,
-                1,1,1,
+                2,1,0,0,2,1,2,2,1,1,
+                1,1,1,0,0,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2920,8 +2920,20 @@ class combatant{
                 }
             }
             if(game.ascend>=27&&this.battle.encounter.class==0||game.ascend>=28&&this.battle.encounter.class==1){
-                this.randomStatus(2,[0])
-                this.randomStatus(2,[0])
+                let randombuffs=[
+                    ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage',6],['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Temporary Strength',10],
+                    ['Temporary Dexterity',10],['Metallicize',2],['Buffer',1],['Take Half Damage',2],['Intangible',1],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],['Dexterity Per Turn',1],['Counter Combat',2],
+                    ['Temporary Damage Up',4],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Counter Combat Turn',4],['Single Counter Block',8],['Invisible',4],['Take Third Damage',2],['Speed Up',1],['Strength Next Turn',3],
+                    ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Untargettable From Front',1],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],
+                    ['Block Next Turn Next Turn',20],['Heal on Hit',3],['Take 3/5 Damage',2],['Attack Bleed Turn',2],['Single Attack Bleed',4],['Attack Bleed Combat',1],['Counter Block',3],['Dodge Next Turn',1],['Block Return',5],['Cannot Die',1],
+                    ['Single Damage Block Convert',2],['Triple Block',1],['Dexterity Next Turn',3],['Take Credit',1],['Triple Damage',1],['1.5x Damage',2],['1.5x Block',3],['Deprecating Strength',3],['Block Up',2],['Take Credit Turn',1],
+                    ['Attack Regeneration',1],['Take Credit Block Turn',1],['Damage Up',2],['Temporary Block Up',4],['Block Next Turn Next Turn Next Turn',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],
+                ]
+                for(let a=0,la=2;a<la;a++){
+                    let index=floor(random(0,randombuffs.length))
+                    this.statusEffect(randombuffs[index][0],randombuffs[index][1])
+                    randombuffs.splice(index,1)
+                }
             }
             if(game.ascend>=30&&this.battle.encounter.class==2&&this.battle.nodeManager.world==3){
                 if(this.spec.includes(2)){
@@ -2931,7 +2943,7 @@ class combatant{
                 }
                 for(let a=0,la=this.attack.length;a<la;a++){
                     if((types.attack[this.attack[a].type].class==1||types.attack[this.attack[a].type].class==2||types.attack[this.attack[a].type].class==5)&&this.attack[a].effect.length>=1&&this.attack[a].effect[0]>1){
-                        this.attack[a].effect[0]=round(this.attack[a].effect[0])
+                        this.attack[a].effect[0]=round(this.attack[a].effect[0]*1.2)
                     }
                 }
             }else if(game.ascend>=29&&this.battle.encounter.class==2){
@@ -3955,6 +3967,9 @@ class combatant{
             if(userCombatant.status.main[40]>0){
                 damage+=userCombatant.status.main[40]
             }
+            if(userCombatant.status.main[186]>0){
+                damage+=userCombatant.status.main[186]
+            }
             if(userCombatant.status.main[75]>0){
                 damage-=userCombatant.status.main[75]
             }
@@ -4036,10 +4051,16 @@ class combatant{
                 this.statusEffect('Strength',this.status.main[43])
             }
             if(this.status.main[56]>0){
-                this.statusEffect('Strength',this.status.main[56])
+                this.statusEffect('Temporary Strength',this.status.main[56])
             }
             if(this.status.main[64]>0){
                 this.statusEffect('Energy Next Turn',this.status.main[64])
+            }
+            if(this.status.main[183]>0){
+                this.statusEffect('Dexterity',this.status.main[183])
+            }
+            if(this.status.main[184]>0){
+                this.statusEffect('Temporary Strength',this.status.main[184])
             }
             if(this.status.main[177]>0){
                 this.ammo+=this.status.main[177]
@@ -4400,6 +4421,12 @@ class combatant{
             let totalDex=0
             if(this.status.main[168]>0){
                 block+=this.status.main[168]
+            }
+            if(this.status.main[185]>0){
+                block+=this.status.main[185]
+            }
+            if(this.status.main[187]>0){
+                block-=this.status.main[187]
             }
             if(this.status.main[7]!=0){
                 totalDex+=this.status.main[7]
@@ -4914,7 +4941,7 @@ class combatant{
         this.life=amount
     }
     loseMaxHP(amount){
-        this.base.life-=amount
+        this.base.life=max(1,this.base.life-amount)
         this.life=min(this.life,this.base.life)
     }
     tick(){
@@ -15584,7 +15611,7 @@ class combatant{
         }else if(this.construct){
             this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0,0,1,15)
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
-            if(this.life<=0&&!this.dead){
+            if(this.life<=0&&!this.dead&&this.team>0){
                 this.dead=true
                 this.battle.tileManager.activate()
                 this.battle.updateTargetting()

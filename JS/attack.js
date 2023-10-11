@@ -733,7 +733,7 @@ class attack{
                         this.targetCombatant.takeDamage(total3,this.user)
                     break
                     case 1049:
-                        this.targetCombatant.statusEffect('Bruise',this.effect[1])
+                        this.targetCombatant.statusEffect('Bruise',this.effect[0])
                     break
                     case 1058:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userManager.hand.classNumber([6]),this.user)
@@ -1138,7 +1138,7 @@ class attack{
                         this.userManager.drawRetain(this.effect[1])
                     break
                     case 830:
-                        this.userManager.hand.add(findName('Restrike',types.card),0,0)
+                        this.battle.dropDrawShuffle(this.player,findName('Restrike',types.card),0,0)
                     break
                     case 840:
                         if(this.userCombatant.charge>=this.effect[1]){
@@ -4043,7 +4043,7 @@ class attack{
                         }
                     break
                     case 325:
-                        for(let a=0,la=min(this.effect[0]*this.energy,100);a<la;a++){
+                        for(let a=0,la=min(ceil(this.effect[0]*this.energy),100);a<la;a++){
                             this.userManager.hand.add(findName('Shiv',types.card),0,0)
                         }
                     break
@@ -4564,7 +4564,7 @@ class attack{
                     break
                     case 1117:
                         this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
-                        this.battle.combatantManager.fullAllEffect(2,[this.effect[0]])
+                        this.battle.combatantManager.fullAllEffect(2,[this.effect[1]])
                     break
                     case 1122:
                         this.battle.overlayManager.overlays[10][this.player].active=true
@@ -8081,7 +8081,7 @@ class attack{
                 this.userCombatant.runAnimation(1/30,36)
                 if(this.timer==15){
                     this.userCombatant.life=0
-                    this.battle.combatantManager.damageArea(this.effect[0],this.user,-1,this.userCombatant.tilePosition)
+                    this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,2,[20]))
                 }else if(this.timer>=30){
                     this.remove=true

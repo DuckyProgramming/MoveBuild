@@ -1082,11 +1082,11 @@ class turn{
                                 this.userCombatant.statusEffect('Retain Block',3)
                             break
                             case 108:
-                                this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
+                                this.userCombatant.statusEffectNext('Counter Combat Turn',this.effect[1])
                             break
                             case 110:
                                 this.userCombatant.statusEffect('Retain Block',1)
-                                this.userCombatant.statusEffect('Counter Combat Turn',this.effect[1])
+                                this.userCombatant.statusEffectNext('Counter Combat Turn',this.effect[1])
                             break
                             case 182:
                                 this.userCombatant.statusEffect('Retain Block',6)

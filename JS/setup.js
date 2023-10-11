@@ -11,6 +11,7 @@ function setup(){
     current=new battle(graphics.main,game.player)
 
     //stage.scene='tier'
+    //current.overlayManager=new overlayManager(current.layer,current,1)
 
     /*current.menu.combatant=[1]
     current.menu.deck=[0,0]

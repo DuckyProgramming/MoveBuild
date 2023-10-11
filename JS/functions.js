@@ -195,6 +195,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[40]>0){
 				bonus+=user.status.main[40]
 			}
+			if(user.status.main[186]>0){
+				bonus+=user.status.main[186]
+			}
 			if(user.status.main[75]>0){
 				bonus-=user.status.main[75]
 			}
@@ -257,6 +260,12 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			let totalDex=0
 			if(user.status.main[168]>0){
 				bonusB+=user.status.main[168]
+			}
+			if(user.status.main[185]>0){
+				bonusB+=user.status.main[185]
+			}
+			if(user.status.main[187]>0){
+				bonusB-=user.status.main[187]
 			}
 			if(user.status.main[7]!=0){
 				totalDex+=user.status.main[7]

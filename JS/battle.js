@@ -63,7 +63,7 @@ class battle{
         this.purchaseManager=new purchaseManager(this.layer,this)
         this.relicManager=new relicManager(this.layer,this)
         this.itemManager=new itemManager(this.layer,this)
-        this.overlayManager=new overlayManager(this.layer,this)
+        this.overlayManager=new overlayManager(this.layer,this,0)
         this.replayManager=new replayManager(this.layer,this)
         
         this.initialManagersAfter()
@@ -427,7 +427,6 @@ class battle{
         this.turn.endReady=false
         this.combatantManager.tickEarly()
         this.cardManagers[this.turn.main].allEffect(2,1)
-        this.cardManagers[this.turn.main].allEffect(3,39)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
@@ -456,6 +455,7 @@ class battle{
                 }
                 this.cardManagers[this.turn.main].turnDraw(this.turn.total)
             }
+            this.cardManagers[this.turn.main].allEffect(3,39)
             this.cardManagers[this.turn.main].regenDrops()
             this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
             this.turn.time=game.turnTime
@@ -495,6 +495,7 @@ class battle{
             }
             this.cardManagers[0].turnDraw(this.turn.total)
         }
+        this.cardManagers[this.turn.main].allEffect(3,39)
         this.cardManagers[0].regenDrops()
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
@@ -1038,6 +1039,7 @@ class battle{
             break
             case 'tier':
                 this.tierManager.display()
+                this.overlayManager.display()
             break
         }
         this.tutorialManager.display()
@@ -1342,8 +1344,9 @@ class battle{
                     }
                 }
             break
-            case 'update':
-                this.tierManager.display()
+            case 'tier':
+                this.tierManager.update()
+                this.overlayManager.update()
             break
         }
         this.tutorialManager.update()
@@ -1624,6 +1627,13 @@ class battle{
                             this.overlayManager.overlays[24][a].activate()
                         }
                     }
+                }
+            break
+            case 'tier':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onClick()
+                }else{
+                    this.tierManager.onClick()
                 }
             break
         }
@@ -1952,9 +1962,14 @@ class battle{
                     }
                 }
             break
+            case 'tier':
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
+                }else{
+                    this.tierManager.onKey(key,code)
+                }
+            break
         }
         this.tutorialManager.onKey(key,code)
-    }
-    onDrag(){
     }
 }

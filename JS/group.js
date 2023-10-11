@@ -825,22 +825,23 @@ class group{
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
                 if(this.cards[a].usable
+                &&!(effect==0&&this.cards[index].deSize)
                 &&!((effect==1||effect==5)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)))
-                &&!(effect==7&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)))
+                &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)))
                 &&!(effect==2&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==3&&(this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==8&&this.cards[a].spec.includes(8))
                 &&!(effect==10&&this.cards[a].spec.includes(9))
                 &&!(effect==11&&this.cards[a].spec.includes(10))
                 &&!(effect==15&&this.cards[a].effect.length==0)
-                &&!(effect==38&&this.cards[a].attack==1115)){
+                &&!(effect==17&&(this.cards[a].attack==1115||this.cards[index].deSize))){
                     list.push(a)
                 }
             }
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
                 switch(effect){
-                    case 0: case 38:
+                    case 0: case 17:
                         if(!this.cards[index].spec.includes(2)||this.cards[index].spec.includes(29)&&floor(random(0,5))!=0){
                             this.cards[index].deSize=true
                         }
@@ -978,7 +979,7 @@ class group{
             case 1115:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(effect[0])
                 for(let a=0,la=effect[1];a<la;a++){
-                    this.drawEffects.push([0,38,[]])
+                    this.drawEffects.push([0,317,[]])
                 }
             break
         }
@@ -1465,10 +1466,10 @@ class group{
             break
             case 'tier':
                 for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].size=0.6
+                    this.cards[a].deSize=a!=0
                     this.cards[a].fade=1
-                    this.cards[a].position.x=50+a*20
-                    this.cards[a].position.y=60+this.id*60
+                    this.cards[a].position.x=this.layer.width/2
+                    this.cards[a].position.y=this.layer.height/2
                     this.cards[a].anim.afford=1
                     if(this.cards[a].size>=0){
                         this.cards[a].display()
@@ -2069,7 +2070,7 @@ class group{
                     }
                 }
             break
-            case 'overlay':
+            case 'overlay': case 'tier':
                 this.cards.forEach(card=>card.update())
             break
         }
