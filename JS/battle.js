@@ -34,7 +34,7 @@ class battle{
         }
         this.proxyPlayer=new combatant(this.layer,this,0,0,0,0,0,0,0,0,0,0)
         this.tutorialManager=new tutorialManager(this.layer,this)
-        this.tierManager=new tierManager(this.layer,this)
+        //this.tierManager=new tierManager(this.layer,this)
     }
     startGame(){
         game.player=[this.menu.combatant[0]]
@@ -452,6 +452,9 @@ class battle{
                     if(this.relicManager.hasRelic(107,this.turn.main)){
                         this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                     }
+                    if(this.nodeManager.world==3&&this.encounter.class==2){
+                        this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
+                    }
                 }
                 this.cardManagers[this.turn.main].turnDraw(this.turn.total)
             }
@@ -491,6 +494,9 @@ class battle{
                 }
                 if(this.relicManager.hasRelic(107,this.turn.main)){
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                }
+                if(this.nodeManager.world==3&&this.encounter.class==2){
+                    this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                 }
             }
             this.cardManagers[0].turnDraw(this.turn.total)

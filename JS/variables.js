@@ -231,9 +231,9 @@ types={
         },{
             name:'Combo\nFinish',rarity:0,list:1,
             levels:[
-                {effect:[4,2],attack:130,cost:4,target:[2,1,2],spec:[0,11],class:1},
-                {effect:[7,2],attack:130,cost:4,target:[2,1,2],spec:[0,11],class:1},
-                {effect:[7,3],attack:130,cost:4,target:[2,1,2],spec:[0,11],class:1},
+                {effect:[6,3],attack:130,cost:4,target:[2,1,2],spec:[0,11],class:1},
+                {effect:[12,3],attack:130,cost:4,target:[2,1,2],spec:[0,11],class:1},
+                {effect:[12,4],attack:130,cost:4,target:[2,1,2],spec:[0,11],class:1},
             ],
         },{
             name:'Combo\nCounter',rarity:0,list:1,
@@ -2722,9 +2722,9 @@ types={
         },{
             name:'Rematerialize',rarity:0,list:4,
             levels:[
-                {effect:[2,1],attack:284,cost:1,target:[0],spec:[],class:4},
-                {effect:[2,3],attack:284,cost:1,target:[0],spec:[],class:4},
-                {effect:[2,4],attack:284,cost:1,target:[0],spec:[2],class:4},
+                {effect:[2,1],attack:284,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2,3],attack:284,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2,4],attack:284,cost:1,target:[0],spec:[1,2],class:4},
             ],
         },{
             name:'Unload',rarity:1,list:4,
@@ -4639,9 +4639,9 @@ types={
         },{
             name:'Finality',rarity:2,list:7,
             levels:[
-                {effect:[8,30],attack:761,cost:1,target:[0],spec:[],class:4},
-                {effect:[8,20],attack:761,cost:1,target:[0],spec:[],class:4},
-                {effect:[8,15],attack:761,cost:1,target:[0],spec:[],class:4},
+                {effect:[10,20],attack:761,cost:1,target:[0],spec:[],class:4},
+                {effect:[10,15],attack:761,cost:1,target:[0],spec:[],class:4},
+                {effect:[10,10],attack:761,cost:1,target:[0],spec:[],class:4},
             ],
         },{
             name:'Tantrum',rarity:1,list:7,
@@ -4959,7 +4959,7 @@ types={
                 {effect:[28],attack:809,cost:2,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Twirl',rarity:1,list:7,
+            name:'Twirl',rarity:0,list:7,
             levels:[
                 {effect:[7,1],attack:810,cost:1,target:[0],spec:[],class:2},
                 {effect:[12,1],attack:810,cost:1,target:[0],spec:[],class:2},
@@ -5006,13 +5006,6 @@ types={
                 {effect:[1,2],attack:816,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,3],attack:816,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,4],attack:816,cost:1,target:[1,1,1],spec:[0],class:3},
-            ],
-        },{
-            name:'Stacked\nMove',rarity:0,list:7,
-            levels:[
-                {effect:[1],attack:817,cost:1,target:[1,1,1],spec:[0],class:3},
-                {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[0],class:3},
-                {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[],class:3},
             ],
         },{
             name:'Branch\nOut',rarity:1,list:7,
@@ -5076,6 +5069,13 @@ types={
                 {effect:[],attack:1005,cost:2,target:[0],spec:[1],class:4},
                 {effect:[],attack:1005,cost:1,target:[0],spec:[1],class:4},
                 {effect:[],attack:1005,cost:0,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Posture',rarity:1,list:7,
+            levels:[
+                {effect:[],attack:1201,cost:1,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:1201,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:1201,cost:0,target:[0],spec:[1,2],class:4},
             ],
         },
 
@@ -5327,9 +5327,9 @@ types={
         },{
             name:'Highball',rarity:0,list:8,
             levels:[
-                {effect:[8,7],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
-                {effect:[11,9],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
-                {effect:[13,11],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
+                {effect:[10,8],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
+                {effect:[13,10],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
+                {effect:[15,12],attack:872,cost:1,target:[2,1,2],spec:[0,27],class:1},
             ],
         },{
             name:'Max\nPower',rarity:2,list:8,
@@ -5460,9 +5460,9 @@ types={
         },{
             name:'Moonbeam',rarity:0,list:8,
             levels:[
-                {effect:[8,15],attack:902,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[11,20],attack:902,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[13,24],attack:902,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[8,15],attack:902,cost:1,target:[2,1,2],spec:[0,27],class:1},
+                {effect:[11,20],attack:902,cost:1,target:[2,1,2],spec:[0,27],class:1},
+                {effect:[13,24],attack:902,cost:1,target:[2,1,2],spec:[0,27],class:1},
             ],
         },{
             name:'Shooting\nEcho',rarity:0,list:8,
@@ -6088,6 +6088,13 @@ types={
                 {effect:[8],attack:1013,cost:1,target:[0],spec:[],class:4},
                 {effect:[12],attack:1013,cost:1,target:[0],spec:[],class:4},
                 {effect:[15],attack:1013,cost:1,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Stacked\nMove',rarity:0,list:7,
+            levels:[
+                {effect:[1],attack:817,cost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[0],class:3},
+                {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[],class:3},
             ],
         },{
             name:'Hit the\nSpot',rarity:1,list:9,
@@ -6731,9 +6738,9 @@ types={
         },{
             name:'Body\nArmor',rarity:0,list:10,
             levels:[
-                {effect:[10,1],attack:1039,cost:1,target:[0],spec:[],class:2},
-                {effect:[16,1],attack:1039,cost:1,target:[0],spec:[],class:2},
-                {effect:[24,2],attack:1039,cost:1,target:[0],spec:[],class:2},
+                {effect:[13,1],attack:1039,cost:1,target:[0],spec:[],class:2},
+                {effect:[19,1],attack:1039,cost:1,target:[0],spec:[],class:2},
+                {effect:[28,2],attack:1039,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Collective',rarity:1,list:10,
@@ -7123,9 +7130,9 @@ types={
         },{
             name:'Composite\nDefend',rarity:0,list:10,
             levels:[
-                {effect:[10,1],attack:1176,cost:1,target:[0],spec:[],class:2},
-                {effect:[16,1],attack:1176,cost:1,target:[0],spec:[],class:2},
-                {effect:[16,2],attack:1176,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,1],attack:1176,cost:1,target:[0],spec:[],class:2},
+                {effect:[18,1],attack:1176,cost:1,target:[0],spec:[],class:2},
+                {effect:[18,2],attack:1176,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Death\nExplosion',rarity:1,list:10,
@@ -7873,6 +7880,13 @@ types={
                 {effect:[5],attack:56,cost:0,target:[1,1,5],spec:[1,4],class:3},
             ],
         },{
+            name:'Rewrite',rarity:1,list:7,
+            levels:[
+                {effect:[5],attack:1202,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8],attack:1202,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[10],attack:1202,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
             name:'Buster',rarity:-1,list:0,
             levels:[
                 {effect:[8],attack:945,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -8602,9 +8616,9 @@ types={
         },{
             name:'Ally\nPack',rarity:1,list:13,
             levels:[
-                {effect:[],attack:352,cost:2,target:[0],spec:[1],class:4},
                 {effect:[],attack:352,cost:1,target:[0],spec:[1],class:4},
-                {effect:[],attack:352,cost:1,target:[0],spec:[1,22],class:4},
+                {effect:[],attack:352,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:352,cost:0,target:[0],spec:[1,22],class:4},
             ],
         },{
             name:'Ally\nBurst',rarity:1,list:13,
@@ -8780,6 +8794,20 @@ types={
                 {effect:[],attack:450,cost:0,target:[0],spec:[1,2],class:4},
                 {effect:[],attack:450,cost:0,target:[0],spec:[1,2,22],class:4},
             ],
+        },{
+            name:'The\nDonald',rarity:-5,list:-1,
+            levels:[
+                {effect:[],attack:1203,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1204,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1205,cost:0,target:[0],spec:[],class:4},
+            ],
+        },{
+            name:'Indictment',rarity:1,list:7,
+            levels:[
+                {effect:[1],attack:1206,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:1206,cost:0,target:[0],spec:[],class:4},
+                {effect:[1],attack:1206,cost:0,target:[0],spec:[],class:4},
+            ],
         },
     ],combatant:[
         {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Tutorial man!`},
@@ -8895,7 +8923,7 @@ types={
         {name:'Beekeeper',life:76,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:155,effect:[2,'Bee']},{type:156,effect:[6]}],description:`Actually just tried touching a beehive`},
         {name:'Pixie',life:11,behavior:1,spec:[1],move:{type:3,speed:1},attack:[{type:1,effect:[4]}],description:`Sibiea reference?`},
         {name:'PhD',life:78,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:158,effect:[4,1]},{type:159,effect:[1]},{type:160,effect:[8]}],description:`Still can't find a job`},
-        {name:'Glimerrer',life:35,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[4]},{type:161,effect:[6]},{type:162,effect:[8]}],description:`Oh shiny`},
+        {name:'Glimerrer',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:87,effect:[4]},{type:161,effect:[5]},{type:162,effect:[7]}],description:`Oh shiny`},
         {name:'Host Drone',life:9,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:165,effect:[5]}],description:`Random walk`},
         {name:'Host',life:44,behavior:12,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:155,effect:[1,'Host Drone']}],description:`Voluntary`},
         {name:'Antihwurmp',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:166,effect:[6,2,'Dazed']}],description:`Kinda illogical`},
@@ -8916,9 +8944,9 @@ types={
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
         {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
         {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:215,effect:[4,1]},{type:216,effect:[10]}],description:`Stolen`},
-        {name:'Glitch',life:25,behavior:5,spec:[],move:{type:4,speed:3},attack:[{type:6,effect:[4]},{type:9,effect:[6]}],description:`Intended`},
+        {name:'Glitch',life:15,behavior:5,spec:[],move:{type:6,speed:1},attack:[{type:6,effect:[4]},{type:9,effect:[6]}],description:`Intended`},
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[6]},{type:28,effect:[9]}],description:`Not intended`},
-        {name:'Nil',life:141,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[8,1,'Empty']},{type:198,effect:[10,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
+        {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[8,1,'Empty']},{type:198,effect:[10,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
         {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:225,effect:[]},{type:1,effect:[7]},{type:2,effect:[2]},{type:3,effect:[5]},{type:4,effect:[6]}],description:`Stuck in the ground`},
         {name:'Vengeful',life:70,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[3]},{type:210,effect:[1]}],description:`Remember last time?`},
         {name:'Coffee Commander',life:435,behavior:0,spec:[1],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]},{type:188,effect:[5]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
@@ -8930,7 +8958,7 @@ types={
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
-        {name:'Wiz',life:110,behavior:0,spec:[0,2],move:{type:5,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
+        {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:5,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
@@ -8942,11 +8970,11 @@ types={
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
-        {name:'Shadow Trooper',life:600,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
-        {name:'Purge X02',life:550,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[60]},{type:21,effect:[]}],description:`Actually a human`},
-        {name:'Lunaria',life:300,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
+        {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
+        {name:'Purge X02',life:500,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[60]},{type:21,effect:[]}],description:`Actually a human`},
+        {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
 
-        {name:'Rewriter',life:840,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:190,effect:[18,4,1]},{type:191,effect:[6]},{type:192,effect:[18]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        {name:'Rewriter',life:666,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[18,4,1]},{type:191,effect:[6]},{type:192,effect:[18]},{type:244,effect:[]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:244,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
         {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
@@ -9227,6 +9255,7 @@ types={
         {name:'Builder Exhaust',class:4},
         {name:'Burn',class:1},
         {name:'Self-Kill',class:5},
+        {name:'Randomap',class:4},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -12877,9 +12906,9 @@ Entering, you're offered a chance to glimpse your future...`,
         },{
             level:['Star2 7'],class:1,world:0,
             name:'Elf Archer',
-            player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Elf Archer'},
+                {position:{x:1,y:1},name:'Elf Archer'},
             ],reinforce:[
             ],
         },{
@@ -14180,7 +14209,7 @@ Vary greatly in effect.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1}
 variants={lowdraw:false,altDraw:false,lowhealth:false,midhealth:false,shortmap:false,shortermap:false,speedmove:false,speedcard:false,nobasicanim:false,prism:false,ultraprism:false,prismrule:[]}
 constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],

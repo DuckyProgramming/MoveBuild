@@ -70,7 +70,7 @@ class tile{
                 break
                 case 6:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
                         if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].reserve.cards.length>0){
                             this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(1,8,[])
                         }else{
@@ -92,7 +92,7 @@ class tile{
                 break
                 case 8:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
                         this.battle.drop(this.battle.combatantManager.combatants[this.combatant].id,findName('Burn',types.card),0,game.playerNumber+1)
                     }
                 break
@@ -137,7 +137,7 @@ class tile{
                 break
                 case 14:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
                         this.battle.energy.main[this.battle.combatantManager.combatants[this.combatant].id]=0
                         this.anim.upPart[a]=false
                     }
@@ -151,7 +151,7 @@ class tile{
                 break
                 case 16:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
                         this.anim.upPart[a]=false
                         if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length>0){
                             this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(2,14,[])
@@ -170,7 +170,7 @@ class tile{
                 break
                 case 18:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
                         let amount=this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].allEffect(2,2)
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].draw(amount)
@@ -184,8 +184,21 @@ class tile{
                 break
                 case 21:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
-                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
                         this.battle.combatantManager.combatants[this.combatant].metal+=3
+                        this.anim.upPart[a]=false
+                    }
+                break
+                case 23:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(2)){
+                        this.battle.combatantManager.combatants[this.combatant].takeDamage(25,0)
+                    }
+                break
+                case 25:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1){
+                        this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Glitch',types.combatant),-150+floor(random(0,6))*60)
                         this.anim.upPart[a]=false
                     }
                 break
@@ -198,6 +211,14 @@ class tile{
                 case 22:
                     this.battle.combatantManager.damageArea(5,-1,-1,this.tilePosition)
                     this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[15]))
+                    this.anim.upPart[a]=false
+                break
+                case 24:
+                    this.addType(23)
+                    this.anim.upPart[a]=false
+                break
+                case 26:
+                    this.addType(24)
                     this.anim.upPart[a]=false
                 break
             }
@@ -461,6 +482,64 @@ class tile{
                     this.layer.rect(0,0,6,6,2)
                     this.layer.fill(255,50,50,this.fade*this.anim.part[a])
                     this.layer.rect(0,0,4,4,2)
+                break
+                case 23:
+                    this.layer.stroke(100,0,0,this.fade*this.anim.part[a])
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    this.layer.ellipse(0,0,24,24)
+                    this.layer.line(-12,0,-18,0)
+                    this.layer.line(-12,0,-18,-6)
+                    this.layer.line(-12,0,-18,6)
+                    this.layer.line(12,0,18,0)
+                    this.layer.line(12,0,18,-6)
+                    this.layer.line(12,0,18,6)
+                    this.layer.line(0,-7.5,0,3)
+                    this.layer.point(0,7.5)
+                break
+                case 24:
+                    this.layer.stroke(255,100,100,this.fade*this.anim.part[a])
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    this.layer.ellipse(0,0,24,24)
+                    this.layer.line(-12,0,-18,0)
+                    this.layer.line(-12,0,-18,-6)
+                    this.layer.line(-12,0,-18,6)
+                    this.layer.line(12,0,18,0)
+                    this.layer.line(12,0,18,-6)
+                    this.layer.line(12,0,18,6)
+                    this.layer.line(0,-12,0,-6)
+                    this.layer.line(0,-12,-6,-6)
+                    this.layer.line(0,-12,6,-6)
+                    this.layer.line(0,12,0,6)
+                    this.layer.line(0,12,-6,6)
+                    this.layer.line(0,12,6,6)
+                break
+                case 25:
+                    let color=[[200,0,255],[0,100,200],[0,150,255],[255,150,50],[255,75,255],[50,255,50],[125,255,125],[255,255,100],[180,180,180],[255,100,100]][floor((game.timer+this.tilePosition.x*64+this.tilePosition.y*27)/15)%10]
+                    this.layer.fill(color[0],color[1],color[2],this.fade*this.anim.part[a])
+                    this.layer.ellipse(0,0,8)
+                    color=[[200,0,255],[0,100,200],[0,150,255],[255,150,50],[255,75,255],[50,255,50],[125,255,125],[255,255,100],[180,180,180],[255,100,100]][floor((game.timer+this.tilePosition.x*64+this.tilePosition.y*27)/15+5)%10]
+                    this.layer.fill(color[0],color[1],color[2],this.fade*this.anim.part[a])
+                    this.layer.quad(0,-3,-3,0,0,3,3,0)
+                break
+                case 26:
+                    this.layer.stroke(255,200,200,this.fade*this.anim.part[a])
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    this.layer.ellipse(0,0,24,24)
+                    this.layer.line(-12,0,-18,0)
+                    this.layer.line(-12,0,-18,-6)
+                    this.layer.line(-12,0,-18,6)
+                    this.layer.line(12,0,18,0)
+                    this.layer.line(12,0,18,-6)
+                    this.layer.line(12,0,18,6)
+                    this.layer.line(0,-12,0,-6)
+                    this.layer.line(0,-12,-6,-6)
+                    this.layer.line(0,-12,6,-6)
+                    this.layer.line(0,12,0,6)
+                    this.layer.line(0,12,-6,6)
+                    this.layer.line(0,12,6,6)
                 break
             }
         }

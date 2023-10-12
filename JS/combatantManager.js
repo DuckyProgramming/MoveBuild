@@ -380,7 +380,7 @@ class combatantManager{
                         }
                     break
                     case 18:
-                        if(this.combatants[a].team==0){
+                        if(this.combatants[a].team==0&&this.combatants[a].id!=args[0]){
                             this.battle.turnManager.loadEnemyRotate(a)
                             this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,a,false))
                             this.battle.turnManager.turns[this.battle.turnManager.turns.length-1].target=[args[0]]

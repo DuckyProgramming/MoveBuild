@@ -1468,7 +1468,7 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].deSize=a!=0
                     this.cards[a].fade=1
-                    this.cards[a].position.x=this.layer.width/2
+                    this.cards[a].position.x=this.layer.width/2+args[0]*120
                     this.cards[a].position.y=this.layer.height/2
                     this.cards[a].anim.afford=1
                     if(this.cards[a].size>=0){

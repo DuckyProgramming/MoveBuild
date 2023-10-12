@@ -591,8 +591,11 @@ class turn{
                 break
                 case 1:
                     this.targetTile=-1
+                    if(this.type==6&&floor(random(0,5))==0){
+                        this.type=5
+                    }
                     switch(this.type){
-                        case 0: case 4:
+                        case 0: case 4: case 6:
                             let works=true
                             if(this.setTarget!=-1){
                                 this.targetCombatant=this.setTarget
@@ -609,9 +612,13 @@ class turn{
                                     works=false
                                 }
                             }
+                            if(this.type==6){
+                                this.targetClass=1
+                                this.targetDistance=1
+                            }
                             if(works){
                                 this.direction=round(atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)/60-random(0.4,0.6))*60+30
-                                if(this.type==4){
+                                if(this.type==4||this.type==5){
                                     this.direction+=round(random(-2,2))*60
                                 }
                                 this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
@@ -621,7 +628,21 @@ class turn{
                                 }else{
                                     this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                     if(this.targetTile.occupied>0){
-                                        fail=true
+                                        if(this.type==6){
+                                            this.targetClass=2
+                                            let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                            if(index>=0){
+                                                this.targetCombatant=this.battle.combatantManager.combatants[index]
+                                                this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                                this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                                this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                                this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                                            }else{
+                                                fail=true
+                                            }
+                                        }else{
+                                            fail=true
+                                        }
                                     }else{
                                         this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                         this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
@@ -640,7 +661,21 @@ class turn{
                                     }else{
                                         this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                         if(this.targetTile.occupied>0){
-                                            fail=true
+                                            if(this.type==6){
+                                                this.targetClass=2
+                                                let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                                if(index>=0){
+                                                    this.targetCombatant=this.battle.combatantManager.combatants[index]
+                                                    this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                                    this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                                    this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                                    this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                                                }else{
+                                                    fail=true
+                                                }
+                                            }else{
+                                                fail=true
+                                            }
                                         }else{
                                             this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                             this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
@@ -658,7 +693,21 @@ class turn{
                                         }else{
                                             this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                             if(this.targetTile.occupied>0){
-                                                fail=true
+                                                if(this.type==6){
+                                                    this.targetClass=2
+                                                    let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                                    if(index>=0){
+                                                        this.targetCombatant=this.battle.combatantManager.combatants[index]
+                                                        this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                                        this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                                        this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                                        this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                                                    }else{
+                                                        fail=true
+                                                    }
+                                                }else{
+                                                    fail=true
+                                                }
                                             }else{
                                                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                                 this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
@@ -676,7 +725,21 @@ class turn{
                                             }else{
                                                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                                 if(this.targetTile.occupied>0){
-                                                    fail=true
+                                                    if(this.type==6){
+                                                        this.targetClass=2
+                                                        let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                                        if(index>=0){
+                                                            this.targetCombatant=this.battle.combatantManager.combatants[index]
+                                                            this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                                            this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                                            this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                                            this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                                                        }else{
+                                                            fail=true
+                                                        }
+                                                    }else{
+                                                        fail=true
+                                                    }
                                                 }else{
                                                     this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                                     this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
@@ -694,7 +757,21 @@ class turn{
                                                 }else{
                                                     this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                                     if(this.targetTile.occupied>0){
-                                                        fail=true
+                                                        if(this.type==6){
+                                                            this.targetClass=2
+                                                            let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                                            if(index>=0){
+                                                                this.targetCombatant=this.battle.combatantManager.combatants[index]
+                                                                this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                                                this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                                                this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                                                this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                                                            }else{
+                                                                fail=true
+                                                            }
+                                                        }else{
+                                                            fail=true
+                                                        }
                                                     }else{
                                                         this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                                         this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
@@ -1186,6 +1263,25 @@ class turn{
                     break
                     case 189:
                         this.battle.quickReinforceCorner(this.effect[1],this.effect[2],this.effect[0],3)
+                    break
+                    case 244:
+                        switch(this.battle.turn.total%3){
+                            case 0:
+                                for(let a=0,la=8;a<la;a++){
+                                    this.battle.tileManager.randomClearType(2)
+                                }
+                            break
+                            case 1:
+                                for(let a=0,la=4;a<la;a++){
+                                    this.battle.tileManager.randomClearType(26)
+                                }
+                            break
+                            case 2:
+                                for(let a=0,la=8;a<la;a++){
+                                    this.battle.tileManager.randomClearType(25)
+                                }
+                            break
+                        }
                     break
                 }
             break
@@ -1752,14 +1848,14 @@ class turn{
                         }
                     break
                     case 5: case 39: case 40: case 41: case 42: case 51: case 52: case 56: case 57: case 74:
-                    case 75: case 78: case 88: case 92: case 93: case 94: case 155: case 186: case 189:
+                    case 75: case 78: case 88: case 92: case 93: case 94: case 155: case 186: case 189: case 244:
                         if(variants.nobasicanim){
                             this.selfCall(2)
                             this.remove=true
                         }else{
                             if(this.userCombatant.name=='General Duckion'||
                             this.type!=39&&this.type!=56&&this.type!=74&&this.type!=75&&this.type!=78&&this.type!=92&&this.type!=93&&this.type!=94&&this.type!=155&&this.type!=186&&
-                            this.type!=189){
+                            this.type!=189&&this.type!=244){
                                 if(this.timer==1){
                                     this.userCombatant.startAnimation(3)
                                 }
@@ -4515,6 +4611,33 @@ class turn{
                             }else if(this.timer>=20){
                                 this.remove=true
                             }
+                        }
+                    break
+                    case 6:
+                        if(this.timer==1){
+                            this.userCombatant.startAnimation(0)
+                            if(this.targetClass==2){
+                                this.targetCombatant.goal.anim.direction=this.relativeDirection
+                            }
+                        }
+                        this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                        this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                        this.userCombatant.runAnimation(1/15,0)
+                        if(this.targetClass==2){
+                            this.targetCombatant.moveTile(this.direction,-this.distance/(15*this.targetDistance))
+                            this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/(15*this.targetDistance))
+                        }
+                        if(this.timer>=15*this.targetDistance){
+                            if(this.targetClass==2){
+                                this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
+                                this.battle.activate(1,this.userCombatant.id)
+                                this.targetCombatant.moveTilePosition(this.tilePosition.x,this.tilePosition.y)
+                                this.battle.activate(1,this.targetCombatant.id)
+                            }else{
+                                this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                this.battle.activate(1,this.userCombatant.id)
+                            }
+                            this.remove=true
                         }
                     break
                     default:

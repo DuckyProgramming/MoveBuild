@@ -84,7 +84,7 @@ class combatant{
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
             '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
             'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
-            'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down',
+            'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,3,//1
@@ -105,7 +105,7 @@ class combatant{
                 0,0,0,0,0,2,0,0,0,0,//16
                 0,0,0,1,2,2,0,1,0,1,//17
                 1,0,1,0,2,0,2,2,0,2,//18
-                2,2,2,0,0,2,0,
+                2,2,2,0,0,2,0,0,0,2,//19
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,
@@ -126,7 +126,7 @@ class combatant{
                 2,2,2,0,0,2,2,2,3,0,
                 0,2,2,0,2,1,2,1,0,0,
                 2,1,0,0,2,1,2,2,1,1,
-                1,1,1,0,0,0,0,
+                1,1,1,0,0,0,0,0,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2881,6 +2881,12 @@ class combatant{
             case 'Barbed Pillar':
                 this.statusEffect('Counter Bleed Combat',2)
             break
+            case 'Glitch':
+                this.statusEffect('End Move',floor(random(1,3)))
+            break
+            case 'Rewriter':
+                this.statusEffect('Cannot Die',999)
+            break
         }
         if(this.team==0){
             if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
@@ -2927,7 +2933,7 @@ class combatant{
                     ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Untargettable From Front',1],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],
                     ['Block Next Turn Next Turn',20],['Heal on Hit',3],['Take 3/5 Damage',2],['Attack Bleed Turn',2],['Single Attack Bleed',4],['Attack Bleed Combat',1],['Counter Block',3],['Dodge Next Turn',1],['Block Return',5],['Cannot Die',1],
                     ['Single Damage Block Convert',2],['Triple Block',1],['Dexterity Next Turn',3],['Take Credit',1],['Triple Damage',1],['1.5x Damage',2],['1.5x Block',3],['Deprecating Strength',3],['Block Up',2],['Take Credit Turn',1],
-                    ['Attack Regeneration',1],['Take Credit Block Turn',1],['Damage Up',2],['Temporary Block Up',4],['Block Next Turn Next Turn Next Turn',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],
+                    ['Take Credit Block Turn',1],['Damage Up',2],['Temporary Block Up',4],['Block Next Turn Next Turn Next Turn',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],
                 ]
                 for(let a=0,la=2;a<la;a++){
                     let index=floor(random(0,randombuffs.length))
@@ -4992,6 +4998,7 @@ class combatant{
                     case 180: this.status.main[findList('Take Damage',this.status.name)]+=this.status.main[a]; break
                     case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 182: this.status.main[findList('Block Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 189: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Conviction',types.card),0,types.card[findName('Conviction',types.card)].list)} break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
@@ -5601,7 +5608,7 @@ class combatant{
                     break
                     case 19:
                         this.animSet.loop+=rate
-                        this.size=1-lsin(this.animSet.loop*180)
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
                     case 25:
                         this.animSet.loop+=rate
@@ -5718,7 +5725,7 @@ class combatant{
                     break
                     case 10:
                         this.animSet.loop+=rate
-                        this.size=1-lsin(this.animSet.loop*180)
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
                 }
             break
@@ -5959,7 +5966,7 @@ class combatant{
                     break
                     case 10:
                         this.animSet.loop+=rate
-                        this.size=1-lsin(this.animSet.loop*180)
+                        this.size=this.base.size*(1-lsin(this.animSet.loop*180))
                     break
                     case 11:
                         this.animSet.loop+=rate

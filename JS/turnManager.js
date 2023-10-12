@@ -113,6 +113,14 @@ class turnManager{
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+            if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0&&this.battle.combatantManager.combatants[a].getStatus('End Move')>0){
+                for(let b=0,lb=this.battle.combatantManager.combatants[a].getStatus('End Move')+
+                (variants.speedcard&&(this.battle.combatantManager.combatants[a].move.type==0||this.battle.combatantManager.combatants[a].move.type==1||this.battle.combatantManager.combatants[a].move.type==2||this.battle.combatantManager.combatants[a].move.type==4)?1:0);b<lb;b++){
+                    this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[a].move.type,this.battle.combatantManager.combatants[a].move.speed,a))
+                }
+            }
+        }
+        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
                 this.turns.push(new turn(2,this.battle,0,0,a))
             }
@@ -171,7 +179,7 @@ class turnManager{
         }
         for(let a=0;a<game.animRate;a++){
             if(this.turns.length>0){
-                if(this.battle.combatantManager.combatants[this.turns[0].user].team==0&&!this.auxiliary){
+                if(this.battle.combatantManager.combatants.length>this.turns[0].user&&this.battle.combatantManager.combatants[this.turns[0].user].team==0&&!this.auxiliary){
                     this.battle.turn.main=this.turns[0].user
                 }
                 if(this.turns[0].timer==0){
