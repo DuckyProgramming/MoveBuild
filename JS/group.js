@@ -834,6 +834,11 @@ class group{
                         this.cards[a].effect[0]+=args[0]
                     }
                 break
+                case 7:
+                    if(this.cards[a].attack==1228&&this.cards[a].usable){
+                        this.battle.energy.main[this.player]+=args[0]
+                    }
+                break
             }
         }
     }

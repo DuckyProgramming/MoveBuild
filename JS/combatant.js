@@ -1894,6 +1894,15 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={in:[100,255,255]}
             break
+            case 'Mirror Shield':
+                this.anim={direction:direction}
+                this.fades={body:1}
+                this.trigger={display:{body:true}}
+                this.calc={int:[0,0,0,0]}
+                this.animSet={loop:0,flip:0}
+                this.goal={anim:{direction:this.anim.direction}}
+                this.color={in:[120,120,120],out:[100,100,100],shieldIn:[200,220,240],shieldOut:[160,180,200]}
+            break
             default:
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:17,bottom:17}},{top:9,bottom:0,length:{top:17,bottom:17}}],
@@ -2887,6 +2896,9 @@ class combatant{
             case 'Rewriter':
                 this.statusEffect('Cannot Die',999)
             break
+            case 'Mirror Shield':
+                this.statusEffect('Reflect',1)
+            break
         }
         if(this.team==0){
             if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
@@ -3150,7 +3162,7 @@ class combatant{
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine':
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Flying Rock': case 'Repulsor': case 'Dead Shell': case 'Management Drone': case 'Personnel Carrier': case 'Louse': case 'Hwurmp': case 'Glimerrer': case 'Antihwurmp':
-            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': break
+            case 'Wall': case 'Spike Pillar': case 'Projector': case 'Readout': case 'Strengthener': case 'Barbed Pillar': case 'Gun Rack': case 'Metal Box': case 'Upgrader': case 'Transformer': case 'Doubler': case 'Exhauster': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': break
             default:
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -5153,7 +5165,7 @@ class combatant{
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -5847,7 +5859,7 @@ class combatant{
                 this.anim.light=lsin(this.animSet.loop*180)+1
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': break
             default:
                 switch(type){
                     case 0:
@@ -13932,6 +13944,21 @@ class combatant{
                             this.layer.arc(0,-25,this.time%20,40,-90,90)
                             this.layer.arc(0,-25,20+this.time%20,40,-90,90)
                         }
+                    }
+				break
+				case 'Mirror Shield':
+                    if(this.trigger.display.body){
+                        this.layer.fill(this.flashColor(this.color.in)[0],this.flashColor(this.color.in)[1],this.flashColor(this.color.in)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.out)[0],this.flashColor(this.color.out)[1],this.flashColor(this.color.out)[2],this.fade*this.fades.body)
+                        this.layer.strokeWeight(4)
+                        this.layer.quad(-10,0,10,0,8,-40,-8,-40)
+                        this.layer.line(-10,0,8,-40)
+                        this.layer.line(10,0,-8,-40)
+                        this.layer.fill(this.flashColor(this.color.shieldIn)[0],this.flashColor(this.color.shieldIn)[1],this.flashColor(this.color.shieldIn)[2],this.fade*this.fades.body)
+                        this.layer.stroke(this.flashColor(this.color.shieldOut)[0],this.flashColor(this.color.shieldOut)[1],this.flashColor(this.color.shieldOut)[2],this.fade*this.fades.body)
+                        this.layer.ellipse(0,-48,40,40)
+                        this.layer.line(-10*sqrt(2),-48-10*sqrt(2),10*sqrt(2),-48+10*sqrt(2))
+                        this.layer.line(-10*sqrt(2),-48+10*sqrt(2),10*sqrt(2),-48-10*sqrt(2))
                     }
 				break
                 case '💀':

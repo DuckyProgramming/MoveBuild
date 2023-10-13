@@ -1390,6 +1390,17 @@ class card{
             case 1224: string+=`Put a Card in Draw\nPile in Your Hand\nIt is Reusable Each Turn`; break
             case 1225: string+=`Exhaust ${effect[0]} Card${effect[0]!=1?`s`:``},\nEither a Card Slot\nor Made by One\nAdd to Hand:\nCard Slot\nSlot Shift`; break
             case 1226: string+=`50%: Put a Card in Draw\nPile in Your Hand`; break
+            case 1227: string+=`Get a Random Card\nFrom Draw Pile`; break
+            case 1228: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nPer Other Medley`; break
+            case 1229: string+=`Exhaust ${effect[0]} Card${effect[0]!=1?`s`:``}\nIf You Have No Energy,\nGain ${effect[1]} Energy`; break
+            case 1230: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAt Max, Deal ${effect[1]}\nSplash Damage`; break
+            case 1231: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain ${effect[1]} Energy`; break
+            case 1232: string+=`Build a Mirror Shield`; break
+            case 1233: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOn Even Turns Only`; break
+            case 1234: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n25%: Gain ${effect[1]} Energy\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
+
+
+
 
 
 

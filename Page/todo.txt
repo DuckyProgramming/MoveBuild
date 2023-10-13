@@ -1,28 +1,12 @@
 Bugs:
 
--draw-related nerf
--alternate gameplay style
--witch from dd
-
-
-
-random access memory - a random card from your deck
-
-ORGANIZE INTO ONE EVENT:
-blammo: do damage, if 2 at once, autoplay
-lose 1 card, if you have 0 energy get 2 energy (lollipop)
-heal, convert excess to damage (sour candy)
-
 dice gun (low dice)
-discount step -> discount strike
 
 hotkeys on overlays issues?
 
 calamari game card
 
 ccp membership card - flag background
-
-mirror wall
 
 2 range shivs
 
@@ -56,8 +40,6 @@ harvest - markes a card slot as unusable, but does damage
 
 rubber duck - does nothing but can still be played
 
-polar star - damage, but can only be used on even turns
-
 premium - damage, 10% chance of powerful buff
 
 scrap kettle - burn self, also acts as metal source
@@ -77,12 +59,7 @@ wrecking ball
 lucky star
 peashooter
 
-missing score-deal damage, has chance to return energy and card
-
 laugh track
-
-
-
 
 old after image
 old binary stars

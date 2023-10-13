@@ -826,7 +826,7 @@ class battle{
                     this.layer.text('Dictionary',-74+this.anim.turn[a]*100,550)
                     this.layer.textSize(7*this.anim.endTurn)
                     this.layer.text('End Turn',-74+this.anim.turn[a]*100,578-4*this.anim.endTurn)
-                    this.layer.text('('+this.turn.total+')',-74+this.anim.turn[a]*100,578+4*this.anim.endTurn)
+                    this.layer.text('(Turn '+this.turn.total+')',-74+this.anim.turn[a]*100,578+4*this.anim.endTurn)
                     this.layer.textSize(8*this.anim.cancel)
                     this.layer.text('Stop',-74+this.anim.extra[a]*100,414)
                     if(variants.altDraw){

@@ -1581,6 +1581,20 @@ types={
                 {effect:[],attack:482,cost:0,target:[8,1,1],spec:[0],class:4},
                 {effect:[],attack:482,cost:0,target:[8,1,1],spec:[],class:4},
             ],
+        },{
+            name:'Amends',rarity:1,list:2,
+            levels:[
+                {effect:[1,1],attack:1229,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1,2],attack:1229,cost:0,target:[0],spec:[1],class:4},
+                {effect:[1,2],attack:1229,cost:0,target:[0],spec:[1,22],class:4},
+            ],
+        },{
+            name:'Sour\nCandy',rarity:1,list:0,
+            levels:[
+                {effect:[2,5],attack:1230,cost:0,target:[0],spec:[],class:4},
+                {effect:[3,8],attack:1230,cost:0,target:[0],spec:[],class:4},
+                {effect:[4,10],attack:1230,cost:0,target:[0],spec:[],class:4},
+            ],
         },
 
         {
@@ -2985,6 +2999,13 @@ types={
                 {effect:[14,1],attack:698,cost:1,target:[0],spec:[0],class:1},
                 {effect:[17,1],attack:698,cost:1,target:[0],spec:[0],class:1},
             ],
+        },{
+            name:'Polar\nStar',rarity:0,list:4,
+            levels:[
+                {effect:[18],attack:1233,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[26],attack:1233,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[32],attack:1233,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
         {
@@ -3802,6 +3823,13 @@ types={
                 {effect:[],attack:701,cost:2,target:[1,1,1],spec:[21,2,22],class:7},
             ],
         },{
+            name:'Build\nMirror Shield',rarity:0,list:6,
+            levels:[
+                {effect:[],attack:1232,cost:6,target:[1,1,1],spec:[21],class:7},
+                {effect:[],attack:1232,cost:6,target:[1,1,1],spec:[21,2],class:7},
+                {effect:[],attack:1232,cost:6,target:[1,1,1],spec:[21,2,22],class:7},
+            ],
+        },{
             name:'Build\nUpgrader',rarity:2,list:6,
             levels:[
                 {effect:[],attack:687,cost:1,target:[1,1,1],spec:[21],class:7},
@@ -4388,6 +4416,13 @@ types={
                 {effect:[1,1],attack:1085,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,1],attack:1085,cost:0,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,1],attack:1085,cost:0,target:[1,1,1],spec:[],class:3},
+            ],
+        },{
+            name:'Random\nAccess',rarity:1,list:6,
+            levels:[
+                {effect:[],attack:1227,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:1227,cost:0,target:[0],spec:[],class:4},
+                {effect:[],attack:1227,cost:0,target:[0],spec:[22],class:4},
             ],
         },
 
@@ -5090,6 +5125,13 @@ types={
                 {effect:[],attack:1201,cost:1,target:[0],spec:[1,2],class:4},
                 {effect:[],attack:1201,cost:0,target:[0],spec:[1,2],class:4},
                 {effect:[],attack:1201,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'Medley',rarity:0,list:7,
+            levels:[
+                {effect:[8,2],attack:1228,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,2],attack:1228,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,2],attack:1228,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },
 
@@ -7211,6 +7253,20 @@ types={
                 {effect:[4,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
                 {effect:[5,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
             ],
+        },{
+            name:'Discounted\nStrike',rarity:0,list:10,
+            levels:[
+                {effect:[6],attack:1231,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[9],attack:1231,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[11],attack:1231,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Missing\nScore',rarity:1,list:5,
+            levels:[
+                {effect:[7,1,1],attack:1234,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1,1],attack:1234,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,2,2],attack:1234,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
         {
@@ -9155,6 +9211,7 @@ types={
         {name:'Exhauster',life:9,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:241,effect:[1,1]}],description:`PoV: too many bad cards`},
         {name:'Teleporter Start',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`When entrance and exit both start with E`},
         {name:'Teleporter End',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
+        {name:'Mirror Shield',life:24,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
 
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
