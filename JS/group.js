@@ -27,9 +27,6 @@ class group{
                     for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
                         this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1],types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?player:types.deck.start[game.ascend>=20?1:0][a][2])
                     }
-                    if(this.battle.cardManagers[this.player].altDraw){
-                        this.addInitial(findName('Buster',types.card),0,this.battle.player[this.player])
-                    }
                 }
             break
             case 1:
@@ -146,10 +143,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0}
     }
     addInitial(type,level,color){
         game.id++
@@ -378,6 +375,9 @@ class group{
     }
     exhaustBlock(amount){
         this.status.exhaustBlock+=amount
+    }
+    exhaustSlot(amount){
+        this.status.exhaustSlot+=amount
     }
     shuffle(){
         let cards=[]
@@ -765,6 +765,23 @@ class group{
                 break
                 case 39:
                     this.cards[a].callInDiscardEffect()
+                break
+                case 40:
+                    this.cards[a].onHit()
+                break
+                case 41:
+                    if(this.cards[a].attack==1216){
+                        a=la
+                    }else if(this.cards[a].attack!=1213){
+                        this.cards[a].deSize=true
+                    }
+                break
+                case 42:
+                    if(this.cards[a].spec.includes(31)){
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,2)
+                        a--
+                        la--
+                    }
                 break
             }
         }
@@ -1373,13 +1390,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock])
+                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,this.anim.exhaust,this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock])
+                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock])
                     }
                 }
             break
@@ -1536,14 +1553,16 @@ class group{
                                 }
                             }
                         }
-                    }else if(this.cards[a].spec.includes(30)){
+                    }
+                    if(this.cards[a].spec.includes(30)){
                         this.cards[a].limit++
                         for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
                             if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
                                 this.battle.cardManagers[this.player].deck.cards[b].limit++
                             }
                         }
-                    }else if(this.cards[a].attack==1133){
+                    }
+                    if(this.cards[a].attack==1133){
                         this.cards[a].effect[0]--
                         for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
                             if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
@@ -1563,7 +1582,8 @@ class group{
                             this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[a].level,this.cards[a].color)
                             this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,this.cards[a].color)
                         }
-                    }else if(this.cards[a].attack==1146){
+                    }
+                    if(this.cards[a].attack==1146){
                         this.cards[a].effect[0]+=this.cards[a].effect[1]
                         for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
                             if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
@@ -1639,14 +1659,16 @@ class group{
                                     }
                                 }
                             }
-                        }else if(this.cards[b].spec.includes(30)){
+                        }
+                        if(this.cards[b].spec.includes(30)){
                             this.cards[b].limit++
                             for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                 if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                     this.battle.cardManagers[this.player].deck.cards[c].limit++
                                 }
                             }
-                        }else if(this.cards[b].attack==1133){
+                        }
+                        if(this.cards[b].attack==1133){
                             this.cards[b].effect[0]--
                             for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                 if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
@@ -1666,7 +1688,8 @@ class group{
                                 this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                 this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
                             }
-                        }else if(this.cards[b].attack==1146){
+                        }
+                        if(this.cards[b].attack==1146){
                             this.cards[b].effect[0]+=this.cards[b].effect[1]
                             for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                 if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
@@ -1741,14 +1764,16 @@ class group{
                                         }
                                     }
                                 }
-                            }else if(this.cards[b].spec.includes(30)){
+                            }
+                            if(this.cards[b].spec.includes(30)){
                                 this.cards[b].limit++
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                         this.battle.cardManagers[this.player].deck.cards[c].limit++
                                     }
                                 }
-                            }else if(this.cards[b].attack==1133){
+                            }
+                            if(this.cards[b].attack==1133){
                                 this.cards[b].effect[0]--
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
@@ -1768,7 +1793,8 @@ class group{
                                     this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                     this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
                                 }
-                            }else if(this.cards[b].attack==1146){
+                            }
+                            if(this.cards[b].attack==1146){
                                 this.cards[b].effect[0]+=this.cards[b].effect[1]
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
@@ -1921,6 +1947,18 @@ class group{
                     }
                 }
             break
+            case 18:
+                if(this.cards[a].name=='Card\nSlot'||this.cards[a].spec.includes(31)){
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.cards[a].name=='Card\nSlot'){
+                        this.add(findName('Card\nSlot',types.card),0,0)
+                    }
+                    if(this.status.exhaustSlot>0){
+                        this.status.exhaustSlot--
+                    }
+                }
+            break
         }
     }
     update(scene,args){
@@ -1939,6 +1977,7 @@ class group{
                 this.anim.discardBlock=smoothAnim(this.anim.discardBlock,this.status.discardBlock!=0,0,1,5)
                 this.anim.free2=smoothAnim(this.anim.free2,this.status.free2!=0,0,1,5)
                 this.anim.exhaustBlock=smoothAnim(this.anim.exhaustBlock,this.status.exhaustBlock!=0,0,1,5)
+                this.anim.exhaustSlot=smoothAnim(this.anim.exhaustSlot,this.status.exhaustSlot!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -2012,6 +2051,9 @@ class group{
                                 }
                                 if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){
                                     this.battle.relicManager.activate(10,[this.player])
+                                }
+                                if(variants.witch&&this.cards[a].spec.includes(31)){
+                                    this.battle.cardManagers[this.player].draw(1)
                                 }
                                 this.cards[a].callExhaustEffect()
                                 this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
@@ -2425,6 +2467,10 @@ class group{
                                 this.callInput(17,a)
                                 break
                             }
+                            if(this.status.exhaustSlot!=0){
+                                this.callInput(18,a)
+                                break
+                            }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                 if(this.cards[a].afford){
                                     this.callInput(0,a)
@@ -2795,6 +2841,10 @@ class group{
                             }
                             if(this.status.exhaustBlock!=0){
                                 this.callInput(17,a)
+                                break
+                            }
+                            if(this.status.exhaustSlot!=0){
+                                this.callInput(18,a)
                                 break
                             }
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){

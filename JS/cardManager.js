@@ -13,10 +13,10 @@ class cardManager{
         this.drop=new group(this.layer,this.battle,this.player,4)
         this.exhaust=new group(this.layer,this.battle,this.player,5)
 
-        this.altDraw=variants.altDraw
-        this.drawAmount=variants.lowDraw?5:6-(this.altDraw?2:0)
+        this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.altDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0))
+        this.drawBoost=0
         this.tempDraw=0
-        this.baseDrops=this.altDraw?3:0
+        this.baseDrops=variants.altDraw?3:0
         this.drops=0
 
         this.initialListing()
@@ -61,6 +61,21 @@ class cardManager{
                 }else{
                     this.listing.card[types.card[a].list][1].push(a)
                     this.listing.card[types.card[a].list][3].push(a)
+                }
+            }
+        }
+        for(let a=0,la=this.listing.card.length;a<la;a++){
+            if(variants.altDraw){
+                let list=['Buster','Multicard','Dropbox','DeDrop','Eye\nDropper']
+                for(let b=0,lb=list.length;b<lb;b++){
+                    this.listing.card[a][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
+                    this.listing.card[a][3].push(findName(list[b],types.card))
+                }
+            }else if(variants.blackjack){
+                let list=['Heat\nSink','Memory\nLeak','Ruby','Stack\nOverflow','House\nRules','Gate','Screwdriver','Gear\nGrind','Virus','Fixed\nPayout']
+                for(let b=0,lb=list.length;b<lb;b++){
+                    this.listing.card[a][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
+                    this.listing.card[a][3].push(findName(list[b],types.card))
                 }
             }
         }
@@ -285,23 +300,29 @@ class cardManager{
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('No Draw')<=0){
             this.battle.stats.drawn[this.player]+=amount
-            let amountLeft=amount-this.reserve.cards.length
-            if(this.reserve.cards.length>0){
-                this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),3,this.hand)
-            }
-            if(amountLeft>0&&this.discard.cards.length>0&&!this.altDraw){
-                this.discard.send(this.reserve.cards,0,-1,2)
-                this.reserve.shuffle()
-                if(this.reserve.cards.length>0){
-                    this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),3,this.hand)
+            if(variants.witch){
+                for(let a=0,la=amount;a<la;a++){
+                    this.hand.add(findName('Card\nSlot',types.card),0,0)
                 }
-            }
-            if(this.battle.relicManager.hasRelic(106,this.player)){
-                for(let a=0,la=this.hand.cards.length;a<la;a++){
-                    if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
-                        this.hand.send(this.exhaust.cards,a,a+1,0)
-                        a--
-                        la--
+            }else{
+                let amountLeft=amount-this.reserve.cards.length
+                if(this.reserve.cards.length>0){
+                    this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),3,this.hand)
+                }
+                if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                    this.discard.send(this.reserve.cards,0,-1,2)
+                    this.reserve.shuffle()
+                    if(this.reserve.cards.length>0){
+                        this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),3,this.hand)
+                    }
+                }
+                if(this.battle.relicManager.hasRelic(106,this.player)){
+                    for(let a=0,la=this.hand.cards.length;a<la;a++){
+                        if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
+                            this.hand.send(this.exhaust.cards,a,a+1,0)
+                            a--
+                            la--
+                        }
                     }
                 }
             }
@@ -313,7 +334,7 @@ class cardManager{
         if(this.reserve.cards.length>0){
             this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amount,this.reserve.cards.length),-1,3,this.hand)
         }
-        if(amountLeft>0&&this.discard.cards.length>0&&!this.altDraw){
+        if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
             this.discard.send(this.reserve.cards,0,-1,2)
             this.reserve.shuffle()
             if(this.reserve.cards.length>0){
@@ -443,11 +464,11 @@ class cardManager{
         this.discard.allClaw(effect)
     }
     turnDraw(turn){
-        let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&(this.altDraw||game.ascend>=21)?1:0)
+        let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&(variants.altDraw||game.ascend>=21)?1:0)
         if(turn==1){
             tempDrawAmount-=this.drawInnate()
         }
-        if(this.altDraw){
+        if(variants.altDraw){
             this.discard.send(this.reserve.cards,0,-1,2)
             this.reserve.shuffle()
         }
@@ -455,6 +476,9 @@ class cardManager{
         this.tempDraw=0
         if(turn%4==0&&game.ascend>=24){
             this.reserve.addShuffle(findName('Dazed',types.card),0,game.playerNumber+1)
+        }
+        if(variants.chooselose){
+            this.hand.add(findName('Choose\nor Lose',types.card),0,0)
         }
     }
     fatigue(){
@@ -553,11 +577,21 @@ class cardManager{
         this.hand.reset()
     }
     regenDrops(){
-        this.drops=min(this.drops+1,this.baseDrops)
+        this.drawBoost=0
+        if(variants.altDraw){
+            this.drops=min(this.drops+1,this.baseDrops)
+        }else if(variants.blackjack){
+            this.drops=0
+        }
     }
     standardBase(){
         this.checkCompact()
-        this.drops=this.baseDrops
+        if(variants.altDraw){
+            this.drops=this.baseDrops
+        }else if(variants.blackjack){
+            this.drops=0
+            this.baseDrops=21
+        }
     }
     checkCompact(){
         for(let a=0,la=this.deck.cards.length;a<la;a++){
@@ -582,8 +616,8 @@ class cardManager{
             case 'battle':
                 this.hand.update('battle',[])
                 this.drop.update('drop',[])
-                if(this.altDraw&&this.hand.cards.length<this.drawAmount&&this.battle.turn.main==this.player){
-                    this.draw(this.drawAmount-this.hand.cards.length)
+                if(variants.altDraw&&this.hand.cards.length<this.drawAmount+this.drawBoost&&this.battle.turn.main==this.player){
+                    this.draw(this.drawAmount+this.drawBoost-this.hand.cards.length)
                     if(this.hand.cards.length<this.drawAmount){
                         this.discard.sendAttack(this.hand.cards,945,1)
                     }

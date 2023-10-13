@@ -1,13 +1,12 @@
 Bugs:
 
-vanish hell mode: all cards vanish at some point
-burn a card to turn into a gadget
-blind mode: card name only; no information text
-
-blackjack draw systembrings with it a card that lowers score
 -draw-related nerf
 -alternate gameplay style
 -witch from dd
+
+
+
+random access memory - a random card from your deck
 
 ORGANIZE INTO ONE EVENT:
 blammo: do damage, if 2 at once, autoplay
@@ -33,41 +32,61 @@ short circuit!
 shooting star (damage, minor self confuse)
 dark shadow (damage, random self status)
 
-soecial security card
+social security card
 
-
+custard - inflict blind, 75% get energy back (cost 1)
 
 777
 valentine's card
 blood donor card
 
+fireworks - deal damage equal to all statuses on enemy
 
 spin to win as a joke card
 nuclear bomb
 
+-flame war, requres one energy, damage and burn
 
+ice sword - powerful form of lament, if not played nerf yourself
+
+glass cauldron - nerf enemy like lament, discard a random card, draw a card
+same thing, buf heals you instead of nerfing enemy
+
+harvest - markes a card slot as unusable, but does damage
+
+rubber duck - does nothing but can still be played
+
+polar star - damage, but can only be used on even turns
+
+premium - damage, 10% chance of powerful buff
+
+scrap kettle - burn self, also acts as metal source
+
+six shooter (the number six is important)
+
+solenoid deals damage but decreases EVERY battle (even if not used)
+
+trident - damage, freeze, shock
+
+equinox - next card exhausted is copied a bunch of times
 
 from dicey:
 chisel
 tetraphobia
 wrecking ball
-
-countdowns in general
-
+lucky star
 peashooter
 
-rubyweapon
-
 missing score-deal damage, has chance to return energy and card
-
-spare 4
 
 laugh track
 
 
 
 
-old afterimage
+old after image
+old binary stars
+each is their old form but has the dev's wrath debuff
 
 L (obster)
 

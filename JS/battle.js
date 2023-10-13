@@ -25,7 +25,7 @@ class battle{
             this.menu.anim.animRate.push(-1)
             this.menu.anim.turnTime.push(-1)
         }
-        for(let a=0,la=10;a<la;a++){
+        for(let a=0,la=16;a<la;a++){
             this.menu.anim.variants.push(0)
         }
         for(let a=-1,la=game.playerNumber+5;a<la;a++){
@@ -455,8 +455,15 @@ class battle{
                     if(this.nodeManager.world==3&&this.encounter.class==2){
                         this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                     }
+                    if(variants.witch){
+                        this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
+                    }
                 }
-                this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                if(this.turn.total==1||!variants.witch){
+                    this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                }else{
+                    this.cardManagers[this.turn.main].allEffect(3,42)
+                }
             }
             this.cardManagers[this.turn.main].allEffect(3,39)
             this.cardManagers[this.turn.main].regenDrops()
@@ -498,8 +505,15 @@ class battle{
                 if(this.nodeManager.world==3&&this.encounter.class==2){
                     this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                 }
+                if(variants.witch){
+                    this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
+                }
             }
-            this.cardManagers[0].turnDraw(this.turn.total)
+            if(this.turn.total==1||!variants.witch){
+                this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+            }else{
+                this.cardManagers[this.turn.main].allEffect(3,42)
+            }
         }
         this.cardManagers[this.turn.main].allEffect(3,39)
         this.cardManagers[0].regenDrops()
@@ -735,7 +749,7 @@ class battle{
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(this.menu.anim.variants[a]>0){
                         this.layer.fill(255,this.menu.anim.variants[a])
-                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-90+floor(a/2)*45,10)
+                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-157.5+floor(a/2)*45,10)
                     }
                 }
             break
@@ -777,7 +791,7 @@ class battle{
                     this.layer.strokeWeight(3*this.anim.cancel)
                     this.layer.rect(-74+this.anim.extra[a]*100,414,32*this.anim.cancel,20*this.anim.cancel,5*this.anim.endTurn)
                     if(game.turnTime>0){
-                        if(this.cardManagers[a].baseDrops>0){
+                        if(variants.altDraw||variants.blackjack){
                             this.layer.strokeWeight(3*this.anim.drop[a])
                             this.layer.rect(66,680-this.anim.turn[a]*100,32*this.anim.drop[a],20*this.anim.drop[a],5*this.anim.drop[a])
                             this.layer.strokeWeight(3)
@@ -796,7 +810,7 @@ class battle{
                             this.layer.fill(this.colorDetail[a].active)
                             this.layer.rect(58+this.turn.time/9,680-this.anim.turn[a]*100,this.turn.time/4.5,4,2)
                         }
-                    }else if(this.cardManagers[a].baseDrops>0){
+                    }else if(variants.altDraw||variants.blackjack){
                         this.layer.strokeWeight(3*this.anim.drop[a])
                         this.layer.rect(66,680-this.anim.turn[a]*100,32*this.anim.drop[a],20*this.anim.drop[a],5*this.anim.drop[a])
                     }
@@ -815,10 +829,14 @@ class battle{
                     this.layer.text('('+this.turn.total+')',-74+this.anim.turn[a]*100,578+4*this.anim.endTurn)
                     this.layer.textSize(8*this.anim.cancel)
                     this.layer.text('Stop',-74+this.anim.extra[a]*100,414)
-                    if(this.cardManagers[a].baseDrops>0){
+                    if(variants.altDraw){
                         this.layer.textSize(7*this.anim.drop[a])
                         this.layer.text('Drop First',66,680-this.anim.turn[a]*100-4*this.anim.drop[a])
                         this.layer.text('('+this.cardManagers[a].drops+' Left)',66,680-this.anim.turn[a]*100+4*this.anim.drop[a])
+                    }else if(variants.blackjack){
+                        this.layer.textSize(7*this.anim.drop[a])
+                        this.layer.text('Hit',66,680-this.anim.turn[a]*100-4*this.anim.drop[a])
+                        this.layer.text(this.cardManagers[a].drops+'/'+this.cardManagers[a].baseDrops,66,680-this.anim.turn[a]*100+4*this.anim.drop[a])
                     }
                     this.layer.textSize(14-min(floor(max(this.energy.main[a],this.energy.base[a])/10)*2,3))
                     this.layer.text(this.energy.main[a]+'/'+this.energy.base[a],-74+this.anim.turn[a]*100,454)
@@ -1095,7 +1113,7 @@ class battle{
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'variants':
-                let variantNames=['lowDraw','altDraw','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism']
+                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','chooselose','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
                 }
@@ -1125,7 +1143,7 @@ class battle{
                     this.anim.turn[a]=smoothAnim(this.anim.turn[a],this.turn.main==a,0,1,5)
                     this.anim.extra[a]=smoothAnim(this.anim.extra[a],this.turn.main==a&&
                         (this.cardManagers[a].hand.status.discard<0||this.cardManagers[a].hand.status.exhaust<0||this.cardManagers[a].hand.status.discardBlock>0),0,1,5)
-                    this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&this.cardManagers[a].baseDrops>0,1,1.5,5)
+                    this.anim.drop[a]=smoothAnim(this.anim.drop[a],pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[a]*100},width:32,height:20})&&!this.overlayManager.anyActive&&(variants.altDraw||variants.blackjack),1,1.5,5)
                 }
                 this.anim.reserve=smoothAnim(this.anim.reserve,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                 this.anim.discard=smoothAnim(this.anim.discard,pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
@@ -1180,28 +1198,58 @@ class battle{
                         if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
                             this.encounter.class=1
                         }
-                        switch(this.encounter.class){
-                            case 0: case 3: case 4:
-                                this.overlayManager.overlays[0][a].activate([0,[
-                                    {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
-                                    {type:0,value:[floor(random(40,81))]}]])
-                            break
-                            case 1:
-                                this.overlayManager.overlays[0][a].activate([0,[
-                                    {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
-                                    {type:2,value:[]},
-                                    {type:0,value:[floor(random(120,201))]}]])
-                            break
-                            case 2:
-                                if(this.nodeManager.world!=3){
-                                    this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[
-                                        {type:1,value:[0,2,0]},
-                                    ]:[
-                                        {type:1,value:[0,2,0]},
-                                        {type:0,value:[floor(random(240,401))]}
-                                    ]])
-                                }
-                            break
+                        if(variants.vanish){
+                            switch(this.encounter.class){
+                                case 0: case 3: case 4:
+                                    this.overlayManager.overlays[0][a].activate([0,[
+                                        {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
+                                        {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
+                                        {type:0,value:[floor(random(40,81))]}]])
+                                break
+                                case 1:
+                                    this.overlayManager.overlays[0][a].activate([0,[
+                                        {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
+                                        {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
+                                        {type:2,value:[]},
+                                        {type:0,value:[floor(random(120,201))]}]])
+                                break
+                                case 2:
+                                    if(this.nodeManager.world!=3){
+                                        this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[
+                                            {type:1,value:[0,2,0]},
+                                            {type:1,value:[0,2,0]},
+                                        ]:[
+                                            {type:1,value:[0,2,0]},
+                                            {type:1,value:[0,2,0]},
+                                            {type:0,value:[floor(random(240,401))]}
+                                        ]])
+                                    }
+                                break
+                            }
+                        }else{
+                            switch(this.encounter.class){
+                                case 0: case 3: case 4:
+                                    this.overlayManager.overlays[0][a].activate([0,[
+                                        {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
+                                        {type:0,value:[floor(random(40,81))]}]])
+                                break
+                                case 1:
+                                    this.overlayManager.overlays[0][a].activate([0,[
+                                        {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
+                                        {type:2,value:[]},
+                                        {type:0,value:[floor(random(120,201))]}]])
+                                break
+                                case 2:
+                                    if(this.nodeManager.world!=3){
+                                        this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[
+                                            {type:1,value:[0,2,0]},
+                                        ]:[
+                                            {type:1,value:[0,2,0]},
+                                            {type:0,value:[floor(random(240,401))]}
+                                        ]])
+                                    }
+                                break
+                            }
                         }
                         if(this.encounter.class!=2){
                             if(floor(random(0,3))==0||this.relicManager.hasRelic(83,a)){
@@ -1445,9 +1493,9 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['lowDraw','altDraw','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism']
+                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','chooselose','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-90+floor(a/2)*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-157.5+floor(a/2)*45},width:27.5,height:27.5})){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])
                     }
                 }
@@ -1524,8 +1572,17 @@ class battle{
                             this.endTurn()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.extra[this.turn.main]*100,y:414},width:32,height:20})){
                             this.cardManagers[this.turn.main].hand.cancel()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[this.turn.main]*100},width:32,height:20})&&this.cardManagers[this.turn.main].drops>0){
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[this.turn.main]*100},width:32,height:20})&&variants.altDraw){
                             this.cardManagers[this.turn.main].dropFirst()
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[this.turn.main]*100},width:32,height:20})&&variants.blackjack&&this.cardManagers[this.turn.main].drops<this.cardManagers[this.turn.main].baseDrops){
+                            this.cardManagers[this.turn.main].draw(1)
+                            this.cardManagers[this.turn.main].drops+=floor(random(1,7))
+                            this.cardManagers[this.turn.main].allEffect(2,40)
+                            if(this.cardManagers[this.turn.main].drops==this.cardManagers[this.turn.main].baseDrops){
+                                this.cardManagers[this.turn.main].drawPrice(1,0)
+                            }else if(this.cardManagers[this.turn.main].drops>this.cardManagers[this.turn.main].baseDrops){
+                                this.cardManagers[this.turn.main].allEffect(2,41)
+                            }
                         }
                     }
                 }
@@ -1733,9 +1790,9 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['lowDraw','altDraw','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism']
+                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','chooselose','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if((a+1)%10==int(key)){
+                    if(key==inputs.hexadec[a]){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])
                     }
                 }
@@ -1809,8 +1866,17 @@ class battle{
                             this.overlayManager.overlays[24][this.turn.main].activate()
                         }else if(code==ENTER&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
                             this.endTurn()
-                        }else if(key=='/'&&this.cardManagers[this.turn.main].drops>0){
+                        }else if(key=='.'&&variants.altDraw){
                             this.cardManagers[this.turn.main].dropFirst()
+                        }else if(key=='.'&&variants.blackjack&&this.cardManagers[this.turn.main].drops<this.cardManagers[this.turn.main].baseDrops){
+                            this.cardManagers[this.turn.main].draw(1)
+                            this.cardManagers[this.turn.main].drops+=floor(random(1,7))
+                            this.cardManagers[this.turn.main].allEffect(2,40)
+                            if(this.cardManagers[this.turn.main].drops==this.cardManagers[this.turn.main].baseDrops){
+                                this.cardManagers[this.turn.main].drawPrice(1,0)
+                            }else if(this.cardManagers[this.turn.main].drops>this.cardManagers[this.turn.main].baseDrops){
+                                this.cardManagers[this.turn.main].allEffect(2,41)
+                            }
                         }
                     }
                     if(game.dev){
