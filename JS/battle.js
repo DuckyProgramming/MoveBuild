@@ -459,7 +459,7 @@ class battle{
                         this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
                     }
                 }
-                if(this.turn.total==1||!variants.witch){
+                if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
                     this.cardManagers[this.turn.main].turnDraw(this.turn.total)
                 }else{
                     this.cardManagers[this.turn.main].allEffect(3,42)
@@ -509,7 +509,7 @@ class battle{
                     this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
                 }
             }
-            if(this.turn.total==1||!variants.witch){
+            if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
                 this.cardManagers[this.turn.main].turnDraw(this.turn.total)
             }else{
                 this.cardManagers[this.turn.main].allEffect(3,42)
@@ -561,6 +561,9 @@ class battle{
         }
         if(card.spec.includes(24)||card.spec.includes(12)&&card.reality[mode].includes(24)){
             this.cardManagers[player].draw(2)
+        }
+        if(card.spec.includes(32)||card.spec.includes(12)&&card.reality[mode].includes(32)){
+            this.quickReinforce('Inconsistent')
         }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++

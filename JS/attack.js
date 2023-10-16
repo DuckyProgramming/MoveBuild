@@ -81,29 +81,29 @@ class attack{
             case 581: case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 594:
             case 596: case 597: case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610:
             case 616: case 617: case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662:
-            case 667: case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 682: case 683:
-            case 689: case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718:
-            case 719: case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733:
-            case 734: case 736: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775:
-            case 779: case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798:
-            case 801: case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833:
-            case 834: case 837: case 840: case 843: case 846: case 848: case 849: case 850: case 862: case 863:
-            case 865: case 866: case 872: case 874: case 877: case 878: case 881: case 883: case 884: case 888:
-            case 895: case 897: case 899: case 900: case 902: case 903: case 905: case 906: case 907: case 908:
-            case 915: case 916: case 917: case 918: case 919: case 920: case 924: case 926: case 930: case 934:
-            case 935: case 938: case 939: case 940: case 942: case 943: case 944: case 945: case 946: case 947:
-            case 950: case 956: case 957: case 958: case 959: case 964: case 965: case 966: case 972: case 974:
-            case 980: case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004:
-            case 1006: case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023:
-            case 1027: case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047:
-            case 1049: case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067:
-            case 1068: case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091:
-            case 1092: case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139:
-            case 1144: case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156:
-            case 1160: case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1172: case 1173: case 1174:
-            case 1175: case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188: case 1189:
-            case 1191: case 1194: case 1195: case 1196: case 1202: case 1209: case 1210: case 1211: case 1212: case 1213:
-            case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234:
+            case 667: case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 683: case 689:
+            case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719:
+            case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733: case 734:
+            case 736: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775: case 779:
+            case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798: case 801:
+            case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833: case 834:
+            case 837: case 840: case 843: case 846: case 848: case 849: case 850: case 862: case 863: case 865:
+            case 866: case 872: case 874: case 877: case 878: case 881: case 883: case 884: case 888: case 895:
+            case 897: case 899: case 900: case 902: case 903: case 905: case 906: case 907: case 908: case 915:
+            case 916: case 917: case 918: case 919: case 920: case 924: case 926: case 930: case 934: case 935:
+            case 938: case 939: case 940: case 942: case 943: case 944: case 945: case 946: case 947: case 950:
+            case 956: case 957: case 958: case 959: case 964: case 965: case 966: case 972: case 974: case 980:
+            case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004: case 1006:
+            case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023: case 1027:
+            case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
+            case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067: case 1068:
+            case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091: case 1092:
+            case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139: case 1144:
+            case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156: case 1160:
+            case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1172: case 1173: case 1174: case 1175:
+            case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188: case 1189: case 1191:
+            case 1194: case 1195: case 1196: case 1202: case 1209: case 1210: case 1211: case 1212: case 1213: case 1217:
+            case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1244:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -3225,6 +3225,9 @@ class attack{
                             this.userManager.reserve.send(this.userManager.hand.cards,index,index+1,1)
                         }
                     break
+                    case 1237:
+                        this.userManager.allEffect(2,43)
+                    break
                     
                 }
             break
@@ -3458,6 +3461,13 @@ class attack{
                         if(this.userCombatant.base.life<=this.userCombatant.life){
                             this.battle.combatantManager.damageAreaID(this.effect[1],-1,this.userCombatant.id,this.userCombatant.tilePosition)
                         }
+                    break
+                    case 1235:
+                        this.userCombatant.statusEffect('Rizz',this.effect[0])
+                    break
+                    case 1236:
+                        this.userManager.hand.add(findName('White\nDwarf',types.card),this.level,0)
+                        this.userManager.hand.add(findName('Black\nDwarf',types.card),this.level,0)
                     break
 
                 }
@@ -4042,6 +4052,11 @@ class attack{
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Mirror Shield',types.combatant),this.userCombatant.team,this.direction,this.user)
                         this.userManager.hand.add(findName('Unbuild',types.card),0,0)
                     break
+                    case 1244:
+                        if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
+                            this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[0])
+                        }
+                    break
                     
                 }
             break
@@ -4326,6 +4341,10 @@ class attack{
                         if(variants.altDraw){
                             this.userManager.drops+=this.effect[1]
                         }
+                    break
+                    case 1245:
+                        this.userCombatant.heal(this.effect[0])                        
+                        this.userCombatant.statusEffect('Cannot Move',this.effect[1])
                     break
 
                 }
@@ -5118,6 +5137,7 @@ class attack{
             case 1042: case 1044: case 1045: case 1062: case 1064: case 1065: case 1066: case 1067: case 1078: case 1088:
             case 1095: case 1096: case 1098: case 1109: case 1110: case 1120: case 1121: case 1134: case 1151: case 1152:
             case 1158: case 1177: case 1184: case 1201: case 1214: case 1221: case 1224: case 1225: case 1226: case 1227:
+            case 1237:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5172,7 +5192,7 @@ class attack{
             case 360: case 369: case 380: case 391: case 442: case 456: case 470: case 608: case 641: case 642:
             case 643: case 659: case 924: case 952: case 953: case 954: case 960: case 961: case 962: case 984:
             case 985: case 1021: case 1041: case 1043: case 1101: case 1102: case 1112: case 1186: case 1203: case 1204:
-            case 1205: case 1230:
+            case 1205: case 1230: case 1235: case 1236:
                 if(variants.nobasicanim){
                     this.selfCall(5)
                     this.remove=true
@@ -5799,7 +5819,7 @@ class attack{
             case 902: case 903: case 905: case 906: case 907: case 935: case 939: case 943: case 944: case 964:
             case 965: case 980: case 1028: case 1046: case 1059: case 1070: case 1071: case 1075: case 1097: case 1111:
             case 1119: case 1139: case 1150: case 1162: case 1163: case 1168: case 1182: case 1185: case 1189: case 1211:
-            case 1232:
+            case 1232: case 1244:
                 if(variants.nobasicanim){
                     this.selfCall(7)
                     this.remove=true
@@ -6327,7 +6347,7 @@ class attack{
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
             case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683: case 710: case 792:
             case 845: case 888: case 889: case 927: case 936: case 941: case 969: case 1020: case 1099: case 1107:
-            case 1132: case 1140: case 1142: case 1190: case 1207: case 1218: case 1223:
+            case 1132: case 1140: case 1142: case 1190: case 1207: case 1218: case 1223: case 1245:
                 if(variants.nobasicanim){
                     this.selfCall(10)
                     this.remove=true

@@ -28,6 +28,14 @@ class tierManager{
             [183,189,194,370,382,467,468,502,529,660,1005,1015,1027,1042,1176,1184,1185,1187,1190,1191,1193,1203,1204,1234,1237,1247],
             [0,1100,1105,1106,1113,1114,1115,1116,1117],
         ]
+        //this.loadUpTiers()
+    }
+    loadUpTiers(){
+        for(let a=0,la=this.preTiers.length;a<la;a++){
+            for(let b=0,lb=this.preTiers[a].length;b<lb;b++){
+                this.tiers[a].add(this.preTiers[a][b],0,types.card[this.preTiers[a][b]].list<0?0:types.card[this.preTiers[a][b]].list>=types.color.card.length?0:types.card[this.preTiers[a][b]].list)
+            }
+        }
     }
     display(){
         this.layer.background(100)

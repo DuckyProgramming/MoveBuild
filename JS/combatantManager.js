@@ -410,6 +410,14 @@ class combatantManager{
                 case 2:
                     this.combatants[a].statusEffect('Burn',args[0])
                 break
+                case 3:
+                    this.combatants[a].statusEffect('Poison',args[0])
+                break
+                case 4:
+                    if(this.combatants[a].id!=args[1]){
+                        this.combatants[a].statusEffect('Poison',args[0])
+                    }
+                break
             }
         }
     }

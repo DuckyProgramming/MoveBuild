@@ -1,5 +1,11 @@
 Bugs:
 
+catastrophe
+
+fat duck!
+
+make a random card buffed but vanish
+
 dice gun (low dice)
 
 hotkeys on overlays issues?
@@ -7,6 +13,8 @@ hotkeys on overlays issues?
 calamari game card
 
 ccp membership card - flag background
+
+quarterstaff - deals damage on even only, deals a bonus on 4
 
 2 range shivs
 
@@ -24,6 +32,8 @@ custard - inflict blind, 75% get energy back (cost 1)
 valentine's card
 blood donor card
 
+smush together
+
 fireworks - deal damage equal to all statuses on enemy
 
 spin to win as a joke card
@@ -31,7 +41,10 @@ nuclear bomb
 
 -flame war, requres one energy, damage and burn
 
+every ice card to creation
 ice sword - powerful form of lament, if not played nerf yourself
+
+mirror cauldron - redraws cards, amplify 1-increases draw per turn
 
 glass cauldron - nerf enemy like lament, discard a random card, draw a card
 same thing, buf heals you instead of nerfing enemy
@@ -42,11 +55,11 @@ rubber duck - does nothing but can still be played
 
 premium - damage, 10% chance of powerful buff
 
-scrap kettle - burn self, also acts as metal source
-
 six shooter (the number six is important)
 
 solenoid deals damage but decreases EVERY battle (even if not used)
+
+deal damage, also deals damage if it starts in your hand
 
 trident - damage, freeze, shock
 
@@ -54,16 +67,17 @@ equinox - next card exhausted is copied a bunch of times
 
 from dicey:
 chisel
+
 tetraphobia
+crowbar
 wrecking ball
 lucky star
 peashooter
 
-laugh track
+fool's fire
+burning light
 
-old after image
-old binary stars
-each is their old form but has the dev's wrath debuff
+laugh track
 
 L (obster)
 
@@ -72,3 +86,15 @@ Steal ideas from pokmon (old game)
 mcducknolds advertisement makes money but ruins other player's hand
 
 one more ball
+
+memory card
+
+harmony - melody
+
+
+
+
+
+LAST PRIORITY:
+
+3 of same card class (chip) (slot machine)

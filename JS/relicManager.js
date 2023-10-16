@@ -742,7 +742,8 @@ class relicManager{
                 }
                 if(this.active[140]>0&&args[1]==this.player[140]){
                     if(this.battle.counter.turnPlayed[0]>=5){
-                        this.battle.endTurn()
+                        this.battle.cardManagers[this.battle.turn.main].allEffect(2,2)
+                        this.battle.energy.main[this.battle.turn.main]=0
                     }
                 }
                 switch(args[0]){

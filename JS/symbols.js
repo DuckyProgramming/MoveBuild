@@ -1726,6 +1726,13 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,1,2,6)
             layer.rect(0,-3,6,2)
         break
+        case 190:
+            layer.stroke(255,255,100,fade)
+            layer.strokeWeight(2)
+            layer.line(-2,-6,-2,6)
+            layer.arc(-2,-3,8,6,-90,90)
+            layer.line(-2,0,2,6)
+        break
 
     }
     layer.pop()
@@ -3949,6 +3956,12 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(0,0,6,-4,4,-6)
             layer.triangle(0,0,6,4,4,6)
         break
+        case 245:
+            layer.fill(255,fade)
+            layer.rect(1,0,12,1)
+            layer.fill(80,fade)
+            layer.ellipse(-5,0,4,6)
+        break
     }
     layer.fill(0,fade)
     layer.noStroke()
@@ -3970,7 +3983,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 192: case 193: case 195: case 196: case 197: case 200: case 202: case 203: case 204: case 205:
             case 208: case 209: case 210: case 211: case 213: case 214: case 216: case 218: case 219: case 220:
             case 221: case 222: case 223: case 224: case 228: case 229: case 230: case 231: case 233: case 234:
-            case 235: case 237: case 238: case 239: case 240: case 242: case 243:
+            case 235: case 237: case 238: case 239: case 240: case 242: case 243: case 245:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 97: case 99: case 103: case 133: case 156:
@@ -4580,6 +4593,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.line(0,0,0,-5)
             layer.line(0,0,3,3)
         break
+        case 76:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,24,16,2)
+            layer.stroke(80,fade)
+            layer.rect(0,0,12,16,2)
+        break
     }
     layer.pop()
 }
@@ -4656,4 +4676,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 73-Dexterity Per Turn
 74-Retain Block
 75-Extra Turn
+76-Wide Card
 */

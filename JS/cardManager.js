@@ -433,10 +433,16 @@ class cardManager{
         let total=0
         for(let a=0,la=this.reserve.cards.length;a<la;a++){
             if(this.reserve.cards[a].spec.includes(3)){
+                if(variants.witch){
+                    this.reserve.cards[a].spec.push(31)
+                }
                 this.reserve.send(this.hand.cards,a,a+1,3)
                 a--
                 la--
                 total++
+                if(total>=4&&variants.witch){
+                    a=la
+                }
             }
         }
         return total
@@ -561,7 +567,8 @@ class cardManager{
         return this.reserve.cardNumber(name)+this.hand.cardNumber(name)+this.discard.cardNumber(name)
     }
     transformCard(base){
-        return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][floor(random(0,this.listing.card[base.list][3].length))],base.level,base.color,base.id)
+        index=floor(random(0,this.listing.card[base.list][3].length))
+        return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][index],base.level,base.color,base.id)
     }
     transformCardToBasic(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(['Strike','Defend','Step'][floor(random(0,3))],types.card),base.level,base.color,base.id)

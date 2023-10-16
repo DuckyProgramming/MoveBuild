@@ -84,7 +84,7 @@ class turn{
                             case 130: case 134: case 140: case 141: case 144: case 145: case 148: case 151: case 152: case 158:
                             case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184: case 188:
                             case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
-                            case 235: case 236:
+                            case 235: case 236: case 245:
                                 this.target=[
                                     [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
                                     [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
@@ -524,7 +524,7 @@ class turn{
                                     case 90: case 91: case 98: case 106: case 115: case 118: case 119: case 123: case 125: case 129:
                                     case 130: case 144: case 145: case 148: case 151: case 152: case 160: case 173: case 178: case 179:
                                     case 180: case 184: case 188: case 191: case 193: case 194: case 196: case 199: case 200: case 201:
-                                    case 202: case 206: case 208: case 235: case 236:
+                                    case 202: case 206: case 208: case 235: case 236: case 245:
                                         if(
                                             (a>=1&&this.targetTile[0]<0)||
                                             (a>=2&&this.targetTile[1]<0)||
@@ -3785,8 +3785,8 @@ class turn{
                     break
                     case 191:
                         if(this.timer==5||this.timer==10||this.timer==15||this.timer==20||this.timer==25){
-                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-100,26,[this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-30+random(-40,40)]))
-                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-30+random(-40,40),27,[25]))
+                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-90,26,[this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-25+random(-40,40)]))
+                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-25+random(-40,40),27,[25]))
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(this.timer>=30){
                             this.remove=true
@@ -4542,6 +4542,15 @@ class turn{
                             }else if(this.timer>=30){
                                 this.remove=true
                             }
+                        }
+                    break
+                    case 245:
+                        if(this.timer==10){
+                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-90,26,[this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-25+random(-40,40)]))
+                            this.battle.particleManager.particlesBack.push(new particle(this.battle.layer,this.targetCombatant.position.x+random(-10,10),this.targetCombatant.position.y-25+random(-40,40),27,[25]))
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }else if(this.timer>=20){
+                            this.remove=true
                         }
                     break
 

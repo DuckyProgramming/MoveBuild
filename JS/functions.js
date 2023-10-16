@@ -327,7 +327,7 @@ function intentDescription(attack,user,info){
 			case 9: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-1`
 			case 10: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies`
 			case 11: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-1`
-			case 12: case 80: case 115: case 161: case 165:
+			case 12: case 80: case 115: case 161: case 165: case 245:
 				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6\nNo Movement`
 			case 13: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
 			case 14: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
@@ -887,25 +887,9 @@ function quickAdd(name){
 		return 'Invalid'
 	}
 }
-function quickAddL(name,level){
+function quickAddFull(name,group,level,color){
 	if(findName(name,types.card)>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),level,0)
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function quickAddLC(name,level,color){
-	if(findName(name,types.card)>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),level,color)
-		return 'Added'
-	}else{
-		return 'Invalid'
-	}
-}
-function quickAddR(name){
-	if(findName(name,types.card)>=0){
-		current.cardManagers[constrain(current.turn.main,0,current.players-1)].reserve.add(findName(name,types.card),0,0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).add(findName(name,types.card),level,color)
 		return 'Added'
 	}else{
 		return 'Invalid'
@@ -937,6 +921,9 @@ function player(index){
 }
 function enemy(index){
 	return current.combatantManager.combatants[index+current.players]
+}
+function manager(index){
+	return current.cardManagers[index]
 }
 function combo(value){
 	current.combatantManager.combatants[0].combo+=value

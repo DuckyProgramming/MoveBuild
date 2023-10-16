@@ -1248,6 +1248,10 @@ class relic{
                     this.layer.quad(-6,-8,-8,-6,6,8,8,6)
                     this.layer.quad(-6,8,-8,6,6,-8,8,-6)
                 break
+                case 'Energy/Relic Size':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,76,0,0.8,this.fade)
+                break
 
             }
             if(value){

@@ -173,6 +173,8 @@ class card{
             case -28: string+=`When Drawn,\nGain ${effect[0]} Strength`; break
             case -29: string+=`When Drawn,\nLose All Energy`; break
             case -30: string+=`When Card Played,\nDiscard ${effect[0]} Random Card${effect[0]!=1?`s`:``}`; break
+            case -31: string+=`When Drawn,\nInflict ${effect[0]} Poison\nto Everything`; break
+            case -32: string+=`When Drawn,\nInflict ${effect[0]} Poison\nto Everything Else`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590: case 1139: case 1191:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -1398,8 +1400,17 @@ class card{
             case 1232: string+=`Build a Mirror Shield`; break
             case 1233: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOn Even Turns Only`; break
             case 1234: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n25%: Gain ${effect[1]} Energy\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
-
-
+            case 1235: string+=`Gain ${effect[0]} Rizz`; break
+            case 1236: string+=`Add to Hand:\nWhite Dwarf\nBlack Dwarf\nof Equivalent Level`; break
+            case 1237: string+=`Compact Cards in Hand`; break
+            case 1238: string+=`When Vanished,\nContains Something`; break
+            case 1239: string+=`When Drawn,\nGain ${effect[0]} Damage Down\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
+            case 1240: string+=`When Drawn,\nGain ${effect[0]} Burn\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
+            case 1241: string+=`When Drawn,\nCounter ${effect[0]} All\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
+            case 1242: string+=`When Drawn,\nAdd ${this.calculateEffect(effect[0],1)} Block\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
+            case 1243: string+=`When Drawn,\nUpgrade ${effect[0]} Card${effect[0]!=1?`s`:``}\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
+            case 1244: string+=`If Target Will Attack,\nReduce Damage by ${effect[0]}`; break
+            case 1245: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nCannot Move For ${effect[0]}\nYou Cannot Move\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
 
 
 
@@ -1481,6 +1492,12 @@ class card{
         if(spec.includes(26)){
             string+='\nAmalgum'
         }
+        if(spec.includes(32)){
+            string+='\nDeprecated'
+        }
+        if(spec.includes(33)){
+            string+='\nWide'
+        }
         if(string[0]=='\n'){
             string=string.substring(1,string.length)
         }
@@ -1542,6 +1559,17 @@ class card{
             break
             case 1167:
                 this.battle.combatantManager.damageAreaID([this.effect[0]],this.player,userCombatant.id,userCombatant.tilePosition)
+            break
+        }
+    }
+    callVanishEffect(){
+        switch(this.attack){
+            case 1238:
+                this.battle.cardManagers[this.player].deck.add(findName('Plague',types.card),0,game.playerNumber+2)
+            break
+            case 1239: case 1240: case 1241: case 1242: case 1243:
+                this.battle.overlayManager.overlays[3][this.player].active=true
+                this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break
         }
     }
@@ -1830,70 +1858,77 @@ class card{
                     }
                 }
                 this.layer.fill(mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],this.colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
-                this.layer.textSize(variants.blind?12:10)
-                this.layer.text(this.name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
-                if(!variants.blind){
-                    this.layer.fill(0,this.fade)
-                    this.layer.textSize(this.name=='Charred\nLizard'?6:8)
-                    if(this.spec.includes(12)){
-                        this.layer.text(this.description(this.attack[0],this.effect[0],this.reality[0]),0,-15)
-                        this.layer.text(this.description(this.attack[1],this.effect[1],this.reality[1]),0,this.height/2-25)
-                    }else{
-                        this.layer.text(this.description(this.attack,this.effect,this.spec),0,10)
-                    }
-                    this.layer.textSize(6)
-                    if(options.id){
-                        this.layer.text(this.id,this.width/2-8,-this.height/2+8)
-                    }
-                    if(this.spec.includes(12)){
-                        for(let a=0,la=2;a<la;a++){
-                            switch(this.class[a]){
+                if(this.spec.includes(34)){
+                    this.layer.rotate(90)
+                    this.layer.textSize(12)
+                    this.layer.text(this.name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,0)
+                    this.layer.rotate(-90)
+                }else{
+                    this.layer.textSize(variants.blind?12:10)
+                    this.layer.text(this.name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
+                    if(!variants.blind){
+                        this.layer.fill(0,this.fade)
+                        this.layer.textSize(this.name=='Charred\nLizard'?6:8)
+                        if(this.spec.includes(12)){
+                            this.layer.text(this.description(this.attack[0],this.effect[0],this.reality[0]),0,-15)
+                            this.layer.text(this.description(this.attack[1],this.effect[1],this.reality[1]),0,this.height/2-25)
+                        }else{
+                            this.layer.text(this.description(this.attack,this.effect,this.spec),0,10)
+                        }
+                        this.layer.textSize(6)
+                        if(options.id){
+                            this.layer.text(this.id,this.width/2-8,-this.height/2+8)
+                        }
+                        if(this.spec.includes(12)){
+                            for(let a=0,la=2;a<la;a++){
+                                switch(this.class[a]){
+                                    case 1:
+                                        this.layer.text('Attack',0,4+a*(this.height/2-10))
+                                    break
+                                    case 2:
+                                        this.layer.text('Defense',0,4+a*(this.height/2-10))
+                                    break
+                                    case 3:
+                                        this.layer.text('Movement',0,4+a*(this.height/2-10))
+                                    break
+                                    case 4:
+                                        this.layer.text('Power',0,4+a*(this.height/2-10))
+                                    break
+                                    case 5:
+                                        this.layer.text('Status',0,4+a*(this.height/2-10))
+                                    break
+                                    case 6:
+                                        this.layer.text('Curse',0,4+a*(this.height/2-10))
+                                    break
+                                    case 7:
+                                        this.layer.text('Blueprint',0,4+a*(this.height/2-10))
+                                    break
+                                }
+                            }
+                        }else{
+                            switch(this.class){
                                 case 1:
-                                    this.layer.text('Attack',0,4+a*(this.height/2-10))
+                                    this.layer.text('Attack',0,this.height/2-6)
                                 break
                                 case 2:
-                                    this.layer.text('Defense',0,4+a*(this.height/2-10))
+                                    this.layer.text('Defense',0,this.height/2-6)
                                 break
                                 case 3:
-                                    this.layer.text('Movement',0,4+a*(this.height/2-10))
+                                    this.layer.text('Movement',0,this.height/2-6)
                                 break
                                 case 4:
-                                    this.layer.text('Power',0,4+a*(this.height/2-10))
+                                    this.layer.text('Power',0,this.height/2-6)
                                 break
                                 case 5:
-                                    this.layer.text('Status',0,4+a*(this.height/2-10))
+                                    this.layer.text('Status',0,this.height/2-6)
                                 break
                                 case 6:
-                                    this.layer.text('Curse',0,4+a*(this.height/2-10))
+                                    this.layer.text('Curse',0,this.height/2-6)
                                 break
                                 case 7:
-                                    this.layer.text('Blueprint',0,4+a*(this.height/2-10))
+                                    this.layer.text('Blueprint',0,this.height/2-6)
                                 break
                             }
-                        }
-                    }else{
-                        switch(this.class){
-                            case 1:
-                                this.layer.text('Attack',0,this.height/2-6)
-                            break
-                            case 2:
-                                this.layer.text('Defense',0,this.height/2-6)
-                            break
-                            case 3:
-                                this.layer.text('Movement',0,this.height/2-6)
-                            break
-                            case 4:
-                                this.layer.text('Power',0,this.height/2-6)
-                            break
-                            case 5:
-                                this.layer.text('Status',0,this.height/2-6)
-                            break
-                            case 6:
-                                this.layer.text('Curse',0,this.height/2-6)
-                            break
-                            case 7:
-                                this.layer.text('Blueprint',0,this.height/2-6)
-                            break
                         }
                     }
                 }
@@ -1977,7 +2012,7 @@ class card{
             this.layer.pop()
         }
     }
-    update(sizeCap=1){
+    update(sizeCap=1,diff='nonhand',fattened=false){
         this.sizeCap=sizeCap
         if(this.select){
             this.upSize=true
@@ -2001,5 +2036,15 @@ class card{
         this.fade=smoothAnim(this.fade,!this.deFade,0,1,5)
         this.anim.select=smoothAnim(this.anim.select,this.select,0,1,5)
         this.anim.afford=smoothAnim(this.anim.afford,this.afford,0,1,5)
+        this.width=90
+        if(this.spec.includes(33)){
+            this.width+=diff=='hand'?100:0
+        }
+        if(fattened){
+            this.width+=diff=='hand'?50:0
+        }
+        if(this.spec.includes(34)){
+            this.width=50
+        }
     }
 }

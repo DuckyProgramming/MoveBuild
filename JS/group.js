@@ -783,6 +783,11 @@ class group{
                         la--
                     }
                 break
+                case 43:
+                    if(!this.cards[a].spec.includes(34)){
+                        this.cards[a].spec.push(34)
+                    }
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -979,6 +984,12 @@ class group{
             case -29:
                 this.battle.energy.main[this.player]=0
             break
+            case -31:
+                this.battle.combatantManager.fullAllEffect(3,[effect[0]])
+            break
+            case -32:
+                this.battle.combatantManager.fullAllEffect(4,[effect[0],this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].id])
+            break
             case 288:
                 for(let a=0,la=effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Stream',types.card),0,types.card[findName('Stream',types.card)].list)
@@ -1003,6 +1014,21 @@ class group{
                 for(let a=0,la=effect[1];a<la;a++){
                     this.drawEffects.push([0,317,[]])
                 }
+            break
+            case 1239:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Damage Down',effect[0])
+            break
+            case 1240:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Burn',effect[0])
+            break
+            case 1241:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Counter All',effect[0])
+            break
+            case 1242:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(effect[0])
+            break
+            case 1243:
+                this.battle.cardManagers[this.player].hand.upgrade(this.effect[0])
             break
         }
     }
@@ -1551,6 +1577,7 @@ class group{
                         if(this.cards[a].limit<=0){
                             this.cards[a].exhaust=true
                             for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                                this.battle.cardManagers[this.player].deck.cards[b].callVanishEffect()
                                 if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
                                     this.battle.cardManagers[this.player].deck.cards.splice(b,1)
                                     b--
@@ -1989,20 +2016,33 @@ class group{
                         selected=true
                     }
                 }
-                let cap=100
+                let cap=0
                 if(this.cards.length>0&&(this.cards[0].attack==817||this.cards[0].attack==1003||this.cards[0].attack==1012)){
                     this.cards[0].cost=0
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
-                    this.cards[a].update(1)
-                    let length=(a>=la-1?100:this.cards[a].name=='Unbuild'&&this.cards[a+1].name=='Unbuild'&&this.cards[a].level==this.cards[a+1].level&&this.cards[a].color==this.cards[a+1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a+1].additionalSpec.length==0?50:100)*(this.compact?0.7:1)
-                    if(this.cards[a].position.x>cap&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0)){
-                        this.cards[a].position.x-=25*(this.compact?0.7:1)
-                    }
+                    let length=
+                    (a==0?
+                        (100+(this.cards[a].spec.includes(34)?-20:((this.cards[a].spec.includes(33)?50:0)+(this.battle.relicManager.hasRelic(170,this.player)?25:0))))
+                        :(
+                            (this.cards[a].name=='Unbuild'&&this.cards[a-1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100)+
+                            (this.cards[a].spec.includes(33)?50:0)+
+                            (a>0&&this.cards[a-1].spec.includes(33)?50:0)+
+                            (this.battle.relicManager.hasRelic(170,this.player)?50:0)+
+                            (this.cards[a].spec.includes(34)?-20:0)+
+                            (a>0&&this.cards[a-1].spec.includes(34)?-20:0)
+                            )*(this.compact?0.7:1)
+                    )
                     cap+=length
-                    this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected
-                    if(this.cards.length>0&&abs((this.cards.length-1)/2-a)<=0.5&&(this.cards[a].attack==1034||this.cards[a].attack==1037)){
-                        this.cards[a].cost=0
+                    for(let b=0,lb=variants.speedmove?2:1;b<lb;b++){
+                        this.cards[a].update(1,'hand',this.battle.relicManager.hasRelic(170,this.player))
+                        this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected
+                        if(this.cards[a].position.x>cap&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0)){
+                            this.cards[a].position.x=max(this.cards[a].position.x-25*(this.compact?0.7:1),cap)
+                        }
+                        if(this.cards.length>0&&abs((this.cards.length-1)/2-a)<=0.5&&(this.cards[a].attack==1034||this.cards[a].attack==1037)){
+                            this.cards[a].cost=0
+                        }
                     }
                     if(this.cards[a].size<=0){
                         if(this.cards[a].discardEffect.length>0){
@@ -2087,18 +2127,6 @@ class group{
                         this.cards.splice(a,1)
                         a--
                         la--
-                    }
-                }
-                if(variants.speedmove){
-                    let cap=0
-                    for(let a=0,la=this.cards.length;a<la;a++){
-                        this.cards[a].update()
-                        let length=a==0?100:this.cards[a].name=='Unbuild'&&this.cards[a-1].name=='Unbuild'&&this.cards[a].level==this.cards[a-1].level&&this.cards[a].color==this.cards[a-1].color&&this.cards[a].additionalSpec.length==0&&this.cards[a-1].additionalSpec.length==0?50:100
-                        if(this.cards[a].position.x>cap+length&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0)){
-                            this.cards[a].position.x-=25
-                        }
-                        cap+=length
-                        this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected
                     }
                 }
                 if(this.battle.turn.main==this.player&&this.cards.length==0&&this.battle.relicManager.hasRelic(54,this.player)){
