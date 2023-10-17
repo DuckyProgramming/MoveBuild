@@ -171,6 +171,9 @@ class group{
                 if(this.id==0){
                     this.cards[this.cards.length-1].nonCalc=true
                 }
+                if(this.id>=1&&this.id<=3&&this.cards[this.cards.length-1].name=='Shiv'&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')>0){
+                    this.cards[this.cards.length-1].target[2]+=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')
+                }
                 if(this.battle.initialized&&this.id==0){
                     if(
                         this.cards[this.cards.length-1].level==0&&(
@@ -823,6 +826,9 @@ class group{
                         this.cards[a].spec.push(34)
                     }
                 break
+                case 44:
+                    this.cards[a].callStartEffect()
+                break
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -1070,6 +1076,9 @@ class group{
             case 1243:
                 this.battle.cardManagers[this.player].hand.upgrade(effect[0])
             break
+            case 1271:
+                this.battle.combatantManager.randomEnemyEffect(0,[effect[1]])
+            break
         }
     }
     deathEffect(){
@@ -1077,6 +1086,9 @@ class group{
             switch(this.cards[a].attack){
                 case -8:
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.cards[a].effect[0],-1)
+                break
+                case 1275:
+                    this.battle.currency.main[this.player]+=this.cards[a].effect[0]
                 break
             }
         }

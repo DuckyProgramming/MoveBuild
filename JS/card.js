@@ -1439,6 +1439,16 @@ class card{
             case 1267: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn`; break
             case 1268: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock`; break
             case 1269: string+=`Gain ${effect[0]} Energy\nHidden Swap 2 Cards\nFrom Draw Pile`; break
+            case 1270: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDecreases by ${effect[1]}\nEach Battle`; break
+            case 1271: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Drawn,\nDeal ${effect[1]} Damage\nto a Random Enemy`; break
+            case 1272: string+=`Kill All Enemies\nThat Are Copies`; break
+            case 1273: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Total\nStatuses on Target`; break
+            case 1274: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nApply ${effect[2]} Shock`; break
+            case 1275: string+=`Gain ${effect[0]} Currency\nWhen An Enemy Dies`; break
+            case 1276: string+=`New Shivs Get\+${effect[0]} Range`; break
+            
+            
+            //case : string+=`Last Card in Hand:\nApply ${effect[0]} Inaccurate`; break
 
 
 
@@ -1605,6 +1615,13 @@ class card{
             case 1239: case 1240: case 1241: case 1242: case 1243: case 1246:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
+            break
+        }
+    }
+    callStartEffect(){
+        switch(this.attack){
+            case 1270:
+                this.effect[0]=max(1,this.effect[0]-this.effect[1])
             break
         }
     }

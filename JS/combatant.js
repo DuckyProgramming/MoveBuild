@@ -85,7 +85,7 @@ class combatant{
             '1.5x Block','Upgrade Created','Lowroll Strength','Deprecating Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
             'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
             'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
-            'Rizz','Shock',
+            'Rizz','Shock','Shiv Range Up',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,3,//1
@@ -107,7 +107,7 @@ class combatant{
                 0,0,0,1,2,2,0,1,0,1,//17
                 1,0,1,0,2,0,2,2,0,2,//18
                 2,2,2,0,0,2,0,0,0,2,//19
-                0,1,
+                0,1,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,
@@ -129,7 +129,7 @@ class combatant{
                 0,2,2,0,2,1,2,1,0,0,
                 2,1,0,0,2,1,2,2,1,1,
                 1,1,1,0,0,0,0,0,2,2,
-                2,1,
+                2,1,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad

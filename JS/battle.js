@@ -1196,6 +1196,7 @@ class battle{
                     this.result.victory=true
                     this.overlayManager.closeAll()
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
+                    this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,44))
                     for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
                         this.overlayManager.overlays[0][a].active=true
                         if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){

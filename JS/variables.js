@@ -893,6 +893,20 @@ types={
                 {effect:[2],attack:1269,cost:0,target:[0],spec:[],class:4},
                 {effect:[2],attack:1269,cost:0,target:[0],spec:[22],class:4},
             ],
+        },{
+            name:'Solenoid',rarity:0,list:1,
+            levels:[
+                {effect:[18,1],attack:1270,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[25,1],attack:1270,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[30,1],attack:1270,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Axal\nBolt',rarity:1,list:1,
+            levels:[
+                {effect:[8,4],attack:1271,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,6],attack:1271,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[14,8],attack:1271,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
         
         {
@@ -3076,6 +3090,20 @@ types={
                 {effect:[1],attack:1239,cost:0,target:[0],spec:[15],limit:3,class:4},
                 {effect:[1],attack:1239,cost:0,target:[0],spec:[15],limit:1,class:4},
             ],
+        },{
+            name:'Trident',rarity:0,list:4,
+            levels:[
+                {effect:[8,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[14,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[20,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Blading\nRush',rarity:1,list:4,
+            levels:[
+                {effect:[1],attack:1276,cost:2,target:[0],spec:[1],class:4},
+                {effect:[1],attack:1276,cost:1,target:[0],spec:[1],class:4},
+                {effect:[1],attack:1276,cost:1,target:[0],spec:[1,3],class:4},
+            ],
         },
 
         {
@@ -5244,6 +5272,13 @@ types={
                 {effect:[2,1,1,1],attack:1259,cost:0,target:[2,1,6],spec:[],class:4},
                 {effect:[3,1,1,1],attack:1259,cost:0,target:[2,1,6],spec:[],class:4},
                 {effect:[4,1,1,1],attack:1259,cost:0,target:[2,1,6],spec:[],class:4},
+            ],
+        },{
+            name:`Fool's Fire`,rarity:2,list:7,
+            levels:[
+                {effect:[],attack:1272,cost:3,target:[0],spec:[],class:4},
+                {effect:[],attack:1272,cost:2,target:[0],spec:[],class:4},
+                {effect:[],attack:1272,cost:2,target:[0],spec:[22],class:4},
             ],
         },
 
@@ -7500,6 +7535,13 @@ types={
                 {effect:[1],attack:1266,cost:0,target:[2,1,6],spec:[0],class:1},
                 {effect:[2],attack:1266,cost:0,target:[2,1,6],spec:[0],class:1},
             ],
+        },{
+            name:'Squid Game\nCard',rarity:2,list:10,
+            levels:[
+                {effect:[100],attack:1275,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[141],attack:1275,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[169],attack:1275,cost:0,target:[0],spec:[4,5],class:4},
+            ],
         },
 
         {
@@ -7867,6 +7909,13 @@ types={
                 {effect:[],attack:348,cost:0,target:[5],spec:[1],class:4},
                 {effect:[],attack:348,cost:0,target:[5],spec:[1,2],class:4},
                 {effect:[],attack:348,cost:0,target:[5],spec:[1,2,22],class:4},
+            ],
+        },{
+            name:'Exploit',rarity:1,list:0,
+            levels:[
+                {effect:[1],attack:1273,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[1.5],attack:1273,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[2],attack:1273,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
             name:'Apotheosis',rarity:2,list:0,

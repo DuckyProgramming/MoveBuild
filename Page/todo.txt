@@ -8,11 +8,7 @@ fat duck!
 
 make a random card buffed but vanish
 
-squid game card
-
 ccp membership card - flag background
-
-2 range shivs
 
 attack that costs metal
 short circuit!
@@ -30,8 +26,6 @@ blood donor card
 
 smush together - combine and slightly weaken
 
-fireworks - deal damage equal to all statuses on enemy
-
 spin to win as a joke card
 nuclear bomb
 
@@ -43,16 +37,9 @@ rubber ducky lucky - does nothing but can still be played
 
 six shooter (the number six is important)
 
-solenoid deals damage but decreases EVERY battle (even if not used)
-
-deal damage, also deals damage if it starts in your hand
-
-trident - damage, freeze, shock
-
 equinox - next card exhausted is copied a bunch of times
 
-fool's fire
-burning light
+burning light - just a casual burn card
 
 laugh track
 
@@ -71,5 +58,7 @@ harmony - melody
 witchcards to airi
 
 golden ace (chip)
+
+short circuit
 
 3 of same card class (chip) (slot machine)

@@ -262,6 +262,16 @@ class combatantManager{
             }
         }
     }
+    killDupes(){
+        let names=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(names.includes(this.combatants[a].name)){
+                this.combatants[a].life=0
+            }else{
+                names.push(this.combatants[a].name)
+            }
+        }
+    }
     multiplyStatus(name,multiplier){
         this.combatants.forEach(combatant=>combatant.multiplyStatus(name,multiplier))
     }

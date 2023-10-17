@@ -1744,6 +1744,17 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.vertex(-0.5,-1.5)
             layer.endShape()
         break
+        case 192:
+            layer.fill(255,255,50,fade)
+            layer.triangle(-4,-2,-4,2,8,0)
+            layer.fill(255,200,255,fade)
+            layer.quad(-1,-7.5,0,-5,0,5,-1,5)
+            layer.fill(255,150,255,fade)
+            layer.quad(1,-2.5,0,-5,0,5,1,5)
+            layer.fill(255,255,255,fade)
+            layer.rect(0,6,5,2)
+            layer.rect(0,8,3,2)
+        break
 
     }
     layer.pop()
