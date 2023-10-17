@@ -126,6 +126,8 @@ class overlayManager{
             for(let b=0,lb=this.overlays[this.priority[a]].length;b<lb;b++){
                 if(this.overlays[this.priority[a]][b].active&&this.overlays[this.priority[a]][b].fade>0.5){
                     this.overlays[this.priority[a]][b].onKey(key,code)
+                    a=la
+                    b=lb
                 }
             }
         }

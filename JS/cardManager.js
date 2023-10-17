@@ -567,7 +567,7 @@ class cardManager{
         return this.reserve.cardNumber(name)+this.hand.cardNumber(name)+this.discard.cardNumber(name)
     }
     transformCard(base){
-        index=floor(random(0,this.listing.card[base.list][3].length))
+        let index=floor(random(0,this.listing.card[base.list][3].length))
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][index],base.level,base.color,base.id)
     }
     transformCardToBasic(base){

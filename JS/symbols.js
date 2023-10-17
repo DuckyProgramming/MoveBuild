@@ -1733,6 +1733,17 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.arc(-2,-3,8,6,-90,90)
             layer.line(-2,0,2,6)
         break
+        case 191:
+            layer.fill(255,255,50,fade)
+            layer.beginShape()
+            layer.vertex(0.5,-10)
+            layer.vertex(-4,1.5)
+            layer.vertex(0.5,1.5)
+            layer.vertex(-0.5,10)
+            layer.vertex(4,-1.5)
+            layer.vertex(-0.5,-1.5)
+            layer.endShape()
+        break
 
     }
     layer.pop()

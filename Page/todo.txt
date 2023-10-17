@@ -1,20 +1,16 @@
 Bugs:
 
-catastrophe
+another card name swap
+
+subroutine - starts a fight within a fight
 
 fat duck!
 
 make a random card buffed but vanish
 
-dice gun (low dice)
-
-hotkeys on overlays issues?
-
-calamari game card
+squid game card
 
 ccp membership card - flag background
-
-quarterstaff - deals damage on even only, deals a bonus on 4
 
 2 range shivs
 
@@ -32,28 +28,18 @@ custard - inflict blind, 75% get energy back (cost 1)
 valentine's card
 blood donor card
 
-smush together
+smush together - combine and slightly weaken
 
 fireworks - deal damage equal to all statuses on enemy
 
 spin to win as a joke card
 nuclear bomb
 
--flame war, requres one energy, damage and burn
-
 every ice card to creation
-ice sword - powerful form of lament, if not played nerf yourself
-
-mirror cauldron - redraws cards, amplify 1-increases draw per turn
-
-glass cauldron - nerf enemy like lament, discard a random card, draw a card
-same thing, buf heals you instead of nerfing enemy
 
 harvest - markes a card slot as unusable, but does damage
 
-rubber duck - does nothing but can still be played
-
-premium - damage, 10% chance of powerful buff
+rubber ducky lucky - does nothing but can still be played
 
 six shooter (the number six is important)
 
@@ -64,15 +50,6 @@ deal damage, also deals damage if it starts in your hand
 trident - damage, freeze, shock
 
 equinox - next card exhausted is copied a bunch of times
-
-from dicey:
-chisel
-
-tetraphobia
-crowbar
-wrecking ball
-lucky star
-peashooter
 
 fool's fire
 burning light
@@ -91,10 +68,8 @@ memory card
 
 harmony - melody
 
+witchcards to airi
 
-
-
-
-LAST PRIORITY:
+golden ace (chip)
 
 3 of same card class (chip) (slot machine)

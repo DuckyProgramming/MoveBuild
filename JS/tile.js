@@ -246,6 +246,9 @@ class tile{
                             case 4:
                                 this.battle.combatantManager.combatants[this.combatant].statusEffect('Dexterity',effect[0])
                             break
+                            case 5:
+                                this.battle.combatantManager.combatants[this.combatant].statusEffect('Poison',effect[0])
+                            break
                         }
                     }
                 break
