@@ -1415,11 +1415,16 @@ class battle{
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-157.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu'
+                    if(this.menu.combatant.length==2){
+                        this.menu.combatant=[1]
+                    }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='menu2'
-                    this.menu.combatant[1]=1
+                    if(this.menu.combatant.length==1){
+                        this.menu.combatant=[this.menu.combatant[0],1]
+                    }
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+52.5,y:this.layer.height*0.6},width:62.5,height:62.5})){
                     transition.trigger=true

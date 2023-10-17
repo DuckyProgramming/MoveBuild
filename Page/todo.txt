@@ -6,30 +6,18 @@ subroutine - starts a fight within a fight
 
 fat duck!
 
-make a random card buffed but vanish
-
 ccp membership card - flag background
 
 attack that costs metal
-short circuit!
 
 shooting star (damage, minor self confuse)
-dark shadow (damage, random self status)
 
 social security card
 
-custard - inflict blind, 75% get energy back (cost 1)
-
-777
 valentine's card
 blood donor card
 
 smush together - combine and slightly weaken
-
-spin to win as a joke card
-nuclear bomb
-
-every ice card to creation
 
 harvest - markes a card slot as unusable, but does damage
 
@@ -55,10 +43,13 @@ memory card
 
 harmony - melody
 
-witchcards to airi
-
 golden ace (chip)
 
-short circuit
 
-3 of same card class (chip) (slot machine)
+
+
+
+
+witchcards to airi
+more countdowns in general
+every ice card to creation

@@ -15750,13 +15750,15 @@ class combatant{
                 this.dead=true
                 this.battle.tileManager.activate()
                 this.battle.updateTargetting()
-                if(!this.programmedDeath){
-                    this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
-                }
-                if(this.name=='Teleporter Start'){
-                    this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nStart')
-                }else if(this.name=='Teleporter End'){
-                    this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nEnd')
+                if(this.team<=this.battle.players){
+                    if(!this.programmedDeath){
+                        this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
+                    }
+                    if(this.name=='Teleporter Start'){
+                        this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nStart')
+                    }else if(this.name=='Teleporter End'){
+                        this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nEnd')
+                    }
                 }
             }
         }else if(this.support){

@@ -3104,6 +3104,13 @@ types={
                 {effect:[1],attack:1276,cost:1,target:[0],spec:[1],class:4},
                 {effect:[1],attack:1276,cost:1,target:[0],spec:[1,3],class:4},
             ],
+        },{
+            name:'Mystery\nPulse',rarity:1,list:4,
+            levels:[
+                {effect:[13,1],attack:1279,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[20,2],attack:1279,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[27,2,2],attack:1280,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
         },
 
         {
@@ -4536,6 +4543,13 @@ types={
                 {effect:[24],attack:2,cost:1,target:[0],spec:[33],class:2},
                 {effect:[30],attack:2,cost:1,target:[0],spec:[33],class:2},
             ],
+        },{
+            name:'Short\nCircuit',rarity:1,list:6,
+            levels:[
+                {effect:[4,12,1,4],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[4,18,2,4],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[2,18,3,2],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
         },
 
         {
@@ -5248,7 +5262,7 @@ types={
         },{
             name:'Charm\nQuark',rarity:2,list:7,
             levels:[
-                {effect:[],attack:1237,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:1237,cost:0,target:[0],spec:[1,0],class:4},
                 {effect:[],attack:1237,cost:0,target:[0],spec:[1],class:4},
                 {effect:[],attack:1237,cost:0,target:[0],spec:[1,2],class:4},
             ],
@@ -6031,9 +6045,7 @@ types={
                 {effect:[1,1,2],attack:1260,cost:0,target:[2,1,6],spec:[],class:4},
                 {effect:[1,1,3],attack:1260,cost:0,target:[2,1,6],spec:[],class:4},
             ],
-        },
-        
-        {
+        },{
             name:'Lucky\nStar',rarity:1,list:8,
             levels:[
                 {effect:[12,1,5],attack:1262,cost:6,target:[2,1,2],spec:[0,2,35],class:1},
@@ -7542,6 +7554,27 @@ types={
                 {effect:[141],attack:1275,cost:0,target:[0],spec:[4,5],class:4},
                 {effect:[169],attack:1275,cost:0,target:[0],spec:[4,5],class:4},
             ],
+        },{
+            name:'Custard\nPie',rarity:1,list:10,
+            levels:[
+                {effect:[0,1],attack:1281,cost:1,target:[2,1,2],spec:[],class:1},
+                {effect:[0,1],attack:1281,cost:1,target:[2,1,2],spec:[2],class:1},
+                {effect:[0,1],attack:1281,cost:1,target:[2,1,2],spec:[2,22],class:1},
+            ],
+        },{
+            name:'Defade',rarity:0,list:10,
+            levels:[
+                {effect:[4],attack:1282,cost:1,target:[0],spec:[15],limit:1,class:4},
+                {effect:[6],attack:1282,cost:1,target:[0],spec:[15],limit:1,class:4},
+                {effect:[8],attack:1282,cost:1,target:[0],spec:[15],limit:1,class:4},
+            ],
+        },{
+            name:'Lucky 7',rarity:1,list:10,
+            levels:[
+                {effect:[7,37],attack:1284,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,77],attack:1284,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[7,107],attack:1284,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
 
         {
@@ -8483,9 +8516,9 @@ types={
         },{
             name:'Omega',rarity:-1,list:0,
             levels:[
-                {effect:[50],attack:483,cost:3,target:[0],spec:[0],class:1},
-                {effect:[65],attack:483,cost:3,target:[0],spec:[0],class:1},
-                {effect:[75],attack:483,cost:3,target:[0],spec:[0],class:1},
+                {effect:[50],attack:1283,cost:3,target:[0],spec:[0],class:1},
+                {effect:[65],attack:1283,cost:3,target:[0],spec:[0],class:1},
+                {effect:[75],attack:1283,cost:3,target:[0],spec:[0],class:1},
             ],
         },{
             name:'Expunger',rarity:-1,list:0,
@@ -9321,9 +9354,9 @@ types={
         },{
             name:'A Small\nLoan',rarity:-5,list:-1,
             levels:[
-                {effect:[1000000],attack:1207,cost:3,target:[0],spec:[],class:4},
-                {effect:[1000000],attack:1207,cost:2,target:[0],spec:[],class:4},
-                {effect:[1000000],attack:1207,cost:2,target:[0],spec:[22],class:4},
+                {effect:[1000000],attack:1207,cost:3,target:[0],spec:[15],limit:1,class:4},
+                {effect:[1000000],attack:1207,cost:2,target:[0],spec:[15],limit:1,class:4},
+                {effect:[1000000],attack:1207,cost:1,target:[0],spec:[15],limit:1,class:4},
             ],
         },{
             name:'Boomewrong',rarity:-5,list:-1,
@@ -9345,6 +9378,20 @@ types={
                 {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:4},
                 {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:4},
                 {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:4},
+            ],
+        },{
+            name:'Spin\nto Win',rarity:-1,list:-1,
+            levels:[
+                {effect:[1],attack:1277,cost:1,target:[0],spec:[0],class:1},
+                {effect:[1.5],attack:1277,cost:1,target:[0],spec:[0],class:1},
+                {effect:[2],attack:1277,cost:1,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Nuclear\nBomb',rarity:-1,list:-1,
+            levels:[
+                {effect:[],attack:1278,cost:3,target:[0],spec:[],class:1},
+                {effect:[],attack:1278,cost:3,target:[0],spec:[],class:1},
+                {effect:[],attack:1278,cost:3,target:[0],spec:[],class:1},
             ],
         },
     ],combatant:[

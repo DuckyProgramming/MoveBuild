@@ -24,7 +24,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40:
+            case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -517,6 +517,16 @@ class particle{
                     }
                     this.layer.endShape()
                 break
+                case 45:
+                    this.layer.fill(180,255,0,this.fade)
+                    this.layer.ellipse(0,0,12,12)
+                    this.layer.fill(250,255,0,this.fade)
+                    this.layer.ellipse(0,0,9,9)
+                    this.layer.fill(120,255,0,this.fade)
+                    this.layer.ellipse(0,0,6,6)
+                    this.layer.fill(90,255,0,this.fade)
+                    this.layer.ellipse(0,0,3,3)
+                break
 
             }
             this.layer.pop()
@@ -556,7 +566,7 @@ class particle{
                     }
                 }
             break
-            case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40:
+            case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

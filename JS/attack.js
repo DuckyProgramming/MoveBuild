@@ -105,7 +105,8 @@ class attack{
             case 1191: case 1194: case 1195: case 1196: case 1202: case 1209: case 1210: case 1211: case 1212: case 1213:
             case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1244: case 1246: case 1247:
             case 1248: case 1251: case 1252: case 1255: case 1256: case 1257: case 1258: case 1259: case 1261: case 1262:
-            case 1263: case 1266: case 1267: case 1268: case 1270: case 1271: case 1273:
+            case 1263: case 1266: case 1267: case 1268: case 1270: case 1271: case 1273: case 1279: case 1280: case 1281:
+            case 1284: case 1285:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1393,6 +1394,12 @@ class attack{
                     break
                     case 1251:
                         this.userManager.hand.allEffectArgs(8,[this.effect[0]])
+                    break
+                    case 1284:
+                        this.userManager.hand.sevens++
+                        if(this.userManager.hand.sevens%3==0){
+                            this.battle.addCurrency(this.effect[1],this.player)
+                        }
                     break
 
                 }
@@ -3281,6 +3288,9 @@ class attack{
                             this.userCombatant.lowRoll()
                         }
                     break
+                    case 1282:
+                        this.userManager.deck.randomEffect(18,[this.effect[0]])
+                    break
                     
                 }
             break
@@ -4117,9 +4127,9 @@ class attack{
                         }
                     break
                     case 1252:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(floor(random(0,10))==0){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                            this.userCombatant.statusEffect('Double Damage',this.effect[0])
+                            this.userCombatant.statusEffect('Double Damage',this.effect[1])
                         }else{
                             this.userCombatant.lowRoll()
                         }
@@ -4195,6 +4205,19 @@ class attack{
                         }
                         this.targetCombatant.takeDamage(this.effect[0]*total2,this.user)
                     break
+                    case 1279:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.randomStatusInstant(this.effect[1],[1])
+                    break
+                    case 1280:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.randomStatusInstant(this.effect[1],[1])
+                        this.userCombatant.randomStatusInstant(this.effect[2],[1])                            
+                    break
+                    case 1285:
+                        this.targetCombatant.takeDamage(this.effect[1],this.user)
+                        this.targetCombatant.randomStatusInstant(this.effect[2],[1])
+                    break
 
                 }
             break
@@ -4213,20 +4236,34 @@ class attack{
                         }
                     break
                     case 465:
+                        this.targetCombatant.takeDamage(this.effect[0])
                         this.targetCombatant.goal.anim.direction-=60
                         this.battle.updateTargetting()
                     break
                     case 466:
+                        this.targetCombatant.takeDamage(this.effect[0])
                         this.targetCombatant.goal.anim.direction+=60
                         this.battle.updateTargetting()
                     break
                     case 467:
+                        this.targetCombatant.takeDamage(this.effect[0])
                         this.targetCombatant.goal.anim.direction-=120
                         this.battle.updateTargetting()
                     break
                     case 468:
+                        this.targetCombatant.takeDamage(this.effect[0])
                         this.targetCombatant.goal.anim.direction+=120
                         this.battle.updateTargetting()
+                    break
+                    case 1281:
+                        this.targetCombatant.takeDamage(this.effect[0])
+                        this.targetCombatant.goal.anim.direction+=-60+floor(random(0,2))*120
+                        this.battle.updateTargetting()
+                        if(floor(random(0,4))!=0){
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                        }else{
+                            this.userCombatant.lowRoll()
+                        }
                     break
                 }
             break
@@ -4468,7 +4505,7 @@ class attack{
                     break
                     case 1207:
                         this.battle.addCurrency(this.effect[0],this.player)
-                        this.userManager.hand.add(findName('The\nDonald',types.card),0,0)
+                        this.userManager.deck.add(findName('The\nDonald',types.card),0,0)
                     break
                     case 1218:
                         if(variants.altDraw){
@@ -4896,6 +4933,10 @@ class attack{
                     case 1272:
                         this.battle.combatantManager.killDupes()
                     break
+                    case 1278:
+                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.battle.layer.width/2,this.battle.layer.height/2,45,[200]))
+                        this.battle.combatantManager.fullAllEffect(5,[0])
+                    break
 
                 }
             break
@@ -4973,7 +5014,7 @@ class attack{
             case 1145: case 1147: case 1153: case 1154: case 1155: case 1160: case 1164: case 1166: case 1167: case 1174:
             case 1175: case 1178: case 1179: case 1180: case 1181: case 1183: case 1187: case 1202: case 1209: case 1213:
             case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1251: case 1267: case 1268:
-            case 1270: case 1271:
+            case 1270: case 1271: case 1284:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
@@ -5300,7 +5341,7 @@ class attack{
             case 1042: case 1044: case 1045: case 1062: case 1064: case 1065: case 1066: case 1067: case 1078: case 1088:
             case 1095: case 1096: case 1098: case 1109: case 1110: case 1120: case 1121: case 1134: case 1151: case 1152:
             case 1158: case 1177: case 1184: case 1201: case 1214: case 1221: case 1224: case 1225: case 1226: case 1227:
-            case 1237: case 1249: case 1250: case 1253: case 1254:
+            case 1237: case 1249: case 1250: case 1253: case 1254: case 1282:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5992,8 +6033,8 @@ class attack{
             case 965: case 980: case 1028: case 1046: case 1059: case 1070: case 1071: case 1075: case 1097: case 1111:
             case 1119: case 1139: case 1150: case 1162: case 1163: case 1168: case 1182: case 1185: case 1189: case 1211:
             case 1232: case 1244: case 1247: case 1248: case 1252: case 1255: case 1256: case 1258: case 1259: case 1261:
-            case 1262: case 1263: case 1266: case 1273:
-                if(this.type==1247&&this.energy%2!=0||this.type==1259&&this.energy%2!=0){
+            case 1262: case 1263: case 1266: case 1273: case 1279: case 1280: case 1285:
+                if(this.type==1247&&this.energy%2!=0||this.type==1259&&this.energy%2!=0||this.type==1285&&this.effect[0]>0){
                     this.remove=true
                 }else if(variants.nobasicanim){
                     this.selfCall(7)
@@ -6300,7 +6341,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 66: case 68: case 421: case 465: case 466: case 467: case 468:
+            case 66: case 68: case 421: case 465: case 466: case 467: case 468: case 1281:
                 if(variants.nobasicanim){
                     this.selfCall(8)
                     this.remove=true
@@ -8022,7 +8063,7 @@ class attack{
             case 561: case 562: case 563: case 564: case 565: case 566: case 567: case 568: case 577: case 578:
             case 579: case 583: case 584: case 600: case 671: case 672: case 673: case 767: case 785: case 847:
             case 851: case 854: case 856: case 879: case 894: case 956: case 971: case 1000: case 1056: case 1060:
-            case 1103: case 1105: case 1116: case 1117: case 1122: case 1272:
+            case 1103: case 1105: case 1116: case 1117: case 1122: case 1272: case 1278:
                 if(variants.nobasicanim){
                     this.selfCall(12)
                     this.remove=true
@@ -8461,13 +8502,15 @@ class attack{
                     this.remove=true
                 }
             break
-            case 483:
+            case 483: case 1283:
                 if(this.timer==1){
                     this.userCombatant.startAnimation(36)
                 }
                 this.userCombatant.runAnimation(1/30,36)
                 if(this.timer==15){
-                    this.userCombatant.life=0
+                    if(this.type==483){
+                        this.userCombatant.life=0
+                    }
                     this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                     this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,2,[20]))
                 }else if(this.timer>=30){
@@ -9455,6 +9498,25 @@ class attack{
                     this.remove=true
                 }
             break
+            case 1277:
+                if(variants.nobasicanim){
+                    for(let a=0,la=10;a<la;a++){
+                        this.selfCall(13)
+                    }
+                    this.remove=true
+                }else{
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(10)
+                    }
+                    this.userCombatant.runAnimation(1/10,10)
+                    if(this.timer%20==10){
+                        this.selfCall(13)
+                    }else if(this.timer>=200){
+                        this.remove=true
+                    }
+                }
+            break
+
             default:
                 this.remove=true
             break

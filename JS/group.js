@@ -13,6 +13,7 @@ class group{
         this.lastDuplicate=''
         this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
         this.compact=false
+        this.sevens=0
 
         this.reset()
     }
@@ -897,8 +898,8 @@ class group{
         if(this.cards.length>0){
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(this.cards[a].usable
-                &&!(effect==0&&this.cards[index].deSize)
+                if(this.cards[a].usable&&!this.cards[a].spec.includes(12)
+                &&!(effect==0&&this.cards[a].deSize)
                 &&!((effect==1||effect==5)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)))
                 &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)))
                 &&!(effect==2&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0))
@@ -907,7 +908,8 @@ class group{
                 &&!(effect==10&&this.cards[a].spec.includes(9))
                 &&!(effect==11&&this.cards[a].spec.includes(10))
                 &&!(effect==15&&this.cards[a].effect.length==0)
-                &&!(effect==17&&(this.cards[a].attack==1115||this.cards[index].deSize))){
+                &&!(effect==17&&(this.cards[a].attack==1115||this.cards[a].deSize))
+                &&!(effect==18&&this.cards[a].class==3)){
                     list.push(a)
                 }
             }
@@ -975,6 +977,14 @@ class group{
                     break
                     case 16:
                         this.send(args[0],index,index+1,1)
+                    break
+                    case 18:
+                        for(let a=0,la=this.cards[index].effect.length;a<la;a++){
+                            this.cards[index].effect[a]*=2
+                        }
+                        this.cards[index].spec.push(15)
+                        this.cards[index].additionalSpec.push(15)
+                        this.cards[index].limit=args[0]
                     break
                 }
             }
