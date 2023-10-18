@@ -171,7 +171,7 @@ class card{
             case -22: string+=`When Drawn,\nStop Drawing`; break
             case -23: string+=`When Drawn,\nExhaust ${effect[0]}\nRandom Card${effect[0]!=1?`s`:``}`; break
             case -24: string+=`When Drawn,\nAdd a Burn to Hand`; break
-            case -25: string+=`When Drawn,\nAll Cards in Hand\nWill Exhaust`; break
+            case -25: string+=`When Drawn,\nA Random Card in Hand\nWill Exhaust`; break
             case -26: string+=`When Drawn,\nHalve Card Effects`; break
             case -27: string+=`When Drawn,\nLose ${effect[0]} Temporary\nStrength`; break
             case -28: string+=`When Drawn,\nGain ${effect[0]} Strength`; break
@@ -1435,7 +1435,7 @@ class card{
             case 1263: string+=`Inflict:\n${effect[0]} Bleed, ${effect[1]} Poison,\n${effect[2]} Burn, ${effect[3]} Shock\n${effect[4]} Weak, ${effect[5]} Vulnerable\n${effect[6]} Frail, ${effect[7]} Freeze`; break
             case 1264: string+=`Have ${effect[0]} Energy`; break
             case 1265: string+=`Have ${effect[0]} Energy\nA Random Card\nCosts ${effect[1]} More`; break
-            case 1266: string+=`Roll X${effect[0]!=0?`+${effect[0]}`:``} Di${effect[0]!=1?`c`:``}e\nof Value 1-3 and\nDeal That Much Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
+            case 1266: string+=`Roll X${effect[0]!=0?`+${effect[0]}`:``} Dice\nof Value 1-3 and\nDeal That Much Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
             case 1267: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn`; break
             case 1268: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock`; break
             case 1269: string+=`Gain ${effect[0]} Energy\nHidden Swap 2 Cards\nFrom Draw Pile`; break
@@ -1460,6 +1460,7 @@ class card{
             case 1288: string+=`If Last Card in Hand,\nApply ${effect[0]} Miss`; break
             case 1289: string+=`Deluxe Upgrade\na Card`; break
             case 1290: string+=`Enter a Rest Site`; break
+            case 1291: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\Lose Random Energy\nFrom Remaining`; break
 
 
 

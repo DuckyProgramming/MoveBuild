@@ -3962,16 +3962,16 @@ function setupBackground(type,layer){
 			layer.text('TURN TIMER',layer.width/2+350,layer.height-137.5)
 			layer.text('BEGIN',layer.width/2+300,layer.height*0.6+100)
 			layer.fill(120)
-			regPoly(layer,layer.width/2,layer.height*0.3+162.5,6,220,220,30)
+			regPoly(layer,layer.width/2,layer.height*0.3+177.5,6,220,220,30)
 			for(let b=0,lb=20;b<lb;b++){
 				for(let c=0,lc=5+(b>=10?10-floor((b+1)/2):floor((b+1)/2));c<lc;c++){
 					let offset=noise(b*1.5+c*0.5-200-a*100)*60+noise(c*1.5+b*0.5-150-a*100)*60
 					layer.fill(offset)
-					regTriangle(layer,layer.width/2-(-lc/2+0.5+c)*40,layer.height*0.3+b*17.5-b%2*5,24,24,b%2*60)
+					regTriangle(layer,layer.width/2-(-lc/2+0.5+c)*40,layer.height*0.3+b*17.5-b%2*5+15,24,24,b%2*60)
 				}
 			}
 			layer.fill(120)
-			regPoly(layer,layer.width/2,layer.height*0.3+162.5,6,120,120,30)
+			regPoly(layer,layer.width/2,layer.height*0.3+177.5,6,120,120,30)
 			layer.rect(layer.width/2,layer.height*0.65,225,75)
 			layer.rect(layer.width/2-160,layer.height*0.65,75,75)
 			layer.rect(layer.width/2+160,layer.height*0.65,75,75)
@@ -3979,8 +3979,9 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2,layer.height*0.65+160,225,75)
 			layer.rect(layer.width/2-160,layer.height*0.65+160,75,75)
 			layer.rect(layer.width/2+160,layer.height*0.65+160,75,75)
+			layer.rect(layer.width/2,layer.height*0.65-480,225,65)
 			layer.fill(0)
-			regPoly(layer,layer.width/2,layer.height*0.3+162.5,6,100,100,30)
+			regPoly(layer,layer.width/2,layer.height*0.3+177.5,6,100,100,30)
 			layer.rect(layer.width/2,layer.height*0.65,200,50)
 			layer.rect(layer.width/2-160,layer.height*0.65,50,50)
 			layer.rect(layer.width/2+160,layer.height*0.65,50,50)
@@ -3988,11 +3989,15 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2,layer.height*0.65+160,200,50)
 			layer.rect(layer.width/2-160,layer.height*0.65+160,50,50)
 			layer.rect(layer.width/2+160,layer.height*0.65+160,50,50)
+			layer.rect(layer.width/2,layer.height*0.65-480,200,40)
 			layer.fill(120)
 			regTriangle(layer,layer.width/2-157.5,layer.height*0.65,20,20,30)
 			regTriangle(layer,layer.width/2+157.5,layer.height*0.65,20,20,-30)
 			regTriangle(layer,layer.width/2-157.5,layer.height*0.65+160,20,20,30)
 			regTriangle(layer,layer.width/2+157.5,layer.height*0.65+160,20,20,-30)
+			layer.fill(255)
+			layer.textSize(16)
+			layer.text('RANDOM CHARACTER',layer.width/2,layer.height*0.65-480)
 		break
 		case 10:
 			menuBackground(layer)
@@ -4050,16 +4055,16 @@ function setupBackground(type,layer){
 			layer.text('BEGIN',layer.width/2,layer.height*0.6+100)
 			for(let a=0,la=2;a<la;a++){
 				layer.fill(120)
-				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+162.5,6,220,220,30)
+				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+177.5,6,220,220,30)
 				for(let b=0,lb=20;b<lb;b++){
 					for(let c=0,lc=5+(b>=10?10-floor((b+1)/2):floor((b+1)/2));c<lc;c++){
 						let offset=noise(b*1.5+c*0.5-200-a*100)*60+noise(c*1.5+b*0.5-150-a*100)*60
 						layer.fill(offset)
-						regTriangle(layer,layer.width/4+a*layer.width/2-(-lc/2+0.5+c)*40,layer.height*0.3+b*17.5-b%2*5,24,24,b%2*60)
+						regTriangle(layer,layer.width/4+a*layer.width/2-(-lc/2+0.5+c)*40,layer.height*0.3+b*17.5-b%2*5+15,24,24,b%2*60)
 					}
 				}
 				layer.fill(120)
-				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+162.5,6,120,120,30)
+				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+177.5,6,120,120,30)
 				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65,225,75)
 				layer.rect(layer.width/4+layer.width/2*a-160,layer.height*0.65,75,75)
 				layer.rect(layer.width/4+layer.width/2*a+160,layer.height*0.65,75,75)
@@ -4067,8 +4072,9 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65+160,225,75)
 				layer.rect(layer.width/4+layer.width/2*a-160,layer.height*0.65+160,75,75)
 				layer.rect(layer.width/4+layer.width/2*a+160,layer.height*0.65+160,75,75)
+				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65-480,225,65)
 				layer.fill(0)
-				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+162.5,6,100,100,30)
+				regPoly(layer,layer.width/4+layer.width/2*a,layer.height*0.3+177.5,6,100,100,30)
 				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65,200,50)
 				layer.rect(layer.width/4+layer.width/2*a-160,layer.height*0.65,50,50)
 				layer.rect(layer.width/4+layer.width/2*a+160,layer.height*0.65,50,50)
@@ -4076,11 +4082,15 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65+160,200,50)
 				layer.rect(layer.width/4+layer.width/2*a-160,layer.height*0.65+160,50,50)
 				layer.rect(layer.width/4+layer.width/2*a+160,layer.height*0.65+160,50,50)
+				layer.rect(layer.width/4+layer.width/2*a,layer.height*0.65-480,200,40)
 				layer.fill(120)
 				regTriangle(layer,layer.width/4+layer.width/2*a-157.5,layer.height*0.65,20,20,30)
 				regTriangle(layer,layer.width/4+layer.width/2*a+157.5,layer.height*0.65,20,20,-30)
 				regTriangle(layer,layer.width/4+layer.width/2*a-157.5,layer.height*0.65+160,20,20,30)
 				regTriangle(layer,layer.width/4+layer.width/2*a+157.5,layer.height*0.65+160,20,20,-30)
+				layer.fill(255)
+				layer.textSize(16)
+				layer.text('RANDOM CHARACTER',layer.width/4+layer.width/2*a,layer.height*0.65-480)
 			}
 		break
 		case 11:
@@ -4089,6 +4099,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2,layer.height*0.6,125,125)
 			layer.rect(layer.width/2,layer.height*0.6+100,125,55)
 			layer.rect(layer.width/2,layer.height*0.8,275,75)
+			layer.rect(layer.width/2,layer.height*0.8+85,275,75)
 			for(let a=0,la=8;a<la;a++){
 				layer.rect(layer.width/2-350,layer.height/2-315+a*90,350,80)
 				layer.rect(layer.width/2+350,layer.height/2-315+a*90,350,80)
@@ -4097,6 +4108,7 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2,layer.height*0.6,100,100)
 			layer.rect(layer.width/2,layer.height*0.6+100,100,30)
 			layer.rect(layer.width/2,layer.height*0.8,250,50)
+			layer.rect(layer.width/2,layer.height*0.8+85,250,50)
 			for(let a=0,la=8;a<la;a++){
 				layer.rect(layer.width/2-382.5,layer.height/2-315+a*90,260,55)
 				layer.rect(layer.width/2+317.5,layer.height/2-315+a*90,260,55)
@@ -4109,6 +4121,7 @@ function setupBackground(type,layer){
 			layer.textSize(20)
 			layer.text('BACK',layer.width/2,layer.height*0.6+100)
 			layer.text('CUSTOM ULTRAPRISM',layer.width/2,layer.height*0.8)
+			layer.text('RANDOM SETTINGS',layer.width/2,layer.height*0.8+85)
 			layer.text('-1 DRAW',layer.width/2-382.5,layer.height*0.5-315)
 			layer.text('CYCLIC DRAW',layer.width/2-382.5,layer.height*0.5-225)
 			layer.text('CARD SLOT DRAW',layer.width/2-382.5,layer.height*0.5-135)

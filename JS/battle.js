@@ -6,7 +6,7 @@ class battle{
     }
     createBasic(){
         this.initialized=false
-        this.menu={combatant:[1,0],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[],prismrule:[]}}
+        this.menu={combatant:[1],deck:[0,0],anim:{combatant:[[],[]],deck:[[],[]],ascend:[],ascendDesc:[],ascendSingle:0,animRate:[],turnTime:[],variants:[],prismrule:[]}}
         for(let a=0,la=game.playerNumber;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.combatant[b].push(-1)
@@ -638,7 +638,7 @@ class battle{
                 this.layer.image(graphics.backgrounds[9],0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=game.playerNumber;a<=la;a++){
                     if(this.menu.anim.combatant[0][a]>0&&a>0){
-                        displayPlayerSymbol(this.layer,this.layer.width/2,this.layer.height*0.3+81.25,a,0,1,1)
+                        displayPlayerSymbol(this.layer,this.layer.width/2,this.layer.height*0.3+88.75,a,0,1,1)
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<=la;a++){
@@ -693,7 +693,7 @@ class battle{
                 for(let a=0,la=game.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         if(this.menu.anim.combatant[b][a]>0&&a>0){
-                            displayPlayerSymbol(this.layer,this.layer.width/4+b*this.layer.width/2,this.layer.height*0.3+81.25,a,0,1,this.menu.anim.combatant[b][a])
+                            displayPlayerSymbol(this.layer,this.layer.width/4+b*this.layer.width/2,this.layer.height*0.3+88.75,a,0,1,this.menu.anim.combatant[b][a])
                         }
                     }
                 }
@@ -1454,6 +1454,9 @@ class battle{
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65+80},width:37.5,height:37.5})&&this.menu.deck[0]<types.deckmode.length-1){
                     this.menu.deck[0]++
                 }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.65-240},width:112.5,height:32.5})){
+                    this.menu.combatant[0]=floor(random(0,game.playerNumber))+1
+                }
                 for(let a=0,la=types.ascend.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
                         game.ascend=a
@@ -1487,6 +1490,9 @@ class battle{
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a+80,y:this.layer.height*0.65+80},width:37.5,height:37.5})&&this.menu.deck[a]<types.deckmode.length-1){
                         this.menu.deck[a]++
                     }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a,y:this.layer.height*0.65-240},width:112.5,height:32.5})){
+                        this.menu.combatant[a]=floor(random(0,game.playerNumber))+1
+                    }
                 }
                 for(let a=0,la=types.ascend.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
@@ -1518,10 +1524,17 @@ class battle{
                     transition.trigger=true
                     transition.scene='title'
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.8},width:125,height:25})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.8},width:137.5,height:37.5})){
                     transition.trigger=true
                     transition.scene='custom'
                     variants.ultraprism=true
+                }
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.8+42.5},width:137.5,height:37.5})){
+                    let keys=[floor(random(0,5)),floor(random(0,2.5)),floor(random(0,2.5)),floor(random(0,5))]
+                    let subkeys=[floor(random(0,5))==0,floor(random(0,5))==0,keys[0]==1,keys[0]==2,keys[0]==3,keys[0]==4,keys[1]==1,keys[1]==2,keys[2]==1,keys[2]==2,floor(random(0,5))==0,0,keys[3]==3,keys[4]==4,floor(random(0,5))==0,floor(random(0,5))==0]
+                    for(let a=0,la=variantNames.length;a<la;a++){
+                        variants[variantNames[a]]=subkeys[a]
+                    }
                 }
             break
             case 'custom':

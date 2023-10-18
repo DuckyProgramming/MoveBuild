@@ -27,12 +27,13 @@ valentine's card
 blood donor card
 
 smush together - combine and slightly weaken
+spannersword
 
 harvest - markes a card slot as unusable, but does damage
 
 rubber ducky lucky - does nothing but can still be played
 
-six shooter (the number six is important)
+six shooter (the number six is important) (gun with six uses per bullet)
 
 burning light - just a casual burn card
 
@@ -49,6 +50,38 @@ memory card
 harmony - melody
 
 golden ace (chip)
+
+
+
+big stick - damage, if fatal gain block and counter all
+
+blue ocean - damage, spend charge to heal
+
+broken mirror - increase card draw by 1, but gain 1 miss
+
+change machine - countdown 4, returns 4 of something
+
+combat spatula
+
+frontline - defensive cauldron
+
+grindstone - temporarily removes fatigue (or exhaust) from cards
+
+honey - discard 1 card, draw 1 card, but pulls a rarer card
+
+lock 1 and keyblade
+
+magnifying glass: double energy, + amplify
+
+nail bat - high damage, but hurts you on draw
+
+princess guard - damage, change to add block
+
+starspear - spear + random buff self
+
+transformer - opposite of solenoid
+
+4-handed sword - combines four attacks from hand
 
 
 

@@ -3827,6 +3827,13 @@ types={
                 {effect:[1],attack:956,cost:0,target:[45],spec:[],class:4},
                 {effect:[1],attack:956,cost:0,target:[45],spec:[22],class:4},
             ],
+        },{
+            name:'Avalanche',rarity:1,list:5,
+            levels:[
+                {effect:[12],attack:1291,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[18],attack:1291,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[22],attack:1291,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
         },
         
         {

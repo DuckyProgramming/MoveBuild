@@ -107,7 +107,7 @@ class attack{
             case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1244: case 1246: case 1247:
             case 1248: case 1251: case 1252: case 1255: case 1256: case 1257: case 1258: case 1259: case 1261: case 1262:
             case 1263: case 1266: case 1267: case 1268: case 1270: case 1271: case 1273: case 1279: case 1280: case 1281:
-            case 1284: case 1285: case 1286: case 1288:
+            case 1284: case 1285: case 1286: case 1288: case 1291:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1412,6 +1412,9 @@ class attack{
                                 }
                             }
                         }
+                    break
+                    case 1291:
+                        this.battle.energy.main[this.player]=floor(random(this.battle.energy.main[this.player]+1))
                     break
 
                 }
@@ -5050,7 +5053,7 @@ class attack{
             case 1145: case 1147: case 1153: case 1154: case 1155: case 1160: case 1164: case 1166: case 1167: case 1174:
             case 1175: case 1178: case 1179: case 1180: case 1181: case 1183: case 1187: case 1202: case 1209: case 1213:
             case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1251: case 1267: case 1268:
-            case 1270: case 1271: case 1284: case 1286:
+            case 1270: case 1271: case 1284: case 1286: case 1291:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){

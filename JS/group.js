@@ -909,7 +909,9 @@ class group{
                 &&!(effect==11&&this.cards[a].spec.includes(10))
                 &&!(effect==15&&this.cards[a].effect.length==0)
                 &&!(effect==17&&(this.cards[a].attack==1115||this.cards[a].deSize))
-                &&!(effect==18&&this.cards[a].class==3)){
+                &&!(effect==18&&this.cards[a].class==3)
+                &&!(effect==19&&this.cards[a].spec.includes(1))
+                ){
                     list.push(a)
                 }
             }
@@ -986,6 +988,11 @@ class group{
                         this.cards[index].additionalSpec.push(15)
                         this.cards[index].limit=args[0]
                     break
+                    case 19:
+                        if(!this.cards[a].spec.includes(1)&&this.cards[a].attack!=-25){
+                            this.cards[a].spec.push(1)
+                        }
+                    break
                 }
             }
         }
@@ -1026,7 +1033,7 @@ class group{
                 this.battle.cardManagers[this.player].hand.add(findName('Burn',types.card),0,game.playerNumber+1)
             break
             case -25:
-                this.drawEffects.push([3])
+                this.drawEffects.push([0,19,[]])
             break
             case -26:
                 this.drawEffects.push([4])
