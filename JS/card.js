@@ -1451,13 +1451,15 @@ class card{
             case 1279: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]}\nRandom Debuff to Self`; break
             case 1280: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]}\nRandom Debuff to Self\nApply ${effect[2]}\nRandom Debuff to Self`; break
             case 1281: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Rotate Target Randomly\nLeft or Right\n75%: Gain ${effect[1]} Energy`; break
-            case 1282: string+=`A Random Non-Movement\nCard in Deck\nHas Double Effect\nand Vanishing ${effect[0]}`; break
+            case 1282: string+=`A Random\nNon-Movement\nCard in Deck\nHas Double Effect\nand Vanishing ${effect[0]}`; break
             case 1283: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash\nDamage Around Self`; break
             case 1284: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvery 3 Lucky 7s Played,\nGain ${effect[1]} Currency`; break
             case 1285: string+=`${effect[0]>0?`Activates in ${effect[0]} Card${effect[0]!=1?`s`:``}\n`:``}Deal ${this.calculateEffect(effect[1],0)} Damage\nApply ${effect[2]}\nRandom Debuff`; break
-
-
-            //case : string+=`If Hand is Empty,\nApply ${effect[0]} Inaccurate`; break
+            case 1286: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Increases\nby ${effect[1]} Permanently`; break
+            case 1287: string+=`Your Next ${effect[0]} Exhausts\nReturn to Draw Instead\nAnd Duplicate the Card\nDoes Not Affect Self`; break
+            case 1288: string+=`If Last Card in Hand,\nApply ${effect[0]} Miss`; break
+            case 1289: string+=`Deluxe Upgrade\na Card`; break
+            case 1290: string+=`Enter a Rest Site`; break
 
 
 
@@ -1770,7 +1772,7 @@ class card{
                 this.effect[0]=max(0,this.effect[0]-this.effect[1])
             break
             case 1219:
-                this.effect[0]=this.effect[0]
+                this.effect[0]+=this.effect[1]
             break
         }
     }

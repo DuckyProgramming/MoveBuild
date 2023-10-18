@@ -2367,6 +2367,13 @@ types={
                 {effect:[4,4,1,1],attack:1261,cost:0,target:[2,1,6],spec:[],class:4},
                 {effect:[6,6,1,1],attack:1261,cost:0,target:[2,1,6],spec:[],class:4},
             ],
+        },{
+            name:'Collection',rarity:2,list:3,
+            levels:[
+                {effect:[12,3],attack:1286,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[20,5],attack:1286,cost:1,target:[2,1,1],spec:[0,6],class:1},
+                {effect:[21,7],attack:1286,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            ],
         },
 
         {
@@ -3110,6 +3117,13 @@ types={
                 {effect:[13,1],attack:1279,cost:1,target:[2,1,2],spec:[0],class:1},
                 {effect:[20,2],attack:1279,cost:1,target:[2,1,2],spec:[0],class:1},
                 {effect:[27,2,2],attack:1280,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Equinox',rarity:2,list:4,
+            levels:[
+                {effect:[1],attack:1287,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:1287,cost:1,target:[0],spec:[1],class:4},
+                {effect:[2],attack:1287,cost:1,target:[0],spec:[1,22],class:4},
             ],
         },
 
@@ -7575,6 +7589,13 @@ types={
                 {effect:[7,77],attack:1284,cost:1,target:[2,1,1],spec:[0],class:1},
                 {effect:[7,107],attack:1284,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
+        },{
+            name:'Laugh\nTrack',rarity:1,list:10,
+            levels:[
+                {effect:[2],attack:1288,cost:0,target:[2,1,3],spec:[],class:4},
+                {effect:[3],attack:1288,cost:0,target:[2,1,3],spec:[],class:4},
+                {effect:[4],attack:1288,cost:0,target:[2,1,3],spec:[],class:4},
+            ],
         },
 
         {
@@ -8020,6 +8041,20 @@ types={
                 {effect:[1,3,3],attack:350,cost:4,target:[0],spec:[],class:4},
                 {effect:[1,4,4],attack:350,cost:4,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Whitesmith',rarity:2,list:0,
+            levels:[
+                {effect:[],attack:1289,cost:3,target:[0],spec:[15],limit:1,class:4},
+                {effect:[],attack:1289,cost:2,target:[0],spec:[15],limit:1,class:4},
+                {effect:[],attack:1289,cost:1,target:[0],spec:[15],limit:1,class:4},
+            ],
+        },{
+            name:'Firewood',rarity:2,list:0,
+            levels:[
+                {effect:[],attack:1290,cost:1,target:[0],spec:[15],limit:3,class:4},
+                {effect:[],attack:1290,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[],attack:1290,cost:0,target:[0],spec:[15,22],limit:3,class:4},
+            ],
         },
 
         {
@@ -8318,9 +8353,9 @@ types={
         },{
             name:'Stack\nOverflow',rarity:0,list:-1,
             levels:[
-                {effect:[6],attack:1213,cost:-1,target:[0],spec:[0],class:4},
-                {effect:[9],attack:1213,cost:-1,target:[0],spec:[0],class:4},
-                {effect:[11],attack:1213,cost:-1,target:[0],spec:[0],class:4},
+                {effect:[6],attack:1213,cost:-1,target:[2,1,1],spec:[0],class:4},
+                {effect:[9],attack:1213,cost:-1,target:[2,1,1],spec:[0],class:4},
+                {effect:[11],attack:1213,cost:-1,target:[2,1,1],spec:[0],class:4},
             ],
         },{
             name:'House\nRules',rarity:0,list:-1,

@@ -47,6 +47,7 @@ class battle{
         this.deck=game.deck
         transition.trigger=true
         transition.scene='pack'
+        this.altPhase=false
         this.create()
     }
     create(){
@@ -1314,9 +1315,14 @@ class battle{
                         allOptionsComplete=false
                     }
                 }
-                if(allOptionsComplete){
+                if(allOptionsComplete&&!transition.trigger){
                     transition.trigger=true
-                    transition.scene='map'
+                    if(this.altPhase){
+                        this.altPhase=false
+                        transition.scene='battle'
+                    }else{
+                        transition.scene='map'
+                    }
                 }
             break
             case 'shop':
@@ -1584,9 +1590,9 @@ class battle{
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[this.turn.main]*100},width:32,height:20})&&variants.altDraw){
                             this.cardManagers[this.turn.main].dropFirst()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:66,y:680-this.anim.turn[this.turn.main]*100},width:32,height:20})&&variants.blackjack&&this.cardManagers[this.turn.main].drops<this.cardManagers[this.turn.main].baseDrops){
+                            this.cardManagers[this.turn.main].allEffect(2,40)
                             this.cardManagers[this.turn.main].draw(1)
                             this.cardManagers[this.turn.main].drops+=floor(random(1,7))
-                            this.cardManagers[this.turn.main].allEffect(2,40)
                             if(this.cardManagers[this.turn.main].drops==this.cardManagers[this.turn.main].baseDrops){
                                 this.cardManagers[this.turn.main].drawPrice(1,0)
                             }else if(this.cardManagers[this.turn.main].drops>this.cardManagers[this.turn.main].baseDrops){
@@ -1878,9 +1884,9 @@ class battle{
                         }else if(key=='.'&&variants.altDraw){
                             this.cardManagers[this.turn.main].dropFirst()
                         }else if(key=='.'&&variants.blackjack&&this.cardManagers[this.turn.main].drops<this.cardManagers[this.turn.main].baseDrops){
+                            this.cardManagers[this.turn.main].allEffect(2,40)
                             this.cardManagers[this.turn.main].draw(1)
                             this.cardManagers[this.turn.main].drops+=floor(random(1,7))
-                            this.cardManagers[this.turn.main].allEffect(2,40)
                             if(this.cardManagers[this.turn.main].drops==this.cardManagers[this.turn.main].baseDrops){
                                 this.cardManagers[this.turn.main].drawPrice(1,0)
                             }else if(this.cardManagers[this.turn.main].drops>this.cardManagers[this.turn.main].baseDrops){

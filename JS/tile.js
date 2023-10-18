@@ -308,9 +308,9 @@ class tile{
         }else{
             this.layer.fill(90,95,100,this.fade)
         }
-        this.layer.noStroke()
         regPoly(this.layer,0,0,6,40,18,0)
         for(let a=0,la=this.type.length;a<la;a++){
+            this.layer.noStroke()
             switch(this.type[a]){
                 case 1:
                     this.layer.fill(190,195,200,this.fade*this.anim.part[a])

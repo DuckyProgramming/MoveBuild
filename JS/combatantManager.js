@@ -778,7 +778,7 @@ class combatantManager{
             break
             case 'rest': case 'event':
                 for(let a=0,la=this.combatants.length;a<la;a++){
-                    if(this.combatants[a].team>0){
+                    if(this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
                         this.combatants[a].displayInfo(scene)
                     }
                 }

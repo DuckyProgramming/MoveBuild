@@ -64,7 +64,7 @@ class cardManager{
                 }
             }
         }
-        for(let a=0,la=this.listing.card.length;a<la;a++){
+        for(let a=0,la=game.playerNumber;a<la;a++){
             if(variants.altDraw){
                 let list=['Buster','Multicard','Dropbox','DeDrop','Eye\nDropper']
                 for(let b=0,lb=list.length;b<lb;b++){

@@ -1,5 +1,5 @@
 class attack{
-    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData,amplify,relPos,limit){
+    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData,amplify,relPos,limit,id){
         this.type=type
         this.battle=battle
         this.player=player
@@ -17,6 +17,7 @@ class attack{
         this.amplify=amplify
         this.relPos=relPos
         this.limit=limit
+        this.id=id
 
         this.procedure=[]
 
@@ -106,7 +107,7 @@ class attack{
             case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1244: case 1246: case 1247:
             case 1248: case 1251: case 1252: case 1255: case 1256: case 1257: case 1258: case 1259: case 1261: case 1262:
             case 1263: case 1266: case 1267: case 1268: case 1270: case 1271: case 1273: case 1279: case 1280: case 1281:
-            case 1284: case 1285:
+            case 1284: case 1285: case 1286: case 1288:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -1358,7 +1359,9 @@ class attack{
                         }
                     break
                     case 1202:
-                        this.targetCombatant.status.main[findList('Cannot Die',this.targetCombatant.status.name)]=0
+                        if(this.targetCombatant.life<=0){
+                            this.targetCombatant.status.main[findList('Cannot Die',this.targetCombatant.status.name)]=0
+                        }
                     break
                     case 1217:
                         if(this.targetCombatant.life<=0){
@@ -1399,6 +1402,15 @@ class attack{
                         this.userManager.hand.sevens++
                         if(this.userManager.hand.sevens%3==0){
                             this.battle.addCurrency(this.effect[1],this.player)
+                        }
+                    break
+                    case 1286:
+                        if(this.targetCombatant.life<=0){
+                            for(let a=0,la=this.userManager.deck.cards.length;a<la;a++){
+                                if(this.userManager.deck.cards[a].id==this.id){
+                                    this.userManager.deck.cards[a].effect[0]+=this.userManager.deck.cards[a].effect[1]
+                                }
+                            }
                         }
                     break
 
@@ -3291,6 +3303,10 @@ class attack{
                     case 1282:
                         this.userManager.deck.randomEffect(18,[this.effect[0]])
                     break
+                    case 1289:
+                        this.battle.overlayManager.overlays[28][this.player].active=true
+                        this.battle.overlayManager.overlays[28][this.player].activate()
+                    break
                     
                 }
             break
@@ -3531,6 +3547,9 @@ class attack{
                     case 1236:
                         this.userManager.hand.add(findName('White\nDwarf',types.card),this.level,0)
                         this.userManager.hand.add(findName('Black\nDwarf',types.card),this.level,0)
+                    break
+                    case 1287:
+                        this.userCombatant.statusEffect('Double Exhaust',this.effect[0])
                     break
 
                 }
@@ -4265,6 +4284,17 @@ class attack{
                             this.userCombatant.lowRoll()
                         }
                     break
+                    case 1288:
+                        let works=true
+                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                            if(this.userManager.hand.cards[a].usable){
+                                works=false
+                            }
+                        }
+                        if(works){
+                            this.targetCombatant.statusEffect('Miss',this.effect[0])
+                        }
+                    break
                 }
             break
             case 9:
@@ -4526,6 +4556,12 @@ class attack{
                     break
                     case 1276:
                         this.userCombatant.statusEffect('Shiv Range Up',this.effect[0])
+                    break
+                    case 1290:
+                        transition.trigger=true
+                        transition.scene='rest'
+                        this.battle.optionManagers.forEach(optionManager=>optionManager.reset())
+                        this.battle.altPhase=true
                     break
 
                 }
@@ -5014,7 +5050,7 @@ class attack{
             case 1145: case 1147: case 1153: case 1154: case 1155: case 1160: case 1164: case 1166: case 1167: case 1174:
             case 1175: case 1178: case 1179: case 1180: case 1181: case 1183: case 1187: case 1202: case 1209: case 1213:
             case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1251: case 1267: case 1268:
-            case 1270: case 1271: case 1284:
+            case 1270: case 1271: case 1284: case 1286:
                 if(this.type==780){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
@@ -5341,7 +5377,7 @@ class attack{
             case 1042: case 1044: case 1045: case 1062: case 1064: case 1065: case 1066: case 1067: case 1078: case 1088:
             case 1095: case 1096: case 1098: case 1109: case 1110: case 1120: case 1121: case 1134: case 1151: case 1152:
             case 1158: case 1177: case 1184: case 1201: case 1214: case 1221: case 1224: case 1225: case 1226: case 1227:
-            case 1237: case 1249: case 1250: case 1253: case 1254: case 1282:
+            case 1237: case 1249: case 1250: case 1253: case 1254: case 1282: case 1289:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5396,7 +5432,7 @@ class attack{
             case 360: case 369: case 380: case 391: case 442: case 456: case 470: case 608: case 641: case 642:
             case 643: case 659: case 924: case 952: case 953: case 954: case 960: case 961: case 962: case 984:
             case 985: case 1021: case 1041: case 1043: case 1101: case 1102: case 1112: case 1186: case 1203: case 1204:
-            case 1205: case 1230: case 1235: case 1236:
+            case 1205: case 1230: case 1235: case 1236: case 1287:
                 if(variants.nobasicanim){
                     this.selfCall(5)
                     this.remove=true
@@ -6341,7 +6377,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 66: case 68: case 421: case 465: case 466: case 467: case 468: case 1281:
+            case 66: case 68: case 421: case 465: case 466: case 467: case 468: case 1281: case 1288:
                 if(variants.nobasicanim){
                     this.selfCall(8)
                     this.remove=true
@@ -6563,7 +6599,7 @@ class attack{
             case -14: case 102: case 112: case 114: case 219: case 270: case 324: case 325: case 341: case 403:
             case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683: case 710: case 792:
             case 845: case 888: case 889: case 927: case 936: case 941: case 969: case 1020: case 1099: case 1107:
-            case 1132: case 1140: case 1142: case 1190: case 1207: case 1218: case 1223: case 1245: case 1276:
+            case 1132: case 1140: case 1142: case 1190: case 1207: case 1218: case 1223: case 1245: case 1276: case 1290:
                 if(variants.nobasicanim){
                     this.selfCall(10)
                     this.remove=true

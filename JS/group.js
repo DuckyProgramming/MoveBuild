@@ -1462,6 +1462,7 @@ class group{
                 this.battle.attackManager.amplify=false
                 this.battle.attackManager.relPos=[-1,999]
                 this.battle.attackManager.limit=0
+                this.battle.attackManager.id=-1
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                 this.battle.attackManager.targetDistance=0
@@ -1598,6 +1599,7 @@ class group{
                 this.battle.attackManager.player=this.player
                 this.battle.attackManager.relPos=[a,this.cards.length-1]
                 this.battle.attackManager.limit=this.cards[a].limit
+                this.battle.attackManager.id=this.cards[a].id
                 if(this.cards[a].strike&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
@@ -2187,7 +2189,13 @@ class group{
                             la--
                         }else if(this.cards[a].exhaust){
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                            if(userCombatant.getStatus('Cancel Exhaust')>0&&this.cards[a].attack!=180){
+                            if(userCombatant.getStatus('Double Exhaust')>0&&this.cards[a].attack!=1287){
+                                userCombatant.status.main[findList('Double Exhaust',userCombatant.status.name)]--
+                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,7)
+                                a--
+                                la--
+                                this.battle.cardManagers[this.player].reserve.copySelfInput(this.battle.cardManagers[this.player].reserve.cards.length-1)
+                            }else if(userCombatant.getStatus('Cancel Exhaust')>0&&this.cards[a].attack!=180){
                                 userCombatant.status.main[findList('Cancel Exhaust',userCombatant.status.name)]--
                                 this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
                                 a--

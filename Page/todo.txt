@@ -1,5 +1,16 @@
 Bugs:
 
+inventor mode
+
+random settings or random cahracter
+
+
+
+
+
+builds:
+tanky turret
+
 another card name swap
 
 subroutine - starts a fight within a fight
@@ -7,8 +18,6 @@ subroutine - starts a fight within a fight
 fat duck!
 
 ccp membership card - flag background
-
-attack that costs metal
 
 shooting star (damage, minor self confuse)
 
@@ -25,11 +34,7 @@ rubber ducky lucky - does nothing but can still be played
 
 six shooter (the number six is important)
 
-equinox - next card exhausted is copied a bunch of times
-
 burning light - just a casual burn card
-
-laugh track
 
 L (obster)
 
