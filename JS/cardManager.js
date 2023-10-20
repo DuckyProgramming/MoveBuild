@@ -12,6 +12,10 @@ class cardManager{
         this.discard=new group(this.layer,this.battle,this.player,3)
         this.drop=new group(this.layer,this.battle,this.player,4)
         this.exhaust=new group(this.layer,this.battle,this.player,5)
+        if(variants.inventor){
+            this.tech=new group(this.layer,this.battle,this.player,6)
+            this.tech.add(findName('Techless',types.card),0,0)
+        }
 
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.altDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0))
         this.drawBoost=0
@@ -429,6 +433,54 @@ class cardManager{
             }
         }
     }
+    drawRarity(amount){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(userCombatant.getStatus('No Draw')<=0){
+            this.battle.stats.drawn[this.player]+=amount
+            if(variants.witch){
+                for(let a=0,la=amount;a<la;a++){
+                    this.hand.add(findName('Card\nSlot',types.card),0,0)
+                }
+            }else{
+                let amountLeft=amount
+                if(this.reserve.cards.length>0){
+                    amountLeft-=this.reserve.sendRarity(this.hand.cards,2,amount,this.hand)
+                    if(amountLeft>0){
+                        amountLeft-=this.reserve.sendRarity(this.hand.cards,1,amount,this.hand)
+                        if(amountLeft>0){
+                            let holdAmount=this.reserve.cards.length
+                            this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),3,this.hand)
+                            amountLeft-=holdAmount
+                        }
+                    }
+                }
+                if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                    this.discard.send(this.reserve.cards,0,-1,2)
+                    this.reserve.shuffle()
+                    if(this.reserve.cards.length>0){
+                        amountLeft-=this.reserve.sendRarity(this.hand.cards,2,amount,this.hand)
+                        if(amountLeft>0){
+                            amountLeft-=this.reserve.sendRarity(this.hand.cards,1,amount,this.hand)
+                            if(amountLeft>0){
+                                let holdAmount=this.reserve.cards.length
+                                this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),3,this.hand)
+                                amountLeft-=this.holdAmount
+                            }
+                        }
+                    }
+                }
+                if(this.battle.relicManager.hasRelic(106,this.player)){
+                    for(let a=0,la=this.hand.cards.length;a<la;a++){
+                        if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
+                            this.hand.send(this.exhaust.cards,a,a+1,0)
+                            a--
+                            la--
+                        }
+                    }
+                }
+            }
+        }
+    }
     drawInnate(){
         let total=0
         for(let a=0,la=this.reserve.cards.length;a<la;a++){
@@ -440,7 +492,7 @@ class cardManager{
                 a--
                 la--
                 total++
-                if(total>=4&&variants.witch){
+                if(total>=this.drawAmount&&variants.witch){
                     a=la
                 }
             }
@@ -477,6 +529,11 @@ class cardManager{
         if(variants.altDraw){
             this.discard.send(this.reserve.cards,0,-1,2)
             this.reserve.shuffle()
+        }
+        if(variants.inventor){
+            this.tech.copy(this.hand.cards,0,-1)
+            this.hand.cards[this.hand.cards.length-1].position.x=1200
+            this.hand.cards[this.hand.cards.length-1].position.y=500
         }
         this.draw(tempDrawAmount)
         this.tempDraw=0

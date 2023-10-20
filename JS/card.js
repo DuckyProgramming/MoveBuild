@@ -1291,7 +1291,7 @@ class card{
             case 1116: string+=`Deal Double Damage\nNext Turn\nBut All Enemies\nare Invisible`; break
             case 1117: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nApply ${effect[1]} Burn\nto Everything`; break
             case 1118: string+=`Reflect Next Hit Taken`; break
-            case 1119: string+=`Build an Antizone`; break
+            case 1119: string+=`Build an Antizone\nWith ${effect[0]}x`; break
             case 1120: string+=`All Non-Movement Cards\nin Hand Get +${effect[0]} to\nAll Numerical Values`; break
             case 1121: string+=`Duplicate Your Hand\nCannot Duplicate Itself`; break
             case 1122: string+=`Choose a Nothings\nto Add to Hand`; break
@@ -1461,6 +1461,30 @@ class card{
             case 1289: string+=`Deluxe Upgrade\na Card`; break
             case 1290: string+=`Enter a Rest Site`; break
             case 1291: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\Lose Random Energy\nFrom Remaining`; break
+            case 1292: string+=`Tech Goes Here`; break
+            case 1293: string+=`Add ${effect[0]} Random\nCard${effect[0]!=1?`s`:``} to Hand`; break
+            case 1294: string+=`Combine Two Equal\nCards, Sums Values,\nReduces by 1`; break
+            case 1295: string+=`If X is Even:\nDeal ${this.calculateEffect(effect[0],2)} Damage\nShuffle a Snip With\nX/2 into Draw Pile`; break
+            case 1296: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Would Die,\nDeal Only ${this.calculateEffect(effect[1],0)} Damage\nDeal Double Damage\nThis Turn`; break
+            case 1297: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal, Add ${this.calculateEffect(effect[1],1)} Block\nand Counter ${effect[2]} All`; break
+            case 1298: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Possible:\nSpend ${effect[1]} Charge\nHeal ${this.calculateEffect(effect[2],4)} Health`; break
+            case 1299: string+=`Draw ${effect[0]} More\nCard${effect[0]!=1?`s`:``} Per Turn\nGain ${effect[1]} Miss`; break
+            case 1300: string+=`Add ${effect[0]} Miracle${effect[0]!=1?`s`:``}\nto Hand\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1301: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}`; break
+            case 1302: string+=`Remove Properties\nFrom Cards in Hand\nTemporarily`; break
+            case 1303: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}\nDraws Rarer Cards First`; break
+            case 1304: string+=`Requires X=3 Exactly\nAdd a Keyblade\nof Equivalent Level\nto Hand`; break
+            case 1305: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReturns to Hand\nAfter Each Turn`; break
+            case 1306: string+=`Double Your Energy\nAmplify:\nTriple It`; break
+            case 1307: string+=`When Drawn,\nGain ${effect[0]} Bleed\nDeal ${this.calculateEffect(effect[1],0)} Damage`; break
+            case 1308: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGet ${effect[1]} Random Buff`; break
+            case 1309: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nEach Battle`; break
+            case 1310: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}\nIf Possible:\nSpend ${effect[3]} Charge\nGain ${effect[4]} Energy`; break
+            case 1311: string+=`Deal Damage Equal to\nthe Sum of the Damage\nof the First 4 Other\nAttacks in Hand${effect[0]!=0?`+${effect[0]}`:``}`; break
+            case 1312: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHidden Swap 2 Cards\nFrom Draw Pile`; break
+            case 1313: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCards in Hand\nHave a 50% Chance\nto Cost 1 Less`; break
+
+
 
 
 
@@ -1634,6 +1658,9 @@ class card{
         switch(this.attack){
             case 1270:
                 this.effect[0]=max(1,this.effect[0]-this.effect[1])
+            break
+            case 1309:
+                this.effect[0]=this.effect[0]+this.effect[1]
             break
         }
     }
@@ -1968,11 +1995,19 @@ class card{
                 if(spec.includes(34)){
                     this.layer.rotate(90)
                     this.layer.textSize(12)
-                    this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,0)
+                    if(spec.includes(37)){
+                        this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,0)
+                    }else{
+                        this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,0)
+                    }
                     this.layer.rotate(-90)
                 }else{
                     this.layer.textSize(variants.blind?12:10)
-                    this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
+                    if(spec.includes(37)){
+                        this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,variants.blind?0:-this.height/2+15)
+                    }else{
+                        this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
+                    }
                     if(!variants.blind){
                         this.layer.fill(0,this.fade)
                         this.layer.textSize(name=='Charred\nLizard'?6:8)

@@ -323,10 +323,12 @@ class battle{
     }
     quickReinforce(name){
         let empty=this.tileManager.getEmptyTiles()
-        let index=empty[floor(random(0,empty.length))]
-        this.reinforce.front.push({position:this.tileManager.tiles[index].tilePosition,name:name,minion:true})
-        this.tileManager.tiles[index].reinforce=true
-        this.counter.enemy++
+        if(empty.length>0){
+            let index=empty[floor(random(0,empty.length))]
+            this.reinforce.front.push({position:this.tileManager.tiles[index].tilePosition,name:name,minion:true})
+            this.tileManager.tiles[index].reinforce=true
+            this.counter.enemy++
+        }
     }
     quickReinforceCorner(name1,name2,amount,size){
         for(let a=0,la=amount;a<la;a++){
@@ -412,9 +414,9 @@ class battle{
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
-    dropDrawShuffleEffect_1(player,type,level,color){
+    dropDrawShuffleEffect(player,type,level,color,index,effect){
         if(player<this.cardManagers.length){
-            this.cardManagers[player].reserve.addShuffleEffect_1(type,level,color)
+            this.cardManagers[player].reserve.addShuffleEffect(type,level,color,index,effect)
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
@@ -462,7 +464,7 @@ class battle{
                 }
                 if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
                     this.cardManagers[this.turn.main].turnDraw(this.turn.total)
-                }else{
+                }else if(variants.witch){
                     this.cardManagers[this.turn.main].allEffect(3,42)
                 }
             }
@@ -512,7 +514,7 @@ class battle{
             }
             if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
                 this.cardManagers[this.turn.main].turnDraw(this.turn.total)
-            }else{
+            }else if(variants.witch){
                 this.cardManagers[this.turn.main].allEffect(3,42)
             }
         }
@@ -1203,7 +1205,11 @@ class battle{
                         if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
                             this.encounter.class=1
                         }
-                        if(variants.vanish){
+                        if(variants.inventor){
+                            this.overlayManager.overlays[38][a].active=true
+                            this.overlayManager.overlays[38][a].activate()
+                        }
+                        if(variants.vanish||variants.inventor){
                             switch(this.encounter.class){
                                 case 0: case 3: case 4:
                                     this.overlayManager.overlays[0][a].activate([0,[

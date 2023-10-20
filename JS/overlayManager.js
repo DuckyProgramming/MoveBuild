@@ -45,12 +45,14 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,8,[1])],//new card to hand, allcard
                     [new overlay(this.layer,this.battle,0,2,[23,3])],//view reserve (ordered, only 3)
                     [new overlay(this.layer,this.battle,0,2,[25])],//bring in draw card, originated, no return
+                    [new overlay(this.layer,this.battle,0,9,[0])],//choose card to techify
+                    [new overlay(this.layer,this.battle,0,2,[26])],//smoosh together
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[24,17,3,26,28,10,35,0,25,1,13,36,2,16,4,15,5,6,32,7,18,30,33,8,34,37,19,20,21,22,23,29,31,9,12,14,11,27]
+                this.priority=[38,24,17,3,26,28,10,35,0,25,1,13,36,2,16,4,15,5,6,32,7,18,30,33,8,34,37,19,20,21,22,23,29,31,9,12,14,11,27,39]
             break
             case 1:
                 this.overlays.push(

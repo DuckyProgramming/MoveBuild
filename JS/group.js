@@ -286,9 +286,9 @@ class group{
             this.shuffled()
         }
     }
-    addShuffleEffect_1(type,level,color,effect_1){
+    addShuffleEffect(type,level,color,index,effect){
         if(this.add(type,level,color)){
-            this.cards[this.cards.length-1].effect[1]=effect_1
+            this.cards[this.cards.length-1].effect[index]=effect
             this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
             this.cards.splice(this.cards.length-1,1)
             this.shuffled()
@@ -605,6 +605,9 @@ class group{
                     }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.battle.relicManager.hasRelic(128,this.player)){
                         this.cards[a].retained()
                         total++
+                    }else if(this.cards[a].attack=1305){
+                        this.cards[a].deSize=true
+                        this.cards[a].discardEffect.push(6)
                     }else{
                         this.cards[a].deSize=true
                         if(this.cards[a].spec.includes(10)){
@@ -829,6 +832,15 @@ class group{
                 break
                 case 44:
                     this.cards[a].callStartEffect()
+                break
+                case 45:
+                    this.cards[a].spec=[]
+                    this.cards[a].additionalSpec=[]
+                break
+                case 46:
+                    if(this.cards[a].cost>0&&floor(random(0,2))==0){
+                        this.cards[a].cost--
+                    }
                 break
             }
         }
@@ -1096,6 +1108,9 @@ class group{
             case 1271:
                 this.battle.combatantManager.randomEnemyEffect(0,[effect[1]])
             break
+            case 1307:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Bleed',effect[0])
+            break
         }
     }
     deathEffect(){
@@ -1105,7 +1120,7 @@ class group{
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.cards[a].effect[0],-1)
                 break
                 case 1275:
-                    this.battle.currency.main[this.player]+=this.cards[a].effect[0]
+                    this.battle.addCurrency(this.cards[a].effect[0],this.player)
                 break
             }
         }
@@ -1137,6 +1152,51 @@ class group{
                 la--
             }
         }
+    }
+    sendRarity(list,rarity,amount,parent){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].rarity==rarity){
+                list.push(copyCard(this.cards[a]))
+                list[list.length-1].size=0
+                list[list.length-1].position.x=1200
+                list[list.length-1].position.y=500
+                if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
+                total++
+                if(total>amount){
+                    a=la
+                }
+            }
+        }
+        if(this.drawEffects.length>0){
+            for(let a=0,la=this.drawEffects.length;a<la;a++){
+                switch(this.drawEffects[a][0]){
+                    case 0:
+                        parent.randomEffect(this.drawEffects[a][1],this.drawEffects[a][2])
+                    break
+                    case 1:
+                        parent.status.exhaust+=this.drawEffects[a][1]
+                    break
+                    case 2:
+                        for(let b=0,lb=this.drawEffects[a][1][0];b<lb;b++){
+                            parent.allEffect(10)
+                        }
+                    break
+                    case 3:
+                        parent.allEffect(11)
+                    break
+                    case 4:
+                        parent.allEffect(12)
+                    break
+                }
+            }
+            this.drawEffects=[]
+        }
+        return total
     }
     send(list,firstIndex,lastIndex,spec,parent){
         if(lastIndex==-1){
@@ -1280,12 +1340,10 @@ class group{
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex+a]))
-                list[list.length-1].limit=this.cards[firstIndex+a].limit
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex+1;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex+a]))
-                list[list.length-1].limit=this.cards[firstIndex+a].limit
             }
         }
     }
@@ -1301,6 +1359,30 @@ class group{
         this.cards[this.cards.length-1].position.x=1200
         this.cards[this.cards.length-1].position.y=500
         this.cards[index+1].id=game.id
+    }
+    smoosh(index){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            let block=(a+index)%la
+            if(block!=index&&this.cards[block].name==this.cards[index].name&&!this.cards[index].spec.includes(37)){
+                if(this.cards[index].level==this.cards[block].level&&this.cards[index].additionalSpec.length>this.cards[block].additionalSpec.length||this.cards[index].level>this.cards[block].level){
+                    for(let b=0,lb=this.cards[index].effect.length;b<lb;b++){
+                        this.cards[index].effect[b]=max(this.cards[index].effect[b],this.cards[index].effect[b]+this.cards[block].effect[b]-1)
+                    }
+                    this.cards[index].spec.push(37)
+                    this.cards[index].additionalSpec.push(37)
+                    this.cards.splice(block,1)
+                }else{
+                    for(let b=0,lb=this.cards[block].effect.length;b<lb;b++){
+                        this.cards[block].effect[b]=max(this.cards[block].effect[b],this.cards[block].effect[b]+this.cards[index].effect[b]-1)
+                    }
+                    this.cards[block].spec.push(37)
+                    this.cards[block].additionalSpec.push(37)
+                    this.cards.splice(index,1)
+                }
+                return true
+            }
+        }
+        return false
     }
     sort(){
         let names=[]
@@ -2180,7 +2262,13 @@ class group{
                                 la--
                             }else if(this.cards[a].discardEffect.includes(5)){
                                 this.cards[a].discardEffect=[]
-                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
+                                this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                                a--
+                                la--
+                            }else if(this.cards[a].discardEffect.includes(6)){
+                                this.cards[a].discardEffect=[]
+                                this.cards[a].player=this.battle.players-1-this.cards[a].player
+                                this.send(this.battle.cardManagers[this.battle.players-1-this.player].hand.cards,a,a+1,1)
                                 a--
                                 la--
                             }else{
