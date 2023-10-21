@@ -25,7 +25,7 @@ class battle{
             this.menu.anim.animRate.push(-1)
             this.menu.anim.turnTime.push(-1)
         }
-        for(let a=0,la=16;a<la;a++){
+        for(let a=0,la=18;a<la;a++){
             this.menu.anim.variants.push(0)
         }
         for(let a=-1,la=game.playerNumber+5;a<la;a++){
@@ -763,7 +763,7 @@ class battle{
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(this.menu.anim.variants[a]>0){
                         this.layer.fill(255,this.menu.anim.variants[a])
-                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-157.5+floor(a/2)*45,10)
+                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-180+floor(a/2)*45,10)
                     }
                 }
             break
@@ -1127,7 +1127,7 @@ class battle{
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'variants':
-                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','chooselose','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
                 }
@@ -1277,6 +1277,14 @@ class battle{
                             }
                             if(floor(random(0,6))==0){
                                 this.overlayManager.overlays[0][a].activate([1,[{type:5,value:[1]}]])
+                            }
+                        }
+                        if(this.encounter.class==1){
+                            if(this.relicManager.hasRelic(171,a)){
+                                this.overlayManager.overlays[0][a].activate([1,[
+                                    {type:2,value:[]}]])
+                                this.overlayManager.overlays[0][a].activate([1,[
+                                    {type:2,value:[]}]])
                             }
                         }
                         for(let b=0,lb=this.combatantManager.combatants.length;b<lb;b++){
@@ -1528,9 +1536,9 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','chooselose','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-157.5+floor(a/2)*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-180+floor(a/2)*45},width:27.5,height:27.5})){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])
                     }
                 }
@@ -1544,8 +1552,8 @@ class battle{
                     variants.ultraprism=true
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.8+42.5},width:137.5,height:37.5})){
-                    let keys=[floor(random(0,5)),floor(random(0,2.5)),floor(random(0,2.5)),floor(random(0,5))]
-                    let subkeys=[floor(random(0,5))==0,floor(random(0,5))==0,keys[0]==1,keys[0]==2,keys[0]==3,keys[0]==4,keys[1]==1,keys[1]==2,keys[2]==1,keys[2]==2,floor(random(0,5))==0,0,keys[3]==3,keys[4]==4,floor(random(0,5))==0,floor(random(0,5))==0]
+                    let keys=[floor(random(0,8)),floor(random(0,2.5)),floor(random(0,2.5)),floor(random(0,5))]
+                    let subkeys=[floor(random(0,5))==0,floor(random(0,5))==0,keys[0]==1,keys[0]==2,keys[0]==3,keys[0]==4,keys[0]==5,keys[0]==6,keys[1]==1,keys[1]==2,keys[2]==1,keys[2]==2,floor(random(0,5))==0,0,keys[3]==3,keys[4]==4,floor(random(0,5))==0,floor(random(0,5))==0]
                     for(let a=0,la=variantNames.length;a<la;a++){
                         variants[variantNames[a]]=subkeys[a]
                     }
@@ -1772,11 +1780,14 @@ class battle{
                 if(code==RIGHT_ARROW&&this.menu.combatant[0]<game.playerNumber){
                     this.menu.combatant[0]++
                 }
-                if(key=='a'&&this.menu.deck[0]>0){
+                if((key=='a'||key=='A')&&this.menu.deck[0]>0){
                     this.menu.deck[0]--
                 }
-                if(key=='d'&&this.menu.deck[0]<types.deckmode.length-1){
+                if((key=='d'||key=='D')&&this.menu.deck[0]<types.deckmode.length-1){
                     this.menu.deck[0]++
+                }
+                if(key=='r'||key=='R'){
+                    this.menu.combatant[0]=floor(random(0,game.playerNumber))+1
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
                     game.ascend++
@@ -1811,6 +1822,9 @@ class battle{
                     if((key=='/'&&a==0||(key=='c'||key=='C')&&a==1)&&this.menu.deck[a]<types.deckmode.length-1){
                         this.menu.deck[a]++
                     }
+                    if(key=='r'&&a==0||key=='R'&&a==1){
+                        this.menu.combatant[a]=floor(random(0,game.playerNumber))+1
+                    }
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
                     game.ascend++
@@ -1832,7 +1846,7 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','chooselose','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(key==inputs.hexadec[a]){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])
@@ -1846,6 +1860,13 @@ class battle{
                     transition.trigger=true
                     transition.scene='custom'
                     variants.ultraprism=true
+                }
+                if(key=='r'){
+                    let keys=[floor(random(0,8)),floor(random(0,2.5)),floor(random(0,2.5)),floor(random(0,5))]
+                    let subkeys=[floor(random(0,5))==0,floor(random(0,5))==0,keys[0]==1,keys[0]==2,keys[0]==3,keys[0]==4,keys[0]==5,keys[0]==6,keys[1]==1,keys[1]==2,keys[2]==1,keys[2]==2,floor(random(0,5))==0,0,keys[3]==3,keys[4]==4,floor(random(0,5))==0,floor(random(0,5))==0]
+                    for(let a=0,la=variantNames.length;a<la;a++){
+                        variants[variantNames[a]]=subkeys[a]
+                    }
                 }
             break
             case 'custom':

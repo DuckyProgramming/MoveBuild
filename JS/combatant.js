@@ -58,6 +58,7 @@ class combatant{
         this.blocked=0
         this.taken=0
         this.builder=0
+        this.compression=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
         this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
@@ -4254,6 +4255,7 @@ class combatant{
                         this.battle.cardManagers[this.id].allGroupEffect(16)
                     }
                 }
+                this.compression+=damage
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.damage[this.battle.turn.main]+=damage

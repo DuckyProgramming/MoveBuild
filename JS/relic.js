@@ -1252,6 +1252,13 @@ class relic{
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
                     displaySymbol(this.layer,10,0,76,0,0.8,this.fade)
                 break
+                case 'Elite Relic':
+                    displaySymbol(this.layer,-8,0,1,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,34,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('+2',-8,0)
+                break
 
             }
             if(value){

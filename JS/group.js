@@ -2301,7 +2301,7 @@ class group{
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                             a--
                             la--
-                        }else if(this.cards[a].attack==1248&&!this.cards[a].exhaust){
+                        }else if((this.cards[a].attack==1248||this.cards[a].attack==1333)&&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
                             a--
                             la--

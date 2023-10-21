@@ -1,28 +1,38 @@
 Bugs:
 
-relic gives you more relics from elites
 
-unfair wheel of fortune with 1/5
 
 subroutine - starts a fight within a fight
 
 fat duck!
 
-social security card (holds money, play to cash out)
-
-wall street
-
-valentine's card
-
-harvest - markes a card slot as unusable, but does damage
-
 L (obster)
 
 Steal ideas from pokmon (old game)
 
-tanky turret
+3 new tarots:
+//
+//
+//
 
-harmony - melody
+countdown lament, gemstone staff
+
+ignite - if at 0 energy, inflict burn and draw a card
+
+
+
+
+
+
+unfair wheel of fortune with 1/5
+
+social security card (holds money, play to cash out)
+
+wall street (goes up or down in value randomly)
+
+valentine's card
+
+harvest - markes a card slot as unusable, but does damage
 
 damage per burn, destroy all burns
 
@@ -30,12 +40,8 @@ pressure cooker - retain, countdown, increases in damage over time
 
 build armored turret
 
-3 new tarots:
-//
-//
-//
+harmony - melody
 
-counterpart inventor mode
 
 
 

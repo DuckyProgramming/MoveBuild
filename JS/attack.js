@@ -3414,6 +3414,12 @@ class attack{
                         this.battle.overlayManager.overlays[40][this.player].active=true
                         this.battle.overlayManager.overlays[40][this.player].activate()
                     break
+                    case 1333:
+                        if(this.userCombatant.compression>=5){
+                            this.userManager.draw(this.effect[0])
+                            this.userCombatant.compression-=5
+                        }
+                    break
                     
                 }
             break
@@ -5589,7 +5595,7 @@ class attack{
             case 1042: case 1044: case 1045: case 1062: case 1064: case 1065: case 1066: case 1067: case 1078: case 1088:
             case 1095: case 1096: case 1098: case 1109: case 1110: case 1120: case 1121: case 1134: case 1151: case 1152:
             case 1158: case 1177: case 1184: case 1201: case 1214: case 1221: case 1224: case 1225: case 1226: case 1227:
-            case 1237: case 1249: case 1250: case 1253: case 1254: case 1282: case 1289: case 1303: case 1326:
+            case 1237: case 1249: case 1250: case 1253: case 1254: case 1282: case 1289: case 1303: case 1326: case 1333:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){

@@ -8703,6 +8703,13 @@ types={
                 {effect:[],attack:1254,cost:0,target:[0],spec:[1,4],class:4},
             ],
         },{
+            name:'Compression',rarity:-1,list:0,
+            levels:[
+                {effect:[1],attack:1333,cost:0,target:[0],spec:[4],class:4},
+                {effect:[1],attack:1333,cost:0,target:[0],spec:[4],class:4},
+                {effect:[1],attack:1333,cost:0,target:[0],spec:[4],class:4},
+            ],
+        },{
             name:'Techless',rarity:-1,list:0,
             levels:[
                 {effect:[],attack:1292,cost:0,target:[0],spec:[5],class:4},
@@ -10405,6 +10412,7 @@ types={
         {name:'Placeholder Relic',internal:'Placeholder',id:169,rarity:-1,list:-1,description:'${description()}'},
 
         {name:'',internal:'Energy/Card Size',id:170,rarity:4,list:0,description:'Gain 1 Base Energy,\nAll Cards are Wide'},
+        {name:'',internal:'Elite Relic',id:171,rarity:4,list:0,description:'You Get +2 Relics Per Elite'},
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,description:'None'},
@@ -15181,7 +15189,7 @@ variants={
     lowDraw:false,deckbuild:false,
     altDraw:false,blackjack:false,
     witch:false,inventor:false,
-    chooselose:false,
+    chooselose:false,compress:false,
     lowhealth:false,midhealth:false,
     shortmap:false,shortermap:false,
     speedmove:false,nobasicanim:false,
@@ -15199,6 +15207,6 @@ constants={collisionDamage:4,cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:14,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
-inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcde'}
+inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefg'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
 la=0;lb=0;lc=0;ld=0;le=0;lf=0;lg=0;lh=0;li=0;lj=0;lk=0;ll=0;lm=0;ln=0;lo=0;lp=0

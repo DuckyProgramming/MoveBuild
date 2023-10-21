@@ -1502,6 +1502,7 @@ class card{
             case 1330: string+=`Buy McDucknolds!\n(Random Effect)`; break
             case 1331: string+=`Shuffle the 1-5\nof Blood Hearts\ninto Draw Pile`; break
             case 1332: string+=`On First Draw,\nHeal ${this.calculateEffect(effect[0],4)} Health\nPlay: Deal ${this.calculateEffect(effect[1],0)} Damage\nApply ${effect[2]} Bleed`; break
+            case 1333: let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]; string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDiscards to Hand\nCosts 5 Taken Damage\n(Currently ${userCombatant.compression})`; break
 
 
 
