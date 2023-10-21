@@ -19,643 +19,615 @@ class turn{
         this.directive='turn'
     }
     setBase(){
-        this.userCombatant=this.battle.combatantManager.combatants[this.user]
+        if(this.user>=this.battle.combatantManager.combatants.length){
+            this.remove=true
+        }else{
+            this.userCombatant=this.battle.combatantManager.combatants[this.user]
+        }
     }
     set(){
         this.setBase()
-        this.position={x:this.userCombatant.position.x,y:this.userCombatant.position.y}
-        this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
-        this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
-        if(this.userCombatant.life<=0){
-            this.remove=true
-        }else if(this.userCombatant.getStatus('Distracted')>0){
-            this.userCombatant.statusEffect('Distracted',-1)
-            this.remove=true
-        }else{
-            switch(this.action){
-                case 0:
-                    if(this.attackClass==2||this.attackClass==4){
-                        if(this.mover){
-                            this.userCombatant.moved=true
-                        }
-                    }else{
-                        this.target=[]
-                        this.targetIndex=[]
-                        switch(this.type){
-                            case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
-                            case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
-                            case 212: case 226: case 227: case 229: case 242:
-                                this.target=[[this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]]]
-                            break
-                            case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
-                            case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
-                            case 107: case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
-                            case 224:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2]
-                                ]
-                            break
-                            case 71: case 73: case 79: case 143: case 172: case 175:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3]
-                                ]
-                            break
-                            case 100:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4]
-                                ]
-                            break
-                            case 9: case 60: case 64: case 69: case 82: case 84: case 95: case 104: case 114: case 124:
-                            case 153:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
-                                ]
-                            break
-                            case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
-                            case 90: case 91: case 98: case 106: case 115: case 118: case 119: case 123: case 125: case 129:
-                            case 130: case 134: case 140: case 141: case 144: case 145: case 148: case 151: case 152: case 158:
-                            case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184: case 188:
-                            case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
-                            case 235: case 236: case 245:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*6]
-                                ]
-                            break
-                            case 16: case 17: case 54: case 87: case 120: case 128: case 132: case 133: case 136: case 142:
-                            case 147: case 157: case 198: case 213: case 215: case 217:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]]
-                                ]
-                            break
-                            case 28: case 44: case 53: case 105: case 146: case 168: case 171:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2]
-                                ]
-                            break
-                            case 43: case 46:
-                                this.targetIndex=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
-                            break
-                            case 49: case 164: case 185:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*6],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5]
-                                ]
-                            break
-                            case 55: case 192:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2]
-                                ]
-                            break
-                            case 85: case 86:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
-                                ]
-                            break
-                            case 127: case 150: case 181:
-                                this.targetIndex=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2)]
-                            break
-                            case 131: case 195: case 205:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*6],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*6],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*6]
-                                ]
-                            break
-                            case 137:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
-                                ]
-                            break
-                            case 166:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2]
-                                ]
-                            break
-                            case 176:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]+transformDirection(0,-90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]+transformDirection(0,-30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]+transformDirection(0,30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]+transformDirection(0,90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]+transformDirection(0,150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]+transformDirection(0,-150)[1]]
-                                ]
-                            break
-                            case 204:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-120)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-120)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+120)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+120)[1]]
-                                ]
-                            break
-                            case 209:
-                                this.targetIndex=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
-                            break
-                            case 214:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2]
-                                ]
-                            break
-                            case 218:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]+transformDirection(0,-90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]+transformDirection(0,-30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]+transformDirection(0,30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]+transformDirection(0,90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]+transformDirection(0,150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]+transformDirection(0,-150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2+transformDirection(0,-90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2+transformDirection(0,-30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2+transformDirection(0,30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2+transformDirection(0,90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2+transformDirection(0,150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2+transformDirection(0,-150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]+transformDirection(0,-90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]+transformDirection(0,-30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]+transformDirection(0,30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]+transformDirection(0,90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]+transformDirection(0,150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]+transformDirection(0,-150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2+transformDirection(0,-90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2+transformDirection(0,-30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2+transformDirection(0,30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2+transformDirection(0,90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2+transformDirection(0,150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2+transformDirection(0,-150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*3+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*3+transformDirection(0,-90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*3+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*3+transformDirection(0,-30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*3+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*3+transformDirection(0,30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*3+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*3+transformDirection(0,90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*3+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*3+transformDirection(0,150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*3+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*3+transformDirection(0,-150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2+transformDirection(0,-90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2+transformDirection(0,-90)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2+transformDirection(0,-30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2+transformDirection(0,-30)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2+transformDirection(0,30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2+transformDirection(0,30)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2+transformDirection(0,90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2+transformDirection(0,90)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2+transformDirection(0,150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2+transformDirection(0,150)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2+transformDirection(0,-150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2+transformDirection(0,-150)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*3+transformDirection(0,-90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*3+transformDirection(0,-90)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*3+transformDirection(0,-30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*3+transformDirection(0,-30)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*3+transformDirection(0,30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*3+transformDirection(0,30)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*3+transformDirection(0,90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*3+transformDirection(0,90)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*3+transformDirection(0,150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*3+transformDirection(0,150)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*3+transformDirection(0,-150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*3+transformDirection(0,-150)[1]*3]
-                                ]
-                            break
-                            case 219:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*6],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*6],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*6],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*6],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*6],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*4],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*5],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*6]
-                                ]
-                            break
-                            case 221:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3]
-                                ]
-                            break
-                            case 222:
-                                this.target=[
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*3],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
-                                    [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
-                                ]
-                            break
-                            default:
-                                this.target=[0]
-                            break
-
-                        }
-                        if(this.type!=127&&this.type!=150&&this.type!=181&&this.type!=209){
-                            this.targetTile=[]
-                            for(let a=0,la=this.target.length;a<la;a++){
-                                this.targetIndex.push(this.battle.combatantManager.getCombatantIndex(this.target[a][0],this.target[a][1]))
-                                this.targetTile.push(this.battle.tileManager.getTileIndex(this.target[a][0],this.target[a][1]))
-                            }
-                        }
-                        if(this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243){
-                            this.direction=this.userCombatant.goal.anim.direction
-                        }else if(this.type==127||this.type==150||this.type==181||this.type==209){
-                            if(this.targetIndex[0]==-1){
-                                if(this.mover){
-                                    this.userCombatant.moved=true
-                                }
-                                this.remove=true
-                            }else{
-                                this.targetTile=this.battle.tileManager.tiles[this.targetIndex[0]]
-
-                                this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
-                                this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
-
-                                this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
-                                this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
-
-                                this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetTile)
-                            }
-                        }else if(this.type==233){
-                            this.targetCombatant=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,6)
-                            this.direction=[]
-                            this.distance=[]
-                            this.relativeDirection=[]
-                            this.relativeDistance=[]
-                            this.targetDistance=[]
-            
-                            for(let a=0,la=this.targetCombatant.length;a<la;a++){
-                                this.direction.push(atan2(this.targetCombatant[a].position.x-this.position.x,this.targetCombatant[a].position.y-this.position.y))
-                                this.distance.push(sqrt((this.targetCombatant[a].position.x-this.position.x)**2+(this.targetCombatant[a].position.y-this.position.y)**2))
-            
-                                this.relativeDirection.push(atan2(this.targetCombatant[a].relativePosition.x-this.relativePosition.x,this.targetCombatant[a].relativePosition.y-this.relativePosition.y))
-                                this.relativeDistance.push(sqrt((this.targetCombatant[a].relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant[a].relativePosition.y-this.relativePosition.y)**2))
-            
-                                this.targetDistance.push(distTargetCombatant(0,this.userCombatant,this.targetCombatant[a]))
-                            }
-                            if(this.targetCombatant.length==0){
-                                this.remove=true
-                            }
-                        }else if(this.targetIndex.length<=1){
-                            if(this.targetIndex[0]==-1){
-                                if(this.mover){
-                                    this.userCombatant.moved=true
-                                }
-                                this.remove=true
-                            }else{
-                                this.targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[0]]
-                                if((abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0){
-                                    this.remove=true
-                                }else{
-                                    this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
-                                    this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
-
-                                    this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
-                                    this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
-
-                                    this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
-                                }
-                            }
-                        }else if(this.type==9||this.type==28||this.type==44||this.type==53||this.type==60||this.type==64||this.type==69||this.type==82||this.type==85||this.type==86||
-                            this.type==87||this.type==95||this.type==104||this.type==105||this.type==114||this.type==120||this.type==124||this.type==142||this.type==146||this.type==153||
-                            this.type==157||this.type==166||this.type==168||this.type==171||this.type==176||this.type==192||this.type==204||this.type==213||this.type==222||this.type==223||
-                            this.type==224){
-                            this.targetCombatant=[]
-                            this.direction=[]
-                            this.distance=[]
-                            this.relativeDirection=[]
-                            this.relativeDistance=[]
-                            this.targetDistance=[]
-                            for(let a=0,la=this.targetIndex.length;a<la;a++){
-                                if(this.targetIndex[a]==-1){
-                                    if(this.mover){
-                                        this.userCombatant.moved=true
-                                    }
-                                }else{
-                                    let targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
-                                    let direction=atan2(targetCombatant.relativePosition.x-this.x,targetCombatant.relativePosition.y-this.y)
-                                    if(!((abs(direction-targetCombatant.goal.anim.direction+180)<10||abs(direction-targetCombatant.goal.anim.direction-180)<10)&&targetCombatant.getStatus('Untargettable From Front')>0)){
-                                        this.targetCombatant.push(targetCombatant)
-
-                                        this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
-                                        this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
-
-                                        this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
-                                        this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
-
-                                        this.targetDistance.push(distTargetCombatant(0,this.userCombatant,targetCombatant))
-                                    }
-                                }
-                            }
-                            if(this.targetCombatant.length==0&&this.attackClass!=5){
-                                this.remove=true
-                            }
-                        }else if(this.type==195){
-                            this.direction=this.userCombatant.goal.anim.direction
-                            for(let a=0,la=this.targetIndex.length;a<la;a++){
-                                if(this.targetIndex[a]==-1){
-                                    if(this.mover){
-                                        this.userCombatant.moved=true
-                                    }
-                                }else{
-                                    let targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
-                                    let direction=atan2(targetCombatant.relativePosition.x-this.x,targetCombatant.relativePosition.y-this.y)
-                                    if(!((abs(direction-targetCombatant.goal.anim.direction+180)<10||abs(direction-targetCombatant.goal.anim.direction-180)<10)&&targetCombatant.getStatus('Untargettable From Front')>0)){
-                                        this.direction=atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y)
-                                    }
-                                }
+        if(!this.remove){
+            this.position={x:this.userCombatant.position.x,y:this.userCombatant.position.y}
+            this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
+            this.tilePosition={x:this.userCombatant.tilePosition.x,y:this.userCombatant.tilePosition.y}
+            if(this.userCombatant.life<=0){
+                this.remove=true
+            }else if(this.userCombatant.getStatus('Distracted')>0){
+                this.userCombatant.statusEffect('Distracted',-1)
+                this.remove=true
+            }else{
+                switch(this.action){
+                    case 0:
+                        if(this.attackClass==2||this.attackClass==4){
+                            if(this.mover){
+                                this.userCombatant.moved=true
                             }
                         }else{
-                            this.targetCombatant=-1
-                            for(let a=0,la=this.targetIndex.length;a<la;a++){
-                                let fail=false
-                                switch(this.type){
-                                    case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
-                                    case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
-                                    case 107: case 112: case 140: case 156: case 183: case 203: case 211:
-                                        if(a==1&&this.targetTile[0]<0){
-                                            fail=true
-                                        }
-                                    break
-                                    case 71: case 73: case 79: case 172:
-                                        if(
-                                            (a>=1&&this.targetTile[0]<0)||
-                                            (a>=2&&this.targetTile[1]<0)){
-                                                fail=true
-                                        }
-                                    break
-                                    case 100:
-                                        if(
-                                            (a>=1&&this.targetTile[0]<0)||
-                                            (a>=2&&this.targetTile[1]<0)||
-                                            (a>=3&&this.targetTile[2]<0)){
-                                                fail=true
-                                        }
-                                    break
-                                    case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
-                                    case 90: case 91: case 98: case 106: case 115: case 118: case 119: case 123: case 125: case 129:
-                                    case 130: case 144: case 145: case 148: case 151: case 152: case 160: case 173: case 178: case 179:
-                                    case 180: case 184: case 188: case 191: case 193: case 194: case 196: case 199: case 200: case 201:
-                                    case 202: case 206: case 208: case 235: case 236: case 245:
-                                        if(
-                                            (a>=1&&this.targetTile[0]<0)||
-                                            (a>=2&&this.targetTile[1]<0)||
-                                            (a>=3&&this.targetTile[2]<0)||
-                                            (a>=4&&this.targetTile[3]<0)||
-                                            (a>=5&&this.targetTile[4]<0)){
-                                                fail=true
-                                        }
-                                    break
-                                    case 49: case 164: case 185: case 205: case 219:
-                                        if(
-                                            (a%6>=1&&this.targetTile[floor(b/6)*6]<0)||
-                                            (a%6>=2&&this.targetTile[floor(b/6)*6+1]<0)||
-                                            (a%6>=3&&this.targetTile[floor(b/6)*6+2]<0)||
-                                            (a%6>=4&&this.targetTile[floor(b/6)*6+3]<0)||
-                                            (a%6>=5&&this.targetTile[floor(b/6)*6+4]<0)){
-                                                fail=true
-                                        }
-                                    break
-                                    case 214:
-                                        if(a==3&&this.targetTile[0]<0){
-                                            fail=true
-                                        }
-                                    break
-                                    case 218:
-                                        if(a>=18&&this.targetTile[a-18]<0||a>=36&&this.targetTile[a-36]<0){
-                                            fail=true
-                                        }
-                                    break
-                                    case 221:
-                                        if(a>=3&&this.targetTile[0]<0||a>=6&&this.targetTile[3]<0){
-                                            fail=true
-                                        }
-                                    break
+                            this.target=[]
+                            this.targetIndex=[]
+                            switch(this.type){
+                                case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
+                                case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
+                                case 212: case 226: case 227: case 229: case 242:
+                                    this.target=[[this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]]]
+                                break
+                                case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
+                                case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
+                                case 107: case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
+                                case 224:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2]
+                                    ]
+                                break
+                                case 71: case 73: case 79: case 143: case 172: case 175:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3]
+                                    ]
+                                break
+                                case 100:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4]
+                                    ]
+                                break
+                                case 9: case 60: case 64: case 69: case 82: case 84: case 95: case 104: case 114: case 124:
+                                case 153:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
+                                    ]
+                                break
+                                case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
+                                case 90: case 91: case 98: case 106: case 115: case 118: case 119: case 123: case 125: case 129:
+                                case 130: case 134: case 140: case 141: case 144: case 145: case 148: case 151: case 152: case 158:
+                                case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184: case 188:
+                                case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
+                                case 235: case 236: case 245:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*6]
+                                    ]
+                                break
+                                case 16: case 17: case 54: case 87: case 120: case 128: case 132: case 133: case 136: case 142:
+                                case 147: case 157: case 198: case 213: case 215: case 217:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]]
+                                    ]
+                                break
+                                case 28: case 44: case 53: case 105: case 146: case 168: case 171:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2]
+                                    ]
+                                break
+                                case 43: case 46:
+                                    this.targetIndex=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                break
+                                case 49: case 164: case 185:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*6],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5]
+                                    ]
+                                break
+                                case 55: case 192:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2]
+                                    ]
+                                break
+                                case 85: case 86:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
+                                    ]
+                                break
+                                case 127: case 150: case 181:
+                                    this.targetIndex=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2)]
+                                break
+                                case 131: case 195: case 205:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*6],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*6],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*6]
+                                    ]
+                                break
+                                case 137:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
+                                    ]
+                                break
+                                case 166:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2]
+                                    ]
+                                break
+                                case 176:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]+transformDirection(0,-90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]+transformDirection(0,-30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]+transformDirection(0,30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]+transformDirection(0,90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]+transformDirection(0,150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]+transformDirection(0,-150)[1]]
+                                    ]
+                                break
+                                case 204:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-120)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-120)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+120)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+120)[1]]
+                                    ]
+                                break
+                                case 209:
+                                    this.targetIndex=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1])]
+                                break
+                                case 214:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2]
+                                    ]
+                                break
+                                case 218:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]+transformDirection(0,-90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]+transformDirection(0,-30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]+transformDirection(0,30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]+transformDirection(0,90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]+transformDirection(0,150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]+transformDirection(0,-150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2+transformDirection(0,-90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2+transformDirection(0,-30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2+transformDirection(0,30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2+transformDirection(0,90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2+transformDirection(0,150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2+transformDirection(0,-150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]+transformDirection(0,-90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]+transformDirection(0,-30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]+transformDirection(0,30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]+transformDirection(0,90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]+transformDirection(0,150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]+transformDirection(0,-150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2+transformDirection(0,-90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2+transformDirection(0,-30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2+transformDirection(0,30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2+transformDirection(0,90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2+transformDirection(0,150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2+transformDirection(0,-150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*3+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*3+transformDirection(0,-90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*3+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*3+transformDirection(0,-30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*3+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*3+transformDirection(0,30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*3+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*3+transformDirection(0,90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*3+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*3+transformDirection(0,150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*3+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*3+transformDirection(0,-150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2+transformDirection(0,-90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2+transformDirection(0,-90)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2+transformDirection(0,-30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2+transformDirection(0,-30)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2+transformDirection(0,30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2+transformDirection(0,30)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2+transformDirection(0,90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2+transformDirection(0,90)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2+transformDirection(0,150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2+transformDirection(0,150)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2+transformDirection(0,-150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2+transformDirection(0,-150)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*3+transformDirection(0,-90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*3+transformDirection(0,-90)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*3+transformDirection(0,-30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*3+transformDirection(0,-30)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*3+transformDirection(0,30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*3+transformDirection(0,30)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*3+transformDirection(0,90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*3+transformDirection(0,90)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*3+transformDirection(0,150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*3+transformDirection(0,150)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*3+transformDirection(0,-150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*3+transformDirection(0,-150)[1]*3]
+                                    ]
+                                break
+                                case 219:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0],this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-150)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,-150)[1]*6],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0],this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-90)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,-90)[1]*6],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0],this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,-30)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,-30)[1]*6],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0],this.userCombatant.tilePosition.y+transformDirection(0,30)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,30)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,30)[1]*6],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0],this.userCombatant.tilePosition.y+transformDirection(0,90)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,90)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,90)[1]*6],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*4,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*4],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*5,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*5],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,150)[0]*6,this.userCombatant.tilePosition.y+transformDirection(0,150)[1]*6]
+                                    ]
+                                break
+                                case 221:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3]
+                                    ]
+                                break
+                                case 222:
+                                    this.target=[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*3,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*3],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]*2],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2+transformDirection(0,this.userCombatant.goal.anim.direction-60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2+transformDirection(0,this.userCombatant.goal.anim.direction-60)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2+transformDirection(0,this.userCombatant.goal.anim.direction+60)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2+transformDirection(0,this.userCombatant.goal.anim.direction+60)[1]]
+                                    ]
+                                break
+                                default:
+                                    this.target=[0]
+                                break
+
+                            }
+                            if(this.type!=127&&this.type!=150&&this.type!=181&&this.type!=209){
+                                this.targetTile=[]
+                                for(let a=0,la=this.target.length;a<la;a++){
+                                    this.targetIndex.push(this.battle.combatantManager.getCombatantIndex(this.target[a][0],this.target[a][1]))
+                                    this.targetTile.push(this.battle.tileManager.getTileIndex(this.target[a][0],this.target[a][1]))
                                 }
-                                if(!fail){
-                                    if(this.targetIndex[a]<0){
+                            }
+                            if(this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243){
+                                this.direction=this.userCombatant.goal.anim.direction
+                            }else if(this.type==127||this.type==150||this.type==181||this.type==209){
+                                if(this.targetIndex[0]==-1){
+                                    if(this.mover){
+                                        this.userCombatant.moved=true
+                                    }
+                                    this.remove=true
+                                }else{
+                                    this.targetTile=this.battle.tileManager.tiles[this.targetIndex[0]]
+
+                                    this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                    this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                                    this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                    this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+
+                                    this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetTile)
+                                }
+                            }else if(this.type==233){
+                                this.targetCombatant=this.battle.combatantManager.getArea(this.userCombatant.team,this.userCombatant.tilePosition,6)
+                                this.direction=[]
+                                this.distance=[]
+                                this.relativeDirection=[]
+                                this.relativeDistance=[]
+                                this.targetDistance=[]
+                
+                                for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                                    this.direction.push(atan2(this.targetCombatant[a].position.x-this.position.x,this.targetCombatant[a].position.y-this.position.y))
+                                    this.distance.push(sqrt((this.targetCombatant[a].position.x-this.position.x)**2+(this.targetCombatant[a].position.y-this.position.y)**2))
+                
+                                    this.relativeDirection.push(atan2(this.targetCombatant[a].relativePosition.x-this.relativePosition.x,this.targetCombatant[a].relativePosition.y-this.relativePosition.y))
+                                    this.relativeDistance.push(sqrt((this.targetCombatant[a].relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant[a].relativePosition.y-this.relativePosition.y)**2))
+                
+                                    this.targetDistance.push(distTargetCombatant(0,this.userCombatant,this.targetCombatant[a]))
+                                }
+                                if(this.targetCombatant.length==0){
+                                    this.remove=true
+                                }
+                            }else if(this.targetIndex.length<=1){
+                                if(this.targetIndex[0]==-1){
+                                    if(this.mover){
+                                        this.userCombatant.moved=true
+                                    }
+                                    this.remove=true
+                                }else{
+                                    this.targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[0]]
+                                    if((abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0){
+                                        this.remove=true
+                                    }else{
+                                        this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                        this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+
+                                        this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                        this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+
+                                        this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
+                                    }
+                                }
+                            }else if(this.type==9||this.type==28||this.type==44||this.type==53||this.type==60||this.type==64||this.type==69||this.type==82||this.type==85||this.type==86||
+                                this.type==87||this.type==95||this.type==104||this.type==105||this.type==114||this.type==120||this.type==124||this.type==142||this.type==146||this.type==153||
+                                this.type==157||this.type==166||this.type==168||this.type==171||this.type==176||this.type==192||this.type==204||this.type==213||this.type==222||this.type==223||
+                                this.type==224){
+                                this.targetCombatant=[]
+                                this.direction=[]
+                                this.distance=[]
+                                this.relativeDirection=[]
+                                this.relativeDistance=[]
+                                this.targetDistance=[]
+                                for(let a=0,la=this.targetIndex.length;a<la;a++){
+                                    if(this.targetIndex[a]==-1){
                                         if(this.mover){
                                             this.userCombatant.moved=true
                                         }
                                     }else{
-                                        this.targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
-                                        if((abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0){
-                                            this.targetCombatant=-1
-                                        }else{
-                                            this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                        let targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
+                                        let direction=atan2(targetCombatant.relativePosition.x-this.x,targetCombatant.relativePosition.y-this.y)
+                                        if(!((abs(direction-targetCombatant.goal.anim.direction+180)<10||abs(direction-targetCombatant.goal.anim.direction-180)<10)&&targetCombatant.getStatus('Untargettable From Front')>0)){
+                                            this.targetCombatant.push(targetCombatant)
 
-                                            this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                            this.direction.push(atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y))
+                                            this.distance.push(sqrt((targetCombatant.position.x-this.position.x)**2+(targetCombatant.position.y-this.position.y)**2))
 
-                                            this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
-                                            this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                                            this.relativeDirection.push(atan2(targetCombatant.relativePosition.x-this.relativePosition.x,targetCombatant.relativePosition.y-this.relativePosition.y))
+                                            this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
 
-                                            this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
-                                            break
+                                            this.targetDistance.push(distTargetCombatant(0,this.userCombatant,targetCombatant))
                                         }
                                     }
                                 }
-                            }
-                            if(this.targetCombatant==-1&&this.attackClass!=5){
-                                this.remove=true
-                            }
-                        }
-                    }
-                break
-                case 1:
-                    this.targetTile=-1
-                    if(this.type==6&&floor(random(0,5))==0){
-                        this.type=5
-                    }
-                    switch(this.type){
-                        case 0: case 4: case 6:
-                            let works=true
-                            if(this.setTarget!=-1){
-                                this.targetCombatant=this.setTarget
-                            }else if(this.userCombatant.construct){
-                                this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
-                                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                                if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
-                                    works=false
+                                if(this.targetCombatant.length==0&&this.attackClass!=5){
+                                    this.remove=true
                                 }
-                            }else{
-                                this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
-                                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                                if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
-                                    works=false
-                                }
-                            }
-                            if(this.type==6){
-                                this.targetClass=1
-                                this.targetDistance=1
-                            }
-                            if(works){
-                                this.direction=round(atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)/60-random(0.4,0.6))*60+30
-                                if(this.type==4||this.type==5){
-                                    this.direction+=round(random(-2,2))*60
-                                }
-                                this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
-                                let fail=false
-                                if(this.target[0]==-1){
-                                    fail=true
-                                }else{
-                                    this.targetTile=this.battle.tileManager.tiles[this.target[0]]
-                                    if(this.targetTile.occupied>0){
-                                        if(this.type==6){
-                                            this.targetClass=2
-                                            let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
-                                            if(index>=0){
-                                                this.targetCombatant=this.battle.combatantManager.combatants[index]
-                                                this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
-                                                this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
-                                                this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
-                                                this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
-                                            }else{
-                                                fail=true
-                                            }
-                                        }else{
-                                            fail=true
+                            }else if(this.type==195){
+                                this.direction=this.userCombatant.goal.anim.direction
+                                for(let a=0,la=this.targetIndex.length;a<la;a++){
+                                    if(this.targetIndex[a]==-1){
+                                        if(this.mover){
+                                            this.userCombatant.moved=true
                                         }
                                     }else{
-                                        this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
-                                        this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
-
-                                        this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
-                                        this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                        let targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
+                                        let direction=atan2(targetCombatant.relativePosition.x-this.x,targetCombatant.relativePosition.y-this.y)
+                                        if(!((abs(direction-targetCombatant.goal.anim.direction+180)<10||abs(direction-targetCombatant.goal.anim.direction-180)<10)&&targetCombatant.getStatus('Untargettable From Front')>0)){
+                                            this.direction=atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y)
+                                        }
                                     }
                                 }
-                                if(fail){
-                                    let angle=floor(random(0,2))*2-1
-                                    fail=false
-                                    this.direction+=angle*60
+                            }else{
+                                this.targetCombatant=-1
+                                for(let a=0,la=this.targetIndex.length;a<la;a++){
+                                    let fail=false
+                                    switch(this.type){
+                                        case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
+                                        case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
+                                        case 107: case 112: case 140: case 156: case 183: case 203: case 211:
+                                            if(a==1&&this.targetTile[0]<0){
+                                                fail=true
+                                            }
+                                        break
+                                        case 71: case 73: case 79: case 172:
+                                            if(
+                                                (a>=1&&this.targetTile[0]<0)||
+                                                (a>=2&&this.targetTile[1]<0)){
+                                                    fail=true
+                                            }
+                                        break
+                                        case 100:
+                                            if(
+                                                (a>=1&&this.targetTile[0]<0)||
+                                                (a>=2&&this.targetTile[1]<0)||
+                                                (a>=3&&this.targetTile[2]<0)){
+                                                    fail=true
+                                            }
+                                        break
+                                        case 12: case 38: case 45: case 47: case 50: case 59: case 80: case 81: case 83: case 89:
+                                        case 90: case 91: case 98: case 106: case 115: case 118: case 119: case 123: case 125: case 129:
+                                        case 130: case 144: case 145: case 148: case 151: case 152: case 160: case 173: case 178: case 179:
+                                        case 180: case 184: case 188: case 191: case 193: case 194: case 196: case 199: case 200: case 201:
+                                        case 202: case 206: case 208: case 235: case 236: case 245:
+                                            if(
+                                                (a>=1&&this.targetTile[0]<0)||
+                                                (a>=2&&this.targetTile[1]<0)||
+                                                (a>=3&&this.targetTile[2]<0)||
+                                                (a>=4&&this.targetTile[3]<0)||
+                                                (a>=5&&this.targetTile[4]<0)){
+                                                    fail=true
+                                            }
+                                        break
+                                        case 49: case 164: case 185: case 205: case 219:
+                                            if(
+                                                (a%6>=1&&this.targetTile[floor(b/6)*6]<0)||
+                                                (a%6>=2&&this.targetTile[floor(b/6)*6+1]<0)||
+                                                (a%6>=3&&this.targetTile[floor(b/6)*6+2]<0)||
+                                                (a%6>=4&&this.targetTile[floor(b/6)*6+3]<0)||
+                                                (a%6>=5&&this.targetTile[floor(b/6)*6+4]<0)){
+                                                    fail=true
+                                            }
+                                        break
+                                        case 214:
+                                            if(a==3&&this.targetTile[0]<0){
+                                                fail=true
+                                            }
+                                        break
+                                        case 218:
+                                            if(a>=18&&this.targetTile[a-18]<0||a>=36&&this.targetTile[a-36]<0){
+                                                fail=true
+                                            }
+                                        break
+                                        case 221:
+                                            if(a>=3&&this.targetTile[0]<0||a>=6&&this.targetTile[3]<0){
+                                                fail=true
+                                            }
+                                        break
+                                    }
+                                    if(!fail){
+                                        if(this.targetIndex[a]<0){
+                                            if(this.mover){
+                                                this.userCombatant.moved=true
+                                            }
+                                        }else{
+                                            this.targetCombatant=this.battle.combatantManager.combatants[this.targetIndex[a]]
+                                            if((abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction+180)<10||abs(this.userCombatant.goal.anim.direction-this.targetCombatant.goal.anim.direction-180)<10)&&this.targetCombatant.getStatus('Untargettable From Front')>0){
+                                                this.targetCombatant=-1
+                                            }else{
+                                                this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+
+                                                this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+
+                                                this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                                this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+
+                                                this.targetDistance=distTargetCombatant(0,this.userCombatant,this.targetCombatant)
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if(this.targetCombatant==-1&&this.attackClass!=5){
+                                    this.remove=true
+                                }
+                            }
+                        }
+                    break
+                    case 1:
+                        this.targetTile=-1
+                        if(this.type==6&&floor(random(0,5))==0){
+                            this.type=5
+                        }
+                        switch(this.type){
+                            case 0: case 4: case 6:
+                                let works=true
+                                if(this.setTarget!=-1){
+                                    this.targetCombatant=this.setTarget
+                                }else if(this.userCombatant.construct){
+                                    this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                    this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                }else{
+                                    this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                    this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                                    if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                        works=false
+                                    }
+                                }
+                                if(this.type==6){
+                                    this.targetClass=1
+                                    this.targetDistance=1
+                                }
+                                if(works){
+                                    this.direction=round(atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)/60-random(0.4,0.6))*60+30
+                                    if(this.type==4||this.type==5){
+                                        this.direction+=round(random(-2,2))*60
+                                    }
                                     this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
+                                    let fail=false
                                     if(this.target[0]==-1){
                                         fail=true
                                     }else{
@@ -679,14 +651,15 @@ class turn{
                                         }else{
                                             this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                             this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
-        
+
                                             this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
                                             this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
                                         }
                                     }
                                     if(fail){
+                                        let angle=floor(random(0,2))*2-1
                                         fail=false
-                                        this.direction-=angle*120
+                                        this.direction+=angle*60
                                         this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
                                         if(this.target[0]==-1){
                                             fail=true
@@ -718,7 +691,7 @@ class turn{
                                         }
                                         if(fail){
                                             fail=false
-                                            this.direction+=angle*180
+                                            this.direction-=angle*120
                                             this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
                                             if(this.target[0]==-1){
                                                 fail=true
@@ -750,7 +723,7 @@ class turn{
                                             }
                                             if(fail){
                                                 fail=false
-                                                this.direction-=angle*240
+                                                this.direction+=angle*180
                                                 this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
                                                 if(this.target[0]==-1){
                                                     fail=true
@@ -781,7 +754,42 @@ class turn{
                                                     }
                                                 }
                                                 if(fail){
-                                                    this.remove=true
+                                                    fail=false
+                                                    this.direction-=angle*240
+                                                    this.target=[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,this.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.direction)[1])]
+                                                    if(this.target[0]==-1){
+                                                        fail=true
+                                                    }else{
+                                                        this.targetTile=this.battle.tileManager.tiles[this.target[0]]
+                                                        if(this.targetTile.occupied>0){
+                                                            if(this.type==6){
+                                                                this.targetClass=2
+                                                                let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                                                if(index>=0){
+                                                                    this.targetCombatant=this.battle.combatantManager.combatants[index]
+                                                                    this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
+                                                                    this.distance=sqrt((this.targetCombatant.position.x-this.position.x)**2+(this.targetCombatant.position.y-this.position.y)**2)
+                                                                    this.relativeDirection=atan2(this.targetCombatant.relativePosition.x-this.relativePosition.x,this.targetCombatant.relativePosition.y-this.relativePosition.y)
+                                                                    this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
+                                                                }else{
+                                                                    fail=true
+                                                                }
+                                                            }else{
+                                                                fail=true
+                                                            }
+                                                        }else{
+                                                            this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                                            this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+                        
+                                                            this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                                            this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                                        }
+                                                    }
+                                                    if(fail){
+                                                        this.remove=true
+                                                    }
+                                                }else{
+                                                    this.userCombatant.goal.anim.direction=this.relativeDirection
                                                 }
                                             }else{
                                                 this.userCombatant.goal.anim.direction=this.relativeDirection
@@ -795,198 +803,196 @@ class turn{
                                 }else{
                                     this.userCombatant.goal.anim.direction=this.relativeDirection
                                 }
-                            }else{
-                                this.userCombatant.goal.anim.direction=this.relativeDirection
-                            }
-                        break
-                        case 1:
-                            this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
-                            this.possible=[]
-                            for(let a=0,la=6;a<la;a++){
-                                let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,360*(a+0.5)/la)[0],this.userCombatant.tilePosition.y+transformDirection(0,360*(a+0.5)/la)[1])
-                                if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
-                                    this.possible.push(index)
+                            break
+                            case 1:
+                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                this.possible=[]
+                                for(let a=0,la=6;a<la;a++){
+                                    let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,360*(a+0.5)/la)[0],this.userCombatant.tilePosition.y+transformDirection(0,360*(a+0.5)/la)[1])
+                                    if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
+                                        this.possible.push(index)
+                                    }
                                 }
-                            }
-                            this.movable=[]
-                            for(let a=0,la=this.possible.length;a<la;a++){
-                                if(distTarget(0,this.battle.tileManager.tiles[this.possible[a]].tilePosition.x-this.target.x,this.battle.tileManager.tiles[this.possible[a]].tilePosition.y-this.target.y)>0){
-                                    this.movable.push(this.possible[a])
+                                this.movable=[]
+                                for(let a=0,la=this.possible.length;a<la;a++){
+                                    if(distTarget(0,this.battle.tileManager.tiles[this.possible[a]].tilePosition.x-this.target.x,this.battle.tileManager.tiles[this.possible[a]].tilePosition.y-this.target.y)>0){
+                                        this.movable.push(this.possible[a])
+                                    }
                                 }
-                            }
-                            if(this.movable.length>0){
-                                this.targetTile=this.battle.tileManager.tiles[this.movable[floor(random(0,this.movable.length))]]
-
-                                this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
-                                this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
-
-                                this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
-                                this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
-                            }else{
-                                this.type=0
-                                this.set()
-                            }
-                        break
-                        case 2:
-                            this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
-                            this.possible=[]
-                            for(let a=0,la=6;a<la;a++){
-                                let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,360*(a+0.5)/la)[0],this.userCombatant.tilePosition.y+transformDirection(0,360*(a+0.5)/la)[1])
-                                if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
-                                    this.possible.push(index)
-                                }
-                            }
-                            if(this.possible.length>0){
-                                this.targetTile=this.battle.tileManager.tiles[this.possible[floor(random(0,this.possible.length))]]
-
-                                this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
-                                this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
-
-                                this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
-                                this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
-                            }else{
-                                this.type=0
-                                this.set()
-                            }
-                        break
-                        case 3:
-                            this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
-                            this.movable=[]
-                            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
-                                if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)==1&&this.battle.tileManager.tiles[a].occupied<=0){
-                                    this.movable.push(a)
-                                }
-                            }
-                            if(this.movable.length>0){
-                                let id=this.movable[floor(random(0,this.movable.length))]
-                                if(id==this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)){
-                                    this.remove=true
-                                }else{
-                                    this.targetTile=this.battle.tileManager.tiles[id]
+                                if(this.movable.length>0){
+                                    this.targetTile=this.battle.tileManager.tiles[this.movable[floor(random(0,this.movable.length))]]
 
                                     this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                     this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
 
                                     this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
                                     this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
-                                }
-                            }else{
-                                this.type=0
-                                this.set()
-                            }
-                        break
-                        case 5:
-                            this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
-                            this.movable=[]
-                            for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
-                                if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)>0&&this.battle.tileManager.tiles[a].occupied<=0){
-                                    this.movable.push(a)
-                                }
-                            }
-                            if(this.movable.length>0){
-                                let id=this.movable[floor(random(0,this.movable.length))]
-                                if(id==this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)){
-                                    this.remove=true
                                 }else{
-                                    this.targetTile=this.battle.tileManager.tiles[id]
+                                    this.type=0
+                                    this.set()
+                                }
+                            break
+                            case 2:
+                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                this.possible=[]
+                                for(let a=0,la=6;a<la;a++){
+                                    let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x+transformDirection(0,360*(a+0.5)/la)[0],this.userCombatant.tilePosition.y+transformDirection(0,360*(a+0.5)/la)[1])
+                                    if(index>=0&&this.battle.tileManager.tiles[index].occupied==0){
+                                        this.possible.push(index)
+                                    }
+                                }
+                                if(this.possible.length>0){
+                                    this.targetTile=this.battle.tileManager.tiles[this.possible[floor(random(0,this.possible.length))]]
 
                                     this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
                                     this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
 
                                     this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
                                     this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                }else{
+                                    this.type=0
+                                    this.set()
                                 }
-                            }else{
-                                this.type=0
-                                this.set()
-                            }
-                        break
-                        
-                    }
-                    if(!this.remove&&this.targetTile!=-1){
-                        this.targetDistance=distTargetCombatant(0,this,this.targetTile)
-                    }
-                break
-                case 2: case 4:
-                    let works=true
-                    if(this.userCombatant.getStatus('Confusion')>0){
-                        this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
-                        this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
-                        works=false
-                    }
-                    if(this.userCombatant.getStatus('Jagged Bleed')>0){
-                        this.userCombatant.status.main[findList('Jagged Bleed',this.userCombatant.status.name)]--
-                        this.userCombatant.goal.anim.direction+=floor(random(-1,2))*60
-                        works=false
-                    }
-                    if(works){
-                        if(this.userCombatant.construct){
-                            this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
-                            this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                            if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
-                                this.remove=true
-                            }
-                        }else{
-                            this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
-                            this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                            if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
-                                this.remove=true
-                            }
+                            break
+                            case 3:
+                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                this.movable=[]
+                                for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                                    if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)==1&&this.battle.tileManager.tiles[a].occupied<=0){
+                                        this.movable.push(a)
+                                    }
+                                }
+                                if(this.movable.length>0){
+                                    let id=this.movable[floor(random(0,this.movable.length))]
+                                    if(id==this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)){
+                                        this.remove=true
+                                    }else{
+                                        this.targetTile=this.battle.tileManager.tiles[id]
+
+                                        this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                        this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                                        this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                        this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                    }
+                                }else{
+                                    this.type=0
+                                    this.set()
+                                }
+                            break
+                            case 5:
+                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                this.movable=[]
+                                for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                                    if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)>0&&this.battle.tileManager.tiles[a].occupied<=0){
+                                        this.movable.push(a)
+                                    }
+                                }
+                                if(this.movable.length>0){
+                                    let id=this.movable[floor(random(0,this.movable.length))]
+                                    if(id==this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)){
+                                        this.remove=true
+                                    }else{
+                                        this.targetTile=this.battle.tileManager.tiles[id]
+
+                                        this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                        this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                                        this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                        this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                    }
+                                }else{
+                                    this.type=0
+                                    this.set()
+                                }
+                            break
+                            
                         }
-                        if(!this.remove){
-                            this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
-                            let target=this.userCombatant.getTarget()[0]
-                            if(target>=0&&!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0&&floor(random(0,2)==0)){
-                                let remember=this.userCombatant.goal.anim.direction
-                                this.userCombatant.goal.anim.direction+=(floor(random(0,2))*2-1)*60
-                                if(!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0){
-                                    this.userCombatant.goal.anim.direction=remember
+                        if(!this.remove&&this.targetTile!=-1){
+                            this.targetDistance=distTargetCombatant(0,this,this.targetTile)
+                        }
+                    break
+                    case 2: case 4:
+                        let works=true
+                        if(this.userCombatant.getStatus('Confusion')>0){
+                            this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
+                            this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
+                            works=false
+                        }
+                        if(this.userCombatant.getStatus('Jagged Bleed')>0){
+                            this.userCombatant.status.main[findList('Jagged Bleed',this.userCombatant.status.name)]--
+                            this.userCombatant.goal.anim.direction+=floor(random(-1,2))*60
+                            works=false
+                        }
+                        if(works){
+                            if(this.userCombatant.construct){
+                                this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
+                                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                                if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                    this.remove=true
+                                }
+                            }else{
+                                this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                                if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                    this.remove=true
+                                }
+                            }
+                            if(!this.remove){
+                                this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                                let target=this.userCombatant.getTarget()[0]
+                                if(target>=0&&!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0&&floor(random(0,2)==0)){
+                                    let remember=this.userCombatant.goal.anim.direction
+                                    this.userCombatant.goal.anim.direction+=(floor(random(0,2))*2-1)*60
+                                    if(!(this.battle.tileManager.tiles[target].tilePosition.x==this.targetCombatant.tilePosition.x&&this.battle.tileManager.tiles[target].tilePosition.y==this.targetCombatant.tilePosition.y)&&this.battle.tileManager.tiles[target].occupied>0){
+                                        this.userCombatant.goal.anim.direction=remember
+                                    }else{
+                                        this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
+                                    }
                                 }else{
                                     this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
                                 }
-                            }else{
-                                this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
                             }
                         }
-                    }
-                    this.remove=true
-                    this.selfRemoved=true
-                break
-                case 3:
-                    let works2=true
-                    if(this.userCombatant.getStatus('Confusion')>0){
-                        this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
-                        this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
-                        works2=false
-                    }
-                    if(this.userCombatant.getStatus('Jagged Bleed')>0){
-                        this.userCombatant.status.main[findList('Jagged Bleed',this.userCombatant.status.name)]--
-                        this.userCombatant.goal.anim.direction+=floor(random(-1,2))*60
-                        works2=false
-                    }
-                    if(works2){
-                        if(this.userCombatant.team==0&&this.target==[]){
-                            this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                        this.remove=true
+                        this.selfRemoved=true
+                    break
+                    case 3:
+                        let works2=true
+                        if(this.userCombatant.getStatus('Confusion')>0){
+                            this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
+                            this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
+                            works2=false
                         }
-                        if(this.target.length>0){
-                            this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                            this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                        if(this.userCombatant.getStatus('Jagged Bleed')>0){
+                            this.userCombatant.status.main[findList('Jagged Bleed',this.userCombatant.status.name)]--
+                            this.userCombatant.goal.anim.direction+=floor(random(-1,2))*60
+                            works2=false
                         }
+                        if(works2){
+                            if(this.userCombatant.team==0&&this.target==[]){
+                                this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
+                            }
+                            if(this.target.length>0){
+                                this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
+                                this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                            }
+                        }
+                        this.remove=true
+                        this.selfRemoved=true
+                    break
+                    case 5:
+                        this.userCombatant.autoAim()
+                        this.remove=true
+                    break
+                    default:
+                        this.remove=true
+                    break
+                }
+                if(this.remove){
+                    if(this.userCombatant.aggressor){
+                        this.userCombatant.aggressor=false
                     }
-                    this.remove=true
-                    this.selfRemoved=true
-                break
-                case 5:
-                    this.userCombatant.autoAim()
-                    this.remove=true
-                break
-                default:
-                    this.remove=true
-                break
-            }
-            if(this.remove){
-                if(this.userCombatant.aggressor){
-                    this.userCombatant.aggressor=false
                 }
             }
         }

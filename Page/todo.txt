@@ -1,42 +1,42 @@
 Bugs:
 
-builds:
-tanky turret
+relic gives you more relics from elites
 
-another card name swap
+unfair wheel of fortune with 1/5
 
 subroutine - starts a fight within a fight
 
 fat duck!
 
-ccp membership card - flag background
+social security card (holds money, play to cash out)
 
-social security card
+wall street
 
 valentine's card
-blood donor card
 
 harvest - markes a card slot as unusable, but does damage
-
-rubber ducky lucky - does nothing but can still be played
-
-six shooter (the number six is important) (gun with six uses per bullet)
-
-burning light - just a casual burn card
 
 L (obster)
 
 Steal ideas from pokmon (old game)
 
-one more ball
+tanky turret
 
 harmony - melody
 
-memory card
+damage per burn, destroy all burns
 
-mcducknolds advertisement makes money but ruins other player's hand
+pressure cooker - retain, countdown, increases in damage over time
 
-bumpblade
+build armored turret
+
+3 new tarots:
+//
+//
+//
+
+counterpart inventor mode
+
 
 
 
@@ -44,5 +44,6 @@ bumpblade
 
 witchcards to airi
 countdowns to airi
+countdowns to everybody else
 more countdowns to airi
 every ice card to creation

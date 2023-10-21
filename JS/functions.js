@@ -213,6 +213,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[163]!=0){
 				totalStr+=user.status.main[163]
 			}
+			if(user.status.main[195]!=0){
+				totalStr+=user.status.main[195]
+			}
 			if(totalStr>0){
 				damage*=1+totalStr*0.1
 				bonus*=1+totalStr*0.1
@@ -1010,6 +1013,8 @@ Common:${current.cardManagers[0].listing.card[game.playerNumber+3][0].length}
 Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}
 Rare:${current.cardManagers[0].listing.card[game.playerNumber+3][2].length}
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+3][3].length}
+		Tarot:
+	Total:${current.cardManagers[0].listing.card[game.playerNumber+4][3].length}
 			`)
 }
 function shut(){

@@ -464,6 +464,10 @@ class battle{
                 }
                 if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
                     this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                    if(this.turn.total==1){
+                        this.cardManagers[this.turn.main].allEffect(0,48)
+                    }
+                    this.cardManagers[this.turn.main].allEffect(3,47)
                 }else if(variants.witch){
                     this.cardManagers[this.turn.main].allEffect(3,42)
                 }
@@ -514,6 +518,10 @@ class battle{
             }
             if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
                 this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                if(this.turn.total==1){
+                    this.cardManagers[this.turn.main].allEffect(0,48)
+                }
+                this.cardManagers[this.turn.main].allEffect(3,47)
             }else if(variants.witch){
                 this.cardManagers[this.turn.main].allEffect(3,42)
             }

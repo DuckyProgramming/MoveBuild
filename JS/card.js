@@ -1002,7 +1002,7 @@ class card{
             case 826: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Faith`; break
             case 827: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFatigues in\nHand Gain Quickdraw`; break
             case 828: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Max Health`; break
-            case 829: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nand Retain it`; break
+            case 829: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nand Retain ${effect[1]!=1?`Them`:`It`}`; break
             case 830: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nShuffle a Restrike\ninto Draw Pile`; break
             case 831: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAmplify:\nAdd ${this.calculateEffect(effect[1],1)} Block\nNext Turn`; break
             case 832: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAmplify:\nDraw ${effect[1]} More`; break
@@ -1483,6 +1483,27 @@ class card{
             case 1311: string+=`Deal Damage Equal to\nthe Sum of the Damage\nof the First 4 Other\nAttacks in Hand${effect[0]!=0?`+${effect[0]}`:``}`; break
             case 1312: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHidden Swap 2 Cards\nFrom Draw Pile`; break
             case 1313: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCards in Hand\nHave a 50% Chance\nto Cost 1 Less`; break
+            case 1314: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Shock`; break
+            case 1315: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Will Not\nRotate This Turn`; break
+            case 1316: string+=`If Energy is\nMore Than 4,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn`; break
+            case 1317: string+=`Add ${effect[0]} 6-Miracle${effect[0]!=1?`s`:``}\nto Hand`; break
+            case 1318: string+=`Add ${effect[0]} Six Shot${effect[0]!=1?`s`:``}\nto Hand\nGain ${effect[1]} Ammo`; break
+            case 1319: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Single\nAttack Strength`; break
+            case 1320: string+=`Apply ${effect[1]} Shock\nIf Your Energy is Even`; break
+            case 1321: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Shock:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
+            case 1322: string+=`If Energy is Odd,\nHeal ${this.calculateEffect(effect[0],4)} Health\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1323: string+=`75%: Gain ${effect[0]} Currency\n25%: Gain ${effect[1]} Relic${effect[1]!=1?`s`:``}`; break
+            case 1324: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nA Random Card in Hand\nGets +1 to Numeric Values`; break
+            case 1325: string+=`Convert Energy to\na Die Face and Turn\nit on its Side`; break
+            case 1326: string+=`Put any Card\nFrom Your Deck\ninto Your hand`; break
+            case 1327: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nand Retain ${effect[0]!=1?`Them`:`It`}\nUntil Played`; break
+            case 1328: string+=`While in Your Deck,\nGain ${effect[0]} Strength on\nElite and Boss Combats`; break
+            case 1329: string+=`Gain ${effect[0]} Currency\nShuffle ${effect[1]} McDucknolds\nAdvertisement${effect[1]!=1?`s`:``} into\n${this.battle.players==2?`Ally's`:`Your`} Draw Pile`; break
+            case 1330: string+=`Buy McDucknolds!\n(Random Effect)`; break
+            case 1331: string+=`Shuffle the 1-5\nof Blood Hearts\ninto Draw Pile`; break
+            case 1332: string+=`On First Draw,\nHeal ${this.calculateEffect(effect[0],4)} Health\nPlay: Deal ${this.calculateEffect(effect[1],0)} Damage\nApply ${effect[2]} Bleed`; break
+
+
 
 
 
@@ -1654,7 +1675,16 @@ class card{
             break
         }
     }
-    callStartEffect(){
+    callStartEffect(encounterClass){
+        switch(this.attack){
+            case 1328:
+                if(encounterClass==1||encounterClass==2){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Strength',this.effect[0])
+                }
+            break
+        }
+    }
+    callEndEffect(){
         switch(this.attack){
             case 1270:
                 this.effect[0]=max(1,this.effect[0]-this.effect[1])
@@ -1719,6 +1749,9 @@ class card{
             break
             case 1285:
                 this.effect[0]=this.effect[3]
+            break
+            case 1332:
+                this.effect[0]=0
             break
         }
         this.battle.attackManager.level=this.level
@@ -1874,13 +1907,46 @@ class card{
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
             this.layer.scale(this.size*this.sizeCap)
-            this.layer.fill(colorDetail.active[0],colorDetail.active[1],colorDetail.active[2],this.fade*this.anim.select)
-            this.layer.noStroke()
-            this.layer.rect(0,0,this.width+15,this.height+15,10)
-            this.layer.fill(colorDetail.fill[0],colorDetail.fill[1],colorDetail.fill[2],this.fade)
-            this.layer.stroke(colorDetail.stroke[0],colorDetail.stroke[1],colorDetail.stroke[2],this.fade)
-            this.layer.strokeWeight(5)
-            this.layer.rect(0,0,this.width,this.height,5)
+            if(this.attack==1328){
+                this.layer.fill(255,150,150,this.fade*this.anim.select)
+                this.layer.noStroke()
+                this.layer.rect(0,0,this.width+15,this.height+15,10)
+                this.layer.fill(238,28,37,this.fade)
+                this.layer.stroke(208,8,12,this.fade)
+                this.layer.strokeWeight(5)
+                this.layer.rect(0,0,this.width,this.height,5)
+                this.layer.fill(255,255,0,this.fade)
+                this.layer.noStroke()
+                regStar(this.layer,this.width/4,-this.height/2+this.width/4,5,this.width*3/20,this.width*3/20,this.width*3/20/2.62,this.width*3/20/2.62,90)
+                regStar(this.layer,this.width*2/5,-this.height/2+this.width/2,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                regStar(this.layer,this.width*3/10,-this.height/2+this.width*3/5,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                regStar(this.layer,this.width*3/20,-this.height/2+this.width*3/5,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                regStar(this.layer,this.width/20,-this.height/2+this.width/2,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                this.layer.stroke(208,8,12,this.fade)
+                this.layer.noFill()
+            }else if(this.attack==1330){
+                this.layer.fill(100,225,175,this.fade*this.anim.select)
+                this.layer.noStroke()
+                this.layer.rect(0,0,this.width+15,this.height+15,10)
+                this.layer.fill(50,200,150,this.fade)
+                this.layer.stroke(25,175,125,this.fade)
+                this.layer.strokeWeight(5)
+                this.layer.rect(0,0,this.width,this.height,5)
+                this.layer.fill(50,255,100,this.fade)
+                this.layer.stroke(25,255,75,this.fade)
+                this.layer.quad(-this.width/2,-this.height/4,-this.width/2,-this.height/12,this.width/2,this.height/4,this.width/2,this.height/12,5)
+                this.layer.stroke(25,175,125,this.fade)
+                this.layer.noFill()
+            }else{
+                this.layer.fill(colorDetail.active[0],colorDetail.active[1],colorDetail.active[2],this.fade*this.anim.select)
+                this.layer.noStroke()
+                this.layer.rect(0,0,this.width+15,this.height+15,10)
+                this.layer.fill(colorDetail.fill[0],colorDetail.fill[1],colorDetail.fill[2],this.fade)
+                this.layer.stroke(colorDetail.stroke[0],colorDetail.stroke[1],colorDetail.stroke[2],this.fade)
+                this.layer.strokeWeight(5)
+                this.layer.rect(0,0,this.width,this.height,5)
+                this.layer.noFill()
+            }
             this.layer.strokeWeight(3)
             switch(rarity){
                 case -1:
@@ -1964,8 +2030,8 @@ class card{
                     this.layer.strokeWeight(2)
                     regPoly(this.layer,-this.width/2+10,-this.height/2+12,8,7,7,0)
                 }else if(spec.includes(35)){
-                    this.layer.fill(150,255,150,this.fade)
-                    this.layer.stroke(100,255,100,this.fade)
+                    this.layer.fill(150,255,225,this.fade)
+                    this.layer.stroke(100,255,225,this.fade)
                     this.layer.strokeWeight(2)
                     this.layer.rect(-this.width/2+6,-this.height/2+8,8,8)
                     this.layer.arc(-this.width/2+10,-this.height/2+12,16,16,-90,180)
