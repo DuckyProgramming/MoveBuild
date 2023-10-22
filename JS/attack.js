@@ -110,7 +110,8 @@ class attack{
             case 1284: case 1285: case 1286: case 1288: case 1291: case 1295: case 1296: case 1297: case 1298: case 1305:
             case 1307: case 1308: case 1309: case 1310: case 1311: case 1312: case 1313: case 1314: case 1315: case 1316:
             case 1319: case 1320: case 1321: case 1324: case 1330: case 1332: case 1334: case 1335: case 1336: case 1337:
-            case 1338: case 1339: case 1342: case 1343: case 1344: case 1345: case 1348: case 1349: case 1350:
+            case 1338: case 1339: case 1342: case 1343: case 1344: case 1345: case 1348: case 1349: case 1350: case 1353:
+            case 1354: case 1355: case 1356: case 1358: case 1359: case 1360: case 1362:
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
                 this.direction=atan2(this.targetCombatant.position.x-this.position.x,this.targetCombatant.position.y-this.position.y)
@@ -819,7 +820,7 @@ class attack{
                     case 34:
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
                     break
-                    case 42:
+                    case 42: case 1354:
                         this.userManager.draw(this.effect[1])
                     break
                     case 53:
@@ -1478,6 +1479,12 @@ class attack{
                     case 1324:
                         this.userManager.randomEffect(2,20)
                     break
+                    case 1355:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Freeze')>0?2:1),this.user)
+                    break
+                    case 1356:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Burn')>0?2:1),this.user)
+                    break
 
                 }
             break
@@ -1598,6 +1605,19 @@ class attack{
                     break
                     case 1268:
                         this.targetCombatant.statusEffect('Shock',this.effect[1])
+                    break
+                    case 1357:
+                        if(this.userCombatant.charge>=this.effect[1]){
+                            this.userCombatant.charge-=this.effect[1]
+                            this.userCombatant.chargeConsumed()
+                            this.userCombatant.addBlock(this.effect[0]+this.effect[2],this.user)
+                            this.userManager.draw(this.effect[3])
+                        }else{
+                            this.userCombatant.addBlock(this.effect[0])
+                        }
+                    break
+                    case 1369:
+                        this.userCombatant.addBlock(this.effect[1])
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -2623,6 +2643,13 @@ class attack{
                     case 1327:
                         this.userManager.drawRetain(this.effect[0],1)
                     break
+                    case 1365:
+                        this.userCombatant.statusEffect('Double Damage',this.effect[0])
+                        this.userCombatant.statusEffect('Conditioning',this.effect[1])
+                    break
+                    case 1366:
+                        this.userManager.cardInUse().effect[0][0]=min(this.userManager.cardInUse().effect[0][0]*2,256)
+                    break
 
                 }
             break
@@ -3421,6 +3448,15 @@ class attack{
                             this.userCombatant.compression-=5
                         }
                     break
+                    case 1361:
+                        let index=floor(random(0,this.userManager.listing.allPlayerCard[3].length))
+                        this.userManager.deck.add(this.userManager.listing.allPlayerCard[3][index],0,types.card[this.userManager.listing.allPlayerCard[3][index]].list)
+                        this.battle.overlayManager.overlays[6][this.player].active=true
+                        this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
+                    break
+                    case 1363:
+                        this.userCombatant.statusEffect('Energy Next Turn',this.amplify?this.effect[1]:this.effect[0])
+                    break
                     
                 }
             break
@@ -3683,6 +3719,10 @@ class attack{
                             this.battle.dropDrawShuffle(this.battle.players-1-this.player,findName(`${a+1} of Blood\nHearts`,types.card),0,0)
                         }
                     break
+                    case 1370:
+                        this.userCombatant.heal(this.effect[0])
+                        this.userCombatant.charge+=this.effect[1]
+                    break
 
                 }
             break
@@ -3784,6 +3824,10 @@ class attack{
                         if(this.targetCombatant.blocked>0){
                             this.targetCombatant.statusEffect('Bleed',this.effect[2])
                         }
+                    break
+                    case 1358:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.statusEffect('Shock',this.effect[1])
                     break
                 }
             break
@@ -4448,6 +4492,27 @@ class attack{
                     case 1352:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,this.limit,this.battle.players+1,this.direction,this.user)
                     break
+                    case 1353:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetDistance==1?2:1),this.user)
+                    break
+                    case 1359:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.energy==4){
+                            this.targetCombatant.statusEffect('Burn',this.effect[1])
+                        }
+                    break
+                    case 1360:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.energy==4){
+                            this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                        }
+                    break
+                    case 1362:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetDistance==3){
+                            this.userCombatant.charge+=this.effect[1]
+                        }
+                    break
 
                 }
             break
@@ -4831,6 +4896,24 @@ class attack{
                                 this.userManager.deck.cards[this.userManager.deck.cards.length-1].limit=this.targetCombatant.type
                             }
                         }
+                    break
+                    case 1364:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('6-Miracle',types.card),0,0)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 1368:
+                        if(this.energy==0){
+                            this.userCombatant.addBlock(this.effect[0])
+                            this.userCombatant.heal(this.effect[1])
+                        }
+                    break
+                    case 1371:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                        }
+                        this.userCombatant.statusEffect('Miss',this.effect[1])
                     break
 
                 }
@@ -5336,8 +5419,9 @@ class attack{
             case 1175: case 1178: case 1179: case 1180: case 1181: case 1183: case 1187: case 1202: case 1209: case 1213:
             case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1251: case 1267: case 1268:
             case 1270: case 1271: case 1284: case 1286: case 1291: case 1295: case 1296: case 1305: case 1307: case 1309:
-            case 1311: case 1312: case 1314: case 1315: case 1321: case 1324: case 1330: case 1345:
-                if(this.type==780){
+            case 1311: case 1312: case 1314: case 1315: case 1321: case 1324: case 1330: case 1345: case 1354: case 1355:
+            case 1356:
+                if(this.type==780||this.type==1354){
                     let failed=false
                     for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
                         if(this.userManager.hand.cards[a].class==1&&this.userManager.hand.cards[a].attack!=this.type){
@@ -5353,7 +5437,8 @@ class attack{
                     this.type==806&&this.userCombatant.stance!=1||
                     this.type==947&&this.energy>0||
                     this.timer==1&&this.type==1006&&floor(random(0,100))>=20*this.energy||
-                    this.type==1179&&this.energy%2!=0||this.type==1233&&this.battle.turn.total%2==1||
+                    this.type==1179&&this.energy%2!=0||
+                    this.type==1233&&this.battle.turn.total%2==1||
                     (this.type==1267||this.type==1268)&&this.relPos[0]!=1
                 ){
                     this.remove=true
@@ -5409,7 +5494,7 @@ class attack{
             case 861: case 867: case 875: case 880: case 885: case 887: case 890: case 918: case 919: case 920:
             case 925: case 951: case 967: case 968: case 989: case 990: case 995: case 996: case 1012: case 1013:
             case 1025: case 1030: case 1035: case 1037: case 1039: case 1057: case 1061: case 1077: case 1118: case 1127:
-            case 1130: case 1131: case 1141: case 1146: case 1161: case 1176: case 1301:
+            case 1130: case 1131: case 1141: case 1146: case 1161: case 1176: case 1301: case 1357: case 1369:
                 if(this.type==809&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5628,7 +5713,7 @@ class attack{
             case 896: case 898: case 901: case 914: case 937: case 948: case 1008: case 1019: case 1033: case 1053:
             case 1063: case 1074: case 1079: case 1093: case 1094: case 1108: case 1124: case 1125: case 1138: case 1159:
             case 1165: case 1206: case 1208: case 1215: case 1220: case 1229: case 1260: case 1264: case 1265: case 1269:
-            case 1294: case 1302: case 1304: case 1306: case 1323: case 1327:
+            case 1294: case 1302: case 1304: case 1306: case 1323: case 1327: case 1365: case 1366:
                 if(this.type==807&&this.userCombatant.stance!=2||this.type==820&&this.userCombatant.stance!=1||this.type==821&&this.userCombatant.stance!=3||this.type==822&&this.userCombatant.stance!=4){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5665,6 +5750,7 @@ class attack{
             case 1095: case 1096: case 1098: case 1109: case 1110: case 1120: case 1121: case 1134: case 1151: case 1152:
             case 1158: case 1177: case 1184: case 1201: case 1214: case 1221: case 1224: case 1225: case 1226: case 1227:
             case 1237: case 1249: case 1250: case 1253: case 1254: case 1282: case 1289: case 1303: case 1326: case 1333:
+            case 1361: case 1363:
                 if((this.type==818||this.type==819)&&this.userCombatant.stance!=2){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -5719,7 +5805,7 @@ class attack{
             case 360: case 369: case 380: case 391: case 442: case 456: case 470: case 608: case 641: case 642:
             case 643: case 659: case 924: case 952: case 953: case 954: case 960: case 961: case 962: case 984:
             case 985: case 1021: case 1041: case 1043: case 1101: case 1102: case 1112: case 1186: case 1203: case 1204:
-            case 1205: case 1230: case 1235: case 1236: case 1287: case 1322: case 1325: case 1331:
+            case 1205: case 1230: case 1235: case 1236: case 1287: case 1322: case 1325: case 1331: case 1370:
                 if(this.type==1322&&this.energy%2==1){
                     this.remove=true
                 }else if(variants.nobasicanim){
@@ -6120,7 +6206,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 25: case 1246: case 1274:
+            case 25: case 1246: case 1274: case 1367:
                 if(this.timer==1||this.timer==29){
                     this.userCombatant.startAnimation(0)
                 }else if(this.timer==9){
@@ -6146,6 +6232,10 @@ class attack{
                         break
                         case 1274:
                             this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                            this.targetCombatant.statusEffect('Shock',this.effect[2])
+                        break
+                        case 1367:
+                            this.targetCombatant.statusEffect('Burn',this.effect[1])
                             this.targetCombatant.statusEffect('Shock',this.effect[2])
                         break
                     }
@@ -6297,7 +6387,7 @@ class attack{
                 }
             break
             case 36: case 39: case 47: case 384: case 412: case 413: case 441: case 599: case 1157: case 1188:
-            case 1194: case 1195: case 1196: case 1197: case 1198: case 1199: case 1212: case 1297: case 1332:
+            case 1194: case 1195: case 1196: case 1197: case 1198: case 1199: case 1212: case 1297: case 1332: case 1358:
                 if(variants.nobasicanim){
                     this.selfCall(6)
                     this.remove=true
@@ -6371,12 +6461,13 @@ class attack{
             case 1232: case 1244: case 1247: case 1248: case 1252: case 1255: case 1256: case 1258: case 1259: case 1261:
             case 1262: case 1263: case 1266: case 1273: case 1279: case 1280: case 1285: case 1298: case 1308: case 1310:
             case 1313: case 1316: case 1334: case 1335: case 1336: case 1337: case 1342: case 1344: case 1346: case 1348:
-            case 1352:
+            case 1352: case 1353: case 1359: case 1360: case 1362:
                 if(
                     this.type==1247&&this.energy%2!=0||
                     this.type==1259&&this.energy%2!=0||
                     this.type==1285&&this.effect[0]>0||
-                    this.type==1342&&(this.relPos[0]!=3||this.energy!=3)){
+                    this.type==1342&&(this.relPos[0]!=3||this.energy!=3)||
+                    this.type==1179&&this.energy%2!=0){
                     this.remove=true
                 }else if(variants.nobasicanim){
                     this.selfCall(7)
@@ -6907,7 +6998,8 @@ class attack{
             case 404: case 405: case 426: case 587: case 637: case 670: case 676: case 683: case 710: case 792:
             case 845: case 888: case 889: case 927: case 936: case 941: case 969: case 1020: case 1099: case 1107:
             case 1132: case 1140: case 1142: case 1190: case 1207: case 1218: case 1223: case 1245: case 1276: case 1290:
-            case 1299: case 1300: case 1317: case 1318: case 1329: case 1338: case 1340: case 1341: case 1349:
+            case 1299: case 1300: case 1317: case 1318: case 1329: case 1338: case 1340: case 1341: case 1349: case 1364:
+            case 1368:
                 if(variants.nobasicanim){
                     this.selfCall(10)
                     this.remove=true

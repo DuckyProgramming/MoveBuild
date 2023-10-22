@@ -1,8 +1,6 @@
 Bugs:
 
-
-
-subroutine - starts a fight within a fight
+ssubroutine - starts a fight within a fight
 
 fat duck!
 
@@ -12,20 +10,16 @@ Steal ideas from pokmon (old game)
 countdown jinx (mercy)
 BUILD AN ENTIRE JINX SYNERGY ON EXECTUOR
 
-peashooter - spud cannon
-
-slingshot - needs 1 (only attack), reroll (draw more)
-
 the Sakura lore
 
-ice shatter
-flame shatter
-
-enchanted shield uses charge to add more shield
-
-damage, shock yourself
-
 more half damage turns
+
+
+
+
+2 more variants
+bonus round mode
+
 
 
 

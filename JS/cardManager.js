@@ -124,6 +124,9 @@ class cardManager{
             case 5: return this.exhaust
         }
     }
+    cardInUse(){
+        return this.hand.cardInUse
+    }
     send(group1,group2){
         this.getList(group1).send(this.getList(group2).cards,0,-1)
     }
@@ -630,8 +633,12 @@ class cardManager{
         return this.reserve.cardNumber(name)+this.hand.cardNumber(name)+this.discard.cardNumber(name)
     }
     transformCard(base){
-        let index=floor(random(0,this.listing.card[base.list][3].length))
-        return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][index],base.level,base.color,base.id)
+        if(base.list>=0&&base.rarity>=0){
+            let index=floor(random(0,this.listing.card[base.list][3].length))
+            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][index],base.level,base.color,base.id)
+        }else{
+            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,game.playerNumber+1,base.id)
+        }
     }
     transformCardToBasic(base){
         return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName(['Strike','Defend','Step'][floor(random(0,3))],types.card),base.level,base.color,base.id)

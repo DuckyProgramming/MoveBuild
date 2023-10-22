@@ -14,6 +14,7 @@ class group{
         this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
         this.compact=false
         this.sevens=0
+        this.cardInUse=0
 
         this.reset()
     }
@@ -1138,6 +1139,9 @@ class group{
             case 1332:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(effect[0])
             break
+            case 1369:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Armor',effect[0])
+            break
         }
     }
     deathEffect(){
@@ -1844,6 +1848,7 @@ class group{
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class,this.cards[a].name,this.cards[a].basic))
                     this.battle.playCard(this.cards[a],this.player,0)
+                    this.cardInUse=this.cards[a]
                     this.callInput(5,0)
                     this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target)
                     this.battle.attackManager.execute()
@@ -1971,6 +1976,7 @@ class group{
                             this.cards[b].characteristic=characteristic
                         }
                         this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
+                        this.cardInUse=this.cards[b]
                     }
                 }
                 this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target)
@@ -2094,6 +2100,7 @@ class group{
                                 this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
                             }
                             this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
+                            this.cardInUse=this.cards[b]
                         }
                     }
                     this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target)

@@ -38,6 +38,9 @@ class card{
         if(cost==undefined&&this.type<types.card.length&&this.type>=0){
             this.cost=types.card[this.type].levels[this.level].cost
         }
+        if(this.cost==-2){
+            this.cost=floor(random(0,10))
+        }
 
         this.width=90
         this.height=120
@@ -87,6 +90,9 @@ class card{
             this.base={cost:cost}
             if(this.base.cost==undefined){
                 this.base.cost=types.card[this.type].levels[this.level].cost
+            }
+            if(this.base.cost==-2){
+                this.base.cost=floor(random(0,10))
             }
             if(this.spec.includes(12)){
                 this.reality=types.card[this.type].levels[this.level].reality
@@ -1416,7 +1422,7 @@ class card{
             case 1244: string+=`If Target Will Attack,\nReduce Damage by ${effect[0]}`; break
             case 1245: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nYou Cannot Move\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
             case 1246: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
-            case 1247: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Your Energy is Even\nIf You Have Exactly 4,\nGain ${effect[1]} Energy`; break
+            case 1247: string+=`If Your Energy is Even\nDeal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have Exactly 4,\nGain ${effect[1]} Energy`; break
             case 1248: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to Hand`; break
             case 1249: string+=`Reduce All\nCountdowns By ${effect[0]}`; break
             case 1250: string+=`Reduce All\nCountdowns By X${effect[0]>0?`+${effect[0]}`:``}`; break
@@ -1520,13 +1526,28 @@ class card{
             case 1348: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nReduce Damage by ${effect[1]}\nDiscards to Hand`; break
             case 1349: string+=`Add a Container Ball\nto Deck With\nTarget Enemy\nAnd Kills It\nFails Against Bosses`; break
             case 1350: string+=`Send Target to\nthe Shadow Realm`; break
-            
             case 1351: string+=`Summon ${effect[0]} L${effect[0]!=1?`s`:``}`; break
-            
             case 1352: string+=`Summon in a\n${types.combatant[this.limit].name}`; break
+            case 1353: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double at Range 1`; break
+            case 1354: string+=`If You Have\nNo Other Attacks\nin Hand,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1355: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double if\nTarget has Freeze`; break
+            case 1356: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double if\nTarget has Burn`; break
+            case 1357: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIf Possible:\nSpend ${effect[1]} Charge\nAdd ${this.calculateEffect(effect[2],14)} More\nDraw ${effect[3]} Card${effect[3]!=1?`s`:``}`; break
+            case 1358: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Shock`; break
+            case 1359: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4 Energy:\nApply ${effect[1]} Burn`; break
+            case 1360: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4 Energy:\nApply ${effect[1]} Freeze`; break
+            case 1361: string+=`Add a Random\nCard to Deck\nRemove a Card\nPermanently`; break
+            case 1362: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Your Energy is Even\nAt Range 3,\nGain ${effect[1]} Charge`; break
+            case 1363: string+=`Gain ${effect[0]} Energy\nNext Turn\nAmplify:\nGet ${effect[1]} Instead`; break
+            case 1364: string+=`Add ${effect[0]} 6-Miracle${effect[0]!=1?`s`:``}\nto Hand\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1365: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[1]} Conditioning`; break
+            case 1366: string+=`Double Self`; break
+            case 1367: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nApply ${effect[2]} Shock`; break
+            case 1368: string+=`If You Have No Energy,\nAdd ${this.calculateEffect(effect[0],1)} Block\nHeal ${this.calculateEffect(effect[1],4)} Health\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
+            case 1369: string+=`When Drawn,\nGain ${effect[0]} Armor\nOn Play, Add ${this.calculateEffect(effect[1],1)} Block`; break
+            case 1370: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Charge`; break
 
-
-
+            case 1371: string+=`Add ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand\nGain ${effect[1]} Miss`; break
 
 
 

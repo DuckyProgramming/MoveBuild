@@ -935,6 +935,13 @@ types={
                 {effect:[24,8],attack:1345,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
                 {effect:[30,12],attack:1345,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
             ],
+        },{
+            name:'Doppeltwice',rarity:1,list:1,
+            levels:[
+                {effect:[1,1],attack:1365,cost:2,target:[0],spec:[],class:4},
+                {effect:[2,2],attack:1365,cost:2,target:[0],spec:[],class:4},
+                {effect:[2,2],attack:1365,cost:2,target:[0],spec:[22],class:4},
+            ],
         },
         
         {
@@ -3196,11 +3203,25 @@ types={
                 {effect:[2,2],attack:1303,cost:1,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Trident',rarity:0,list:4,
+            name:'Trident',rarity:1,list:4,
             levels:[
                 {effect:[8,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
                 {effect:[14,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
                 {effect:[20,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Frost\nShatter',rarity:0,list:4,
+            levels:[
+                {effect:[8],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Liquid\nNitrogen',rarity:0,list:4,
+            levels:[
+                {effect:[9,1],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[13,1],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[16,1],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
             name:'Blading\nRush',rarity:1,list:4,
@@ -3236,6 +3257,13 @@ types={
                 {effect:[10],attack:1313,cost:1,target:[2,1,3],spec:[0],class:1},
                 {effect:[16],attack:1313,cost:1,target:[2,1,3],spec:[0],class:1},
                 {effect:[20],attack:1313,cost:1,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Lunasa',rarity:2,list:4,
+            levels:[
+                {effect:[],attack:1361,cost:2,target:[0],spec:[1],class:4},
+                {effect:[],attack:1361,cost:1,target:[0],spec:[1],class:4},
+                {effect:[],attack:1361,cost:0,target:[0],spec:[1],class:4},
             ],
         },
 
@@ -4103,7 +4131,7 @@ types={
                 {effect:[],attack:701,cost:2,target:[1,1,1],spec:[21,2,22],class:7},
             ],
         },{
-            name:'Build\nArmored Turret',rarity:1,list:10,
+            name:'Build\nArmored Turret',rarity:1,list:6,
             levels:[
                 {effect:[],attack:1346,cost:5,target:[1,1,1],spec:[21],class:7},
                 {effect:[],attack:1346,cost:5,target:[1,1,1],spec:[21,2],class:7},
@@ -4773,6 +4801,27 @@ types={
                 {effect:[2],attack:1327,cost:1,target:[0],spec:[1],class:4},
                 {effect:[3],attack:1327,cost:1,target:[0],spec:[1],class:4},
                 {effect:[4],attack:1327,cost:1,target:[0],spec:[1],class:4},
+            ],
+        },{
+            name:'Particle\nAccelerator',rarity:2,list:6,
+            levels:[
+                {effect:[[2],[]],attack:[1,1366],cost:1,target:[10,1,1],spec:[12],reality:[[0,1],[]],class:[1,4]},
+                {effect:[[2],[]],attack:[1,1366],cost:1,target:[10,1,1],spec:[12],reality:[[0,1],[]],class:[1,4]},
+                {effect:[[2],[]],attack:[1,1366],cost:1,target:[10,1,1],spec:[12],reality:[[0,1],[]],class:[1,4]},
+            ],
+        },{
+            name:'Sting',rarity:0,list:6,
+            levels:[
+                {effect:[14,1],attack:1358,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[24,2],attack:1358,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[32,3],attack:1358,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Breadcrumbs',rarity:1,list:6,
+            levels:[
+                {effect:[1,1,1],attack:1368,cost:0,target:[0],spec:[],class:2},
+                {effect:[1,1,1],attack:1368,cost:0,target:[0],spec:[],class:2},
+                {effect:[1,1,1],attack:1368,cost:0,target:[0],spec:[],class:2},
             ],
         },
 
@@ -5539,6 +5588,13 @@ types={
                 {effect:[10],attack:1170,cost:0,target:[0],spec:[5],class:4},
                 {effect:[12],attack:1170,cost:0,target:[0],spec:[5],class:4},
             ],
+        },{
+            name:'Slingshot',rarity:1,list:7,
+            levels:[
+                {effect:[6,1],attack:1354,cost:0,target:[2,1,2],spec:[],class:1},
+                {effect:[10,1],attack:1354,cost:0,target:[2,1,2],spec:[],class:1},
+                {effect:[12,1],attack:1354,cost:0,target:[2,1,2],spec:[],class:1},
+            ],
         },
 
         {
@@ -6249,7 +6305,7 @@ types={
                 {effect:[19,2],attack:1245,cost:0,target:[0],spec:[1],class:4},
             ],
         },{
-            name:'Quaterstaff',rarity:1,list:8,
+            name:'Quarterstaff',rarity:1,list:8,
             levels:[
                 {effect:[15,1],attack:1247,cost:2,target:[2,1,2],spec:[0],class:1},
                 {effect:[22,1],attack:1247,cost:2,target:[2,1,2],spec:[0],class:1},
@@ -6331,6 +6387,34 @@ types={
                 {effect:[30,2],attack:1342,cost:0,target:[2,1,2],spec:[1],class:4},
                 {effect:[40,3],attack:1342,cost:0,target:[2,1,2],spec:[1],class:4},
                 {effect:[50,4],attack:1342,cost:0,target:[2,1,2],spec:[1],class:4},
+            ],
+        },{
+            name:'Enchanted\nShield',rarity:0,list:8,
+            levels:[
+                {effect:[8,2,12,1],attack:1357,cost:1,target:[0],spec:[],class:2},
+                {effect:[10,2,20,1],attack:1357,cost:1,target:[0],spec:[],class:2},
+                {effect:[12,2,30,1],attack:1357,cost:1,target:[0],spec:[],class:2},
+            ],
+        },{
+            name:'Moonbeam',rarity:1,list:8,
+            levels:[
+                {effect:[11,5],attack:1362,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[17,8],attack:1362,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[22,10],attack:1362,cost:1,target:[2,1,3],spec:[0],class:1},
+            ],
+        },{
+            name:'Aurora',rarity:1,list:8,
+            levels:[
+                {effect:[2,3],attack:1363,cost:1,target:[0],spec:[27],class:4},
+                {effect:[2,3],attack:1363,cost:1,target:[0],spec:[27],class:4},
+                {effect:[2,3],attack:1363,cost:1,target:[0],spec:[27],class:4},
+            ],
+        },{
+            name:'Honeysuckle',rarity:0,list:8,
+            levels:[
+                {effect:[1,1],attack:1370,cost:0,target:[0],spec:[],class:4},
+                {effect:[2,1],attack:1370,cost:0,target:[0],spec:[],class:4},
+                {effect:[3,1],attack:1370,cost:0,target:[0],spec:[],class:4},
             ],
         },
 
@@ -7072,16 +7156,23 @@ types={
         },{
             name:'Midnight\nCharm',rarity:1,list:9,
             levels:[
-                {effect:[0],attack:1317,cost:8,target:[0],spec:[1,2,35],class:4},
-                {effect:[0],attack:1317,cost:6,target:[0],spec:[1,2,35],class:4},
-                {effect:[0],attack:1317,cost:5,target:[0],spec:[1,2,35],class:4},
+                {effect:[2],attack:1317,cost:8,target:[0],spec:[1,2,35],class:4},
+                {effect:[2],attack:1317,cost:6,target:[0],spec:[1,2,35],class:4},
+                {effect:[2],attack:1317,cost:5,target:[0],spec:[1,2,35],class:4},
+            ],
+        },{
+            name:'Half Moon\nCharm',rarity:0,list:9,
+            levels:[
+                {effect:[1,1],attack:1364,cost:5,target:[0],spec:[1,2,35],class:4},
+                {effect:[1,1],attack:1364,cost:4,target:[0],spec:[1,2,35],class:4},
+                {effect:[1,1],attack:1364,cost:3,target:[0],spec:[1,2,35],class:4},
             ],
         },{
             name:'Six\nShooter',rarity:1,list:9,
             levels:[
-                {effect:[6,6],attack:1318,cost:6,target:[0],spec:[0,2,35],class:4},
-                {effect:[6,6],attack:1318,cost:5,target:[0],spec:[0,2,35],class:4},
-                {effect:[6,6],attack:1318,cost:4,target:[0],spec:[0,2,35],class:4},
+                {effect:[6,6],attack:1318,cost:6,target:[0],spec:[0],class:4},
+                {effect:[6,6],attack:1318,cost:5,target:[0],spec:[0],class:4},
+                {effect:[6,6],attack:1318,cost:4,target:[0],spec:[0],class:4},
             ],
         },{
             name:'Burning\nLight',rarity:1,list:9,
@@ -7091,7 +7182,7 @@ types={
                 {effect:[16,5],attack:1316,cost:1,target:[2,1,2],spec:[],class:1},
             ],
         },{
-            name:'Ignite',rarity:1,list:10,
+            name:'Ignite',rarity:1,list:9,
             levels:[
                 {effect:[2,1],attack:1339,cost:0,target:[2,1,1],spec:[],class:1},
                 {effect:[3,1],attack:1339,cost:0,target:[2,1,1],spec:[],class:1},
@@ -7124,6 +7215,27 @@ types={
                 {effect:[3],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
                 {effect:[4],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
                 {effect:[5],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
+            ],
+        },{
+            name:'Pitchfork',rarity:1,list:9,
+            levels:[
+                {effect:[8,3,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[14,3,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[20,3,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Flame\nShatter',rarity:0,list:9,
+            levels:[
+                {effect:[8],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Molotov',rarity:0,list:9,
+            levels:[
+                {effect:[9,3],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[13,4],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[16,5],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },
 
@@ -7911,6 +8023,13 @@ types={
                 {effect:[],attack:1341,cost:1,target:[0],spec:[38],limit:[1,50],class:4},
                 {effect:[],attack:1341,cost:1,target:[0],spec:[38],limit:[1,100],class:4},
             ],
+        },{
+            name:'Spud\nCannon',rarity:0,list:10,
+            levels:[
+                {effect:[7],attack:1353,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+                {effect:[11],attack:1353,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+                {effect:[14],attack:1353,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+            ],
         },
 
         {
@@ -8638,6 +8757,13 @@ types={
                 {effect:[2],attack:1199,cost:1,target:[0],spec:[],class:4},
                 {effect:[3],attack:1199,cost:1,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'TCN3',rarity:-1,list:0,
+            levels:[
+                {effect:[10,10],attack:1371,cost:1,target:[0],spec:[],class:4},
+                {effect:[16,16],attack:1371,cost:1,target:[0],spec:[],class:4},
+                {effect:[20,20],attack:1371,cost:1,target:[0],spec:[],class:4},
+            ],
         },
         
         {
@@ -9258,6 +9384,13 @@ types={
         },
 
         {
+            name:'Garbled',rarity:0,list:11,
+            levels:[
+                {effect:[0],attack:0,cost:-2,target:[0],spec:[1],class:5},
+                {effect:[0],attack:0,cost:-2,target:[0],spec:[1],class:5},
+                {effect:[0],attack:0,cost:-2,target:[0],spec:[1],class:5},
+            ],
+        },{
             name:'Hurt',rarity:0,list:11,
             levels:[
                 {effect:[],attack:0,cost:0,target:[0],spec:[5],class:5},
@@ -9563,9 +9696,9 @@ types={
         },{
             name:'Plague',rarity:0,list:12,
             levels:[
-                {effect:[5],attack:-31,cost:0,target:[0],spec:[4,5],class:4},
-                {effect:[5],attack:-32,cost:0,target:[0],spec:[4,5],class:4},
-                {effect:[8],attack:-32,cost:0,target:[0],spec:[4,5],class:4},
+                {effect:[5],attack:-31,cost:0,target:[0],spec:[4,5],class:6},
+                {effect:[5],attack:-32,cost:0,target:[0],spec:[4,5],class:6},
+                {effect:[8],attack:-32,cost:0,target:[0],spec:[4,5],class:6},
             ],
         },
         
