@@ -451,6 +451,8 @@ class group{
                 if(this.id==2){
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
+                }else if(this.id==1||this.id==3){
+                    this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
                 }else{
                     this.remove(a)
                     a--
@@ -471,6 +473,8 @@ class group{
                 if(this.id==2){
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
+                }else if(this.id==1||this.id==3){
+                    this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
                 }else{
                     this.remove(a)
                     a--
@@ -908,6 +912,7 @@ class group{
                 case 8:
                     if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
                         this.cards[a].cost=max(0,this.cards[a].cost-args[0])
+                        this.cards[a].onIncrementCountdown()
                     }
                 break
             }
@@ -930,6 +935,7 @@ class group{
                 &&!(effect==17&&(this.cards[a].attack==1115||this.cards[a].deSize))
                 &&!(effect==18&&this.cards[a].class==3)
                 &&!(effect==19&&this.cards[a].spec.includes(1))
+                &&!(effect==21&&!this.removable(a))
                 ){
                     list.push(a)
                 }
@@ -1019,6 +1025,10 @@ class group{
                             }
                         }
                     break
+                    case 21:
+                        this.remove(index)
+                    break
+
                 }
             }
         }
@@ -1442,9 +1452,20 @@ class group{
         }
         return possible
     }
+    removable(index){
+        return !this.cards[index].spec.includes(7)
+    }
     unRemove(){
         this.cards.push(this.removed[this.removed.length-1])
         this.removed.splice(this.removed.length-1,1)
+    }
+    hasCard(type){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].type==type){
+                return true
+            }
+        }
+        return false
     }
     removeAllType(type){
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1749,14 +1770,18 @@ class group{
                             this.cards[a].exhaust=true
                         }
                     }
-                    if(this.cards[a].spec.includes(15)){
-                        this.cards[a].limit--
+                    if(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(38)){
+                        if(this.cards[a].spec.includes(15)){
+                            this.cards[a].limit--
+                        }else if(this.cards[a].spec.includes(38)){
+                            this.cards[a].limit[0]--
+                        }
                         for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
                             if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
                                 this.battle.cardManagers[this.player].deck.cards[b].limit--
                             }
                         }
-                        if(this.cards[a].limit<=0){
+                        if(this.cards[a].limit<=0&&this.cards[a].spec.includes(15)||this.cards[a].limit[0]<=0&&this.cards[a].spec.includes(38)){
                             this.cards[a].exhaust=true
                             for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
                                 this.battle.cardManagers[this.player].deck.cards[b].callVanishEffect()
@@ -1867,14 +1892,18 @@ class group{
                                 this.cards[b].exhaust=true
                             }
                         }
-                        if(this.cards[b].spec.includes(15)){
-                            this.cards[b].limit--
+                        if(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)){
+                            if(this.cards[b].spec.includes(15)){
+                                this.cards[b].limit--
+                            }else if(this.cards[b].spec.includes(38)){
+                                this.cards[b].limit[0]--
+                            }
                             for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                 if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                     this.battle.cardManagers[this.player].deck.cards[c].limit--
                                 }
                             }
-                            if(this.cards[b].limit<=0){
+                            if(this.cards[b].limit<=0&&this.cards[b].spec.includes(15)||this.cards[b].limit[0]<=0&&this.cards[ba].spec.includes(38)){
                                 this.cards[b].exhaust=true
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
@@ -1987,14 +2016,18 @@ class group{
                                     this.cards[b].exhaust=true
                                 }
                             }
-                            if(this.cards[b].spec.includes(15)){
-                                this.cards[b].limit--
+                            if(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)){
+                                if(this.cards[b].spec.includes(15)){
+                                    this.cards[b].limit--
+                                }else if(this.cards[b].spec.includes(38)){
+                                    this.cards[b].limit[0]--
+                                }
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                         this.battle.cardManagers[this.player].deck.cards[c].limit--
                                     }
                                 }
-                                if(this.cards[b].limit<=0){
+                                if(this.cards[b].limit<=0&&this.cards[b].spec.includes(15)||this.cards[b].limit[0]<=0&&this.cards[ba].spec.includes(38)){
                                     this.cards[b].exhaust=true
                                     for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                         if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
@@ -2301,7 +2334,7 @@ class group{
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                             a--
                             la--
-                        }else if((this.cards[a].attack==1248||this.cards[a].attack==1333)&&!this.cards[a].exhaust){
+                        }else if((this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348)&&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
                             a--
                             la--
@@ -2739,6 +2772,7 @@ class group{
                                 }else if(this.cards[a].spec.includes(35)&&this.battle.energy.main[this.player]>0){
                                     this.cards[a].cost-=this.battle.energy.main[this.player]
                                     this.battle.energy.main[this.player]=0
+                                    this.cards[a].onIncrementCountdown()
                                 }else if(!this.cards[a].energyAfford){
                                     this.battle.anim.upAfford=true
                                 }
@@ -3118,6 +3152,7 @@ class group{
                                 }else if(this.cards[a].spec.includes(35)&&this.battle.energy.main[this.player]>0){
                                     this.cards[a].cost-=this.battle.energy.main[this.player]
                                     this.battle.energy.main[this.player]=0
+                                    this.cards[a].onIncrementCountdown()
                                 }else{
                                     this.battle.anim.upAfford=true
                                 }

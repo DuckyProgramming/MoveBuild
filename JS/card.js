@@ -78,7 +78,7 @@ class card{
             this.class=cardClass||types.card[this.type].levels[this.level].class
             this.levels=types.card[this.type].levels.length
             this.limit=limit
-            this.limit=this.limit==undefined?(this.spec.includes(15)||this.spec.includes(30))?types.card[this.type].levels[this.level].limit:0:this.limit
+            this.limit=this.limit==undefined?this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38))?types.card[this.type].levels[this.level].limit:0:this.limit
             this.additionalSpec=additionalSpec||[]
             if(this.list==-1){
                 this.list=this.color
@@ -99,7 +99,7 @@ class card{
 
             this.remove=false
 
-            if(variants.vanish&&!this.spec.includes(15)){
+            if(variants.vanish&&!this.spec.includes(15)&&!this.spec.includes(38)){
                 this.spec.push(15)
                 this.limit=this.basic?3:6
             }
@@ -654,7 +654,7 @@ class card{
             case 473: string+=`Deal ${effect[0]} Damage\nto Targets on\nPlant Tiles`; break
             case 474: string+=`Create 7 Plant Tiles\nin a Circle`; break
             case 475: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nWhen Used on\na Plant Tile`; break
-            case 476: string+=`Heal ${effect[0]} Heal\nto Targets on\nPlant Tiles`; break
+            case 476: string+=`Heal ${effect[0]} Health\nto Targets on\nPlant Tiles`; break
             case 477: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number\nof Plant Tiles`; break
             case 478: string+=`Randomly Rotate\nTargets on Plant Tiles`; break
             case 479: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto a Target on\na Plant Tile`; break
@@ -1503,7 +1503,27 @@ class card{
             case 1331: string+=`Shuffle the 1-5\nof Blood Hearts\ninto Draw Pile`; break
             case 1332: string+=`On First Draw,\nHeal ${this.calculateEffect(effect[0],4)} Health\nPlay: Deal ${this.calculateEffect(effect[1],0)} Damage\nApply ${effect[2]} Bleed`; break
             case 1333: let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]; string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDiscards to Hand\nCosts 5 Taken Damage\n(Currently ${userCombatant.compression})`; break
-
+            case 1334: string+=`Apply ${effect[0]}X Jinx`; break
+            case 1335: string+=`Apply ${effect[0]} Jinx`; break
+            case 1336: string+=`Deal Damage Equal to\n${this.calculateEffect(effect[0]*10,0)}% of Target's Jinx`; break
+            case 1337: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked, Apply ${effect[1]} Miss`; break
+            case 1338: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple if\nTarget Has Miss`; break
+            case 1339: string+=`If You Have 0 Energy,\nApply ${effect[0]} Burn\nand Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1340: string+=`Absorbs Half of\nCurrency Earned\nPays Double on Play\n(Holding ${this.battle.currency.ss[this.player]} Currency)`; break
+            case 1341: string+=`Gain ${this.limit[1]} Currency\nIncreases By 1-10\nRandomly Each Battle`; break
+            case 1342: string+=`4th Card in Hand\nand Exactly 3 Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nTarget Deals Half\nDamage For ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
+            case 1343: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRemove a Random Card\nFrom Your Deck`; break
+            case 1344: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage Where\nX = Number of Burns\nExhaust All Burns`; break
+            case 1345: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases By ${effect[1]}\nWhen Incremented`; break
+            case 1346: string+=`Build an Armored Turret`; break
+            case 1347: string+=`Apply ${effect[0]} Regeneration\nto Targets on\nPlant Tiles`; break
+            case 1348: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nReduce Damage by ${effect[1]}\nDiscards to Hand`; break
+            case 1349: string+=`Add a Container Ball\nto Deck With\nTarget Enemy\nAnd Kills It\nFails Against Bosses`; break
+            case 1350: string+=`Send Target to\nthe Shadow Realm`; break
+            
+            case 1351: string+=`Summon ${effect[0]} L${effect[0]!=1?`s`:``}`; break
+            
+            case 1352: string+=`Summon in a\n${types.combatant[this.limit].name}`; break
 
 
 
@@ -1567,6 +1587,9 @@ class card{
         }
         if(spec.includes(15)){
             string+=`\nVanishing ${this.limit}`
+        }
+        if(spec.includes(38)){
+            string+=`\nVanishing ${this.limit[0]}`
         }
         if(spec.includes(36)){
             string+=`\nVanishing 20%`
@@ -1692,6 +1715,16 @@ class card{
             break
             case 1309:
                 this.effect[0]=this.effect[0]+this.effect[1]
+            break
+            case 1341:
+                this.limit[1]+=floor(random(1,11))
+            break
+        }
+    }
+    onIncrementCountdown(){
+        switch(this.attack){
+            case 1345:
+                this.effect[0]+=this.effect[1]
             break
         }
     }

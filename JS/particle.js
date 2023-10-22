@@ -134,6 +134,12 @@ class particle{
                 this.scale=0.1
                 this.direction=args[1]
             break
+            case 46:
+                this.size=args[0]
+                this.fade=1
+                this.scale=0
+                this.direction=[random(0,360),random(0,360),random(0,360),random(0,360)]
+            break
         }
     }
     display(){
@@ -527,6 +533,16 @@ class particle{
                     this.layer.fill(90,255,0,this.fade)
                     this.layer.ellipse(0,0,3,3)
                 break
+                case 46:
+                    this.layer.fill(50,0,150,this.fade)
+                    regStar(this.layer,0,0,6,9,9,3,3,this.direction[0])
+                    this.layer.fill(75,0,200,this.fade)
+                    regStar(this.layer,0,0,6,6.75,6.75,2.25,2.25,this.direction[1])
+                    this.layer.fill(100,0,255,this.fade)
+                    regStar(this.layer,0,0,6,4.5,4.5,1.5,1.5,this.direction[2])
+                    this.layer.fill(125,25,255,this.fade)
+                    regStar(this.layer,0,0,6,2.25,2.25,0.75,0.75,this.direction[3])
+                break
 
             }
             this.layer.pop()
@@ -567,6 +583,7 @@ class particle{
                 }
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
+            case 46:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

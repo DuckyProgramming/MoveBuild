@@ -71,7 +71,7 @@ class battle{
         this.initialized=true
 
         this.encounter={class:0,custom:[0,0]}
-        this.currency={money:[]}
+        this.currency={money:[],ss:[]}
         this.energy={main:[],gen:[],base:[],temp:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
         this.lastEncounter=types.encounter[0]
@@ -115,6 +115,7 @@ class battle{
             this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
             this.colorDetail.push(types.color.card[this.player[a]])
             this.currency.money.push(stage.ascend>=22?0:100)
+            this.currency.ss.push(0)
             this.energy.main.push(0)
             this.energy.gen.push(0)
             this.energy.base.push(game.startEnergy)
@@ -327,6 +328,14 @@ class battle{
             let index=empty[floor(random(0,empty.length))]
             this.reinforce.front.push({position:this.tileManager.tiles[index].tilePosition,name:name,minion:true})
             this.tileManager.tiles[index].reinforce=true
+            this.counter.enemy++
+        }
+    }
+    longReinforce(name,time){
+        let empty=this.tileManager.getEmptyTiles()
+        if(empty.length>0){
+            let index=empty[floor(random(0,empty.length))]
+            this.reinforce.back.push({position:this.tileManager.tiles[index].tilePosition,name:name,turn:this.turn.total+time,minion:true})
             this.counter.enemy++
         }
     }
@@ -631,7 +640,12 @@ class battle{
         let multi=this.relicManager.hasRelic(135,player)?0.5:1*this.relicManager.hasRelic(165,player)?1.25:1
         let bonus=this.relicManager.hasRelic(119,player)?20:0
         this.stats.earned[player]+=round((amount+bonus)*multi)
-        this.currency.money[player]+=round((amount+bonus)*multi)
+        if(this.cardManagers[player].deck.hasCard(findName('Social\nSecurity Card',types.card))){
+            this.currency.ss[player]+=round((amount+bonus)*multi/2)
+            this.currency.money[player]+=round((amount+bonus)*multi/2)
+        }else{
+            this.currency.money[player]+=round((amount+bonus)*multi)
+        }
     }
     loseCurrency(amount,player){
         if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0){

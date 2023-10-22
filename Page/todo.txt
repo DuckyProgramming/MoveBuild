@@ -6,44 +6,26 @@ subroutine - starts a fight within a fight
 
 fat duck!
 
-L (obster)
-
 Steal ideas from pokmon (old game)
 
-3 new tarots:
-//
-//
-//
+1 jinx card
+countdown jinx (mercy)
+BUILD AN ENTIRE JINX SYNERGY ON EXECTUOR
 
-countdown lament, gemstone staff
+peashooter - spud cannon
 
-ignite - if at 0 energy, inflict burn and draw a card
+slingshot - needs 1 (only attack), reroll (draw more)
 
+the Sakura lore
 
+ice shatter
+flame shatter
 
+enchanted shield uses charge to add more shield
 
+damage, shock yourself
 
-
-unfair wheel of fortune with 1/5
-
-social security card (holds money, play to cash out)
-
-wall street (goes up or down in value randomly)
-
-valentine's card
-
-harvest - markes a card slot as unusable, but does damage
-
-damage per burn, destroy all burns
-
-pressure cooker - retain, countdown, increases in damage over time
-
-build armored turret
-
-harmony - melody
-
-
-
+more half damage turns
 
 
 

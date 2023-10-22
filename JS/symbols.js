@@ -1785,6 +1785,35 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.triangle(0,-3.5,0,-6.5,-1.5,-5)
         break
+        case 197:
+            layer.stroke(255,100,255,fade)
+            layer.strokeWeight(2)
+            layer.arc(0,0,10,10,0,315)
+            layer.ellipse(0,0,4,4)
+            layer.line(2,0,5,0)
+        break
+        case 198:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,6,-5,-3,-1,-3)
+            layer.triangle(3,6,5,-3,1,-3)
+            layer.rect(0,-4,10,1)
+        break
+        case 199:
+            layer.fill(150,150,0,fade)
+            layer.beginShape()
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6)+0.5,cos(a/la*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+            layer.stroke(0,fade)
+            layer.strokeWeight(0.6)
+            layer.noFill()
+            layer.ellipse(0,0,8,8)
+            layer.line(-3,-1,-1,1)
+            layer.line(-3,1,-1,-1)
+            layer.line(3,-1,1,1)
+            layer.line(3,1,1,-1)
+        break
 
     }
     layer.pop()
