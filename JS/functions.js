@@ -1003,7 +1003,7 @@ function outListing(){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/50				${current.cardManagers[0].listing.card[a+1][0].length-50}
 Uncommon:${current.cardManagers[0].listing.card[a+1][1].length}/55				${current.cardManagers[0].listing.card[a+1][1].length-55}
-Rare:${current.cardManagers[0].listing.card[a+1][2].length}/20					${current.cardManagers[0].listing.card[a+1][2].length-25}
+Rare:${current.cardManagers[0].listing.card[a+1][2].length}/20					${current.cardManagers[0].listing.card[a+1][2].length-20}
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/125\n`
 	}
 	print(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}

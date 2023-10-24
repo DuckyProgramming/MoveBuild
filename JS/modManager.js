@@ -1,0 +1,33 @@
+class modManager{
+    constructor(layer,battle){
+        this.layer=layer
+        this.battle=battle
+        this.mods=[]
+        this.listing={mod:[]}
+        this.createListing()
+    }
+    createListing(){
+        for(let a=0,la=types.mod.length;a<la;a++){
+            this.mods.push(false)
+            this.listing.mod.push(a)
+        }
+    }
+    display(){
+        if(variants.mod){
+            this.layer.fill(200,this.fade)
+            this.layer.noStroke()
+            this.layer.ellipse(this.layer.width/2,50,40,40)
+            this.layer.stroke(100,this.fade)
+            this.layer.strokeWeight(2)
+            this.layer.quad(this.layer.width/2+8,36,this.layer.width/2+16,36,this.layer.width/2-8,64,this.layer.width/2-16,64)
+        }
+    }
+    onClick(){
+        if(dist(inputs.rel.x,inputs.rel.y,25,50)<20){
+        }
+    }
+    onKey(key,code){
+        if(key=='m'){
+        }
+    }
+}

@@ -919,11 +919,6 @@ class turn{
                             this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
                             works=false
                         }
-                        if(this.userCombatant.getStatus('Jagged Bleed')>0){
-                            this.userCombatant.status.main[findList('Jagged Bleed',this.userCombatant.status.name)]--
-                            this.userCombatant.goal.anim.direction+=floor(random(-1,2))*60
-                            works=false
-                        }
                         if(works){
                             if(this.userCombatant.construct){
                                 this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
@@ -953,6 +948,10 @@ class turn{
                                     this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
                                 }
                             }
+                        }
+                        if(this.userCombatant.getStatus('Jagged Bleed')>0){
+                            this.userCombatant.status.main[findList('Jagged Bleed',this.userCombatant.status.name)]--
+                            this.userCombatant.goal.anim.direction+=floor(random(-1,2))*60
                         }
                         this.remove=true
                         this.selfRemoved=true
@@ -1256,7 +1255,11 @@ class turn{
                     break
                     case 155:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,findName(this.effect[1],types.combatant),this.userCombatant.goal.anim.direction)
+                            if(this.userCombatant.construct){
+                                this.battle.combatantManager.summonCombatantRandom(this.userCombatant.tilePosition,findName(this.effect[1],types.combatant),this.userCombatant.team,this.userCombatant.goal.anim.direction,this.userCombatant.id)
+                            }else{
+                                this.battle.combatantManager.summonCombatant(this.userCombatant.tilePosition,findName(this.effect[1],types.combatant),this.userCombatant.goal.anim.direction)
+                            }
                         }
                     break
                     case 186:

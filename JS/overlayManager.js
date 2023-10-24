@@ -43,7 +43,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[21])],//bring in discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[22])],//bring in draw card, no return
                     [new overlay(this.layer,this.battle,0,8,[1])],//new card to hand, allcard
-                    [new overlay(this.layer,this.battle,0,2,[23,3])],//view reserve (ordered, only 3)
+                    [new overlay(this.layer,this.battle,0,2,[23,3])],//view draw (ordered, only 3)
                     [new overlay(this.layer,this.battle,0,2,[25])],//bring in draw card, originated, no return
                     [new overlay(this.layer,this.battle,0,9,[0])],//choose card to techify
                     [new overlay(this.layer,this.battle,0,2,[26])],//smoosh together

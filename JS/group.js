@@ -669,8 +669,16 @@ class group{
                     }
                 break
                 case 12:
-                    for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
-                        this.cards[a].effect[b]=round(this.cards[a].effect[b]/2)
+                    if(this.cards[a].spec.includes(12)){
+                        for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
+                            for(let c=0,lc=this.cards[a].effect[b].length;c<lc;c++){
+                                this.cards[a].effect[b][c]=round(this.cards[a].effect[b][c]/2)
+                            }
+                        }
+                    }else{
+                        for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
+                            this.cards[a].effect[b]=round(this.cards[a].effect[b]/2)
+                        }
                     }
                 break
                 case 13:
@@ -761,7 +769,13 @@ class group{
                     }
                 break
                 case 30:
-                    if(!this.cards[a].spec.includes(12)&&this.cards[a].effect.length>0&&this.cards[a].effect[0]>0&&this.cards[a].class!=3){
+                    if(this.cards[a].spec.includes(12)){
+                        for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
+                            if(this.cards[a].effect[b].length>0&&this.cards[a].effect[b][0]>0&&this.cards[a].class[b]!=3){
+                                this.cards[a].effect[b][0]++
+                            }
+                        }
+                    }else if(this.cards[a].effect.length>0&&this.cards[a].effect[0]>0&&this.cards[a].class!=3){
                         this.cards[a].effect[0]++
                     }
                 break
@@ -1395,6 +1409,10 @@ class group{
         this.lastDuplicate=this.cards[index].name
         this.cards.splice(index,0,copyCard(this.cards[index]))
         this.cards[index+1].id=game.id
+        if(this.id==2){
+            this.cards[index+1].position.x=1200
+            this.cards[index+1].position.y=500
+        }
     }
     copySelfInput(index){
         game.id++
@@ -1409,14 +1427,34 @@ class group{
             if(block!=index&&this.cards[block].name==this.cards[index].name&&!this.cards[index].spec.includes(37)){
                 if(this.cards[index].level==this.cards[block].level&&this.cards[index].additionalSpec.length>this.cards[block].additionalSpec.length||this.cards[index].level>this.cards[block].level){
                     for(let b=0,lb=this.cards[index].effect.length;b<lb;b++){
-                        this.cards[index].effect[b]=max(this.cards[index].effect[b],this.cards[index].effect[b]+this.cards[block].effect[b]-1)
+                        if(this.cards[index].spec.includes(12)){
+                            for(let c=0,lc=this.cards[index].effect[b].length;c<lc;c++){
+                                if(!(c==0&&this.cards[index].class[b]==3)){
+                                    this.cards[index].effect[b][c]=max(this.cards[index].effect[b][c],this.cards[index].effect[b][c]+this.cards[block].effect[b][c]-1)
+                                }
+                            }
+                        }else{
+                            if(!(b==0&&this.cards[index].class==3)){
+                                this.cards[index].effect[b]=max(this.cards[index].effect[b],this.cards[index].effect[b]+this.cards[block].effect[b]-1)
+                            }
+                        }
                     }
                     this.cards[index].spec.push(37)
                     this.cards[index].additionalSpec.push(37)
                     this.cards.splice(block,1)
                 }else{
                     for(let b=0,lb=this.cards[block].effect.length;b<lb;b++){
-                        this.cards[block].effect[b]=max(this.cards[block].effect[b],this.cards[block].effect[b]+this.cards[index].effect[b]-1)
+                        if(this.cards[index].spec.includes(12)){
+                            for(let c=0,lc=this.cards[block].effect[b].length;c<lc;c++){
+                                if(!(c==0&&this.cards[index].class[b]==3)){
+                                    this.cards[block].effect[b][c]=max(this.cards[block].effect[b][c],this.cards[block].effect[b][c]+this.cards[index].effect[b][c]-1)
+                                }
+                            }
+                        }else{
+                            if(!(b==0&&this.cards[index].class==3)){
+                                this.cards[block].effect[b]=max(this.cards[block].effect[b],this.cards[block].effect[b]+this.cards[index].effect[b]-1)
+                            }
+                        }
                     }
                     this.cards[block].spec.push(37)
                     this.cards[block].additionalSpec.push(37)
@@ -1776,9 +1814,9 @@ class group{
                     }
                     if(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(38)){
                         if(this.cards[a].spec.includes(15)){
-                            this.cards[a].limit--
+                            this.cards[a].limit=round(this.cards[a].limit-1)
                         }else if(this.cards[a].spec.includes(38)){
-                            this.cards[a].limit[0]--
+                            this.cards[a].limit[0]=round(this.cards[a].limit[0]-1)
                         }
                         for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
                             if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
@@ -1899,9 +1937,9 @@ class group{
                         }
                         if(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)){
                             if(this.cards[b].spec.includes(15)){
-                                this.cards[b].limit--
+                                this.cards[b].limit=round(this.cards[b].limit-1)
                             }else if(this.cards[b].spec.includes(38)){
-                                this.cards[b].limit[0]--
+                                this.cards[b].limit[0]=round(this.cards[b].limit[0]-1)
                             }
                             for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                 if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
@@ -2024,9 +2062,9 @@ class group{
                             }
                             if(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)){
                                 if(this.cards[b].spec.includes(15)){
-                                    this.cards[b].limit--
+                                    this.cards[b].limit=round(this.cards[b].limit-1)
                                 }else if(this.cards[b].spec.includes(38)){
-                                    this.cards[b].limit[0]--
+                                    this.cards[b].limit[0]=round(this.cards[b].limit[0]-1)
                                 }
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){

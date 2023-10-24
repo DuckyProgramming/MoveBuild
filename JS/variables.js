@@ -942,6 +942,13 @@ types={
                 {effect:[2,2],attack:1365,cost:2,target:[0],spec:[],class:4},
                 {effect:[2,2],attack:1365,cost:2,target:[0],spec:[22],class:4},
             ],
+        },{
+            name:'High\nVis Jacket',rarity:0,list:1,
+            levels:[
+                {effect:[2,9],attack:1369,cost:1,target:[0],spec:[],class:2},
+                {effect:[2,13],attack:1369,cost:1,target:[0],spec:[],class:2},
+                {effect:[2,16],attack:1369,cost:1,target:[0],spec:[],class:2},
+            ],
         },
         
         {
@@ -1113,11 +1120,11 @@ types={
                 {effect:[18],attack:26,cost:1,target:[0],spec:[],class:2},
             ],
         },{
-            name:'Assault',rarity:2,list:2,
+            name:'Assault',rarity:1,list:2,
             levels:[
-                {effect:[8,3],attack:27,cost:2,target:[2,1,4],spec:[0],class:1},
-                {effect:[12,5],attack:27,cost:2,target:[2,1,6],spec:[0],class:1},
-                {effect:[16,5],attack:27,cost:2,target:[2,1,6],spec:[0],class:1},
+                {effect:[12,3],attack:27,cost:2,target:[2,1,4],spec:[0],class:1},
+                {effect:[18,5],attack:27,cost:2,target:[2,1,6],spec:[0],class:1},
+                {effect:[22,5],attack:27,cost:2,target:[2,1,6],spec:[0],class:1},
             ],
         },{
             name:'Recall',rarity:1,list:2,
@@ -1363,13 +1370,6 @@ types={
                 {effect:[],attack:367,cost:1,target:[0],spec:[],class:4},
                 {effect:[],attack:367,cost:0,target:[0],spec:[],class:4},
                 {effect:[1],attack:656,cost:0,target:[0],spec:[],class:4},
-            ],
-        },{
-            name:'Keep\nDistance',rarity:1,list:2,
-            levels:[
-                {effect:[2],attack:368,cost:0,target:[2,3,4],spec:[],class:3},
-                {effect:[4],attack:368,cost:0,target:[2,3,6],spec:[2],class:3},
-                {effect:[4,1],attack:657,cost:0,target:[30,1,1,3,6],spec:[0],class:3},
             ],
         },{
             name:'Recoup',rarity:1,list:2,
@@ -1699,6 +1699,13 @@ types={
                 {effect:[4],attack:1347,cost:0,target:[0],spec:[1],class:4},
                 {effect:[5],attack:1347,cost:0,target:[0],spec:[1],class:4},
                 {effect:[6],attack:1347,cost:0,target:[0],spec:[1,2],class:4},
+            ],
+        },{
+            name:'Assault\nand Run',rarity:2,list:2,
+            levels:[
+                {effect:[15,3],attack:1372,cost:2,target:[2,1,4],spec:[0],class:1},
+                {effect:[22,5],attack:1372,cost:2,target:[2,1,6],spec:[0],class:1},
+                {effect:[28,5],attack:1372,cost:2,target:[2,1,6],spec:[0],class:1},
             ],
         },
 
@@ -2475,9 +2482,9 @@ types={
         },{
             name:'Gemstone\nStaff',rarity:1,list:3,
             levels:[
-                {effect:[10,3],attack:1348,cost:3,target:[2,1,2],spec:[0],class:1},
-                {effect:[14,5],attack:1348,cost:3,target:[2,1,2],spec:[0],class:1},
-                {effect:[16,6],attack:1348,cost:3,target:[2,1,2],spec:[0],class:1},
+                {effect:[10,3],attack:1348,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
+                {effect:[14,5],attack:1348,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
+                {effect:[16,6],attack:1348,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
             ],
         },
 
@@ -3254,9 +3261,9 @@ types={
         },{
             name:'Shooting\nStar',rarity:1,list:4,
             levels:[
-                {effect:[10],attack:1313,cost:1,target:[2,1,3],spec:[0],class:1},
-                {effect:[16],attack:1313,cost:1,target:[2,1,3],spec:[0],class:1},
-                {effect:[20],attack:1313,cost:1,target:[2,1,3],spec:[0],class:1},
+                {effect:[12],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[18],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
+                {effect:[22],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
             ],
         },{
             name:'Lunasa',rarity:2,list:4,
@@ -3998,16 +4005,16 @@ types={
         },{
             name:'Slapsies',rarity:1,list:5,
             levels:[
-                {effect:[9],attack:1334,cost:-1,target:[2,1,1],spec:[],class:1},
-                {effect:[13],attack:1334,cost:-1,target:[2,1,1],spec:[],class:1},
+                {effect:[11],attack:1334,cost:-1,target:[2,1,1],spec:[],class:1},
                 {effect:[16],attack:1334,cost:-1,target:[2,1,1],spec:[],class:1},
+                {effect:[20],attack:1334,cost:-1,target:[2,1,1],spec:[],class:1},
             ],
         },{
             name:'Jinx',rarity:0,list:5,
             levels:[
-                {effect:[11],attack:1335,cost:1,target:[2,1,1],spec:[],class:1},
-                {effect:[16],attack:1335,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[14],attack:1335,cost:1,target:[2,1,1],spec:[],class:1},
                 {effect:[20],attack:1335,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[25],attack:1335,cost:1,target:[2,1,1],spec:[],class:1},
             ],
         },{
             name:'Lojinx',rarity:1,list:5,
@@ -4770,9 +4777,9 @@ types={
         },{
             name:'Hammer',rarity:0,list:6,
             levels:[
-                {effect:[8],attack:1314,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12],attack:1314,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15],attack:1314,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[8,1],attack:1314,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12,1],attack:1314,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15,1],attack:1314,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Buzzer',rarity:0,list:6,
@@ -5566,13 +5573,6 @@ types={
                 {effect:[],attack:1272,cost:3,target:[0],spec:[],class:4},
                 {effect:[],attack:1272,cost:2,target:[0],spec:[],class:4},
                 {effect:[],attack:1272,cost:2,target:[0],spec:[22],class:4},
-            ],
-        },{
-            name:'Blue\nOcean',rarity:0,list:7,
-            levels:[
-                {effect:[8,3,3],attack:1298,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[12,3,4],attack:1298,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[15,3,5],attack:1298,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
             name:'Oblivion',rarity:1,list:7,
@@ -6416,6 +6416,13 @@ types={
                 {effect:[2,1],attack:1370,cost:0,target:[0],spec:[],class:4},
                 {effect:[3,1],attack:1370,cost:0,target:[0],spec:[],class:4},
             ],
+        },{
+            name:'Blue\nOcean',rarity:0,list:8,
+            levels:[
+                {effect:[8,3,3],attack:1298,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[12,3,4],attack:1298,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[15,3,5],attack:1298,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
         },
 
         {
@@ -6533,9 +6540,9 @@ types={
         },{
             name:'Sawblade',rarity:1,list:9,
             levels:[
-                {effect:[1,2],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[1,3],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[2,3],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[2,1],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3,2],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[3,2],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
             name:'Spiky\nCut',rarity:0,list:9,
@@ -7150,8 +7157,8 @@ types={
             name:'Frontline',rarity:1,list:9,
             levels:[
                 {effect:[2,1,1],attack:1301,cost:0,target:[0],spec:[],class:2},
-                {effect:[2,1,2],attack:1301,cost:0,target:[0],spec:[],class:2},
-                {effect:[2,1,3],attack:1301,cost:0,target:[0],spec:[],class:2},
+                {effect:[4,1,1],attack:1301,cost:0,target:[0],spec:[],class:2},
+                {effect:[6,1,1],attack:1301,cost:0,target:[0],spec:[],class:2},
             ],
         },{
             name:'Midnight\nCharm',rarity:1,list:9,
@@ -7919,7 +7926,7 @@ types={
                 {effect:[[12,4],[40,2]],attack:[1189,1190],cost:1,target:[10,1,1],spec:[12],reality:[[0],[1]],class:[1,2]},
             ],
         },{
-            name:'Bronze',rarity:1,list:10,
+            name:'Tin',rarity:1,list:10,
             levels:[
                 {effect:[2,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
                 {effect:[4,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
@@ -9975,13 +9982,6 @@ types={
                 {effect:[9999],attack:1235,cost:0,target:[0],spec:[],class:1},
             ],
         },{
-            name:'Instability',rarity:-5,list:-1,
-            levels:[
-                {effect:[],attack:450,cost:0,target:[0],spec:[1],class:4},
-                {effect:[],attack:450,cost:0,target:[0],spec:[1,2],class:4},
-                {effect:[],attack:450,cost:0,target:[0],spec:[1,2,22],class:4},
-            ],
-        },{
             name:'The\nDonald',rarity:-5,list:-1,
             levels:[
                 {effect:[],attack:1203,cost:0,target:[0],spec:[],class:4},
@@ -10010,6 +10010,22 @@ types={
                 {effect:[17],attack:1210,cost:1,target:[2,1,6],spec:[0,6],class:1},
             ],
         },{
+            name:'Spin\nto Win',rarity:-1,list:-1,
+            levels:[
+                {effect:[1],attack:1277,cost:1,target:[0],spec:[0],class:1},
+                {effect:[1.5],attack:1277,cost:1,target:[0],spec:[0],class:1},
+                {effect:[2],attack:1277,cost:1,target:[0],spec:[0],class:1},
+            ],
+        },{
+            name:'Nuclear\nBomb',rarity:-1,list:-1,
+            levels:[
+                {effect:[],attack:1278,cost:4,target:[0],spec:[],class:1},
+                {effect:[],attack:1278,cost:3,target:[0],spec:[],class:1},
+                {effect:[],attack:1278,cost:2,target:[0],spec:[],class:1},
+            ],
+        },
+
+        {
             name:'Old After\nImage',rarity:-5,list:-1,
             levels:[
                 {effect:[2],attack:254,cost:1,target:[0],spec:[1,32],class:4},
@@ -10023,19 +10039,21 @@ types={
                 {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:4},
                 {effect:[],attack:1236,cost:1,target:[0],spec:[32],class:4},
             ],
-        },{
-            name:'Spin\nto Win',rarity:-1,list:-1,
+        },
+
+        {
+            name:'Instability',rarity:-5,list:-1,
             levels:[
-                {effect:[1],attack:1277,cost:1,target:[0],spec:[0],class:1},
-                {effect:[1.5],attack:1277,cost:1,target:[0],spec:[0],class:1},
-                {effect:[2],attack:1277,cost:1,target:[0],spec:[0],class:1},
+                {effect:[],attack:450,cost:0,target:[0],spec:[1],class:4},
+                {effect:[],attack:450,cost:0,target:[0],spec:[1,2],class:4},
+                {effect:[],attack:450,cost:0,target:[0],spec:[1,2,22],class:4},
             ],
         },{
-            name:'Nuclear\nBomb',rarity:-1,list:-1,
+            name:'Keep\nDistance',rarity:-5,list:-1,
             levels:[
-                {effect:[],attack:1278,cost:3,target:[0],spec:[],class:1},
-                {effect:[],attack:1278,cost:3,target:[0],spec:[],class:1},
-                {effect:[],attack:1278,cost:3,target:[0],spec:[],class:1},
+                {effect:[2],attack:368,cost:0,target:[2,3,4],spec:[],class:3},
+                {effect:[4],attack:368,cost:0,target:[2,3,6],spec:[2],class:3},
+                {effect:[4,1],attack:657,cost:0,target:[30,1,1,3,6],spec:[0],class:3},
             ],
         },
     ],combatant:[
@@ -10113,7 +10131,7 @@ types={
         {name:'Management Custodian',life:90,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:92,effect:[2]},{type:93,effect:[1]},{type:94,effect:[1]}],description:`Cleans you up`},
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
-        {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[9]}],description:`Helping the prisoners for some reason`},
+        {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[7]}],description:`Helping the prisoners for some reason`},
         {name:'Lightspeed',life:85,behavior:1,spec:[1],move:{type:0,speed:3},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[12]}],description:`He be fast`},
         {name:'Swordmaster',life:90,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:102,effect:[12]},{type:79,effect:[10]},{type:103,effect:[4,2]},{type:21,effect:[]}],description:`Mastered something`},
         {name:'Gas Man',life:84,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
@@ -15437,6 +15455,157 @@ Is removed when damage taken, but doubles the damage.`,
         {name:'Elite Buffs',desc:'Elites Get Random Buffs'},
         {name:'Boss Buffs',desc:'Bosses Get Random Buffs'},
         {name:'Ultimate',desc:'The Final Boss is Far Worse'},//30
+    ],mod:[
+        {name:'Duck',desc:'Get Dazed Every 3 Turns'},//0
+        {name:'Bouncer',desc:''},
+        {name:'Thug',desc:''},
+        {name:'Biker',desc:'Driving Enemies Deal Triple Damage'},
+        {name:'Drunk',desc:'A Random Card Costs +1 Each Turn'},
+        {name:'Drunk Boss',desc:''},
+        {name:'Monkey',desc:'Enemies Have a Change to Attack Twice'},
+        {name:'Trenchcoat',desc:''},
+        {name:'Trenchcoat Gunner',desc:''},
+        {name:'Goon',desc:'Taking More Than 10 Damage Gives You a Concussion'},
+        {name:'Slaver',desc:''},//10
+        {name:'Fungal Duck',desc:''},
+        {name:'Orb Walker',desc:'Enemies Can No Longer Damage Each Other'},
+        {name:'Pointy',desc:''},
+        {name:'Romeo',desc:'Enemies That Do Nothing Buff Themselves Instead'},
+        {name:'Billy Beatup',desc:''},
+        {name:'Monkey Gangster',desc:''},
+        {name:'Slime',desc:'When an Enemy Dies, Slime a Card'},
+        {name:'Cartel',desc:''},
+        {name:'Gangster',desc:'Enemy Counters are Doubled'},
+        {name:'Ninja',desc:''},//20
+        {name:'Red',desc:'In Normal Battles, All Enemies Have the Same Health'},
+        {name:'Big Duck',desc:''},
+        {name:'Batter',desc:'All Enemies Gain 1 Strength Every 3 Turns'},
+        {name:'Slippery Gangster',desc:' All Enemies Start With 1 Dodge'},
+        {name:'Gangster Gunner',desc:'Enemy Guns Shoot Twice'},
+        {name:'Spheron',desc:'Enemies Never Lose Block'},
+        {name:'Enforcer',desc:''},
+        {name:'Rock Golem',desc:''},
+        {name:'Big Slime',desc:'All Elites Split on Death'},
+        {name:'Spike Slime',desc:''},//30
+        {name:'Big Spike Slime',desc:'Spawner Enemies Also Split on Death'},
+        {name:'Moss Creature',desc:'All Enemies Get 2 Block Per Turn'},
+        {name:'Goblin',desc:'Enemies Get 1 Strength For Every Other Enemy at the Start of Combat'},
+        {name:'Agent Duck',desc:'All Enemies Gain Combo and Can Combo Finish'},
+        {name:'Nerfer',desc:`When You Get Nerfed, It's Doubled`},
+        {name:'Buffer',desc:`When Enemies Get Buffed, It's Doubled`},
+        {name:'Scrapper',desc:''},
+        {name:'Fat Scrapper',desc:''},
+        {name:'Looter',desc:'Lose 5 Currency Every Room'},
+        {name:'Mugger',desc:'Lose 5 Currency When Damage Taken'},//40
+        {name:'Little Guy',desc:'The Weakest Enemy Each Room Gets 5 Strength'},
+        {name:'Blue Duck',desc:'Random Enemies Can Move When You Move'},
+        {name:'Management Prototype',desc:''},
+        {name:'Management Robot',desc:''},
+        {name:'Management Soldier',desc:''},
+        {name:'Management Officer',desc:''},
+        {name:'Manageemnt Special Forces',desc:''},
+        {name:'Sneaky Gremlin',desc:''},
+        {name:'Fat Gremlin',desc:''},
+        {name:'Angry Gremlin',desc:''},//50
+        {name:'Deployer',desc:'Start Every Battle With a Sentry on the Field'},
+        {name:'Chief Deployer',desc:'Enemies That Spawn Spawn More'},
+        {name:'Sentry',desc:'All Enemies Turn to Face You'},
+        {name:'Solar Shard',desc:''},
+        {name:'Lunar Shard',desc:''},
+        {name:'Lunar Dust',desc:''},
+        {name:'Management Sniper',desc:''},
+        {name:'Management Caller',desc:''},
+        {name:'Management Custodian',desc:'Lose 1 Energy Every 3 Turns'},
+        {name:'Walker Driver',desc:''},//60
+        {name:'Prisoner',desc:''},
+        {name:'Prison Guard',desc:''},
+        {name:'Lightspeed',desc:'Enemies Have a Chance to Move First'},
+        {name:'Swordmaster',desc:'Your Ranged Attacks Are Lowered to Range 1'},
+        {name:'Gas Man',desc:''},
+        {name:'Gremlin',desc:''},
+        {name:'Flying Rock',desc:''},
+        {name:'Repulsor',desc:'Take 3x More Damage From Push Collision'},
+        {name:'Champion',desc:'Normal Enemies Appear as Elites, But Are Buffed'},
+        {name:'Management Autoduck',desc:''},//70
+        {name:'Modicum',desc:'Enemies that Split Will Split More'},
+        {name:'Slimoid',desc:''},
+        {name:'Big Slimoid',desc:''},
+        {name:'Bush Thing',desc:''},
+        {name:'Fireball',desc:'Every Turn, a Card is Burning'},
+        {name:'Dead Shell',desc:''},
+        {name:'Management Drone',desc:''},
+        {name:'Executive',desc:'All Elites and Bosses Get a Bodyguard'},
+        {name:'Mechanized',desc:''},
+        {name:'Ninja Master',desc:''},//80
+        {name:'Bomber Boy',desc:''},
+        {name:'Intern',desc:''},
+        {name:'Assistant Hiring Officer',desc:''},
+        {name:'Corrupt Detective',desc:''},
+        {name:'Elf Archer',desc:''},
+        {name:'Riot Police',desc:''},
+        {name:'Reichswehr',desc:''},
+        {name:'Louse',desc:'All Enemies Get 10 Block the First Time They Take Damage'},
+        {name:'Fungling',desc:'Gain 1 Poison Whenever You Move'},
+        {name:'Hwurmp',desc:''},//90
+        {name:'Bee',desc:''},
+        {name:'Beekeeper',desc:'All Enemies Spawn a Bee on Death'},
+        {name:'Pixie',desc:''},
+        {name:'PhD',desc:'You Cannot Play More Than 6 Cards Per Turn'},
+        {name:'Glimerrer',desc:''},
+        {name:'Host Drone',desc:'Minions Move When You Move'},
+        {name:'Host',desc:''},
+        {name:'Antihwurmp',desc:''},
+        {name:'Junkie',desc:'All Enemies Start Each Battle With a Random Buff'},
+        {name:'Prestige',desc:'All Enemies Revive After Death With 1 HP'},//100
+        {name:'Darkblot',desc:''},
+        {name:'Divine Guard',desc:''},
+        {name:'Avant Guard',desc:''},
+        {name:'Rusty',desc:'Cannot See Exact Enemy Health'},
+        {name:'Thornvine',desc:'All Enemies Counter 1 All'},
+        {name:'Duckforce',desc:'All Ducks Get Double HP'},
+        {name:'Shield Particle',desc:''},
+        {name:'Flame',desc:''},
+        {name:'Hexaghost Orb',desc:''},
+        {name:'Bodyguard',desc:'Whenever You Damage a Boss, Minions Move'},//110
+        {name:'Bronze Orb C',desc:''},
+        {name:'Bronze Orb A',desc:''},
+        {name:'Dark Priest',desc:''},
+        {name:'Soul',desc:'Support Allies Spawn Souls on Death'},
+        {name:'Glitch',desc:'All Walking Enemies Can Swap With You'},
+        {name:'Glitched Giant',desc:''},
+        {name:'Nil',desc:'Cards Have a 10% Change to Have 0 Effect'},
+        {name:'Buried',desc:'If an Enemy Takes No Damage on a Turn, It Heals 10 HP'},
+        {name:'Vengeful',desc:''},
+        {name:'Coffee Commander',desc:''},//120
+        {name:'Tech Support',desc:''},
+        {name:'Inconsistent',desc:'Your Turn Has a 1% Chance to be Skipped'},
+        {name:'General Duckion',desc:'All Bosses Spawn Landmines and Are Immune to Hazards'},
+        {name:'Slime Boss',desc:''},
+        {name:'Slow King',desc:''},
+        {name:'Donu',desc:'All Bosses Are Duplicated'},
+        {name:'Deca',desc:'All Elites Are Duplicated'},
+        {name:'Hexaghost Core',desc:'Bosses Cannot Be Damaged While a Minion is Alive'},
+        {name:'Wiz',desc:''},
+        {name:'Roger Reviv',desc:''},//130
+        {name:'Sharpshot',desc:''},
+        {name:'Bronze Automaton',desc:''},
+        {name:'Comrade',desc:'Enemies Heal When They Block'},
+        {name:'Councilman',desc:''},
+        {name:'Gangmaster',desc:''},
+        {name:'Capitalist',desc:''},
+        {name:'Personnel Carrier',desc:''},
+        {name:'Chief Engineering Officer',desc:''},
+        {name:'Shadow Trooper',desc:'All Enemies are Invisible First Turn'},
+        {name:'Purge X02',desc:''},//140
+        {name:'Lunaria',desc:'Elites Spawn Souls Upon Death'},
+        {name:'Rewriter',desc:'Every Fight Spawns Glitched Tiles'},
+        {name:'Managerial',desc:'Immediately Fight 10 Management Robots'},
+        {name:'Luck',desc:'Add Cornucopia and Divine Sword to Deck'},
+        {name:'Developer',desc:''},
+        {name:'Lobster',desc:'Have 1 Max HP'},
+        {name:'',desc:''},
+        {name:'',desc:''},
+        {name:'',desc:''},
     ],deckmode:[
         {name:'Standard Deck'},
         {name:'Draft Deck'},
@@ -15456,6 +15625,7 @@ game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animR
 variants={
     lowDraw:false,deckbuild:false,
     altDraw:false,blackjack:false,
+    mod:true,
     witch:false,inventor:false,
     chooselose:false,compress:false,
     lowhealth:false,midhealth:false,
