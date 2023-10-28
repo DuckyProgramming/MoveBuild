@@ -1,33 +1,77 @@
 Bugs:
 
-action!
-
-ungerade
-
 1 jinx card
 countdown jinx (mercy)
 BUILD AN ENTIRE JINX SYNERGY ON EXECUTOR
 
-moving using option assault doesn't work?
+campfire/air conditioner
 
-joseph j joker
+FIRE ICE REORGANIZATION
 
-replace landmine with remote detonator
+angel investor
 
-nuke alternate evoke
+kmt membership card
 
-nuke lies
+angel ring - when in deck, heal 1 every turns
 
+hat - while in deck, start every fight with 2 armor
 
+starpick - split, and random status on 6
 
+KMT membership card
 
+scissors but it heals you (soul crush)
 
+get a miracle next battle (trust fund)
 
+do damage, and half that next turn (throwing axe)
 
+discard a random attack and draw an attack
+deal damage equal to the difference between their effects
 
+shifting sword - deal damage, its effect changes every turn, retain
 
+stock up - get two copies of your worst card
 
+determination
 
+blood transfer - deal damage, heal under conditions, apply bleed
+
+asklepios - damage, heal, all as countdown
+
+cream - total cost of hand = 4, draw 1 card and dupe 2 cards
+
+copper cauldron (returns bad results)
+
+umbrella - ignite but armor
+
+insult to injury - enemies that take damage also get miss
+
+garbage collection - costs lower on other card played, but so does damage
+
+trishula - 1 cost, 13 damage, wastes all remaining energy
+
+graphics card - regenerates any spent energy, 4 countdown
+
+rain dance - heal, inflict wet on everybody
+
+crown and anchor - block, weaken and counter
+
+blutsauger - countdown life drain
+
+helium - gain 2 energy, cards float upward
+
+primal - X cost, but prime energy only
+
+prestidigitate - burning light but draws cards instead
+
+rosebud - deal damage, only takes odd, on high energy counter all
+
+reject - exhaust a card, get energy equal to its cost
+
+rodela - free, roll 2 dice, damage equal to higher, block equal to lower
+
+triangulate - draw cards equal to cost 3
 
 
 

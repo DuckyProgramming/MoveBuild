@@ -4677,7 +4677,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
         case 76:
             layer.stroke(120,fade)
             layer.strokeWeight(1.5)
-            layer.rect(0,0,24,16,2)
+            layer.rect(0,0,18,16,2)
             layer.stroke(80,fade)
             layer.rect(0,0,12,16,2)
         break

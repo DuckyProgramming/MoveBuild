@@ -672,12 +672,16 @@ class group{
                     if(this.cards[a].spec.includes(12)){
                         for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
                             for(let c=0,lc=this.cards[a].effect[b].length;c<lc;c++){
-                                this.cards[a].effect[b][c]=round(this.cards[a].effect[b][c]/2)
+                                if(this.cards[a].class[b]!=3||c!=0){
+                                    this.cards[a].effect[b][c]=round(this.cards[a].effect[b][c]/2)
+                                }
                             }
                         }
                     }else{
                         for(let b=0,lb=this.cards[a].effect.length;b<lb;b++){
-                            this.cards[a].effect[b]=round(this.cards[a].effect[b]/2)
+                            if(this.cards[a].class!=3||b!=0){
+                                this.cards[a].effect[b]=round(this.cards[a].effect[b]/2)
+                            }
                         }
                     }
                 break
@@ -937,7 +941,7 @@ class group{
         if(this.cards.length>0){
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(this.cards[a].usable&&!this.cards[a].spec.includes(12)
+                if(this.cards[a].usable
                 &&!(effect==0&&this.cards[a].deSize)
                 &&!((effect==1||effect==5)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)))
                 &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)))
@@ -946,7 +950,7 @@ class group{
                 &&!(effect==8&&this.cards[a].spec.includes(8))
                 &&!(effect==10&&this.cards[a].spec.includes(9))
                 &&!(effect==11&&this.cards[a].spec.includes(10))
-                &&!((effect==15||effect==20)&&this.cards[a].effect.length==0)
+                &&!((effect==15||effect==20)&&(this.cards[a].effect.length==0||this.cards[a].class==3&&this.cards[a].effect==1))
                 &&!(effect==17&&(this.cards[a].attack==1115||this.cards[a].deSize))
                 &&!(effect==18&&this.cards[a].class==3)
                 &&!(effect==19&&this.cards[a].spec.includes(1))
@@ -1013,30 +1017,60 @@ class group{
                         }
                     break
                     case 15:
-                        for(let a=0,la=this.cards[index].effect.length;a<la;a++){
-                            this.cards[index].effect[a]=min(this.cards[index].effect[a],1)
+                        if(this.cards[index].spec.includes(12)){
+                            for(let a=0,la=this.cards[index].effect.length;a<la;a++){
+                                for(let b=0,lb=this.cards[index].effect[a].length;b<lb;b++){
+                                    if(!b==0&&this.cards[index].class[a]==3){
+                                        this.cards[index].effect[a][b]=min(this.cards[index].effect[a][b],1)
+                                    }
+                                }
+                            }
+                        }else{
+                            for(let a=0,la=this.cards[index].effect.length;a<la;a++){
+                                if(!a==0&&this.cards[index].class==3){
+                                    this.cards[index].effect[a]=min(this.cards[index].effect[a],1)
+                                }
+                            }
                         }
                     break
                     case 16:
                         this.send(args[0],index,index+1,1)
                     break
                     case 18:
-                        for(let a=0,la=this.cards[index].effect.length;a<la;a++){
-                            this.cards[index].effect[a]*=2
+                        if(this.cards[index].spec.includes(12)){
+                            for(let a=0,la=this.cards[index].effect.length;a<la;a++){
+                                for(let b=0,lb=this.cards[index].effect[a].length;b<lb;b++){
+                                    this.cards[index].effect[a][b]=min(this.cards[index].effect[a][b],1)
+                                }
+                            }
+                        }else{
+                            for(let a=0,la=this.cards[index].effect.length;a<la;a++){
+                                this.cards[index].effect[a]*=2
+                            }
                         }
                         this.cards[index].spec.push(15)
                         this.cards[index].additionalSpec.push(15)
                         this.cards[index].limit=args[0]
                     break
                     case 19:
-                        if(!this.cards[a].spec.includes(1)&&this.cards[a].attack!=-25){
-                            this.cards[a].spec.push(1)
+                        if(!this.cards[index].spec.includes(1)&&this.cards[index].attack!=-25){
+                            this.cards[index].spec.push(1)
                         }
                     break
                     case 20:
-                        for(let a=0,la=this.cards[index].effect.length;a<la;a++){
-                            if(this.cards[index].effect[a]>0){
-                                this.cards[index].effect[a]++
+                        if(this.cards[index].spec.includes(12)){
+                            for(let a=0,la=this.cards[index].effect.length;a<la;a++){
+                                for(let b=0,lb=this.cards[index].effect[a].length;b<lb;b++){
+                                    if(this.cards[index].effect[a][b]>0&&!(b==0&&this.cards[index].class[a]==3)){
+                                        this.cards[index].effect[a][b]++
+                                    }
+                                }
+                            }
+                        }else{
+                            for(let a=0,la=this.cards[index].effect.length;a<la;a++){
+                                if(this.cards[index].effect[a]>0&&!(a==0&&this.cards[index].class==3)){
+                                    this.cards[index].effect[a]++
+                                }
                             }
                         }
                     break
@@ -2007,11 +2041,13 @@ class group{
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
                         if(this.spec.includes(12)){
-                            let characteristic=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0
-                            this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
-                            this.battle.attackManager.effect=this.battle.attackManager.effect[characteristic]
-                            this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
-                            this.cards[b].characteristic=characteristic
+                            if(this.cards[b].target[0]==11){
+                                let characteristic=1
+                                this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
+                                this.battle.attackManager.effect=this.battle.attackManager.effect[characteristic]
+                                this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
+                                this.cards[b].characteristic=characteristic
+                            }
                         }
                         this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
                         this.cardInUse=this.cards[b]

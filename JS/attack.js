@@ -3505,13 +3505,13 @@ class attack{
                     case 168:
                         this.userManager.hand.add(findName('Flamethrower',types.card),0,this.color)
                         this.userManager.hand.add(findName('Impact\nGrenade',types.card),0,this.color)
-                        this.userManager.hand.add(findName('Landmine',types.card),0,this.color)
+                        this.userManager.hand.add(findName('CC4',types.card),0,this.color)
                     break
                     case 169:
                         this.number=floor(random(0,3))
                         this.userManager.hand.add(findName('Flamethrower',types.card),this.number==0?1:0,this.color)
                         this.userManager.hand.add(findName('Impact\nGrenade',types.card),this.number==1?1:0,this.color)
-                        this.userManager.hand.add(findName('Landmine',types.card),this.number==2?1:0,this.color)
+                        this.userManager.hand.add(findName('CC4',types.card),this.number==2?1:0,this.color)
                     break
                     case 170:
                         this.userManager.hand.add(findName('Submachine',types.card),0,this.color)
@@ -3591,7 +3591,7 @@ class attack{
                         this.number=floor(random(0,3))
                         this.userManager.hand.add(findName('Flamethrower',types.card),this.number==0?0:1,this.color)
                         this.userManager.hand.add(findName('Impact\nGrenade',types.card),this.number==1?0:1,this.color)
-                        this.userManager.hand.add(findName('Landmine',types.card),this.number==2?0:1,this.color)
+                        this.userManager.hand.add(findName('CC4',types.card),this.number==2?0:1,this.color)
                     break
                     case 643:
                         this.number=floor(random(0,3))
@@ -5810,7 +5810,7 @@ class attack{
             case 643: case 659: case 924: case 952: case 953: case 954: case 960: case 961: case 962: case 984:
             case 985: case 1021: case 1041: case 1043: case 1101: case 1102: case 1112: case 1186: case 1203: case 1204:
             case 1205: case 1230: case 1235: case 1236: case 1287: case 1322: case 1325: case 1331: case 1370:
-                if(this.type==1322&&this.energy%2==1){
+                if(this.type==1322&&this.energy%2==0){
                     this.remove=true
                 }else if(variants.nobasicanim){
                     this.selfCall(5)
