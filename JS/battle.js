@@ -467,6 +467,10 @@ class battle{
                     if(this.nodeManager.world==3&&this.encounter.class==2){
                         this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                     }
+                    if(this.cardManagers[this.turn.main].miracleSwitch){
+                        this.cardManagers[this.turn.main].miracleSwitch=false
+                        this.cardManagers[this.turn.main].hand.add(findName('Miracle',types.card),0,0)
+                    }
                     if(variants.witch){
                         this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
                     }
@@ -520,6 +524,10 @@ class battle{
                 }
                 if(this.nodeManager.world==3&&this.encounter.class==2){
                     this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
+                }
+                if(this.cardManagers[this.turn.main].miracleSwitch){
+                    this.cardManagers[this.turn.main].miracleSwitch=false
+                    this.cardManagers[this.turn.main].hand.add(findName('Miracle',types.card),0,0)
                 }
                 if(variants.witch){
                     this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)

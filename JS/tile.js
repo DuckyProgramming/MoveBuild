@@ -202,6 +202,15 @@ class tile{
                         this.anim.upPart[a]=false
                     }
                 break
+                case 27:
+                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
+                    if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
+                        this.battle.combatantManager.combatants[this.combatant].takeDamage(10,-1,0)
+                        this.battle.combatantManager.damageAreaReverse(10,-1,0,this.tilePosition)
+                        this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
+                        this.anim.upPart[a]=false
+                    }
+                break
             }
         }
     }
@@ -546,6 +555,14 @@ class tile{
                     this.layer.line(0,12,0,6)
                     this.layer.line(0,12,-6,6)
                     this.layer.line(0,12,6,6)
+                break
+                case 27:
+                    this.layer.fill(60,this.fade*this.anim.part[a])
+                    this.layer.rect(0,-2,24,4)
+                    this.layer.ellipse(0,-4,24,8)
+                    this.layer.ellipse(0,0,24,8)
+                    this.layer.fill(150,50,50,this.fade*this.anim.part[a])
+                    regPoly(this.layer,0,-4,6,6,2,0)
                 break
             }
         }

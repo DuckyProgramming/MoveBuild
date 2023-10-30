@@ -459,8 +459,8 @@ The explosive orb deals 20 splash damage.`,
 The dark orb's damage increases every turn, starting at 6 and increasing by 6.
 The lightning orb deals 8 damage, and also deals 4 passive damage per turn.`,
 `The light orb draws 4 cards.
-The fire orb deals 30 damage, but every turn adds a burn to your deck.
-The ice orb applies 1 freeze (effectively a stun).`,
+The fire orb applies 3 burn (burned attacks damage the user).
+The ice orb applies 3 freeze (weakens strong enemies).`,
 `The buff orb applies 3 strength.
 The nerf orb applies 3 weak.
 The poison orb applies 4 poison.`,

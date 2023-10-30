@@ -145,10 +145,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0}
     }
     addInitial(type,level,color){
         game.id++
@@ -384,6 +384,15 @@ class group{
     exhaustSlot(amount){
         this.status.exhaustSlot+=amount
     }
+    retain(amount){
+        this.status.retain+=amount
+    }
+    exhaustDamage(amount){
+        this.status.exhaustDamage+=amount
+    }
+    exhaustEnergy(amount){
+        this.status.exhaustEnergy+=amount
+    }
     shuffle(){
         let cards=[]
         while(this.cards.length>0){
@@ -488,6 +497,13 @@ class group{
             }
         }
         return done
+    }
+    totalCost(){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            total+=this.cards[a].cost
+        }
+        return total
     }
     fatigueNumber(){
         let total=0
@@ -872,6 +888,13 @@ class group{
                 case 48:
                     this.cards[a].callStartEffect(this.battle.encounter.class)
                 break
+                case 49:
+                    if(this.cards[a].spec.includes(35)&&this.cards[a].usable){
+                        this.cards[a].cost=round(this.cards[a].cost/2)
+                        this.cards[a].onIncrementCountdown()
+                    }
+                break
+
             }
         }
         if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
@@ -882,6 +905,10 @@ class group{
         }
     }
     allEffectArgs(effect,args){
+        let total=0
+        if(effect==9){
+            total=args[1]
+        }
         for(let a=0,la=this.cards.length;a<la;a++){
             switch(effect){
                 case 0:
@@ -934,7 +961,20 @@ class group{
                         this.cards[a].onIncrementCountdown()
                     }
                 break
+                case 9:
+                    if(this.cards[a].class==args[0]){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        total--
+                        if(total<=0){
+                            a=la
+                        }
+                    }
+                break
             }
+        }
+        if(effect==9){
+            return args[1]-total
         }
     }
     randomEffect(effect,args){
@@ -1232,25 +1272,7 @@ class group{
             }
         }
     }
-    sendRarity(list,rarity,amount,parent){
-        let total=0
-        for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].rarity==rarity){
-                list.push(copyCard(this.cards[a]))
-                list[list.length-1].size=0
-                list[list.length-1].position.x=1200
-                list[list.length-1].position.y=500
-                if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
-                delete this.cards[a]
-                this.cards.splice(a,1)
-                a--
-                la--
-                total++
-                if(total>amount){
-                    a=la
-                }
-            }
-        }
+    parseDrawEffects(parent){
         if(this.drawEffects.length>0){
             for(let a=0,la=this.drawEffects.length;a<la;a++){
                 switch(this.drawEffects[a][0]){
@@ -1275,6 +1297,78 @@ class group{
             }
             this.drawEffects=[]
         }
+    }
+    sendRarity(list,rarity,amount,parent){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].rarity==rarity){
+                list.push(copyCard(this.cards[a]))
+                list[list.length-1].size=0
+                list[list.length-1].position.x=1200
+                list[list.length-1].position.y=500
+                if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
+                total++
+                if(total>amount){
+                    a=la
+                }
+            }
+        }
+        this.parseDrawEffects(parent)
+        return total
+    }
+    sendClass(list,cardClass,amount,parent){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].class==cardClass){
+                list.push(copyCard(this.cards[a]))
+                list[list.length-1].size=0
+                list[list.length-1].position.x=1200
+                list[list.length-1].position.y=500
+                if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
+                total++
+                if(total>amount){
+                    a=la
+                }
+            }
+        }
+        this.parseDrawEffects(parent)
+        return total
+    }
+    sendPriority(list,type,amount,parent){
+        let total=0
+        switch(type){
+            case 0: case 1:
+                this.sortCost()
+            break
+        }
+        if(this.sorted.length>0){
+            for(let a=0,la=this.cards.length;a<la;a++){
+                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1){
+                    list.push(copyCard(this.cards[a]))
+                    list[list.length-1].size=0
+                    list[list.length-1].position.x=1200
+                    list[list.length-1].position.y=500
+                    if(this.drawEffect(list[list.length-1].attack,list[list.length-1].effect)){la=0}
+                    delete this.cards[a]
+                    this.cards.splice(a,1)
+                    a--
+                    la--
+                    total++
+                    if(total>amount){
+                        a=la
+                    }
+                }
+            }
+        }
+        this.parseDrawEffects(parent)
         return total
     }
     send(list,firstIndex,lastIndex,spec,parent){
@@ -1379,30 +1473,7 @@ class group{
                 this.cards.splice(firstIndex,1)
             }
         }
-        if(this.drawEffects.length>0){
-            for(let a=0,la=this.drawEffects.length;a<la;a++){
-                switch(this.drawEffects[a][0]){
-                    case 0:
-                        parent.randomEffect(this.drawEffects[a][1],this.drawEffects[a][2])
-                    break
-                    case 1:
-                        parent.status.exhaust+=this.drawEffects[a][1]
-                    break
-                    case 2:
-                        for(let b=0,lb=this.drawEffects[a][1][0];b<lb;b++){
-                            parent.allEffect(10)
-                        }
-                    break
-                    case 3:
-                        parent.allEffect(11)
-                    break
-                    case 4:
-                        parent.allEffect(12)
-                    break
-                }
-            }
-            this.drawEffects=[]
-        }
+        this.parseDrawEffects(parent)
     }
     sendSpec(list,spec,number){
         let left=number
@@ -1507,6 +1578,15 @@ class group{
             }
         }
         this.sorted=names.sort()
+    }
+    sortCost(){
+        let costs=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(!costs.includes(this.cards[a].cost)){
+                costs.push(this.cards[a].cost)
+            }
+        }
+        this.sorted=costs.sort()
     }
     sortClass(cardClass){
         let names=[]
@@ -1699,13 +1779,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock])
+                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock])
+                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,this.anim.upgrade,this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy])
                     }
                 }
             break
@@ -2323,6 +2403,32 @@ class group{
                     }
                 }
             break
+            case 19:
+                this.cards[a].retain=true
+                if(this.status.retain>0){
+                    this.status.retain--
+                }
+            break
+            case 20:
+                if(this.cards[a].attack!=-3){
+                    this.battle.combatantManager.randomEnemyEffect(0,[this.status.exhaustDamage*max(0,this.cards[a].cost)])
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.status.exhaustDamage>0){
+                        this.status.exhaustDamage=0
+                    }
+                }
+            break
+            case 21:
+                if(this.cards[a].attack!=-3){
+                    this.battle.energy.main[this.player]+=max(0,this.cards[a].cost)
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    if(this.status.exhaustEnergy>0){
+                        this.status.exhaustEnergy--
+                    }
+                }
+            break
         }
     }
     update(scene,args){
@@ -2342,6 +2448,9 @@ class group{
                 this.anim.free2=smoothAnim(this.anim.free2,this.status.free2!=0,0,1,5)
                 this.anim.exhaustBlock=smoothAnim(this.anim.exhaustBlock,this.status.exhaustBlock!=0,0,1,5)
                 this.anim.exhaustSlot=smoothAnim(this.anim.exhaustSlot,this.status.exhaustSlot!=0,0,1,5)
+                this.anim.retain=smoothAnim(this.anim.retain,this.status.retain!=0,0,1,5)
+                this.anim.exhaustDamage=smoothAnim(this.anim.exhaustDamage,this.status.exhaustDamage!=0,0,1,5)
+                this.anim.exhaustEnergy=smoothAnim(this.anim.exhaustEnergy,this.status.exhaustEnergy!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -2415,7 +2524,9 @@ class group{
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                             a--
                             la--
-                        }else if((this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348)&&!this.cards[a].exhaust){
+                        }else if(
+                            (this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348||this.cards[a].attack==1384||this.cards[a].attack==1401||this.cards[a].attack==1405)
+                            &&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
                             a--
                             la--
@@ -2798,54 +2909,21 @@ class group{
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},this.cards[a])){
-                            if(this.status.discard!=0){
-                                this.callInput(4,a)
-                                break
-                            }
-                            if(this.status.exhaust!=0){
-                                this.callInput(8,a)
-                                break
-                            }
-                            if(this.status.reserve!=0){
-                                this.callInput(9,a)
-                                break
-                            }
-                            if(this.status.nightmare!=0){
-                                this.callInput(10,a)
-                                break
-                            }
-                            if(this.status.upgrade!=0){
-                                this.callInput(11,a)
-                                break
-                            }
-                            if(this.status.transform!=0){
-                                this.callInput(12,a)
-                                break
-                            }
-                            if(this.status.badreserve!=0){
-                                this.callInput(13,a)
-                                break
-                            }
-                            if(this.status.retain2!=0){
-                                this.callInput(14,a)
-                                break
-                            }
-                            if(this.status.discardBlock!=0){
-                                this.callInput(15,a)
-                                break
-                            }
-                            if(this.status.free2!=0){
-                                this.callInput(16,a)
-                                break
-                            }
-                            if(this.status.exhaustBlock!=0){
-                                this.callInput(17,a)
-                                break
-                            }
-                            if(this.status.exhaustSlot!=0){
-                                this.callInput(18,a)
-                                break
-                            }
+                            if(this.status.discard!=0){this.callInput(4,a); break}
+                            if(this.status.exhaust!=0){this.callInput(8,a); break}
+                            if(this.status.reserve!=0){this.callInput(9,a); break}
+                            if(this.status.nightmare!=0){this.callInput(10,a); break}
+                            if(this.status.upgrade!=0){this.callInput(11,a); break}
+                            if(this.status.transform!=0){this.callInput(12,a); break}
+                            if(this.status.badreserve!=0){this.callInput(13,a); break}
+                            if(this.status.retain2!=0){this.callInput(14,a); break}
+                            if(this.status.discardBlock!=0){this.callInput(15,a); break}
+                            if(this.status.free2!=0){this.callInput(16,a); break}
+                            if(this.status.exhaustBlock!=0){this.callInput(17,a); break}
+                            if(this.status.exhaustSlot!=0){this.callInput(18,a); break}
+                            if(this.status.retain!=0){this.callInput(19,a); break}
+                            if(this.status.exhaustDamage!=0){this.callInput(20,a); break}
+                            if(this.status.exhaustEnergy!=0){this.callInput(21,a); break}
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                 if(this.cards[a].afford){
                                     this.callInput(0,a)
@@ -3178,54 +3256,21 @@ class group{
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if((int(key)+9)%10==a){
-                            if(this.status.discard!=0){
-                                this.callInput(4,a)
-                                break
-                            }
-                            if(this.status.exhaust!=0){
-                                this.callInput(8,a)
-                                break
-                            }
-                            if(this.status.reserve!=0){
-                                this.callInput(9,a)
-                                break
-                            }
-                            if(this.status.nightmare!=0){
-                                this.callInput(10,a)
-                                break
-                            }
-                            if(this.status.upgrade!=0){
-                                this.callInput(11,a)
-                                break
-                            }
-                            if(this.status.transform!=0){
-                                this.callInput(12,a)
-                                break
-                            }
-                            if(this.status.badreserve!=0){
-                                this.callInput(13,a)
-                                break
-                            }
-                            if(this.status.retain2!=0){
-                                this.callInput(14,a)
-                                break
-                            }
-                            if(this.status.discardBlock!=0){
-                                this.callInput(15,a)
-                                break
-                            }
-                            if(this.status.free2!=0){
-                                this.callInput(16,a)
-                                break
-                            }
-                            if(this.status.exhaustBlock!=0){
-                                this.callInput(17,a)
-                                break
-                            }
-                            if(this.status.exhaustSlot!=0){
-                                this.callInput(18,a)
-                                break
-                            }
+                            if(this.status.discard!=0){this.callInput(4,a); break}
+                            if(this.status.exhaust!=0){this.callInput(8,a); break}
+                            if(this.status.reserve!=0){this.callInput(9,a); break}
+                            if(this.status.nightmare!=0){this.callInput(10,a); break}
+                            if(this.status.upgrade!=0){this.callInput(11,a); break}
+                            if(this.status.transform!=0){this.callInput(12,a); break}
+                            if(this.status.badreserve!=0){this.callInput(13,a); break}
+                            if(this.status.retain2!=0){this.callInput(14,a); break}
+                            if(this.status.discardBlock!=0){this.callInput(15,a); break}
+                            if(this.status.free2!=0){this.callInput(16,a); break}
+                            if(this.status.exhaustBlock!=0){this.callInput(17,a); break}
+                            if(this.status.exhaustSlot!=0){this.callInput(18,a); break}
+                            if(this.status.retain!=0){this.callInput(19,a); break}
+                            if(this.status.exhaustDamage!=0){this.callInput(20,a); break}
+                            if(this.status.exhaustEnergy!=0){this.callInput(21,a); break}
                             if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                 if(this.cards[a].afford){
                                     this.callInput(0,a)

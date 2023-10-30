@@ -52,6 +52,9 @@ class pack{
         this.complete=true
         for(let a=0,la=this.cards.length;a<la;a++){
             this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+            this.battle.cardManagers[this.player].pack.push(copyCard(this.cards[a]))
+            this.battle.cardManagers[this.player].pack[this.battle.cardManagers[this.player].pack.length-1].position.x=1200
+            this.battle.cardManagers[this.player].pack[this.battle.cardManagers[this.player].pack.length-1].position.y=500
         }
     }
 }

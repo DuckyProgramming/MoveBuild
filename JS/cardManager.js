@@ -22,6 +22,8 @@ class cardManager{
         this.tempDraw=0
         this.baseDrops=variants.altDraw?3:0
         this.drops=0
+        this.miracleSwitch=false
+        this.pack=[]
 
         this.initialListing()
     }
@@ -275,6 +277,20 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
+    addRandomCompleteAllClassFree(group,level,cardClass,variant){
+        let list=[]
+        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
+            for(let b=0,lb=contain.length;b<lb;b++){
+                if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
+                    list.push(this.listing.allListableCard[3][a])
+                }
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).addFree(type,level,types.card[type].list,variant)
+        }
+    }
     addRandomSpec(group,level,spec){
         let list=[]
         for(let a=0,la=types.card.length;a<la;a++){
@@ -436,6 +452,70 @@ class cardManager{
             }
         }
     }
+    drawClass(amount,cardClass){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(userCombatant.getStatus('No Draw')<=0){
+            this.battle.stats.drawn[this.player]+=amount
+            if(variants.witch){
+                for(let a=0,la=amount;a<la;a++){
+                    this.hand.add(findName('Card\nSlot',types.card),0,0)
+                }
+            }else{
+                let amountLeft=amount
+                if(this.reserve.cards.length>0){
+                    amountLeft-=this.reserve.sendClass(this.hand.cards,cardClass,amount,this.hand)
+                }
+                if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                    this.discard.send(this.reserve.cards,0,-1,2)
+                    this.reserve.shuffle()
+                    if(this.reserve.cards.length>0){
+                        amountLeft-=this.reserve.sendClass(this.hand.cards,cardClass,amount,this.hand)
+                    }
+                }
+                if(this.battle.relicManager.hasRelic(106,this.player)){
+                    for(let a=0,la=this.hand.cards.length;a<la;a++){
+                        if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
+                            this.hand.send(this.exhaust.cards,a,a+1,0)
+                            a--
+                            la--
+                        }
+                    }
+                }
+            }
+        }
+    }
+    drawSetCost(amount,type){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(userCombatant.getStatus('No Draw')<=0){
+            this.battle.stats.drawn[this.player]+=amount
+            if(variants.witch){
+                for(let a=0,la=amount;a<la;a++){
+                    this.hand.add(findName('Card\nSlot',types.card),0,0)
+                }
+            }else{
+                let amountLeft=amount
+                if(this.reserve.cards.length>0){
+                    amountLeft-=this.reserve.sendPriority(this.hand.cards,type,amount,this.hand)
+                }
+                if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                    this.discard.send(this.reserve.cards,0,-1,2)
+                    this.reserve.shuffle()
+                    if(this.reserve.cards.length>0){
+                        amountLeft-=this.reserve.sendPriority(this.hand.cards,type,amount,this.hand)
+                    }
+                }
+                if(this.battle.relicManager.hasRelic(106,this.player)){
+                    for(let a=0,la=this.hand.cards.length;a<la;a++){
+                        if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
+                            this.hand.send(this.exhaust.cards,a,a+1,0)
+                            a--
+                            la--
+                        }
+                    }
+                }
+            }
+        }
+    }
     drawRarity(amount){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('No Draw')<=0){
@@ -479,6 +559,48 @@ class cardManager{
                             a--
                             la--
                         }
+                    }
+                }
+            }
+        }
+    }
+    drawCost(cost){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        let left=cost
+        if(userCombatant.getStatus('No Draw')<=0){
+            while(left>0){
+                this.battle.stats.drawn[this.player]++
+                if(this.reserve.cards.length>0){
+                    let success=false
+                    for(let a=0,la=this.reserve.cards.length;a<la;a++){
+                        if(this.reserve.cards[a].cost<=left&&this.reserve.cards[a].cost>=0){
+                            left-=this.reserve.cards[a].cost
+                            this.reserve.send(this.hand.cards,a,a+1,this.hand)
+                            success=true
+                            break
+                        }
+                    }
+                    if(!success){
+                        if(this.discard.cards.length>0){
+                            this.discard.send(this.reserve.cards,0,-1,4)
+                            this.reserve.shuffle()
+                        }else{
+                            left=0
+                        }
+                    }
+                }else if(this.discard.cards.length>0){
+                    this.discard.send(this.reserve.cards,0,-1,4)
+                    this.reserve.shuffle()
+                }else{
+                    left=0
+                }
+            }
+            if(this.battle.relicManager.hasRelic(106,this.player)){
+                for(let a=0,la=this.hand.cards.length;a<la;a++){
+                    if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
+                        this.hand.send(this.exhaust.cards,a,a+1,0)
+                        a--
+                        la--
                     }
                 }
             }

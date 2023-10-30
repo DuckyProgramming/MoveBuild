@@ -247,6 +247,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage/=2
 				bonus/=2
 			}
+			if(user.status.main[201]>0){
+				damage=damage*2-1
+				bonus*=2
+			}
 			damage=round(damage*10)/10
 			bonus=round(bonus*10)/10
 			switch(type){
@@ -997,7 +1001,7 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	let box=``
-	let goal=45+125*game.playerNumber+30+20+15+30
+	let goal=50+125*game.playerNumber+30+20+15+30
 	let arbitrary=1600
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
@@ -1009,9 +1013,9 @@ Rare:${current.cardManagers[0].listing.card[a+1][2].length}/20					${current.car
 	print(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
 Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length-goal}
 		Colorless:
-Uncommon:${current.cardManagers[0].listing.card[0][1].length}/30				${current.cardManagers[0].listing.card[0][1].length-30}
+Uncommon:${current.cardManagers[0].listing.card[0][1].length}/35				${current.cardManagers[0].listing.card[0][1].length-35}
 Rare:${current.cardManagers[0].listing.card[0][2].length}/15					${current.cardManagers[0].listing.card[0][2].length-15}
-	Total:${current.cardManagers[0].listing.card[0][3].length}/45
+	Total:${current.cardManagers[0].listing.card[0][3].length}/50
 ${box}		Status:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+1][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+1][3].length-30}
 		Curse:

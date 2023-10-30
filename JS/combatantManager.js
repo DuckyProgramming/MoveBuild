@@ -407,6 +407,9 @@ class combatantManager{
                     case 21:
                         this.combatants[a].statusEffect('Invisible',args[0])
                     break
+                    case 22:
+                        this.combatants[a].statusEffect('Wet',args[0])
+                    break
                 }
             }
         }
@@ -618,6 +621,17 @@ class combatantManager{
                 this.combatants[a].takeDamage(damage,-1)
             }
         }
+    }
+    damageAreaReverse(damage,user,team,tilePosition,spec){
+        let total=0
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].team==team&&distance>=0&&distance<=1){
+                this.combatants[a].takeDamage(damage,user,spec)
+                total++
+            }
+        }
+        return total
     }
     statusAreaIDBlock(name,amount,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){

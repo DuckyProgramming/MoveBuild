@@ -1,83 +1,54 @@
 Bugs:
 
+silent cards hotkey
+dreams of intelligence
+
+
+
 1 jinx card
 countdown jinx (mercy)
 BUILD AN ENTIRE JINX SYNERGY ON EXECUTOR
 
 campfire/air conditioner
 
+angelfrost/ fire counterpart - freeze, and heal for all freeze on target
+
 FIRE ICE REORGANIZATION
 
-angel investor
+quadrahedron - 1 armor, 2 thorns, 3 heal, 4 shield, based on turn
 
-kmt membership card
+twoplicate - second card in hand, duplicates
 
-angel ring - when in deck, heal 1 every turns
+lockbox - gives money when removed
 
-hat - while in deck, start every fight with 2 armor
+overconfidence - powerful card, but comes with pride
 
-starpick - split, and random status on 6
+flying .lol - flying skull but curses yourself
 
-KMT membership card
+pot of pots (deal damage, becomes a random pot)
 
-scissors but it heals you (soul crush)
+free card that makes x costs better
 
-get a miracle next battle (trust fund)
+chromatic cutlass, deals more when your cards are not your color
 
-do damage, and half that next turn (throwing axe)
+summer solstice - 2-handed sword, triple on 9 charge
 
-discard a random attack and draw an attack
-deal damage equal to the difference between their effects
+camellia - dupe a card, but triples instead for mana cost
 
-shifting sword - deal damage, its effect changes every turn, retain
+twolip - 2 damage, 2 charge, requires 2, but is free
 
-stock up - get two copies of your worst card
+snowdrop - freeze, 6 conditional damage
 
-determination
+inflicit 1 of every negative effect, has 20 countdown
 
-blood transfer - deal damage, heal under conditions, apply bleed
-
-asklepios - damage, heal, all as countdown
-
-cream - total cost of hand = 4, draw 1 card and dupe 2 cards
-
-copper cauldron (returns bad results)
-
-umbrella - ignite but armor
-
-insult to injury - enemies that take damage also get miss
-
-garbage collection - costs lower on other card played, but so does damage
-
-trishula - 1 cost, 13 damage, wastes all remaining energy
-
-graphics card - regenerates any spent energy, 4 countdown
-
-rain dance - heal, inflict wet on everybody
-
-crown and anchor - block, weaken and counter
-
-blutsauger - countdown life drain
-
-helium - gain 2 energy, cards float upward
-
-primal - X cost, but prime energy only
-
-prestidigitate - burning light but draws cards instead
-
-rosebud - deal damage, only takes odd, on high energy counter all
-
-reject - exhaust a card, get energy equal to its cost
-
-rodela - free, roll 2 dice, damage equal to higher, block equal to lower
-
-triangulate - draw cards equal to cost 3
-
+bring back vault?
 
 
 
 2 more variants
 bonus round mode
+
+nice: costs 6, deals 69 damage
 
 
 
