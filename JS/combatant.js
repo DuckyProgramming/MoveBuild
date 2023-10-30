@@ -87,7 +87,7 @@ class combatant{
             'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
             'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
             'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
-            'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All',
+            'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,3,//1
@@ -110,7 +110,7 @@ class combatant{
                 1,0,1,0,2,0,2,2,0,2,//18
                 2,2,2,0,0,2,0,0,0,2,//19
                 0,1,0,0,0,0,1,0,1,0,//20
-                0,0,0,0,1,2,
+                0,0,0,0,1,2,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -133,7 +133,7 @@ class combatant{
                 2,1,0,0,2,1,2,2,1,1,//18
                 1,1,1,0,0,0,0,0,2,2,//19
                 2,1,2,2,1,0,3,1,1,3,//20
-                2,0,2,0,1,0,
+                2,0,2,0,1,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3246,7 +3246,7 @@ class combatant{
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
-            case 212: case 229:
+            case 212: case 229: case 242: case 246:
                 return [this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])]
             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
             case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 107:
@@ -3682,7 +3682,7 @@ class combatant{
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
-                        case 212: case 229:
+                        case 212: case 229: case 242: case 246:
                             if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[0].tilePosition.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[0].tilePosition.y){
@@ -4067,7 +4067,7 @@ class combatant{
             if(userCombatant.status.main[49]>0){
                 userCombatant.status.main[49]--
                 if(userCombatant.status.main[204]<=0){
-                    userCombatant.takeDamage(4,-1)
+                    userCombatant.takeDamage(8,-1)
                 }
             }
             if(userCombatant.status.main[119]>0&&(damage>4||userCombatant.status.main[204]>0&&damage>2)){
@@ -4388,6 +4388,12 @@ class combatant{
                                 this.battle.turnManager.auxiliary=true
                                 this.battle.turnManager.turns.push(new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
                             }
+                            if(this.status.main[206]>0&&distance<=1){
+                                this.battle.turnManager.turns.push(new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turns[0].target=[user]
+                                this.battle.turnManager.auxiliary=true
+                                this.battle.turnManager.turns.push(new turn(0,this.battle,246,[this.status.main[206]],this.id,false))
+                            }
                         }else{
                             if(this.status.main[1]>0&&distance<=1){
                                 this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -4448,6 +4454,11 @@ class combatant{
                                 this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
                                 this.battle.turnManager.turns[1].target=[user]
                                 this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,242,[this.status.main[147]],this.id,false))
+                            }
+                            if(this.status.main[206]>0&&distance<=1){
+                                this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turns[1].target=[user]
+                                this.battle.turnManager.turns.splice(2,0,new turn(0,this.battle,246,[this.status.main[206]],this.id,false))
                             }
                         }
                         if(this.battle.relicManager.hasRelic(61,this.id)){

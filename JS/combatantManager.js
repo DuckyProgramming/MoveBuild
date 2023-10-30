@@ -410,6 +410,10 @@ class combatantManager{
                     case 22:
                         this.combatants[a].statusEffect('Wet',args[0])
                     break
+                    case 23:
+                        this.combatants[a].takeDamage(args[0],-1)
+                        this.combatants[a].statusEffect('Freeze',args[1])
+                    break
                 }
             }
         }

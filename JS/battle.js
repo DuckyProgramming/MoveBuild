@@ -1826,7 +1826,7 @@ class battle{
                         game.turnTime=[0,900,1800,3600][a]
                     }
                 }
-                if(code==ENTER){
+                if(code==ENTER||key=='1'&&game.animRate==1){
                     this.startGame()
                 }
             break
@@ -1878,7 +1878,7 @@ class battle{
                     transition.trigger=true
                     transition.scene='title'
                 }
-                if(key=='c'){
+                if(key=='C'){
                     transition.trigger=true
                     transition.scene='custom'
                     variants.ultraprism=true

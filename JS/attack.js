@@ -118,7 +118,8 @@ class attack{
             case 1373: case 1374: case 1376: case 1377: case 1386: case 1390: case 1391: case 1395: case 1397: case 1399:
             case 1400: case 1401: case 1403: case 1405: case 1406: case 1410: case 1411: case 1412: case 1413: case 1416:
             case 1418: case 1421: case 1424: case 1425: case 1426: case 1427: case 1428: case 1429: case 1430: case 1431:
-            case 1432: case 1434: case 1435:
+            case 1432: case 1434: case 1435: case 1437: case 1438: case 1439: case 1440: case 1441: case 1442: case 1443:
+            case 1444: case 1445: case 1446: case 1449: case 1451: case 1452:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1572,6 +1573,14 @@ class attack{
                     case 1429:
                         this.userManager.hand.randomEffect(7,[this.effect[1]])
                     break
+                    case 1439:
+                        this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                        this.userCombatant.statusEffect('Freeze',this.effect[2])
+                    break
+                    case 1440:
+                        this.targetCombatant.statusEffect('Burn',this.effect[1])
+                        this.userCombatant.statusEffect('Burn',this.effect[2])
+                    break
 
                 }
                 //mark 1
@@ -1706,6 +1715,9 @@ class attack{
                     break
                     case 1369:
                         this.userCombatant.addBlock(this.effect[1])
+                    break
+                    case 1438:
+                        this.targetCombatant.statusEffect('Freeze',this.effect[1])
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -1996,6 +2008,9 @@ class attack{
                     case 1417:
                         this.userCombatant.statusEffect('Counter Weak All',this.effect[1])
                         this.userCombatant.statusEffect('Counter All Combat',this.effect[2])
+                    break
+                    case 1453:
+                        this.userCombatant.statusEffect('Counter Freeze',this.effect[1])
                     break
 
                 }
@@ -4858,6 +4873,38 @@ class attack{
                         }
                         this.userManager.draw(this.effect[1])
                     break
+                    case 1437:
+                        if(this.energy>=4){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                        }
+                    break
+                    case 1441:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.energy%2==1){
+                            this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                        }
+                    break
+                    case 1442:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.energy$2==0){
+                            this.targetCombatant.statusEffect('Burn',this.effect[1])
+                        }
+                    break
+                    case 1443:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                    break
+                    case 1444:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Burn',this.effect[1])
+                    break
+                    case 1451:
+                        this.targetCombatant.statusEffect('Freeze',this.effect[0])
+                    break
+                    case 1452:
+                        this.targetCombatant.multiplyStatus('Freeze',this.effect[0])
+                    break
 
                 }
             break
@@ -5291,6 +5338,13 @@ class attack{
                     break
                     case 1423:
                         this.userManager.hand.exhaustEnergy(1)
+                    break
+                    case 1449:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                    break
+                    case 1450:
+                        this.battle.combatantManager.allEffect(23,[this.effect[0],this.effect[1]])
                     break
 
                 }
@@ -5780,6 +5834,14 @@ class attack{
                     break
                     case 1051:
                         this.battle.combatantManager.statusAreaID('Bruise',this.effect[0],this.userCombatant.id,this.userCombatant.tilePosition)
+                    break
+                    case 1447:
+                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.statusAreaID('Freeze',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                    break
+                    case 1448:
+                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.statusAreaID('Burn',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     default:
                         this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)

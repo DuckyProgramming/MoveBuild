@@ -1002,7 +1002,7 @@ class group{
             if(list.length>0){
                 let index=list[floor(random(0,list.length))]
                 switch(effect){
-                    case 0: case 17:
+                    case 0:
                         if(!this.cards[index].spec.includes(2)||this.cards[index].spec.includes(29)&&floor(random(0,5))!=0){
                             this.cards[index].deSize=true
                         }
@@ -1075,6 +1075,9 @@ class group{
                     break
                     case 16:
                         this.send(args[0],index,index+1,1)
+                    break
+                    case 17:
+                        this.cards[index].deSize=true
                     break
                     case 18:
                         if(this.cards[index].spec.includes(12)){
@@ -1192,7 +1195,7 @@ class group{
                 this.battle.energy.main[this.player]+=effect[0]
             break
             case 1064: case 1065: case 1114:
-                this.battle.cardManagers[this.player].draw(1)
+                this.drawEffects.push([5,1])
             break
             case 1076:
                 this.battle.combatantManager.allEffect(19,[effect[0]])
@@ -1200,7 +1203,7 @@ class group{
             case 1115:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(effect[0])
                 for(let a=0,la=effect[1];a<la;a++){
-                    this.drawEffects.push([0,317,[]])
+                    this.drawEffects.push([0,17,[]])
                 }
             break
             case 1239:
@@ -1277,6 +1280,7 @@ class group{
     }
     parseDrawEffects(parent){
         if(this.drawEffects.length>0){
+            let drawCount=0
             for(let a=0,la=this.drawEffects.length;a<la;a++){
                 switch(this.drawEffects[a][0]){
                     case 0:
@@ -1296,12 +1300,18 @@ class group{
                     case 4:
                         parent.allEffect(12)
                     break
+                    case 5:
+                        drawCount+=this.drawEffects[a][1]
+                    break
                 }
             }
             this.drawEffects=[]
+            if(drawCount>0){
+                this.battle.cardManagers[this.player].draw(drawCount)
+            }
         }
     }
-    sendRarity(list,rarity,amount,parent){
+    sendRarity(list,rarity,amount){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].rarity==rarity){
@@ -1320,10 +1330,9 @@ class group{
                 }
             }
         }
-        this.parseDrawEffects(parent)
         return total
     }
-    sendClass(list,cardClass,amount,parent){
+    sendClass(list,cardClass,amount){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].class==cardClass){
@@ -1342,10 +1351,9 @@ class group{
                 }
             }
         }
-        this.parseDrawEffects(parent)
         return total
     }
-    sendPriority(list,type,amount,parent){
+    sendPriority(list,type,amount){
         let total=0
         switch(type){
             case 0: case 1:
@@ -1371,10 +1379,9 @@ class group{
                 }
             }
         }
-        this.parseDrawEffects(parent)
         return total
     }
-    send(list,firstIndex,lastIndex,spec,parent){
+    send(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 if(spec==11){
@@ -1476,7 +1483,6 @@ class group{
                 this.cards.splice(firstIndex,1)
             }
         }
-        this.parseDrawEffects(parent)
     }
     sendSpec(list,spec,number){
         let left=number
@@ -2528,7 +2534,7 @@ class group{
                             a--
                             la--
                         }else if(
-                            (this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348||this.cards[a].attack==1384||this.cards[a].attack==1401||this.cards[a].attack==1405)
+                            (this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348||this.cards[a].attack==1384||this.cards[a].attack==1401||this.cards[a].attack==1405||this.cards[a].attack==1443||this.cards[a].attack==1444)
                             &&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
                             a--

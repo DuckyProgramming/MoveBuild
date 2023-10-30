@@ -1,8 +1,5 @@
 Bugs:
 
-silent cards hotkey
-dreams of intelligence
-
 
 
 1 jinx card
@@ -42,6 +39,14 @@ snowdrop - freeze, 6 conditional damage
 inflicit 1 of every negative effect, has 20 countdown
 
 bring back vault?
+
+shock peashooter (capacitor)
+
+deal damage for every card that retains in hand
+
+c4 defense - get block, and spawn c4
+
+urumi - damage, if you have no energy, lowers countdowns
 
 
 

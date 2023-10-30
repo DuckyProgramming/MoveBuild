@@ -1240,7 +1240,7 @@ class card{
             case 1059: string+=`Other Enemies Face\nTarget and Attack`; break
             case 1060: string+=`Summon in ${effect[0]} MobMan${effect[0]!=1?`s`:``}`; break
             case 1061: string+=`Gain ${effect[0]} Armor\nCenter of Hand:\nGain ${effect[1]} Energy`; break
-            case 1062: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext ${effect[1]} Card${effect[1]!=1?`s`:``}\nPlayed are Free`; break
+            case 1062: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nNext ${effect[1]} Card${effect[1]!=1?`s`:``}\nPlayed ${effect[1]!=1?`are`:`is`} Free`; break
             case 1063: string+=`Exhaust Your Hand\nGain ${effect[0]} Strength Each`; break
             case 1064: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Target\nDeal ${this.calculateEffect(effect[1],0)} Damage\nto All Enemies\nWhen Drawn,\nDraw 1 Card`; break
             case 1065: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nAll Cards in Hand\nCost 0 This Turn\nWhen Drawn,\nDraw 1 Card`; break
@@ -1612,7 +1612,23 @@ class card{
             case 1434: string+=`Apply ${effect[0]} Burn\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}`; break
             case 1435: string+=`Apply ${effect[0]} Freeze\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}`; break
             case 1436: string+=`Apply ${effect[0]} Freeze\n3 Tiles Wide`; break
-
+            case 1437: string+=`If Energy is\nMore Than 4,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze`; break
+            case 1438: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze`; break
+            case 1439: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nGain ${effect[2]} Freeze (Self)`; break
+            case 1440: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nGain ${effect[2]} Burn (Self)`; break
+            case 1441: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOdd Energy:\nApply ${effect[1]} Freeze`; break
+            case 1442: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEven Energy:\nApply ${effect[1]} Burn`; break
+            case 1443: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nDiscards to Hand`; break
+            case 1444: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nDiscards to Hand`; break
+            case 1445: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nPush 1 Tile`; break
+            case 1446: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nPush 1 Tile`; break
+            case 1447: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nin All Directions`; break
+            case 1448: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nin All Directions`; break
+            case 1449: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze`; break
+            case 1450: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Freeze\nto All Enemies`; break
+            case 1451: string+=`Apply ${effect[0]} Freeze`; break
+            case 1452: string+=`Multiply Target\nFreeze by ${effect[0]}`; break
+            case 1453: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Freeze`; break
 
 
 
@@ -2080,6 +2096,27 @@ class card{
                 this.layer.stroke(25,255,75,this.fade)
                 this.layer.quad(-this.width/2,-this.height/4,-this.width/2,-this.height/12,this.width/2,this.height/4,this.width/2,this.height/12,5)
                 this.layer.stroke(25,175,125,this.fade)
+                this.layer.noFill()
+            }else if(this.attack==1393){
+                this.layer.fill(0,150,255,this.fade*this.anim.select)
+                this.layer.noStroke()
+                this.layer.rect(0,0,this.width+15,this.height+15,10)
+                this.layer.fill(0,41,204,this.fade)
+                this.layer.stroke(0,26,174,this.fade)
+                this.layer.strokeWeight(5)
+                this.layer.rect(0,0,this.width,this.height,5)
+                this.layer.fill(255,this.fade)
+                this.layer.noStroke()
+                let cap=tan(15)
+                for(let a=0,la=12;a<la;a++){
+                    this.layer.rotate(30)
+                    this.layer.triangle(0,this.width*3/8,-this.width*3/8*cap,0,this.width*3/8*cap,0)
+                }
+                this.layer.fill(0,41,204,this.fade)
+                this.layer.ellipse(0,0,this.width*17/40)
+                this.layer.fill(255,this.fade)
+                this.layer.ellipse(0,0,this.width*3/8)
+                this.layer.stroke(0,26,174,this.fade)
                 this.layer.noFill()
             }else{
                 this.layer.fill(colorDetail.active[0],colorDetail.active[1],colorDetail.active[2],this.fade*this.anim.select)
