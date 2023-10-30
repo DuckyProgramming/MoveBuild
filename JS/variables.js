@@ -135,7 +135,14 @@ types={
                 {effect:[13,1],attack:174,cost:1,target:[2,1,1],spec:[1],class:1},
                 {effect:[16,1],attack:174,cost:1,target:[2,1,1],spec:[1],class:1},
             ],
-        },{/*flamethrower*/},{
+        },{
+            name:'Flamethrower',rarity:-3,list:1,
+            levels:[
+                {effect:[4],attack:175,cost:1,target:[2,1,1],spec:[1],class:4},
+                {effect:[6],attack:175,cost:1,target:[2,1,1],spec:[1],class:4},
+                {effect:[7],attack:175,cost:1,target:[2,1,1],spec:[1],class:4},
+            ],
+        },,{
             name:'Safemine',rarity:-3,list:1,
             levels:[
                 {effect:[],attack:1383,cost:1,target:[1,1,1],spec:[1],class:4},
@@ -2527,6 +2534,48 @@ types={
                 {effect:[2,1],attack:1404,cost:0,target:[0],spec:[],class:1},
                 {effect:[3,1],attack:1404,cost:0,target:[0],spec:[],class:1},
                 {effect:[4,1],attack:1404,cost:0,target:[0],spec:[],class:1},
+            ],
+        },{
+            name:'Frost\nShatter',rarity:0,list:3,
+            levels:[
+                {effect:[8],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Liquid\nNitrogen',rarity:0,list:3,
+            levels:[
+                {effect:[9,2],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[13,2],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[16,2],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Trident',rarity:1,list:3,
+            levels:[
+                {effect:[8,2,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[14,2,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[20,2,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Cold\nWind',rarity:0,list:3,
+            levels:[
+                {effect:[2,1],attack:1432,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[3,1],attack:1432,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4,1],attack:1432,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Iced\nLatte',rarity:1,list:3,
+            levels:[
+                {effect:[1],attack:1433,cost:0,target:[0],spec:[15],limit:5,class:4},
+                {effect:[1],attack:1433,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[1],attack:1433,cost:0,target:[0],spec:[15],limit:1,class:4},
+            ],
+        },{
+            name:'Glass\nPot',rarity:1,list:3,
+            levels:[
+                {effect:[1,1,1],attack:1435,cost:0,target:[2,1,6],spec:[],class:4},
+                {effect:[2,1,1],attack:1435,cost:0,target:[2,1,6],spec:[],class:4},
+                {effect:[3,1,1],attack:1435,cost:0,target:[2,1,6],spec:[],class:4},
             ],
         },
 
@@ -7357,6 +7406,48 @@ types={
                 {effect:[1],attack:1396,cost:1,target:[0],spec:[3],class:4},
                 {effect:[1],attack:1396,cost:1,target:[0],spec:[3,22],class:4},
             ],
+        },{
+            name:'Flame\nShatter',rarity:0,list:9,
+            levels:[
+                {effect:[8],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[12],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
+                {effect:[15],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
+            ],
+        },{
+            name:'Molotov',rarity:0,list:9,
+            levels:[
+                {effect:[9,2],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[13,2],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
+                {effect:[16,2],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Pitchfork',rarity:1,list:9,
+            levels:[
+                {effect:[8,2,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[14,2,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[20,2,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
+            ],
+        },{
+            name:'Ignite',rarity:0,list:9,
+            levels:[
+                {effect:[2,1],attack:1339,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[3,1],attack:1339,cost:0,target:[2,1,1],spec:[],class:1},
+                {effect:[4,1],attack:1339,cost:0,target:[2,1,1],spec:[],class:1},
+            ],
+        },{
+            name:'Scrap\nKettle',rarity:1,list:9,
+            levels:[
+                {effect:[1],attack:1240,cost:0,target:[0],spec:[15],limit:5,class:4},
+                {effect:[1],attack:1240,cost:0,target:[0],spec:[15],limit:3,class:4},
+                {effect:[1],attack:1240,cost:0,target:[0],spec:[15],limit:1,class:4},
+            ],
+        },{
+            name:'Hot\nPot',rarity:1,list:9,
+            levels:[
+                {effect:[1,1,1],attack:1434,cost:0,target:[2,1,6],spec:[],class:4},
+                {effect:[2,1,1],attack:1434,cost:0,target:[2,1,6],spec:[],class:4},
+                {effect:[3,1,1],attack:1434,cost:0,target:[2,1,6],spec:[],class:4},
+            ],
         },
 
         {
@@ -8185,14 +8276,7 @@ types={
 
 
         
-        /*{
-            name:'Flamethrower',rarity:0,list:10,
-            levels:[
-                {effect:[7],attack:175,cost:1,target:[2,1,1],spec:[1],class:1},
-                {effect:[10],attack:175,cost:1,target:[2,1,1],spec:[1],class:1},
-                {effect:[12],attack:175,cost:1,target:[2,1,1],spec:[1],class:1},
-            ],
-        },
+        /*
 
 
 
@@ -8202,13 +8286,6 @@ types={
                 {effect:[10,3],attack:1348,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
                 {effect:[14,5],attack:1348,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
                 {effect:[16,6],attack:1348,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
-            ],
-        },{
-            name:'Iced\nLatte',rarity:1,list:3,
-            levels:[
-                {effect:[1],attack:1239,cost:0,target:[0],spec:[15],limit:5,class:4},
-                {effect:[1],attack:1239,cost:0,target:[0],spec:[15],limit:3,class:4},
-                {effect:[1],attack:1239,cost:0,target:[0],spec:[15],limit:1,class:4},
             ],
         },{
             name:'Congeal',rarity:0,list:3,
@@ -8246,13 +8323,6 @@ types={
                 {effect:[18,6,4],attack:1255,cost:1,target:[2,1,1],spec:[0],class:1},
             ],
         },{
-            name:'Glass\nPot',rarity:1,list:3,
-            levels:[
-                {effect:[1,1,1],attack:1256,cost:0,target:[2,1,6],spec:[],class:4},
-                {effect:[2,1,1],attack:1256,cost:0,target:[2,1,6],spec:[],class:4},
-                {effect:[3,1,1],attack:1256,cost:0,target:[2,1,6],spec:[],class:4},
-            ],
-        },{
             name:'Blast\nChill',rarity:1,list:3,
             levels:[
                 {effect:[5,1],attack:1257,cost:1,target:[2,1,2],spec:[0],class:1},
@@ -8262,13 +8332,6 @@ types={
         },
 
         {
-            name:'Scrap\nKettle',rarity:1,list:9,
-            levels:[
-                {effect:[1],attack:1240,cost:0,target:[0],spec:[15],limit:5,class:4},
-                {effect:[1],attack:1240,cost:0,target:[0],spec:[15],limit:3,class:4},
-                {effect:[1],attack:1240,cost:0,target:[0],spec:[15],limit:1,class:4},
-            ],
-        },{
             name:'Lighter',rarity:0,list:9,
             levels:[
                 {effect:[6],attack:881,cost:1,target:[2,1,1],spec:[],class:1},
@@ -8324,60 +8387,9 @@ types={
                 {effect:[13,4],attack:1316,cost:1,target:[2,1,2],spec:[],class:1},
                 {effect:[16,5],attack:1316,cost:1,target:[2,1,2],spec:[],class:1},
             ],
-        },{
-            name:'Ignite',rarity:1,list:9,
-            levels:[
-                {effect:[2,1],attack:1339,cost:0,target:[2,1,1],spec:[],class:1},
-                {effect:[3,1],attack:1339,cost:0,target:[2,1,1],spec:[],class:1},
-                {effect:[4,1],attack:1339,cost:0,target:[2,1,1],spec:[],class:1},
-            ],
-        },{
-            name:'Molotov',rarity:0,list:9,
-            levels:[
-                {effect:[9,3],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[13,4],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[16,5],attack:1359,cost:1,target:[2,1,2],spec:[0],class:1},
-            ],
         },
 
-        {
-            name:'Trident',rarity:1,list:4,
-            levels:[
-                {effect:[8,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[14,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[20,1,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
-            ],
-        },{
-            name:'Frost\nShatter',rarity:0,list:4,
-            levels:[
-                {effect:[8],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15],attack:1355,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },{
-            name:'Liquid\nNitrogen',rarity:0,list:4,
-            levels:[
-                {effect:[9,1],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[13,1],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
-                {effect:[16,1],attack:1360,cost:1,target:[2,1,2],spec:[0],class:1},
-            ],
-        },
-
-        {
-            name:'Pitchfork',rarity:1,list:9,
-            levels:[
-                {effect:[8,3,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[14,3,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[20,3,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
-            ],
-        },{
-            name:'Flame\nShatter',rarity:0,list:9,
-            levels:[
-                {effect:[8],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[12],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
-                {effect:[15],attack:1356,cost:1,target:[2,1,1],spec:[0],class:1},
-            ],
-        },
+        
 
         {
             name:'Catastrophe',rarity:1,list:8,
@@ -10392,11 +10404,18 @@ types={
                 {effect:[2],attack:1277,cost:1,target:[0],spec:[0],class:1},
             ],
         },{
-            name:'Nuclear\nBomb',rarity:-1,list:-1,
+            name:'Nuclear\nBomb',rarity:-5,list:-1,
             levels:[
                 {effect:[],attack:1278,cost:4,target:[0],spec:[],class:1},
                 {effect:[],attack:1278,cost:3,target:[0],spec:[],class:1},
                 {effect:[],attack:1278,cost:2,target:[0],spec:[],class:1},
+            ],
+        },{
+            name:'Frostthrower',rarity:-5,list:-1,
+            levels:[
+                {effect:[4],attack:1436,cost:1,target:[2,1,1],spec:[1],class:4},
+                {effect:[6],attack:1436,cost:1,target:[2,1,1],spec:[1],class:4},
+                {effect:[7],attack:1436,cost:1,target:[2,1,1],spec:[1],class:4},
             ],
         },
 

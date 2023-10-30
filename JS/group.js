@@ -1230,6 +1230,9 @@ class group{
             case 1369:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Armor',effect[0])
             break
+            case 1433:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Freeze',effect[0])
+            break
         }
     }
     deathEffect(){

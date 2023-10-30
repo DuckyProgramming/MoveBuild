@@ -109,15 +109,16 @@ class attack{
             case 1191: case 1194: case 1195: case 1196: case 1202: case 1209: case 1210: case 1211: case 1212: case 1213:
             case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1244: case 1246: case 1247:
             case 1248: case 1251: case 1252: case 1255: case 1256: case 1257: case 1258: case 1259: case 1261: case 1262:
-            case 1263: case 1266: case 1267: case 1268: case 1270: case 1271: case 1273: case 1279: case 1280: case 1281:
-            case 1284: case 1285: case 1286: case 1288: case 1291: case 1295: case 1296: case 1297: case 1298: case 1305:
-            case 1307: case 1308: case 1309: case 1310: case 1311: case 1312: case 1313: case 1314: case 1315: case 1316:
-            case 1319: case 1320: case 1321: case 1324: case 1330: case 1332: case 1334: case 1335: case 1336: case 1337:
-            case 1338: case 1339: case 1342: case 1343: case 1344: case 1345: case 1348: case 1349: case 1350: case 1353:
-            case 1354: case 1355: case 1356: case 1358: case 1359: case 1360: case 1362: case 1367: case 1372: case 1373:
-            case 1374: case 1376: case 1377: case 1386: case 1390: case 1391: case 1395: case 1397: case 1399: case 1400:
-            case 1401: case 1403: case 1405: case 1406: case 1410: case 1411: case 1412: case 1413: case 1416: case 1418:
-            case 1421: case 1424: case 1425: case 1426: case 1427: case 1428: case 1429: case 1430: case 1431:
+            case 1263: case 1266: case 1267: case 1268: case 1270: case 1271: case 1273: case 1274: case 1279: case 1280:
+            case 1281: case 1284: case 1285: case 1286: case 1288: case 1291: case 1295: case 1296: case 1297: case 1298:
+            case 1305: case 1307: case 1308: case 1309: case 1310: case 1311: case 1312: case 1313: case 1314: case 1315:
+            case 1316: case 1319: case 1320: case 1321: case 1324: case 1330: case 1332: case 1334: case 1335: case 1336:
+            case 1337: case 1338: case 1339: case 1342: case 1343: case 1344: case 1345: case 1348: case 1349: case 1350:
+            case 1353: case 1354: case 1355: case 1356: case 1358: case 1359: case 1360: case 1362: case 1367: case 1372:
+            case 1373: case 1374: case 1376: case 1377: case 1386: case 1390: case 1391: case 1395: case 1397: case 1399:
+            case 1400: case 1401: case 1403: case 1405: case 1406: case 1410: case 1411: case 1412: case 1413: case 1416:
+            case 1418: case 1421: case 1424: case 1425: case 1426: case 1427: case 1428: case 1429: case 1430: case 1431:
+            case 1432: case 1434: case 1435:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -201,7 +202,7 @@ class attack{
                     this.targetDistance.push(distTargetCombatant(0,this.targetCombatant[a],this.userCombatant))
                 }
             break
-            case 138: case 139: case 175: case 400: case 453: case 516:
+            case 138: case 139: case 175: case 400: case 453: case 516: case 1436:
                 this.targetCombatant=[]
                 this.direction=[]
                 this.distance=[]
@@ -4610,14 +4611,13 @@ class attack{
                         }
                     break
                     case 1256:
-                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
-                            this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[1])
+                            this.targetCombatant.attack[this.targetCombatant.intent].effect[0]=max(0,this.targetCombatant.attack[this.targetCombatant.intent].effect[0]-this.effect[0])
                         }
-                        for(let a=0,la=this.effect[3];a<la;a++){
+                        for(let a=0,la=this.effect[2];a<la;a++){
                             this.userManager.hand.randomEffect(0)
                         }
-                        this.userManager.draw(this.effect[2])
+                        this.userManager.draw(this.effect[1])
                     break
                     case 1258:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -4844,6 +4844,20 @@ class attack{
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[2])
                         this.userCombatant.statusEffect('Temporary Draw',this.effect[3])
                     break
+                    case 1434:
+                        this.targetCombatant.statusEffect('Burn',this.effect[0])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.randomEffect(0)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 1435:
+                        this.targetCombatant.statusEffect('Freeze',this.effect[0])
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.randomEffect(0)
+                        }
+                        this.userManager.draw(this.effect[1])
+                    break
 
                 }
             break
@@ -4910,6 +4924,12 @@ class attack{
                     case 1339:
                         if(this.energy==0){
                             this.targetCombatant.statusEffect('Burn',this.effect[0])
+                            this.userManager.draw(this.effect[1])
+                        }
+                    break
+                    case 1432:
+                        if(this.energy==0){
+                            this.targetCombatant.statusEffect('Freeze',this.effect[0])
                             this.userManager.draw(this.effect[1])
                         }
                     break
@@ -5289,6 +5309,9 @@ class attack{
                             if(this.targetCombatant.blocked>0){
                                 this.targetCombatant[a].statusEffect('Bleed',this.effect[1])
                             }
+                        break
+                        case 1436:
+                            this.targetCombatant[a].statusEffect('Freeze',this.effect[0])
                         break
                         default:
                             this.targetCombatant[a].takeDamage(this.effect[0],this.user)

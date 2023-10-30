@@ -1607,6 +1607,11 @@ class card{
             case 1429: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nA Random Card\nCosts ${effect[1]} More`; break
             case 1430: string+=`Apply ${effect[0]} Random Debuff\nGain ${effect[1]} Energy Next Turn\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 1431: string+=`Apply ${effect[0]} Random Debuff\nApply ${effect[1]} Random Debuff\nGain ${effect[2]} Energy Next Turn\nDraw ${effect[3]} Card${effect[3]!=1?`s`:``}`; break
+            case 1432: string+=`If You Have 0 Energy,\nApply ${effect[0]} Freeze\nand Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1433: string+=`When Drawn,\nGain ${effect[0]} Freeze\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
+            case 1434: string+=`Apply ${effect[0]} Burn\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}`; break
+            case 1435: string+=`Apply ${effect[0]} Freeze\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}`; break
+            case 1436: string+=`Apply ${effect[0]} Freeze\n3 Tiles Wide`; break
 
 
 
@@ -1772,7 +1777,7 @@ class card{
             case 1238:
                 this.battle.cardManagers[this.player].deck.add(findName('Plague',types.card),0,game.playerNumber+2)
             break
-            case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373:
+            case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373: case 1433:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break
