@@ -13,6 +13,7 @@ combatant.prototype.display=function(){
             }
         }
         if(this.team>0&!this.construct&&!this.support){
+            let randomColor=0
             this.layer.translate(0,-48)
             for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
                 if(this.infoAnim.stance[a]>0){
@@ -4829,7 +4830,7 @@ combatant.prototype.display=function(){
                     this.layer.quad(-12,-69,12,-69,8,-75,-8,-75)
                 }
             break
-            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck':
+            case 'Duck': case 'Fungal Duck': case 'Duckforce': case 'Blue Duck': case 'Fat Duck':
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.anim.direction+this.spin.arms[g].top)<=0){
                         this.layer.fill(this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[0],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[1],this.flashColor(upColor(this.color.skin.arms,lcos(this.spin.arms[g].top+this.anim.direction)*20,[1,1,1]))[2],this.fade*this.fades.skin.arms)
@@ -4845,9 +4846,15 @@ combatant.prototype.display=function(){
                     }
                 }
                 if(this.trigger.display.skin.body){
-                    this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
-                    this.layer.noStroke()
-                    this.layer.ellipse(0,-19,14,24)
+                    if(this.name=='Fat Duck'){
+                        this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
+                        this.layer.noStroke()
+                        this.layer.ellipse(0,-19,35,24)
+                    }else{
+                        this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
+                        this.layer.noStroke()
+                        this.layer.ellipse(0,-19,14,24)
+                    }
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.legs&&lcos(this.anim.direction+this.spin.legs[g].top)>0){
@@ -7239,7 +7246,6 @@ combatant.prototype.display=function(){
                 }
             break
             case 'Inconsistent':
-                let randomColor=0
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
                         randomColor=floor(random(160,200))
@@ -7307,6 +7313,79 @@ combatant.prototype.display=function(){
                     if(this.trigger.display.eye[g]){
                         this.layer.push()
                         this.layer.translate(random(-2,2),random(-2,2))
+                        this.minorDisplayGeneral(0,g)
+                        this.layer.pop()
+                    }
+                }
+            break
+            case 'Latency':
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                        randomColor=floor(random(160,200))
+                        this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x+random(-1,1),this.graphics.arms[g].top.y+random(-1,1),this.graphics.arms[g].middle.x+random(-1,1),this.graphics.arms[g].middle.y+random(-1,1))
+                        this.layer.line(this.graphics.arms[g].middle.x+random(-1,1),this.graphics.arms[g].middle.y+random(-1,1),this.graphics.arms[g].bottom.x+random(-1,1),this.graphics.arms[g].bottom.y+random(-1,1))
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.noStroke()
+                    randomColor=floor(random(160,200))
+                    this.layer.fill(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
+                    this.layer.ellipse(random(-1,1),-43.5+random(-1,1),11+random(-1,1),29+random(-1,1))
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                        randomColor=floor(random(160,200))
+                        this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x+random(-1,1),this.graphics.arms[g].top.y+random(-1,1),this.graphics.arms[g].middle.x+random(-1,1),this.graphics.arms[g].middle.y+random(-1,1))
+                        this.layer.line(this.graphics.arms[g].middle.x+random(-1,1),this.graphics.arms[g].middle.y+random(-1,1),this.graphics.arms[g].bottom.x+random(-1,1),this.graphics.arms[g].bottom.y+random(-1,1))
+                    }
+                    for(let h=0;h<2;h++){
+                        if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                            if(this.trigger.display.skin.legs){
+                                randomColor=floor(random(160,200))
+                                this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(this.graphics.legs[h].top.x+random(-1,1),this.graphics.legs[h].top.y+random(-1,1),this.graphics.legs[h].middle.x+random(-1,1),this.graphics.legs[h].middle.y+random(-1,1))
+                                this.layer.line(this.graphics.legs[h].middle.x+random(-1,1),this.graphics.legs[h].middle.y+random(-1,1),this.graphics.legs[h].bottom.x+random(-1,1),this.graphics.legs[h].bottom.y+random(-1,1))
+                            }
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
+                        randomColor=floor(random(160,200))
+                        this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                        this.layer.line(this.graphics.arms[g].topStack.x+random(-1,1),this.graphics.arms[g].topStack.y+random(-1,1),this.graphics.arms[g].middleStack.x+random(-1,1),this.graphics.arms[g].middleStack.y+random(-1,1))
+                        this.layer.line(this.graphics.arms[g].middleStack.x+random(-1,1),this.graphics.arms[g].middleStack.y+random(-1,1),this.graphics.arms[g].bottomStack.x+random(-1,1),this.graphics.arms[g].bottomStack.y+random(-1,1))
+                    }
+                }
+                if(this.trigger.display.skin.head){
+                    randomColor=floor(random(160,200))
+                    this.layer.fill(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
+                    this.layer.noStroke()
+                    this.layer.ellipse(random(-1,1),-72+random(-1,1),30+random(-1,1),30+random(-1,1))
+                }
+                if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
+                    this.layer.push()
+                    this.layer.translate(random(-1,1),random(-1,1))
+                    this.minorDisplayGeneral(1,0)
+                    this.layer.pop()
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
+                        randomColor=floor(random(160,200))
+                        this.layer.stroke(this.flashColor([randomColor,randomColor,randomColor])[0],0,0,this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                        this.layer.line(this.graphics.arms[g].topStack.x+random(-1,1),this.graphics.arms[g].topStack.y+random(-1,1),this.graphics.arms[g].middleStack.x+random(-1,1),this.graphics.arms[g].middleStack.y+random(-1,1))
+                        this.layer.line(this.graphics.arms[g].middleStack.x+random(-1,1),this.graphics.arms[g].middleStack.y+random(-1,1),this.graphics.arms[g].bottomStack.x+random(-1,1),this.graphics.arms[g].bottomStack.y+random(-1,1))
+                    }
+                    if(this.trigger.display.eye[g]){
+                        this.layer.push()
+                        this.layer.translate(random(-1,1),random(-1,1))
                         this.minorDisplayGeneral(0,g)
                         this.layer.pop()
                     }

@@ -156,6 +156,7 @@ class group{
             this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
             if(this.id==0){
                 this.cards[this.cards.length-1].nonCalc=true
+                this.cards[this.cards.length-1].callAddEffect()
             }
         }
     }
@@ -172,6 +173,7 @@ class group{
                 this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
                 if(this.id==0){
                     this.cards[this.cards.length-1].nonCalc=true
+                    this.cards[this.cards.length-1].callAddEffect()
                 }
                 if(this.id>=1&&this.id<=3&&this.cards[this.cards.length-1].name=='Shiv'&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')>0){
                     this.cards[this.cards.length-1].target[2]+=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Shiv Range Up')
@@ -206,6 +208,7 @@ class group{
             this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
             if(this.id==0){
                 this.cards[this.cards.length-1].nonCalc=true
+                this.cards[this.cards.length-1].callAddEffect()
             }
             this.cards[this.cards.length-1].cost=0
             if(variant==1){
@@ -240,6 +243,7 @@ class group{
             this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
             if(this.id==0){
                 this.cards[this.cards.length-1].nonCalc=true
+                this.cards[this.cards.length-1].callAddEffect()
             }
             this.cards[this.cards.length-1].cost=0
             if(variant==1){
@@ -270,6 +274,7 @@ class group{
         this.cards.push(new card(this.layer,this.battle,this.player,40,-100-this.cards.length*200,type,level,color,game.id))
         if(this.id==0){
             this.cards[this.cards.length-1].nonCalc=true
+            this.cards[this.cards.length-1].callAddEffect()
         }
         this.cards[this.cards.length-1].downSize=true
     }
@@ -313,6 +318,7 @@ class group{
                 this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,level,color,game.id))
                 if(this.id==0){
                     this.cards[this.cards.length-1].nonCalc=true
+                    this.cards[this.cards.length-1].callAddEffect()
                 }
                 if(this.battle.initialized&&this.id==0){
                     if(
@@ -527,6 +533,24 @@ class group{
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
             if(classes.includes(this.cards[a].class)){
+                total++
+            }
+        }
+        return total
+    }
+    colorNumber(){
+        let colors=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(!colors.includes(this.cards[a].color)){
+                colors.push(this.cards[a].color)
+            }
+        }
+        return colors.length
+    }
+    retainNumber(){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.battle.relicManager.hasRelic(128,this.player)){
                 total++
             }
         }
@@ -1181,6 +1205,11 @@ class group{
             case -32:
                 this.battle.combatantManager.fullAllEffect(4,[effect[0],this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].id])
             break
+            case -34:
+                for(let a=0,la=effect[0];a<la;a++){
+                    this.drawEffects.push([6])
+                }
+            break
             case 288:
                 for(let a=0,la=effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Stream',types.card),0,types.card[findName('Stream',types.card)].list)
@@ -1302,6 +1331,9 @@ class group{
                     break
                     case 5:
                         drawCount+=this.drawEffects[a][1]
+                    break
+                    case 6:
+                        parent.falsedSwap()
                     break
                 }
             }
@@ -1610,9 +1642,7 @@ class group{
         let possible=!this.cards[index].spec.includes(7)
         if(possible){
             this.removed.push(copyCard(this.cards[index]))
-            if(this.cards[index].attack==-10){
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].loseMaxHP(this.cards[index].effect[0])
-            }
+            this.cards[index].callRemoveEffect()
             this.cards.splice(index,1)
         }
         return possible
@@ -2129,14 +2159,12 @@ class group{
                         }
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
-                        if(this.spec.includes(12)){
-                            if(this.cards[b].target[0]==11){
-                                let characteristic=1
-                                this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
-                                this.battle.attackManager.effect=this.battle.attackManager.effect[characteristic]
-                                this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
-                                this.cards[b].characteristic=characteristic
-                            }
+                        if(this.spec.includes(12)&&(this.cards[b].target[0]==11||this.cards[b].target[0]==15)){
+                            let characteristic=1
+                            this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
+                            this.battle.attackManager.effect=this.battle.attackManager.effect[characteristic]
+                            this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
+                            this.cards[b].characteristic=characteristic
                         }
                         this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
                         this.cardInUse=this.cards[b]
@@ -2534,7 +2562,7 @@ class group{
                             a--
                             la--
                         }else if(
-                            (this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348||this.cards[a].attack==1384||this.cards[a].attack==1401||this.cards[a].attack==1405||this.cards[a].attack==1443||this.cards[a].attack==1444)
+                            (this.cards[a].attack==1248||this.cards[a].attack==1333||this.cards[a].attack==1348||this.cards[a].attack==1384||this.cards[a].attack==1401||this.cards[a].attack==1405||this.cards[a].attack==1443||this.cards[a].attack==1444||this.cards[a].attack==1455||this.cards[a].attack==1485)
                             &&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
                             a--

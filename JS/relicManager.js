@@ -676,8 +676,10 @@ class relicManager{
                     if(args[0]==2){
                         if(this.active[114]>0&&args[1]==this.player[114]){
                             for(let a=0,la=this.active[114];a<la;a++){
-                                let pos=floor(random(0,this.battle.cardManagers[this.player[114]].discard.cards.length))
-                                this.battle.cardManagers[this.player[114]].discard.send(this.battle.cardManagers[this.player[114]].hand.cards,pos,pos+1,1)
+                                if(this.battle.cardManagers[this.player[114]].discard.cards.length>0){
+                                    let pos=floor(random(0,this.battle.cardManagers[this.player[114]].discard.cards.length))
+                                    this.battle.cardManagers[this.player[114]].discard.send(this.battle.cardManagers[this.player[114]].hand.cards,pos,pos+1,1)
+                                }
                             }
                         }
                     }
