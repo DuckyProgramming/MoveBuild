@@ -640,7 +640,28 @@ class overlay{
                     this.cards[a].display()
                 }
             break
-        
+            case 10:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+100,360,560,10)
+                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-205,120,40,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text('Mods',this.layer.width/2+225*this.posKey,this.layer.height/2-150)
+                this.layer.textSize(20)
+                this.layer.text('Close',this.layer.width/2+225*this.posKey,this.layer.height/2-205)
+                for(let a=0,la=this.battle.modManager.holdMod.length;a<la;a++){
+                    this.layer.noStroke()
+                    this.layer.fill(120,this.fade)
+                    this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+a*50,340,40,10)
+                    this.layer.fill(0,this.fade)
+                    this.layer.noStroke()
+                    this.layer.textSize(12)
+                    this.layer.text(types.mod[this.battle.modManager.holdMod[a]].name,this.layer.width/2+225*this.posKey,this.layer.height/2-112+a*50)
+                    this.layer.textSize(8)
+                    this.layer.text(types.mod[this.battle.modManager.holdMod[a]].desc,this.layer.width/2+225*this.posKey,this.layer.height/2-95+a*50)
+                }
+            break
+            
         }
     }
     update(first){
@@ -1159,6 +1180,11 @@ class overlay{
                         }
                     }
                 break
+                case 10:
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-205},width:120,height:40})){
+                        this.active=false
+                    }
+                break
             }
         }
     }
@@ -1580,6 +1606,11 @@ class overlay{
                                 this.cards[b].upSize=false
                             }
                         }
+                    }
+                break
+                case 10:
+                    if(code==ENTER){
+                        this.active=false
                     }
                 break
             }

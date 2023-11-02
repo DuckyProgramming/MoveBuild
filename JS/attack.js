@@ -122,7 +122,7 @@ class attack{
             case 1432: case 1434: case 1435: case 1437: case 1438: case 1439: case 1440: case 1441: case 1442: case 1443:
             case 1444: case 1445: case 1446: case 1449: case 1451: case 1452: case 1454: case 1455: case 1457: case 1461:
             case 1462: case 1463: case 1465: case 1470: case 1471: case 1472: case 1474: case 1478: case 1479: case 1480:
-            case 1481: case 1482: case 1483: case 1484: case 1485:
+            case 1481: case 1482: case 1483: case 1484: case 1485: case 1490:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1639,6 +1639,11 @@ class attack{
                     break
                     case 1485:
                         this.targetCombatant.statusEffect('Damage Down',this.effect[1])
+                    break
+                    case 1490:
+                        if(this.targetCombatant.blocked>0){
+                            this.targetCombatant.statusEffect('Lock',this.effect[1])
+                        }
                     break
 
                 }
@@ -3726,7 +3731,11 @@ class attack{
                             this.userManager.hand.duplicate(this.effect[0])
                         }
                     break
-                    
+                    case 1491:
+                        this.userCombatant.statusEffect('Free Card',this.effect[0])
+                        this.userManager.hand.duplicate(this.effect[1])
+                    break
+
                 }
             break
             case 5:

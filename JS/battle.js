@@ -65,6 +65,7 @@ class battle{
         this.relicManager=new relicManager(this.layer,this)
         this.itemManager=new itemManager(this.layer,this)
         this.overlayManager=new overlayManager(this.layer,this,0)
+        this.modManager=new modManager(this.layer,this)
         this.replayManager=new replayManager(this.layer,this)
         
         this.initialManagersAfter()
@@ -232,7 +233,12 @@ class battle{
             }
         }
         for(let a=0,la=encounter.enemy.length;a<la;a++){
-            this.addCombatant(encounter.enemy[a].position,findName(encounter.enemy[a].name,types.combatant),0,0,false)
+            if(this.modded(1)&&floor(random(0,2))==0){
+                this.reinforce.back.push({position:{x:encounter.enemy[a].position.x,y:encounter.enemy[a].position.y},name:encounter.enemy[a].name,turn:1,minion:false})
+                this.quickReinforce(encounter.enemy[a].name)
+            }else{
+                this.addCombatant(encounter.enemy[a].position,findName(encounter.enemy[a].name,types.combatant),0,0,false)
+            }
             this.counter.enemy++
         }
         for(let a=0,la=encounter.reinforce.length;a<la;a++){
@@ -250,7 +256,7 @@ class battle{
         this.attackManager.clear()
         this.turnManager.clear()
         this.particleManager.clear()
-        if(this.encounter.class==0){
+        if(this.encounter.class==0&&!this.modded(10)){
             if(this.first){
                 let tile=this.tileManager.getRandomTilePosition()
                 this.encounter.custom=tile==-1?[0,0]:[constrain(floor(random(-3,5)),0,4),tile]
@@ -443,7 +449,7 @@ class battle{
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
-            this.energy.main[this.turn.main]=max(0,this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.energy.main[this.turn.main]>=1?this.energy.gen[this.turn.main]+1:this.energy.gen[this.turn.main]+this.energy.temp[this.turn.main])
+            this.energy.main[this.turn.main]=max(0,this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.energy.main[this.turn.main]>=1?this.energy.gen[this.turn.main]+1:this.energy.gen[this.turn.main]+this.energy.temp[this.turn.main])-(this.modded(5)?max(3-this.turn.total,0):0)
             this.energy.temp[this.turn.main]=0
         }else{
             this.cardManagers[this.turn.main].reset()
@@ -502,7 +508,7 @@ class battle{
         this.turn.total++
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            this.energy.main[a]=max(0,this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]+this.energy.temp[a])
+            this.energy.main[a]=max(0,this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]+this.energy.temp[a])-(this.modded(5)?max(3-this.turn.total,0):0)
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
@@ -660,6 +666,9 @@ class battle{
             this.cardManagers[player].deck.add(findName('Debt',types.card),0,game.playerNumber+2)
         }
         this.currency.money[player]-=round(amount)
+    }
+    modded(type){
+        return variants.mod?this.modManager.mods[type]:false
     }
     display(scene){
         switch(scene){
@@ -889,6 +898,7 @@ class battle{
                 this.overlayManager.display()
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)
+                this.modManager.display()
                 this.displayCurrency()
                 if(this.anim.defeat>0){
                     this.layer.fill(0,this.anim.defeat)
@@ -924,6 +934,7 @@ class battle{
                 this.overlayManager.display()
                 this.relicManager.display(stage.scene)
                 this.itemManager.display(stage.scene)
+                this.modManager.display()
                 this.displayCurrency()
             break
             case 'rest':
@@ -1634,6 +1645,7 @@ class battle{
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)
                         this.itemManager.onClick(stage.scene)
+                        this.modManager.onClick()
                         if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
@@ -1666,6 +1678,7 @@ class battle{
                     this.nodeManager.onClick()
                     this.relicManager.onClick(stage.scene)
                     this.itemManager.onClick(stage.scene)
+                    this.modManager.onClick()
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
                             this.overlayManager.overlays[4][a].active=true
@@ -1940,6 +1953,7 @@ class battle{
                     }else if(this.turn.main<this.players){
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
                         this.relicManager.onKey(stage.scene,key,code)
+                        this.modManager.onKey(key,code)
                         if(key=='r'||key=='R'){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
@@ -1995,9 +2009,10 @@ class battle{
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onKey(key,code)
                 }else{
+                    this.nodeManager.onKey(key,code)
                     this.relicManager.onKey(stage.scene,key,code)
                     this.itemManager.onKey(stage.scene,key,code)
-                    this.nodeManager.onKey(key,code)
+                    this.modManager.onKey(key,code)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
                         if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
                             this.overlayManager.overlays[4][a].active=true

@@ -723,6 +723,12 @@ class cardManager{
         if(turn%4==0&&game.ascend>=24){
             this.reserve.addShuffle(findName('Dazed',types.card),0,game.playerNumber+1)
         }
+        if(turn%3==0&&this.battle.modded(0)){
+            this.battle.drop(this.player,findName('Dazed',types.card),0,game.playerNumber+1)
+        }
+        if(this.battle.modded(4)){
+            this.hand.randomEffect(7,[1])
+        }
         if(variants.chooselose){
             this.hand.add(findName('Choose\nor Lose',types.card),0,0)
         }

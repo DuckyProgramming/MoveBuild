@@ -33,9 +33,23 @@ class combatant{
             this.attack=copyArrayAttack(types.combatant[this.type].attack)
             this.description=types.combatant[this.type].description
         }
+        this.initialName=this.name
 
         if(this.attack.length==0){
             this.attack=[{type:0,effect:[]}]
+        }
+        if(this.battle.initialized&&this.team==0&&this.battle.modded(7)){
+            this.name='Unknown'
+            this.desc='???'
+        }
+        if(this.battle.initialized&&this.team==0&&this.battle.modded(13)){
+            for(let a=0,la=this.attack.length;a<la;a++){
+                if(this.attack[a].type==21){
+                    this.attack.splice(a,1)
+                    a--
+                    la--
+                }
+            }
         }
         if(this.battle.initialized&&this.team==0&&this.battle.players>1){
             this.life*=1.5
@@ -2803,6 +2817,9 @@ class combatant{
                     case 'Inconsistent':
                         this.color={eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
+                    case 'Unknown':
+                        this.color={skin:{head:[200,200,200],body:[190,190,190],legs:[180,180,180],arms:[185,185,185]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                    break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
@@ -4124,6 +4141,9 @@ class combatant{
                 if(userCombatant.status.main[171]>0){
                     this.statusEffect('Regeneration',userCombatant.status.main[171])
                 }
+                if(userCombatant.team==this.team&&this.team==0&&this.battle.modded(12)){
+                    hit=false
+                }
             }
             if(this.status.main[21]>0){
                 this.status.main[21]--
@@ -4196,6 +4216,9 @@ class combatant{
                         damage*=2
                     }
                 }
+            }
+            if(this.battle.modded(2)&&this.team>0){
+                damage*=1.2
             }
             if(this.stance==1){
                 damage*=2
@@ -4296,6 +4319,9 @@ class combatant{
                 }
                 if(this.id<this.battle.players){
                     this.battle.stats.taken[this.id][0]+=damage
+                }
+                if(this.battle.modded(9)&&this.team>0&&this.team<=this.battle.players&&damage>10){
+                    this.battle.drop(this.id,findName('Concussion',types.card),0,game.playerNumber+1)
                 }
                 if(user>=0&&user<this.battle.combatantManager.combatants.length&&spec==0){
                     let userCombatant=this.battle.combatantManager.combatants[user]
@@ -6884,16 +6910,18 @@ class combatant{
         this.layer.noStroke()
         this.layer.fill(150,this.fade*this.infoAnim.life)
         this.layer.rect(0,0,50,6,3)
-        if(this.collect.life>=this.life){
-            this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
-            this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
-            this.layer.fill(min(255,510-max(0,this.life)/this.base.life*510)-max(0,5-max(0,this.life)/this.base.life*30)*25,max(0,this.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
-            this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
-        }else if(this.collect.life<this.life){
-            this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
-            this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
-            this.layer.fill(min(255,510-max(0,this.collect.life)/this.base.life*510)-max(0,5-max(0,this.collect.life)/this.base.life*30)*25,max(0,this.collect.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
-            this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
+        if(!this.battle.modded(8)){
+            if(this.collect.life>=this.life){
+                this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
+                this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
+                this.layer.fill(min(255,510-max(0,this.life)/this.base.life*510)-max(0,5-max(0,this.life)/this.base.life*30)*25,max(0,this.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
+                this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
+            }else if(this.collect.life<this.life){
+                this.layer.fill(240,0,0,this.fade*this.infoAnim.life)
+                this.layer.rect((max(0,this.life)/this.base.life)*25-25,0,(max(0,this.life)/this.base.life)*50,2+min((max(0,this.life)/this.base.life)*80,4),3)
+                this.layer.fill(min(255,510-max(0,this.collect.life)/this.base.life*510)-max(0,5-max(0,this.collect.life)/this.base.life*30)*25,max(0,this.collect.life)/this.base.life*510,0,this.fade*this.infoAnim.life)
+                this.layer.rect((max(0,this.collect.life)/this.base.life)*25-25,0,(max(0,this.collect.life)/this.base.life)*50,2+min((max(0,this.collect.life)/this.base.life)*80,4),3)
+            }
         }
         this.layer.noFill()
         this.layer.stroke(0,this.fade*this.infoAnim.life)
@@ -6924,7 +6952,11 @@ class combatant{
         }
         this.layer.fill(0,this.fade*this.infoAnim.life)
         this.layer.textSize(6)
-        this.layer.text(max(0,ceil(this.life*10)/10)+"/"+max(0,ceil(this.base.life*10)/10),0,0.5)
+        if(this.battle.modded(8)){
+            this.layer.text(max(0,ceil(this.life*10)/10),0,0.5)
+        }else{
+            this.layer.text(max(0,ceil(this.life*10)/10)+'/'+max(0,ceil(this.base.life*10)/10),0,0.5)
+        }
         if(this.infoAnim.block>0){
             this.layer.fill(0,this.fade*this.infoAnim.block)
             this.layer.text(ceil(this.block*10)/10,-28,0.5)
@@ -7211,7 +7243,7 @@ class combatant{
                     this.battle.counter.killed--
                 }else{
                     let type=0
-                    switch(this.name){
+                    switch(this.initialName){
                         case 'Slimoid':
                             type=findName('Modicum',types.combatant)
                             for(let a=0,la=7;a<la;a++){

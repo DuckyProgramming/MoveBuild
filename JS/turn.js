@@ -1953,6 +1953,12 @@ class turn{
                             }
                         }
                     break
+                    case 21:
+                        this.remove=true
+                        if(this.battle.modded(14)){
+                            this.userCombatant.statusEffect('Strength',2)
+                        }
+                    break
                     case 47: case 179:
                         if(this.timer==1){
                             this.userCombatant.startAnimation(5)
@@ -2600,7 +2606,7 @@ class turn{
                         }
                         if(this.timer>=10+10*this.procedure[0]){
                             if(this.targetCombatant!=-1){
-                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                this.targetCombatant.takeDamage(this.effect[0]*(this.battle.modded(3)?3:1),this.user)
                                 switch(this.type){
                                     case 135:
                                         for(let a=0,la=this.effect[1];a<la;a++){

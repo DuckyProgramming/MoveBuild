@@ -3,8 +3,12 @@ class modManager{
         this.layer=layer
         this.battle=battle
         this.mods=[]
+        this.holdMod=[]
         this.listing={mod:[]}
         this.createListing()
+        for(let a=0,la=5;a<la;a++){
+            //this.addMod(15+a)
+        }
     }
     createListing(){
         for(let a=0,la=types.mod.length;a<la;a++){
@@ -12,22 +16,30 @@ class modManager{
             this.listing.mod.push(a)
         }
     }
+    addMod(type){
+        this.mods[type]=true
+        this.holdMod.push(type)
+    }
     display(){
         if(variants.mod){
             this.layer.fill(200,this.fade)
             this.layer.noStroke()
-            this.layer.ellipse(this.layer.width/2,50,40,40)
+            this.layer.ellipse(this.layer.width-25,250,40,40)
             this.layer.stroke(100,this.fade)
             this.layer.strokeWeight(2)
-            this.layer.quad(this.layer.width/2+8,36,this.layer.width/2+16,36,this.layer.width/2-8,64,this.layer.width/2-16,64)
+            this.layer.quad(this.layer.width-19,240,this.layer.width-11,240,this.layer.width-31,260,this.layer.width-39,260)
         }
     }
     onClick(){
-        if(dist(inputs.rel.x,inputs.rel.y,25,50)<20){
+        if(dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,250)<20){
+            this.battle.overlayManager.overlays[41][0].active=true
+            this.battle.overlayManager.overlays[41][0].activate()
         }
     }
     onKey(key,code){
         if(key=='m'){
+            this.battle.overlayManager.overlays[41][0].active=true
+            this.battle.overlayManager.overlays[41][0].activate()
         }
     }
 }

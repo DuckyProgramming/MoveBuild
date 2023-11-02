@@ -563,6 +563,9 @@ class relicManager{
                         }
                         if(this.active[39]>0){this.detail[39]=0}
                         if(this.active[108]>0){this.detail[108]=0}
+                        if(this.battle.modded(11)){
+                            this.battle.combatantManager.fullAllEffect(3,[3])
+                        }
                     break
                     case 2:
                         if(this.active[41]>0){

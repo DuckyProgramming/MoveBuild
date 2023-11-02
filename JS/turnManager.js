@@ -85,6 +85,11 @@ class turnManager{
                 this.turns.push(new turn(0,this.battle,
                     this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
                     this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
+                if(this.battle.modded(6)&&floor(random(0,4))==0){
+                    this.turns.push(new turn(0,this.battle,
+                        this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
+                        this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
+                }
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){

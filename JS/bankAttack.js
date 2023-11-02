@@ -29,7 +29,7 @@ attack.prototype.update=function(){
         case 1309: case 1311: case 1312: case 1314: case 1315: case 1321: case 1324: case 1330: case 1345: case 1354:
         case 1355: case 1356: case 1377: case 1390: case 1395: case 1397: case 1399: case 1401: case 1416: case 1421:
         case 1424: case 1429: case 1438: case 1439: case 1440: case 1457: case 1462: case 1464: case 1465: case 1478:
-        case 1485:
+        case 1485: case 1490:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -389,7 +389,7 @@ attack.prototype.update=function(){
         case 1158: case 1177: case 1184: case 1201: case 1214: case 1221: case 1224: case 1225: case 1226: case 1227:
         case 1237: case 1249: case 1250: case 1253: case 1254: case 1282: case 1289: case 1303: case 1326: case 1333:
         case 1361: case 1363: case 1378: case 1379: case 1380: case 1384: case 1392: case 1420: case 1422: case 1459:
-        case 1473:
+        case 1473: case 1491:
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
                 this.type==1459&&this.relPos[0]!=1
