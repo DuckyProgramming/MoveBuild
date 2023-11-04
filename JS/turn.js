@@ -50,7 +50,11 @@ class turn{
                                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                                 case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
                                 case 212: case 226: case 227: case 229: case 242: case 246:
-                                    this.target=[[this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]]]
+                                    this.target=this.battle.modded(57)?[
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
+                                        [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2]
+                                    ]:
+                                    [[this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]]]
                                 break
                                 case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
                                 case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
@@ -502,6 +506,17 @@ class turn{
                                 this.targetCombatant=-1
                                 for(let a=0,la=this.targetIndex.length;a<la;a++){
                                     let fail=false
+                                    if(this.battle.modded){
+                                        switch(this.type){
+                                            case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
+                                            case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
+                                            case 212: case 226: case 227: case 229: case 242: case 246:
+                                                if(a==1&&this.targetTile[0]<0){
+                                                    fail=true
+                                                }
+                                            break
+                                        }
+                                    }
                                     switch(this.type){
                                         case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
                                         case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:

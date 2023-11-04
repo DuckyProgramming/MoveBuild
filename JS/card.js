@@ -1669,6 +1669,7 @@ class card{
                 string+=`When Vanished,\nContains a Thing`; break
             case 1490: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Lock`; break
             case 1491: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed ${effect[0]!=1?`are`:`is`} Free\nDuplicate ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1492: string+=`75%: Deal ${this.calculateEffect(effect[0],0)} Damage\n75%: Add ${this.calculateEffect(effect[1],1)} Block`; break
 
 
 
@@ -2237,6 +2238,13 @@ class card{
                 this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(24)
                 this.layer.text('???',0,0)
+            }else if(spec.includes(39)){
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+                this.layer.textSize(16)
+                this.layer.text('Burning',0,-10)
+                this.layer.textSize(8)
+                this.layer.text('Gain 1 Burn\nand Reveal',0,10)
             }else if(spec.includes(8)){
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
@@ -2523,6 +2531,27 @@ class card{
         }
         if(this.spec.includes(34)){
             this.width=50
+        }
+        if(this.battle.modded(37)&&this.cost==0){
+            this.cost=1
+        }
+        if(this.battle.modded(79)&&this.cost==1){
+            this.cost=2
+            if(this.spec.includes(12)){
+                for(let a=0,la=this.effect.length;a<la;a++){
+                    for(let b=0,lb=this.effect.length;b<lb;b++){
+                        if(!(b==0&&this.class[a]==3)){
+                            this.effect[a][b]*=2
+                        }
+                    }
+                }
+            }else{
+                for(let a=0,la=this.effect.length;a<la;a++){
+                    if(!(a==0&&this.class==3)){
+                        this.effect[a]*=2
+                    }
+                }
+            }
         }
     }
 }

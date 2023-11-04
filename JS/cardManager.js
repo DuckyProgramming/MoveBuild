@@ -718,6 +718,10 @@ class cardManager{
             this.hand.cards[this.hand.cards.length-1].position.x=1200
             this.hand.cards[this.hand.cards.length-1].position.y=500
         }
+        if(turn%3==0&&this.battle.modded(67)){
+            this.hand.add(findName('Onyx',types.card),0,0)
+            tempDrawAmount--
+        }
         this.draw(tempDrawAmount)
         this.tempDraw=0
         if(turn%4==0&&game.ascend>=24){
@@ -726,8 +730,14 @@ class cardManager{
         if(turn%3==0&&this.battle.modded(0)){
             this.battle.drop(this.player,findName('Dazed',types.card),0,game.playerNumber+1)
         }
+        if(turn%5==0&&this.battle.modded(31)){
+            this.battle.drop(this.player,findName('Spiked',types.card),0,game.playerNumber+1)
+        }
         if(this.battle.modded(4)){
             this.hand.randomEffect(7,[1])
+        }
+        if(this.battle.modded(75)){
+            this.hand.randomEffect(22,[])
         }
         if(variants.chooselose){
             this.hand.add(findName('Choose\nor Lose',types.card),0,0)
@@ -736,21 +746,39 @@ class cardManager{
             this.hand.add(findName('Compression',types.card),0,0)
         }
     }
+    subFatigue(name){
+        this.discard.add(findName(name,types.card),0,game.playerNumber+1)
+        this.drop.addDrop(findName(name,types.card),0,game.playerNumber+1)
+        if(this.battle.modded(61)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(33)){
+            this.discard.cards[this.discard.cards.length-1].spec.push(33)
+            this.drop.cards[this.drop.cards.length-1].spec.push(33)
+        }
+        if(this.battle.relicManager.hasRelic(142,this.player)){
+            this.discard.cards[this.discard.cards.length-1].cost++
+            this.discard.cards[this.discard.cards.length-1].base.cost++
+            this.drop.cards[this.drop.cards.length-1].cost++
+        }
+        if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))==0){
+            this.discard.cards[this.discard.cards.length-1].cost--
+            this.discard.cards[this.discard.cards.length-1].base.cost--
+            this.drop.cards[this.drop.cards.length-1].cost--
+        }
+    }
     fatigue(){
         if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){
             this.battle.relicManager.detail[108]=1
         }else{
-            this.discard.add(findName('Fatigue',types.card),0,game.playerNumber+1)
-            this.drop.addDrop(findName('Fatigue',types.card),0,game.playerNumber+1)
-            if(this.battle.relicManager.hasRelic(142,this.player)){
-                this.discard.cards[this.discard.cards.length-1].cost++
-                this.discard.cards[this.discard.cards.length-1].base.cost++
-                this.drop.cards[this.drop.cards.length-1].cost++
-            }
-            if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))==0){
-                this.discard.cards[this.discard.cards.length-1].cost--
-                this.discard.cards[this.discard.cards.length-1].base.cost--
-                this.drop.cards[this.drop.cards.length-1].cost--
+            if(this.battle.modded(30)||this.battle.modded(65)){
+                if(this.battle.modded(30)){
+                    for(let a=0,la=1+floor(random(0,2));a<la;a++){
+                        this.subFatigue('Spiked')
+                    }
+                }
+                if(this.battle.modded(65)){
+                    this.subFatigue('Burn')
+                }
+            }else{
+                this.subFatigue('Fatigue')
             }
         }
     }
@@ -822,6 +850,9 @@ class cardManager{
         if(base.list>=0&&base.rarity>=0){
             let index=floor(random(0,this.listing.card[base.list][3].length))
             return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.list][3][index],base.level,base.color,base.id)
+        }else if(base.basic){
+            let index=floor(random(0,this.listing.card[base.color][3].length))
+            return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,this.listing.card[base.color][3][index],base.level,base.color,base.id)
         }else{
             return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Garbled',types.card),base.level,game.playerNumber+1,base.id)
         }

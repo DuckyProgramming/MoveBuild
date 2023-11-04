@@ -108,7 +108,13 @@ class nodeManager{
             break
             case 1:
                 transition.scene='battle'
-                this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][1][floor(random(0,this.listing.encounter[this.world][1].length))]])
+                if(this.battle.modded(69)){
+                    this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0][floor(random(0,this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0].length))]])
+                    this.battle.combatantManager.allEffect(24,[2])
+                    this.battle.combatantManager.allEffect(3,[5])
+                }else{
+                    this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][1][floor(random(0,this.listing.encounter[this.world][1].length))]])
+                }
             break
             case 2:
                 transition.scene='battle'

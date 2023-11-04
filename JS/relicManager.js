@@ -32,8 +32,8 @@ class relicManager{
             this.active.push(0)
             this.player.push(-1)
             switch(types.relic[a].id){
-                case 4: case 17: case 37: case 38: case 39: case 42: case 43: case 44: case 60: case 63:
-                case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111: case 118:
+                case 4: case 17: case 37: case 38: case 39: case 42: case 43: case 44: case 59: case 60:
+                case 63: case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111: case 118:
                     this.detail.push(0)
                 break
                 default:
@@ -272,7 +272,8 @@ class relicManager{
                 manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
                 manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
             break
-            case 135: case 136: case 137: case 138: case 140: case 141: case 142:  case 144: case 145: case 146: case 147: case 148:
+            case 135: case 136: case 137: case 138: case 140: case 141: case 142:  case 144: case 145: case 146:
+            case 147: case 148: case 170:
                 this.battle.energy.base[player]++
             break
             case 139:
@@ -579,6 +580,14 @@ class relicManager{
                         if(this.active[112]>0){
                             this.relicPlayer(112).addBlock(24*this.active[112])
                         }
+                        if(this.battle.modded(60)){
+                            this.battle.combatantManager.allEffect(3,[3])
+                        }
+                    break
+                    case 5:
+                        if(this.battle.modded(58)){
+                            this.battle.quickReinforce('Management Soldier')
+                        }
                     break
                 }
                 if(this.active[4]>0){
@@ -616,6 +625,17 @@ class relicManager{
                 }
                 if(this.active[152]>0&&(args[1]==1||args[1]==2)){
                     this.battle.energy.main[this.player[152]]+=2*this.active[152]
+                }
+                if(args[0]%3==0&&this.battle.modded(23)){
+                    this.battle.combatantManager.allEffect(3,[1])
+                }
+                if(this.battle.modded(59)){
+                    this.detail[59]++
+                    if(this.detail[59]%3==0){
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            this.battle.energy.main[a]--
+                        }
+                    }
                 }
             break
             case 1://end of combat
@@ -673,6 +693,11 @@ class relicManager{
                     if(this.active[158]>0&&args[1]==this.player[158]){
                         for(let a=0,la=3*this.active[158];a<la;a++){
                             this.battle.cardManagers[this.player[158]].hand.add(findName('Miracle',types.card),0,0)
+                        }
+                    }
+                    if(this.battle.modded(62)){
+                        for(let a=0,la=3;a<la;a++){
+                            this.battle.cardManagers[args[1]].fatigue()
                         }
                     }
                 }else{
@@ -736,6 +761,11 @@ class relicManager{
                 }
                 if(this.active[116]>0){
                     this.battle.addCurrency(10*this.active[116],this.player[116])
+                }
+                if(this.battle.modded(15)){
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        this.battle.loseCurrency(10,a)
+                    }
                 }
             break
             case 4://playing card [class,plauer]
@@ -855,6 +885,11 @@ class relicManager{
                             this.detail[118]=0
                         }
                     break
+                }
+                if(this.battle.modded(39)){
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        this.battle.loseCurrency(5,a)
+                    }
                 }
             break
             case 8://skipping card [player]

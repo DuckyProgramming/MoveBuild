@@ -1394,7 +1394,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 57:
+        case 57: case 1492:
             if(this.timer==1){
                 this.userCombatant.startAnimation(15)
             }
@@ -1403,9 +1403,19 @@ attack.prototype.update=function(){
             }
             if(this.timer==15){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,5,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),7.5*this.targetDistance-2]))
-            }else if(this.timer==30*this.targetDistance+15){
-                this.targetCombatant.takeDamage(this.effect[0],this.user,1)
-            }else if(this.timer>=30*this.targetDistance+25){
+            }else if(this.timer==30*this.targetDistance+10){
+                if(this.type==1492){
+                    let luckCheck=this.userCombatant.luckCheck()
+                    if(floor(random(0,4))!=0||luckCheck){
+                        this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                    }
+                    if(floor(random(0,4))!=0||luckCheck){
+                        this.userCombatant.addBlock(this.effect[0])
+                    }
+                }else{
+                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                }
+            }else if(this.timer>=30*this.targetDistance+15){
                 this.remove=true
             }
         break
@@ -3624,16 +3634,6 @@ attack.prototype.update=function(){
                 this.battle.activate(1,this.userCombatant.id)
             }else if(this.timer==15*this.targetDistance-5){
                 this.targetCombatant.takeDamage(this.effect[0],this.user)
-                switch(this.type){
-                    case 35:
-                        this.userCombatant.combo++
-                    break
-                    case 196:
-                        for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
-                        }
-                    break
-                }
             }else if(this.timer>=15*this.targetDistance+15){
                 this.remove=true
             }

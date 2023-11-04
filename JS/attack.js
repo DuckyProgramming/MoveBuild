@@ -122,7 +122,7 @@ class attack{
             case 1432: case 1434: case 1435: case 1437: case 1438: case 1439: case 1440: case 1441: case 1442: case 1443:
             case 1444: case 1445: case 1446: case 1449: case 1451: case 1452: case 1454: case 1455: case 1457: case 1461:
             case 1462: case 1463: case 1465: case 1470: case 1471: case 1472: case 1474: case 1478: case 1479: case 1480:
-            case 1481: case 1482: case 1483: case 1484: case 1485: case 1490:
+            case 1481: case 1482: case 1483: case 1484: case 1485: case 1490: case 1492:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -133,18 +133,18 @@ class attack{
                 this.relativeDistance=sqrt((this.targetCombatant.relativePosition.x-this.relativePosition.x)**2+(this.targetCombatant.relativePosition.y-this.relativePosition.y)**2)
             break
             case 3: case 14: case 20: case 51: case 52: case 54: case 56: case 58: case 59: case 60:
-            case 82: case 83: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248:
-            case 256: case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397:
-            case 421: case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485:
-            case 486: case 503: case 570: case 571: case 573: case 574: case 575: case 585: case 619: case 620:
-            case 621: case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631:
-            case 660: case 663: case 664: case 666: case 685: case 686: case 687: case 688: case 690: case 693:
-            case 694: case 695: case 696: case 700: case 701: case 702: case 703: case 704: case 705: case 706:
-            case 717: case 750: case 802: case 803: case 804: case 805: case 808: case 812: case 816: case 817:
-            case 823: case 923: case 955: case 963: case 973: case 975: case 976: case 977: case 978: case 979:
-            case 997: case 998: case 999: case 1024: case 1048: case 1071: case 1080: case 1081: case 1084: case 1085:
-            case 1086: case 1104: case 1119: case 1136: case 1137: case 1143: case 1185: case 1232: case 1346: case 1352:
-            case 1383: case 1387: case 1389: case 1469:
+            case 82: case 87: case 91: case 153: case 177: case 182: case 192: case 205: case 248: case 256:
+            case 330: case 331: case 332: case 335: case 341: case 374: case 375: case 383: case 397: case 421:
+            case 448: case 458: case 464: case 472: case 474: case 479: case 482: case 484: case 485: case 486:
+            case 503: case 570: case 571: case 573: case 574: case 575: case 585: case 619: case 620: case 621:
+            case 622: case 623: case 624: case 626: case 627: case 628: case 629: case 630: case 631: case 660:
+            case 663: case 664: case 666: case 685: case 686: case 687: case 688: case 690: case 693: case 694:
+            case 695: case 696: case 700: case 701: case 702: case 703: case 704: case 705: case 706: case 717:
+            case 750: case 802: case 803: case 804: case 805: case 808: case 812: case 816: case 817: case 823:
+            case 923: case 955: case 963: case 973: case 975: case 976: case 977: case 978: case 979: case 997:
+            case 998: case 999: case 1024: case 1048: case 1071: case 1080: case 1081: case 1084: case 1085: case 1086:
+            case 1104: case 1119: case 1136: case 1137: case 1143: case 1185: case 1232: case 1346: case 1352: case 1383:
+            case 1387: case 1389: case 1469:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -499,9 +499,6 @@ class attack{
     selfCall(type){
         switch(type){
             case 0:
-                if(this.type==35&&this.targetCombatant.life==this.targetCombatant.base.life){
-                    this.battle.energy.main[this.player]++
-                }
                 switch(this.type){
                     case 12: case 719: case 1213:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
@@ -898,6 +895,12 @@ class attack{
                     break
                     case 1478:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy+this.effect[1],this.user)
+                    break
+                    case 35:
+                        if(this.targetCombatant.life==this.targetCombatant.base.life){
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -5007,7 +5010,7 @@ class attack{
                     break
                     case 1442:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(this.energy$2==0){
+                        if(this.energy%2==0){
                             this.targetCombatant.statusEffect('Burn',this.effect[1])
                         }
                     break
@@ -5476,6 +5479,7 @@ class attack{
                         if(this.battle.encounter.class!=2){
                             if(this.userManager.deck.add(findName('Container\nBall',types.card),0,0)){
                                 this.userManager.deck.cards[this.userManager.deck.cards.length-1].limit=this.targetCombatant.type
+                                this.targetCombatant.life=0
                             }
                         }
                     break
@@ -5569,7 +5573,7 @@ class attack{
                         this.userCombatant.statusEffect('Dexterity',this.effect[2])
                     break
                     case 353:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,-1,this.targetCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.targetCombatant.id,this.targetCombatant.tilePosition)
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,36,[20]))
                     break
                     case 407:

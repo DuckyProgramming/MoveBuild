@@ -8771,6 +8771,19 @@ combatant.prototype.display=function(){
                 }
             break
         }
+        if(this.name!='Agent Duck'&&this.team==0&&this.battle.initialized&&this.battle.modded(34)){
+            this.layer.noFill()
+            this.layer.stroke(240,240,40,this.fade)
+            this.layer.strokeWeight(3)
+            this.layer.strokeCap(SQUARE)
+            this.layer.arc(-19.5,13.5,15,15,-135,45)
+            this.layer.arc(-20.5,14.5,15,15,45,225)
+            this.layer.strokeCap(ROUND)
+            this.layer.noStroke()
+            this.layer.fill(255,this.fade)
+            this.layer.textSize(12)
+            this.layer.text(this.combo,-20,14.5)
+        }
         if(this.infoAnim.orb>0){
             for(let a=0,la=this.orbs.length;a<la;a++){
                 if(lcos(this.time*2+360*a/la)>0){

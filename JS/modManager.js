@@ -6,8 +6,8 @@ class modManager{
         this.holdMod=[]
         this.listing={mod:[]}
         this.createListing()
-        for(let a=0,la=5;a<la;a++){
-            //this.addMod(15+a)
+        for(let a=0,la=10;a<la;a++){
+            this.addMod(70+a)
         }
     }
     createListing(){
@@ -19,6 +19,21 @@ class modManager{
     addMod(type){
         this.mods[type]=true
         this.holdMod.push(type)
+        this.getMod(type)
+    }
+    getMod(type){
+        switch(type){
+            case 68:
+                constants.collisionDamage*=5
+            break
+            case 77:
+                for(let a=0,la=game.playerNumber;a<la;a++){
+                    for(let b=0,lb=this.battle.cardManagers.length;b<lb;b++){
+                        this.battle.cardManagers[b].addRandomColor(0,0,a+1,0)
+                    }
+                }
+            break
+        }
     }
     display(){
         if(variants.mod){
@@ -31,13 +46,13 @@ class modManager{
         }
     }
     onClick(){
-        if(dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,250)<20){
+        if(dist(inputs.rel.x,inputs.rel.y,this.layer.width-25,250)<20&&variants.mod){
             this.battle.overlayManager.overlays[41][0].active=true
             this.battle.overlayManager.overlays[41][0].activate()
         }
     }
     onKey(key,code){
-        if(key=='m'){
+        if(key=='m'&&variants.mod){
             this.battle.overlayManager.overlays[41][0].active=true
             this.battle.overlayManager.overlays[41][0].activate()
         }

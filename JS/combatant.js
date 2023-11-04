@@ -18,7 +18,7 @@ class combatant{
             this.name=types.combatant[this.type].name
             this.life=types.combatant[this.type].life
             this.behavior=types.combatant[this.type].behavior
-            this.spec=types.combatant[this.type].spec
+            this.spec=copyArray(types.combatant[this.type].spec)
             this.move=types.combatant[this.type].move
             this.attack=copyArrayAttack(types.combatant[this.type].attack)
             this.description=types.combatant[this.type].description
@@ -28,7 +28,7 @@ class combatant{
             this.name=types.combatant[this.type].name
             this.life=types.combatant[this.type].life
             this.behavior=types.combatant[this.type].behavior
-            this.spec=types.combatant[this.type].spec
+            this.spec=copyArray(types.combatant[this.type].spec)
             this.move=types.combatant[this.type].move
             this.attack=copyArrayAttack(types.combatant[this.type].attack)
             this.description=types.combatant[this.type].description
@@ -50,6 +50,12 @@ class combatant{
                     la--
                 }
             }
+        }
+        if(this.battle.initialized&&this.team==0&&this.battle.modded(42)&&floor(random(0,10))==0&&!this.spec.includes(1)){
+            this.spec.push(1)
+        }
+        if(this.battle.initialized&&this.team==0&&this.battle.modded(53)&&!this.spec.includes(0)){
+            this.spec.push(0)
         }
         if(this.battle.initialized&&this.team==0&&this.battle.players>1){
             this.life*=1.5
@@ -2886,6 +2892,35 @@ class combatant{
         if(this.spec.includes(6)){
             this.threshold=this.life-20
         }
+        if(this.team==0&&this.battle.modded(20)&&floor(random(0,4))==0){
+            this.statusEffect('Invisible',999)
+        }
+        if(this.team==0&&this.battle.modded(24)){
+            this.statusEffect('Dodge',1)
+        }
+        if(this.team==0&&this.battle.modded(27)){
+            this.statusEffect('Strength on Hit',1)
+        }
+        if(this.team==0&&this.battle.modded(43)&&(this.name.includes('P')||this.name.includes('p'))){
+            this.statusEffect('Strength',3)
+        }
+        if(this.team==0&&this.battle.modded(44)&&(this.name.includes('R')||this.name.includes('r'))){
+            this.statusEffect('Strength',3)
+        }
+        if(this.team==0&&this.battle.modded(45)&&(this.name.includes('S')||this.name.includes('s'))){
+            this.statusEffect('Strength',3)
+        }
+        if(this.team==0&&this.battle.modded(46)&&(this.name.includes('C')||this.name.includes('c'))){
+            this.statusEffect('Strength',3)
+        }
+        if(this.team==0&&this.battle.modded(47)&&(this.name.includes('F')||this.name.includes('f'))){
+            this.statusEffect('Strength',3)
+        }
+        if(this.battle.modded(22)&&this.name.includes('Duck')){
+            this.life*=2
+            this.base.life*=2
+            this.collect.life*=2
+        }
         switch(this.name){
             case 'Orb Walker':
                 this.statusEffect('Strength Per Turn',1)
@@ -3263,7 +3298,11 @@ class combatant{
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
             case 212: case 229: case 242: case 246:
-                return [this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])]
+                return this.battle.modded(57)?[
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
+                ]:
+                [this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1])]
             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
             case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 107:
             case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223: case 224:
@@ -3573,63 +3612,67 @@ class combatant{
     setIntent(type){
         switch(type){
             case 0:
-                switch(this.behavior){
-                    case 0:
-                        this.intent=(this.battle.turn.total-1)%this.attack.length
-                    break
-                    case 1:
-                        this.intent=floor(random(0,this.attack.length))
-                    break
-                    case 2:
-                        this.intent=floor(random(0,this.attack.length-0.5))
-                    break
-                    case 3:
-                        this.intent=this.battle.turn.total<=3?this.attack.length-1:floor(random(0,this.attack.length-1))
-                    break
-                    case 4:
-                        this.intent=this.battle.turn.total<=3?this.attack.length-1:(this.battle.turn.total-4)%this.attack.length
-                    break
-                    case 5:
-                        this.intent=(this.battle.turn.total+this.id)%this.attack.length
-                    break
-                    case 6:
-                        let value=(this.battle.turn.total-1)%(this.attack.length*2-2)
-                        this.intent=value==0?0:value==this.attack.length*2-3?this.attack.length-1:(value-1)%(this.attack.length-2)+1
-                    break
-                    case 7:
-                        this.intent=floor(random(0,this.attack.length))
-                        if(this.intent==0&&this.status.main[42]<=0){
+                if(this.battle.modded(41)){
+                    this.intent=(this.battle.turn.total-1)%this.attack.length
+                }else{
+                    switch(this.behavior){
+                        case 0:
+                            this.intent=(this.battle.turn.total-1)%this.attack.length
+                        break
+                        case 1:
                             this.intent=floor(random(0,this.attack.length))
-                        }
-                    break
-                    case 8:
-                        this.intent=this.battle.turn.total<=1?this.attack.length-1:(this.battle.turn.total-2)%(this.attack.length-1)
-                    break
-                    case 9:
-                        this.intent=this.battle.turn.total<=1?this.attack.length-1:(this.battle.turn.total-2)%this.attack.length
-                    break
-                    case 10:
-                        this.intent=this.battle.turn.total<=1?this.attack.length-1:floor(random(0,this.attack.length-1))
-                    break
-                    case 11:
-                        this.intent=this.battle.turn.total%3==1?this.attack.length-1:(floor(this.battle.turn.total*2/3)+this.attack.length-2)%(this.attack.length-1)
-                    break
-                    case 12:
-                        this.intent=this.battle.turn.total<=3?this.attack.length-1:floor(random(0,this.attack.length))
-                    break
-                    case 13:
-                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                            if(this.battle.combatantManager.combatants[a].name==this.name&&this.battle.combatantManager.combatants[a].life<=0&&!this.battle.combatantManager.combatants[a].respawn){
-                                this.progress++
+                        break
+                        case 2:
+                            this.intent=floor(random(0,this.attack.length-0.5))
+                        break
+                        case 3:
+                            this.intent=this.battle.turn.total<=3?this.attack.length-1:floor(random(0,this.attack.length-1))
+                        break
+                        case 4:
+                            this.intent=this.battle.turn.total<=3?this.attack.length-1:(this.battle.turn.total-4)%this.attack.length
+                        break
+                        case 5:
+                            this.intent=(this.battle.turn.total+this.id)%this.attack.length
+                        break
+                        case 6:
+                            let value=(this.battle.turn.total-1)%(this.attack.length*2-2)
+                            this.intent=value==0?0:value==this.attack.length*2-3?this.attack.length-1:(value-1)%(this.attack.length-2)+1
+                        break
+                        case 7:
+                            this.intent=floor(random(0,this.attack.length))
+                            if(this.intent==0&&this.status.main[42]<=0){
+                                this.intent=floor(random(0,this.attack.length))
                             }
-                        }
-                        if(this.progress>=4&&floor(random(0,2))==0){
-                            this.intent=this.attack.length-1
-                            this.progress=0
-                        }else{
-                            this.intent=floor(random(0,this.attack.length-1))
-                        }
-                    break
+                        break
+                        case 8:
+                            this.intent=this.battle.turn.total<=1?this.attack.length-1:(this.battle.turn.total-2)%(this.attack.length-1)
+                        break
+                        case 9:
+                            this.intent=this.battle.turn.total<=1?this.attack.length-1:(this.battle.turn.total-2)%this.attack.length
+                        break
+                        case 10:
+                            this.intent=this.battle.turn.total<=1?this.attack.length-1:floor(random(0,this.attack.length-1))
+                        break
+                        case 11:
+                            this.intent=this.battle.turn.total%3==1?this.attack.length-1:(floor(this.battle.turn.total*2/3)+this.attack.length-2)%(this.attack.length-1)
+                        break
+                        case 12:
+                            this.intent=this.battle.turn.total<=3?this.attack.length-1:floor(random(0,this.attack.length))
+                        break
+                        case 13:
+                            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                                if(this.battle.combatantManager.combatants[a].name==this.name&&this.battle.combatantManager.combatants[a].life<=0&&!this.battle.combatantManager.combatants[a].respawn){
+                                    this.progress++
+                                }
+                            }
+                            if(this.progress>=4&&floor(random(0,2))==0){
+                                this.intent=this.attack.length-1
+                                this.progress=0
+                            }else{
+                                this.intent=floor(random(0,this.attack.length-1))
+                            }
+                        break
+                    }
                 }
             break
         }
@@ -3699,7 +3742,16 @@ class combatant{
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
                         case 212: case 229: case 242: case 246:
-                            if(
+                            if(this.battle.modded(57)){
+                                for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                                    if(
+                                        this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
+                                        this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[b].tilePosition.y&&
+                                        !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                                            this.activated=true
+                                    }
+                                }
+                            }else if(
                                 this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[0].tilePosition.x&&
                                 this.battle.combatantManager.combatants[a].tilePosition.y==this.targetTile[0].tilePosition.y){
                                     this.activated=true
@@ -3862,7 +3914,15 @@ class combatant{
                     case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                     case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
                     case 150: case 181: case 209: case 212: case 229:
-                        if(this.targetTile[0].tilePosition.x>=0){
+                        if(this.battle.modded(57)){
+                            for(let b=0,lb=this.targetTile.length;b<lb;b++){
+                                if(
+                                    this.targetTile[b].tilePosition.x>=0&&
+                                    !(b>=1&&(this.targetTile[0].tilePosition.x<0||this.targetTile[0].occupied>0))){
+                                        this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
+                                }
+                            }
+                        }else if(this.targetTile[0].tilePosition.x>=0){
                             this.targetTile[0].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[0],this)))
                         }
                     break
@@ -4127,6 +4187,7 @@ class combatant{
                     hit=false
                     this.infoAnim.upFlash[3]=true
                     userCombatant.takeDamage(damage)
+                    damage=0
                 }
                 if(userCombatant.status.main[98]>0){
                     this.statusEffect('Bleed',userCombatant.status.main[98])
@@ -4143,6 +4204,17 @@ class combatant{
                 }
                 if(userCombatant.team==this.team&&this.team==0&&this.battle.modded(12)){
                     hit=false
+                }
+                if(userCombatant.team==0&&this.battle.modded(18)){
+                    this.statusEffect('Bleed',1)
+                }
+                if(userCombatant.team==0&&this.battle.modded(34)){
+                    if(floor(random(0,5))==0){
+                        damage+=userCombatant.combo*2
+                        userCombatant.combo=0
+                    }else{
+                        userCombatant.combo++
+                    }
                 }
             }
             if(this.status.main[21]>0){
@@ -4220,6 +4292,9 @@ class combatant{
             if(this.battle.modded(2)&&this.team>0){
                 damage*=1.2
             }
+            if(this.battle.modded(16)&&this.team>0&&floor(random(0,4))==0){
+                damage*=2
+            }
             if(this.stance==1){
                 damage*=2
             }
@@ -4262,6 +4337,9 @@ class combatant{
                 }
             }
             if(hit){
+                if(this.battle.modded(40)&&this.id<this.battle.players){
+                    this.battle.loseCurrency(5,this.id)
+                }
                 if(this.status.main[169]>0){
                     this.heal(damage)
                 }else if(this.status.main[153]>0){
@@ -4270,7 +4348,7 @@ class combatant{
                 }else if(this.status.main[172]>0){
                     this.statusEffect('Block Next Turn',damage)
                 }else if(this.status.main[174]>0){
-                    this.battle.currency.money[this.id]-=damage*this.status.main[174]
+                    this.battle.loseCurrency(damage*this.status.main[174],this.id)
                 }else if(this.block>=damage&&spec!=2){
                     this.block-=damage
                     this.infoAnim.upFlash[1]=true
@@ -4338,6 +4416,9 @@ class combatant{
                     }
                     if(userCombatant.status.main[170]>0&&userCombatant.id<this.battle.players){
                         this.battle.currency.money[userCombatant.id]+=damage
+                    }
+                    if(this.battle.modded(76)&&userCombatant.team==0){
+                        userCombatant.heal(damage)
                     }
                     if(this.life>0){
                         if(this.battle.turnManager.turns.length==0){
@@ -4597,7 +4678,11 @@ class combatant{
             }
             if(block>=0){
                 this.lastBlock=block
-                this.block+=block
+                if(this.battle.modded(74)&&this.team==0){
+                    this.heal(block)
+                }else{
+                    this.block+=block
+                }
                 if(this.id<this.battle.players){
                     this.battle.stats.block[this.id]+=block
                 }
@@ -4607,7 +4692,7 @@ class combatant{
     endBlock(){
         if(this.status.main[11]>0){
             this.status.main[11]--
-        }else{
+        }else if(!(this.team==0&&this.battle.modded(26))){
             this.block=this.battle.relicManager.hasRelic(26,this.id)?max(0,this.block-10):0
         }
     }
@@ -4941,12 +5026,22 @@ class combatant{
             this.battle.relicManager.hasRelic(25,this.id)&&name=='Vulnerable')){
             let status=findList(name,this.status.name)
             if(status>=0){
+                let mult=1
+                if(this.status.name[status].includes('Counter')&&this.team==0&&this.battle.modded(19)){
+                    mult*=2
+                }
+                if((this.status.class[status]==1||this.status.class[status]==3)&&this.team>0&&this.battle.modded(35)){
+                    mult*=2
+                }
+                if((this.status.class[status]==0||this.status.class[status]==2)&&this.team==0&&this.battle.modded(36)){
+                    mult*=2
+                }
                 if(this.status.main[15]>0&&((this.status.class[status]==1||this.status.class[status]==3)&&value>0||(this.status.class[status]==0||this.status.class[status]==2)&&value<0)){
                     this.status.main[15]--
                 }else if(this.status.main[46]>0&&((this.status.class[status]==0||this.status.class[status]==2)&&value>0||(this.status.class[status]==1||this.status.class[status]==3)&&value<0)){
                     this.status.main[46]--
                 }else{
-                    this.status.main[status]+=value
+                    this.status.main[status]+=value*mult
                 }
             }
             if(status==32){
@@ -5153,6 +5248,12 @@ class combatant{
         }
         if(this.stance==5){
             this.stance=0
+        }
+        if(this.battle.modded(28)&&this.team==0&&floor(random(0,4))==0){
+            this.addBlock(20)
+        }
+        if(this.battle.modded(32)&&this.team==0){
+            this.addBlock(3)
         }
         for(let a=0,la=this.orbs.length;a<la;a++){
             switch(this.orbs[a]){
@@ -7235,6 +7336,30 @@ class combatant{
                     this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10,[30]))
                 }
                 this.battle.combatantManager.dead()
+                if(this.battle.modded(17)){
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        for(let b=0,lb=3;b<lb;b++){
+                            if(this.battle.cardManagers[a].reserve.cards.length>0){
+                                this.battle.cardManagers[a].randomEffect(1,8,[])
+                            }else{
+                                this.battle.cardManagers[a].randomEffect(3,8,[])
+                            }
+                        }
+                    }
+                }
+                if(this.battle.modded(55)&&this.battle.turn.main<this.battle.players){
+                    this.battle.energy.main[this.battle.turn.main]--
+                }
+                if(this.battle.modded(55)){
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Weak',2)
+                    }
+                }
+                if(this.battle.modded(56)){
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Vulnerable',2)
+                    }
+                }
                 if(this.name=='Prestige'&&this.base.life>10){
                     this.doubleHalf()
                     this.battle.updateTargetting()
@@ -7243,41 +7368,161 @@ class combatant{
                     this.battle.counter.killed--
                 }else{
                     let type=0
-                    switch(this.initialName){
-                        case 'Slimoid':
-                            type=findName('Modicum',types.combatant)
-                            for(let a=0,la=7;a<la;a++){
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                    for(let a=0,la=1+(this.battle.modded(71)?1:0);a<la;a++){
+                        if(this.battle.modded(72)&&floor(random(0,2))==0&&this.name!='Modicum'){
+                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Modicum',types.combatant),this.goal.anim.direction)
+                        }
+                        if(this.battle.modded(29)){
+                            switch(this.initialName){
+                                case 'Big Duck':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Enforcer':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Ninja Master',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Ninja Master',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Agent Duck':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Duck',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Duck',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Chief Deployer':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Deployer',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Deployer',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Solar Shard':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Shard',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Management Caller':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Soldier',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Soldier',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Prison Guard':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Prisoner',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Swordmaster':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Human',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Human',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Gas Man':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Fireball',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Fireball',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Champion':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Vengeful',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Vengeful',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Deadshell':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Thornvine',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Thornvine',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Executive':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Intern',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Intern',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Mechanized':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Bomber Boy':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Thug',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Thug',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Assistant Hiring Officer':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Executive',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Executive',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Assistant Fitness Officer':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Billy Beatup',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Billy Beatup',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Armored Ninja':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Ninja',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Ninja',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Jet':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Sniper',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Sniper',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Gangster Machinegunner':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Gangster',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Gangster',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Elf Archer':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bush Thing',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bush Thing',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Beekeeper':
+                                    type=findName('Bee',types.combatant)
+                                    for(let b=0,lb=7;b<lb;b++){
+                                        this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                                    }
+                                break
+                                case 'Coffee Commander':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Special Forces',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Special Forces',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Prestige':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Nerfer',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Buffer',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Divine Guard':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Nil',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Nil',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Avant Guard':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Glitched Giant',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Glitched Giant',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Vengeful':
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Rusty',types.combatant),this.goal.anim.direction)
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Rusty',types.combatant),this.goal.anim.direction)
+                                break
+                                case 'Tech Support':
+                                    type=findName('Bolt',types.combatant)
+                                    for(let b=0,lb=7;b<lb;b++){
+                                        this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                                    }
+                                break
+
                             }
-                        break
-                        case 'Big Slime':
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
-                        break
-                        case 'Big Spike Slime':
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
-                        break
-                        case 'Big Slimoid':
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slimoid',types.combatant),this.goal.anim.direction)
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slimoid',types.combatant),this.goal.anim.direction)
-                        break
-                        case 'Slime Boss':
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
-                        break
-                        case 'Solar Shard':
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Shard',types.combatant),this.goal.anim.direction)
-                        break
-                        case 'Lunar Shard':
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Dust',types.combatant),this.goal.anim.direction)
-                        break
-                        case 'Personnel Carrier':
-                            type=findName('Management Robot',types.combatant)
-                            for(let a=0,la=5;a<la;a++){
-                                this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
-                            }
-                        break
+                        }
+                        switch(this.initialName){
+                            case 'Slimoid':
+                                type=findName('Modicum',types.combatant)
+                                for(let b=0,lb=7;b<lb;b++){
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                                }
+                            break
+                            case 'Big Slime':
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slime',types.combatant),this.goal.anim.direction)
+                            break
+                            case 'Big Spike Slime':
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Spike Slime',types.combatant),this.goal.anim.direction)
+                            break
+                            case 'Big Slimoid':
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slimoid',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Slimoid',types.combatant),this.goal.anim.direction)
+                            break
+                            case 'Slime Boss':
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Big Slime',types.combatant),this.goal.anim.direction)
+                            break
+                            case 'Solar Shard':
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Shard',types.combatant),this.goal.anim.direction)
+                            break
+                            case 'Lunar Shard':
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Lunar Dust',types.combatant),this.goal.anim.direction)
+                            break
+                            case 'Personnel Carrier':
+                                type=findName('Management Robot',types.combatant)
+                                for(let a=0,la=5;a<la;a++){
+                                    this.battle.combatantManager.summonCombatant(this.tilePosition,type,this.goal.anim.direction)
+                                }
+                            break
+                        }
                     }
                     this.battle.combatantManager.reorder()
                 }

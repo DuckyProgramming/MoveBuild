@@ -82,14 +82,13 @@ class turnManager{
         this.turns=[]
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
             if(this.battle.combatantManager.combatants[a].team==0&&this.battle.combatantManager.combatants[a].activated&&!this.battle.combatantManager.combatants[a].moved&&this.battle.combatantManager.combatants[a].getStatus('Stun')<=0){
-                this.turns.push(new turn(0,this.battle,
-                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
-                    this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
-                if(this.battle.modded(6)&&floor(random(0,4))==0){
+                for(let b=0,lb=1+(this.battle.modded(6)&&floor(random(0,4))==0?1:0)+(this.battle.modded(26)&&types.attack[this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type].name.includes('Gun')?1:0)+(this.battle.modded(52)&&types.attack[this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type].name.includes('Summon')?1:0);b<lb;b++){
                     this.turns.push(new turn(0,this.battle,
                         this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].type,
                         this.battle.combatantManager.combatants[a].attack[this.battle.combatantManager.combatants[a].intent].effect,a))
                 }
+            }else if(!this.battle.combatantManager.combatants[a].activated&&this.battle.combatantManager.combatants[a].team==0){
+                this.battle.combatantManager.combatants[a].statusEffect('Strength',2)
             }
         }
         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){

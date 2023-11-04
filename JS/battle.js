@@ -52,6 +52,7 @@ class battle{
     }
     create(){
         graphics.combatant=[]
+        constants.collisionDamage=4
         this.players=this.player.length
         this.initialGraphics()
         this.initialManagers()
@@ -210,8 +211,9 @@ class battle{
         this.reinforce={back:[],front:[]}
         this.first=first
 
+        game.collisionDamage=constants.collisionDamage
+
         this.tileManager.generateTiles(types.level[findName(encounter.level[floor(random(0,encounter.level.length))],types.level)])
-        
         this.combatantManager.resetCombatants()
         
         for(let a=0,la=this.players;a<la;a++){
@@ -253,6 +255,12 @@ class battle{
             this.cardManagers[a].shuffle(1)
         }
         this.combatantManager.deTargetCombatants()
+        if(this.modded(21)&&this.encounter.class==0){
+            this.combatantManager.equalize()
+        }
+        if(this.modded(33)&&this.encounter.class==0){
+            this.combatantManager.allEffect(3,[this.counter.enemy])
+        }
         this.attackManager.clear()
         this.turnManager.clear()
         this.particleManager.clear()
@@ -267,11 +275,28 @@ class battle{
                 this.combatantManager.recount()
             }
         }
+        if(this.modded(51)){
+            let tile=this.tileManager.getRandomTilePosition()
+            this.addCombatant(tile,findName('Sentry',types.combatant),0,0,false)
+            this.combatantManager.recount()
+        }
+        if(this.modded(78)&&(this.encounter.class==1||this.encounter.class==2)){
+            let tile=this.tileManager.getRandomTilePosition()
+            this.addCombatant(tile,findName('Bodyguard',types.combatant),0,0,false)
+            this.combatantManager.recount()
+        }
         this.combatantManager.setTargets()
         this.combatantManager.reID()
-        this.startTurn()
-
-        game.collisionDamage=constants.collisionDamage
+        if(this.modded(63)&&floor(random(0,2))==0){
+            this.tileManager.activate()
+            this.sendReinforce()
+            this.tileManager.fire()
+            this.turnManager.loadEnemyTurns()
+            this.combatantManager.enableCombatants()
+            this.turn.main=this.players
+        }else{
+            this.startTurn()
+        }
     }
     setupRest(){
         this.optionManagers.forEach(optionManager=>optionManager.reset())
@@ -413,31 +438,51 @@ class battle{
     }
     drop(player,type,level,color){
         if(player<this.cardManagers.length){
-            this.cardManagers[player].discard.add(type,level,color)
+            if(this.cardManagers[player].discard.add(type,level,color)){
+                if(!this.cardManagers[player].discard.cards[this.cardManagers[player].discard.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].discard.cards[this.cardManagers[player].discard.cards.length-1].spec.push(5)
+                }
+            }
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
     dropDraw(player,type,level,color){
         if(player<this.cardManagers.length){
-            this.cardManagers[player].reserve.add(type,level,color)
+            if(this.cardManagers[player].reserve.add(type,level,color)){
+                if(!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
+                }
+            }
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
     dropDrawShuffle(player,type,level,color){
         if(player<this.cardManagers.length){
-            this.cardManagers[player].reserve.addShuffle(type,level,color)
+            if(this.cardManagers[player].reserve.addShuffle(type,level,color)){
+                if(!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
+                }
+            }
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
     dropDrawShuffleEffect(player,type,level,color,index,effect){
         if(player<this.cardManagers.length){
-            this.cardManagers[player].reserve.addShuffleEffect(type,level,color,index,effect)
+            if(this.cardManagers[player].reserve.addShuffleEffect(type,level,color,index,effect)){
+                if(!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
+                }
+            }
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
     dropAll(type,level,color){
         for(let a=0,la=this.cardManagers.length;a<la;a++){
-            this.cardManagers[a].discard.add(type,level,color)
+            if(this.cardManagers[a].discard.add(type,level,color)){
+                if(!this.cardManagers[a].discard.cards[this.cardManagers[a].discard.cards.length-1].spec.includes(5)){
+                    this.cardManagers[a].discard.cards[this.cardManagers[a].discard.cards.length-1].spec.push(5)
+                }
+            }
             this.cardManagers[a].drop.addDrop(type,level,color)
         }
     }
@@ -1250,92 +1295,71 @@ class battle{
                             this.overlayManager.overlays[38][a].active=true
                             this.overlayManager.overlays[38][a].activate()
                         }
-                        if(variants.vanish||variants.inventor){
-                            switch(this.encounter.class){
-                                case 0: case 3: case 4:
-                                    this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
-                                        {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
-                                        {type:0,value:[floor(random(40,81))]}]])
-                                break
-                                case 1:
-                                    this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
-                                        {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
-                                        {type:2,value:[]},
-                                        {type:0,value:[floor(random(120,201))]}]])
-                                break
-                                case 2:
-                                    if(this.nodeManager.world!=3){
-                                        this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[
-                                            {type:1,value:[0,2,0]},
-                                            {type:1,value:[0,2,0]},
-                                        ]:[
-                                            {type:1,value:[0,2,0]},
-                                            {type:1,value:[0,2,0]},
-                                            {type:0,value:[floor(random(240,401))]}
-                                        ]])
-                                    }
-                                break
-                            }
-                        }else{
-                            switch(this.encounter.class){
-                                case 0: case 3: case 4:
-                                    this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]},
-                                        {type:0,value:[floor(random(40,81))]}]])
-                                break
-                                case 1:
-                                    this.overlayManager.overlays[0][a].activate([0,[
-                                        {type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]},
-                                        {type:2,value:[]},
-                                        {type:0,value:[floor(random(120,201))]}]])
-                                break
-                                case 2:
-                                    if(this.nodeManager.world!=3){
-                                        this.overlayManager.overlays[0][a].activate([0,game.ascend>=13?[
-                                            {type:1,value:[0,2,0]},
-                                        ]:[
-                                            {type:1,value:[0,2,0]},
-                                            {type:0,value:[floor(random(240,401))]}
-                                        ]])
-                                    }
-                                break
+                        let reward=[]
+                        for(let a=0,la=(variants.vanish||variants.inventor)?2:1;a<la;a++){
+                            if(floor(random(0,2))==0||!this.modded(50)){
+                                switch(this.encounter.class){
+                                    case 0: case 3: case 4:
+                                        reward.push({type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]})
+                                    break
+                                    case 1:
+                                        reward.push({type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]})
+                                    break
+                                    case 2:
+                                        if(this.nodeManager.world!=3){
+                                            reward.push({type:1,value:[0,2,0]})
+                                        }
+                                    break
+                                }
                             }
                         }
-                        if(this.encounter.class!=2){
-                            if(floor(random(0,3))==0||this.relicManager.hasRelic(83,a)){
-                                this.overlayManager.overlays[0][a].activate([1,[
-                                    {type:3,value:[]}]])
-                            }
-                            if(floor(random(0,6))==0){
-                                this.overlayManager.overlays[0][a].activate([1,[{type:5,value:[1]}]])
-                            }
-                        }
-                        if(this.encounter.class==1){
-                            if(this.relicManager.hasRelic(171,a)){
-                                this.overlayManager.overlays[0][a].activate([1,[
-                                    {type:2,value:[]}]])
-                                this.overlayManager.overlays[0][a].activate([1,[
-                                    {type:2,value:[]}]])
-                            }
+                        switch(this.encounter.class){
+                            case 0: case 3: case 4:
+                                reward.push({type:0,value:[floor(random(40,81))]})
+                                if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
+                                    reward.push({type:3,value:[]})
+                                }
+                                if(floor(random(0,6))==0){
+                                    reward.push({type:5,value:[1]})
+                                }
+                            break
+                            case 1:
+                                if(!this.modded(48)){
+                                    if(this.relicManager.hasRelic(171,a)){
+                                        reward.push({type:2,value:[]},{type:2,value:[]})
+                                    }
+                                    reward.push({type:2,value:[]},{type:0,value:[floor(random(120,201))]})
+                                }
+                                if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
+                                    reward.push({type:3,value:[]})
+                                }
+                                if(floor(random(0,6))==0){
+                                    reward.push({type:5,value:[1]})
+                                }
+                            break
+                            case 2:
+                                if(this.nodeManager.world!=3&&game.ascend>=13){
+                                    reward.push({type:0,value:[floor(random(240,401))]})
+                                }
+                            break
                         }
                         for(let b=0,lb=this.combatantManager.combatants.length;b<lb;b++){
                             if(this.combatantManager.combatants[b].life>0){
                                 if(this.combatantManager.combatants[b].spec.includes(13)){
-                                    this.overlayManager.overlays[0][a].activate([1,[{type:4,value:[20]}]])
+                                    reward.push({type:4,value:[20]})
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(14)){
-                                    this.overlayManager.overlays[0][a].activate([1,[{type:7,value:[1]}]])
+                                    reward.push({type:7,value:[1]})
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(15)&&a==prefered){
-                                    this.overlayManager.overlays[0][a].activate([1,[{type:6,value:[1]}]])
+                                    reward.push({type:6,value:[1]})
                                 }
                                 if(this.combatantManager.combatants[b].spec.includes(16)){
-                                    this.overlayManager.overlays[0][a].activate([1,[{type:0,value:[25]}]])
+                                    reward.push({type:0,value:[25]})
                                 }
                             }
                         }
+                        this.overlayManager.overlays[0][a].activate([0,reward])
                     }
                     this.relicManager.activate(1,[])
                 }
