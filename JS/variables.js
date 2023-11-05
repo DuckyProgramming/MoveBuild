@@ -10990,6 +10990,7 @@ types={
         {name:'Vengeful',life:70,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[3]},{type:210,effect:[1]}],description:`Remember last time?`},
         {name:'Coffee Commander',life:435,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]},{type:188,effect:[5]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
+        {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[3]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
         
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -11318,6 +11319,8 @@ types={
         {name:'Randomap',class:4},
         {name:'Godbeam',class:1},
         {name:'Freeze',class:1},
+        {name:'Status Triplet',class:1},
+        {name:'2 Tile Random Strike',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -13946,6 +13949,15 @@ Entering, you're offered a chance to glimpse your future...`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Decornered 5',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Pointed 4',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
@@ -14017,6 +14029,15 @@ Entering, you're offered a chance to glimpse your future...`,
             map:[
                 [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Distapered 5',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
@@ -14716,10 +14737,26 @@ Entering, you're offered a chance to glimpse your future...`,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
-                {position:{x:1,y:1},name:'Duck'},
                 {position:{x:2,y:2},name:'Duck'},
             ],reinforce:[
-
+            ],
+        },{
+            level:['Decornered 5'],class:3,world:0,
+            name:'Jester',
+            player:{position:[[{x:4,y:4}],[{x:3,y:4},{x:4,y:3}]]},
+            enemy:[
+                {position:{x:0,y:2},name:'Jester'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Distapered 5'],class:3,world:0,
+            name:'Flying Rock',
+            player:{position:[[{x:1,y:0}],[{x:1,y:0},{x:2,y:2}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Flying Rock'},
+                {position:{x:3,y:1},name:'Flying Rock'},
+                {position:{x:3,y:4},name:'Flying Rock'},
+            ],reinforce:[
             ],
         },{
             level:['Redraw 7'],class:2,world:2,
@@ -15511,7 +15548,7 @@ Entering, you're offered a chance to glimpse your future...`,
             ],reinforce:[
             ],
         },{
-            level:['Star 7'],class:0,world:0,
+            level:['Star 7'],class:0,world:-1,
             name:'Management Ambush',
             player:{position:[[{x:3,y:3}],[{x:2,y:2},{x:3,y:2}]]},
             enemy:[

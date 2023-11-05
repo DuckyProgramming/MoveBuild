@@ -22,6 +22,8 @@ the junkyard
 this is fine
 this isn't fine
 
+cannonball - requires exact value, comes in two versions
+
 cost 1, draw 4 cards that are already free
 
 paper lantern
@@ -51,6 +53,10 @@ tabula rasa
 turbine - ignite (shock)
 
 moonlight spear - exactly 2 range, does damage, and charge effect
+
+transistor - does more if target is shocked
+
+pixie flame - damage and vanish
 
 
 

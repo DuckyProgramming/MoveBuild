@@ -7716,7 +7716,7 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-48,13,39)
-                    if(this.name=='Romeo'||this.name=='Intern'){
+                    if(this.name=='Romeo'||this.name=='Intern'||this.name=='Jester'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-45,14,46,-180,0)
                     }else if(this.name=='Billy Beatup'){
@@ -8768,6 +8768,19 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-84,6*lcos(this.anim.direction),5)
                     this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5,-84,6*lcos(this.anim.direction),5)
                     this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-84,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-84)
+                }
+                if(this.name=='Jester'&&this.trigger.display.hat){
+                    this.layer.fill(this.color.hat[2][0],this.color.hat[2][1],this.color.hat[2][2],this.fade*this.fades.hat)
+                    this.layer.rect(0,-90,30,6)
+                    this.layer.fill(this.color.hat[1][0],this.color.hat[1][1],this.color.hat[1][2],this.fade*this.fades.hat)
+                    this.layer.triangle(-15,-93,3,-93,-18,-111)
+                    this.layer.triangle(15,-93,-3,-93,18,-111)
+                    this.layer.fill(this.color.hat[0][0],this.color.hat[0][1],this.color.hat[0][2],this.fade*this.fades.hat)
+                    this.layer.triangle(-9,-93,9,-93,0,-120)
+                    this.layer.fill(this.color.hat[2][0],this.color.hat[2][1],this.color.hat[2][2],this.fade*this.fades.hat)
+                    this.layer.ellipse(-18,-111,6)
+                    this.layer.ellipse(18,-111,6)
+                    this.layer.ellipse(0,-120,6)
                 }
             break
         }

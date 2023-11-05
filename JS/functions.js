@@ -567,6 +567,8 @@ function intentDescription(attack,user,info){
 			case 243: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6\nNo Movement`
 			case 244: return `Randomly Edit the Map`
 			case 246: return `Apply ${info?attack.effect[0]:`?`} Freeze`
+			case 246: return `Apply ${info?attack.effect[0]:`?`} Burn, Freeze, or Shock`
+			case 247: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,0):`?`} Damage`
 
 			default: return `INVALID`
 		}
@@ -965,9 +967,9 @@ function status(name){
 }
 function outEncounter(){
 	print(`
-Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length+current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/108
+Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length+current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/110
 \nWorld 1:
-Easies:${current.nodeManager.listing.encounter[0][3].length}/6
+Easies:${current.nodeManager.listing.encounter[0][3].length}/8
 (${current.nodeManager.listing.name[0][3].join(',')})
 Enemies:${current.nodeManager.listing.encounter[0][0].length}/18
 (${current.nodeManager.listing.name[0][0].join(',')})
