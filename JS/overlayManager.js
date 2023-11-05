@@ -49,12 +49,13 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[26])],//smoosh together
                     [new overlay(this.layer,this.battle,0,2,[27])],//bring in deck card, no return,40
                     [new overlay(this.layer,this.battle,0,10,[])],//see mods
+                    [new overlay(this.layer,this.battle,0,11,[])],//add mods
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[41,38,24,17,3,26,28,10,35,0,25,1,13,36,2,16,4,15,5,6,32,7,18,30,33,8,34,37,19,20,21,22,23,29,31,40,9,12,14,11,27,39]
+                this.priority=[41,42,38,24,17,3,26,28,10,35,0,25,1,13,36,2,16,4,15,5,6,32,7,18,30,33,8,34,37,19,20,21,22,23,29,31,40,9,12,14,11,27,39]
             break
             case 1:
                 this.overlays.push(

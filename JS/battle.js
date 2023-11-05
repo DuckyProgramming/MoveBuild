@@ -25,7 +25,7 @@ class battle{
             this.menu.anim.animRate.push(-1)
             this.menu.anim.turnTime.push(-1)
         }
-        for(let a=0,la=18;a<la;a++){
+        for(let a=0,la=20;a<la;a++){
             this.menu.anim.variants.push(0)
         }
         for(let a=-1,la=game.playerNumber+5;a<la;a++){
@@ -88,10 +88,6 @@ class battle{
         this.colorDetail=[]
         
         this.initial()
-
-        for(let a=0,la=10;a<la;a++){
-            this.modManager.addMod(145+a)
-        }
     }
     initialManagers(){
         this.cardManagers=[]
@@ -865,7 +861,7 @@ class battle{
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(this.menu.anim.variants[a]>0){
                         this.layer.fill(255,this.menu.anim.variants[a])
-                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-180+floor(a/2)*45,10)
+                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-202.5+floor(a/2)*45,10)
                     }
                 }
             break
@@ -1231,7 +1227,7 @@ class battle{
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'variants':
-                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['mod','junkyard','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
                 }
@@ -1523,7 +1519,7 @@ class battle{
                 this.overlayManager.update()
             break
         }
-        if(this.modded(135)&&game.timer%180==0){
+        if(this.initalized&&this.modded(135)&&game.timer%180==0){
             for(let a=0,la=this.players;a<la;a++){
                 this.loseCurrency(1,a)
             }
@@ -1629,9 +1625,9 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['mod','junkyard','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-180+floor(a/2)*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-202.5+floor(a/2)*45},width:27.5,height:27.5})){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])
                     }
                 }
@@ -1941,7 +1937,7 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['mod','junkyard','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(key==inputs.hexadec[a]){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])

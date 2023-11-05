@@ -62,6 +62,9 @@ class overlay{
                 this.choices=[]
                 this.cards=[]
             break
+            case 11:
+                this.choices=[]
+            break
         }
     }
     getPosKey(){
@@ -243,6 +246,14 @@ class overlay{
                         this.cards[this.cards.length-1].position.y=this.layer.height/2+20-this.battle.players*150+150+this.player*300
                         list.splice(index,1)
                     }
+                }
+            break
+            case 11:
+                this.choices=[]
+                for(let a=0,la=3;a<la;a++){
+                    let index=floor(random(0,this.battle.modManager.listing.mod.length))
+                    this.choices.push(this.battle.modManager.listing.mod[index])
+                    this.battle.modManager.listing.mod.splice(index,1)
                 }
             break
             
@@ -646,23 +657,41 @@ class overlay{
             break
             case 10:
                 this.layer.fill(160,this.fade*0.8)
-                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2+100,360,560,10)
-                this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-205,120,40,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+100,360,560,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-205,120,40,10)
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
-                this.layer.text('Mods',this.layer.width/2+225*this.posKey,this.layer.height/2-150)
+                this.layer.text('Mods',this.layer.width/2,this.layer.height/2-150)
                 this.layer.textSize(20)
-                this.layer.text('Close',this.layer.width/2+225*this.posKey,this.layer.height/2-205)
+                this.layer.text('Close',this.layer.width/2,this.layer.height/2-205)
                 for(let a=0,la=this.battle.modManager.holdMod.length;a<la;a++){
                     this.layer.noStroke()
                     this.layer.fill(120,this.fade)
-                    this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+a*50,340,40,10)
+                    this.layer.rect(this.layer.width/2,this.layer.height/2-105+a*50,340,40,10)
                     this.layer.fill(0,this.fade)
                     this.layer.noStroke()
                     this.layer.textSize(12)
-                    this.layer.text(types.mod[this.battle.modManager.holdMod[a]].name,this.layer.width/2+225*this.posKey,this.layer.height/2-112+a*50)
+                    this.layer.text(types.mod[this.battle.modManager.holdMod[a]].name,this.layer.width/2,this.layer.height/2-112+a*50)
                     this.layer.textSize(8)
-                    this.layer.text(types.mod[this.battle.modManager.holdMod[a]].desc,this.layer.width/2+225*this.posKey,this.layer.height/2-95+a*50)
+                    this.layer.text(types.mod[this.battle.modManager.holdMod[a]].desc,this.layer.width/2,this.layer.height/2-95+a*50)
+                }
+            break
+            case 11:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-77.5,360,205,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text('Add a Mod',this.layer.width/2,this.layer.height/2-150)
+                for(let a=0,la=this.choices.length;a<la;a++){
+                    this.layer.noStroke()
+                    this.layer.fill(120,this.fade)
+                    this.layer.rect(this.layer.width/2,this.layer.height/2-105+a*50,340,40,10)
+                    this.layer.fill(0,this.fade)
+                    this.layer.noStroke()
+                    this.layer.textSize(12)
+                    this.layer.text(types.mod[this.choices[a]].name,this.layer.width/2,this.layer.height/2-112+a*50)
+                    this.layer.textSize(8)
+                    this.layer.text(types.mod[this.choices[a]].desc,this.layer.width/2,this.layer.height/2-95+a*50)
                 }
             break
             
@@ -1185,10 +1214,19 @@ class overlay{
                     }
                 break
                 case 10:
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+225*this.posKey,y:this.layer.height/2-205},width:120,height:40})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-205},width:120,height:40})){
                         this.active=false
                     }
                 break
+                case 11:
+                    for(let a=0,la=this.choices.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-105+a*50},width:340,height:40})){
+                            this.active=false
+                            this.battle.modManager.addMod(this.choices[a])
+                        }
+                    }
+                break
+            
             }
         }
     }
@@ -1615,6 +1653,14 @@ class overlay{
                 case 10:
                     if(code==ENTER){
                         this.active=false
+                    }
+                break
+                case 11:
+                    for(let a=0,la=this.choices.length;a<la;a++){
+                        if(int(key)==a+1){
+                            this.active=false
+                            this.battle.modManager.addMod(this.choices[a])
+                        }
                     }
                 break
             }
