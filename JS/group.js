@@ -197,7 +197,7 @@ class group{
         }
     }
     addFree(type,level,color,variant){
-        result=this.add(type,level,color)
+        let result=this.add(type,level,color)
         if(result){
             this.cards[this.cards.length-1].cost=0
             if(variant==1){
@@ -255,7 +255,7 @@ class group{
         return true
     }
     addShuffle(type,level,color){
-        result=this.add(type,level,color)
+        let result=this.add(type,level,color)
         if(result){
             this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
             this.cards.splice(this.cards.length-1,1)
@@ -264,7 +264,7 @@ class group{
         return result
     }
     addFreeShuffle(type,level,color,variant){
-        result=this.addFree(type,level,color,variant)
+        let result=this.addFree(type,level,color,variant)
         if(result){
             this.cards.splice(floor(random(0,this.cards.length-1)),0,this.cards[this.cards.length-1])
             this.cards.splice(this.cards.length-1,1)

@@ -13,9 +13,7 @@ BUILD AN ENTIRE JINX SYNERGY ON EXECUTOR
 +20 movement cards (2 per character)
 
 
-
-2 more variants
-bonus round mode
+1 more variant
 the junkyard
 
 
@@ -82,7 +80,14 @@ unprepared - prepared but rng
 bass drop - weaken everything on the map
 chef's kiss - does trash damage but does extra if its the last card
 allen key - combine two cards, but doesn't buff them at all
+orbital bombardment - x cost, 9 damage per x, but hits random people including yourself
+roger reviv - bomb yourself
+the haters - hurt everything including yourself
+acquit - if enemy has low health, heal him
+beelzebub - lose hp and take double damage
 }
+
+movement box bugged?
 
 
 

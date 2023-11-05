@@ -844,8 +844,20 @@ class overlay{
                     if(this.args[0]==24){
                         if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-285,y:this.layer.height/2},width:40,height:40})&&this.page>0){
                             this.page--
+                            switch(this.args[0]){
+                                case 3: case 17:
+                                    this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
+                                    this.card.nonCalc=true
+                                break
+                            }
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+285,y:this.layer.height/2},width:40,height:40})&&this.page<ceil(this.battle.tierManager.tiers[this.args[1]].cards.length/15)-1){
                             this.page++
+                            switch(this.args[0]){
+                                case 3: case 17:
+                                    this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
+                                    this.card.nonCalc=true
+                                break
+                            }
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+225},width:120,height:40})){
                             this.active=false
                         }
@@ -1258,8 +1270,20 @@ class overlay{
                     if(this.args[0]==24){
                         if(code==LEFT_ARROW&&this.page>0){
                             this.page--
+                            switch(this.args[0]){
+                                case 3: case 17:
+                                    this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
+                                    this.card.nonCalc=true
+                                break
+                            }
                         }else if(code==RIGHT_ARROW&&this.page<ceil(this.battle.tierManager.tiers[this.args[1]].cards.length/15)-1){
                             this.page++
+                            switch(this.args[0]){
+                                case 3: case 17:
+                                    this.card=new card(this.layer,this.battle,this.player,-100,-100,0,0,0,0)
+                                    this.card.nonCalc=true
+                                break
+                            }
                         }else if(code==ENTER){
                             this.active=false
                         }

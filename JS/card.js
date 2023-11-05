@@ -73,12 +73,12 @@ class card{
             this.name=name||types.card[this.type].name
             this.list=list||types.card[this.type].list
             this.rarity=types.card[this.type].rarity
+            this.spec=(spec||types.card[this.type].levels[this.level].spec).concat(additionalSpec||[])
             this.effect=effect
-            this.effect=this.effect==undefined?copyArray(types.card[this.type].levels[this.level].effect):copyArray(this.effect)
+            this.effect=this.effect==undefined?(this.spec.includes(12)?copyArrayStack(types.card[this.type].levels[this.level].effect):copyArray(types.card[this.type].levels[this.level].effect)):copyArray(this.effect)
             this.attack=attack||types.card[this.type].levels[this.level].attack
             this.target=target
             this.target=this.target==undefined?copyArray(types.card[this.type].levels[this.level].target):copyArray(this.target)
-            this.spec=(spec||types.card[this.type].levels[this.level].spec).concat(additionalSpec||[])
             this.class=cardClass||types.card[this.type].levels[this.level].class
             this.levels=types.card[this.type].levels.length
             this.limit=limit
