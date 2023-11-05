@@ -41,8 +41,10 @@ class attackManager{
         this.targetInfo[0]=0
     }
     execute(){
-        this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.target,this.targetDistance,this.targetClass,this.combo,{replay:0},this.amplify,this.relPos,this.limit,this.id))
-        this.battle.replayManager.list.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,copyArray(this.target),this.targetDistance,this.targetClass,this.combo,{replay:1,direction:this.attacks[this.attacks.length-1].userCombatant.goal.anim.direction},this.amplify,this.relPos,this.limit,this.id))
+        if(!(this.battle.modded(91)&&this.cost==0&&floor(random(0,4))==0)){
+            this.attacks.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,this.target,this.targetDistance,this.targetClass,this.combo,{replay:0},this.amplify,this.relPos,this.limit,this.id))
+            this.battle.replayManager.list.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,copyArray(this.target),this.targetDistance,this.targetClass,this.combo,{replay:1,direction:this.attacks[this.attacks.length-1].userCombatant.goal.anim.direction},this.amplify,this.relPos,this.limit,this.id))
+        }
     }
     update(){
         for(let a=0;a<game.animRate;a++){

@@ -6,9 +6,6 @@ class modManager{
         this.holdMod=[]
         this.listing={mod:[]}
         this.createListing()
-        for(let a=0,la=10;a<la;a++){
-            this.addMod(70+a)
-        }
     }
     createListing(){
         for(let a=0,la=types.mod.length;a<la;a++){
@@ -17,9 +14,11 @@ class modManager{
         }
     }
     addMod(type){
-        this.mods[type]=true
-        this.holdMod.push(type)
-        this.getMod(type)
+        if(variants.mod){
+            this.mods[type]=true
+            this.holdMod.push(type)
+            this.getMod(type)
+        }
     }
     getMod(type){
         switch(type){
@@ -28,10 +27,52 @@ class modManager{
             break
             case 77:
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    for(let b=0,lb=this.battle.cardManagers.length;b<lb;b++){
-                        this.battle.cardManagers[b].addRandomColor(0,0,a+1,0)
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomColor(0,0,a+1,0))
+                }
+            break
+            case 85:
+                this.battle.optionManagers.forEach(optionManager=>optionManager.removeRandomOption())
+            break
+            case 90:
+                for(let a=0,la=10;a<la;a++){
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomCompleteAll(0,0,3))
+                }
+            break
+            case 98:
+                for(let a=0,la=10;a<la;a++){
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.deck.randomEffect(21,[]))
+                }
+            break
+            case 124:
+                for(let a=0,la=2;a<la;a++){
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomAll(0,0,2))
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomCurse(0,0))
+                }
+            break
+            case 132:
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    let type=this.battle.cardManagers[a].listing.allListableCard[3][floor(random(0,this.battle.cardManagers[a].listing.allListableCard[3].length))]
+                    for(let b=0,lb=10;b<lb;b++){
+                        this.battle.cardManagers[a].deck.add(type,0,types.card[type].list)
                     }
                 }
+            break
+            case 144:
+                transition.trigger=true
+                transition.scene='battle'
+                this.battle.setupBattle(types.encounter[findName('Management Ambush',types.encounter)])
+            break
+            case 145:
+                this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName('Cornucopia',types.card),0,0))
+                this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName('Divine\nSword',types.card),0,0))
+            break
+            case 146:
+                for(let a=0,la=5;a<la;a++){
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName(`${a+1} of Nothings`,types.card),0,0))
+                }
+            break
+            case 149:
+                this.battle.cardManagers.forEach(cardManager=>cardManager.deck.killDupes())
             break
         }
     }

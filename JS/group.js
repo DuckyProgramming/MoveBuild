@@ -424,6 +424,18 @@ class group{
     out(){
         this.cards.forEach(card=>print(card.name))
     }
+    killDupes(){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            for(let b=0,lb=this.cards.length;b<lb;b++){
+                if(a!=b&&b>a&&this.cards[a].name==this.cards[b].name&&!this.cards[a].basic&&!this.cards[b].basic){
+                    this.cards.splice(b,1)
+                    b--
+                    lb--
+                    la--
+                }
+            }
+        }
+    }
     deStatus(value){
         let done=0
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1386,9 +1398,9 @@ class group{
                 this.sortCost()
             break
         }
-        if(this.sorted.length>0){
+        if(this.sorted.length>0||type!=0&&type!=1){
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1){
+                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1||this.cards[a].cost==1&&type==2){
                     list.push(copyCard(this.cards[a]))
                     list[list.length-1].size=0
                     list[list.length-1].position.x=1200
@@ -1399,7 +1411,7 @@ class group{
                     a--
                     la--
                     total++
-                    if(total>amount){
+                    if(total>=amount){
                         a=la
                     }
                 }
@@ -1633,7 +1645,7 @@ class group{
         this.sorted=names.sort()
     }
     remove(index){
-        let possible=!this.cards[index].spec.includes(7)
+        let possible=!this.cards[index].spec.includes(7)&&!(this.battle.initialized&&this.battle.modded(97))
         if(possible){
             this.removed.push(copyCard(this.cards[index]))
             this.cards[index].callRemoveEffect()
@@ -1962,7 +1974,17 @@ class group{
                             this.cards[a].exhaust=true
                         }
                     }
-                    if(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(38)){
+                    if(this.battle.modded(108)&&floor(random(0,50))==0){
+                        this.cards[a].exhaust=true
+                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                            this.battle.cardManagers[this.player].deck.cards[b].callVanishEffect()
+                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
+                                this.battle.cardManagers[this.player].deck.cards.splice(b,1)
+                                b--
+                                lb--
+                            }
+                        }
+                    }else if(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(38)){
                         if(this.cards[a].spec.includes(15)){
                             this.cards[a].limit=round(this.cards[a].limit-1)
                         }else if(this.cards[a].spec.includes(38)){
@@ -2085,7 +2107,16 @@ class group{
                                 this.cards[b].exhaust=true
                             }
                         }
-                        if(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)){
+                        if(this.battle.modded(108)&&floor(random(0,50))==0){
+                            this.cards[b].exhaust=true
+                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                    this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                    c--
+                                    lc--
+                                }
+                            }
+                        }else if(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)){
                             if(this.cards[b].spec.includes(15)){
                                 this.cards[b].limit=round(this.cards[b].limit-1)
                             }else if(this.cards[b].spec.includes(38)){
@@ -2179,7 +2210,7 @@ class group{
             break
             case 3:
                 this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
-                if(!(this.battle.combatantManager.combatants[a].spec.includes(9)&&(abs(this.battle.combatantManager.combatants[a].goal.anim.direction+180-this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction)<30||abs(this.battle.combatantManager.combatants[a].goal.anim.direction-180-this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction)<30))){
+                if(!((this.battle.combatantManager.combatants[a].spec.includes(9)||this.battle.modded(86)&&this.battle.turn.total<=2)&&(abs(this.battle.combatantManager.combatants[a].goal.anim.direction+180-this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction)<30||abs(this.battle.combatantManager.combatants[a].goal.anim.direction-180-this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction)<30))){
                     if(this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==37||this.battle.attackManager.targetInfo[0]==38||this.battle.attackManager.targetInfo[0]==39||this.battle.attackManager.targetInfo[0]==41||this.battle.attackManager.targetInfo[0]==42||this.battle.attackManager.targetInfo[0]==43){
                         this.battle.attackManager.targetDistance=max(distTargetDiagonalCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager),distTargetCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager))
                     }else if(this.battle.attackManager.targetInfo[0]==12){
@@ -2210,7 +2241,16 @@ class group{
                                     this.cards[b].exhaust=true
                                 }
                             }
-                            if(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)){
+                            if(this.battle.modded(108)&&floor(random(0,50))==0){
+                                this.cards[b].exhaust=true
+                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                        this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                        c--
+                                        lc--
+                                    }
+                                }
+                            }else if(this.cards[b].spec.includes(15)||this.cards[b].spec.includes(38)){
                                 if(this.cards[b].spec.includes(15)){
                                     this.cards[b].limit=round(this.cards[b].limit-1)
                                 }else if(this.cards[b].spec.includes(38)){

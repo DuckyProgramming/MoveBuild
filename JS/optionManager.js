@@ -39,6 +39,22 @@ class optionManager{
             this.options[a].position.x=this.layer.width/2+75-la*75+a*150
         }
     }
+    removeRandomOption(){
+        let list=[]
+        for(let a=0,la=this.options.length;a<la;a++){
+            if(this.options[a].type>=1){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            let index=floor(random(0,list.length))
+            delete this.options[index]
+            this.options.splice(index,1)
+            for(let a=0,la=this.options.length;a<la;a++){
+                this.options[a].position.x=this.layer.width/2+75-la*75+a*150
+            }
+        }
+    }
     triggerOption(type){
         switch(type){
             case 0:

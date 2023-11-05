@@ -63,6 +63,7 @@ class card{
         this.originated=false
         this.discardEffect=[]
         this.discardEffectBuffered=[]
+        this.upped=[false,false,false,false]
         this.relIndex=0
 
         this.anim={select:0,afford:0}
@@ -111,7 +112,15 @@ class card{
             }
             this.falsed=falsed
             this.falsed=this.falsed==undefined?{trigger:false,name:this.name,attack:this.attack,effect:this.effect,spec:this.spec,rarity:this.rarity,class:this.class,reality:this.reality,colorDetail:this.colorDetail,target:this.target}:this.falsed
-            
+            if(this.battle.initialized&&this.battle.modded(148)){
+                if(this.spec.includes(12)){
+                    for(let a=0,la=this.class.length;a<la;a++){
+                        this.class[a]=8
+                    }
+                }else{
+                    this.class=8
+                }
+            }
         }catch(error){
             print('!!!',this.type,error)
             this.remove=true
@@ -187,6 +196,7 @@ class card{
             case -32: string+=`When Drawn,\nInflict ${effect[0]} Poison\nto Everything Else`; break
             case -33: string+=`Take ${effect[0]} Damage\nYou Cannot Move\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
             case -34: string+=`When Drawn,\nHidden Swap ${effect[0]} Times`; break
+            case -35: string+=`Set Energy to 0`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590: case 1139: case 1191:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -1200,7 +1210,7 @@ class card{
             case 1016: string+=`Discard ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd a Copy of\nThis Card to Hand`; break
             case 1017: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nRandomize Target Intent`; break
             case 1018: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRandomize Target Intent`; break
-            case 1019: string+=`Gain ${effect[0]} Deprecating\nStrength`; break
+            case 1019: string+=`Gain ${effect[0]} Decrementing\nStrength`; break
             case 1020: string+=`Gain ${effect[0]} Ammo`; break
             case 1021: string+=`Discard Your Hand\nGain ${effect[0]} Vulnerable\nAdd ${effect[1]} Anger Punch${effect[1]?`es`:``}`; break
             case 1022: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext ${effect[1]} Damage Deal${effect[1]!=1?`s`:``}\n${effect[1]!=1?`are`:`is`} 50% More\nAdvance`; break
@@ -1498,7 +1508,7 @@ class card{
             case 1317: string+=`Add ${effect[0]} 6-Miracle${effect[0]!=1?`s`:``}\nto Hand`; break
             case 1318: string+=`Add ${effect[0]} Six Shot${effect[0]!=1?`s`:``}\nto Hand\nGain ${effect[1]} Ammo`; break
             case 1319: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Single\nAttack Strength`; break
-            case 1320: string+=`Apply ${effect[1]} Shock\nIf Your Energy is Even`; break
+            case 1320: string+=`Apply ${effect[0]} Shock\nIf Your Energy is Even`; break
             case 1321: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Has Shock:\nGain ${effect[1]} Energy\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 1322: string+=`If Energy is Odd,\nHeal ${this.calculateEffect(effect[0],4)} Health\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1323: string+=`75%: Gain ${effect[0]} Currency\n25%: Gain ${effect[1]} Relic${effect[1]!=1?`s`:``}`; break
@@ -1670,6 +1680,8 @@ class card{
             case 1490: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Lock`; break
             case 1491: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed ${effect[0]!=1?`are`:`is`} Free\nDuplicate ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1492: string+=`75%: Deal ${this.calculateEffect(effect[0],0)} Damage\n75%: Add ${this.calculateEffect(effect[1],1)} Block`; break
+            case 1493: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double if\nTarget is Undamaged`; break
+            case 1494: string+=`Gain ${effect[0]} Random Buff\nGain ${effect[1]} Random Buff\nGain ${effect[2]} Random Buff`; break
 
 
 
@@ -1973,6 +1985,9 @@ class card{
             case 1332:
                 this.effect[0]=0
             break
+        }
+        if(this.battle.modded(94)&&this.battle.counter.turnPlayed[0]>=5){
+            this.battle.cardManagers[this.player].allEffect(2,2)
         }
         this.battle.attackManager.level=this.level
         this.battle.attackManager.color=this.color
@@ -2374,6 +2389,9 @@ class card{
                                     case 7:
                                         this.layer.text('Blueprint',0,4+a*(this.height/2-10))
                                     break
+                                    case 8:
+                                        this.layer.text('Classless',0,4+a*(this.height/2-10))
+                                    break
                                 }
                             }
                         }else{
@@ -2398,6 +2416,9 @@ class card{
                                 break
                                 case 7:
                                     this.layer.text('Blueprint',0,this.height/2-6)
+                                break
+                                case 8:
+                                    this.layer.text('Classless',0,this.height/2-6)
                                 break
                             }
                         }
@@ -2532,25 +2553,61 @@ class card{
         if(this.spec.includes(34)){
             this.width=50
         }
-        if(this.battle.modded(37)&&this.cost==0){
-            this.cost=1
-        }
-        if(this.battle.modded(79)&&this.cost==1){
-            this.cost=2
-            if(this.spec.includes(12)){
-                for(let a=0,la=this.effect.length;a<la;a++){
-                    for(let b=0,lb=this.effect.length;b<lb;b++){
-                        if(!(b==0&&this.class[a]==3)){
-                            this.effect[a][b]*=2
+        if(diff=='hand'){
+            if(this.battle.modded(37)&&this.cost==0){
+                this.cost=1
+            }
+            if(this.battle.modded(79)&&this.cost==1){
+                this.cost=2
+                if(this.spec.includes(12)){
+                    for(let a=0,la=this.effect.length;a<la;a++){
+                        for(let b=0,lb=this.effect.length;b<lb;b++){
+                            if(!(b==0&&this.class[a]==3)){
+                                this.effect[a][b]*=2
+                            }
+                        }
+                    }
+                }else{
+                    for(let a=0,la=this.effect.length;a<la;a++){
+                        if(!(a==0&&this.class==3)){
+                            this.effect[a]*=2
                         }
                     }
                 }
-            }else{
-                for(let a=0,la=this.effect.length;a<la;a++){
-                    if(!(a==0&&this.class==3)){
-                        this.effect[a]*=2
+            }
+            if(this.battle.modded(87)&&!this.upped[0]&&this.color!=this.battle.player[this.player]){
+                this.cost++
+                this.upped[0]=true
+            }
+            if(this.battle.modded(117)&&!this.upped[1]){
+                if(this.spec.includes(12)){
+                    for(let a=0,la=this.effect.length;a<la;a++){
+                        for(let b=0,lb=this.effect[a].length;b<lb;b++){
+                            if(floor(random(0,20))==0){
+                                this.effect[a][b]=0
+                            }
+                        }
+                    }
+                }else{
+                    for(let a=0,la=this.effect.length;a<la;a++){
+                        if(floor(random(0,20))==0){
+                            this.effect[a]=0
+                        }
                     }
                 }
+                this.upped[1]=true
+            }
+            if(this.battle.modded(122)&&!this.upped[2]){
+                if(floor(random(0,20))==0){
+                    this.spec.push(32)
+                }
+                this.upped[2]=true
+            }
+            if(this.battle.modded(138)&&!this.upped[3]){
+                if(floor(random(0,4))==0){
+                    this.spec.push(9)
+                }
+                this.upped[3]=true
             }
         }
     }

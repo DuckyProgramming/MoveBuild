@@ -493,19 +493,23 @@ class overlay{
             case 3:
                 this.layer.fill(160,this.fade*0.8)
                 this.layer.rect(this.layer.width/2,this.layer.height/2,this.options*120+40,200,10)
-                this.layer.rect(this.layer.width/2,this.layer.height/2+125,120,40,10)
+                if(!this.battle.modded(83)){
+                    this.layer.rect(this.layer.width/2,this.layer.height/2+125,120,40,10)
+                }
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 switch(this.args[0]){
                     case 0: case 1: this.layer.text('Add a Card',this.layer.width/2,this.layer.height/2-70); break
                 }
-                this.layer.textSize(20)
-                switch(this.args[0]){
-                    case 0: case 1: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
-                }
-                if(this.args[0]==0&&this.battle.relicManager.hasRelic(49,this.player)){
-                    this.layer.textSize(8)
-                    this.layer.text('2 Max HP',this.layer.width/2,this.layer.height/2+140)
+                if(!this.battle.modded(83)){
+                    this.layer.textSize(20)
+                    switch(this.args[0]){
+                        case 0: case 1: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
+                    }
+                    if(this.args[0]==0&&this.battle.relicManager.hasRelic(49,this.player)){
+                        this.layer.textSize(8)
+                        this.layer.text('2 Max HP',this.layer.width/2,this.layer.height/2+140)
+                    }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
@@ -1094,7 +1098,7 @@ class overlay{
                             }
                         }
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125},width:120,height:40})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+125},width:120,height:40})&&!this.battle.modded(83)){
                         this.active=false
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player])
@@ -1339,7 +1343,7 @@ class overlay{
                                             la--
                                         break
                                         case 19:
-                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,11)
+                                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
                                             a--
                                             la--
                                         break
@@ -1503,7 +1507,7 @@ class overlay{
                             }
                         }
                     }
-                    if(code==ENTER){
+                    if(code==ENTER&&!this.battle.modded(83)){
                         this.active=false
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player])

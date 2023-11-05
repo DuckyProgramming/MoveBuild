@@ -32,6 +32,11 @@ class purchase{
                 this.cost[a]=round(this.cost[a]*1.1)
             }
         }
+        if(this.battle.modded(130)){
+            for(let a=0,la=this.cost.length;a<la;a++){
+                this.cost[a]=round(this.cost[a]*2)
+            }
+        }
     }
     buy(){
         if((this.player==-1&&(this.battle.currency.money[0]>=this.cost[0]&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=this.cost[1]&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=this.cost[this.player])&&this.usable){

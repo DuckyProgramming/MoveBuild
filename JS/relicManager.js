@@ -567,6 +567,11 @@ class relicManager{
                         if(this.battle.modded(11)){
                             this.battle.combatantManager.fullAllEffect(3,[3])
                         }
+                        if(this.battle.modded(113)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect(['Weak','Miss'][floor(random(0,2))],2)
+                            }
+                        }
                     break
                     case 2:
                         if(this.active[41]>0){
@@ -637,6 +642,9 @@ class relicManager{
                         }
                     }
                 }
+                if(this.battle.modded(118)){
+                    this.battle.combatantManager.allEffect(25,[10])
+                }
             break
             case 1://end of combat
                 if(this.active[1]>0){
@@ -700,6 +708,9 @@ class relicManager{
                             this.battle.cardManagers[args[1]].fatigue()
                         }
                     }
+                    if(this.battle.modded(133)){
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect('Weak',floor(this.battle.currency.money[args[1]]/100))
+                    }
                 }else{
                     if(args[0]==2){
                         if(this.active[114]>0&&args[1]==this.player[114]){
@@ -746,6 +757,9 @@ class relicManager{
                     for(let a=0,la=this.active[162];a<la;a++){
                         this.battle.cardManagers[this.player[162]].randomEffect(2,4,[0])
                     }
+                }
+                if(this.battle.modded(143)){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],1)
                 }
             break
             case 3://enemy dies
@@ -840,6 +854,9 @@ class relicManager{
                         }
                         if(this.active[27]>0&&args[1]==this.player[27]){
                             this.relicPlayer(27).heal(2*this.active[1])
+                        }
+                        if(this.battle.modded(84)){
+                            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].life-=3
                         }
                     break
                 }

@@ -16,20 +16,17 @@ BUILD AN ENTIRE JINX SYNERGY ON EXECUTOR
 
 2 more variants
 bonus round mode
-
+the junkyard
 
 
 this is fine
+this isn't fine
 
 cost 1, draw 4 cards that are already free
 
 paper lantern
 
 exotic - deal damage, has a chance to also damage you
-
-banshee
-
-cornelius
 
 snapdragon
 
@@ -39,9 +36,6 @@ bicep curl
 
 more variants of double damage
 
-jester + flying rock (new encounters. jester needs to be added, flying rock already exists)
-jester bonus round = never shuffle deck
-
 juggling ball - windup fist
 
 hedge fund - counter for cash
@@ -49,6 +43,42 @@ hedge fund - counter for cash
 hex - weak or shock
 
 counterspell - a flame war that has exact countering potential
+
+rare card getting support card
+
+tabula rasa
+
+turbine - ignite (shock)
+
+moonlight spear - exactly 2 range, does damage, and charge effect
+
+
+
+
+jester + flying rock (new encounters. jester needs to be added, flying rock already exists)
+jester bonus round = never shuffle deck
+
+shredder - holepunch
+shredder produces a bunch of 1s, hole puncher takes 4 to do damge
+
+
+
+{
+torn glove - high damage, but one of your cards next turn is cursed
+combination lock - damage, lock yourself
+tiny trebuchet - throw a card (deals 1 damage)
+safety goggles - immune to self-damage
+wall of mirrors - buffs enemies turns
+double edge - hurt enemy and yourself for equal damage
+jealous - deals very low damage, and breaks if not used first
+walk into wall - moves, has chance to damage self and not move
+unprepared - prepared but rng
+bass drop - weaken everything on the map
+chef's kiss - does trash damage but does extra if its the last card
+allen key - combine two cards, but doesn't buff them at all
+}
+
+
 
 
 

@@ -648,7 +648,7 @@ class turn{
                                     }else{
                                         this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                         if(this.targetTile.occupied>0){
-                                            if(this.type==6){
+                                            if(this.type==6||this.battle.modded(115)){
                                                 this.targetClass=2
                                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                                                 if(index>=0){
@@ -681,7 +681,7 @@ class turn{
                                         }else{
                                             this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                             if(this.targetTile.occupied>0){
-                                                if(this.type==6){
+                                                if(this.type==6||this.battle.modded(115)){
                                                     this.targetClass=2
                                                     let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                                                     if(index>=0){
@@ -713,7 +713,7 @@ class turn{
                                             }else{
                                                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                                 if(this.targetTile.occupied>0){
-                                                    if(this.type==6){
+                                                    if(this.type==6||this.battle.modded(115)){
                                                         this.targetClass=2
                                                         let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                                                         if(index>=0){
@@ -745,7 +745,7 @@ class turn{
                                                 }else{
                                                     this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                                     if(this.targetTile.occupied>0){
-                                                        if(this.type==6){
+                                                        if(this.type==6||this.battle.modded(115)){
                                                             this.targetClass=2
                                                             let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                                                             if(index>=0){
@@ -777,7 +777,7 @@ class turn{
                                                     }else{
                                                         this.targetTile=this.battle.tileManager.tiles[this.target[0]]
                                                         if(this.targetTile.occupied>0){
-                                                            if(this.type==6){
+                                                            if(this.type==6||this.battle.modded(115)){
                                                                 this.targetClass=2
                                                                 let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                                                                 if(index>=0){
@@ -4613,23 +4613,51 @@ class turn{
             case 1:
                 switch(this.type){
                     case 0: case 1: case 2: case 4:
-                        if(variants.nobasicanim){
-                            this.userCombatant.moveTile(this.direction,this.distance)
-                            this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
-                            this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
-                            this.battle.activateTile(1,this.userCombatant.id)
-                            this.remove=true
-                        }else{
+                        if(this.battle.modded(115)){
                             if(this.timer==1){
                                 this.userCombatant.startAnimation(0)
+                                if(this.targetClass==2){
+                                    this.targetCombatant.goal.anim.direction=this.relativeDirection
+                                }
                             }
-                            this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
-                            this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                            this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                            this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                             this.userCombatant.runAnimation(1/15,0)
+                            if(this.targetClass==2){
+                                this.targetCombatant.moveTile(this.direction,-this.distance/(15*this.targetDistance))
+                                this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/(15*this.targetDistance))
+                            }
                             if(this.timer>=15*this.targetDistance){
+                                if(this.targetClass==2){
+                                    this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x,this.targetCombatant.tilePosition.y)
+                                    this.battle.activate(1,this.userCombatant.id)
+                                    this.targetCombatant.moveTilePosition(this.tilePosition.x,this.tilePosition.y)
+                                    this.battle.activate(1,this.targetCombatant.id)
+                                }else{
+                                    this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                    this.battle.activate(1,this.userCombatant.id)
+                                }
+                                this.remove=true
+                            }
+                        }else{
+                            if(variants.nobasicanim){
+                                this.userCombatant.moveTile(this.direction,this.distance)
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
                                 this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                                 this.battle.activateTile(1,this.userCombatant.id)
                                 this.remove=true
+                            }else{
+                                if(this.timer==1){
+                                    this.userCombatant.startAnimation(0)
+                                }
+                                this.userCombatant.moveTile(this.direction,this.distance/(15*distTargetCombatant(0,this,this.targetTile)))
+                                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*distTargetCombatant(0,this,this.targetTile)))
+                                this.userCombatant.runAnimation(1/15,0)
+                                if(this.timer>=15*this.targetDistance){
+                                    this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                                    this.battle.activateTile(1,this.userCombatant.id)
+                                    this.remove=true
+                                }
                             }
                         }
                     break

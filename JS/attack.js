@@ -58,6 +58,13 @@ class attack{
                 }
             break
         }
+        if(this.battle.modded(131)){
+            if(this.relPos[0]==0&&this.userManager.hand.cards.length>=2){
+                this.userManager.hand.cards[this.userManager.hand.cards.length-1].deSize=true
+            }else if(this.relPos[0]==this.relPos[1]&&this.userManager.hand.cards.length>=2){
+                this.userManager.hand.cards[0].deSize=true
+            }
+        }
         let targetCombatant=-1
         switch(this.type){
             case 1: case 4: case 5: case 7: case 11: case 12: case 15: case 16: case 17: case 19:
@@ -122,7 +129,7 @@ class attack{
             case 1432: case 1434: case 1435: case 1437: case 1438: case 1439: case 1440: case 1441: case 1442: case 1443:
             case 1444: case 1445: case 1446: case 1449: case 1451: case 1452: case 1454: case 1455: case 1457: case 1461:
             case 1462: case 1463: case 1465: case 1470: case 1471: case 1472: case 1474: case 1478: case 1479: case 1480:
-            case 1481: case 1482: case 1483: case 1484: case 1485: case 1490: case 1492:
+            case 1481: case 1482: case 1483: case 1484: case 1485: case 1490: case 1492: case 1493:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -502,6 +509,12 @@ class attack{
                 switch(this.type){
                     case 12: case 719: case 1213:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user)
+                    break
+                    case 35:
+                        if(this.targetCombatant.life==this.targetCombatant.base.life){
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     case 46: case 661:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Bleed')?2:1),this.user)
@@ -896,11 +909,8 @@ class attack{
                     case 1478:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy+this.effect[1],this.user)
                     break
-                    case 35:
-                        if(this.targetCombatant.life==this.targetCombatant.base.life){
-                            this.battle.energy.main[this.player]+=this.effect[1]
-                        }
-                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    case 1493:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.life==this.targetCombatant.base.life?2:1),this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -2691,7 +2701,7 @@ class attack{
                         this.userCombatant.statusEffect('Lowroll Strength',this.effect[0])
                     break
                     case 1019:
-                        this.userCombatant.statusEffect('Deprecating Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Decrementing Strength',this.effect[0])
                     break
                     case 1033:
                         this.userCombatant.statusEffect('Temporary Dexterity',this.effect[0])
@@ -2878,6 +2888,11 @@ class attack{
                         }else{
                             this.userManager.hand.duplicate(this.effect[0])
                         }
+                    break
+                    case 1494:
+                        this.userCombatant.randomStatusInstant(this.effect[0],[0,2])
+                        this.userCombatant.randomStatusInstant(this.effect[1],[0,2])
+                        this.userCombatant.randomStatusInstant(this.effect[2],[0,2])
                     break
 
                 }

@@ -88,6 +88,10 @@ class battle{
         this.colorDetail=[]
         
         this.initial()
+
+        for(let a=0,la=10;a<la;a++){
+            this.modManager.addMod(145+a)
+        }
     }
     initialManagers(){
         this.cardManagers=[]
@@ -260,6 +264,9 @@ class battle{
         }
         if(this.modded(33)&&this.encounter.class==0){
             this.combatantManager.allEffect(3,[this.counter.enemy])
+        }
+        if(this.modded(147)){
+            this.combatantManager.allEffect(26,[])
         }
         this.attackManager.clear()
         this.turnManager.clear()
@@ -549,6 +556,17 @@ class battle{
         }
     }
     startTurn(){
+        if(this.modded(109)){
+            this.combatantManager.allEffect(7,[this.counter.enemy-this.counter.killed-1])
+        }
+        if(this.modded(110)){
+            this.combatantManager.allEffect(6,[2*(this.counter.enemy-this.counter.killed-1)])
+        }
+        if(this.modded(137)&&floor(random(0,20))==0){
+            for(let a=0,la=this.nodeManager.world+1;a<la;a++){
+                this.quickReinforce('Management Robot')
+            }
+        }
         this.turn.main=0
         this.turn.total++
         this.turn.time=game.turnTime
@@ -557,11 +575,15 @@ class battle{
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
-        this.combatantManager.tick()
+        if(this.turn.total>1){
+            this.combatantManager.tick()
+        }
         this.combatantManager.unmoveCombatants()
         this.combatantManager.resetCombatantsAnim()
         this.tileManager.activate()
-        this.tileManager.tick()
+        if(this.turn.total>1){
+            this.tileManager.tick()
+        }
         this.combatantManager.activateCombatants(0,0)
         this.updateTargetting()
         this.turnManager.clear()
@@ -643,6 +665,10 @@ class battle{
         }
         if(card.spec.includes(32)||card.spec.includes(12)&&card.reality[mode].includes(32)){
             this.quickReinforce('Inconsistent')
+        }
+        if(this.modded(101)){
+            this.cardManagers[player].hand.randomEffect(0)
+            this.cardManagers[player].draw(1)
         }
         this.stats.played[player][0]++
         this.stats.played[player][cardClass]++
@@ -1313,9 +1339,13 @@ class battle{
                                 }
                             }
                         }
+                        let mult=1
+                        if(this.modded(82)){
+                            mult*=0.5
+                        }
                         switch(this.encounter.class){
                             case 0: case 3: case 4:
-                                reward.push({type:0,value:[floor(random(40,81))]})
+                                reward.push({type:0,value:[floor(random(40,81)*mult)]})
                                 if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
                                     reward.push({type:3,value:[]})
                                 }
@@ -1328,8 +1358,9 @@ class battle{
                                     if(this.relicManager.hasRelic(171,a)){
                                         reward.push({type:2,value:[]},{type:2,value:[]})
                                     }
-                                    reward.push({type:2,value:[]},{type:0,value:[floor(random(120,201))]})
+                                    reward.push({type:2,value:[]})
                                 }
+                                reward.push({type:0,value:[floor(random(120,201)*mult)]})
                                 if((floor(random(0,3))==0||this.relicManager.hasRelic(83,a))&&!this.modded(49)){
                                     reward.push({type:3,value:[]})
                                 }
@@ -1339,7 +1370,7 @@ class battle{
                             break
                             case 2:
                                 if(this.nodeManager.world!=3&&game.ascend>=13){
-                                    reward.push({type:0,value:[floor(random(240,401))]})
+                                    reward.push({type:0,value:[floor(random(240,401)*mult)]})
                                 }
                             break
                         }
@@ -1491,6 +1522,11 @@ class battle{
                 this.tierManager.update()
                 this.overlayManager.update()
             break
+        }
+        if(this.modded(135)&&game.timer%180==0){
+            for(let a=0,la=this.players;a<la;a++){
+                this.loseCurrency(1,a)
+            }
         }
         this.tutorialManager.update()
     }

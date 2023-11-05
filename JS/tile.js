@@ -29,6 +29,18 @@ class tile{
         if(this.type.length==0&&game.ascend>=26&&floor(random(0,12))==0){
             this.addType(20)
         }
+        if(this.type.length==0&&this.battle.modded(81)&&floor(random(0,12))==0){
+            this.addType(22)
+        }
+        if(this.type.length==0&&this.battle.modded(122)&&floor(random(0,6))==0){
+            this.addType(2)
+        }
+        if(this.type.length==0&&this.battle.modded(136)&&floor(random(0,24))==0){
+            this.addType(7)
+        }
+        if(this.type.length==0&&this.battle.modded(142)&&floor(random(0,9))==0){
+            this.addType(25)
+        }
     }
     activate(type,id){
         for(let a=0,la=this.type.length;a<la;a++){
@@ -81,10 +93,10 @@ class tile{
                 case 7:
                     this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
-                        if(this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support&&this.battle.combatantManager.combatants[this.combatant].id<this.battle.players){
+                        if(this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support&&this.battle.combatantManager.combatants[this.combatant].id<this.battle.players&&!this.battle.modded(136)){
                             this.battle.addCurrency(10,this.battle.combatantManager.combatants[this.combatant].id)
                             this.anim.upPart[a]=false
-                        }else if(this.battle.combatantManager.combatants[this.combatant].name=='Capitalist'){
+                        }else if(this.battle.combatantManager.combatants[this.combatant].name=='Capitalist'||this.battle.modded(136)){
                             this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bodyguard',types.combatant),this.battle.combatantManager.combatants[this.combatant].goal.anim.direction)
                             this.anim.upPart[a]=false
                         }

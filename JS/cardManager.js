@@ -263,6 +263,10 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
+    addRandomCompleteAll(group,level,rarity){
+        let type=this.listing.allListableCard[rarity][floor(random(0,this.listing.allListableCard[rarity].length))]
+        this.getList(group).add(type,level,types.card[type].list)
+    }
     addRandomCompleteAllContain(group,level,contain){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
@@ -722,7 +726,11 @@ class cardManager{
             this.hand.add(findName('Onyx',types.card),0,0)
             tempDrawAmount--
         }
-        this.draw(tempDrawAmount)
+        if(turn==1&&this.battle.modded(95)){
+            this.drawSetCost(tempDrawAmount,2)
+        }else{
+            this.draw(tempDrawAmount)
+        }
         this.tempDraw=0
         if(turn%4==0&&game.ascend>=24){
             this.reserve.addShuffle(findName('Dazed',types.card),0,game.playerNumber+1)
@@ -752,6 +760,10 @@ class cardManager{
         if(this.battle.modded(61)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(33)){
             this.discard.cards[this.discard.cards.length-1].spec.push(33)
             this.drop.cards[this.drop.cards.length-1].spec.push(33)
+        }
+        if(this.battle.modded(120)){
+            this.discard.cards[this.discard.cards.length-1].attack=-35
+            this.drop.cards[this.drop.cards.length-1].attack=-35
         }
         if(this.battle.relicManager.hasRelic(142,this.player)){
             this.discard.cards[this.discard.cards.length-1].cost++

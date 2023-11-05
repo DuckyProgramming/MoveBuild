@@ -1,6 +1,10 @@
 attack.prototype.update=function(){
     this.timer++
     switch(this.type){
+        case -35:
+            this.battle.energy.main[this.player]=0
+            this.remove=true
+        break
         case 1: case 7: case 12: case 34: case 35: case 42: case 46: case 53: case 88: case 89:
         case 90: case 94: case 101: case 103: case 105: case 106: case 108: case 110: case 111: case 115:
         case 117: case 118: case 119: case 123: case 124: case 125: case 126: case 129: case 137: case 140:
@@ -29,7 +33,7 @@ attack.prototype.update=function(){
         case 1309: case 1311: case 1312: case 1314: case 1315: case 1321: case 1324: case 1330: case 1345: case 1354:
         case 1355: case 1356: case 1377: case 1390: case 1395: case 1397: case 1399: case 1401: case 1416: case 1421:
         case 1424: case 1429: case 1438: case 1439: case 1440: case 1457: case 1462: case 1464: case 1465: case 1478:
-        case 1485: case 1490:
+        case 1485: case 1490: case 1493:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -351,7 +355,7 @@ attack.prototype.update=function(){
         case 1063: case 1074: case 1079: case 1093: case 1094: case 1108: case 1124: case 1125: case 1138: case 1159:
         case 1165: case 1206: case 1208: case 1215: case 1220: case 1229: case 1260: case 1264: case 1265: case 1269:
         case 1294: case 1302: case 1304: case 1306: case 1323: case 1327: case 1365: case 1366: case 1375: case 1381:
-        case 1396: case 1402: case 1407: case 1419: case 1466: case 1467: case 1468: case 1475: case 1476:
+        case 1396: case 1402: case 1407: case 1419: case 1466: case 1467: case 1468: case 1475: case 1476: case 1494:
             if(this.type==807&&this.userCombatant.stance!=2||this.type==820&&this.userCombatant.stance!=1||this.type==821&&this.userCombatant.stance!=3||this.type==822&&this.userCombatant.stance!=4){
                 this.remove=true
             }else if(variants.nobasicanim){
