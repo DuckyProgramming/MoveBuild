@@ -535,6 +535,14 @@ class combatantManager{
         }
         return -1
     }
+    getCombatantIndexBarrier(tileX,tileY){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].tilePosition.x==tileX&&this.combatants[a].tilePosition.y==tileY&&(this.combatants[a].life>0||this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support)){
+                return a
+            }
+        }
+        return -1
+    }
     resetIntents(type){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0&&types.attack[this.combatants[a].attack[this.combatants[a].intent].type].class==type){

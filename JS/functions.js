@@ -567,8 +567,8 @@ function intentDescription(attack,user,info){
 			case 243: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6\nNo Movement`
 			case 244: return `Randomly Edit the Map`
 			case 246: return `Apply ${info?attack.effect[0]:`?`} Freeze`
-			case 246: return `Apply ${info?attack.effect[0]:`?`} Burn, Freeze, or Shock`
-			case 247: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,0):`?`} Damage`
+			case 247: return `Apply ${info?attack.effect[0]:`?`} Burn, Freeze, or Shock`
+			case 248: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,0):`?`} Damage`
 
 			default: return `INVALID`
 		}

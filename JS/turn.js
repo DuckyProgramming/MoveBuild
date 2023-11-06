@@ -390,7 +390,7 @@ class turn{
                             if(this.type!=127&&this.type!=150&&this.type!=181&&this.type!=209){
                                 this.targetTile=[]
                                 for(let a=0,la=this.target.length;a<la;a++){
-                                    this.targetIndex.push(this.battle.combatantManager.getCombatantIndex(this.target[a][0],this.target[a][1]))
+                                    this.targetIndex.push(this.battle.combatantManager.getCombatantIndexBarrier(this.target[a][0],this.target[a][1]))
                                     this.targetTile.push(this.battle.tileManager.getTileIndex(this.target[a][0],this.target[a][1]))
                                 }
                             }

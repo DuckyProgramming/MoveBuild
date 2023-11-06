@@ -4857,7 +4857,7 @@ class attack{
                     break
                     case 1308:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.targetCombatant.randomStatusInstant(this.effect[1],[0])
+                        this.userCombatant.randomStatusInstant(this.effect[1],[0])
                     break
                     case 1310:
                         if(this.userCombatant.charge>=this.effect[3]){
@@ -5491,7 +5491,7 @@ class attack{
                         this.battle.addCurrency(this.limit[1],this.player)
                     break
                     case 1349:
-                        if(this.battle.encounter.class!=2){
+                        if(this.battle.encounter.class!=2&&this.targetCombatant.team==0){
                             if(this.userManager.deck.add(findName('Container\nBall',types.card),0,0)){
                                 this.userManager.deck.cards[this.userManager.deck.cards.length-1].limit=this.targetCombatant.type
                                 this.targetCombatant.life=0
@@ -5956,9 +5956,11 @@ class attack{
                         this.battle.tileManager.customActivate(6,[this.effect[0]])
                     break
                     case 1350:
-                        this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,46,[50]))
-                        this.targetCombatant.life=0
-                        this.battle.longReinforce(this.targetCombatant.name,3)
+                        if(this.targetCombatant.team==0){
+                            this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,46,[50]))
+                            this.targetCombatant.life=0
+                            this.battle.longReinforce(this.targetCombatant.name,3)
+                        }
                     break
                     case 1351:
                         for(let a=0,la=this.effect[0];a<la;a++){

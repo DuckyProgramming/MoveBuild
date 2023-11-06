@@ -56,11 +56,11 @@ transistor - does more if target is shocked
 
 pixie flame - damage and vanish
 
+cold, hard cash
+
+collateral - retains in hand and tanks damage for you
 
 
-
-jester + flying rock (new encounters. jester needs to be added, flying rock already exists)
-jester bonus round = never shuffle deck
 
 shredder - holepunch
 shredder produces a bunch of 1s, hole puncher takes 4 to do damge
@@ -85,10 +85,9 @@ roger reviv - bomb yourself
 the haters - hurt everything including yourself
 acquit - if enemy has low health, heal him
 beelzebub - lose hp and take double damage
+private healthcare - wastes money, heals some of the time
+kickback - shock, but money-based
 }
-
-movement box bugged?
-
 
 
 

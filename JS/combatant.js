@@ -5263,41 +5263,41 @@ class combatant{
                     case 33: case 209: this.heal(this.status.main[a]); break
                     case 34: case 146: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Gain Block',this.status.name)]+=this.status.main[a]; break
-                    case 41: case 84: this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]; break
+                    case 41: case 84: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]}; break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
                     case 71: case 72: this.combo+=this.status.main[a]; break
                     case 81: this.status.main[findList('Energy Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 83: this.status.main[findList('Double Damage Turn',this.status.name)]+=this.status.main[a]; break
-                    case 85: this.battle.cardManagers[this.id].hand.discard(this.status.main[a]); break
+                    case 85: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[a])}; break
                     case 86: case 128: this.life-=this.status.main[a]; break
                     case 88: this.status.main[findList('Intangible',this.status.name)]+=this.status.main[a]; break
                     case 89: this.status.main[findList('Block Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 107: if(this.armed){this.addBlock(this.status.main[a])} break
-                    case 113: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomClass(2,0,4)} break
-                    case 116: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandom(2,0,0)} break
+                    case 113: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomClass(2,0,4)}} break
+                    case 116: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandom(2,0,0)}} break
                     case 118: this.status.main[findList('Focus',this.status.name)]+=this.status.main[a]; break
-                    case 120: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Step',types.card),0,this.type)} break
+                    case 120: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Step',types.card),0,this.type)}} break
                     case 124: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[a]; break
-                    case 125: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)} break
+                    case 125: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)}} break
                     case 129: this.faith+=this.status.main[a]; break
-                    case 130: this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0); break
-                    case 131: this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0); break
+                    case 130: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
+                    case 131: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}; break
                     case 132: this.enterStance(1); break
-                    case 133: this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0); break
+                    case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0)}; break
                     case 135: this.battle.energy.main[this.id]+=this.status.main[a];this.battle.energy.gen[this.id]+=this.status.main[a]; break
                     case 142: this.charge+=this.status.main[a]; break
-                    case 143: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)} break
+                    case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)}} break
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
                     case 155: this.status.main[findList('Charge Next Turn',this.status.name)]+=this.status.main[a]; break
-                    case 157: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,0,2)} break
-                    case 158: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,1,2)} break
+                    case 157: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,0,2)}} break
+                    case 158: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,1,2)}} break
                     case 164: this.status.main[findList('Energy Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 180: this.status.main[findList('Take Damage',this.status.name)]+=this.status.main[a]; break
                     case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 182: this.status.main[findList('Block Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
-                    case 189: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Conviction',types.card),0,types.card[findName('Conviction',types.card)].list)} break
+                    case 189: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Conviction',types.card),0,types.card[findName('Conviction',types.card)].list)}} break
                     case 197: if(floor(random(0,4))==0){this.takeDamage(this.status.main[a],-1); this.status.main[a]=0} break
                     case 203: this.heal(this.status.main[a]); break
                     case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break

@@ -572,6 +572,11 @@ class relicManager{
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect(['Weak','Miss'][floor(random(0,2))],2)
                             }
                         }
+                        if(this.battle.modded(133)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Weak',floor(this.battle.currency.money[a]/100))
+                            }
+                        }
                     break
                     case 2:
                         if(this.active[41]>0){
@@ -708,9 +713,6 @@ class relicManager{
                             this.battle.cardManagers[args[1]].fatigue()
                         }
                     }
-                    if(this.battle.modded(133)){
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect('Weak',floor(this.battle.currency.money[args[1]]/100))
-                    }
                 }else{
                     if(args[0]==2){
                         if(this.active[114]>0&&args[1]==this.player[114]){
@@ -782,7 +784,7 @@ class relicManager{
                     }
                 }
             break
-            case 4://playing card [class,plauer]
+            case 4://playing card [class,plauer,cost]
                 if(this.active[18]>0&&args[1]==this.player[18]){
                     this.detail[18]++
                     if(this.detail[18]%10==0){
@@ -849,7 +851,7 @@ class relicManager{
                         }
                     break
                     case 4:
-                        if(this.active[20]>0&&args[1]==this.player[20]){
+                        if(this.active[20]>0&&args[1]==this.player[20]&&args[2]>=1){
                             this.battle.cardManagers[this.player[20]].randomEffect(2,1,[this.active[20]])
                         }
                         if(this.active[27]>0&&args[1]==this.player[27]){

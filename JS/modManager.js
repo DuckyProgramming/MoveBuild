@@ -71,6 +71,19 @@ class modManager{
                     this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName(`${a+1} of Nothings`,types.card),0,0))
                 }
             break
+            case 148:
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    for(let b=0,lb=this.battle.cardManagers[a].deck.cards.length;b<lb;b++){
+                        if(this.battle.cardManagers[a].deck.cards[b].spec.includes(12)){
+                            for(let c=0,lc=this.battle.cardManagers[a].deck.cards[b].class.length;c<lc;c++){
+                                this.battle.cardManagers[a].deck.cards[b].class[c]=8
+                            }
+                        }else{
+                            this.battle.cardManagers[a].deck.cards[b].class=8
+                        }
+                    }
+                }
+            break
             case 149:
                 this.battle.cardManagers.forEach(cardManager=>cardManager.deck.killDupes())
             break

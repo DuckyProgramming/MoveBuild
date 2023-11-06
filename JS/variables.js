@@ -2605,9 +2605,9 @@ types={
         },{
             name:'Trident',rarity:1,list:3,
             levels:[
-                {effect:[8,2,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[14,2,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[20,2,2],attack:1274,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[8,2,2],attack:1274,cost:1,target:[2,2,2],spec:[0],class:1},
+                {effect:[14,2,2],attack:1274,cost:1,target:[2,2,2],spec:[0],class:1},
+                {effect:[20,2,2],attack:1274,cost:1,target:[2,2,2],spec:[0],class:1},
             ],
         },{
             name:'Cold\nWind',rarity:0,list:3,
@@ -2640,9 +2640,9 @@ types={
         },{
             name:'Ice\nSpell',rarity:2,list:3,
             levels:[
-                {effect:[15,2],attack:1438,cost:0,target:[2,1,1],spec:[0],class:4},
-                {effect:[15,3],attack:1438,cost:0,target:[2,1,1],spec:[0],class:4},
-                {effect:[15,4],attack:1438,cost:0,target:[2,1,1],spec:[0],class:4},
+                {effect:[15,2],attack:1438,cost:0,target:[2,1,2],spec:[0],class:4},
+                {effect:[15,3],attack:1438,cost:0,target:[2,1,2],spec:[0],class:4},
+                {effect:[15,4],attack:1438,cost:0,target:[2,1,2],spec:[0],class:4},
             ],
         },{
             name:'Ice\nSword',rarity:1,list:3,
@@ -3484,9 +3484,9 @@ types={
         },{
             name:'Starspear',rarity:2,list:4,
             levels:[
-                {effect:[34,2],attack:1308,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[50,3],attack:1308,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[64,4],attack:1308,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[30,2],attack:1308,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[44,3],attack:1308,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[56,4],attack:1308,cost:2,target:[2,2,2],spec:[0],class:1},
             ],
         },{
             name:'Shooting\nStar',rarity:1,list:4,
@@ -7586,9 +7586,9 @@ types={
         },{
             name:'System\nShock',rarity:2,list:9,
             levels:[
-                {effect:[15,5],attack:1268,cost:0,target:[2,1,1],spec:[0],class:4},
-                {effect:[15,8],attack:1268,cost:0,target:[2,1,1],spec:[0],class:4},
-                {effect:[15,10],attack:1268,cost:0,target:[2,1,1],spec:[0],class:4},
+                {effect:[15,5],attack:1268,cost:0,target:[2,1,2],spec:[0],class:4},
+                {effect:[15,8],attack:1268,cost:0,target:[2,1,2],spec:[0],class:4},
+                {effect:[15,10],attack:1268,cost:0,target:[2,1,2],spec:[0],class:4},
             ],
         },{
             name:'Frontline',rarity:1,list:9,
@@ -7640,7 +7640,7 @@ types={
                 {effect:[10,2],attack:1337,cost:1,target:[2,1,2],spec:[0],class:1},
             ],
         },{
-            name:'Evil\nlaugh',rarity:1,list:9,
+            name:'Evil\nLaugh',rarity:1,list:9,
             levels:[
                 {effect:[3],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
                 {effect:[4],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
@@ -7698,9 +7698,9 @@ types={
         },{
             name:'Pitchfork',rarity:1,list:9,
             levels:[
-                {effect:[8,2,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[14,2,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
-                {effect:[20,2,2],attack:1367,cost:2,target:[2,2,2],spec:[0],class:1},
+                {effect:[8,2,2],attack:1367,cost:1,target:[2,2,2],spec:[0],class:1},
+                {effect:[14,2,2],attack:1367,cost:1,target:[2,2,2],spec:[0],class:1},
+                {effect:[20,2,2],attack:1367,cost:1,target:[2,2,2],spec:[0],class:1},
             ],
         },{
             name:'Ignite',rarity:0,list:9,
@@ -7733,9 +7733,9 @@ types={
         },{
             name:'Flame\nWar',rarity:2,list:9,
             levels:[
-                {effect:[15,2],attack:1267,cost:0,target:[2,1,1],spec:[0],class:4},
-                {effect:[15,3],attack:1267,cost:0,target:[2,1,1],spec:[0],class:4},
-                {effect:[15,4],attack:1267,cost:0,target:[2,1,1],spec:[0],class:4},
+                {effect:[15,2],attack:1267,cost:0,target:[2,1,2],spec:[0],class:4},
+                {effect:[15,3],attack:1267,cost:0,target:[2,1,2],spec:[0],class:4},
+                {effect:[15,4],attack:1267,cost:0,target:[2,1,2],spec:[0],class:4},
             ],
         },{
             name:'Flame\nSword',rarity:1,list:9,
@@ -11344,7 +11344,7 @@ types={
         {name:'',internal:'Death Boost',id:17,rarity:1,list:0,description:'When an Enemy Dies,\nGain 1 Energy and Draw 1 Card'},
         {name:'',internal:'10 Card Draw',id:18,rarity:1,list:0,description:'Every 10 Cards Played,\nDraw 1 Card'},
         {name:'',internal:'Emergency Heal',id:19,rarity:1,list:0,description:'At the End of Combat, If Your\nHP is Below 50%, Heal 12 HP'},
-        {name:'',internal:'Power Cost Reduce',id:20,rarity:1,list:0,description:'When You Play a Power,\na Random Card Costs 1 Less'},
+        {name:'',internal:'Power Cost Reduce',id:20,rarity:1,list:0,description:'When You Play a Power That Costs 1 or\nMore, a Random Card Costs 1 Less'},
 
         {name:'',internal:'Starting Buffer',id:21,rarity:2,list:0,description:'Gain 1 Buffer at\nthe Start of Combat'},
         {name:'',internal:'Selective Redraw',id:22,rarity:2,list:0,description:'Add 1 Selective Redraw at\nthe Start of Combat'},

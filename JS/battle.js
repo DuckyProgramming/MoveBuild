@@ -693,7 +693,7 @@ class battle{
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))
         }
         this.combatantManager.playCardFront()
-        this.relicManager.activate(4,[cardClass,player])
+        this.relicManager.activate(4,[cardClass,player,card.cost])
     }
     displayCurrency(){
         this.layer.fill(240,240,220)
