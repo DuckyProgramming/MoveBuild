@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -35,8 +35,13 @@ class cardManager{
         this.listing.allListableCard=[[],[],[],[]]
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
+        this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[]]
         for(let a=0,la=types.card.length;a<la;a++){
-            if(variants.prismrule.includes(types.card[a].list)||variants.prismrule.includes(-1)&&types.card[a].list<0){
+            if(types.card[a].rarity==-10){
+                this.listing.junk[types.card[a].list].push(a)
+                this.listing.junk[game.playerNumber+1].push(a)
+            }
+            if(variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10){
                 if(types.card[a].rarity<0){
                     this.listing.all[0].push(a)
                     this.listing.all[1].push(a)

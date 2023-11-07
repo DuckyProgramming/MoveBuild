@@ -40,7 +40,7 @@ class combatant{
         }
         if(this.battle.initialized&&this.team==0&&this.battle.modded(7)){
             this.name='Unknown'
-            this.desc='???'
+            this.description='Unrecognizable'
         }
         if(this.battle.initialized&&this.team==0&&this.battle.modded(13)){
             for(let a=0,la=this.attack.length;a<la;a++){
@@ -123,6 +123,7 @@ class combatant{
             'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
             'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
+            'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,3,//1
@@ -146,6 +147,7 @@ class combatant{
                 2,2,2,0,0,2,0,0,0,2,//19
                 0,0,0,0,0,0,1,0,1,0,//20
                 0,0,0,0,1,2,2,2,1,2,//21
+                1,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -169,6 +171,7 @@ class combatant{
                 1,1,1,0,0,0,0,0,2,2,//19
                 2,1,2,2,1,0,3,1,1,3,//20
                 2,0,2,0,1,0,2,0,1,0,//21
+                2,1,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2776,8 +2779,6 @@ class combatant{
                         this.anim.mouth={x:9,y:1,open:0}
                         this.parts.mouth-=2
                         this.spin.mouth=186
-                        this.color.helmet=[40,40,40]
-                        this.color.visor=[255,125,50]
                         this.color.tie=[[170,170,170],[60,60,60]]
                         this.fades.tie=1
                         this.trigger.display.tie=true
@@ -2837,6 +2838,9 @@ class combatant{
                         this.color.hat=[[225,0,0],[150,0,0],[200,160,0]]
                         this.fades.hat=1
                         this.trigger.display.hat=true
+                    break
+                    case 'Man':
+                        this.color={skin:{head:[240,220,180],body:[160,160,160],legs:[150,150,150],arms:[145,145,145]},eye:{back:[100,100,100],front:[80,80,80],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
@@ -4232,6 +4236,13 @@ class combatant{
                     userCombatant.takeDamage(damage)
                     damage=0
                 }
+                if(userCombatant.status.main[211]>0){
+                    userCombatant.status.main[211]--
+                    hit=false
+                    this.infoAnim.upFlash[3]=true
+                    userCombatant.takeDamage(damage)
+                    damage=0
+                }
                 if(userCombatant.status.main[98]>0){
                     this.statusEffect('Bleed',userCombatant.status.main[98])
                 }
@@ -4264,6 +4275,9 @@ class combatant{
                 this.status.main[21]--
                 hit=false
                 this.infoAnim.upFlash[2]=true
+            }
+            if(this.status.main[210]>0&&this.battle.turn.main==this.id){
+                hit=false
             }
             if(this.status.main[43]>0){
                 this.statusEffect('Strength',this.status.main[43])
@@ -5301,7 +5315,8 @@ class combatant{
                     case 197: if(floor(random(0,4))==0){this.takeDamage(this.status.main[a],-1); this.status.main[a]=0} break
                     case 203: this.heal(this.status.main[a]); break
                     case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
-                    
+                    case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break
+
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
                     if(this.status.main[a]>0){

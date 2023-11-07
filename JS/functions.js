@@ -1005,7 +1005,7 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 function outListing(){
 	let box=``
 	let goal=50+125*game.playerNumber+30+20+15+30
-	let arbitrary=1600
+	let arbitrary=1650
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/50				${current.cardManagers[0].listing.card[a+1][0].length-50}

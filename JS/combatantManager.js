@@ -211,8 +211,8 @@ class combatantManager{
             if((this.battle.attackManager.targetInfo[0]==46)&&
             this.combatants[a].life>0&&
             !((this.combatants[a].spec.includes(9)||this.battle.modded(86)&&this.battle.turn.total<=2)&&abs(this.combatants[a].goal.anim.direction-atan2(this.combatants[this.battle.attackManager.player].relativePosition.x-this.combatants[a].relativePosition.x,this.combatants[this.battle.attackManager.player].relativePosition.y-this.combatants[a].relativePosition.y))<30)&&
-            (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.attackManager.player)?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||
-            legalTargetCombatant(0,this.battle.attackManager.targetInfo[3],this.battle.relicManager.hasRelic(145,this.attackManager.player)?1:this.battle.attackManager.targetInfo[4],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.attackManager.player)].ammo>0)){
+            (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],this.battle.relicManager.hasRelic(145,this.battle.attackManager.player)?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||
+            legalTargetCombatant(0,this.battle.attackManager.targetInfo[3],this.battle.relicManager.hasRelic(145,this.battle.attackManager.player)?1:this.battle.attackManager.targetInfo[4],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.attackManager.player)].ammo>0)){
                 if(this.combatants[a].tilePosition.x==this.battle.attackManager.tilePosition.x&&this.combatants[a].tilePosition.y==this.battle.attackManager.tilePosition.y){
                     this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.combatants[a].tilePosition.x,this.combatants[a].tilePosition.y)].indescriptTarget(0,numeralizeDirection(0))
                 }else{
@@ -271,7 +271,25 @@ class combatantManager{
                 case 2:
                     this.combatants[index].takeDamage(args[0],-1)
                     return this.combatants[index].life<=0
+            }
+        }
+    }
+    randomAnyEffect(effect,args){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].life>0){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            let index=list[floor(random(0,list.length))]
+            switch(effect){
+                case 0:
+                    this.combatants[index].takeDamage(args[0],-1)
                 break
+                case 1:
+                    this.combatants[index].takeDamage(args[0],-1)
+                    return this.combatants[index].life<=0
             }
         }
     }
@@ -474,6 +492,12 @@ class combatantManager{
                 break
                 case 5:
                     this.combatants[a].life=args[0]
+                break
+                case 6:
+                    this.combatants[a].statusEffect('Miss',args[0])
+                break
+                case 7:
+                    this.combatants[a].statusEffect('Weak',args[0])
                 break
             }
         }

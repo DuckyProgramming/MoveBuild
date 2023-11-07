@@ -68,27 +68,26 @@ shredder produces a bunch of 1s, hole puncher takes 4 to do damge
 
 
 {
-torn glove - high damage, but one of your cards next turn is cursed
-combination lock - damage, lock yourself
-tiny trebuchet - throw a card (deals 1 damage)
-safety goggles - immune to self-damage
-wall of mirrors - buffs enemies turns
-double edge - hurt enemy and yourself for equal damage
-jealous - deals very low damage, and breaks if not used first
-walk into wall - moves, has chance to damage self and not move
-unprepared - prepared but rng
-bass drop - weaken everything on the map
-chef's kiss - does trash damage but does extra if its the last card
-allen key - combine two cards, but doesn't buff them at all
-orbital bombardment - x cost, 9 damage per x, but hits random people including yourself
-roger reviv - bomb yourself
-the haters - hurt everything including yourself
-acquit - if enemy has low health, heal him
-beelzebub - lose hp and take double damage
-private healthcare - wastes money, heals some of the time
-kickback - shock, but money-based
-}
+smash bottle - do damage, get confused, apply bleed
 
+incoming! - adds 2 cards to deck but they both kinda suck
+knuckle duster - "consistent" damage, reusable, countdown 2
+
+last laugh - enemy will survive a fatal blow
+master key - a weak form of spare
+
+you can move now (that's all it does)
+
+countvalanche - counter 2, does a bit of damage, and if you spent more than 2 it returns that as miracles
+haunted - damage, redraw a random card
+instant attack - damage, requires 4th slot, doubled if first
+sheer will - does damage and causes duped enemies to be stunned
+steinway - do damage for the next 3 turns, but lowers card draw next turn
+black ice - stun enemies that are neither attacking nor defending
+dropkick - 2 cost, damage, draw 3 cards if it doesn't work (2 1s)
+
+boots - immune to tiles
+}
 
 
 
