@@ -634,6 +634,9 @@ function unupgradeCard(base){
 	}
 	return result
 }
+function quadroArray(base){
+	return [base,base,base,base]
+}
 function copyArray(base){
 	let list=[]
 	for(let a=0,la=base.length;a<la;a++){

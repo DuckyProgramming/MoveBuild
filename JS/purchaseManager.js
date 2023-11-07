@@ -28,12 +28,12 @@ class purchaseManager{
                     }
                     this.purchases.push(new purchase(this.layer,this.battle,0,550,487.5,2,[200],[]))
                 }else if(this.battle.players==1){
-                    let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
+                    let list=variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[0].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[0].listing.card[this.battle.player[0]])
                     let group=[0,0,0,0,1,1,1,2]
                     let cost=[[60,75],[100,125],[160,200]]
                     for(let a=0,la=group.length;a<la;a++){
                         let index=floor(random(0,list[group[a]].length))
-                        this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,112.5+floor(a/4)*187.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[list[group[a]][index],0,variants.ultraprism?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0]]))
+                        this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,112.5+floor(a/4)*187.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0]]))
                         list[group[a]].splice(index,1)
                     }
                     list=copyArrayStack(this.battle.cardManagers[0].listing.card[0])
@@ -54,7 +54,7 @@ class purchaseManager{
                     this.purchases.push(new purchase(this.layer,this.battle,0,550,487.5,2,[this.battle.relicManager.hasRelic(97,0)?120:200],[]))
                 }else{
                     for(let a=0,la=this.battle.players;a<la;a++){
-                        let list=variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
+                        let list=variants.junk?quadroArray(copyArray(this.battle.cardManagers[0].listing.junk[game.playerNumber+1])):variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism?copyArrayStack(this.battle.cardManagers[0].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[a].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[a].listing.card[this.battle.player[a]])
                         let group=[0,0,0,0,1,1,1,2]
                         let cost=[[80,100],[120,150],[200,250]]
                         for(let b=0,lb=group.length;b<lb;b++){

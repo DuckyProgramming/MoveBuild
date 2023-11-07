@@ -4134,7 +4134,7 @@ function setupBackground(type,layer){
 			layer.text('PRISM',layer.width/2-382.5,layer.height*0.5+315)
 			layer.text('ALL VANISHING',layer.width/2-382.5,layer.height*0.5+405)
 
-			layer.text('///',layer.width/2+317.5,layer.height*0.5-405)
+			layer.text('JUNKYARD',layer.width/2+317.5,layer.height*0.5-405)
 			layer.text('DECKBUILD DEFENDS',layer.width/2+317.5,layer.height*0.5-315)
 			layer.text('BLACKJACK DRAW',layer.width/2+317.5,layer.height*0.5-225)
 			layer.text('CARD TECHIFY MODE',layer.width/2+317.5,layer.height*0.5-135)
@@ -4148,18 +4148,18 @@ function setupBackground(type,layer){
 		case 12:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2-350,layer.height*0.7,125,125)
-			layer.rect(layer.width/2-350,layer.height*0.7+100,125,55)
-			for(let a=0,la=6;a<la;a++){
+			layer.rect(layer.width/2-350,layer.height*0.7+100,125,125)
+			layer.rect(layer.width/2-350,layer.height*0.7+200,125,55)
+			for(let a=0,la=7;a<la;a++){
 				layer.rect(layer.width/2-350,layer.height/2-380+a*90,350,80)
 			}
 			for(let a=0,la=game.playerNumber;a<la;a++){
 				layer.rect(layer.width/2+350,layer.height/2-380+a*90,350,80)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2-350,layer.height*0.7,100,100)
-			layer.rect(layer.width/2-350,layer.height*0.7+100,100,30)
-			for(let a=0,la=6;a<la;a++){
+			layer.rect(layer.width/2-350,layer.height*0.7+100,100,100)
+			layer.rect(layer.width/2-350,layer.height*0.7+200,100,30)
+			for(let a=0,la=7;a<la;a++){
 				layer.rect(layer.width/2-382.5,layer.height/2-380+a*90,260,55)
 				layer.rect(layer.width/2-215,layer.height/2-380+a*90,55,55)
 			}
@@ -4168,16 +4168,17 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2+485,layer.height/2-380+a*90,55,55)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-355,layer.height*0.7,40,40,-30)
+			regTriangle(layer,layer.width/2-355,layer.height*0.7+100,40,40,-30)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2-350,layer.height*0.7+100)
+			layer.text('BACK',layer.width/2-350,layer.height*0.7+200)
 			layer.text('COLORLESS',layer.width/2-382.5,layer.height*0.5-380)
 			layer.text('STATUS',layer.width/2-382.5,layer.height*0.5-290)
 			layer.text('CURSE',layer.width/2-382.5,layer.height*0.5-200)
 			layer.text('PARTNER',layer.width/2-382.5,layer.height*0.5-110)
 			layer.text('ARCANA',layer.width/2-382.5,layer.height*0.5-20)
-			layer.text('UNLISTED',layer.width/2-382.5,layer.height*0.5+70)
+			layer.text('JUNKYARD',layer.width/2-382.5,layer.height*0.5+70)
+			layer.text('UNLISTED',layer.width/2-382.5,layer.height*0.5+160)
 			for(let a=0,la=game.playerNumber;a<la;a++){
 				layer.text(types.combatant[a+1].name.toUpperCase(),layer.width/2+317.5,layer.height*0.5-380+a*90)
 			}

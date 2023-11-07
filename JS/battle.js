@@ -28,7 +28,7 @@ class battle{
         for(let a=0,la=20;a<la;a++){
             this.menu.anim.variants.push(0)
         }
-        for(let a=-1,la=game.playerNumber+5;a<la;a++){
+        for(let a=-2,la=game.playerNumber+6;a<la;a++){
             this.menu.anim.prismrule.push(0)
             variants.prismrule.push(a)
         }
@@ -867,15 +867,15 @@ class battle{
             break
             case 'custom':
                 this.layer.image(graphics.backgrounds[12],0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=6;a<la;a++){
+                for(let a=0,la=7;a<la;a++){
                     if(this.menu.anim.prismrule[a]>0){
                         this.layer.fill(255,this.menu.anim.prismrule[a])
                         this.layer.ellipse(this.layer.width/2-107.5,this.layer.height/2-190+a*45,10)
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    if(this.menu.anim.prismrule[a+6]>0){
-                        this.layer.fill(255,this.menu.anim.prismrule[a+6])
+                    if(this.menu.anim.prismrule[a+7]>0){
+                        this.layer.fill(255,this.menu.anim.prismrule[a+7])
                         this.layer.ellipse(this.layer.width/2+242.5,this.layer.height/2-190+a*45,10)
                     }
                 }
@@ -1227,18 +1227,18 @@ class battle{
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'variants':
-                let variantNames=['mod','junkyard','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['mod','junk','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1]
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1,-2]
                 for(let a=0,la=prismrules.length;a<la;a++){
                     this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(prismrules[a]),0,1,5)
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    this.menu.anim.prismrule[a+6]=smoothAnim(this.menu.anim.prismrule[a+6],variants.prismrule.includes(a+1),0,1,5)
+                    this.menu.anim.prismrule[a+7]=smoothAnim(this.menu.anim.prismrule[a+7],variants.prismrule.includes(a+1),0,1,5)
                 }
             break
             case 'battle':
@@ -1625,7 +1625,7 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['mod','junkyard','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['mod','junk','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-202.5+floor(a/2)*45},width:27.5,height:27.5})){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])
@@ -1649,8 +1649,8 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1]
-                for(let a=0,la=6;a<la;a++){
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1,-2]
+                for(let a=0,la=7;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
                         if(variants.prismrule.includes(prismrules[a])){
                             variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
@@ -1937,7 +1937,7 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['mod','junkyard','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=['mod','junk','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(key==inputs.hexadec[a]){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])
@@ -1961,9 +1961,9 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1]
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-1,-2]
                 for(let a=0,la=prismrules.length;a<la;a++){
-                    if(key=='abcdef'[a]||key=='ABCDEF'[a]){
+                    if(key=='abcdefg'[a]||key=='ABCDEFG'[a]){
                         if(variants.prismrule.includes(prismrules[a])){
                             variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
                         }else{
@@ -1987,13 +1987,13 @@ class battle{
             break
             case 'tutorial':
                 for(let a=0,la=6;a<la;a++){
-                    if(key=='abcdef'[a]||key=='ABCDEF'[a]){
+                    if(key=='abcdefg'[a]||key=='ABCDEFG'[a]){
                         this.tutorialManager.setupTutorial(a)
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
                     if((a+1)%10==int(key)){
-                        this.tutorialManager.setupTutorial(a+6)
+                        this.tutorialManager.setupTutorial(a+7)
                     }
                 }
                 if(code==ENTER){
