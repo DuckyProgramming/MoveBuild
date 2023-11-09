@@ -295,6 +295,13 @@ class group{
         }
         return result
     }
+    addEffect(type,level,color,index,effect){
+        let result=this.add(type,level,color)
+        if(result){
+            this.cards[this.cards.length-1].effect[index]=effect
+        }
+        return result
+    }
     addReturn(type,level,color){
         game.id++
         if(type>=0&&type<types.card.length){
@@ -328,6 +335,10 @@ class group{
             }
         }
         return {type:-1}
+    }
+    slideTop(){
+        this.cards.splice(0,0,this.cards[this.cards.length-1])
+        this.cards.splice(this.cards.length-1,1)
     }
     resetAnim(){
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -929,6 +940,19 @@ class group{
                         this.cards[a].deSize=true
                     }
                 break
+                case 51:
+                    this.cards[a].deSize=true
+                    this.cards[a].exhaust=true
+                    for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                        if(this.cards[a].id==this.battle.cardManagers[this.player].deck.cards[b].id){
+                            if(this.battle.cardManagers[this.player].deck.remove(b)){
+                                this.battle.relicManager.activate(11,[this.player])
+                                b--
+                                lb--
+                            }
+                        }
+                    }
+                break
 
             }
         }
@@ -1017,7 +1041,7 @@ class group{
             let list=[]
             for(let a=0,la=this.cards.length;a<la;a++){
                 if(this.cards[a].usable
-                &&!(effect==0&&this.cards[a].deSize)
+                &&!((effect==0||effect==25)&&this.cards[a].deSize)
                 &&!((effect==1||effect==5)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)))
                 &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)))
                 &&!(effect==2&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0))
@@ -1182,24 +1206,32 @@ class group{
                             }
                         }
                     break
+                    case 25:
+                        this.cards[index].deSize=true
+                        this.battle.cardManagers[this.player].reserve.cards.push(copyCard(this.cards[index]))
+                        this.battle.cardManagers[this.player].reserve.slideTop()
+                        this.battle.cardManagers[this.player].reserve.cards.push(copyCard(this.cards[index]))
+                        this.battle.cardManagers[this.player].reserve.slideTop()
+                    break
 
                 }
             }
         }
     }
     drawEffect(attack,effect){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(attack){
             case -3:
                 this.drawEffects.push([1,effect[0]])
             break
             case -6:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Weak',effect[0])
+                userCombatant.statusEffect('Weak',effect[0])
             break
             case -12:
                 this.drawEffects.push([0,7,[effect[0]]])
             break
             case -15: case -19:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Cannot Move',effect[0])
+                userCombatant.statusEffect('Cannot Move',effect[0])
             break
             case -16:
                 this.battle.cardManagers[this.player].hand.add(findName('Fatigue',types.card),0,game.playerNumber+1)
@@ -1229,10 +1261,10 @@ class group{
                 this.drawEffects.push([4])
             break
             case -27:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Temporary Strength',-effect[0])
+                userCombatant.statusEffect('Temporary Strength',-effect[0])
             break
             case -28:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Strength',effect[0])
+                userCombatant.statusEffect('Strength',effect[0])
             break
             case -29:
                 this.battle.energy.main[this.player]=0
@@ -1241,7 +1273,7 @@ class group{
                 this.battle.combatantManager.fullAllEffect(3,[effect[0]])
             break
             case -32:
-                this.battle.combatantManager.fullAllEffect(4,[effect[0],this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].id])
+                this.battle.combatantManager.fullAllEffect(4,[effect[0],userCombatant.id])
             break
             case -34:
                 for(let a=0,la=effect[0];a<la;a++){
@@ -1268,22 +1300,22 @@ class group{
                 this.battle.combatantManager.allEffect(19,[effect[0]])
             break
             case 1115:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(effect[0])
+                userCombatant.heal(effect[0])
                 for(let a=0,la=effect[1];a<la;a++){
                     this.drawEffects.push([0,17,[]])
                 }
             break
             case 1239:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Damage Down',effect[0])
+                userCombatant.statusEffect('Damage Down',effect[0])
             break
             case 1240:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Burn',effect[0])
+                userCombatant.statusEffect('Burn',effect[0])
             break
             case 1241:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Counter All',effect[0])
+                userCombatant.statusEffect('Counter All',effect[0])
             break
             case 1242:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(effect[0])
+                userCombatant.addBlock(effect[0])
             break
             case 1243:
                 this.battle.cardManagers[this.player].hand.upgrade(effect[0])
@@ -1292,19 +1324,22 @@ class group{
                 this.battle.combatantManager.randomEnemyEffect(0,[effect[1]])
             break
             case 1307:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Bleed',effect[0])
+                userCombatant.statusEffect('Bleed',effect[0])
             break
             case 1332:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(effect[0])
+                userCombatant.heal(effect[0])
             break
             case 1369:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Armor',effect[0])
+                userCombatant.statusEffect('Armor',effect[0])
             break
             case 1433:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Freeze',effect[0])
+                userCombatant.statusEffect('Freeze',effect[0])
             break
             case 1501:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Shock',effect[0])
+                userCombatant.statusEffect('Shock',effect[0])
+            break
+            case 1565:
+                userCombatant.balance+=effect[0]
             break
         }
     }
@@ -1312,7 +1347,7 @@ class group{
         for(let a=0,la=this.cards.length;a<la;a++){
             switch(this.cards[a].attack){
                 case -8:
-                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.cards[a].effect[0],-1)
+                    userCombatant.takeDamage(this.cards[a].effect[0],-1)
                 break
                 case 1275:
                     this.battle.addCurrency(this.cards[a].effect[0],this.player)
@@ -1435,7 +1470,7 @@ class group{
         }
         if(this.sorted.length>0||type!=0&&type!=1){
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1||this.cards[a].cost==1&&type==2){
+                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1||this.cards[a].cost==1&&type==2||this.cards[a].cost==0&&type==3){
                     list.push(copyCard(this.cards[a]))
                     list[list.length-1].size=0
                     list[list.length-1].position.x=1200
@@ -1776,10 +1811,12 @@ class group{
         if(spec.includes(25)&&userCombatant.ammo>0&&!(target[0]==46&&this.battle.attackManager.targetDistance<=1)){
             userCombatant.ammo--
         }
-        if(cardClass==1&&userCombatant.status.main[22]>0){
-            userCombatant.status.main[22]--
-        }else if(userCombatant.status.main[27]>0){
-            userCombatant.status.main[27]--
+        if(cost==1&&userCombatant.getStatus('Free 1 Cost Card')>0){
+            userCombatant.status.main[findList('Free 1 Cost Card',userCombatant.status.name)]--
+        }else if(cardClass==1&&userCombatant.getStatus('Free Attack')>0){
+            userCombatant.status.main[findList('Free Attack',userCombatant.status.name)]--
+        }else if(userCombatant.getStatus('Free Card')>0){
+            userCombatant.status.main[findList('Free Card',userCombatant.status.name)]--
         }else if(spec.includes(11)){
             userCombatant.combo-=cost
         }else if(spec.includes(21)){

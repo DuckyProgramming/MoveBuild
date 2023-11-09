@@ -123,7 +123,7 @@ class combatant{
             'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
             'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
-            'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn',
+            'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,3,//1
@@ -147,7 +147,7 @@ class combatant{
                 2,2,2,0,0,2,0,0,0,2,//19
                 0,0,0,0,0,0,1,0,1,0,//20
                 0,0,0,0,1,2,2,2,1,2,//21
-                1,0,2,
+                1,0,2,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -171,7 +171,7 @@ class combatant{
                 1,1,1,0,0,0,0,0,2,2,//19
                 2,1,2,2,1,0,3,1,1,3,//20
                 2,0,2,0,1,0,2,0,1,0,//21
-                2,1,1,
+                2,1,1,0,2,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4224,6 +4224,12 @@ class combatant{
                 if(userCombatant.status.main[201]>0){
                     damage=damage*2-1
                 }
+                if(userCombatant.status.main[216]>0){
+                    damage=damage*1.5+1
+                }
+                if(userCombatant.status.main[215]>0){
+                    damage=0
+                }
                 if(this.status.main[3]>0){
                     this.status.main[3]--
                     hit=false
@@ -4450,7 +4456,6 @@ class combatant{
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][1]+=this.block
                         this.battle.stats.taken[this.id][2]+=damageLeft
-                        this.battle.cardManagers[this.id].allGroupEffect(16)
                     }
                     this.block=0
                     this.life-=damageLeft
@@ -4465,8 +4470,10 @@ class combatant{
                     this.blocked=2
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][2]+=damage
-                        this.battle.cardManagers[this.id].allGroupEffect(16)
                     }
+                }
+                if(this.id<this.battle.players){
+                    this.battle.cardManagers[this.id].allGroupEffect(16)
                 }
                 this.compression+=damage
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
@@ -4687,6 +4694,10 @@ class combatant{
                     if(this.status.main[45]>0&&this.life<=0){
                         userCombatant.statusEffect('Vulnerable',this.status.main[45])
                     }
+                }
+                if(this.status.main[213]>0&&this.life<=0){
+                    this.status.main[213]--
+                    this.life=1
                 }
                 if(this.spec.includes(16)&&this.life<=0&&user>=0&&user<this.battle.players){
                     for(let a=0,la=this.battle.players;a<la;a++){

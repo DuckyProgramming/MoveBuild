@@ -3,6 +3,16 @@ Bugs:
 add another political party card
 article 13 card?
 
+group photo of the characters for a background
+
+paperball floating on water
+
+lunar fractals
+
+
+
+
+junkyard destroy - choose one or another random one
 
 
 
@@ -17,48 +27,13 @@ BUILD AN ENTIRE JINX SYNERGY ON EXECUTOR
 the junkyard
 
 
-this is fine
-this isn't fine
-
 cannonball - requires exact value, comes in two versions
-
-cost 1, draw 4 cards that are already free
-
-paper lantern
-
-exotic - deal damage, has a chance to also damage you
-
-snapdragon
-
-double or nothing
-
-bicep curl
-
-more variants of double damage
 
 juggling ball - windup fist
 
-hedge fund - counter for cash
-
-hex - weak or shock
-
-counterspell - a flame war that has exact countering potential
-
-rare card getting support card
-
-tabula rasa
-
-turbine - ignite (shock)
-
 moonlight spear - exactly 2 range, does damage, and charge effect
 
-transistor - does more if target is shocked
 
-pixie flame - damage and vanish
-
-cold, hard cash
-
-collateral - retains in hand and tanks damage for you
 
 
 
@@ -68,26 +43,22 @@ shredder produces a bunch of 1s, hole puncher takes 4 to do damge
 
 
 {
-smash bottle - do damage, get confused, apply bleed
-
 incoming! - adds 2 cards to deck but they both kinda suck
 knuckle duster - "consistent" damage, reusable, countdown 2
 
-last laugh - enemy will survive a fatal blow
-master key - a weak form of spare
-
-you can move now (that's all it does)
-
 countvalanche - counter 2, does a bit of damage, and if you spent more than 2 it returns that as miracles
 haunted - damage, redraw a random card
-instant attack - damage, requires 4th slot, doubled if first
 sheer will - does damage and causes duped enemies to be stunned
 steinway - do damage for the next 3 turns, but lowers card draw next turn
-black ice - stun enemies that are neither attacking nor defending
 dropkick - 2 cost, damage, draw 3 cards if it doesn't work (2 1s)
+
+blunderbuss - shotgun but randomly misses, and only has 1 range
 
 boots - immune to tiles
 }
+
+englightenment
+scrap wave
 
 
 

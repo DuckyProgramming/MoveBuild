@@ -251,6 +251,14 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage=damage*2-1
 				bonus*=2
 			}
+			if(user.status.main[216]>0){
+				damage=damage*1.5+1
+				bonus*=1.5
+			}
+			if(user.status.main[215]>0){
+				damage=0
+				bonus=0
+			}
 			damage=round(damage*10)/10
 			bonus=round(bonus*10)/10
 			switch(type){
@@ -1007,7 +1015,7 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	let box=``
-	let goal=50+125*game.playerNumber+30+20+15+30
+	let goal=50+125*game.playerNumber+30+20+15+30+60
 	let arbitrary=1650
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
@@ -1017,7 +1025,7 @@ Rare:${current.cardManagers[0].listing.card[a+1][2].length}/20					${current.car
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/125\n`
 	}
 	print(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
-Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length-goal}
+Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length-goal}
 		Colorless:
 Uncommon:${current.cardManagers[0].listing.card[0][1].length}/35				${current.cardManagers[0].listing.card[0][1].length-35}
 Rare:${current.cardManagers[0].listing.card[0][2].length}/15					${current.cardManagers[0].listing.card[0][2].length-15}
@@ -1032,6 +1040,8 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+3][3].length}/15
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+4][3].length-30}
+		Junkyard:
+	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/60				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-60}
 			`)
 }
 function shut(){

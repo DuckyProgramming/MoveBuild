@@ -1431,7 +1431,7 @@ class card{
             case 1226: string+=`50%: Put a Card in Draw\nPile in Your Hand`; break
             case 1227: string+=`Get a Random Card\nFrom Draw Pile`; break
             case 1228: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nPer Other Medley`; break
-            case 1229: string+=`Exhaust ${effect[0]} Card${effect[0]!=1?`s`:``}\nIf You Have No Energy,\nGain ${effect[1]} Energy`; break
+            case 1229: string+=`Exhaust ${effect[0]} Card${effect[0]!=1?`s`:``}\nIf You Have 0 Energy,\nGain ${effect[1]} Energy`; break
             case 1230: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nAt Max, Deal ${effect[1]}\nSplash Damage`; break
             case 1231: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Gain ${effect[1]} Energy`; break
             case 1232: string+=`Build a Mirror Shield`; break
@@ -1571,7 +1571,7 @@ class card{
             case 1365: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[1]} Conditioning`; break
             case 1366: string+=`Double Self`; break
             case 1367: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nApply ${effect[2]} Shock`; break
-            case 1368: string+=`If You Have No Energy,\nAdd ${this.calculateEffect(effect[0],1)} Block\nHeal ${this.calculateEffect(effect[1],4)} Health\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
+            case 1368: string+=`If You Have 0 Energy,\nAdd ${this.calculateEffect(effect[0],1)} Block\nHeal ${this.calculateEffect(effect[1],4)} Health\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 1369: string+=`When Drawn,\nGain ${effect[0]} Armor\nOn Play, Add ${this.calculateEffect(effect[1],1)} Block`; break
             case 1370: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Charge`; break
             case 1371: string+=`Add ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand\nGain ${effect[1]} Miss`; break
@@ -1742,10 +1742,37 @@ class card{
             case 1537: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nA Random Card in Hand\nGets -1 to Numeric Values`; break
             case 1538: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\n25%: Gain ${effect[2]} Poison`; break
             case 1539: string+=`Remove All\nBlock of Target\nIt Gets Its Block\nBack Next Turn`; break
+            case 1540: string+=`You Will Survive\n${effect[0]} Fatal Hit${effect[0]!=1?`s`:``}`; break
+            case 1541: string+=`Target Cannot Die\nFor ${effect[0]} Turn${effect[0]!=1?`s`:``}`; break
+            case 1542: string+=`If You Can't Move,\nYou Can`; break
+            case 1543: string+=`Split Half Your\nEnergy Into a Snip\nas Evenly as Possible`; break
+            case 1544: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Card${effect[0]!=1?`s`:``} Played\nThat Costs 1 is Free`; break
+            case 1545: string+=`Apply ${effect[0]} Stun\nif Target is Neither\nAttacking Nor Defending`; break
+            case 1546: string+=`Apply:\nEven Energy: ${effect[0]} Weak\nOdd Energy: ${effect[1]} Shock`; break
+            case 1547: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Lose ${effect[1]} Health\nNext Turn`; break
+            case 1548: string+=`If You Have 0 Energy,\nApply ${effect[0]} Shock\nand Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1549: string+=`Randomly Duplicate a\nCard Permanently or\nDestroy it Permanently`; break
+            case 1550: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} 0 Cost Card${effect[1]!=1?`s`:``}`; break
+            case 1551: string+=`${effect[0]>0?`Gain`:`Lose`} ${abs(effect[0])} Strength\nReverses Each Use`; break
+            case 1552: string+=`Discard ${effect[0]} Random Card${effect[0]!=1?`s`:``}\nPut 2 Copies of Each\nTo Top of Draw Pile`; break
+            case 1553: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``} Deal${effect[0]==1?`s`:``}\n50%: Triple Damage\n50%: No Damage`; break
+            case 1554: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} 1.5x Damage+1`; break
+            case 1555: string+=`Remove All Cards\nin Hand Permanently`; break
+            case 1556: string+=`3rd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nDoes Triple\nDamage if\nPlayed First`; break
+            case 1557: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Difference\nBetween Highest and\nLowest Effects of\nAttacks in Hand`; break
+            case 1558: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More When\nTarget Has Shock`; break
+            case 1559: string+=`If You Have 0 Energy,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
+            case 1560: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Target\nHas Duplicate Enemies`; break
+            case 1561: string+=`At Least 3 Cards:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1562: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf First Card\nPlayed This Turn,\nGain ${effect[1]} Charge`; break
+            case 1563: string+=`Counter ${effect[0]} All\nThis Combat\nLose ${effect[1]} Currency`; break
+            case 1564: string+=`When Retained,\nAdd ${this.calculateEffect(effect[0],1)} Block\nOn Hit, Exhaust`; break
+            case 1565: string+=`When Drawn,\nGain ${effect[0]} Balance\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
+            case 1566: string+=`Apply ${effect[0]} Burn\nApply ${effect[1]} Stun`; break
+            case 1567: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency\nIf First Card\nPlayed This Turn,\nApply ${effect[2]} Freeze`; break
+            case 1568: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency\nIf First Card\nPlayed This Turn,\nApply ${effect[2]} Burn`; break
+            case 1569: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nApply ${effect[1]} Stun`; break
             
-
-
-
 
 
 
@@ -1929,7 +1956,7 @@ class card{
             case 1489:
                 this.battle.cardManagers[this.player].deck.add(findName('Fury\nSpell',types.card),0,game.playerNumber+2)
             break
-            case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373: case 1433:
+            case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373: case 1433: case 1565:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break
@@ -2024,6 +2051,10 @@ class card{
             case 1164:
                 this.effect[0]+=this.effect[1]
             break
+            case 1564:
+                this.deSize=true
+                this.exhaust=true
+            break
         }
     }
     played(){
@@ -2050,6 +2081,14 @@ class card{
             break
             case 1332:
                 this.effect[0]=0
+            break
+            case 1551:
+                this.effect[0]*=-1
+                for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
+                    if(this.battle.cardManagers[this.player].deck.cards[a].id==this.id){
+                        this.battle.cardManagers[this.player].deck.cards[a].effect[0]*=-1
+                    }
+                }
             break
         }
         if(this.battle.modded(94)&&this.battle.counter.turnPlayed[0]>=5){
@@ -2188,6 +2227,9 @@ class card{
                     this.cost--
                     this.base.cost--
                 }
+            break
+            case 1564:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.effect[0])
             break
         }
         if(this.cost>0){
@@ -2601,9 +2643,11 @@ class card{
         }
         if(this.player>=0&&this.player<this.battle.players){
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-            this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&!(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
+            this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||userCombatant.getStatus('Free 1 Cost Card')>0&&this.cost==1
+            ||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&!(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
             !(this.spec.includes(6)&&!userCombatant.armed)&&!(this.spec.includes(25)&&userCombatant.ammo<=0&&this.target[0]!=46)
-            this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))
+            this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||userCombatant.getStatus('Free 1 Cost Card')>0&&this.cost==1
+            ||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))
         }else{
             this.afford=false
             this.energyAfford=false

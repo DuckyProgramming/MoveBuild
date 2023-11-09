@@ -293,6 +293,15 @@ class combatantManager{
             }
         }
     }
+    hasDupe(name){
+        let total=0
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].name==name){
+                total++
+            }
+        }
+        return total>=2
+    }
     killDupes(){
         let names=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
