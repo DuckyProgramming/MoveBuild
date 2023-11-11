@@ -1821,6 +1821,8 @@ class group{
             userCombatant.combo-=cost
         }else if(spec.includes(21)){
             userCombatant.metal-=cost
+        }else if(spec.includes(40)){
+            userCombatant.status.main[findList('Twos',userCombatant.status.name)]-=cost
         }else{
             if(cost==-1){
                 this.battle.energy.main[this.player]=0

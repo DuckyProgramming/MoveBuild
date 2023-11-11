@@ -9,6 +9,11 @@ paperball floating on water
 
 lunar fractals
 
+divine sword is listed
+
+high voltage is high
+
+
 
 
 
@@ -17,10 +22,6 @@ junkyard destroy - choose one or another random one
 
 
 1 jinx card
-countdown jinx (mercy)
-BUILD AN ENTIRE JINX SYNERGY ON EXECUTOR
-
-+20 movement cards (2 per character)
 
 
 1 more variant
@@ -29,36 +30,26 @@ the junkyard
 
 cannonball - requires exact value, comes in two versions
 
-juggling ball - windup fist
+big moment
 
-moonlight spear - exactly 2 range, does damage, and charge effect
+bang snaps
 
+freezer burn
 
+shifting storm
 
+free spin
 
-
-shredder - holepunch
-shredder produces a bunch of 1s, hole puncher takes 4 to do damge
-
+1 more movement for airi, a ba reference
 
 
 {
-incoming! - adds 2 cards to deck but they both kinda suck
 knuckle duster - "consistent" damage, reusable, countdown 2
 
-countvalanche - counter 2, does a bit of damage, and if you spent more than 2 it returns that as miracles
-haunted - damage, redraw a random card
-sheer will - does damage and causes duped enemies to be stunned
-steinway - do damage for the next 3 turns, but lowers card draw next turn
-dropkick - 2 cost, damage, draw 3 cards if it doesn't work (2 1s)
+brick wall card
 
-blunderbuss - shotgun but randomly misses, and only has 1 range
-
-boots - immune to tiles
+3 movements
 }
-
-englightenment
-scrap wave
 
 
 

@@ -296,7 +296,7 @@ class combatantManager{
     hasDupe(name){
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].name==name){
+            if(this.combatants[a].name==name&&(this.combatants[a].team==0||this.combatants[a].construct)){
                 total++
             }
         }
@@ -305,10 +305,24 @@ class combatantManager{
     killDupes(){
         let names=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(names.includes(this.combatants[a].name)){
-                this.combatants[a].life=0
-            }else{
-                names.push(this.combatants[a].name)
+            if(this.combatants[a].team==0||this.combatants[a].construct){
+                if(names.includes(this.combatants[a].name)){
+                    this.combatants[a].life=0
+                }else{
+                    names.push(this.combatants[a].name)
+                }
+            }
+        }
+    }
+    statusDupes(name,value){
+        let names=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0||this.combatants[a].construct){
+                if(names.includes(this.combatants[a].name)){
+                    this.combatants[a].statusEffect(name,value)
+                }else{
+                    names.push(this.combatants[a].name)
+                }
             }
         }
     }

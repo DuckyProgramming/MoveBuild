@@ -281,6 +281,7 @@ class battle{
         if(this.modded(51)){
             let tile=this.tileManager.getRandomTilePosition()
             this.addCombatant(tile,findName('Sentry',types.combatant),0,0,false)
+            this.counter.enemy++
             this.combatantManager.recount()
         }
         if(this.modded(78)&&(this.encounter.class==1||this.encounter.class==2)){
@@ -1668,7 +1669,7 @@ class battle{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-175,y:this.layer.height*0.7},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-175,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
                 }

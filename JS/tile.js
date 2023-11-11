@@ -44,183 +44,206 @@ class tile{
     }
     activate(type,id){
         for(let a=0,la=this.type.length;a<la;a++){
+            this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
             switch(this.type[a]){
                 case 1:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
-                        this.battle.combatantManager.combatants[this.combatant].takeDamage(5,-1,0)
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(5,-1,0)
+                        }
                     }
                 break
                 case 2:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
-                        this.battle.combatantManager.combatants[this.combatant].takeDamage(10,-1,0)
-                        this.battle.combatantManager.damageArea(10,-1,-1,this.tilePosition)
-                        this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(10,-1,0)
+                            this.battle.combatantManager.damageArea(10,-1,-1,this.tilePosition)
+                            this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 3:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&!this.battle.combatantManager.combatants[this.combatant].armed){
-                        this.battle.combatantManager.combatants[this.combatant].armed=true
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].armed=true
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 4:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].team==0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)){
-                        this.battle.combatantManager.combatants[this.combatant].addBlock(10)
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].addBlock(10)
+                        }
                     }
                 break
                 case 5:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(4)){
-                        this.battle.combatantManager.combatants[this.combatant].takeDamage(15,-1,0)
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(15,-1,0)
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 6:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
-                        if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].reserve.cards.length>0){
-                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(1,8,[])
-                        }else{
-                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(3,8,[])
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].reserve.cards.length>0){
+                                this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(1,8,[])
+                            }else{
+                                this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(3,8,[])
+                            }
                         }
                     }
                 break
                 case 7:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
-                        if(this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support&&this.battle.combatantManager.combatants[this.combatant].id<this.battle.players&&!this.battle.modded(136)){
-                            this.battle.addCurrency(10,this.battle.combatantManager.combatants[this.combatant].id)
-                            this.anim.upPart[a]=false
-                        }else if(this.battle.combatantManager.combatants[this.combatant].name=='Capitalist'||this.battle.modded(136)){
-                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bodyguard',types.combatant),this.battle.combatantManager.combatants[this.combatant].goal.anim.direction)
-                            this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            if(this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support&&this.battle.combatantManager.combatants[this.combatant].id<this.battle.players&&!this.battle.modded(136)){
+                                this.battle.addCurrency(10,this.battle.combatantManager.combatants[this.combatant].id)
+                                this.anim.upPart[a]=false
+                            }else if(this.battle.combatantManager.combatants[this.combatant].name=='Capitalist'||this.battle.modded(136)){
+                                this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bodyguard',types.combatant),this.battle.combatantManager.combatants[this.combatant].goal.anim.direction)
+                                this.anim.upPart[a]=false
+                            }
                         }
                     }
                 break
                 case 8:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
-                        this.battle.drop(this.battle.combatantManager.combatants[this.combatant].id,findName('Burn',types.card),0,game.playerNumber+1)
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.drop(this.battle.combatantManager.combatants[this.combatant].id,findName('Burn',types.card),0,game.playerNumber+1)
+                        }
                     }
                 break
                 case 9:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)){
-                        this.battle.combatantManager.combatants[this.combatant].addBlock(5)
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].addBlock(5)
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 10:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(11)){
-                        this.battle.combatantManager.combatants[this.combatant].statusEffect('Poison',3)
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].statusEffect('Poison',3)
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 11:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(11)){
-                        if(this.battle.turn.main>=this.battle.players){
-                            this.battle.combatantManager.combatants[this.combatant].randomStatus(1,[0,1])
-                        }else{
-                            this.battle.combatantManager.combatants[this.combatant].randomStatusInstant(1,[0,1])
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            if(this.battle.turn.main>=this.battle.players){
+                                this.battle.combatantManager.combatants[this.combatant].randomStatus(1,[0,1])
+                            }else{
+                                this.battle.combatantManager.combatants[this.combatant].randomStatusInstant(1,[0,1])
+                            }
+                            this.anim.upPart[a]=false
                         }
-                        this.anim.upPart[a]=false
                     }
                 break
                 case 12:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
-                        this.battle.combatantManager.combatants[this.combatant].takeDamage(25,-1,0)
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(25,-1,0)
+                        }
                     }
                 break
                 case 13:
-                    this.
-                    combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)){
-                        this.anim.upPart[a]=false
-                        this.addType(1)
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.anim.upPart[a]=false
+                            this.addType(1)
+                        }
                     }
                 break
                 case 14:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
-                        this.battle.energy.main[this.battle.combatantManager.combatants[this.combatant].id]=0
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.energy.main[this.battle.combatantManager.combatants[this.combatant].id]=0
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 15:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1){
-                        this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),-150+floor(random(0,6))*60)
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Management Robot',types.combatant),-150+floor(random(0,6))*60)
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 16:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
-                        this.anim.upPart[a]=false
-                        if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length>0){
-                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(2,14,[])
-                        }else if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].reserve.cards.length>0){
-                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(1,14,[])
-                        }else{
-                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(3,14,[])
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.anim.upPart[a]=false
+                            if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length>0){
+                                this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(2,14,[])
+                            }else if(this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].reserve.cards.length>0){
+                                this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(1,14,[])
+                            }else{
+                                this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].randomEffect(3,14,[])
+                            }
                         }
                     }
                 break
                 case 17:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team<=0){
-                        this.battle.combatantManager.combatants[this.combatant].life=0
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].life=0
+                        }
                     }
                 break
                 case 18:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
-                        let amount=this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length
-                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].allEffect(2,2)
-                        this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].draw(amount)
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            let amount=this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.cards.length
+                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].allEffect(2,2)
+                            this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].draw(amount)
+                        }
                     }
                 break
                 case 20:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
-                        this.battle.combatantManager.combatants[this.combatant].takeDamage(5,-1,0)
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(5,-1,0)
+                        }
                     }
                 break
                 case 21:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
-                        this.battle.combatantManager.combatants[this.combatant].metal+=3
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].metal+=3
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 23:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(2)){
-                        this.battle.combatantManager.combatants[this.combatant].takeDamage(25,0)
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(25,0)
+                        }
                     }
                 break
                 case 25:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1){
-                        this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Glitch',types.combatant),-150+floor(random(0,6))*60)
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Glitch',types.combatant),-150+floor(random(0,6))*60)
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
                 case 27:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0&&(this.battle.combatantManager.combatants[this.combatant].team==0&&type==0||this.battle.combatantManager.combatants[this.combatant].id==id&&type==1)&&!this.battle.combatantManager.combatants[this.combatant].spec.includes(3)){
-                        this.battle.combatantManager.combatants[this.combatant].takeDamage(10,-1,0)
-                        this.battle.combatantManager.damageAreaReverse(10,-1,0,this.tilePosition)
-                        this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
-                        this.anim.upPart[a]=false
+                        if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
+                            this.battle.combatantManager.combatants[this.combatant].takeDamage(10,-1,0)
+                            this.battle.combatantManager.damageAreaReverse(10,-1,0,this.tilePosition)
+                            this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,2,[20]))
+                            this.anim.upPart[a]=false
+                        }
                     }
                 break
             }
@@ -249,7 +272,6 @@ class tile{
         for(let a=0,la=this.type.length;a<la;a++){
             switch(this.type[a]){
                 case 19:
-                    this.combatant=this.battle.combatantManager.getCombatantIndex(this.tilePosition.x,this.tilePosition.y)
                     if(this.combatant>=0){
                         switch(type){
                             case 0:

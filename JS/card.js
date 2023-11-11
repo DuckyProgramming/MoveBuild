@@ -244,7 +244,7 @@ class card{
             case 27: string+=`Advance up to ${effect[1]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 28: string+=`Put a Card in Discard\nPile in Your Hand`; break
             case 29: string+=`Put a Card in Draw\nPile in Your Hand`; break
-            case 30: string+=`Add ${effect[0]} Dodge`; break
+            case 30: string+=`Gain ${effect[0]} Dodge`; break
             case 31: case 489:
                 string+=`Push 1 Tile\nin All Directions`; break
             case 33: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdvance`; break
@@ -266,7 +266,7 @@ class card{
             case 48: case 100:
                 string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage`:``}\nPush 2 Tiles`; break
             case 50: string+=`Add ${this.calculateEffect(+effect[0],1)} Block\nRetain Block\nfor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
-            case 51: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Dodge`; break
+            case 51: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Dodge`; break
             case 52: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDiscard When a\nCard is Played`; break
             case 53: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Dodge`; break
             case 54: string+=`Move to Any\nEmpty Tile`; break
@@ -395,7 +395,7 @@ class card{
             case 178: string+=`Deal ${this.calculateEffect(effect[0],0)} Decrementing\nDamage 4 Times`; break
             case 179: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nPushes Without\nSplash at Range 1`; break
             case 180: string+=`Your Next ${effect[0]} Exhausts\nDo Not Occur\nDoes Not Affect Self`; break
-            case 181: string+=`Add ${effect[0]} Dodge\nCounter ${effect[1]}`; break
+            case 181: string+=`Gain ${effect[0]} Dodge\nCounter ${effect[1]}`; break
             case 182: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Combo\nTake ${effect[2]} Damage\nif You Don't Attack`; break
             case 183: string+=`Draw ${effect[0]}X${effect[1]>0?`+${effect[1]}`:``} Cards`; break
             case 184: string+=`Collisions do ${effect[0]}\nMore Damage`; break
@@ -418,7 +418,7 @@ class card{
             case 201: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nin Both Directions`; break
             case 202: string+=`Gain ${effect[0]} Combo\nIf Exhausted,\nGain ${effect[1]} Combo`; break
             case 203: string+=`Retain Block\nfor ${effect[0]} Turn${effect[0]!=1?`s`:``}`; break
-            case 204: string+=`Add ${effect[0]} Dodge\nGain ${effect[1]} Conditioning`; break
+            case 204: string+=`Gain ${effect[0]} Dodge\nGain ${effect[1]} Conditioning`; break
             case 205: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDoesn't Trigger Enemies`; break
             case 206: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Number of\nCards in Hand\nDiscard Your Hand`; break
             case 207: string+=`Discard ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Random\nCards to Your Hand`; break
@@ -783,7 +783,7 @@ class card{
             case 570: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHold ${effect[1]} Basic Orb${effect[1]!=1?`s`:``}`; break
             case 571: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHold ${effect[1]} Explosive Orb${effect[1]!=1?`s`:``}`; break
             case 572: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nOrthoganally or\n${effect[1]} Tile${effect[1]!=1?`s`:``}\nDiagonally`; break
-            case 573: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd 1 Step\nNext Turn`; break
+            case 573: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd a Step\nNext Turn`; break
             case 574: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEvoke First Orb\non Self ${effect[1]} Time${effect[1]!=1?`s`:``}`; break
             case 575: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRemove All Orbs`; break
             case 576: string+=`Push 1 Tile\nin All Directions\nHold ${effect[0]} Ice Orb${effect[0]!=1?`s`:``}`; break
@@ -870,7 +870,7 @@ class card{
             case 659: string+=`Gain ${effect[0]}X+${effect[1]} Max Health`; break
             case 660: string+=`Move to Any\nEmpty Plant Tile\nor Create One`; break
             case 661: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nif Target Has Bleed\nApply ${effect[1]} Bleed`; break
-            case 663: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Dodge\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
+            case 663: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Dodge\nAdd ${this.calculateEffect(effect[2],1)} Block`; break
             case 664: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose All Block\nExcept ${effect[1]}`; break
             case 665: string+=`End Your Turn\nGain X${effect[0]!=0?`+${effect[0]}`:``} Energy\nAnd ${effect[1]} Temporary Strength\nNext Turn`; break
             case 666: string+=`Move to Scythe\nUp to ${effect[0]} Tile${effect[0]!=1?`s`:``} Away\nor\nMove ${effect[1]} Tile${effect[1]!=1?`s`:``}`; break
@@ -1746,8 +1746,8 @@ class card{
             case 1541: string+=`Target Cannot Die\nFor ${effect[0]} Turn${effect[0]!=1?`s`:``}`; break
             case 1542: string+=`If You Can't Move,\nYou Can`; break
             case 1543: string+=`Split Half Your\nEnergy Into a Snip\nas Evenly as Possible`; break
-            case 1544: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Card${effect[0]!=1?`s`:``} Played\nThat Costs 1 is Free`; break
-            case 1545: string+=`Apply ${effect[0]} Stun\nif Target is Neither\nAttacking Nor Defending`; break
+            case 1544: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Card${effect[0]!=1?`s`:``} Played\nThat Cost${effect[0]==1?`s`:``} 1 is Free`; break
+            case 1545: string+=`Apply ${effect[0]} Stun\nIf Target is Neither\nAttacking Nor Defending`; break
             case 1546: string+=`Apply:\nEven Energy: ${effect[0]} Weak\nOdd Energy: ${effect[1]} Shock`; break
             case 1547: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Lose ${effect[1]} Health\nNext Turn`; break
             case 1548: string+=`If You Have 0 Energy,\nApply ${effect[0]} Shock\nand Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
@@ -1772,8 +1772,52 @@ class card{
             case 1567: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency\nIf First Card\nPlayed This Turn,\nApply ${effect[2]} Freeze`; break
             case 1568: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency\nIf First Card\nPlayed This Turn,\nApply ${effect[2]} Burn`; break
             case 1569: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will Attack,\nApply ${effect[1]} Stun`; break
-            
+            case 1570: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose ${effect[1]} Combo`; break
+            case 1571: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEnd Creating a Plant Tile`; break
+            case 1572: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nReduce Balance\nLimit by ${effect[1]}`; break
+            case 1573: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Energy\non Even Turns`; break
+            case 1574: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nReduce All\nCountdowns By ${effect[0]}`; break
+            case 1575: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nMove Something\nBehind You`; break
+            case 1576: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGet a Random\nInstant Stance Card`; break
+            case 1577: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Burn${effect[1]!=1?`s`:``} to Hand`; break
+            case 1578: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGuns Deal ${effect[1]}\nMore Damage`; break
+            case 1579: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n10%: Gain ${effect[1]} Energy`; break
+            case 1580: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Weak`; break
+            case 1581: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose ${effect[1]} Health`; break
+            case 1582: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nApply ${effect[1]} Poison\nin All Directions`; break
+            case 1583: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Single\nAttack Strength`; break
+            case 1584: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRemove ${effect[1]} Fatigue${effect[1]!=1?`s`:``}`; break
+            case 1585: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Attack${effect[1]!=1?`s`:``}`; break
+            case 1586: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Defense${effect[1]!=1?`s`:``}`; break
+            case 1587: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Movement${effect[1]!=1?`s`:``}`; break
+            case 1588: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Power${effect[1]!=1?`s`:``}`; break
+            case 1589: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Energy\nif Straight Left`; break
+            case 1590: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Energy\nif Straight Right`; break
+            case 1591: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nApply ${effect[0]} Freeze`; break
+            case 1592: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nApply ${effect[0]} Burn`; break
+            case 1593: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nDeal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health`; break
+            case 1594: string+=`Swap With an\nAdjacent Target\nSwap Buffs and Debuffs\nTarget Will Face User\nor\nMove ${effect[0]} Tiles`; break
+            case 1595: string+=`Pass Through an\nAdjacent Target\nApply ${effect[0]} Jinx`; break
+            case 1596: string+=`Swap With a Construct`; break
+            case 1597: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOn Turns Divisible\nby 3 Only`; break
+            case 1598: string+=`75%: Deal ${this.calculateEffect(effect[0],0)}-${this.calculateEffect(effect[1],2)} Damage\nWhere X = (Range-1)`; break
+            case 1599: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Random Debuff\nGain ${effect[2]} Random Debuff\nGain ${effect[3]} Random Debuff\nDiscards to Hand`; break
+            case 1600: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Stun\nto All Duplicate Enemies`; break
+            case 1601: string+=`Gain ${effect[0]} Decrementing\nArmor`; break
+            case 1602: string+=`Target Has No Block:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nTarget Has Block:\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1603: string+=`Gain ${effect[0]} Twos`; break
+            case 1604: string+=`Add ${effect[0]} Bouncy Ball${effect[0]!=1?`s`:``}\nto Hand`; break
+            case 1605: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n1 Energy: Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1606: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nYou Cannot Move\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}\nAdd a Fat Defend\nto Hand`; break
+            case 1607: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSend Remaining Energy\nto Next Turn`; break
+            case 1608: string+=`Add ${effect[0]} Random\nMovement${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0\nThis Turn`; break
+            case 1609: string+=`Add ${effect[0]} Random\nMovement${effect[0]!=1?`s`:``} to Your Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
+            case 1610: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAt Least ${effect[1]} Charge:\nDouble Damage`; break
+            case 1611: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor 3 Turns\nDraw ${effect[1]} Less Card${effect[1]!=1?`s`:``}\nNext Turn`; break
+            case 1612: string+=`While in Your Deck,\nIgnore ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEvery Combat`; break
 
+            case 1613: string+=`Apply ${effect[0]} Jinx\nNext Turn`; break
+            case 1614: string+=`Multiply Target\nJinx by ${effect[0]}`; break
 
 
 
@@ -1979,6 +2023,9 @@ class card{
             break
             case 1398:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Heal Per Turn',this.effect[0])
+            break
+            case 1612:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Ignore Tile',this.effect[0])
             break
         }
     }
@@ -2430,6 +2477,13 @@ class card{
                     this.layer.strokeWeight(2)
                     this.layer.rect(-this.width/2+6,-this.height/2+8,8,8)
                     this.layer.arc(-this.width/2+10,-this.height/2+12,16,16,-90,180)
+                }else if(spec.includes(40)){
+                    this.layer.noStroke()
+                    this.layer.fill(225,this.fade)
+                    this.layer.rect(-this.width/2+10,-this.height/2+13,20,20,2)
+                    this.layer.fill(40,this.fade)
+                    this.layer.ellipse(-this.width/2+5,-this.height/2+8,4)
+                    this.layer.ellipse(-this.width/2+15,-this.height/2+18,4)
                 }else if(!spec.includes(5)){
                     this.layer.fill(225,255,255,this.fade)
                     this.layer.stroke(200,255,255,this.fade)
@@ -2644,10 +2698,12 @@ class card{
         if(this.player>=0&&this.player<this.battle.players){
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||userCombatant.getStatus('Free 1 Cost Card')>0&&this.cost==1
-            ||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))&&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&!(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
+            ||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=this.cost&&this.spec.includes(40))
+            &&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&!(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
             !(this.spec.includes(6)&&!userCombatant.armed)&&!(this.spec.includes(25)&&userCombatant.ammo<=0&&this.target[0]!=46)
+
             this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||userCombatant.getStatus('Free 1 Cost Card')>0&&this.cost==1
-            ||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21))
+            ||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=this.cost&&this.spec.includes(40))
         }else{
             this.afford=false
             this.energyAfford=false

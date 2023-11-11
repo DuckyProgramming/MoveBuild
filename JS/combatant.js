@@ -123,7 +123,8 @@ class combatant{
             'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
             'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
-            'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1',
+            'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
+            'Jinx Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,3,//1
@@ -147,7 +148,8 @@ class combatant{
                 2,2,2,0,0,2,0,0,0,2,//19
                 0,0,0,0,0,0,1,0,1,0,//20
                 0,0,0,0,1,2,2,2,1,2,//21
-                1,0,2,0,0,0,0,
+                1,0,2,0,0,0,0,1,0,0,//22
+                2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -171,7 +173,8 @@ class combatant{
                 1,1,1,0,0,0,0,0,2,2,//19
                 2,1,2,2,1,0,3,1,1,3,//20
                 2,0,2,0,1,0,2,0,1,0,//21
-                2,1,1,0,2,0,0,
+                2,1,1,0,2,0,0,0,2,0,//22
+                1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4414,6 +4417,9 @@ class combatant{
             if(this.status.main[14]>0){
                 this.status.main[14]--
             }
+            if(this.status.main[217]>0){
+                this.status.main[217]--
+            }
             if(this.status.main[87]>0){
                 for(let a=0,la=this.status.main[87];a<la;a++){
                     this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)
@@ -5080,6 +5086,14 @@ class combatant{
             return false
         }
     }
+    checkTile(){
+        if(this.status.main[219]>0){
+            this.status.main[219]--
+            return true
+        }else{
+            return false
+        }
+    }
     enterStance(stance){
         this.leaveStance(this.stance)
         this.battle.cardManagers[this.id].discard.allEffect(28)
@@ -5281,7 +5295,7 @@ class combatant{
                 switch(a){
                     case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
                     case 5: case 31: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[a],-1); break
-                    case 13: case 14: case 19: this.addBlock(this.status.main[a]); break
+                    case 13: case 14: case 19: case 217: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
                     case 29: this.status.main[findList('Cannot Move',this.status.name)]+=this.status.main[a]; break
                     case 30: case 55: this.status.main[findList('Strength',this.status.name)]+=this.status.main[a]; break
@@ -5327,6 +5341,7 @@ class combatant{
                     case 203: this.heal(this.status.main[a]); break
                     case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break
+                    case 220: this.status.main[findList('Jinx',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
