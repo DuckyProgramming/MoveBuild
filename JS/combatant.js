@@ -124,7 +124,7 @@ class combatant{
             'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
-            'Jinx Next Turn',
+            'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,3,3,//1
@@ -149,7 +149,7 @@ class combatant{
                 0,0,0,0,0,0,1,0,1,0,//20
                 0,0,0,0,1,2,2,2,1,2,//21
                 1,0,2,0,0,0,0,1,0,0,//22
-                2,
+                2,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -174,7 +174,7 @@ class combatant{
                 2,1,2,2,1,0,3,1,1,3,//20
                 2,0,2,0,1,0,2,0,1,0,//21
                 2,1,1,0,2,0,0,0,2,0,//22
-                1,
+                1,1,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4141,6 +4141,9 @@ class combatant{
         if(this.status.main[162]>0){
             this.statusEffect('Strength',this.status.main[162])
         }
+        if(this.status.main[223]>0&&this.id<this.battle.players){
+            this.battle.cardManagers[this.id].draw(this.status.main[223])
+        }
     }
     takeDamage(value,user,spec=0){
         let damage=value
@@ -4193,7 +4196,7 @@ class combatant{
             if(userCombatant.status.main[49]>0){
                 userCombatant.status.main[49]--
                 if(userCombatant.status.main[204]<=0){
-                    userCombatant.takeDamage(8,-1)
+                    userCombatant.takeDamage(this.team>0?4:8,-1)
                 }
             }
             if(userCombatant.status.main[119]>0&&(damage>4||userCombatant.status.main[204]>0&&damage>2)){
@@ -4829,6 +4832,7 @@ class combatant{
             this.statusEffect('Poison',1)
         }
         this.takeDamage(this.status.main[191]*(this.status.main[204]>0?2:1),-1)
+        this.statusEffect('Jinx',this.status.main[221])
     }
     getOrbNumber(type){
         let count=0
@@ -5342,6 +5346,7 @@ class combatant{
                     case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 220: this.status.main[findList('Jinx',this.status.name)]+=this.status.main[a]; break
+                    case 222: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawBurn+=this.status.main[a]}; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
@@ -5425,7 +5430,7 @@ class combatant{
                         this.goal.anim.sword=true
                     break
                     case 3: case 6: case 8: case 9: case 17: case 23: case 26: case 28: case 29: case 31:
-                    case 32: case 33: case 36:
+                    case 32: case 33: case 36: case 38:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -5882,6 +5887,13 @@ class combatant{
                         this.anim.arms[1-this.animSet.hand].bottom=9+abs(lsin((this.animSet.loop+this.animSet.flip+(1-this.animSet.hand))*180))*96
                         this.spin.arms[1-this.animSet.hand].top=(93-abs(lsin((this.animSet.loop+this.animSet.flip+(1-this.animSet.hand))*180))*63)*((1-this.animSet.hand)*2-1)
                         this.spin.arms[1-this.animSet.hand].bottom=(75-abs(lsin((this.animSet.loop+this.animSet.flip+(1-this.animSet.hand))*180))*90)*((1-this.animSet.hand)*2-1)
+                    break
+                    case 38:
+                        this.animSet.loop+=rate
+                        this.anim.arms[0].top=24+lsin(this.animSet.loop*180)*60
+                        this.anim.arms[0].bottom=9+lsin(this.animSet.loop*180)*99
+                        this.spin.arms[0].top=-93+sqrt(sin(this.animSet.loop*180))*78
+                        this.spin.arms[0].bottom=-75+sqrt(sin(this.animSet.loop*180))*75
                     break
                 }
             break

@@ -20,6 +20,7 @@ class cardManager{
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.altDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0))
         this.drawBoost=0
         this.tempDraw=0
+        this.tempDrawBurn=0
         this.baseDrops=variants.altDraw?3:0
         this.drops=0
         this.miracleSwitch=false
@@ -342,7 +343,7 @@ class cardManager{
             this.reserve.callAmalgums()
         }
     }
-    draw(amount){
+    draw(amount,spec=0){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('No Draw')<=0){
             this.battle.stats.drawn[this.player]+=amount
@@ -353,13 +354,13 @@ class cardManager{
             }else{
                 let amountLeft=amount-this.reserve.cards.length
                 if(this.reserve.cards.length>0){
-                    this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),3)
+                    this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),[3,8,13][spec])
                 }
                 if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
                     this.discard.send(this.reserve.cards,0,-1,2)
                     this.reserve.shuffle()
                     if(this.reserve.cards.length>0){
-                        this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),3)
+                        this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),[3,8,13][spec])
                     }
                 }
                 this.reserve.parseDrawEffects(this.hand)
@@ -400,39 +401,6 @@ class cardManager{
                         this.hand.send(this.exhaust.cards,a,a+1,0)
                         a--
                         la--
-                    }
-                }
-            }
-        }
-    }
-    drawUpgrade(amount){
-        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-        if(userCombatant.getStatus('No Draw')<=0){
-            this.battle.stats.drawn[this.player]+=amount
-            if(variants.witch){
-                for(let a=0,la=amount;a<la;a++){
-                    this.hand.add(findName('Card\nSlot',types.card),1,0)
-                }
-            }else{
-                let amountLeft=amount-this.reserve.cards.length
-                if(this.reserve.cards.length>0){
-                    this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),8)
-                }
-                if(amountLeft>0&&this.discard.cards.length>0){
-                    this.discard.send(this.reserve.cards,0,-1,2)
-                    this.reserve.shuffle()
-                    if(this.reserve.cards.length>0){
-                        this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),8)
-                    }
-                }
-                this.reserve.parseDrawEffects(this.hand)
-                if(this.battle.relicManager.hasRelic(106,this.player)){
-                    for(let a=0,la=this.hand.cards.length;a<la;a++){
-                        if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
-                            this.hand.send(this.exhaust.cards,a,a+1,0)
-                            a--
-                            la--
-                        }
                     }
                 }
             }
@@ -736,7 +704,9 @@ class cardManager{
         }else{
             this.draw(tempDrawAmount)
         }
+        this.draw(this.tempDrawBurn,2)
         this.tempDraw=0
+        this.tempDrawBurn=0
         if(turn%4==0&&game.ascend>=24){
             this.reserve.addShuffle(findName('Dazed',types.card),0,game.playerNumber+1)
         }

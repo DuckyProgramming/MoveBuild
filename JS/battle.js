@@ -1850,11 +1850,16 @@ class battle{
                 if(code==ENTER||key=='1'){
                     transition.trigger=true
                     transition.scene='menu'
+                    if(this.menu.combatant.length==2){
+                        this.menu.combatant=[1]
+                    }
                 }
                 if(key=='2'){
                     transition.trigger=true
                     transition.scene='menu2'
-                    this.menu.combatant[1]=1
+                    if(this.menu.combatant.length==1){
+                        this.menu.combatant=[this.menu.combatant[0],1]
+                    }
                 }
                 if(key=='3'){
                     transition.trigger=true

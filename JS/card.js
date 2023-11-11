@@ -83,7 +83,7 @@ class card{
             this.class=cardClass||types.card[this.type].levels[this.level].class
             this.levels=types.card[this.type].levels.length
             this.limit=limit
-            this.limit=this.limit==undefined?this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38))?types.card[this.type].levels[this.level].limit:0:this.limit
+            this.limit=this.limit==undefined?this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38)||this.spec.includes(42))?types.card[this.type].levels[this.level].limit:0:this.limit
             this.additionalSpec=additionalSpec||[]
             if(this.list==-1){
                 this.list=this.color
@@ -1451,7 +1451,8 @@ class card{
             case 1245: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nYou Cannot Move\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
             case 1246: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
             case 1247: string+=`If Your Energy is Even\nDeal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have Exactly 4,\nGain ${effect[1]} Energy`; break
-            case 1248: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to Hand`; break
+            case 1248: case 1630:
+                string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to Hand`; break
             case 1249: string+=`Reduce All\nCountdowns By ${effect[0]}`; break
             case 1250: string+=`Reduce All\nCountdowns By X${effect[0]>0?`+${effect[0]}`:``}`; break
             case 1251: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReduce All\nCountdowns By ${effect[1]}`; break
@@ -1815,9 +1816,51 @@ class card{
             case 1610: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAt Least ${effect[1]} Charge:\nDouble Damage`; break
             case 1611: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor 3 Turns\nDraw ${effect[1]} Less Card${effect[1]!=1?`s`:``}\nNext Turn`; break
             case 1612: string+=`While in Your Deck,\nIgnore ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEvery Combat`; break
-
             case 1613: string+=`Apply ${effect[0]} Jinx\nNext Turn`; break
             case 1614: string+=`Multiply Target\nJinx by ${effect[0]}`; break
+            case 1616: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} ${['Burn','Freeze','Shock','Weak'][this.battle.turn.main%4]}\nChanges Every Turn\nDiscards to Hand`; break
+            case 1617: string+=`Left of Hand:\nApply ${effect[0]} Freeze\nRight of Hand:\nApply ${effect[0]} Burn`; break
+            case 1618: string+=`If You Have 0 Energy,\nApply ${effect[0]} Jinx\nand Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1619: string+=`Apply ${effect[0]} Jinxshock`; break
+            case 1620: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nGain ${effect[2]} Energy\nGain ${effect[3]} Energy Next Turn`; break
+            case 1621: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Jinx`; break
+            case 1622: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdvance\nDiscards to Hand`; break
+            case 1623: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdvance\nAdd a Second Fist\nof Equivalent Level\nto Hand`; break
+            case 1624: string+=`Add a Ready or Not\nto Hand`; break
+            case 1625: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscard ${effect[1]} Random Card${effect[1]!=1?`s`:``}\nDiscards to Hand`; break
+            case 1626: string+=`Apply ${effect[0]} Poison\n60%: Gain ${effect[1]} Energy\nDiscards to Hand`; break
+            case 1627: string+=`Apply ${effect[0]} Poison\n75%: Gain ${effect[1]} Energy\nDiscards to Hand`; break
+            case 1628: string+=`Apply ${effect[0]} Poison\n75%: Gain ${effect[1]} Energy\n25%: Draw ${effect[2]} Card${effect[3]!=1?`s`:``}\nDiscards to Hand`; break
+            case 1629: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Poison\nApplies Double if\nTarget Already Poisoned`; break
+            case 1631: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRandomize When a\nCard is Played\nFrom (${4+2*this.level}-${12+6*this.level})`; break
+            case 1632: string+=`Draw ${effect[0]} More Burning\nCard${effect[0]!=1?`s`:``} Per Turn`; break
+            case 1633: string+=`If Your Energy is Odd\nDeal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have Exactly 1,\nApply ${effect[1]} Weak`; break
+            case 1634: string+=`2nd Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} 3-Miracle${effect[1]!=1?`s`:``}\nto Hand`; break
+            case 1635: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to Hand\nCost Decreases by 1`; break
+            case 1636: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Metallicize\nGain ${effect[2]} Control`; break
+            case 1637: string+=`Add ${effect[0]} Weak Basic\nCard${effect[0]!=1?`s`:``} to Hand`; break
+            case 1638: string+=`Exactly 2 Energy:\nCounter ${effect[0]} All\nThis Combat`; break
+            case 1639: string+=`Duplicate ${effect[0]} Random Card${effect[0]!=1?`s`:``}`; break
+            case 1640: string+=`Exactly ${effect[0]} Energy:\nDeal ${this.calculateEffect(effect[1],0)} Damage\nChanges on Play`; break
+            case 1641: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nWhen You Lowroll`; break
+            case 1642: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4 Energy:\nDiscard to Hand`; break
+            case 1643: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHeal ${effect[1]} to Self\nand in All Directions`; break
+            case 1644: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose ${effect[1]} Strength`; break
+            case 1645: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\n25%: Swap Back\nor\nMove ${effect[0]} Tiles`; break
+            case 1646: string+=`Swap With an\nAdjacent Target\n25% Swap Back\nor\nMove ${effect[0]} Tiles`; break
+            case 1647: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nUnupgrade Cards in Hand`; break
+            case 1648: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n10%: Lose ${effect[1]} Energy`; break
+            case 1649: string+=`Requires ${['Even','Odd'][this.limit%2]} Energy\nDeal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to Hand`; break
+            case 1650: string+=`Add a Random\nCrystal of Equivalent\nLevel to Hand\nDiscards to Hand`; break
+            case 1651: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Lock`; break
+            case 1652: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRedraw the First\nCard in Your Hand`; break
+            case 1653: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nThe First Card in Hand\nBecomes Free`; break
+            case 1654: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nDiscards to Hand`; break
+
+
+
+
+
 
 
 
@@ -1912,6 +1955,9 @@ class card{
         }
         if(spec.includes(33)){
             string+='\nWide'
+        }
+        if(spec.includes(42)){
+            string+=`\nExhausting ${this.limit}`
         }
         if(string[0]=='\n'){
             string=string.substring(1,string.length)
@@ -2109,11 +2155,11 @@ class card{
             case 107: case 255:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
-            case 108:
+            case 108: case 1635:
                 this.cost=max(this.cost-1)
                 this.base.cost=max(this.base.cost-1)
             break
-            case 118: case 619: case 1479: case 1480:
+            case 118: case 619: case 1479: case 1480: case 1654:
                 this.effect[0]+=this.effect[1]
             break
             case 908:
@@ -2136,6 +2182,9 @@ class card{
                         this.battle.cardManagers[this.player].deck.cards[a].effect[0]*=-1
                     }
                 }
+            break
+            case 1640:
+                this.effect[0]=1+floor(random(0,3))*2
             break
         }
         if(this.battle.modded(94)&&this.battle.counter.turnPlayed[0]>=5){
@@ -2211,6 +2260,9 @@ class card{
                     this.effect[0]=max(0,this.effect[0]-this.effect[1])
                 }
             break
+            case 1631:
+                this.effect[0]=floor(random(4+2*this.level,12+6*this.level+1))
+            break
             
         }
     }
@@ -2243,7 +2295,7 @@ class card{
         }
     }
     playable(){
-        return !this.spec.includes(5)||this.battle.relicManager.hasRelic(11,this.player)
+        return !this.spec.includes(5)&&!this.spec.includes(41)||this.battle.relicManager.hasRelic(11,this.player)
     }
     etherealed(){
         switch(this.attack){
@@ -2372,6 +2424,24 @@ class card{
                 this.layer.ellipse(0,0,this.width*3/8)
                 this.layer.stroke(0,26,174,this.fade)
                 this.layer.noFill()
+            }else if(this.attack==1615){
+                this.layer.fill(240,120,90,this.fade*this.anim.select)
+                this.layer.noStroke()
+                this.layer.rect(0,0,this.width+15,this.height+15,10)
+                this.layer.fill(180,75,60,this.fade)
+                this.layer.stroke(150,60,45,this.fade)
+                this.layer.strokeWeight(5)
+                this.layer.rect(0,0,this.width,this.height,5)
+                this.layer.strokeWeight(4)
+                for(let a=0,la=8;a<la;a++){
+                    if(a!=0){
+                        this.layer.line(-this.width/2,-this.height/2+this.height*a/la,this.width/2,-this.height/2+this.height*a/la)
+                    }
+                    for(let b=0,lb=3;b<lb;b++){
+                        this.layer.line(-this.width/2+(b+0.25+a%2*0.5)/lb*this.width,-this.height/2+this.height*a/la,-this.width/2+(b+0.25+a%2*0.5)/lb*this.width,-this.height/2+this.height*(a+1)/la)
+                    }
+                }
+                this.layer.noFill()
             }else{
                 this.layer.fill(colorDetail.active[0],colorDetail.active[1],colorDetail.active[2],this.fade*this.anim.select)
                 this.layer.noStroke()
@@ -2484,14 +2554,14 @@ class card{
                     this.layer.fill(40,this.fade)
                     this.layer.ellipse(-this.width/2+5,-this.height/2+8,4)
                     this.layer.ellipse(-this.width/2+15,-this.height/2+18,4)
-                }else if(!spec.includes(5)){
+                }else if(!spec.includes(5)&&!spec.includes(41)){
                     this.layer.fill(225,255,255,this.fade)
                     this.layer.stroke(200,255,255,this.fade)
                     this.layer.strokeWeight(2)
                     this.layer.quad(-this.width/2+2,-this.height/2+12,-this.width/2+10,-this.height/2+2,-this.width/2+18,-this.height/2+12,-this.width/2+10,-this.height/2+22)
                 }
                 this.layer.noStroke()
-                if(!spec.includes(5)){
+                if(!spec.includes(5)&&!spec.includes(41)){
                     if(spec.includes(11)){
                         this.layer.fill(mergeColor([255,0,0],[255,255,255],this.anim.afford),this.level/2,this.fade)
                     }else if(spec.includes(21)){
@@ -2507,90 +2577,92 @@ class card{
                     }
                 }
                 this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
-                if(spec.includes(34)){
-                    this.layer.rotate(90)
-                    this.layer.textSize(12)
-                    if(spec.includes(37)){
-                        this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,0)
-                    }else{
-                        this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,0)
-                    }
-                    this.layer.rotate(-90)
-                }else{
-                    this.layer.textSize(variants.blind?12:10)
-                    if(spec.includes(37)){
-                        this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,variants.blind?0:-this.height/2+15)
-                    }else{
-                        this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
-                    }
-                    if(!variants.blind){
-                        this.layer.fill(0,this.fade)
-                        this.layer.textSize(name=='Charred\nLizard'?6:8)
-                        if(spec.includes(12)){
-                            this.layer.text(this.description(attack[0],effect[0],reality[0],target),0,-15)
-                            this.layer.text(this.description(attack[1],effect[1],reality[1],target),0,this.height/2-25)
+                if(this.name.substr(0,2)!='-h'){
+                    if(spec.includes(34)){
+                        this.layer.rotate(90)
+                        this.layer.textSize(12)
+                        if(spec.includes(37)){
+                            this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,0)
                         }else{
-                            this.layer.text(this.description(attack,effect,spec,target),0,10)
+                            this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,0)
                         }
-                        this.layer.textSize(6)
-                        if(options.id){
-                            this.layer.text(this.id,this.width/2-8,-this.height/2+8)
+                        this.layer.rotate(-90)
+                    }else{
+                        this.layer.textSize(variants.blind?12:10)
+                        if(spec.includes(37)){
+                            this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,variants.blind?0:-this.height/2+15)
+                        }else{
+                            this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
                         }
-                        if(spec.includes(12)){
-                            for(let a=0,la=2;a<la;a++){
-                                switch(classT[a]){
+                        if(!variants.blind){
+                            this.layer.fill(0,this.fade)
+                            this.layer.textSize(name=='Charred\nLizard'?6:8)
+                            if(spec.includes(12)){
+                                this.layer.text(this.description(attack[0],effect[0],reality[0],target),0,-15)
+                                this.layer.text(this.description(attack[1],effect[1],reality[1],target),0,this.height/2-25)
+                            }else{
+                                this.layer.text(this.description(attack,effect,spec,target),0,10)
+                            }
+                            this.layer.textSize(6)
+                            if(options.id){
+                                this.layer.text(this.id,this.width/2-8,-this.height/2+8)
+                            }
+                            if(spec.includes(12)){
+                                for(let a=0,la=2;a<la;a++){
+                                    switch(classT[a]){
+                                        case 1:
+                                            this.layer.text('Attack',0,4+a*(this.height/2-10))
+                                        break
+                                        case 2:
+                                            this.layer.text('Defense',0,4+a*(this.height/2-10))
+                                        break
+                                        case 3:
+                                            this.layer.text('Movement',0,4+a*(this.height/2-10))
+                                        break
+                                        case 4:
+                                            this.layer.text('Power',0,4+a*(this.height/2-10))
+                                        break
+                                        case 5:
+                                            this.layer.text('Status',0,4+a*(this.height/2-10))
+                                        break
+                                        case 6:
+                                            this.layer.text('Curse',0,4+a*(this.height/2-10))
+                                        break
+                                        case 7:
+                                            this.layer.text('Blueprint',0,4+a*(this.height/2-10))
+                                        break
+                                        case 8:
+                                            this.layer.text('Classless',0,4+a*(this.height/2-10))
+                                        break
+                                    }
+                                }
+                            }else{
+                                switch(classT){
                                     case 1:
-                                        this.layer.text('Attack',0,4+a*(this.height/2-10))
+                                        this.layer.text('Attack',0,this.height/2-6)
                                     break
                                     case 2:
-                                        this.layer.text('Defense',0,4+a*(this.height/2-10))
+                                        this.layer.text('Defense',0,this.height/2-6)
                                     break
                                     case 3:
-                                        this.layer.text('Movement',0,4+a*(this.height/2-10))
+                                        this.layer.text('Movement',0,this.height/2-6)
                                     break
                                     case 4:
-                                        this.layer.text('Power',0,4+a*(this.height/2-10))
+                                        this.layer.text('Power',0,this.height/2-6)
                                     break
                                     case 5:
-                                        this.layer.text('Status',0,4+a*(this.height/2-10))
+                                        this.layer.text('Status',0,this.height/2-6)
                                     break
                                     case 6:
-                                        this.layer.text('Curse',0,4+a*(this.height/2-10))
+                                        this.layer.text('Curse',0,this.height/2-6)
                                     break
                                     case 7:
-                                        this.layer.text('Blueprint',0,4+a*(this.height/2-10))
+                                        this.layer.text('Blueprint',0,this.height/2-6)
                                     break
                                     case 8:
-                                        this.layer.text('Classless',0,4+a*(this.height/2-10))
+                                        this.layer.text('Classless',0,this.height/2-6)
                                     break
                                 }
-                            }
-                        }else{
-                            switch(classT){
-                                case 1:
-                                    this.layer.text('Attack',0,this.height/2-6)
-                                break
-                                case 2:
-                                    this.layer.text('Defense',0,this.height/2-6)
-                                break
-                                case 3:
-                                    this.layer.text('Movement',0,this.height/2-6)
-                                break
-                                case 4:
-                                    this.layer.text('Power',0,this.height/2-6)
-                                break
-                                case 5:
-                                    this.layer.text('Status',0,this.height/2-6)
-                                break
-                                case 6:
-                                    this.layer.text('Curse',0,this.height/2-6)
-                                break
-                                case 7:
-                                    this.layer.text('Blueprint',0,this.height/2-6)
-                                break
-                                case 8:
-                                    this.layer.text('Classless',0,this.height/2-6)
-                                break
                             }
                         }
                     }

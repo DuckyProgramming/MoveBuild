@@ -729,6 +729,14 @@ class combatantManager{
         }
         return total
     }
+    healAreaRuleless(effect,tilePosition){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(distance>=0&&distance<=1||this.battle.modded(121)){
+                this.combatants[a].heal(effect)
+            }
+        }
+    }
     statusAreaIDBlock(name,amount,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
