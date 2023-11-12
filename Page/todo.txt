@@ -1,8 +1,5 @@
 Bugs:
 
-add another political party card
-article 13 card?
-
 group photo of the characters for a background
 
 paperball floating on water
@@ -12,6 +9,10 @@ lunar fractals
 
 
 
+
+
+
+zlonk - does damage, draw a card, but no more draw this turn
 
 all shivs apply 1 (burn or freeze)
 
@@ -25,6 +26,16 @@ cancel stance instantly
 
 purity but you get literally 1 shiv
 
+phantasm gets hookshot
+
+breaking bad - breaking shot but worse, but gives you drugs
+
+limit break card
+
+add another political party card
+
+alternate poison
+
 
 
 
@@ -35,7 +46,9 @@ purity but you get literally 1 shiv
 {
 very painful strike
 
-
 festive wreath
+
+last many junkyards
+3 more movement
 }
 

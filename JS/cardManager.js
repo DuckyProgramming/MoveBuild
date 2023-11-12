@@ -23,6 +23,7 @@ class cardManager{
         this.tempDrawBurn=0
         this.baseDrops=variants.altDraw?3:0
         this.drops=0
+        this.interval=0
         this.miracleSwitch=false
         this.pack=[]
 
@@ -730,25 +731,30 @@ class cardManager{
         }
     }
     subFatigue(name){
-        this.discard.add(findName(name,types.card),0,game.playerNumber+1)
-        this.drop.addDrop(findName(name,types.card),0,game.playerNumber+1)
-        if(this.battle.modded(61)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(33)){
-            this.discard.cards[this.discard.cards.length-1].spec.push(33)
-            this.drop.cards[this.drop.cards.length-1].spec.push(33)
-        }
-        if(this.battle.modded(120)){
-            this.discard.cards[this.discard.cards.length-1].attack=-35
-            this.drop.cards[this.drop.cards.length-1].attack=-35
-        }
-        if(this.battle.relicManager.hasRelic(142,this.player)){
-            this.discard.cards[this.discard.cards.length-1].cost++
-            this.discard.cards[this.discard.cards.length-1].base.cost++
-            this.drop.cards[this.drop.cards.length-1].cost++
-        }
-        if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))==0){
-            this.discard.cards[this.discard.cards.length-1].cost--
-            this.discard.cards[this.discard.cards.length-1].base.cost--
-            this.drop.cards[this.drop.cards.length-1].cost--
+        this.interval++
+        if(this.hand.specNumber(43)+this.reserve.specNumber(43)+this.discard.specNumber(43)<10||this.interval%2==0){
+            this.discard.add(findName(name,types.card),0,game.playerNumber+1)
+            this.drop.addDrop(findName(name,types.card),0,game.playerNumber+1)
+            this.discard.cards[this.discard.cards.length-1].spec.push(43)
+            this.drop.cards[this.drop.cards.length-1].spec.push(43)
+            if(this.battle.modded(61)&&!this.discard.cards[this.discard.cards.length-1].spec.includes(33)){
+                this.discard.cards[this.discard.cards.length-1].spec.push(33)
+                this.drop.cards[this.drop.cards.length-1].spec.push(33)
+            }
+            if(this.battle.modded(120)){
+                this.discard.cards[this.discard.cards.length-1].attack=-35
+                this.drop.cards[this.drop.cards.length-1].attack=-35
+            }
+            if(this.battle.relicManager.hasRelic(142,this.player)){
+                this.discard.cards[this.discard.cards.length-1].cost++
+                this.discard.cards[this.discard.cards.length-1].base.cost++
+                this.drop.cards[this.drop.cards.length-1].cost++
+            }
+            if(this.battle.relicManager.hasRelic(167,this.player)&&floor(random(0,4))==0){
+                this.discard.cards[this.discard.cards.length-1].cost--
+                this.discard.cards[this.discard.cards.length-1].base.cost--
+                this.drop.cards[this.drop.cards.length-1].cost--
+            }
         }
     }
     fatigue(){

@@ -1677,9 +1677,9 @@ types={
         },{
             name:'Relaxing\nStrike',rarity:0,list:2,
             levels:[
-                {effect:[4,1],attack:462,cost:1,target:[2,1,1],spec:[],class:2},
-                {effect:[6,1],attack:462,cost:1,target:[2,1,1],spec:[],class:2},
-                {effect:[8,1],attack:462,cost:1,target:[2,1,1],spec:[],class:2},
+                {effect:[4,1],attack:462,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[6,1],attack:462,cost:1,target:[2,1,1],spec:[],class:1},
+                {effect:[8,1],attack:462,cost:1,target:[2,1,1],spec:[],class:1},
             ],
         },{
             name:'Relaxing\nDefend',rarity:0,list:2,
@@ -3624,9 +3624,9 @@ types={
         },{
             name:'Determination',rarity:1,list:4,
             levels:[
-                {effect:[16,1,1,1],attack:1405,cost:5,target:[2,1,3],spec:[0,2,35],class:1},
-                {effect:[24,2,2,2],attack:1405,cost:5,target:[2,1,3],spec:[0,2,35],class:1},
-                {effect:[30,3,3,3],attack:1405,cost:5,target:[2,1,3],spec:[0,2,35],class:1},
+                {effect:[16,1],attack:1655,cost:5,target:[2,1,3],spec:[0,2,35],class:1},
+                {effect:[24,2],attack:1655,cost:5,target:[2,1,3],spec:[0,2,35],class:1},
+                {effect:[30,3],attack:1655,cost:5,target:[2,1,3],spec:[0,2,35],class:1},
             ],
         },{
             name:'Starpick',rarity:1,list:4,
@@ -4426,9 +4426,9 @@ types={
         },{
             name:'Tetraphobia',rarity:0,list:5,
             levels:[
+                {effect:[24],attack:1,cost:4,target:[2,1,1],spec:[0,2,35],class:1},
+                {effect:[34],attack:1,cost:4,target:[2,1,1],spec:[0,2,35],class:1},
                 {effect:[44],attack:1,cost:4,target:[2,1,1],spec:[0,2,35],class:1},
-                {effect:[66],attack:1,cost:4,target:[2,1,1],spec:[0,2,35],class:1},
-                {effect:[80],attack:1,cost:4,target:[2,1,1],spec:[0,2,35],class:1},
             ],
         },{
             name:'Pea\nShooter',rarity:0,list:5,
@@ -4531,9 +4531,9 @@ types={
         },{
             name:'Bad\nTimes',rarity:1,list:5,
             levels:[
-                {effect:[2],attack:1474,cost:1,target:[2,1,1],spec:[],class:4},
-                {effect:[3],attack:1474,cost:1,target:[2,1,1],spec:[],class:4},
-                {effect:[4],attack:1474,cost:1,target:[2,1,1],spec:[],class:4},
+                {effect:[3],attack:1474,cost:1,target:[2,1,2],spec:[],class:4},
+                {effect:[4],attack:1474,cost:1,target:[2,1,2],spec:[],class:4},
+                {effect:[5],attack:1474,cost:1,target:[2,1,2],spec:[],class:4},
             ],
         },{
             name:'Hex',rarity:0,list:5,
@@ -4587,9 +4587,9 @@ types={
         },{
             name:'Percuss',rarity:1,list:5,
             levels:[
-                {effect:[2,1],attack:1618,cost:0,target:[2,1,1],spec:[],class:4},
-                {effect:[3,1],attack:1618,cost:0,target:[2,1,1],spec:[],class:4},
-                {effect:[4,1],attack:1618,cost:0,target:[2,1,1],spec:[],class:4},
+                {effect:[6,1],attack:1618,cost:0,target:[2,1,1],spec:[],class:4},
+                {effect:[10,1],attack:1618,cost:0,target:[2,1,1],spec:[],class:4},
+                {effect:[12,1],attack:1618,cost:0,target:[2,1,1],spec:[],class:4},
             ],
         },{
             name:'Turan',rarity:1,list:5,
@@ -4601,9 +4601,9 @@ types={
         },{
             name:'Big\nMoment',rarity:0,list:5,
             levels:[
-                {effect:[21],attack:1635,cost:3,target:[2,1,1],spec:[0,2,35,42],limit:2,class:1},
-                {effect:[30],attack:1635,cost:3,target:[2,1,1],spec:[0,2,35,42],limit:2,class:1},
-                {effect:[37],attack:1635,cost:3,target:[2,1,1],spec:[0,2,35,42],limit:2,class:1},
+                {effect:[21],attack:1635,cost:4,target:[2,1,1],spec:[0,2,35,42],limit:2,class:1},
+                {effect:[30],attack:1635,cost:4,target:[2,1,1],spec:[0,2,35,42],limit:2,class:1},
+                {effect:[37],attack:1635,cost:4,target:[2,1,1],spec:[0,2,35,42],limit:2,class:1},
             ],
         },{
             name:'Cloak',rarity:0,list:5,
@@ -6346,9 +6346,9 @@ types={
         },{
             name:'Shifting\nStorm',rarity:2,list:7,
             levels:[
-                {effect:[16,2],attack:1616,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
-                {effect:[23,2],attack:1616,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
-                {effect:[28,2],attack:1616,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+                {effect:[14,2],attack:1616,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
+                {effect:[20,2],attack:1616,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
+                {effect:[25,2],attack:1616,cost:3,target:[2,1,2],spec:[0,2,35],class:1},
             ],
         },{
             name:'Endure',rarity:2,list:7,
@@ -6539,9 +6539,9 @@ types={
         },{
             name:'Energy\nRecoil',rarity:0,list:8,
             levels:[
-                {effect:[0],attack:853,cost:1,target:[0],spec:[],class:2},
-                {effect:[3],attack:853,cost:1,target:[0],spec:[],class:2},
-                {effect:[5],attack:853,cost:1,target:[0],spec:[],class:2},
+                {effect:[2,0],attack:853,cost:1,target:[0],spec:[],class:2},
+                {effect:[2,4],attack:853,cost:1,target:[0],spec:[],class:2},
+                {effect:[2,6],attack:853,cost:1,target:[0],spec:[],class:2},
             ],
         },{
             name:'Escape\nVelocity',rarity:1,list:8,
@@ -9675,9 +9675,9 @@ types={
         },{
             name:'Fists',rarity:-10,list:1,
             levels:[
-                {effect:[3],attack:1623,cost:1,target:[2,1,2],spec:[0,2,42],limit:2,class:1},
-                {effect:[4],attack:1623,cost:1,target:[2,1,2],spec:[0,2,42],limit:2,class:1},
-                {effect:[5],attack:1623,cost:1,target:[2,1,2],spec:[0,2,42],limit:2,class:1},
+                {effect:[3],attack:1622,cost:1,target:[2,1,2],spec:[0,2,42],limit:2,class:1},
+                {effect:[4],attack:1622,cost:1,target:[2,1,2],spec:[0,2,42],limit:2,class:1},
+                {effect:[5],attack:1622,cost:1,target:[2,1,2],spec:[0,2,42],limit:2,class:1},
             ],
         },{
             name:'Rake',rarity:-10,list:3,
@@ -9724,7 +9724,7 @@ types={
         },{
             name:'Sweepstake\nStep',rarity:-10,list:10,
             levels:[
-                {effect:[1,3],attack:1648,ost:1,target:[1,1,1],spec:[0],class:3},
+                {effect:[1,3],attack:1648,cost:1,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,6],attack:1648,cost:0,target:[1,1,1],spec:[0],class:3},
                 {effect:[1,8],attack:1648,cost:0,target:[1,1,1],spec:[],class:3},
             ],
@@ -12128,7 +12128,7 @@ types={
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:180,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
-        {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:5,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
+        {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
@@ -16614,7 +16614,7 @@ Entering, you're offered a chance to glimpse your future...`,
             name:'Looter',
             player:{position:[[{x:2,y:1}],[{x:2,y:0},{x:3,y:2}]]},
             enemy:[
-                {position:{x:0,y:1},name:'Looter'},
+                {position:{x:1,y:1},name:'Looter'},
             ],reinforce:[
             ],
         },{
@@ -17484,7 +17484,7 @@ Is removed when damage taken, but doubles the damage.`,
         {name:'Management Robot',desc:'Enemies With an R in Their Name Get 3 Strength'},
         {name:'Management Soldier',desc:'Enemies With an S in Their Name Get 3 Strength'},
         {name:'Management Officer',desc:'Enemies With a C in Their Name Get 3 Strength'},
-        {name:'Manageemnt Special Forces',desc:'Enemies With an F in Their Name Get 3 Strength'},
+        {name:'Management Special Forces',desc:'Enemies With an F in Their Name Get 3 Strength'},
         {name:'Sneaky Gremlin',desc:'Never Get Relics From Fights'},
         {name:'Fat Gremlin',desc:'Never Get Items From Fights'},
         {name:'Angry Gremlin',desc:'50% Less Cards From Fights'},//50
@@ -17518,7 +17518,7 @@ Is removed when damage taken, but doubles the damage.`,
         {name:'Executive',desc:'All Elites and Bosses Get a Bodyguard'},
         {name:'Mechanized',desc:'1 Cost Cards Have Double Effect But Cost 2'},
         {name:'Ninja Master',desc:'All Enemies Have a Chance to Teleport When They Move'},//80
-        {name:'Bomber Boy',desc:'Every Fight Spawns C4'},
+        {name:'Bomber Boy',desc:'Every Combat Spawns C4'},
         {name:'Intern',desc:'Earn 50% Less Currency From Fights'},
         {name:'Assistant Hiring Officer',desc:'Cannot Skip Adding Cards'},
         {name:'Corrupt Detective',desc:'Playing a Power Costs 3 HP'},
@@ -17573,13 +17573,13 @@ Is removed when damage taken, but doubles the damage.`,
         {name:'Comrade',desc:'Gain 1 Weak Per 100 Currency Each Combat'},
         {name:'Councilman',desc:'Enemies Take Half Damage First 2 Turns'},
         {name:'Gangmaster',desc:'Lose 1 Currency Every 3 Seconds'},
-        {name:'Capitalist',desc:'Every Fight Spawns Money Tiles, They Spawn Bodyguards'},
+        {name:'Capitalist',desc:'Every Combat Spawns Money Tiles, They Spawn Bodyguards'},
         {name:'Personnel Carrier',desc:'Randomly Get Ambushed by Robots'},
         {name:'Chief Engineering Officer',desc:'25% of Cards are Stapled'},
         {name:'Shadow Trooper',desc:'All Enemies are Invisible First Turn'},
         {name:'Purge X02',desc:'Enemies Gain Double Block'},//140
         {name:'Lunaria',desc:'Random Enemies During Elite and Boss Battles Spawn Souls Upon Death'},
-        {name:'Rewriter',desc:'Every Fight Spawns Glitched Tiles'},
+        {name:'Rewriter',desc:'Every Combat Spawns Glitched Tiles'},
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},
         {name:'Managerial',desc:'Immediately Fight 12 Management Robots'},
         {name:'Luck',desc:'Add Cornucopia and Divine Sword to Deck'},

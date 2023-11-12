@@ -127,7 +127,7 @@ class combatant{
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
-                0,2,1,0,2,1,0,0,3,3,//1
+                0,2,1,0,2,1,0,0,1,1,//1
                 3,0,0,2,0,0,1,2,2,0,//2
                 2,0,0,0,1,1,2,0,1,2,//3
                 0,1,1,1,0,0,0,2,1,2,//4
@@ -173,7 +173,7 @@ class combatant{
                 1,1,1,0,0,0,0,0,2,2,//19
                 2,1,2,2,1,0,3,1,1,3,//20
                 2,0,2,0,1,0,2,0,1,0,//21
-                2,1,1,0,2,0,0,0,2,0,//22
+                2,1,1,0,2,1,0,0,2,0,//22
                 1,1,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
@@ -5164,7 +5164,7 @@ class combatant{
             if(status==32){
                 this.battle.updateTargetting()
             }
-            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
+            if(this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players&&this.team!=this.battle.turn.main+1&&this.battle.turn.main<this.battle.combatantManager.combatants.length){
                 let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)]
                 if((this.status.class[status]==1||this.status.class[status]==3)&&userCombatant.getStatus('Debuff Damage')>0){
                     this.takeDamage(userCombatant.getStatus('Debuff Damage'),-1)
@@ -5341,7 +5341,7 @@ class combatant{
                     case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 182: this.status.main[findList('Block Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 189: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Conviction',types.card),0,types.card[findName('Conviction',types.card)].list)}} break
-                    case 197: if(floor(random(0,4))==0){this.takeDamage(this.status.main[a],-1); this.status.main[a]=0} break
+                    case 197: if(floor(random(0,3))==0){this.takeDamage(this.status.main[a],-1); this.status.main[a]=0} break
                     case 203: this.heal(this.status.main[a]); break
                     case 207: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break

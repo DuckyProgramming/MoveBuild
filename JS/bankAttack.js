@@ -1124,7 +1124,7 @@ attack.prototype.update=function(){
                         this.userManager.allGroupClaw(this.effect[1])
                     break
                     case 1623:
-                        this.userManager.add(findname('Second\nFist',types.card),this.level,0)
+                        this.userManager.add(findName('Second\nFist',types.card),this.level,0)
                     break
                 }
             }else if(this.timer>=15*this.targetDistance+15){
@@ -1217,7 +1217,7 @@ attack.prototype.update=function(){
         case 1435: case 1437: case 1441: case 1442: case 1443: case 1444: case 1451: case 1452: case 1454: case 1455:
         case 1469: case 1471: case 1472: case 1479: case 1480: case 1481: case 1482: case 1483: case 1484: case 1504:
         case 1507: case 1512: case 1519: case 1530: case 1545: case 1560: case 1562: case 1599: case 1613: case 1614:
-        case 1619: case 1620: case 1626: case 1627: case 1628: case 1629: case 1633:
+        case 1619: case 1620: case 1626: case 1627: case 1628: case 1629: case 1633: case 1655:
             if(
                 this.type==1247&&this.energy%2!=0||
                 this.type==1259&&this.energy%2!=0||

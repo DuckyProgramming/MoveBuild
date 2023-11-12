@@ -921,6 +921,32 @@ class turn{
                                     this.set()
                                 }
                             break
+                            case 7:
+                                this.target=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)].tilePosition
+                                this.movable=[]
+                                for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
+                                    if(distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)>0&&distTarget(0,this.battle.tileManager.tiles[a].tilePosition.x-this.target.x,this.battle.tileManager.tiles[a].tilePosition.y-this.target.y)<=2&&this.battle.tileManager.tiles[a].occupied<=0){
+                                        this.movable.push(a)
+                                    }
+                                }
+                                if(this.movable.length>0){
+                                    let id=this.movable[floor(random(0,this.movable.length))]
+                                    if(id==this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)){
+                                        this.remove=true
+                                    }else{
+                                        this.targetTile=this.battle.tileManager.tiles[id]
+
+                                        this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                                        this.distance=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                                        this.relativeDirection=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                                        this.relativeDistance=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                                    }
+                                }else{
+                                    this.type=0
+                                    this.set()
+                                }
+                            break
                             
                         }
                         if(!this.remove&&this.targetTile!=-1){
@@ -4669,7 +4695,7 @@ class turn{
                             }
                         }
                     break
-                    case 3: case 5:
+                    case 3: case 5: case 7:
                         if(variants.nobasicanim){
                             this.userCombatant.moveTile(this.direction,this.distance)
                             this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)

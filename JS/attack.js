@@ -85,62 +85,62 @@ class attack{
             case 272: case 273: case 274: case 275: case 277: case 280: case 282: case 287: case 288: case 290:
             case 292: case 293: case 295: case 296: case 297: case 301: case 304: case 305: case 310: case 314:
             case 316: case 319: case 323: case 326: case 327: case 329: case 333: case 342: case 345: case 348:
-            case 361: case 364: case 368: case 373: case 376: case 378: case 379: case 382: case 384: case 385:
-            case 401: case 402: case 408: case 409: case 412: case 413: case 414: case 415: case 417: case 419:
-            case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441: case 444:
-            case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468: case 469:
-            case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504: case 507:
-            case 508: case 509: case 510: case 511: case 514: case 531: case 532: case 533: case 534: case 535:
-            case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 556: case 557:
-            case 558: case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579: case 580:
-            case 581: case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593: case 594:
-            case 596: case 597: case 598: case 599: case 600: case 601: case 604: case 606: case 609: case 610:
-            case 616: case 617: case 618: case 632: case 633: case 634: case 638: case 639: case 661: case 662:
-            case 667: case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 683: case 689:
-            case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718: case 719:
-            case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733: case 734:
-            case 736: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775: case 779:
-            case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798: case 801:
-            case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833: case 834:
-            case 837: case 840: case 843: case 846: case 848: case 849: case 850: case 862: case 863: case 865:
-            case 866: case 872: case 874: case 877: case 878: case 881: case 883: case 884: case 888: case 895:
-            case 897: case 899: case 900: case 902: case 903: case 905: case 906: case 907: case 908: case 915:
-            case 916: case 917: case 918: case 919: case 920: case 924: case 926: case 930: case 934: case 935:
-            case 938: case 939: case 940: case 942: case 943: case 944: case 945: case 946: case 947: case 950:
-            case 956: case 957: case 958: case 959: case 964: case 965: case 966: case 972: case 974: case 980:
-            case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004: case 1006:
-            case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023: case 1027:
-            case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047: case 1049:
-            case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067: case 1068:
-            case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091: case 1092:
-            case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139: case 1144:
-            case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156: case 1160:
-            case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1171: case 1172: case 1173: case 1174:
-            case 1175: case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188: case 1189:
-            case 1191: case 1194: case 1195: case 1196: case 1202: case 1209: case 1210: case 1211: case 1212: case 1213:
-            case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1244: case 1246: case 1247:
-            case 1248: case 1251: case 1252: case 1255: case 1256: case 1257: case 1258: case 1259: case 1261: case 1262:
-            case 1263: case 1266: case 1267: case 1268: case 1270: case 1271: case 1273: case 1274: case 1279: case 1280:
-            case 1281: case 1284: case 1285: case 1286: case 1288: case 1291: case 1295: case 1296: case 1297: case 1298:
-            case 1305: case 1307: case 1308: case 1309: case 1310: case 1311: case 1312: case 1313: case 1314: case 1315:
-            case 1316: case 1319: case 1320: case 1321: case 1324: case 1330: case 1332: case 1334: case 1335: case 1336:
-            case 1337: case 1338: case 1339: case 1342: case 1343: case 1344: case 1345: case 1348: case 1349: case 1350:
-            case 1353: case 1354: case 1355: case 1356: case 1358: case 1359: case 1360: case 1362: case 1367: case 1372:
-            case 1373: case 1374: case 1376: case 1377: case 1386: case 1390: case 1391: case 1395: case 1397: case 1399:
-            case 1400: case 1401: case 1403: case 1405: case 1406: case 1410: case 1411: case 1412: case 1413: case 1416:
-            case 1418: case 1421: case 1424: case 1425: case 1426: case 1427: case 1428: case 1429: case 1430: case 1431:
-            case 1432: case 1434: case 1435: case 1437: case 1438: case 1439: case 1440: case 1441: case 1442: case 1443:
-            case 1444: case 1445: case 1446: case 1449: case 1451: case 1452: case 1454: case 1455: case 1457: case 1461:
-            case 1462: case 1463: case 1465: case 1470: case 1471: case 1472: case 1474: case 1478: case 1479: case 1480:
-            case 1481: case 1482: case 1483: case 1484: case 1485: case 1490: case 1492: case 1493: case 1497: case 1498:
-            case 1499: case 1501: case 1502: case 1503: case 1504: case 1505: case 1506: case 1507: case 1508: case 1512:
-            case 1513: case 1519: case 1521: case 1522: case 1524: case 1525: case 1526: case 1528: case 1530: case 1531:
-            case 1535: case 1537: case 1538: case 1539: case 1541: case 1545: case 1546: case 1547: case 1550: case 1556:
-            case 1557: case 1558: case 1559: case 1560: case 1561: case 1562: case 1566: case 1567: case 1568: case 1569:
-            case 1596: case 1597: case 1598: case 1599: case 1600: case 1602: case 1605: case 1607: case 1610: case 1611:
-            case 1613: case 1614: case 1616: case 1617: case 1618: case 1619: case 1620: case 1621: case 1622: case 1623:
-            case 1625: case 1626: case 1627: case 1628: case 1629: case 1630: case 1631: case 1633: case 1634: case 1635:
-            case 1640: case 1642: case 1649: case 1651: case 1652: case 1653: case 1654:
+            case 361: case 364: case 368: case 371: case 373: case 376: case 378: case 379: case 382: case 384:
+            case 385: case 401: case 402: case 408: case 409: case 412: case 413: case 414: case 415: case 417:
+            case 419: case 427: case 429: case 432: case 433: case 435: case 436: case 437: case 438: case 441:
+            case 444: case 447: case 449: case 452: case 460: case 462: case 465: case 466: case 467: case 468:
+            case 469: case 475: case 487: case 491: case 494: case 496: case 497: case 498: case 501: case 504:
+            case 507: case 508: case 509: case 510: case 511: case 514: case 531: case 532: case 533: case 534:
+            case 535: case 537: case 538: case 539: case 540: case 543: case 545: case 548: case 550: case 556:
+            case 557: case 558: case 559: case 564: case 565: case 566: case 567: case 568: case 569: case 579:
+            case 580: case 581: case 582: case 587: case 588: case 589: case 590: case 591: case 592: case 593:
+            case 594: case 596: case 597: case 598: case 599: case 600: case 601: case 604: case 606: case 609:
+            case 610: case 616: case 617: case 618: case 632: case 633: case 634: case 638: case 639: case 661:
+            case 662: case 667: case 669: case 672: case 673: case 676: case 677: case 678: case 679: case 683:
+            case 689: case 691: case 692: case 697: case 702: case 703: case 710: case 714: case 715: case 718:
+            case 719: case 720: case 721: case 723: case 725: case 729: case 730: case 731: case 732: case 733:
+            case 734: case 736: case 746: case 757: case 758: case 762: case 764: case 766: case 771: case 775:
+            case 779: case 780: case 784: case 785: case 786: case 787: case 793: case 795: case 796: case 798:
+            case 801: case 806: case 824: case 825: case 826: case 827: case 828: case 829: case 830: case 833:
+            case 834: case 837: case 840: case 843: case 846: case 848: case 849: case 850: case 862: case 863:
+            case 865: case 866: case 872: case 874: case 877: case 878: case 881: case 883: case 884: case 888:
+            case 895: case 897: case 899: case 900: case 902: case 903: case 905: case 906: case 907: case 908:
+            case 915: case 916: case 917: case 918: case 919: case 920: case 924: case 926: case 930: case 934:
+            case 935: case 938: case 939: case 940: case 942: case 943: case 944: case 945: case 946: case 947:
+            case 950: case 956: case 957: case 958: case 959: case 964: case 965: case 966: case 972: case 974:
+            case 980: case 987: case 991: case 992: case 993: case 994: case 1001: case 1002: case 1003: case 1004:
+            case 1006: case 1007: case 1009: case 1010: case 1014: case 1015: case 1017: case 1018: case 1022: case 1023:
+            case 1027: case 1028: case 1029: case 1031: case 1034: case 1036: case 1038: case 1040: case 1046: case 1047:
+            case 1049: case 1050: case 1052: case 1054: case 1055: case 1058: case 1059: case 1064: case 1066: case 1067:
+            case 1068: case 1070: case 1072: case 1073: case 1075: case 1083: case 1087: case 1089: case 1090: case 1091:
+            case 1092: case 1097: case 1100: case 1111: case 1123: case 1126: case 1128: case 1133: case 1135: case 1139:
+            case 1144: case 1145: case 1147: case 1148: case 1149: case 1150: case 1153: case 1154: case 1155: case 1156:
+            case 1160: case 1162: case 1163: case 1164: case 1166: case 1167: case 1168: case 1171: case 1172: case 1173:
+            case 1174: case 1175: case 1178: case 1179: case 1180: case 1181: case 1182: case 1183: case 1187: case 1188:
+            case 1189: case 1191: case 1194: case 1195: case 1196: case 1202: case 1209: case 1210: case 1211: case 1212:
+            case 1213: case 1217: case 1219: case 1222: case 1228: case 1231: case 1233: case 1234: case 1244: case 1246:
+            case 1247: case 1248: case 1251: case 1252: case 1255: case 1256: case 1257: case 1258: case 1259: case 1261:
+            case 1262: case 1263: case 1266: case 1267: case 1268: case 1270: case 1271: case 1273: case 1274: case 1279:
+            case 1280: case 1281: case 1284: case 1285: case 1286: case 1288: case 1291: case 1295: case 1296: case 1297:
+            case 1298: case 1305: case 1307: case 1308: case 1309: case 1310: case 1311: case 1312: case 1313: case 1314:
+            case 1315: case 1316: case 1319: case 1320: case 1321: case 1324: case 1330: case 1332: case 1334: case 1335:
+            case 1336: case 1337: case 1338: case 1339: case 1342: case 1343: case 1344: case 1345: case 1348: case 1349:
+            case 1350: case 1353: case 1354: case 1355: case 1356: case 1358: case 1359: case 1360: case 1362: case 1367:
+            case 1372: case 1373: case 1374: case 1376: case 1377: case 1386: case 1390: case 1391: case 1395: case 1397:
+            case 1399: case 1400: case 1401: case 1403: case 1405: case 1406: case 1410: case 1411: case 1412: case 1413:
+            case 1416: case 1418: case 1421: case 1424: case 1425: case 1426: case 1427: case 1428: case 1429: case 1430:
+            case 1431: case 1432: case 1434: case 1435: case 1437: case 1438: case 1439: case 1440: case 1441: case 1442:
+            case 1443: case 1444: case 1445: case 1446: case 1449: case 1451: case 1452: case 1454: case 1455: case 1457:
+            case 1461: case 1462: case 1463: case 1465: case 1470: case 1471: case 1472: case 1474: case 1478: case 1479:
+            case 1480: case 1481: case 1482: case 1483: case 1484: case 1485: case 1490: case 1492: case 1493: case 1497:
+            case 1498: case 1499: case 1501: case 1502: case 1503: case 1504: case 1505: case 1506: case 1507: case 1508:
+            case 1512: case 1513: case 1519: case 1521: case 1522: case 1524: case 1525: case 1526: case 1528: case 1530:
+            case 1531: case 1535: case 1537: case 1538: case 1539: case 1541: case 1545: case 1546: case 1547: case 1550:
+            case 1556: case 1557: case 1558: case 1559: case 1560: case 1561: case 1562: case 1566: case 1567: case 1568:
+            case 1569: case 1596: case 1597: case 1598: case 1599: case 1600: case 1602: case 1605: case 1607: case 1610:
+            case 1611: case 1613: case 1614: case 1616: case 1617: case 1618: case 1619: case 1620: case 1621: case 1622:
+            case 1623: case 1625: case 1626: case 1627: case 1628: case 1629: case 1630: case 1631: case 1633: case 1634:
+            case 1635: case 1640: case 1642: case 1649: case 1651: case 1652: case 1653: case 1654: case 1655:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1018,7 +1018,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*(top2-bottom2),this.user)
                     break
                     case 1558:
-                        this.targetCombatant.takeDamage(this.effect[0]+(this.targetCombatant.statusEffect('Shock')>0?this.effect[1]:0),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]+(this.targetCombatant.getStatus('Shock')>0?this.effect[1]:0),this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1726,8 +1726,8 @@ class attack{
                     case 1395:
                         this.targetCombatant.statusEffect('Take Damage Next Turn',this.effect[1])
                     break
-                    case 1399: case 1616:
-                        this.userCombatant.statusEffect(['Burn','Freeze','Shock','Weak'][this.battle.turn.main%4],this.effect[1])
+                    case 1399:
+                        this.targetCombatant.statusEffect(['Burn','Freeze','Shock','Weak'][this.battle.turn.main%4],this.effect[1])
                     break
                     case 1401:
                         for(let a=0,la=this.effect[1];a<la;a++){
@@ -1878,7 +1878,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]*(this.userCombatant.stance==2?this.effect[1]:1))
                     break
                     case 853:
-                        this.userCombatant.addBlock(this.userCombatant.charge+this.effect[0])
+                        this.userCombatant.addBlock(this.userCombatant.charge*this.effect[0]+this.effect[1])
                     break
                     case 880:
                         this.userCombatant.statusEffect('Armor',this.amplify?this.effect[0]+this.effect[1]:this.effect[0])
@@ -2535,7 +2535,7 @@ class attack{
                         this.userCombatant.life-=this.effect[2]
                     break
                     case 1582:
-                        this.battle.combatantManager.statusAreaIDBlock('Poison',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.statusAreaIDBlock('Poison',this.effect[1],this.userCombatant.id,this.targetTile.tilePosition)
                     break
                     case 1583:
                         this.userCombatant.statusEffect('Single Attack Strength',this.effect[1])
@@ -4712,7 +4712,7 @@ class attack{
                             this.battle.combatantManager.damageArea(this.effect[1],this.user,-1,this.targetCombatant.tilePosition)
                         }
                     break
-                    case 316:
+                    case 316: case 1655:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.randomStatusInstant(this.effect[1],[1])
                     break
@@ -5539,6 +5539,10 @@ class attack{
                     break
                     case 1614:
                         this.targetCombatant.multiplyStatus('Jinx',this.effect[0])
+                    break
+                    case 1616:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect(['Burn','Freeze','Shock','Weak'][this.battle.turn.main%4],this.effect[1])
                     break
                     case 1619:
                         this.targetCombatant.statusEffect('Jinxshock',this.effect[0])
@@ -6433,7 +6437,7 @@ class attack{
                         for(let a=0,la=this.targetCombatant.length;a<la;a++){
                             this.targetCombatant[a].takeDamage(this.effect[0],this.user)
                             if(this.amplify){
-                                if(this.targetCombatant[a].life<this.effect[1]){
+                                if(this.targetCombatant[a].life<=this.effect[1]){
                                     this.targetCombatant[a].life=0
                                 }
                             }

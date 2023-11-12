@@ -546,6 +546,15 @@ class group{
         }
         return total
     }
+    specNumber(spec){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].spec.includes(spec)){
+                total++
+            }
+        }
+        return total
+    }
     classNumber(classes){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1345,6 +1354,7 @@ class group{
         }
     }
     deathEffect(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         for(let a=0,la=this.cards.length;a<la;a++){
             switch(this.cards[a].attack){
                 case -8:
@@ -2053,7 +2063,7 @@ class group{
                         this.cards[a].usable=true
                     }else{
                         this.cards[a].deSize=true
-                        if(this.cards[a].spec.includes(1)||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.battle.relicManager.hasRelic(11,this.player)){
+                        if(this.cards[a].spec.includes(1)||(this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41))&&this.battle.relicManager.hasRelic(11,this.player)){
                             this.cards[a].exhaust=true
                         }
                     }
@@ -2192,7 +2202,11 @@ class group{
                             this.cards[b].select=false
                         }else{
                             this.cards[b].deSize=true
-                            if(this.cards[b].spec.includes(1)||(this.cards[b].spec.includes(5)||this.cards[b].spec.includes(41))&&this.battle.relicManager.hasRelic(11,this.player)){
+                            if(
+                                this.cards[b].spec.includes(1)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(1)||
+                                (this.cards[b].spec.includes(5)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(5)||
+                                this.cards[b].spec.includes(41)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(41))&&
+                                this.battle.relicManager.hasRelic(11,this.player)){
                                 this.cards[b].exhaust=true
                             }
                         }
@@ -2331,8 +2345,8 @@ class group{
                                 this.cards[b].deSize=true
                                 if(
                                     this.cards[b].spec.includes(1)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(1)||
-                                    this.cards[b].spec.includes(5)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(5)||
-                                    this.cards[b].spec.includes(41)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(41)||
+                                    (this.cards[b].spec.includes(5)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(5)||
+                                    this.cards[b].spec.includes(41)||this.cards[b].spec.includes(12)&&this.cards[b].reality[this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0].includes(41))&&
                                     this.battle.relicManager.hasRelic(11,this.player)){
                                     this.cards[b].exhaust=true
                                 }
@@ -2707,7 +2721,8 @@ class group{
                             this.cards[a].attack==1405||this.cards[a].attack==1443||this.cards[a].attack==1444||this.cards[a].attack==1455||this.cards[a].attack==1485||
                             this.cards[a].attack==1504||this.cards[a].attack==1616||this.cards[a].attack==1622||this.cards[a].attack==1623||this.cards[a].attack==1625||
                             this.cards[a].attack==1626||this.cards[a].attack==1627||this.cards[a].attack==1628||this.cards[a].attack==1630||this.cards[a].attack==1635||
-                            this.cards[a].attack==1642&&this.battle.attackManager.energy==4||this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654
+                            this.cards[a].attack==1642&&this.battle.attackManager.energy==4||this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||
+                            this.cards[a].attack==1655
                             )&&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
                             a--
