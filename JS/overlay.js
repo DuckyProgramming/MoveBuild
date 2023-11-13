@@ -218,9 +218,13 @@ class overlay{
                 switch(args[2]){
                     case 0:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.coc)
+                        let tick=0
                         for(let a=0,la=list[args[1]].length;a<la;a++){
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+a%8*100,this.layer.height/2-130+floor(a/8)%3*130,list[args[1]][a],args[0],types.card[list[args[1]][a]].list,-1))
-                            this.cards[a].upSize=true
+                            if(types.card[list[args[1]][a]].levels[0].class==3){
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[args[1]][a],args[0],types.card[list[args[1]][a]].list,-1))
+                                this.cards[tick].upSize=true
+                                tick++
+                            }
                         }
                     break
                 }

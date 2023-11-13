@@ -10,44 +10,16 @@ lunar fractals
 
 
 
+old gentleman cards (sine wave)
 
+deport
 
-zlonk - does damage, draw a card, but no more draw this turn
-
-all shivs apply 1 (burn or freeze)
-
-enter a random stance, get a card to leave the stance
-
-another faith card
-
-enter a stance and get card that uses that stance (random attack for wrath, for example)
-
-cancel stance instantly
-
-purity but you get literally 1 shiv
-
-phantasm gets hookshot
-
-breaking bad - breaking shot but worse, but gives you drugs
-
-limit break card
-
-add another political party card
-
-alternate poison
-
-
-
-
+spiked shield in junkyard
 
 
 
 
 {
-very painful strike
-
-festive wreath
-
 last many junkyards
 3 more movement
 }

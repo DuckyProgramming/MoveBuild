@@ -13,7 +13,7 @@ function setup(){
     //stage.scene='tier'
     //current.overlayManager=new overlayManager(current.layer,current,1)
 
-    /*current.menu.combatant=[10,9]
+    /*current.menu.combatant=[10]
     current.menu.deck=[0,0]
     current.startGame()
     transition.trigger=false

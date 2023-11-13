@@ -212,6 +212,7 @@ class card{
             case -33: string+=`Take ${effect[0]} Damage\nYou Cannot Move\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
             case -34: string+=`When Drawn,\nHidden Swap ${effect[0]} Times`; break
             case -35: string+=`Set Energy to 0`; break
+            case -36: string+=`Take ${effect[0]} Damage\nIf Discarded,\nGain ${effect[1]} Poison`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590: case 1139: case 1191:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -1857,7 +1858,40 @@ class card{
             case 1653: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nThe First Card in Hand\nBecomes Free`; break
             case 1654: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nDiscards to Hand`; break
             case 1655: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Random Debuff\nDiscards to Hand`; break
+            case 1656: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Max HP\nAdd a Pain\nStrike to Hand`; break
+            case 1657: string+=`Next Attack\n${effect[0]} More Damage and\nApplies ${effect[1]} Regeneration`; break
+            case 1658: string+=`Shivs Apply ${effect[0]} Freeze`; break
+            case 1659: string+=`Shivs Apply ${effect[0]} Burn`; break
+            case 1660: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nYou Cannot Draw\nCards This Turn`; break
+            case 1661: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${effect[1]} Times\nLess Damage If\nTarget Has Block`; break
+            case 1662: string+=`4th Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Mixed`; break
+            case 1663: string+=`5th Card in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Silence`; break
+            case 1664: string+=`Gain ${effect[0]} Faith\nNext Turn`; break
+            case 1665: string+=`Cards This Turn\nCosting More Than 0\nDiscard to Hand`; break
+            case 1666: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1667: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${effect[1]} More When\nAnother Card Discarded`; break
+            case 1668: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Poison Thorn${effect[1]!=1?`s`:``}\nto Hand`; break
+            case 1669: string+=`Create 1 Plant Tile\nAnywhere`; break
+            case 1670: string+=`Create a Plant Tile\nUnder All Combatants`; break
+            case 1671: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Combo\nLose ${effect[2]} Combo Next Turn`; break
+            case 1672: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Something is Ahead,\nApply ${effect[1]} Bruise`; break
+            case 1673: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nNext Attack This Turn\nDeals ${effect[1]} More Damage`; break
+            case 1674: string+=`Target Moves ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIn a Random Direction`; break
+            case 1675: string+=`Gain ${effect[0]} Faith\nLose ${effect[1]} Health\nExhaust ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
+            case 1676: string+=`Enter a Random Stance\nAdd ${effect[0]} Card${effect[0]!=1?`s`:``} of the\nCorresponding Class`; break
+            case 1677: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHaste: Exit Stance`; break
+            case 1678: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSturdy: Exit Stance`; break
+            case 1679: string+=`Add ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand\n${effect[0]!=1?`They Get`:`It Gets`} +${effect[1]} Damage`; break
+            case 1680: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDiscard Your Hand\nAdd ${effect[1]} Shiv${effect[1]!=1?`s`:``}\nto Your Hand`; break
+            case 1681: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose ${effect[1]} Currency`; break
+            case 1682: string+=`Move to\nEnd of Board\nAnd Collide`; break
 
+            case 1683: string+=`Apply ${effect[0]} Mixed`; break
+            case 1684: string+=`Apply ${effect[0]} Silence`; break
+            
+
+
+            //-36
 
 
 
@@ -1966,24 +2000,28 @@ class card{
         return string
     }
     callDiscardEffect(){
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         switch(this.attack){
             case -1:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Weak',this.effect[0])
+                userCombatant.statusEffect('Weak',this.effect[0])
             break
             case -2:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Frail',this.effect[0])
+                userCombatant.statusEffect('Frail',this.effect[0])
             break
             case -4:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0],-1)
+                userCombatant.takeDamage(this.effect[0],-1)
             break
             case -7:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0]*(this.battle.cardManagers[this.player].hand.cards.length-1),-1)
+                userCombatant.takeDamage(this.effect[0]*(this.battle.cardManagers[this.player].hand.cards.length-1),-1)
+            break
+            case -36:
+                userCombatant.statusEffect('Poison',this.effect[1])
             break
             case 187:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[1],-1)
+                userCombatant.takeDamage(this.effect[1],-1)
             break
             case 1255:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Damage Down',this.effect[2])
+                userCombatant.statusEffect('Damage Down',this.effect[2])
             break
         }
     }
@@ -2122,6 +2160,9 @@ class card{
                 if(this.cost>0){
                     this.cost--
                 }
+            break
+            case 1667:
+                this.effect[0]+=this.effect[1]
             break
         }
     }

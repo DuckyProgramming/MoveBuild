@@ -124,7 +124,8 @@ class combatant{
             'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
-            'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw',
+            'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
+            'Hook','Temporary Single Damage',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -149,7 +150,8 @@ class combatant{
                 0,0,0,0,0,0,1,0,1,0,//20
                 0,0,0,0,1,2,2,2,1,2,//21
                 1,0,2,0,0,0,0,1,0,0,//22
-                2,0,0,0,
+                2,0,0,0,0,0,0,0,1,2,//23
+                1,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -174,7 +176,8 @@ class combatant{
                 2,1,2,2,1,0,3,1,1,3,//20
                 2,0,2,0,1,0,2,0,1,0,//21
                 2,1,1,0,2,1,0,0,2,0,//22
-                1,1,2,2,
+                1,1,2,2,1,2,2,3,3,2,//23
+                2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4169,6 +4172,9 @@ class combatant{
             if(userCombatant.status.main[175]>0){
                 damage-=userCombatant.status.main[175]
             }
+            if(userCombatant.status.main[231]>0){
+                damage+=userCombatant.status.main[231]
+            }
             if(userCombatant.status.main[6]!=0){
                 totalStr+=userCombatant.status.main[6]
             }
@@ -4267,6 +4273,10 @@ class combatant{
                 }
                 if(userCombatant.status.main[171]>0){
                     this.statusEffect('Regeneration',userCombatant.status.main[171])
+                }
+                if(userCombatant.status.main[224]>0){
+                    this.statusEffect('Regeneration',userCombatant.status.main[224])
+                    userCombatant.status.main[224]=0
                 }
                 if(userCombatant.team==this.team&&this.team==0&&this.battle.modded(12)){
                     hit=false
@@ -5324,7 +5334,7 @@ class combatant{
                     case 120: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Step',types.card),0,this.type)}} break
                     case 124: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[a]; break
                     case 125: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)}} break
-                    case 129: this.faith+=this.status.main[a]; break
+                    case 129: case 229: this.faith+=this.status.main[a]; break
                     case 130: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
                     case 131: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}; break
                     case 132: this.enterStance(1); break

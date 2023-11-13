@@ -988,6 +988,10 @@ class turn{
                                 }else{
                                     this.battle.activateCombatant(2,this.type==4?this.userCombatant.id:this.userCombatant.target)
                                 }
+                                if(this.userCombatant.getStatus('Mixed')>0){
+                                    this.userCombatant.status.main[findList('Mixed',this.userCombatant.status.name)]--
+                                    this.userCombatant.goal.anim.direction+=180
+                                }
                             }
                         }
                         if(this.userCombatant.getStatus('Jagged Bleed')>0){
@@ -1016,6 +1020,10 @@ class turn{
                             if(this.target.length>0){
                                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
                                 this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                                if(this.userCombatant.getStatus('Mixed')>0){
+                                    this.userCombatant.status.main[findList('Mixed',this.userCombatant.status.name)]--
+                                    this.userCombatant.goal.anim.direction+=180
+                                }
                             }
                         }
                         this.remove=true
@@ -4634,11 +4642,26 @@ class turn{
                     }
                     switch(this.attackClass){
                         case 1:
-                            if(this.userCombatant.status.main[0]>0){
-                                this.userCombatant.status.main[0]--
+                            if(this.userCombatant.getStatus('Double Damage')>0){
+                                this.userCombatant.status.main[findList('Double Damage',this.userCombatant.status.name)]--
                             }
-                            if(this.userCombatant.status.main[12]>0){
-                                this.userCombatant.status.main[12]=0
+                            if(this.userCombatant.getStatus('Single Damage')>0){
+                                this.userCombatant.status.main[findList('Single Damage',this.userCombatant.status.name)]=0
+                            }
+                            if(this.userCombatant.getStatus('Triple Damage')>0){
+                                this.userCombatant.status.main[findList('Triple Damage',this.userCombatant.status.name)]--
+                            }
+                            if(this.userCombatant.getStatus('1.5x')>0){
+                                this.userCombatant.status.main[findList('1.5x',this.userCombatant.status.name)]--
+                            }
+                            if(this.userCombatant.getStatus('Double Damage-1')>0){
+                                this.userCombatant.status.main[findList('Double Damage-1',this.userCombatant.status.name)]--
+                            }
+                            if(this.userCombatant.getStatus('No Damage')>0){
+                                this.userCombatant.status.main[findList('No Damage',this.userCombatant.status.name)]--
+                            }
+                            if(this.userCombatant.getStatus('Temporary Single Damage')>0){
+                                this.userCombatant.status.main[findList('Temporary Single Damage',this.userCombatant.status.name)]--
                             }
                         break
                     }
