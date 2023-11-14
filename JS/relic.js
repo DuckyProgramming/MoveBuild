@@ -1259,6 +1259,22 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('+2',-8,0)
                 break
+                case 'Offcolor Card':
+                    displaySymbol(this.layer,-11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-11,0,77,0,0.6,this.fade)
+                break
+                case 'Take All Cards':
+                    displaySymbol(this.layer,-11,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,11,0,8,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('+',-11,0)
+                    this.layer.text('+',0,0)
+                    this.layer.text('+',11,0)
+                break
 
             }
             if(value){

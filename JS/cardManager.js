@@ -833,6 +833,11 @@ class cardManager{
     deCardValueless(name){
         return this.reserve.deCard(-1,name)+this.discard.deCard(-1,name)+this.hand.deCard(-1,name)
     }
+    reCard(name,type){
+        this.reserve.reCard(name,type)
+        this.discard.reCard(name,type)
+        this.hand.reCard(name,type)
+    }
     fatigueNumber(){
         return this.reserve.fatigueNumber()+this.hand.fatigueNumber()+this.discard.fatigueNumber()
     }

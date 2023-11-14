@@ -117,6 +117,12 @@ class overlay{
                             this.cards[a].upSize=true
                             list[args[1]].splice(index,1)
                         }
+                        if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
+                            list=variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            let index=floor(random(0,list[args[1]].length))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-this.options*60-120,this.layer.height/2+20,list[args[1]][index],args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:types.card[list[args[1]][index]].list,-1))
+                            this.cards[this.cards.length-1].upSize=true
+                        }
                     break
                     case 1:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[0])
@@ -511,6 +517,12 @@ class overlay{
                 if(!this.battle.modded(83)){
                     this.layer.rect(this.layer.width/2,this.layer.height/2+125,120,40,10)
                 }
+                if(this.battle.relicManager.hasRelic(173,this.player)){
+                    this.layer.rect(this.layer.width/2,this.layer.height/2+170,120,40,10)
+                }
+                if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
+                    this.layer.rect(this.layer.width/2-120-this.options*60,this.layer.height/2,160,200,10)
+                }
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
                 switch(this.args[0]){
@@ -525,6 +537,9 @@ class overlay{
                         this.layer.textSize(8)
                         this.layer.text('2 Max HP',this.layer.width/2,this.layer.height/2+140)
                     }
+                }
+                if(this.battle.relicManager.hasRelic(173,this.player)){
+                    this.layer.text('Select All',this.layer.width/2,this.layer.height/2+170)
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     this.cards[a].fade=1
@@ -1132,7 +1147,7 @@ class overlay{
                 break
                 case 3:
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].deSize){
+                        if((pointInsideBox({position:inputs.rel},this.cards[a])||this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170},width:120,height:40}))&&!this.cards[a].deSize){
                             switch(this.args[0]){
                                 case 0:
                                     if(this.setupArgs[2]==2||this.setupArgs[2]==4){
@@ -1152,7 +1167,7 @@ class overlay{
                             this.cards[a].deSize=true
                             this.cards[a].upSize=false
                             this.taken++
-                            if(this.taken>=this.takable){
+                            if(this.taken>=this.takable&&!(this.battle.relicManager.hasRelic(173,this.player)&&pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2+170},width:120,height:40})&&a!=la-1)){
                                 this.active=false
                                 for(let b=0,lb=this.cards.length;b<lb;b++){
                                     this.cards[b].deSize=true
@@ -1581,7 +1596,7 @@ class overlay{
                 break
                 case 3:
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((int(key)+9)%10==a&&!this.cards[a].deSize){
+                        if(((int(key)+9)%10==a||this.battle.relicManager.hasRelic(173,this.player)&&(key=='t'||key=='T'))&&!this.cards[a].deSize){
                             switch(this.args[0]){
                                 case 0:
                                     if(this.setupArgs[2]==2||this.setupArgs[2]==4){
@@ -1601,7 +1616,7 @@ class overlay{
                             this.cards[a].deSize=true
                             this.cards[a].upSize=false
                             this.taken++
-                            if(this.taken>=this.takable){
+                            if(this.taken>=this.takable&&!(this.battle.relicManager.hasRelic(173,this.player)&&(key=='t'||key=='T')&&a!=la-1)){
                                 this.active=false
                                 for(let b=0,lb=this.cards.length;b<lb;b++){
                                     this.cards[b].deSize=true

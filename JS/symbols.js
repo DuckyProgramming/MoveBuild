@@ -4978,6 +4978,14 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.stroke(80,fade)
             layer.rect(0,0,12,16,2)
         break
+        case 77:
+            layer.fill(150,fade)
+            layer.quad(0,0,0,-6,-6,-6,-2,0)
+            layer.quad(0,0,0,6,6,6,2,0)
+            layer.fill(125,fade)
+            layer.quad(0,0,6,0,6,-6,0,-2)
+            layer.quad(0,0,-6,0,-6,6,0,2)
+        break
     }
     layer.pop()
 }
@@ -5055,4 +5063,5 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 74-Retain Block
 75-Extra Turn
 76-Wide Card
+77-offcolor
 */

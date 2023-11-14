@@ -528,6 +528,13 @@ class group{
         }
         return done
     }
+    reCard(name,type){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].name==name){
+                this.cards[a]=new card(this.layer,this.battle,this.player,this.cards[a].position.x,this.cards[a].position.y,type,this.cards[a].level,this.cards[a].color,this.cards[a].id)
+            }
+        }
+    }
     totalCost(){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -607,7 +614,7 @@ class group{
     falsedSwap(){
         let list=[]
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(!this.cards[a].spec.includes(12)){
+            if(!this.cards[a].spec.includes(12)&&this.cards[a].attack!==-34){
                 list.push(a)
             }
         }
@@ -1078,6 +1085,7 @@ class group{
                 &&!((effect==20||effect==24)&&this.cards[a].effect.length<=0)
                 &&!(effect==21&&!this.removable(a))
                 &&!(effect==22&&this.cards[a].spec.includes(39))
+                &&!(effect==26&&!this.cards[a].spec.includes(35))
                 ){
                     list.push(a)
                 }
@@ -1229,6 +1237,9 @@ class group{
                         this.battle.cardManagers[this.player].reserve.slideTop()
                         this.battle.cardManagers[this.player].reserve.cards.push(copyCard(this.cards[index]))
                         this.battle.cardManagers[this.player].reserve.slideTop()
+                    break
+                    case 26:
+                        this.cards[index].cost-=args[0]
                     break
 
                 }

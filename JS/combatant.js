@@ -7528,13 +7528,13 @@ class combatant{
                 }else{
                     let type=0
                     for(let a=0,la=1+(this.battle.modded(71)?1:0);a<la;a++){
-                        if(this.battle.modded(72)&&floor(random(0,2))==0&&this.name!='Modicum'){
+                        if(this.battle.modded(72)&&floor(random(0,2))==0&&this.initialName!='Modicum'){
                             this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Modicum',types.combatant),this.goal.anim.direction)
                         }
-                        if(this.battle.modded(92)&&this.name!='Bee'){
+                        if(this.battle.modded(92)&&this.initialName!='Bee'){
                             this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Bee',types.combatant),this.goal.anim.direction)
                         }
-                        if(this.battle.modded(141)&&floor(random(0,2))==0&&this.name!='Soul'&&(this.battle.encounter.class==1||this.battle.encounter.class==2)){
+                        if(this.battle.modded(141)&&floor(random(0,2))==0&&this.initialName!='Soul'&&(this.battle.encounter.class==1||this.battle.encounter.class==2)){
                             this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
                         }
                         if(this.battle.modded(29)){

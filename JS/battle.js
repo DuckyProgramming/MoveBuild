@@ -53,6 +53,7 @@ class battle{
     create(){
         graphics.combatant=[]
         constants.collisionDamage=4
+        game.theme=0
         this.players=this.player.length
         this.initialGraphics()
         this.initialManagers()
@@ -972,6 +973,25 @@ class battle{
                     this.layer.fill(0,this.anim.defeat)
                     this.layer.noStroke()
                     this.layer.rect(this.layer.width/2,this.layer.height/2,this.layer.width,this.layer.height)
+                }
+                if(game.theme>0){
+                    switch(game.theme){
+                        case 1:
+                            this.layer.fill(255,0,0,0.1)
+                        break
+                        case 2:
+                            this.layer.fill(150,0,255,0.1)
+                        break
+                        case 3:
+                            this.layer.fill(255,255,0,0.1)
+                        break
+                    }
+                    this.layer.noStroke()
+                    for(let a=0,la=10;a<la;a++){
+                        for(let b=0,lb=4;b<lb;b++){
+                            this.layer.triangle(this.layer.width*(b%2),this.layer.height*floor(b/2),3+3*a+(this.layer.width-6-6*a)*(b%2),this.layer.height*floor(b/2),this.layer.width*(b%2),3+3*a+(this.layer.height-6-6*a)*floor(b/2))
+                        }
+                    }
                 }
             break
             case 'replay':

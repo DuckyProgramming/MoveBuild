@@ -104,6 +104,7 @@ class card{
 
             this.strike=this.name.includes('Strike')
             this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'
+            this.colorful=this.attack==1691||this.attack==1692||this.attack==1693||this.attack==1694
 
             this.remove=false
 
@@ -213,6 +214,7 @@ class card{
             case -34: string+=`When Drawn,\nHidden Swap ${effect[0]} Times`; break
             case -35: string+=`Set Energy to 0`; break
             case -36: string+=`Take ${effect[0]} Damage\nIf Discarded,\nGain ${effect[1]} Poison`; break
+            case -37: string+=`Spends Draw as Retain`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590: case 1139: case 1191:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: string+=`Add ${this.calculateEffect(effect[0],1)} Block`; break
@@ -1468,7 +1470,7 @@ class card{
             case 1260: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDiscard ${effect[1]} Random Card${effect[1]!=1?`s`:``}\nAmplify:\nDraw ${effect[2]} More\nCard${effect[2]!=1?`s`:``} Per Turn`; break
             case 1261: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}\nDiscard ${effect[3]} Random Card${effect[3]!=1?`s`:``}`; break
             case 1262: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nGain ${effect[2]} Energy`; break
-            case 1263: string+=`Inflict:\n${effect[0]} Bleed, ${effect[1]} Poison,\n${effect[2]} Burn, ${effect[3]} Shock\n${effect[4]} Weak, ${effect[5]} Vulnerable\n${effect[6]} Frail, ${effect[7]} Freeze`; break
+            case 1263: string+=`Inflict:\n${effect[0]} Poison, ${effect[1]} Shock,\n${effect[2]} Freeze, ${effect[3]} Burn\n${effect[4]} Weak, ${effect[5]} Vulnerable\n${effect[6]} Frail,${effect[7]} Anti-Control\n${effect[8]} Jinx`; break
             case 1264: string+=`Have ${effect[0]} Energy`; break
             case 1265: string+=`Have ${effect[0]} Energy\nA Random Card\nCosts ${effect[1]} More`; break
             case 1266: string+=`Roll X${effect[0]!=0?`+${effect[0]}`:``} Dice\nof Value 1-3 and\nDeal That Much Damage\nWhere X = Hand Size\nDiscard Your Hand`; break
@@ -1778,7 +1780,7 @@ class card{
             case 1571: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEnd Creating a Plant Tile`; break
             case 1572: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nReduce Balance\nLimit by ${effect[1]}`; break
             case 1573: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Energy\non Even Turns`; break
-            case 1574: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nReduce All\nCountdowns By ${effect[0]}`; break
+            case 1574: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nReduce All\nCountdowns By ${effect[1]}`; break
             case 1575: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nMove Something\nBehind You`; break
             case 1576: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGet a Random\nInstant Stance Card`; break
             case 1577: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Burn${effect[1]!=1?`s`:``} to Hand`; break
@@ -1885,14 +1887,24 @@ class card{
             case 1680: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDiscard Your Hand\nAdd ${effect[1]} Shiv${effect[1]!=1?`s`:``}\nto Your Hand`; break
             case 1681: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose ${effect[1]} Currency`; break
             case 1682: string+=`Move to\nEnd of Board\nAnd Collide`; break
-
             case 1683: string+=`Apply ${effect[0]} Mixed`; break
             case 1684: string+=`Apply ${effect[0]} Silence`; break
+            case 1685: string+=`Shuffle Peak and Trough\nof Equivalent Level\ninto Draw Pile`; break
+            case 1686: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nCards Played This Turn`; break
+            case 1687: string+=`Even Position:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nOdd Posiiton:\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 1688: string+=`Target Moves As Far\nAway as Possible`; break
+            case 1689: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReduce Another\nCountdown By ${effect[1]}`; break
+            case 1690: string+=`Apply ${effect[0]}X Shock\nWhere X = Number\nof Cards in Hand\nDiscard Your Hand`; break
+            case 1691: string+=`Exhaust Your Hand\nEnd Your Turn\nRed: Gain ${effect[0]} Max HP Each\nOtherwise: Tone to Red\nand Gain ${effect[1]} Strength Each`; break
+            case 1692: string+=`Apply ${effect[0]} Weak\nPurple: Add Last Quarter\nto Discard Pile\nOtherwise: Tone to Purple\nand Add Self`; break
+            case 1693: string+=`Remove ${effect[0]} Strength\nReset Theme`; break
+
+            case 1694: string+=`Remove All Fatigues\nYellow: Replace\nWith Barriers\nOtherwise: Tone to Yellow\nReplace With Quicksands`; break
+
+            case 1695: string+=`50%: Draw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 1696: string+=`50%: Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+
             
-
-
-            //-36
-
 
 
 
@@ -2354,6 +2366,9 @@ class card{
     }
     retained(){
         switch(this.attack){
+            case -37:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Temporary Draw',-1)
+            break
             case 757:
                 if(this.cost>0){
                     this.cost--
@@ -2484,6 +2499,35 @@ class card{
                     }
                 }
                 this.layer.noFill()
+            }else if(this.colorful){
+                this.layer.fill(255,255,150,this.fade*this.anim.select)
+                this.layer.noStroke()
+                this.layer.rect(0,0,this.width+15,this.height+15,10)
+                this.layer.fill(20,20,20,this.fade)
+                this.layer.stroke(50,50,50,this.fade)
+                this.layer.strokeWeight(5)
+                this.layer.rect(0,0,this.width,this.height,5)
+                this.layer.noFill()
+                this.layer.strokeWeight(1)
+                this.layer.stroke(255,255,50,this.fade)
+                this.layer.rect(0,0,this.width-4,this.height-4,3)
+                this.layer.line(-this.width/2+2,-this.height/2+6,-this.width/2+10,-this.height/2+6)
+                this.layer.line(this.width/2-2,-this.height/2+6,this.width/2-10,-this.height/2+6)
+                this.layer.arc(-this.width/2+16,-this.height/2+6,12,8,-180,-90)
+                this.layer.arc(this.width/2-16,-this.height/2+6,12,8,-90,0)
+                this.layer.line(this.width/2-4,this.height/2-12,this.width/2-4,this.height/2-24)
+                this.layer.line(this.width/2-4,this.height/2-12,this.width/2-12,this.height/2-4)
+                this.layer.line(this.width/2-12,this.height/2-4,this.width/2-24,this.height/2-4)
+                this.layer.line(this.width/2-6,this.height/2-6,this.width/2-6,this.height/2-18)
+                this.layer.line(this.width/2-6,this.height/2-6,this.width/2-18,this.height/2-6)
+                this.layer.line(this.width/2-6,this.height/2-18,this.width/2-4,this.height/2-20)
+                this.layer.line(this.width/2-18,this.height/2-6,this.width/2-20,this.height/2-4)
+                this.layer.fill(255,255,50,this.fade)
+                this.layer.ellipse(-this.width/2+6,this.height/2-6,3)
+                this.layer.quad(this.width/2-10,this.height/2-10,this.width/2-14,this.height/2-11,this.width/2-18,this.height/2-18,this.width/2-11,this.height/2-14)
+                this.layer.noFill()
+                this.layer.stroke(50,50,50,this.fade)
+                this.layer.strokeWeight(5)
             }else{
                 this.layer.fill(colorDetail.active[0],colorDetail.active[1],colorDetail.active[2],this.fade*this.anim.select)
                 this.layer.noStroke()
@@ -2524,21 +2568,22 @@ class card{
             if(spec.includes(12)){
                 this.layer.line(-this.width/2,10,this.width/2,10)
             }
-            if(spec.includes(13)){
+            if(this.colorful){
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+            }else{
                 this.layer.noStroke()
                 this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+            }
+            if(spec.includes(13)){
                 this.layer.textSize(24)
                 this.layer.text('???',0,0)
             }else if(spec.includes(39)){
-                this.layer.noStroke()
-                this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(16)
                 this.layer.text('Burning',0,-10)
                 this.layer.textSize(8)
                 this.layer.text('Gain 1 Burn\nand Reveal',0,10)
             }else if(spec.includes(8)){
-                this.layer.noStroke()
-                this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(16)
                 if(spec.includes(10)){
                     this.layer.text('Slimed',0,-12)
@@ -2547,8 +2592,6 @@ class card{
                     this.layer.text('Slimed',0,0)
                 }
             }else if(spec.includes(10)){
-                this.layer.noStroke()
-                this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
                 this.layer.textSize(16)
                 this.layer.text('Smoked',0,0)
             }else{
@@ -2618,7 +2661,11 @@ class card{
                         this.layer.text(this.cost,-this.width/2+10,-this.height/2+13)
                     }
                 }
-                this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+                if(this.colorful){
+                    this.layer.fill(mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+                }else{
+                    this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+                }
                 if(this.name.substr(0,2)!='-h'){
                     if(spec.includes(34)){
                         this.layer.rotate(90)
@@ -2637,8 +2684,16 @@ class card{
                             this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
                         }
                         if(!variants.blind){
-                            this.layer.fill(0,this.fade)
-                            this.layer.textSize(name=='Charred\nLizard'?6:8)
+                            if(this.colorful){
+                                this.layer.fill(240,this.fade)
+                            }else{
+                                this.layer.fill(0,this.fade)
+                            }
+                            if(this.attack==1691||this.attack==1692||this.attack==1693||this.attack==1694){
+                                this.layer.textSize(7)
+                            }else{
+                                this.layer.textSize(name=='Charred\nLizard'?6:8)
+                            }
                             if(spec.includes(12)){
                                 this.layer.text(this.description(attack[0],effect[0],reality[0],target),0,-15)
                                 this.layer.text(this.description(attack[1],effect[1],reality[1],target),0,this.height/2-25)

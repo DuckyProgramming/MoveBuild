@@ -918,6 +918,7 @@ function updateMouse(layer){
 function quickAdd(name){
 	if(findName(name,types.card)>=0){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
 		return 'Added'
 	}else{
 		return 'Invalid'
@@ -926,6 +927,7 @@ function quickAdd(name){
 function quickAddFull(name,group,level,color){
 	if(findName(name,types.card)>=0){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).add(findName(name,types.card),level,color)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].getList(group).cards.length-1].colorful=true
 		return 'Added'
 	}else{
 		return 'Invalid'
@@ -1018,8 +1020,8 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	let box=``
-	let goal=50+125*game.playerNumber+30+20+15+30+60
-	let arbitrary=1650
+	let goal=50+125*game.playerNumber+30+20+15+30+100
+	let arbitrary=1750
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/50				${current.cardManagers[0].listing.card[a+1][0].length-50}
@@ -1044,7 +1046,7 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+4][3].length-30}
 		Junkyard:
-	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/60				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-60}
+	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/100				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-100}
 			`)
 }
 function shut(){
