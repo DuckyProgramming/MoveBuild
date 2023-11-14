@@ -146,7 +146,8 @@ class attack{
             case 1623: case 1625: case 1626: case 1627: case 1628: case 1629: case 1630: case 1631: case 1633: case 1634:
             case 1635: case 1640: case 1642: case 1649: case 1651: case 1652: case 1653: case 1654: case 1655: case 1656:
             case 1660: case 1661: case 1662: case 1663: case 1683: case 1684: case 1666: case 1667: case 1668: case 1678:
-            case 1686: case 1687: case 1689: case 1690: case 1692: case 1693:
+            case 1686: case 1687: case 1689: case 1690: case 1692: case 1693: case 1697: case 1699: case 1703: case 1704:
+            case 1705: case 1706: case 1707: case 1708:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1913,6 +1914,26 @@ class attack{
                         if(this.userCombatant.stance==3){
                             this.userCombatant.enterStance(0)
                         }
+                    break
+                    case 1703:
+                        this.userManager.draw(this.effect[1])
+                        this.userManager.reserve.addShuffle(findName('Number 2',types.card),0,this.color)
+                    break
+                    case 1704:
+                        this.userManager.draw(this.effect[1])
+                        this.userManager.reserve.addShuffle(findName('Number 3',types.card),0,this.color)
+                    break
+                    case 1705:
+                        this.userManager.draw(this.effect[1])
+                        this.userManager.reserve.addShuffle(findName('Number 4',types.card),0,this.color)
+                    break
+                    case 1706:
+                        this.userManager.draw(this.effect[1])
+                        this.userManager.reserve.addShuffle(findName('Number 5',types.card),0,this.color)
+                    break
+                    case 1707:
+                        this.userManager.draw(this.effect[1])
+                        this.userManager.reserve.addShuffle(findName('Number 6',types.card),0,this.color)
                     break
 
                 }
@@ -5118,7 +5139,7 @@ class attack{
                     case 850:
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userManager.exhaust.cards.length,this.user)
                     break
-                    case 857: case 1248:
+                    case 857: case 1248: case 1697: case 1698:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     case 865:
@@ -5788,6 +5809,12 @@ class attack{
                         this.targetCombatant.statusEffect('Strength',-this.effect[0])
                         game.theme=0
                     break
+                    case 1699:
+                        if(this.userManager.hand.allEffectArgs(9,[2,this.effect[0]])==this.effect[0]){
+                            this.targetCombatant.takeDamage(this.effect[1],this.user)
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
 
                 }
             break
@@ -6292,6 +6319,23 @@ class attack{
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.userManager.hand.addEffectUp(findName('Shiv',types.card),0,0,0,this.effect[1])
 
+                        }
+                    break
+                    case 1701:
+                        for(let a=0,la=min(this.energy+this.effect[0],100);a<la;a++){
+                            this.userManager.hand.add(findName('Quill',types.card),0,0)
+                        }
+                    break
+                    case 1702:
+                        this.userManager.allEffect(2,1)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Sneeze',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Spike',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.userManager.hand.add(findName('Sharp\nSpike',types.card),0,0)
                         }
                     break
 

@@ -1898,13 +1898,6 @@ types.card=[
             {effect:[18,8],attack:1421,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Sharp\nSpike',rarity:1,list:2,
-        levels:[
-            {effect:[2,13],attack:1376,cost:0,target:[2,1,2],spec:[0],class:1},
-            {effect:[2,20],attack:1376,cost:0,target:[2,1,2],spec:[0],class:1},
-            {effect:[2,25],attack:1376,cost:0,target:[2,1,2],spec:[0],class:1},
-        ],
-    },{
         name:'Plaster',rarity:0,list:2,
         levels:[
             {effect:[1,4],attack:1388,cost:0,target:[0],spec:[4],class:4},
@@ -5652,6 +5645,13 @@ types.card=[
             {effect:[2],attack:1690,cost:0,target:[2,1,1],spec:[],class:1},
             {effect:[3],attack:1690,cost:0,target:[2,1,1],spec:[],class:1},
         ],
+    },{
+        name:'Electromagnet',rarity:1,list:6,
+        levels:[
+            {effect:[8,3],attack:1697,cost:3,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[12,4],attack:1697,cost:3,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[15,5],attack:1697,cost:3,target:[2,1,3],spec:[0,2,35],class:1},
+        ],
     },
 
     //mark 6
@@ -9352,7 +9352,7 @@ types.card=[
         ],
     },
 
-    //mark 10
+    //mark 10    
 
     //mark p
 
@@ -9992,6 +9992,27 @@ types.card=[
             {effect:[5,5],attack:1687,cost:1,target:[2,1,1],spec:[0],class:0},
             {effect:[7,7],attack:1687,cost:1,target:[2,1,1],spec:[0],class:0},
             {effect:[8,8],attack:1687,cost:1,target:[2,1,1],spec:[0],class:0},
+        ],
+    },{
+        name:'Spiky\nPotion',rarity:-10,list:5,
+        levels:[
+            {effect:[20],attack:1698,cost:4,target:[2,1,3],spec:[0,1,2,35],class:1},
+            {effect:[28],attack:1698,cost:4,target:[2,1,3],spec:[0,1,2,35],class:1},
+            {effect:[35],attack:1698,cost:4,target:[2,1,3],spec:[0,1,2,35],class:1},
+        ],
+    },{
+        name:'Number 1',rarity:-10,list:9,
+        levels:[
+            {effect:[2,1],attack:1703,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[3,1],attack:1703,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[4,1],attack:1703,cost:0,target:[2,1,2],spec:[],class:1},
+        ],
+    },{
+        name:'Sneezy\nPotion',rarity:-10,list:2,
+        levels:[
+            {effect:[1,2,2],attack:1702,cost:2,target:[0],spec:[0,2,35],class:4},
+            {effect:[1,3,3],attack:1702,cost:2,target:[0],spec:[0,2,35],class:4},
+            {effect:[1,4,4],attack:1702,cost:2,target:[0],spec:[0,2,35],class:4},
         ],
     },
 
@@ -11490,9 +11511,9 @@ types.card=[
     },{
         name:'Pea Shooter\nCrystal',rarity:-1,list:0,
         levels:[
-            {effect:[10,2],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
-            {effect:[14,2],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
-            {effect:[15,3],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[12],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[18],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[22],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
         ],
     },{
         name:'Last\nQuarter',rarity:-1,list:0,
@@ -11500,6 +11521,69 @@ types.card=[
             {effect:[4],attack:1693,cost:1,target:[2,1,6],spec:[1],class:4},
             {effect:[5],attack:1693,cost:1,target:[2,1,6],spec:[1],class:4},
             {effect:[6],attack:1693,cost:1,target:[2,1,6],spec:[1],class:4},
+        ],
+    },{
+        name:'Number 2',rarity:-1,list:0,
+        levels:[
+            {effect:[2,1],attack:1704,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[3,1],attack:1704,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[4,1],attack:1704,cost:0,target:[2,1,2],spec:[],class:1},
+        ],
+    },{
+        name:'Number 3',rarity:-1,list:0,
+        levels:[
+            {effect:[2,1],attack:1705,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[3,1],attack:1705,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[4,1],attack:1705,cost:0,target:[2,1,2],spec:[],class:1},
+        ],
+    },{
+        name:'Number 4',rarity:-1,list:0,
+        levels:[
+            {effect:[2,1],attack:1706,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[3,1],attack:1706,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[4,1],attack:1706,cost:0,target:[2,1,2],spec:[],class:1},
+        ],
+    },{
+        name:'Number 5',rarity:-1,list:0,
+        levels:[
+            {effect:[2,1],attack:1707,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[3,1],attack:1707,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[4,1],attack:1707,cost:0,target:[2,1,2],spec:[],class:1},
+        ],
+    },{
+        name:'Number 6',rarity:-1,list:0,
+        levels:[
+            {effect:[20],attack:1708,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[30],attack:1708,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[40],attack:1708,cost:0,target:[2,1,2],spec:[],class:1},
+        ],
+    },{
+        name:'Sharp\nSpike',rarity:-1,list:0,
+        levels:[
+            {effect:[2,8],attack:1376,cost:0,target:[2,1,2],spec:[0],class:1},
+            {effect:[2,12],attack:1376,cost:0,target:[2,1,2],spec:[0],class:1},
+            {effect:[2,16],attack:1376,cost:0,target:[2,1,2],spec:[0],class:1},
+        ],
+    },{
+        name:'Spike',rarity:-1,list:0,
+        levels:[
+            {effect:[1,2,1],attack:1699,cost:0,target:[2,1,2],spec:[0],class:1},
+            {effect:[1,3,1],attack:1699,cost:0,target:[2,1,2],spec:[0],class:1},
+            {effect:[1,4,1],attack:1699,cost:0,target:[2,1,2],spec:[0],class:1},
+        ],
+    },{
+        name:'Quill',rarity:-1,list:0,
+        levels:[
+            {effect:[2],attack:1700,cost:0,target:[0],spec:[1],class:2},
+            {effect:[3],attack:1700,cost:0,target:[0],spec:[1],class:2},
+            {effect:[4],attack:1700,cost:0,target:[0],spec:[1],class:2},
+        ],
+    },{
+        name:'Sneeze',rarity:-1,list:0,
+        levels:[
+            {effect:[0],attack:1701,cost:-1,target:[0],spec:[],class:4},
+            {effect:[1],attack:1701,cost:-1,target:[0],spec:[],class:4},
+            {effect:[2],attack:1701,cost:-1,target:[0],spec:[],class:4},
         ],
     },
 
@@ -11865,6 +11949,13 @@ types.card=[
             {effect:[3],attack:-34,cost:69,target:[0],spec:[5],class:6},
             {effect:[4],attack:-34,cost:69,target:[0],spec:[5],class:6},
             {effect:[5],attack:-34,cost:69,target:[0],spec:[5],class:6},
+        ],
+    },{
+        name:'Tear of\nTheia',rarity:0,list:12,
+        levels:[
+            {effect:[20],attack:-38,cost:0,target:[0],spec:[4,5],class:6},
+            {effect:[30],attack:-38,cost:0,target:[0],spec:[4,5],class:6},
+            {effect:[40],attack:-38,cost:0,target:[0],spec:[4,5],class:6},
         ],
     },
     

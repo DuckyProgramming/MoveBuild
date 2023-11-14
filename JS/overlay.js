@@ -120,7 +120,7 @@ class overlay{
                         if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
                             list=variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                             let index=floor(random(0,list[args[1]].length))
-                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-this.options*60-120,this.layer.height/2+20,list[args[1]][index],args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:types.card[list[args[1]][index]].list,-1))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+this.options*60+120,this.layer.height/2+20,list[args[1]][index],args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:types.card[list[args[1]][index]].list,-1))
                             this.cards[this.cards.length-1].upSize=true
                         }
                     break
@@ -226,11 +226,11 @@ class overlay{
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.coc)
                         let tick=0
                         for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(types.card[list[args[1]][a]].levels[0].class==3){
+                            //if(types.card[list[args[1]][a]].levels[0].class==3){
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[args[1]][a],args[0],types.card[list[args[1]][a]].list,-1))
                                 this.cards[tick].upSize=true
                                 tick++
-                            }
+                            //}
                         }
                     break
                 }
@@ -521,7 +521,7 @@ class overlay{
                     this.layer.rect(this.layer.width/2,this.layer.height/2+170,120,40,10)
                 }
                 if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
-                    this.layer.rect(this.layer.width/2-120-this.options*60,this.layer.height/2,160,200,10)
+                    this.layer.rect(this.layer.width/2+120+this.options*60,this.layer.height/2,160,200,10)
                 }
                 this.layer.fill(0,this.fade*0.8)
                 this.layer.textSize(30)
