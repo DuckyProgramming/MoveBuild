@@ -105,16 +105,25 @@ class nodeManager{
         switch(type){
             case 0:
                 transition.scene='battle'
-                this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0][floor(random(0,this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0].length))]])
+                let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
+                let index=floor(random(0,list.length))
+                this.battle.setupBattle(types.encounter[list[index]])
+                list.splice(index,1)
             break
             case 1:
                 transition.scene='battle'
                 if(this.battle.modded(69)){
-                    this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0][floor(random(0,this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0].length))]])
+                    let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
+                    let index=floor(random(0,list.length))
+                    this.battle.setupBattle(types.encounter[list[index]])
+                    list.splice(index,1)
                     this.battle.combatantManager.allEffect(24,[2])
                     this.battle.combatantManager.allEffect(3,[5])
                 }else{
-                    this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][1][floor(random(0,this.listing.encounter[this.world][1].length))]])
+                    let list=this.listing.encounter[this.world][1]
+                    let index=floor(random(0,list.length))
+                    this.battle.setupBattle(types.encounter[list[index]])
+                    list.splice(index,1)
                 }
             break
             case 2:

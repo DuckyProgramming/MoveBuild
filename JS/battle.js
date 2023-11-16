@@ -444,7 +444,7 @@ class battle{
     drop(player,type,level,color){
         if(player<this.cardManagers.length){
             if(this.cardManagers[player].discard.add(type,level,color)){
-                if(!this.cardManagers[player].discard.cards[this.cardManagers[player].discard.cards.length-1].spec.includes(5)){
+                if(this.modded(70)&&!this.cardManagers[player].discard.cards[this.cardManagers[player].discard.cards.length-1].spec.includes(5)){
                     this.cardManagers[player].discard.cards[this.cardManagers[player].discard.cards.length-1].spec.push(5)
                 }
             }
@@ -454,7 +454,7 @@ class battle{
     dropDraw(player,type,level,color){
         if(player<this.cardManagers.length){
             if(this.cardManagers[player].reserve.add(type,level,color)){
-                if(!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
+                if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
                     this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
                 }
             }
@@ -464,8 +464,8 @@ class battle{
     dropDrawShuffle(player,type,level,color){
         if(player<this.cardManagers.length){
             if(this.cardManagers[player].reserve.addShuffle(type,level,color)){
-                if(!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
-                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
+                if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.includes(5)){
+                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.push(5)
                 }
             }
             this.cardManagers[player].drop.addDrop(type,level,color)
@@ -474,8 +474,8 @@ class battle{
     dropDrawShuffleEffect(player,type,level,color,index,effect){
         if(player<this.cardManagers.length){
             if(this.cardManagers[player].reserve.addShuffleEffect(type,level,color,index,effect)){
-                if(!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.includes(5)){
-                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cards.length-1].spec.push(5)
+                if(this.modded(70)&&!this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.includes(5)){
+                    this.cardManagers[player].reserve.cards[this.cardManagers[player].reserve.cardShuffledIndex].spec.push(5)
                 }
             }
             this.cardManagers[player].drop.addDrop(type,level,color)
@@ -484,7 +484,7 @@ class battle{
     dropAll(type,level,color){
         for(let a=0,la=this.cardManagers.length;a<la;a++){
             if(this.cardManagers[a].discard.add(type,level,color)){
-                if(!this.cardManagers[a].discard.cards[this.cardManagers[a].discard.cards.length-1].spec.includes(5)){
+                if(this.modded(70)&&!this.cardManagers[a].discard.cards[this.cardManagers[a].discard.cards.length-1].spec.includes(5)){
                     this.cardManagers[a].discard.cards[this.cardManagers[a].discard.cards.length-1].spec.push(5)
                 }
             }
@@ -1201,6 +1201,15 @@ class battle{
                 this.overlayManager.display()
             break
         }
+        if(this.modded(150)){
+            this.layer.noStroke()
+            for(let a=0,la=45;a<la;a++){
+                for(let b=0,la=4;b<lb;b++){
+                    this.layer.fill((a*6+3)*(b*34+9)%240,255,255)
+                    this.layer.rect(10+a*20,530+b*20,20,20)
+                }
+            }
+        }
         this.tutorialManager.display()
     }
     update(scene){
@@ -1468,7 +1477,7 @@ class battle{
                 this.overlayManager.update()
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
                     this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20}),1,1.5,5)
-                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20}),1,1.5,5)
                 }
                 let allClosed=true
                 for(let a=0,la=this.overlayManager.overlays[11].length;a<la;a++){

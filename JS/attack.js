@@ -147,7 +147,7 @@ class attack{
             case 1635: case 1640: case 1642: case 1649: case 1651: case 1652: case 1653: case 1654: case 1655: case 1656:
             case 1660: case 1661: case 1662: case 1663: case 1683: case 1684: case 1666: case 1667: case 1668: case 1678:
             case 1686: case 1687: case 1689: case 1690: case 1692: case 1693: case 1697: case 1699: case 1703: case 1704:
-            case 1705: case 1706: case 1707: case 1708:
+            case 1705: case 1706: case 1707: case 1708: case 1711: case 1714: case 1720: case 1721:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -234,7 +234,7 @@ class attack{
                     this.targetDistance.push(distTargetCombatant(0,this.targetCombatant[a],this.userCombatant))
                 }
             break
-            case 138: case 139: case 175: case 400: case 453: case 516: case 1436:
+            case 138: case 139: case 175: case 400: case 453: case 516: case 1436: case 1709:
                 this.targetCombatant=[]
                 this.direction=[]
                 this.distance=[]
@@ -2737,6 +2737,13 @@ class attack{
                     case -15:
                         this.userCombatant.deStatus('Cannot Move',this.effect[0])
                     break
+                    case -39:
+                        this.userCombatant.statusEffect('Strength',-this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case -40:
+                        this.userManager.hand.unupgrade(this.effect[0])
+                    break
                     case 6:
                         this.userCombatant.statusEffect('Double Damage',this.effect[0])
                     break
@@ -3375,7 +3382,22 @@ class attack{
                     case 1659:
                         this.userCombatant.statusEffect('Shiv Burn',this.effect[0])
                     break
-
+                    case 1715:
+                        this.userManager.hand.cards.reverse()
+                        this.userManager.allEffect(2,53)
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 1717:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                    break
+                    case 1719:
+                        this.userManager.hand.upgrade(this.effect[0])
+                    break
+                    case 1721:
+                        this.targetCombatant.multiplyStatus('Poison',this.effect[0])
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                    break
 
                 }
             break
@@ -4305,6 +4327,14 @@ class attack{
                             this.userCombatant.lowRoll()
                         }
                     break
+                    case 1716:
+                        this.userManager.reserve.addShuffle(findName('Uptick',types.card),this.level,0)
+                        this.userManager.reserve.addShuffle(findName('Downtick',types.card),this.level,game.playerNumber+1)
+                    break
+                    case 1718:
+                        this.userManager.reserve.addShuffle(findName('Buff\nUp',types.card),this.level,0)
+                        this.userManager.reserve.addShuffle(findName('Nerf\nUp',types.card),this.level,game.playerNumber+1)
+                    break
 
                 }
             break
@@ -4687,6 +4717,14 @@ class attack{
                     break
                     case 1665:
                         this.userCombatant.statusEffect('Hook',1)
+                    break
+                    case 1710:
+                        this.userCombatant.combo+=this.effect[0]
+                        this.userCombatant.heal(this.effect[1])
+                    break
+                    case 1712:
+                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.userCombatant.loseMaxHP(this.effect[1])
                     break
 
                 }
@@ -5815,6 +5853,11 @@ class attack{
                             this.userManager.draw(this.effect[2])
                         }
                     break
+                    case 1714:
+                        if(this.userManager.hand.totalCost()==this.effect[0]){
+                            this.targetCombatant.statusEffect('Poison',this.effect[1])
+                        }
+                    break
 
                 }
             break
@@ -6344,7 +6387,7 @@ class attack{
             case 11:
                 for(let a=0,la=this.targetCombatant.length;a<la;a++){
                     switch(this.type){
-                        case 139:
+                        case 139: case 1709:
                             this.targetCombatant[a].takeDamage(this.effect[0]+this.effect[1]*this.combo,this.user)
                         break
                         case 175:

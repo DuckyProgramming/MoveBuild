@@ -3080,9 +3080,9 @@ class combatant{
                     ['Temporary Dexterity',10],['Metallicize',2],['Buffer',1],['Take Half Damage',2],['Intangible',1],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],['Dexterity Per Turn',1],['Counter Combat',2],
                     ['Temporary Damage Up',4],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Counter Combat Turn',4],['Single Counter Block',8],['Invisible',4],['Take Third Damage',2],['Speed Up',1],['Strength Next Turn',3],
                     ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Untargettable From Front',1],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],
-                    ['Block Next Turn Next Turn',20],['Heal on Hit',3],['Take 3/5 Damage',2],['Attack Bleed Turn',2],['Single Attack Bleed',4],['Attack Bleed Combat',1],['Counter Block',3],['Dodge Next Turn',1],['Block Return',5],['Cannot Die',1],
-                    ['Single Damage Block Convert',2],['Triple Block',1],['Dexterity Next Turn',3],['Take Credit',1],['Triple Damage',1],['1.5x Damage',2],['1.5x Block',3],['Decrementing Strength',3],['Block Up',2],['Take Credit Turn',1],
-                    ['Take Credit Block Turn',1],['Damage Up',2],['Temporary Block Up',4],['Block Next Turn Next Turn Next Turn',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],['Heal Per Turn',2],['Temporary Dexterity Next Turn',20]
+                    ['Block Next Turn Next Turn',20],['Heal on Hit',3],['Take 3/5 Damage',2],['Attack Bleed Turn',2],['Single Attack Bleed',4],['Attack Bleed Combat',1],['Counter Block',3],['Dodge Next Turn',1],['Cannot Die',1],['Single Damage Block Convert',2],
+                    ['Triple Block',1],['Dexterity Next Turn',3],['Take Credit',1],['Triple Damage',1],['1.5x Damage',2],['1.5x Block',3],['Decrementing Strength',3],['Block Up',2],['Take Credit Turn',1],['Take Credit Block Turn',1],
+                    ['Damage Up',2],['Temporary Block Up',4],['Block Next Turn Next Turn Next Turn',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],['Heal Per Turn',2],['Temporary Dexterity Next Turn',20]
                 ]
                 for(let a=0,la=2;a<la;a++){
                     let index=floor(random(0,randombuffs.length))
@@ -4509,6 +4509,12 @@ class combatant{
                 if(this.battle.modded(9)&&this.team>0&&this.team<=this.battle.players&&damage>10){
                     this.battle.drop(this.id,findName('Concussion',types.card),0,game.playerNumber+1)
                 }
+                if(user>=0&&user<this.battle.combatantManager.combatants.length){
+                    let userCombatant=this.battle.combatantManager.combatants[user]
+                    if(userCombatant.status.main[202]>0&&damage>=20){
+                        this.statusEffect('Miss',userCombatant.status.main[202])
+                    }
+                }
                 if(user>=0&&user<this.battle.combatantManager.combatants.length&&spec==0){
                     let userCombatant=this.battle.combatantManager.combatants[user]
                     let distance=distTargetCombatant(0,this,userCombatant)
@@ -4518,9 +4524,6 @@ class combatant{
                     if(userCombatant.status.main[139]>0){
                         userCombatant.addBlock(damage)
                         userCombatant.status.main[139]--
-                    }
-                    if(userCombatant.status.main[202]>0&&damage>=20){
-                        this.statusEffect('Miss',userCombatant.status.main[202])
                     }
                     if(userCombatant.status.main[170]>0&&userCombatant.id<this.battle.players){
                         this.battle.currency.money[userCombatant.id]+=damage
@@ -5320,7 +5323,7 @@ class combatant{
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
-                    case 71: case 72: this.combo+=this.status.main[a]; break
+                    case 71: case 72: this.combo=max(0,this.combo+this.status.main[a]); break
                     case 81: this.status.main[findList('Energy Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 83: this.status.main[findList('Double Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 85: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.discard(this.status.main[a])}; break
