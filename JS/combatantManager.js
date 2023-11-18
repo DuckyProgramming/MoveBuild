@@ -316,12 +316,21 @@ class combatantManager{
     }
     statusDupes(name,value){
         let names=[]
+        let numbers=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0||this.combatants[a].construct){
                 if(names.includes(this.combatants[a].name)){
-                    this.combatants[a].statusEffect(name,value)
+                    numbers[names.indexOf(this.combatants[a].name)]++
                 }else{
                     names.push(this.combatants[a].name)
+                    numbers.push(1)
+                }
+            }
+        }
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0||this.combatants[a].construct){
+                if(names.includes(this.combatants[a].name)&&numbers[names.indexOf(this.combatants[a].name)]>=2){
+                    this.combatants[a].statusEffect(name,value)
                 }
             }
         }

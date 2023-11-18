@@ -160,6 +160,9 @@ class cardManager{
     addRandom(group,level,rarity){
         this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player])
     }
+    addRandomCharacter(group,character,level,rarity){
+        this.getList(group).add(this.listing.card[character][rarity][floor(random(0,this.listing.card[character].length))],level,character)
+    }
     addRandomFree(group,level,rarity,variant){
         this.getList(group).addFree(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],variant)
     }

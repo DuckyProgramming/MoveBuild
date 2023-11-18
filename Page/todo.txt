@@ -17,3 +17,126 @@ last many junkyards
 3 more movement
 }
 
+
+
+cursed mode - all cards are upgraded
+but fail 25% of the time
+
+
+
+
+
+tickweapon - ultima weapon
+
+healing shiv - damage or heal crescent
+goop - X damage, 5-x poison
+
+budge
+even energy - +1 energy
+odd energy - -1 energy
+
+ekans charm - draw to 6 cards, is free but has a special rule
+
+
+
+
+
+
+
+
+minimissle - takes even, deals a pitiful amount of damage at long range
+
+deal damage, chance to get a free powerful card next turn
+
+rubber duck
+
+password - takse 1, then 2, then 3, then does damage
+
+binary code - its boolean operator but increases by 1 each time and can be spammed
+
+
+
+reduce a random countdown by 1 for free
+
+add block, reduce a random countdown
+
+
+
+
+4 more countdowns for executor
+
+countdown reduces other countdowns
+
+cauterize - burn and poison countdwon
+
+hailstone - countdown freeze + something else
+
+countdown 2 damage and lock, exhaust
+
+countdown 10 fires all other countdowns
+
+anti virus - deals damage, sets a random countdown to 3
+
+encryption - variable damage, on prime causes a lock
+
+rocket fuel - countdowns go down at double speed this turn
+
+countdown damage, burn, immune to effects (buster buster)
+
+phillips head - deals damage, any leftover energy goes into all countdowns
+
+
+
+
+
+pea minigun
+
+upgrade me!
+
+christmas blade - changes from red to green
+
+
+
+mythril pot - pot that can spend charge to do more damage
+delphinium - damage, costs all energy, gives 1 energy back for a charge price
+
+
+atan2 - wastes all your energy, returns a 3-miracle, costs 2, returns a snip as well
+
+rabbit's foot - move, chance to get dodge
+
+
+
+fade mechanic
+
+exorcism - do damage for each afde
+
+backlight - peashooter, does not return to hand, but applies fade
+
+basic 2 fade
+
+fade ignite
+
+burning light fade
+
+
+luminant sword - deals damage, draw 2 cards next turn if blocked
+
+
+shank - damage, weird exhaust
+
+contrband- makes some shanks in draw pile
+
+syntax error - does damage, in some cases returns weird cards and energy
+
+rock and roll - get a rock, and roll a die
+
+twin slam - deals damage in two turns, and triggers any take damages immediately
+
+activate all bleeds down to 0 - reagent
+
+
+
+
+
+update the dictionary

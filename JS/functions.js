@@ -900,6 +900,14 @@ function numeralizeDirection(type,direction){
 function directionCombatant(combatant1,combatant2){
 	return atan2(combatant1.relativePosition.x-combatant2.relativePosition.x,combatant1.relativePosition.y-combatant2.relativePosition.y)
 }
+function prime(value){
+	for(let a=2,la=sqrt(value);a<la;a++){
+		if(value%a==0){
+			return false
+		}
+	}
+	return true
+}
 function smoothAnim(anim,trigger,minPoint,maxPoint,speed){
 	if(trigger&&anim<maxPoint){
 		return min(round(anim*speed+1)/speed,maxPoint)

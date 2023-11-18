@@ -642,10 +642,24 @@ class battle{
             this.cardManagers[player].fatigue()
         }
         if(card.spec.includes(18)||card.spec.includes(12)&&card.reality[mode].includes(18)){
-            this.cardManagers[player].fatigue()
-            this.cardManagers[player].fatigue()
-            this.cardManagers[player].fatigue()
-            this.cardManagers[player].fatigue()
+            for(let a=0,la=4;a<la;a++){
+                this.cardManagers[player].fatigue()
+            }
+        }
+        if(card.spec.includes(46)||card.spec.includes(12)&&card.reality[mode].includes(45)){
+            for(let a=0,la=6;a<la;a++){
+                this.cardManagers[player].fatigue()
+            }
+        }
+        if(card.spec.includes(45)||card.spec.includes(12)&&card.reality[mode].includes(44)){
+            for(let a=0,la=8;a<la;a++){
+                this.cardManagers[player].fatigue()
+            }
+        }
+        if(card.spec.includes(44)||card.spec.includes(12)&&card.reality[mode].includes(43)){
+            for(let a=0,la=10;a<la;a++){
+                this.cardManagers[player].fatigue()
+            }
         }
         if(card.spec.includes(19)||card.spec.includes(12)&&card.reality[mode].includes(19)){
             this.cardManagers[player].heavyFatigue()

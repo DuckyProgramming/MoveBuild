@@ -125,7 +125,7 @@ class combatant{
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
-            'Hook','Temporary Single Damage',
+            'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -151,7 +151,7 @@ class combatant{
                 0,0,0,0,1,2,2,2,1,2,//21
                 1,0,2,0,0,0,0,1,0,0,//22
                 2,0,0,0,0,0,0,0,1,2,//23
-                1,2,
+                1,2,2,1,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -177,7 +177,7 @@ class combatant{
                 2,0,2,0,1,0,2,0,1,0,//21
                 2,1,1,0,2,1,0,0,2,0,//22
                 1,1,2,2,1,2,2,3,3,2,//23
-                2,0,
+                2,0,2,2,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4152,62 +4152,65 @@ class combatant{
         let damage=value
         if(value>0&&user>=0&&user<this.battle.combatantManager.combatants.length){
             let userCombatant=this.battle.combatantManager.combatants[user]
-            let totalStr=0
-            if(userCombatant.status.main[194]>0&&floor(random(0,2))==0){
-                damage=0
-                userCombatant.status.main[194]--
-            }
-            if(userCombatant.status.main[12]>0){
-                damage+=userCombatant.status.main[12]
-            }
-            if(userCombatant.status.main[40]>0){
-                damage+=userCombatant.status.main[40]
-            }
-            if(userCombatant.status.main[186]>0){
-                damage+=userCombatant.status.main[186]
-            }
-            if(userCombatant.status.main[75]>0){
-                damage-=userCombatant.status.main[75]
-            }
-            if(userCombatant.status.main[175]>0){
-                damage-=userCombatant.status.main[175]
-            }
-            if(userCombatant.status.main[231]>0){
-                damage+=userCombatant.status.main[231]
-            }
-            if(userCombatant.status.main[6]!=0){
-                totalStr+=userCombatant.status.main[6]
-            }
-            if(userCombatant.status.main[17]!=0){
-                totalStr+=userCombatant.status.main[17]
-            }
-            if(userCombatant.status.main[163]!=0){
-                totalStr+=userCombatant.status.main[163]
-            }
-            if(userCombatant.status.main[195]!=0){
-                totalStr+=userCombatant.status.main[195]
-                userCombatant.status.main[195]=0
-            }
-            if(totalStr>0){
-                damage*=1+totalStr*0.1
-            }else if(totalStr<0){
-                damage*=max(0.2,1+totalStr*0.1)
-            }
-            if(userCombatant.status.main[8]>0){
-                damage*=0.75
-            }
-            if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
-                damage+=4
-            }
-            if(userCombatant.status.main[49]>0){
-                userCombatant.status.main[49]--
-                if(userCombatant.status.main[204]<=0){
-                    userCombatant.takeDamage(this.team>0?4:8,-1)
+            if(spec!=3){
+                let totalStr=0
+                if(userCombatant.status.main[194]>0&&floor(random(0,2))==0){
+                    damage=0
+                    userCombatant.status.main[194]--
+                }
+                if(userCombatant.status.main[12]>0){
+                    damage+=userCombatant.status.main[12]
+                }
+                if(userCombatant.status.main[40]>0){
+                    damage+=userCombatant.status.main[40]
+                }
+                if(userCombatant.status.main[186]>0){
+                    damage+=userCombatant.status.main[186]
+                }
+                if(userCombatant.status.main[75]>0){
+                    damage-=userCombatant.status.main[75]
+                }
+                if(userCombatant.status.main[175]>0){
+                    damage-=userCombatant.status.main[175]
+                }
+                if(userCombatant.status.main[231]>0){
+                    damage+=userCombatant.status.main[231]
+                }
+                if(userCombatant.status.main[6]!=0){
+                    totalStr+=userCombatant.status.main[6]
+                }
+                if(userCombatant.status.main[17]!=0){
+                    totalStr+=userCombatant.status.main[17]
+                }
+                if(userCombatant.status.main[163]!=0){
+                    totalStr+=userCombatant.status.main[163]
+                }
+                if(userCombatant.status.main[195]!=0){
+                    totalStr+=userCombatant.status.main[195]
+                    userCombatant.status.main[195]=0
+                }
+                if(totalStr>0){
+                    damage*=1+totalStr*0.1
+                }else if(totalStr<0){
+                    damage*=max(0.2,1+totalStr*0.1)
+                }
+                if(userCombatant.status.main[8]>0){
+                    damage*=0.75
+                }
+                if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
+                    damage+=4
+                }
+                if(userCombatant.status.main[119]>0&&(damage>4||userCombatant.status.main[204]>0&&damage>2)){
+                    userCombatant.status.main[119]--
+                    damage=userCombatant.status.main[204]>0?2:4
                 }
             }
-            if(userCombatant.status.main[119]>0&&(damage>4||userCombatant.status.main[204]>0&&damage>2)){
-                userCombatant.status.main[119]--
-                damage=userCombatant.status.main[204]>0?2:4
+            if(userCombatant.status.main[49]>0&&userCombatant.status.main[204]<=0){
+                userCombatant.takeDamage(userCombatant.status.main[49]*2,-1)
+            }
+            if(userCombatant.status.main[234]>0){
+                userCombatant.statusEffect('No Damage',userCombatant.status.main[234])
+                userCombatant.status.main[234]--
             }
             if(userCombatant.status.main[95]>0){
                 userCombatant.heal(userCombatant.status.main[95])
@@ -4218,48 +4221,50 @@ class combatant{
             let hit=true
             if(user>=0&&user<this.battle.combatantManager.combatants.length){
                 let userCombatant=this.battle.combatantManager.combatants[user]
-                if(userCombatant.status.main[0]>0){
-                    damage*=2
-                }
-                if(userCombatant.status.main[82]>0){
-                    damage*=2
-                }
-                if(userCombatant.status.main[154]>0){
-                    damage*=3
-                }
-                if(userCombatant.status.main[159]>0){
-                    damage*=1.5
-                }
-                if(userCombatant.status.main[198]>0){
-                    damage/=2
-                }
-                if(userCombatant.status.main[201]>0){
-                    damage=damage*2-1
-                }
-                if(userCombatant.status.main[216]>0){
-                    damage=damage*1.5+1
-                }
-                if(userCombatant.status.main[215]>0){
-                    damage=0
-                }
-                if(this.status.main[3]>0){
-                    this.status.main[3]--
-                    hit=false
-                    this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
-                }
-                if(this.status.main[173]>0){
-                    this.status.main[173]--
-                    hit=false
-                    this.infoAnim.upFlash[3]=true
-                    userCombatant.takeDamage(damage)
-                    damage=0
-                }
-                if(userCombatant.status.main[211]>0){
-                    userCombatant.status.main[211]--
-                    hit=false
-                    this.infoAnim.upFlash[3]=true
-                    userCombatant.takeDamage(damage)
-                    damage=0
+                if(spec!=3){
+                    if(userCombatant.status.main[0]>0){
+                        damage*=2
+                    }
+                    if(userCombatant.status.main[82]>0){
+                        damage*=2
+                    }
+                    if(userCombatant.status.main[154]>0){
+                        damage*=3
+                    }
+                    if(userCombatant.status.main[159]>0){
+                        damage*=1.5
+                    }
+                    if(userCombatant.status.main[198]>0){
+                        damage/=2
+                    }
+                    if(userCombatant.status.main[201]>0){
+                        damage=damage*2-1
+                    }
+                    if(userCombatant.status.main[216]>0){
+                        damage=damage*1.5+1
+                    }
+                    if(userCombatant.status.main[215]>0){
+                        damage=0
+                    }
+                    if(this.status.main[3]>0){
+                        this.status.main[3]--
+                        hit=false
+                        this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
+                    }
+                    if(this.status.main[173]>0){
+                        this.status.main[173]--
+                        hit=false
+                        this.infoAnim.upFlash[3]=true
+                        userCombatant.takeDamage(damage)
+                        damage=0
+                    }
+                    if(userCombatant.status.main[211]>0){
+                        userCombatant.status.main[211]--
+                        hit=false
+                        this.infoAnim.upFlash[3]=true
+                        userCombatant.takeDamage(damage)
+                        damage=0
+                    }
                 }
                 if(userCombatant.status.main[98]>0){
                     this.statusEffect('Bleed',userCombatant.status.main[98])
@@ -4319,100 +4324,102 @@ class combatant{
             if(this.status.main[177]>0){
                 this.ammo+=this.status.main[177]
             }
-            if(this.status.main[63]>0){
-                damage+=this.status.main[63]
-            }
-            if(this.status.main[123]>0){
-                damage*=2
-                this.status.main[123]--
-            }
-            if(this.status.main[167]>0){
-                damage*=2
-            }
-            if(this.status.main[178]>0){
-                damage*=1+this.status.main[178]*0.25
-                this.status.main[178]--
-            }
-            if(this.battle.relicManager.hasRelic(55,this.id)){
-                damage=max(min(damage,1),damage-this.battle.relicManager.active[55])
-            }
-            if(this.battle.relicManager.hasRelic(56,this.id)&&damage>1&&damage<=5){
-                damage=1
-            }
-            if(this.status.main[10]>0){
-                damage*=1.5
-            }
-            if(this.status.main[24]>0){
-                damage*=0.5
-            }
-            if(this.status.main[53]>0){
-                damage*=0.333
-            }
-            if(this.status.main[57]>0){
-                damage*=0.75
-            }
-            if(this.status.main[97]>0){
-                damage*=0.6
-            }
-            if(this.status.main[165]>0){
-                damage+=this.status.main[165]
-                this.status.main[165]--
-            }
-            if(this.status.main[25]>0&&damage>1){
-                damage=1
-            }
-            if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
-                if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
-                    if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==1){
-                        damage*=2
+            if(spec!=3){
+                if(this.status.main[63]>0){
+                    damage+=this.status.main[63]
+                }
+                if(this.status.main[123]>0){
+                    damage*=2
+                    this.status.main[123]--
+                }
+                if(this.status.main[167]>0){
+                    damage*=2
+                }
+                if(this.status.main[178]>0){
+                    damage*=1+this.status.main[178]*0.25
+                    this.status.main[178]--
+                }
+                if(this.battle.relicManager.hasRelic(55,this.id)){
+                    damage=max(min(damage,1),damage-this.battle.relicManager.active[55])
+                }
+                if(this.battle.relicManager.hasRelic(56,this.id)&&damage>1&&damage<=5){
+                    damage=1
+                }
+                if(this.status.main[10]>0){
+                    damage*=1.5
+                }
+                if(this.status.main[24]>0){
+                    damage*=0.5
+                }
+                if(this.status.main[53]>0){
+                    damage*=0.333
+                }
+                if(this.status.main[57]>0){
+                    damage*=0.75
+                }
+                if(this.status.main[97]>0){
+                    damage*=0.6
+                }
+                if(this.status.main[165]>0){
+                    damage+=this.status.main[165]
+                    this.status.main[165]--
+                }
+                if(this.status.main[25]>0&&damage>1){
+                    damage=1
+                }
+                if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
+                    if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
+                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==1){
+                            damage*=2
+                        }
                     }
                 }
-            }
-            if(this.battle.modded(2)&&this.team>0){
-                damage*=1.2
-            }
-            if(this.battle.modded(16)&&this.team>0&&floor(random(0,4))==0){
-                damage*=2
-            }
-            if(this.battle.modded(102)&&this.team==0&&damage>20){
-                damage=20
-            }
-            if(this.battle.modded(103)&&this.team==0&&damage<5){
-                damage=1
-            }
-            if(this.battle.modded(111)&&this.team>0){
-                damage++
-            }
-            if(this.battle.modded(112)&&this.team>0&&damage<3){
-                damage=3
-            }
-            if(this.battle.modded(119)&&this.team>0&&floor(random(0,4))==0){
-                damage*=2
-            }
-            if(this.battle.modded(128)&&this.team==0&&this.spec.includes(2)){
-                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                    if(this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].spec.includes(2)){
-                        damage=0
+                if(this.battle.modded(2)&&this.team>0){
+                    damage*=1.2
+                }
+                if(this.battle.modded(16)&&this.team>0&&floor(random(0,4))==0){
+                    damage*=2
+                }
+                if(this.battle.modded(102)&&this.team==0&&damage>20){
+                    damage=20
+                }
+                if(this.battle.modded(103)&&this.team==0&&damage<5){
+                    damage=1
+                }
+                if(this.battle.modded(111)&&this.team>0){
+                    damage++
+                }
+                if(this.battle.modded(112)&&this.team>0&&damage<3){
+                    damage=3
+                }
+                if(this.battle.modded(119)&&this.team>0&&floor(random(0,4))==0){
+                    damage*=2
+                }
+                if(this.battle.modded(128)&&this.team==0&&this.spec.includes(2)){
+                    for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                        if(this.battle.combatantManager.combatants[a].team==0&&!this.battle.combatantManager.combatants[a].spec.includes(2)){
+                            damage=0
+                        }
                     }
                 }
-            }
-            if(this.stance==1){
-                damage*=2
-            }
-            if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
-                if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
-                    if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==4){
-                        damage*=0.6
+                if(this.stance==1){
+                    damage*=2
+                }
+                if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
+                    if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
+                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==4){
+                            damage*=0.6
+                        }
                     }
                 }
-            }
-            if(this.stance==4){
-                damage*=0.4
-            }
-            if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
-                if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
-                    if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==5){
-                        damage*=3
+                if(this.stance==4){
+                    damage*=0.4
+                }
+                if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
+                    if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
+                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==5){
+                            damage*=3
+                        }
                     }
                 }
             }
@@ -5360,6 +5367,7 @@ class combatant{
                     case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 220: this.status.main[findList('Jinx',this.status.name)]+=this.status.main[a]; break
                     case 222: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawBurn+=this.status.main[a]}; break
+                    case 232: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Peak',types.card),0,0)}; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){

@@ -656,7 +656,7 @@ class relicManager{
                     this.relicPlayer(1).heal(3*this.active[1])
                 }
                 if(this.active[19]>0){
-                    if(this.relicPlayer(19).life<this.relicPlayer(19).base.life){
+                    if(this.relicPlayer(19).life<this.relicPlayer(19).base.life/2){
                         this.relicPlayer(19).heal(12*this.active[19])
                     }
                 }

@@ -275,6 +275,9 @@ class itemManager{
                     userCombatant.statusEffect('Cannot Gain Block',99)
                 }
             break
+            case 103:
+                userCombatant.heal(3*this.effectiveness[player])
+            break
         }
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<50*this.battle.relicManager.active[80]){
             this.addRandomItem(player)

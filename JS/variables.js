@@ -605,7 +605,7 @@ types={
         {name:'',internal:'View Draw',id:129,rarity:3,list:0,description:'Draw Pile Cards Are\nViewed in Order'},
         {name:'',internal:'Innate Card',id:130,rarity:3,list:0,description:'When Taken, Make a Card Innate'},
         
-        {name:'',internal:'Energy/Card Choice',id:131,rarity:4,list:0,description:'Gain 1 Base Energy, Have 1\nLess Cards to Choose From'},
+        {name:'',internal:'Energy/Card Choice',id:131,rarity:4,list:0,description:'Gain 1 Base Energy, Have 1\nLess Card to Choose From'},
         {name:'',internal:'Energy/Rest Heal',id:132,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Heal at Rest'},
         {name:'',internal:'Energy/Rest Upgrade',id:133,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Upgrade at Rest'},
         {name:'',internal:'Energy/Curses',id:134,rarity:4,list:0,description:'Gain 1 Base Energy,\nAdd 2 Curses to Deck'},
@@ -707,6 +707,7 @@ types={
         {name:'Pile of Junk',id:51,rarity:2,list:0,menu:true,description:'Fill All Item Slots'},
         {name:'Starflame Prototype',id:101,rarity:-1,list:-1,menu:false,description:'Gain 5 Strength,\nShuffle in 5 Burn'},
         {name:'Cola',id:102,rarity:-1,list:-1,menu:true,description:'Heal 15 HP\nCan No Longer Gain Block'},
+        {name:'Salad',id:103,rarity:-1,list:-1,menu:true,description:'Heal 3 HP'},
 
     ],event:[
         {
@@ -5628,7 +5629,7 @@ Is removed when damage taken, but doubles the damage.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
+    startEnergy:3,collisionDamage:4,dev:true,allMap:-1,theme:0}
 variants={
     mod:false,junk:false,
     lowDraw:false,deckbuild:false,

@@ -353,6 +353,12 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('15',-8,0)
                 break
+                case 'Salad':
+                    displaySymbol(this.layer,0,0,2,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('3',0,0)
+                break
             }
             this.layer.pop()
         }
