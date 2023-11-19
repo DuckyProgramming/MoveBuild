@@ -94,6 +94,8 @@ class combatant{
         this.taken=0
         this.builder=0
         this.compression=0
+        this.lastDeal=0
+        this.lastTake=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
         this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
@@ -125,7 +127,7 @@ class combatant{
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
-            'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade',
+            'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -151,7 +153,7 @@ class combatant{
                 0,0,0,0,1,2,2,2,1,2,//21
                 1,0,2,0,0,0,0,1,0,0,//22
                 2,0,0,0,0,0,0,0,1,2,//23
-                1,2,2,1,0,
+                1,2,2,1,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -177,7 +179,7 @@ class combatant{
                 2,0,2,0,1,0,2,0,1,0,//21
                 2,1,1,0,2,1,0,0,2,0,//22
                 1,1,2,2,1,2,2,3,3,2,//23
-                2,0,2,2,1,
+                2,0,2,2,1,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2859,6 +2861,8 @@ class combatant{
         this.size=this.base.size
         this.anim=this.base.anim
         this.block=0
+        this.lastDeal=0
+        this.lastTake=0
 
         this.combo=0
         this.armed=true
@@ -4502,6 +4506,7 @@ class combatant{
                     this.battle.cardManagers[this.id].allGroupEffect(16)
                 }
                 this.compression+=damage
+                this.lastTake=damage
                 this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.damage[this.battle.turn.main]+=damage
@@ -4518,6 +4523,7 @@ class combatant{
                 }
                 if(user>=0&&user<this.battle.combatantManager.combatants.length){
                     let userCombatant=this.battle.combatantManager.combatants[user]
+                    userCombatant.lastDeal=damage
                     if(userCombatant.status.main[202]>0&&damage>=20){
                         this.statusEffect('Miss',userCombatant.status.main[202])
                     }
@@ -5345,7 +5351,7 @@ class combatant{
                     case 124: this.status.main[findList('Dodge',this.status.name)]+=this.status.main[a]; break
                     case 125: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Smite',types.card),0,0)}} break
                     case 129: case 229: this.faith+=this.status.main[a]; break
-                    case 130: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
+                    case 130: case 235: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),0,0)}; break
                     case 131: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}; break
                     case 132: this.enterStance(1); break
                     case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0)}; break

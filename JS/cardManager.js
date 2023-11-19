@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -38,10 +38,14 @@ class cardManager{
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
         this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[]]
+        this.listing.sub=[]
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity==-10){
                 this.listing.junk[types.card[a].list].push(a)
                 this.listing.junk[game.playerNumber+1].push(a)
+            }
+            if(types.card[a].rarity==-6){
+                this.listing.sub.push(a)
             }
             if(variants.prismrule.includes(types.card[a].list)&&types.card[a].rarity>-10||variants.prismrule.includes(-1)&&types.card[a].list<0||variants.prismrule.includes(-2)&&types.card[a].rarity==-10){
                 if(types.card[a].rarity<0){
@@ -330,14 +334,8 @@ class cardManager{
             this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
         }
     }
-    addRandomCurse(group,level){
-        let list=[]
-        for(let a=0,la=this.listing.card[game.playerNumber+2][3].length;a<la;a++){
-            list.push(this.listing.card[game.playerNumber+2][3][a])
-        }
-        if(list.length>0){
-            this.getList(group).add(list[floor(random(0,list.length))],level,game.playerNumber+2)
-        }
+    addRandomSub(group,level){
+        this.getList(group).add(this.listing.sub[floor(random(0,this.listing.sub.length))],level,0)
     }
     callAmalgums(attackManager){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]

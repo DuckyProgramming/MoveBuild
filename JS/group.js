@@ -2806,8 +2806,9 @@ class group{
                                 this.cards[a].discardEffect=[]
                             }
                         }else if((
-                            this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739
-                            )&&!this.cards[a].exhaust){
+                            this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
+                            this.cards[a].attack==1778
+                        )&&!this.cards[a].exhaust){
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                             a--
                             la--
@@ -2817,9 +2818,9 @@ class group{
                             this.cards[a].attack==1504||this.cards[a].attack==1616||this.cards[a].attack==1622||this.cards[a].attack==1623||this.cards[a].attack==1625||
                             this.cards[a].attack==1626||this.cards[a].attack==1627||this.cards[a].attack==1628||this.cards[a].attack==1630||this.cards[a].attack==1635||
                             this.cards[a].attack==1642&&this.battle.attackManager.energy==4||this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||
-                            this.cards[a].attack==1655||this.cards[a].attack==1697||this.cards[a].attack==1740||this.cards[a].attack==1753||
+                            this.cards[a].attack==1655||this.cards[a].attack==1697||this.cards[a].attack==1740||this.cards[a].attack==1753||this.cards[a].attack==1777||
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].cost>0&&this.battle.turn.main==this.player
-                            )&&!this.cards[a].exhaust){
+                        )&&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
                             a--
                             la--

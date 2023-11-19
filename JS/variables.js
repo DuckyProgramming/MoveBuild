@@ -5629,7 +5629,7 @@ Is removed when damage taken, but doubles the damage.`,
 }
 stage={scale:0,scene:'title'}
 game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
-    startEnergy:3,collisionDamage:4,dev:true,allMap:-1,theme:0}
+    startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
     mod:false,junk:false,
     lowDraw:false,deckbuild:false,

@@ -2117,6 +2117,16 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(4,0,1,-4,2,0)
             layer.triangle(-2,0,2,0,-3,-6)
         break
+        case 235:
+            layer.stroke(255,100,200,fade)
+            layer.strokeWeight(1)
+            for(let a=0,la=12;a<la;a++){
+                layer.line(lsin(a*30)*3,lcos(a*30)*3,lsin(a*30)*6,lcos(a*30)*6)
+            }
+            layer.fill(255,100,200,fade)
+            layer.noStroke()
+            layer.ellipse(0,8,2)
+        break
 
     }
     layer.pop()

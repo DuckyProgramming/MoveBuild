@@ -1977,23 +1977,21 @@ class card{
             case 1765: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Target Fade`; break
             case 1766: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nDraw ${effect[1]} More Card${effect[1]!=1?`s`:``}\nNext Turn`; break
             case 1767: string+=`Duplicate Cards Are Free\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
-
             case 1768: string+=`Apply ${effect[0]} Dodge`; break
-            case 1769: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nand Removes Dodge\nif Target Has Dodge`; break
+            case 1769: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Triple Damage\nand Removes Dodge\nIf Target Has Dodge`; break
             case 1770: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card\nDiscards to Draw Pile`; break
             case 1771: string+=`Shuffle ${effect[0]} Shank${effect[0]!=1?`s`:``}\ninto Draw Pile`; break
             case 1772: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nAdd ${effect[1]} Random Subcard${effect[1]!=1?`s`:``}\nto Hand`; break
             case 1773: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRoll a Die\nAdd That Much Block`; break
-
             case 1774: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIn 2 Turns\nActivates Existing\nTimed Damage`; break
             case 1775: string+=`Activate All Poison\nDown to 0`; break
             case 1776: string+=`Activate All Bleed\nDown to 0`; break
             case 1777: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Incremented,\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscards to Hand`; break
             case 1778: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nDiscards to Draw Pile`; break
             case 1779: string+=`2 or More Energy:\nDeal ${this.calculateEffect(effect[0],2)}+${this.calculateEffect(effect[1],14)} Damage\nWhere X = Energy`; break
-
-            case 1780: string+=`Apply ${effect[0]} Poison\nAdd ${effect[1]} Miracle${effect[1]!=1?`s`:``} to Hand\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
+            case 1780: string+=`Apply ${effect[0]} Poison\nAdd ${effect[1]} Miracle${effect[1]!=1?`s`:``} to\nHand Next Turn\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 1781: string+=`Next Attack Gets\nDamage of Last Attack`; break
+            case 1782: string+=`Apply ${effect[0]} Dodge\nGain ${effect[1]} Energy`; break
 
 
 
@@ -2258,6 +2256,9 @@ class card{
         switch(this.attack){
             case 1345:
                 this.effect[0]+=this.effect[1]
+            break
+            case 1777:
+                this.battle.cardManagers[this.player].draw(this.effect[1])
             break
         }
     }
