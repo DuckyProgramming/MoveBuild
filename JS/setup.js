@@ -16,11 +16,12 @@ function setup(){
     /*current.menu.combatant=[10]
     current.menu.deck=[0,0]
     current.startGame()
-    transition.trigger=false
+    transition.trigger=false*/
     //stage.scene='graphic'
     //graphics.test=7
-    stage.scene='battle'
+    /*stage.scene='battle'
     current.setupBattle(types.encounter[1])*/
+    //stage.scene='tier'
 }
 function windowResized(){
     resizeCanvas(windowWidth-50,windowHeight-50)

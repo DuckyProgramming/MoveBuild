@@ -1134,8 +1134,8 @@ types.card=[
         name:'Ejector',rarity:0,list:1,
         levels:[
             {effect:[1,1],attack:1782,cost:0,target:[2,1,6],spec:[],class:4},
-            {effect:[2,1],attack:1782,cost:0,target:[2,1,6],spec:[],class:4},
-            {effect:[3,1],attack:1782,cost:0,target:[2,1,6],spec:[],class:4},
+            {effect:[1,2],attack:1782,cost:0,target:[2,1,6],spec:[],class:4},
+            {effect:[1,2],attack:1782,cost:0,target:[2,1,6],spec:[2],class:4},
         ],
     },{
         name:'Periscope',rarity:1,list:1,
@@ -4706,8 +4706,8 @@ types.card=[
         name:'Cyclotron',rarity:2,list:5,
         levels:[
             {effect:[],attack:1420,cost:2,target:[0],spec:[],class:4},
-            {effect:[],attack:1420,cost:2,target:[0],spec:[],class:4},
-            {effect:[],attack:1420,cost:2,target:[0],spec:[],class:4},
+            {effect:[],attack:1420,cost:2,target:[0],spec:[2],class:4},
+            {effect:[],attack:1783,cost:2,target:[0],spec:[2],class:4},
         ],
     },{
         name:'Rotor',rarity:2,list:5,
@@ -4831,16 +4831,16 @@ types.card=[
     },{
         name:'Deluge',rarity:1,list:5,
         levels:[
-            {effect:[9,1],attack:1742,cost:0,target:[0],spec:[1],class:4},
-            {effect:[14,1],attack:1742,cost:0,target:[0],spec:[1],class:4},
-            {effect:[38,1],attack:1742,cost:0,target:[0],spec:[1],class:4},
+            {effect:[9,1],attack:1742,cost:1,target:[0],spec:[1],class:4},
+            {effect:[14,1],attack:1742,cost:1,target:[0],spec:[1],class:4},
+            {effect:[38,1],attack:1742,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
         name:'Magic\nLock',rarity:0,list:5,
         levels:[
+            {effect:[1,1],attack:1743,cost:2,target:[0],spec:[2,35],class:4},
             {effect:[1,2],attack:1743,cost:2,target:[0],spec:[2,35],class:4},
-            {effect:[1,2],attack:1743,cost:2,target:[0],spec:[2,35],class:4},
-            {effect:[1,2],attack:1743,cost:2,target:[0],spec:[2,35],class:4},
+            {effect:[2,2],attack:1743,cost:2,target:[0],spec:[2,35],class:4},
         ],
     },{
         name:'Cauterize',rarity:1,list:5,
@@ -4880,9 +4880,9 @@ types.card=[
     },{
         name:'Buster\nBuster',rarity:1,list:5,
         levels:[
-            {effect:[11,1],attack:1751,cost:3,target:[2,1,3],spec:[0,2,35],class:1},
-            {effect:[17,1],attack:1751,cost:3,target:[2,1,3],spec:[0,2,35],class:1},
-            {effect:[20,2],attack:1751,cost:3,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[11,1],attack:1751,cost:3,target:[2,1,3],spec:[0,2,3,35],class:1},
+            {effect:[17,1],attack:1751,cost:3,target:[2,1,3],spec:[0,2,3,35],class:1},
+            {effect:[20,2],attack:1751,cost:3,target:[2,1,3],spec:[0,2,3,35],class:1},
         ],
     },{
         name:'Slot\nScrew',rarity:2,list:5,
@@ -9606,8 +9606,8 @@ types.card=[
         name:'Doppeldupli\ncateinate',rarity:1,list:10,
         levels:[
             {effect:[1,1],attack:1476,cost:1,target:[0],spec:[],class:4},
-            {effect:[1,1],attack:1476,cost:1,target:[0],spec:[],class:4},
-            {effect:[1,1],attack:1476,cost:1,target:[0],spec:[],class:4},
+            {effect:[2,2],attack:1476,cost:1,target:[0],spec:[],class:4},
+            {effect:[2,2],attack:1476,cost:0,target:[0],spec:[],class:4},
         ],
     },{
         name:'Pot\nPot',rarity:1,list:10,
@@ -9877,9 +9877,9 @@ types.card=[
     },{
         name:`Chef's\nKiss`,rarity:-10,list:2,
         levels:[
-            {effect:[9],attack:1512,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[7],attack:1512,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[11],attack:1512,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[13],attack:1512,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[16],attack:1512,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Allen\nKey',rarity:-10,list:10,
@@ -10448,6 +10448,34 @@ types.card=[
             {effect:[1,1],attack:1757,cost:1,target:[0],spec:[],class:4},
             {effect:[1,1],attack:1757,cost:1,target:[0],spec:[22],class:4},
         ],
+    },{
+        name:'Ready\nMove',rarity:-10,list:1,
+        levels:[
+            {effect:[1,3],attack:1673,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,6],attack:1673,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,8],attack:1673,cost:1,target:[1,1,1],spec:[0],class:3},
+        ],
+    },{
+        name:'Laying\nStep',rarity:-10,list:9,
+        levels:[
+            {effect:[1],attack:1785,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1],attack:1785,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1],attack:1785,cost:0,target:[1,1,1],spec:[],class:3},
+        ],
+    },{
+        name:'Vertical\nMove',rarity:-10,list:4,
+        levels:[
+            {effect:[6],attack:1786,cost:1,target:[47,1,6],spec:[0,1],class:3},
+            {effect:[6],attack:1786,cost:0,target:[47,1,6],spec:[0,1],class:3},
+            {effect:[6],attack:1786,cost:0,target:[47,1,6],spec:[1],class:3},
+        ],
+    },{
+        name:'Vertical\nStrike',rarity:-10,list:2,
+        levels:[
+            {effect:[12],attack:1787,cost:1,target:[48,1,1],spec:[0],class:1},
+            {effect:[18],attack:1787,cost:1,target:[48,1,1],spec:[0],class:1},
+            {effect:[22],attack:1787,cost:1,target:[48,1,1],spec:[0],class:1},
+        ],
     },
 
     //mark j
@@ -10490,9 +10518,9 @@ types.card=[
     },{
         name:'V - The\nHierophant',rarity:2,list:14,
         levels:[
-            {effect:[8,2],attack:1102,cost:0,target:[0],spec:[1],class:4},
-            {effect:[12,2],attack:1102,cost:0,target:[0],spec:[1],class:4},
-            {effect:[15,2],attack:1102,cost:0,target:[0],spec:[1],class:4},
+            {effect:[12,1],attack:1102,cost:0,target:[0],spec:[1],class:4},
+            {effect:[18,1],attack:1102,cost:0,target:[0],spec:[1],class:4},
+            {effect:[22,1],attack:1102,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
         name:'VI - The\nLovers',rarity:2,list:14,

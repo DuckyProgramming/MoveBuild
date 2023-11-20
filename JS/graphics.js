@@ -3453,7 +3453,7 @@ function setupBackground(type,layer){
                 layer.fill(130-50*a/la,195-50*a/la,230-50*a/la)
                 layer.rect(layer.width/2,a+0.5,layer.width,2)
             }
-            for(let a=0,la=height/50;a<la;a++){
+            for(let a=0,la=layer.height/100;a<la;a++){
                 c=random(1,1.2)
                 d=250
                 e=random(0,d)
@@ -3474,11 +3474,11 @@ function setupBackground(type,layer){
 				layer.push()
                 layer.translate(-50+(a*12)%(layer.width+100),d)
                 layer.rotate(e)
-                for(h=0;h<5;h++){
+                for(h=0;h<3;h++){
                     for(g=0;g<5;g++){
                         layer.rotate(72)
-                        layer.fill(105+b*70-h*10,170+f*65-h*10,170+f*95-h*10)
-                        layer.ellipse(c*(1-h/5)*0.9,0,c*1.8*(1-h/5),c*0.6*(1-h/5))
+                        layer.fill(105+b*70-h*15,170+f*65-h*15,170+f*95-h*15)
+                        layer.ellipse(c*(1-h/3)*0.9,0,c*1.8*(1-h/3),c*0.6*(1-h/3))
                     }
                 }
                 layer.rotate(-e)
@@ -3496,16 +3496,16 @@ function setupBackground(type,layer){
                     layer.quad(d+lsin(f)*h,e+lcos(f)*h,d+lsin(f+90)*h*3,e+lcos(f+90)*h*3,d+lsin(f+180)*h,e+lcos(f+180)*h,d+lsin(f+270)*h*3,e+lcos(f+270)*h*3)
                 }
             }
-            for(let a=0,la=layer.height/5+30;a<la;a++){
+            for(let a=0,la=layer.height*2/25+30;a<la;a++){
                 layer.fill(130-100*a/la,155-100*a/la,175-100*a/la)
                 for(let b=0,lb=20;b<lb;b++){
-                    layer.quad(layer.width*(b+b%2)/lb,a+0.5+layer.height*4/5,layer.width*(b+b%2)/lb,a+0.5+layer.height*4/5+30,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*4/5,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*4/5-30)
+                    layer.quad(layer.width*(b+b%2)/lb,a*2.5+0.5+layer.height*4/5,layer.width*(b+b%2)/lb,a*2.5+0.5+layer.height*4/5+30,layer.width*(b+1-b%2)/lb,a*2.5+0.5+layer.height*4/5,layer.width*(b+1-b%2)/lb,a*2.5+0.5+layer.height*4/5-30)
                 }
             }
-            for(let a=0,la=layer.height*0.1+30;a<la;a++){
+            for(let a=0,la=layer.height/25+30;a<la;a++){
                 layer.fill(70-50*a/la,95-50*a/la,115-50*a/la)
                 for(let b=0,lb=20;b<lb;b++){
-                    layer.quad(layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+1-b%2)/lb,a+0.5+layer.height*0.9+30,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9,layer.width*(b+b%2)/lb,a+0.5+layer.height*0.9-30)
+                    layer.quad(layer.width*(b+1-b%2)/lb,a*2.5+0.5+layer.height*0.9,layer.width*(b+1-b%2)/lb,a*2.5+0.5+layer.height*0.9+30,layer.width*(b+b%2)/lb,a*2.5+0.5+layer.height*0.9,layer.width*(b+b%2)/lb,a*2.5+0.5+layer.height*0.9-30)
                 }
             }
 		break
@@ -4256,13 +4256,16 @@ function setupGraphics(){
 	graphics.proxyBattle={player:[0],players:0}
 
 	setupGeneralGraphics()
-	for(let a=0,la=graphics.backgroundGen;a<la;a++){
+	graphics.staticBackground=createGraphics(1800,1200)
+	setupLayer(graphics.staticBackground)
+	setupBackground(8,graphics.staticBackground)
+	/*for(let a=0,la=graphics.backgroundGen;a<la;a++){
 		graphics.backgrounds.push(createGraphics(1800,1200))
 		if(stage.scene!='graphic'||a==graphics.test){
 			setupLayer(graphics.backgrounds[a])
 			setupBackground(a,graphics.backgrounds[a])
 		}
-	}
+	}*/
 	for(let a=0,la=graphics.overlayGen;a<la;a++){
 		graphics.overlays.push(createGraphics(1800,1200))
 		setupLayer(graphics.overlays[a])

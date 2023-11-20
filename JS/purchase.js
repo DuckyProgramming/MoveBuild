@@ -15,6 +15,9 @@ class purchase{
         this.anim={usable:1,afford:0}
         switch(this.type){
             case 1:
+                if(variants.cursed){
+                    args[1]++
+                }
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
                 if(this.args[3]){
                     for(let a=0,la=this.cost.length;a<la;a++){

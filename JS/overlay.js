@@ -108,6 +108,9 @@ class overlay{
                 }else{
                     this.options=3
                 }
+                if(variants.cursed){
+                    args[0]=min(args[0]+1,2)
+                }
                 switch(args[2]){
                     case 0: case 7:
                         list=variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
@@ -226,11 +229,11 @@ class overlay{
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.coc)
                         let tick=0
                         for(let a=0,la=list[args[1]].length;a<la;a++){
-                            //if(types.card[list[args[1]][a]].levels[0].class==3){
+                            if(types.card[list[args[1]][a]].levels[0].class==3){
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[args[1]][a],args[0],types.card[list[args[1]][a]].list,-1))
                                 this.cards[tick].upSize=true
                                 tick++
-                            //}
+                            }
                         }
                     break
                 }

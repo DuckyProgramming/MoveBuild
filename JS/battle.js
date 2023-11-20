@@ -756,10 +756,10 @@ class battle{
     display(scene){
         switch(scene){
             case 'title':
-                this.layer.image(graphics.backgrounds[8],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
             break
             case 'menu':
-                this.layer.image(graphics.backgrounds[9],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=game.playerNumber;a<=la;a++){
                     if(this.menu.anim.combatant[0][a]>0&&a>0){
                         displayPlayerSymbol(this.layer,this.layer.width/2,this.layer.height*0.3+88.75,a,0,1,1)
@@ -813,7 +813,7 @@ class battle{
                 }
             break
             case 'menu2':
-                this.layer.image(graphics.backgrounds[10],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=game.playerNumber;a<=la;a++){
                     for(let b=0,lb=2;b<lb;b++){
                         if(this.menu.anim.combatant[b][a]>0&&a>0){
@@ -873,7 +873,7 @@ class battle{
                 }
             break
             case 'variants':
-                this.layer.image(graphics.backgrounds[11],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(this.menu.anim.variants[a]>0){
                         this.layer.fill(255,this.menu.anim.variants[a])
@@ -882,7 +882,7 @@ class battle{
                 }
             break
             case 'custom':
-                this.layer.image(graphics.backgrounds[12],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=7;a<la;a++){
                     if(this.menu.anim.prismrule[a]>0){
                         this.layer.fill(255,this.menu.anim.prismrule[a])
@@ -897,7 +897,7 @@ class battle{
                 }
             break
             case 'tutorial':
-                this.layer.image(graphics.backgrounds[13],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
             break
             case 'battle':
                 this.layer.background(110,115,120)
@@ -1040,7 +1040,7 @@ class battle{
                 this.displayCurrency()
             break
             case 'rest':
-                this.layer.image(graphics.backgrounds[3],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[3][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
@@ -1104,7 +1104,7 @@ class battle{
                 this.displayCurrency()
             break
             case 'victory':
-                this.layer.image(graphics.backgrounds[2],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[2][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
@@ -1127,7 +1127,7 @@ class battle{
                 this.overlayManager.display()
             break
             case 'defeat':
-                this.layer.image(graphics.backgrounds[1],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[1][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
@@ -1150,21 +1150,21 @@ class battle{
                 this.overlayManager.display()
             break
             case 'stash':
-                this.layer.image(graphics.backgrounds[4],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[4][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.relicManager.display(stage.scene)
             break
             case 'bossstash':
-                this.layer.image(graphics.backgrounds[6],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[6][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.relicManager.display(stage.scene)
             break
             case 'pack':
-                this.layer.image(graphics.backgrounds[7],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[7][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
@@ -1172,7 +1172,7 @@ class battle{
                 this.overlayManager.display()
             break
             case 'perk':
-                this.layer.image(graphics.backgrounds[0],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[0][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
@@ -1180,7 +1180,7 @@ class battle{
                 this.overlayManager.display()
             break
             case 'event':
-                this.layer.image(graphics.backgrounds[5],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }

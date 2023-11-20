@@ -151,7 +151,7 @@ class attack{
             case 1724: case 1725: case 1729: case 1730: case 1731: case 1732: case 1733: case 1736: case 1737: case 1739:
             case 1740: case 1744: case 1745: case 1746: case 1748: case 1749: case 1751: case 1752: case 1753: case 1754:
             case 1755: case 1762: case 1763: case 1764: case 1765: case 1766: case 1768: case 1769: case 1770: case 1772:
-            case 1773: case 1774: case 1775: case 1776: case 1777: case 1778: case 1779: case 1780: case 1782:
+            case 1773: case 1774: case 1775: case 1776: case 1777: case 1778: case 1779: case 1780: case 1782: case 1787:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -177,7 +177,7 @@ class attack{
             case 1575: case 1576: case 1577: case 1578: case 1579: case 1580: case 1581: case 1582: case 1583: case 1584:
             case 1585: case 1586: case 1587: case 1588: case 1589: case 1590: case 1595: case 1643: case 1644: case 1647:
             case 1648: case 1669: case 1671: case 1672: case 1673: case 1677: case 1680: case 1681: case 1682: case 1759:
-            case 1760: case 1761:
+            case 1760: case 1761: case 1784: case 1785: case 1786:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -2871,6 +2871,12 @@ class attack{
                             this.userCombatant.lowRoll()
                         }
                     break
+                    case 1784:
+                        this.userCombatant.statusEffect('Temporary Single Damage',-this.effect[1])
+                    break
+                    case 1785:
+                        this.targetTile.addType(1)
+                    break
 
                 }
             break
@@ -4537,6 +4543,9 @@ class attack{
                     case 1747:
                         this.userManager.hand.allEffect(54)
                     break
+                    case 1783:
+                        this.userManager.hand.allEffect(55)
+                    break
 
                 }
             break
@@ -5941,9 +5950,7 @@ class attack{
                         }
                     break
                     case 1512:
-                        if(this.relPos[0]==0&&this.relPos[1]==0){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.relPos[0]==0&&this.relPos[1]==0?2:1),this.user)
                     break
                     case 1519:
                         if(this.targetCombatant.life<this.effect[0]){

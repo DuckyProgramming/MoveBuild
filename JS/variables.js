@@ -5389,7 +5389,11 @@ Does not spend the orb.`,
         },{name:'Smite',desc:
 `Card that deals damage, exhausts and retains.`,
         },{name:'Miracle',desc:
-`Card that gives energy, exhausts and retains.`,
+`Card that gives energy, exhausts and retains.
+Typically gives 1, but there are other versions that give more.`,
+        },{name:'Snip',desc:
+`Card that gives energy, exhausts and retains.
+The amount it gives is variable.`,
         },{name:'Obstruction',desc:
 `Anything blocking movement, mainly combatants.`,
         },{name:'Lowroll',desc:
@@ -5400,7 +5404,7 @@ Some card spend it in their effects. Others may generate it.`
         },{name:'Burn (Card)',desc:
 `Status, unplayable, makes you take damage at the end of your turn.`,
         },{name:'Burn (Status)',desc:
-`Deals damage each turn, does not decrement.`,
+`Take damage after each hit on an enemy..`,
         },{name:'Amplify',desc:
 `Spend 1 Energy if possible to get a bonus effect on card.
 Amplify 2 means that 2 Energy will be spent instead.`,
@@ -5421,7 +5425,7 @@ Deprecates after each hit taken.`,
 `Causes the attacker to take damage instead.
 Only works if an attacker is identifiably designated.`,
         },{name:'Arcana',desc:
-`Set of cards, accessible only through the predetermined Fortune Tellar event.\n
+`Set of cards, accessible only through the predetermined Fortune Teller event.\n
 Vary greatly in effect.`,
         },{name:'Distracted',desc:
 `Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
@@ -5429,6 +5433,20 @@ Is removed when damage taken.`,
         },{name:'Freeze',desc:
 `Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
 Is removed when damage taken, but doubles the damage.`,
+        },{name:'Shock',desc:
+`Take damage after each movement step.`,
+        },{name:'Jinx',desc:
+`Take damage after a random period of time, a 1/3 chance each turn.`,
+        },{name:'Fade',desc:
+`After a successful hit, the next one will do no damage.`,
+        },{name:'Contains',desc:
+`Will create another card and add it to your deck when destroyed.`,
+        },{name:'Silence',desc:
+`Reduces enemy attack to just damgae, no additional effects.`,
+        },{name:'Mixed',desc:
+`Will face 180 degrees from target.`,
+        },{name:'Lock',desc:
+`Cannot respond to players by attacking or moving, can only act via normal turn.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
@@ -5641,6 +5659,7 @@ variants={
     speedmove:false,nobasicanim:false,
     prism:false,ultraprism:false,prismrule:[],
     vanish:false,blind:false,
+    cursed:false,
     speedcard:false}
 constants={collisionDamage:4,
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
@@ -5652,7 +5671,7 @@ constants={collisionDamage:4,
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]}
 options={damage:false,alt:false,id:false,preGen:[]}
-graphics={main:0,backgroundGen:14,backgrounds:[],overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghij'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

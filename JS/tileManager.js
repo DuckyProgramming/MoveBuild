@@ -242,7 +242,8 @@ class tileManager{
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if(this.battle.attackManager.targetInfo[0]==9){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
-            }else if((this.battle.attackManager.targetInfo[0]==12||this.battle.attackManager.targetInfo[0]==13)&&this.tiles[a].occupied==0&&
+            }else if((this.battle.attackManager.targetInfo[0]==12||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==47)&&this.tiles[a].occupied==0&&
+            !(this.battle.attackManager.targetInfo[0]==47&&this.tiles[a].tilePosition.y-this.tiles[a].tilePosition.x*2!=this.battle.attackManager.tilePosition.y-this.battle.attackManager.tilePosition.x*2)&&
             (legalTargetDiagonalCombatant(this.battle.relicManager.active[150]?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.tiles[a],this.battle.attackManager,this.tiles)||this.battle.attackManager.targetInfo[0]==6)){
                 this.tiles[a].target(0,numeralizeDirection(0,directionCombatant(this.tiles[a],this.battle.attackManager)))
             }else if((this.battle.attackManager.targetInfo[0]==16)&&this.tiles[a].occupied==0&&

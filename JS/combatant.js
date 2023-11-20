@@ -4919,7 +4919,7 @@ class combatant{
         }else if(this.status.main[111]<0){
             multi=max(0.2,1+this.status.main[111]*0.1)
         }
-        let playerMulti=target==this.id?0.5:1
+        let playerMulti=target==this.id?0.1:1
         switch(type){
             case 0:
                 this.battle.combatantManager.combatants[target].orbTake(round(12*multi*playerMulti),-1)

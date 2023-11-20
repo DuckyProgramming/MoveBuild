@@ -1320,7 +1320,7 @@ class card{
             case 1103: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nto Everything`; break
             case 1104: string+=`Move to End of Board,\nDeal ${this.calculateEffect(effect[0],0)} Damage Damage\nto All Targets and Swap`; break
             case 1105: string+=`Deal Double Damage\nThis Turn\nBut No Enemies\nCan Die`; break
-            case 1106: string+=`Move to Any\nEmpty Tile\nPush 1 Tile\nin All Directions`; break
+            case 1106: string+=`Move to Any\nEmpty Tile\nPush 1 Tile\nin All Directions\nAt 2 Range`; break
             case 1107: string+=`${effect[0]} Spin${effect[0]!=1?`s`:``}\n12.5% Each:\n10 Currency, 1 Item\n2 Strength, 2 Dexterity\n${this.calculateEffect(5,1)} Block, 1 Buffer\n1 Energy, 2 Cards`; break
             case 1108: string+=`Gain ${effect[0]} Strength\nAdd ${effect[1]} Basicit${effect[1]!=1?`ies`:`y`}\nto Draw Pile`; break
             case 1109: string+=`All Hits Taken\n${effect[0]!=1?`Next ${effect[0]} Turns`:`This Turn`}\nAdd Block Instead`; break
@@ -1880,7 +1880,7 @@ class card{
             case 1667: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${effect[1]} More When\nAnother Card Discarded`; break
             case 1668: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Poison Thorn${effect[1]!=1?`s`:``}\nto Hand`; break
             case 1669: string+=`Create 1 Plant Tile\nAnywhere`; break
-            case 1670: string+=`Create a Plant Tile\nUnder All Combatants`; break
+            case 1670: string+=`Create 1 Plant Tile\nUnder All Combatants`; break
             case 1671: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Combo\nLose ${effect[2]} Combo Next Turn`; break
             case 1672: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Something is Ahead,\nApply ${effect[1]} Bruise`; break
             case 1673: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nNext Attack This Turn\nDeals ${effect[1]} More Damage`; break
@@ -1992,6 +1992,11 @@ class card{
             case 1780: string+=`Apply ${effect[0]} Poison\nAdd ${effect[1]} Miracle${effect[1]!=1?`s`:``} to\nHand Next Turn\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 1781: string+=`Next Attack Gets\nDamage of Last Attack`; break
             case 1782: string+=`Apply ${effect[0]} Dodge\nGain ${effect[1]} Energy`; break
+            case 1783: string+=`Halve All Countdowns\nRounds Down`; break
+            case 1784: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nNext Attack This Turn\nDeals ${effect[1]} Less Damage`; break
+            case 1785: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nPlace Ahead 1\nSpike Tile`; break
+            case 1786: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nVertically`; break
+            case 1787: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nVertically`; break
 
 
 
@@ -2507,44 +2512,44 @@ class card{
         }
     }
     display(cancelDesc=false){
-        this.cancelDesc=cancelDesc
-        let attack=0
-        let effect=0
-        let spec=0
-        let rarity=0
-        let classT=0
-        let reality=0
-        let colorDetail=0
-        let target
-        if(this.attack==1754){
-            if(this.battle.turn.total%2==0){
-                this.colorDetail=types.color.card[7]
-            }else{
-                this.colorDetail=types.color.card[2]
-            }
-        }
-        if(this.falsed.trigger){
-            name=this.falsed.name
-            attack=this.falsed.attack
-            effect=this.falsed.effect
-            spec=this.falsed.spec
-            rarity=this.falsed.rarity
-            classT=this.falsed.class
-            reality=this.falsed.reality
-            colorDetail=this.falsed.colorDetail
-            target=this.falsed.target
-        }else{
-            name=this.name
-            attack=this.attack
-            effect=this.effect
-            spec=this.spec
-            rarity=this.rarity
-            classT=this.class
-            reality=this.reality
-            colorDetail=this.colorDetail
-            target=this.target
-        }
         if(this.size>0&&this.fade>0){
+            this.cancelDesc=cancelDesc
+            let attack=0
+            let effect=0
+            let spec=0
+            let rarity=0
+            let classT=0
+            let reality=0
+            let colorDetail=0
+            let target
+            if(this.attack==1754){
+                if(this.battle.turn.total%2==0){
+                    this.colorDetail=types.color.card[7]
+                }else{
+                    this.colorDetail=types.color.card[2]
+                }
+            }
+            if(this.falsed.trigger){
+                name=this.falsed.name
+                attack=this.falsed.attack
+                effect=this.falsed.effect
+                spec=this.falsed.spec
+                rarity=this.falsed.rarity
+                classT=this.falsed.class
+                reality=this.falsed.reality
+                colorDetail=this.falsed.colorDetail
+                target=this.falsed.target
+            }else{
+                name=this.name
+                attack=this.attack
+                effect=this.effect
+                spec=this.spec
+                rarity=this.rarity
+                classT=this.class
+                reality=this.reality
+                colorDetail=this.colorDetail
+                target=this.target
+            }
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
             this.layer.scale(this.size*this.sizeCap)
@@ -3000,13 +3005,15 @@ class card{
         }
         if(this.player>=0&&this.player<this.battle.players){
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+            let effectiveEnergy=this.battle.energy.main[this.player]*(this.spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0?2:1)
+            
             this.afford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||userCombatant.getStatus('Free 1 Cost Card')>0&&this.cost==1
-            ||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=this.cost&&this.spec.includes(40))
+            ||effectiveEnergy>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=this.cost&&this.spec.includes(40))
             &&!(userCombatant.getStatus('Cannot Move')>0&&this.class==3)&&!(userCombatant.stance==3&&this.class==1&&this.attack!=824)&&
             !(this.spec.includes(6)&&!userCombatant.armed)&&!(this.spec.includes(25)&&userCombatant.ammo<=0&&this.target[0]!=46)
 
             this.energyAfford=(userCombatant.getStatus('Free Card')>0||userCombatant.getStatus('Free Attack')>0&&this.class==1||userCombatant.getStatus('Free 1 Cost Card')>0&&this.cost==1
-            ||this.battle.energy.main[this.player]>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=this.cost&&this.spec.includes(40))
+            ||effectiveEnergy>=this.cost&&!this.spec.includes(11)&&!this.spec.includes(21)&&!this.spec.includes(40)||this.battle.combatantManager.combatants[this.player].combo>=this.cost&&this.spec.includes(11)||this.battle.combatantManager.combatants[this.player].metal>=this.cost&&this.spec.includes(21)||this.battle.combatantManager.combatants[this.player].getStatus('Twos')>=this.cost&&this.spec.includes(40))
         }else{
             this.afford=false
             this.energyAfford=false
@@ -3035,7 +3042,7 @@ class card{
             if(this.battle.modded(37)&&this.cost==0){
                 this.cost=1
             }
-            if(this.battle.modded(79)&&this.cost==1){
+            if(this.battle.modded(79)&&this.cost==1&&!(this.class==3||this.spec.includes(12)&&(this.class[0]==3||this.class[1]==3))){
                 this.cost=2
                 if(this.spec.includes(12)){
                     for(let a=0,la=this.effect.length;a<la;a++){

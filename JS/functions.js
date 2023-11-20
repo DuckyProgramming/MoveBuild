@@ -28,6 +28,64 @@ function displayTransition(layer,transition){
 				transition.convert=false
 				current.convert(stage.scene)
 			}
+			switch(stage.scene){
+				case 'title':
+					graphics.staticBackground.clear()
+					setupBackground(8,graphics.staticBackground)
+				break
+				case 'menu':
+					graphics.staticBackground.clear()
+					setupBackground(9,graphics.staticBackground)
+				break
+				case 'menu2':
+					graphics.staticBackground.clear()
+					setupBackground(10,graphics.staticBackground)
+				break
+				case 'variants':
+					graphics.staticBackground.clear()
+					setupBackground(11,graphics.staticBackground)
+				break
+				case 'custom':
+					graphics.staticBackground.clear()
+					setupBackground(12,graphics.staticBackground)
+				break
+				case 'tutorial':
+					graphics.staticBackground.clear()
+					setupBackground(13,graphics.staticBackground)
+				break
+				case 'rest':
+					graphics.staticBackground.clear()
+					setupBackground(3,graphics.staticBackground)
+				break
+				case 'victory':
+					graphics.staticBackground.clear()
+					setupBackground(2,graphics.staticBackground)
+				break
+				case 'defeat':
+					graphics.staticBackground.clear()
+					setupBackground(1,graphics.staticBackground)
+				break
+				case 'statsh':
+					graphics.staticBackground.clear()
+					setupBackground(4,graphics.staticBackground)
+				break
+				case 'bossstash':
+					graphics.staticBackground.clear()
+					setupBackground(6,graphics.staticBackground)
+				break
+				case 'pack':
+					graphics.staticBackground.clear()
+					setupBackground(7,graphics.staticBackground)
+				break
+				case 'perk':
+					graphics.staticBackground.clear()
+					setupBackground(0,graphics.staticBackground)
+				break
+				case 'event':
+					graphics.staticBackground.clear()
+					setupBackground(5,graphics.staticBackground)
+				break
+			}
 		}
 	}
 	else if(transition.anim>0){
@@ -649,11 +707,12 @@ function quadroArray(base){
 	return [base,base,base,base]
 }
 function copyArray(base){
-	let list=[]
+	/*let list=[]
 	for(let a=0,la=base.length;a<la;a++){
 		list.push(base[a])
 	}
-	return list
+	return list*/
+	return base.slice()
 }
 function copyArrayStack(base){
 	let list=[]
