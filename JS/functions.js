@@ -65,7 +65,7 @@ function displayTransition(layer,transition){
 					graphics.staticBackground.clear()
 					setupBackground(1,graphics.staticBackground)
 				break
-				case 'statsh':
+				case 'stash':
 					graphics.staticBackground.clear()
 					setupBackground(4,graphics.staticBackground)
 				break

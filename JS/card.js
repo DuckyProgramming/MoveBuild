@@ -495,7 +495,7 @@ class card{
             case 271: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCounter ${effect[1]} All`; break
             case 272: string+=`Apply ${effect[0]} Random Debuff`; break
             case 273: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
-            case 274: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Chip to\nDiscard Pile`; break
+            case 274: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd a Chip of\nEquivalent Level to\nDiscard Pile`; break
             case 275: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nAdd ${this.calculateEffect(effect[1],3)} Block\nValues Swap\nWhen X is Odd`; break
             case 276: string+=`Next ${effect[0]} Card${effect[0]!=1?`s`:``}\nPlayed ${effect[0]!=1?`are`:`is`} Duplicated\nDiscard ${effect[0]} Random Card${effect[0]!=1?`s`:``}`; break
             case 277: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd an Overflow to\nDiscard Pile`; break
@@ -1616,7 +1616,7 @@ class card{
             case 1400: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nTarget Cannot Move\nFor ${effect[2]} Turn${effect[2]!=1?`s`:``}`; break
             case 1401: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Miracle${effect[1]!=1?`s`:``} to Hand\nDiscards to Hand`; break
             case 1402: string+=`Gain ${effect[0]} Energy\nDraw Cards to ${effect[1]} Cost`; break
-            case 1403: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less Every 2\nTurns When Retained`; break
+            case 1403: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nTemporarily Every 2\nTurns When Retained`; break
             case 1404: string+=`If You Have 0 Energy,\nGain ${effect[0]} Armor\nand Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1405: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Random Debuff\nApply ${effect[2]} Random Debuff\nApply ${effect[3]} Random Debuff\nDiscards to Hand`; break
             case 1406: string+=`50%: Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Frail\n50%: Deal ${this.calculateEffect(effect[2],0)} Damage`; break
@@ -1962,7 +1962,7 @@ class card{
             case 1750: string+=`Double Countdown\nIncrements This Turn`; break
             case 1751: string+=`Deal ${effect[0]} Damage\nApply ${effect[1]} Burn\nDamage is Constant`; break
             case 1752: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nReduce All Countdowns\nby Leftover Energy`; break
-            case 1753: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Retained\nDiscards to Hand`; break
+            case 1753: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less Temporarily\nWhen Retained\nDiscards to Hand`; break
             case 1754: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Random ${[`Red`,`Green`][this.battle.turn.total%2]}\nCard${effect[1]!=1?`s`:``} to Hand`; break
             case 1755: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}\nIf Possible:\nSpend ${effect[3]} Charge\nDeal Triple Damage`; break
             case 1756: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nIf Possible:\nSpend ${effect[1]} Charge\nX Increased By ${effect[2]}`; break
@@ -2485,7 +2485,7 @@ class card{
             case -37: case 1698:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Temporary Draw',-1)
             break
-            case 757: case 1753:
+            case 757:
                 if(this.cost>0){
                     this.cost--
                     this.base.cost--
@@ -2497,11 +2497,15 @@ class card{
             case 1403:
                 if(this.cost>0&&this.battle.turn.total%2==0){
                     this.cost--
-                    this.base.cost--
                 }
             break
             case 1564:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.effect[0])
+            break
+            case 1753:
+                if(this.cost>0){
+                    this.cost--
+                }
             break
         }
         if(this.cost>0){

@@ -1215,7 +1215,7 @@ class battle{
                 this.overlayManager.display()
             break
         }
-        if(this.modded(150)){
+        if(this.initialized&&this.modded(150)){
             this.layer.noStroke()
             for(let a=0,la=45;a<la;a++){
                 for(let b=0,la=4;b<lb;b++){
