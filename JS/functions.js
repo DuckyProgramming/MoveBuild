@@ -638,6 +638,9 @@ function intentDescription(attack,user,info){
 			case 246: return `Apply ${info?attack.effect[0]:`?`} Freeze`
 			case 247: return `Apply ${info?attack.effect[0]:`?`} Burn, Freeze, or Shock`
 			case 248: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,0):`?`} Damage`
+			case 249: return `Apply ${info?attack.effect[0]:`?`} Weak\nto Everybody Else`
+			case 250: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable to Self\nRange 1-2`
+			case 251: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nand Take ${info?attack.effect[1]:`?`} Damage\n3 Times\nRange 1-1`
 
 			default: return `INVALID`
 		}

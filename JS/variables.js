@@ -128,6 +128,7 @@ types={
         {name:'Coffee Commander',life:435,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]},{type:188,effect:[5]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
         {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[3]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
+        {name:'Lalex',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:249,effect:[2]},{type:250,effect:[13,1]},{type:251,effect:[6,3]}],description:`Why is he here?`},
         
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -459,6 +460,9 @@ types={
         {name:'Freeze',class:1},
         {name:'Status Triplet',class:1},
         {name:'2 Tile Random Strike',class:1},
+        {name:'Global Weaken',class:4},
+        {name:'2 Tile Self-Vulnerable Strike',class:1},//250
+        {name:'1v1',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -3864,6 +3868,15 @@ Entering, you're offered a chance to glimpse your future...`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[18]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Causal 5',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
         },
     ],encounter:[
         {
@@ -3879,6 +3892,14 @@ Entering, you're offered a chance to glimpse your future...`,
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Causal 5'],class:1,world:0,
+            name:'Lalex',
+            player:{position:[[{x:0,y:2}],[{x:0,y:2},{x:1,y:3}]]},
+            enemy:[
+                {position:{x:3,y:2},name:'Lalex'},
             ],reinforce:[
             ],
         },{

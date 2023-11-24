@@ -511,6 +511,7 @@ class battle{
             this.tileManager.fire()
             this.turnManager.loadEnemyTurns()
             this.combatantManager.enableCombatants()
+            this.combatantManager.tickA()
         }else{
             if(!this.tutorialManager.active){
                 if(this.turn.total==1){
@@ -574,7 +575,7 @@ class battle{
         }
         this.combatantManager.setupCombatants()
         if(this.turn.total>1){
-            this.combatantManager.tick()
+            this.combatantManager.tickB()
         }
         this.combatantManager.unmoveCombatants()
         this.combatantManager.resetCombatantsAnim()

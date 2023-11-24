@@ -5675,7 +5675,7 @@ combatant.prototype.display=function(){
                     }
                 }
             break
-            case 'Fat Scrapper':
+            case 'Fat Scrapper': case 'Lalex':
                 if(this.name=='Fat Scrapper'&&this.trigger.display.goggles&&lcos(this.anim.direction)<=0){
                     this.layer.fill(this.flashColor(this.color.goggles)[0],this.flashColor(this.color.goggles)[1],this.flashColor(this.color.goggles)[2],this.fade*this.fades.goggles)
                     this.layer.stroke(120,120,120,this.fade)
@@ -5694,6 +5694,10 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-39,36,30)
+                    if(this.name=='Lalex'){
+                        this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
+                        this.layer.arc(0,-39,36,30,-180,0)
+                    }
                 }
                 if(this.name=='Fat Scrapper'&&this.trigger.display.belt){
                     this.layer.noStroke()
@@ -5723,7 +5727,19 @@ combatant.prototype.display=function(){
                             }
                         }
                     }
-                }for(let g=0;g<2;g++){
+                }
+                if(this.name=='Lalex'&&this.trigger.display.logo&&lcos(this.anim.direction)>0){
+                    this.layer.stroke(this.flashColor(this.color.logo)[0],this.flashColor(this.color.logo)[1],this.flashColor(this.color.logo)[2],this.fade*this.fades.logo)
+                    this.layer.strokeWeight(2)
+                    this.layer.noFill()
+                    this.layer.push()
+                    this.layer.translate(lsin(this.anim.direction)*18,-45)
+                    this.layer.scale(lcos(this.anim.direction))
+                    this.layer.line(-1,-4,-1,4)
+                    this.layer.arc(-1,0,6,8,-90,90)
+                    this.layer.pop()
+                }
+                for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
                         this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))

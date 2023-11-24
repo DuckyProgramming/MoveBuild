@@ -1382,7 +1382,7 @@ class combatant{
                 }
                 this.goal={anim:{direction:this.anim.direction}}
             break
-            case 'Fat Scrapper':
+            case 'Fat Scrapper': case 'Lalex':
                 this.anim={direction:direction,head:direction,mouth:{x:8,y:5,open:0},eye:[0,0],eyeStyle:[0,0],
                     legs:[{top:9,bottom:0,length:{top:13,bottom:13}},{top:9,bottom:0,length:{top:13,bottom:13}}],
                     arms:[{top:24,bottom:9,length:{top:13,bottom:13}},{top:24,bottom:9,length:{top:13,bottom:13}}]}
@@ -1407,6 +1407,13 @@ class combatant{
                         this.fades.goggles=0.6
                         this.trigger.display.belt=true
                         this.trigger.display.goggles=true
+                    break
+                    case 'Lalex':
+                        this.color={skin:{head:[240,220,180],body:[120,120,130],legs:[115,115,125],arms:[45,195,45]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.skin.upperBody=[50,200,50]
+                        this.color.logo=[240,240,240]
+                        this.fades.logo=1
+                        this.trigger.display.logo=true
                     break
                 }
             break
@@ -3345,7 +3352,7 @@ class combatant{
         switch(this.attack[this.intent].type){
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
-            case 212: case 229: case 242: case 246: case 247:
+            case 212: case 229: case 242: case 246: case 247: case 251:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
@@ -3354,7 +3361,7 @@ class combatant{
             case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
             case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 107:
             case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223: case 224:
-            case 248:
+            case 248: case 250:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
@@ -3798,7 +3805,7 @@ class combatant{
                     switch(this.attack[this.intent].type){
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
-                        case 212: case 229: case 242: case 246: case 247:
+                        case 212: case 229: case 242: case 246: case 247: case 251:
                             if(this.battle.modded(57)){
                                 for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                     if(
@@ -3817,7 +3824,7 @@ class combatant{
                         case 6: case 7: case 8: case 14: case 15: case 19: case 20: case 24: case 27: case 30:
                         case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
                         case 107: case 112: case 137: case 138: case 139: case 149: case 156: case 183: case 203: case 211:
-                        case 223: case 224: case 248:
+                        case 223: case 224: case 248: case 250:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -3970,7 +3977,7 @@ class combatant{
                 switch(this.attack[this.intent].type){
                     case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                     case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
-                    case 150: case 181: case 209: case 212: case 229: case 242: case 246: case 247:
+                    case 150: case 181: case 209: case 212: case 229: case 242: case 246: case 247: case 251:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
@@ -3986,7 +3993,7 @@ class combatant{
                     case 6: case 7: case 14: case 15: case 19: case 20: case 24: case 27: case 30: case 32:
                     case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99: case 107:
                     case 112: case 137: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
-                    case 224: case 248:
+                    case 224: case 248: case 250:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -4713,7 +4720,7 @@ class combatant{
                             userCombatant.statusEffect('Damage Down',this.status.main[176])
                         }
                         if(this.status.main[205]>0){
-                            userCombatant.statusEffectNext('Weak',this.status.main[205])
+                            userCombatant.statusEffect('Weak',this.status.main[205])
                         }
                         if(this.status.main[50]>0){
                             this.addBlock(this.status.main[50])
@@ -5198,7 +5205,7 @@ class combatant{
             }
         }
     }
-    statusEffectNext(name,value){
+    statusEffect(name,value){
         if(!(
             this.battle.relicManager.hasRelic(23,this.id)&&name=='Weak'||
             this.battle.relicManager.hasRelic(24,this.id)&&name=='Frail'||
@@ -5256,7 +5263,7 @@ class combatant{
             }
         }
         if(list.length>0){
-            this.statusEffectNext(this.status.name[list[floor(random(0,list.length))]],effect)
+            this.statusEffect(this.status.name[list[floor(random(0,list.length))]],effect)
         }
     }
     removeRandomStatus(classes){
