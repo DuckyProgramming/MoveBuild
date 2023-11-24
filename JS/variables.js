@@ -5431,8 +5431,8 @@ Vary greatly in effect.`,
 `Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
 Is removed when damage taken.`,
         },{name:'Freeze',desc:
-`Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
-Is removed when damage taken, but doubles the damage.`,
+`Frozen enemies will have one of their attacks' damage reduced to 4.
+Decrements afterward.`,
         },{name:'Shock',desc:
 `Take damage after each movement step.`,
         },{name:'Jinx',desc:

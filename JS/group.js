@@ -677,6 +677,7 @@ class group{
             this.cards[index0].falsed.reality=this.cards[index1].reality
             this.cards[index0].falsed.colorDetail=this.cards[index1].colorDetail
             this.cards[index0].falsed.target=this.cards[index1].target
+            this.cards[index0].falsed.cost=this.cards[index1].cost
             this.cards[index1].falsed.trigger=true
             this.cards[index1].falsed.name=this.cards[index0].name
             this.cards[index1].falsed.attack=this.cards[index0].attack
@@ -687,6 +688,7 @@ class group{
             this.cards[index1].falsed.reality=this.cards[index0].reality
             this.cards[index1].falsed.colorDetail=this.cards[index0].colorDetail
             this.cards[index1].falsed.target=this.cards[index0].target
+            this.cards[index1].falsed.cost=this.cards[index0].cost
         }
     }
     halfEffect(effect){
@@ -2624,7 +2626,7 @@ class group{
             break
             case 13:
                 this.cards[a].deSize=true
-                this.cards[a].discardEffect.push(5)
+                this.cards[a].discardEffect.push(6)
                 if(this.status.badreserve>0){
                     this.status.badreserve--
                 }
@@ -2799,6 +2801,11 @@ class group{
                                 this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                                 a--
                                 la--
+                            }else if(this.cards[a].discardEffect.includes(6)){
+                                this.cards[a].discardEffect=[]
+                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
+                                a--
+                                la--
                             }else{
                                 this.cards[a].discardEffect=[]
                             }
@@ -2815,7 +2822,7 @@ class group{
                             this.cards[a].attack==1504||this.cards[a].attack==1616||this.cards[a].attack==1622||this.cards[a].attack==1623||this.cards[a].attack==1625||
                             this.cards[a].attack==1626||this.cards[a].attack==1627||this.cards[a].attack==1628||this.cards[a].attack==1630||this.cards[a].attack==1635||
                             this.cards[a].attack==1642&&this.battle.attackManager.energy==4||this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||
-                            this.cards[a].attack==1655||this.cards[a].attack==1697||this.cards[a].attack==1740||this.cards[a].attack==1753||this.cards[a].attack==1777||
+                            this.cards[a].attack==1655||this.cards[a].attack==1740||this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].cost>0&&this.battle.turn.main==this.player
                         )&&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)

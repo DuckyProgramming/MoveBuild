@@ -13,13 +13,29 @@ pinwheels - a puzzle game about color and shape
 
 
 
+1v1 from lalex
 
+lalex
 
-rest sites suck on cursed mode
-
-
-congeal looking a little sus
-
-hidden swap costs
-
-freeze typos
+this.layer.stroke(120,120,130,this.fade)
+				this.layer.strokeWeight(4)
+				this.layer.line(-4,-30,-8-sin(this.rate[0]*2)*3,0)
+				this.layer.line(4,-30,8+sin(this.rate[0]*2)*3,0)
+				this.layer.stroke(50,200,50,this.fade)
+				this.layer.line(-6*cos(this.rate[1]),-48,-15*cos(this.rate[1])+this.anim[0]*30+this.anim[1]*36,-24-this.anim[0]*12-this.anim[1]*30)
+				this.layer.line(6*cos(this.rate[1]),-48,15*cos(this.rate[1])+this.anim[0]*15+this.anim[1]*12,-24-this.anim[0]*12-this.anim[1]*30)
+				this.layer.noStroke()
+				this.layer.fill(50,200,50,this.fade)
+				this.layer.ellipse(0,-45,24,42)
+				this.layer.fill(120,120,130,this.fade)
+				this.layer.arc(0,-44,24,42,0,180)
+				this.layer.fill(240,220,180,this.fade)
+				this.layer.ellipse(0,-78,30,30)
+				this.layer.fill(0,this.fade)
+				this.layer.ellipse(4,-75,4,4)
+				this.layer.ellipse(12,-75,4,4)
+				this.layer.stroke(255,this.fade)
+				this.layer.strokeWeight(2)
+				this.layer.line(4,-50,4,-58)
+				this.layer.noFill()
+				this.layer.arc(4,-54,6,8,-90,90)

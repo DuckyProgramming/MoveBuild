@@ -735,6 +735,9 @@ function copyArrayAttack(base){
 	}
 	return list
 }
+function copyFalsed(base){
+	return {trigger:base.trigger,name:base.name,attack:base.attack,effect:base.effect,spec:base.spec,rarity:base.rarity,class:base.class,reality:base.reality,colorDetail:base.colorDetail,target:base.target,cost:base.cost}
+}
 function legalTarget(type,lengthStart,lengthEnd,x,y){
 	switch(type){
 		case 0:

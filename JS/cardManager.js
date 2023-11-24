@@ -312,10 +312,8 @@ class cardManager{
     addRandomCompleteAllClassFree(group,level,cardClass,variant){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            for(let b=0,lb=contain.length;b<lb;b++){
-                if(types.card[this.listing.allPlayerCard[3][a]].levels[level].class==cardClass){
-                    list.push(this.listing.allListableCard[3][a])
-                }
+            if(types.card[this.listing.allListableCard[3][a]].levels[level].class==cardClass){
+                list.push(this.listing.allListableCard[3][a])
             }
         }
         if(list.length>0){

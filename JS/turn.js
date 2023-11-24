@@ -817,6 +817,7 @@ class turn{
                                     }
                                 }else{
                                     this.userCombatant.goal.anim.direction=this.relativeDirection
+                                    this.remove=true
                                 }
                             break
                             case 1:
