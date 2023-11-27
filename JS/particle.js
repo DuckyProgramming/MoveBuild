@@ -152,7 +152,7 @@ class particle{
                 case 0:
                     this.layer.fill(255,100,100,this.fade)
                     this.layer.textSize(20)
-                    this.layer.text('-'+this.value,0,0)
+                    this.layer.text('-'+tennify(this.value),0,0)
                 break
                 case 1:
                     this.layer.rotate(this.direction)

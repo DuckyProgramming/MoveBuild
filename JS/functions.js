@@ -320,18 +320,16 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage=0
 				bonus=0
 			}
-			damage=round(damage*10)/10
-			bonus=round(bonus*10)/10
 			switch(type){
-				case 0: return damage==effect&&bonus==0?effect:effect+`(${damage+bonus})`
-				case 2: return (damage==effect?effect+'X':effect+`(${damage})X`)+(bonus>0?`(+${bonus})`:``)
-				case 5: return (damage==effect?effect+'XX':effect+`(${damage})XX`)+(bonus>0?`(+${bonus})`:``)
-				case 7: return effect==1?(damage==effect?'1*Combo':`1(${damage})*Combo`):(damage==effect?effect+'*Combo':effect+`(${damage})*Combo`)
-				case 8: return effect==1?(damage==effect&&bonus==0?effect+'1*Combo':effect+`1(${damage})*Combo`)+(bonus>0?`(+${bonus})`:``):(damage==effect&&bonus==0?effect+'*Combo':effect+`(${damage})*Combo`)+(bonus>0?`(+${bonus})`:``)
-				case 10: return damage==effect?effect:effect+`(${damage})`
-				case 11: return (damage==effect?effect+'X':effect+`(${damage})X`)
-				case 12: return effect==1?(damage==effect?'1*Faith':`1(${damage})*Faith`):(damage==effect?effect+'*Faith':effect+`(${damage})*Faith`)
-				case 13: return effect==1?(damage==effect?'1':`1(${damage})`):(damage==effect?effect+'':effect+`(${damage})`)
+				case 0: return damage==effect&&bonus==0?tennify(effect):tennify(effect)+`(${tennify(damage+bonus)})`
+				case 2: return (damage==effect?tennify(effect)+'X':tennify(effect)+`(${tennify(damage)})X`)+(bonus>0?`(+${tennify(bonus)})`:``)
+				case 5: return (damage==effect?tennify(effect)+'XX':tennify(effect)+`(${tennify(damage)})XX`)+(bonus>0?`(+${tennify(bonus)})`:``)
+				case 7: return effect==1?(damage==effect?'1*Combo':`1(${tennify(damage)})*Combo`):(damage==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)
+				case 8: return effect==1?(damage==effect&&bonus==0?tennify(effect)+'1*Combo':tennify(effect)+`1(${tennify(damage)})*Combo`)+(bonus>0?`(+${tennify(bonus)})`:``):(damage==effect&&bonus==0?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)+(bonus>0?`(+${tennify(bonus)})`:``)
+				case 10: return damage==effect?tennify(effect):tennify(effect)+`(${tennify(damage)})`
+				case 11: return (damage==effect?tennify(effect)+'X':tennify(effect)+`(${tennify(damage)})X`)
+				case 12: return effect==1?(damage==effect?'1*Faith':`1(${tennify(damage)})*Faith`):(damage==effect?tennify(effect)+'*Faith':tennify(effect)+`(${tennify(damage)})*Faith`)
+				case 13: return effect==1?(damage==effect?'1':`1(${tennify(damage)})`):(damage==effect?tennify(effect)+'':tennify(effect)+`(${tennify(damage)})`)
 
 			}
 		case 1: case 3: case 6: case 14:
@@ -371,12 +369,12 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				block*=1.5
 			}
 			//SCAFFOLD: 14 is unaffected by flat adds
-			block=round(block*10)/10
+			block=tennify(block)
 			switch(type){
-				case 1: return block==effect&&bonusB==0?effect:effect+`(${block+bonusB})`
-				case 3: return (block==effect?effect+'X':effect+`(${block})X`)+(bonusB>0?`(+${bonusB})`:``)
-				case 6: return effect==1?(block==effect?'1*Combo':`1(${block})*Combo`):(block==effect?effect+'*Combo':effect+`(${block})*Combo`)
-				case 14: return block==effect?effect:effect+`(${block})`
+				case 1: return block==effect&&bonusB==0?tennify(effect):tennify(effect)+`(${tennify(block+bonusB)})`
+				case 3: return (block==effect?tennify(effect)+'X':tennify(effect)+`(${tennify(block)})X`)+(bonusB>0?`(+${tennify(bonusB)})`:``)
+				case 6: return effect==1?(block==effect?'1*Combo':`1(${tennify(block)})*Combo`):(block==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(block)})*Combo`)
+				case 14: return block==effect?tennify(effect):tennify(effect)+`(${tennify(block)})`
 
 			}
 		case 4: case 9:
@@ -384,9 +382,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(relicManager.hasRelic(53,player)){
 				health*=1.5
 			}
+			health=tennify(health)
 			switch(type){
-				case 4: return health==effect?effect:effect+` (${health})`
-				case 9: return health==effect?effect+`X`:effect+` (${health})X`
+				case 4: return health==effect?tennify(effect):tennify(effect)+` (${tennify(health)})`
+				case 9: return health==effect?tennify(effect)+`X`:tennify(effect)+` (${tennify(health)})X`
 			}
 	}
 }
@@ -646,6 +645,14 @@ function intentDescription(attack,user,info){
 		}
 	}catch(error){
 		return `error-${attack.type}-${attack.effect}`
+	}
+}
+function tennify(value){
+	if(round(value)==value){
+		return value
+	}else{
+		let mid=round(value*10).toString()
+		return mid.substr(0,mid.length-1)+'.'+mid[mid.length-1]
 	}
 }
 function vectorAtan(point1,point2){

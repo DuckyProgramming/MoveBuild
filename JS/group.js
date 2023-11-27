@@ -1620,7 +1620,7 @@ class group{
                         list[list.length-1].retain=true
                         if(this.drawEffect(list[list.length-1])){la=0}
                     }
-                    if(spec==10&&list[list.length-1].level==0){
+                    if(spec==10&&list[list.length-1].level<=1){
                         list[list.length-1]=upgradeCard(list[list.length-1])
                     }
                     if(spec==12){
@@ -1676,7 +1676,7 @@ class group{
                         list[list.length-1].retain=true
                         if(this.drawEffect(list[list.length-1])){la=0}
                     }
-                    if(spec==10&&list[list.length-1].level==0){
+                    if(spec==10&&list[list.length-1].level<=1){
                         list[list.length-1]=upgradeCard(list[list.length-1])
                     }
                     if(spec==12){

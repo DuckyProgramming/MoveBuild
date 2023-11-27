@@ -5205,7 +5205,7 @@ class combatant{
             }
         }
     }
-    statusEffect(name,value){
+    statusEffectNext(name,value){
         if(!(
             this.battle.relicManager.hasRelic(23,this.id)&&name=='Weak'||
             this.battle.relicManager.hasRelic(24,this.id)&&name=='Frail'||

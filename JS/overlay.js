@@ -229,11 +229,11 @@ class overlay{
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.coc)
                         let tick=0
                         for(let a=0,la=list[args[1]].length;a<la;a++){
-                            if(types.card[list[args[1]][a]].levels[0].class==3){
+                            //if(types.card[list[args[1]][a]].levels[0].class==3){
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2-350+tick%8*100,this.layer.height/2-130+floor(tick/8)%3*130,list[args[1]][a],args[0],types.card[list[args[1]][a]].list,-1))
                                 this.cards[tick].upSize=true
                                 tick++
-                            }
+                            //}
                         }
                     break
                 }
@@ -562,12 +562,12 @@ class overlay{
                 this.layer.textSize(10)
                 this.layer.text(this.battle.stats.node[0]+' Nodes Travelled',this.layer.width/2+225*this.posKey,this.layer.height/2-140)
                 this.layer.text(this.battle.stats.killed[this.player]+' Enemies Killed',this.layer.width/2+225*this.posKey,this.layer.height/2-50)
-                this.layer.text(round(this.battle.stats.damage[this.player])+' Damage Dealt',this.layer.width/2+225*this.posKey,this.layer.height/2-35)
-                this.layer.text(round(this.battle.stats.block[this.player])+' Block Added',this.layer.width/2+225*this.posKey,this.layer.height/2-20)
+                this.layer.text(tennify(this.battle.stats.damage[this.player])+' Damage Dealt',this.layer.width/2+225*this.posKey,this.layer.height/2-35)
+                this.layer.text(tennify(this.battle.stats.block[this.player])+' Block Added',this.layer.width/2+225*this.posKey,this.layer.height/2-20)
                 this.layer.text(this.battle.stats.move[this.player]+' Tiles Moved',this.layer.width/2+225*this.posKey,this.layer.height/2-5)
                 this.layer.text(this.battle.stats.drawn[this.player]+' Cards Drawn',this.layer.width/2+225*this.posKey,this.layer.height/2+10)
                 this.layer.text(this.battle.stats.played[this.player][0]+' Cards Played:',this.layer.width/2+225*this.posKey,this.layer.height/2+25)
-                this.layer.text(this.battle.stats.taken[this.player][0]+' Damage Taken:',this.layer.width/2+225*this.posKey,this.layer.height/2+85)
+                this.layer.text(tennify(this.battle.stats.taken[this.player][0])+' Damage Taken:',this.layer.width/2+225*this.posKey,this.layer.height/2+85)
                 this.layer.text(this.battle.stats.earned[this.player]+' Currency Obtained',this.layer.width/2+225*this.posKey,this.layer.height/2+125)
                 this.layer.text(this.battle.stats.card[this.player]+' Cards Obtained',this.layer.width/2+225*this.posKey,this.layer.height/2+140)
                 this.layer.text(this.battle.stats.relic[this.player]+' Relics Obtained',this.layer.width/2+225*this.posKey,this.layer.height/2+155)
@@ -584,8 +584,8 @@ class overlay{
                 this.layer.text(this.battle.stats.played[this.player][2]+' Defenses',this.layer.width/2+225*this.posKey,this.layer.height/2+50)
                 this.layer.text(this.battle.stats.played[this.player][3]+' Movements',this.layer.width/2+225*this.posKey,this.layer.height/2+60)
                 this.layer.text(this.battle.stats.played[this.player][4]+' Powers',this.layer.width/2+225*this.posKey,this.layer.height/2+70)
-                this.layer.text(this.battle.stats.taken[this.player][1]+' Blocked',this.layer.width/2+225*this.posKey,this.layer.height/2+100)
-                this.layer.text(this.battle.stats.taken[this.player][2]+' Unblocked',this.layer.width/2+225*this.posKey,this.layer.height/2+110)
+                this.layer.text(tennify(this.battle.stats.taken[this.player][1])+' Blocked',this.layer.width/2+225*this.posKey,this.layer.height/2+100)
+                this.layer.text(tennify(this.battle.stats.taken[this.player][2])+' Unblocked',this.layer.width/2+225*this.posKey,this.layer.height/2+110)
             break
             case 5:
                 this.layer.fill(160,this.fade*0.8)
