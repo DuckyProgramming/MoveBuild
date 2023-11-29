@@ -2,54 +2,8 @@ Bugs:
 
 group photo of the characters for a background
 
-paperball floating on water
-
 lunar fractals
 
-pinwheels - a puzzle game about color and shape
+pinwheels - a puzzle game about color and shapegraphi
 
-
-
-
-
-
-triple block vs single block convert bugs
-
-star barrage discard to draw
-
-pea shooter crystal animation on airi
-
-elf archer mod
-
-
-
-
-
-
-orb of discord - heal target, and apply a bunch of statuses
-red sky - drain health, take damage next turn
-chitin - countdown take 1/3 damage
-
-marshsword - damage, swap ice and fire
-accretion - damage for each countdown in hand
-sick shooter - six shooter but full of poison
-fall damage - get a dodge, take some damage
-thunder buster - kinda like buster buster but shock, and IF LAST CARD IN HAND becomes free
-scrap key - pay 1 for a bad miracle, but also has vanishing into rare
-
-waltzer - deal damage every 3 turns, forever
-kleptovania - deal damage, and get an attack that has the damage of the enemy
-faeblade - lament/whip but fade
-shut up - countdown, damage and silence
-bumpster - gives a small buff, and discards to hand (but exhausts)
-morphing egg - get some cards that cost the amount of energy you currently have
-
-frogsword
-left/right arc punch
-^right
-threepeater
-tin snips - combine, divide by 3
-splinters - get 2 new cards, but freeze them
-
-nudge - lose 1 energy and get trolled
 

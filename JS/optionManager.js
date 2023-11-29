@@ -48,8 +48,8 @@ class optionManager{
         }
         if(list.length>0){
             let index=floor(random(0,list.length))
-            delete this.options[index]
-            this.options.splice(index,1)
+            delete this.options[list[index]]
+            this.options.splice(list[index],1)
             for(let a=0,la=this.options.length;a<la;a++){
                 this.options[a].position.x=this.layer.width/2+75-la*75+a*150
             }

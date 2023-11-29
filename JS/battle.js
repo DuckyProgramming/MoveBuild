@@ -1564,7 +1564,7 @@ class battle{
                 this.overlayManager.update()
             break
         }
-        if(this.initalized&&this.modded(135)&&game.timer%180==0){
+        if(this.initialized&&this.modded(135)&&game.timer%180==0){
             for(let a=0,la=this.players;a<la;a++){
                 this.loseCurrency(1,a)
             }

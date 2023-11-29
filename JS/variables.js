@@ -5468,6 +5468,8 @@ Decrements afterward.`,
 `Will face 180 degrees from target.`,
         },{name:'Lock',desc:
 `Cannot respond to players by attacking or moving, can only act via normal turn.`,
+        },{name:'Poison',desc:
+`Deals damage every turn. Decreases by 1 afterward.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0

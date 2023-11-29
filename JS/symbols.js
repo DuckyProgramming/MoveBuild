@@ -1250,20 +1250,20 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(150,175,200,fade)
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)
+            layer.rect(-6.5,0,2,2)
+            layer.rect(-6.5,-3,2,2)
+            layer.rect(-6.5,3,2,2)
+        break
+        case 139:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
             layer.fill(150,0,0,fade)
             layer.beginShape()
             for(let a=0,la=16;a<la;a++){
                 layer.vertex(sin(a/la*360)*(6-a%2*3.6)+0.5,cos(a/la*360)*(6-a%2*3.6))
             }
             layer.endShape()
-        break
-        case 139:
-            layer.fill(150,175,200,fade)
-			layer.triangle(-5,-3,5,-3,0,-6)
-			layer.arc(0,-3,10,16,0,180)
-            layer.rect(-6.5,0,2,2)
-            layer.rect(-6.5,-3,2,2)
-            layer.rect(-6.5,3,2,2)
         break
         case 140:
             layer.fill(150,175,200,fade)

@@ -117,7 +117,7 @@ class combatant{
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
-            'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Single Damage Block Convert','Triple Block',
+            'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
             '1.5x Block','Upgrade Created','Lowroll Strength','Decrementing Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
@@ -5926,8 +5926,8 @@ class combatant{
                         this.animSet.loop+=rate
                         this.anim.arms[0].top=24+lsin(this.animSet.loop*180)*60
                         this.anim.arms[0].bottom=9+lsin(this.animSet.loop*180)*99
-                        this.spin.arms[0].top=-93+sqrt(sin(this.animSet.loop*180))*78
-                        this.spin.arms[0].bottom=-75+sqrt(sin(this.animSet.loop*180))*75
+                        this.spin.arms[0].top=-93+sqrt(abs(sin(this.animSet.loop*180)))*78
+                        this.spin.arms[0].bottom=-75+sqrt(abs(sin(this.animSet.loop*180)))*75
                     break
                 }
             break

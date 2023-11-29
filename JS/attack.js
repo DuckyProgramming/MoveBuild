@@ -153,7 +153,7 @@ class attack{
             case 1753: case 1754: case 1755: case 1762: case 1763: case 1764: case 1765: case 1766: case 1768: case 1769:
             case 1770: case 1772: case 1773: case 1774: case 1775: case 1776: case 1777: case 1778: case 1779: case 1780:
             case 1782: case 1787: case 1788: case 1790: case 1791: case 1793: case 1794: case 1795: case 1796: case 1798:
-            case 1799: case 1800: case 1805: case 1801:
+            case 1799: case 1800: case 1805: case 1801: case 1863:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2418,10 +2418,10 @@ class attack{
                         this.userCombatant.statusEffect('Cannot Die',1)
                     break
                     case 810:
-                        this.userCombatant.statusEffect('Single Damage Block Convert',this.effect[1])
+                        this.userCombatant.statusEffect('Triple Block',this.effect[1])
                     break
                     case 811:
-                        this.userCombatant.statusEffect('Triple Block',this.effect[1])
+                        this.userCombatant.statusEffect('Single Damage Block Convert',this.effect[1])
                     break
                     case 831:
                         if(this.amplify){
@@ -5415,7 +5415,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     case 865:
-                        this.targetCombatant.takeDamage(this.amplify?this.battle.energy.main[this.player]*this.effect[0]:this.userManager.hand.cards.length+this.effect[0],this.user)
+                        this.targetCombatant.takeDamage(this.amplify?this.energy*this.effect[1]:this.userManager.hand.cards.length+this.effect[0],this.user)
                     break
                     case 877:
                         let card=this.userManager.addRandomClassReturn(2,0,1)

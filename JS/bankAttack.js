@@ -4169,7 +4169,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 793: case 908:
+        case 793: case 908: case 1863:
             if(this.effect[1]<=0){
                 this.remove=true
             }else{
