@@ -650,6 +650,9 @@ class relicManager{
                 if(this.battle.modded(118)){
                     this.battle.combatantManager.allEffect(25,[10])
                 }
+                if(args[0]%5==0&&this.battle.modded(151)){
+                    this.battle.quickReinforce('Duck')
+                }
             break
             case 1://end of combat
                 if(this.active[1]>0){

@@ -265,6 +265,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[231]>0){
 				bonus+=user.status.main[231]
 			}
+			if(user.status.main[236]>0&&effect<=10){
+				bonus+=user.status.main[236]
+			}
 			if(user.status.main[6]!=0){
 				totalStr+=user.status.main[6]
 			}
@@ -315,6 +318,18 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[216]>0){
 				damage=damage*1.5+1
 				bonus*=1.5
+			}
+			if(user.status.main[238]>0&&effect%2==1){
+				damage*=2
+				bonus*=2
+			}
+			if(user.status.main[239]>0&&effect<=10){
+				damage*=2
+				bonus*=2
+			}
+			if(user.status.main[242]>0&&effect>=20){
+				damage*=2
+				bonus*=2
 			}
 			if(user.status.main[215]>0){
 				damage=0
@@ -1057,6 +1072,14 @@ function faith(value){
 }
 function fight(name){
 	current.setupBattle(types.encounter[findName(name,types.encounter)])
+}
+function event(name){
+	stage.scene='event'
+	graphics.staticBackground.clear()
+	setupBackground(5,graphics.staticBackground)
+    current.eventManagers.forEach(eventManager=>eventManager.event=findName(name,types.event))
+    current.eventManagers.forEach(eventManager=>eventManager.setup())
+    current.combatantManager.resetCombatants()
 }
 function status(name){
 	return findList(name,current.combatantManager.combatants[0].status.name)

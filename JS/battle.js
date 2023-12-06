@@ -25,7 +25,7 @@ class battle{
             this.menu.anim.animRate.push(-1)
             this.menu.anim.turnTime.push(-1)
         }
-        for(let a=0,la=20;a<la;a++){
+        for(let a=0,la=24;a<la;a++){
             this.menu.anim.variants.push(0)
         }
         for(let a=-2,la=game.playerNumber+6;a<la;a++){
@@ -251,9 +251,10 @@ class battle{
         for(let a=0,la=this.cardManagers.length;a<la;a++){
             this.cardManagers[a].reset()
             this.cardManagers[a].clear()
-            this.cardManagers[a].copy(0,1)
+            this.cardManagers[a].copyAntiInnate(0,1,0)
             this.cardManagers[a].standardBase()
             this.cardManagers[a].shuffle(1)
+            this.cardManagers[a].copyAntiInnate(0,1,1)
         }
         this.combatantManager.deTargetCombatants()
         if(this.modded(21)&&this.encounter.class==0){
@@ -878,7 +879,7 @@ class battle{
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(this.menu.anim.variants[a]>0){
                         this.layer.fill(255,this.menu.anim.variants[a])
-                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-202.5+floor(a/2)*45,10)
+                        this.layer.ellipse(this.layer.width/2-107.5+a%2*350,this.layer.height/2-floor(la/2)*22.5+22.5+floor(a/2)*45,10)
                     }
                 }
             break
@@ -1206,7 +1207,7 @@ class battle{
                 this.overlayManager.display()
             break
             case 'graphic':
-                this.layer.image(graphics.backgrounds[graphics.test],0,0,this.layer.width,this.layer.height)
+                this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
                     this.graphics.combatants[graphics.test][0][a].display()
                 }
@@ -1272,7 +1273,20 @@ class battle{
                 this.menu.anim.ascendSingle=smoothAnim(this.menu.anim.ascendSingle,inputs.rel.y>=120,0,1,5)
             break
             case 'variants':
-                let variantNames=['mod','junk','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=[
+                    'mod','junk',
+                    'lowDraw','deckbuild',
+                    'altDraw','blackjack',
+                    'witch','inventor',
+                    'chooselose','compress',
+                    'unexpected','polar',
+                    'lowhealth','midhealth',
+                    'shortmap','shortermap',
+                    'speedmove','nobasicanim',
+                    'prism','ultraprism',
+                    'vanish','blind',
+                    'cursed','terminal',
+                ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     this.menu.anim.variants[a]=smoothAnim(this.menu.anim.variants[a],variants[variantNames[a]],0,1,5)
                 }
@@ -1670,9 +1684,22 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['mod','junk','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=[
+                    'mod','junk',
+                    'lowDraw','deckbuild',
+                    'altDraw','blackjack',
+                    'witch','inventor',
+                    'chooselose','compress',
+                    'unexpected','polar',
+                    'lowhealth','midhealth',
+                    'shortmap','shortermap',
+                    'speedmove','nobasicanim',
+                    'prism','ultraprism',
+                    'vanish','blind',
+                    'cursed','terminal',
+                ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-202.5+floor(a/2)*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5+a%2*350,y:this.layer.height/2-floor(la/2)*22.5+22.5+floor(a/2)*45},width:27.5,height:27.5})){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])
                     }
                 }
@@ -1987,7 +2014,20 @@ class battle{
                 }
             break
             case 'variants':
-                let variantNames=['mod','junk','lowDraw','deckbuild','altDraw','blackjack','witch','inventor','chooselose','compress','lowhealth','midhealth','shortmap','shortermap','speedmove','nobasicanim','prism','ultraprism','vanish','blind']
+                let variantNames=[
+                    'mod','junk',
+                    'lowDraw','deckbuild',
+                    'altDraw','blackjack',
+                    'witch','inventor',
+                    'chooselose','compress',
+                    'unexpected','polar',
+                    'lowhealth','midhealth',
+                    'shortmap','shortermap',
+                    'speedmove','nobasicanim',
+                    'prism','ultraprism',
+                    'vanish','blind',
+                    'cursed','terminal',
+                ]
                 for(let a=0,la=this.menu.anim.variants.length;a<la;a++){
                     if(key==inputs.hexadec[a]){
                         variants[variantNames[a]]=toggle(variants[variantNames[a]])

@@ -168,7 +168,7 @@ types={
         {name:'Purge X02',life:500,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
 
-        {name:'Rewriter',life:666,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[18,4,1]},{type:191,effect:[6]},{type:192,effect:[18]},{type:244,effect:[]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:244,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        {name:'Rewriter',life:666,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[18,2,2]},{type:191,effect:[6]},{type:192,effect:[18]},{type:244,effect:[]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:244,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
         {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
@@ -5459,7 +5459,7 @@ Decrements afterward.`,
         },{name:'Jinx',desc:
 `Take damage after a random period of time, a 1/3 chance each turn.`,
         },{name:'Fade',desc:
-`After a successful hit, the next one will do no damage.`,
+`After a successful hit, the next attack next turn will do no damage.`,
         },{name:'Contains',desc:
 `Will create another card and add it to your deck when destroyed.`,
         },{name:'Silence',desc:
@@ -5655,6 +5655,7 @@ Decrements afterward.`,
         {name:'Marx',desc:'All Cards Become Classless'},
         {name:'Duplicity',desc:'Destroy All Duplicate Non-Basic Cards'},
         {name:'Bitrate',desc:'Bottom of the Screen is Obscured'},//150
+        {name:'Apocaducks',desc:'Spawn a Duck Every 5 Turns'},
     ],deckmode:[
         {name:'Standard Deck'},
         {name:'Draft Deck'},
@@ -5677,12 +5678,13 @@ variants={
     altDraw:false,blackjack:false,
     witch:false,inventor:false,
     chooselose:false,compress:false,
+    unexpected:false,polar:false,
     lowhealth:false,midhealth:false,
     shortmap:false,shortermap:false,
     speedmove:false,nobasicanim:false,
     prism:false,ultraprism:false,prismrule:[],
     vanish:false,blind:false,
-    cursed:false,
+    cursed:false,terminal:false,
     speedcard:false}
 constants={collisionDamage:4,
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
@@ -5696,6 +5698,6 @@ constants={collisionDamage:4,
 options={damage:false,alt:false,id:false,preGen:[]}
 graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
-inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghij'}
+inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmn'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
 la=0;lb=0;lc=0;ld=0;le=0;lf=0;lg=0;lh=0;li=0;lj=0;lk=0;ll=0;lm=0;ln=0;lo=0;lp=0

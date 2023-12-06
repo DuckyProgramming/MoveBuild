@@ -2256,6 +2256,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 	switch(type){
 		case 0:
 			p1=new combatant(layer,graphics.proxyBattle,425-la*87.5+a*525,535,0,0,0,0,player[a],0,0,-30)
+			//p1=new combatant(layer,graphics.proxyBattle,425+(a-4)*87.5,535,0,0,0,0,player[a],0,0,-30)
 			switch(p1.name){
 				case 'George':
 					p1.parts.mouth-=4
@@ -2319,6 +2320,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				case 'Donakho':
 					p1.anim.arms[0].top=42
 					p1.anim.arms[1].top=84
+					p1.anim.legs[0].top=6
 				break
 				case 'Setsuna':
 					p1.parts.mouth-=4
@@ -2335,23 +2337,6 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-81,lock:0},{top:90,bottom:84,lock:0}]
 				break
-				case 'Edgar': case 'Chip': case 'Joe':
-					p1.position.y-=2.5
-					switch(p1.name){
-						case 'Edgar':
-							p1.parts.mouth-=3
-							p1.anim.mouth.y--
-							p1.spin.mouth-=180
-						break
-						case 'Chip':
-							p1.anim.mouth.y++
-						break
-					}
-					p1.anim.legs=[{top:9,bottom:3,length:{top:17,bottom:17}},{top:6,bottom:27,length:{top:17,bottom:17}}]
-                    p1.anim.arms=[{top:48,bottom:-36,length:{top:17,bottom:17}},{top:48,bottom:-36,length:{top:17,bottom:17}}]
-                	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
-					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
-				break
 				case 'Airi':
 					p1.anim.mouth.y--
 					p1.parts.mouth++
@@ -2366,6 +2351,33 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:120,bottom:141,lock:0}]
+				break
+				case 'Edgar':
+					p1.position.y-=1
+					p1.position.x+=2.5
+					p1.parts.mouth-=3
+					p1.anim.mouth.y--
+					p1.spin.mouth-=180
+					p1.anim.legs=[{top:0,bottom:0,length:{top:17,bottom:17}},{top:6,bottom:27,length:{top:17,bottom:17}}]
+					p1.anim.arms=[{top:42,bottom:-30,length:{top:17,bottom:17}},{top:42,bottom:-30,length:{top:17,bottom:17}}]
+					p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
+					p1.spin.arms=[{top:-90,bottom:-66,lock:0},{top:90,bottom:66,lock:0}]
+				break
+				case 'Chip':
+					p1.position.y-=1
+					p1.position.x-=7.5
+					p1.anim.mouth.y++
+					p1.anim.legs=[{top:18,bottom:6,length:{top:17,bottom:17}},{top:6,bottom:12,length:{top:17,bottom:17}}]
+					p1.anim.arms=[{top:36,bottom:-24,length:{top:17,bottom:17}},{top:60,bottom:108,length:{top:17,bottom:17}}]
+					p1.spin.legs=[{top:-60,bottom:-60},{top:60,bottom:60}]
+					p1.spin.arms=[{top:-93,bottom:-99,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Joe':
+					p1.position.y-=1
+					p1.anim.legs=[{top:9,bottom:3,length:{top:17,bottom:17}},{top:6,bottom:27,length:{top:17,bottom:17}}]
+					p1.anim.arms=[{top:48,bottom:-36,length:{top:17,bottom:17}},{top:48,bottom:-36,length:{top:17,bottom:17}}]
+					p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -3887,7 +3899,8 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2,layer.height*0.32,850,250)
 			layer.fill(180)
 			regTriangle(layer,layer.width/2-320,layer.height*0.6,40,40,-30)
-			regTriangle(layer,layer.width/2-110,layer.height*0.6,40,40,-30)
+			regTriangle(layer,layer.width/2-130,layer.height*0.6,24,24,-30)
+			regTriangle(layer,layer.width/2-90,layer.height*0.6,24,24,-30)
 			layer.rect(layer.width/2+105,layer.height*0.6,36,36)
 			regPoly(layer,layer.width/2+315,layer.height*0.6,4,25,25,0)
 			layer.fill(255)
@@ -4100,20 +4113,20 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2,layer.height*0.6+100,125,55)
 			layer.rect(layer.width/2,layer.height*0.8,275,75)
 			layer.rect(layer.width/2,layer.height*0.8+85,275,75)
-			for(let a=0,la=10;a<la;a++){
-				layer.rect(layer.width/2-350,layer.height/2-405+a*90,350,80)
-				layer.rect(layer.width/2+350,layer.height/2-405+a*90,350,80)
+			for(let a=0,la=12;a<la;a++){
+				layer.rect(layer.width/2-350,layer.height/2-la*45+45+a*90,350,80)
+				layer.rect(layer.width/2+350,layer.height/2-la*45+45+a*90,350,80)
 			}
 			layer.fill(0)
 			layer.rect(layer.width/2,layer.height*0.6,100,100)
 			layer.rect(layer.width/2,layer.height*0.6+100,100,30)
 			layer.rect(layer.width/2,layer.height*0.8,250,50)
 			layer.rect(layer.width/2,layer.height*0.8+85,250,50)
-			for(let a=0,la=10;a<la;a++){
-				layer.rect(layer.width/2-382.5,layer.height/2-405+a*90,260,55)
-				layer.rect(layer.width/2+317.5,layer.height/2-405+a*90,260,55)
-				layer.rect(layer.width/2-215,layer.height/2-405+a*90,55,55)
-				layer.rect(layer.width/2+485,layer.height/2-405+a*90,55,55)
+			for(let a=0,la=12;a<la;a++){
+				layer.rect(layer.width/2-382.5,layer.height/2-la*45+45+a*90,260,55)
+				layer.rect(layer.width/2+317.5,layer.height/2-la*45+45+a*90,260,55)
+				layer.rect(layer.width/2-215,layer.height/2-la*45+45+a*90,55,55)
+				layer.rect(layer.width/2+485,layer.height/2-la*45+45+a*90,55,55)
 			}
 			layer.fill(120)
 			regTriangle(layer,layer.width/2-5,layer.height*0.6,40,40,-30)
@@ -4122,28 +4135,23 @@ function setupBackground(type,layer){
 			layer.text('BACK',layer.width/2,layer.height*0.6+100)
 			layer.text('CUSTOM ULTRAPRISM',layer.width/2,layer.height*0.8)
 			layer.text('RANDOM SETTINGS',layer.width/2,layer.height*0.8+85)
-
-			layer.text('BONUS MODS',layer.width/2-382.5,layer.height*0.5-405)
-			layer.text('-1 DRAW',layer.width/2-382.5,layer.height*0.5-315)
-			layer.text('CYCLIC DRAW',layer.width/2-382.5,layer.height*0.5-225)
-			layer.text('CARD SLOT DRAW',layer.width/2-382.5,layer.height*0.5-135)
-			layer.text('CHOOSE OR LOSE DRAW',layer.width/2-382.5,layer.height*0.5-45)
-			layer.text('20% HP',layer.width/2-382.5,layer.height*0.5+45)
-			layer.text('SHORT MAP',layer.width/2-382.5,layer.height*0.5+135)
-			layer.text('QUICK MODE',layer.width/2-382.5,layer.height*0.5+225)
-			layer.text('PRISM',layer.width/2-382.5,layer.height*0.5+315)
-			layer.text('ALL VANISHING',layer.width/2-382.5,layer.height*0.5+405)
-
-			layer.text('JUNKYARD',layer.width/2+317.5,layer.height*0.5-405)
-			layer.text('DECKBUILD DEFENDS',layer.width/2+317.5,layer.height*0.5-315)
-			layer.text('BLACKJACK DRAW',layer.width/2+317.5,layer.height*0.5-225)
-			layer.text('CARD TECHIFY MODE',layer.width/2+317.5,layer.height*0.5-135)
-			layer.text('COMPRESSION DRAW',layer.width/2+317.5,layer.height*0.5-45)
-			layer.text('50% HP',layer.width/2+317.5,layer.height*0.5+45)
-			layer.text('SHORTER MAP',layer.width/2+317.5,layer.height*0.5+135)
-			layer.text('MINIMIZE ANIMATION',layer.width/2+317.5,layer.height*0.5+225)
-			layer.text('ULTRAPRISM',layer.width/2+317.5,layer.height*0.5+315)
-			layer.text('SILENT CARDS',layer.width/2+317.5,layer.height*0.5+405)
+			let names=[
+				'BONUS MODS','JUNKYARD',
+				'-1 DRAW','DECKBUILD DEFENDS',
+				'CYCLIC DRAW','BLACKJACK DRAW',
+				'CARD SLOT DRAW','CARD TECHIFY MODE',
+				'CHOOSE OR LOSE DRAW','COMPRESSION DRAW',
+				'EXPECT THE UNEXPECTED','POLAR MODE',
+				'20% HP','50% HP',
+				'SHORT MAP','SHORTER MAP',
+				'QUICK MODE','MINIMIZE ANIMATION',
+				'PRISM','ULTRAPRISM',
+				'ALL VANISHING','SILENT CARDS',
+				'CURSED MODE','TERMINAL',
+			]
+			for(let a=0,la=names.length;a<la;a++){
+				layer.text(names[a],layer.width/2-382.5+a%2*700,layer.height*0.5-floor(la/2)*45+45+floor(a/2)*90)
+			}
 		break
 		case 12:
 			menuBackground(layer)

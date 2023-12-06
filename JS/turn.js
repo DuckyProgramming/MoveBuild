@@ -46,6 +46,13 @@ class turn{
                         }else{
                             this.target=[]
                             this.targetIndex=[]
+                            switch(this.attackClass){
+                                case 1:
+                                    if(this.userCombatant.getStatus('Double Curse')>0&&floor(random(0,2))==0){
+                                        this.userCombatant.doubling=true
+                                    }
+                                break
+                            }
                             switch(this.type){
                                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                                 case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
@@ -499,6 +506,7 @@ class turn{
                                         let direction=atan2(targetCombatant.relativePosition.x-this.x,targetCombatant.relativePosition.y-this.y)
                                         if(!((abs(direction-targetCombatant.goal.anim.direction+180)<10||abs(direction-targetCombatant.goal.anim.direction-180)<10)&&targetCombatant.getStatus('Untargettable From Front')>0)){
                                             this.direction=atan2(targetCombatant.position.x-this.position.x,targetCombatant.position.y-this.position.y)
+                                            a=la
                                         }
                                     }
                                 }
@@ -4703,6 +4711,9 @@ class turn{
                             }
                             if(this.userCombatant.getStatus('Temporary Single Damage')>0){
                                 this.userCombatant.status.main[findList('Temporary Single Damage',this.userCombatant.status.name)]--
+                            }
+                            if(this.userCombatant.getStatus('Double Curse')>0&&this.userCombatant.doubling){
+                                this.userCombatant.status.main[findList('Double Curse',this.userCombatant.status.name)]--
                             }
                         break
                     }

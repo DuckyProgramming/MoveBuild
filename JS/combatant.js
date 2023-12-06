@@ -90,6 +90,7 @@ class combatant{
         this.construct=false
         this.support=false
         this.programmedDeath=false
+        this.doubling=false
         this.blocked=0
         this.taken=0
         this.builder=0
@@ -127,7 +128,8 @@ class combatant{
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
-            'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn',
+            'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
+            'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -153,7 +155,8 @@ class combatant{
                 0,0,0,0,1,2,2,2,1,2,//21
                 1,0,2,0,0,0,0,1,0,0,//22
                 2,0,0,0,0,0,0,0,1,2,//23
-                1,2,2,1,0,2,
+                1,2,2,1,0,2,0,2,0,0,//24
+                1,0,1,1,2,2,2,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -179,7 +182,8 @@ class combatant{
                 2,0,2,0,1,0,2,0,1,0,//21
                 2,1,1,0,2,1,0,0,2,0,//22
                 1,1,2,2,1,2,2,3,3,2,//23
-                2,0,2,2,1,2,
+                2,0,2,2,1,2,0,2,0,0,//24
+                1,0,0,0,3,3,3,3,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2887,7 +2891,6 @@ class combatant{
         this.charge=0
         this.ammo=3
         this.resetAnim()
-        
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
             this.status.active[a]=false
@@ -2895,6 +2898,10 @@ class combatant{
             this.status.size[a]=0
         }
         this.status.display=[]
+        if(this.team>0&&variants.terminal){
+            this.statusEffect('Armor',4)
+            this.addBlock(4)
+        }
         this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
@@ -3040,6 +3047,7 @@ class combatant{
             break
             case 'Rewriter':
                 this.statusEffect('Cannot Die',999)
+                this.life-=this.battle.combatantManager.rewriterSwitch
             break
             case 'Mirror Shield':
                 this.statusEffect('Reflect',1)
@@ -3735,6 +3743,7 @@ class combatant{
     }
     randomIntent(){
         this.intent=floor(random(0,this.attack.length))
+        this.battle.updateTargetting()
     }
     convertTile(target){
         let targetTile=[]
@@ -4169,6 +4178,9 @@ class combatant{
                     damage=0
                     userCombatant.status.main[194]--
                 }
+                if(userCombatant.status.main[240]>0&&floor(random(0,2))==0){
+                    userCombatant.status.main[240]--
+                }
                 if(userCombatant.status.main[12]>0){
                     damage+=userCombatant.status.main[12]
                 }
@@ -4186,6 +4198,9 @@ class combatant{
                 }
                 if(userCombatant.status.main[231]>0){
                     damage+=userCombatant.status.main[231]
+                }
+                if(userCombatant.status.main[236]>0&&value<=10){
+                    damage+=userCombatant.status.main[236]
                 }
                 if(userCombatant.status.main[6]!=0){
                     totalStr+=userCombatant.status.main[6]
@@ -4219,10 +4234,6 @@ class combatant{
             if(userCombatant.status.main[49]>0&&userCombatant.status.main[204]<=0){
                 userCombatant.takeDamage(userCombatant.status.main[49]*2,-1)
             }
-            if(userCombatant.status.main[234]>0){
-                userCombatant.statusEffect('No Damage',userCombatant.status.main[234])
-                userCombatant.status.main[234]--
-            }
             if(userCombatant.status.main[95]>0){
                 userCombatant.heal(userCombatant.status.main[95])
             }
@@ -4247,6 +4258,18 @@ class combatant{
                     }
                     if(userCombatant.status.main[198]>0){
                         damage/=2
+                    }
+                    if(userCombatant.status.main[238]>0&&value%2==1){
+                        damage*=2
+                    }
+                    if(userCombatant.status.main[239]>0&&value<=10){
+                        damage*=2
+                    }
+                    if(userCombatant.status.main[242]>0&&value>=20){
+                        damage*=2
+                    }
+                    if(userCombatant.doubling){
+                        damage*=2
                     }
                     if(userCombatant.status.main[201]>0){
                         damage=damage*2-1
@@ -4370,6 +4393,9 @@ class combatant{
                 }
                 if(this.status.main[97]>0){
                     damage*=0.6
+                }
+                if(this.status.main[243]>0){
+                    damage*=0.4
                 }
                 if(this.status.main[165]>0){
                     damage+=this.status.main[165]
@@ -4547,6 +4573,10 @@ class combatant{
                     }
                     if(userCombatant.status.main[170]>0&&userCombatant.id<this.battle.players){
                         this.battle.currency.money[userCombatant.id]+=damage
+                    }
+                    if(userCombatant.status.main[234]>0){
+                        userCombatant.statusEffect('No Damage Next Turn',1)
+                        userCombatant.status.main[234]--
                     }
                     if(this.battle.modded(76)&&userCombatant.team==0){
                         userCombatant.heal(damage)
@@ -4870,7 +4900,7 @@ class combatant{
     getOrbNumber(type){
         let count=0
         for(let a=0,la=this.orbs.length;a<la;a++){
-            if(this.orbs[a]==type||type==-1&&this.orbs[a]>=0){
+            if(type!=-1&&this.orbs[a]==type||type==-1&&this.orbs[a]>=0){
                 count++
             }
         }
@@ -5363,10 +5393,9 @@ class combatant{
                     case 132: this.enterStance(1); break
                     case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0)}; break
                     case 135: this.battle.energy.main[this.id]+=this.status.main[a];this.battle.energy.gen[this.id]+=this.status.main[a]; break
-                    case 142: this.charge+=this.status.main[a]; break
+                    case 142: case 155: this.charge+=this.status.main[a]; break
                     case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)}} break
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
-                    case 155: this.status.main[findList('Charge Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 157: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,0,2)}} break
                     case 158: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,1,2)}} break
                     case 164: this.status.main[findList('Energy Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
@@ -5380,7 +5409,12 @@ class combatant{
                     case 212: this.status.main[findList('Half Damage Turn',this.status.name)]+=this.status.main[a]; break
                     case 220: this.status.main[findList('Jinx',this.status.name)]+=this.status.main[a]; break
                     case 222: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawBurn+=this.status.main[a]}; break
-                    case 232: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Peak',types.card),0,0)}; break
+                    case 232: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Peak',types.card),0,0)}}; break
+                    case 237: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Hyperquill',types.card),0,0)}}; break
+                    case 244: this.takeDamage(this.status.main[a],-1); this.status.main[findList('Damage Cycle 3 3',this.status.name)]+=this.status.main[a]; break
+                    case 245: this.status.main[findList('Damage Cycle 3 1',this.status.name)]+=this.status.main[a]; break
+                    case 246: this.status.main[findList('Damage Cycle 3 2',this.status.name)]+=this.status.main[a]; break
+                    case 248: this.status.main[findList('No Damage',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
@@ -5464,7 +5498,7 @@ class combatant{
                         this.goal.anim.sword=true
                     break
                     case 3: case 6: case 8: case 9: case 17: case 23: case 26: case 28: case 29: case 31:
-                    case 32: case 33: case 36: case 38:
+                    case 32: case 33: case 36: case 38: case 39: case 40:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -5928,6 +5962,20 @@ class combatant{
                         this.anim.arms[0].bottom=9+lsin(this.animSet.loop*180)*99
                         this.spin.arms[0].top=-93+sqrt(abs(sin(this.animSet.loop*180)))*78
                         this.spin.arms[0].bottom=-75+sqrt(abs(sin(this.animSet.loop*180)))*75
+                    break
+                    case 39:
+                        this.animSet.loop+=rate
+                        this.anim.arms[0].top=24+abs(lsin((this.animSet.loop+this.animSet.flip)*180))*60
+                        this.anim.arms[0].bottom=9+abs(lsin((this.animSet.loop+this.animSet.flip)*180))*93
+                        this.spin.arms[0].top=(93-abs(lsin((this.animSet.loop+this.animSet.flip)*180))*57)*-1
+                        this.spin.arms[0].bottom=(75-abs(lsin((this.animSet.loop+this.animSet.flip)*180))*60)*-1
+                    break
+                    case 40:
+                        this.animSet.loop+=rate
+                        this.anim.arms[1].top=24+abs(lsin((this.animSet.loop+this.animSet.flip+1)*180))*60
+                        this.anim.arms[1].bottom=9+abs(lsin((this.animSet.loop+this.animSet.flip+1)*180))*93
+                        this.spin.arms[1].top=(93-abs(lsin((this.animSet.loop+this.animSet.flip+1)*180))*57)
+                        this.spin.arms[1].bottom=(75-abs(lsin((this.animSet.loop+this.animSet.flip1g)*180))*60)
                     break
                 }
             break
@@ -7235,6 +7283,7 @@ class combatant{
         }
         for(let a=0,la=this.status.display.length;a<la;a++){
             if(this.status.size[this.status.display[a]]>0){
+                this.layer.fill(this.status.display[a]==240?150:0,this.fade*this.infoAnim.life)
                 this.layer.textSize(8*this.status.size[this.status.display[a]])
                 this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
             }

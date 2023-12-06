@@ -101,6 +101,11 @@ class nodeManager{
         if(!chain){
             this.battle.stats.node[0]++
             this.battle.stats.node[1+type]++
+            if(variants.terminal){
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    this.battle.combatantManager.combatants[a].loseMaxHP(1)
+                }
+            }
         }
         switch(type){
             case 0:
@@ -108,7 +113,9 @@ class nodeManager{
                 let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
                 let index=floor(random(0,list.length))
                 this.battle.setupBattle(types.encounter[list[index]])
-                list.splice(index,1)
+                if(!(y==0?4:y<3&&this.world==0)){
+                    list.splice(index,1)
+                }
             break
             case 1:
                 transition.scene='battle'

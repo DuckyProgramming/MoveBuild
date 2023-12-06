@@ -10,6 +10,8 @@ class combatantManager{
         this.bankHP=[]
         this.playerCombatantIndex=[]
         this.sorted=[]
+
+        this.rewriterSwitch=0
     }
     assignPlayer(){
         for(let a=0,la=this.combatants.length;a<la;a++){
@@ -532,6 +534,10 @@ class combatantManager{
                 case 7:
                     this.combatants[a].statusEffect('Weak',args[0])
                 break
+                case 8:
+                    this.combatants[a].statusEffect('Freeze',args[0])
+                break
+                
             }
         }
     }

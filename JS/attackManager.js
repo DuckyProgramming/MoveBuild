@@ -29,6 +29,8 @@ class attackManager{
         this.relativePosition={x:0,y:0}
         this.tilePosition={x:0,y:0}
         this.endAfter=false
+        this.nodeAfter=false
+        this.finalAfter=false
     }
     clear(){
         for(let a=0,la=this.attacks.length;a<la;a++){
@@ -46,16 +48,32 @@ class attackManager{
             this.battle.replayManager.list.push(new attack(this.type,this.battle,this.player,this.effect,this.attackClass,this.user,this.level,this.color,this.energy,copyArray(this.target),this.targetDistance,this.targetClass,this.combo,{replay:1,direction:this.attacks[this.attacks.length-1].userCombatant.goal.anim.direction},this.amplify,this.relPos,this.limit,this.id))
         }
     }
+    after(){
+        if(this.endAfter){
+            this.endAfter=false
+            this.battle.endTurn()
+        }else if(this.nodeAfter){
+            this.nodeAfter=false
+            this.battle.nodeManager.enterNode(this.battle.encounter.class>2||this.battle.encounter.class<0?0:this.battle.encounter.class,this.battle.nodeManager.tilePosition.y,false)
+        }else if(this.finalAfter){
+            this.finalAfter=false
+            this.battle.setupBattle(types.encounter[findName('Rewriter',types.encounter)])
+            this.battle.nodeManager.world=3
+        }
+    }
     update(){
         for(let a=0;a<game.animRate;a++){
             if(this.attacks.length>0){
-                this.attacks[0].update()
-                if(this.attacks[0].remove){
+                if(this.attacks[0].timer==0&&this.attacks[0].remove){
                     delete this.attacks[0]
                     this.attacks.splice(0,1)
-                    if(this.endAfter){
-                        this.endAfter=false
-                        this.battle.endTurn()
+                    this.after()
+                }else{
+                    this.attacks[0].update()
+                    if(this.attacks[0].remove){
+                        delete this.attacks[0]
+                        this.attacks.splice(0,1)
+                        this.after()
                     }
                 }
             }

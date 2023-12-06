@@ -17,7 +17,7 @@ class cardManager{
             this.tech.add(findName('Techless',types.card),0,0)
         }
 
-        this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.altDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0))
+        this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.altDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0))
         this.drawBoost=0
         this.tempDraw=0
         this.tempDrawBurn=0
@@ -145,6 +145,9 @@ class cardManager{
     }
     copy(group1,group2){
         this.getList(group1).copy(this.getList(group2).cards,0,-1)
+    }
+    copyAntiInnate(group1,group2,key){
+        this.getList(group1).copyAntiInnate(this.getList(group2).cards,0,-1,key)
     }
     swap(group1,group2){
         let list=[]
@@ -321,6 +324,18 @@ class cardManager{
             this.getList(group).addFree(type,level,types.card[type].list,variant)
         }
     }
+    addRandomCompleteAllCost(group,level,cost){
+        let list=[]
+        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
+            if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost){
+                list.push(this.listing.allListableCard[3][a])
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).add(type,level,types.card[type].list)
+        }
+    }
     addRandomSpec(group,level,spec){
         let list=[]
         for(let a=0,la=types.card.length;a<la;a++){
@@ -354,13 +369,13 @@ class cardManager{
             }else{
                 let amountLeft=amount-this.reserve.cards.length
                 if(this.reserve.cards.length>0){
-                    this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),[3,8,13][spec])
+                    this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),[3,8,13,14][spec])
                 }
                 if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
                     this.discard.send(this.reserve.cards,0,-1,2)
                     this.reserve.shuffle()
                     if(this.reserve.cards.length>0){
-                        this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),[3,8,13][spec])
+                        this.reserve.send(this.hand.cards,0,min(amountLeft,this.reserve.cards.length),[3,8,13,14][spec])
                     }
                 }
                 this.reserve.parseDrawEffects(this.hand)
@@ -728,6 +743,9 @@ class cardManager{
         if(variants.compress){
             this.hand.add(findName('Compression',types.card),0,0)
         }
+        if(variants.unexpected){
+            this.addRandomCompleteAll(2,0,3)
+        }
     }
     subFatigue(name){
         this.interval++
@@ -877,6 +895,9 @@ class cardManager{
     }
     standardBase(){
         this.checkCompact()
+        if(variants.polar){
+            this.hand.pole=1
+        }
         if(variants.altDraw){
             this.drops=this.baseDrops
         }else if(variants.blackjack){

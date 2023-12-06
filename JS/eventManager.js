@@ -574,7 +574,7 @@ class eventManager{
                         }else if(this.page==3&&a==0){
                             userCombatant.safeDamage(3)
                             if(floor(random(0,4))==0){
-                                tempPage=3
+                                tempPage=2
                             }
                         }else if(this.page==4&&a==0){
                             userCombatant.safeDamage(6)
