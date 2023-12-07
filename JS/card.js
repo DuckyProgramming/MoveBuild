@@ -85,7 +85,7 @@ class card{
             this.class=cardClass||types.card[this.type].levels[this.level].class
             this.levels=types.card[this.type].levels.length
             this.limit=limit
-            this.limit=this.limit==undefined?this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38)||this.spec.includes(42)||this.attack==1947)?types.card[this.type].levels[this.level].limit:0:this.limit
+            this.limit=this.limit==undefined?this.attackk==1947?-1:this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38)||this.spec.includes(42)||this.attack==1947)?types.card[this.type].levels[this.level].limit:0:this.limit
             this.additionalSpec=additionalSpec||[]
             if(this.list==-1){
                 this.list=this.color
@@ -229,8 +229,8 @@ class card{
             case -41: string+=`Deal ${effect[0]} Splash Damage\nAround Self\nYou Cannot Move\nFor ${effect[1]} Turn${effect[1]!=1?`s`:``}`; break
             case -42: string+=`Gain ${effect[0]} Poison\nWhen You Play a Card`; break
             case -43: string+=`When Drawn,\nHidden Swap Draw\nPile ${effect[0]} Times`; break
-            case -44: string+=`When Drawn,\nPrevious Card is Stapled`; break
-            case -45: string+=`When Added,\nRandom Cards Get Vanishing`; break
+            case -44: string+=`When Drawn,\nA Random Card in Hand\nis Stapled`; break
+            case -45: string+=`When Added,\na Random Card\nGets Vanishing 3`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590: case 1139: case 1191:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: case 1700:
@@ -407,7 +407,7 @@ class card{
             case 170: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box`; break
             case 171: string+=`Add to Hand:\nSubmachine\nAntitank Rocket\nAmmo Box\nUpgrade 1\nat Random`; break
             case 172: string+=`You Cannot Take\nFrontal Damage\nFor ${effect[0]} Turns`; break
-            case 173: string+=`Target Moves in\na Random Direction`; break
+            case 173: string+=`Target Moves in a\nRandom Direction ${effect[0]} Times`; break
             case 174: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Stun`; break
             case 175: string+=`Apply ${effect[0]} Burn\n3 Tiles Wide`; break
             case 176: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nIgnore Block`; break
@@ -924,7 +924,7 @@ class card{
             case 694: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDownward or Horizontally`; break
             case 695: string+=`Build a Doubler`; break
             case 696: string+=`Build an Exhauster`; break
-            case 697: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTarget Moves in\na Random Direction`; break
+            case 697: string+=`Deal ${this.calculateEffect(effect[1],0)} Damage\nTarget Moves in a\nRandom Direction ${effect[0]} Times`; break
             case 698: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nDiscard ${effect[1]}\nRandom Card`; break
             case 699: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Metal`; break
             case 700: string+=`Build a Teleporter Start`; break
@@ -2153,7 +2153,6 @@ class card{
             case 1930: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nHaste: Exit Stance`; break
             case 1931: string+=`Lose ${effect[0]} Health\nBecome Confused`; break
             case 1932: string+=`Apply ${effect[0]} Fail`; break
-
             case 1933: string+=`Choose a Mixture\nto Add to Hand`; break
             case 1934: string+=`You and Target Deal\nHalf Damage For ${effect[0]} Turn${effect[0]!=1?`s`:``}`; break
             case 1935: string+=`If Energy is Even,\nApply ${effect[0]} Miss`; break
@@ -2161,23 +2160,19 @@ class card{
             case 1937: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage 3 Times\nAdvance`; break
             case 1938: string+=`Return Innate\nCards to Hand`; break
             case 1939: string+=`Return Innate\nCards to Hand\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
-
-            //-44
-            //-45
-
             case 1940: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEven Energy:\nGain ${effect[1]} Armor`; break
             case 1941: string+=`Draw ${effect[0]} More Frozen\nCard${effect[0]!=1?`s`:``} Per Turn`; break
-            case 1942: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Burn Card${effect[1]!=1?`s`:``}`; break
+            case 1942: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Burning Card${effect[1]!=1?`s`:``}`; break
             case 1943: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nWhen Drawn,\nMake ${effect[2]} Cop${effect[2]!=1?`ies`:`y`}`; break
             case 1944: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nDiscards to Hand`; break
             case 1945: string+=`75% Chance Each:\n${effect[0]} Poison, ${effect[1]} Shock,\n${effect[2]} Freeze, ${effect[3]} Burn\n${effect[4]} Weak, ${effect[5]} Vulnerable\n${effect[6]} Frail, ${effect[7]} Anti-Control\n${effect[8]} Jinx`; break
-
             case 1946: string+=`Get a Stolen Attack\nWith Target's Attack`; break
             case 1947: string+=`Contains Some Attack`; break
-            case 1948: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Attack is Converted\nto Single Attack Damage`; break
-            case 1949: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRandomize When a\nCard is Played\nFrom (1-3`; break
+            case 1948: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Attack is Converted\nto Single Damage`; break
+            case 1949: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRandomize When a\nCard is Played\nFrom (1-3)`; break
             case 1950: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Apply ${effect[1]} Miss\n50%: Target Moves Randomly`; break
             case 1951: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Miss\nTarget Moves Randomly`; break
+            case 1952: string+=`Get a Stolen Attack\nWith Target's Attack\nTargets Any Enemy`; break
 
 
 
@@ -2438,6 +2433,9 @@ class card{
     }
     callAddEffect(){
         switch(this.attack){
+            case -45:
+                this.battle.cardManagers[this.player].deck.randomEffect(29,[3])
+            break
             case 1461:
                 this.battle.cardManagers[this.player].deck.add(findName('Pride',types.card),0,game.playerNumber+2)
             break
@@ -2621,6 +2619,11 @@ class card{
             break
             case 1631:
                 this.effect[0]=floor(random(4+2*this.level,12+6*this.level+1))
+            break
+            case 1949:
+                let roll=floor(random(0,3))+1
+                this.effect[0]=roll
+                this.target[2]=roll
             break
             
         }

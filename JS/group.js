@@ -315,6 +315,13 @@ class group{
         }
         return result
     }
+    addLimit(type,level,color,limit){
+        let result=this.add(type,level,color)
+        if(result){
+            this.cards[this.cards.length-1].limit=limit
+        }
+        return result
+    }
     addReturn(type,level,color){
         game.id++
         if(type>=0&&type<types.card.length){
@@ -1077,6 +1084,13 @@ class group{
                         this.cards[a].onIncrementCountdown()
                     }
                 break
+                case 56:
+                    if(this.cards[a].spec.includes(3)||this.cards[a].spec.includes(47)){
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,2)
+                        a--
+                        la--
+                    }
+                break
 
             }
         }
@@ -1191,6 +1205,7 @@ class group{
                 &&!(effect==21&&!this.removable(a))
                 &&!(effect==22&&this.cards[a].spec.includes(39))
                 &&!((effect==26||effect==27)&&!(this.cards[a].spec.includes(35)&&this.cards[a].cost>0))
+                &&!((effect==18||effect==29)&&(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(30)||this.cards[a].spec.includes(36)||this.cards[a].spec.includes(38)))
                 ){
                     list.push(a)
                 }
@@ -1353,6 +1368,11 @@ class group{
                         this.cards[index].deSize=true
                         this.battle.cardManagers[this.player].reserve.cards.splice(0,0,copyCard(this.cards[index]))
                     break
+                    case 29:
+                        this.cards[index].spec.push(15)
+                        this.cards[index].additionalSpec.push(15)
+                        this.cards[index].limit=args[0]
+                    break
 
                 }
             }
@@ -1425,6 +1445,9 @@ class group{
                     this.battle.cardManagers[this.player].reserve.falsedSwap()
                 }
             break
+            case -44:
+                this.drawEffects.push([0,10,[]])
+            break
             case 288: case 374:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color)
@@ -1481,7 +1504,7 @@ class group{
             case 1565:
                 userCombatant.balance+=card.effect[0]
             break
-            case 1745:
+            case 1745: case 1943:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color)
                 }
@@ -2940,7 +2963,7 @@ class group{
                             this.cards[a].attack==1642&&this.battle.attackManager.energy==4||this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||
                             this.cards[a].attack==1655||this.cards[a].attack==1740||this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||
                             this.cards[a].attack==1806||this.cards[a].attack==1821||this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||
-                            this.cards[a].attack==1868||this.cards[a].attack==1909||this.cards[a].attack==1813||this.cards[a].attack==1921||
+                            this.cards[a].attack==1868||this.cards[a].attack==1909||this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].cost>0&&this.battle.turn.main==this.player
                         )&&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)

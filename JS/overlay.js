@@ -103,7 +103,7 @@ class overlay{
                 this.cards=[]
                 let sublist=[]
                 this.taken=0
-                if(args[2]==7||args[2]==9||args[2]==10){
+                if(args[2]==7||args[2]==9||args[2]==10||args[2]==11){
                     this.options=args[3]
                 }else{
                     this.options=3
@@ -208,6 +208,12 @@ class overlay{
                     case 9:
                         for(let a=0,la=this.options;a<la;a++){
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['White\nDwarf','Black\nDwarf'][a%2],types.card),0,0,-1))
+                            this.cards[a].upSize=true
+                        }
+                    break
+                    case 11:
+                        for(let a=0,la=this.options;a<la;a++){
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Mixture A','Mixture B','Mixture C'][a%3],types.card),0,0,-1))
                             this.cards[a].upSize=true
                         }
                     break

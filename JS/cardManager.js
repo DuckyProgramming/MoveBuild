@@ -20,6 +20,7 @@ class cardManager{
         this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.altDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0))
         this.drawBoost=0
         this.tempDraw=0
+        this.tempDrawFreeze=0
         this.tempDrawBurn=0
         this.baseDrops=variants.altDraw?3:0
         this.drops=0
@@ -719,8 +720,10 @@ class cardManager{
         }else{
             this.draw(tempDrawAmount)
         }
+        this.draw(this.tempDrawFreeze,3)
         this.draw(this.tempDrawBurn,2)
         this.tempDraw=0
+        this.tempDrawFreeze=0
         this.tempDrawBurn=0
         if(turn%4==0&&game.ascend>=24){
             this.reserve.addShuffle(findName('Dazed',types.card),0,game.playerNumber+1)

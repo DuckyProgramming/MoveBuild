@@ -129,7 +129,8 @@ class combatant{
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
-            'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn',
+            'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
+            'Single Damage Convert',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -156,7 +157,8 @@ class combatant{
                 1,0,2,0,0,0,0,1,0,0,//22
                 2,0,0,0,0,0,0,0,1,2,//23
                 1,2,2,1,0,2,0,2,0,0,//24
-                1,0,1,1,2,2,2,0,2,
+                1,0,1,1,2,2,2,0,2,0,//25
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -183,7 +185,8 @@ class combatant{
                 2,1,1,0,2,1,0,0,2,0,//22
                 1,1,2,2,1,2,2,3,3,2,//23
                 2,0,2,2,1,2,0,2,0,0,//24
-                1,0,0,0,3,3,3,3,1,
+                1,0,0,0,3,3,3,3,1,2,//25
+                1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4215,6 +4218,11 @@ class combatant{
                     totalStr+=userCombatant.status.main[195]
                     userCombatant.status.main[195]=0
                 }
+                if(userCombatant.status.main[250]>0){
+                    userCombatant.statusEffect('Single Damage',damage)
+                    damage=0
+                    userCombatant.status.main[250]--
+                }
                 if(totalStr>0){
                     damage*=1+totalStr*0.1
                 }else if(totalStr<0){
@@ -5415,6 +5423,7 @@ class combatant{
                     case 245: this.status.main[findList('Damage Cycle 3 1',this.status.name)]+=this.status.main[a]; break
                     case 246: this.status.main[findList('Damage Cycle 3 2',this.status.name)]+=this.status.main[a]; break
                     case 248: this.status.main[findList('No Damage',this.status.name)]+=this.status.main[a]; break
+                    case 249: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawFreeze+=this.status.main[a]}; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
