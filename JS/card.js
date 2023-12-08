@@ -802,7 +802,7 @@ class card{
             case 569: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nEvoke All Orbs\non Target`; break
             case 570: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHold ${effect[1]} Basic Orb${effect[1]!=1?`s`:``}`; break
             case 571: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHold ${effect[1]} Explosive Orb${effect[1]!=1?`s`:``}`; break
-            case 572: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nOrthoganally or\n${effect[1]} Tile${effect[1]!=1?`s`:``}\nDiagonally`; break
+            case 572: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nOrthogonally or\n${effect[1]} Tile${effect[1]!=1?`s`:``}\nDiagonally`; break
             case 573: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd a Step\nNext Turn`; break
             case 574: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEvoke First Orb\non Self ${effect[1]} Time${effect[1]!=1?`s`:``}`; break
             case 575: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRemove All Orbs`; break
@@ -2065,7 +2065,7 @@ class card{
             case 1842: string+=`Even X: Gain ${effect[0]}X Strength\nOdd X: Gain ${effect[1]}X Dexterity`; break
             case 1843: string+=`${effect[0]!=1?effect[0]:`An`} Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} Double Damage\n50% Trigger Chance\nPer Attack`; break
             case 1844: string+=`Gain ${effect[0]} Random Buff\nGain ${effect[1]} Random Buff\nGain ${effect[2]} Random Buff\nGain ${effect[3]} Random Debuff\nDraw ${effect[4]} Card${effect[4]!=1?`s`:``}`; break
-            case 1845: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n10%: Apply ${effecg[1]} Miss`; break
+            case 1845: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n10%: Apply ${effect[1]} Miss`; break
             case 1846: string+=`Add 37 of\nNothings to Hand`; break
             case 1847: string+=`Double All Damage\nOver 20`; break
             case 1848: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDuplicate ${effect[1]} Random Card${effect[1]!=1?`s`:``}`; break
@@ -2130,7 +2130,7 @@ class card{
             case 1907: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOdd Energy:\nApply ${effect[1]} Fade`; break
             case 1908: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Silence\nExhaust ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
             case 1909: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nA Random Card in Hand\nGets +1 to Numeric Values\nDiscards to Hand\nCosts Increases by 1`; break
-            case 1910: string+=`Roll a Die and Deal\nThat Much +${this.calculateEffect(effect[1],0)} Damage`; break
+            case 1910: string+=`Roll a Die and Deal\nThat Much +${this.calculateEffect(effect[0],0)} Damage`; break
             case 1911: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\non Left Side`; break
             case 1912: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Tiles Wide\non Right Side`; break
             case 1913: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n3 Times\nDiscards to Hand`; break
@@ -2173,7 +2173,7 @@ class card{
             case 1950: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n50%: Apply ${effect[1]} Miss\n50%: Target Moves Randomly`; break
             case 1951: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Miss\nTarget Moves Randomly`; break
             case 1952: string+=`Get a Stolen Attack\nWith Target's Attack\nTargets Any Enemy`; break
-
+            case 1953: string+=`For Every 2\nCards Exhausted,\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
 
 
 
@@ -2507,7 +2507,7 @@ class card{
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788:
                 this.effect[0]+=this.effect[1]
             break
-            case 908: case 1863:
+            case 908: case 1893:
                 this.effect[1]+=this.effect[2]
             break
             case 937:
@@ -2864,61 +2864,63 @@ class card{
                 this.layer.noFill()
             }
             this.layer.strokeWeight(3)
-            switch(rarity){
-                case -1:
-                    this.layer.ellipse(-this.width/2+7.5,this.height/2-7.5,10,10)
-                break
-                case -2:
-                    this.layer.line(-this.width/2+7.5,this.height/2,-this.width/2+7.5,this.height/2-10)
-                break
-                case -3:
-                    this.layer.line(-this.width/2+1,this.height/2-12,-this.width/2+12,this.height/2-12)
-                    this.layer.line(-this.width/2+12,this.height/2-1,-this.width/2+12,this.height/2-12)
-                    this.layer.strokeWeight(2)
-                    this.layer.line(-this.width/2+1,this.height/2-12,-this.width/2+12,this.height/2-1)
-                    this.layer.line(-this.width/2+1,this.height/2-1,-this.width/2+12,this.height/2-12)
-                break
-                case -4:
-                    this.layer.strokeWeight(1)
-                    this.layer.ellipse(-this.width/2+7.5,this.height/2-10,5,5)
-                    this.layer.ellipse(-this.width/2+7.5,this.height/2-5,5,5)
-                    this.layer.ellipse(-this.width/2+5,this.height/2-7.5,5,5)
-                    this.layer.ellipse(-this.width/2+10,this.height/2-7.5,5,5)
-                break
-                case -5:
-                    this.layer.strokeWeight(2.5)
-                    this.layer.line(-this.width/2+2,this.height/2-2,-this.width/2+14,this.height/2-14)
-                    this.layer.line(-this.width/2+10,this.height/2-18,-this.width/2+18,this.height/2-10)
-                    this.layer.strokeWeight(2)
-                    this.layer.line(-this.width/2+7,this.height/2-16,-this.width/2+13,this.height/2-22)
-                    this.layer.line(-this.width/2+16,this.height/2-7,-this.width/2+22,this.height/2-13)
-                    this.layer.strokeWeight(1.5)
-                    this.layer.line(-this.width/2+4,this.height/2-17,-this.width/2+8,this.height/2-13)
-                    this.layer.line(-this.width/2+12,this.height/2-25,-this.width/2+16,this.height/2-21)
-                    this.layer.line(-this.width/2+17,this.height/2-4,-this.width/2+13,this.height/2-8)
-                    this.layer.line(-this.width/2+25,this.height/2-12,-this.width/2+21,this.height/2-16)
-                break
-                case -6:
-                    this.layer.line(-this.width/2+5,this.height/2,-this.width/2+5,this.height/2-15)
-                    this.layer.line(-this.width/2,this.height/2-5,-this.width/2+15,this.height/2-5)
-                    this.layer.line(-this.width/2+5,this.height/2-15,-this.width/2+15,this.height/2-5)
-                break
-                case -10:
-                    this.layer.strokeWeight(2)
-                    this.layer.triangle(-this.width/2+2,this.height/2,-this.width/2+8,this.height/2,-this.width/2+5,this.height/2-12)
-                    this.layer.triangle(-this.width/2+8,this.height/2,-this.width/2+14,this.height/2,-this.width/2+11,this.height/2-12)
-                break
-                case 0:
-                    this.layer.line(-this.width/2,this.height/2-10,-this.width/2+10,this.height/2-10)
-                    this.layer.line(-this.width/2+10,this.height/2,-this.width/2+10,this.height/2-10)
-                break
-                case 1:
-                    this.layer.line(-this.width/2,this.height/2-15,-this.width/2+15,this.height/2)
-                break
-                case 2:
-                    this.layer.line(-this.width/2,this.height/2-5,-this.width/2+15,this.height/2-15)
-                    this.layer.line(-this.width/2+5,this.height/2,-this.width/2+15,this.height/2-15)
-                break
+            if(this.attack!=1615){
+                switch(rarity){
+                    case -1:
+                        this.layer.ellipse(-this.width/2+7.5,this.height/2-7.5,10,10)
+                    break
+                    case -2:
+                        this.layer.line(-this.width/2+7.5,this.height/2,-this.width/2+7.5,this.height/2-10)
+                    break
+                    case -3:
+                        this.layer.line(-this.width/2+1,this.height/2-12,-this.width/2+12,this.height/2-12)
+                        this.layer.line(-this.width/2+12,this.height/2-1,-this.width/2+12,this.height/2-12)
+                        this.layer.strokeWeight(2)
+                        this.layer.line(-this.width/2+1,this.height/2-12,-this.width/2+12,this.height/2-1)
+                        this.layer.line(-this.width/2+1,this.height/2-1,-this.width/2+12,this.height/2-12)
+                    break
+                    case -4:
+                        this.layer.strokeWeight(1)
+                        this.layer.ellipse(-this.width/2+7.5,this.height/2-10,5,5)
+                        this.layer.ellipse(-this.width/2+7.5,this.height/2-5,5,5)
+                        this.layer.ellipse(-this.width/2+5,this.height/2-7.5,5,5)
+                        this.layer.ellipse(-this.width/2+10,this.height/2-7.5,5,5)
+                    break
+                    case -5:
+                        this.layer.strokeWeight(2.5)
+                        this.layer.line(-this.width/2+2,this.height/2-2,-this.width/2+14,this.height/2-14)
+                        this.layer.line(-this.width/2+10,this.height/2-18,-this.width/2+18,this.height/2-10)
+                        this.layer.strokeWeight(2)
+                        this.layer.line(-this.width/2+7,this.height/2-16,-this.width/2+13,this.height/2-22)
+                        this.layer.line(-this.width/2+16,this.height/2-7,-this.width/2+22,this.height/2-13)
+                        this.layer.strokeWeight(1.5)
+                        this.layer.line(-this.width/2+4,this.height/2-17,-this.width/2+8,this.height/2-13)
+                        this.layer.line(-this.width/2+12,this.height/2-25,-this.width/2+16,this.height/2-21)
+                        this.layer.line(-this.width/2+17,this.height/2-4,-this.width/2+13,this.height/2-8)
+                        this.layer.line(-this.width/2+25,this.height/2-12,-this.width/2+21,this.height/2-16)
+                    break
+                    case -6:
+                        this.layer.line(-this.width/2+5,this.height/2,-this.width/2+5,this.height/2-15)
+                        this.layer.line(-this.width/2,this.height/2-5,-this.width/2+15,this.height/2-5)
+                        this.layer.line(-this.width/2+5,this.height/2-15,-this.width/2+15,this.height/2-5)
+                    break
+                    case -10:
+                        this.layer.strokeWeight(2)
+                        this.layer.triangle(-this.width/2+2,this.height/2,-this.width/2+8,this.height/2,-this.width/2+5,this.height/2-12)
+                        this.layer.triangle(-this.width/2+8,this.height/2,-this.width/2+14,this.height/2,-this.width/2+11,this.height/2-12)
+                    break
+                    case 0:
+                        this.layer.line(-this.width/2,this.height/2-10,-this.width/2+10,this.height/2-10)
+                        this.layer.line(-this.width/2+10,this.height/2,-this.width/2+10,this.height/2-10)
+                    break
+                    case 1:
+                        this.layer.line(-this.width/2,this.height/2-15,-this.width/2+15,this.height/2)
+                    break
+                    case 2:
+                        this.layer.line(-this.width/2,this.height/2-5,-this.width/2+15,this.height/2-15)
+                        this.layer.line(-this.width/2+5,this.height/2,-this.width/2+15,this.height/2-15)
+                    break
+                }
             }
             if(spec.includes(12)){
                 this.layer.line(-this.width/2,10,this.width/2,10)
@@ -3011,21 +3013,21 @@ class card{
                     this.layer.strokeWeight(2)
                     this.layer.quad(-this.width/2+2,-this.height/2+12,-this.width/2+10,-this.height/2+2,-this.width/2+18,-this.height/2+12,-this.width/2+10,-this.height/2+22)
                 }
-                if(variants.polar){
+                if(variants.polar&&this.player>=0){
                     this.layer.strokeWeight(2)
-                    if(this.pole==this.battle.cardManagers[this.player].hand.pole){
+                    if(this.pole==this.battle.cardManagers[this.player].hand.pole||stage.scene!='battle'){
                         if(this.pole==1){
-                            this.layer.fill(150,255,150,this.fade)
-                            this.layer.stroke(180,255,180,this.fade)
+                            this.layer.fill(90,255,90,this.fade)
+                            this.layer.stroke(120,255,120,this.fade)
                             regStar(this.layer,this.width/2-10,this.height/2-10,6,8,8,2,2,0)
                         }else if(this.pole==0){
-                            this.layer.fill(150,255,255,this.fade)
-                            this.layer.stroke(180,255,255,this.fade)
+                            this.layer.fill(90,255,255,this.fade)
+                            this.layer.stroke(120,255,255,this.fade)
                             regStar(this.layer,this.width/2-10,this.height/2-10,6,8,8,2,2,30)
                         }
                     }else{
-                        this.layer.fill(150,this.fade)
-                        this.layer.stroke(180,this.fade)
+                        this.layer.fill(90,this.fade)
+                        this.layer.stroke(120,this.fade)
                         if(this.pole==1){
                             regStar(this.layer,this.width/2-10,this.height/2-10,6,8,8,2,2,0)
                         }else if(this.pole==0){

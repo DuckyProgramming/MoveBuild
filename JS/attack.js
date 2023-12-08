@@ -154,18 +154,18 @@ class attack{
             case 1703: case 1704: case 1705: case 1706: case 1707: case 1708: case 1711: case 1714: case 1720: case 1721:
             case 1722: case 1723: case 1724: case 1725: case 1729: case 1730: case 1731: case 1732: case 1733: case 1736:
             case 1737: case 1739: case 1740: case 1744: case 1745: case 1746: case 1748: case 1749: case 1751: case 1752:
-            case 1753: case 1754: case 1755: case 1762: case 1763: case 1764: case 1765: case 1766: case 1768: case 1769:
-            case 1770: case 1772: case 1773: case 1774: case 1775: case 1776: case 1777: case 1778: case 1779: case 1780:
-            case 1782: case 1787: case 1788: case 1790: case 1791: case 1793: case 1794: case 1795: case 1796: case 1798:
-            case 1799: case 1800: case 1805: case 1801: case 1809: case 1810: case 1811: case 1818: case 1819: case 1820:
-            case 1821: case 1822: case 1823: case 1825: case 1828: case 1829: case 1830: case 1831: case 1833: case 1835:
-            case 1837: case 1838: case 1845: case 1848: case 1850: case 1851: case 1852: case 1854: case 1862: case 1863:
-            case 1864: case 1865: case 1866: case 1867: case 1868: case 1869: case 1870: case 1873: case 1874: case 1875:
-            case 1878: case 1879: case 1880: case 1882: case 1883: case 1884: case 1887: case 1888: case 1889: case 1889:
-            case 1890: case 1891: case 1892: case 1893: case 1894: case 1895: case 1897: case 1898: case 1900: case 1902:
-            case 1904: case 1905: case 1906: case 1907: case 1908: case 1909: case 1910: case 1913: case 1920: case 1921:
-            case 1922: case 1923: case 1924: case 1926: case 1927: case 1928: case 1932: case 1934: case 1935: case 1937:
-            case 1940: case 1943: case 1944: case 1945: case 1946: case 1948: case 1950: case 1951: case 1952:
+            case 1753: case 1754: case 1755: case 1756: case 1762: case 1763: case 1764: case 1765: case 1766: case 1768:
+            case 1769: case 1770: case 1772: case 1773: case 1774: case 1775: case 1776: case 1777: case 1778: case 1779:
+            case 1780: case 1782: case 1787: case 1788: case 1790: case 1791: case 1793: case 1794: case 1795: case 1796:
+            case 1798: case 1799: case 1800: case 1805: case 1801: case 1809: case 1810: case 1811: case 1818: case 1819:
+            case 1820: case 1821: case 1822: case 1823: case 1825: case 1828: case 1829: case 1830: case 1831: case 1833:
+            case 1835: case 1837: case 1838: case 1845: case 1848: case 1850: case 1851: case 1852: case 1854: case 1862:
+            case 1863: case 1864: case 1865: case 1866: case 1867: case 1868: case 1869: case 1870: case 1873: case 1874:
+            case 1875: case 1878: case 1879: case 1880: case 1882: case 1883: case 1884: case 1887: case 1888: case 1889:
+            case 1889: case 1890: case 1891: case 1892: case 1893: case 1894: case 1895: case 1897: case 1898: case 1900:
+            case 1902: case 1904: case 1905: case 1906: case 1907: case 1908: case 1909: case 1910: case 1913: case 1920:
+            case 1921: case 1922: case 1923: case 1924: case 1926: case 1927: case 1928: case 1932: case 1934: case 1935:
+            case 1937: case 1940: case 1943: case 1944: case 1945: case 1946: case 1948: case 1950: case 1951: case 1952:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2317,8 +2317,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]*(this.relPos[0]==0?2:1))
                     break
                     case 1057:
-                        this.targetCombatant.takeDamage(this.battle.counter.turnPlayed[this.player]<=1?this.effect[0]+this.effect[1]:this.effect[0],this.user)
-                        this.userCombatant.addBlock(this.effect[0])
+                        this.userCombatant.addBlock(this.battle.counter.turnPlayed[this.player]<=1?this.effect[0]+this.effect[1]:this.effect[0])
                     break
                     case 1061:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
@@ -4923,6 +4922,9 @@ class attack{
                     case 1946: case 1952:
                         this.userManager.hand.addLimit(findName('Stolen\nAttack',types.card),0,0,[this.targetCombatant.id,this.targetCombatant.intent])
                     break
+                    case 1953:
+                        this.userCombatant.statusEffect('2 Exhaust Draw',this.effect[0])
+                    break
 
                 }
             break
@@ -6653,7 +6655,13 @@ class attack{
                     case 1888:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.randomEffect(11,[])
+                            if(this.userManager.reserve.cards.length>0){
+                                this.userManager.reserve.randomEffect(11,[])
+                            }else if(this.userManager.discard.cards.length>0){
+                                this.userManager.discard.randomEffect(11,[])
+                            }else{
+                                this.userManager.hand.randomEffect(11,[])
+                            }
                         }
                     break
                     case 1890:
@@ -6685,7 +6693,7 @@ class attack{
                     case 1908:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Silence',this.effect[1])
-                        this.userManager.exhaust(this.effect[2])
+                        this.userManager.hand.exhaust(this.effect[2])
                     break
                     case 1943:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -7375,7 +7383,7 @@ class attack{
                         }
                     break
                     case 1935:
-                        this.userCombatant.statusEffect('Miss',this.effect[0])
+                        this.targetCombatant.statusEffect('Miss',this.effect[0])
                     break
 
                 }

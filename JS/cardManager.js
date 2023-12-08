@@ -676,10 +676,12 @@ class cardManager{
         return total
     }
     dropFirst(){
-        this.drops--
-        if(this.hand.cards.length>0){
-            this.hand.cards[0].deSize=true
-            this.hand.cards[0].exhaust=true
+        if(this.drops>0){
+            this.drops--
+            if(this.hand.cards.length>0){
+                this.hand.cards[0].deSize=true
+                this.hand.cards[0].exhaust=true
+            }
         }
     }
     allGroupEffect(effect){
@@ -901,6 +903,7 @@ class cardManager{
         if(variants.polar){
             this.hand.pole=1
         }
+        this.hand.exhausts=0
         if(variants.altDraw){
             this.drops=this.baseDrops
         }else if(variants.blackjack){

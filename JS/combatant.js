@@ -130,7 +130,7 @@ class combatant{
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
-            'Single Damage Convert',
+            'Single Damage Convert','2 Exhaust Draw',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -158,7 +158,7 @@ class combatant{
                 2,0,0,0,0,0,0,0,1,2,//23
                 1,2,2,1,0,2,0,2,0,0,//24
                 1,0,1,1,2,2,2,0,2,0,//25
-                0,
+                0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -186,7 +186,7 @@ class combatant{
                 1,1,2,2,1,2,2,3,3,2,//23
                 2,0,2,2,1,2,0,2,0,0,//24
                 1,0,0,0,3,3,3,3,1,2,//25
-                1,
+                1,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad

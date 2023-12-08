@@ -57,8 +57,8 @@ class attackManager{
             this.battle.nodeManager.enterNode(this.battle.encounter.class>2||this.battle.encounter.class<0?0:this.battle.encounter.class,this.battle.nodeManager.tilePosition.y,false)
         }else if(this.finalAfter){
             this.finalAfter=false
-            this.battle.setupBattle(types.encounter[findName('Rewriter',types.encounter)])
             this.battle.nodeManager.world=3
+            this.battle.setupBattle(types.encounter[findName('Rewriter',types.encounter)])
         }
     }
     update(){

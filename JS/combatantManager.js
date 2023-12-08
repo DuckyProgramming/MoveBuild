@@ -308,7 +308,7 @@ class combatantManager{
     killDupes(){
         let names=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0||this.combatants[a].construct){
+            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
                 if(names.includes(this.combatants[a].name)){
                     this.combatants[a].life=0
                 }else{
@@ -321,7 +321,7 @@ class combatantManager{
         let names=[]
         let numbers=[]
         for(let a=0,la=this.combatants.length;a<la;a++){
-            if(this.combatants[a].team==0||this.combatants[a].construct){
+            if((this.combatants[a].team==0||this.combatants[a].construct)&&this.combatants[a].life>0){
                 if(names.includes(this.combatants[a].name)){
                     numbers[names.indexOf(this.combatants[a].name)]++
                 }else{

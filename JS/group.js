@@ -17,6 +17,7 @@ class group{
         this.cardInUse=0
         this.cardShuffledIndex=0
         this.pole=0
+        this.exhausts=0
 
         this.reset()
     }
@@ -2985,6 +2986,10 @@ class group{
                             }else{
                                 if(userCombatant.getStatus('Exhaust Draw')>0){
                                     this.battle.cardManagers[this.player].draw(userCombatant.getStatus('Exhaust Draw'))
+                                }
+                                this.exhausts++
+                                if(userCombatant.getStatus('2 Exhaust Draw')>0&&this.exhausts%2==0){
+                                    this.battle.cardManagers[this.player].draw(userCombatant.getStatus('2 Exhaust Draw'))
                                 }
                                 if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){
                                     this.battle.relicManager.activate(10,[this.player])

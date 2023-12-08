@@ -1780,7 +1780,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 196:
             layer.stroke(150,0,0,fade)
             layer.strokeWeight(1)
-            layer.ellipse(0,0,10,10,-90,225)
+            layer.arc(0,0,10,10,-90,225)
             layer.fill(150,0,0,fade)
             layer.noStroke()
             layer.triangle(0,-3.5,0,-6.5,-1.5,-5)
@@ -2257,6 +2257,20 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-2,-6,-4,3,0,3)
             layer.ellipse(3,-3,4,4)
             layer.triangle(3,0,5,5,1,5)
+        break
+        case 251:
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+            layer.noFill()
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(0.5)
+            layer.ellipse(0,0,8,8)
+            layer.line(-2*sqrt(2),2*sqrt(2),-2*sqrt(2),0.5*sqrt(2))
+            layer.line(2*sqrt(2),-2*sqrt(2),2*sqrt(2),-0.5*sqrt(2))
+            layer.line(-2*sqrt(2),2*sqrt(2),-0.5*sqrt(2),2*sqrt(2))
+            layer.line(2*sqrt(2),-2*sqrt(2),0.5*sqrt(2),-2*sqrt(2))
         break
 
     }
