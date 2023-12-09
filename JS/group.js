@@ -1092,6 +1092,11 @@ class group{
                         la--
                     }
                 break
+                case 57:
+                    this.cards[a].deSize=true
+                    this.cards[a].discardEffect.push(0)
+                    this.cards[a].discardEffect.push(8)
+                break
 
             }
         }
@@ -1670,7 +1675,9 @@ class group{
     send(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
-                if(spec==11){
+                if(spec==15){
+                    list.splice(floor(random(0,list.length)),0,copyCard(this.cards[firstIndex]))
+                }else if(spec==11){
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
@@ -1735,7 +1742,9 @@ class group{
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex;a<la;a++){
-                if(spec==11){
+                if(spec==15){
+                    list.splice(floor(random(0,list.length)),0,copyCard(this.cards[firstIndex]))
+                }else if(spec==11){
                     list.splice(0,0,copyCard(this.cards[firstIndex]))
                 }else{
                     list.push(copyCard(this.cards[firstIndex]))
@@ -2661,6 +2670,7 @@ class group{
                                 this.battle.attackManager.type=this.battle.attackManager.type[characteristic]
                                 this.battle.attackManager.effect=this.battle.attackManager.effect[characteristic]
                                 this.battle.attackManager.attackClass=this.battle.attackManager.attackClass[characteristic]
+                                this.cards[b].characteristic=characteristic
                             }
                             this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
                             this.cardInUse=this.cards[b]
@@ -2923,16 +2933,22 @@ class group{
                         if(this.cards[a].discardEffect.length>0){
                             this.cards[a].deSize=false
                             if(this.cards[a].discardEffect.includes(0)){
+                                let hold=this.cards[a].discardEffect
                                 this.cards[a]=upgradeCard(this.cards[a])
-                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0))
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
                             }
                             if(this.cards[a].discardEffect.includes(2)){
+                                let hold=this.cards[a].discardEffect
                                 this.cards[a]=unupgradeCard(this.cards[a])
-                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(2))
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(2),1)
                             }
                             if(this.cards[a].discardEffect.includes(4)){
+                                let hold=this.cards[a].discardEffect
                                 this.cards[a]=this.battle.cardManagers[this.player].transformCard(this.cards[a])
-                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(4))
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(4),1)
                             }
                             if(this.cards[a].discardEffect.includes(1)){
                                 this.cards[a].cost=0
@@ -2962,12 +2978,18 @@ class group{
                                 this.battle.cardManagers[this.player].reserve.cards[this.battle.cardManagers[this.player].reserve.cards.length-1].retain2=true
                                 a--
                                 la--
+                            }else if(this.cards[a].discardEffect.includes(8)){
+                                this.cards[a].discardEffect=[]
+                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,15)
+                                a--
+                                la--
                             }else{
                                 this.cards[a].discardEffect=[]
                             }
                         }else if((
                             this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
-                            this.cards[a].attack==1778||this.cards[a].attack==1863
+                            this.cards[a].attack==1778||this.cards[a].attack==1863||
+                            this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                         )&&!this.cards[a].exhaust){
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
                             a--

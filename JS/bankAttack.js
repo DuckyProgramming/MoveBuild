@@ -464,7 +464,7 @@ attack.prototype.update=function(){
         case 1473: case 1491: case 1496: case 1510: case 1527: case 1543: case 1608: case 1609: case 1624: case 1639:
         case 1650: case 1664: case 1675: case 1676: case 1685: case 1694: case 1695: case 1716: case 1718: case 1743:
         case 1747: case 1783: case 1806: case 1808: case 1813: case 1849: case 1853: case 1871: case 1872: case 1885:
-        case 1886: case 1930: case 1936: case 1938: case 1939: case 1946: case 1952: case 1953:
+        case 1886: case 1930: case 1936: case 1938: case 1939: case 1946: case 1952: case 1953: case 1956: case 1957:
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
                 this.type==1459&&this.relPos[0]!=1
@@ -1271,7 +1271,8 @@ attack.prototype.update=function(){
         case 1723: case 1729: case 1736: case 1745: case 1751: case 1753: case 1755: case 1756: case 1768: case 1777:
         case 1780: case 1782: case 1788: case 1795: case 1837: case 1845: case 1850: case 1852: case 1858: case 1863:
         case 1864: case 1866: case 1867: case 1868: case 1874: case 1878: case 1879: case 1880: case 1888: case 1890:
-        case 1892: case 1894: case 1902: case 1907: case 1908: case 1943: case 1945: case 1950: case 1951:
+        case 1892: case 1894: case 1902: case 1907: case 1908: case 1943: case 1945: case 1950: case 1951: case 1955:
+        case 1958:
             if(
                 this.type==1247&&this.energy%2!=0||
                 this.type==1259&&this.energy%2!=0||

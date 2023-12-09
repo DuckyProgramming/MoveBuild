@@ -166,7 +166,7 @@ class attack{
             case 1902: case 1904: case 1905: case 1906: case 1907: case 1908: case 1909: case 1910: case 1913: case 1920:
             case 1921: case 1922: case 1923: case 1924: case 1926: case 1927: case 1928: case 1932: case 1934: case 1935:
             case 1937: case 1940: case 1943: case 1944: case 1945: case 1946: case 1948: case 1950: case 1951: case 1952:
-            case 1954:
+            case 1954: case 1955: case 1958:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -4927,6 +4927,14 @@ class attack{
                     case 1953:
                         this.userCombatant.statusEffect('2 Exhaust Draw',this.effect[0])
                     break
+                    case 1956:
+                        this.userManager.allEffect(2,57)
+                        this.userManager.draw(this.effect[0])
+                    break
+                    case 1957:
+                        this.userManager.allEffect(2,35)
+                        this.userManager.draw(this.effect[0])
+                    break
 
                 }
             break
@@ -6794,6 +6802,15 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Miss',this.effect[1])
                         this.battle.turnManager.loadEnemyRandomMove(this.targetCombatant.id)
+                    break
+                    case 1955:
+                        this.targetCombatant.status.main[findList('Strength',this.targetCombatant.status.name)]=0
+                        this.targetCombatant.statusEffect('Weak',this.effect[0])
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                    break
+                    case 1958:
+                        this.battle.turnManager.aimInConstructs(this.targetCombatant)
+                        this.userManager.draw(this.effect[0])
                     break
 
                 }
