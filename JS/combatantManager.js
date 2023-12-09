@@ -582,6 +582,11 @@ class combatantManager{
         if(this.combatants[this.combatants.length-1].spec.includes(17)){
             this.combatants[this.combatants.length-1].autoAim()
         }
+        if(!options.oldUnbuild&&this.combatants[this.combatants.length-1].move.speed==0&&this.battle.turn.main>=0&&this.battle.turn.main<this.battle.players){
+            if(this.battle.cardManagers[this.battle.turn.main].hand.cardNumber('Unbuild')==0){
+                this.battle.cardManagers[this.battle.turn.main].hand.add(findName('Unbuild',types.card),0,0)
+            }
+        }
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
@@ -589,6 +594,14 @@ class combatantManager{
         this.id++
         this.sort()
         this.reorder()
+    }
+    constructAlive(team){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].construct&&this.combatants[a].team==team&&this.combatants[a].move.speed==0&&this.combatants[a].life>0){
+                return true
+            }
+        }
+        return false
     }
     getCombatantIndex(tileX,tileY){
         for(let a=0,la=this.combatants.length;a<la;a++){

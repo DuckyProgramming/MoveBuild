@@ -67,7 +67,7 @@ types={
         {name:'Chief Deployer',life:80,behavior:3,spec:[],move:{type:2,speed:1},attack:[{type:39,effect:[1,'Sentry']},{type:6,effect:[6]},{type:4,effect:[7]},{type:39,effect:[1,'Deployer']}],description:`Builds the builders`},
         {name:'Sentry',life:8,behavior:0,spec:[0],move:{type:0,speed:0},attack:[{type:47,effect:[4]}],description:`Gonna get destroyed`},
         {name:'Solar Shard',life:275,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[15]},{type:87,effect:[6]},{type:39,effect:[1,'Lunar Dust']},{type:88,effect:[1]}],description:`How do these things work anyway?`},
-        {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[12]},{type:86,effect:[5]}],description:`Extra enemy's kinda pointless`},
+        {name:'Lunar Shard',life:120,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[10]},{type:86,effect:[3]}],description:`Extra enemy's kinda pointless`},
         {name:'Lunar Dust',life:20,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:85,effect:[6]}],description:`Weak, but exists to be annoying`},
         {name:'Management Sniper',life:110,behavior:10,spec:[0],move:{type:0,speed:1},attack:[{type:89,effect:[8,1,'Electrocuted']},{type:91,effect:[14,1,'Glued']},{type:10,effect:[8]},{type:21,effect:[]}],description:`Used to have good aim`},
         {name:'Management Caller',life:200,behavior:8,spec:[0],move:{type:2,speed:1},attack:[{type:34,effect:[2]},{type:2,effect:[2,2,'Dazed']},{type:39,effect:[1,'Management Soldier']},{type:21,effect:[]}],description:`Confirms reinforcements`},
@@ -75,9 +75,9 @@ types={
         {name:'Walker Driver',life:65,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:12,effect:[18]},{type:95,effect:[5]},{type:4,effect:[8]},{type:14,effect:[10,1,'Slow\nBleed']}],description:`No walker now`},
         {name:'Prisoner',life:28,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:96,effect:[5]},{type:97,effect:[5]},{type:4,effect:[10]}],description:`Mr. Misdemeanor`},
         {name:'Prison Guard',life:56,behavior:1,spec:[7],move:{type:0,speed:1},attack:[{type:98,effect:[7]}],description:`Helping the prisoners for some reason`},
-        {name:'Lightspeed',life:85,behavior:1,spec:[1],move:{type:0,speed:3},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[12]}],description:`He be fast`},
+        {name:'Lightspeed',life:85,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:101,effect:[3]},{type:19,effect:[4]},{type:99,effect:[6]},{type:100,effect:[12]}],description:`He be fast`},
         {name:'Swordmaster',life:90,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:102,effect:[12]},{type:79,effect:[10]},{type:103,effect:[4,2]},{type:21,effect:[]}],description:`Mastered something`},
-        {name:'Gas Man',life:84,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
+        {name:'Gas Man',life:84,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[15]},{type:104,effect:[6]},{type:105,effect:[4,'Burn']}],description:`Fills you with gas`},
         {name:'Gremlin',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:32,effect:[5,1,'Dazed']},{type:21,effect:[]},{type:9,effect:[10]}],description:`Repetitive`},
         {name:'Flying Rock',life:14,behavior:10,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:22,effect:[2,1,'Dazed']},{type:6,effect:[7]}],description:`Vaguely spherical`},
         {name:'Repulsor',life:22,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:106,effect:[4]},{type:87,effect:[8]},{type:6,effect:[6]}],description:`Sends you to the shadow realm`},
@@ -98,7 +98,7 @@ types={
         {name:'Assistant Hiring Officer',life:180,behavior:1,spec:[],move:{type:1,speed:2},attack:[{type:39,effect:[3,'Intern']},{type:130,effect:[9]}],description:`Cutting costs everywhere`},
         {name:'Gangster Machinegunner',life:48,behavior:1,spec:[0],move:{type:1,speed:1},attack:[{type:129,effect:[3]}],description:`Realized he can hold down the trigger`},
         {name:'Bolt',life:12,behavior:0,spec:[],move:{type:0,speed:2},attack:[{type:131,effect:[6]},{type:132,effect:[1,'Electrocuted']},{type:133,effect:[3]}],description:`Literally electricity`},
-        {name:'Jet',life:192,behavior:0,spec:[1],move:{type:1,speed:2},attack:[{type:134,effect:[18,1]},{type:135,effect:[8,2,'Burn']}],description:`Technology difference`},
+        {name:'Jet',life:192,behavior:0,spec:[0],move:{type:1,speed:2},attack:[{type:134,effect:[18,1]},{type:135,effect:[8,2,'Burn']}],description:`Technology difference`},
         {name:'Armored Ninja',life:72,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:137,effect:[9]},{type:138,effect:[6]},{type:139,effect:[6]},{type:10,effect:[6]}],description:`Not a spike slime?`},
         {name:'Destructor Bot',life:81,behavior:0,spec:[],move:{type:0,speed:3},attack:[{type:136,effect:[32]}],description:`Has no regard for its nonexistent life`},
         {name:'Assistant Fitness Officer',life:164,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:142,effect:[3,10]},{type:28,effect:[5]},{type:143,effect:[10]}],description:`Probably uses steroids`},
@@ -5695,7 +5695,7 @@ constants={collisionDamage:4,
     HG1:[[-2,-2],[-1,-1],[0,-2],[0,-1],[-1,-2],[2,2],[1,1],[0,2],[0,1],[1,2]],
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]}
-options={damage:false,alt:false,id:false,preGen:[]}
+options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false}
 graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmn'}

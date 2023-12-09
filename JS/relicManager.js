@@ -529,7 +529,11 @@ class relicManager{
                             this.relicPlayer(86).statusEffect('Free Attack',this.active[86])
                         }
                         if(this.active[87]>0){
-                            this.relicPlayer(87).statusEffect('Double Play',this.active[87])
+                            if(options.oldDuplicate){
+                                this.relicPlayer(87).statusEffect('Double Play',this.active[87])
+                            }else{
+                                this.battle.cardManagers[this.player[87]].hand.duplicate(this.active[87])
+                            }
                         }
                         if(this.active[89]>0){
                             this.relicPlayer(89).statusEffect('Take Half Damage',2*this.active[89])

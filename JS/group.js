@@ -1449,6 +1449,11 @@ class group{
             case -44:
                 this.drawEffects.push([0,10,[]])
             break
+            case -46:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.drawEffects.push([5,1])
+                }
+                return 'break'
             case 288: case 374:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color)
@@ -2250,14 +2255,17 @@ class group{
                     }
                 }
                 this.cards[a].usable=false
-                if(this.status.duplicate>0&&this.cards[a].attack!=1491){
+                if(this.status.duplicate>0&&this.cards[a].attack!=1491&&options.oldDuplicate){
                     this.status.duplicate--
                     this.copySelfInput(a)
                 }
                 if(this.cards[a].target[0]==0){
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                    if(userCombatant.status.main[23]>0){
-                        userCombatant.status.main[23]--
+                    if(this.status.duplicate>0&&this.cards[a].attack!=1491&&!options.oldDuplicate){
+                        this.status.duplicate--
+                        this.cards[a].usable=true
+                    }else if(userCombatant.getStatus('Double Play')>0){
+                        userCombatant.status.main[findList('Double Play',userCombatant.status.name)]--
                         this.cards[a].usable=true
                     }else{
                         this.cards[a].deSize=true
@@ -2397,8 +2405,12 @@ class group{
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                         this.spec=this.cards[b].spec
                         this.target=this.cards[b].target
-                        if(userCombatant.status.main[23]>0){
-                            userCombatant.status.main[23]--
+                        if(this.status.duplicate>0&&this.cards[b].attack!=1491&&!options.oldDuplicate){
+                            this.status.duplicate--
+                            this.cards[b].usable=true
+                            this.cards[b].select=false
+                        }else if(userCombatant.getStatus('Double Play')>0){
+                            userCombatant.status.main[findList('Double Play',userCombatant.status.name)]--
                             this.cards[b].usable=true
                             this.cards[b].select=false
                         }else{
@@ -2541,8 +2553,12 @@ class group{
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             this.spec=this.cards[b].spec
                             this.target=this.cards[b].target
-                            if(userCombatant.status.main[23]>0){
-                                userCombatant.status.main[23]--
+                            if(this.status.duplicate>0&&this.cards[b].attack!=1491&&!options.oldDuplicate){
+                                this.status.duplicate--
+                                this.cards[b].usable=true
+                                this.cards[b].select=false
+                            }else if(userCombatant.getStatus('Double Play')>0){
+                                userCombatant.status.main[findList('Double Play',userCombatant.status.name)]--
                                 this.cards[b].usable=true
                                 this.cards[b].select=false
                             }else{
@@ -2961,10 +2977,12 @@ class group{
                             this.cards[a].attack==1405||this.cards[a].attack==1443||this.cards[a].attack==1444||this.cards[a].attack==1455||this.cards[a].attack==1485||
                             this.cards[a].attack==1504||this.cards[a].attack==1616||this.cards[a].attack==1622||this.cards[a].attack==1623||this.cards[a].attack==1625||
                             this.cards[a].attack==1626||this.cards[a].attack==1627||this.cards[a].attack==1628||this.cards[a].attack==1630||this.cards[a].attack==1635||
-                            this.cards[a].attack==1642&&this.battle.attackManager.energy==4||this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||
-                            this.cards[a].attack==1655||this.cards[a].attack==1740||this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||
-                            this.cards[a].attack==1806||this.cards[a].attack==1821||this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||
-                            this.cards[a].attack==1868||this.cards[a].attack==1909||this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||
+                            this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||this.cards[a].attack==1655||this.cards[a].attack==1740||
+                            this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||
+                            this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
+                            this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||
+                            (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
+                            this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].cost>0&&this.battle.turn.main==this.player
                         )&&!this.cards[a].exhaust){
                             this.send(this.cards,a,a+1,2)
@@ -3773,6 +3791,7 @@ class group{
             }
             if(allUsable&&code==BACKSPACE){
                 this.battle.attackManager.targetInfo[0]=0
+                this.battle.updateTargetting()
             }
         }
     }

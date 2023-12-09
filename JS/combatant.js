@@ -4580,7 +4580,7 @@ class combatant{
                         userCombatant.status.main[139]--
                     }
                     if(userCombatant.status.main[170]>0&&userCombatant.id<this.battle.players){
-                        this.battle.currency.money[userCombatant.id]+=damage
+                        this.battle.currency.money[userCombatant.id]+=round(damage)
                     }
                     if(userCombatant.status.main[234]>0){
                         userCombatant.statusEffect('No Damage Next Turn',1)
@@ -7508,7 +7508,10 @@ class combatant{
                     this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10,[30]))
                 }
                 if(this.team<=this.battle.players){
-                    if(!this.programmedDeath){
+                    if(!this.programmedDeath&&options.oldUnbuild){
+                        this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
+                    }
+                    if(!options.oldUnbuild&&!this.battle.combatantManager.constructAlive(this.team)){
                         this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
                     }
                     if(this.name=='Teleporter Start'){

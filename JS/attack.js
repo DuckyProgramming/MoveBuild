@@ -166,6 +166,7 @@ class attack{
             case 1902: case 1904: case 1905: case 1906: case 1907: case 1908: case 1909: case 1910: case 1913: case 1920:
             case 1921: case 1922: case 1923: case 1924: case 1926: case 1927: case 1928: case 1932: case 1934: case 1935:
             case 1937: case 1940: case 1943: case 1944: case 1945: case 1946: case 1948: case 1950: case 1951: case 1952:
+            case 1954:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -4183,6 +4184,7 @@ class attack{
                         this.userCombatant.statusEffect('Balance Energy',1)
                     break
                     case 431:
+                        this.userCombatant.draw(this.effect[0])
                         if(!this.userCombatant.armed){
                             for(let a=0,la=6;a<la;a++){
                                 let offset=transformDirection(0,-30+a*60)
@@ -5671,7 +5673,9 @@ class attack{
                     break
                     case 585:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Wall',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 592:
                         this.targetCombatant.status.main[findList('Strength',this.targetCombatant.status.name)]=0
@@ -5679,47 +5683,69 @@ class attack{
                     break
                     case 620:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Spike Pillar',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 621:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Projector',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 622:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Turret',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 623:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Readout',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 624:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Strengthener',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 626:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Explosive Turret',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 627:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Multiturret',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 628:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Barbed Pillar',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 629:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Gun Rack',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 630:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Repulse Turret',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 631:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Machine Gun',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 667:
                         this.targetCombatant.randomStatusInstant(this.effect[0],[1])
@@ -5732,27 +5758,39 @@ class attack{
                     break
                     case 685:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Miniturret',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 686:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Metal Box',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 687:
-                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Upgrader',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Upgrader',types.combatant),this.userCombatantf.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 688:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Transformer',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 695:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Doubler',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 696:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Exhauster',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 697:
                         this.targetCombatant.takeDamage(this.effect[1],this.user)
@@ -5763,12 +5801,16 @@ class attack{
                     case 700:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Teleporter Start',types.combatant),this.userCombatant.team,this.direction,this.user)
                         this.userManager.hand.add(findName('Use Teleporter\nStart',types.card),0,0)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 701:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Teleporter End',types.combatant),this.userCombatant.team,this.direction,this.user)
                         this.userManager.hand.add(findName('Use Teleporter\nEnd',types.card),0,0)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 702:
                         this.userManager.hand.add(findName('Proxy\nTeleport',types.card),0,0)
@@ -5959,7 +6001,9 @@ class attack{
                             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].base.life*=this.effect[0]
                             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].life*=this.effect[0]
                         }
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 1139:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -6012,7 +6056,9 @@ class attack{
                     break
                     case 1232:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Mirror Shield',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 1244:
                         if(types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1){
@@ -6175,7 +6221,9 @@ class attack{
                     break
                     case 1346:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Armored Turret',types.combatant),this.userCombatant.team,this.direction,this.user)
-                        this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
+                        }
                     break
                     case 1352:
                         this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,this.limit,this.battle.players+1,this.direction,this.user)
@@ -8016,6 +8064,10 @@ class attack{
                     break
                     case 1941:
                         this.userCombatant.statusEffect('Freeze Draw Up',this.effect[0])
+                    break
+                    case 1954:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.statusEffect('Bleed',this.effect[1])
                     break
 
                 }
