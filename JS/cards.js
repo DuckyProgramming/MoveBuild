@@ -6229,9 +6229,9 @@ types.card=[
     },{
         name:'Water\nBucket',rarity:2,list:6,
         levels:[
-            {effect:[5],attack:1467,cost:1,target:[0],spec:[1],class:4},
-            {effect:[5],attack:1467,cost:0,target:[0],spec:[1],class:4},
+            {effect:[4],attack:1467,cost:1,target:[0],spec:[1],class:4},
             {effect:[3],attack:1467,cost:0,target:[0],spec:[1],class:4},
+            {effect:[1],attack:1467,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
         name:'Turbine',rarity:0,list:6,
@@ -6383,9 +6383,9 @@ types.card=[
     },{
         name:'Photoresistor',rarity:1,list:6,
         levels:[
-            {effect:[1,16],attack:1830,cost:0,target:[2,1,1],spec:[],class:4},
             {effect:[1,12],attack:1830,cost:0,target:[2,1,1],spec:[],class:4},
-            {effect:[1,10],attack:1830,cost:0,target:[2,1,1],spec:[],class:4},
+            {effect:[1,9],attack:1830,cost:0,target:[2,1,1],spec:[],class:4},
+            {effect:[1,7],attack:1830,cost:0,target:[2,1,1],spec:[],class:4},
         ],
     },{
         name:'VRAM',rarity:1,list:6,
@@ -7476,9 +7476,9 @@ types.card=[
     },{
         name:'Magnitude',rarity:0,list:8,
         levels:[
+            {effect:[1],attack:834,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[1.5],attack:834,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[2],attack:834,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[3],attack:834,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[4],attack:834,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Crunch',rarity:2,list:8,
@@ -9717,9 +9717,9 @@ types.card=[
     },{
         name:'Accuracy\nCheck',rarity:0,list:10,
         levels:[
-            {effect:[20],attack:1009,cost:1,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[29],attack:1009,cost:1,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[36],attack:1009,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[20],attack:1009,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[29],attack:1009,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[36],attack:1009,cost:1,target:[2,1,3],spec:[0],class:1},
         ],
     },{
         name:'Riskless\nStrike',rarity:0,list:10,
