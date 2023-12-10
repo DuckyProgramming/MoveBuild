@@ -166,7 +166,7 @@ class attack{
             case 1902: case 1904: case 1905: case 1906: case 1907: case 1908: case 1909: case 1910: case 1913: case 1920:
             case 1921: case 1922: case 1923: case 1924: case 1926: case 1927: case 1928: case 1932: case 1934: case 1935:
             case 1937: case 1940: case 1943: case 1944: case 1945: case 1946: case 1948: case 1950: case 1951: case 1952:
-            case 1954: case 1955: case 1958:
+            case 1954: case 1955: case 1958: case 1959: case 1960: case 1961:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -610,6 +610,34 @@ class attack{
                         this.relativeDistance.push(sqrt((targetCombatant.relativePosition.x-this.relativePosition.x)**2+(targetCombatant.relativePosition.y-this.relativePosition.y)**2))
                     }
                 }
+            break
+            case 1962:
+                this.targetTile=this.battle.tileManager.tiles[this.target[0]]
+
+                this.direction2=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
+                this.distance2=sqrt((this.targetTile.position.x-this.position.x)**2+(this.targetTile.position.y-this.position.y)**2)
+
+                this.relativeDirection2=atan2(this.targetTile.relativePosition.x-this.relativePosition.x,this.targetTile.relativePosition.y-this.relativePosition.y)
+                this.relativeDistance2=sqrt((this.targetTile.relativePosition.x-this.relativePosition.x)**2+(this.targetTile.relativePosition.y-this.relativePosition.y)**2)
+                this.targetDistance2=this.targetDistance
+
+                this.targetCombatant=this.battle.combatantManager.getArea(this.userCombatant.team,this.targetTile.tilePosition,1)
+                this.direction=[]
+                this.distance=[]
+                this.relativeDirection=[]
+                this.relativeDistance=[]
+                this.targetDistance=[]
+
+                for(let a=0,la=this.targetCombatant.length;a<la;a++){
+                    this.direction.push(atan2(this.targetCombatant[a].position.x-this.targetTile.position.x,this.targetCombatant[a].position.y-this.targetTile.position.y))
+                    this.distance.push(sqrt((this.targetCombatant[a].position.x-this.targetTile.position.x)**2+(this.targetCombatant[a].position.y-this.targetTile.position.y)**2))
+
+                    this.relativeDirection.push(atan2(this.targetCombatant[a].relativePosition.x-this.targetTile.relativePosition.x,this.targetCombatant[a].relativePosition.y-this.targetTile.relativePosition.y))
+                    this.relativeDistance.push(sqrt((this.targetCombatant[a].relativePosition.x-this.targetTile.relativePosition.x)**2+(this.targetCombatant[a].relativePosition.y-this.targetTile.relativePosition.y)**2))
+
+                    this.targetDistance.push(distTargetCombatant(0,this.targetCombatant[a],this.targetTile))
+                }
+                this.disProcedure=0
             break
 
         }
@@ -1265,6 +1293,13 @@ class attack{
                         if(this.effect[0]+luckCheck1926?20:roll1926==20){
                             this.targetCombatant.statusEffect('Stun',this.effect[0])
                         }
+                    break
+                    case 1959:
+                        this.targetCombatant.takeDamage(this.userCombatant.diceRoll(this.effect[0],6),this.user)
+                    break
+                    case 1960:
+                        this.battle.turnManager.loadEnemyAttackRepeatBack(this.targetCombatant.id)
+                        this.targetCombatant.gainMaxHP(this.effect[0])
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)

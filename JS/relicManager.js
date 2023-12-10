@@ -284,6 +284,14 @@ class relicManager{
                 this.battle.energy.base[player]++
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(10)
             break
+            case 150:
+                for(let a=0,la=this.battle.cardManagers[player].deck.cards.length;a<la;a++){
+                    if(this.battle.cardManagers[player].deck.cards[a].name=='Step'||this.battle.cardManagers[player].deck.cards[a].name=='Step-L'||this.battle.cardManagers[player].deck.cards[a].name=='Step-R'){
+                        let base=this.battle.cardManagers[player].deck.cards[a]
+                        this.battle.cardManagers[player].deck.cards[a]=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,findName('Swap',types.card),base.level,base.color,base.id)
+                    }
+                }
+            break
             case 151:
                 this.battle.overlayManager.overlays[15][player].active=true
                 this.battle.overlayManager.overlays[15][player].activate([])
@@ -564,7 +572,7 @@ class relicManager{
                             this.battle.combatantManager.allEffect(5,[1+this.active[147]*0.2])
                         }
                         if(this.active[149]>0){
-                            this.relicPlayer(149).statusEffect('Free Card',2*this.active[149])
+                            this.relicPlayer(149).statusEffect('Free Card',3*this.active[149])
                         }
                         if(this.active[39]>0){this.detail[39]=0}
                         if(this.active[108]>0){this.detail[108]=0}
@@ -601,6 +609,11 @@ class relicManager{
                     case 5:
                         if(this.battle.modded(58)){
                             this.battle.quickReinforce('Management Soldier')
+                        }
+                    break
+                    case 7:
+                        if(this.active[174]>0){
+                            this.battle.combatantManager.allEffect(19,[52])
                         }
                     break
                 }
@@ -777,10 +790,10 @@ class relicManager{
                     this.battle.energy.main[this.player[17]]+=this.active[17]
                 }
                 if(this.active[94]>0){
-                    this.relicPlayer(94).statusEffect('Strength',2*this.active[94])
+                    this.relicPlayer(94).statusEffect('Strength',this.active[94])
                 }
                 if(this.active[95]>0){
-                    this.relicPlayer(95).statusEffect('Dexterity',2*this.active[95])
+                    this.relicPlayer(95).statusEffect('Dexterity',this.active[95])
                 }
                 if(this.active[116]>0){
                     this.battle.addCurrency(10*this.active[116],this.player[116])
@@ -811,13 +824,13 @@ class relicManager{
                         }
                         if(this.active[42]>0&&args[1]==this.player[42]){
                             this.detail[42]++
-                            if(this.detail[42]%3==0){
+                            if(this.detail[42]%6==0){
                                 this.relicPlayer(42).statusEffect('Strength',this.active[42])
                             }
                         }
                         if(this.active[43]>0&&args[1]==this.player[43]){
                             this.detail[43]++
-                            if(this.detail[43]%3==0){
+                            if(this.detail[43]%6==0){
                                 this.relicPlayer(43).statusEffect('Dexterity',this.active[43])
                             }
                         }

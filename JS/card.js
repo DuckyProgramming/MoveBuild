@@ -19,7 +19,7 @@ class card{
                 case 'Initiative':
                     this.type=round(findName('I-Initiative',types.card))
                 break
-            }
+            }   
         }
         if(variants.deckbuild){
             switch(types.card[this.type].name){
@@ -167,6 +167,14 @@ class card{
         }else{
             this.cancelDesc=false
             return calculateEffect(effect,this.battle.proxyPlayer,type,-1,new disabledRelicManager(),-1,[false])
+        }
+    }
+    diceEffect(effect,number){
+        let midPoint=this.calculateEffect(1,2).toString().replace(`X`,`x${effect}D${number}`)
+        if(midPoint[0]=='x'){
+            return midPoint.substr(1,midPoint.length-1)
+        }else{
+            return midPoint
         }
     }
     description(attack,effect,spec,target){
@@ -2181,6 +2189,11 @@ class card{
             case 1956: string+=`Shuffle into Draw Pile\nAnd Upgrade Your Hand\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 1957: string+=`Transform Your Hand\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 1958: string+=`Constructs Face Target\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 1959: string+=`Deal ${this.diceEffect(effect[0],6)} Damage`; break
+            case 1960: string+=`Construct Takes\nExtra Turn\nConstruct Gains\n${effect[0]} Max Health`; break
+            case 1961: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed, Gain\n1 Trash Can Item`; break
+
+            case 1962: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nPush 1 Tile Cyclically\nin All Directions`; break
 
 
 
@@ -2435,6 +2448,9 @@ class card{
             break
             case 1458:
                 this.battle.currency.money[this.player]+=this.effect[0]
+            break
+            case 1961:
+                this.battle.itemManager.addItem(findName('Trash Can',types.item),this.player)
             break
         }
     }

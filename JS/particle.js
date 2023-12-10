@@ -6,7 +6,7 @@ class particle{
         this.remove=false
         this.time=0
         switch(this.type){
-            case 0: case 41:
+            case 0:
                 this.value=args[0]
                 this.direction=random(0,360)
                 this.speed=2.5
@@ -133,6 +133,15 @@ class particle{
                 this.size=args[0]
                 this.scale=0.1
                 this.direction=args[1]
+            break
+            case 41:
+                this.value=args[0]
+                this.direction=args[1]
+                this.speed=4
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
             break
             case 46:
                 this.size=args[0]
@@ -489,9 +498,9 @@ class particle{
                     this.layer.ellipse(0,0,10,10)
                 break
                 case 41:
-                    this.layer.fill(200,this.fade)
-                    this.layer.textSize(20)
-                    this.layer.text('-'+this.value,0,0)
+                    this.layer.fill(200,this.fade*2)
+                    this.layer.textSize(25)
+                    this.layer.text(this.value,0,0)
                 break
                 case 42:
                     this.layer.fill(255,100,0,this.fade)

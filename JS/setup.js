@@ -13,7 +13,7 @@ function setup(){
     //stage.scene='tier'
     //current.overlayManager=new overlayManager(current.layer,current,1)
 
-    /*current.menu.combatant=[9,10]
+    current.menu.combatant=[10]
     current.menu.deck=[0,0]
     current.startGame()
 
@@ -21,13 +21,15 @@ function setup(){
     //current.create()
 
     transition.trigger=false
-    stage.scene='graphic'
+    
+    /*stage.scene='graphic'
     graphics.test=0
     graphics.staticBackground.clear()
 	setupBackground(graphics.test,graphics.staticBackground)*/
     
-    /*stage.scene='battle'
-    current.setupBattle(types.encounter[1])*/
+    stage.scene='battle'
+    current.setupBattle(types.encounter[1])
+
     //stage.scene='tier'
 }
 function windowResized(){

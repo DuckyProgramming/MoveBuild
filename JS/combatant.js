@@ -4234,6 +4234,9 @@ class combatant{
                 if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
                     damage+=4
                 }
+                if(distTargetCombatant(0,this,userCombatant)>=2&&this.battle.relicManager.hasRelic(175,userCombatant.id)){
+                    damage+=2
+                }
                 if(userCombatant.status.main[119]>0&&(damage>4||userCombatant.status.main[204]>0&&damage>2)){
                     userCombatant.status.main[119]--
                     damage=userCombatant.status.main[204]>0?2:4
@@ -5204,6 +5207,22 @@ class combatant{
         if(this.status.main[150]>0){
             this.addBlock(this.status.main[150])
         }
+    }
+    diceRoll(number,value){
+        let total=0
+        let average=0
+        let roll=0
+        let luckCheck=this.luckCheck()
+        for(let a=0,la=number;a<la;a++){
+            roll=luckCheck?value:1+floor(random(0,value))
+            total+=roll
+            average+=(1+value)/2
+            this.battle.particleManager.createAuxNumber(this.position.x,this.position.y,roll,(a+0.5)/number*360)
+        }
+        if(total<average){
+            this.lowRoll()
+        }
+        return total
     }
     clearStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){

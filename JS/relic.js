@@ -353,20 +353,20 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('2',8,-3)
                 break
-                case '3 Attack Strength':
+                case '6 Attack Strength':
                     displaySymbol(this.layer,-7,0,18,0,1,this.fade)
                     displaySymbol(this.layer,10,0,11,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',-7,0)
+                    this.layer.text('6',-7,0)
                     this.layer.text('1',10,0)
                 break
-                case '3 Attack Dexterity':
+                case '6 Attack Dexterity':
                     displaySymbol(this.layer,-7,0,18,0,1,this.fade)
                     displaySymbol(this.layer,10,0,12,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('3',-7,0)
+                    this.layer.text('6',-7,0)
                     this.layer.text('1',10,0)
                 break
                 case '3 Attack Block':
@@ -666,7 +666,7 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('2',2,-1)
                 break
-                case 'Coupon':
+                case 'Free Shop Relic':
                     displaySymbol(this.layer,0,-6,1,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -736,14 +736,14 @@ class relic{
                     displaySymbol(this.layer,8,0,11,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',8,0)
+                    this.layer.text('1',8,0)
                 break
                 case 'Death Dexterity':
                     displaySymbol(this.layer,-8,0,22,0,0.5,this.fade)
                     displaySymbol(this.layer,8,0,12,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',8,0)
+                    this.layer.text('1',8,0)
                 break
                 case 'Weak Elites':
                     displaySymbol(this.layer,-12,0,34,0,0.4,this.fade)
@@ -1098,11 +1098,11 @@ class relic{
                     displaySymbol(this.layer,9,0,12,0,0.8,this.fade)
                     displaySymbol(this.layer,9,0,16,0,0.6,this.fade)
                 break
-                case '2 Free Cards':
+                case '3 Free Cards':
                     displaySymbol(this.layer,0,0,62,0,2.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('2',0,0)
+                    this.layer.text('3',0,0)
                 break
                 case 'Avoidance':
                     displaySymbol(this.layer,0,0,63,0,1,this.fade)
@@ -1274,6 +1274,23 @@ class relic{
                     this.layer.text('+',-11,0)
                     this.layer.text('+',0,0)
                     this.layer.text('+',11,0)
+                break
+                case 'Turn 7 Bomb':
+                    displaySymbol(this.layer,-9,0,75,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,18,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('52',9,0)
+                    this.layer.fill(240,0,0,this.fade)
+                    this.layer.text('7',-9,0)
+                break
+                case 'Range Damage':
+                    displaySymbol(this.layer,-9,0,13,0,1.5,this.fade)
+                    displaySymbol(this.layer,7,0,18,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2+',-9,0)
+                    this.layer.text('+2',7,0)
                 break
 
             }
