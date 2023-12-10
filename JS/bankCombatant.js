@@ -71,6 +71,7 @@ combatant.prototype.display=function(){
                     }
                 }
             }
+            this.layer.noStroke()
             this.layer.fill(255,200,255,this.fade*0.5)
             for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
                 if(this.infoAnim.faith[a]>0){

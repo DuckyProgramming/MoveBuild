@@ -973,7 +973,7 @@ class turn{
                             if(this.userCombatant.construct){
                                 this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
                                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
-                                if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length){
+                                if(this.target[0]<0||this.target[0]>=this.battle.combatantManager.combatants.length||this.targetCombatant.life<0){
                                     this.remove=true
                                 }
                             }else{
@@ -1026,7 +1026,7 @@ class turn{
                             if(this.userCombatant.team==0&&this.target==[]){
                                 this.target=[this.battle.combatantManager.getPlayerCombatantIndex(this.userCombatant.target)]
                             }
-                            if(this.target.length>0){
+                            if(this.target.length>0&&this.target[0]>=0&&this.target[0]<this.battle.combatantManager.combatants.length){
                                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
                                 this.userCombatant.goal.anim.direction=round(atan2(this.targetCombatant.relativePosition.x-this.userCombatant.relativePosition.x,this.targetCombatant.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
                                 if(this.userCombatant.getStatus('Mixed')>0){

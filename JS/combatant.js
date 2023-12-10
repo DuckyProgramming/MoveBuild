@@ -4291,11 +4291,13 @@ class combatant{
                     if(this.status.main[3]>0){
                         this.status.main[3]--
                         hit=false
+                        this.blocked=0
                         this.dodges.push({timer:0,direction:atan2(userCombatant.relativePosition.x-this.relativePosition.x,userCombatant.relativePosition.y-this.relativePosition.y)-90+180*floor(random(0,2))})
                     }
                     if(this.status.main[173]>0){
                         this.status.main[173]--
                         hit=false
+                        this.blocked=0
                         this.infoAnim.upFlash[3]=true
                         userCombatant.takeDamage(damage)
                         damage=0
@@ -4303,6 +4305,7 @@ class combatant{
                     if(userCombatant.status.main[211]>0){
                         userCombatant.status.main[211]--
                         hit=false
+                        this.blocked=0
                         this.infoAnim.upFlash[3]=true
                         userCombatant.takeDamage(damage)
                         damage=0

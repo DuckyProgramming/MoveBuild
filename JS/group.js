@@ -1613,7 +1613,7 @@ class group{
                 a--
                 la--
                 total++
-                if(total>amount){
+                if(total>=amount){
                     a=la
                 }
             }
@@ -1634,7 +1634,7 @@ class group{
                 a--
                 la--
                 total++
-                if(total>amount){
+                if(total>=amount){
                     a=la
                 }
             }

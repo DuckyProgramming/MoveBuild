@@ -107,7 +107,7 @@ class card{
 
             this.strike=this.name.includes('Strike')
             this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'
-            this.colorful=this.attack==1691||this.attack==1692||this.attack==1693||this.attack==1694||this.rarity==-5
+            this.colorful=this.attack==1691||this.attack==1692||this.attack==1693||this.attack==1694||this.rarity==-5&&this.attack!=1754
 
             this.remove=false
 
@@ -947,7 +947,7 @@ class card{
             case 715: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nSwap Attack Intents`; break
             case 716: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nSwap Defense Intents`; break
             case 717: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Random\nBlueprint${effect[1]!=1?`s`:``} to Hand`; break
-            case 718: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDestroyed Constructs+1`; break
+            case 718: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Number of\nDestroyed Constructs +1`; break
             case 719: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]}X Weak\nApply ${effect[2]}X Vulnerable`; break
             case 720: string+=`Apply ${effect[0]} Weak Next Turn`; break
             case 721: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEnter Wrath`; break
@@ -1953,7 +1953,7 @@ class card{
             case 1728: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Power${effect[1]!=1?`s`:``}`; break
             case 1729: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}\nCreate 1 Plant Tile`; break
             case 1730: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],14)} More Damage\nFor Each Construct`; break
-            case 1731: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nWhen You Have\n3 or More Constructs`; break
+            case 1731: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nWhen There Are\n2 or More Constructs`; break
             case 1732: string+=`2 Energy: Deal ${this.calculateEffect(effect[0],0)} Damage\nOtherwise: Heal ${this.calculateEffect(effect[1],4)} Health`; break
             case 1733: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nApply ${effect[1]}-X Poison`; break
             case 1734: string+=`Even Energy:\nGain ${effect[0]} Energy\nOdd Energy:\nLose ${effect[0]} Energy`; break
@@ -2557,82 +2557,84 @@ class card{
         this.retain2=false
     }
     anotherPlayed(cardClass,name,basic){
-        if(this.spec.includes(9)){
-            this.deSize=true
-        }
-        switch(this.attack){
-            case -5:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0],-1)
-            break
-            case -42:
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Poison',this.effect[0])
-            break
-            case -9:
-                if(this.battle.counter.turnPlayed[0]+1>=this.effect[0]){
-                    this.battle.cardManagers[this.player].allEffect(2,2)
-                }
-            break
-            case -30:
-                this.battle.cardManagers[this.player].hand.randomEffect(0)
-            break
-            case 52: case 220: case 594: case 1508:
+        if(this.usable){
+            if(this.spec.includes(9)){
                 this.deSize=true
-            break
-            case 56:
-                if(this.cost>=0){
-                    this.cost++
-                }
-            break
-            case 414: case 416:
-                if(cardClass==1&&this.cost>0){
-                    this.cost--
-                    this.base.cost--
-                }
-            break
-            case 415:
-                if(cardClass==2&&this.cost>0){
-                    this.cost--
-                    this.base.cost--
-                }
-            break
-            case 857:
-                if(name=='Spark'&&this.cost>0){
-                    this.cost--
-                    this.base.cost--
-                }
-            break
-            case 1040:
-                if(basic&&this.cost>0){
-                    this.cost--
-                    this.base.cost--
-                }
-            break
-            case 1129:
-                this.battle.currency.money[this.player]+=this.effect[0]
-            break
-            case 1285:
-                if(this.effect[0]>0){
-                    this.effect[0]--
-                }
-            break
-            case 1416:
-                if(this.cost>0){
-                    this.cost--
-                    this.base.cost--
-                }
-                if(this.effect[0]>0){
-                    this.effect[0]=max(0,this.effect[0]-this.effect[1])
-                }
-            break
-            case 1631:
-                this.effect[0]=floor(random(4+2*this.level,12+6*this.level+1))
-            break
-            case 1949:
-                let roll=floor(random(0,3))+1
-                this.effect[0]=roll
-                this.target[2]=roll
-            break
-            
+            }
+            switch(this.attack){
+                case -5:
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].takeDamage(this.effect[0],-1)
+                break
+                case -42:
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Poison',this.effect[0])
+                break
+                case -9:
+                    if(this.battle.counter.turnPlayed[0]+1>=this.effect[0]){
+                        this.battle.cardManagers[this.player].allEffect(2,2)
+                    }
+                break
+                case -30:
+                    this.battle.cardManagers[this.player].hand.randomEffect(0)
+                break
+                case 52: case 220: case 594: case 1508:
+                    this.deSize=true
+                break
+                case 56:
+                    if(this.cost>=0){
+                        this.cost++
+                    }
+                break
+                case 414: case 416:
+                    if(cardClass==1&&this.cost>0){
+                        this.cost--
+                        this.base.cost--
+                    }
+                break
+                case 415:
+                    if(cardClass==2&&this.cost>0){
+                        this.cost--
+                        this.base.cost--
+                    }
+                break
+                case 857:
+                    if(name=='Spark'&&this.cost>0){
+                        this.cost--
+                        this.base.cost--
+                    }
+                break
+                case 1040:
+                    if(basic&&this.cost>0){
+                        this.cost--
+                        this.base.cost--
+                    }
+                break
+                case 1129:
+                    this.battle.currency.money[this.player]+=this.effect[0]
+                break
+                case 1285:
+                    if(this.effect[0]>0){
+                        this.effect[0]--
+                    }
+                break
+                case 1416:
+                    if(this.cost>0){
+                        this.cost--
+                        this.base.cost--
+                    }
+                    if(this.effect[0]>0){
+                        this.effect[0]=max(0,this.effect[0]-this.effect[1])
+                    }
+                break
+                case 1631:
+                    this.effect[0]=floor(random(4+2*this.level,12+6*this.level+1))
+                break
+                case 1949:
+                    let roll=floor(random(0,3))+1
+                    this.effect[0]=roll
+                    this.target[2]=roll
+                break
+                
+            }
         }
     }
     anotherPlayedAfter(){

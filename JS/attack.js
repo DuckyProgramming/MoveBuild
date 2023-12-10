@@ -1159,7 +1159,7 @@ class attack{
                                 total9++
                             }
                         }
-                        this.targetCombatant.takeDamage(this.effect[0]*(total9>=3?2:1),this.user,1)
+                        this.targetCombatant.takeDamage(this.effect[0]*(total9>=2?2:1),this.user,1)
                     break
                     case 1732:
                         if(this.energy==2){
@@ -1259,7 +1259,7 @@ class attack{
                         let roll1926=floor(random(1,21))
                         let luckCheck1926=this.userCombatant.luckCheck
                         this.targetCombatant.takeDamage(this.effect[0]+luckCheck1926?20:roll1926,this.user)
-                        if(roll1910<3.5&&!luckCheck1926){
+                        if(roll1926<3.5&&!luckCheck1926){
                             this.userCombatant.lowRoll()
                         }
                         if(this.effect[0]+luckCheck1926?20:roll1926==20){
@@ -2618,7 +2618,7 @@ class attack{
                         this.userCombatant.charge+=this.effect[1]
                     break
                     case 861:
-                        this.battle.drop(this.player,findName('Burn',types.card),0,game.playerNumber+1)
+                        this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
                     break
                     case 867:
                         this.userCombatant.removeRandomStatus([1,3])

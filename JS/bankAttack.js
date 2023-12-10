@@ -2246,6 +2246,9 @@ attack.prototype.update=function(){
                 this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance)
                 this.targetCombatant.moveTilePosition(userPosition.x,userPosition.y)
                 this.battle.activate(1,this.userCombatant.id)
+                if(this.type==1596){
+                    this.userCombatant.activate(0)
+                }
             }else if(this.timer>=20){
                 this.remove=true
             }

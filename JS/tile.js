@@ -620,6 +620,7 @@ class tile{
             this.layer.text(this.fire[0],0,-game.targetRadius/8)
         }
         if(this.anim.fire[1]>0){
+            this.layer.noFill()
             this.layer.stroke(255,50,50,this.fade*this.anim.fire[1])
             this.layer.strokeWeight(2)
             this.layer.ellipse(0,0,game.targetRadius*3/4,game.targetRadius*3/4)

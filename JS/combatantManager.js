@@ -594,6 +594,7 @@ class combatantManager{
         this.id++
         this.sort()
         this.reorder()
+        this.battle.updateTargetting()
     }
     constructAlive(team){
         for(let a=0,la=this.combatants.length;a<la;a++){
