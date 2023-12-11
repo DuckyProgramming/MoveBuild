@@ -2212,6 +2212,13 @@ class card{
             case 1983: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard Your Hand\nDraw That Many Cards`; break
             case 1984: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nStrikes in Hand\nBecome Free`; break
             case 1985: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDefends in Hand\nBecome Free`; break
+            case 1986: string+=`Steps Get +1 Range`; break
+            case 1987: string+=`Add ${effect[0]} Strike${effect[0]!=1?`s`:``} and\n${effect[1]} Defend${effect[1]!=1?`s`:``} of Equivalent\nLevel to Hand`; break
+            case 1988: string+=`Increase All Dice\nRollsc by ${effect[0]}`; break
+            case 1989: string+=`Increase All Dice\nRollsc by ${effect[0]}\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 1990: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nFor Every ${effect[1]}\nCurrency You Have`; break
+            case 1991: string+=`${effect[1]} or More Currency:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
+            case 1992: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nCosts 1 Less\nWhen Step Played`; break
             
 
 
@@ -2666,6 +2673,12 @@ class card{
                     let roll=floor(random(0,3))+1
                     this.effect[0]=roll
                     this.target[2]=roll
+                break
+                case 1992:
+                    if(basic&&this.cost>0&&cardClass==3){
+                        this.cost--
+                        this.base.cost--
+                    }
                 break
                 
             }

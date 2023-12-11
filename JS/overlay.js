@@ -309,6 +309,10 @@ class overlay{
                         this.battle.overlayManager.overlays[28][this.player].active=true
                         this.battle.overlayManager.overlays[28][this.player].activate(args.value)
                     break
+                    case 8:
+                        this.battle.overlayManager.overlays[6][this.player].active=true
+                        this.battle.overlayManager.overlays[6][this.player].activate(args.value)
+                    break
                 }
             break
         }
@@ -475,6 +479,38 @@ class overlay{
                             this.layer.noStroke()
                             this.layer.textSize(12)
                             this.layer.text('Deluxe Upgrade',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
+                        break
+                        case 8:
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
+                            this.layer.fill(this.battle.colorDetail[this.player].fill,this.fade*this.rewards[a].fade)
+                            this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
+                            this.layer.strokeWeight(3)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
+                            this.layer.stroke(this.fade*this.rewards[a].fade)
+                            this.layer.strokeWeight(2)
+                            this.layer.push()
+                            this.layer.translate(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position)
+                            this.layer.line(-8,-8,-6,-8)
+                            this.layer.line(-6,-8,0,-2)
+                            this.layer.line(2,0,8,6)
+                            this.layer.line(8,6,8,8)
+                            this.layer.line(6,8,8,8)
+                            this.layer.line(-8,-6,-2,0)
+                            this.layer.line(0,2,6,8)
+                            this.layer.line(-8,-8,-8,-6)
+                            this.layer.line(-8,8,-6,8)
+                            this.layer.line(-6,8,0,2)
+                            this.layer.line(2,0,8,-6)
+                            this.layer.line(8,-6,8,-8)
+                            this.layer.line(6,-8,8,-8)
+                            this.layer.line(-8,6,-2,0)
+                            this.layer.line(0,-2,6,-8)
+                            this.layer.line(-8,8,-8,6)
+                            this.layer.pop()
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.noStroke()
+                            this.layer.textSize(16)
+                            this.layer.text('Remove',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
                         break
                     }
                 }

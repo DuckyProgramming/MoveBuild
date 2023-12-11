@@ -1192,6 +1192,12 @@ class group{
                         total++
                     }
                 break
+                case 11:
+                    if(this.cards[a].basic&&this.cards[a].class==3){
+                        this.cards[a].effect[0]+=args[0]
+                        this.cards[a].target[2]+=args[0]
+                    }
+                break
             }
         }
         if(effect==9){

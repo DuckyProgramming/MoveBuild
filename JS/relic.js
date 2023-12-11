@@ -1292,6 +1292,17 @@ class relic{
                     this.layer.text('2+',-9,0)
                     this.layer.text('+2',7,0)
                 break
+                case 'Boss Remove':
+                    displaySymbol(this.layer,-9,0,35,0,0.25,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,0.7,this.fade)
+                    displaySymbol(this.layer,9,0,16,0,0.7,this.fade)
+                break
+                case 'Boss Double Upgrade':
+                    displaySymbol(this.layer,-9,0,35,0,0.25,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,7,0,7,0,0.4,this.fade)
+                    displaySymbol(this.layer,11,0,7,0,0.4,this.fade)
+                break
 
             }
             if(value){

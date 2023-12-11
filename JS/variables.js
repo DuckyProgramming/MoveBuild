@@ -658,6 +658,8 @@ types={
         {name:'Card Box',internal:'Take All Cards',id:173,rarity:1,list:0,description:'You Get The Option to Take All Cards'},
         {name:'Calendar',internal:'Turn 7 Bomb',id:174,rarity:2,list:0,description:'On Turn 7,\nDeal 52 Damage to All Enemies'},
         {name:'Crack Shot',internal:'Range Damage',id:175,rarity:0,list:0,description:'Deal 2 More Damage\nat Range 2+'},
+        {name:'Frozen Wisdom',internal:'Boss Remove',id:176,rarity:2,list:0,description:'Remove a Card After Every Boss'},
+        {name:'Smith Business Card',internal:'Boss Double Upgrade',id:177,rarity:2,list:0,description:'Double Upgrade a Car\n After Every Boss'},
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,description:'None'},

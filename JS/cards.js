@@ -10498,21 +10498,57 @@ types.card=[
             {effect:[32],attack:1985,cost:2,target:[0],spec:[],class:2},
             {effect:[40],attack:1985,cost:2,target:[0],spec:[],class:2},
         ],
+    },{
+        name:'Long\nLegs',rarity:2,list:10,
+        levels:[
+            {effect:[],attack:1986,cost:1,target:[0],spec:[1],class:4},
+            {effect:[],attack:1986,cost:0,target:[0],spec:[1],class:4},
+            {effect:[],attack:1096,cost:0,target:[0],spec:[1,22],class:4},
+        ],
+    },{
+        name:'Back to\nBasics',rarity:1,list:10,
+        levels:[
+            {effect:[1,1],attack:1987,cost:0,target:[0],spec:[],class:4},
+            {effect:[1,1],attack:1987,cost:0,target:[0],spec:[],class:4},
+            {effect:[1,1],attack:1097,cost:0,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Fixed\nDice',rarity:1,list:10,
+        levels:[
+            {effect:[1],attack:1988,cost:1,target:[0],spec:[],class:4},
+            {effect:[1,1],attack:1989,cost:1,target:[0],spec:[],class:4},
+            {effect:[1,2],attack:1989,cost:1,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Capitalism',rarity:0,list:10,
+        levels:[
+            {effect:[1,40],attack:1990,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[1,30],attack:1990,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[1,25],attack:1990,cost:1,target:[2,1,2],spec:[0],class:1},
+        ],
+    },{
+        name:'Overthrow',rarity:1,list:10,
+        levels:[
+            {effect:[15,400],attack:1991,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[27,600],attack:1991,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[36,800],attack:1991,cost:1,target:[2,1,2],spec:[0],class:1},
+        ],
+    },{
+        name:'Composite\nStep',rarity:1,list:10,
+        levels:[
+            {effect:[1],attack:1992,cost:1,target:[1,1,1],spec:[0,2],class:3},
+            {effect:[2],attack:1992,cost:1,target:[1,1,2],spec:[0,2],class:3},
+            {effect:[2],attack:1992,cost:1,target:[1,1,2],spec:[2],class:3},
+        ],
     },
 
-    // add 1 to all dice rolls
     // more strike / defend synergy
-    // disengaged options - strike and defend to hand
-    // all steps get +1 distance
-    // movement that retains and costs 0 when a step is played
-    // capitalism does more damage the more money you have
-    // overthrow - requires a lot of money and does serious damage
 
     // relic removes a card after every boss
-    // relic allows fights to drop double-upgrades
+    // relic double upgrades after every boss
     // relic: if discard cards > draw cards, gain energy
 
-    //10
+    //mark 10
 
     //mark p
 

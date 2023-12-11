@@ -167,7 +167,7 @@ class attack{
             case 1921: case 1922: case 1923: case 1924: case 1926: case 1927: case 1928: case 1932: case 1934: case 1935:
             case 1937: case 1940: case 1943: case 1944: case 1945: case 1946: case 1948: case 1950: case 1951: case 1952:
             case 1954: case 1955: case 1958: case 1959: case 1960: case 1961: case 1967: case 1968: case 1969: case 1970:
-            case 1971: case 1972: case 1973: case 1979: case 1980: case 1981: case 1982: case 1984:
+            case 1971: case 1972: case 1973: case 1979: case 1980: case 1981: case 1982: case 1984: case 1990: case 1991:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -193,7 +193,7 @@ class attack{
             case 1575: case 1576: case 1577: case 1578: case 1579: case 1580: case 1581: case 1582: case 1583: case 1584:
             case 1585: case 1586: case 1587: case 1588: case 1589: case 1590: case 1595: case 1643: case 1644: case 1647:
             case 1648: case 1669: case 1671: case 1672: case 1673: case 1677: case 1680: case 1681: case 1682: case 1759:
-            case 1760: case 1761: case 1784: case 1785: case 1786: case 1949: case 1978:
+            case 1760: case 1761: case 1784: case 1785: case 1786: case 1949: case 1978: case 1992:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -745,7 +745,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]*(this.userCombatant.life<this.userCombatant.base.life*0.5?2:1),this.user)
                     break
                     case 376:
-                        this.targetCombatant.takeDamage(floor(this.userCombatant.life/this.effect[1])*this.effect[0],this.user)
+                        this.targetCombatant.takeDamage(floor(this.userCombatant.life/max(1,this.effect[1]))*this.effect[0],this.user)
                     break
                     case 378:
                         this.targetCombatant.takeDamage(this.effect[0]*round(this.userCombatant.life)/10,this.user)
@@ -1144,7 +1144,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]+(this.targetCombatant.getStatus('Shock')>0?this.effect[1]:0),this.user)
                     break
                     case 1661:
-                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.block>0?1/this.effect[1]:1),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.block>0?1/max(1,this.effect[1]):1),this.user)
                     break
                     case 1686:
                         this.targetCombatant.takeDamage(this.effect[0]*this.battle.counter.turnPlayed[0],this.user)
@@ -1327,6 +1327,9 @@ class attack{
                         if(roll1981>=18){
                             this.targetCombatant.statusEffect('Stun',this.effect[1])
                         }
+                    break
+                    case 1990:
+                        this.targetCombatant.takeDamage(this.effect[0]*floor(this.battle.currency.money[this.player]/max(1,this.effect[1])),this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1722,7 +1725,7 @@ class attack{
                         this.userManager.hand.add(findName('Spark',types.card),1,0)
                     break
                     case 863:
-                        this.battle.energy.main[this.player]+=floor(this.userManager.deck.cards.length/this.effect[1])
+                        this.battle.energy.main[this.player]+=floor(this.userManager.deck.cards.length/max(1,this.effect[1]))
                     break
                     case 884:
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
@@ -2351,7 +2354,7 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]+this.userManager.discard.cards.length)
                     break
                     case 518:
-                        this.battle.energy.main[this.player]+=floor(this.userManager.reserve.cards.length/this.effect[1])*this.effect[0]
+                        this.battle.energy.main[this.player]+=floor(this.userManager.reserve.cards.length/max(1,this.effect[1]))*this.effect[0]
                     break
                     case 546:
                         this.userCombatant.addBlock(this.effect[0]*this.userCombatant.totalOrbClass[1])
@@ -3286,7 +3289,7 @@ class attack{
                         this.userCombatant.statusEffect('Combo Next Turn',this.effect[0])
                     break
                     case 249:
-                        this.userCombatant.statusEffect('Strength',floor(this.userCombatant.combo/this.effect[0]))
+                        this.userCombatant.statusEffect('Strength',floor(this.userCombatant.combo/max(1,this.effect[0])))
                         this.userCombatant.combo=0
                     break
                     case 264:
@@ -3438,7 +3441,7 @@ class attack{
                         this.userCombatant.combo+=this.effect[1]
                     break
                     case 649:
-                        this.userCombatant.statusEffect('Strength',floor(this.userCombatant.combo/this.effect[0]))
+                        this.userCombatant.statusEffect('Strength',floor(this.userCombatant.combo/max(1,this.effect[0])))
                         this.userCombatant.combo=this.effect[1]
                     break
                     case 655:
@@ -3990,6 +3993,13 @@ class attack{
                             this.userManager.hand.addRetain(findName(possible1964[floor(random(0,possible1964.length))],types.card),this.level,this.color)
                         }
                     break
+                    case 1988:
+                        this.userCombatant.statusEffect('Dice Up',this.effect[0])
+                    break
+                    case 1989:
+                        this.userCombatant.statusEffect('Dice Up',this.effect[0])
+                        this.userManager.draw(this.effect[1])
+                    break
 
                 }
             break
@@ -4487,7 +4497,7 @@ class attack{
                         this.userManager.draw(this.amplify?this.effect[0]+this.effect[1]:this.effect[0])
                     break
                     case 835:
-                        this.battle.energy.main[this.player]+=floor(ceil(this.userManager.discard.cards.length/2)/this.effect[0])
+                        this.battle.energy.main[this.player]+=floor(ceil(this.userManager.discard.cards.length/2)/max(1,this.effect[0]))
                         this.userManager.discard.halfEffect(0)
                     break
                     case 855:
@@ -5023,6 +5033,14 @@ class attack{
                         this.userManager.allEffect(2,35)
                         this.userManager.draw(this.effect[0])
                     break
+                    case 1987:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Strike',types.card),this.level,this.color)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Defend',types.card),this.level,this.color)
+                        }
+                    break
 
                 }
             break
@@ -5438,6 +5456,9 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].active=true
                         this.battle.overlayManager.overlays[10][this.player].activate([0,0,11,3])
                     break
+                    case 1986:
+                        this.userManager.allGroupEffectArgs(11,[1])
+                    break
 
                 }
             break
@@ -5596,7 +5617,7 @@ class attack{
                         this.targetCombatant.statusEffect('Shock',this.effect[1])
                     break
                     case 1830:
-                        this.targetCombatant.statusEffect('Shock',this.effect[0]*floor(this.userCombatant.life/this.effect[1]))
+                        this.targetCombatant.statusEffect('Shock',this.effect[0]*floor(this.userCombatant.life/max(1,this.effect[1])))
                     break
                     case 1934:
                         this.targetCombatant.statusEffect('Half Damage Turn',this.effect[0])
@@ -5947,7 +5968,7 @@ class attack{
                         this.targetCombatant.takeDamage((this.effect[0]+burns*this.effect[1])*(this.amplify?2:1),this.user)
                     break
                     case 843:
-                        this.targetCombatant.takeDamage(this.effect[0]*floor(this.battle.relicManager.total[this.player]/this.effect[1]),this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*floor(this.battle.relicManager.total[this.player]/max(1,this.effect[1])),this.user)
                     break
                     case 846:
                         let attacks=[]
@@ -7565,7 +7586,7 @@ class attack{
                         this.userCombatant.statusEffect('Single Damage',this.userCombatant.lastDeal)
                     break
                     case 1914:
-                        this.userCombatant.statusEffect('Single Damage',ceil(this.userCombatant.lastTake/this.effect[0]))
+                        this.userCombatant.statusEffect('Single Damage',ceil(this.userCombatant.lastTake/max(1,this.effect[0])))
                     break
                     default:
                         for(let a=0,la=this.targetCombatant.length;a<la;a++){
