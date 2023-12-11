@@ -9997,9 +9997,16 @@ types.card=[
     },{
         name:'Rollout',rarity:1,list:10,
         levels:[
-            {effect:[7],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[11],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[14],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[9],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[13],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[16],attack:1390,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Rolling\nStone',rarity:1,list:10,
+        levels:[
+            {effect:[12],attack:1983,cost:1,target:[0],spec:[],class:2},
+            {effect:[17],attack:1983,cost:1,target:[0],spec:[],class:2},
+            {effect:[21],attack:1983,cost:1,target:[0],spec:[],class:2},
         ],
     },{
         name:'Beat the\nOdds',rarity:2,list:10,
@@ -10477,14 +10484,25 @@ types.card=[
             {effect:[13,1],attack:1982,cost:1,target:[2,1,6],spec:[],class:1},
             {effect:[16,1],attack:1982,cost:1,target:[2,1,6],spec:[],class:1},
         ],
+    },{
+        name:'Showdown',rarity:1,list:10,
+        levels:[
+            {effect:[18],attack:1984,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[26],attack:1984,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[32],attack:1984,cost:2,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Standdown',rarity:1,list:10,
+        levels:[
+            {effect:[22],attack:1985,cost:2,target:[0],spec:[],class:2},
+            {effect:[32],attack:1985,cost:2,target:[0],spec:[],class:2},
+            {effect:[40],attack:1985,cost:2,target:[0],spec:[],class:2},
+        ],
     },
 
     // add 1 to all dice rolls
-    // add block and reroll deck
     // more strike / defend synergy
     // disengaged options - strike and defend to hand
-    // showdown - damage, all strikes are free
-    // defend counterpart to that
     // all steps get +1 distance
     // movement that retains and costs 0 when a step is played
     // capitalism does more damage the more money you have

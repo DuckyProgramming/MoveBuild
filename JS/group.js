@@ -1097,6 +1097,16 @@ class group{
                     this.cards[a].discardEffect.push(0)
                     this.cards[a].discardEffect.push(8)
                 break
+                case 58:
+                    if(this.cards[a].basic&&this.cards[a].class==1){
+                        this.cards[a].cost=0
+                    }
+                break
+                case 59:
+                    if(this.cards[a].basic&&this.cards[a].class==2){
+                        this.cards[a].cost=0
+                    }
+                break
 
             }
         }

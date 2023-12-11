@@ -5663,7 +5663,7 @@ Decrements afterward.`,
         {name:'Draft Deck'},
         {name:'Basic Deck'},
         {name:'Random Character Deck'},
-        {name:'Random Deck'},s
+        {name:'Random Deck'},
         {name:'Merged Deck'},
         {name:'Hypermerged Deck'},
         {name:'Rare Character Deck'},

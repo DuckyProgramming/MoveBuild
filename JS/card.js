@@ -2209,7 +2209,10 @@ class card{
             case 1980: string+=`Deal ${this.diceEffect(1,20,2,effect[0])} Damage\nOn 19 or 20,\nApply ${effect[1]} Stun`; break
             case 1981: string+=`Deal ${this.diceEffect(1,20,2,effect[0])} Damage\nOn 18, 19, or 20,\nApply ${effect[1]} Stun`; break
             case 1982: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.diceEffect(1,6,3,effect[1])} Block`; break
-
+            case 1983: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDiscard Your Hand\nDraw That Many Cards`; break
+            case 1984: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nStrikes in Hand\nBecome Free`; break
+            case 1985: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDefends in Hand\nBecome Free`; break
+            
 
 
 
