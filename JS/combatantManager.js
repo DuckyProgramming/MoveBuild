@@ -274,6 +274,9 @@ class combatantManager{
                 case 2:
                     this.combatants[index].takeDamage(args[0],-1)
                     return this.combatants[index].life<=0
+                case 3:
+                    this.combatants[index].takeDamage(args[0],args[1])
+                break
             }
         }
     }

@@ -387,7 +387,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			block=tennify(block)
 			switch(type){
 				case 1: return block==effect&&bonusB==0?tennify(effect):tennify(effect)+`(${tennify(block+bonusB)})`
-				case 3: return (block==effect?tennify(effect)+'X':tennify(effect)+`(${tennify(block)})X`)+(bonusB>0?`(+${tennify(bonusB)})`:``)
+				case 3: return (block==effect?(effect==1?``:tennify(effect))+'X':(effect==1?``:tennify(effect))+`(${tennify(block)})X`)+(bonusB>0?`(+${tennify(bonusB)})`:``)
 				case 6: return effect==1?(block==effect?'1*Combo':`1(${tennify(block)})*Combo`):(block==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(block)})*Combo`)
 				case 14: return block==effect?tennify(effect):tennify(effect)+`(${tennify(block)})`
 

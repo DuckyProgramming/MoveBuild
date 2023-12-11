@@ -166,7 +166,8 @@ class attack{
             case 1902: case 1904: case 1905: case 1906: case 1907: case 1908: case 1909: case 1910: case 1913: case 1920:
             case 1921: case 1922: case 1923: case 1924: case 1926: case 1927: case 1928: case 1932: case 1934: case 1935:
             case 1937: case 1940: case 1943: case 1944: case 1945: case 1946: case 1948: case 1950: case 1951: case 1952:
-            case 1954: case 1955: case 1958: case 1959: case 1960: case 1961:
+            case 1954: case 1955: case 1958: case 1959: case 1960: case 1961: case 1967: case 1968: case 1969: case 1970:
+            case 1971: case 1972: case 1973: case 1979: case 1980: case 1981: case 1982:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -192,7 +193,7 @@ class attack{
             case 1575: case 1576: case 1577: case 1578: case 1579: case 1580: case 1581: case 1582: case 1583: case 1584:
             case 1585: case 1586: case 1587: case 1588: case 1589: case 1590: case 1595: case 1643: case 1644: case 1647:
             case 1648: case 1669: case 1671: case 1672: case 1673: case 1677: case 1680: case 1681: case 1682: case 1759:
-            case 1760: case 1761: case 1784: case 1785: case 1786: case 1949:
+            case 1760: case 1761: case 1784: case 1785: case 1786: case 1949: case 1978:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -929,7 +930,7 @@ class attack{
                         for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
                             total3+=this.userManager.hand.cards[a].cost
                         }
-                        this.targetCombatant.takeDamage(total3,this.user)
+                        this.targetCombatant.takeDamage(this.effect[0]*total3,this.user)
                     break
                     case 1049:
                         this.targetCombatant.statusEffect('Bruise',this.effect[0])
@@ -1294,12 +1295,38 @@ class attack{
                             this.targetCombatant.statusEffect('Stun',this.effect[0])
                         }
                     break
-                    case 1959:
-                        this.targetCombatant.takeDamage(this.userCombatant.diceRoll(this.effect[0],6),this.user)
+                    case 1959: case 1970:
+                        this.targetCombatant.takeDamage(this.effect[0]*this.userCombatant.diceRoll(1,6),this.user)
                     break
                     case 1960:
                         this.battle.turnManager.loadEnemyAttackRepeatBack(this.targetCombatant.id)
                         this.targetCombatant.gainMaxHP(this.effect[0])
+                    break
+                    case 1973:
+                        let roll1973=this.userCombatant.diceRoll(1,6)
+                        this.targetCombatant.takeDamage(this.effect[0]*roll1973,this.user)
+                        this.userCombatant.addBlock(this.effect[1]*roll1973)
+                    break
+                    case 1979:
+                        let roll1979=this.userCombatant.diceRoll(1,20)
+                        this.targetCombatant.takeDamage(this.effect[0]*roll1979,this.user)
+                        if(roll1979==20){
+                            this.targetCombatant.statusEffect('Stun',this.effect[1])
+                        }
+                    break
+                    case 1980:
+                        let roll1980=this.userCombatant.diceRoll(1,20)
+                        this.targetCombatant.takeDamage(this.effect[0]*roll1980,this.user)
+                        if(roll1980>=19){
+                            this.targetCombatant.statusEffect('Stun',this.effect[1])
+                        }
+                    break
+                    case 1981:
+                        let roll1981=this.userCombatant.diceRoll(1,20)
+                        this.targetCombatant.takeDamage(this.effect[0]*roll1981,this.user)
+                        if(roll1981>=18){
+                            this.targetCombatant.statusEffect('Stun',this.effect[1])
+                        }
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1843,7 +1870,7 @@ class attack{
                     case 1147:
                         this.targetCombatant.statusEffect('Ichor',this.effect[1])
                     break
-                    case 1153:
+                    case 1153: case 1970:
                         this.userCombatant.statusEffect('Cannot Move',this.effect[1])
                     break
                     case 1154:
@@ -2274,6 +2301,9 @@ class attack{
                     case 1948:
                         this.userCombatant.statusEffect('Single Damage Convert',1)
                     break
+                    case 1971:
+                        this.userCombatant.statusEffect('Vulnerable',this.effect[1])
+                    break
 
                 }
                 //mark 1
@@ -2450,6 +2480,9 @@ class attack{
                             this.userManager.draw(this.effect[1])
                         }
                         this.userCombatant.addBlock(this.effect[0])
+                    break
+                    case 1963:
+                        this.userCombatant.addBlock(this.effect[0]*this.userCombatant.diceRoll(1,6))
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -3141,6 +3174,9 @@ class attack{
                     break
                     case 1785:
                         this.targetTile.addType(1)
+                    break
+                    case 1978:
+                        this.userCombatant.statusEffect('Vulnerable',this.effect[1])
                     break
 
                 }
@@ -3936,6 +3972,12 @@ class attack{
                     case 1942:
                         this.userManager.draw(this.effect[0])
                         this.userManager.draw(this.effect[1],2)
+                    break
+                    case 1964:
+                        let possible1964=['Ace of\nSpades','Ace of\nClubs','Ace of\nHearts','Ace of\nDiamonds']
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.addRetain(findName(possible1964[floor(random(0,possible1964.length))],types.card),this.level,this.color)
+                        }
                     break
 
                 }
@@ -5531,11 +5573,11 @@ class attack{
                     case 1828:
                         if(this.userCombatant.luckCheck()){
                             this.targetCombatant.statusEffect('Burn',this.effect[0])
-                            this.targetCombatant.statusEffect('Shock',this.effect[0])
+                            this.targetCombatant.statusEffect('Shock',this.effect[1])
                         }else if(floor(random(0,2))==0){
                             this.targetCombatant.statusEffect('Burn',this.effect[0])
                         }else{
-                            this.targetCombatant.statusEffect('Shock',this.effect[0])
+                            this.targetCombatant.statusEffect('Shock',this.effect[1])
                         }
                     break
                     case 1829:
@@ -5548,6 +5590,14 @@ class attack{
                     case 1934:
                         this.targetCombatant.statusEffect('Half Damage Turn',this.effect[0])
                         this.userCombatant.statusEffect('Half Damage Turn',this.effect[0])
+                    break
+                    case 1967:
+                        this.targetCombatant.heal(this.effect[0])
+                        this.targetCombatant.statusEffect('Burn',this.effect[1])
+                    break
+                    case 1968:
+                        this.targetCombatant.statusEffect('Bleed',this.effect[0])
+                        this.targetCombatant.statusEffect('Bruise',this.effect[1])
                     break
                 }
             break
@@ -6847,6 +6897,16 @@ class attack{
                         this.battle.turnManager.aimInConstructs(this.targetCombatant)
                         this.userManager.draw(this.effect[0])
                     break
+                    case 1969:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.energy%2==0){
+                            this.targetCombatant.statusEffect('Bleed',this.effect[1])
+                        }
+                    break
+                    case 1972:
+                        this.targetCombatant.takeDamage((this.effect[0]+this.userManager.hand.cards.length)*this.userCombatant.diceRoll(1,3),this.user)
+                        this.userManager.hand.allEffect(2)
+                    break
 
                 }
             break
@@ -8120,6 +8180,12 @@ class attack{
                     case 1954:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Bleed',this.effect[1])
+                    break
+                    case 1965:
+                        let damage=this.effect[0]*this.userCombatant.diceRoll(1,6)
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.combatantManager.randomEnemyEffect(3,[damage,this.user])
+                        }
                     break
 
                 }

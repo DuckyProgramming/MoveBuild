@@ -10,27 +10,27 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-    //stage.scene='tier'
-    //current.overlayManager=new overlayManager(current.layer,current,1)
+        //stage.scene='tier'
+        //current.overlayManager=new overlayManager(current.layer,current,1)
 
-    current.menu.combatant=[10]
+    /*current.menu.combatant=[10]
     current.menu.deck=[0,0]
-    current.startGame()
+    current.startGame()*/
 
-    //current.player=[1,2,3,4,5,6,7,8,9,10]
-    //current.create()
+        //current.player=[1,2,3,4,5,6,7,8,9,10]
+        //current.create()
 
-    transition.trigger=false
+    //transition.trigger=false
     
-    /*stage.scene='graphic'
-    graphics.test=0
-    graphics.staticBackground.clear()
-	setupBackground(graphics.test,graphics.staticBackground)*/
+        /*stage.scene='graphic'
+        graphics.test=0
+        graphics.staticBackground.clear()
+        setupBackground(graphics.test,graphics.staticBackground)*/
     
-    stage.scene='battle'
-    current.setupBattle(types.encounter[1])
+    //stage.scene='battle'
+    //current.setupBattle(types.encounter[1])
 
-    //stage.scene='tier'
+        //stage.scene='tier'
 }
 function windowResized(){
     resizeCanvas(windowWidth-50,windowHeight-50)
