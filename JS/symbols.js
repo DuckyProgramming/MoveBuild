@@ -2010,7 +2010,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
-            layer.rect(0,0,4.5,6,1)
+            layer.rect(3,0,4.5,6,1)
         break
         case 224:
             layer.fill(255,50,50,fade)
@@ -2329,7 +2329,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,fade)
             layer.stroke(100,fade)
             layer.strokeWeight(1)
-            layer.rect(0,0,4.5,6,1)
+            layer.rect(3,0,4.5,6,1)
         break
         case 257:
             layer.fill(225,fade)

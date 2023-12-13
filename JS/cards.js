@@ -3213,9 +3213,9 @@ types.card=[
     },{
         name:'Snowflake',rarity:0,list:3,
         levels:[
-            {effect:[1],attack:1451,cost:0,target:[2,1,3],spec:[],class:4},
             {effect:[2],attack:1451,cost:0,target:[2,1,3],spec:[],class:4},
             {effect:[3],attack:1451,cost:0,target:[2,1,3],spec:[],class:4},
+            {effect:[4],attack:1451,cost:0,target:[2,1,3],spec:[],class:4},
         ],
     },{
         name:'Superfluid',rarity:0,list:3,
@@ -9482,9 +9482,9 @@ types.card=[
     },{
         name:'Lighter',rarity:0,list:9,
         levels:[
-            {effect:[1],attack:881,cost:0,target:[2,1,1],spec:[],class:4},
-            {effect:[2],attack:881,cost:0,target:[2,1,1],spec:[],class:4},
-            {effect:[3],attack:881,cost:0,target:[2,1,1],spec:[],class:4},
+            {effect:[2],attack:881,cost:0,target:[2,1,3],spec:[],class:4},
+            {effect:[3],attack:881,cost:0,target:[2,1,3],spec:[],class:4},
+            {effect:[4],attack:881,cost:0,target:[2,1,3],spec:[],class:4},
         ],
     },{
         name:'Oil\nUp',rarity:0,list:9,

@@ -4143,9 +4143,6 @@ class attack{
                             this.battle.energy.main[this.player]*=2
                         }
                     break
-                    case 2016:
-                        this.targetCombatant.statusEffect('Shock',this.effect[0]*floor(this.battle.currency.money[this.player]/max(1,this.effect[1])))
-                    break
                     case 2019:
                         this.userCombatant.statusEffect('Luck Guarantee Next Turn',1)
                     break
@@ -7131,6 +7128,9 @@ class attack{
                         }else{
                             this.userCombatant.lowRoll()
                         }
+                    break
+                    case 2016:
+                        this.targetCombatant.statusEffect('Shock',this.effect[0]*floor(this.battle.currency.money[this.player]/max(1,this.effect[1])))
                     break
                     case 2018:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)

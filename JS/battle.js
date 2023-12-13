@@ -2095,7 +2095,7 @@ class battle{
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
                     if((a+1)%10==int(key)){
-                        this.tutorialManager.setupTutorial(a+7)
+                        this.tutorialManager.setupTutorial(a+6)
                     }
                 }
                 if(code==ENTER){
