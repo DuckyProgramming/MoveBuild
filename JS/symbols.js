@@ -2285,6 +2285,129 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(80,fade)
             layer.triangle(4,-6,1,3,7,3)
         break
+        case 253:
+            layer.fill(225,fade)
+            layer.rect(-3,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(-3,0,3,3)
+            layer.fill(150,175,200,fade)
+            layer.triangle(4,-6,1,3,7,3)
+        break
+        case 254:
+            layer.fill(225,fade)
+            layer.rect(-3,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(-3,0,3,3)
+            layer.fill(200,255,255,fade)
+            layer.quad(-1,0,4,-6.25,9,0,4,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(0,0,4,-5,8,0,4,5)
+        break
+        case 255:
+            layer.fill(225,fade)
+            layer.rect(-3,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(-6,0,2)
+            layer.ellipse(-6,-3,2)
+            layer.ellipse(-6,3,2)
+            layer.ellipse(0,0,2)
+            layer.ellipse(0,-3,2)
+            layer.ellipse(0,3,2)
+            layer.fill(255,50,50,fade)
+            layer.triangle(4,-6,1,3,7,3)
+        break
+        case 256:
+            layer.fill(225,fade)
+            layer.rect(-3,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(-6,0,2)
+            layer.ellipse(-6,-3,2)
+            layer.ellipse(-6,3,2)
+            layer.ellipse(0,0,2)
+            layer.ellipse(0,-3,2)
+            layer.ellipse(0,3,2)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+        break
+        case 257:
+            layer.fill(225,fade)
+            layer.rect(-3,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(-6,0,2)
+            layer.ellipse(-6,-3,2)
+            layer.ellipse(-6,3,2)
+            layer.ellipse(0,0,2)
+            layer.ellipse(0,-3,2)
+            layer.ellipse(0,3,2)
+            layer.fill(150,175,200,fade)
+            layer.triangle(4,-6,1,3,7,3)
+        break
+        case 258:
+            layer.fill(225,fade)
+            layer.rect(-3,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(-6,0,2)
+            layer.ellipse(-6,-3,2)
+            layer.ellipse(-6,3,2)
+            layer.ellipse(0,0,2)
+            layer.ellipse(0,-3,2)
+            layer.ellipse(0,3,2)
+            layer.fill(200,255,255,fade)
+            layer.quad(-1,0,4,-6.25,9,0,4,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(0,0,4,-5,8,0,4,5)
+        break
+        case 259:
+            layer.fill(0,150,255,fade)
+            layer.triangle(0,6,-3,-3,3,-3)
+            layer.triangle(0,-3.5,-1,-6.5,1,-6.5)
+        break
+        case 260:
+            layer.fill(100,fade)
+            layer.rect(-3.5,0,6,11)
+            layer.rect(3.5,0,6,11)
+            layer.fill(200,fade)
+            layer.rect(-3.5,-2,4,1)
+            layer.rect(-3.5,2,4,1)
+            layer.rect(3.5,-4,4,1)
+            layer.rect(3.5,2,4,1)
+            layer.rect(3.5,4,4,1)
+        break
+        case 261:
+            layer.fill(255,225,0,fade)
+            layer.rect(0,0,12,12,2)
+            layer.fill(225,fade)
+            layer.rect(0,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(-3,0,2)
+            layer.ellipse(-3,-3,2)
+            layer.ellipse(-3,3,2)
+            layer.ellipse(3,0,2)
+            layer.ellipse(3,-3,2)
+            layer.ellipse(3,3,2)
+        break
+        case 262:
+            layer.fill(225,fade)
+            layer.rect(0,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(0,0,3,3)
+            layer.fill(100,255,100,fade)
+            layer.triangle(-7,-6,-4,3,-10,3)
+            layer.triangle(7,-6,4,3,10,3)
+            layer.triangle(0,5.5,-1.5,8,1.5,8)
+        break
+        case 263:
+            layer.fill(225,fade)
+            layer.rect(0,0,10,10,2)
+            layer.fill(40,fade)
+            layer.ellipse(0,0,3,3)
+            layer.fill(100,255,255,fade)
+            layer.triangle(-7,-6,-4,3,-10,3)
+            layer.triangle(7,-6,4,3,10,3)
+            layer.triangle(7,2,7,-2,10,0)
+        break
 
     }
     layer.pop()

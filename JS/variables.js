@@ -161,7 +161,7 @@ types={
         {name:'Councilman',life:270,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:174,effect:[3]},{type:175,effect:[12]},{type:155,effect:[1,'Dark Priest']},{type:9,effect:[10]},{type:176,effect:[9]}],description:`Looks kinda goofy`},
         {name:'Gangmaster',life:305,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:39,effect:[1,'Gangster']},{type:205,effect:[12]},{type:206,effect:[8]},{type:39,effect:[1,'Gangster Gunner']},{type:207,effect:[1]}],description:`Legitimate businessman`},
         
-        {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[8,1,'Concussion']},{type:12,effect:[20]},{type:75,effect:[]}],description:`Buys the boys`},
+        {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
         {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
@@ -493,7 +493,7 @@ types={
         {name:'Red Pepper',internal:'No Weak',id:23,rarity:2,list:0,description:'You Cannot\nBecome Weak'},
         {name:'Green Pepper',internal:'No Frail',id:24,rarity:2,list:0,description:'You Cannot\nBecome Frail'},
         {name:'Blue Pepper',internal:'No Vulnerable',id:25,rarity:2,list:0,description:'You Cannot\nBecome Vulnerable'},
-        {name:'',internal:'Retain Block',id:26,rarity:2,list:0,description:'Lose Only 10 Block\nat End of Turn'},
+        {name:'Bauxite',internal:'Retain Block',id:26,rarity:2,list:0,description:'Lose Only 10 Block\nat End of Turn'},
         {name:'Reforming Peas',internal:'Power Heal',id:27,rarity:2,list:0,description:'When You Play a\nPower, Heal 2 HP'},
         {name:'Glass Sphere',internal:'Retain Energy',id:28,rarity:2,list:0,description:'1 Energy Can be\nConserved Between Turns'},
         {name:'Pomegranite',internal:'14 Max HP',id:29,rarity:2,list:0,description:'When Taken,\nGain 14 Max HP'},
@@ -659,7 +659,9 @@ types={
         {name:'Calendar',internal:'Turn 7 Bomb',id:174,rarity:2,list:0,description:'On Turn 7,\nDeal 52 Damage to All Enemies'},
         {name:'Crack Shot',internal:'Range Damage',id:175,rarity:0,list:0,description:'Deal 2 More Damage\nat Range 2+'},
         {name:'Frozen Wisdom',internal:'Boss Remove',id:176,rarity:2,list:0,description:'Remove a Card After Every Boss'},
-        {name:'Smith Business Card',internal:'Boss Double Upgrade',id:177,rarity:2,list:0,description:'Double Upgrade a Car\n After Every Boss'},
+        {name:'Smith Business Card',internal:'Boss Double Upgrade',id:177,rarity:2,list:0,description:'Double Upgrade a Card\nAfter Every Boss'},
+        {name:'Purple Sunflower',internal:'Discard Over Draw Energy',id:178,rarity:2,list:0,description:'Gain 1 Energy When Discard Pile\nHas More Cards Than Draw Pile'},
+        {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:2,list:0,description:'Extra Energy is Converted to Temporary Strength'},
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,description:'None'},

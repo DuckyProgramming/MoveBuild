@@ -653,6 +653,9 @@ class relicManager{
                 if(this.active[152]>0&&(args[1]==1||args[1]==2)){
                     this.battle.energy.main[this.player[152]]+=2*this.active[152]
                 }
+                if(this.active[178]>0&&this.battle.cardManagers[this.player[178]].discard.cards.length>this.battle.cardManagers[this.player[178]].reserve.cards.length){
+                    this.battle.energy.main[this.player[178]]+=this.active[178]
+                }
                 if(args[0]%3==0&&this.battle.modded(23)){
                     this.battle.combatantManager.allEffect(3,[1])
                 }

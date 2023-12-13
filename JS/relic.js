@@ -678,7 +678,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',0,0)
                 break
-                case 'First Card Double':
+                case 'First Card Double Play':
                     displaySymbol(this.layer,0,0,46,0,3,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
@@ -1303,6 +1303,19 @@ class relic{
                     displaySymbol(this.layer,7,0,7,0,0.4,this.fade)
                     displaySymbol(this.layer,11,0,7,0,0.4,this.fade)
                 break
+                case 'Discard Over Draw Energy':
+                    displaySymbol(this.layer,-6,-8,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,8,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,0,6,0,0.4,this.fade)
+                    displaySymbol(this.layer,-6,-8,5,0,0.4,this.fade)
+                    displaySymbol(this.layer,-6,8,4,0,0.4,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,0.8,this.fade)
+                break
+                case 'Extra Energy Temporary Strength':
+                    displaySymbol(this.layer,-10,-3,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,-3,41,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,8,4,0,0.8,this.fade)
+                break
 
             }
             if(value){
@@ -1330,6 +1343,9 @@ class relic{
             this.layer.text(this.description,100+pos*50,245)
             this.layer.textSize(10)
             switch(this.rarity){
+                case -1:
+                    this.layer.text('Unlisted',100+pos*50,290)
+                break
                 case 0:
                     this.layer.text('Common',100+pos*50,290)
                 break

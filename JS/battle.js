@@ -117,7 +117,7 @@ class battle{
         for(let a=0,la=this.players;a<la;a++){
             this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
             this.colorDetail.push(types.color.card[this.player[a]])
-            this.currency.money.push(stage.ascend>=22?0:100)
+            this.currency.money.push(game.ascend>=22?0:100)
             this.currency.ss.push(0)
             this.energy.main.push(0)
             this.energy.gen.push(0)
@@ -500,6 +500,9 @@ class battle{
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
+            if(this.energy.main[this.turn.main]>0&&this.relicManager.hasRelic(179,this.turn.main)){
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].statusEffectNext('Temporary Strength',this.energy.main[this.turn.main])
+            }
             this.energy.main[this.turn.main]=max(0,this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.energy.main[this.turn.main]>=1?this.energy.gen[this.turn.main]+1:this.energy.gen[this.turn.main]+this.energy.temp[this.turn.main])-(this.modded(5)?max(3-this.turn.total,0):0)
             this.energy.temp[this.turn.main]=0
         }else{
@@ -571,6 +574,9 @@ class battle{
         this.turn.total++
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
+            if(this.energy.main[a]>0&&this.relicManager.hasRelic(179,a)){
+                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].statusEffectNext('Temporary Strength',this.energy.main[a])
+            }
             this.energy.main[a]=max(0,this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]+this.energy.temp[a])-(this.modded(5)?max(3-this.turn.total,0):0)
             this.energy.temp[a]=0
         }

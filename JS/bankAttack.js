@@ -45,7 +45,8 @@ attack.prototype.update=function(){
         case 1870: case 1875: case 1882: case 1883: case 1887: case 1895: case 1897: case 1898: case 1904: case 1905:
         case 1909: case 1910: case 1920: case 1921: case 1922: case 1923: case 1926: case 1940: case 1944: case 1948:
         case 1959: case 1960: case 1961: case 1970: case 1971: case 1973: case 1979: case 1980: case 1981: case 1984:
-        case 1990: case 1991:
+        case 1990: case 1991: case 2001: case 2002: case 2004: case 2006: case 2007: case 2012: case 2017: case 2021:
+        case 2025: case 2026: case 2027: case 2032:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -75,7 +76,8 @@ attack.prototype.update=function(){
                 this.type==1703&&this.relPos[0]!=0||
                 this.type==1708&&this.relPos[0]!=5||
                 this.type==1870&&(this.targetCombatant.block>0||this.targetCombatant.life==this.targetCombatant.base.life||this.battle.currency.money[this.player]<100)||
-                this.type==1991&&this.battle.currency.money[this.player]<this.effect[1]
+                this.type==1991&&this.battle.currency.money[this.player]<this.effect[1]||
+                this.type==2017&&this.battle.currency.money[this.player]>this.effect[1]
             ){
                 this.remove=true
                 if(this.type==1006){
@@ -142,7 +144,7 @@ attack.prototype.update=function(){
         case 1130: case 1131: case 1141: case 1146: case 1161: case 1176: case 1301: case 1357: case 1369: case 1417:
         case 1453: case 1456: case 1460: case 1514: case 1523: case 1532: case 1534: case 1603: case 1636: case 1696:
         case 1713: case 1728: case 1738: case 1742: case 1804: case 1814: case 1826: case 1861: case 1876: case 1929:
-        case 1963: case 1966: case 1983: case 1985:
+        case 1963: case 1966: case 1983: case 1985: case 2003: case 2005:
             if(
                 this.type==809&&this.userCombatant.stance!=4||
                 this.type==1713&&this.battle.turn.total%2==0||
@@ -176,7 +178,7 @@ attack.prototype.update=function(){
         case 1577: case 1578: case 1579: case 1580: case 1581: case 1582: case 1583: case 1584: case 1585: case 1586:
         case 1587: case 1588: case 1589: case 1590: case 1643: case 1644: case 1647: case 1648: case 1671: case 1672:
         case 1673: case 1677: case 1680: case 1681: case 1759: case 1760: case 1761: case 1784: case 1785: case 1949:
-        case 1978: case 1992:
+        case 1978: case 1992: case 2008: case 2009:
             if(this.type==808&&this.userCombatant.stance!=3||this.type==1515&&floor(random(0,10))==0&&this.timer==1&&!this.userCombatant.luckCheck()){
                 this.remove=true
                 if(this.type==1515){
@@ -421,7 +423,8 @@ attack.prototype.update=function(){
         case 1563: case 1601: case 1638: case 1641: case 1657: case 1658: case 1659: case 1715: case 1717: case 1719:
         case 1734: case 1735: case 1741: case 1750: case 1758: case 1767: case 1802: case 1807: case 1816: case 1817:
         case 1832: case 1839: case 1840: case 1841: case 1842: case 1843: case 1844: case 1847: case 1896: case 1901:
-        case 1915: case 1916: case 1942: case 1964: case 1988: case 1989:
+        case 1915: case 1916: case 1942: case 1964: case 1988: case 1989: case 1993: case 1994: case 1995: case 1996:
+        case 1997: case 1998: case 2015: case 2019: case 2020: case 2029: case 2031:
             if(
                 this.type==807&&this.userCombatant.stance!=2||
                 this.type==820&&this.userCombatant.stance!=1||
@@ -470,7 +473,7 @@ attack.prototype.update=function(){
         case 1650: case 1664: case 1675: case 1676: case 1685: case 1694: case 1695: case 1716: case 1718: case 1743:
         case 1747: case 1783: case 1806: case 1808: case 1813: case 1849: case 1853: case 1871: case 1872: case 1885:
         case 1886: case 1930: case 1936: case 1938: case 1939: case 1946: case 1952: case 1953: case 1956: case 1957:
-        case 1987:
+        case 1987: case 2000:
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
                 this.type==1459&&this.relPos[0]!=1
@@ -1279,7 +1282,8 @@ attack.prototype.update=function(){
         case 1780: case 1782: case 1788: case 1795: case 1837: case 1845: case 1850: case 1852: case 1858: case 1863:
         case 1864: case 1866: case 1867: case 1868: case 1874: case 1878: case 1879: case 1880: case 1888: case 1890:
         case 1892: case 1894: case 1902: case 1907: case 1908: case 1943: case 1945: case 1950: case 1951: case 1955:
-        case 1958: case 1969: case 1972:
+        case 1958: case 1969: case 1972: case 2018: case 2010: case 2011: case 2016: case 2022: case 2023: case 2024:
+        case 2030:
             if(
                 this.type==1247&&this.energy%2!=0||
                 this.type==1259&&this.energy%2!=0||
@@ -1565,7 +1569,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 57: case 1492: case 1773: case 1982:
+        case 57: case 1492: case 1773: case 1982: case 2028:
             if(this.timer==1){
                 this.userCombatant.startAnimation(15)
             }
@@ -1575,25 +1579,32 @@ attack.prototype.update=function(){
             if(this.timer==15){
                 this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,5,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),7.5*this.targetDistance-2]))
             }else if(this.timer==30*this.targetDistance+10){
-                if(this.type==1492){
-                    let luckCheck=this.userCombatant.luckCheck()
-                    if(floor(random(0,4))!=0||luckCheck){
-                        this.targetCombatant.takeDamage(this.effect[0],this.user,1)
-                    }
-                    if(floor(random(0,4))!=0||luckCheck){
+                switch(this.type){
+                    case 1492:
+                        let luckCheck=this.userCombatant.luckCheck()
+                        if(floor(random(0,4))!=0||luckCheck){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                        }
+                        if(floor(random(0,4))!=0||luckCheck){
+                            this.userCombatant.addBlock(this.effect[0])
+                        }
+                    break
+                    case 2028:
                         this.userCombatant.addBlock(this.effect[0])
-                    }
-                }else{
-                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
-                    switch(this.type){
-                        case 1773:
-                            let roll=this.userCombatant.luckCheck()?6:floor(random(1,7))
-                            this.userCombatant.addBlock(roll)
-                        break
-                        case 1982:
-                            this.userCombatant.addBlock(this.effect[1]*this.userCombatant.diceRoll(1,6))
-                        break
-                    }
+                        this.targetCombatant.takeDamage(this.effect[1]*this.userCombatant.diceRoll(1,6),this.user,1)
+                    break
+                    default:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                        switch(this.type){
+                            case 1773:
+                                let roll=this.userCombatant.luckCheck()?6:floor(random(1,7))
+                                this.userCombatant.addBlock(roll)
+                            break
+                            case 1982:
+                                this.userCombatant.addBlock(this.effect[1]*this.userCombatant.diceRoll(1,6))
+                            break
+                        }
+                    break
                 }
             }else if(this.timer>=30*this.targetDistance+15){
                 this.remove=true
@@ -3419,7 +3430,7 @@ attack.prototype.update=function(){
         case 1566: case 1604: case 1632: case 1669: case 1670: case 1691: case 1762: case 1763: case 1764: case 1765:
         case 1775: case 1776: case 1797: case 1798: case 1799: case 1800: case 1818: case 1819: case 1820: case 1823:
         case 1833: case 1855: case 1859: case 1860: case 1873: case 1884: case 1903: case 1917: case 1918: case 1941:
-        case 1954: case 1965:
+        case 1954: case 1965: case 2013: case 2014:
             if(variants.nobasicanim){
                 this.selfCall(12)
                 this.remove=true
@@ -5480,6 +5491,22 @@ attack.prototype.update=function(){
                 if(this.timer>=27){
                     this.remove=true
                 }
+            }
+        break
+        case 1999:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(15)
+            }
+            if(this.timer<=35){
+                this.userCombatant.runAnimation(1/10,15)
+            }
+            if(this.timer==15||this.timer==20||this.timer==25||this.timer==30){
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[1-this.userCombatant.animSet.hand].bottom.y,35,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),5*this.targetDistance-2]))
+            }
+            if(this.timer==10*this.targetDistance+15||this.timer==10*this.targetDistance+20||this.timer==10*this.targetDistance+25||this.timer==10*this.targetDistance+30){
+                this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+            }else if(this.timer>=10*this.targetDistance+40){
+                this.remove=true
             }
         break
 

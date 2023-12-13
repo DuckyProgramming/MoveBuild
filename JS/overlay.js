@@ -578,12 +578,22 @@ class overlay{
                     switch(this.args[0]){
                         case 0: case 1: this.layer.text('Skip',this.layer.width/2,this.layer.height/2+125); break
                     }
+                    let bonuses=[]
                     if(this.args[0]==0&&this.battle.relicManager.hasRelic(49,this.player)){
-                        this.layer.textSize(8)
-                        this.layer.text('2 Max HP',this.layer.width/2,this.layer.height/2+140)
+                        bonuses.push('2 Max HP')
+                    }
+                    if(this.args[0]==0&&this.battle.relicManager.hasRelic(101,this.player)){
+                        bonuses.push('10 Currency')
+                    }
+                    this.layer.textSize(8)
+                    if(bonuses.length>=2){
+                        this.layer.text('Multiple Bonuses',this.layer.width/2,this.layer.height/2+140)
+                    }else if(bonuses.length>=1){
+                        this.layer.text(bonuses[0],this.layer.width/2,this.layer.height/2+140)
                     }
                 }
                 if(this.battle.relicManager.hasRelic(173,this.player)){
+                    this.layer.textSize(20)
                     this.layer.text('Select All',this.layer.width/2,this.layer.height/2+170)
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){

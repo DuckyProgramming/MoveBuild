@@ -1107,6 +1107,16 @@ class group{
                         this.cards[a].cost=0
                     }
                 break
+                case 60:
+                    if(this.cards[a].basic&&this.cards[a].class==1){
+                        this.cards[a].effect[0]*=2
+                    }
+                break
+                case 61:
+                    if(this.cards[a].basic&&this.cards[a].class==2){
+                        this.cards[a].effect[0]*=2
+                    }
+                break
 
             }
         }
@@ -3004,7 +3014,7 @@ class group{
                             }
                         }else if((
                             this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
-                            this.cards[a].attack==1778||this.cards[a].attack==1863||
+                            this.cards[a].attack==1778||this.cards[a].attack==1893||
                             this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                         )&&!this.cards[a].exhaust){
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)

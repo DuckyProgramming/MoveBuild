@@ -130,11 +130,12 @@ class combatant{
             'Jinx Next Turn','Jinxshock','Burn Draw Up','Lowroll Draw','Single Attack Regeneration','Shiv Freeze','Shiv Burn','Mixed','Silence','Faith Next Turn',
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
-            'Single Damage Convert','2 Exhaust Draw','Dice Up',
+            'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
+            '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
-                3,0,0,2,0,0,1,2,2,0,//2
+                1,0,0,2,0,0,1,2,2,0,//2
                 2,0,0,0,1,1,2,0,1,2,//3
                 0,1,1,1,0,0,0,2,1,2,//4
                 2,2,0,0,0,0,0,2,0,0,//5
@@ -158,7 +159,8 @@ class combatant{
                 2,0,0,0,0,0,0,0,1,2,//23
                 1,2,2,1,0,2,0,2,0,0,//24
                 1,0,1,1,2,2,2,0,2,0,//25
-                0,0,0,
+                0,0,0,0,0,0,0,0,0,2,//26
+                1,1,2,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -186,7 +188,8 @@ class combatant{
                 1,1,2,2,1,2,2,3,3,2,//23
                 2,0,2,2,1,2,0,2,0,0,//24
                 1,0,0,0,3,3,3,3,1,2,//25
-                1,2,2,
+                1,2,2,2,2,2,2,2,2,1,//26
+                2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4170,6 +4173,26 @@ class combatant{
         if(this.status.main[223]>0&&this.id<this.battle.players){
             this.battle.cardManagers[this.id].draw(this.status.main[223])
         }
+        if(this.status.main[253]>0){
+            this.statusEffect('Dexterity',this.status.main[253])
+        }
+        if(this.status.main[254]>0){
+            this.battle.energy.main[this.id]+=this.status.main[254]
+        }
+    }
+    highRoll(){
+        if(this.status.main[255]>0){
+            this.statusEffect('Strength',this.status.main[255])
+        }
+        if(this.status.main[256]>0&&this.id<this.battle.players){
+            this.battle.cardManagers[this.id].draw(this.status.main[256])
+        }
+        if(this.status.main[257]>0){
+            this.statusEffect('Dexterity',this.status.main[257])
+        }
+        if(this.status.main[258]>0){
+            this.battle.energy.main[this.id]+=this.status.main[258]
+        }
     }
     takeDamage(value,user,spec=0){
         let damage=value
@@ -5159,8 +5182,13 @@ class combatant{
         }
         this.checkAnyOrb()
     }
+    check10(){
+        return this.status.main[260]>0?floor(random(0,4))==0:floor(random(0,10))==0
+    }
     luckCheck(){
-        if(this.status.main[200]>0){
+        if(this.status.main[263]>0&&floor(random(0,2))==0){
+            return true
+        }else if(this.status.main[200]>0){
             this.status.main[200]--
             return true
         }else{
@@ -5212,7 +5240,12 @@ class combatant{
         let total=0
         let average=0
         let roll=0
-        let luckCheck=this.luckCheck()
+        let luckCheck=false
+        if(this.status.main[261]>0){
+            luckCheck=true
+        }else{
+            luckCheck=this.luckCheck()
+        }
         for(let a=0,la=number;a<la;a++){
             roll=(luckCheck?value:1+floor(random(0,value)))+this.status.main[252]
             total+=roll
@@ -5446,6 +5479,8 @@ class combatant{
                     case 246: this.status.main[findList('Damage Cycle 3 2',this.status.name)]+=this.status.main[a]; break
                     case 248: this.status.main[findList('No Damage',this.status.name)]+=this.status.main[a]; break
                     case 249: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawFreeze+=this.status.main[a]}; break
+                    case 259: this.status.main[findList('Vulnerable',this.status.name)]+=this.status.main[a]; break
+                    case 262: this.status.main[findList('Luck Guarantee',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
