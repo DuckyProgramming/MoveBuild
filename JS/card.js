@@ -1368,7 +1368,7 @@ class card{
             case 1130: string+=`Taking Damage This\nTurn Takes ${effect[0]} Currency\nInstead`; break
             case 1131: string+=`Counter ${effect[0]}\nDamage Down`; break
             case 1132: string+=`Exhaust a Card\nAdd Block Equal\nto ${effect[0]}*its Cost`; break
-            case 1133: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLowers by 1 Permanently\nAt 0 Damage, Becomes:\nUsed Baseball Card\nCard Sleeve`; break
+            case 1133: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nLowers by 1 Permanently\nAt 0 Damage, Becomes:\nWorthless Baseball Card\nCard Sleeve`; break
             case 1134: string+=`Make a Card Innate`; break
             case 1135: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEvery 4th Time Played\nOn Play: ${this.limit%4+1}/4`; break
             case 1136: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLeave Behind 1\nSpike Tile`; break
@@ -2254,11 +2254,12 @@ class card{
             case 2025: string+=`Deal ${this.diceEffect(1,20,2,effect[0])} Damage\nOn 20, Next ${effect[1]} Card${effect[1]!=1?`s`:``}\nPlayed ${effect[1]!=1?`are`:`is`} Free`; break
             case 2026: string+=`Deal ${this.diceEffect(1,20,2,effect[0])} Damage\nOn 19 or 20,\nNext ${effect[1]} Card${effect[1]!=1?`s`:``}\nPlayed ${effect[1]!=1?`are`:`is`} Free`; break
             case 2027: string+=`Deal ${this.diceEffect(1,20,2,effect[0])} Damage\nOn 18, 19, or 20,\nNext ${effect[1]} Card${effect[1]!=1?`s`:``}\nPlayed ${effect[1]!=1?`are`:`is`} Free`; break
-            case 2028: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDeal ${this.diceEffect(0,6,3,effect[1])} Damage`; break
+            case 2028: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDeal ${this.diceEffect(1,6,2,effect[1])} Damage`; break
             case 2029: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} Double Damage\nAmplify:\nTriple Damage Instead`; break
             case 2030: string+=`Deal ${this.diceEffect(1,6,2,effect[0])} Damage\nOdd Roll: Apply ${effect[1]} Burn\nEven Roll: Apply ${effect[1]} Freeze`; break
             case 2031: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nDiscard ${effect[1]} Random Card${effect[1]!=1?`s`:``}\nAmplify 2:\nDraw ${effect[2]} More\nCard${effect[2]!=1?`s`:``} Per Turn`; break
             case 2032: string+=`Deal ${this.diceEffect(1,6,2,effect[0])} Damage\nGain ${effect[1]!=1?`${effect[1]} x `:``}D6 Currency\n(Uses Same Roll)`; break
+            case 2033: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n10%: Gain ${effect[1]} Armor`; break
 
 
 

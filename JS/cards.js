@@ -9724,9 +9724,9 @@ types.card=[
     },{
         name:'Lucky\nDefend',rarity:0,list:10,
         levels:[
-            {effect:[8],attack:1127,cost:1,target:[0],spec:[],class:2},
-            {effect:[12],attack:1127,cost:1,target:[0],spec:[],class:2},
+            {effect:[10],attack:1127,cost:1,target:[0],spec:[],class:2},
             {effect:[15],attack:1127,cost:1,target:[0],spec:[],class:2},
+            {effect:[18],attack:1127,cost:1,target:[0],spec:[],class:2},
         ],
     },{
         name:'Strefend',rarity:0,list:10,
@@ -10564,9 +10564,9 @@ types.card=[
     },{
         name:'Luck\nChain',rarity:1,list:10,
         levels:[
-            {effect:[8],attack:2001,cost:1,target:[0],spec:[],class:4},
-            {effect:[12],attack:2001,cost:1,target:[0],spec:[],class:4},
-            {effect:[15],attack:2001,cost:1,target:[0],spec:[],class:4},
+            {effect:[8],attack:2001,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12],attack:2001,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15],attack:2001,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:`Rabbit's\nFoot`,rarity:1,list:10,
@@ -10641,16 +10641,16 @@ types.card=[
     },{
         name:`Wedge`,rarity:1,list:10,
         levels:[
-            {effect:[1,1],attack:2008,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[2,1],attack:2008,cost:1,target:[1,1,2],spec:[0],class:3},
-            {effect:[2,1],attack:2008,cost:1,target:[1,1,2],spec:[],class:3},
+            {effect:[1,2],attack:2033,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[2,2],attack:2033,cost:1,target:[1,1,2],spec:[0],class:3},
+            {effect:[2,3],attack:2033,cost:1,target:[1,1,2],spec:[],class:3},
         ],
     },{
         name:'Charm\nMove',rarity:0,list:10,
         levels:[
+            {effect:[1,2],attack:2009,cost:1,target:[1,1,1],spec:[0],class:3},
             {effect:[1,3],attack:2009,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,6],attack:2009,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,8],attack:2009,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,4],attack:2009,cost:1,target:[1,1,1],spec:[0],class:3},
         ],
     },{
         name:'Desire\nDrive',rarity:1,list:10,
@@ -13505,9 +13505,9 @@ types.card=[
     },{
         name:'Stolen\nAttack',rarity:-6,list:0,
         levels:[
-            {effect:[],attack:1947,cost:0,target:[0],spec:[2],limit:-1,class:4},
-            {effect:[],attack:1947,cost:0,target:[0],spec:[2],limit:-1,class:4},
-            {effect:[],attack:1947,cost:0,target:[0],spec:[2],limit:-1,class:4},
+            {effect:[],attack:1947,cost:0,target:[9],spec:[2],limit:-1,class:4},
+            {effect:[],attack:1947,cost:0,target:[9],spec:[2],limit:-1,class:4},
+            {effect:[],attack:1947,cost:0,target:[9],spec:[2],limit:-1,class:4},
         ],
     },{
         name:'Divine\nSword',rarity:-6,list:0,

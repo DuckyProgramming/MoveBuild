@@ -197,6 +197,7 @@ class attack{
             case 1585: case 1586: case 1587: case 1588: case 1589: case 1590: case 1595: case 1643: case 1644: case 1647:
             case 1648: case 1669: case 1671: case 1672: case 1673: case 1677: case 1680: case 1681: case 1682: case 1759:
             case 1760: case 1761: case 1784: case 1785: case 1786: case 1949: case 1978: case 1992: case 2008: case 2009:
+            case 2033:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -3298,7 +3299,15 @@ class attack{
                     break
                     case 2009:
                         if(this.userCombatant.check10()||this.userCombatant.luckCheck()){
-                            this.userCombatant.statusEffect('Temporary Draw',this.effect[1])
+                            this.userManager.drawPrice(this.effect[1],0)
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.userCombatant.lowRoll()
+                        }
+                    break
+                    case 2033:
+                        if(this.userCombatant.check10()||this.userCombatant.luckCheck()){
+                            this.userCombatant.statusEffect('Armor',this.effect[1])
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
