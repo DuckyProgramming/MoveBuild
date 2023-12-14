@@ -162,7 +162,14 @@ class group{
     }
     addInitial(type,level,color){
         game.id++
-        if(!types.card[type].levels[level].spec.includes(3)){
+        if(!types.card[type].levels[level].spec.includes(3)&&
+            types.card[type].levels[level].attack!=1328&&
+            types.card[type].levels[level].attack!=1393&&
+            types.card[type].levels[level].attack!=1394&&
+            types.card[type].levels[level].attack!=1398&&
+            types.card[type].levels[level].attack!=1612&&
+            types.card[type].levels[level].attack!=1881
+        ){
             this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
             if(this.id==0){
                 this.cards[this.cards.length-1].nonCalc=true
@@ -939,7 +946,7 @@ class group{
                 break
                 case 28:
                     if(this.cards[a].attack==736){
-                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,0)
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
                         a--
                         la--
                     }
@@ -3009,8 +3016,8 @@ class group{
                                 la--
                             }else if(this.cards[a].discardEffect.includes(7)){
                                 this.cards[a].discardEffect=[]
-                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
-                                this.battle.cardManagers[this.player].reserve.cards[this.battle.cardManagers[this.player].reserve.cards.length-1].retain2=true
+                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
+                                this.battle.cardManagers[this.player].reserve.cards[0].retain2=true
                                 a--
                                 la--
                             }else if(this.cards[a].discardEffect.includes(8)){

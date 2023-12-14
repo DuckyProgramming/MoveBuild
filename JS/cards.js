@@ -2360,21 +2360,21 @@ types.card=[
             {effect:[10,10],attack:1966,cost:1,target:[0],spec:[],class:2},
         ],
     },{
-        name:'Disjoint',rarity:0,list:10,
+        name:'Disjoint',rarity:0,list:2,
         levels:[
             {effect:[14,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[20,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[25,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Disjoint',rarity:0,list:10,
+        name:'Disjoint',rarity:0,list:2,
         levels:[
             {effect:[14,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[20,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[25,1],attack:409,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Dislocate',rarity:0,list:10,
+        name:'Dislocate',rarity:0,list:2,
         levels:[
             {effect:[14,1],attack:1971,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[20,1],attack:1971,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -6528,7 +6528,7 @@ types.card=[
             {effect:[15,1],attack:885,cost:1,target:[0],spec:[],class:2},
         ],
     },{
-        name:'Anyways',rarity:0,list:10,
+        name:'Anyways',rarity:0,list:6,
         levels:[
             {effect:[9,18],attack:1167,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[13,26],attack:1167,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -8878,7 +8878,7 @@ types.card=[
             {effect:[15],attack:1013,cost:1,target:[0],spec:[],class:4},
         ],
     },{
-        name:'Stacked\nMove',rarity:0,list:7,
+        name:'Stacked\nMove',rarity:0,list:9,
         levels:[
             {effect:[1],attack:817,cost:1,target:[1,1,1],spec:[0],class:3},
             {effect:[2],attack:817,cost:1,target:[1,1,2],spec:[0],class:3},
