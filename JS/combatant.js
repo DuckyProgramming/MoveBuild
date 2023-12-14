@@ -3754,7 +3754,7 @@ class combatant{
     convertTile(target){
         let targetTile=[]
         for(let a=0,la=target.length;a<la;a++){
-            targetTile.push(target[a]==-1||(this.status.main[208]>0&&distTargetCombatant(0,this.battle.tileManager.tiles[target[a]],this)>1)?{tilePosition:{x:-1,y:-1}}:this.battle.tileManager.tiles[target[a]])
+            targetTile.push(target[a]==-1?{tilePosition:{x:-1,y:-1}}:this.battle.tileManager.tiles[target[a]])
         }
         return targetTile
     }

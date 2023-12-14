@@ -561,7 +561,7 @@ types={
         {name:'Coupon',internal:'Free Shop Relic',id:85,rarity:2,list:0,description:'A Random Relic in\nthe Shop is Free'},
         {name:'Art of War',internal:'First Attack Free',id:86,rarity:2,list:0,description:'The First Attack\nPer Combat is Free'},
         {name:'DVD Player',internal:'First Card Double Play',id:87,rarity:2,list:0,description:'The First Card Per Combat\nMay be Played Twice'},
-        {name:'Hexahedron',internal:'Per Enemy Block',id:88,rarity:2,list:0,description:'Gain 1 Block Per Enemy\nat the Start of Your Turn'},
+        {name:'Hexachoron',internal:'Per Enemy Block',id:88,rarity:2,list:0,description:'Gain 1 Block Per Enemy\nat the Start of Your Turn'},
         {name:'Hummingbird Wing',internal:'2 Turn Half Damage',id:89,rarity:2,list:0,description:'Take Half Damage in\nthe First 2 Turns'},
         {name:'Cracked Urn',internal:'5 Turn Intangible',id:90,rarity:2,list:0,description:'Every 5 Turns,\nGain 1 Intangible'},
         
@@ -661,7 +661,7 @@ types={
         {name:'Frozen Wisdom',internal:'Boss Remove',id:176,rarity:2,list:0,description:'Remove a Card After Every Boss'},
         {name:'Smith Business Card',internal:'Boss Double Upgrade',id:177,rarity:2,list:0,description:'Double Upgrade a Card\nAfter Every Boss'},
         {name:'Purple Sunflower',internal:'Discard Over Draw Energy',id:178,rarity:2,list:0,description:'Gain 1 Energy When Discard Pile\nHas More Cards Than Draw Pile'},
-        {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:2,list:0,description:'Extra Energy is Converted to Temporary Strength'},
+        {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:2,list:0,description:'Extra Energy is Converted\nto Temporary Strength'},
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,description:'None'},

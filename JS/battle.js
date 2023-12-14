@@ -669,6 +669,21 @@ class battle{
                 this.cardManagers[player].fatigue()
             }
         }
+        if(card.spec.includes(51)||card.spec.includes(12)&&card.reality[mode].includes(51)){
+            for(let a=0,la=16;a<la;a++){
+                this.cardManagers[player].fatigue()
+            }
+        }
+        if(card.spec.includes(50)||card.spec.includes(12)&&card.reality[mode].includes(50)){
+            for(let a=0,la=20;a<la;a++){
+                this.cardManagers[player].fatigue()
+            }
+        }
+        if(card.spec.includes(49)||card.spec.includes(12)&&card.reality[mode].includes(49)){
+            for(let a=0,la=24;a<la;a++){
+                this.cardManagers[player].fatigue()
+            }
+        }
         if(card.spec.includes(19)||card.spec.includes(12)&&card.reality[mode].includes(19)){
             this.cardManagers[player].heavyFatigue()
         }

@@ -299,6 +299,20 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
+    addRandomCompleteAllContainFree(group,level,contain){
+        let list=[]
+        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
+            for(let b=0,lb=contain.length;b<lb;b++){
+                if(types.card[this.listing.allListableCard[3][a]].name.includes(contain[b])){
+                    list.push(this.listing.allListableCard[3][a])
+                }
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).addFree(type,level,types.card[type].list)
+        }
+    }
     addRandomCompleteAllEnd(group,level,contain){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){

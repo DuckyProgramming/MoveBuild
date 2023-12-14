@@ -963,13 +963,12 @@ class turn{
                         }
                     break
                     case 2: case 4:
-                        let works=true
-                        if(this.userCombatant.getStatus('Confusion')>0){
+                        if(this.userCombatant.getStatus('Lock')>0){
+                            this.userCombatant.status.main[findList('Lock',this.userCombatant.status.name)]--
+                        }else if(this.userCombatant.getStatus('Confusion')>0){
                             this.userCombatant.status.main[findList('Confusion',this.userCombatant.status.name)]--
                             this.userCombatant.goal.anim.direction=-30+60*floor(random(0,6))
-                            works=false
-                        }
-                        if(works){
+                        }else{
                             if(this.userCombatant.construct){
                                 this.target=[this.battle.combatantManager.getRandomNonplayerCombatantIndex()]
                                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]

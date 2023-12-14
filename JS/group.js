@@ -672,6 +672,15 @@ class group{
         }
         return total
     }
+    basicClassNumber(cardClass){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].basic&&this.cards[a].class==cardClass){
+                total++
+            }
+        }
+        return total
+    }
     allClass(cardClass){
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].class!=cardClass){
