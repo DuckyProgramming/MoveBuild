@@ -3469,16 +3469,16 @@ types.card=[
     },{
         name:'Reflex',rarity:0,list:4,
         levels:[
-            {effect:[3],attack:257,cost:0,target:[0],spec:[2,5],class:4},
             {effect:[4],attack:257,cost:0,target:[0],spec:[2,5],class:4},
             {effect:[5],attack:257,cost:0,target:[0],spec:[2,5],class:4},
+            {effect:[6],attack:257,cost:0,target:[0],spec:[2,5],class:4},
         ],
     },{
         name:'Tactician',rarity:0,list:4,
         levels:[
-            {effect:[1],attack:258,cost:0,target:[0],spec:[2,5],class:4},
             {effect:[2],attack:258,cost:0,target:[0],spec:[2,5],class:4},
             {effect:[3],attack:258,cost:0,target:[0],spec:[2,5],class:4},
+            {effect:[4],attack:258,cost:0,target:[0],spec:[2,5],class:4},
         ],
     },{
         name:'Concentrate',rarity:1,list:4,

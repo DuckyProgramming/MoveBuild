@@ -5684,14 +5684,15 @@ variants={
     altDraw:false,blackjack:false,
     witch:false,inventor:false,
     chooselose:false,compress:false,
-    unexpected:false,polar:false,
+    unexpected:false,balance:false,
     lowhealth:false,midhealth:false,
     shortmap:false,shortermap:false,
-    speedmove:false,nobasicanim:false,
+    speedmove:false,polar:false,
     prism:false,ultraprism:false,prismrule:[],
     vanish:false,blind:false,
     cursed:false,terminal:false,
-    speedcard:false}
+    speedcard:false,nobasicanim:false,
+}
 constants={collisionDamage:4,
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
     L:[[-2,-3],[-1,-3],[-3,-2],[-3,-1],[2,3],[1,3],[3,2],[3,1],[-1,2],[-2,1],[1,-2],[2,-1]],
@@ -5700,7 +5701,8 @@ constants={collisionDamage:4,
     D3:[[-1,-1],[-1,0],[0,1],[1,1],[1,0],[0,-1],[2,1],[-2,-1]],
     HG1:[[-2,-2],[-1,-1],[0,-2],[0,-1],[-1,-2],[2,2],[1,1],[0,2],[0,1],[1,2]],
     HG2:[[-2,0],[-1,0],[0,2],[0,1],[-1,1],[2,0],[1,0],[0,-2],[0,-1],[1,-1]],
-    HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]}
+    HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
+}
 options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false}
 graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}

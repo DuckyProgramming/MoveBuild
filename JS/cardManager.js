@@ -733,6 +733,11 @@ class cardManager{
         }
         if(turn==1&&this.battle.modded(95)){
             this.drawSetCost(tempDrawAmount,2)
+        }else if(variants.balance){
+            let classes=[1,1,2,2,3,4]
+            for(let a=0,la=tempDrawAmount;a<la;a++){    
+                this.drawClass(1,classes[a%classes.length])
+            }
         }else{
             this.draw(tempDrawAmount)
         }
