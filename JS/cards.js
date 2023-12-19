@@ -9006,9 +9006,9 @@ types.card=[
     },{
         name:'Chaingun',rarity:1,list:9,
         levels:[
-            {effect:[4,1],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[6,2],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[8,2],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[6,1],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[7,2],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[10,2],attack:1052,cost:1,target:[2,1,3],spec:[0,25],class:1},
         ],
     },{
         name:'Gunnery',rarity:1,list:9,
@@ -10207,9 +10207,9 @@ types.card=[
     },{
         name:'Tin',rarity:1,list:10,
         levels:[
-            {effect:[4,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
-            {effect:[8,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
-            {effect:[11,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[6,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[10,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[13,1],attack:1211,cost:0,target:[2,1,2],spec:[],class:1},
         ],
     },{
         name:'Discounted\nStrike',rarity:0,list:10,
@@ -10674,11 +10674,11 @@ types.card=[
             {effect:[18],attack:2012,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Bad\nMath',rarity:2,list:10,
+        name:'Bad\nMath',rarity:1,list:10,
         levels:[
-            {effect:[],attack:2013,cost:2,target:[0],spec:[1],class:4},
             {effect:[],attack:2013,cost:1,target:[0],spec:[1],class:4},
-            {effect:[],attack:2013,cost:1,target:[0],spec:[1,22],class:4},
+            {effect:[],attack:2013,cost:0,target:[0],spec:[1],class:4},
+            {effect:[],attack:2013,cost:0,target:[0],spec:[1,22],class:4},
         ],
     },{
         name:'Six\nSector',rarity:2,list:10,
@@ -10891,9 +10891,9 @@ types.card=[
     },{
         name:'Torn\nGlove',rarity:-10,list:10,
         levels:[
-            {effect:[7,1],attack:1505,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[11,1],attack:1505,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[13,1],attack:1505,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[7,1],attack:1505,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[11,1],attack:1505,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[13,1],attack:1505,cost:2,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Combination\nLock',rarity:-10,list:5,
@@ -12216,8 +12216,8 @@ types.card=[
         name:'Upgrade\nMe',rarity:1,list:0,
         levels:[
             {effect:[],attack:0,cost:1,target:[0],spec:[],class:0},
-            {effect:[20],attack:1,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[30],attack:1,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[24],attack:1,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[32],attack:1,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Nerf\nHammer',rarity:1,list:0,

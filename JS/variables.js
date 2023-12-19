@@ -125,7 +125,7 @@ types={
         {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[5]},{type:204,effect:[4]},{type:21,effect:[]}],description:`Pretty bad`},
         {name:'Thornvine',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[2]},{type:229,effect:[2]}],description:`Back and worse`},
         {name:'Vengeful',life:70,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[3]},{type:210,effect:[1]}],description:`Remember last time?`},
-        {name:'Coffee Commander',life:435,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]},{type:188,effect:[5]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
+        {name:'Coffee Commander',life:335,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]},{type:188,effect:[5]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
         {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[3]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
         {name:'Lalex',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:249,effect:[2]},{type:250,effect:[13,1]},{type:251,effect:[6,3]}],description:`Why is he here?`},

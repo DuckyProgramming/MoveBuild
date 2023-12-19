@@ -1172,6 +1172,8 @@ class group{
                 case 3:
                     if(a%args[0]==0){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                        a--
+                        la--
                     }
                 break
                 case 4:

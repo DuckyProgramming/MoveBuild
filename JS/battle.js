@@ -1445,14 +1445,16 @@ class battle{
                                 }
                             break
                             case 2:
-                                if(this.nodeManager.world!=3&&game.ascend<13){
-                                    reward.push({type:0,value:[floor(random(240,401)*mult)]})
-                                }
-                                if(this.relicManager.hasRelic(176,a)){
-                                    reward.push({type:8,value:[1]})
-                                }
-                                if(this.relicManager.hasRelic(177,a)){
-                                    reward.push({type:7,value:[1]})
+                                if(this.nodeManager.world!=3){
+                                    if(game.ascend<13){
+                                        reward.push({type:0,value:[floor(random(240,401)*mult)]})
+                                    }
+                                    if(this.relicManager.hasRelic(176,a)){
+                                        reward.push({type:8,value:[1]})
+                                    }
+                                    if(this.relicManager.hasRelic(177,a)){
+                                        reward.push({type:7,value:[1]})
+                                    }
                                 }
                             break
                         }
