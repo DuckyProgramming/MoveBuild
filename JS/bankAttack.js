@@ -5,6 +5,7 @@ attack.prototype.update=function(){
             this.battle.energy.main[this.player]=0
             this.remove=true
         break
+        case -47:
         case 1: case 7: case 12: case 34: case 35: case 42: case 46: case 53: case 88: case 89:
         case 90: case 94: case 101: case 103: case 105: case 106: case 108: case 110: case 111: case 115:
         case 117: case 118: case 119: case 123: case 124: case 125: case 126: case 129: case 137: case 140:

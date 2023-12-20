@@ -241,6 +241,7 @@ class card{
             case -44: string+=`When Drawn,\nA Random Card in Hand\nis Stapled`; break
             case -45: string+=`When Added,\na Random Card\nGets Vanishing 3`; break
             case -46: string+=`When Drawn,\nDraw ${effect[0]} More and\nStop Drawing`; break
+            case -47: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTake ${effect[1]} Damage\nWhen Damage Taken,\nDamage Decreases by ${effect[2]}`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590: case 1139: case 1191:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: case 1700:
@@ -2573,6 +2574,9 @@ class card{
     }
     taken(){
         switch(this.attack){
+            case -47:
+                this.effect[0]=max(0,this.effect[0]-this.effect[2])
+            break
             case 266:
                 this.base.cost++
                 this.cost++

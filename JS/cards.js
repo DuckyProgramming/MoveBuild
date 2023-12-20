@@ -13951,6 +13951,13 @@ types.card=[
             {effect:[],attack:-45,cost:0,target:[0],spec:[4,5],class:6},
             {effect:[],attack:-45,cost:0,target:[0],spec:[4,5,23],class:6},
         ],
+    },{
+        name:'Red Ribbon\nRapier',rarity:0,list:12,
+        levels:[
+            {effect:[10,5,2],attack:-47,cost:1,target:[2,1,1],spec:[2],class:6},
+            {effect:[14,7,3],attack:-47,cost:1,target:[2,1,1],spec:[2],class:6},
+            {effect:[17,8,4],attack:-47,cost:1,target:[2,1,1],spec:[2],class:6},
+        ],
     },
     
     {
