@@ -4295,9 +4295,11 @@ class combatant{
                     }
                     if(userCombatant.status.main[238]>0&&value%2==1){
                         damage*=2
+                        userCombatant.status.main[238]=0
                     }
                     if(userCombatant.status.main[239]>0&&value<=10){
                         damage*=2
+                        userCombatant.status.main[239]=0
                     }
                     if(userCombatant.status.main[242]>0&&value>=20){
                         damage*=2
