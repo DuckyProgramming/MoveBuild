@@ -322,7 +322,6 @@ class relic{
                     displaySymbol(this.layer,8,-3,9,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('10',-8,0)
                     this.layer.text('1',8,-3)
                 break
                 case 'Rest Energy':

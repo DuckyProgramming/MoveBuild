@@ -539,7 +539,7 @@ class card{
             case 293: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} More\nCard${effect[1]!=1?`s`:``} Next Turn`; break
             case 294: string+=`All Cards Cost 0\nYou Cannot Draw\nCards This Turn`; break
             case 295: string+=`Target Explodes\non Death For\nits Max Health`; break
-            case 296: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nif Draw Pile\nis Empty`; break
+            case 296: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Draw Pile\nis Empty`; break
             case 297: string+=`Remove ${effect[0]}X Strength\nApply ${effect[1]}X Weak`; break
             case 298: string+=`Add ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}\nof a Card to\nthe Bottom of\nYour Draw Pile\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 299: string+=`Deal Double Damage\nNext Turn`; break
@@ -1746,7 +1746,7 @@ class card{
             case 1509: string+=`75%: Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n25%: Take ${effect[1]} Damage`; break
             case 1510: string+=`Discard ${effect[0]} Card${effect[0]!=1?`s`:``}\n50%: Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1511: string+=`Apply ${effect[0]} Weak\nto Everybody`; break
-            case 1512: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nif Last Card\nReminaing in Hand`; break
+            case 1512: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf Last Card\nReminaing in Hand`; break
             case 1513: string+=`90%: Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 1514: string+=`90%: Add ${this.calculateEffect(effect[0],1)} Block`; break
             case 1515: string+=`90%: Move ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
@@ -1955,7 +1955,7 @@ class card{
             case 1721: string+=`Multiply Target\nPoison by ${effect[0]}\nApply ${effect[1]} Weak`; break
             case 1722: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}\nDraws Cards With\nMore Properties First`; break
             case 1723: string+=`Gain ${effect[0]} Salad Item${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nDiscard ${effect[2]} Random Card${effect[2]!=1?`s`:``}`; break
-            case 1724: string+=`1 or Less\nNon-Attack in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Danmage`; break
+            case 1724: string+=`1 or Less\nNon-Attack in Hand:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 1725: string+=`Even X: Deal ${this.calculateEffect(effect[0],2)} Damage\nOdd X: Add ${this.calculateEffect(effect[1],3)} Block`; break
             case 1726: string+=`Add ${effect[0]} Broken Shiv${effect[0]!=1?`s`:``}\nto Your Hand\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1727: string+=`Add ${effect[0]} Deluxe Shiv${effect[0]!=1?`s`:``}\nto Your Hand`; break
@@ -2607,8 +2607,8 @@ class card{
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)
             break
             case 108: case 1635:
-                this.cost=max(this.cost-this.effect[1])
-                this.base.cost=max(this.base.cost-this.effect[1])
+                this.cost=max(this.cost-this.effect[1],0)
+                this.base.cost=max(this.base.cost-this.effect[1],0)
             break
             case 118: case 619: case 1479: case 1480: case 1697: case 1740: case 1746: case 1788:
                 this.effect[0]+=this.effect[1]

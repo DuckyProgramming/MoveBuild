@@ -56,7 +56,7 @@ class turn{
                             switch(this.type){
                                 case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                                 case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
-                                case 212: case 226: case 227: case 229: case 242: case 246: case 247: case 251:
+                                case 212: case 226: case 227: case 229: case 242: case 246: case 247: case 251: case 252:
                                     this.target=this.battle.modded(57)?[
                                         [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0],this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]],
                                         [this.userCombatant.tilePosition.x+transformDirection(0,this.userCombatant.goal.anim.direction)[0]*2,this.userCombatant.tilePosition.y+transformDirection(0,this.userCombatant.goal.anim.direction)[1]*2]
@@ -518,7 +518,7 @@ class turn{
                                         switch(this.type){
                                             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                                             case 36: case 37: case 58: case 97: case 101: case 103: case 113: case 116: case 121: case 122:
-                                            case 212: case 226: case 227: case 229: case 242: case 246: case 247:
+                                            case 212: case 226: case 227: case 229: case 242: case 246: case 247: case 252:
                                                 if(a==1&&this.targetTile[0]<0){
                                                     fail=true
                                                 }
@@ -1842,7 +1842,7 @@ class turn{
                             this.remove=true
                         }
                     break
-                    case 3: case 7: case 35: case 98: case 196:
+                    case 3: case 7: case 35: case 98: case 196: case 252:
                         if(this.timer==1&&this.targetDistance>1){
                             this.userCombatant.startAnimation(0)
                         }else if(this.timer==15*this.targetDistance-14){
@@ -1862,7 +1862,11 @@ class turn{
                             this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0],this.targetCombatant.tilePosition.y-offset[1])
                             this.battle.activate(1,this.userCombatant.id)
                         }else if(this.timer==15*this.targetDistance-5){
-                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            if(this.type==252){
+                                this.targetCombatant.statusEffect('Dissipating',this.effect[0])
+                            }else{
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            }
                             switch(this.type){
                                 case 35:
                                     this.userCombatant.combo++

@@ -138,7 +138,7 @@ types={
         {name:'Bronze Orb C',life:33,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:78,effect:[5]}],description:`Circuitry simulator`},
         {name:'Bronze Orb A',life:27,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:80,effect:[5]}],description:`Goes for the kill`},
         {name:'Dark Priest',life:36,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:173,effect:[4]}],description:`Trolling`},
-        {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:215,effect:[4,1]},{type:216,effect:[10]}],description:`Stolen`},
+        {name:'Soul',life:80,behavior:1,spec:[],move:{type:2,speed:2},attack:[{type:252,effect:[2]},{type:215,effect:[4,1]}],description:`Stolen`},
         {name:'Glitch',life:15,behavior:5,spec:[],move:{type:6,speed:1},attack:[{type:6,effect:[4]},{type:9,effect:[6]}],description:`Intended`},
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[6]},{type:28,effect:[9]}],description:`Not intended`},
         {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[8,1,'Empty']},{type:198,effect:[10,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
@@ -463,6 +463,8 @@ types={
         {name:'Global Weaken',class:4},
         {name:'2 Tile Self-Vulnerable Strike',class:1},//250
         {name:'1v1',class:1},
+        {name:'Push Dissipate',class:1},
+
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},

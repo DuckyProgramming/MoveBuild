@@ -4679,6 +4679,16 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.arc(-5,-1.5,2,2,90,270)
             layer.arc(-5,1.5,2,2,90,270)
         break
+        case 252:
+            layer.fill(225,fade)
+            for(let a=0,la=6;a<la;a++){
+                layer.rotate(60)
+                layer.arc(0,4,8,8,-90,90)
+            }
+            layer.fill(255,50,50,fade)
+            layer.rect(-3,0,4,3)
+            layer.triangle(6,0,-1,-4,-1,4)
+        break
 
     }
     layer.fill(0,fade)
@@ -4702,7 +4712,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 208: case 209: case 210: case 211: case 213: case 214: case 216: case 218: case 219: case 220:
             case 221: case 222: case 223: case 224: case 228: case 229: case 230: case 231: case 233: case 234:
             case 235: case 237: case 238: case 239: case 240: case 242: case 243: case 245: case 246: case 247:
-            case 249:
+            case 249: case 252:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 97: case 99: case 103: case 133: case 156:

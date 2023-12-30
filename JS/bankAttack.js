@@ -405,27 +405,27 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case -15: case -30: case -40: case 6: case 30: case 41: case 71: case 92: case 98: case 113:
-        case 128: case 149: case 150: case 181: case 184: case 198: case 200: case 203: case 204: case 212:
-        case 215: case 223: case 225: case 226: case 231: case 239: case 240: case 249: case 264: case 278:
-        case 286: case 299: case 306: case 307: case 311: case 312: case 347: case 362: case 366: case 367:
-        case 370: case 372: case 381: case 393: case 406: case 424: case 439: case 440: case 445: case 446:
-        case 450: case 454: case 455: case 457: case 488: case 500: case 517: case 521: case 586: case 613:
-        case 614: case 615: case 619: case 625: case 635: case 636: case 644: case 646: case 648: case 649:
-        case 655: case 656: case 668: case 684: case 711: case 712: case 713: case 737: case 754: case 755:
-        case 760: case 761: case 763: case 777: case 778: case 788: case 799: case 807: case 820: case 821:
-        case 822: case 836: case 838: case 839: case 841: case 842: case 852: case 864: case 873: case 876:
-        case 886: case 893: case 896: case 898: case 901: case 914: case 937: case 948: case 1008: case 1019:
-        case 1033: case 1053: case 1063: case 1074: case 1079: case 1093: case 1094: case 1108: case 1124: case 1125:
-        case 1138: case 1159: case 1165: case 1206: case 1208: case 1215: case 1220: case 1229: case 1260: case 1264:
-        case 1265: case 1269: case 1294: case 1302: case 1304: case 1306: case 1323: case 1327: case 1365: case 1366:
-        case 1375: case 1381: case 1396: case 1402: case 1407: case 1419: case 1466: case 1467: case 1468: case 1475:
-        case 1476: case 1494: case 1497: case 1540: case 1542: case 1544: case 1549: case 1551: case 1553: case 1554:
-        case 1563: case 1601: case 1638: case 1641: case 1657: case 1658: case 1659: case 1715: case 1717: case 1719:
-        case 1734: case 1735: case 1741: case 1750: case 1758: case 1767: case 1802: case 1807: case 1816: case 1817:
-        case 1832: case 1839: case 1840: case 1841: case 1842: case 1843: case 1844: case 1847: case 1896: case 1901:
-        case 1915: case 1916: case 1942: case 1964: case 1988: case 1989: case 1993: case 1994: case 1995: case 1996:
-        case 1997: case 1998: case 2015: case 2019: case 2020: case 2029: case 2031:
+        case -15: case -30: case -39: case -40: case 6: case 30: case 41: case 71: case 92: case 98:
+        case 113: case 128: case 149: case 150: case 181: case 184: case 198: case 200: case 203: case 204:
+        case 212: case 215: case 223: case 225: case 226: case 231: case 239: case 240: case 249: case 264:
+        case 278: case 286: case 299: case 306: case 307: case 311: case 312: case 347: case 362: case 366:
+        case 367: case 370: case 372: case 381: case 393: case 406: case 424: case 439: case 440: case 445:
+        case 446: case 450: case 454: case 455: case 457: case 488: case 500: case 517: case 521: case 586:
+        case 613: case 614: case 615: case 619: case 625: case 635: case 636: case 644: case 646: case 648:
+        case 649: case 655: case 656: case 668: case 684: case 711: case 712: case 713: case 737: case 754:
+        case 755: case 760: case 761: case 763: case 777: case 778: case 788: case 799: case 807: case 820:
+        case 821: case 822: case 836: case 838: case 839: case 841: case 842: case 852: case 864: case 873:
+        case 876: case 886: case 893: case 896: case 898: case 901: case 914: case 937: case 948: case 1008:
+        case 1019: case 1033: case 1053: case 1063: case 1074: case 1079: case 1093: case 1094: case 1108: case 1124:
+        case 1125: case 1138: case 1159: case 1165: case 1206: case 1208: case 1215: case 1220: case 1229: case 1260:
+        case 1264: case 1265: case 1269: case 1294: case 1302: case 1304: case 1306: case 1323: case 1327: case 1365:
+        case 1366: case 1375: case 1381: case 1396: case 1402: case 1407: case 1419: case 1466: case 1467: case 1468:
+        case 1475: case 1476: case 1494: case 1497: case 1540: case 1542: case 1544: case 1549: case 1551: case 1553:
+        case 1554: case 1563: case 1601: case 1638: case 1641: case 1657: case 1658: case 1659: case 1715: case 1717:
+        case 1719: case 1734: case 1735: case 1741: case 1750: case 1758: case 1767: case 1802: case 1807: case 1816:
+        case 1817: case 1832: case 1839: case 1840: case 1841: case 1842: case 1843: case 1844: case 1847: case 1896:
+        case 1901: case 1915: case 1916: case 1942: case 1964: case 1988: case 1989: case 1993: case 1994: case 1995:
+        case 1996: case 1997: case 1998: case 2015: case 2019: case 2020: case 2029: case 2031:
             if(
                 this.type==807&&this.userCombatant.stance!=2||
                 this.type==820&&this.userCombatant.stance!=1||

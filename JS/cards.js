@@ -2380,6 +2380,13 @@ types.card=[
             {effect:[20,1],attack:1971,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[25,1],attack:1971,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
+    },{
+        name:'Toxic\nStep',rarity:1,list:2,
+        levels:[
+            {effect:[1,2],attack:1582,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,3],attack:1582,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,4],attack:1582,cost:1,target:[1,1,1],spec:[0],class:3},
+        ],
     },
 
     //mark 2
@@ -2779,9 +2786,9 @@ types.card=[
     },{
         name:'Final\nCut',rarity:2,list:3,
         levels:[
-            {effect:[60,-10],attack:414,cost:10,target:[2,1,1],spec:[0,2,6],class:1},
-            {effect:[80,-10],attack:414,cost:10,target:[2,1,1],spec:[0,2,6],class:1},
-            {effect:[96,-10],attack:414,cost:10,target:[2,1,1],spec:[0,2,6],class:1},
+            {effect:[60,8],attack:414,cost:10,target:[2,1,1],spec:[0,2,6],class:1},
+            {effect:[80,8],attack:414,cost:10,target:[2,1,1],spec:[0,2,6],class:1},
+            {effect:[96,8],attack:414,cost:10,target:[2,1,1],spec:[0,2,6],class:1},
         ],
     },{
         name:'Response\nStrike',rarity:1,list:3,
@@ -3199,9 +3206,9 @@ types.card=[
     },{
         name:`You're\nFrozen`,rarity:1,list:3,
         levels:[
-            {effect:[12,6],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[16,9],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[18,12],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[12,4],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[16,6],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[18,8],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:`Contracting`,rarity:2,list:3,
@@ -4043,9 +4050,9 @@ types.card=[
     },{
         name:'All-Out\nAttack',rarity:1,list:4,
         levels:[
-            {effect:[10,1],attack:698,cost:1,target:[0],spec:[0],class:1},
-            {effect:[14,1],attack:698,cost:1,target:[0],spec:[0],class:1},
-            {effect:[17,1],attack:698,cost:1,target:[0],spec:[0],class:1},
+            {effect:[11,1],attack:698,cost:1,target:[0],spec:[0],class:1},
+            {effect:[15,1],attack:698,cost:1,target:[0],spec:[0],class:1},
+            {effect:[18,1],attack:698,cost:1,target:[0],spec:[0],class:1},
         ],
     },{
         name:'Polar\nStar',rarity:0,list:4,
@@ -5170,13 +5177,6 @@ types.card=[
             {effect:[1,1],attack:1574,cost:1,target:[1,1,1],spec:[0],class:3},
             {effect:[1,1],attack:1574,cost:0,target:[1,1,1],spec:[0],class:3},
             {effect:[1,1],attack:1574,cost:0,target:[1,1,1],spec:[],class:3},
-        ],
-    },{
-        name:'Toxic\nStep',rarity:1,list:5,
-        levels:[
-            {effect:[1,2],attack:1582,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,3],attack:1582,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,4],attack:1582,cost:1,target:[1,1,1],spec:[0],class:3},
         ],
     },{
         name:'Mercy',rarity:1,list:5,
@@ -7570,9 +7570,9 @@ types.card=[
     },{
         name:'Diamond\nStrike',rarity:1,list:7,
         levels:[
-            {effect:[6],attack:1154,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[9],attack:1154,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[7],attack:1154,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[11],attack:1154,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14],attack:1154,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Pacifist',rarity:1,list:7,
@@ -9468,9 +9468,9 @@ types.card=[
     },{
         name:`You're\nFired`,rarity:1,list:9,
         levels:[
-            {effect:[12,6],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[16,9],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[18,12],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[12,4],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[16,6],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[18,8],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:`Downsizing`,rarity:2,list:9,
@@ -9524,9 +9524,9 @@ types.card=[
     },{
         name:'This is\nFine',rarity:2,list:9,
         levels:[
-            {effect:[999,1],attack:1566,cost:4,target:[2,1,1],spec:[1],class:1},
-            {effect:[999,1],attack:1566,cost:3,target:[2,1,1],spec:[1],class:1},
-            {effect:[999,1],attack:1566,cost:2,target:[2,1,1],spec:[1],class:1},
+            {effect:[9,1],attack:1566,cost:4,target:[2,1,1],spec:[1],class:1},
+            {effect:[13,1],attack:1566,cost:3,target:[2,1,1],spec:[1],class:1},
+            {effect:[16,1],attack:1566,cost:2,target:[2,1,1],spec:[1],class:1},
         ],
     },{
         name:'Hot Soft\nCash',rarity:1,list:9,
@@ -10375,9 +10375,9 @@ types.card=[
     },{
         name:'Count',rarity:1,list:10,
         levels:[
-            {effect:[4],attack:1686,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[3],attack:1686,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[5],attack:1686,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[6],attack:1686,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[7],attack:1686,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Budge',rarity:0,list:10,
@@ -13463,9 +13463,9 @@ types.card=[
     },{
         name:'Inky\nJuggle',rarity:-6,list:0,
         levels:[
-            {effect:[1,1],attack:1793,cost:2,target:[2,1,1],spec:[],class:1},
-            {effect:[2,1],attack:1793,cost:2,target:[2,1,1],spec:[],class:1},
-            {effect:[3,1],attack:1793,cost:2,target:[2,1,1],spec:[],class:1},
+            {effect:[1,1],attack:1793,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[2,1],attack:1793,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[3,1],attack:1793,cost:0,target:[2,1,1],spec:[],class:1},
         ],
     },{
         name:'Baby Squid\nStrike',rarity:-6,list:0,
