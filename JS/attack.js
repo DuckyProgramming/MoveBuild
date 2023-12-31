@@ -198,7 +198,7 @@ class attack{
             case 1585: case 1586: case 1587: case 1588: case 1589: case 1590: case 1595: case 1643: case 1644: case 1647:
             case 1648: case 1669: case 1671: case 1672: case 1673: case 1677: case 1680: case 1681: case 1682: case 1759:
             case 1760: case 1761: case 1784: case 1785: case 1786: case 1949: case 1978: case 1992: case 2008: case 2009:
-            case 2033: case 2036: case 2037:
+            case 2033: case 2036: case 2037: case 2040:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -3337,6 +3337,9 @@ class attack{
                             this.userManager.hand.add(findName('Defend',types.card),0,this.color)
                         }
                     break
+                    case 2040:
+                        this.userCombatant.statusEffect('Temporary Single Damage',-this.effect[1])
+                    break
 
                 }
             break
@@ -5234,6 +5237,11 @@ class attack{
                     case 2000:
                         this.userCombatant.balance=0
                         this.userManager.draw(this.effect[0])
+                    break
+                    case 2039:
+                        for(let a=0;a<this.effect[0];a++){
+                            this.userManager.addRandomColor(2,0,0,1)
+                        }
                     break
 
                 }
@@ -7194,7 +7202,7 @@ class attack{
                         this.targetCombatant.statusEffect('Weak',this.effect[0])
                     break
                     case 68:
-                        this.targetCombatant.statusEffect('Strength',-this.effect[0])
+                        this.targetCombatant.statusEffect('Temporary Strength',-this.effect[0])
                     break
                     case 421:
                         if(this.targetTile.type.includes(3)&&!this.userCombatant.armed){

@@ -641,55 +641,55 @@ class battle{
             this.cardManagers[player].fatigue()
         }
         if(card.spec.includes(16)||card.spec.includes(12)&&card.reality[mode].includes(16)){
-            this.cardManagers[player].fatigue()
-            this.cardManagers[player].fatigue()
+            this.cardManagers[player].fatigue(true)
+            this.cardManagers[player].fatigue(true)
         }
         if(card.spec.includes(14)||card.spec.includes(12)&&card.reality[mode].includes(14)){
-            this.cardManagers[player].fatigue()
-            this.cardManagers[player].fatigue()
-            this.cardManagers[player].fatigue()
+            this.cardManagers[player].fatigue(true)
+            this.cardManagers[player].fatigue(true)
+            this.cardManagers[player].fatigue(true)
         }
         if(card.spec.includes(18)||card.spec.includes(12)&&card.reality[mode].includes(18)){
             for(let a=0,la=4;a<la;a++){
-                this.cardManagers[player].fatigue()
+                this.cardManagers[player].fatigue(true)
             }
         }
         if(card.spec.includes(46)||card.spec.includes(12)&&card.reality[mode].includes(45)){
             for(let a=0,la=6;a<la;a++){
-                this.cardManagers[player].fatigue()
+                this.cardManagers[player].fatigue(true)
             }
         }
         if(card.spec.includes(45)||card.spec.includes(12)&&card.reality[mode].includes(44)){
             for(let a=0,la=8;a<la;a++){
-                this.cardManagers[player].fatigue()
+                this.cardManagers[player].fatigue(true)
             }
         }
         if(card.spec.includes(44)||card.spec.includes(12)&&card.reality[mode].includes(43)){
             for(let a=0,la=10;a<la;a++){
-                this.cardManagers[player].fatigue()
+                this.cardManagers[player].fatigue(true)
             }
         }
         if(card.spec.includes(51)||card.spec.includes(12)&&card.reality[mode].includes(51)){
             for(let a=0,la=16;a<la;a++){
-                this.cardManagers[player].fatigue()
+                this.cardManagers[player].fatigue(true)
             }
         }
         if(card.spec.includes(50)||card.spec.includes(12)&&card.reality[mode].includes(50)){
             for(let a=0,la=20;a<la;a++){
-                this.cardManagers[player].fatigue()
+                this.cardManagers[player].fatigue(true)
             }
         }
         if(card.spec.includes(49)||card.spec.includes(12)&&card.reality[mode].includes(49)){
             for(let a=0,la=24;a<la;a++){
-                this.cardManagers[player].fatigue()
+                this.cardManagers[player].fatigue(true)
             }
         }
         if(card.spec.includes(19)||card.spec.includes(12)&&card.reality[mode].includes(19)){
-            this.cardManagers[player].heavyFatigue()
+            this.cardManagers[player].heavyFatigue(true)
         }
         if(card.spec.includes(17)||card.spec.includes(12)&&card.reality[mode].includes(17)){
             for(let a=0,la=this.energy.main[player];a<la;a++){
-                this.cardManagers[player].fatigue()
+                this.cardManagers[player].fatigue(true)
             }
         }
         if(card.spec.includes(22)||card.spec.includes(12)&&card.reality[mode].includes(22)){

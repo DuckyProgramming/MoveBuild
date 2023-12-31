@@ -771,9 +771,9 @@ class cardManager{
             this.addRandomCompleteAll(2,0,3)
         }
     }
-    subFatigue(name){
+    subFatigue(name,bypass){
         this.interval++
-        if(this.hand.specNumber(43)+this.reserve.specNumber(43)+this.discard.specNumber(43)<10||this.interval%2==0){
+        if(this.hand.specNumber(43)+this.reserve.specNumber(43)+this.discard.specNumber(43)<10||this.interval%2==0||bypass){
             this.discard.add(findName(name,types.card),0,game.playerNumber+1)
             this.drop.addDrop(findName(name,types.card),0,game.playerNumber+1)
             this.discard.cards[this.discard.cards.length-1].spec.push(43)
@@ -798,21 +798,21 @@ class cardManager{
             }
         }
     }
-    fatigue(){
+    fatigue(bypass=false){
         if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){
             this.battle.relicManager.detail[108]=1
         }else{
             if(this.battle.modded(30)||this.battle.modded(65)){
                 if(this.battle.modded(30)){
                     for(let a=0,la=1+floor(random(0,2));a<la;a++){
-                        this.subFatigue('Spiked')
+                        this.subFatigue('Spiked',bypass)
                     }
                 }
                 if(this.battle.modded(65)){
-                    this.subFatigue('Burn')
+                    this.subFatigue('Burn',bypass)
                 }
             }else{
-                this.subFatigue('Fatigue')
+                this.subFatigue('Fatigue',bypass)
             }
         }
     }

@@ -254,7 +254,7 @@ class card{
             case 6: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} Double Damage`; break
             case 7: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nGain${effect[1]} Energy`; break
             case 8: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
-            case 9: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nor\nMove ${effect[0]} Tiles`; break
+            case 9: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\nor\nMove ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 10: string+=`Heal ${this.calculateEffect(effect[0],4)} Health`; break
             case 11: case 251:
                 string+=`Pull Target Until Adjacent\nTarget Will Face User`; break
@@ -315,7 +315,7 @@ class card{
                 string+=`Apply ${effect[0]} Weak`; break
             case 67: case 85:
                 string+=`Apply ${effect[0]} Vulnerable`; break
-            case 68: string+=`Remove ${effect[0]} Strength\nTemporarily`; break
+            case 68: string+=`Remove ${effect[0]} Temporary\nStrength`; break
             case 69: string+=`Add ${effect[0]} Random\nColorless Card${effect[0]!=1?`s`:``}\nto Your Hand`; break
             case 70: string+=`Place a Card\non Top of Your\nDraw Pile\nIt Costs 0\nTemporarily`; break
             case 71: string+=`Choose a Card to Add\nto Your Hand\nIt Costs 0`; break
@@ -889,7 +889,7 @@ class card{
             case 647: string+=`Gain ${effect[0]} Combo\nWhen You Gain Block\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
             case 648: string+=`Gain ${effect[0]} Combo\nPer Turn\nGain ${effect[1]} Combo`; break
             case 649: string+=`Gain Strength\nPer ${effect[0]} Combo\nEnd Combo\nGain ${effect[1]} Combo`; break
-            case 650: string+=`Swap With an\nAdjacent Target\nor\nMove ${effect[0]} Tiles`; break
+            case 650: string+=`Swap With an\nAdjacent Target\nor\nMove ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 651: string+=`Advance up to ${effect[0]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nor\nMove ${effect[1]} Tile${effect[1]!=1?`s`:``}`; break
             case 652: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile\nin All Directions`; break
             case 653: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nPush 1 Tile Left\nin All Directions`; break
@@ -2266,6 +2266,8 @@ class card{
             case 2036: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Strike${effect[1]!=1?`s`:``}\nof Equivalent Level\nto Hand`; break
             case 2037: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Defend${effect[1]!=1?`s`:``}\nof Equivalent Level\nto Hand`; break
             case 2038: string+=`Lose 1 Item`; break
+            case 2039: string+=`Add ${effect[0]} Random\nUncommon Colorless Card${effect[0]!=1?`s`:``}\nto Your Hand`; break
+            case 2040: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nNext Attack This Turn\nDeals ${effect[1]} Less Damage`; break
             
 
 

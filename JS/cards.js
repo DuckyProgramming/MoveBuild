@@ -489,9 +489,9 @@ types.card=[
     },{
         name:'Twist\nKick',rarity:0,list:1,
         levels:[
-            {effect:[13],attack:193,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[21],attack:193,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[27],attack:193,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[17],attack:193,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[24],attack:193,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[30],attack:193,cost:2,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Iron\nBody',rarity:1,list:1,
@@ -4901,9 +4901,9 @@ types.card=[
     },{
         name:'Evoswap',rarity:1,list:5,
         levels:[
-            {effect:[1],attack:569,cost:1,target:[3,1,1],spec:[0],class:3},
-            {effect:[1],attack:569,cost:0,target:[3,1,1],spec:[0],class:3},
-            {effect:[1],attack:569,cost:0,target:[3,1,1],spec:[],class:3},
+            {effect:[1],attack:569,cost:1,target:[2,1,1],spec:[0],class:3},
+            {effect:[1],attack:569,cost:0,target:[2,1,1],spec:[0],class:3},
+            {effect:[1],attack:569,cost:0,target:[2,1,1],spec:[],class:3},
         ],
     },{
         name:'Orbstep',rarity:1,list:5,
@@ -11507,9 +11507,9 @@ types.card=[
     },{
         name:'Ready\nMove',rarity:-10,list:1,
         levels:[
-            {effect:[1,3],attack:1673,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,6],attack:1673,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,8],attack:1673,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,3],attack:2040,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,6],attack:2040,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,8],attack:2040,cost:1,target:[1,1,1],spec:[0],class:3},
         ],
     },{
         name:'Laying\nStep',rarity:-10,list:9,
@@ -12033,9 +12033,9 @@ types.card=[
     },{
         name:'Jack of\nAll Trades',rarity:1,list:0,
         levels:[
-            {effect:[1],attack:69,cost:0,target:[0],spec:[],class:4},
-            {effect:[2],attack:69,cost:0,target:[0],spec:[],class:4},
-            {effect:[2],attack:69,cost:0,target:[0],spec:[22],class:4},
+            {effect:[1],attack:2039,cost:0,target:[0],spec:[],class:4},
+            {effect:[2],attack:2039,cost:0,target:[0],spec:[],class:4},
+            {effect:[2],attack:2039,cost:0,target:[0],spec:[22],class:4},
         ],
     },{
         name:'Forethought',rarity:1,list:0,
