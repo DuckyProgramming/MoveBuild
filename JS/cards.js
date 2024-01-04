@@ -1494,9 +1494,9 @@ types.card=[
     },{
         name:'Throw\nKnife',rarity:0,list:2,
         levels:[
-            {effect:[12],attack:32,cost:2,target:[2,2,6],spec:[0],class:1},
-            {effect:[18],attack:32,cost:2,target:[2,2,6],spec:[0],class:1},
-            {effect:[23],attack:32,cost:2,target:[2,2,6],spec:[0],class:1},
+            {effect:[12],attack:32,cost:1,target:[2,2,6],spec:[0],class:1},
+            {effect:[18],attack:32,cost:1,target:[2,2,6],spec:[0],class:1},
+            {effect:[23],attack:32,cost:1,target:[2,2,6],spec:[0],class:1},
         ],
     },{
         name:'Heavy\nStrike',rarity:0,list:2,
@@ -2082,9 +2082,9 @@ types.card=[
     },{
         name:'Prime\nTime',rarity:0,list:2,
         levels:[
-            {effect:[2],attack:150,cost:1,target:[0],spec:[],class:4},
             {effect:[3],attack:150,cost:1,target:[0],spec:[],class:4},
             {effect:[4],attack:150,cost:1,target:[0],spec:[],class:4},
+            {effect:[5],attack:150,cost:1,target:[0],spec:[],class:4},
         ],
     },{
         name:'Quadrahedron',rarity:1,list:2,
@@ -2117,9 +2117,9 @@ types.card=[
     },{
         name:'Relaxing\nStep',rarity:0,list:2,
         levels:[
-            {effect:[1,1],attack:1584,cost:1,target:[1,1,1],spec:[16],class:3},
-            {effect:[1,1],attack:1584,cost:1,target:[1,1,1],spec:[0],class:3},
             {effect:[1,1],attack:1584,cost:1,target:[1,1,1],spec:[],class:3},
+            {effect:[1,1],attack:1584,cost:0,target:[1,1,1],spec:[],class:3},
+            {effect:[2,1],attack:1584,cost:0,target:[1,1,2],spec:[],class:3},
         ],
     },{
         name:'Poison\nCrown',rarity:2,list:2,

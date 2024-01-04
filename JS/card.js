@@ -2294,7 +2294,7 @@ class card{
         if(string[string.length-1]=='\n'){
             string=string.substring(0,string.length-1)
         }
-        if(target[0]==2||target[0]==17||target[0]==22||target[0]==26||target[0]==29||target[0]==30||target[0]==48){
+        if(target[0]==2||target[0]==12||target[0]==14||target[0]==17||target[0]==22||target[0]==26||target[0]==29||target[0]==30||target[0]==48){
             string+='\nRange '+target[1]+'-'+target[2]
         }
         if(target[0]==46){

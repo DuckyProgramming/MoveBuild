@@ -5564,7 +5564,7 @@ class attack{
                             if(this.userCombatant.luckCheck()){
                                 this.battle.energy.main[this.player]=6
                             }else{
-                                let list=[0,1,2,3,4,5,6]
+                                let list=[1,2,3,4,5,6]
                                 let index=list.indexOf(this.battle.energy.main[this.player])
                                 list.splice(index,1)
                                 list.splice(list.indexOf(7-this.battle.energy.main[this.player]),1)

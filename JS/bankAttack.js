@@ -4174,13 +4174,13 @@ attack.prototype.update=function(){
             }
         break
         case 747:
-            this.procedure[0]=this.userCombatant.stance==1?1:0
+            this.procedure[0]=this.userCombatant.stance==2?1:0
             if(variants.nobasicanim){
                 this.remove=true
                 if(this.procedure[0]==1){
                     this.userManager.draw(this.effect[0])
                 }else{
-                    this.userCombatant.enterStance(1)
+                    this.userCombatant.enterStance(2)
                 }
             }else{
                 if(this.timer==1){
@@ -4191,7 +4191,7 @@ attack.prototype.update=function(){
                     if(this.procedure[0]==1){
                         this.userManager.draw(this.effect[0])
                     }else{
-                        this.userCombatant.enterStance(1)
+                        this.userCombatant.enterStance(2)
                     }
                 }else if(this.timer>=20){
                     this.remove=true

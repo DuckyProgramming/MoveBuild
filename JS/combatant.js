@@ -5254,8 +5254,11 @@ class combatant{
             average+=(1+value)/2+this.status.main[252]
             this.battle.particleManager.createAuxNumber(this.position.x,this.position.y,roll,(a+0.5)/number*360)
         }
-        if(total<average){
+        if(total<average*0.8){
             this.lowRoll()
+        }else if(total>average*1.2){
+            this.highRoll()
+
         }
         return total
     }
