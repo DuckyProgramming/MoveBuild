@@ -1,0 +1,11 @@
+
+    for(let a=0,la=types.card.length;a<la;a++){
+        for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+            if(types.card[a].levels[b].cost>0){
+                types.card[a].levels[b].cost=floor(types.card[a].levels[b].cost*random(0.8,3))
+            }
+            for(let c=0,lc=types.card[a].levels[b].effect.length;c<lc;c++){
+                types.card[a].levels[b].effect[c]=floor(types.card[a].levels[b].effect[c]*random(0.4,1.2))
+            }
+        }
+    }

@@ -7409,9 +7409,9 @@ types.card=[
     },{
         name:'Precognition',rarity:0,list:7,
         levels:[
+            {effect:[3],attack:1664,cost:1,target:[0],spec:[],class:4},
             {effect:[4],attack:1664,cost:1,target:[0],spec:[],class:4},
             {effect:[5],attack:1664,cost:1,target:[0],spec:[],class:4},
-            {effect:[6],attack:1664,cost:1,target:[0],spec:[],class:4},
         ],
     },{
         name:`Sacrifice`,rarity:1,list:7,
@@ -7882,9 +7882,9 @@ types.card=[
     },{
         name:`Nondirectional\nBeam`,rarity:1,list:8,
         levels:[
-            {effect:[5,5],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[7,7],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[9,8],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[6,6],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[9,9],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[11,11],attack:878,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Occultation',rarity:1,list:8,
@@ -8576,8 +8576,8 @@ types.card=[
         name:'Coffee\nBean',rarity:1,list:8,
         levels:[
             {effect:[1,1],attack:1840,cost:0,target:[0],spec:[],class:4},
-            {effect:[1,1],attack:1840,cost:0,target:[0],spec:[],class:4},
-            {effect:[1,1],attack:1840,cost:0,target:[0],spec:[],class:4},
+            {effect:[2,1],attack:1840,cost:0,target:[0],spec:[],class:4},
+            {effect:[3,1],attack:1840,cost:0,target:[0],spec:[],class:4},
         ],
     },{
         name:'Marigold',rarity:1,list:8,
@@ -13358,30 +13358,30 @@ types.card=[
     },{
         name:'Wind\nCrystal',rarity:-6,list:0,
         levels:[
-            {effect:[5,1],attack:1651,cost:1,target:[2,1,3],spec:[0,2],class:1},
             {effect:[8,1],attack:1651,cost:1,target:[2,1,3],spec:[0,2],class:1},
-            {effect:[10,1],attack:1651,cost:1,target:[2,1,3],spec:[0,2],class:1},
+            {effect:[14,1],attack:1651,cost:1,target:[2,1,3],spec:[0,2],class:1},
+            {effect:[18,1],attack:1651,cost:1,target:[2,1,3],spec:[0,2],class:1},
         ],
     },{
         name:'Cauldron\nCrystal',rarity:-6,list:0,
         levels:[
-            {effect:[2],attack:1652,cost:0,target:[2,1,3],spec:[2],class:1},
             {effect:[3],attack:1652,cost:0,target:[2,1,3],spec:[2],class:1},
             {effect:[4],attack:1652,cost:0,target:[2,1,3],spec:[2],class:1},
+            {effect:[5],attack:1652,cost:0,target:[2,1,3],spec:[2],class:1},
         ],
     },{
         name:'Star\nCrystal',rarity:-6,list:0,
         levels:[
-            {effect:[6,1],attack:1653,cost:1,target:[2,1,3],spec:[0,2],class:1},
-            {effect:[9,1],attack:1653,cost:1,target:[2,1,3],spec:[0,2],class:1},
+            {effect:[7,1],attack:1653,cost:1,target:[2,1,3],spec:[0,2],class:1},
             {effect:[11,1],attack:1653,cost:1,target:[2,1,3],spec:[0,2],class:1},
+            {effect:[14,1],attack:1653,cost:1,target:[2,1,3],spec:[0,2],class:1},
         ],
     },{
         name:'Pea Shooter\nCrystal',rarity:-6,list:0,
         levels:[
-            {effect:[12],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
-            {effect:[18],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
-            {effect:[22],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[16],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[23],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
+            {effect:[28],attack:1654,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
         ],
     },{
         name:'Last\nQuarter',rarity:-6,list:0,

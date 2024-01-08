@@ -472,9 +472,9 @@ attack.prototype.update=function(){
         case 1361: case 1363: case 1378: case 1379: case 1380: case 1384: case 1392: case 1420: case 1422: case 1459:
         case 1473: case 1491: case 1496: case 1510: case 1527: case 1543: case 1608: case 1609: case 1624: case 1639:
         case 1650: case 1664: case 1675: case 1676: case 1685: case 1694: case 1695: case 1716: case 1718: case 1743:
-        case 1747: case 1783: case 1806: case 1808: case 1813: case 1849: case 1853: case 1871: case 1872: case 1885:
-        case 1886: case 1930: case 1936: case 1938: case 1939: case 1946: case 1952: case 1953: case 1956: case 1957:
-        case 1987: case 2000: case 2039:
+        case 1747: case 1783: case 1806: case 1808: case 1813: case 1849: case 1853: case 1856: case 1857: case 1871:
+        case 1872: case 1885: case 1886: case 1930: case 1936: case 1938: case 1939: case 1946: case 1952: case 1953:
+        case 1956: case 1957: case 1987: case 2000: case 2039:
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
                 this.type==1459&&this.relPos[0]!=1

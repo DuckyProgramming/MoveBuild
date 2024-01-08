@@ -858,7 +858,7 @@ class relic{
                 break
                 case '3 Enemy 1 HP':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,3,0,0.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('3',-8,0)

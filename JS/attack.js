@@ -2281,7 +2281,7 @@ class attack{
                         this.userCombatant.statusEffect('Cannot Move',this.effect[1])
                     break
                     case 1811:
-                        this.userManager.draw(this.userManager.allEffectArgs(10,[2]))
+                        this.userManager.draw(this.userManager.hand.allEffectArgs(10,[2]))
                     break
                     case 1825:
                         if(this.targetCombatant.blocked<=1){
@@ -4689,7 +4689,7 @@ class attack{
                         this.userManager.discard.halfEffect(0)
                     break
                     case 855:
-                        this.userCombatant.statusEffect('Amplify Return',this.effect[0])
+                        this.userCombatant.statusEffect('Amplify Return',1)
                     break
                     case 859:
                         this.userManager.hand.add(findName('Instant\nWrath',types.card),0,0)
