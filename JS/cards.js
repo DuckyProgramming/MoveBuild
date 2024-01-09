@@ -6905,16 +6905,16 @@ types.card=[
     },{
         name:'Dipolar',rarity:1,list:7,
         levels:[
-            {effect:[],attack:859,cost:1,target:[0],spec:[],reality:[1],class:4},
-            {effect:[],attack:859,cost:0,target:[0],spec:[],reality:[1],class:4},
-            {effect:[],attack:859,cost:0,target:[0],spec:[],reality:[1,22],class:4},
+            {effect:[],attack:859,cost:1,target:[0],spec:[1],class:4},
+            {effect:[],attack:859,cost:0,target:[0],spec:[1],class:4},
+            {effect:[],attack:859,cost:0,target:[0],spec:[1,22],class:4},
         ],
     },{
         name:'Bipolar',rarity:1,list:7,
         levels:[
-            {effect:[],attack:860,cost:1,target:[0],spec:[],reality:[1],class:4},
-            {effect:[],attack:860,cost:0,target:[0],spec:[],reality:[1],class:4},
-            {effect:[],attack:860,cost:0,target:[0],spec:[],reality:[1,22],class:4},
+            {effect:[],attack:860,cost:1,target:[0],spec:[1],class:4},
+            {effect:[],attack:860,cost:0,target:[0],spec:[1],class:4},
+            {effect:[],attack:860,cost:0,target:[0],spec:[1,22],class:4},
         ],
     },{
         name:'Originality',rarity:1,list:7,
@@ -7528,7 +7528,7 @@ types.card=[
     },{
         name:'Dead\nBranch',rarity:1,list:7,
         levels:[
-            {effect:[],attack:1872,cost:1,target:[0],spec:[1],class:4},
+            {effect:[0],attack:1872,cost:1,target:[0],spec:[1],class:4},
             {effect:[1],attack:1872,cost:1,target:[0],spec:[1],class:4},
             {effect:[2],attack:1872,cost:1,target:[0],spec:[1],class:4},
         ],
