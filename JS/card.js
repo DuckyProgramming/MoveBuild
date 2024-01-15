@@ -1,5 +1,5 @@
 class card{
-    constructor(layer,battle,player,x,y,type,level,color,id,cost,additionalSpec,name,list,effect,attack,target,spec,cardClass,limit,falsed,retain2=false){
+    constructor(layer,battle,player,x,y,type,level,color,id,cost,additionalSpec,name,list,effect,attack,target,spec,cardClass,limit,falsed,retain2=false,colorful=false){
         this.layer=layer
         this.battle=battle
         this.player=player
@@ -107,7 +107,7 @@ class card{
 
             this.strike=this.name.includes('Strike')
             this.basic=this.name=='Strike'||this.name=='Defend'||this.name=='Step'||this.name=='Strike-'||this.name=='Defend-'||this.name=='Step-L'||this.name=='Step-R'
-            this.colorful=this.attack==1691||this.attack==1692||this.attack==1693||this.attack==1694||this.rarity==-5&&this.attack!=1754
+            this.colorful=this.attack==1691||this.attack==1692||this.attack==1693||this.attack==1694||this.rarity==-5&&this.attack!=1754||colorful
 
             this.remove=false
 
@@ -345,7 +345,7 @@ class card{
             case 97: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Bleed`; break
             case 98: string+=`Gain ${effect[0]} Temporary\nDamage Up`; break
             case 99: string+=`Gain ${effect[0]} Energy\nNext Turn`; break
-            case 101: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDoes Double\nDamage if\nPlayed First`; break
+            case 101: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double\nDamage If\nPlayed First`; break
             case 102: string+=`Rearm or Create\na Rearmament Point`; break
             case 103: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Less\nCard${effect[1]?`s`:``} Next Turn`; break
             case 104: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target Will\nUse a Special Move,\nReduce Damage by ${effect[1]}`; break
@@ -2268,7 +2268,9 @@ class card{
             case 2038: string+=`Lose 1 Item`; break
             case 2039: string+=`Add ${effect[0]} Random\nUncommon Colorless Card${effect[0]!=1?`s`:``}\nto Your Hand`; break
             case 2040: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nNext Attack This Turn\nDeals ${effect[1]} Less Damage`; break
-            
+            case 2041: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You are on\na Special Tile`; break
+            case 2042: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Damage Down\n50%: Apply ${effect[2]} Burn\n50%: Apply ${effect[3]} Freeze`; break
+
 
 
 

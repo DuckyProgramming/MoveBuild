@@ -47,7 +47,7 @@ attack.prototype.update=function(){
         case 1909: case 1910: case 1920: case 1921: case 1922: case 1923: case 1926: case 1940: case 1944: case 1948:
         case 1959: case 1960: case 1961: case 1970: case 1971: case 1973: case 1979: case 1980: case 1981: case 1984:
         case 1990: case 1991: case 2001: case 2002: case 2004: case 2007: case 2012: case 2017: case 2021: case 2025:
-        case 2026: case 2027: case 2032: case 2034:
+        case 2026: case 2027: case 2032: case 2034: case 2041:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -145,7 +145,7 @@ attack.prototype.update=function(){
         case 1130: case 1131: case 1141: case 1146: case 1161: case 1176: case 1301: case 1357: case 1369: case 1417:
         case 1453: case 1456: case 1460: case 1514: case 1523: case 1532: case 1534: case 1603: case 1636: case 1696:
         case 1713: case 1728: case 1738: case 1742: case 1804: case 1814: case 1826: case 1861: case 1876: case 1929:
-        case 1963: case 1966: case 1983: case 1985: case 2003: case 2005: case 2035:
+        case 1963: case 1966: case 1983: case 1985: case 2003: case 2005: case 2035: case 2042:
             if(
                 this.type==809&&this.userCombatant.stance!=4||
                 this.type==1713&&this.battle.turn.total%2==0||

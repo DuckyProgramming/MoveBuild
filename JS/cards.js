@@ -1277,6 +1277,13 @@ types.card=[
             {effect:[],attack:1685,cost:0,target:[0],spec:[],class:4},
             {effect:[],attack:1685,cost:0,target:[0],spec:[],class:4},
         ],
+    },{
+        name:'Mine\nCollapse',rarity:0,list:1,
+        levels:[
+            {effect:[10],attack:2041,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14],attack:2041,cost:1,target:[2,1,1],spec:[0,2],class:1},
+            {effect:[18],attack:2041,cost:1,target:[2,1,1],spec:[0,2],class:1},
+        ],
     },
 
     //mark 1
@@ -4347,6 +4354,13 @@ types.card=[
             {effect:[1],attack:1953,cost:1,target:[0],spec:[1],class:4},
             {effect:[2],attack:1953,cost:1,target:[0],spec:[1],class:4},
             {effect:[2],attack:1953,cost:1,target:[0],spec:[1,3],class:4},
+        ],
+    },{
+        name:'Bent\nFallen',rarity:1,list:4,
+        levels:[
+            {effect:[7,2,1,1],attack:2042,cost:1,target:[2,1,1],spec:[0],class:2},
+            {effect:[7,2,1,1],attack:2042,cost:1,target:[2,1,1],spec:[0],class:2},
+            {effect:[7,2,1,1],attack:2042,cost:1,target:[2,1,1],spec:[0],class:2},
         ],
     },
 

@@ -171,7 +171,7 @@ class attack{
             case 1967: case 1968: case 1969: case 1970: case 1971: case 1972: case 1973: case 1979: case 1980: case 1981:
             case 1982: case 1984: case 1990: case 1991: case 1999: case 2001: case 2002: case 2004: case 2006: case 2007:
             case 2010: case 2011: case 2012: case 2016: case 2017: case 2018: case 2021: case 2022: case 2023: case 2024:
-            case 2025: case 2026: case 2027: case 2028: case 2030: case 2032: case 2034:
+            case 2025: case 2026: case 2027: case 2028: case 2030: case 2032: case 2034: case 2041: case 2042:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1376,6 +1376,12 @@ class attack{
                         let roll2032=this.userCombatant.diceRoll(1,6)
                         this.targetCombatant.takeDamage(this.effect[0]*roll2032,this.user)
                         this.battle.addCurrency(this.effect[1]*roll2032,this.player)
+                    break
+                    case 2041:
+                        let index2041=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
+                        if(index2041>=0){
+                            this.targetCombatant.takeDamage(this.effect[0]*(this.battle.tileManager.tiles[index2041].type.length>0?2:1),this.user)
+                        }
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -2944,6 +2950,17 @@ class attack{
                     case 2035:
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Defend',types.card),0,this.color)
+                        }
+                    break
+                    case 2042:
+                        this.targetCombatant.statusEffect('Damage Down',this.effect[1])
+                        if(this.userCombatant.luckCheck()){
+                            this.targetCombatant.statusEffect('Burn',this.effect[2])
+                            this.targetCombatant.statusEffect('Freeze',this.effect[3])
+                        }else if(floor(random(0,2))==0){
+                            this.targetCombatant.statusEffect('Burn',this.effect[2])
+                        }else{
+                            this.targetCombatant.statusEffect('Freeze',this.effect[3])
                         }
                     break
 
