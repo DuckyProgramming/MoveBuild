@@ -3432,7 +3432,7 @@ attack.prototype.update=function(){
         case 1566: case 1604: case 1632: case 1669: case 1670: case 1691: case 1762: case 1763: case 1764: case 1765:
         case 1775: case 1776: case 1797: case 1798: case 1799: case 1800: case 1818: case 1819: case 1820: case 1823:
         case 1833: case 1855: case 1859: case 1860: case 1873: case 1884: case 1903: case 1917: case 1918: case 1941:
-        case 1954: case 1965: case 2013: case 2014:
+        case 1954: case 1965: case 2013: case 2014: case 2043:
             if(variants.nobasicanim){
                 this.selfCall(12)
                 this.remove=true

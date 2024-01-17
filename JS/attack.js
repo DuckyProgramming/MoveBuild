@@ -8503,6 +8503,11 @@ class attack{
                     case 2014:
                         this.userCombatant.statusEffect('Perfect Dice Rolls',999)
                     break
+                    case 2043:
+                        for(let a=0,la=game.playerNumber;a<la;a++){
+                            this.userManager.addRandomColor(2,this.level,a+1,3)
+                        }
+                    break
 
                 }
             break

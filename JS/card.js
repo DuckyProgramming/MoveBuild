@@ -2270,6 +2270,7 @@ class card{
             case 2040: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nNext Attack This Turn\nDeals ${effect[1]} Less Damage`; break
             case 2041: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You are on\na Special Tile`; break
             case 2042: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Damage Down\n50%: Apply ${effect[2]} Burn\n50%: Apply ${effect[3]} Freeze`; break
+            case 2043: string+=`Add a Random Card\nof Every Color\nof Equivalent Level\nto Your Hand`; break
 
 
 
