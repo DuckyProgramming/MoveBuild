@@ -2185,6 +2185,7 @@ attack.prototype.update=function(){
             }
         break
         case 138: case 139: case 175: case 400: case 453: case 516: case 1436: case 1709: case 1781: case 1914:
+        case 2044:
             if(variants.nobasicanim){
                 this.selfCall(11)
                 this.remove=true

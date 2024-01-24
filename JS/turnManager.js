@@ -5,6 +5,7 @@ class turnManager{
         
         this.auxiliary=false
         this.phase=false
+        this.loads=0
 
         this.turns=[]
         this.turnsBack=[]
@@ -19,6 +20,7 @@ class turnManager{
         this.turns=[]
     }
     loadEnemyAttack(enemy){
+        this.loads++
         if(this.battle.combatantManager.combatants[enemy].team==0){
             this.auxiliary=true
             this.turns.push(new turn(0,this.battle,
@@ -27,6 +29,7 @@ class turnManager{
         }
     }
     loadEnemyAttackRepeat(enemy){
+        this.loads++
         if(this.battle.combatantManager.combatants[enemy].team==0){
             this.auxiliary=true
             this.turns.push(new turn(0,this.battle,
@@ -35,6 +38,7 @@ class turnManager{
         }
     }
     loadEnemyAttackRepeatBack(enemy){
+        this.loads++
         if(this.battle.combatantManager.combatants[enemy].team==0||this.battle.combatantManager.combatants[enemy].construct){
             this.auxiliary=true
             this.turnsBack.push(new turn(0,this.battle,
@@ -43,6 +47,7 @@ class turnManager{
         }
     }
     loadEnemySudoku(enemy){
+        this.loads++
         let damageMax=5
         this.auxiliary=true
         for(let a=0,la=this.battle.combatantManager.combatants[enemy].attack.length;a<la;a++){
@@ -53,32 +58,38 @@ class turnManager{
         this.turns.push(new turn(0,this.battle,findName('Self-Kill',types.attack),[damageMax],enemy))
     }
     loadEnemyMove(enemy){
+        this.loads++
         this.auxiliary=true
         for(let a=0,la=this.battle.combatantManager.combatants[enemy].move.speed;a<la;a++){
             this.turns.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
         }
     }
     loadEnemyRandomMove(enemy){
+        this.loads++
         this.auxiliary=true
         this.turns.push(new turn(1,this.battle,2,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
     }
     loadEnemyRotate(enemy){
+        this.loads++
         this.auxiliary=true
         this.turns.push(new turn(4,this.battle,0,0,enemy))
     }
     loadEnemyMoveBack(enemy){
+        this.loads++
         this.auxiliary=true
         for(let a=0,la=this.battle.combatantManager.combatants[enemy].move.speed;a<la;a++){
             this.turnsBack.push(new turn(1,this.battle,this.battle.combatantManager.combatants[enemy].move.type,this.battle.combatantManager.combatants[enemy].move.speed,enemy))
         }
     }
     loadEnemyRotateBack(enemy){
+        this.loads++
         this.auxiliary=true
         this.turnsBack.push(new turn(4,this.battle,0,0,enemy))
     }
     loadEnemyTurns(){
         this.auxiliary=false
         this.phase=true
+        this.loads=0
         this.turns=[]
         if(this.battle.modded(125)){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){

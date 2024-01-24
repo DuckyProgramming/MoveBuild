@@ -3799,11 +3799,11 @@ class combatant{
     }
     activate(type,id){
         if(this.life>0&&!this.moved){
-            if(this.spec.includes(0)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players){
+            if(this.spec.includes(0)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100){
                 this.target=id
                 this.battle.turnManager.loadEnemyRotate(this.id)
             }
-            if(this.spec.includes(1)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players){
+            if(this.spec.includes(1)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100){
                 this.target=id
                 this.battle.turnManager.loadEnemyMoveBack(this.id)
                 this.battle.turnManager.loadEnemyRotateBack(this.id)

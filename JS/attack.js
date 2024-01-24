@@ -7864,6 +7864,9 @@ class attack{
                     case 1914:
                         this.userCombatant.statusEffect('Single Damage',ceil(this.userCombatant.lastTake/max(1,this.effect[0])))
                     break
+                    case 2044:
+                        this.userCombatant.statusEffect('Damage Up',ceil(this.userCombatant.lastTake/max(1,this.effect[0])))
+                    break
                     default:
                         for(let a=0,la=this.targetCombatant.length;a<la;a++){
                             switch(this.type){

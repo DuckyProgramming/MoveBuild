@@ -2695,9 +2695,9 @@ types.card=[
     },{
         name:'Sleeve\nSwipe',rarity:0,list:3,
         levels:[
-            {effect:[7,2],attack:400,cost:1,target:[2,1,1],spec:[0,1,3],class:1},
-            {effect:[7,2],attack:400,cost:0,target:[2,1,1],spec:[0,1,3],class:1},
-            {effect:[10,2],attack:400,cost:0,target:[2,1,1],spec:[0,1,3],class:1},
+            {effect:[8,2],attack:400,cost:1,target:[2,1,1],spec:[0,1,3],class:1},
+            {effect:[8,2],attack:400,cost:0,target:[2,1,1],spec:[0,1,3],class:1},
+            {effect:[12,2],attack:400,cost:0,target:[2,1,1],spec:[0,1,3],class:1},
         ],
     },{
         name:'Jumping\nStab',rarity:1,list:3,
@@ -2786,9 +2786,9 @@ types.card=[
     },{
         name:'Penetrate',rarity:0,list:3,
         levels:[
-            {effect:[9],attack:413,cost:1,target:[2,1,1],spec:[0,6],class:1},
-            {effect:[12],attack:413,cost:1,target:[2,1,1],spec:[0,6],class:1},
-            {effect:[14],attack:413,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            {effect:[11],attack:413,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            {effect:[15],attack:413,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            {effect:[18],attack:413,cost:1,target:[2,1,1],spec:[0,6],class:1},
         ],
     },{
         name:'Final\nCut',rarity:2,list:3,
@@ -3213,16 +3213,16 @@ types.card=[
     },{
         name:`You're\nFrozen`,rarity:1,list:3,
         levels:[
-            {effect:[12,4],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[16,6],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[18,8],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[12,2],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[16,3],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[18,4],attack:1449,cost:2,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:`Contracting`,rarity:2,list:3,
         levels:[
-            {effect:[6,3],attack:1450,cost:3,target:[0],spec:[0,1],class:1},
+            {effect:[6,2],attack:1450,cost:3,target:[0],spec:[0,1],class:1},
+            {effect:[8,3],attack:1450,cost:3,target:[0],spec:[0,1],class:1},
             {effect:[8,4],attack:1450,cost:3,target:[0],spec:[0,1],class:1},
-            {effect:[8,5],attack:1450,cost:3,target:[0],spec:[0,1],class:1},
         ],
     },{
         name:'Snowflake',rarity:0,list:3,
@@ -4586,9 +4586,9 @@ types.card=[
     },{
         name:'Arc\nSlash',rarity:0,list:5,
         levels:[
-            {effect:[4,1],attack:516,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[7,1],attack:516,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[6,1],attack:516,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[9,1],attack:516,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[11,1],attack:516,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Power\nReserves',rarity:0,list:5,
@@ -6968,9 +6968,9 @@ types.card=[
     },{
         name:'Swivel',rarity:1,list:7,
         levels:[
-            {effect:[9,1],attack:783,cost:2,target:[0],spec:[],class:2},
-            {effect:[15,1],attack:783,cost:2,target:[0],spec:[],class:2},
-            {effect:[20,1],attack:783,cost:2,target:[0],spec:[],class:2},
+            {effect:[9,1],attack:783,cost:1,target:[0],spec:[1],class:2},
+            {effect:[15,1],attack:783,cost:1,target:[0],spec:[1],class:2},
+            {effect:[20,1],attack:783,cost:1,target:[0],spec:[1],class:2},
         ],
     },{
         name:'Talk to\nthe Hand',rarity:1,list:7,
@@ -7038,9 +7038,9 @@ types.card=[
     },{
         name:'Flagrant\nEdge',rarity:1,list:7,
         levels:[
-            {effect:[10],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[15],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[19],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[18],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[22],attack:796,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Time\nSkip',rarity:1,list:7,
@@ -7157,23 +7157,23 @@ types.card=[
     },{
         name:'Hourglass A',rarity:1,list:7,
         levels:[
-            {effect:[1],attack:813,cost:1,target:[41],spec:[0],class:3},
-            {effect:[1],attack:813,cost:0,target:[41],spec:[0],class:3},
-            {effect:[1],attack:813,cost:0,target:[41],spec:[],class:3},
+            {effect:[2],attack:813,cost:1,target:[41],spec:[0],class:3},
+            {effect:[2],attack:813,cost:0,target:[41],spec:[0],class:3},
+            {effect:[2],attack:813,cost:0,target:[41],spec:[],class:3},
         ],
     },{
         name:'Hourglass B',rarity:1,list:7,
         levels:[
-            {effect:[1],attack:814,cost:1,target:[42],spec:[0],class:3},
-            {effect:[1],attack:814,cost:0,target:[42],spec:[0],class:3},
-            {effect:[1],attack:814,cost:0,target:[42],spec:[],class:3},
+            {effect:[2],attack:814,cost:1,target:[42],spec:[0],class:3},
+            {effect:[2],attack:814,cost:0,target:[42],spec:[0],class:3},
+            {effect:[2],attack:814,cost:0,target:[42],spec:[],class:3},
         ],
     },{
         name:'Hourglass C',rarity:1,list:7,
         levels:[
-            {effect:[1],attack:815,cost:1,target:[43],spec:[0],class:3},
-            {effect:[1],attack:815,cost:0,target:[43],spec:[0],class:3},
-            {effect:[1],attack:815,cost:0,target:[43],spec:[],class:3},
+            {effect:[2],attack:815,cost:1,target:[43],spec:[0],class:3},
+            {effect:[2],attack:815,cost:0,target:[43],spec:[0],class:3},
+            {effect:[2],attack:815,cost:0,target:[43],spec:[],class:3},
         ],
     },{
         name:'Faith\nMove',rarity:0,list:7,
@@ -9342,9 +9342,9 @@ types.card=[
     },{
         name:'Evil\nLaugh',rarity:1,list:9,
         levels:[
-            {effect:[3],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
             {effect:[4],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
-            {effect:[5],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[6],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
+            {effect:[7],attack:1338,cost:0,target:[2,1,2],spec:[],class:1},
         ],
     },{
         name:'Crucible',rarity:0,list:9,
@@ -9482,16 +9482,16 @@ types.card=[
     },{
         name:`You're\nFired`,rarity:1,list:9,
         levels:[
-            {effect:[12,4],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[16,6],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[18,8],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[12,2],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[16,3],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[18,4],attack:888,cost:2,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:`Downsizing`,rarity:2,list:9,
         levels:[
-            {effect:[6,3],attack:889,cost:3,target:[0],spec:[0,1],class:1},
+            {effect:[6,2],attack:889,cost:3,target:[0],spec:[0,1],class:1},
+            {effect:[8,3],attack:889,cost:3,target:[0],spec:[0,1],class:1},
             {effect:[8,4],attack:889,cost:3,target:[0],spec:[0,1],class:1},
-            {effect:[8,5],attack:889,cost:3,target:[0],spec:[0,1],class:1},
         ],
     },{
         name:'Lighter',rarity:0,list:9,
@@ -9622,9 +9622,9 @@ types.card=[
     },{
         name:'Tin\nSnips',rarity:1,list:9,
         levels:[
-            {effect:[3],attack:1914,cost:0,target:[0],spec:[],class:4},
-            {effect:[3],attack:1914,cost:0,target:[0],spec:[2],class:4},
-            {effect:[3],attack:1914,cost:0,target:[0],spec:[2,22],class:4},
+            {effect:[4],attack:2044,cost:0,target:[0],spec:[],class:4},
+            {effect:[4],attack:2044,cost:0,target:[0],spec:[2],class:4},
+            {effect:[4],attack:2044,cost:0,target:[0],spec:[2,22],class:4},
         ],
     },{
         name:'Inferno',rarity:2,list:9,
