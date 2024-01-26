@@ -1184,7 +1184,11 @@ class turn{
                         this.userCombatant.statusEffect('Metallicize',this.effect[0])
                     break
                     case 230:
-                        this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
+                        if(this.userCombatant.builder.id==this.battle.turn.main){
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].addBlock(this.effect[0])
+                        }else{
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Block Next Turn',this.effect[0])
+                        }
                     break
                     case 231:
                         this.battle.cardManagers[this.battle.combatantManager.combatants[this.userCombatant.builder].id].draw(this.effect[0])

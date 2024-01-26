@@ -713,9 +713,9 @@ types.card=[
     },{
         name:'Spin\nPunch',rarity:0,list:1,
         levels:[
-            {effect:[6,2,1],attack:228,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[8,3,1],attack:228,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[8,4,1],attack:228,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[8,2,1],attack:228,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[12,3,1],attack:228,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[12,4,1],attack:228,cost:2,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Impasse',rarity:0,list:1,
@@ -1035,9 +1035,9 @@ types.card=[
     },{
         name:'Pickaxe',rarity:1,list:1,
         levels:[
-            {effect:[10,2],attack:1485,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
-            {effect:[15,3],attack:1485,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
-            {effect:[18,4],attack:1485,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[10,2],attack:1485,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[15,3],attack:1485,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[18,4],attack:1485,cost:3,target:[2,1,1],spec:[0,2,35],class:1},
         ],
     },{
         name:'Cooling\nFan',rarity:2,list:1,
@@ -6667,9 +6667,9 @@ types.card=[
     },{
         name:'Halt',rarity:0,list:7,
         levels:[
-            {effect:[3,2],attack:738,cost:0,target:[0],spec:[],class:2},
-            {effect:[4,3],attack:738,cost:0,target:[0],spec:[],class:2},
-            {effect:[5,4],attack:738,cost:0,target:[0],spec:[],class:2},
+            {effect:[3,3],attack:738,cost:0,target:[0],spec:[],class:2},
+            {effect:[4,4],attack:738,cost:0,target:[0],spec:[],class:2},
+            {effect:[5,5],attack:738,cost:0,target:[0],spec:[],class:2},
         ],
     },{
         name:'Conclude',rarity:0,list:7,
@@ -7066,9 +7066,9 @@ types.card=[
     },{
         name:'Desist',rarity:0,list:7,
         levels:[
-            {effect:[3,2],attack:800,cost:0,target:[0],spec:[],class:2},
-            {effect:[4,3],attack:800,cost:0,target:[0],spec:[],class:2},
-            {effect:[5,4],attack:800,cost:0,target:[0],spec:[],class:2},
+            {effect:[3,3],attack:800,cost:0,target:[0],spec:[],class:2},
+            {effect:[4,4],attack:800,cost:0,target:[0],spec:[],class:2},
+            {effect:[5,5],attack:800,cost:0,target:[0],spec:[],class:2},
         ],
     },{
         name:'Sorrow',rarity:2,list:7,

@@ -1210,7 +1210,7 @@ class card{
             case 970: string+=`Exhaust ${effect[0]} Card${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Spark${effect[1]!=1?`s`:``}\nto Your Hand`; break
             case 971: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nAdd a Spark to Hand\nFor Each Enemy Hit`; break
             case 972: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAmplify: Heal Equal\nto Target's\nHealth Lost`; break
-            case 973: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Something is Ahead,\nDeal ${this.calculateEffect(effect[1],0)} Damage`; break
+            case 973: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nIf Something is Ahead,\nDeal ${effect[1]} Damage`; break
             case 974: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nIf Target Unmoved,\nPush Again`; break
             case 975: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Control`; break
             case 976: string+=`Move to Any\nEmpty Tile\nAdd ${effect[0]} Burn${effect[0]!=1?`s`:``} to Hand`; break
@@ -1264,7 +1264,7 @@ class card{
             case 1024: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Ammo`; break
             case 1025: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nMove a Card From\nDiscard to Draw`; break
             case 1026: string+=`Gain ${effect[0]} Energy\nSwap Draw and Discard\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
-            case 1027: string+=`Deal Damage Equal to\n${effect[0]}x Your Hand's Cost`; break
+            case 1027: string+=`Deal Damage Equal to\n${this.calculateEffect(effect[0],2)} Where X =\nYour Hand's Cost`; break
             case 1028: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nSend ${effect[2]} Card${effect[2]!=1?`s`:``} From\nHand to Draw Pile`; break
             case 1029: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nNext 3 Turns`; break
             case 1030: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nNext Turn`; break
