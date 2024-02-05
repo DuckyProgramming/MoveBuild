@@ -202,9 +202,9 @@ types.card=[
     {
         name:'Electrify',rarity:1,list:1,
         levels:[
-            {effect:[6,4],attack:122,cost:1,target:[0],spec:[],class:2},
-            {effect:[8,6],attack:122,cost:1,target:[0],spec:[],class:2},
-            {effect:[12,6],attack:122,cost:1,target:[0],spec:[],class:2},
+            {effect:[8,5],attack:122,cost:1,target:[0],spec:[],class:2},
+            {effect:[12,7],attack:122,cost:1,target:[0],spec:[],class:2},
+            {effect:[16,8],attack:122,cost:1,target:[0],spec:[],class:2},
         ],
     },{
         name:'Limit\nBreak',rarity:1,list:1,
@@ -3903,9 +3903,9 @@ types.card=[
     },{
         name:'Overpower',rarity:2,list:4,
         levels:[
-            {effect:[2],attack:311,cost:1,target:[0],spec:[1],class:4},
-            {effect:[3],attack:311,cost:1,target:[0],spec:[1],class:4},
-            {effect:[4],attack:311,cost:1,target:[0],spec:[1],class:4},
+            {effect:[2],attack:311,cost:2,target:[0],spec:[1],class:4},
+            {effect:[3],attack:311,cost:2,target:[0],spec:[1],class:4},
+            {effect:[3],attack:311,cost:2,target:[0],spec:[1,2],class:4},
         ],
     },{
         name:'Spinning\nBlades',rarity:1,list:4,
@@ -6369,9 +6369,9 @@ types.card=[
     },{
         name:'Stumble',rarity:0,list:6,
         levels:[
-            {effect:[1,1],attack:1581,cost:0,target:[1,1,1],spec:[0],class:3},
             {effect:[1,1],attack:1581,cost:0,target:[1,1,1],spec:[],class:3},
             {effect:[2,1],attack:1581,cost:0,target:[1,1,2],spec:[],class:3},
+            {effect:[3,1],attack:1581,cost:0,target:[1,1,3],spec:[],class:3},
         ],
     },{
         name:'Power\nSlide',rarity:0,list:6,
@@ -7917,9 +7917,9 @@ types.card=[
     },{
         name:'One Time\nOff',rarity:0,list:8,
         levels:[
-            {effect:[8,1],attack:890,cost:1,target:[0],spec:[],class:2},
             {effect:[12,1],attack:890,cost:1,target:[0],spec:[],class:2},
-            {effect:[15,1],attack:890,cost:1,target:[0],spec:[],class:2},
+            {effect:[17,1],attack:890,cost:1,target:[0],spec:[],class:2},
+            {effect:[21,1],attack:890,cost:1,target:[0],spec:[],class:2},
         ],
     },{
         name:'Open\nUniverse',rarity:1,list:8,
@@ -7966,9 +7966,9 @@ types.card=[
     },{
         name:'Refraction\nSpark',rarity:2,list:8,
         levels:[
-            {effect:[4,7],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[5,10],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[6,12],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[6,10],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[8,15],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[10,18],attack:899,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Robbery',rarity:1,list:8,
@@ -8099,9 +8099,9 @@ types.card=[
     },{
         name:'6A',rarity:0,list:8,
         levels:[
-            {effect:[5],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[7],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[6],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[8],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[10],attack:942,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Warming\nUp',rarity:1,list:8,
@@ -10151,9 +10151,9 @@ types.card=[
     },{
         name:'Tutorial',rarity:2,list:10,
         levels:[
-            {effect:[3],attack:1158,cost:0,target:[0],spec:[1],class:4},
-            {effect:[4],attack:1158,cost:0,target:[0],spec:[1],class:4},
-            {effect:[5],attack:1158,cost:0,target:[0],spec:[1],class:4},
+            {effect:[3],attack:1158,cost:1,target:[0],spec:[1],class:4},
+            {effect:[4],attack:1158,cost:1,target:[0],spec:[1],class:4},
+            {effect:[5],attack:1158,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
         name:'Crucial\nThrow',rarity:2,list:10,
@@ -11741,6 +11741,13 @@ types.card=[
             {effect:[1],attack:1293,cost:0,target:[0],spec:[],class:4},
             {effect:[2],attack:1293,cost:0,target:[0],spec:[],class:4},
             {effect:[3],attack:1293,cost:0,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Crit\nFail',rarity:-10,list:10,
+        levels:[
+            {effect:[1,20],attack:2046,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[1,10],attack:2046,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[1,5],attack:2046,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },
 
@@ -14278,6 +14285,13 @@ types.card=[
             {effect:[2],attack:1535,cost:0,target:[2,1,1],spec:[0],class:1},
             {effect:[3],attack:1535,cost:0,target:[2,1,1],spec:[0],class:1},
             {effect:[4],attack:1535,cost:0,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Gaze of\nAdamaro',rarity:-5,list:-1,
+        levels:[
+            {effect:[19],attack:2045,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[27],attack:2045,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[33],attack:2045,cost:1,target:[2,1,3],spec:[0],class:1},
         ],
     },
 

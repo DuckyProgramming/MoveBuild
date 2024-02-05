@@ -880,7 +880,18 @@ class combatantManager{
         }
     }
     tickEarly(){
-        this.combatants.forEach(combatant=>combatant.tickEarly())
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0){
+                this.combatants[a].tickEarly()
+            }
+        }
+    }
+    tickLate(){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                this.combatants[a].tickLate()
+            }
+        }
     }
     reorder(){
         let order=1

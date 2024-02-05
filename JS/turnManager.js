@@ -247,6 +247,7 @@ class turnManager{
                 }else if(this.phase){
                     this.phase=false
                     this.loadEnemyTurnsMove()
+                    this.battle.combatantManager.tickLate()
                 }else{
                     this.battle.startTurn()
                 }

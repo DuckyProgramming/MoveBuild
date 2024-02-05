@@ -268,6 +268,12 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[236]>0&&effect<=10){
 				bonus+=user.status.main[236]
 			}
+			if(user.status.main[264]>0){
+				bonus-=user.status.main[264]
+			}
+			if(user.status.main[265]>0){
+				bonus-=user.status.main[265]
+			}
 			if(user.status.main[6]!=0){
 				totalStr+=user.status.main[6]
 			}

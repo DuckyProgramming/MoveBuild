@@ -106,7 +106,7 @@ class combatant{
         this.dodges=[]
         this.status={main:[],name:[
             'Double Damage','Counter','Cannot Be Pushed','Dodge','Energy Next Turn','Bleed','Strength','Dexterity','Weak','Frail',
-            'Vulnerable','Retain Block','Single Damage','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
+            'Vulnerable','Retain Block','Single Damage Up','Block Next Turn','Armor','Control','Cannot Gain Block','Temporary Strength','Temporary Dexterity','Metallicize',
             'Weak Next Turn','Buffer','Free Attack','Double Play','Take Half Damage','Intangible','Counter All','Free Card', 'Cannot Move','Cannot Move Next Turn',
             'Strength Per Turn','Poison','Stun','Regeneration','Dexterity Per Turn','Extra Turn','Counter Combat','Cannot Gain Block Next Turn','Counter Push','Counter Bleed',
             'Temporary Damage Up','Temporary Draw','Currency','Strength on Hit','Weak on Kill','Vulnerable on Kill','Anti-Control','Counter Combat Turn','Distracted','Burn',
@@ -131,12 +131,12 @@ class combatant{
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
-            '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time',
+            '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
                 1,0,0,2,0,0,1,2,2,0,//2
-                2,0,0,0,1,1,2,0,1,2,//3
+                2,0,0,0,1,1,2,0,4,2,//3
                 0,1,1,1,0,0,0,2,1,2,//4
                 2,2,0,0,0,0,0,2,0,0,//5
                 0,1,0,1,0,2,2,1,2,2,//6
@@ -160,7 +160,7 @@ class combatant{
                 1,2,2,1,0,2,0,2,0,0,//24
                 1,0,1,1,2,2,2,0,2,0,//25
                 0,0,0,0,0,0,0,0,0,2,//26
-                1,1,2,1,
+                1,1,2,1,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -181,7 +181,7 @@ class combatant{
                 2,2,2,0,0,2,2,2,3,0,//16
                 0,2,2,0,2,1,2,1,0,0,//17
                 2,1,0,0,2,1,2,2,1,1,//18
-                1,1,1,0,0,0,0,0,2,2,//19
+                1,1,0,0,0,0,0,0,2,2,//19
                 2,1,2,2,1,0,3,1,1,3,//20
                 2,0,2,0,1,0,2,0,1,0,//21
                 2,1,1,0,2,1,0,0,2,0,//22
@@ -189,9 +189,9 @@ class combatant{
                 2,0,2,2,1,2,0,2,0,0,//24
                 1,0,0,0,3,3,3,3,1,2,//25
                 1,2,2,2,2,2,2,2,2,1,//26
-                2,2,2,2,
+                2,2,2,2,1,1,
             ]}
-        //0-none, 1-decrement, 2-remove, 3-early decrement, player
+        //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
         for(let a=0;a<this.status.name.length;a++){
             this.status.main.push(0)
@@ -3101,7 +3101,7 @@ class combatant{
             }
             if(game.ascend>=27&&this.battle.encounter.class==0||game.ascend>=28&&this.battle.encounter.class==1){
                 let randombuffs=[
-                    ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage',6],['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Temporary Strength',10],
+                    ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage Up',6],['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Temporary Strength',10],
                     ['Temporary Dexterity',10],['Metallicize',2],['Buffer',1],['Take Half Damage',2],['Intangible',1],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],['Dexterity Per Turn',1],['Counter Combat',2],
                     ['Temporary Damage Up',4],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Counter Combat Turn',4],['Single Counter Block',8],['Invisible',4],['Take Third Damage',2],['Speed Up',1],['Strength Next Turn',3],
                     ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Untargettable From Front',1],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],
@@ -4228,6 +4228,12 @@ class combatant{
                 if(userCombatant.status.main[236]>0&&value<=10){
                     damage+=userCombatant.status.main[236]
                 }
+                if(userCombatant.status.main[264]>0){
+                    damage-=userCombatant.status.main[264]
+                }
+                if(userCombatant.status.main[265]>0){
+                    damage-=userCombatant.status.main[265]
+                }
                 if(userCombatant.status.main[6]!=0){
                     totalStr+=userCombatant.status.main[6]
                 }
@@ -4242,7 +4248,7 @@ class combatant{
                     userCombatant.status.main[195]=0
                 }
                 if(userCombatant.status.main[250]>0){
-                    userCombatant.statusEffect('Single Damage',damage)
+                    userCombatant.statusEffect('Single Damage Up',damage)
                     damage=0
                     userCombatant.status.main[250]--
                 }
@@ -4260,13 +4266,12 @@ class combatant{
                 if(distTargetCombatant(0,this,userCombatant)>=2&&this.battle.relicManager.hasRelic(175,userCombatant.id)){
                     damage+=2
                 }
-                if(userCombatant.status.main[119]>0&&(damage>4||userCombatant.status.main[204]>0&&damage>2)){
-                    userCombatant.status.main[119]--
-                    damage=userCombatant.status.main[204]>0?2:4
-                }
             }
             if(userCombatant.status.main[49]>0&&userCombatant.status.main[204]<=0){
                 userCombatant.takeDamage(userCombatant.status.main[49]*2,-1)
+            }
+            if(userCombatant.status.main[119]>0){
+                this.statusEffectNext('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1))
             }
             if(userCombatant.status.main[95]>0){
                 userCombatant.heal(userCombatant.status.main[95])
@@ -4516,7 +4521,7 @@ class combatant{
             if(this.status.main[217]>0){
                 this.status.main[217]--
             }
-            if(this.status.main[87]>0){
+            if(this.status.main[87]>0&&this.id<this.battle.players){
                 for(let a=0,la=this.status.main[87];a<la;a++){
                     this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)
                 }
@@ -5488,7 +5493,7 @@ class combatant{
                     case 262: this.status.main[findList('Luck Guarantee',this.status.name)]+=this.status.main[a]; break
 
                 }
-                if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0){
+                if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0){
                     if(this.status.main[a]>0){
                         this.status.main[a]--
                     }else if(this.status.main[a]<0){
@@ -5552,6 +5557,19 @@ class combatant{
             [125,255,0],this.infoAnim.flash[2]),
             [150,150,150],this.infoAnim.flash[1]),
             [200,0,0],this.infoAnim.flash[0])
+    }
+    tickLate(){
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            if(this.status.main[a]!=0){
+                if(this.status.behavior[a]==4){
+                    if(this.status.main[a]>0){
+                        this.status.main[a]--
+                    }else if(this.status.main[a]<0){
+                        this.status.main[a]++
+                    }
+                }
+            }
+        }
     }
     startAnimation(type){
         switch(this.name){

@@ -47,7 +47,7 @@ attack.prototype.update=function(){
         case 1909: case 1910: case 1920: case 1921: case 1922: case 1923: case 1926: case 1940: case 1944: case 1948:
         case 1959: case 1960: case 1961: case 1970: case 1971: case 1973: case 1979: case 1980: case 1981: case 1984:
         case 1990: case 1991: case 2001: case 2002: case 2004: case 2007: case 2012: case 2017: case 2021: case 2025:
-        case 2026: case 2027: case 2032: case 2034: case 2041:
+        case 2026: case 2027: case 2032: case 2034: case 2041: case 2046:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -1285,7 +1285,7 @@ attack.prototype.update=function(){
         case 1864: case 1866: case 1867: case 1868: case 1874: case 1878: case 1879: case 1880: case 1888: case 1890:
         case 1892: case 1894: case 1902: case 1907: case 1908: case 1943: case 1945: case 1950: case 1951: case 1955:
         case 1958: case 1969: case 1972: case 2018: case 2010: case 2011: case 2016: case 2022: case 2023: case 2024:
-        case 2030:
+        case 2030: case 2045:
             if(
                 this.type==1247&&this.energy%2!=0||
                 this.type==1259&&this.energy%2!=0||
@@ -4175,7 +4175,9 @@ attack.prototype.update=function(){
             }
         break
         case 747:
-            this.procedure[0]=this.userCombatant.stance==2?1:0
+            if(this.timer==1){
+                this.procedure[0]=this.userCombatant.stance==2?1:0
+            }
             if(variants.nobasicanim){
                 this.remove=true
                 if(this.procedure[0]==1){
@@ -4200,13 +4202,20 @@ attack.prototype.update=function(){
             }
         break
         case 750:
+            if(this.timer==1){
+                this.procedure[0]=this.userCombatant.stance==3?1:0
+            }
             if(variants.nobasicanim){
-                this.userCombatant.moveTile(this.direction,this.distance)
-                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
-                this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
-                this.battle.activate(1,this.userCombatant.id)
+                if(this.procedure[0]==1){
+                    this.userCombatant.moveTile(this.direction,this.distance)
+                    this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance)
+                    this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                    this.battle.activate(1,this.userCombatant.id)
+                }else{
+                    this.userCombatant.enterStance(3)
+                }
                 this.remove=true
-            }else if(this.procedure[0]==3){
+            }else if(this.procedure[0]==1){
                 if(this.timer==1){
                     this.userCombatant.startAnimation(0)
                 }
@@ -4234,16 +4243,18 @@ attack.prototype.update=function(){
             }
         break
         case 751:
-            this.procedure[0]=this.userCombatant.stance==1?1:0
+            if(this.timer==1){
+                this.procedure[0]=this.userCombatant.stance==4?1:0
+            }
             if(variants.nobasicanim){
                 this.remove=true
                 if(this.procedure[0]==4){
                     this.targetCombatant.statusEffect('Frail',this.effect[0])
                     this.targetCombatant.statusEffect('Dexterity',this.effect[1])
                 }else{
-                    this.userCombatant.enterStance(1)
+                    this.userCombatant.enterStance(4)
                 }
-            }else if(this.procedure[0]==4){
+            }else if(this.procedure[0]==1){
                 if(this.timer==1){
                     this.userCombatant.startAnimation(17)
                 }
@@ -4260,7 +4271,7 @@ attack.prototype.update=function(){
                 }
                 this.userCombatant.runAnimation(1/10,5)
                 if(this.timer==10){
-                    this.userCombatant.enterStance(1)
+                    this.userCombatant.enterStance(4)
                 }else if(this.timer>=20){
                     this.remove=true
                 }
@@ -5530,8 +5541,8 @@ attack.prototype.update=function(){
                 if(this.userCombatant.getStatus('Double Damage')>0&&this.clearAttack[0]){
                     this.userCombatant.status.main[findList('Double Damage',this.userCombatant.status.name)]--
                 }
-                if(this.userCombatant.getStatus('Single Damage')>0&&this.clearAttack[1]){
-                    this.userCombatant.status.main[findList('Single Damage',this.userCombatant.status.name)]=0
+                if(this.userCombatant.getStatus('Single Damage Up')>0&&this.clearAttack[1]){
+                    this.userCombatant.status.main[findList('Single Damage Up',this.userCombatant.status.name)]=0
                 }
                 if(this.userCombatant.getStatus('Triple Damage')>0&&this.clearAttack[2]){
                     this.userCombatant.status.main[findList('Triple Damage',this.userCombatant.status.name)]--
@@ -5550,6 +5561,9 @@ attack.prototype.update=function(){
                 }
                 if(this.userCombatant.getStatus('Double Curse')>0&&this.clearAttack[7]){
                     this.userCombatant.status.main[findList('Double Curse',this.userCombatant.status.name)]--
+                }
+                if(this.userCombatant.getStatus('Single Damage Down')>0&&this.clearAttack[8]){
+                    this.userCombatant.status.main[findList('Single Damage Down',this.userCombatant.status.name)]=0
                 }
                 this.userCombatant.doubling=false
             break

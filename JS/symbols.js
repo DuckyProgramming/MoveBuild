@@ -2408,6 +2408,17 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(7,-6,4,3,10,3)
             layer.triangle(7,2,7,-2,10,0)
         break
+        case 264:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-2,6,-4,-3,0,-3)
+            layer.ellipse(3,0,4,4)
+        break
+        case 265:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,6,4,-3,0,-3)
+            layer.quad(-4.5,0,-3,1.5,-1.5,0,-3,-1.5)
+            layer.rect(3,0,3,3)
+        break
 
     }
     layer.pop()

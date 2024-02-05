@@ -844,7 +844,7 @@ class card{
             case 602: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 603: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nUpgrade ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 604: string+=`Construct Gains\n${effect[0]} Regeneration`; break
-            case 605: string+=`Choose Between\n${effect[0]} Random Blueprint${effect[0]!=1?`s`:``}to\nAdd to Your Hand`; break
+            case 605: string+=`Choose Between\n${effect[0]} Random Blueprint${effect[0]!=1?`s`:``} to\nAdd to Your Hand`; break
             case 606: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nApply ${effect[1]} Vulnerable`; break
             case 607: string+=`Draw and Upgrade\n${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 608: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nBecome Confused`; break
@@ -2272,6 +2272,8 @@ class card{
             case 2042: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Damage Down\n50%: Apply ${effect[2]} Burn\n50%: Apply ${effect[3]} Freeze`; break
             case 2043: string+=`Add a Random Card\nof Every Color\nof Equivalent Level\nto Your Hand`; break
             case 2044: string+=`Your Attacks Get\nDamage of Last Hit Taken\nDivided by ${effect[0]}`; break
+            case 2045: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTake Damage Equal\nto The Number of\nCards in Hand`; break
+            case 2046: string+=`Deal ${this.diceEffect(1,20,2,effect[0])} Damage\nOn 1, Lose ${effect[1]} Health`; break
 
 
 

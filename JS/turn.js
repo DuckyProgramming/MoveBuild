@@ -18,6 +18,41 @@ class turn{
         this.replayed=false
         this.directive='turn'
     }
+    base(){
+        switch(this.attackClass){
+            case 1:
+                this.clearAttack=[false,false,false,false,false,false,false,false,false]
+                if(this.userCombatant.getStatus('Double Damage')>0){
+                    this.clearAttack[0]=true
+                }
+                if(this.userCombatant.getStatus('Single Damage Up')>0){
+                    this.clearAttack[1]=true
+                }
+                if(this.userCombatant.getStatus('Triple Damage')>0){
+                    this.clearAttack[2]=true
+                }
+                if(this.userCombatant.getStatus('1.5x Damage')>0){
+                    this.clearAttack[3]=true
+                }
+                if(this.userCombatant.getStatus('Double Damage-1')>0){
+                    this.clearAttack[4]=true
+                }
+                if(this.userCombatant.getStatus('No Damage')>0){
+                    this.clearAttack[5]=true
+                }
+                if(this.userCombatant.getStatus('Temporary Single Damage')>0){
+                    this.clearAttack[6]=true
+                }
+                if(this.userCombatant.getStatus('Double Curse')>0&&floor(random(0,2))==0){
+                    this.clearAttack[7]=true
+                    this.userCombatant.doubling=true
+                }
+                if(this.userCombatant.getStatus('Single Damage Down')>0){
+                    this.clearAttack[8]=true
+                }
+            break
+        }
+    }
     setBase(){
         if(this.user>=this.battle.combatantManager.combatants.length){
             this.remove=true
@@ -27,6 +62,7 @@ class turn{
     }
     set(){
         this.setBase()
+        this.base()
         if(!this.remove){
             this.position={x:this.userCombatant.position.x,y:this.userCombatant.position.y}
             this.relativePosition={x:this.userCombatant.relativePosition.x,y:this.userCombatant.relativePosition.y}
@@ -4684,7 +4720,6 @@ class turn{
                             this.remove=true
                         }
                     break
-
                     default:
                         this.remove=true
                     break
@@ -4698,29 +4733,32 @@ class turn{
                     }
                     switch(this.attackClass){
                         case 1:
-                            if(this.userCombatant.getStatus('Double Damage')>0){
+                            if(this.userCombatant.getStatus('Double Damage')>0&&this.clearAttack[0]){
                                 this.userCombatant.status.main[findList('Double Damage',this.userCombatant.status.name)]--
                             }
-                            if(this.userCombatant.getStatus('Single Damage')>0){
-                                this.userCombatant.status.main[findList('Single Damage',this.userCombatant.status.name)]=0
+                            if(this.userCombatant.getStatus('Single Damage Up')>0&&this.clearAttack[1]){
+                                this.userCombatant.status.main[findList('Single Damage Up',this.userCombatant.status.name)]=0
                             }
-                            if(this.userCombatant.getStatus('Triple Damage')>0){
+                            if(this.userCombatant.getStatus('Triple Damage')>0&&this.clearAttack[2]){
                                 this.userCombatant.status.main[findList('Triple Damage',this.userCombatant.status.name)]--
                             }
-                            if(this.userCombatant.getStatus('1.5x')>0){
+                            if(this.userCombatant.getStatus('1.5x')>0&&this.clearAttack[3]){
                                 this.userCombatant.status.main[findList('1.5x',this.userCombatant.status.name)]--
                             }
-                            if(this.userCombatant.getStatus('Double Damage-1')>0){
+                            if(this.userCombatant.getStatus('Double Damage-1')>0&&this.clearAttack[4]){
                                 this.userCombatant.status.main[findList('Double Damage-1',this.userCombatant.status.name)]--
                             }
-                            if(this.userCombatant.getStatus('No Damage')>0){
+                            if(this.userCombatant.getStatus('No Damage')>0&&this.clearAttack[5]){
                                 this.userCombatant.status.main[findList('No Damage',this.userCombatant.status.name)]--
                             }
-                            if(this.userCombatant.getStatus('Temporary Single Damage')>0){
+                            if(this.userCombatant.getStatus('Temporary Single Damage')>0&&this.clearAttack[6]){
                                 this.userCombatant.status.main[findList('Temporary Single Damage',this.userCombatant.status.name)]--
                             }
-                            if(this.userCombatant.getStatus('Double Curse')>0&&this.userCombatant.doubling){
+                            if(this.userCombatant.getStatus('Double Curse')>0&&this.clearAttack[7]){
                                 this.userCombatant.status.main[findList('Double Curse',this.userCombatant.status.name)]--
+                            }
+                            if(this.userCombatant.getStatus('Single Damage Down')>0&&this.clearAttack[8]){
+                                this.userCombatant.status.main[findList('Single Damage Down',this.userCombatant.status.name)]=0
                             }
                         break
                     }

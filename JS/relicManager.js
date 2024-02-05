@@ -515,7 +515,7 @@ class relicManager{
                             this.relicPlayer(21).statusEffect('Buffer',this.active[21])
                         }
                         if(this.active[31]>0){
-                            this.relicPlayer(31).statusEffect('Single Damage',8*this.active[31])
+                            this.relicPlayer(31).statusEffect('Single Damage Up',8*this.active[31])
                         }
                         if(this.active[36]>0){
                             this.relicPlayer(36).addBlock(10*this.active[36])
