@@ -2500,6 +2500,7 @@ class group{
                                 this.cards[b].exhaust=true
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                        this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
                                         this.battle.cardManagers[this.player].deck.cards.splice(c,1)
                                         c--
                                         lc--
@@ -2524,6 +2525,7 @@ class group{
                             this.cards[b].exhaust=true
                             for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                 if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                    this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
                                     this.battle.cardManagers[this.player].deck.cards.splice(c,1)
                                     c--
                                     lc--
@@ -2541,6 +2543,7 @@ class group{
                                 this.cards[b].exhaust=true
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                        this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
                                         this.battle.cardManagers[this.player].deck.cards.splice(c,1)
                                         c--
                                         lc--

@@ -3903,10 +3903,10 @@ types.card=[
     },{
         name:'Overpower',rarity:2,list:4,
         levels:[
+            {effect:[2],attack:311,cost:3,target:[0],spec:[1],class:4},
             {effect:[2],attack:311,cost:2,target:[0],spec:[1],class:4},
-            {effect:[3],attack:311,cost:2,target:[0],spec:[1],class:4},
-            {effect:[3],attack:311,cost:2,target:[0],spec:[1,2],class:4},
-        ],
+            {effect:[2],attack:311,cost:2,target:[0],spec:[1,2],class:4},
+       ],
     },{
         name:'Spinning\nBlades',rarity:1,list:4,
         levels:[
@@ -7465,9 +7465,9 @@ types.card=[
     },{
         name:'Break\nShell',rarity:1,list:7,
         levels:[
-            {effect:[8],attack:1678,cost:1,target:[2,1,1],spec:[0],class:3},
-            {effect:[12],attack:1678,cost:1,target:[2,1,2],spec:[0],class:3},
+            {effect:[10],attack:1678,cost:1,target:[2,1,1],spec:[0],class:3},
             {effect:[15],attack:1678,cost:1,target:[2,1,2],spec:[0],class:3},
+            {effect:[18],attack:1678,cost:1,target:[2,1,2],spec:[0],class:3},
         ],
     },{
         name:`Fadeout`,rarity:0,list:7,
@@ -8050,9 +8050,9 @@ types.card=[
     },{
         name:'Perseids',rarity:2,list:8,
         levels:[
-            {effect:[1,24],attack:933,cost:0,target:[0],spec:[5],class:4},
-            {effect:[1,40],attack:933,cost:0,target:[0],spec:[5],class:4},
-            {effect:[1,52],attack:933,cost:0,target:[0],spec:[5],class:4},
+            {effect:[1,36],attack:933,cost:0,target:[0],spec:[5],class:4},
+            {effect:[1,60],attack:933,cost:0,target:[0],spec:[5],class:4},
+            {effect:[1,80],attack:933,cost:0,target:[0],spec:[5],class:4},
         ],
     },{
         name:'Treasure\nHunt',rarity:2,list:8,
@@ -8634,6 +8634,13 @@ types.card=[
             {effect:[1],attack:2029,cost:1,target:[0],spec:[1,27],class:4},
             {effect:[1],attack:2029,cost:1,target:[0],spec:[27],class:4},
             {effect:[1],attack:2029,cost:0,target:[0],spec:[27],class:4},
+        ],
+    },{
+        name:'Exhausting\nStep',rarity:0,list:8,
+        levels:[
+            {effect:[1,1],attack:2047,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:2047,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:2047,cost:0,target:[1,1,1],spec:[],class:3},
         ],
     },
 

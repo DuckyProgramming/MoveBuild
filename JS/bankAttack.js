@@ -179,7 +179,7 @@ attack.prototype.update=function(){
         case 1577: case 1578: case 1579: case 1580: case 1581: case 1582: case 1583: case 1584: case 1585: case 1586:
         case 1587: case 1588: case 1589: case 1590: case 1643: case 1644: case 1647: case 1648: case 1671: case 1672:
         case 1673: case 1677: case 1680: case 1681: case 1759: case 1760: case 1761: case 1784: case 1785: case 1949:
-        case 1978: case 1992: case 2008: case 2009: case 2033: case 2036: case 2037: case 2040:
+        case 1978: case 1992: case 2008: case 2009: case 2033: case 2036: case 2037: case 2040: case 2047:
             if(this.type==808&&this.userCombatant.stance!=3||this.type==1515&&floor(random(0,10))==0&&this.timer==1&&!this.userCombatant.luckCheck()){
                 this.remove=true
                 if(this.type==1515){
@@ -4963,15 +4963,17 @@ attack.prototype.update=function(){
                 }
                 this.userCombatant.startAnimation(14)
             }
-            if(this.timer<=15){
-                this.userCombatant.runAnimation(1/15,14)
-            }
-            if(this.timer==10){
-                this.targetCombatant.takeDamage(this.effect[0],this.user)
-                this.targetCombatant.statusEffect('Weak',this.effect[1])
-            }
-            if(this.timer>=26){
-                this.remove=true
+            if(!this.remove){
+                if(this.timer<=15){
+                    this.userCombatant.runAnimation(1/15,14)
+                }
+                if(this.timer==10){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user)
+                    this.targetCombatant.statusEffect('Weak',this.effect[1])
+                }
+                if(this.timer>=15){
+                    this.remove=true
+                }
             }
         break
         case 1386:

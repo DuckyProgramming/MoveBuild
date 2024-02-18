@@ -1794,7 +1794,7 @@ class card{
             case 1557: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Difference\nBetween Highest and\nLowest Effects of\nAttacks in Hand`; break
             case 1558: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More When\nTarget Has Shock`; break
             case 1559: string+=`If You Have 0 Energy,\nDeal ${this.calculateEffect(effect[0],0)} Damage\nLose ${effect[1]} Currency\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
-            case 1560: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Target\nHas Duplicate Enemies`; break
+            case 1560: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More if Target\nHas Duplicate Enemies`; break
             case 1561: string+=`At Least 3 Cards:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1562: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf First Card\nPlayed This Turn,\nGain ${effect[1]} Charge`; break
             case 1563: string+=`Counter ${effect[0]} All\nThis Combat\nLose ${effect[1]} Currency`; break
@@ -2274,6 +2274,7 @@ class card{
             case 2044: string+=`Your Attacks Get\nDamage of Last Hit Taken\nDivided by ${effect[0]}`; break
             case 2045: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nTake Damage Equal\nto The Number of\nCards in Hand`; break
             case 2046: string+=`Deal ${this.diceEffect(1,20,2,effect[0])} Damage\nOn 1, Lose ${effect[1]} Health`; break
+            case 2047: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
 
 
 
@@ -2465,6 +2466,7 @@ class card{
         }
     }
     callVanishEffect(){
+        print('a')
         switch(this.attack){
             case 1238:
                 this.battle.cardManagers[this.player].deck.add(findName('Plague',types.card),0,game.playerNumber+2)
@@ -2485,6 +2487,7 @@ class card{
                 this.battle.cardManagers[this.player].deck.add(findName('Fury\nSpell',types.card),0,0)
             break
             case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373: case 1433: case 1565: case 1903:
+                print('b')
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break
