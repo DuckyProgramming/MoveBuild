@@ -8649,9 +8649,9 @@ types.card=[
     {
         name:'Pistol',rarity:0,list:9,
         levels:[
-            {effect:[7],attack:590,cost:1,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[11],attack:590,cost:1,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[14],attack:590,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[8],attack:590,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[12],attack:590,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[15],attack:590,cost:1,target:[2,1,3],spec:[0,25],class:1},
         ],
     },{
         name:'Shotgun',rarity:0,list:9,
@@ -8698,9 +8698,9 @@ types.card=[
     },{
         name:'Lucky\nBullet',rarity:0,list:9,
         levels:[
-            {effect:[6,1],attack:915,cost:1,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[10,1],attack:915,cost:1,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[12,2],attack:915,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[7,1],attack:915,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[11,1],attack:915,cost:1,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[13,2],attack:915,cost:1,target:[2,1,3],spec:[0,25],class:1},
         ],
     },{
         name:'Take\nCredit',rarity:1,list:9,
@@ -9272,9 +9272,9 @@ types.card=[
     },{
         name:'Impulse\nPurchase',rarity:1,list:9,
         levels:[
-            {effect:[13],attack:1174,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[18],attack:1174,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[22],attack:1174,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[17],attack:1174,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[24],attack:1174,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[30],attack:1174,cost:2,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Sanitation',rarity:2,list:9,

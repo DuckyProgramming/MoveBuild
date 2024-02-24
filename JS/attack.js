@@ -1215,7 +1215,7 @@ class attack{
                     case 1732:
                         if(this.energy==2){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        }else if(this.energy==1){
+                        }else{
                             this.userCombatant.heal(this.effect[1])
                         }
                     break
