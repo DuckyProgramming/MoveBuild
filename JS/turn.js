@@ -1231,9 +1231,9 @@ class turn{
                     break
                     case 232:
                         if(this.battle.turnManager.auxiliary){
-                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength',this.effect[0])
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
                         }else{
-                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffect('Temporary Strength',this.effect[0])
+                            this.battle.combatantManager.combatants[this.userCombatant.builder].statusEffectNext('Temporary Strength',this.effect[0])
                         }
                     break
                     case 234:

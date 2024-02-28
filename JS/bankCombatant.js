@@ -6942,7 +6942,9 @@ combatant.prototype.display=function(){
                             this.layer.rect(35*lsin(this.anim.direction),-15,30-10*lcos(this.anim.direction),3)
                         }else if(this.name=='Repulse Turret'){
                             this.layer.ellipse(30*lsin(this.anim.direction),-25,30*lcos(this.anim.direction),30)
+                            this.layer.strokeJoin(ROUND)
                             this.layer.quad(20*lsin(this.anim.direction),-35,20*lsin(this.anim.direction),-15,30*lsin(this.anim.direction),-10,30*lsin(this.anim.direction),-40)
+                            this.layer.strokeJoin(MITER)
                         }else if(this.name=='Multiturret'){
                             this.layer.rect(30*lsin(this.anim.direction),-35,20-5*lcos(this.anim.direction),6)
                             this.layer.rect(30*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,25-10*lcos(this.anim.direction),6)
@@ -6993,8 +6995,10 @@ combatant.prototype.display=function(){
                         this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-20,35-15*lcos(this.anim.direction),3)
                         this.layer.rect(35*lsin(this.anim.direction),-15,30-10*lcos(this.anim.direction),3)
                     }else if(this.name=='Repulse Turret'){
-                        this.layer.ellipse(30*lsin(this.anim.direction),-25,30*lcos(this.anim.direction),30)
+                        this.layer.strokeJoin(ROUND)
                         this.layer.quad(20*lsin(this.anim.direction),-35,20*lsin(this.anim.direction),-15,30*lsin(this.anim.direction),-10,30*lsin(this.anim.direction),-40)
+                        this.layer.strokeJoin(MITER)
+                        this.layer.ellipse(30*lsin(this.anim.direction),-25,30*lcos(this.anim.direction),30)
                     }else if(this.name=='Multiturret'){
                         this.layer.rect(30*lsin(this.anim.direction),-35,20-5*lcos(this.anim.direction),6)
                         this.layer.rect(30*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-25,25-10*lcos(this.anim.direction),6)

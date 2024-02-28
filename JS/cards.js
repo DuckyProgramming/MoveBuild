@@ -4425,9 +4425,9 @@ types.card=[
     },{
         name:'Streamline',rarity:1,list:5,
         levels:[
-            {effect:[15,1],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
             {effect:[20,1],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
-            {effect:[24,1],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
+            {effect:[30,1],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
+            {effect:[36,1],attack:108,cost:3,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Lightspeed',rarity:0,list:5,
@@ -4544,9 +4544,9 @@ types.card=[
     },{
         name:'Barrage',rarity:0,list:5,
         levels:[
-            {effect:[4],attack:510,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[6],attack:510,cost:1,target:[2,1,2],spec:[0],class:1},
             {effect:[7],attack:510,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[11],attack:510,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[14],attack:510,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Compile',rarity:0,list:5,
@@ -6061,9 +6061,9 @@ types.card=[
     },{
         name:'Reuse',rarity:2,list:6,
         levels:[
-            {effect:[8,1],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
             {effect:[12,1],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[15,1],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[18,1],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[20,2],attack:689,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Frontier\nJustice',rarity:0,list:6,
@@ -6320,9 +6320,9 @@ types.card=[
     },{
         name:'Garbage\nCollection',rarity:2,list:6,
         levels:[
-        {effect:[44,10],attack:1416,cost:4,target:[2,1,1],spec:[0],class:1},
-            {effect:[64,14],attack:1416,cost:4,target:[2,1,1],spec:[0],class:1},
-            {effect:[80,18],attack:1416,cost:4,target:[2,1,1],spec:[0],class:1},
+            {effect:[50,10],attack:1416,cost:4,target:[2,1,1],spec:[0],class:1},
+            {effect:[75,15],attack:1416,cost:4,target:[2,1,1],spec:[0],class:1},
+            {effect:[80,15],attack:1416,cost:4,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Capacitor',rarity:1,list:6,
@@ -6516,9 +6516,9 @@ types.card=[
     },{
         name:'Spannersword',rarity:1,list:6,
         levels:[
-            {effect:[5],attack:1948,cost:0,target:[2,1,1],spec:[],class:4},
-            {effect:[9],attack:1948,cost:0,target:[2,1,1],spec:[],class:4},
-            {effect:[12],attack:1948,cost:0,target:[2,1,1],spec:[],class:4},
+            {effect:[5],attack:1948,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[9],attack:1948,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[12],attack:1948,cost:0,target:[2,1,1],spec:[],class:1},
         ],
     },{
         name:'Golden\nWrench',rarity:2,list:6,
@@ -10778,9 +10778,7 @@ types.card=[
             {effect:[19,1],attack:2028,cost:1,target:[2,1,6],spec:[],class:1},
             {effect:[24,1],attack:2028,cost:1,target:[2,1,6],spec:[],class:1},
         ],
-    },
-
-    {
+    },{
         name:'Steamroll',rarity:1,list:10,
         levels:[
             {effect:[2,1],attack:2030,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -10795,8 +10793,6 @@ types.card=[
             {effect:[4,2],attack:2032,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },
-
-    //bankroll
     
     //mark 10
 

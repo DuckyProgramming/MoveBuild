@@ -484,7 +484,9 @@ class combatantManager{
                         this.combatants[a].takeDamage(args[0],-1)
                     break
                     case 20:
-                        this.combatants[a].statusEffect('Cannot Die',args[0])
+                        if(this.combatants[a].life>0){
+                            this.combatants[a].statusEffect('Cannot Die',args[0])
+                        }
                     break
                     case 21:
                         this.combatants[a].statusEffect('Invisible',args[0])
