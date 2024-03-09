@@ -332,6 +332,26 @@ class relicManager{
             case 168:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(0.5)
             break
+            case 181:
+                for(let a=0,la=6;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,30,[1])
+                }
+            break
+            case 182:
+                for(let a=0,la=4;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,30,[2])
+                }
+            break
+            case 183:
+                for(let a=0,la=2;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,30,[3])
+                }
+            break
+            case 184:
+                for(let a=0,la=2;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,30,[4])
+                }
+            break
 
         }
     }
@@ -466,6 +486,26 @@ class relicManager{
             break
             case 160:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(30)
+            break
+            case 181:
+                for(let a=0,la=6;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,31,[1])
+                }
+            break
+            case 182:
+                for(let a=0,la=4;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,31,[2])
+                }
+            break
+            case 183:
+                for(let a=0,la=2;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,31,[3])
+                }
+            break
+            case 184:
+                for(let a=0,la=2;a<la;a++){
+                    this.battle.cardManagers[player].randomEffect(0,31,[4])
+                }
             break
         }
         this.deactivate(type)

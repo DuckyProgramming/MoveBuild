@@ -19,7 +19,7 @@ class purchase{
                     args[1]++
                 }
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
-                let roll=floor(random(0,200))
+                let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,50)):floor(random(0,200))
                 this.card.edition=roll==0?4:roll==1?3:roll>=2&&roll<=4?2:roll>=5&&roll<=9?1:0
                 if(this.args[3]){
                     for(let a=0,la=this.cost.length;a<la;a++){

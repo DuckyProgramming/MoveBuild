@@ -1028,9 +1028,9 @@ types.card=[
     },{
         name:'Lockbox',rarity:2,list:1,
         levels:[
-            {effect:[300],attack:1458,cost:0,target:[0],spec:[5],class:4},
-            {effect:[500],attack:1458,cost:0,target:[0],spec:[5],class:4},
             {effect:[600],attack:1458,cost:0,target:[0],spec:[5],class:4},
+            {effect:[800],attack:1458,cost:0,target:[0],spec:[5],class:4},
+            {effect:[900],attack:1458,cost:0,target:[0],spec:[5],class:4},
         ],
     },{
         name:'Pickaxe',rarity:1,list:1,
@@ -6548,6 +6548,13 @@ types.card=[
             {effect:[13,26],attack:1167,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[16,32],attack:1167,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
+    },{
+        name:'System\nShock',rarity:2,list:6,
+        levels:[
+            {effect:[15,5],attack:1268,cost:0,target:[2,1,2],spec:[0],class:1},
+            {effect:[15,8],attack:1268,cost:0,target:[2,1,2],spec:[0],class:1},
+            {effect:[15,10],attack:1268,cost:0,target:[2,1,2],spec:[0],class:1},
+        ],
     },
 
     //mark 6
@@ -9284,13 +9291,6 @@ types.card=[
             {effect:[],attack:1177,cost:2,target:[0],spec:[22],class:4},
         ],
     },{
-        name:'System\nShock',rarity:2,list:9,
-        levels:[
-            {effect:[15,5],attack:1268,cost:0,target:[2,1,2],spec:[0],class:1},
-            {effect:[15,8],attack:1268,cost:0,target:[2,1,2],spec:[0],class:1},
-            {effect:[15,10],attack:1268,cost:0,target:[2,1,2],spec:[0],class:1},
-        ],
-    },{
         name:'Frontline',rarity:1,list:9,
         levels:[
             {effect:[2,1,1],attack:1301,cost:0,target:[0],spec:[],class:2},
@@ -9664,16 +9664,16 @@ types.card=[
     },{
         name:'Scorch',rarity:1,list:9,
         levels:[
-            {effect:[2,1],attack:1822,cost:0,target:[2,1,2],spec:[4],class:2},
             {effect:[3,1],attack:1822,cost:0,target:[2,1,2],spec:[4],class:2},
             {effect:[4,1],attack:1822,cost:0,target:[2,1,2],spec:[4],class:2},
+            {effect:[5,1],attack:1822,cost:0,target:[2,1,2],spec:[4],class:2},
         ],
     },{
         name:'Waterflame',rarity:1,list:9,
         levels:[
-            {effect:[2],attack:1864,cost:0,target:[2,1,1],spec:[],class:4},
-            {effect:[3],attack:1864,cost:0,target:[2,1,1],spec:[],class:4},
-            {effect:[4],attack:1864,cost:0,target:[2,1,1],spec:[],class:4},
+            {effect:[2],attack:1864,cost:0,target:[2,1,2],spec:[],class:4},
+            {effect:[3],attack:1864,cost:0,target:[2,1,2],spec:[],class:4},
+            {effect:[4],attack:1864,cost:0,target:[2,1,2],spec:[],class:4},
         ],
     },{
         name:'Caramel',rarity:1,list:9,

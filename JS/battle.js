@@ -721,7 +721,7 @@ class battle{
                 this.energy.main[player]++
             break
             case 4:
-                this.battle.cardManagers[player].draw(2)
+                this.cardManagers[player].draw(2)
             break
         }
         switch(cardClass){

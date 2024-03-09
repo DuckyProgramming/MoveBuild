@@ -11,6 +11,7 @@ types={
         {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A guardian of dreams, in her mind, she\nviews everything else as a nightmare.\nHow she got her powers, well,\nblame the Management as always.`},
         {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:75,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Having lost his powerful role after\na mass of insider trading,\nhe now takes his anger out against\nthe Management that wronged him.`},
         {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:70,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
+
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
@@ -465,7 +466,6 @@ types={
         {name:'1v1',class:1},
         {name:'Push Dissipate',class:1},
 
-
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
         {name:'Leftovers',internal:'Quick Heal',id:1,rarity:0,list:0,description:'Heal 3 HP at\nthe End of Combat'},
@@ -664,6 +664,13 @@ types={
         {name:'Smith Business Card',internal:'Boss Double Upgrade',id:177,rarity:2,list:0,description:'Double Upgrade a Card\nAfter Every Boss'},
         {name:'Purple Sunflower',internal:'Discard Over Draw Energy',id:178,rarity:2,list:0,description:'Gain 1 Energy When Discard Pile\nHas More Cards Than Draw Pile'},
         {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:2,list:0,description:'Extra Energy is Converted\nto Temporary Strength'},
+
+        {name:'Hone',internal:'More Editions',id:180,rarity:4,list:0,description:'Cards are 4x More\nLikely to be Editions'},
+        {name:'Foil Pack',internal:'6 Random Foils',id:181,rarity:3,list:0,description:'When Taken, Make 6\nRandom Cards Foil'},
+        {name:'Holographic Pack',internal:'4 Random Holographics',id:182,rarity:3,list:0,description:'When Taken, Make 4\nRandom Cards Holographic'},
+        {name:'Polychrome Pack',internal:'2 Random Polychromes',id:183,rarity:3,list:0,description:'When Taken, Make 2\nRandom Card Polychrome'},
+        {name:'Negative Pack',internal:'2 Random Negatives',id:184,rarity:3,list:0,description:'When Taken, Make 2\nRandom Card Negative'},
+        
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,description:'None'},

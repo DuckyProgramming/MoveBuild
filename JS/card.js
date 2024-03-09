@@ -2468,7 +2468,6 @@ class card{
         }
     }
     callVanishEffect(){
-        print('a')
         switch(this.attack){
             case 1238:
                 this.battle.cardManagers[this.player].deck.add(findName('Plague',types.card),0,game.playerNumber+2)
@@ -2489,7 +2488,6 @@ class card{
                 this.battle.cardManagers[this.player].deck.add(findName('Fury\nSpell',types.card),0,0)
             break
             case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373: case 1433: case 1565: case 1903:
-                print('b')
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break

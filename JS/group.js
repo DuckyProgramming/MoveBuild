@@ -1257,6 +1257,8 @@ class group{
                 &&!(effect==22&&this.cards[a].spec.includes(39))
                 &&!((effect==26||effect==27)&&!(this.cards[a].spec.includes(35)&&this.cards[a].cost>0))
                 &&!((effect==18||effect==29)&&(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(30)||this.cards[a].spec.includes(36)||this.cards[a].spec.includes(38)))
+                &&!(effect==30&&this.cards[a].edition!=0)
+                &&!(effect==31&&this.cards[a].edition!=args[0])
                 ){
                     list.push(a)
                 }
@@ -1423,6 +1425,12 @@ class group{
                         this.cards[index].spec.push(15)
                         this.cards[index].additionalSpec.push(15)
                         this.cards[index].limit=args[0]
+                    break
+                    case 30:
+                        this.cards[index].edition=args[0]
+                    break
+                    case 31:
+                        this.cards[index].edition=0
                     break
 
                 }

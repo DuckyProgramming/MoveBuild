@@ -4260,7 +4260,7 @@ function setupEdition(type,layer){
 			layer.stroke(0)
 			layer.strokeWeight(10)
 			layer.erase(1,1)
-			layer.rect(layer.width/2,layer.height/2,105,135,10)
+			layer.rect(layer.width/2,layer.height/2,105,135,12.5)
 		break
 		case 1:
 			layer.fill(100,50,200,0.1)
@@ -4276,9 +4276,8 @@ function setupEdition(type,layer){
 			}
 			layer.fill(255,0.02)
 			for(let a=0,la=6;a<la;a++){
-				layer.rotate(60)
 				for(let b=0,lb=10;b<lb;b++){
-					layer.arc(layer.width/2,layer.height/2,300,300,-90-8*(1-b/lb),-90+8*(1-b/lb))
+					layer.arc(layer.width/2,layer.height/2,300,300,-90+a*60-8*(1-b/lb),-90+a*60+8*(1-b/lb))
 				}
 			}
 		break
@@ -4286,11 +4285,18 @@ function setupEdition(type,layer){
 			layer.colorMode(HSB,360,255,255,1)
 			layer.fill(0,150,200)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			let schema=[]
 			for(let a=0,la=12;a<la;a++){
+				schema.push([])
+				for(let b=0,lb=14;b<lb;b++){
+					schema[a].push(random(0.6,1.5))
+				}
+			}
+			for(let a=0,la=24;a<la;a++){
 				layer.fill(360*(a+1)/(la+1),150,200)
 				for(let b=0,lb=12;b<lb;b++){
 					for(let c=0,lc=14;c<lc;c++){
-						regTriangle(layer,(b+(1-sqrt(3)/2)/(sqrt(3)/2)*((b+c)%2*2-1))/(lb-1)*layer.width,c/(lc-1)*layer.height,12*(1-a/la*1.1)*random(0.8,1.2),12*(1-a/la*1.1)*random(0.8,1.2),(b+c)%2*60-30+random(-15,15))
+						regTriangle(layer,(b+(1-sqrt(3)/2)/(sqrt(3)/2)*((b+c)%2*2-1))/(lb-1)*layer.width,c/(lc-1)*layer.height,12*(1-a/la*1.1)*random(0.8,1.2)*schema[b][c],12*(1-a/la*1.1)*random(0.8,1.2)*schema[b][c],(b+c)%2*60-30+random(-15,15))
 					}
 				}
 			}
@@ -4307,10 +4313,10 @@ function setupEdition(type,layer){
 			let spots=[]
 			for(let a=0,la=7;a<la;a++){
 				for(let b=0,lb=5;b<lb;b++){
-					spots.push([(a+0.5+random(-0.2,0.2))/la*layer.width,(b+0.25+a%2*0.5+random(-0.2,0.2))/lb*layer.height,random(30,60),random(1,2)])
+					spots.push([(a+0.5+random(-0.4,0.4))/la*layer.width,(b+0.25+a%2*0.5+random(-0.4,0.4))/lb*layer.height,random(30,75),random(1,2)])
 				}
 			}
-			for(let a=0,la=12;a<la;a++){
+			for(let a=0,la=24;a<la;a++){
 				layer.fill(360*(a+1)/(la+1),150,200)
 				for(let b=0,lb=spots.length;b<lb;b++){
 					if(1-a/la*spots[b][3]>0){

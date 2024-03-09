@@ -117,7 +117,7 @@ class overlay{
                         for(let a=0,la=this.options;a<la;a++){
                             let index=floor(random(0,list[args[1]].length))
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
-                            let roll=floor(random(0,200))
+                            let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,50)):floor(random(0,200))
                             this.cards[a].edition=roll==0?4:roll==1?3:roll>=2&&roll<=4?2:roll>=5&&roll<=9?1:0
                             this.cards[a].upSize=true
                             list[args[1]].splice(index,1)
@@ -126,7 +126,7 @@ class overlay{
                             list=variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                             let index=floor(random(0,list[args[1]].length))
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+this.options*60+120,this.layer.height/2+20,list[args[1]][index],args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:types.card[list[args[1]][index]].list,-1))
-                            let roll=floor(random(0,200))
+                            let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,50)):floor(random(0,200))
                             this.cards[a].edition=roll==0?4:roll==1?3:roll>=2&&roll<=4?2:roll>=5&&roll<=9?1:0
                             this.cards[this.cards.length-1].upSize=true
                         }
@@ -1167,8 +1167,7 @@ class overlay{
                         break
                         case 20:
                             for(let a=0,la=min(3,this.battle.cardManagers[this.player].reserve.cards.length);a<la;a++){
-                                if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].reserve.cards[a])&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select&&
-                                !this.battle.cardManagers[this.player].reserve.cards[a].spec.includes(37)){
+                                if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].reserve.cards[a])&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select){
                                     this.battle.cardManagers[this.player].reserve.cards[a].select=false
                                     switch(this.args[0]){
                                         case 20:

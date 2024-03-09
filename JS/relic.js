@@ -1315,6 +1315,39 @@ class relic{
                     displaySymbol(this.layer,10,-3,41,0,0.8,this.fade)
                     displaySymbol(this.layer,0,8,4,0,0.8,this.fade)
                 break
+                case 'More Editions':
+                    displaySymbol(this.layer,-6,-7.5,78,0,0.8,this.fade)
+                    displaySymbol(this.layer,6,-7.5,79,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,7.5,80,0,0.8,this.fade)
+                    displaySymbol(this.layer,6,7.5,81,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4x',0,10)
+                break
+                case '6 Random Foils':
+                    displaySymbol(this.layer,0,0,78,0,1.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('6',0,0)
+                break
+                case '4 Random Holographics':
+                    displaySymbol(this.layer,0,0,79,0,1.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('4',0,0)
+                break
+                case '2 Random Polychromes':
+                    displaySymbol(this.layer,0,0,80,0,1.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('2',0,0)
+                break
+                case '2 Random Negatives':
+                    displaySymbol(this.layer,0,0,81,0,1.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('2',0,0)
+                break
 
             }
             if(value){

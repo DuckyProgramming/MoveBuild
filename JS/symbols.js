@@ -5354,6 +5354,36 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.quad(0,0,6,0,6,-6,0,-2)
             layer.quad(0,0,-6,0,-6,6,0,2)
         break
+        case 78:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(1)
+            layer.ellipse(0,0,8)
+        break
+        case 79:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(1)
+            regTriangle(layer,0,-4,4,4,30)
+            regTriangle(layer,0,4,4,4,-30)
+        break
+        case 80:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(1)
+            layer.ellipse(-2,-4,4)
+            layer.ellipse(1.5,3,5)
+        break
+        case 81:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4,2)
+        break
     }
     layer.pop()
 }
@@ -5432,4 +5462,8 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 75-Extra Turn
 76-Wide Card
 77-offcolor
+78-Foil Card
+79-Holographic Card
+80-Polychrome Card
+81-Negative Card
 */
