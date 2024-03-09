@@ -5394,7 +5394,7 @@ class combatant{
                 gain*=1.5
             }
             if(this.status.main[109]>0){
-                this.gainMaxHP(1)
+                this.gainMaxHP(this.status.main[109])
             }
             this.life=min(this.life+ceil(gain),this.base.life)
         }
@@ -5406,7 +5406,7 @@ class combatant{
                 gain*=1.5
             }
             if(this.status.main[109]>0){
-                this.gainMaxHP(1)
+                this.gainMaxHP(this.status.main[109])
             }
             if(this.life<0){
                 this.life=0

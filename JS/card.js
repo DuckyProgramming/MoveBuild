@@ -1,5 +1,5 @@
 class card{
-    constructor(layer,battle,player,x,y,type,level,color,id,cost,additionalSpec,name,list,effect,attack,target,spec,cardClass,limit,falsed,retain2=false,colorful=false){
+    constructor(layer,battle,player,x,y,type,level,color,id,cost,additionalSpec,name,list,effect,attack,target,spec,cardClass,limit,falsed,retain2=false,colorful=false,edition){
         this.layer=layer
         this.battle=battle
         this.player=player
@@ -86,7 +86,9 @@ class card{
             this.class=cardClass||types.card[this.type].levels[this.level].class
             this.levels=types.card[this.type].levels.length
             this.limit=limit
-            this.limit=this.limit==undefined?this.attackk==1947?-1:this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38)||this.spec.includes(42)||this.attack==1947)?types.card[this.type].levels[this.level].limit:0:this.limit
+            this.limit=this.limit==undefined?this.attack==1947?-1:this.attack==1352?findName('Duck',types.combatant):(this.spec.includes(15)||this.spec.includes(30)||this.spec.includes(38)||this.spec.includes(42)||this.attack==1947)?types.card[this.type].levels[this.level].limit:0:this.limit
+            this.edition=edition
+            this.edition=this.edition==undefined?0:this.edition
             this.additionalSpec=additionalSpec||[]
             if(this.list==-1){
                 this.list=this.color
@@ -2195,7 +2197,7 @@ class card{
             case 1961: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nWhen Removed, Gain\n1 Trash Can Item`; break
             case 1962: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nPush 1 Tile Cyclically\nin All Directions`; break
             case 1963: string+=`Add ${this.diceEffect(1,6,3,effect[0])} Block`; break
-            case 1964: string+=`Add ${effect[0]} Random\nAce${effect[0]!=1?`s`:``} of Equivalent\nLevel to Your Hand\nand Retain It\nUntil Played`; break
+            case 1964: string+=`Add ${effect[0]} Random\nAce${effect[0]!=1?`s`:``} of Equivalent\nLevel to Your Hand\nand Retain ${effect[0]!=1?`Them`:`It`}\nUntil Played`; break
             case 1965: string+=`Deal ${this.diceEffect(1,6,2,effect[0])} Damage\nto a Random Enemy\n${effect[1]} Time${effect[1]!=1?`s`:``}`; break
             case 1966: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDeals ${effect[1]} More\nWhen Damage Taken`; break
             case 1967: string+=`Heal Target For ${effect[0]}\nApply ${effect[1]} Burn`; break
@@ -2890,113 +2892,224 @@ class card{
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
             this.layer.scale(this.size*this.sizeCap)
-            if(this.attack==1328){
-                this.layer.fill(255,150,150,this.fade*this.anim.select)
-                this.layer.noStroke()
-                this.layer.rect(0,0,this.width+15,this.height+15,10)
-                this.layer.fill(238,28,37,this.fade)
-                this.layer.stroke(208,8,12,this.fade)
-                this.layer.strokeWeight(5)
-                this.layer.rect(0,0,this.width,this.height,5)
-                this.layer.fill(255,255,0,this.fade)
-                this.layer.noStroke()
-                regStar(this.layer,this.width/4,-this.height/2+this.width/4,5,this.width*3/20,this.width*3/20,this.width*3/20/2.62,this.width*3/20/2.62,90)
-                regStar(this.layer,this.width*2/5,-this.height/2+this.width/2,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
-                regStar(this.layer,this.width*3/10,-this.height/2+this.width*3/5,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
-                regStar(this.layer,this.width*3/20,-this.height/2+this.width*3/5,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
-                regStar(this.layer,this.width/20,-this.height/2+this.width/2,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
-                this.layer.stroke(208,8,12,this.fade)
-                this.layer.noFill()
-            }else if(this.attack==1330){
-                this.layer.fill(100,225,175,this.fade*this.anim.select)
-                this.layer.noStroke()
-                this.layer.rect(0,0,this.width+15,this.height+15,10)
-                this.layer.fill(50,200,150,this.fade)
-                this.layer.stroke(25,175,125,this.fade)
-                this.layer.strokeWeight(5)
-                this.layer.rect(0,0,this.width,this.height,5)
-                this.layer.fill(50,255,100,this.fade)
-                this.layer.stroke(25,255,75,this.fade)
-                this.layer.quad(-this.width/2,-this.height/4,-this.width/2,-this.height/12,this.width/2,this.height/4,this.width/2,this.height/12,5)
-                this.layer.stroke(25,175,125,this.fade)
-                this.layer.noFill()
-            }else if(this.attack==1393){
-                this.layer.fill(0,150,255,this.fade*this.anim.select)
-                this.layer.noStroke()
-                this.layer.rect(0,0,this.width+15,this.height+15,10)
-                this.layer.fill(0,41,204,this.fade)
-                this.layer.stroke(0,26,174,this.fade)
-                this.layer.strokeWeight(5)
-                this.layer.rect(0,0,this.width,this.height,5)
-                this.layer.fill(255,this.fade)
-                this.layer.noStroke()
-                let cap=tan(15)
-                for(let a=0,la=12;a<la;a++){
-                    this.layer.rotate(30)
-                    this.layer.triangle(0,this.width*3/8,-this.width*3/8*cap,0,this.width*3/8*cap,0)
-                }
-                this.layer.fill(0,41,204,this.fade)
-                this.layer.ellipse(0,0,this.width*17/40)
-                this.layer.fill(255,this.fade)
-                this.layer.ellipse(0,0,this.width*3/8)
-                this.layer.stroke(0,26,174,this.fade)
-                this.layer.noFill()
-            }else if(this.attack==1615){
-                this.layer.fill(240,120,90,this.fade*this.anim.select)
-                this.layer.noStroke()
-                this.layer.rect(0,0,this.width+15,this.height+15,10)
-                this.layer.fill(180,75,60,this.fade)
-                this.layer.stroke(150,60,45,this.fade)
-                this.layer.strokeWeight(5)
-                this.layer.rect(0,0,this.width,this.height,5)
-                this.layer.strokeWeight(4)
-                for(let a=0,la=8;a<la;a++){
-                    if(a!=0){
-                        this.layer.line(-this.width/2,-this.height/2+this.height*a/la,this.width/2,-this.height/2+this.height*a/la)
+            if(this.edition==4){
+                if(this.attack==1328){
+                    this.layer.fill(0,150,255,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(0,41,204,this.fade)
+                    this.layer.stroke(0,26,174,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.fill(255,this.fade)
+                    this.layer.noStroke()
+                    regStar(this.layer,this.width/4,-this.height/2+this.width/4,5,this.width*3/20,this.width*3/20,this.width*3/20/2.62,this.width*3/20/2.62,90)
+                    regStar(this.layer,this.width*2/5,-this.height/2+this.width/2,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                    regStar(this.layer,this.width*3/10,-this.height/2+this.width*3/5,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                    regStar(this.layer,this.width*3/20,-this.height/2+this.width*3/5,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                    regStar(this.layer,this.width/20,-this.height/2+this.width/2,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                    this.layer.stroke(0,26,174,this.fade)
+                    this.layer.noFill()
+                }else if(this.attack==1330){
+                    this.layer.fill(20,45,35,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(10,40,30,this.fade)
+                    this.layer.stroke(5,35,25,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.fill(10,50,20,this.fade)
+                    this.layer.stroke(5,50,15,this.fade)
+                    this.layer.quad(-this.width/2,-this.height/4,-this.width/2,-this.height/12,this.width/2,this.height/4,this.width/2,this.height/12,5)
+                    this.layer.stroke(5,35,25,this.fade)
+                    this.layer.noFill()
+                }else if(this.attack==1393){
+                    this.layer.fill(255,150,150,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(238,28,37,this.fade)
+                    this.layer.stroke(208,8,12,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.fill(255,255,0,this.fade)
+                    this.layer.noStroke()
+                    let cap=tan(15)
+                    for(let a=0,la=12;a<la;a++){
+                        this.layer.rotate(30)
+                        this.layer.triangle(0,this.width*3/8,-this.width*3/8*cap,0,this.width*3/8*cap,0)
                     }
-                    for(let b=0,lb=3;b<lb;b++){
-                        this.layer.line(-this.width/2+(b+0.25+a%2*0.5)/lb*this.width,-this.height/2+this.height*a/la,-this.width/2+(b+0.25+a%2*0.5)/lb*this.width,-this.height/2+this.height*(a+1)/la)
+                    this.layer.fill(238,28,37,this.fade)
+                    this.layer.ellipse(0,0,this.width*17/40)
+                    this.layer.fill(255,255,0,this.fade)
+                    this.layer.ellipse(0,0,this.width*3/8)
+                    this.layer.stroke(208,8,12,this.fade)
+                    this.layer.noFill()
+                }else if(this.attack==1615){
+                    this.layer.fill(255,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(0,this.fade)
+                    this.layer.stroke(255,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.strokeWeight(4)
+                    for(let a=0,la=8;a<la;a++){
+                        if(a!=0){
+                            this.layer.line(-this.width/2,-this.height/2+this.height*a/la,this.width/2,-this.height/2+this.height*a/la)
+                        }
+                        for(let b=0,lb=3;b<lb;b++){
+                            this.layer.line(-this.width/2+(b+0.25+a%2*0.5)/lb*this.width,-this.height/2+this.height*a/la,-this.width/2+(b+0.25+a%2*0.5)/lb*this.width,-this.height/2+this.height*(a+1)/la)
+                        }
                     }
+                    this.layer.noFill()
+                }else if(this.colorful){
+                    this.layer.fill(255,150,255,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(20,20,20,this.fade)
+                    this.layer.stroke(50,50,50,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(1)
+                    this.layer.stroke(255,50,255,this.fade)
+                    this.layer.rect(0,0,this.width-4,this.height-4,3)
+                    this.layer.line(-this.width/2+2,-this.height/2+6,-this.width/2+10,-this.height/2+6)
+                    this.layer.line(this.width/2-2,-this.height/2+6,this.width/2-10,-this.height/2+6)
+                    this.layer.arc(-this.width/2+16,-this.height/2+6,12,8,-180,-90)
+                    this.layer.arc(this.width/2-16,-this.height/2+6,12,8,-90,0)
+                    this.layer.line(this.width/2-4,this.height/2-12,this.width/2-4,this.height/2-24)
+                    this.layer.line(this.width/2-4,this.height/2-12,this.width/2-12,this.height/2-4)
+                    this.layer.line(this.width/2-12,this.height/2-4,this.width/2-24,this.height/2-4)
+                    this.layer.line(this.width/2-6,this.height/2-6,this.width/2-6,this.height/2-18)
+                    this.layer.line(this.width/2-6,this.height/2-6,this.width/2-18,this.height/2-6)
+                    this.layer.line(this.width/2-6,this.height/2-18,this.width/2-4,this.height/2-20)
+                    this.layer.line(this.width/2-18,this.height/2-6,this.width/2-20,this.height/2-4)
+                    this.layer.fill(255,50,255,this.fade)
+                    this.layer.ellipse(-this.width/2+6,this.height/2-6,3)
+                    this.layer.quad(this.width/2-10,this.height/2-10,this.width/2-14,this.height/2-11,this.width/2-18,this.height/2-18,this.width/2-11,this.height/2-14)
+                    this.layer.noFill()
+                    this.layer.stroke(50,50,50,this.fade)
+                    this.layer.strokeWeight(5)
+                }else{
+                    this.layer.fill(colorDetail.active[0]*0.2,colorDetail.active[1]*0.2,colorDetail.active[2]*0.2,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(colorDetail.fill[0]*0.2,colorDetail.fill[1]*0.2,colorDetail.fill[2]*0.2,this.fade)
+                    this.layer.stroke(colorDetail.stroke[0]*0.2,colorDetail.stroke[1]*0.2,colorDetail.stroke[2]*0.2,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.noFill()
                 }
-                this.layer.noFill()
-            }else if(this.colorful){
-                this.layer.fill(255,255,150,this.fade*this.anim.select)
-                this.layer.noStroke()
-                this.layer.rect(0,0,this.width+15,this.height+15,10)
-                this.layer.fill(20,20,20,this.fade)
-                this.layer.stroke(50,50,50,this.fade)
-                this.layer.strokeWeight(5)
-                this.layer.rect(0,0,this.width,this.height,5)
-                this.layer.noFill()
-                this.layer.strokeWeight(1)
-                this.layer.stroke(255,255,50,this.fade)
-                this.layer.rect(0,0,this.width-4,this.height-4,3)
-                this.layer.line(-this.width/2+2,-this.height/2+6,-this.width/2+10,-this.height/2+6)
-                this.layer.line(this.width/2-2,-this.height/2+6,this.width/2-10,-this.height/2+6)
-                this.layer.arc(-this.width/2+16,-this.height/2+6,12,8,-180,-90)
-                this.layer.arc(this.width/2-16,-this.height/2+6,12,8,-90,0)
-                this.layer.line(this.width/2-4,this.height/2-12,this.width/2-4,this.height/2-24)
-                this.layer.line(this.width/2-4,this.height/2-12,this.width/2-12,this.height/2-4)
-                this.layer.line(this.width/2-12,this.height/2-4,this.width/2-24,this.height/2-4)
-                this.layer.line(this.width/2-6,this.height/2-6,this.width/2-6,this.height/2-18)
-                this.layer.line(this.width/2-6,this.height/2-6,this.width/2-18,this.height/2-6)
-                this.layer.line(this.width/2-6,this.height/2-18,this.width/2-4,this.height/2-20)
-                this.layer.line(this.width/2-18,this.height/2-6,this.width/2-20,this.height/2-4)
-                this.layer.fill(255,255,50,this.fade)
-                this.layer.ellipse(-this.width/2+6,this.height/2-6,3)
-                this.layer.quad(this.width/2-10,this.height/2-10,this.width/2-14,this.height/2-11,this.width/2-18,this.height/2-18,this.width/2-11,this.height/2-14)
-                this.layer.noFill()
-                this.layer.stroke(50,50,50,this.fade)
-                this.layer.strokeWeight(5)
             }else{
-                this.layer.fill(colorDetail.active[0],colorDetail.active[1],colorDetail.active[2],this.fade*this.anim.select)
-                this.layer.noStroke()
-                this.layer.rect(0,0,this.width+15,this.height+15,10)
-                this.layer.fill(colorDetail.fill[0],colorDetail.fill[1],colorDetail.fill[2],this.fade)
-                this.layer.stroke(colorDetail.stroke[0],colorDetail.stroke[1],colorDetail.stroke[2],this.fade)
-                this.layer.strokeWeight(5)
-                this.layer.rect(0,0,this.width,this.height,5)
-                this.layer.noFill()
+                if(this.attack==1328){
+                    this.layer.fill(255,150,150,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(238,28,37,this.fade)
+                    this.layer.stroke(208,8,12,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.fill(255,255,0,this.fade)
+                    this.layer.noStroke()
+                    regStar(this.layer,this.width/4,-this.height/2+this.width/4,5,this.width*3/20,this.width*3/20,this.width*3/20/2.62,this.width*3/20/2.62,90)
+                    regStar(this.layer,this.width*2/5,-this.height/2+this.width/2,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                    regStar(this.layer,this.width*3/10,-this.height/2+this.width*3/5,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                    regStar(this.layer,this.width*3/20,-this.height/2+this.width*3/5,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                    regStar(this.layer,this.width/20,-this.height/2+this.width/2,5,this.width/20,this.width/20,this.width/20/2.62,this.width/20/2.62,0)
+                    this.layer.stroke(208,8,12,this.fade)
+                    this.layer.noFill()
+                }else if(this.attack==1330){
+                    this.layer.fill(100,225,175,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(50,200,150,this.fade)
+                    this.layer.stroke(25,175,125,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.fill(50,255,100,this.fade)
+                    this.layer.stroke(25,255,75,this.fade)
+                    this.layer.quad(-this.width/2,-this.height/4,-this.width/2,-this.height/12,this.width/2,this.height/4,this.width/2,this.height/12,5)
+                    this.layer.stroke(25,175,125,this.fade)
+                    this.layer.noFill()
+                }else if(this.attack==1393){
+                    this.layer.fill(0,150,255,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(0,41,204,this.fade)
+                    this.layer.stroke(0,26,174,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.fill(255,this.fade)
+                    this.layer.noStroke()
+                    let cap=tan(15)
+                    for(let a=0,la=12;a<la;a++){
+                        this.layer.rotate(30)
+                        this.layer.triangle(0,this.width*3/8,-this.width*3/8*cap,0,this.width*3/8*cap,0)
+                    }
+                    this.layer.fill(0,41,204,this.fade)
+                    this.layer.ellipse(0,0,this.width*17/40)
+                    this.layer.fill(255,this.fade)
+                    this.layer.ellipse(0,0,this.width*3/8)
+                    this.layer.stroke(0,26,174,this.fade)
+                    this.layer.noFill()
+                }else if(this.attack==1615){
+                    this.layer.fill(240,120,90,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(180,75,60,this.fade)
+                    this.layer.stroke(150,60,45,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.strokeWeight(4)
+                    for(let a=0,la=8;a<la;a++){
+                        if(a!=0){
+                            this.layer.line(-this.width/2,-this.height/2+this.height*a/la,this.width/2,-this.height/2+this.height*a/la)
+                        }
+                        for(let b=0,lb=3;b<lb;b++){
+                            this.layer.line(-this.width/2+(b+0.25+a%2*0.5)/lb*this.width,-this.height/2+this.height*a/la,-this.width/2+(b+0.25+a%2*0.5)/lb*this.width,-this.height/2+this.height*(a+1)/la)
+                        }
+                    }
+                    this.layer.noFill()
+                }else if(this.colorful){
+                    this.layer.fill(255,255,150,this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(20,20,20,this.fade)
+                    this.layer.stroke(50,50,50,this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(1)
+                    this.layer.stroke(255,255,50,this.fade)
+                    this.layer.rect(0,0,this.width-4,this.height-4,3)
+                    this.layer.line(-this.width/2+2,-this.height/2+6,-this.width/2+10,-this.height/2+6)
+                    this.layer.line(this.width/2-2,-this.height/2+6,this.width/2-10,-this.height/2+6)
+                    this.layer.arc(-this.width/2+16,-this.height/2+6,12,8,-180,-90)
+                    this.layer.arc(this.width/2-16,-this.height/2+6,12,8,-90,0)
+                    this.layer.line(this.width/2-4,this.height/2-12,this.width/2-4,this.height/2-24)
+                    this.layer.line(this.width/2-4,this.height/2-12,this.width/2-12,this.height/2-4)
+                    this.layer.line(this.width/2-12,this.height/2-4,this.width/2-24,this.height/2-4)
+                    this.layer.line(this.width/2-6,this.height/2-6,this.width/2-6,this.height/2-18)
+                    this.layer.line(this.width/2-6,this.height/2-6,this.width/2-18,this.height/2-6)
+                    this.layer.line(this.width/2-6,this.height/2-18,this.width/2-4,this.height/2-20)
+                    this.layer.line(this.width/2-18,this.height/2-6,this.width/2-20,this.height/2-4)
+                    this.layer.fill(255,255,50,this.fade)
+                    this.layer.ellipse(-this.width/2+6,this.height/2-6,3)
+                    this.layer.quad(this.width/2-10,this.height/2-10,this.width/2-14,this.height/2-11,this.width/2-18,this.height/2-18,this.width/2-11,this.height/2-14)
+                    this.layer.noFill()
+                    this.layer.stroke(50,50,50,this.fade)
+                    this.layer.strokeWeight(5)
+                }else{
+                    this.layer.fill(colorDetail.active[0],colorDetail.active[1],colorDetail.active[2],this.fade*this.anim.select)
+                    this.layer.noStroke()
+                    this.layer.rect(0,0,this.width+15,this.height+15,10)
+                    this.layer.fill(colorDetail.fill[0],colorDetail.fill[1],colorDetail.fill[2],this.fade)
+                    this.layer.stroke(colorDetail.stroke[0],colorDetail.stroke[1],colorDetail.stroke[2],this.fade)
+                    this.layer.strokeWeight(5)
+                    this.layer.rect(0,0,this.width,this.height,5)
+                    this.layer.noFill()
+                }
             }
             this.layer.strokeWeight(3)
             if(this.attack!=1615){
@@ -3060,11 +3173,19 @@ class card{
             if(spec.includes(12)){
                 this.layer.line(-this.width/2,10,this.width/2,10)
             }
+            if(this.edition>=1&&this.edition<=3){
+                this.layer.image(graphics.edition[this.edition-1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+            }
             this.layer.noStroke()
-            if(this.colorful){
-                this.layer.fill(mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+            if(this.edition==4){
+                let merge=mergeColor([255,255,255],flipColor(colorDetail.text),this.level/max(1,this.levels-1))
+                this.layer.fill(merge[0],merge[1],merge[2],this.fade)
+            }else if(this.colorful){
+                let merge=mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))
+                this.layer.fill(merge[0],merge[1],merge[2],this.fade)
             }else{
-                this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+                let merge=mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))
+                this.layer.fill(merge[0],merge[1],merge[2],this.fade)
             }
             if(spec.includes(13)){
                 this.layer.textSize(24)
@@ -3174,13 +3295,17 @@ class card{
                 this.layer.noStroke()
                 if(!spec.includes(5)&&!spec.includes(41)){
                     if(this.colorful){
-                        this.layer.fill(mergeColor([255,0,0],[240,240,240],this.anim.afford),this.level/2,this.fade)
+                        let merge=mergeColor([255,0,0],[240,240,240],this.anim.afford)
+                        this.layer.fill(merge[0],merge[1],merge[2],this.fade)
                     }else if(spec.includes(11)){
-                        this.layer.fill(mergeColor([255,0,0],[255,255,255],this.anim.afford),this.level/2,this.fade)
+                        let merge=mergeColor([255,0,0],[255,255,255],this.anim.afford)
+                        this.layer.fill(merge[0],merge[1],merge[2],this.fade)
                     }else if(spec.includes(21)){
-                        this.layer.fill(mergeColor([255,0,0],[50,40,60],this.anim.afford),this.level/2,this.fade)
+                        let merge=mergeColor([255,0,0],[50,40,60],this.anim.afford)
+                        this.layer.fill(merge[0],merge[1],merge[2],this.fade)
                     }else{
-                        this.layer.fill(mergeColor([255,0,0],[0,0,0],this.anim.afford),this.level/2,this.fade)
+                        let merge=mergeColor([255,0,0],[0,0,0],this.anim.afford)
+                        this.layer.fill(merge[0],merge[1],merge[2],this.fade)
                     }
                     this.layer.textSize(14)
                     if(this.colorful){
@@ -3197,10 +3322,15 @@ class card{
                         }
                     }
                 }
-                if(this.colorful){
-                    this.layer.fill(mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+                if(this.edition==4){
+                    let merge=mergeColor([255,255,255],flipColor(colorDetail.text),this.level/max(1,this.levels-1))
+                    this.layer.fill(merge[0],merge[1],merge[2],this.fade)
+                }else if(this.colorful){
+                    let merge=mergeColor([240,240,240],colorDetail.text,this.level/max(1,this.levels-1))
+                    this.layer.fill(merge[0],merge[1],merge[2],this.fade)
                 }else{
-                    this.layer.fill(mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[0],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[1],mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))[2],this.fade)
+                    let merge=mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))
+                    this.layer.fill(merge[0],merge[1],merge[2],this.fade)
                 }
                 if(this.name.substr(0,2)!='-h'){
                     if(spec.includes(34)){
@@ -3220,7 +3350,9 @@ class card{
                             this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
                         }
                         if(!variants.blind){
-                            if(this.colorful){
+                            if(this.edition==4){
+                                this.layer.fill(255,255,255,this.fade)
+                            }else if(this.colorful){
                                 this.layer.fill(240,this.fade)
                             }else{
                                 this.layer.fill(0,this.fade)
@@ -3296,6 +3428,21 @@ class card{
                                         this.layer.text('Classless',0,this.height/2-6)
                                     break
                                 }
+                            }
+                            this.layer.textSize(5)
+                            switch(this.edition){
+                                case 1:
+                                    this.layer.text(`Foil: 5 Block`,0,this.height/2)
+                                break
+                                case 2:
+                                    this.layer.text(`Holographic: 1 Strength`,0,this.height/2)
+                                break
+                                case 3:
+                                    this.layer.text(`Polychrome: 1 Energy`,0,this.height/2)
+                                break
+                                case 4:
+                                    this.layer.text(`Negative: Draw 2 Cards`,0,this.height/2)
+                                break
                             }
                         }
                     }

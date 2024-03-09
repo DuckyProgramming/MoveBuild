@@ -19,6 +19,8 @@ class pack{
         for(let a=0,la=4;a<la;a++){
             if(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length>0){
                 this.cards.push(new card(this.layer,this.battle,this.player,this.position.x-60+a*40,this.position.y-5+a%2*10,a==0&&this.battle.player[this.player]==1?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length))],variants.cursed?1:0,this.battle.player[this.player],a+this.id*4+this.player*12))
+                let roll=floor(random(0,200))
+                this.cards[a].edition=roll==0?4:roll==1?3:roll>=2&&roll<=4?2:roll>=5&&roll<=9?1:0
             }
         }
     }
@@ -51,7 +53,7 @@ class pack{
     take(){
         this.complete=true
         for(let a=0,la=this.cards.length;a<la;a++){
-            this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color)
+            this.battle.cardManagers[this.player].deck.add(this.cards[a].type,this.cards[a].level,this.cards[a].color,this.cards[a].edition)
             this.battle.cardManagers[this.player].pack.push(copyCard(this.cards[a]))
             this.battle.cardManagers[this.player].pack[this.battle.cardManagers[this.player].pack.length-1].position.x=1200
             this.battle.cardManagers[this.player].pack[this.battle.cardManagers[this.player].pack.length-1].position.y=500

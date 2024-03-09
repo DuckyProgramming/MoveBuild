@@ -878,7 +878,7 @@ class relicManager{
                             this.battle.cardManagers[this.player[20]].randomEffect(2,1,[this.active[20]])
                         }
                         if(this.active[27]>0&&args[1]==this.player[27]){
-                            this.relicPlayer(27).heal(2*this.active[1])
+                            this.relicPlayer(27).heal(2*this.active[27])
                         }
                         if(this.battle.modded(84)){
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].life-=3

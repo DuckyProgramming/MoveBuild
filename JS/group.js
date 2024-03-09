@@ -177,7 +177,7 @@ class group{
             }
         }
     }
-    add(type,level,color){
+    add(type,level,color,edition=0){
         game.id++
         if(type>=0&&type<types.card.length){
             if(this.battle.initialized&&types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
@@ -188,6 +188,7 @@ class group{
                 return false
             }else{
                 this.cards.push(new card(this.layer,this.battle,this.player,1200,500,type,this.selfLevel(type,level),color,game.id))
+                this.cards[this.cards.length-1].edition=edition
                 if(this.id==0){
                     this.cards[this.cards.length-1].nonCalc=true
                     this.cards[this.cards.length-1].callAddEffect()
@@ -213,8 +214,8 @@ class group{
             }
         }
     }
-    addFree(type,level,color,variant){
-        let result=this.add(type,level,color)
+    addFree(type,level,color,variant,edition){
+        let result=this.add(type,level,color,edition)
         if(result){
             this.cards[this.cards.length-1].cost=0
             if(variant==1){
@@ -1430,6 +1431,7 @@ class group{
     }
     drawEffect(card){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+
         switch(card.attack){
             case -3:
                 this.drawEffects.push([1,card.effect[0]])

@@ -19,6 +19,8 @@ class purchase{
                     args[1]++
                 }
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
+                let roll=floor(random(0,200))
+                this.card.edition=roll==0?4:roll==1?3:roll>=2&&roll<=4?2:roll>=5&&roll<=9?1:0
                 if(this.args[3]){
                     for(let a=0,la=this.cost.length;a<la;a++){
                         this.cost[a]=floor(this.cost[a]/2)
@@ -81,9 +83,9 @@ class purchase{
             switch(this.type){
                 case 1:
                     if(this.battle.relicManager.hasRelic(110,purchaser)){
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color)
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color,this.card.edition)
                     }else{
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color)
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
                     }
                     if(this.battle.relicManager.hasRelic(118,purchaser)&&this.cost[purchaser]>0){
                         this.battle.purchaseManager.bogo(purchaser,1)
@@ -103,9 +105,9 @@ class purchase{
                 case 4:
                     this.battle.cardManagers[purchaser].deck.cards.splice(this.baseID,1)
                     if(this.battle.relicManager.hasRelic(110,purchaser)){
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color)
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,1,this.card.color,this.card.edition)
                     }else{
-                        this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color)
+                        this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
                     }
                 break
             }

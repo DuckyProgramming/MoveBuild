@@ -1732,9 +1732,9 @@ types.card=[
     },{
         name:'Leeching\nEdge',rarity:2,list:2,
         levels:[
+            {effect:[1],attack:370,cost:2,target:[0],spec:[1],class:4},
+            {effect:[2],attack:370,cost:2,target:[0],spec:[1],class:4},
             {effect:[2],attack:370,cost:1,target:[0],spec:[1],class:4},
-            {effect:[3],attack:370,cost:1,target:[0],spec:[1],class:4},
-            {effect:[4],attack:370,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
         name:'Sharing\nPain',rarity:0,list:2,
@@ -1816,9 +1816,9 @@ types.card=[
     },{
         name:'Torpidity',rarity:2,list:2,
         levels:[
-            {effect:[1],attack:455,cost:0,target:[0],spec:[1],class:4},
-            {effect:[2],attack:455,cost:0,target:[0],spec:[1],class:4},
-            {effect:[2],attack:455,cost:0,target:[0],spec:[1,22],class:4},
+            {effect:[1],attack:455,cost:1,target:[0],spec:[1],class:4},
+            {effect:[2],attack:455,cost:1,target:[0],spec:[1],class:4},
+            {effect:[2],attack:455,cost:1,target:[0],spec:[1,22],class:4},
         ],
     },{
         name:'Chemistry',rarity:2,list:2,
@@ -2401,9 +2401,9 @@ types.card=[
     {
         name:'Cut',rarity:0,list:3,
         levels:[
-            {effect:[11],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
-            {effect:[16],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
-            {effect:[20],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            {effect:[12],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            {effect:[17],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
+            {effect:[21],attack:36,cost:1,target:[2,1,1],spec:[0,6],class:1},
         ],
     },{
         name:'Throw\nScythe',rarity:0,list:3,
@@ -2436,9 +2436,9 @@ types.card=[
     },{
         name:'Spartan\nKick',rarity:1,list:3,
         levels:[
-            {effect:[24],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
-            {effect:[32],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
-            {effect:[38],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
+            {effect:[28],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
+            {effect:[40],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
+            {effect:[48],attack:48,cost:3,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Throwing\nStar',rarity:1,list:3,
@@ -2814,9 +2814,9 @@ types.card=[
     },{
         name:'Jumping\nConfuse',rarity:1,list:3,
         levels:[
-            {effect:[20,2,3],attack:417,cost:2,target:[2,2,2],spec:[0],class:1},
-            {effect:[32,2,3],attack:417,cost:2,target:[2,2,2],spec:[0],class:1},
-            {effect:[42,2,3],attack:417,cost:2,target:[2,2,2],spec:[0],class:1},
+            {effect:[24,2,3],attack:417,cost:2,target:[2,2,2],spec:[0],class:1},
+            {effect:[36,2,3],attack:417,cost:2,target:[2,2,2],spec:[0],class:1},
+            {effect:[44,2,3],attack:417,cost:2,target:[2,2,2],spec:[0],class:1},
         ],
     },{
         name:'Embrace',rarity:2,list:3,
@@ -3172,8 +3172,8 @@ types.card=[
         name:'Ice\nSpell',rarity:2,list:3,
         levels:[
             {effect:[15,2],attack:1438,cost:0,target:[2,1,2],spec:[0],class:1},
-            {effect:[15,3],attack:1438,cost:0,target:[2,1,2],spec:[0],class:1},
-            {effect:[15,4],attack:1438,cost:0,target:[2,1,2],spec:[0],class:1},
+            {effect:[18,3],attack:1438,cost:0,target:[2,1,3],spec:[0],class:1},
+            {effect:[24,4],attack:1438,cost:0,target:[2,1,3],spec:[0],class:1},
         ],
     },{
         name:'Ice\nSword',rarity:1,list:3,
@@ -3903,9 +3903,9 @@ types.card=[
     },{
         name:'Overpower',rarity:2,list:4,
         levels:[
+            {effect:[2],attack:311,cost:4,target:[0],spec:[1],class:4},
             {effect:[2],attack:311,cost:3,target:[0],spec:[1],class:4},
-            {effect:[2],attack:311,cost:2,target:[0],spec:[1],class:4},
-            {effect:[2],attack:311,cost:2,target:[0],spec:[1,2],class:4},
+            {effect:[2],attack:311,cost:3,target:[0],spec:[1,2],class:4},
        ],
     },{
         name:'Spinning\nBlades',rarity:1,list:4,
@@ -4120,9 +4120,9 @@ types.card=[
     },{
         name:'Shooting\nStar',rarity:1,list:4,
         levels:[
-            {effect:[12],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[10],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[15],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
             {effect:[18],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[22],attack:1313,cost:2,target:[2,1,3],spec:[0],class:1},
         ],
     },{
         name:'Lunasa',rarity:2,list:4,
@@ -4628,9 +4628,9 @@ types.card=[
     },{
         name:'Equilibrium',rarity:1,list:5,
         levels:[
-            {effect:[15],attack:522,cost:2,target:[0],spec:[],class:2},
-            {effect:[20],attack:522,cost:2,target:[0],spec:[],class:2},
             {effect:[24],attack:522,cost:2,target:[0],spec:[],class:2},
+            {effect:[34],attack:522,cost:2,target:[0],spec:[],class:2},
+            {effect:[42],attack:522,cost:2,target:[0],spec:[],class:2},
         ],
     },{
         name:'Power\nBanks',rarity:1,list:5,
@@ -6982,9 +6982,9 @@ types.card=[
     },{
         name:'Dust\nStream',rarity:2,list:7,
         levels:[
-            {effect:[3,6],attack:785,cost:3,target:[2,1,6],spec:[0],class:1},
-            {effect:[3,8],attack:785,cost:3,target:[2,1,6],spec:[0],class:1},
-            {effect:[3,9],attack:785,cost:3,target:[2,1,6],spec:[0],class:1},
+            {effect:[3,12],attack:785,cost:3,target:[2,1,6],spec:[0],class:1},
+            {effect:[3,17],attack:785,cost:3,target:[2,1,6],spec:[0],class:1},
+            {effect:[3,20],attack:785,cost:3,target:[2,1,6],spec:[0],class:1},
         ],
     },{
         name:'Lesson\nLearned',rarity:2,list:7,
@@ -8880,16 +8880,16 @@ types.card=[
     },{
         name:'Skewed\nStrike',rarity:0,list:9,
         levels:[
-            {effect:[6],attack:1004,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[9],attack:1004,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[11],attack:1004,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8],attack:1004,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12],attack:1004,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15],attack:1004,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Stacked\nDefense',rarity:0,list:9,
         levels:[
-            {effect:[8],attack:1012,cost:1,target:[0],spec:[],class:4},
-            {effect:[12],attack:1012,cost:1,target:[0],spec:[],class:4},
+            {effect:[10],attack:1012,cost:1,target:[0],spec:[],class:4},
             {effect:[15],attack:1012,cost:1,target:[0],spec:[],class:4},
+            {effect:[18],attack:1012,cost:1,target:[0],spec:[],class:4},
         ],
     },{
         name:'Skewed\nDefense',rarity:0,list:9,
@@ -9448,8 +9448,8 @@ types.card=[
         name:'Flame\nWar',rarity:2,list:9,
         levels:[
             {effect:[15,2],attack:1267,cost:0,target:[2,1,2],spec:[0],class:1},
-            {effect:[15,3],attack:1267,cost:0,target:[2,1,2],spec:[0],class:1},
-            {effect:[15,4],attack:1267,cost:0,target:[2,1,2],spec:[0],class:1},
+            {effect:[18,3],attack:1267,cost:0,target:[2,1,3],spec:[0],class:1},
+            {effect:[24,4],attack:1267,cost:0,target:[2,1,3],spec:[0],class:1},
         ],
     },{
         name:'Flame\nSword',rarity:1,list:9,
@@ -9664,9 +9664,9 @@ types.card=[
     },{
         name:'Scorch',rarity:1,list:9,
         levels:[
-            {effect:[2,1],attack:1822,cost:0,target:[0],spec:[4],class:2},
-            {effect:[3,1],attack:1822,cost:0,target:[0],spec:[4],class:2},
-            {effect:[4,1],attack:1822,cost:0,target:[0],spec:[4],class:2},
+            {effect:[2,1],attack:1822,cost:0,target:[2,1,2],spec:[4],class:2},
+            {effect:[3,1],attack:1822,cost:0,target:[2,1,2],spec:[4],class:2},
+            {effect:[4,1],attack:1822,cost:0,target:[2,1,2],spec:[4],class:2},
         ],
     },{
         name:'Waterflame',rarity:1,list:9,
@@ -13958,8 +13958,8 @@ types.card=[
         name:'Tear of\nTheia',rarity:0,list:12,
         levels:[
             {effect:[20],attack:-38,cost:0,target:[0],spec:[4,5],class:6},
-            {effect:[30],attack:-38,cost:0,target:[0],spec:[4,5],class:6},
-            {effect:[40],attack:-38,cost:0,target:[0],spec:[4,5],class:6},
+            {effect:[10],attack:-38,cost:0,target:[0],spec:[4,5],class:6},
+            {effect:[5],attack:-38,cost:0,target:[0],spec:[4,5],class:6},
         ],
     },{
         name:`Ascender's\nBozo`,rarity:0,list:12,

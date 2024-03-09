@@ -1195,7 +1195,7 @@ class attack{
                         }
                     break
                     case 1730:
-                        let total8=1
+                        let total8=0
                         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                             if(this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].life>0){
                                 total8++
@@ -1204,7 +1204,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*total8,this.user,1)
                     break
                     case 1731:
-                        let total9=1
+                        let total9=0
                         for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                             if(this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].life>0){
                                 total9++

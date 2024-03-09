@@ -710,6 +710,20 @@ class battle{
         this.counter.turnPlayed[0]++
         this.counter.turnPlayed[cardClass]++
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
+        switch(card.edition){
+            case 1:
+                userCombatant.addBlock(5)
+            break
+            case 2:
+                userCombatant.statusEffect('Strength',1)
+            break
+            case 3:
+                this.energy.main[player]++
+            break
+            case 4:
+                this.battle.cardManagers[player].draw(2)
+            break
+        }
         switch(cardClass){
             case 1:
                 if(userCombatant.getStatus('Must Attack or Take Damage')>0){

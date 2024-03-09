@@ -5706,7 +5706,7 @@ constants={collisionDamage:4,
     HG3:[[-2,0],[-1,0],[-2,-2],[-1,-1],[-2,-1],[2,0],[1,0],[2,2],[1,1],[2,1]]
 }
 options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false}
-graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],proxyBattle:0,test:0}
+graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
 inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmn'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0

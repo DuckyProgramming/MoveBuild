@@ -209,6 +209,9 @@ function mergeColor(color1,color2,value){
 function upColor(color,value,key){
 	return [color[0]+value*key[0],color[1]+value*key[1],color[2]+value*key[2]]
 }
+function flipColor(color){
+	return [255-color[0],255-color[1],255-color[2]]
+}
 function toggle(bool){
 	return bool?false:true
 }
@@ -716,20 +719,20 @@ function multiplyString(base,multiply){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition)
 }
 function copyCardFree(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition)
 }
 function upgradeCard(base){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition)
 	if(base.attack==1352){
 		result.limit=base.limit
 	}
 	return result
 }
 function unupgradeCard(base){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.base.cost,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.base.cost,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition)
 	if(base.attack==1352){
 		result.limit=base.limit
 	}

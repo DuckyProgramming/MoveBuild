@@ -4253,6 +4253,73 @@ function setupOverlay(type,layer){
 		break
 	}
 }
+function setupEdition(type,layer){
+	switch(type){
+		case 0:
+			layer.translate(layer.width/2,layer.height/2)
+			layer.fill(100,50,200,0.1)
+			layer.rect(0,0,layer.width,layer.height)
+			layer.noFill()
+			for(let a=0,la=20;a<la;a++){
+				let b=random(-4,4)
+				layer.stroke(255,255,255,random(0.025,0.1))
+				layer.strokeWeight(random(2,3))
+				layer.ellipse(0,0,10*a+b)
+				layer.strokeWeight(random(0.5,1))
+				layer.ellipse(0,0,10*a+b)
+			}
+			layer.fill(255,0.02)
+			for(let a=0,la=6;a<la;a++){
+				layer.rotate(60)
+				for(let b=0,lb=10;b<lb;b++){
+					layer.arc(0,0,300,300,-90-8*(1-b/lb),-90+8*(1-b/lb))
+				}
+			}
+		break
+		case 1:
+			layer.colorMode(HSB,360,255,255,1)
+			layer.fill(0,150,200)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			for(let a=0,la=12;a<la;a++){
+				layer.fill(360*(a+1)/(la+1),150,200)
+				for(let b=0,lb=12;b<lb;b++){
+					for(let c=0,lc=14;c<lc;c++){
+						regTriangle(layer,(b+(1-sqrt(3)/2)/(sqrt(3)/2)*((b+c)%2*2-1))/(lb-1)*layer.width,c/(lc-1)*layer.height,12*(1-a/la*1.1)*random(0.8,1.2),12*(1-a/la*1.1)*random(0.8,1.2),(b+c)%2*60-30+random(-15,15))
+					}
+				}
+			}
+			layer.colorMode(RGB,255,255,255,1)
+			layer.fill(100,50,200,0.5)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			layer.erase(0.5)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+		break
+		case 2:
+			layer.colorMode(HSB,360,255,255,1)
+			layer.fill(0,150,200)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			let spots=[]
+			for(let a=0,la=12;a<la;a++){
+				for(let b=0,lb=9;b<lb;b++){
+					spots.push([(a+0.5+random(-0.2,0.2))/la*layer.width,(b+0.25+a%2*0.5+random(-0.2,0.2))/lb*layer.height,random(20,40),random(1,2)])
+				}
+			}
+			for(let a=0,la=12;a<la;a++){
+				layer.fill(360*(a+1)/(la+1),150,200)
+				for(let b=0,lb=spots.length;b<lb;b++){
+					if(1-a/la*spots[b][3]>0){
+						layer.ellipse(spots[b][0],spots[b][1],spots[b][2]*(1-a/la*spots[b][3]))
+					}
+				}
+			}
+			layer.colorMode(RGB,255,255,255,1)
+			layer.fill(100,50,200,0.5)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			layer.erase(0.5)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+		break
+	}
+}
 function setupGraphics(){
 	angleMode(DEGREES)
 	textAlign(CENTER,CENTER)
@@ -4278,6 +4345,11 @@ function setupGraphics(){
 		graphics.overlays.push(createGraphics(1800,1200))
 		setupLayer(graphics.overlays[a])
 		setupOverlay(a,graphics.overlays[a])
+	}
+	for(let a=0,la=3;a<la;a++){
+		graphics.edition.push(createGraphics(200,150))
+		setupLayer(graphics.edition[a])
+		setupEdition(a,graphics.edition[a])
 	}
 
 	/*

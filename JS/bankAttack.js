@@ -1363,6 +1363,7 @@ attack.prototype.update=function(){
                             this.remove=true
                         }else{
                             this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                            this.battle.updateTargetting()
                         }
                     } 
                     if(this.timer==21){
@@ -1432,6 +1433,7 @@ attack.prototype.update=function(){
                 }
                 if(this.timer==15){
                     this.userCombatant.moveTilePosition(this.userCombatant.tilePosition.x/2+this.targetCombatant.tilePosition.x/2,this.userCombatant.tilePosition.y/2+this.targetCombatant.tilePosition.y/2)
+                    this.battle.updateTargetting()
                 }
                 if(this.procedure[0]==2){
                     if(this.timer>25&&this.timer<=33){
@@ -1468,6 +1470,7 @@ attack.prototype.update=function(){
                     }
                     if(this.timer==35){
                         this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                        this.battle.updateTargetting()
                     } 
                     if(this.timer==36){
                         let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
