@@ -8183,9 +8183,9 @@ types.card=[
     },{
         name:'Sap\nEssence',rarity:0,list:8,
         levels:[
-            {effect:[7,3],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[10,3],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[10,5],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8,3],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12,3],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[13,5],attack:966,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Burn\nCare',rarity:0,list:8,
@@ -8295,9 +8295,9 @@ types.card=[
     },{
         name:'Firestorm',rarity:2,list:8,
         levels:[
-            {effect:[18,3],attack:981,cost:3,target:[0],spec:[0],class:1},
             {effect:[24,3],attack:981,cost:3,target:[0],spec:[0],class:1},
-            {effect:[24,3],attack:981,cost:2,target:[0],spec:[0],class:1},
+            {effect:[32,3],attack:981,cost:3,target:[0],spec:[0],class:1},
+            {effect:[32,3],attack:981,cost:2,target:[0],spec:[0],class:1},
         ],
     },{
         name:'Long Distance\nGift',rarity:1,list:8,

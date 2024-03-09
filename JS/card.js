@@ -3174,7 +3174,11 @@ class card{
                 this.layer.line(-this.width/2,10,this.width/2,10)
             }
             if(this.edition>=1&&this.edition<=3){
-                this.layer.image(graphics.edition[this.edition-1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                if(this.width==90){
+                    this.layer.image(graphics.edition[this.edition-1][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                }else{
+                    this.layer.image(graphics.edition[this.edition-1][0],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
+                }
             }
             this.layer.noStroke()
             if(this.edition==4){

@@ -4256,27 +4256,33 @@ function setupOverlay(type,layer){
 function setupEdition(type,layer){
 	switch(type){
 		case 0:
-			layer.translate(layer.width/2,layer.height/2)
+			layer.noFill()
+			layer.stroke(0)
+			layer.strokeWeight(10)
+			layer.erase(1,1)
+			layer.rect(layer.width/2,layer.height/2,105,135,10)
+		break
+		case 1:
 			layer.fill(100,50,200,0.1)
-			layer.rect(0,0,layer.width,layer.height)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 			layer.noFill()
 			for(let a=0,la=20;a<la;a++){
 				let b=random(-4,4)
 				layer.stroke(255,255,255,random(0.025,0.1))
 				layer.strokeWeight(random(2,3))
-				layer.ellipse(0,0,10*a+b)
+				layer.ellipse(layer.width/2,layer.height/2,10*a+b)
 				layer.strokeWeight(random(0.5,1))
-				layer.ellipse(0,0,10*a+b)
+				layer.ellipse(layer.width/2,layer.height/2,10*a+b)
 			}
 			layer.fill(255,0.02)
 			for(let a=0,la=6;a<la;a++){
 				layer.rotate(60)
 				for(let b=0,lb=10;b<lb;b++){
-					layer.arc(0,0,300,300,-90-8*(1-b/lb),-90+8*(1-b/lb))
+					layer.arc(layer.width/2,layer.height/2,300,300,-90-8*(1-b/lb),-90+8*(1-b/lb))
 				}
 			}
 		break
-		case 1:
+		case 2:
 			layer.colorMode(HSB,360,255,255,1)
 			layer.fill(0,150,200)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
@@ -4294,14 +4300,14 @@ function setupEdition(type,layer){
 			layer.erase(0.5)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 		break
-		case 2:
+		case 3:
 			layer.colorMode(HSB,360,255,255,1)
 			layer.fill(0,150,200)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 			let spots=[]
-			for(let a=0,la=12;a<la;a++){
-				for(let b=0,lb=9;b<lb;b++){
-					spots.push([(a+0.5+random(-0.2,0.2))/la*layer.width,(b+0.25+a%2*0.5+random(-0.2,0.2))/lb*layer.height,random(20,40),random(1,2)])
+			for(let a=0,la=7;a<la;a++){
+				for(let b=0,lb=5;b<lb;b++){
+					spots.push([(a+0.5+random(-0.2,0.2))/la*layer.width,(b+0.25+a%2*0.5+random(-0.2,0.2))/lb*layer.height,random(30,60),random(1,2)])
 				}
 			}
 			for(let a=0,la=12;a<la;a++){
@@ -4347,9 +4353,12 @@ function setupGraphics(){
 		setupOverlay(a,graphics.overlays[a])
 	}
 	for(let a=0,la=3;a<la;a++){
-		graphics.edition.push(createGraphics(200,150))
-		setupLayer(graphics.edition[a])
-		setupEdition(a,graphics.edition[a])
+		graphics.edition.push([createGraphics(200,150),createGraphics(200,150)])
+		setupLayer(graphics.edition[a][0])
+		setupLayer(graphics.edition[a][1])
+		setupEdition(a+1,graphics.edition[a][0])
+		setupEdition(a+1,graphics.edition[a][1])
+		setupEdition(0,graphics.edition[a][1])
 	}
 
 	/*
