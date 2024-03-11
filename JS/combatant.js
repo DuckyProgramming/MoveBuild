@@ -4489,12 +4489,12 @@ class combatant{
                 if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
                     if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){
                         if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)].stance==4){
-                            damage*=0.6
+                            damage*=0.5
                         }
                     }
                 }
                 if(this.stance==4){
-                    damage*=0.4
+                    damage*=0.5
                 }
                 if(this.battle.turn.main<this.battle.players&&(this.team==0||this.construct||this.support)){
                     if(this.battle.combatantManager.getPlayerCombatantIndex(this.battle.turn.main)>=0){

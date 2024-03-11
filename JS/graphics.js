@@ -4289,18 +4289,24 @@ function setupEdition(type,layer){
 			for(let a=0,la=12;a<la;a++){
 				schema.push([])
 				for(let b=0,lb=14;b<lb;b++){
-					schema[a].push(random(0.6,1.5))
+					schema[a].push([random(0.6,1.5),random(1,2)])
 				}
 			}
 			for(let a=0,la=24;a<la;a++){
 				layer.fill(360*(a+1)/(la+1),150,200)
+				layer.stroke(360*(a+1)/(la+1),150,200)
+				layer.strokeWeight(3)
+				layer.strokeJoin(ROUND)
 				for(let b=0,lb=12;b<lb;b++){
 					for(let c=0,lc=14;c<lc;c++){
-						regTriangle(layer,(b+(1-sqrt(3)/2)/(sqrt(3)/2)*((b+c)%2*2-1))/(lb-1)*layer.width,c/(lc-1)*layer.height,12*(1-a/la*1.1)*random(0.8,1.2)*schema[b][c],12*(1-a/la*1.1)*random(0.8,1.2)*schema[b][c],(b+c)%2*60-30+random(-15,15))
+						if(1-a/la*schema[b][c][1]>0){
+							regTriangle(layer,(b+(1-sqrt(3)/2)/(sqrt(3)/2)*((b+c)%2*2-1))/(lb-1)*layer.width,c/(lc-1)*layer.height,10*(1-a/la*schema[b][c][1])*random(0.8,1.2)*schema[b][c][0],10*(1-a/la*schema[b][c][1])*random(0.8,1.2)*schema[b][c][0],(b+c)%2*60-30+random(-15,15))
+						}
 					}
 				}
 			}
 			layer.colorMode(RGB,255,255,255,1)
+			layer.noStroke()
 			layer.fill(100,50,200,0.5)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 			layer.erase(0.5)
@@ -4310,17 +4316,24 @@ function setupEdition(type,layer){
 			layer.colorMode(HSB,360,255,255,1)
 			layer.fill(0,150,200)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
-			let spots=[]
-			for(let a=0,la=7;a<la;a++){
-				for(let b=0,lb=5;b<lb;b++){
-					spots.push([(a+0.5+random(-0.4,0.4))/la*layer.width,(b+0.25+a%2*0.5+random(-0.4,0.4))/lb*layer.height,random(30,75),random(1,2)])
+			for(let a=0,la=6;a<la;a++){
+				for(let b=0,lb=120;b<lb;b++){
+					layer.fill((360*6*b/lb+a*150)%360,100,150)
+					layer.arc(layer.width/2,layer.height/2,300*(1-a/la),300*(1-a/la),360*b/lb,360*(b+1)/lb)
 				}
 			}
-			for(let a=0,la=24;a<la;a++){
-				layer.fill(360*(a+1)/(la+1),150,200)
-				for(let b=0,lb=spots.length;b<lb;b++){
-					if(1-a/la*spots[b][3]>0){
-						layer.ellipse(spots[b][0],spots[b][1],spots[b][2]*(1-a/la*spots[b][3]))
+			for(let a=0,la=8;a<la;a++){
+				for(let b=0,lb=6;b<lb;b++){
+					let c=(a+random(0.3,0.7))/la*layer.width
+					let d=(b+a%2*0.5+random(0.05,0.45))/lb*layer.height
+					let e=random(10,40)
+					let f=random(0,360)
+					let g=random(0,1)
+					for(let h=0,lh=60;h<lh;h++){
+						layer.fill(360*3*h/lh%360,100+100*g,150+100*g,0.25)
+						for(let i=0,li=5;i<li;i++){
+							layer.arc(c,d,e*(1-i/li*0.5),e*(1-i/li*0.5),f+360*h/lh,f+360*(h+1)/lh)
+						}
 					}
 				}
 			}

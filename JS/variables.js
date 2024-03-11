@@ -5478,7 +5478,7 @@ Decrements afterward.`,
         },{name:'Contains',desc:
 `Will create another card and add it to your deck when destroyed.`,
         },{name:'Silence',desc:
-`Reduces enemy attack to just damgae, no additional effects.`,
+`Reduces enemy attack to just damage, no additional effects.`,
         },{name:'Mixed',desc:
 `Will face 180 degrees from target.`,
         },{name:'Lock',desc:

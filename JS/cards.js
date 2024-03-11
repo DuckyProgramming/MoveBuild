@@ -6786,9 +6786,9 @@ types.card=[
     },{
         name:'Hope',rarity:1,list:7,
         levels:[
+            {effect:[2],attack:756,cost:1,target:[0],spec:[],class:4},
             {effect:[3],attack:756,cost:1,target:[0],spec:[],class:4},
             {effect:[4],attack:756,cost:1,target:[0],spec:[],class:4},
-            {effect:[5],attack:756,cost:1,target:[0],spec:[],class:4},
         ],
     },{
         name:'Sands\nof Time',rarity:2,list:7,
@@ -7241,9 +7241,9 @@ types.card=[
     },{
         name:'Assurance',rarity:0,list:7,
         levels:[
-            {effect:[6,3],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[9,4],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[10,5],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[6,2],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[9,3],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[10,4],attack:826,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Reality',rarity:2,list:7,
@@ -7465,9 +7465,9 @@ types.card=[
     },{
         name:'Break\nFree',rarity:1,list:7,
         levels:[
-            {effect:[1],attack:1677,cost:1,target:[2,1,1],spec:[0],class:3},
-            {effect:[2],attack:1677,cost:1,target:[2,1,2],spec:[0],class:3},
-            {effect:[2],attack:1677,cost:1,target:[2,1,2],spec:[0],class:3},
+            {effect:[1],attack:1677,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[2],attack:1677,cost:1,target:[1,1,2],spec:[0],class:3},
+            {effect:[2],attack:1677,cost:1,target:[1,1,2],spec:[0],class:3},
         ],
     },{
         name:'Break\nShell',rarity:1,list:7,
@@ -8449,9 +8449,9 @@ types.card=[
     },{
         name:'Summer\nSolstice',rarity:2,list:8,
         levels:[
-            {effect:[0,9],attack:1470,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[4,8],attack:1470,cost:2,target:[2,1,2],spec:[0],class:1},
-            {effect:[6,7],attack:1470,cost:2,target:[2,1,2],spec:[0],class:1},
+            {effect:[0,9],attack:1470,cost:2,target:[2,1,6],spec:[0],class:1},
+            {effect:[4,7],attack:1470,cost:2,target:[2,1,6],spec:[0],class:1},
+            {effect:[6,5],attack:1470,cost:2,target:[2,1,6],spec:[0],class:1},
         ],
     },{
         name:'Twolip',rarity:0,list:8,
