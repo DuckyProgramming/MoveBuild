@@ -3432,11 +3432,11 @@ attack.prototype.update=function(){
         case 579: case 583: case 584: case 600: case 671: case 672: case 673: case 767: case 785: case 847:
         case 851: case 854: case 856: case 879: case 894: case 956: case 971: case 1000: case 1056: case 1060:
         case 1103: case 1105: case 1116: case 1117: case 1122: case 1272: case 1278: case 1347: case 1350: case 1351:
-        case 1391: case 1403: case 1404: case 1408: case 1409: case 1517: case 1520: case 1546: case 1547: case 1555:
-        case 1566: case 1604: case 1632: case 1669: case 1670: case 1691: case 1762: case 1763: case 1764: case 1765:
-        case 1775: case 1776: case 1797: case 1798: case 1799: case 1800: case 1818: case 1819: case 1820: case 1823:
-        case 1833: case 1855: case 1859: case 1860: case 1873: case 1884: case 1903: case 1917: case 1918: case 1941:
-        case 1954: case 1965: case 2013: case 2014: case 2043:
+        case 1391: case 1403: case 1404: case 1408: case 1409: case 1470: case 1517: case 1520: case 1546: case 1547:
+        case 1555: case 1566: case 1604: case 1632: case 1669: case 1670: case 1691: case 1762: case 1763: case 1764:
+        case 1765: case 1775: case 1776: case 1797: case 1798: case 1799: case 1800: case 1818: case 1819: case 1820:
+        case 1823: case 1833: case 1855: case 1859: case 1860: case 1873: case 1884: case 1903: case 1917: case 1918:
+        case 1941: case 1954: case 1965: case 2013: case 2014: case 2043:
             if(variants.nobasicanim){
                 this.selfCall(12)
                 this.remove=true

@@ -5363,9 +5363,9 @@ types.card=[
     },{
         name:'Pavise',rarity:1,list:5,
         levels:[
-            {effect:[7,1],attack:1827,cost:2,target:[0],spec:[0],class:4},
-            {effect:[10,1],attack:1827,cost:2,target:[0],spec:[0],class:4},
-            {effect:[12,1],attack:1827,cost:2,target:[0],spec:[0],class:4},
+            {effect:[7,1],attack:1827,cost:2,target:[0],spec:[1],class:4},
+            {effect:[10,1],attack:1827,cost:2,target:[0],spec:[1],class:4},
+            {effect:[12,1],attack:1827,cost:2,target:[0],spec:[1],class:4},
         ],
     },{
         name:'Apocalypse',rarity:2,list:5,
@@ -7276,9 +7276,9 @@ types.card=[
     },{
         name:'Scrap\nSpear',rarity:1,list:7,
         levels:[
-            {effect:[6,1],attack:1246,cost:2,target:[2,2,2],spec:[0,15],limit:5,class:4},
-            {effect:[6,1],attack:1246,cost:2,target:[2,2,2],spec:[0,15],limit:3,class:4},
-            {effect:[6,1],attack:1246,cost:2,target:[2,2,2],spec:[0,15],limit:1,class:4},
+            {effect:[6,1],attack:1246,cost:2,target:[2,2,2],spec:[0,15],limit:5,class:1},
+            {effect:[6,1],attack:1246,cost:2,target:[2,2,2],spec:[0,15],limit:3,class:1},
+            {effect:[6,1],attack:1246,cost:2,target:[2,2,2],spec:[0,15],limit:1,class:1},
         ],
     },{
         name:'Silver\nPot',rarity:1,list:7,
@@ -7472,9 +7472,9 @@ types.card=[
     },{
         name:'Break\nShell',rarity:1,list:7,
         levels:[
-            {effect:[10],attack:1678,cost:1,target:[2,1,1],spec:[0],class:3},
-            {effect:[15],attack:1678,cost:1,target:[2,1,2],spec:[0],class:3},
-            {effect:[18],attack:1678,cost:1,target:[2,1,2],spec:[0],class:3},
+            {effect:[10],attack:1678,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15],attack:1678,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[18],attack:1678,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:`Fadeout`,rarity:0,list:7,
@@ -10242,16 +10242,16 @@ types.card=[
     },{
         name:'Spare 1',rarity:0,list:10,
         levels:[
+            {effect:[1],attack:1264,cost:0,target:[0],spec:[1],class:4},
             {effect:[1],attack:1264,cost:0,target:[0],spec:[],class:4},
-            {effect:[1],attack:1264,cost:0,target:[0],spec:[],class:4},
-            {effect:[1],attack:1264,cost:0,target:[0],spec:[],class:4},
+            {effect:[1],attack:1264,cost:0,target:[0],spec:[2],class:4},
         ],
     },{
         name:'Spare\nShocked 2',rarity:1,list:10,
         levels:[
+            {effect:[2,1],attack:1265,cost:0,target:[0],spec:[1],class:4},
             {effect:[2,1],attack:1265,cost:0,target:[0],spec:[],class:4},
-            {effect:[2,1],attack:1265,cost:0,target:[0],spec:[],class:4},
-            {effect:[2,1],attack:1265,cost:0,target:[0],spec:[],class:4},
+            {effect:[2,1],attack:1265,cost:0,target:[0],spec:[2],class:4},
         ],
     },{
         name:'Dice\nCannon',rarity:1,list:10,

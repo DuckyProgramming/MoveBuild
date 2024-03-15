@@ -3334,7 +3334,7 @@ class card{
                     let merge=mergeColor([0,0,0],colorDetail.text,this.level/max(1,this.levels-1))
                     this.layer.fill(merge[0],merge[1],merge[2],this.fade)
                 }
-                if(this.name.substr(0,2)!='-h'){
+                if(name.substr(0,2)!='-h'){
                     if(spec.includes(34)){
                         this.layer.rotate(90)
                         this.layer.textSize(12)

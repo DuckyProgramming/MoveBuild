@@ -3104,10 +3104,10 @@ class combatant{
                     ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage Up',6],['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Temporary Strength',10],
                     ['Temporary Dexterity',10],['Metallicize',2],['Buffer',1],['Take Half Damage',2],['Intangible',1],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],['Dexterity Per Turn',1],['Counter Combat',2],
                     ['Temporary Damage Up',4],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Counter Combat Turn',4],['Single Counter Block',8],['Invisible',4],['Take Third Damage',2],['Speed Up',1],['Strength Next Turn',3],
-                    ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Untargettable From Front',1],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],
-                    ['Block Next Turn Next Turn',20],['Heal on Hit',3],['Take 3/5 Damage',2],['Attack Bleed Turn',2],['Single Attack Bleed',4],['Attack Bleed Combat',1],['Counter Block',3],['Dodge Next Turn',1],['Cannot Die',1],['Single Damage Block Convert',2],
-                    ['Triple Block',1],['Dexterity Next Turn',3],['Take Credit',1],['Triple Damage',1],['1.5x Damage',2],['1.5x Block',3],['Decrementing Strength',3],['Block Up',2],['Take Credit Turn',1],['Take Credit Block Turn',1],
-                    ['Damage Up',2],['Temporary Block Up',4],['Block Next Turn Next Turn Next Turn',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],['Heal Per Turn',2],['Temporary Dexterity Next Turn',20]
+                    ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],['Block Next Turn Next Turn',20],
+                    ['Heal on Hit',3],['Take 3/5 Damage',2],['Attack Bleed Turn',2],['Single Attack Bleed',4],['Attack Bleed Combat',1],['Counter Block',3],['Dodge Next Turn',1],['Cannot Die',1],['Single Damage Block Convert',2],['Triple Block',1],
+                    ['Dexterity Next Turn',3],['Take Credit',1],['Triple Damage',1],['1.5x Damage',2],['1.5x Block',3],['Decrementing Strength',3],['Block Up',2],['Take Credit Turn',1],['Take Credit Block Turn',1],['Damage Up',2],
+                    ['Temporary Block Up',4],['Block Next Turn Next Turn Next Turn',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],['Heal Per Turn',2],['Temporary Dexterity Next Turn',20]
                 ]
                 for(let a=0,la=2;a<la;a++){
                     let index=floor(random(0,randombuffs.length))

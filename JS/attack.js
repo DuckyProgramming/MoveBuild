@@ -1054,26 +1054,6 @@ class attack{
                     case 1462:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userManager.hand.retainNumber(),this.user)
                     break
-                    case 1470:
-                        let total5=this.effect[0]
-                        let left2=2
-                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
-                            if(this.userManager.hand.cards[a].attack!=1470&&this.userManager.hand.cards[a].effect[0]>0&&this.userManager.hand.cards[a].class==1&&this.userManager.hand.cards[a].effect.length>0&&!this.userManager.hand.cards[a].spec.includes(12)){
-                                total5+=this.userManager.hand.cards[a].effect[0]
-                                left2--
-                                if(left2<=0){
-                                    a=la
-                                }
-                            }
-                        }
-                        if(this.userCombatant.charge>=this.effect[1]){
-                            this.userCombatant.charge-=this.effect[1]
-                            this.userCombatant.chargeConsumed()
-                            this.targetCombatant.takeDamage(total5*3,this.user)
-                        }else{
-                            this.targetCombatant.takeDamage(total5,this.user)
-                        }
-                    break
                     case 1478:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy+this.effect[1],this.user)
                     break
@@ -2230,7 +2210,7 @@ class attack{
                         }
                     break
                     case 1678:
-                        if(this.userCombatant.stance==3){
+                        if(this.userCombatant.stance==4){
                             this.userCombatant.enterStance(0)
                         }
                     break
@@ -8334,6 +8314,26 @@ class attack{
                     break
                     case 1409:
                         this.battle.combatantManager.allEffect(22,[this.effect[0]])
+                    break
+                    case 1470:
+                        let total5=this.effect[0]
+                        let left2=2
+                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                            if(this.userManager.hand.cards[a].attack!=1470&&this.userManager.hand.cards[a].effect[0]>0&&this.userManager.hand.cards[a].class==1&&this.userManager.hand.cards[a].effect.length>0&&!this.userManager.hand.cards[a].spec.includes(12)){
+                                total5+=this.userManager.hand.cards[a].effect[0]
+                                left2--
+                                if(left2<=0){
+                                    a=la
+                                }
+                            }
+                        }
+                        if(this.userCombatant.charge>=this.effect[1]){
+                            this.userCombatant.charge-=this.effect[1]
+                            this.userCombatant.chargeConsumed()
+                            this.targetCombatant.takeDamage(total5*3,this.user)
+                        }else{
+                            this.targetCombatant.takeDamage(total5,this.user)
+                        }
                     break
                     case 1517:
                         for(let a=0,la=this.effect[0];a<la;a++){
