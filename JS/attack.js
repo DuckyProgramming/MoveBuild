@@ -162,20 +162,20 @@ class attack{
             case 1764: case 1765: case 1766: case 1768: case 1769: case 1770: case 1772: case 1773: case 1774: case 1775:
             case 1776: case 1777: case 1778: case 1779: case 1780: case 1782: case 1787: case 1788: case 1790: case 1791:
             case 1793: case 1794: case 1795: case 1796: case 1798: case 1799: case 1800: case 1805: case 1801: case 1809:
-            case 1810: case 1811: case 1818: case 1819: case 1820: case 1821: case 1822: case 1823: case 1825: case 1828:
-            case 1829: case 1830: case 1831: case 1833: case 1835: case 1837: case 1838: case 1845: case 1848: case 1850:
-            case 1851: case 1852: case 1854: case 1858: case 1862: case 1863: case 1864: case 1865: case 1866: case 1867:
-            case 1868: case 1869: case 1870: case 1873: case 1874: case 1875: case 1878: case 1879: case 1880: case 1882:
-            case 1883: case 1884: case 1887: case 1888: case 1889: case 1889: case 1890: case 1891: case 1892: case 1893:
-            case 1894: case 1895: case 1897: case 1898: case 1900: case 1902: case 1904: case 1905: case 1906: case 1907:
-            case 1908: case 1909: case 1910: case 1913: case 1920: case 1921: case 1922: case 1923: case 1924: case 1926:
-            case 1927: case 1928: case 1932: case 1934: case 1935: case 1937: case 1940: case 1943: case 1944: case 1945:
-            case 1946: case 1948: case 1950: case 1951: case 1952: case 1954: case 1955: case 1958: case 1959: case 1960:
-            case 1961: case 1967: case 1968: case 1969: case 1970: case 1971: case 1972: case 1973: case 1979: case 1980:
-            case 1981: case 1982: case 1984: case 1990: case 1991: case 1999: case 2001: case 2002: case 2004: case 2006:
-            case 2007: case 2010: case 2011: case 2012: case 2016: case 2017: case 2018: case 2021: case 2022: case 2023:
-            case 2024: case 2025: case 2026: case 2027: case 2028: case 2030: case 2032: case 2034: case 2041: case 2042:
-            case 2045: case 2046:
+            case 1810: case 1811: case 1815: case 1818: case 1819: case 1820: case 1821: case 1822: case 1823: case 1825:
+            case 1828: case 1829: case 1830: case 1831: case 1833: case 1835: case 1837: case 1838: case 1845: case 1848:
+            case 1850: case 1851: case 1852: case 1854: case 1858: case 1862: case 1863: case 1864: case 1865: case 1866:
+            case 1867: case 1868: case 1869: case 1870: case 1873: case 1874: case 1875: case 1878: case 1879: case 1880:
+            case 1882: case 1883: case 1884: case 1887: case 1888: case 1889: case 1889: case 1890: case 1891: case 1892:
+            case 1893: case 1894: case 1895: case 1897: case 1898: case 1900: case 1902: case 1904: case 1905: case 1906:
+            case 1907: case 1908: case 1909: case 1910: case 1913: case 1920: case 1921: case 1922: case 1923: case 1924:
+            case 1926: case 1927: case 1928: case 1932: case 1934: case 1935: case 1937: case 1940: case 1943: case 1944:
+            case 1945: case 1946: case 1948: case 1950: case 1951: case 1952: case 1954: case 1955: case 1958: case 1959:
+            case 1960: case 1961: case 1967: case 1968: case 1969: case 1970: case 1971: case 1972: case 1973: case 1979:
+            case 1980: case 1981: case 1982: case 1984: case 1990: case 1991: case 1999: case 2001: case 2002: case 2004:
+            case 2006: case 2007: case 2010: case 2011: case 2012: case 2016: case 2017: case 2018: case 2021: case 2022:
+            case 2023: case 2024: case 2025: case 2026: case 2027: case 2028: case 2030: case 2032: case 2034: case 2041:
+            case 2042: case 2045: case 2046:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -884,7 +884,7 @@ class attack{
                         if(this.targetCombatant.life<prelife2){
                             let money=prelife2-this.targetCombatant.life
                             this.battle.overlayManager.overlays[25][this.player].active=true
-                            this.battle.overlayManager.overlays[25][this.player].activate([0,[{type:0,value:[roud(prelife2-this.targetCombatant.life)]}]])
+                            this.battle.overlayManager.overlays[25][this.player].activate([0,[{type:0,value:[round(prelife2-this.targetCombatant.life)*(this.amplify?2:1)]}]])
                         }
                     break
                     case 916:
@@ -6110,7 +6110,7 @@ class attack{
                         }
                     break
                     case 687:
-                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Upgrader',types.combatant),this.userCombatantf.team,this.direction,this.user)
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Upgrader',types.combatant),this.userCombatant.team,this.direction,this.user)
                         if(options.oldUnbuild){
                             this.userManager.hand.add(findName('Unbuild',types.card),0,0)
                         }
@@ -7947,7 +7947,7 @@ class attack{
                     case 479:
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                         if(index>=0){
-                            this.battle.combatantManager.combatants[index].takeDamage(this.effect[0],1)
+                            this.battle.combatantManager.combatants[index].takeDamage(this.effect[0],this.effect[1])
                         }
                     break
                     case 480:

@@ -272,7 +272,7 @@ class tile{
                     if(this.combatant>=0){
                         switch(type){
                             case 0:
-                                this.battle.combatantManager.combatants[this.combatant].takeDamage(effect[0],-1)
+                                this.battle.combatantManager.combatants[this.combatant].takeDamage(effect[0],effect[1])
                             break
                             case 1:
                                 this.battle.combatantManager.combatants[this.combatant].heal(effect[0])

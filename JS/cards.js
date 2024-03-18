@@ -1970,9 +1970,9 @@ types.card=[
     },{
         name:'Emerald\nVeil',rarity:1,list:2,
         levels:[
-            {effect:[],attack:486,cost:1,target:[23],spec:[1],class:3},
-            {effect:[],attack:486,cost:0,target:[23],spec:[1],class:3},
-            {effect:[],attack:660,cost:0,target:[6],spec:[1],class:3},
+            {effect:[],attack:486,cost:1,target:[49],spec:[1],class:3},
+            {effect:[],attack:486,cost:0,target:[49],spec:[1],class:3},
+            {effect:[],attack:660,cost:0,target:[50],spec:[1],class:3},
         ],
     },{
         name:'Toxin',rarity:1,list:2,
@@ -2201,9 +2201,9 @@ types.card=[
     },{
         name:'Cooking\nPot',rarity:1,list:2,
         levels:[
-            {effect:[2,1,1],attack:1723,cost:0,target:[2,1,6],spec:[1],class:1},
-            {effect:[3,1,1],attack:1723,cost:0,target:[2,1,6],spec:[1],class:1},
-            {effect:[4,1,1],attack:1723,cost:0,target:[2,1,6],spec:[1],class:1},
+            {effect:[2,1,1],attack:1723,cost:0,target:[0],spec:[1],class:4},
+            {effect:[3,1,1],attack:1723,cost:0,target:[0],spec:[1],class:4},
+            {effect:[4,1,1],attack:1723,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
         name:'Flower\nPot',rarity:0,list:2,
@@ -7721,9 +7721,9 @@ types.card=[
     },{
         name:'Comet',rarity:1,list:8,
         levels:[
-            {effect:[14,4],attack:850,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[18,6],attack:850,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[20,8],attack:850,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[14,4],attack:850,cost:3,target:[2,1,3],spec:[0],class:1},
+            {effect:[18,6],attack:850,cost:3,target:[2,1,3],spec:[0],class:1},
+            {effect:[20,8],attack:850,cost:3,target:[2,1,3],spec:[0],class:1},
         ],
     },{
         name:'Earth\nPower',rarity:1,list:8,
@@ -8393,9 +8393,9 @@ types.card=[
     },{
         name:'Aurora',rarity:1,list:8,
         levels:[
-            {effect:[2,3],attack:1363,cost:1,target:[0],spec:[27],class:4},
-            {effect:[2,3],attack:1363,cost:1,target:[0],spec:[27],class:4},
-            {effect:[2,3],attack:1363,cost:1,target:[0],spec:[27],class:4},
+            {effect:[2,3],attack:1363,cost:1,target:[0],spec:[1,27],class:4},
+            {effect:[2,4],attack:1363,cost:1,target:[0],spec:[1,27],class:4},
+            {effect:[2,4],attack:1363,cost:1,target:[0],spec:[27],class:4},
         ],
     },{
         name:'Honeysuckle',rarity:0,list:8,

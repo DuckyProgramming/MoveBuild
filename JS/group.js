@@ -3270,9 +3270,9 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==23){
+        if(this.battle.attackManager.targetInfo[0]==23||this.battle.attackManager.targetInfo[0]==49||this.battle.attackManager.targetInfo[0]==50){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
-                if(this.battle.tileManager.tiles[a].type.includes(19)&&
+                if((this.battle.tileManager.tiles[a].type.includes(19)||this.battle.attackManager.targetInfo[0]==50)&&(this.battle.tileManager.tiles[a].occupied==0||this.battle.attackManager.targetInfo[0]==23||this.battle.attackManager.targetInfo[0]==50&&!this.battle.tileManager.tiles[a].type.includes(19))&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }
