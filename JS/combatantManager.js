@@ -371,8 +371,8 @@ class combatantManager{
                 this.combatants[this.combatants.length-1].base.life*=1.5
                 this.combatants[this.combatants.length-1].collect.life*=1.5
             }
-            this.battle.updateTargetting()
             this.battle.tileManager.activate()
+            this.battle.updateTargetting()
             this.battle.counter.enemy++
         }
     }
