@@ -144,8 +144,8 @@ attack.prototype.update=function(){
         case 1025: case 1030: case 1035: case 1037: case 1039: case 1057: case 1061: case 1077: case 1118: case 1127:
         case 1130: case 1131: case 1141: case 1146: case 1161: case 1176: case 1301: case 1357: case 1369: case 1417:
         case 1453: case 1456: case 1460: case 1514: case 1523: case 1532: case 1534: case 1603: case 1636: case 1696:
-        case 1713: case 1728: case 1738: case 1742: case 1804: case 1814: case 1826: case 1861: case 1876: case 1929:
-        case 1963: case 1966: case 1983: case 1985: case 2003: case 2005: case 2035: case 2042:
+        case 1713: case 1728: case 1738: case 1742: case 1804: case 1814: case 1826: case 1861: case 1876: case 1877:
+        case 1929: case 1963: case 1966: case 1983: case 1985: case 2003: case 2005: case 2035: case 2042:
             if(
                 this.type==809&&this.userCombatant.stance!=4||
                 this.type==1713&&this.battle.turn.total%2==0||
@@ -4532,7 +4532,7 @@ attack.prototype.update=function(){
                 for(let a=0,la=this.targetCombatant.length;a<la;a++){
                     let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x*(1+1/this.targetDistance[a])-this.userCombatant.tilePosition.x/this.targetDistance[a],this.targetCombatant[a].tilePosition.y*(1+1/this.targetDistance[a])-this.userCombatant.tilePosition.y/this.targetDistance[a])
                     let index2=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x*(1+2/this.targetDistance[a])-this.userCombatant.tilePosition.x*2/this.targetDistance[a],this.targetCombatant[a].tilePosition.y*(1+2/this.targetDistance[a])-this.userCombatant.tilePosition.y*2/this.targetDistance[a])
-                    this.procedure[a]=this.targetCombatant[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&(this.battle.tileManager.tiles[index].occupied==0||a==0&&this.targetCombatant.length>1&&this.battle.tileManager.tiles[index2].occupied==0)?0:1
+                    this.procedure[a]=this.targetCombatant[a].getStatus('Cannot Be Pushed')>0?2:(index>=0&&this.battle.tileManager.tiles[index].occupied==0||index2>=0&&a==0&&this.targetCombatant.length>1&&this.battle.tileManager.tiles[index2].occupied==0)?0:1
                 }
                 this.userCombatant.startAnimation(3)
             }
@@ -4556,7 +4556,7 @@ attack.prototype.update=function(){
                         this.targetCombatant[a].moveTile(this.direction[a],-this.distance[a]/10/this.targetDistance[a])
                         this.targetCombatant[a].moveRelativeTile(this.relativeDirection[a],-this.relativeDistance[a]/10/this.targetDistance[a])
                     }
-                    if(this.timer==18){
+                    if(this.timer==18&&!(a==0&&la==2)){
                         this.targetCombatant[a].takeDamage(game.collisionDamage,-1)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant[a].tilePosition.x*(1+1/this.targetDistance[a])-this.userCombatant.tilePosition.x/this.targetDistance[a],this.targetCombatant[a].tilePosition.y*(1+1/this.targetDistance[a])-this.userCombatant.tilePosition.y/this.targetDistance[a])
                         if(index>=0){
@@ -4920,7 +4920,7 @@ attack.prototype.update=function(){
             }
             if(this.timer>=15*this.targetDistance-14&&this.timer<=15*this.targetDistance+15){
                 this.userCombatant.runAnimation(1/30,2)
-            }else if(this.timer<15*this.targetDistance-15){
+            }else if(this.timer<=15*this.targetDistance-15){
                 this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
                 this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
                 this.userCombatant.runAnimation(1/15,0)

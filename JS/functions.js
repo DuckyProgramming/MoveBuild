@@ -353,7 +353,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 10: return damage==effect?tennify(effect):tennify(effect)+`(${tennify(damage)})`
 				case 11: return (damage==effect?tennify(effect)+'X':tennify(effect)+`(${tennify(damage)})X`)
 				case 12: return effect==1?(damage==effect?'1*Faith':`1(${tennify(damage)})*Faith`):(damage==effect?tennify(effect)+'*Faith':tennify(effect)+`(${tennify(damage)})*Faith`)
-				case 13: return effect==1?(damage==effect?'1':`1(${tennify(damage)})`):(damage==effect?tennify(effect)+'':tennify(effect)+`(${tennify(damage)})`)
+				case 13: return effect==1?(damage==effect?'':`1(${tennify(damage)})*`):(damage==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(damage)})*`)
 
 			}
 		case 1: case 3: case 6: case 14:

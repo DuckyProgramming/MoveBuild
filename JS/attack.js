@@ -7345,7 +7345,7 @@ class attack{
                         }
                     break
                     case 1036:
-                        this.targetCombatant.takeDamage(this.effect[0]+this.userCombatant.hand.cards.length,this.user,1)
+                        this.targetCombatant.takeDamage(this.effect[0]+this.userManager.hand.cards.length,this.user,1)
                         if(abs(this.relPos[0]-this.relPos[1]/2)<=0.5){
                             this.userManager.draw(this.effect[1])
                         }

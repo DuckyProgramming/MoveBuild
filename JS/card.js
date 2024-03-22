@@ -1275,7 +1275,7 @@ class card{
             case 1033: string+=`Gain ${effect[0]} Temporary\nDexterity`; break
             case 1034: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 0 at\nCenter of Hand`; break
             case 1035: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCenter of Hand:\nGain ${effect[1]} Armor`; break
-            case 1036: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}*Hand Size\nCenter of Hand:\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 1036: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}Hand Size\nCenter of Hand:\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1037: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCosts 0 at\nCenter of Hand`; break
             case 1038: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${effect[1]} Strike${effect[1]!=1?`s`:``}\nto Draw Pile`; break
             case 1039: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdd ${effect[1]} Defend${effect[1]!=1?`s`:``}\nto Draw Pile`; break
@@ -1424,7 +1424,7 @@ class card{
             case 1185: string+=`Summon in an Rewriter`; break
             case 1186: string+=`Have 999999 Max Health`; break
             case 1187: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Target is\nSmall and Humanoid\nit Dies Instantly`; break
-            case 1188: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}*Balance`; break
+            case 1188: string+=`Deal ${this.calculateEffect(effect[0],0)}+${this.calculateEffect(effect[1],13)}Balance\nDamage`; break
             case 1189: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Burn\nDiscards to Draw Pile`; break
             case 1190: string+=`Gain ${effect[0]} Currency\nAll Enemies Gain ${effect[1]} Strength`; break
             case 1192: string+='${this.description()}'; break

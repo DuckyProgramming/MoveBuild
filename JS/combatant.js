@@ -4271,7 +4271,11 @@ class combatant{
                 userCombatant.takeDamage(userCombatant.status.main[49]*2,-1)
             }
             if(userCombatant.status.main[119]>0){
-                this.statusEffectNext('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1))
+                if(this.battle.turn.main<this.battle.players){
+                    this.statusEffect('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1))
+                }else{
+                    this.statusEffectNext('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1))
+                }
             }
             if(userCombatant.status.main[95]>0){
                 userCombatant.heal(userCombatant.status.main[95])

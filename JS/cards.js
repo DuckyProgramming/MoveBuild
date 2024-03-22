@@ -7835,7 +7835,7 @@ types.card=[
         levels:[
             {effect:[],attack:868,cost:1,target:[0],spec:[1,4],class:4},
             {effect:[],attack:868,cost:0,target:[0],spec:[1,4],class:4},
-            {effect:[],attack:868,cost:0,target:[0],spec:[1,2,4],class:4},
+            {effect:[],attack:868,cost:0,target:[0],spec:[1,2],class:4},
         ],
     },{
         name:'Mana\nConvect',rarity:1,list:8,
@@ -8043,9 +8043,9 @@ types.card=[
     },{
         name:'Starlight\nTyphoon',rarity:1,list:8,
         levels:[
-            {effect:[],attack:911,cost:1,target:[0],spec:[],class:4},
-            {effect:[],attack:912,cost:1,target:[0],spec:[],class:4},
-            {effect:[],attack:912,cost:1,target:[0],spec:[22],class:4},
+            {effect:[],attack:911,cost:2,target:[0],spec:[],class:4},
+            {effect:[],attack:912,cost:2,target:[0],spec:[],class:4},
+            {effect:[],attack:912,cost:2,target:[0],spec:[22],class:4},
         ],
     },{
         name:'Supernova',rarity:2,list:8,
@@ -8092,9 +8092,9 @@ types.card=[
     },{
         name:'Leyline',rarity:0,list:8,
         levels:[
-            {effect:[11],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[15],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[18],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[17],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[21],attack:940,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Greed',rarity:1,list:8,
