@@ -274,7 +274,7 @@ class card{
             case 23: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]}`; break
             case 24: string+=`Make an Enemy Attack\nThey Will Not Attack\non Their Turn`; break
             case 26: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCannot Be Pushed\nThis Turn`; break
-            case 27: string+=`Advance up to ${effect[1]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
+            case 27: string+=`Advance up to ${target[2]-1} Tile${target[2]!=2?`s`:``}\nToward an Enemy\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 28: string+=`Put a Card in Discard\nPile in Your Hand`; break
             case 29: string+=`Put a Card in Draw\nPile in Your Hand`; break
             case 30: string+=`Gain ${effect[0]} Dodge`; break
@@ -1609,7 +1609,7 @@ class card{
             case 1369: string+=`When Drawn,\nGain ${effect[0]} Armor\nOn Play, Add ${this.calculateEffect(effect[1],1)} Block`; break
             case 1370: string+=`Heal ${this.calculateEffect(effect[0],4)} Health\nGain ${effect[1]} Charge`; break
             case 1371: string+=`Add ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Your Hand\nGain ${effect[1]} Miss`; break
-            case 1372: string+=`Advance up to ${effect[1]} Tile${effect[0]!=1?`s`:``}\nToward an Enemy\nDeal ${this.calculateEffect(effect[0],0)} Damage\nMove 1 Tile Away`; break
+            case 1372: string+=`Advance up to ${target[2]-1} Tile${target[2]!=2?`s`:``}\nToward an Enemy\nDeal ${this.calculateEffect(effect[0],0)} Damage\nMove 1 Tile Away`; break
             case 1373: string+=`Requires 1 Energy Exactly\nDeal ${this.calculateEffect(effect[0],0)} Damage and ${effect[1]} Weak\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
             case 1374: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Energy is Odd,\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1375: string+=`Next Luck-Based Card\nis Guaranteed`; break
@@ -2890,7 +2890,7 @@ class card{
             this.layer.push()
             this.layer.translate(this.position.x,this.position.y)
             this.layer.scale(this.size*this.sizeCap)
-            if(this.edition==4){
+            if(this.edition==5){
                 if(this.attack==1328){
                     this.layer.fill(0,150,255,this.fade*this.anim.select)
                     this.layer.noStroke()
@@ -3171,7 +3171,7 @@ class card{
             if(spec.includes(12)){
                 this.layer.line(-this.width/2,10,this.width/2,10)
             }
-            if(this.edition>=1&&this.edition<=3){
+            if(this.edition>=1&&this.edition<=6){
                 if(this.width==90){
                     this.layer.image(graphics.edition[this.edition-1][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
                 }else{
@@ -3179,7 +3179,7 @@ class card{
                 }
             }
             this.layer.noStroke()
-            if(this.edition==4){
+            if(this.edition==5){
                 let merge=mergeColor([255,255,255],flipColor(colorDetail.text),this.level/max(1,this.levels-1))
                 this.layer.fill(merge[0],merge[1],merge[2],this.fade)
             }else if(this.colorful){
@@ -3324,7 +3324,7 @@ class card{
                         }
                     }
                 }
-                if(this.edition==4){
+                if(this.edition==5){
                     let merge=mergeColor([255,255,255],flipColor(colorDetail.text),this.level/max(1,this.levels-1))
                     this.layer.fill(merge[0],merge[1],merge[2],this.fade)
                 }else if(this.colorful){
@@ -3352,7 +3352,7 @@ class card{
                             this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+multiplyString('+',this.level),0,variants.blind?0:-this.height/2+15)
                         }
                         if(!variants.blind){
-                            if(this.edition==4){
+                            if(this.edition==5){
                                 this.layer.fill(255,255,255,this.fade)
                             }else if(this.colorful){
                                 this.layer.fill(240,this.fade)
@@ -3434,16 +3434,22 @@ class card{
                             this.layer.textSize(5)
                             switch(this.edition){
                                 case 1:
-                                    this.layer.text(`Foil: 5 Block`,0,this.height/2)
+                                    this.layer.text(`Silver: 2 Health`,0,this.height/2)
                                 break
                                 case 2:
-                                    this.layer.text(`Holographic: 1 Strength`,0,this.height/2)
+                                    this.layer.text(`Foil: 5 Block`,0,this.height/2)
                                 break
                                 case 3:
-                                    this.layer.text(`Polychrome: 1 Energy`,0,this.height/2)
+                                    this.layer.text(`Holographic: 1 Strength`,0,this.height/2)
                                 break
                                 case 4:
+                                    this.layer.text(`Polychrome: 1 Energy`,0,this.height/2)
+                                break
+                                case 5:
                                     this.layer.text(`Negative: Draw 2 Cards`,0,this.height/2)
+                                break
+                                case 6:
+                                    this.layer.text(`Erratic: Randomly Improve Effect 1-2x`,0,this.height/2)
                                 break
                             }
                         }

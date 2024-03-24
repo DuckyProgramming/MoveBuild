@@ -11,7 +11,7 @@ class perkManager{
     assemble(){
         this.getPosKey()
         this.addPerk(floor(random(0,4)))
-        this.addPerk(floor(random(4,8)))
+        this.addPerk([4,5,6,7,12][floor(random(0,5))])
         this.addPerk(floor(random(8,12)))
     }
     getPosKey(){
@@ -77,6 +77,10 @@ class perkManager{
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,1,1])
             break
+            case 12:
+                this.battle.overlayManager.overlays[44][this.player].active=true
+                this.battle.overlayManager.overlays[44][this.player].activate()
+            break
         }
     }
     reset(){
@@ -98,7 +102,8 @@ class perkManager{
         if(this.selected==4&&!this.battle.overlayManager.overlays[5][this.player].active||
             (this.selected==5||this.selected==10||this.selected==11)&&!this.battle.overlayManager.overlays[3][this.player].active||
             this.selected==6&&!this.battle.overlayManager.overlays[6][this.player].active||
-            this.selected==7&&!this.battle.overlayManager.overlays[9][this.player].active){
+            this.selected==7&&!this.battle.overlayManager.overlays[9][this.player].active||
+            this.selected==12&&!this.battle.overlayManager.overlays[44][this.player].active){
             this.complete=true
         }
     }

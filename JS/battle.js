@@ -712,16 +712,22 @@ class battle{
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
         switch(card.edition){
             case 1:
-                userCombatant.addBlock(5)
+                userCombatant.heal(2)
             break
             case 2:
-                userCombatant.statusEffect('Strength',1)
+                userCombatant.addBlock(5)
             break
             case 3:
-                this.energy.main[player]++
+                userCombatant.statusEffect('Strength',1)
             break
             case 4:
+                this.energy.main[player]++
+            break
+            case 5:
                 this.cardManagers[player].draw(2)
+            break
+            case 6:
+                this.attackManager.edition(6)
             break
         }
         switch(cardClass){

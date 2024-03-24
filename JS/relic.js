@@ -1324,29 +1324,41 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('4x',0,10)
                 break
-                case '6 Random Foils':
+                case '3 Random Silvers':
+                    displaySymbol(this.layer,0,0,82,0,1.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('3',0,0)
+                break
+                case '3 Random Foils':
                     displaySymbol(this.layer,0,0,78,0,1.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('6',0,0)
+                    this.layer.text('3',0,0)
                 break
-                case '4 Random Holographics':
+                case '2 Random Holographics':
                     displaySymbol(this.layer,0,0,79,0,1.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('4',0,0)
+                    this.layer.text('2',0,0)
                 break
-                case '2 Random Polychromes':
+                case '1 Random Polychrome':
                     displaySymbol(this.layer,0,0,80,0,1.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('2',0,0)
+                    this.layer.text('1',0,0)
                 break
-                case '2 Random Negatives':
+                case '1 Random Negative':
                     displaySymbol(this.layer,0,0,81,0,1.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('2',0,0)
+                    this.layer.text('1',0,0)
+                break
+                case '1 Random Erratic':
+                    displaySymbol(this.layer,0,0,83,0,1.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',0,0)
                 break
 
             }

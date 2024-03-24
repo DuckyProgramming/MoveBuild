@@ -238,6 +238,22 @@ class perk{
                 this.layer.textSize(16)
                 this.layer.text('Lose Max HP\nColorless Card',0,60-this.player*120)
             break
+            case 12:
+                this.layer.stroke(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,60,80,5)
+                this.layer.strokeWeight(2)
+                this.layer.ellipse(0,0,50)
+                this.layer.ellipse(0,0,25)
+                this.layer.line(0,-40,0,40)
+                this.layer.line(-30,-18,30,18)
+                this.layer.line(-30,18,30,-18)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([25,25,25],[50,255,50],this.anim.complete)[0],mergeColor([25,25,25],[50,255,50],this.anim.complete)[1],mergeColor([25,25,25],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Edition',0,60-this.player*120)
+            break
         }
         this.layer.pop()
     }

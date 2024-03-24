@@ -4145,7 +4145,7 @@ class attack{
                     break
                     case 1916:
                         if(this.energy%2==1){
-                            this.battle.energy.main[this.player]-=this.effect[1]
+                            this.battle.energy.main[this.player]-=this.effect[0]
                         }
                     break
                     case 1942:

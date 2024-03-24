@@ -2018,6 +2018,12 @@ class group{
         }
         return possible
     }
+    removeBypass(index){
+        this.removed.push(copyCard(this.cards[index]))
+        this.cards[index].callRemoveEffect()
+        this.cards.splice(index,1)
+        return true
+    }
     removable(index){
         return !this.cards[index].spec.includes(7)
     }
@@ -2642,6 +2648,7 @@ class group{
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                         this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                        this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
                                         c--
                                         lc--
                                     }
@@ -2662,6 +2669,7 @@ class group{
                                     for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                         if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                             this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                            this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
                                             c--
                                             lc--
                                         }
@@ -2686,6 +2694,7 @@ class group{
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                         this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                        this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
                                         c--
                                         lc--
                                     }
@@ -2703,6 +2712,7 @@ class group{
                                     for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                         if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                             this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                            this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
                                             c--
                                             lc--
                                         }

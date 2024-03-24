@@ -666,10 +666,12 @@ types={
         {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:2,list:0,description:'Extra Energy is Converted\nto Temporary Strength'},
 
         {name:'Hone',internal:'More Editions',id:180,rarity:4,list:0,description:'Cards are 4x More\nLikely to be Editions'},
-        {name:'Foil Pack',internal:'6 Random Foils',id:181,rarity:3,list:0,description:'When Taken, Make 6\nRandom Cards Foil'},
-        {name:'Holographic Pack',internal:'4 Random Holographics',id:182,rarity:3,list:0,description:'When Taken, Make 4\nRandom Cards Holographic'},
-        {name:'Polychrome Pack',internal:'2 Random Polychromes',id:183,rarity:3,list:0,description:'When Taken, Make 2\nRandom Card Polychrome'},
-        {name:'Negative Pack',internal:'2 Random Negatives',id:184,rarity:3,list:0,description:'When Taken, Make 2\nRandom Card Negative'},
+        {name:'Silver Pack',internal:'3 Random Foils',id:181,rarity:3,list:0,description:'When Taken, Make 3\nRandom Cards Silver'},
+        {name:'Foil Pack',internal:'3 Random Foils',id:182,rarity:3,list:0,description:'When Taken, Make 3\nRandom Cards Foil'},
+        {name:'Holographic Pack',internal:'2 Random Holographics',id:183,rarity:3,list:0,description:'When Taken, Make 2\nRandom Cards Holographic'},
+        {name:'Polychrome Pack',internal:'1 Random Polychrome',id:184,rarity:3,list:0,description:'When Taken, Make 1\nRandom Card Polychrome'},
+        {name:'Negative Pack',internal:'1 Random Negative',id:185,rarity:3,list:0,description:'When Taken, Make 1\nRandom Card Negative'},
+        {name:'Erratic Pack',internal:'1 Random Erratic',id:186,rarity:3,list:0,description:'When Taken, Make 1\nRandom Card Erratic'},
         
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},

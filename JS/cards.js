@@ -2271,9 +2271,9 @@ types.card=[
     },{
         name:'Carrots',rarity:1,list:2,
         levels:[
-            {effect:[8],attack:1804,cost:0,target:[0],spec:[],class:2},
-            {effect:[13],attack:1804,cost:0,target:[0],spec:[],class:2},
-            {effect:[17],attack:1804,cost:0,target:[0],spec:[],class:2},
+            {effect:[12],attack:1804,cost:0,target:[0],spec:[],class:2},
+            {effect:[18],attack:1804,cost:0,target:[0],spec:[],class:2},
+            {effect:[22],attack:1804,cost:0,target:[0],spec:[],class:2},
         ],
     },{
         name:'Talons',rarity:1,list:2,
@@ -3255,9 +3255,9 @@ types.card=[
     },{
         name:'Angelfrost',rarity:0,list:3,
         levels:[
-            {effect:[9,1],attack:1481,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[15,1],attack:1481,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[16,2],attack:1481,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[7,1],attack:1481,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[13,1],attack:1481,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[14,2],attack:1481,cost:1,target:[2,1,3],spec:[0],class:1},
         ],
     },{
         name:'Snowdrop',rarity:1,list:3,
@@ -3399,9 +3399,9 @@ types.card=[
     },{
         name:'Swap\nOut',rarity:0,list:4,
         levels:[
-            {effect:[10,1,1],attack:218,cost:2,target:[2,1,6],spec:[0],class:1},
-            {effect:[15,1,1],attack:218,cost:2,target:[2,1,6],spec:[0],class:1},
-            {effect:[18,1,1],attack:218,cost:2,target:[2,1,6],spec:[0],class:1},
+            {effect:[14,1,1],attack:218,cost:2,target:[2,1,6],spec:[0],class:1},
+            {effect:[20,1,1],attack:218,cost:2,target:[2,1,6],spec:[0],class:1},
+            {effect:[24,1,1],attack:218,cost:2,target:[2,1,6],spec:[0],class:1},
         ],
     },{
         name:'Backstab',rarity:0,list:4,
@@ -6341,8 +6341,8 @@ types.card=[
     },{
         name:'Water\nBucket',rarity:2,list:6,
         levels:[
-            {effect:[4],attack:1467,cost:1,target:[0],spec:[1],class:4},
-            {effect:[3],attack:1467,cost:0,target:[0],spec:[1],class:4},
+            {effect:[2],attack:1467,cost:1,target:[0],spec:[1],class:4},
+            {effect:[2],attack:1467,cost:0,target:[0],spec:[1],class:4},
             {effect:[1],attack:1467,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
@@ -9531,9 +9531,9 @@ types.card=[
     },{
         name:'Demonfire',rarity:0,list:9,
         levels:[
-            {effect:[9,1],attack:1482,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[15,1],attack:1482,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[16,2],attack:1482,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[7,1],attack:1482,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[13,1],attack:1482,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[15,2],attack:1482,cost:1,target:[2,1,3],spec:[0],class:1},
         ],
     },{
         name:'Ember',rarity:1,list:9,

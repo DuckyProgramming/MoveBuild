@@ -333,12 +333,12 @@ class relicManager{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(0.5)
             break
             case 181:
-                for(let a=0,la=6;a<la;a++){
+                for(let a=0,la=3;a<la;a++){
                     this.battle.cardManagers[player].randomEffect(0,30,[1])
                 }
             break
             case 182:
-                for(let a=0,la=4;a<la;a++){
+                for(let a=0,la=3;a<la;a++){
                     this.battle.cardManagers[player].randomEffect(0,30,[2])
                 }
             break
@@ -348,9 +348,13 @@ class relicManager{
                 }
             break
             case 184:
-                for(let a=0,la=2;a<la;a++){
-                    this.battle.cardManagers[player].randomEffect(0,30,[4])
-                }
+                this.battle.cardManagers[player].randomEffect(0,30,[4])
+            break
+            case 185:
+                this.battle.cardManagers[player].randomEffect(0,30,[5])
+            break
+            case 186:
+                this.battle.cardManagers[player].randomEffect(0,30,[6])
             break
 
         }
@@ -488,12 +492,12 @@ class relicManager{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(30)
             break
             case 181:
-                for(let a=0,la=6;a<la;a++){
+                for(let a=0,la=3;a<la;a++){
                     this.battle.cardManagers[player].randomEffect(0,31,[1])
                 }
             break
             case 182:
-                for(let a=0,la=4;a<la;a++){
+                for(let a=0,la=3;a<la;a++){
                     this.battle.cardManagers[player].randomEffect(0,31,[2])
                 }
             break
@@ -503,9 +507,13 @@ class relicManager{
                 }
             break
             case 184:
-                for(let a=0,la=2;a<la;a++){
-                    this.battle.cardManagers[player].randomEffect(0,31,[4])
-                }
+                this.battle.cardManagers[player].randomEffect(0,31,[4])
+            break
+            case 185:
+                this.battle.cardManagers[player].randomEffect(0,31,[5])
+            break
+            case 186:
+                this.battle.cardManagers[player].randomEffect(0,31,[6])
             break
         }
         this.deactivate(type)

@@ -4253,7 +4253,7 @@ function setupOverlay(type,layer){
 		break
 	}
 }
-function setupEdition(type,layer){
+function setupEdition(type,layer,crop){
 	switch(type){
 		case 0:
 			layer.noFill()
@@ -4263,6 +4263,33 @@ function setupEdition(type,layer){
 			layer.rect(layer.width/2,layer.height/2,105,135,12.5)
 		break
 		case 1:
+			layer.fill(235,245,255,0.025)
+			for(let a=0,la=120;a<la;a++){
+				if(a%20==0){
+					layer.noErase()
+				}else if(a%20==10){
+					layer.erase(0.025,0.025)
+				}
+				if(crop==1){
+					layer.rect(layer.width/2,layer.height/2,layer.width*(1-a/la)*9/16,layer.height*(1-a/la),40*(1-a/la))
+				}else{
+					layer.rect(layer.width/2,layer.height/2,layer.width*(1-a/la),layer.height*(1-a/la),40*(1-a/la))
+				}
+			}
+			layer.noErase()
+			for(let a=0,la=15;a<la;a++){
+				let b=random(-6,6)
+				let c=random(0.5,2.5)
+				layer.stroke(255,255,255,random(0.025,0.1)*c)
+				layer.strokeWeight(random(3,3.6)*c)
+				layer.line(0,layer.height*a/la*2.25+b,layer.width,layer.height*(a/la*2.25-1.25)+b)
+				layer.strokeWeight(random(1.2,2.4)*c)
+				layer.line(0,layer.height*a/la*2.25+b,layer.width,layer.height*(a/la*2.25-1.25)+b)
+				layer.strokeWeight(random(0.4,0.8)*c)
+				layer.line(0,layer.height*a/la*2.25+b,layer.width,layer.height*(a/la*2.25-1.25)+b)
+			}
+		break
+		case 2:
 			layer.fill(100,50,200,0.1)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 			layer.noFill()
@@ -4281,7 +4308,7 @@ function setupEdition(type,layer){
 				}
 			}
 		break
-		case 2:
+		case 3:
 			layer.colorMode(HSB,360,255,255,1)
 			layer.fill(0,150,200)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
@@ -4312,7 +4339,7 @@ function setupEdition(type,layer){
 			layer.erase(0.5)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 		break
-		case 3:
+		case 4:
 			layer.colorMode(HSB,360,255,255,1)
 			layer.fill(0,150,200)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
@@ -4343,6 +4370,76 @@ function setupEdition(type,layer){
 			layer.erase(0.5)
 			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
 		break
+		case 5:
+			for(let a=0,la=16;a<la;a++){
+				for(let b=0,lb=12;b<lb;b++){
+					let c=(a+random(0.3,0.7))/la*layer.width
+					let d=(b+a%2*0.5+random(0.05,0.45))/lb*layer.height
+					let e=random(10,40)
+					let f=random(0,360)
+					let g=random(0,1)
+					for(let h=0,lh=6;h<lh;h++){
+						layer.fill(100+g*50,0.005)
+						for(let i=0,li=10;i<li;i++){
+							layer.arc(c,d,e*(1-i/li*0.7),e*(1-i/li*0.7),f+360*h/lh,f+360*(h+0.5)/lh)
+						}
+					}
+				}
+			}
+		break
+		case 6:
+			layer.fill(50,75,75,0.2)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			for(let a=0,la=16;a<la;a++){
+				for(let b=0,lb=12;b<lb;b++){
+					let c=floor(random(0,3))
+					switch(c){
+						case 0:
+							layer.fill(25,75,225,0.3)
+						break
+						case 1:
+							layer.fill(255,75,75,0.3)
+						break
+						case 2:
+							layer.fill(255,175,0,0.3)
+						break
+					}
+					c=floor(random(0,3))
+					switch(c){
+						case 0:
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height,6,2)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height-2,2,2)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height+2,2,2)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height,5,1)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height-1.5,1,2)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height+1.5,1,2)
+						break
+						case 1:
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height-2,6,2)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height+2,6,2)
+							layer.rect((a+0.5)/la*layer.width-2,(b+0.5)/lb*layer.height,2,2)
+							layer.rect((a+0.5)/la*layer.width+2,(b+0.5)/lb*layer.height,2,2)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height-2,5,1)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height+2,5,1)
+							layer.rect((a+0.5)/la*layer.width-2,(b+0.5)/lb*layer.height,1,3)
+							layer.rect((a+0.5)/la*layer.width+2,(b+0.5)/lb*layer.height,1,3)
+						break
+						case 2:
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height,2,2)
+							layer.rect((a+0.5)/la*layer.width-2,(b+0.5)/lb*layer.height-2,2,2)
+							layer.rect((a+0.5)/la*layer.width+2,(b+0.5)/lb*layer.height-2,2,2)
+							layer.rect((a+0.5)/la*layer.width-2,(b+0.5)/lb*layer.height+2,2,2)
+							layer.rect((a+0.5)/la*layer.width+2,(b+0.5)/lb*layer.height+2,2,2)
+							layer.rect((a+0.5)/la*layer.width,(b+0.5)/lb*layer.height,1,1)
+							layer.rect((a+0.5)/la*layer.width-2,(b+0.5)/lb*layer.height-2,1,1)
+							layer.rect((a+0.5)/la*layer.width+2,(b+0.5)/lb*layer.height-2,1,1)
+							layer.rect((a+0.5)/la*layer.width-2,(b+0.5)/lb*layer.height+2,1,1)
+							layer.rect((a+0.5)/la*layer.width+2,(b+0.5)/lb*layer.height+2,1,1)
+						break
+					}
+				}
+			}
+		break
 	}
 }
 function setupGraphics(){
@@ -4371,15 +4468,14 @@ function setupGraphics(){
 		setupLayer(graphics.overlays[a])
 		setupOverlay(a,graphics.overlays[a])
 	}
-	for(let a=0,la=3;a<la;a++){
+	for(let a=0,la=6;a<la;a++){
 		graphics.edition.push([createGraphics(200,150),createGraphics(200,150)])
 		setupLayer(graphics.edition[a][0])
 		setupLayer(graphics.edition[a][1])
-		setupEdition(a+1,graphics.edition[a][0])
-		setupEdition(a+1,graphics.edition[a][1])
+		setupEdition(a+1,graphics.edition[a][0],0)
+		setupEdition(a+1,graphics.edition[a][1],1)
 		setupEdition(0,graphics.edition[a][1])
 	}
-
 	/*
 	0-Perk
 	1-Loss

@@ -49,6 +49,15 @@ class attackManager{
             this.battle.turnManager.loads=0
         }
     }
+    edition(type){
+        switch(type){
+            case 6:
+                for(let a=0,la=this.effect.length;a<la;a++){
+                    this.effect[a]=floor(random(this.effect[a],this.effect[a]*2+1))
+                }
+            break
+        }
+    }
     after(){
         if(this.endAfter){
             this.endAfter=false
