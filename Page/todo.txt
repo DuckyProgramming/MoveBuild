@@ -2,5 +2,23 @@ cards:
 
 deals lots of damage but only in divinity
 card does different things based on stance you're in
+launch sequence - get a teleport next fight
 
 3 new characters:
+
+colors
+models
+
+prehextorica time gimmicks?
+
+general:
+
+relic player activity fixes
+display settings on end stats screen
+
+enemy update march:
+
+the new encounters
+enemy graphics
+
+space joker relic (1/4 chance to upgrade played card temporarily)

@@ -665,14 +665,31 @@ function intentDescription(attack,user,info){
 			case 250: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable to Self\nRange 1-2`
 			case 251: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nand Take ${info?attack.effect[1]:`?`} Damage\n3 Times\nRange 1-1`
 			case 252: return `Apply ${info?attack.effect[0]:`?`} Dissipating\nPush 1 Tile\nRange 1-1`
-
+			case 253: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Bruise\nRange 1-2`
+			case 254: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nAll Enemies\nGain ${info?attack.effect[1]:`?`} Strength`
+			case 255: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nto All Adjacent Tiles\nRange 1-2`
+			case 256: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable\nto All Adjacent Tiles\nRange 1-2`
+			case 257: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies\nAll Enemies\nGain ${info?attack.effect[1]:`?`} Dexterity`
+			case 258: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Block\nRange 1-2`
+			case 259: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\n1 Less Range Forward\nRange 1-2`
+			case 260: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMove ${info?attack.effect[1]:`?`} More Time${attack.effect[1]>0?`s`:``} Per Turn\nRange 1-2`
+			case 261: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nMove ${info?attack.effect[1]:`?`} More Time${attack.effect[1]>0?`s`:``} Per Turn`
+			case 262: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Shock\nRange 1-6`
+			case 263: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Burn\nRange 1-6`
+			case 264: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Shock\n3 Tiles Wide\nRange 1-1`
+			case 265: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Burn\n3 Tiles Wide\nRange 1-1`
+			case 266: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Ichor\nRange 1-6\nNo Movement`
+			case 267: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Ichor`
+			case 268: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMove ${info?attack.effect[1]:`?`} More Time${attack.effect[1]>0?`s`:``} Per Turn\nRange 1-6`
+			case 269: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Strength\nMove ${info?attack.effect[2]:`?`} More Time${attack.effect[2]>0?`s`:``} Per Turn`
+			
 			default: return `INVALID`
 		}
 	}catch(error){
 		return `error-${attack.type}-${attack.effect}`
 	}
 }
-function tennify(value){
+function tennify(value){d
 	if(round(value)==value){
 		return value
 	}else{

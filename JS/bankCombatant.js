@@ -5979,7 +5979,7 @@ combatant.prototype.display=function(){
                     this.layer.quad(-3,-30,0,-33,3,-30,0,-27)
                 }
             break
-            case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02':
+            case 'Management Robot': case 'Management Prototype': case 'Destructor Bot': case 'Purge X02': case 'Carbonado Robot':
                 for(let g=0;g<2;g++){
                     if(this.name=='Purge X02'&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
@@ -6053,6 +6053,15 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                     }
                 }
+                if(this.name=='Carbonado Robot'&&this.trigger.display.light){
+                    this.layer.noStroke()
+                    for(let a=0,la=2;a<la;a++){
+                        this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.light)
+                        if(lcos(this.anim.direction-90+a*180)>0){
+                            this.layer.ellipse(13.5*lsin(this.anim.direction-90+a*180),-75,12,12)
+                        }
+                    }
+                }
                 if(this.trigger.display.skin.head){
                     this.layer.stroke(this.flashColor(this.color.skin.out)[0],this.flashColor(this.color.skin.out)[1],this.flashColor(this.color.skin.out)[2],this.fade*this.fades.skin.arms)
                     this.layer.strokeWeight(4)
@@ -6068,6 +6077,16 @@ combatant.prototype.display=function(){
                             if(lcos(this.anim.direction+a*90)>0){
                                 this.layer.rect(13.5*lsin(this.anim.direction+a*90),-75,27*lcos(this.anim.direction+a*90),27)
                             }
+                        }
+                    }
+                }
+                if(this.name=='Carbonado Robot'&&this.trigger.display.light){
+                    this.layer.noStroke()
+                    for(let a=0,la=2;a<la;a++){
+                        this.layer.fill(this.flashColor(this.color.light)[0],this.flashColor(this.color.light)[1],this.flashColor(this.color.light)[2],this.fade*this.fades.light)
+                        if(lcos(this.anim.direction-90+a*180)>=0){
+                            this.layer.arc(13.5*lsin(this.anim.direction-90+a*180),-75,12*min(lsin(this.anim.direction-90+a*180)+1,1),12,-90,90)
+                            this.layer.arc(13.5*lsin(this.anim.direction-90+a*180),-75,-12*max(lsin(this.anim.direction-90+a*180)-1,-1),12,90,270)
                         }
                     }
                 }
@@ -7548,7 +7567,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Lunar Dust'&&this.trigger.display.outline){
+                if((this.name=='Lunar Dust'||this.name=='Voidglass')&&this.trigger.display.outline){
                     this.layer.fill(this.flashColor(this.color.outline)[0],this.flashColor(this.color.outline)[1],this.flashColor(this.color.outline)[2],this.fade*this.fades.outline)
                     this.layer.stroke(this.flashColor(this.color.outline)[0],this.flashColor(this.color.outline)[1],this.flashColor(this.color.outline)[2],this.fade*this.fades.outline)
                     this.layer.strokeWeight(7)
@@ -7614,12 +7633,22 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(this.name=='Cartel'&&this.trigger.display.sunglasses&&lcos(this.anim.direction)<=0){
+                if((this.name=='Cartel'||this.name=='Slippery Gangster'||this.name=='Roger Reviv'||this.name=='Bodyguard'||this.name=='Tech Support')&&this.trigger.display.sunglasses&&lcos(this.anim.direction)<=0){
                     this.layer.fill(this.color.sunglasses[0],this.color.sunglasses[1],this.color.sunglasses[2],this.fade*this.fades.sunglasses)
                     this.layer.noStroke()
                     this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,8*lcos(this.anim.direction),6)
                     this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-78,8*lcos(this.anim.direction),6)
                     this.layer.rect(lsin(this.anim.direction)*16,-78,16*lcos(this.anim.direction),2)
+                }
+                if(this.name=='Voidglass'&&this.trigger.display.sunglasses&&lcos(this.anim.direction)<=0){
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.sunglasses[0][0],this.color.sunglasses[0][1],this.color.sunglasses[0][2],this.fade*this.fades.sunglasses)
+                    this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,8*lcos(this.anim.direction),4)
+                    this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-78,8*lcos(this.anim.direction),4)
+                    this.layer.rect(lsin(this.anim.direction)*16,-78,16*lcos(this.anim.direction),2)
+                    this.layer.fill(this.color.sunglasses[1][0],this.color.sunglasses[1][1],this.color.sunglasses[1][2],this.fade*this.fades.sunglasses)
+                    this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,5*lcos(this.anim.direction),1)
+                    this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-78,5*lcos(this.anim.direction),1)
                 }
                 if(this.name=='Rewriter'&&this.trigger.display.goggles&&lcos(this.anim.direction)<=0){
                     this.layer.fill(this.flashColor(this.color.goggles[0])[0],this.flashColor(this.color.goggles[0])[1],this.flashColor(this.color.goggles[0])[2],this.fade*this.fades.goggles)
@@ -7645,6 +7674,13 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(2)
                     this.layer.rect(lsin(this.anim.direction)*15.5,this.parts.eyeLevel,lcos(this.anim.direction)*20,7,2)
                 }
+                if(this.name=='Kugelblitz'&&this.trigger.display.loop){
+                    this.layer.stroke(this.flashColor(this.color.loop)[0],this.flashColor(this.color.loop)[1],this.flashColor(this.color.loop)[2],this.fade*this.fades.loop)
+                    this.layer.strokeWeight(4)
+                    this.layer.noFill()
+                    this.layer.arc(0,-48,30,12,-180,0)
+                    this.layer.arc(0,-48,50,24,-180,0)
+                }
                 for(let g=0;g<2;g++){
                     if((this.name=='Goon'||this.name=='Slaver'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.extra.sword&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&g==0){
                         this.minorDisplay(0,g)
@@ -7654,7 +7690,7 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
+                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                             this.minorDisplay(1,g)
                         }
                         if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -7737,10 +7773,10 @@ combatant.prototype.display=function(){
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-48,13,39)
-                    if(this.name=='Romeo'||this.name=='Intern'||this.name=='Jester'){
+                    if(this.name=='Romeo'||this.name=='Intern'||this.name=='Jester'||this.name=='Normal1'||this.name=='Boss1'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-45,14,46,-180,0)
-                    }else if(this.name=='Billy Beatup'){
+                    }else if(this.name=='Billy Beatup'||this.name=='Structural Energy'||this.name=='Disorder Energy'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-48,14,40,-180,0)
                     }else if(this.name=='Assistant Hiring Officer'||this.name=='Assistant Fitness Officer'||this.name=='PhD'){
@@ -7749,6 +7785,9 @@ combatant.prototype.display=function(){
                     }else if(this.name=='Corrupt Detective'){
                         this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
                         this.layer.arc(0,-47,14,42,-180,0)
+                    }else if(this.name=='Obstruction'){
+                        this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
+                        this.layer.arc(0,-45,14,46,-185,5)
                     }
                 }
                 if(this.name=='Nerfer'&&this.trigger.display.arrows&&lcos(this.anim.direction)>0){
@@ -8008,7 +8047,7 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
+                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                             this.minorDisplay(1,g)
                         }
                         if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -8149,7 +8188,7 @@ combatant.prototype.display=function(){
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
-                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
+                        if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                             this.minorDisplay(1,g)
                         }
                         if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -8209,6 +8248,19 @@ combatant.prototype.display=function(){
                         if(lcos(this.anim.direction-60+a*120)>0){
                             this.layer.ellipse(lsin(this.anim.direction-60+a*120)*6,-64,5,5)
                             this.layer.ellipse(lsin(this.anim.direction-60+a*120)*6,-64,6,6)
+                        }
+                    }
+                }
+                if((this.name=='Structural Energy'||this.name=='Disorder Energy')&&this.trigger.display.horn){
+                    this.layer.noStroke()
+                    for(let a=0,la=2;a<la;a++){
+                        if(lcos(this.anim.direction-90+a*180)<0){
+                            this.layer.fill(this.color.horn[a][0],this.color.horn[a][1],this.color.horn[a][2],this.fade*this.fades.horn)
+                            this.layer.beginShape()
+                            this.layer.vertex(6*lsin(this.anim.direction-90+a*180),-95)
+                            this.layer.bezierVertex(10*lsin(this.anim.direction-90+a*180),-96,13*lsin(this.anim.direction-90+a*180),-100,14*lsin(this.anim.direction-90+a*180),-103)
+                            this.layer.bezierVertex(14*lsin(this.anim.direction-90+a*180),-99,12*lsin(this.anim.direction-90+a*180),-95,11*lsin(this.anim.direction-90+a*180),-91)
+                            this.layer.endShape()
                         }
                     }
                 }
@@ -8289,7 +8341,7 @@ combatant.prototype.display=function(){
                             this.minorDisplayGeneral(0,g)
                         }
                     }
-                }else if(this.name=='Unknown'){
+                }else if(this.name=='Unknown'||this.name=='Danger'){
                     for(let g=0;g<2;g++){
                         if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
@@ -8310,7 +8362,11 @@ combatant.prototype.display=function(){
                         this.layer.push()
                         this.layer.translate(15*lsin(this.anim.direction),-80)
                         this.layer.scale(lcos(this.anim.direction),1)
-                        this.layer.text('?',0,0)
+                        if(this.name=='Unknown'){
+                            this.layer.text('?',0,0)
+                        }else if(this.name=='Danger'){
+                            this.layer.text('!',0,0)
+                        }
                         this.layer.pop()
                     }
                 }else{
@@ -8326,7 +8382,7 @@ combatant.prototype.display=function(){
                             this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                             this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                             this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
-                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
+                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                                 this.minorDisplay(1,g)
                             }
                             if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -8350,7 +8406,7 @@ combatant.prototype.display=function(){
                             this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                             this.layer.strokeWeight(4)
                             this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
-                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
+                            if((this.name=='Billy Beatup'||this.name=='Lunar Shard'||this.name=='Solar Shard'||this.name=='Coffee Commander'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Boss1')&&this.trigger.display.band||this.name=='Gas Man'&&this.trigger.display.can&&g==0||(this.name=='Assistant Hiring Officer'||this.name=='Navigator')&&this.trigger.display.clipboard&&g==0){
                                 this.minorDisplay(1,g)
                             }
                             if(this.name=='Prison Guard'&&this.trigger.display.armor){
@@ -8457,6 +8513,16 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,8*lcos(this.anim.direction),6)
                     this.layer.ellipse(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-78,8*lcos(this.anim.direction),6)
                     this.layer.rect(lsin(this.anim.direction)*16,-78,16*lcos(this.anim.direction),2)
+                }
+                if(this.name=='Voidglass'&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.sunglasses[0][0],this.color.sunglasses[0][1],this.color.sunglasses[0][2],this.fade*this.fades.sunglasses)
+                    this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,8*lcos(this.anim.direction),4)
+                    this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-78,8*lcos(this.anim.direction),4)
+                    this.layer.rect(lsin(this.anim.direction)*16,-78,16*lcos(this.anim.direction),2)
+                    this.layer.fill(this.color.sunglasses[1][0],this.color.sunglasses[1][1],this.color.sunglasses[1][2],this.fade*this.fades.sunglasses)
+                    this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*-5,-78,5*lcos(this.anim.direction),1)
+                    this.layer.rect(lsin(this.anim.direction)*16+lcos(this.anim.direction)*5,-78,5*lcos(this.anim.direction),1)
                 }
                 if((this.name=='Gangster Machinegunner')&&this.trigger.display.sunglasses&&lcos(this.anim.direction)>0){
                     this.layer.fill(this.color.sunglasses[0],this.color.sunglasses[1],this.color.sunglasses[2],this.fade*this.fades.sunglasses)
@@ -8802,6 +8868,33 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(-18,-111,6)
                     this.layer.ellipse(18,-111,6)
                     this.layer.ellipse(0,-120,6)
+                }
+                if(this.name=='Obstruction'&&this.trigger.display.hat){
+                    this.layer.fill(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade*this.fades.hat)
+                    this.layer.stroke(this.color.hat[0],this.color.hat[1],this.color.hat[2],this.fade*this.fades.hat)
+                    this.layer.strokeWeight(3)
+                    this.layer.line(-18,-90,18,-90)
+                    this.layer.rect(0,-97,21,14,1)
+                }
+                if((this.name=='Structural Energy'||this.name=='Disorder Energy')&&this.trigger.display.horn){
+                    this.layer.noStroke()
+                    for(let a=0,la=2;a<la;a++){
+                        if(lcos(this.anim.direction-90+a*180)>=0){
+                            this.layer.fill(this.color.horn[a][0],this.color.horn[a][1],this.color.horn[a][2],this.fade*this.fades.horn)
+                            this.layer.beginShape()
+                            this.layer.vertex(6*lsin(this.anim.direction-90+a*180),-95)
+                            this.layer.bezierVertex(10*lsin(this.anim.direction-90+a*180),-96,13*lsin(this.anim.direction-90+a*180),-100,14*lsin(this.anim.direction-90+a*180),-103)
+                            this.layer.bezierVertex(14*lsin(this.anim.direction-90+a*180),-99,12*lsin(this.anim.direction-90+a*180),-95,11*lsin(this.anim.direction-90+a*180),-91)
+                            this.layer.endShape()
+                        }
+                    }
+                }
+                if(this.name=='Kugelblitz'&&this.trigger.display.loop){
+                    this.layer.stroke(this.flashColor(this.color.loop)[0],this.flashColor(this.color.loop)[1],this.flashColor(this.color.loop)[2],this.fade*this.fades.loop)
+                    this.layer.strokeWeight(4)
+                    this.layer.noFill()
+                    this.layer.arc(0,-48,30,12,0,180)
+                    this.layer.arc(0,-48,50,24,0,180)
                 }
             break
         }

@@ -38,7 +38,7 @@ class cardManager{
         this.listing.allListableCard=[[],[],[],[]]
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
-        this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[]]
+        this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
         this.listing.sub=[]
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity==-10){

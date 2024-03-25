@@ -3,14 +3,17 @@ types={
         {name:'Joe',moniker:'The Testbed',identifier:['Brother','Mister'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Tutorial man!`},
         {name:'George',moniker:'The Agent',identifier:['Brother','Mister'],life:80,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Experienced Management Agent,\ndisillusioned with the propaganda.\nTrained in a wide variety of techniques,\nbut undercover with few armaments.`},
         {name:'Lira',moniker:'The Apprentice',identifier:['Sister','Miss'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Swordfighting apprentice from Konai.\nThis is her last chance to survive.\nWhatever it might take to accomplish,\nshe will defeat the Management.`},
-        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:55,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to relcaim her.`},
+        {name:'Sakura',moniker:'The Creation',identifier:['Sister','Miss'],life:54,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Seventh prototype of Project Godhood.\nAfter escaping the testing zone,\nshe remained in exile, until the\nManagement arrived to reclaim her.`},
         {name:'Certes',moniker:'The Phantasm',identifier:['Sister','Miss'],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`An experiment gone wrong... or right.\nDirector Stavresk wants his work\nback, but it appears he has failed.\nThe entity was allowed to go free.`},
-        {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:60,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Former Management-aligned free actor,\nhaving ended his partnership.\nNow on an indepdent research mission,\ndiscovering his capabilities.`},
+        {name:'Azis',moniker:'The Executor',identifier:['Brother','Mister'],life:62,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Former Management-aligned free actor,\nhaving ended his partnership.\nNow on an indepdent research mission,\ndiscovering his capabilities.`},
         {name:'Donakho',moniker:'The Builder',identifier:['Brother','Mister'],life:70,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Duck "transferral district" escapee,\nnow getting his revenge.\nDoesn't seem to have much motivation\nexcept for desire to take out his anger.`},
-        {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:65,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Once motivated by a desire for revenge.\nNot anymore, they're all dead.\nMakes it's time for her to stop?\nShe doesn't seem to think so.`},
+        {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Once motivated by a desire for revenge.\nNot anymore, they're all dead.\nMakes it's time for her to stop?\nShe doesn't seem to think so.`},
         {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:40,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A guardian of dreams, in her mind, she\nviews everything else as a nightmare.\nHow she got her powers, well,\nblame the Management as always.`},
-        {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:75,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Having lost his powerful role after\na mass of insider trading,\nhe now takes his anger out against\nthe Management that wronged him.`},
-        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:70,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
+        {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Having lost his powerful role after\na mass of insider trading,\nhe now takes his anger out against\nthe Management that wronged him.`},
+        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:72,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
+        {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Pursuing a Rewriter for some time now,\ntracking the supposed ghost\nacross several Managerial worlds,\nfinally arriving at its location.`},
+        {name:'DR-98',moniker:'The Paradigm',identifier:['Friend','Robot'],life:66,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
+        {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A memver of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
 
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -129,8 +132,17 @@ types={
         {name:'Coffee Commander',life:335,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:163,effect:[5,3]},{type:164,effect:[14,1,'Paralyzed']},{type:129,effect:[4]},{type:188,effect:[5]},{type:187,effect:[1,2]}],description:`Don't talk to him even if he's had his coffee`},
         {name:'Tech Support',life:166,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:208,effect:[14]},{type:209,effect:[10]},{type:29,effect:[9]}],description:`Won't fix problems`},
         {name:'Jester',life:28,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:247,effect:[3]},{type:248,effect:[1,7]}],description:`Real funny guy, you are`},
-        {name:'Lalex',life:96,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:249,effect:[2]},{type:250,effect:[13,1]},{type:251,effect:[6,3]}],description:`Why is he here?`},
-        
+        {name:'Lalex',life:84,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:249,effect:[2]},{type:250,effect:[13,1]},{type:251,effect:[6,3]}],description:`Why is he here?`},
+        {name:'Normal1',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:31,effect:[3]}],description:`Precursor to Normal2`},
+        {name:'Boss1',life:60,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:9,effect:[12]},{type:254,effect:[10,1]},{type:253,effect:[10,6]}],description:`These numbers are a little arbitrary`},
+        {name:'Danger',life:30,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:255,effect:[10,1]},{type:256,effect:[12,1]}],description:`Contains... something?`},
+        {name:'Carbonado Robot',life:145,behavior:1,spec:[1],move:{type:0,speed:1},attack:[{type:30,effect:[16,4]},{type:257,effect:[6,1]},{type:258,effect:[6,6]}],description:`Very shiny robot`},
+        {name:'Obstruction',life:87,behavior:5,spec:[0],move:{type:8,speed:1},attack:[{type:6,effect:[8]},{type:259,effect:[9]}],description:`Solving problems by not having problems`},
+        {name:'Structural Energy',life:86,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:260,effect:[10,1]},{type:261,effect:[15,1]}],description:`Not quite plutonic`},
+        {name:'Disorder Energy',life:165,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[12,1]},{type:269,effect:[20,1,1]}],description:`Coloration error moment`},
+        {name:'Kugelblitz',life:97,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:262,effect:[9,1]},{type:263,effect:[9,1]},{type:264,effect:[13,1]},{type:265,effect:[13,1]}],description:`From the overseer`},
+        {name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:266,effect:[14,2]},{type:267,effect:[24,2]}],description:`Can't see anything behind those shades`},
+
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
@@ -326,7 +338,7 @@ types={
         {name:'Metallicize',class:4},
         {name:'2 Tile Strike / Strengthen',class:1},
         {name:'Leeching Strike',class:1},
-        {name:'3 Spread Strike / Frailize',class:1},
+        {name:'3 Spread Strike / Frail',class:1},
         {name:'Management Beam',class:1},
         {name:'Retreating Strike',class:1},
         {name:'Drive',class:5},
@@ -465,6 +477,23 @@ types={
         {name:'2 Tile Self-Vulnerable Strike',class:1},//250
         {name:'1v1',class:1},
         {name:'Push Dissipate',class:1},
+        {name:'2 Tile Strike / Bruise',class:1},
+        {name:'Block / All Enemy Strengthen',class:2},
+        {name:'Spin Strike / Weaken',class:1},
+        {name:'Spin Strike / Vulnerable',class:1},
+        {name:'All Enemy Block / Dexterity',class:2},
+        {name:'2 Tile Double Strike / Block',class:1},
+        {name:'Bent 3 Spread Strike',class:1},
+        {name:'2 Tile Strike / Speed Boost',class:1},//260
+        {name:'Block / Speed Boost',class:2},
+        {name:'6 Tile Strike / Shock',class:1},
+        {name:'6 Tile Strike / Burn',class:1},
+        {name:'3 Spread Strike / Shock',class:1},
+        {name:'3 Spread Strike / Burn',class:1},
+        {name:'Gun / Ichor',class:1},
+        {name:'Block / Self Ichor',class:2},
+        {name:'6 Tile Strike / Speed Boost',class:1},
+        {name:'Block / Strengthen / Speed Boost',class:2},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -2771,6 +2800,9 @@ Entering, you're offered a chance to glimpse your future...`,
                 text:[60,60,40],
                 active:[240,240,200],
             },{
+            },{
+            },{
+            },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
                 text:[40,40,40],
@@ -3894,7 +3926,95 @@ Entering, you're offered a chance to glimpse your future...`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Sliced 6',
+            map:[
+                [{type:-1},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Quadral 7',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Position 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Blocked 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Slice 6',
+            map:[
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Deslice 6',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
+            ],
+        },{
+            name:'Augmented 3',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
         },
+
+        /*{
+            name:'Basic 3',
+            map:[
+                [{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Basic 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Basic 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },*/
     ],encounter:[
         {
             level:[],class:0,world:-1,
@@ -3904,11 +4024,99 @@ Entering, you're offered a chance to glimpse your future...`,
             ],reinforce:[
             ],
         },{
+            level:['Basic 7'],class:1,world:1,
+            name:'Voidglass',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Voidglass'},
+            ],reinforce:[
+            ],
+        },{
             level:['Basic 7'],class:0,world:-1,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Basic 7'],class:0,world:-1,
+            name:'Placeholder',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Augmented 3'],class:1,world:0,
+            name:'Kugelblitz',
+            player:{position:[[{x:3,y:2}],[{x:3,y:1},{x:2,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Kugelblitz'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Deslice 6'],class:0,world:2,
+            name:'Disorder Energy',
+            player:{position:[[{x:3,y:1}],[{x:2,y:0},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:5,y:1},name:'Disorder Energy'},
+                {position:{x:0,y:1},name:'Disorder Energy'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Slice 6'],class:0,world:2,
+            name:'Structural Energy',
+            player:{position:[[{x:4,y:1}],[{x:3,y:0},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Structural Energy'},
+                {position:{x:1,y:1},name:'Structural Energy'},
+                {position:{x:0,y:1},name:'Structural Energy'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Blocked 7'],class:0,world:2,
+            name:'Obstruction',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:2},name:'Obstruction'},
+                {position:{x:2,y:0},name:'Obstruction'},
+                {position:{x:1,y:4},name:'Obstruction'},
+                {position:{x:4,y:1},name:'Obstruction'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Position 5'],class:0,world:2,
+            name:'Carbonado Robot',
+            player:{position:[[{x:3,y:1}],[{x:2,y:1},{x:4,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Carbonado Robot'},
+                {position:{x:5,y:4},name:'Carbonado Robot'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Quadral 7'],class:1,world:2,
+            name:'Danger',
+            player:{position:[[{x:3,y:2}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Danger'},
+                {position:{x:4,y:0},name:'Danger'},
+                {position:{x:2,y:4},name:'Danger'},
+                {position:{x:6,y:4},name:'Danger'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Sliced 6'],class:1,world:0,
+            name:'Boss1',
+            player:{position:[[{x:3,y:4}],[{x:3,y:5},{x:4,y:5}]]},
+            enemy:[
+                {position:{x:1,y:0},name:'Boss1'},
+                {position:{x:0,y:1},name:'Normal1'},
+                {position:{x:3,y:1},name:'Normal1'},
+                {position:{x:0,y:2},name:'Normal1'},
+                {position:{x:4,y:2},name:'Normal1'},
+                {position:{x:1,y:4},name:'Normal1'},
+                {position:{x:5,y:4},name:'Normal1'},
             ],reinforce:[
             ],
         },{
@@ -5687,7 +5895,7 @@ Decrements afterward.`,
     ],
 }
 stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:10,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:13,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
     mod:false,junk:false,
