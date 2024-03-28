@@ -799,8 +799,8 @@ class cardManager{
         }
     }
     fatigue(bypass=false){
-        if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){
-            this.battle.relicManager.detail[108]=1
+        if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108][this.player]==0){
+            this.battle.relicManager.detail[108][this.player]=1
         }else{
             if(this.battle.modded(30)||this.battle.modded(65)){
                 if(this.battle.modded(30)){
@@ -817,8 +817,8 @@ class cardManager{
         }
     }
     heavyFatigue(){
-        if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108]==0){
-            this.battle.relicManager.detail[108]=1
+        if(this.battle.relicManager.hasRelic(108,this.player)&&this.battle.relicManager.detail[108][this.player]==0){
+            this.battle.relicManager.detail[108][this.player]=1
         }else{
             this.discard.add(findName('Heavy\nFatigue',types.card),0,game.playerNumber+1)
             this.drop.addDrop(findName('Heavy\nFatigue',types.card),0,game.playerNumber+1)

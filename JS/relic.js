@@ -661,7 +661,7 @@ class relic{
                     displaySymbol(this.layer,13,-1,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('8',-10,0)
+                    this.layer.text('4',-10,0)
                     this.layer.textSize(15)
                     this.layer.text('2',2,-1)
                 break
@@ -1367,7 +1367,7 @@ class relic{
                 this.layer.textSize(12)
                 this.layer.text(this.value,0,29)
             }
-            if(active!=0&&active>1&&this.type!=0){
+            if(active>1){
                 this.layer.fill(0,this.fade)
                 this.layer.textSize(6)
                 this.layer.text(`x${active}`,0,18)

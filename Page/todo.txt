@@ -6,19 +6,17 @@ launch sequence - get a teleport next fight
 
 3 new characters:
 
-colors
 models
+
+
+
 
 prehextorica time gimmicks?
 
+
+
+
+
 general:
 
-relic player activity fixes
-display settings on end stats screen
-
-enemy update march:
-
-the new encounters
-enemy graphics
-
-space joker relic (1/4 chance to upgrade played card temporarily)
+space ball relic (1/4 chance to upgrade played card temporarily)

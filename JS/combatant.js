@@ -4493,7 +4493,7 @@ class combatant{
                     this.status.main[178]--
                 }
                 if(this.battle.relicManager.hasRelic(55,this.id)){
-                    damage=max(min(damage,1),damage-this.battle.relicManager.active[55])
+                    damage=max(min(damage,1),damage-this.battle.relicManager.active[55][this.id+1])
                 }
                 if(this.battle.relicManager.hasRelic(56,this.id)&&damage>1&&damage<=5){
                     damage=1
@@ -4848,13 +4848,13 @@ class combatant{
                             }
                         }
                         if(this.battle.relicManager.hasRelic(61,this.id)){
-                            userCombatant.takeDamage(3*this.battle.relicManager.active[61],-1)
+                            userCombatant.takeDamage(3*this.battle.relicManager.active[61][this.id+1],-1)
                         }
                         if(this.blocked>0&&this.battle.relicManager.hasRelic(74,this.id)){
-                            userCombatant.statusEffect('Weak Next Turn',this.battle.relicManager.active[74])
+                            userCombatant.statusEffect('Weak Next Turn',this.battle.relicManager.active[74][this.id+1])
                         }
                         if(this.blocked==0&&this.battle.relicManager.hasRelic(75,this.id)){
-                            userCombatant.statusEffect('Weak Next Turn',this.battle.relicManager.active[75])
+                            userCombatant.statusEffect('Weak Next Turn',this.battle.relicManager.active[75][this.id+1])
                         }
                         if(this.status.main[26]>0){
                             userCombatant.takeDamage(this.status.main[26],-1)
@@ -4999,7 +4999,7 @@ class combatant{
             let distance=max(0,max(distTarget(0,x-this.tilePosition.x,y-this.tilePosition.y),distTargetDiagonal(0,x-this.tilePosition.x,y-this.tilePosition.y)))
             this.battle.stats.move[this.id]+=distance
             if(this.battle.relicManager.hasRelic(100,this.id)){
-                this.addBlock(2*distance*this.battle.relicManager.active[100])
+                this.addBlock(2*distance*this.battle.relicManager.active[100][this.id+1])
             }
         }
         this.tilePosition.x=x
@@ -7634,8 +7634,8 @@ class combatant{
                 if(this.life<=0){
                     if(!this.dead){
                         if(this.battle.relicManager.hasRelic(81,this.id)){
-                            this.battle.relicManager.active[81]--
-                            if(this.battle.relicManager.active[81]<=0){
+                            this.battle.relicManager.active[81][this.id+1]--
+                            if(this.battle.relicManager.active[81][this.id+1]<=0){
                                 this.battle.relicManager.deactivate(81)
                             }
                             this.healLifable(round(this.base.life*5)/10)

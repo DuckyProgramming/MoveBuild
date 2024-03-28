@@ -2713,7 +2713,7 @@ class attack{
                         this.userManager.deFatigue(this.effect[1])
                     break
                     case 502:
-                        this.userManager.allGroupClaw(this.effect[0])
+                        this.userManager.allGroupClaw(this.effect[1])
                     break
                     case 513:
                         this.battle.overlayManager.overlays[7][this.player].active=true

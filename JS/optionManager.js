@@ -83,7 +83,7 @@ class optionManager{
             break
             case 6:
                 this.finishSelection()
-                this.battle.relicManager.detail[60]++
+                this.battle.relicManager.detail[60][this.player]++
             break
             case 7:
                 this.battle.overlayManager.overlays[3][this.player].active=true
@@ -128,7 +128,7 @@ class optionManager{
                 this.options[a].complete=true
                 this.selected=this.options[a].type
                 this.triggerOption(this.options[a].type)
-                if(this.options[a].type==6&&this.battle.relicManager.detail[60]>=3){
+                if(this.options[a].type==6&&this.battle.relicManager.detail[60][this.player]>=3){
                     this.removeOption(6)
                 }
             }
@@ -140,7 +140,7 @@ class optionManager{
                 this.options[a].complete=true
                 this.selected=this.options[a].type
                 this.triggerOption(this.options[a].type)
-                if(this.options[a].type==6&&this.battle.relicManager.detail[60]>=3){
+                if(this.options[a].type==6&&this.battle.relicManager.detail[60][this.player]>=3){
                     this.removeOption(6)
                 }
             }

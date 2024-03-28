@@ -8663,9 +8663,9 @@ types.card=[
     },{
         name:'Shotgun',rarity:0,list:9,
         levels:[
-            {effect:[14,2],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[21,4],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[25,5],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[16,2],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[23,4],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[28,5],attack:591,cost:2,target:[2,1,3],spec:[0,25],class:1},
         ],
     },{
         name:'Fire\nAway',rarity:1,list:9,
@@ -9055,9 +9055,9 @@ types.card=[
     },{
         name:'Triple\nTap',rarity:1,list:9,
         levels:[
-            {effect:[5],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[8],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
-            {effect:[10],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[4],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[7],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
+            {effect:[9],attack:1055,cost:2,target:[2,1,3],spec:[0,25],class:1},
         ],
     },{
         name:'Spray\nand Pray',rarity:2,list:9,

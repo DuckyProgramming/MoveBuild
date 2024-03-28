@@ -279,7 +279,7 @@ class itemManager{
                 userCombatant.heal(3*this.effectiveness[player])
             break
         }
-        if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<50*this.battle.relicManager.active[80]){
+        if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])){
             this.addRandomItem(player)
         }
     }
