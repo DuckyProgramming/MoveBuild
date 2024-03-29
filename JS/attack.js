@@ -175,7 +175,8 @@ class attack{
             case 1980: case 1981: case 1982: case 1984: case 1990: case 1991: case 1999: case 2001: case 2002: case 2004:
             case 2006: case 2007: case 2010: case 2011: case 2012: case 2016: case 2017: case 2018: case 2021: case 2022:
             case 2023: case 2024: case 2025: case 2026: case 2027: case 2028: case 2030: case 2032: case 2034: case 2041:
-            case 2042: case 2045: case 2046:
+            case 2042: case 2045: case 2046: case 2048: case 2049: case 2050: case 2051: case 2053: case 2054: case 2062:
+            case 2063:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -1700,7 +1701,7 @@ class attack{
                     case 723:
                         this.userCombatant.enterStance(3)
                     break
-                    case 725:
+                    case 725: case 2054:
                         this.userCombatant.enterStance(0)
                     break
                     case 730:
@@ -2091,7 +2092,7 @@ class attack{
                         this.targetCombatant.statusEffect('Take Damage',this.effect[1])
                     break
                     case 1399:
-                        this.targetCombatant.statusEffect(['Burn','Freeze','Shock','Weak'][this.battle.turn.main%4],this.effect[1])
+                        this.targetCombatant.statusEffect(['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4],this.effect[1])
                     break
                     case 1401:
                         for(let a=0,la=this.effect[1];a<la;a++){
@@ -2394,6 +2395,16 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Strike',types.card),0,this.color)
                         }
+                    break
+                    case 2049:
+                        this.targetCombatant.statusEffect('Weak',this.effect[1])
+                        this.userCombatant.statusEffect('Weak',this.effect[2])
+                    break
+                    case 2051:
+                        this.userManager.allGroupEffectArgs(5,[-this.effect[1]])
+                    break
+                    case 2062:
+                        this.userCombatant.statusEffect('Frail',this.effect[1])
                     break
 
                 }
@@ -2745,7 +2756,7 @@ class attack{
                     case 724:
                         this.userCombatant.enterStance(4)
                     break
-                    case 726:
+                    case 726: case 2055:
                         this.userCombatant.enterStance(0)
                     break
                     case 735:
@@ -2955,6 +2966,9 @@ class attack{
                         }else{
                             this.targetCombatant.statusEffect('Freeze',this.effect[3])
                         }
+                    break
+                    case 2052:
+                        this.userManager.allGroupEffectArgs(6,[-this.effect[1]])
                     break
 
                 }
@@ -4201,6 +4215,22 @@ class attack{
                     case 2029:
                         this.userCombatant.statusEffect(this.amplify?'Triple Damage':'Double Damage',this.effect[0])
                     break
+                    case 2056:
+                        switch(this.userCombatant.stance){
+                            case 1:
+                                this.userCombatant.statusEffect('Strength',this.effect[0])
+                            break
+                            case 2:
+                                this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                            break
+                            case 3:
+                                this.userCombatant.statusEffect('Dodge',this.effect[2])
+                            break
+                            case 4:
+                                this.userCombatant.statusEffect('Dexterity',this.effect[3])
+                            break
+                        }
+                    break
 
                 }
             break
@@ -5255,6 +5285,15 @@ class attack{
                         for(let a=0;a<this.effect[0];a++){
                             this.userManager.addRandomColor(2,0,0,1)
                         }
+                    break
+                    case 2060:
+                        this.userManager.hand.discard(this.effect[0])
+                        this.userManager.hand.exhaust(this.effect[1])
+                    break
+                    case 2061:
+                        this.userManager.hand.discard(this.effect[0])
+                        this.userManager.hand.exhaust(this.effect[1])
+                        this.battle.energy.main[this.player]+=this.effect[2]
                     break
 
                 }
@@ -6817,7 +6856,7 @@ class attack{
                     break
                     case 1616:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.targetCombatant.statusEffect(['Burn','Freeze','Shock','Weak'][this.battle.turn.main%4],this.effect[1])
+                        this.targetCombatant.statusEffect(['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4],this.effect[1])
                     break
                     case 1619:
                         this.targetCombatant.statusEffect('Jinxshock',this.effect[0])
@@ -7209,6 +7248,10 @@ class attack{
                     case 2045:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userCombatant.takeDamage(this.userManager.hand.cards.length,-1)
+                    break
+                    case 2050:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.statusEffect(['Burn','Freeze','Shock','Weak'][this.battle.turn.total%4],this.effect[1])
                     break
 
                 }
@@ -8310,7 +8353,7 @@ class attack{
                         }
                     break
                     case 1408:
-                        this.userManager.miracleSwitch=true
+                        this.userManager.switch.miracle=true
                     break
                     case 1409:
                         this.battle.combatantManager.allEffect(22,[this.effect[0]])
@@ -8530,6 +8573,15 @@ class attack{
                         for(let a=0,la=game.playerNumber;a<la;a++){
                             this.userManager.addRandomColor(2,this.level,a+1,3)
                         }
+                    break
+                    case 2057:
+                        this.userManager.switch.teleport=true
+                    break
+                    case 2058:
+                        this.userManager.switch.redraw=true
+                    break
+                    case 2059:
+                        this.userManager.switch.smite=true
                     break
 
                 }

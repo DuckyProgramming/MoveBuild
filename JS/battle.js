@@ -528,10 +528,7 @@ class battle{
                     if(this.nodeManager.world==3&&this.encounter.class==2){
                         this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                     }
-                    if(this.cardManagers[this.turn.main].miracleSwitch){
-                        this.cardManagers[this.turn.main].miracleSwitch=false
-                        this.cardManagers[this.turn.main].hand.add(findName('Miracle',types.card),0,0)
-                    }
+                    this.cardManagers[this.turn.main].switchCheck()
                     if(variants.witch){
                         this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
                     }
@@ -558,6 +555,12 @@ class battle{
             this.endTurn()
         }
     }
+    setTurn(value){
+        this.turn.total=value
+        for(let a=0,la=this.players;a<la;a++){
+            this.cardManagers[a].allGroupEffect(63)
+        }
+    }
     startTurn(){
         if(this.modded(109)){
             this.combatantManager.allEffect(7,[this.counter.enemy-this.counter.killed-1])
@@ -571,7 +574,7 @@ class battle{
             }
         }
         this.turn.main=0
-        this.turn.total++
+        this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
             if(this.energy.main[a]>0&&this.relicManager.hasRelic(179,a)){
@@ -604,10 +607,7 @@ class battle{
                 if(this.nodeManager.world==3&&this.encounter.class==2){
                     this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                 }
-                if(this.cardManagers[this.turn.main].miracleSwitch){
-                    this.cardManagers[this.turn.main].miracleSwitch=false
-                    this.cardManagers[this.turn.main].hand.add(findName('Miracle',types.card),0,0)
-                }
+                this.cardManagers[this.turn.main].switchCheck()
                 if(variants.witch){
                     this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
                 }

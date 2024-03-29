@@ -101,9 +101,12 @@ class nodeManager{
         if(!chain){
             this.battle.stats.node[0]++
             this.battle.stats.node[1+type]++
+            for(let a=0,la=this.battle.players;a<la;a++){
+                this.battle.cardManagers[a].allEffect(0,62)
+            }
             if(variants.terminal){
                 for(let a=0,la=this.battle.players;a<la;a++){
-                    this.battle.combatantManager.combatants[a].loseMaxHP(1)
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].loseMaxHP(1)
                 }
             }
         }

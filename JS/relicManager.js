@@ -67,9 +67,13 @@ class relicManager{
             let possible=[0,0,0,1,1,2]
             for(let a=0,la=this.active[109]>0?5:3;a<la;a++){
                 let rarity=possible[floor(random(0,possible.length))]
-                let index=floor(random(0,relics[rarity].length))
-                this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
-                relics[rarity].splice(index,1)
+                if(relics[rarity].length==0){
+                    this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,findName('Menger Square',types.relic),2))
+                }else{
+                    let index=floor(random(0,relics[rarity].length))
+                    this.displayRelics.push(new relic(this.layer,1-this.battle.players,this.layer.width/2,this.layer.height/2+50-la*50+a*100,relics[rarity][index],2))
+                    relics[rarity].splice(index,1)
+                }
             }
         }
     }
@@ -125,11 +129,6 @@ class relicManager{
     loseRelic(type,player){
         this.active[types.relic[type].id][0]-=1
         this.active[types.relic[type].id][player+1]-=1
-        for(let a=0,la=this.relics.length;a<la;a++){
-            if(this.relics[a].type==type){
-                this.relics[a].active=false
-            }
-        }
         this.lose(types.relic[type].id,player)
     }
     loseRandomRelic(player){
@@ -489,6 +488,9 @@ class relicManager{
             case 160:
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(30)
             break
+            case 168:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(0.5)
+            break
             case 181:
                 for(let a=0,la=3;a<la;a++){
                     this.battle.cardManagers[player].randomEffect(0,31,[1])
@@ -514,12 +516,14 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,31,[6])
             break
         }
-        this.deactivate(type)
+        this.deactivate(type,player)
     }
-    deactivate(type){
-        for(let a=0,la=this.relics.length;a<la;a++){
-            if(this.relics[a].type==type){
-                this.relics[a].active=false
+    deactivate(type,player){
+        if(this.active[type][player+1]<=0){
+            for(let a=0,la=this.relics.length;a<la;a++){
+                if(this.relics[a].type==type){
+                    this.relics[a].active=false
+                }
             }
         }
     }
@@ -1078,7 +1082,7 @@ class relicManager{
             case 'overlay':
                 let position=0
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    if(this.active[types.relic[this.relics[a].type].id][args[0]+1]>0&&this.relics[a].type!=0){
+                    if(this.relics[a].player==args[0]&&this.relics[a].type!=0){
                         this.relics[a].display(la-1,this.active[types.relic[this.relics[a].type].id][args[0]+1],{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60},true)
                         position++
                         if(position>=30){
@@ -1159,7 +1163,7 @@ class relicManager{
                 let position=0
                 let index=0
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    if(this.active[types.relic[this.relics[a].type].id][args[0]+1]==args[2]&&this.relics[a].type!=0){
+                    if(this.relics[a].player==args[2]&&this.relics[a].type!=0){
                         if(index>=args[1]*30&&index<args[1]*30+30){
                             this.relics[a].update(args[0],this.total[relic.player],inputs,{x:this.layer.width/2-150+position%6*60,y:this.layer.height/2-120+floor(position/6)*60})
                             position++
@@ -1211,11 +1215,11 @@ class relicManager{
                 let position=0
                 let index=0
                 for(let a=0,la=this.relics.length;a<la;a++){
-                    if(this.active[this.relics[a].type][args[0]]>0&&this.relics[a].type!=0){
+                    if(this.relics[a].player==args[0]&&this.relics[a].type!=0){
                         if(index>=args[1]*30&&index<args[1]*30+30){
-                            if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type]>0){
+                            if(dist(inputs.rel.x,inputs.rel.y,this.layer.width/2-150+position%6*60,this.layer.height/2-120+floor(position/6)*60)<20&&this.active[this.relics[a].type][args[0]+1]>0){
                                 this.battle.addCurrency(this.relics[a].value,this.relics[a].player)
-                                this.loseRelic(this.relics[a].type)
+                                this.loseRelic(this.relics[a].type,args[0])
                             }
                             position++
                         }

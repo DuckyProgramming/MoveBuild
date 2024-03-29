@@ -25,7 +25,7 @@ class cardManager{
         this.baseDrops=variants.altDraw?3:0
         this.drops=0
         this.interval=0
-        this.miracleSwitch=false
+        this.switch={miracle:false,teleport:false,redraw:false,smite:false}
         this.pack=[]
 
         this.initialListing()
@@ -928,6 +928,24 @@ class cardManager{
         }else if(variants.blackjack){
             this.drops=0
             this.baseDrops=21
+        }
+    }
+    switchCheck(){
+        if(this.switch.miracle){
+            this.switch.miracle=false
+            this.hand.add(findName('Miracle',types.card),0,0)
+        }
+        if(this.switch.teleport){
+            this.switch.teleport=false
+            this.hand.add(findName('Teleport',types.card),0,0)
+        }
+        if(this.switch.redraw){
+            this.switch.redraw=false
+            this.hand.add(findName('Redraw',types.card),0,0)
+        }
+        if(this.switch.smite){
+            this.switch.smite=false
+            this.hand.add(findName('Smite',types.card),0,0)
         }
     }
     checkCompact(){

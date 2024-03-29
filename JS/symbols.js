@@ -4911,6 +4911,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
                 layer.line(0,0,0,6)
                 layer.line(0,3,3,5)
             }
+            layer.noStroke()
             layer.fill(150,175,200,fade)
 			layer.triangle(-5,-3,5,-3,0,-6)
 			layer.arc(0,-3,10,16,0,180)

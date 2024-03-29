@@ -695,7 +695,7 @@ types={
         {name:'Ataraxia',internal:'Extra Energy Temporary Strength',id:179,rarity:2,list:0,description:'Extra Energy is Converted\nto Temporary Strength'},
 
         {name:'Hone',internal:'More Editions',id:180,rarity:4,list:0,description:'Cards are 4x More\nLikely to be Editions'},
-        {name:'Silver Pack',internal:'3 Random Foils',id:181,rarity:3,list:0,description:'When Taken, Make 3\nRandom Cards Silver'},
+        {name:'Silver Pack',internal:'3 Random Silvers',id:181,rarity:3,list:0,description:'When Taken, Make 3\nRandom Cards Silver'},
         {name:'Foil Pack',internal:'3 Random Foils',id:182,rarity:3,list:0,description:'When Taken, Make 3\nRandom Cards Foil'},
         {name:'Holographic Pack',internal:'2 Random Holographics',id:183,rarity:3,list:0,description:'When Taken, Make 2\nRandom Cards Holographic'},
         {name:'Polychrome Pack',internal:'1 Random Polychrome',id:184,rarity:3,list:0,description:'When Taken, Make 1\nRandom Card Polychrome'},
@@ -3997,6 +3997,15 @@ Entering, you're offered a chance to glimpse your future...`,
                 [{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Dented 5',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
         },
 
         /*{
@@ -4036,27 +4045,19 @@ Entering, you're offered a chance to glimpse your future...`,
             ],reinforce:[
             ],
         },{
-            level:['Basic 7'],class:1,world:1,
+            level:['Basic 7'],class:0,world:-1,
+            name:'Placeholder',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Dented 5'],class:1,world:1,
             name:'Voidglass',
-            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            player:{position:[[{x:3,y:4}],[{x:2,y:4},{x:4,y:4}]]},
             enemy:[
-                {position:{x:2,y:2},name:'Voidglass'},
-            ],reinforce:[
-            ],
-        },{
-            level:['Basic 7'],class:0,world:-1,
-            name:'Placeholder',
-            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
-            enemy:[
-                {position:{x:2,y:2},name:'Duck'},
-            ],reinforce:[
-            ],
-        },{
-            level:['Basic 7'],class:0,world:-1,
-            name:'Placeholder',
-            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
-            enemy:[
-                {position:{x:2,y:2},name:'Duck'},
+                {position:{x:1,y:0},name:'Voidglass'},
             ],reinforce:[
             ],
         },{

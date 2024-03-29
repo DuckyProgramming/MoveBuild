@@ -24,6 +24,11 @@ class group{
     initialCards(type,player){
         let level=variants.cursed?1:0
         switch(type){
+            case -1:
+                for(let a=0,la=6;a<la;a++){
+                    this.addInitial(findName('-h Riff-Raff',types.card)+1+a,level,0)
+                }
+            break
             case 0:
                 if(game.dev){
                     if(variants.junk){
@@ -1134,6 +1139,12 @@ class group{
                         this.cards[a].effect[0]*=2
                     }
                 break
+                case 62:
+                    this.cards[a].callNodeEffect()
+                break
+                case 63:
+                    this.cards[a].callTurnEffect()
+                break
 
             }
         }
@@ -1186,12 +1197,12 @@ class group{
                 break
                 case 5:
                     if(this.cards[a].basic&&this.cards[a].class==1){
-                        this.cards[a].effect[0]+=args[0]
+                        this.cards[a].effect[0]=max(this.cards[a].effect[0]+args[0],0)
                     }
                 break
                 case 6:
                     if(this.cards[a].basic&&this.cards[a].class==2){
-                        this.cards[a].effect[0]+=args[0]
+                        this.cards[a].effect[0]=max(this.cards[a].effect[0]+args[0],0)
                     }
                 break
                 case 7:
@@ -3055,7 +3066,7 @@ class group{
                             }
                         }else if((
                             this.cards[a].attack==1031||this.cards[a].attack.length==2&&this.cards[a].attack[0]==1189||this.cards[a].attack==1739||this.cards[a].attack==1770||
-                            this.cards[a].attack==1778||this.cards[a].attack==1893||
+                            this.cards[a].attack==1778||this.cards[a].attack==1893||this.cards[a].attack==2053||
                             this.cards[a].spec.includes(12)&&this.cards[a].attack[this.cards[a].characteristic]==1366
                         )&&!this.cards[a].exhaust){
                             this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
