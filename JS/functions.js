@@ -1151,7 +1151,7 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 function outListing(){
 	let box=``
 	let goal=50+125*game.playerNumber+30+20+15+30+100
-	let arbitrary=1750
+	let arbitrary=2000
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/50				${current.cardManagers[0].listing.card[a+1][0].length-50}
@@ -1178,6 +1178,14 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/100				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-100}
 			`)
+}
+function outRelic(){
+	print(`Common: ${current.relicManager.listing.relic[0].length}
+	Uncommon: ${current.relicManager.listing.relic[1].length}
+	Rare: ${current.relicManager.listing.relic[2].length}
+	Shop: ${current.relicManager.listing.relic[3].length}
+	Boss: ${current.relicManager.listing.relic[4].length}
+	`)
 }
 function shut(){
 	print('s')

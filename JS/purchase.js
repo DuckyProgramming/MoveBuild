@@ -20,7 +20,7 @@ class purchase{
                 }
                 this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
                 let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,240))
-                this.card.edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                this.card.edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                 if(this.args[3]){
                     for(let a=0,la=this.cost.length;a<la;a++){
                         this.cost[a]=floor(this.cost[a]/2)
@@ -48,6 +48,8 @@ class purchase{
                     if(this.card.name=='Garbled'){
                         this.card=new card(this.layer,this.battle,this.player,0,0,this.args[0],this.args[1],this.args[2],0)
                     }
+                    let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,240))
+                    this.card.edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                     this.card.position={x:80,y:0}
                 }
             break
@@ -70,7 +72,7 @@ class purchase{
         }
     }
     buy(){
-        if((this.player==-1&&(this.battle.currency.money[0]>=this.cost[0]&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=this.cost[1]&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=this.cost[this.player])&&this.usable){
+        if((this.player==-1&&(this.battle.currency.money[0]>=this.cost[0]-(this.battle.relicManager.hasRelic(187,0)?200:0)&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=this.cost[1]-(this.battle.relicManager.hasRelic(187,1)?200:0)&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=this.cost[this.player]-(this.battle.relicManager.hasRelic(187,this.player)?200:0))&&this.usable){
             let purchaser=0
             if(this.player==-1){
                 purchaser=inputs.rel.x<this.position.x?0:1
@@ -80,6 +82,7 @@ class purchase{
             this.battle.currency.money[purchaser]-=this.cost[purchaser]
             this.usable=false
             this.deSize=true
+            this.battle.relicManager.activate(13,[purchaser])
             switch(this.type){
                 case 1:
                     if(this.battle.relicManager.hasRelic(110,purchaser)){
@@ -223,10 +226,10 @@ class purchase{
         this.anim.usable=smoothAnim(this.anim.usable,this.usable,0,1,5)
         if(this.player==-1){
             for(let a=0,la=this.battle.players;a<la;a++){
-                this.anim.afford[a]=smoothAnim(this.anim.afford[a],this.battle.currency.money[a]>=this.cost[a],0,1,5)
+                this.anim.afford[a]=smoothAnim(this.anim.afford[a],this.battle.currency.money[a]>=this.cost[a]-(this.battle.relicManager.hasRelic(187,a)?200:0),0,1,5)
             }
         }else{
-            this.anim.afford=smoothAnim(this.anim.afford,this.battle.currency.money[this.player]>=this.cost[this.player],0,1,5)
+            this.anim.afford=smoothAnim(this.anim.afford,this.battle.currency.money[this.player]>=this.cost[this.player]-(this.battle.relicManager.hasRelic(187,this.player)?200:0),0,1,5)
         }
         switch(this.type){
             case 1:

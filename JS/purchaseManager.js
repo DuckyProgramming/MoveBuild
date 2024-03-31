@@ -3,6 +3,7 @@ class purchaseManager{
         this.layer=layer
         this.battle=battle
         this.purchases=[]
+        this.rerollActive=[false,false]
     }
     setup(type){
         this.purchases=[]

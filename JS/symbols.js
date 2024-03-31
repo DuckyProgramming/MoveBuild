@@ -5641,6 +5641,70 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.line(0,3,0,5)
             layer.line(-1,4,1,4)
         break
+        case 84:
+            layer.fill(160,fade)
+            for(let a=0,la=7;a<la;a++){
+                layer.triangle(-1,0,1,0,0,-8)
+                layer.rotate(360/7)
+            }
+        break
+        case 85:
+            layer.fill(120,fade)
+            layer.quad(-7,7,-7,2,7,-7,-2,7)
+        break
+        case 86:
+            layer.stroke(80,fade)
+            layer.strokeWeight(2)
+            layer.arc(0,0,10,10,-90,240)
+            layer.line(0,-5,0,-3)
+        break
+        case 87:
+            layer.stroke(80,fade)
+            layer.strokeWeight(2)
+            layer.arc(2,-3,10,6,90,270)
+            layer.arc(2,3,10,6,90,270)
+        break
+        case 88:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(1)
+            layer.ellipse(0,0,10)
+            layer.ellipse(0,0,5)
+            layer.line(0,-8,0,8)
+            layer.line(-6,-4,6,4)
+            layer.line(-6,4,6,-4)
+        break
+        case 89:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(-1,-1,12,16,2)
+            layer.rect(1,1,12,16,2)
+        break
+        case 90:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(2)
+            layer.point(0,0)
+        break
+        case 91:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(2)
+            layer.point(0,-5)
+            layer.point(0,5)
+        break
+        case 92:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(2)
+            layer.point(0,-5)
+            layer.point(0,0)
+            layer.point(0,5)
+        break
     }
     layer.pop()
 }
@@ -5725,4 +5789,13 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 81-Negative Card
 82-Silver Card
 83-Erratic Card
+84-Fragile
+85-Rare
+86-Odd
+87-Even
+88-Edition
+89-Duplicate Card
+90-Card 1
+91-Card 2
+92-Card 3
 */

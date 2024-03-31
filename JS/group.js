@@ -26,7 +26,7 @@ class group{
         switch(type){
             case -1:
                 for(let a=0,la=6;a<la;a++){
-                    this.addInitial(findName('-h Riff-Raff',types.card)+1+a,level,0)
+                    this.addInitial(findName('-h Riff-Raff',types.card)+1+a,level,types.card[findName('-h Riff-Raff',types.card)+1+a].list>=0?types.card[findName('-h Riff-Raff',types.card)+1+a].list:0)
                 }
             break
             case 0:
@@ -777,6 +777,9 @@ class group{
             if(this.battle.relicManager.hasRelic(51,this.player)){
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length)
             }
+            if(this.battle.relicManager.hasRelic(190,this.player)){
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Single Damage Up',this.cards.length)
+            }
         }
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -791,7 +794,7 @@ class group{
                     if(this.cards[a].retain2){
                         this.cards[a].retained()
                         total++
-                    }else if(this.cards[a].retain){
+                    }else if(this.cards[a].retain||this.battle.relicManager.hasRelic(192,this.player)&&la==1){
                         this.cards[a].retained()
                         this.cards[a].retain=false
                         total++
@@ -1144,6 +1147,14 @@ class group{
                 break
                 case 63:
                     this.cards[a].callTurnEffect()
+                break
+                case 64:
+                    if(this.cards[a].spec.includes(3)&&this.id!=2){
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,0)
+                    }
+                break
+                case 65:
+                    this.cards[a].edition=0
                 break
 
             }
@@ -3127,7 +3138,7 @@ class group{
                             la--
                             this.status.rebound--
                         }else{
-                            if(this.cards[a].discardEffectBuffered.includes(0)){
+                            if(this.cards[a].discardEffectBuffered.includes(0)||this.battle.relicManager.hasRelic(195,this.player)&&!this.cards[a].usable&&floor(random(0,4))==0){
                                 this.cards[a]=upgradeCard(this.cards[a])
                                 this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
                             }

@@ -1,6 +1,30 @@
 attack.prototype.update=function(){
     this.timer++
     switch(this.type){
+        case -1000:
+            this.battle.combatantManager.tickEarly()
+            this.remove=true
+        break
+        case -1001:
+            this.battle.combatantManager.tickLate()
+            this.remove=true
+        break
+        case -1002:
+            this.battle.combatantManager.tickA()
+            this.remove=true
+        break
+        case -1003:
+            this.battle.combatantManager.tickB()
+            this.remove=true
+        break
+        case -1004:
+            this.battle.combatantManager.setupCombatants()
+            this.remove=true
+        break
+        case -1005:
+            this.battle.combatantManager.enableCombatants()
+            this.remove=true
+        break
         case -35:
             this.battle.energy.main[this.player]=0
             this.remove=true
@@ -48,7 +72,7 @@ attack.prototype.update=function(){
         case 1960: case 1961: case 1970: case 1971: case 1973: case 1979: case 1980: case 1981: case 1984: case 1990:
         case 1991: case 2001: case 2002: case 2004: case 2007: case 2012: case 2017: case 2021: case 2025: case 2026:
         case 2027: case 2032: case 2034: case 2041: case 2046: case 2049: case 2051: case 2053: case 2054: case 2062:
-        case 2063:
+        case 2063: case 2065: case 2066:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -80,7 +104,9 @@ attack.prototype.update=function(){
                 this.type==1870&&(this.targetCombatant.block>0||this.targetCombatant.life==this.targetCombatant.base.life||this.battle.currency.money[this.player]<100)||
                 this.type==1991&&this.battle.currency.money[this.player]<this.effect[1]||
                 this.type==2017&&this.battle.currency.money[this.player]>this.effect[1]||
-                this.type==2054&&this.userCombatant.stance!=5
+                this.type==2054&&this.userCombatant.stance!=5||
+                this.type==2065&&this.battle.turn.total<4||
+                this.type==2066&&this.battle.turn.total<10
             ){
                 this.remove=true
                 if(this.type==1006){
@@ -148,13 +174,15 @@ attack.prototype.update=function(){
         case 1453: case 1456: case 1460: case 1514: case 1523: case 1532: case 1534: case 1603: case 1636: case 1696:
         case 1713: case 1728: case 1738: case 1742: case 1804: case 1814: case 1826: case 1861: case 1876: case 1877:
         case 1929: case 1963: case 1966: case 1983: case 1985: case 2003: case 2005: case 2035: case 2042: case 2052:
-        case 2055:
+        case 2055: case 2067: case 2068: case 2069: case 2082:
             if(
                 this.type==809&&this.userCombatant.stance!=4||
                 this.type==1713&&this.battle.turn.total%2==0||
                 this.type==1804&&this.energy!=4||
                 this.type==1814&&this.energy<2||
-                this.type==2055&&this.userCombatant.stance!=5
+                this.type==2055&&this.userCombatant.stance!=5||
+                this.type==2067&&this.battle.turn.total<4||
+                this.type==2068&&this.battle.turn.total<10
             ){
                 this.remove=true
             }else if(variants.nobasicanim){
@@ -183,7 +211,7 @@ attack.prototype.update=function(){
         case 1577: case 1578: case 1579: case 1580: case 1581: case 1582: case 1583: case 1584: case 1585: case 1586:
         case 1587: case 1588: case 1589: case 1590: case 1643: case 1644: case 1647: case 1648: case 1671: case 1672:
         case 1673: case 1677: case 1680: case 1681: case 1759: case 1760: case 1761: case 1784: case 1785: case 1949:
-        case 1978: case 1992: case 2008: case 2009: case 2033: case 2036: case 2037: case 2040: case 2047:
+        case 1978: case 1992: case 2008: case 2009: case 2033: case 2036: case 2037: case 2040: case 2047: case 2075:
             if(this.type==808&&this.userCombatant.stance!=3||this.type==1515&&floor(random(0,10))==0&&this.timer==1&&!this.userCombatant.luckCheck()){
                 this.remove=true
                 if(this.type==1515){
@@ -431,6 +459,8 @@ attack.prototype.update=function(){
         case 1901: case 1915: case 1916: case 1942: case 1964: case 1988: case 1989: case 1993: case 1994: case 1995:
         case 1996: case 1997: case 1998: case 2015: case 2019: case 2020: case 2029: case 2031: case 2056:
             if(
+                
+                this.type==7995&&this.battle.turn.total<4||
                 this.type==807&&this.userCombatant.stance!=2||
                 this.type==820&&this.userCombatant.stance!=1||
                 this.type==821&&this.userCombatant.stance!=3||
@@ -1304,7 +1334,7 @@ attack.prototype.update=function(){
         case 1863: case 1864: case 1866: case 1867: case 1868: case 1874: case 1878: case 1879: case 1880: case 1888:
         case 1890: case 1892: case 1894: case 1902: case 1907: case 1908: case 1943: case 1945: case 1950: case 1951:
         case 1955: case 1958: case 1969: case 1972: case 2018: case 2010: case 2011: case 2016: case 2022: case 2023:
-        case 2024: case 2030: case 2045: case 2050:
+        case 2024: case 2030: case 2045: case 2050: case 2076:
             if(
                 this.type==1247&&this.energy%2!=0||
                 this.type==1259&&this.energy%2!=0||
@@ -3455,7 +3485,8 @@ attack.prototype.update=function(){
         case 1555: case 1566: case 1604: case 1632: case 1669: case 1670: case 1691: case 1762: case 1763: case 1764:
         case 1765: case 1775: case 1776: case 1797: case 1798: case 1799: case 1800: case 1818: case 1819: case 1820:
         case 1823: case 1833: case 1855: case 1859: case 1860: case 1873: case 1884: case 1903: case 1917: case 1918:
-        case 1941: case 1954: case 1965: case 2013: case 2014: case 2043: case 2057: case 2058: case 2059:
+        case 1941: case 1954: case 1965: case 2013: case 2014: case 2043: case 2057: case 2058: case 2059: case 2080:
+        case 2081:
             if(variants.nobasicanim){
                 this.selfCall(12)
                 this.remove=true
@@ -5551,6 +5582,22 @@ attack.prototype.update=function(){
                 this.targetCombatant.takeDamage(this.effect[0],this.user,1)
             }else if(this.timer>=10*this.targetDistance+40){
                 this.remove=true
+            }
+        break
+        case 2070: case 2071: case 2072: case 2073: case 2074:
+            if(variants.nobasicanim){
+                this.selfCall(14)
+                this.remove=true
+            }else{
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(41)
+                }
+                this.userCombatant.runAnimation(1/20,41)
+                if(this.timer==10){
+                    this.selfCall(14)
+                }else if(this.timer>=20){
+                    this.remove=true
+                }
             }
         break
 

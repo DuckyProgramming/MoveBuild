@@ -1,66 +1,40 @@
 cards:
+prehextorica innates
 
-terminal velocity but for block
-deal damage but only after turn 5
-fluidity but with Statuses
-tickswitch but for block
-time step
-tick forward 1 turn
+costs 1 less when turn changes
+analogues to starfall
+
+analogue to entertainer
+
+and a number of new shock cards (often analogues)
+demonfire but shock
+
+take an extra turn, get shocked
+
+
+
+
+
+
+
 
 
 3 new characters:
-
 models
-
-
-
-
-prehextorica time gimmicks?
-
-
-
-at the end of a replay close all non-ending overlays
+cutscene appearances
 
 
 
 
 
-general:
-
-space ball relic (1/4 chance to upgrade played card temporarily)
-credit card relic (allows you to go into debt without getting debt curse)
-abstract relic (gain 1 strength per 10 relics you have)
-speedrunner relic (gain more money if fight ends in 3 or less turns)
-tauball relic (start with 3 strength, but 25% chance to break each fight)
-gain 5 block on all even turns relic
-gain 5 block on all odd turns relic
-bus relic (gain +2 flat damage every fight, but stops if you take a item)
-gain 25 money every floor until you take damage
-ice cream relic (gain 20 block each turn, goes down by 1 permanently)
-dna relic (duplicate a card after every boss)
-edition up a card after every boss
-splash relic (unplayed cards become +1 flat damage each)
-erosion relic (gain 1 strength per card removed)
-to the moon (if you have more than 1000 currency get 10 per room)
-diet cola?
-
-bootstraps
-luchador
-erosion
-hallucination
-rough gem
-seeing double
-the duo
-brainstorm
-
-make outRelic()
+see the relic or item you're getting
 
 
 
 
 
-move 2 world 3 enemies to world 2
-4 new world 1 enemies  
+
+4 new world 1 enemies
 
 1 world 1 elite
 2 world 2 elites
@@ -70,5 +44,20 @@ final distro 20,12,6
 
 
 
-
 new tutorials
+
+
+
+
+
+
+
+
+shock+claw card
+
+damage equal to 2*burn
+damage equal to 2*freeze
+
+
+
+

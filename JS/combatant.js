@@ -5662,7 +5662,7 @@ class combatant{
                         this.goal.anim.sword=true
                     break
                     case 3: case 6: case 8: case 9: case 17: case 23: case 26: case 28: case 29: case 31:
-                    case 32: case 33: case 36: case 38: case 39: case 40:
+                    case 32: case 33: case 36: case 38: case 39: case 40: case 41:
                         this.animSet.loop=0
                         this.goal.anim.sword=false
                     break
@@ -5708,6 +5708,7 @@ class combatant{
                         this.animSet.flip=floor(random(0,2))
                     break
                     case 2: case 4: case 6: case 7: case 16: case 17: case 19: case 25: case 26: case 32:
+                    case 41:
                         this.animSet.loop=0
                     break
                     case 5:
@@ -5982,24 +5983,15 @@ class combatant{
                         this.anim.arms[this.animSet.hand].bottom=9+lsin(this.animSet.loop*180)*96
                         this.spin.arms[this.animSet.hand].top=(93-lsin(this.animSet.loop*180)*63)*(this.animSet.hand*2-1)
                         this.spin.arms[this.animSet.hand].bottom=(75-lsin(this.animSet.loop*180)*90)*(this.animSet.hand*2-1)
-                        for(let g=0;g<2;g++){
-                            this.anim.eye[g]=lsin(this.animSet.loop*180)
+                        if(this.name!='Sakura'){
+                            for(let g=0;g<2;g++){
+                                this.anim.eye[g]=lsin(this.animSet.loop*180)
+                            }
                         }
                         this.spin.sword=75+lsin(this.animSet.loop*180)*45
-                        if(this.name=='Lira'){
-                            this.parts.mouth=-65+lsin(this.animSet.loop*180)*-4
-                            this.anim.mouth.y=abs(5-lsin(this.animSet.loop*180)*10)
-                            this.spin.mouth=lsin(this.animSet.loop*180)>=0.5?36:216
-                        }else if(this.name=='Sakura'){
+                        if(this.name=='Sakura'){
                             this.anim.mouth.y=5+lsin(this.animSet.loop*180)
-                        }else if(this.name=='Setsuna'){
-                            this.parts.mouth=-65+lsin(this.animSet.loop*180)*-4
-                            this.anim.mouth.y=abs(4-lsin(this.animSet.loop*180)*8)
-                            this.spin.mouth=lsin(this.animSet.loop*180)>=0.5?36:216
-                        }else if(this.name=='Ume'){
-                            this.parts.mouth=-65+lsin(this.animSet.loop*180)*-2
-                            this.anim.mouth.y=abs(4-lsin(this.animSet.loop*180)*8)
-                            this.spin.mouth=lsin(this.animSet.loop*180)>=0.5?36:216
+                            this.anim.eye[0]=lsin(this.animSet.loop*180)
                         }
                     break
                     case 22:
@@ -6102,9 +6094,12 @@ class combatant{
                         for(let g=0;g<2;g++){
                             this.anim.arms[g].top=24+abs(lsin(this.animSet.loop*180))*72
                             this.anim.arms[g].bottom=9+abs(lsin(this.animSet.loop*180))*111
-                            this.anim.eye[g]=lsin(this.animSet.loop*180)
+                            if(this.name!='Sakura'){
+                                this.anim.eye[g]=lsin(this.animSet.loop*180)
+                            }
                         }
                         if(this.name=='Sakura'){
+                            this.anim.eye[0]=lsin(this.animSet.loop*180)
                             this.anim.mouth.y=5+lsin(this.animSet.loop*180)
                         }
                     break
@@ -6140,6 +6135,15 @@ class combatant{
                         this.anim.arms[1].bottom=9+abs(lsin((this.animSet.loop+this.animSet.flip+1)*180))*93
                         this.spin.arms[1].top=(93-abs(lsin((this.animSet.loop+this.animSet.flip+1)*180))*57)
                         this.spin.arms[1].bottom=(75-abs(lsin((this.animSet.loop+this.animSet.flip1g)*180))*60)
+                    break
+                    case 41:
+                        this.animSet.loop+=rate
+                        for(let g=0;g<2;g++){
+                            this.anim.arms[g].top=24+abs(lsin(this.animSet.loop*180))*81
+                            this.anim.arms[g].bottom=9+abs(lsin(this.animSet.loop*180))*126
+                            this.spin.arms[g].top=(93-abs(lsin(this.animSet.loop*180))*12)*(g*2-1)
+                            this.spin.arms[g].bottom=(75-abs(lsin(this.animSet.loop*180))*9)*(g*2-1)
+                        }
                     break
                 }
             break
@@ -6225,6 +6229,13 @@ class combatant{
                     case 32:
                         this.animSet.loop+=rate
                         this.offset.position.y=lsin(this.animSet.loop*180)*-10
+                    break
+                    case 41:
+                        this.animSet.loop+=rate
+                        this.offset.position.y=lsin(this.animSet.loop*180)*-10
+                        for(let g=0;g<2;g++){
+                            this.anim.arms[g].top=54+abs(lsin(this.animSet.loop*180))*60
+                        }
                     break
                 }
             break

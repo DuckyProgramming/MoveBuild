@@ -247,6 +247,7 @@ class turnManager{
                 }else if(this.phase){
                     this.phase=false
                     this.loadEnemyTurnsMove()
+                    this.battle.replayManager.list.push(new attack(-1001,this.battle,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
                     this.battle.combatantManager.tickLate()
                 }else{
                     this.battle.startTurn()

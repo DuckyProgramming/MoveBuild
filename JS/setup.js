@@ -16,8 +16,8 @@ function setup(){
         //transition.trigger=true
         //transition.scene='menu'
 
-    /*current.menu.combatant=[2]
-    current.menu.deck=[-1]
+    /*current.menu.combatant=[9]
+    current.menu.deck=[0]
     current.startGame()
     game.animRate=4*/
 
@@ -31,8 +31,9 @@ function setup(){
         graphics.staticBackground.clear()
         setupBackground(graphics.test,graphics.staticBackground)*/
     
-    //stage.scene='battle'
-    //current.setupBattle(types.encounter[1])
+    /*game.dev=true
+    stage.scene='battle'
+    current.setupBattle(types.encounter[1])*/
 
         //stage.scene='tier'
 }

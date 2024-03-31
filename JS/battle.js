@@ -80,7 +80,6 @@ class battle{
         this.lastEncounter=types.encounter[0]
         
         this.turn={main:0,total:0,time:0,accelerate:0,endReady:false}
-        this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],defeat:0,deck:[],dictionaryMulti:[],exit:1,sell:[],food:[],afford:0,upAfford:false}
         this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
@@ -114,22 +113,20 @@ class battle{
     initial(){
         this.combatantManager.clearCombatants()
         this.nodeManager.setupMap()
+        this.resetAnim()
         for(let a=0,la=this.players;a<la;a++){
             this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
+
             this.colorDetail.push(types.color.card[this.player[a]])
+
             this.currency.money.push(game.ascend>=22?0:100)
             this.currency.ss.push(0)
+
             this.energy.main.push(0)
             this.energy.gen.push(0)
             this.energy.base.push(game.startEnergy)
             this.energy.temp.push(0)
-            this.anim.extra.push(0)
-            this.anim.turn.push(0)
-            this.anim.drop.push(1)
-            this.anim.deck.push(1)
-            this.anim.dictionaryMulti.push(1)
-            this.anim.sell.push(1)
-            this.anim.food.push(1)
+
             this.stats.killed.push(0)
             this.stats.earned.push(0)
             this.stats.damage.push(0)
@@ -141,6 +138,21 @@ class battle{
             this.stats.card.push(0)
             this.stats.relic.push(0)
             this.stats.item.push(0)
+        }
+    }
+    resetAnim(){
+        this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],defeat:0,deck:[],dictionaryMulti:[],exit:1,sell:[],food:[],afford:[],upAfford:false,reroll:[],rerollActive:[]}
+        for(let a=0,la=this.players;a<la;a++){
+            this.anim.extra.push(0)
+            this.anim.turn.push(0)
+            this.anim.drop.push(1)
+            this.anim.deck.push(1)
+            this.anim.dictionaryMulti.push(1)
+            this.anim.sell.push(1)
+            this.anim.food.push(1)
+            this.anim.afford.push(1)
+            this.anim.reroll.push(1)
+            this.anim.rerollActive.push(1)
         }
     }
     initialGraphics(){
@@ -198,6 +210,7 @@ class battle{
         transition.trigger=true
         transition.scene='battle'
         transition.convert=true
+        this.overlayManager.closeElse([0])
     }
     setupBattle(encounter,first=true){
         this.lastEncounter=encounter
@@ -206,7 +219,6 @@ class battle{
             this.energy.gen[a]=this.energy.base[a]
         }
         this.turn={main:0,total:0,time:0,accelerate:0}
-        this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],defeat:0,deck:[],dictionaryMulti:[],exit:1,sell:[],food:[],afford:0,upAfford:false}
         this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
@@ -217,14 +229,8 @@ class battle{
         this.tileManager.generateTiles(types.level[findName(encounter.level[floor(random(0,encounter.level.length))],types.level)])
         this.combatantManager.resetCombatants()
         
+        this.resetAnim()
         for(let a=0,la=this.players;a<la;a++){
-            this.anim.extra.push(0)
-            this.anim.turn.push(0)
-            this.anim.drop.push(1)
-            this.anim.deck.push(1)
-            this.anim.dictionaryMulti.push(1)
-            this.anim.sell.push(1)
-            this.anim.food.push(1)
             let playerCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
             if(playerCombatant.life<=0){
                 this.positionCombatant(playerCombatant,{x:-1,y:-1})
@@ -298,6 +304,7 @@ class battle{
             this.sendReinforce()
             this.tileManager.fire()
             this.turnManager.loadEnemyTurns()
+            this.replayManager.list.push(new attack(-1005,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.enableCombatants()
             this.turn.main=this.players
         }else{
@@ -310,6 +317,7 @@ class battle{
     }
     setupShop(){
         this.purchaseManager.setup(0)
+        this.purchaseManager.rerollActive=[false,false]
     }
     setupStash(){
         this.relicManager.setupStash()
@@ -494,15 +502,14 @@ class battle{
     }
     endTurn(){
         this.turn.endReady=false
+        this.replayManager.list.push(new attack(-1000,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
         this.combatantManager.tickEarly()
+        this.relicManager.activate(14,[this.turn.main,this.energy.main[this.turn.main]])
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
-            if(this.energy.main[this.turn.main]>0&&this.relicManager.hasRelic(179,this.turn.main)){
-                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].statusEffectNext('Temporary Strength',this.energy.main[this.turn.main])
-            }
             this.energy.main[this.turn.main]=max(0,this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.energy.main[this.turn.main]>=1?this.energy.gen[this.turn.main]+1:this.energy.gen[this.turn.main]+this.energy.temp[this.turn.main])-(this.modded(5)?max(3-this.turn.total,0):0)
             this.energy.temp[this.turn.main]=0
         }else{
@@ -514,7 +521,9 @@ class battle{
             this.sendReinforce()
             this.tileManager.fire()
             this.turnManager.loadEnemyTurns()
+            this.replayManager.list.push(new attack(-1005,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.enableCombatants()
+            this.replayManager.list.push(new attack(-1002,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.tickA()
         }else{
             if(!this.tutorialManager.active){
@@ -577,14 +586,13 @@ class battle{
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            if(this.energy.main[a]>0&&this.relicManager.hasRelic(179,a)){
-                this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].statusEffectNext('Temporary Strength',this.energy.main[a])
-            }
             this.energy.main[a]=max(0,this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]+this.energy.temp[a])-(this.modded(5)?max(3-this.turn.total,0):0)
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
+        this.replayManager.list.push(new attack(-1004,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
         if(this.turn.total>1){
+            this.replayManager.list.push(new attack(-1003,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.tickB()
         }
         this.combatantManager.unmoveCombatants()
@@ -752,7 +760,7 @@ class battle{
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))
         }
         this.combatantManager.playCardFront()
-        this.relicManager.activate(4,[cardClass,player,card.cost])
+        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name])
     }
     displayCurrency(){
         this.layer.fill(240,240,220)
@@ -788,7 +796,7 @@ class battle{
         }
     }
     loseCurrency(amount,player){
-        if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0){
+        if(this.currency.money[player]>=0&&this.currency.money[player]-round(amount)<0&&!this.relicManager.hasRelic(187,player)){
             this.cardManagers[player].deck.add(findName('Debt',types.card),0,game.playerNumber+2)
         }
         this.currency.money[player]-=round(amount)
@@ -997,7 +1005,7 @@ class battle{
                     this.layer.text('Dictionary',-74+this.anim.turn[a]*100,550)
                     this.layer.textSize(7*this.anim.endTurn)
                     this.layer.text('End Turn',-74+this.anim.turn[a]*100,578-4*this.anim.endTurn)
-                    this.layer.text('(Turn '+this.turn.total+')',-74+this.anim.turn[a]*100,578+4*this.anim.endTurn)
+                    this.layer.text(`(Turn ${this.turn.total})`,-74+this.anim.turn[a]*100,578+4*this.anim.endTurn)
                     this.layer.textSize(8*this.anim.cancel)
                     this.layer.text('Stop',-74+this.anim.extra[a]*100,414)
                     if(variants.altDraw){
@@ -1120,6 +1128,10 @@ class battle{
                     this.layer.rect(26+a*(this.layer.width-52),550,32*this.anim.sell[a],20*this.anim.sell[a],5*this.anim.sell[a])
                     this.layer.strokeWeight(3*this.anim.food[a])
                     this.layer.rect(26+a*(this.layer.width-52),578,32*this.anim.food[a],20*this.anim.food[a],5*this.anim.food[a])
+                    if(this.relicManager.hasRelic(191,a)){
+                        this.layer.strokeWeight(3*this.anim.reroll[a])
+                        this.layer.rect(-74+100*this.anim.rerollActive[a]+a*(this.layer.width+148-200*this.anim.rerollActive[a]),438,32*this.anim.reroll[a],20*this.anim.reroll[a],5*this.anim.reroll[a])
+                    }
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
@@ -1132,6 +1144,12 @@ class battle{
                     this.layer.text('Relic',26+a*(this.layer.width-52),550+4*this.anim.sell[a])
                     this.layer.textSize(8*this.anim.food[a])
                     this.layer.text('Food',26+a*(this.layer.width-52),578)
+                    if(this.relicManager.hasRelic(191,a)){
+                        this.layer.textSize(8*this.anim.reroll[a])
+                        this.layer.text('Reroll',-74+100*this.anim.rerollActive[a]+a*(this.layer.width+148-200*this.anim.rerollActive[a]),438-4*this.anim.reroll[a])
+                        this.layer.textSize(6*this.anim.reroll[a])
+                        this.layer.text('50 Currency',-74+100*this.anim.rerollActive[a]+a*(this.layer.width+148-200*this.anim.rerollActive[a]),438+4*this.anim.reroll[a])
+                    }
                 }
                 this.layer.fill(this.player==1?this.colorDetail[0].fill:types.color.card[0].fill)
                 this.layer.stroke(this.player==1?this.colorDetail[0].stroke:types.color.card[0].stroke)
@@ -1439,6 +1457,7 @@ class battle{
                         if(this.modded(82)){
                             mult*=0.5
                         }
+                        this.relicManager.activate(15,[a,-1,reward,this.turn.total])
                         switch(this.encounter.class){
                             case 0: case 3: case 4:
                                 reward.push({type:0,value:[floor(random(40,81)*mult)]})
@@ -1451,9 +1470,7 @@ class battle{
                             break
                             case 1:
                                 if(!this.modded(48)){
-                                    if(this.relicManager.hasRelic(171,a)){
-                                        reward.push({type:2,value:[]},{type:2,value:[]})
-                                    }
+                                    this.relicManager.activate(15,[a,1,reward,this.turn.total])
                                     reward.push({type:2,value:[]})
                                 }
                                 reward.push({type:0,value:[floor(random(120,201)*mult)]})
@@ -1469,12 +1486,7 @@ class battle{
                                     if(game.ascend<13){
                                         reward.push({type:0,value:[floor(random(240,401)*mult)]})
                                     }
-                                    if(this.relicManager.hasRelic(176,a)){
-                                        reward.push({type:8,value:[1]})
-                                    }
-                                    if(this.relicManager.hasRelic(177,a)){
-                                        reward.push({type:7,value:[1]})
-                                    }
+                                    this.relicManager.activate(15,[a,2,reward,this.turn.total])
                                 }
                             break
                         }
@@ -1548,6 +1560,8 @@ class battle{
                     this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.food[a]=smoothAnim(this.anim.food[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:578},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.reroll[a]=smoothAnim(this.anim.reroll[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:438},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.rerollActive[a]=smoothAnim(this.anim.rerollActive[a],!this.purchaseManager.rerollActive[a]&&!this.overlayManager.anyActive,0,1,5)
                 }
                 this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:466},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
             break
@@ -1912,6 +1926,10 @@ class battle{
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:578},width:32,height:20})){
                             this.overlayManager.overlays[27][a].active=true
                             this.overlayManager.overlays[27][a].activate()
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:438},width:32,height:20})&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
+                            this.purchaseManager.setup(0)
+                            this.purchaseManager.rerollActive[a]=true
+                            this.currency.money[a]-=50
                         }
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:26,y:466},width:32,height:20})){
@@ -2285,6 +2303,10 @@ class battle{
                         }else if((key=='f'||key=='F')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
                             this.overlayManager.overlays[27][a].active=true
                             this.overlayManager.overlays[27][a].activate()
+                        }else if(((key=='c'||key=='C')&&this.players==1||key=='c'&&a==0&&this.players==2||key=='C'&&a==1&&this.players==2)&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
+                            this.purchaseManager.setup(0)
+                            this.purchaseManager.rerollActive[a]=true
+                            this.currency.money[a]-=50
                         }
                     }
                     if(code==ENTER){

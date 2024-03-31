@@ -120,7 +120,7 @@ class overlay{
                             let index=floor(random(0,list[args[1]].length))
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
                             let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,240))
-                            this.cards[this.cards.length-1].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                            this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                             this.cards[this.cards.length-1].upSize=true
                             list[args[1]].splice(index,1)
                         }
@@ -129,7 +129,7 @@ class overlay{
                             let index=floor(random(0,list[args[1]].length))
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+this.options*60+120,this.layer.height/2+20,list[args[1]][index],args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:types.card[list[args[1]][index]].list,-1))
                             let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,240))
-                            this.cards[this.cards.length-1].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                            this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                             this.cards[this.cards.length-1].upSize=true
                         }
                     break
@@ -319,6 +319,14 @@ class overlay{
                         this.battle.overlayManager.overlays[6][this.player].active=true
                         this.battle.overlayManager.overlays[6][this.player].activate(args.value)
                     break
+                    case 9:
+                        this.battle.overlayManager.overlays[44][this.player].active=true
+                        this.battle.overlayManager.overlays[44][this.player].activate(args.value)
+                    break
+                    case 10:
+                        this.battle.overlayManager.overlays[12][this.player].active=true
+                        this.battle.overlayManager.overlays[12][this.player].activate(args.value)
+                    break
                 }
             break
         }
@@ -422,7 +430,7 @@ class overlay{
                             this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
                             this.layer.strokeWeight(3)
                             this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
-                            this.layer.stroke(this.fade*this.rewards[a].fade)
+                            this.layer.stroke(40,this.fade*this.rewards[a].fade)
                             this.layer.strokeWeight(2)
                             this.layer.push()
                             this.layer.translate(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position)
@@ -464,7 +472,7 @@ class overlay{
                             this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
                             this.layer.strokeWeight(3)
                             this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
-                            this.layer.stroke(this.fade*this.rewards[a].fade)
+                            this.layer.stroke(40,this.fade*this.rewards[a].fade)
                             this.layer.strokeWeight(2)
                             this.layer.push()
                             this.layer.translate(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position)
@@ -492,7 +500,7 @@ class overlay{
                             this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
                             this.layer.strokeWeight(3)
                             this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
-                            this.layer.stroke(this.fade*this.rewards[a].fade)
+                            this.layer.stroke(40,this.fade*this.rewards[a].fade)
                             this.layer.strokeWeight(2)
                             this.layer.push()
                             this.layer.translate(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position)
@@ -517,6 +525,43 @@ class overlay{
                             this.layer.noStroke()
                             this.layer.textSize(16)
                             this.layer.text('Remove',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
+                        break
+                        case 9:
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
+                            this.layer.fill(this.battle.colorDetail[this.player].fill,this.fade*this.rewards[a].fade)
+                            this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
+                            this.layer.strokeWeight(3)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
+                            this.layer.stroke(40,this.fade*this.rewards[a].fade)
+                            this.layer.strokeWeight(2)
+                            this.layer.noFill()
+                            this.layer.push()
+                            this.layer.translate(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position)
+                            this.layer.ellipse(0,0,20)
+                            this.layer.ellipse(0,0,10)
+                            this.layer.line(0,-16,0,16)
+                            this.layer.line(-12,-7,12,7)
+                            this.layer.line(-12,7,12,-7)
+                            this.layer.pop()
+                            this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
+                            this.layer.strokeWeight(3)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,24,32,5)
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.noStroke()
+                            this.layer.textSize(16)
+                            this.layer.text('Edition',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
+                        break
+                        case 10:
+                            this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
+                            this.layer.fill(this.battle.colorDetail[this.player].fill,this.fade*this.rewards[a].fade)
+                            this.layer.stroke(this.battle.colorDetail[this.player].stroke,this.fade*this.rewards[a].fade)
+                            this.layer.strokeWeight(3)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-42,this.layer.height/2-107+this.rewards[a].position,21,28,5)
+                            this.layer.rect(this.layer.width/2+225*this.posKey-38,this.layer.height/2-103+this.rewards[a].position,21,28,5)
+                            this.layer.fill(0,this.fade*this.rewards[a].fade)
+                            this.layer.noStroke()
+                            this.layer.textSize(16)
+                            this.layer.text('Duplicate',this.layer.width/2+225*this.posKey+15,this.layer.height/2-103+this.rewards[a].position)
                         break
                     }
                 }
@@ -1005,13 +1050,14 @@ class overlay{
                                 !this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37)&&
                                 !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)&&
                                 !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2)){
-                                        this.battle.cardManagers[this.player].deck.cards[a].select=false
+                                    this.battle.cardManagers[this.player].deck.cards[a].select=false
                                     let size=this.battle.cardManagers[this.player].deck.cards[a].size
                                     let complete=true
                                     let breakAfter=false
                                     let rarity=this.battle.cardManagers[this.player].deck.cards[a].rarity
                                     let basic=this.battle.cardManagers[this.player].deck.cards[a].basic
                                     let type=this.battle.cardManagers[this.player].deck.cards[a].type
+                                    let cardClass=this.battle.cardManagers[this.player].deck.cards[a].class
                                     switch(this.args[0]){
                                         case 3: case 17:
                                             this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
@@ -1019,7 +1065,7 @@ class overlay{
                                         break
                                         case 4:
                                             if(this.battle.cardManagers[this.player].deck.remove(a)){
-                                                this.battle.relicManager.activate(11,[this.player])
+                                                this.battle.relicManager.activate(11,[this.player,cardClass])
                                                 a--
                                                 la--
                                                 this.activated++
@@ -1061,7 +1107,7 @@ class overlay{
                                             if(floor(random(0,2))==0){
                                                 this.battle.cardManagers[this.player].deck.copySelf(a)
                                             }else if(this.battle.cardManagers[this.player].deck.removeBypass(a)){
-                                                this.battle.relicManager.activate(11,[this.player])
+                                                this.battle.relicManager.activate(11,[this.player,cardClass])
                                                 a--
                                                 la--
                                                 this.activated++
@@ -1458,13 +1504,14 @@ class overlay{
                                     let rarity=this.battle.cardManagers[this.player].deck.cards[a].rarity
                                     let basic=this.battle.cardManagers[this.player].deck.cards[a].basic
                                     let type=this.battle.cardManagers[this.player].deck.cards[a].type
+                                    let cardClass=this.battle.cardManagers[this.player].deck.cards[a].class
                                     switch(this.args[0]){
                                         case 3: case 17:
                                             this.battle.cardManagers[this.player].deck.cards[a]=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
                                         break
                                         case 4:
                                             if(this.battle.cardManagers[this.player].deck.remove(a)){
-                                                this.battle.relicManager.activate(11,[this.player])
+                                                this.battle.relicManager.activate(11,[this.player,cardClass])
                                                 a--
                                                 la--
                                                 this.activated++
@@ -1506,7 +1553,7 @@ class overlay{
                                             if(floor(random(0,2))==0){
                                                 this.battle.cardManagers[this.player].deck.copySelf(a)
                                             }else if(this.battle.cardManagers[this.player].deck.removeBypass(a)){
-                                                this.battle.relicManager.activate(11,[this.player])
+                                                this.battle.relicManager.activate(11,[this.player,cardClass])
                                                 a--
                                                 la--
                                                 this.activated++

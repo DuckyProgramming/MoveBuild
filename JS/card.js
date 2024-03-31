@@ -1038,7 +1038,7 @@ class card{
             case 796: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Do Not Have\nStatuses or Curses\nin Hand`; break
             case 797: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nIt Costs 0 This Turn\nIf First Card\nPlayed This Turn,\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 798: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf First Card\nPlayed This Turn,\nApply ${effect[1]} Vulnerable`; break
-            case 799: string+=`If Turn 3 Or Later,\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 799: string+=`Turn 4 Or Later:\nGain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 800: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds ${effect[1]} Times More\nWhen in Calm`; break
             case 801: string+=`Target Loses Health\nEqual to Your\nMissing Health`; break
             case 802: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nEnter Wrath`; break
@@ -2293,6 +2293,26 @@ class card{
             case 2061: string+=`Discard ${effect[0]} Card${effect[0]!=1?`s`:``}\nExhaust ${effect[1]} Card${effect[1]!=1?`s`:``}\nGain ${effect[2]} Energy`; break
             case 2062: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Frail`; break
             case 2063: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}\nWhen Turn Changes`; break
+            case 2065: string+=`Turn 4 Or Later:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
+            case 2066: string+=`Turn 10 Or Later:\nDeal ${this.calculateEffect(effect[0],0)} Damage`; break
+            case 2067: string+=`Turn 4 Or Later:\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
+            case 2068: string+=`Turn 10 Or Later:\nAdd ${this.calculateEffect(effect[0],1)} Block`; break
+            case 2069: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]}\nWhen Turn Changes`; break
+            case 2070: string+=`Return All Innate\nCards to Hand`; break
+            case 2071: string+=`Increase Turn\nNumber by ${effect[0]}`; break
+            case 2072: string+=`Decrease Turn\nNumber by ${effect[0]}`; break
+            case 2073: string+=`Double Turn Number`; break
+            case 2074: string+=`Go to Turn ${effect[0]}`; break
+            case 2075: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nTurn 4 Or Later:\nGain ${effect[1]} Energy`; break
+            case 2076: string+=`Wrath: Apply ${effect[0]} Burn\nCalm: Apply ${effect[1]} Freeze\nHaste: Apply ${effect[2]} Shock\nSturdy: Apply ${effect[3]} Weak`; break
+            case 2077: string+=`Gain ${effect[0]} Strength\nWhen Selectively\nDiscarded`; break
+            case 2078: string+=`Gain ${effect[0]} Dexterity\nWhen Selectively\nDiscarded`; break
+            case 2079: string+=`Gain ${effect[0]} Dodge\nWhen Selectively\nDiscarded`; break
+            case 2080: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nClaw Up ${effect[1]}`; break
+            case 2081: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nto Any Enemy\nDiscard ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 2082: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nAdds Triple Turn 1\nAdds Double Turn 2`; break
+
+
 
 
 
@@ -2450,6 +2470,15 @@ class card{
             case 258:
                 this.battle.energy.main[this.player]+=this.effect[0]
             break
+            case 2077:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Strength',this.effect[0])
+            break
+            case 2078:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Dexterity',this.effect[0])
+            break
+            case 2079:
+                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Dodge',this.effect[0])
+            break
         }
     }
     callInDiscardEffect(){
@@ -2575,7 +2604,7 @@ class card{
     }
     callTurnEffect(){
         switch(this.attack){
-            case 2063:
+            case 2063: case 2069:
                 this.effect[0]+=this.effect[1]
             break
         }
