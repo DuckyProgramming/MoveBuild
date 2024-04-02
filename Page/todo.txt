@@ -11,9 +11,15 @@ demonfire but shock
 
 take an extra turn, get shocked
 
+phoenix
+
+agent *-L
 
 
+shock+claw card
 
+damage equal to 2*burn
+damage equal to 2*freeze
 
 
 
@@ -25,38 +31,13 @@ cutscene appearances
 
 
 
-
-
-see the relic or item you're getting
-
-
-
-
-
-
-4 new world 1 enemies
-
-1 world 1 elite
-2 world 2 elites
-2 world 3 elites
-
-final distro 20,12,6
-
-
-
 new tutorials
 
 
 
+new bonus mods for new enemies
 
 
-
-
-
-shock+claw card
-
-damage equal to 2*burn
-damage equal to 2*freeze
 
 
 

@@ -363,7 +363,7 @@ class item{
             this.layer.pop()
         }
     }
-    displayInfo(pos){
+    displayInfo(pos=0){
         if(this.infoFade>0){
             this.layer.fill(150,this.infoFade)
             this.layer.noStroke()

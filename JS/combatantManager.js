@@ -509,6 +509,9 @@ class combatantManager{
                     case 26:
                         this.combatants[a].pareidolia()
                     break
+                    case 27:
+                        this.combatants[a].statusEffect('Speed Up',args[0])
+                    break
                 }
             }
         }

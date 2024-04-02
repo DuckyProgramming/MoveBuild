@@ -64,6 +64,12 @@ class itemManager{
             this.items[possible[floor(random(0,possible.length))]].type=1
         }
     }
+    makeRandom(){
+        let possible=[0,0,0,1,1,2]
+        let rarity=possible[floor(random(0,possible.length))]
+        let index=floor(random(0,this.listing.item[rarity].length))
+        return this.listing.item[rarity][index]
+    }
     addSetItem(rarity,player){
         let index=floor(random(0,this.listing.item[rarity].length))
         this.addItem(this.listing.item[rarity][index],player)

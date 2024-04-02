@@ -49,7 +49,7 @@ types={
         {name:'Spike Slime',life:14,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[7]},{type:22,effect:[4,1,'Spiked']},{type:23,effect:[2]}],description:`It hurts to touch him`},
         {name:'Big Spike Slime',life:28,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:32,effect:[6,1,'Spiked']},{type:33,effect:[2]}],description:`At least he's not a slimoid`},
         {name:'Moss Creature',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:20,effect:[3]},{type:10,effect:[3]}],description:`Teamwork somehow`},
-        {name:'Goblin',life:10,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
+        {name:'Goblin',life:8,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[1]},{type:1,effect:[2]},{type:1,effect:[3]},{type:1,effect:[4]},{type:31,effect:[1]},{type:31,effect:[2]},{type:13,effect:[1,1,'Light\nBleed']}],description:`Spammed`},
         {name:'Agent Duck',life:60,behavior:0,spec:[1],move:{type:0,speed:2},attack:[{type:34,effect:[6]},{type:35,effect:[15]},{type:36,effect:[4,2,'Hurt']},{type:37,effect:[12,4]},{type:4,effect:[12]}],description:`He returns`},
         {name:'Nerfer',life:50,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:6,effect:[6]},{type:4,effect:[8]},{type:33,effect:[3]},{type:61,effect:[3]},{type:62,effect:[3]}],description:`Makes you worse`},
         {name:'Buffer',life:50,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:1,effect:[8]},{type:6,effect:[6]},{type:4,effect:[8]},{type:26,effect:[2]},{type:63,effect:[2]},{type:25,effect:[10]}],description:`Makes his guys better`},
@@ -142,6 +142,15 @@ types={
         {name:'Disorder Energy',life:165,behavior:0,spec:[],move:{type:1,speed:1},attack:[{type:268,effect:[12,1]},{type:269,effect:[20,1,1]}],description:`Coloration error moment`},
         {name:'Kugelblitz',life:97,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:262,effect:[9,1]},{type:263,effect:[9,1]},{type:264,effect:[13,1]},{type:265,effect:[13,1]}],description:`From the overseer`},
         {name:'Voidglass',life:155,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:12,effect:[21]},{type:266,effect:[14,2]},{type:267,effect:[24,2]}],description:`Can't see anything behind those shades`},
+        {name:'Intruder',life:21,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:270,effect:[7,1]},{type:271,effect:[5,1]}],description:`Didn't ask to be let in`},
+        {name:'Lead Brick',life:35,behavior:1,spec:[],move:{type:0,speed:0},attack:[{type:272,effect:[8]},{type:273,effect:[4]}],description:`Somehow floats`},
+        {name:'Regen Balloon',life:29,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:290,effect:[8,3]}],description:`Honestly I can't explain this one`},
+        {name:'Precision',life:16,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:274,effect:[5,1]},{type:38,effect:[8]}],description:`It works the first time at least`},
+        {name:'Relic',life:108,behavior:0,spec:[0,18],move:{type:0,speed:1},attack:[{type:275,effect:[18]},{type:276,effect:[16]},{type:277,effect:[20]}],description:`Why do enemies award you now?`},
+        {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:280,effect:[30,2]}],description:`Just you wait...`},
+        {name:'Anomaly',life:124,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[7,1]},{type:2,effect:[8]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
+        {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
+        {name:'Concentric',life:177,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -442,8 +451,8 @@ types={
         {name:'Spin Strike / Dissipate',class:1},
         {name:'Life Transfer',class:4},
         {name:'Spin Strike / Spawn',class:1},
-        {name:'All Diagonal Moon Beam',class:1},
-        {name:'All Direction Moon Beam',class:1},
+        {name:'All Diagonal Moonbeam',class:1},
+        {name:'All Direction Moonbeam',class:1},
         {name:'Third Damage Time',class:4},//220
         {name:'3 Tile Edged Strike',class:1},
         {name:'3 Tile Conical Blast',class:1},
@@ -476,7 +485,7 @@ types={
         {name:'Global Weaken',class:4},
         {name:'2 Tile Self-Vulnerable Strike',class:1},//250
         {name:'1v1',class:1},
-        {name:'Push Dissipate',class:1},
+        {name:'Push / Dissipate',class:1},
         {name:'2 Tile Strike / Bruise',class:1},
         {name:'Block / All Enemy Strengthen',class:2},
         {name:'Spin Strike / Weaken',class:1},
@@ -494,6 +503,27 @@ types={
         {name:'Block / Self Ichor',class:2},
         {name:'6 Tile Strike / Speed Boost',class:1},
         {name:'Block / Strengthen / Speed Boost',class:2},
+        {name:'Strike / Draw Down',class:1},//270
+        {name:'Strike / Energy Down',class:1},
+        {name:'Nonmoving 2 Tile Strike',class:1},
+        {name:'Nonmoving 2 Tile Double Strike',class:1},
+        {name:'Strike / Discard',class:1},
+        {name:'2 Tile Strike / Miracle',class:1},
+        {name:'2 Tile Strike / Smite',class:1},
+        {name:'2 Tile Strike / Safety',class:1},
+        {name:'3 Spread Strike / Decrementing Armor',class:1},
+        {name:'6 Tile Strike / Decrementing Armor',class:1},
+        {name:'Block / Deprecating Armor',class:2},//280
+        {name:'All Enemy Heal / Speed Boost',class:4},
+        {name:'Triple Strike / Heal',class:1},
+        {name:'Moonbeam',class:1},
+        {name:'Moonbeam / Random Status',class:1},
+        {name:'Moonbeam / Random Status Self',class:1},
+        {name:'4 Direction Moonbeam',class:1},
+        {name:'6 Tile Strike / Self Intangible',class:1},
+        {name:'3 Spread 2 Tile Strike / Miss',class:1},
+        {name:'Buffer',class:4},
+        {name:'6 Tile Strike / Regen',class:1}//290
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -4037,36 +4067,90 @@ Entering, you're offered a chance to glimpse your future...`,
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
-        },
-
-        /*{
-            name:'Basic 3',
+        },{
+            name:'Intrusion 5',
             map:[
-                [{type:[]},{type:[]},{type:-1}],
-                [{type:[]},{type:[]},{type:[]}],
-                [{type:-1},{type:[]},{type:[]}],
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
             ],
         },{
-            name:'Basic 5',
+            name:'Divide 4',
             map:[
-                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Regenerative 5',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Bented 5',
+            map:[
+                [{type:[]},{type:-1},{type:[]},{type:-1},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
-                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:[]},{type:-1},{type:[]},{type:-1},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
-                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:-1},{type:[]}],
             ],
         },{
-            name:'Basic 7',
+            name:'Temple 6',
             map:[
-                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Timeline 5',
+            map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
-                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Inducer 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
-                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
-                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
             ],
-        },*/
+        },{
+            name:'Cuffed 3',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:-1},{type:-1}],
+            ],
+        },{
+            name:'Radial 7',
+            map:[
+                [{type:[]},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
+            ],
+        },
     ],encounter:[
         {
             level:[],class:0,world:-1,
@@ -4075,12 +4159,96 @@ Entering, you're offered a chance to glimpse your future...`,
             enemy:[
             ],reinforce:[
             ],
-        },{
+        },
+
+        {
+            level:['Radial 7'],class:1,world:2,
+            name:'Concentric',
+            player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Concentric'},
+            ],reinforce:[
+            ],
+        },
+        
+        {
             level:['Basic 7'],class:0,world:-1,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Cuffed 3'],class:1,world:2,
+            name:'Recollection',
+            player:{position:[[{x:2,y:2}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Recollection'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Inducer 7'],class:1,world:1,
+            name:'Anomaly',
+            player:{position:[[{x:2,y:0}],[{x:2,y:1},{x:3,y:1}]]},
+            enemy:[
+                {position:{x:2,y:3},name:'Anomaly'},
+                {position:{x:5,y:3},name:'Anomaly'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Timeline 5'],class:1,world:1,
+            name:'Legacy',
+            player:{position:[[{x:5,y:2}],[{x:5,y:1},{x:5,y:3}]]},
+            enemy:[
+                {position:{x:3,y:1},name:'Legacy'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Temple 6'],class:1,world:0,
+            name:'Relic',
+            player:{position:[[{x:2,y:3}],[{x:1,y:2},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:4,y:2},name:'Relic'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Bented 5'],class:0,world:0,
+            name:'Precision',
+            player:{position:[[{x:2,y:2}],[{x:1,y:1},{x:2,y:1}]]},
+            enemy:[
+                {position:{x:0,y:1},name:'Precision'},
+                {position:{x:1,y:3},name:'Precision'},
+                {position:{x:3,y:1},name:'Precision'},
+                {position:{x:4,y:3},name:'Precision'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Regenerative 5'],class:0,world:0,
+            name:'Regen Balloon',
+            player:{position:[[{x:3,y:4}],[{x:3,y:5},{x:4,y:5}]]},
+            enemy:[
+                {position:{x:0,y:2},name:'Regen Balloon'},
+                {position:{x:4,y:2},name:'Regen Balloon'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Divide 4'],class:0,world:0,
+            name:'Lead Brick',
+            player:{position:[[{x:1,y:1}],[{x:0,y:0},{x:0,y:1}]]},
+            enemy:[
+                {position:{x:2,y:0},name:'Lead Brick'},
+                {position:{x:2,y:3},name:'Lead Brick'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Intrusion 5'],class:0,world:0,
+            name:'Intruder',
+            player:{position:[[{x:2,y:3}],[{x:1,y:2},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Intruder'},
+                {position:{x:5,y:5},name:'Intruder'},
+                {position:{x:3,y:2},name:'Intruder'},
             ],reinforce:[
             ],
         },{

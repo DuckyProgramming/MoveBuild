@@ -470,6 +470,16 @@ class battle{
             this.cardManagers[player].drop.addDrop(type,level,color)
         }
     }
+    dropHand(player,type,level,color){
+        if(player<this.cardManagers.length){
+            if(this.cardManagers[player].hand.add(type,level,color)){
+                if(this.modded(70)&&!this.cardManagers[player].hand.cards[this.cardManagers[player].hand.cards.length-1].spec.includes(5)){
+                    this.cardManagers[player].hand.cards[this.cardManagers[player].hand.cards.length-1].spec.push(5)
+                }
+            }
+            this.cardManagers[player].drop.addDrop(type,level,color)
+        }
+    }
     dropDrawShuffle(player,type,level,color){
         if(player<this.cardManagers.length){
             if(this.cardManagers[player].reserve.addShuffle(type,level,color)){

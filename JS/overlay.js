@@ -80,6 +80,11 @@ class overlay{
                 }
                 for(let a=0,la=args[1].length;a<la;a++){
                     this.rewards.push({type:args[1][a].type,value:args[1][a].value,fade:1,position:this.rewards.length*50,usable:true})
+                    if(this.rewards[this.rewards.length-1].type==2){
+                        this.rewards[this.rewards.length-1].relic=new relic(this.layer,-1,0,0,this.battle.relicManager.makeRelicSelection([[0,0,0,1,1,2][floor(random(0,6))]])[0],0.8)
+                    }else if(this.rewards[this.rewards.length-1].type==3){
+                        this.rewards[this.rewards.length-1].item=new item(this.layer,-1,0,0,0,0,this.battle.itemManager.makeRandom(),0.8)
+                    }
                 }
             break
             case 2:
@@ -296,10 +301,10 @@ class overlay{
                         this.battle.overlayManager.overlays[3][this.player].activate(args.value)
                     break
                     case 2:
-                        this.battle.relicManager.addRandomRelic(this.player)
+                        this.battle.relicManager.addRelic(args.relic.type,this.player)
                     break
                     case 3:
-                        this.battle.itemManager.addRandomItem(this.player)
+                        this.battle.itemManager.addItem(args.item.type,this.player)
                     break
                     case 4:
                         this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].heal(args.value[0])
@@ -382,14 +387,8 @@ class overlay{
                         break
                         case 2:
                             this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
-                            this.layer.fill(200,this.fade)
-                            this.layer.noStroke()
-                            this.layer.ellipse(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,30,30)
-                            this.layer.stroke(100,this.fade)
-                            this.layer.noFill()
-                            this.layer.strokeWeight(1)
-                            this.layer.ellipse(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,12,12)
-                            this.layer.ellipse(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,18,18)
+                            this.rewards[a].relic.display(0,true,{x:this.layer.width/2+225*this.posKey-40,y:this.layer.height/2-105+this.rewards[a].position},false)
+                            this.rewards[a].relic.displayInfo()
                             this.layer.fill(0,this.fade*this.rewards[a].fade)
                             this.layer.noStroke()
                             this.layer.textSize(16)
@@ -397,17 +396,10 @@ class overlay{
                         break
                         case 3:
                             this.layer.rect(this.layer.width/2+225*this.posKey,this.layer.height/2-105+this.rewards[a].position,120,40,10)
-                            this.layer.fill(200,this.fade)
-                            this.layer.noStroke()
-                            this.layer.ellipse(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,30,30)
-                            this.layer.stroke(100,this.fade)
-                            this.layer.noFill()
-                            this.layer.strokeWeight(1)
-                            this.layer.rect(this.layer.width/2+225*this.posKey-45,this.layer.height/2-110+this.rewards[a].position,8,8)
-                            this.layer.rect(this.layer.width/2+225*this.posKey-35,this.layer.height/2-110+this.rewards[a].position,8,8)
-                            this.layer.rect(this.layer.width/2+225*this.posKey-45,this.layer.height/2-100+this.rewards[a].position,8,8)
-                            this.layer.rect(this.layer.width/2+225*this.posKey-35,this.layer.height/2-100+this.rewards[a].position,8,8)
-                            this.layer.rect(this.layer.width/2+225*this.posKey-40,this.layer.height/2-105+this.rewards[a].position,22,22)
+                            this.rewards[a].item.display(false)
+                            this.rewards[a].item.position.x=this.layer.width/2+225*this.posKey-40
+                            this.rewards[a].item.position.y=this.layer.height/2-105+this.rewards[a].position
+                            this.rewards[a].item.displayInfo()
                             this.layer.fill(0,this.fade*this.rewards[a].fade)
                             this.layer.noStroke()
                             this.layer.textSize(16)
@@ -876,8 +868,15 @@ class overlay{
                                 a--
                                 la--
                             }
-                        }else if(this.rewards[a].position>a*50){
-                            this.rewards[a].position-=10
+                        }else{
+                            if(this.rewards[a].position>a*50){
+                                this.rewards[a].position-=10
+                            }
+                            if(this.rewards[a].type==2){
+                                this.rewards[a].relic.update(this.rewards[a].usable,0,inputs,{x:this.layer.width/2+225*this.posKey-40,y:this.layer.height/2-105+this.rewards[a].position})
+                            }else if(this.rewards[a].type==3){
+                                this.rewards[a].item.update(this.rewards[a].usable,0,inputs,false)
+                            }
                         }
                     }
                     if(this.rewards.length<=0&&!this.battle.overlayManager.overlays[3].active&&this.active){
