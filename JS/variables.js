@@ -152,6 +152,9 @@ types={
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
 
+        {name:'Embodimental',life:101,behavior:1,spec:[0],move:{type:0,speed:1},attack:[],description:`This is getting out of hand!`},
+        {name:'Astroeaus',life:333,behavior:0,spec:[0],move:{type:0,speed:2},attack:[],description:`Borealis`},
+
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
         {name:'Flame',life:5,behavior:5,spec:[],move:{type:0,speed:2},attack:[{type:22,effect:[2,1,'Burn']},{type:6,effect:[4]}],description:`Very annoying`},
@@ -4159,24 +4162,20 @@ Entering, you're offered a chance to glimpse your future...`,
             enemy:[
             ],reinforce:[
             ],
-        },
-
-        {
-            level:['Radial 7'],class:1,world:2,
-            name:'Concentric',
-            player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
-            enemy:[
-                {position:{x:1,y:1},name:'Concentric'},
-            ],reinforce:[
-            ],
-        },
-        
-        {
+        }, {
             level:['Basic 7'],class:0,world:-1,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Radial 7'],class:1,world:2,
+            name:'Concentric',
+            player:{position:[[{x:4,y:4}],[{x:4,y:3},{x:3,y:4}]]},
+            enemy:[
+                {position:{x:1,y:1},name:'Concentric'},
             ],reinforce:[
             ],
         },{
@@ -4242,12 +4241,14 @@ Entering, you're offered a chance to glimpse your future...`,
             ],reinforce:[
             ],
         },{
-            level:['Intrusion 5'],class:0,world:0,
+            level:['Intrusion 5'],class:0,world:1,
             name:'Intruder',
             player:{position:[[{x:2,y:3}],[{x:1,y:2},{x:3,y:4}]]},
             enemy:[
-                {position:{x:0,y:0},name:'Intruder'},
-                {position:{x:5,y:5},name:'Intruder'},
+                {position:{x:1,y:0},name:'Intruder'},
+                {position:{x:0,y:1},name:'Intruder'},
+                {position:{x:5,y:4},name:'Intruder'},
+                {position:{x:4,y:5},name:'Intruder'},
                 {position:{x:3,y:2},name:'Intruder'},
             ],reinforce:[
             ],
@@ -4544,7 +4545,7 @@ Entering, you're offered a chance to glimpse your future...`,
             ],reinforce:[
             ],
         },{
-            level:['Expanse 7'],class:0,world:0,
+            level:['Expanse 7'],class:3,world:0,
             name:'Pixie',
             player:{position:[[{x:5,y:5}],[{x:4,y:5},{x:6,y:5}]]},
             enemy:[
@@ -4604,7 +4605,7 @@ Entering, you're offered a chance to glimpse your future...`,
             ],reinforce:[
             ],
         },{
-            level:['Star2 7'],class:1,world:0,
+            level:['Star2 7'],class:0,world:0,
             name:'Elf Archer',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[

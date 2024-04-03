@@ -1132,39 +1132,39 @@ function status(name){
 }
 function outEncounter(){
 	print(`
-Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length+current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/110
+Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length+current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/130
 \nWorld 1:
-Easies:${current.nodeManager.listing.encounter[0][3].length}/8
+Easies:${current.nodeManager.listing.encounter[0][3].length}/9
 (${current.nodeManager.listing.name[0][3].join(',')})
-Enemies:${current.nodeManager.listing.encounter[0][0].length}/18
+Enemies:${current.nodeManager.listing.encounter[0][0].length}/21
 (${current.nodeManager.listing.name[0][0].join(',')})
-Elites:${current.nodeManager.listing.encounter[0][1].length}/9
+Elites:${current.nodeManager.listing.encounter[0][1].length}/12
 (${current.nodeManager.listing.name[0][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[0][2].length}/6
 (${current.nodeManager.listing.name[0][2].join(',')})
-Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length}/39
+Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length}/48
 \nWorld 2:
-Enemies:${current.nodeManager.listing.encounter[1][0].length}/18
+Enemies:${current.nodeManager.listing.encounter[1][0].length}/21
 (${current.nodeManager.listing.name[1][0].join(',')})
-Elites:${current.nodeManager.listing.encounter[1][1].length}/9
+Elites:${current.nodeManager.listing.encounter[1][1].length}/12
 (${current.nodeManager.listing.name[1][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[1][2].length}/6
 (${current.nodeManager.listing.name[1][2].join(',')})
-Total:${current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length}/33
+Total:${current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length}/39
 \nWorld 3:
-Enemies:${current.nodeManager.listing.encounter[2][0].length}/18
+Enemies:${current.nodeManager.listing.encounter[2][0].length}/21
 (${current.nodeManager.listing.name[2][0].join(',')})
-Elites:${current.nodeManager.listing.encounter[2][1].length}/9
+Elites:${current.nodeManager.listing.encounter[2][1].length}/12
 (${current.nodeManager.listing.name[2][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[2][2].length}/6
 (${current.nodeManager.listing.name[2][2].join(',')})
-Total:${current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length}/33
+Total:${current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length}/39
 \nWorld 4:
-Elites:${current.nodeManager.listing.encounter[3][1].length}/2
+Elites:${current.nodeManager.listing.encounter[3][1].length}/3
 (${current.nodeManager.listing.name[3][1].join(',')})
 Bosses:${current.nodeManager.listing.encounter[3][2].length}/1
 (${current.nodeManager.listing.name[3][2].join(',')})
-Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/3
+Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/4
 	`)
 }
 function outListing(){

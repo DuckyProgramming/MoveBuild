@@ -1,27 +1,23 @@
 cards:
-prehextorica innates
 
-costs 1 less when turn changes
-analogues to starfall
+operation x and +
+innate gimmicks
+director's cut - choose the boss for this level (vanishing colorless)
+maybe another voucher?
+card can be discarded 3 times but is ethereal
+more jinx randoms
+tempest+1 fail
+deal damage, conditionally discard a card
+another form of demonfire
+apply shock if target has no shock yet
+basic card makes a copy of itself
+amber
+deal damage and get miss
 
-analogue to entertainer
+blank relic - antimatter
 
-and a number of new shock cards (often analogues)
-demonfire but shock
-
-take an extra turn, get shocked
-
-phoenix
-
-agent *-L
-
-
-shock+claw card
-
-damage equal to 2*burn
-damage equal to 2*freeze
-
-
+1 world 3 enemy - embodimental destabilization
+1 world 4 elite - astroeaus
 
 
 
@@ -31,14 +27,11 @@ cutscene appearances
 
 
 
+
+
 new tutorials
 
-
-
 new bonus mods for new enemies
-
-
-
 
 
 
