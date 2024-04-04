@@ -512,6 +512,11 @@ class combatantManager{
                     case 27:
                         this.combatants[a].statusEffect('Speed Up',args[0])
                     break
+                    case 28:
+                        if(this.combatants[a].life<this.combatants[a].base.life){
+                            this.combatants[a].statusEffect('Jinx',args[0])
+                        }
+                    break
                 }
             }
         }

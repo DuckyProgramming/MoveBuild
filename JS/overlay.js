@@ -66,6 +66,9 @@ class overlay{
             case 11:
                 this.choices=[]
             break
+            case 12:
+                this.world=0
+            break
         }
     }
     getPosKey(){
@@ -227,6 +230,9 @@ class overlay{
                             this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName(['Mixture A','Mixture B','Mixture C'][a%3],types.card),0,0,-1))
                             this.cards[a].upSize=true
                         }
+                    break
+                    case 12:
+                        this.world=[args[0]]
                     break
                 }
                 this.setupArgs=args
@@ -851,6 +857,25 @@ class overlay{
                     this.layer.text(types.mod[this.choices[a]].desc,this.layer.width/2,this.layer.height/2-95+a*50)
                 }
             break
+            case 12:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+100,360,560,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-205,120,40,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text('Select Boss',this.layer.width/2,this.layer.height/2-150)
+                this.layer.textSize(20)
+                this.layer.text('Close',this.layer.width/2,this.layer.height/2-205)
+                for(let a=0,la=this.battle.nodeManager.listing.encounter[this.world][2].length;a<la;a++){
+                    this.layer.noStroke()
+                    this.layer.fill(120,this.fade)
+                    this.layer.rect(this.layer.width/2,this.layer.height/2-105+a*50,340,40,10)
+                    this.layer.fill(0,this.fade)
+                    this.layer.noStroke()
+                    this.layer.textSize(18)
+                    this.layer.text(types.encounter[this.battle.nodeManager.listing.encounter[this.world][2][a]].name,this.layer.width/2,this.layer.height/2-105+a*50)
+                }
+            break
             
         }
     }
@@ -1426,6 +1451,14 @@ class overlay{
                         }
                     }
                 break
+                case 12:
+                    for(let a=0,la=this.battle.nodeManager.listing.encounter[this.world][2].length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-105+a*50},width:340,height:40})){
+                            this.active=false
+                            this.battle.nodeManager.saveBoss=a
+                        }
+                    }
+                break
             
             }
         }
@@ -1895,6 +1928,14 @@ class overlay{
                         if(int(key)==a+1){
                             this.active=false
                             this.battle.modManager.addMod(this.choices[a])
+                        }
+                    }
+                break
+                case 12:
+                    for(let a=0,la=this.battle.nodeManager.listing.encounter[this.world][2].length;a<la;a++){
+                        if(int(key)==a+1){
+                            this.active=false
+                            this.battle.nodeManager.saveBoss=a
                         }
                     }
                 break

@@ -125,7 +125,7 @@ types={
         {name:'Prestige',life:131,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:168,effect:[2]}],description:`Back for more?`},
         {name:'Darkblot',life:51,behavior:13,spec:[],move:{type:0,speed:1},attack:[{type:6,effect:[11]},{type:31,effect:[8]},{type:29,effect:[12]},{type:186,effect:[]}],description:`Blame the Lobster`},
         {name:'Divine Guard',life:375,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:221,effect:[12]},{type:222,effect:[10]},{type:72,effect:[15,1]}],description:`You shall not pass`},
-        {name:'Avant Guard',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:223,effect:[16]},{type:224,effect:[16]},{type:72,effect:[8,2]}],description:`Behind you!`},
+        {name:'Avant Guard',life:390,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:223,effect:[16]},{type:224,effect:[16]},{type:72,effect:[8,2]}],description:`Behind you!`},
         {name:'Rusty',life:23,behavior:11,spec:[0],move:{type:0,speed:1},attack:[{type:203,effect:[5]},{type:204,effect:[4]},{type:21,effect:[]}],description:`Pretty bad`},
         {name:'Thornvine',life:18,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]},{type:228,effect:[2]},{type:229,effect:[2]}],description:`Back and worse`},
         {name:'Vengeful',life:70,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:211,effect:[8]},{type:212,effect:[7]},{type:213,effect:[6]},{type:214,effect:[3]},{type:210,effect:[1]}],description:`Remember last time?`},
@@ -152,8 +152,8 @@ types={
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
 
-        {name:'Embodimental',life:101,behavior:1,spec:[0],move:{type:0,speed:1},attack:[],description:`This is getting out of hand!`},
-        {name:'Astroeaus',life:333,behavior:0,spec:[0],move:{type:0,speed:2},attack:[],description:`Borealis`},
+        {name:'Embodimental Destabilization',life:202,behavior:1,spec:[0],move:{type:0,speed:1},attack:[],description:`This is getting out of hand!`},
+        {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:`Literally a copypaste of Chronos`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},

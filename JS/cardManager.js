@@ -25,6 +25,7 @@ class cardManager{
         this.baseDrops=variants.altDraw?3:0
         this.drops=0
         this.interval=0
+        this.greenDiff=0
         this.switch={miracle:false,teleport:false,redraw:false,smite:false}
         this.pack=[]
 
@@ -905,6 +906,7 @@ class cardManager{
         this.discard.cards=[]
         this.drop.cards=[]
         this.exhaust.cards=[]
+        this.greenDiff=0
     }
     reset(){
         this.hand.reset()

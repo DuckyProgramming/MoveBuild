@@ -9,8 +9,10 @@ class nodeManager{
         this.tilePosition={x:0,y:-1}
         this.scroll=this.layer.height-150
         this.world=0
-        this.freeMove=0
         this.total=0
+
+        this.freeMove=0
+        this.saveBoss=-1
 
         this.initialListing()
     }
@@ -138,7 +140,8 @@ class nodeManager{
             break
             case 2:
                 transition.scene='battle'
-                this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][2][floor(random(0,this.listing.encounter[this.world][2].length))]])
+                this.battle.setupBattle(types.encounter[this.listing.encounter[this.world][2][this.saveBoss>=0?this.saveBoss:floor(random(0,this.listing.encounter[this.world][2].length))]])
+                this.saveBoss=-1
             break
             case 3:
                 transition.scene='rest'
