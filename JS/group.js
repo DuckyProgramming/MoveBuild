@@ -669,6 +669,15 @@ class group{
         }
         return total
     }
+    costNumber(cost){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].cost==cost){
+                total++
+            }
+        }
+        return total
+    }
     specNumber(spec){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){

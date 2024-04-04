@@ -131,7 +131,8 @@ class combatant{
             'Hook','Temporary Single Damage','Peak Next Turn','Double Countdowns','Fade','Miracle Next Turn','10 or Less Damage Up','Hyperquill Next Turn','Odd Double Damage','10 or Less Double Damage',
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
-            '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
+            '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
+            'Temporary Damage Up Next Turn','Single Weak',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -161,6 +162,7 @@ class combatant{
                 1,0,1,1,2,2,2,0,2,0,//25
                 0,0,0,0,0,0,0,0,0,2,//26
                 1,1,2,1,0,2,0,0,2,2,//27
+                2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -190,6 +192,7 @@ class combatant{
                 1,0,0,0,3,3,3,3,1,2,//25
                 1,2,2,2,2,2,2,2,2,1,//26
                 2,2,2,2,1,1,2,0,0,0,//27
+                1,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4421,9 +4424,6 @@ class combatant{
                 if(userCombatant.status.main[264]>0){
                     damage-=userCombatant.status.main[264]
                 }
-                if(userCombatant.status.main[265]>0){
-                    damage-=userCombatant.status.main[265]
-                }
                 if(userCombatant.status.main[6]!=0){
                     totalStr+=userCombatant.status.main[6]
                 }
@@ -4446,9 +4446,6 @@ class combatant{
                     damage*=1+totalStr*0.1
                 }else if(totalStr<0){
                     damage*=max(0.2,1+totalStr*0.1)
-                }
-                if(userCombatant.status.main[8]>0){
-                    damage*=0.75
                 }
                 if(this.block>0&&this.battle.relicManager.hasRelic(69,userCombatant.id)){
                     damage+=4
@@ -4481,6 +4478,9 @@ class combatant{
                     if(userCombatant.status.main[0]>0){
                         damage*=2
                     }
+                    if(userCombatant.status.main[8]>0){
+                        damage*=0.75
+                    }
                     if(userCombatant.status.main[82]>0){
                         damage*=2
                     }
@@ -4493,6 +4493,15 @@ class combatant{
                     if(userCombatant.status.main[198]>0){
                         damage/=2
                     }
+                    if(userCombatant.doubling){
+                        damage*=2
+                    }
+                    if(userCombatant.status.main[201]>0){
+                        damage=damage*2-1
+                    }
+                    if(userCombatant.status.main[216]>0){
+                        damage=damage*1.5+1
+                    }
                     if(userCombatant.status.main[238]>0&&value%2==1){
                         damage*=2
                         userCombatant.status.main[238]=0
@@ -4504,14 +4513,9 @@ class combatant{
                     if(userCombatant.status.main[242]>0&&value>=20){
                         damage*=2
                     }
-                    if(userCombatant.doubling){
-                        damage*=2
-                    }
-                    if(userCombatant.status.main[201]>0){
-                        damage=damage*2-1
-                    }
-                    if(userCombatant.status.main[216]>0){
-                        damage=damage*1.5+1
+                    if(userCombatant.status.main[271]>0){
+                        damage*=0.75
+                        userCombatant.status.main[271]--
                     }
                     if(userCombatant.status.main[215]>0){
                         damage=0
@@ -5706,8 +5710,10 @@ class combatant{
                     case 249: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDrawFreeze+=this.status.main[a]}; break
                     case 259: this.status.main[findList('Vulnerable',this.status.name)]+=this.status.main[a]; break
                     case 262: this.status.main[findList('Luck Guarantee',this.status.name)]+=this.status.main[a]; break
+                    case 265: this.status.main[findList('Temporary Damage Down',this.status.name)]+=this.status.main[a]; break
                     case 268: this.addBlock(this.status.main[a]);this.status.next[findList('Block Cycle 2 2',this.status.name)]+=this.status.main[a]; break
                     case 269: this.status.main[findList('Block Cycle 2 1',this.status.name)]+=this.status.main[a]; break
+                    case 270: this.status.main[findList('Temporary Damage Up',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0){

@@ -74,7 +74,7 @@ attack.prototype.update=function(){
         case 2027: case 2032: case 2034: case 2041: case 2046: case 2049: case 2051: case 2053: case 2054: case 2062:
         case 2063: case 2065: case 2066: case 2089: case 2093: case 2101: case 2104: case 2106: case 2110: case 2112:
         case 2114: case 2123: case 2128: case 2134: case 2135: case 2137: case 2144: case 2149: case 2150: case 2155:
-        case 2156: case 2161:
+        case 2156: case 2161: case 2170: case 2172: case 2181: case 2184:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -177,7 +177,7 @@ attack.prototype.update=function(){
         case 1713: case 1728: case 1738: case 1742: case 1804: case 1814: case 1826: case 1861: case 1876: case 1877:
         case 1929: case 1963: case 1966: case 1983: case 1985: case 2003: case 2005: case 2035: case 2042: case 2052:
         case 2055: case 2067: case 2068: case 2069: case 2082: case 2092: case 2102: case 2111: case 2131: case 2133:
-        case 2145: case 2152: case 2157:
+        case 2145: case 2152: case 2157: case 2162: case 2182:
             if(
                 this.type==809&&this.userCombatant.stance!=4||
                 this.type==1713&&this.battle.turn.total%2==0||
@@ -215,7 +215,8 @@ attack.prototype.update=function(){
         case 1587: case 1588: case 1589: case 1590: case 1643: case 1644: case 1647: case 1648: case 1671: case 1672:
         case 1673: case 1677: case 1680: case 1681: case 1759: case 1760: case 1761: case 1784: case 1785: case 1949:
         case 1978: case 1992: case 2008: case 2009: case 2033: case 2036: case 2037: case 2040: case 2047: case 2075:
-        case 2103: case 2113: case 2140: case 2141: case 2159: case 2160:
+        case 2103: case 2113: case 2140: case 2141: case 2159: case 2160: case 2166: case 2167: case 2173: case 2174:
+        case 2175: case 2176: case 2177: case 2178: case 2179: case 2180:
             if(this.type==808&&this.userCombatant.stance!=3||this.type==1515&&floor(random(0,10))==0&&this.timer==1&&!this.userCombatant.luckCheck()){
                 this.remove=true
                 if(this.type==1515){
@@ -281,6 +282,7 @@ attack.prototype.update=function(){
             }
         break
         case 5: case 121: case 764: case 987: case 1257: case 1445: case 1446: case 1796: case 1805: case 2136:
+        case 2163:
             if(this.type==121&&this.userCombatant.armed){
                 this.remove=true
             }else if(this.targetDistance==1){
@@ -318,6 +320,9 @@ attack.prototype.update=function(){
                                 break
                                 case 1805:
                                     this.targetCombatant.statusEffect('Shock',this.effect[1])
+                                break
+                                case 2163:
+                                    this.userCombatant.statusEffect('Cannot Be Pushed',1)
                                 break
                             }
                         break
@@ -521,7 +526,7 @@ attack.prototype.update=function(){
         case 1664: case 1675: case 1676: case 1685: case 1694: case 1695: case 1716: case 1718: case 1743: case 1747:
         case 1783: case 1806: case 1808: case 1813: case 1849: case 1853: case 1856: case 1857: case 1871: case 1872:
         case 1885: case 1886: case 1930: case 1936: case 1938: case 1939: case 1946: case 1952: case 1953: case 1956:
-        case 1957: case 1987: case 2000: case 2039: case 2060: case 2061: case 2120: case 2153:
+        case 1957: case 1987: case 2000: case 2039: case 2060: case 2061: case 2120: case 2153: case 2171:
             if(
                 (this.type==818||this.type==819)&&this.userCombatant.stance!=2||
                 this.type==1459&&this.relPos[0]!=1
@@ -543,10 +548,10 @@ attack.prototype.update=function(){
             }
         break
         case 9: case 333: case 569: case 650: case 1591: case 1592: case 1593: case 1594: case 1645: case 1646:
-        case 2095:
+        case 2095: case 2164: case 2165:
             if(this.timer==1){
                 this.userCombatant.startAnimation(0)
-                if(this.targetClass==2&&this.type!=650&&this.type!=1646){
+                if(this.targetClass==2&&this.type!=650&&this.type!=1646&&this.type!=2165){
                     this.targetCombatant.goal.anim.direction=this.relativeDirection
                 }
                 if(this.type==1645||this.type==1646){
@@ -591,6 +596,9 @@ attack.prototype.update=function(){
                         break
                         case 2095:
                             this.targetCombatant.statusEffect('Shock',this.effect[0])
+                        break
+                        case 2164: case 2165:
+                            this.userCombatant.statusEffect('Take 3/4 Damage',1)
                         break
                     }
                 }else{
@@ -1137,7 +1145,7 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 31: case 576: case 652:
+        case 31: case 576: case 652: case 2183:
             if(this.timer==1){
                 for(let a=0,la=this.targetCombatant.length;a<la;a++){
                     let index=this.battle.tileManager.getTileIndex(this.targetCombatant[a].tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant[a].tilePosition.y*2-this.userCombatant.tilePosition.y)
@@ -1149,8 +1157,15 @@ attack.prototype.update=function(){
                 this.userCombatant.runAnimation(1/15,14)
             }
             for(let a=0,la=this.targetCombatant.length;a<la;a++){
-                if(this.type==652&&this.time==10){
-                    this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                if(this.timer==10){
+                    switch(this.type){
+                        case 652:
+                            this.targetCombatant[a].takeDamage(this.effect[0],this.user)
+                        break
+                        case 2183:
+                            this.targetCombatant[a].statusEffect('Weak',this.effect[0])
+                        break
+                    }
                 }
                 if(this.procedure[a]==2){
                     if(this.timer>10&&this.timer<=18){
@@ -2360,13 +2375,16 @@ attack.prototype.update=function(){
                 this.remove=true
             }
         break
-        case 153: case 1786:
+        case 153: case 1786: case 2168:
             if(this.timer==1){
                 this.userCombatant.startAnimation(0)
             }
             this.userCombatant.moveTile(this.direction,this.distance/(24*this.targetDistance))
             this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(24*this.targetDistance))
             this.userCombatant.runAnimation(1/12,0)
+            if(this.timer==16*this.targetDistance&&this.type==2168){
+                this.userCombatant.statusEffect('Step Next Turn',1)
+            }
             if(this.timer>=24*this.targetDistance){
                 this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
                 this.battle.activate(1,this.userCombatant.id)
@@ -5650,6 +5668,232 @@ attack.prototype.update=function(){
                 this.userManager.draw(this.effect[1])
                 this.userManager.hand.discard(this.effect[2])
             }else if(this.timer>=10*this.targetDistance+25){
+                this.remove=true
+            }
+        break
+        case 2169:
+            if(this.timer==1){
+                this.userCombatant.startAnimation(0)
+                let index=this.battle.combatantManager.getCombatantIndex(this.userCombatant.tilePosition.x*2-this.targetTile.tilePosition.x,this.userCombatant.tilePosition.y*2-this.targetTile.tilePosition.y)
+                if(index>=0){
+                    this.targetCombatant=this.battle.combatantManager.combatants[index]
+                    index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
+                    this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                }else{
+                    this.targetCombatant=-1
+                    this.procedure[0]=-1
+                }
+            }
+            if(this.timer<=15*this.targetDistance){
+                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                this.userCombatant.runAnimation(1/15,0)
+            }
+            if(this.timer==10*this.targetDistance){
+                this.selfCall(2)
+            }
+            if(this.timer==15*this.targetDistance){
+                this.userCombatant.moveTilePosition(this.targetTile.tilePosition.x,this.targetTile.tilePosition.y)
+                this.battle.activate(1,this.userCombatant.id)
+            }
+            if(this.procedure[0]==2){
+                if(this.timer>10&&this.timer<=18){
+                    this.targetCombatant.moveTile(this.direction,-this.distance/40)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/40)
+                }else if(this.timer>18&&this.timer<=26){
+                    this.targetCombatant.moveTile(this.direction,this.distance/40)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/40)
+                }
+                if(this.timer>=26){
+                    this.procedure[0]=-1
+                }
+            }else if(this.procedure[0]==1){
+                if(this.timer>10&&this.timer<=18){
+                    this.targetCombatant.moveTile(this.direction,-this.distance/10)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
+                }else if(this.timer>18&&this.timer<=26){
+                    this.targetCombatant.moveTile(this.direction,this.distance/10)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/10)
+                }
+                if(this.timer==18){
+                    this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                    let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
+                    if(index>=0){
+                        this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                    }
+                }else if(this.timer>=26){
+                    this.procedure[0]=-1
+                }
+            }else if(this.procedure[0]==0){
+                if(this.timer>10){
+                    this.targetCombatant.moveTile(this.direction,-this.distance/10)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
+                }
+                if(this.timer>=20){
+                    this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*3/2-this.userCombatant.tilePosition.x/2,this.targetCombatant.tilePosition.y*3/2-this.userCombatant.tilePosition.y/2)
+                    this.battle.activate(1,this.targetCombatant.id)
+                    this.procedure[0]=-1
+                }
+            }else if(this.timer>=15*this.targetDistance){
+                this.remove=true
+            }
+        break
+        case 2185:
+            if(this.timer<=15*this.targetDistance-30){
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(0)
+                }
+                this.userCombatant.moveTile(this.direction,this.distance/(15*this.targetDistance))
+                this.userCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/(15*this.targetDistance))
+                this.userCombatant.runAnimation(1/15,0)
+                if(this.timer==15*this.targetDistance-30){
+                    let offset=transformDirection(0,this.userCombatant.goal.anim.direction)
+                    this.userCombatant.moveTilePosition(this.targetCombatant.tilePosition.x-offset[0]*2,this.targetCombatant.tilePosition.y-offset[1]*2)
+                    this.battle.activate(1,this.userCombatant.id)
+                }
+            }else{
+                if(this.timer==15*this.targetDistance-29){
+                    this.userCombatant.startAnimation(17)
+                }
+                if(this.timer<=15*this.targetDistance-20||this.timer>15*this.targetDistance-10&&this.timer<=15*this.targetDistance){
+                    this.userCombatant.runAnimation(1/20,17)
+                }
+                if(this.timer==15*this.targetDistance-15){
+                    this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                        this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                        this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                    49,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+15),9]))
+                }else if(this.timer==15*this.targetDistance+5){
+                    this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                    this.userManager.hand.discard(this.effect[1])
+                }else if(this.timer>=15*this.targetDistance+15){
+                    this.remove=true
+                }
+            }
+        break
+        case 2186:
+            if(this.timer==1){
+                let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*(this.targetDistance+1)/this.targetDistance-this.userCombatant.tilePosition.x/this.targetDistance,this.targetCombatant.tilePosition.y*(this.targetDistance+1)/this.targetDistance-this.userCombatant.tilePosition.y/this.targetDistance)
+                this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                this.userCombatant.startAnimation(17)
+            }
+            if(this.timer<=10||this.timer>20&&this.timer<=30){
+                this.userCombatant.runAnimation(1/20,17)
+            }
+            if(this.timer==15){
+                this.battle.particleManager.particles.push(new particle(this.battle.layer,
+                    this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x/2+this.userCombatant.graphics.arms[1].bottom.x/2,
+                    this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y/2+this.userCombatant.graphics.arms[1].bottom.y/2,
+                49,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y+15),5*this.targetDistance-1]))
+            }else if(this.timer==10*this.targetDistance+15){
+                this.targetCombatant.takeDamage(this.effect[0],this.user,1)
+                this.userManager.hand.discard(this.effect[1])
+            }
+            if(this.procedure[0]==2){
+                if(this.timer>10*this.targetDistance+25&&this.timer<=10*this.targetDistance+33){
+                    this.targetCombatant.moveTile(this.direction,this.distance/40/this.targetDistance)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/40/this.targetDistance)
+                }else if(this.timer>10*this.targetDistance+33&&this.timer<=10*this.targetDistance+41){
+                    this.targetCombatant.moveTile(this.direction,-this.distance/40/this.targetDistance)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/40/this.targetDistance)
+                }
+                if(this.timer>=10*this.targetDistance+41){
+                    this.remove=true
+                }
+            }else if(this.procedure[0]==1){
+                if(this.timer>10*this.targetDistance+25&&this.timer<=10*this.targetDistance+33){
+                    this.targetCombatant.moveTile(this.direction,this.distance/10/this.targetDistance)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/10/this.targetDistance)
+                }else if(this.timer>10*this.targetDistance+33&&this.timer<=10*this.targetDistance+41){
+                    this.targetCombatant.moveTile(this.direction,-this.distance/10/this.targetDistance)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,-this.relativeDistance/10/this.targetDistance)
+                }
+                if(this.timer==10*this.targetDistance+33){
+                    this.targetCombatant.takeDamage(game.collisionDamage,-1)
+                    let index=this.battle.combatantManager.getCombatantIndex(this.targetCombatant.tilePosition.x*(this.targetDistance+1)/this.targetDistance-this.userCombatant.tilePosition.x/this.targetDistance,this.targetCombatant.tilePosition.y*(this.targetDistance+1)/this.targetDistance-this.userCombatant.tilePosition.y/this.targetDistance)
+                    if(index>=0){
+                        this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                    }
+                }else if(this.timer>=10*this.targetDistance+41){
+                    this.remove=true
+                }
+            }else{
+                if(this.timer>10*this.targetDistance+25){
+                    this.targetCombatant.moveTile(this.direction,this.distance/10/this.targetDistance)
+                    this.targetCombatant.moveRelativeTile(this.relativeDirection,this.relativeDistance/10/this.targetDistance)
+                }
+                if(this.timer>=10*this.targetDistance+35){
+                    this.targetCombatant.moveTilePosition(this.targetCombatant.tilePosition.x*(this.targetDistance+1)/this.targetDistance-this.userCombatant.tilePosition.x/this.targetDistance,this.targetCombatant.tilePosition.y*(this.targetDistance+1)/this.targetDistance-this.userCombatant.tilePosition.y/this.targetDistance)
+                    this.battle.activate(1,this.targetCombatant.id)
+                    this.remove=true
+                }
+            }
+        break
+        case 2187:
+            if(this.timer==1){
+                this.procedure=[[],[]]
+                this.offset=[this.targetCombatant.tilePosition.x-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y-this.userCombatant.tilePosition.y]
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    let index=this.battle.tileManager.getTileIndex(this.battle.combatantManager.combatants[a].tilePosition.x+this.offset[0],this.battle.combatantManager.combatants[a].tilePosition.y+this.offset[1])
+                    this.procedure[0][a]=this.battle.combatantManager.combatants[a].team==this.userCombatant.team?3:this.battle.combatantManager.combatants[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                    this.procedure[1][a]=0
+                }
+                this.userCombatant.startAnimation(3)
+            }else if(this.timer==10){
+                this.targetCombatant.takeDamage(this.effect[0],this.user)
+            }
+            if(this.timer<=20){
+                this.userCombatant.runAnimation(1/10,3)
+            }
+            let allDone2=true
+            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                this.procedure[1][a]++
+                if(this.procedure[0][a]==2){
+                    allDone2=false
+                    if(this.procedure[1][a]>10&&this.procedure[1][a]<=18){
+                        this.battle.combatantManager.combatants[a].moveTile(this.direction,this.distance/40)
+                        this.battle.combatantManager.combatants[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/40)
+                    }else if(this.procedure[1][a]>18&&this.procedure[1][a]<=26){
+                        this.battle.combatantManager.combatants[a].moveTile(this.direction,-this.distance/40)
+                        this.battle.combatantManager.combatants[a].moveRelativeTile(this.relativeDirection,-this.relativeDistance/40)
+                    }
+                    if(this.procedure[1][a]>=26){
+                        this.procedure[0][a]=3
+                    }
+                }else if(this.procedure[0][a]==1){
+                    allDone2=false
+                    if(this.procedure[1][a]>10&&this.procedure[1][a]<=18){
+                        this.battle.combatantManager.combatants[a].moveTile(this.direction,this.distance/10)
+                        this.battle.combatantManager.combatants[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/10)
+                    }else if(this.procedure[1][a]>18&&this.procedure[1][a]<=26){
+                        this.battle.combatantManager.combatants[a].moveTile(this.direction,-this.distance/10)
+                        this.battle.combatantManager.combatants[a].moveRelativeTile(this.relativeDirection,-this.relativeDistance/10)
+                    }
+                    if(this.procedure[1][a]==18){
+                        this.battle.combatantManager.combatants[a].takeDamage(game.collisionDamage,-1)
+                        let index=this.battle.combatantManager.getCombatantIndex(this.battle.combatantManager.combatants[a].tilePosition.x+this.offset[0],this.battle.combatantManager.combatants[a].tilePosition.y+this.offset[1])
+                        if(index>=0){
+                            this.battle.combatantManager.combatants[index].takeDamage(game.collisionDamage,-1)
+                        }
+                    }else if(this.procedure[1][a]>=26){
+                        this.procedure[0][a]=3
+                    }
+                }else if(this.procedure[0][a]==0){
+                    allDone2=false
+                    if(this.procedure[1][a]>10){
+                        this.battle.combatantManager.combatants[a].moveTile(this.direction,this.distance/10)
+                        this.battle.combatantManager.combatants[a].moveRelativeTile(this.relativeDirection,this.relativeDistance/10)
+                    }
+                    if(this.procedure[1][a]>=20){
+                        this.battle.combatantManager.combatants[a].moveTilePosition(this.battle.combatantManager.combatants[a].tilePosition.x+this.offset[0],this.battle.combatantManager.combatants[a].tilePosition.y+this.offset[1])
+                        this.battle.activate(1,this.battle.combatantManager.combatants[a].id)
+                        let index=this.battle.tileManager.getTileIndex(this.battle.combatantManager.combatants[a].tilePosition.x+this.offset[0],this.battle.combatantManager.combatants[a].tilePosition.y+this.offset[1])
+                        this.procedure[0][a]=this.battle.combatantManager.combatants[a].team==this.userCombatant.team?3:this.battle.combatantManager.combatants[a].getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
+                        this.procedure[1][a]=0
+                    }
+                }
+            }
+            if(allDone2){
                 this.remove=true
             }
         break
