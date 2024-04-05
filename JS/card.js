@@ -2607,6 +2607,9 @@ class card{
     }
     callExhaustEffect(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(this.battle.modded(159)){
+            userCombatant.life-=2
+        }
         switch(this.attack){
             case 202: case 1710:
                 userCombatant.combo+=this.effect[1]
@@ -3500,7 +3503,7 @@ class card{
             if(spec.includes(12)){
                 this.layer.line(-this.width/2,10,this.width/2,10)
             }
-            if(this.edition>=1&&this.edition<=6){
+            if(this.edition>=1&&this.edition<=7){
                 if(this.width==90){
                     this.layer.image(graphics.edition[this.edition-1][1],-this.width/2-2.5,-this.height/2-2.5,this.width+5,this.height+5,100-this.width/2-2.5,75-this.height/2-2.5,this.width+5,this.height+5)
                 }else{
@@ -3761,25 +3764,54 @@ class card{
                                 }
                             }
                             this.layer.textSize(5)
-                            switch(this.edition){
-                                case 1:
-                                    this.layer.text(`Silver: 2 Health`,0,this.height/2)
-                                break
-                                case 2:
-                                    this.layer.text(`Foil: 5 Block`,0,this.height/2)
-                                break
-                                case 3:
-                                    this.layer.text(`Holographic: 1 Strength`,0,this.height/2)
-                                break
-                                case 4:
-                                    this.layer.text(`Polychrome: 1 Energy`,0,this.height/2)
-                                break
-                                case 5:
-                                    this.layer.text(`Negative: Draw 2 Cards`,0,this.height/2)
-                                break
-                                case 6:
-                                    this.layer.text(`Erratic: Randomly Improve Effect 1-2x`,0,this.height/2)
-                                break
+                            if(this.battle.modded(155)){
+                                switch(this.edition){
+                                    case 1:
+                                        this.layer.text(`Silver: -2 Health`,0,this.height/2)
+                                    break
+                                    case 2:
+                                        this.layer.text(`Foil: -5 Block`,0,this.height/2)
+                                    break
+                                    case 3:
+                                        this.layer.text(`Holographic: -1 Strength`,0,this.height/2)
+                                    break
+                                    case 4:
+                                        this.layer.text(`Polychrome: -1 Energy`,0,this.height/2)
+                                    break
+                                    case 5:
+                                        this.layer.text(`Negative: Discard 2 Random Cards`,0,this.height/2)
+                                    break
+                                    case 6:
+                                        this.layer.text(`Erratic: Randomly Improve Effect 0-1x`,0,this.height/2)
+                                    break
+                                    case 7:
+                                        this.layer.text(`Braided: Draw a Card`,0,this.height/2)
+                                    break
+                                }
+                            }else{
+                                switch(this.edition){
+                                    case 1:
+                                        this.layer.text(`Silver: 2 Health`,0,this.height/2)
+                                    break
+                                    case 2:
+                                        this.layer.text(`Foil: 5 Block`,0,this.height/2)
+                                    break
+                                    case 3:
+                                        this.layer.text(`Holographic: 1 Strength`,0,this.height/2)
+                                    break
+                                    case 4:
+                                        this.layer.text(`Polychrome: 1 Energy`,0,this.height/2)
+                                    break
+                                    case 5:
+                                        this.layer.text(`Negative: Draw 2 Cards`,0,this.height/2)
+                                    break
+                                    case 6:
+                                        this.layer.text(`Erratic: Randomly Improve Effect 1-2x`,0,this.height/2)
+                                    break
+                                    case 7:
+                                        this.layer.text(`Braided: Discard a Random Card`,0,this.height/2)
+                                    break
+                                }
                             }
                         }
                     }

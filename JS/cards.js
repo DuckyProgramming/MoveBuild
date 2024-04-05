@@ -11700,8 +11700,8 @@ types.card=[
         name:'Rotten\nEgg',rarity:-10,list:4,
         levels:[
             {effect:[],attack:1238,cost:3,target:[0],spec:[15],limit:6,class:4},
-            {effect:[],attack:1286,cost:2,target:[0],spec:[15],limit:6,class:4},
-            {effect:[],attack:1288,cost:1,target:[0],spec:[15],limit:6,class:4},
+            {effect:[],attack:1486,cost:2,target:[0],spec:[15],limit:6,class:4},
+            {effect:[],attack:1488,cost:1,target:[0],spec:[15],limit:6,class:4},
         ],
     },{
         name:'Landmine',rarity:-10,list:1,

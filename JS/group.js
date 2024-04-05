@@ -3199,7 +3199,12 @@ class group{
                         }else{
                             if(this.cards[a].discardEffectBuffered.includes(0)||this.battle.relicManager.hasRelic(195,this.player)&&!this.cards[a].usable&&floor(random(0,4))==0){
                                 this.cards[a]=upgradeCard(this.cards[a])
-                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
+                                if(this.cards[a].discardEffectBuffered.includes(0)){
+                                    this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
+                                }
+                            }
+                            if(this.battle.modded(160)&&!this.cards[a].usable){
+                                this.cards[a]=unupgradeCard(this.cards[a])
                             }
                             if(this.cards[a].spec.includes(23)){
                                 this.battle.cardManagers[this.player].draw(1)

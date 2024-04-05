@@ -238,7 +238,9 @@ class battle{
                 if(playerCombatant.dead){
                     playerCombatant.revive()
                 }
-                this.positionCombatant(playerCombatant,{x:encounter.player.position[la-1][a].x,y:encounter.player.position[la-1][a].y})
+                if(!this.modded(156)){
+                    this.positionCombatant(playerCombatant,{x:encounter.player.position[la-1][a].x,y:encounter.player.position[la-1][a].y})
+                }
             }
         }
         for(let a=0,la=encounter.enemy.length;a<la;a++){
@@ -249,6 +251,12 @@ class battle{
                 this.addCombatant(encounter.enemy[a].position,findName(encounter.enemy[a].name,types.combatant),0,0,false)
             }
             this.counter.enemy++
+        }
+        for(let a=0,la=this.players;a<la;a++){
+            let playerCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)]
+            if(playerCombatant.life>=0&&this.modded(156)){
+                this.positionCombatant(playerCombatant,this.tileManager.getRandomTilePosition())
+            }
         }
         for(let a=0,la=encounter.reinforce.length;a<la;a++){
             this.reinforce.back.push({position:{x:encounter.reinforce[a].position.x,y:encounter.reinforce[a].position.y},name:encounter.reinforce[a].name,turn:encounter.reinforce[a].turn,minion:false})
@@ -271,6 +279,9 @@ class battle{
         }
         if(this.modded(147)){
             this.combatantManager.allEffect(26,[])
+        }
+        if(this.modded(154)){
+            this.combatantManager.randomEffect(0,[])
         }
         this.attackManager.clear()
         this.turnManager.clear()
@@ -728,25 +739,55 @@ class battle{
         this.counter.turnPlayed[0]++
         this.counter.turnPlayed[cardClass]++
         let userCombatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(player)]
-        switch(card.edition){
-            case 1:
-                userCombatant.heal(2)
-            break
-            case 2:
-                userCombatant.addBlock(5)
-            break
-            case 3:
-                userCombatant.statusEffect('Strength',1)
-            break
-            case 4:
-                this.energy.main[player]++
-            break
-            case 5:
-                this.cardManagers[player].draw(2)
-            break
-            case 6:
-                this.attackManager.edition(6)
-            break
+        if(this.modded(155)){
+            switch(card.edition){
+                case 1:
+                    userCombatant.life-=2
+                break
+                case 2:
+                    userCombatant.block=max(0,userCombatant.block-5)
+                break
+                case 3:
+                    userCombatant.statusEffect('Strength',-1)
+                break
+                case 4:
+                    this.energy.main[player]--
+                break
+                case 5:
+                    this.cardManagers[player].hand.randomEffect(0,[])
+                    this.cardManagers[player].hand.randomEffect(0,[])
+                break
+                case 6:
+                    this.attackManager.edition(-6)
+                break
+                case 7:
+                    this.cardManagers[player].draw(1)
+                break
+            }
+        }else{
+            switch(card.edition){
+                case 1:
+                    userCombatant.heal(2)
+                break
+                case 2:
+                    userCombatant.addBlock(5)
+                break
+                case 3:
+                    userCombatant.statusEffect('Strength',1)
+                break
+                case 4:
+                    this.energy.main[player]++
+                break
+                case 5:
+                    this.cardManagers[player].draw(2)
+                break
+                case 6:
+                    this.attackManager.edition(6)
+                break
+                case 7:
+                    this.cardManagers[player].hand.randomEffect(0,[])
+                break
+            }
         }
         switch(cardClass){
             case 1:

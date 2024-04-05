@@ -15,7 +15,27 @@ cutscene appearances
 
 new tutorials
 
-new bonus mods for new enemies
+new bonus mods for new enemies:
 
+normal1: only find common relics at shop
+boss1: only find common cards at shop
+danger: on normal fights, duplicate a random enemy
+carbonado robot: shiny cards do negative things instead of positive things
+obstruction: start combat in a random locations
+structural energy: first attack each turn does nothing
+disorder energy: first block each turn does nothing
+kugelblitz: take 2 damage when card exhausted
+voidglass: played cards level down temporarily
+intruder: shops and rests can become enemy encounters
+lead brick: all enemies start with 1 buffer
+regen balloon: all enemies start with 3 regeneration
+precision: randomize selection at rest sites
+relic: lose a random relic
+legacy: cards look like deckbuild cards
+anomaly: all enemies gain 1 speed until damaged
+recollection: all enemies get double damage every 9 turns
+concentric: cannot see targetting guidelines
+embodimental destabilization: all map characters are slightly offset
+dimension wanderer: makes some cards anti-shiny (negative effect)
 
 

@@ -51,6 +51,11 @@ class attackManager{
     }
     edition(type){
         switch(type){
+            case -6:
+                for(let a=0,la=this.effect.length;a<la;a++){
+                    this.effect[a]=floor(random(1,this.effect[a]+1))
+                }
+            break
             case 6:
                 for(let a=0,la=this.effect.length;a<la;a++){
                     this.effect[a]=floor(random(this.effect[a],this.effect[a]*2+1))

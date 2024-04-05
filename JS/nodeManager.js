@@ -144,12 +144,28 @@ class nodeManager{
                 this.saveBoss=-1
             break
             case 3:
-                transition.scene='rest'
-                this.battle.setupRest()
+                if(this.battle.modded(161)&&floor(random(0,4))==0){
+                    transition.scene='battle'
+                    let list=this.listing.encounter[this.world][0]
+                    let index=floor(random(0,list.length))
+                    this.battle.setupBattle(types.encounter[list[index]])
+                    list.splice(index,1)
+                }else{
+                    transition.scene='rest'
+                    this.battle.setupRest()
+                }
             break
             case 4:
-                transition.scene='shop'
-                this.battle.setupShop()
+                if(this.battle.modded(161)&&floor(random(0,4))==0){
+                    transition.scene='battle'
+                    let list=this.listing.encounter[this.world][0]
+                    let index=floor(random(0,list.length))
+                    this.battle.setupBattle(types.encounter[list[index]])
+                    list.splice(index,1)
+                }else{
+                    transition.scene='shop'
+                    this.battle.setupShop()
+                }
             break
             case 5:
                 if(this.battle.tutorialManager.active){

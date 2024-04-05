@@ -87,6 +87,18 @@ class modManager{
             case 149:
                 this.battle.cardManagers.forEach(cardManager=>cardManager.deck.killDupes())
             break
+            case 164:
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    this.battle.relicManager.loseRandomRelic(a)
+                }
+            break
+            case 171:
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    for(let b=0,lb=5;b<lb;b++){
+                        this.battle.cardManagers[a].randomEffect(0,30,[7])
+                    }
+                }
+            break
         }
     }
     display(){

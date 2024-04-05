@@ -336,8 +336,12 @@ class tileManager{
     display(scene){
         switch(scene){
             case 'battle':
-                this.tiles.forEach(tile=>tile.display())
-                this.tiles.forEach(tile=>tile.displayEffects())
+                if(!this.battle.modded(166)){
+                    this.tiles.forEach(tile=>tile.display())
+                }
+                if(!this.battle.modded(169)){
+                    this.tiles.forEach(tile=>tile.displayEffects())
+                }
             break
             case 'replay':
                 this.tiles.forEach(tile=>tile.display())
@@ -345,7 +349,7 @@ class tileManager{
         }
     }
     displayCoordinate(){
-        if(this.anim.coordinate>0){
+        if(this.anim.coordinate>0&&!this.battle.modded(166)){
             this.tiles.forEach(tile=>tile.displayCoordinate(this.anim.coordinate))
         }
     }

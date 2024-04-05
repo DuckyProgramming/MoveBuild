@@ -4440,6 +4440,24 @@ function setupEdition(type,layer,crop){
 				}
 			}
 		break
+		case 7:
+			layer.fill(128,180,172,0.4)
+			layer.rect(layer.width/2,layer.height/2,layer.width,layer.height)
+			layer.stroke(180,245,235,0.4)
+			layer.strokeWeight(4)
+			for(let a=0,la=25;a<la;a++){
+				layer.line(0,layer.height*(a/la*2.5-1.5),layer.width,layer.height*a/la*2.5)
+			}
+			layer.stroke(94,117,122,0.4)
+			layer.strokeWeight(5)
+			for(let a=0,la=10;a<la;a++){
+				layer.beginShape()
+				for(let b=0,lb=15;b<lb;b++){
+					layer.vertex(layer.width*b/(lb-1),layer.height*(a+0.7-(a+b)%2*0.4)/la)
+				}
+				layer.endShape()
+			}
+		break
 	}
 }
 function setupGraphics(){
@@ -4468,7 +4486,7 @@ function setupGraphics(){
 		setupLayer(graphics.overlays[a])
 		setupOverlay(a,graphics.overlays[a])
 	}
-	for(let a=0,la=6;a<la;a++){
+	for(let a=0,la=7;a<la;a++){
 		graphics.edition.push([createGraphics(200,150),createGraphics(200,150)])
 		setupLayer(graphics.edition[a][0])
 		setupLayer(graphics.edition[a][1])

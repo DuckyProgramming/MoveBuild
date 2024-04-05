@@ -125,11 +125,18 @@ class optionManager{
     onClick(){
         for(let a=0,la=this.options.length;a<la;a++){
             if(dist(inputs.rel.x,inputs.rel.y,this.options[a].position.x,this.options[a].position.y)<50&&this.selected==-1&&!this.options[a].complete&&!this.complete){
+                let hold=a
+                if(this.battle.modded(164)){
+                    a=floor(random(0,la))
+                }
                 this.options[a].complete=true
                 this.selected=this.options[a].type
                 this.triggerOption(this.options[a].type)
                 if(this.options[a].type==6&&this.battle.relicManager.detail[60][this.player]>=3){
                     this.removeOption(6)
+                }
+                if(this.battle.modded(164)){
+                    a=hold
                 }
             }
         }
@@ -137,11 +144,18 @@ class optionManager{
     onKey(key,code){
         for(let a=0,la=this.options.length;a<la;a++){
             if((int(key)+9)%10==a&&this.selected==-1&&!this.options[a].complete&&!this.complete){
+                let hold=a
+                if(this.battle.modded(164)){
+                    a=floor(random(0,la))
+                }
                 this.options[a].complete=true
                 this.selected=this.options[a].type
                 this.triggerOption(this.options[a].type)
                 if(this.options[a].type==6&&this.battle.relicManager.detail[60][this.player]>=3){
                     this.removeOption(6)
+                }
+                if(this.battle.modded(164)){
+                    a=hold
                 }
             }
         }

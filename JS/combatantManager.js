@@ -517,6 +517,9 @@ class combatantManager{
                             this.combatants[a].statusEffect('Jinx',args[0])
                         }
                     break
+                    case 29:
+                        this.combatants[a].statusEffect('Double Damage Turn',args[0])
+                    break
                 }
             }
         }
@@ -551,6 +554,24 @@ class combatantManager{
                     this.combatants[a].statusEffect('Freeze',args[0])
                 break
                 
+            }
+        }
+    }
+    randomEffect(effect,args){
+        if(this.combatants.length>0){
+            let list=[]
+            for(let a=0,la=this.combatants.length;a<la;a++){
+                if(this.combatants[a].team==0&&this.combatants[a].life>0){
+                    list.push(a)
+                }
+            }
+            if(list.length>0){
+                let index=list[floor(random(0,list.length))]
+                switch(effect){
+                    case 0:
+                        this.combatants[index].baseDuplicate()
+                    break
+                }
             }
         }
     }

@@ -144,10 +144,12 @@ class relicManager{
                 list.push(a)
             }
         }
-        let index=list[floor(random(0,list.length))]
-        this.active[index][0]-=1
-        this.active[index][player+1]-=1
-        this.lose(index,player)
+        if(list.length>0){
+            let index=list[floor(random(0,list.length))]
+            this.active[index][0]-=1
+            this.active[index][player+1]-=1
+            this.lose(index,player)
+        }
     }
     addRandomRelic(player){
         let possible=[0,0,0,1,1,2]
@@ -707,6 +709,16 @@ class relicManager{
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('Weak',floor(this.battle.currency.money[a]/100))
                             }
                         }
+                        if(this.battle.modded(157)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('No Damage',1)
+                            }
+                        }
+                        if(this.battle.modded(158)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(a)].statusEffect('No Block',1)
+                            }
+                        }
                     break
                     case 2:
                         for(let a=0,la=this.battle.players;a<la;a++){
@@ -726,6 +738,11 @@ class relicManager{
                         }
                         if(this.battle.modded(60)){
                             this.battle.combatantManager.allEffect(3,[3])
+                        }
+                    break
+                    case 4:
+                        if(this.battle.modded(168)){
+                            this.battle.combatantManager.allEffect(29,[1])
                         }
                     break
                     case 5:

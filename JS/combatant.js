@@ -132,7 +132,7 @@ class combatant{
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
-            'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn',
+            'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -162,7 +162,7 @@ class combatant{
                 1,0,1,1,2,2,2,0,2,0,//25
                 0,0,0,0,0,0,0,0,0,2,//26
                 1,1,2,1,0,2,0,0,2,2,//27
-                2,0,2,
+                2,0,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -192,7 +192,7 @@ class combatant{
                 1,0,0,0,3,3,3,3,1,2,//25
                 1,2,2,2,2,2,2,2,2,1,//26
                 2,2,2,2,1,1,2,0,0,0,//27
-                1,1,0,
+                1,1,0,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3125,6 +3125,19 @@ class combatant{
             if(this.battle.modded(139)){
                 this.statusEffect('Invisible',1)
             }
+            if(this.battle.modded(162)){
+                this.statusEffect('Buffer',1)
+            }
+            if(this.battle.modded(163)){
+                this.statusEffect('Regeneration',4)
+            }
+            if(this.battle.modded(167)){
+                this.statusEffect('Fragile Speed Up',2)
+            }
+            if(this.battle.modded(170)){
+                this.offset.position.x=random(-80,80)
+                this.offset.position.y=random(-80,80)
+            }
         }
         if(this.name.includes('Duck')){
             if(this.battle.modded(22)){
@@ -3975,6 +3988,11 @@ class combatant{
             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].life=1
             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].base.life=1
             this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].collect.life=1
+        }
+    }
+    baseDuplicate(){
+        if(this.battle.initialized&&this.team==0&&!this.spec.includes(2)){
+            this.battle.combatantManager.summonCombatant(this.tilePosition,this.type,this.direction)
         }
     }
     anotherDead(){
@@ -5127,6 +5145,10 @@ class combatant{
                 block*=1.5
                 this.status.main[160]--
             }
+            if(this.status.main[273]>0){
+                block=0
+                this.status.main[273]--
+            }
             block=round(block*10)/10
             if(this.status.main[70]>0){
                 this.combo+=this.status.main[70]
@@ -5141,7 +5163,7 @@ class combatant{
                     this.battle.cardManagers[this.id].hand.add(findName('Spark',types.card),1,0)
                 }
             }
-            if(this.battle.modded(140)&&this.team==0){
+            if(this.battle.modded(1470)&&this.team==0){
                 block*=2
             }
             if(block>=0){

@@ -346,7 +346,7 @@ class tile{
     display(){
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
-        if(this.occupied==1){
+        if(this.occupied==1&&!this.battle.modded(170)){
             this.layer.fill(70,75,80,this.fade)
         }else{
             this.layer.fill(90,95,100,this.fade)

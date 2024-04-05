@@ -17,7 +17,7 @@ function setup(){
         //transition.scene='menu'
 
     /*current.menu.combatant=[9]
-    current.menu.deck=[-1]
+    current.menu.deck=[0]
     current.startGame()
     game.animRate=4*/
 
@@ -34,6 +34,11 @@ function setup(){
     /*game.dev=true
     stage.scene='battle'
     current.setupBattle(types.encounter[1])*/
+
+        /*variants.mod=true
+        for(let a=0,la=4;a<la;a++){
+            current.modManager.addMod(168+a)
+        }*/
 
         //stage.scene='tier'
 }
