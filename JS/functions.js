@@ -656,11 +656,11 @@ function intentDescription(attack,user,info){
 			case 239: return `Builder Transforms ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
 			case 240: return `Builder Duplicates ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}`
 			case 241: return `Builder Exhausts ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}\nBuilder Draws ${info?attack.effect[1]:`?`}\nCard${attack.effect[1]!=1||info?`s`:``}`
-			case 242: return `Apply ${info?attack.effect[0]:`?`} Burn`
+			case 242: return `Apply ${info?attack.effect[0]:`?`} Burn\nRange 1-1`
 			case 243: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage to Self`
 			case 244: return `Randomly Edit the Map`
-			case 246: return `Apply ${info?attack.effect[0]:`?`} Freeze`
-			case 247: return `Apply ${info?attack.effect[0]:`?`} Burn, Freeze, or Shock`
+			case 246: return `Apply ${info?attack.effect[0]:`?`} Freeze\nRange 1-1`
+			case 247: return `Apply ${info?attack.effect[0]:`?`} Burn, Freeze, or Shock\nRange 1-1`
 			case 248: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,0):`?`} Damage`
 			case 249: return `Apply ${info?attack.effect[0]:`?`} Weak\nto Everybody Else`
 			case 250: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Vulnerable to Self\nRange 1-2`
@@ -702,6 +702,16 @@ function intentDescription(attack,user,info){
 			case 287: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Intangible\nRange 1-6`
 			case 288: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nApply ${info?attack.effect[1]:`?`} Miss\nRange 1-2`
 			case 289: return `Gain ${info?attack.effect[0]:`?`} Buffer`
+			case 291: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin 4 Directions\nRange 1-1`
+			case 292: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nin 4 Directions\nRange 1-1`
+			case 293: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter ${info?calculateIntent(attack.effect[0],user,0):`?`} Twice`
+			case 294: return `Gain ${info?attack.effect[0]:`?`} Strength\nGain ${info?attack.effect[1]:`?`} Dexterity`
+			case 295: return `Apply ${info?attack.effect[0]:`?`} Burn\nApply ${info?attack.effect[1]:`?`} Freeze\nApply ${info?attack.effect[2]:`?`} Shock\nApply ${info?attack.effect[3]:`?`} Poison\nRange 1-1`
+			case 296: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAnywhere`
+			case 297: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Burn\nRange 1-2`
+			case 298: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Freeze\nRange 1-2`
+			case 299: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Shock\nRange 1-2`
+			case 300: return `Take Third Damage\nFor ${info?attack.effect[0]:`?`} Turns`
 
 			default: return `INVALID`
 		}

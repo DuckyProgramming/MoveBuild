@@ -2,11 +2,6 @@ cards:
 
 
 
-1 world 3 enemy - embodimental destabilization
-1 world 4 elite - astroeaus
-
-
-
 
 
 

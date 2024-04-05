@@ -132,7 +132,7 @@ class combatant{
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
-            'Temporary Damage Up Next Turn','Single Weak',
+            'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -162,7 +162,7 @@ class combatant{
                 1,0,1,1,2,2,2,0,2,0,//25
                 0,0,0,0,0,0,0,0,0,2,//26
                 1,1,2,1,0,2,0,0,2,2,//27
-                2,0,
+                2,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -192,7 +192,7 @@ class combatant{
                 1,0,0,0,3,3,3,3,1,2,//25
                 1,2,2,2,2,2,2,2,2,1,//26
                 2,2,2,2,1,1,2,0,0,0,//27
-                1,1,
+                1,1,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2996,6 +2996,24 @@ class combatant{
                         this.fades.loops=1
                         this.trigger.display.loops=true
                     break
+                    case 'Embodimental Destabilization':
+                        this.color={skin:{head:[225,225,225],body:[220,220,220],legs:[215,215,215],arms:[210,210,210]},eye:{back:[180,180,180],front:[160,160,160],glow:[255,255,255]},mouth:{in:[200,100,100],out:[150,150,150]}}
+                        this.size=0.8
+                    break
+                    case 'Dimension Wanderer':
+                        this.color={skin:{head:[200,195,185],body:[15,20,15],legs:[10,15,10],arms:[190,185,175]},eye:{back:[255,250,225],front:[255,250,225],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
+                        this.color.skin.upperBody=[195,190,180]
+                        this.color.diamond=[255,255,250]
+                        this.color.circlet=[[40,35,30],[220,220,210],[0,0,0]]
+                        this.fades.diamond=1
+                        this.fades.circlet=1
+                        this.trigger.display.diamond=true
+                        this.trigger.display.circlet=true
+                        this.anim.sword=1
+                        this.spin.sword=75
+                        this.fades.sword=1
+                        this.trigger.display.extra={sword:true}
+                    break
                     default:
                         this.color={skin:{head:[240,220,180],body:[95,95,95],legs:[90,90,90],arms:[100,100,100]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0]}}
                     break
@@ -3515,7 +3533,7 @@ class combatant{
             case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
             case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
             case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 201: case 270: case 271:
-            case 274: case 282:
+            case 274: case 282: case 295:
                 return this.battle.modded(57)?[
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
@@ -3525,6 +3543,7 @@ class combatant{
             case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 107:
             case 112: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223: case 224:
             case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276: case 277:
+            case 297: case 298: case 299:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2)
@@ -3861,6 +3880,13 @@ class combatant{
                     this.battle.tileManager.getTileIndex(this.tilePosition.x-transformDirection(0,this.goal.anim.direction+60)[0]*5-transformDirection(0,this.goal.anim.direction+120)[0]*5,this.tilePosition.y-transformDirection(0,this.goal.anim.direction+60)[1]*5-transformDirection(0,this.goal.anim.direction+120)[1]*5),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x-transformDirection(0,this.goal.anim.direction+60)[0]*6-transformDirection(0,this.goal.anim.direction+120)[0]*6,this.tilePosition.y-transformDirection(0,this.goal.anim.direction+60)[1]*6-transformDirection(0,this.goal.anim.direction+120)[1]*6)
                 ]
+            case 291: case 292:
+                return [
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x-transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y-transformDirection(0,this.goal.anim.direction)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction+60)[0]+transformDirection(0,this.goal.anim.direction+120)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction+60)[1]+transformDirection(0,this.goal.anim.direction+120)[1]),
+                    this.battle.tileManager.getTileIndex(this.tilePosition.x-transformDirection(0,this.goal.anim.direction+60)[0]-transformDirection(0,this.goal.anim.direction+120)[0],this.tilePosition.y-transformDirection(0,this.goal.anim.direction+60)[1]-transformDirection(0,this.goal.anim.direction+120)[1])
+                ]
             default: return []
         }
     }
@@ -4006,7 +4032,7 @@ class combatant{
                         case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                         case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 209:
                         case 212: case 229: case 242: case 246: case 247: case 251: case 252: case 270: case 271: case 274:
-                        case 282:
+                        case 282: case 295:
                             if(this.battle.modded(57)){
                                 for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                     if(
@@ -4026,7 +4052,7 @@ class combatant{
                         case 32: case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99:
                         case 107: case 112: case 137: case 138: case 139: case 149: case 156: case 183: case 203: case 211:
                         case 223: case 224: case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275:
-                        case 276: case 277:
+                        case 276: case 277: case 297: case 298: case 299:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -4064,7 +4090,7 @@ class combatant{
                         case 117: case 120: case 124: case 128: case 131: case 132: case 133: case 136: case 142: case 146:
                         case 147: case 153: case 157: case 168: case 171: case 174: case 175: case 176: case 192: case 195:
                         case 198: case 204: case 213: case 215: case 217: case 222: case 255: case 256: case 259: case 264:
-                        case 265: case 278: case 288:
+                        case 265: case 278: case 288: case 291: case 292:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -4182,7 +4208,7 @@ class combatant{
                     case 1: case 2: case 3: case 11: case 13: case 22: case 23: case 31: case 34: case 35:
                     case 36: case 37: case 97: case 101: case 103: case 113: case 116: case 121: case 122: case 127:
                     case 150: case 181: case 209: case 212: case 229: case 242: case 246: case 247: case 251: case 252:
-                    case 270: case 271: case 274: case 282:
+                    case 270: case 271: case 274: case 282: case 295:
                         if(this.battle.modded(57)){
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
@@ -4199,7 +4225,7 @@ class combatant{
                     case 33: case 61: case 62: case 66: case 67: case 76: case 77: case 96: case 99: case 107:
                     case 112: case 137: case 138: case 139: case 149: case 156: case 183: case 203: case 211: case 223:
                     case 224: case 248: case 250: case 253: case 258: case 260: case 272: case 273: case 275: case 276:
-                    case 277:
+                    case 277: case 297: case 298: case 299:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -4243,7 +4269,7 @@ class combatant{
                     case 120: case 124: case 128: case 131: case 133: case 135: case 136: case 142: case 146: case 147:
                     case 153: case 154: case 157: case 168: case 171: case 175: case 176: case 192: case 198: case 204:
                     case 213: case 215: case 217: case 222: case 255: case 256: case 259: case 264: case 265: case 278:
-                    case 288:
+                    case 288: case 291: case 292:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(this.targetTile[b].tilePosition.x>=0){
                                 this.targetTile[b].target(this.activated?2:1,numeralizeDirection(0,directionCombatant(this.targetTile[b],this)))
@@ -4918,6 +4944,12 @@ class combatant{
                                 this.battle.turnManager.turnsBack.push(new turn(0,this.battle,1,[this.status.main[266]],this.id,false))
                                 this.status.main[266]=0
                             }
+                            if(this.status.main[272]>0&&distance<=1){
+                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                this.battle.turnManager.auxiliary=true
+                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[272]],this.id,false))
+                            }
                         }else{
                             if(this.status.main[1]>0&&distance<=1){
                                 this.battle.turnManager.turns.splice(1,0,new turn(3,this.battle,0,0,this.id,false))
@@ -4989,6 +5021,11 @@ class combatant{
                                 this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
                                 this.battle.turnManager.turnsBack.splice(2,0,new turn(0,this.battle,1,[this.status.main[266]],this.id,false))
                                 this.status.main[266]=0
+                            }
+                            if(this.status.main[272]>0&&distance<=1){
+                                this.battle.turnManager.turnsBack.push(new turn(3,this.battle,0,0,this.id,false))
+                                this.battle.turnManager.turnsBack[this.battle.turnManager.turnsBack.length-1].target=[user]
+                                this.battle.turnManager.turnsBack.push(new turn(0,this.battle,31,[this.status.main[272]],this.id,false))
                             }
                         }
                         if(this.battle.relicManager.hasRelic(61,this.id)){
@@ -5889,7 +5926,7 @@ class combatant{
                     case 0: case 2: case 4: case 6:
                         this.animSet.loop=0
                         this.animSet.flip=floor(random(0,2))
-                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard')&&(type==2||type==6)){
+                        if((this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer')&&(type==2||type==6)){
                             this.animSet.loop=0
                             this.goal.anim.sword=true
                         }
@@ -6655,7 +6692,7 @@ class combatant{
                     break
                     case 2:
                         this.animSet.loop+=rate
-                        if(this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'){
+                        if(this.name=='Goon'||this.name=='Slaver'||this.name=='Pointy'||this.name=='Romeo'||this.name=='Batter'||this.name=='Swordmaster'||this.name=='Champion'||this.name=='Purge X02'||this.name=='Vengeful'||this.name=='Lunaria'||this.name=='Divine Guard'||this.name=='Avant Guard'||this.name=='Dimension Wanderer'){
                             this.anim.arms[0].top=24+lsin(this.animSet.loop*180)*36
                             this.anim.arms[0].bottom=9+lsin(this.animSet.loop*180)*96
                             this.spin.arms[0].top=-93+lsin(this.animSet.loop*180)*63
@@ -7404,6 +7441,41 @@ class combatant{
                             this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel-this.anim.eye[key]*2)
                             this.layer.line(lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor-(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel,lsin(this.spin.eye[key]+this.anim.head)*this.parts.minor+(key*2-1)*lcos(this.spin.eye[key]+this.anim.head)*this.anim.eye[key]*2,this.parts.eyeLevel+this.anim.eye[key]*2)
                         }
+                    break
+                }
+            break
+            case 'Dimension Wanderer':
+                switch(type){
+                    case 0:
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x*0.95+this.graphics.arms[key].middle.x*0.05,this.graphics.arms[key].bottom.y*0.95+this.graphics.arms[key].middle.y*0.05)
+                        this.layer.rotate(90+90*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75))-this.spin.sword*sign(lsin(this.anim.direction+this.spin.arms[key].bottom+75)))
+                        this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
+                        this.layer.noStroke()
+                        this.layer.fill(250,250,240,this.fade)
+                        this.layer.rect(0,-16,1,32)
+                        this.layer.fill(225,250,200,this.fade)
+                        this.layer.ellipse(0,-38,6,6)
+                        this.layer.stroke(250,250,240,this.fade)
+                        this.layer.strokeWeight(1)
+                        this.layer.noFill()
+                        this.layer.ellipse(0,-38,12,12)
+                        this.layer.line(0,-32,0,-44)
+                        this.layer.pop()
+                    break
+                    case 1:
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.diamond[0],this.color.diamond[1],this.color.diamond[2],this.fade*this.fades.diamond)
+                        this.layer.quad(
+                            this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].bottom.x*0.5-3.5*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.y*0.5+this.graphics.arms[key].bottom.y*0.5-3.5*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7,
+                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7,
+                            this.graphics.arms[key].middle.x*0.5+this.graphics.arms[key].bottom.x*0.5+3.5*lsin(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.y*0.5+this.graphics.arms[key].bottom.y*0.5+3.5*lcos(atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)+90),
+                            this.graphics.arms[key].middle.x*0.7+this.graphics.arms[key].bottom.x*0.3,
+                            this.graphics.arms[key].middle.y*0.7+this.graphics.arms[key].bottom.y*0.3
+                        )
                     break
                 }
             break

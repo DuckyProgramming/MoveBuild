@@ -151,9 +151,8 @@ types={
         {name:'Anomaly',life:124,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[7,1]},{type:2,effect:[8]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
         {name:'Recollection',life:194,behavior:1,spec:[0],move:{type:1,speed:2},attack:[{type:283,effect:[21]},{type:284,effect:[17,1]},{type:285,effect:[26,1]}],description:`The sinusoids`},
         {name:'Concentric',life:177,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:286,effect:[27]},{type:287,effect:[19,2]},{type:288,effect:[12,1]},{type:289,effect:[2]}],description:`Replaced Lunaria in never spawning`},
-
-        {name:'Embodimental Destabilization',life:202,behavior:1,spec:[0],move:{type:0,speed:1},attack:[],description:`This is getting out of hand!`},
-        {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[],description:`Literally a copypaste of Chronos`},
+        {name:'Embodimental Destabilization',life:202,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:291,effect:[16]},{type:292,effect:[9]},{type:293,effect:[10,5]},{type:294,effect:[2,2]},{type:295,effect:[1,1,1,1]}],description:`This is getting out of hand!`},
+        {name:'Dimension Wanderer',life:360,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:296,effect:[18]},{type:300,effect:[3]},{type:297,effect:[9,1]},{type:298,effect:[9,1]},{type:299,effect:[9,1]}],description:`Literally a copypaste of Chronos`},
 
         {name:'Duckforce',life:25,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:19,effect:[3]},{type:38,effect:[6]},{type:5,effect:[1,'Dazed']}],description:`Elite assault duck`},
         {name:'Shield Particle',life:10,behavior:5,spec:[],move:{type:2,speed:2},attack:[{type:16,effect:[5]},{type:4,effect:[10]}],description:`They shall return`},
@@ -324,7 +323,7 @@ types={
         {name:'Crescent Strike',class:1},
         {name:'Triple Crescent Strike',class:1},
         {name:'Shockwave',class:1},
-        {name:'Freeze',class:4},
+        {name:'Stuckify',class:4},
         {name:'Injuring Gun',class:1},
         {name:'Pushing Gun',class:1},//90
         {name:'Pushing Statusing Gun',class:1},
@@ -526,7 +525,17 @@ types={
         {name:'6 Tile Strike / Self Intangible',class:1},
         {name:'3 Spread 2 Tile Strike / Miss',class:1},
         {name:'Buffer',class:4},
-        {name:'6 Tile Strike / Regen',class:1}//290
+        {name:'6 Tile Strike / Regen',class:1},//290
+        {name:'4 Direction Strike',class:1},
+        {name:'4 Direction Double Strike',class:1},
+        {name:'Double Counter',class:2},
+        {name:'Strengthen / Dexterity',class:4},
+        {name:'Burn / Freeze / Shock / Poison',class:1},
+        {name:'Targetted Strike',class:5},
+        {name:'2 Tile Triple Strike / Burn',class:1},
+        {name:'2 Tile Triple Strike / Freeze',class:1},
+        {name:'2 Tile Triple Strike / Shock',class:1},
+        {name:'Third Damage Time',class:4},//300
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -4153,6 +4162,28 @@ Entering, you're offered a chance to glimpse your future...`,
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]}],
             ],
+        },{
+            name:'Unstable 7',
+            map:[
+                [{type:-1},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:-1}],
+            ],
+        },{
+            name:'Sliced 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:-1},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:-1},{type:[]},{type:-1},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
         },
     ],encounter:[
         {
@@ -4162,12 +4193,28 @@ Entering, you're offered a chance to glimpse your future...`,
             enemy:[
             ],reinforce:[
             ],
-        }, {
+        },{
             level:['Basic 7'],class:0,world:-1,
             name:'Placeholder',
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Sliced 7'],class:1,world:3,
+            name:'Dimension Wanderer',
+            player:{position:[[{x:1,y:3}],[{x:1,y:3},{x:5,y:3}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Dimension Wanderer'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Unstable 7'],class:0,world:2,
+            name:'Embodimental Destabilization',
+            player:{position:[[{x:4,y:5}],[{x:3,y:5},{x:5,y:5}]]},
+            enemy:[
+                {position:{x:3,y:3},name:'Embodimental Destabilization'},
             ],reinforce:[
             ],
         },{
