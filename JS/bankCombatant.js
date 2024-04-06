@@ -3592,14 +3592,14 @@ combatant.prototype.display=function(){
                         if(lcos(this.anim.direction-22.5+a*45)>0){
                             this.layer.line(5.4*lsin(this.anim.direction-22.5+a*45),-37,3.9*lsin(this.anim.direction-22.5+a*45),-52)
                             if(a==0){
-                                this.layer.line(5.4*lsin(this.anim.direction-22.5+a*45),-37,-6.4,-37)
+                                this.layer.line(5.4*lsin(this.anim.direction-22.5+a*45),-37,-5.4,-37)
                             }else if(a==1){
-                                this.layer.line(5.4*lsin(this.anim.direction-22.5+a*45),-37,6.4,-37)
+                                this.layer.line(5.4*lsin(this.anim.direction-22.5+a*45),-37,5.4,-37)
                             }
                         }
                     }
                     if(lcos(this.anim.direction-22.5)<=0&&lcos(this.anim.direction+22.5)<=0){
-                        this.layer.line(-6.4,-37,6.4,-37)
+                        this.layer.line(-5.4,-37,5.4,-37)
                     }
                     this.layer.strokeWeight(0.3)
                     if(lcos(this.anim.direction-22.5)>0&&lcos(this.anim.direction+22.5)>0){
@@ -3823,14 +3823,6 @@ combatant.prototype.display=function(){
                             this.layer.line(6.5*lsin(this.anim.direction+a*90)-6.5*lcos(this.anim.direction+a*90),-30,6.5*lsin(this.anim.direction+a*90)+6.5*lcos(this.anim.direction+a*90),-30)
                         }
                     }
-                    this.layer.stroke(this.flashColor(this.color.wire)[0],this.flashColor(this.color.wire)[1],this.flashColor(this.color.wire)[2],this.fade*this.fades.skin.body)
-                    this.layer.strokeWeight(0.5)
-                    for(let a=0,la=4;a<la;a++){
-                        if(lcos(this.anim.direction+a*90)>0.1){
-                            this.layer.line(8*lsin(this.anim.direction+a*90)-3*lcos(this.anim.direction+a*90),-65,8*lsin(this.anim.direction+a*90)-3*lcos(this.anim.direction+a*90),-57+a%2*3)
-                            this.layer.line(8*lsin(this.anim.direction+a*90)+3*lcos(this.anim.direction+a*90),-65,8*lsin(this.anim.direction+a*90)+3*lcos(this.anim.direction+a*90),-54-a%2*3)
-                        }
-                    }
                 }
                 if(this.trigger.display.seal&&lcos(this.anim.direction)>0){
                     this.layer.noStroke()
@@ -3856,6 +3848,16 @@ combatant.prototype.display=function(){
                         this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
                         this.minorDisplay(0,g)
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.stroke(this.flashColor(this.color.wire)[0],this.flashColor(this.color.wire)[1],this.flashColor(this.color.wire)[2],this.fade*this.fades.skin.body)
+                    this.layer.strokeWeight(0.5)
+                    for(let a=0,la=4;a<la;a++){
+                        if(lcos(this.anim.direction+a*90)>0.1){
+                            this.layer.line(8*lsin(this.anim.direction+a*90)-3*lcos(this.anim.direction+a*90),-65,8*lsin(this.anim.direction+a*90)-3*lcos(this.anim.direction+a*90),-57+a%2*3)
+                            this.layer.line(8*lsin(this.anim.direction+a*90)+3*lcos(this.anim.direction+a*90),-65,8*lsin(this.anim.direction+a*90)+3*lcos(this.anim.direction+a*90),-54-a%2*3)
+                        }
                     }
                 }
                 if(this.trigger.display.antenna){
@@ -3953,7 +3955,7 @@ combatant.prototype.display=function(){
                     this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
                     for(let a=0,la=9;a<la;a++){
                         if(lcos(this.anim.direction+360*a/la)>=0){
-                            regPoly(this.layer,6.5*lsin(this.anim.direction+360*a/la),-49+a%2*2+9*lsin(360*a/la),16,(2+a%3*0.5)*lcos(this.anim.direction+360*a/la),2+a%3*0.5,0)
+                            regPoly(this.layer,6.5*lsin(this.anim.direction+360*a/la),-48.5+a%2+12*lsin(360*a/la),16,(2+a%3*0.5)*lcos(this.anim.direction+360*a/la),2+a%3*0.5,0)
                         }
                     }
                 }

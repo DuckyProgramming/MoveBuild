@@ -7187,6 +7187,7 @@ class combatant{
                             this.graphics.arms[key].middle.y-2.1*cos(dir+90))
                         this.layer.endShape()
                         this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.5)
+                        dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
                         this.layer.quad(
                             this.graphics.arms[key].middle.x-2.1*sin(dir+90),
                             this.graphics.arms[key].middle.y-2.1*cos(dir+90),
@@ -7197,6 +7198,7 @@ class combatant{
                             this.graphics.arms[key].top.x-2.1*sin(dir+90),
                             this.graphics.arms[key].top.y-2.1*cos(dir+90)
                         )
+                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.stroke(this.color.dress.tie[0],this.color.dress.tie[1],this.color.dress.tie[2],this.fade*this.fades.dress.sleeve)
                         this.layer.strokeWeight(0.5)
                         this.layer.line(

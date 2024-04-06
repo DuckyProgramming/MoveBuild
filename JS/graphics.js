@@ -2084,7 +2084,7 @@ function setupCombatantGraphics(type){
 				color:{
                     hair:{back:[182,202,209],front:[252,255,254],insideBack:[147,178,197],insideFront:[216,236,241],tail:{start:[211,238,245],end:[158,198,221]},glow:[255,255,255],bow:[88,90,123]},
                     skin:{head:[255,249,242],body:[251,253,235],legs:[253,251,247],arms:[254,246,240]},
-                    eye:{back:[255,148,157],front:[122,0,9],glow:[255,238,236]},
+                    eye:{back:[255,148,157],front:[61,0,5],glow:[255,238,236]},
 					mouth:{in:[254,194,166],out:[0,0,0]},
                     dress:{main:[254,253,255],shawl:[239,237,238],inside:[88,91,129],highlight:[84,147,210],border:[49,100,192],tie:[89,95,97],bow:[[48,125,242],[216,242,255]],sleeve:[233,232,237]},
 				},
@@ -2462,10 +2462,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.anim.mouth.x+=3
 					p1.anim.mouth.y--
 					p1.spin.mouth-=180
-					p1.anim.legs=[{top:18,bottom:3,length:{top:16.5,bottom:16.5}},{top:15,bottom:45,length:{top:16.5,bottom:16.5}}]
-                    p1.anim.arms=[{top:48,bottom:78,length:{top:16.5,bottom:16.5}},{top:36,bottom:-9,length:{top:16.5,bottom:16.5}}]
-                	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
-					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+					p1.anim.legs=[
+						{top:18,bottom:3,length:{top:16.5,bottom:16.5}},
+						{top:15,bottom:45,length:{top:16.5,bottom:16.5}}
+					]
+                    p1.anim.arms=[
+						{top:48,bottom:78,length:{top:16.5,bottom:16.5}},
+						{top:36,bottom:-9,length:{top:16.5,bottom:16.5}}
+					]
+                	p1.spin.legs=[
+						{top:-60,bottom:-120},
+						{top:60,bottom:60}
+					]
+					p1.spin.arms=[
+						{top:-93,bottom:-75,lock:0},
+						{top:93,bottom:75,lock:0}
+					]
 				break
 				case 'Donakho':
 					p1.anim.arms[0].top=42
@@ -2529,6 +2541,56 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:60}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
 				break
+				case 'Shiru':
+					p1.anim.mouth.y++
+					p1.anim.legs=[
+						{top:33,bottom:72,length:{top:15.5,bottom:15.5}},
+						{top:6,bottom:-3,length:{top:15.5,bottom:15.5}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:51,length:{top:15.5,bottom:15.5}},
+						{top:36,bottom:51,length:{top:15.5,bottom:15.5}}
+					]
+					p1.spin.legs=[{top:-60,bottom:42,lock:0},{top:0,bottom:0,lock:0}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'DD-610':
+					p1.anim.legs=[
+						{top:3,bottom:1.5,length:{top:17,bottom:17}},
+						{top:3,bottom:1.5,length:{top:17,bottom:17}}
+					]
+                    p1.anim.arms=[
+						{top:12,bottom:3,length:{top:17,bottom:17}},
+						{top:12,bottom:3,length:{top:17,bottom:17}}
+					]
+                	p1.spin.legs=[
+						{top:-60,bottom:-120},
+						{top:60,bottom:60}
+					]
+					p1.spin.arms=[
+						{ top:-93,bottom:-75,lock:0},
+						{top:93,bottom:75,lock:0}
+					]
+				break
+				case 'Prehextorica':
+					p1.anim.legs=[
+						{top:24,bottom:18,length:{top:17,bottom:17}},
+						{top:24,bottom:18,length:{top:17,bottom:17}}
+					]
+                    p1.anim.arms=[
+						{top:54,bottom:-42,length:{top:17,bottom:17}},
+						{top:66,bottom:-36,length:{top:17,bottom:17}}
+					]
+                	p1.spin.legs=[
+						{top:-75,bottom:-105},
+						{top:75,bottom:90}
+					]
+					p1.spin.arms=[
+						{top:-96,bottom:-72,lock:0},
+						{top:84,bottom:72,lock:0}
+					]
+				break
+
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -2646,6 +2708,50 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'Shiru':
+					p1.parts.mouth+=2.5
+					p1.spin.mouth+=156
+					p1.anim.mouth.y--
+					p1.anim.legs=[
+						{top:18-a*9,bottom:-54-a*18,length:{top:15.5,bottom:15.5}},
+						{top:-6-a*15,bottom:-18-a*33,length:{top:15.5,bottom:15.5}}
+					]
+					p1.anim.arms=[
+						{top:27,bottom:9,length:{top:15.5,bottom:15.5}},
+						{top:24+a*3,bottom:54-a*48,length:{top:15.5,bottom:15.5}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-45,lock:0},{top:-30,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'DD-610':
+					p1.position.y+=4
+					p1.anim.legs=[
+						{top:6+a*3,bottom:-3+a*6,length:{top:17,bottom:17}},
+						{top:6-a*3,bottom:-39-a*9,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:6+a*3,length:{top:17,bottom:17}},
+						{top:18-a*3,bottom:12-a*3,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-180,bottom:-180,lock:0},{top:-60,bottom:-45,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
+				break
+				case 'Prehextorica':
+					p1.anim.direction-=15
+					p1.position.y+=7.5
+					p1.anim.mouth.y++
+					p1.anim.legs=[
+						{top:21-a*3,bottom:-48-a*6,length:{top:17,bottom:17}},
+						{top:9,bottom:12-a*24,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:177,bottom:150+a*3,length:{top:17,bottom:17}},
+						{top:15+a*3,bottom:24-a*9,length:{top:17,bottom:17}}
+					]
+					p1.parts.arms[0].top.y-=5
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:120,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-150,lock:0},{top:90,bottom:120,lock:0}]
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -2795,9 +2901,53 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:30,lock:0}]
 					p1.spin.arms=[{top:-75-a*15,bottom:-30-a*48,lock:0},{top:75+a*15,bottom:-12+a*120,lock:0}]
 				break
+				case 'Shiru':
+					p1.position.y+=30
+					p1.anim.mouth.y+=0.5
+					p1.anim.legs=[
+						{top:54,bottom:66,length:{top:15.5,bottom:15.5}},
+						{top:54+a*12,bottom:66-a*24,length:{top:15.5,bottom:15.5}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:36-a*6,length:{top:16,bottom:16}},
+						{top:24,bottom:36-a*6,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-45+a*5,bottom:-15-a*5,lock:0},{top:120+a*5,bottom:150-a*30,lock:0}]
+					p1.spin.arms=[{top:-75+a*6,bottom:-12-a*24,lock:0},{top:75-a*6,bottom:-30+a*60,lock:0}]
+				break
+				case 'DD-610':
+					p1.position.y-=40
+					p1.parts.eyeLevel++
+					p1.anim.legs=[
+						{top:3,bottom:6,length:{top:17,bottom:17}},
+						{top:3,bottom:6,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:12,bottom:6-a*3,length:{top:17,bottom:17}},
+						{top:12,bottom:6-a*3,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-150+a*6,lock:0},{top:60,bottom:150-a*6,lock:0}]
+					p1.spin.arms=[{top:-84-a*3,bottom:-60-a*6,lock:0},{top:84+a*3,bottom:48+a*9,lock:0}]
+				break
+				case 'Prehextorica':
+					p1.position.y-=40
+					p1.parts.eyeLevel++
+					p1.anim.legs=[
+						{top:12,bottom:9-a*3,length:{top:17,bottom:17}},
+						{top:12,bottom:9-a*3,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:27,bottom:-24,length:{top:17,bottom:17}},
+						{top:27,bottom:-24,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-45,bottom:-60,lock:0},{top:30,bottom:90,lock:0}]
+					p1.spin.arms=[{top:-84-a*3,bottom:-150-a*24,lock:0},{top:84+a*3,bottom:120+a*12,lock:0}]
+				break
 			}
-			p1.anim.eye=[1,1]
-			p1.anim.eyeStyle=[2,2]
+			if(p1.name!='DD-610'){
+				p1.anim.eye=[1,1]
+				p1.anim.eyeStyle=[2,2]
+			}
 			p1.size=2.5
 			p1.fade=1
 			p1.graphic=true
@@ -2923,6 +3073,47 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
+				case 'Shiru':
+					p1.position.y+=a*40
+					p1.anim.mouth.y+=0.5
+					p1.parts.mouth+=0.5
+					p1.anim.legs=[
+						{top:6+a*36,bottom:12+a*60,length:{top:15.5,bottom:15.5-a*6}},
+						{top:6+a*36,bottom:12+a*60,length:{top:15.5,bottom:15.5-a*6}}
+					]
+					p1.anim.arms=[
+						{top:15+a*9,bottom:6+a*36,length:{top:16,bottom:16}},
+						{top:27-a*3,bottom:102-a*54,length:{top:16,bottom:16}}
+					]
+					p1.spin.legs=[{top:-60+a*45,bottom:-120+a*45,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
+				case 'DD-610':
+					p1.position.y-=a*30
+					p1.anim.legs=[
+						{top:3,bottom:0,length:{top:17,bottom:17-a}},
+						{top:3,bottom:0,length:{top:17,bottom:17-a}}
+					]
+					p1.anim.arms=[
+						{top:6+a*30,bottom:3+a*72,length:{top:17,bottom:17}},
+						{top:36-a*30,bottom:75-a*72,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75,lock:0},{top:90,bottom:75,lock:0}]
+				break
+				case 'Prehextorica':
+					p1.position.y-=a*27.5
+					p1.anim.legs=[
+						{top:12+a*6,bottom:9+a*3,length:{top:17,bottom:17-a}},
+						{top:12+a*6,bottom:9+a*3,length:{top:17,bottom:17-a}}
+					]
+					p1.anim.arms=[
+						{top:24+a*15,bottom:12+a*24,length:{top:17,bottom:17}},
+						{top:33-a*9,bottom:60-a*33,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60+a*15,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
+					p1.spin.arms=[{top:-165+a*45,bottom:-180+a*45,lock:0},{top:120+a*45,bottom:150+a*45,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -3050,6 +3241,46 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
+				case 'Shiru':
+					p1.anim.mouth.y++
+					p1.anim.legs=[
+						{top:9-a*6,bottom:3,length:{top:15.5,bottom:15.5}},
+						{top:9-a*6,bottom:3,length:{top:15.5,bottom:15.5}}
+					]
+					p1.anim.arms=[
+						{top:39+a*3,bottom:24-a*30,length:{top:15.5,bottom:15.5}},
+						{top:39-a*3,bottom:-6+a*24,length:{top:15.5,bottom:15.5}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
+				break
+				case 'DD-610':
+					p1.anim.legs=[
+						{top:6-a*3,bottom:0,length:{top:17,bottom:17}},
+						{top:6-a*3,bottom:0,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:12-a*3,bottom:9-a*3,length:{top:17,bottom:17}},
+						{top:12-a*3,bottom:9-a*3,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Prehextorica':
+					p1.position.y+=3
+					p1.anim.mouth.y-=1.5
+					p1.parts.mouth--
+					p1.anim.legs=[
+						{top:24-a*15,bottom:9-a*3,length:{top:17,bottom:17}},
+						{top:9+a*15,bottom:6+a*3,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:36+a*6,bottom:-24-a*9,length:{top:17,bottom:17}},
+						{top:36+a*6,bottom:-24-a*9,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-90,lock:0},{top:60,bottom:90,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-96,lock:0},{top:105,bottom:96,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -3121,8 +3352,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 				case 'Azis':
 					p1.spin.mouth-=200
 					p1.anim.mouth.x--
-					p1.anim.mouth.y-=2
-					p1.anim.mouth.y-=2
+					p1.anim.mouth.y-=4
 					p1.parts.mouth-=4
 					p1.anim.legs=[
 						{top:15,bottom:0,length:{top:16.5,bottom:16.5}},
@@ -3189,6 +3419,47 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Shiru':
+					p1.anim.mouth.y+=0.5
+					p1.anim.legs=[
+						{top:6,bottom:3,length:{top:15.5,bottom:15.5}},
+						{top:6,bottom:3,length:{top:15.5,bottom:15.5}}
+					]
+					p1.anim.arms=[
+						{top:24+a*6,bottom:36-a*12,length:{top:15.5,bottom:15.5}},
+						{top:18-a*6,bottom:24+a*18,length:{top:15.5,bottom:15.5}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-75+a*60,lock:0},{top:90,bottom:15+a*60,lock:0}]
+				break
+				case 'DD-610':
+					p1.anim.legs=[
+						{top:6-a*3,bottom:0,length:{top:17,bottom:17}},
+						{top:6-a*3,bottom:0,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:60-a*48,bottom:96-a*87,length:{top:17,bottom:17}},
+						{top:12+a*48,bottom:9+a*87,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-75-a*15,bottom:-30-a*60,lock:0},{top:90-a*15,bottom:90-a*60,lock:0}]
+				break
+				case 'Prehextorica':
+					p1.spin.mouth-=200
+					p1.anim.mouth.x--
+					p1.anim.mouth.y-=3
+					p1.parts.mouth-=4
+					p1.anim.legs=[
+						{top:15-a*6,bottom:0,length:{top:17,bottom:17}},
+						{top:15-a*6,bottom:0,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:15+a*39,bottom:6-a*42,length:{top:17,bottom:17}},
+						{top:54-a*39,bottom:-36+a*42,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90+a*12,bottom:-75+a*6,lock:0},{top:90+a*9,bottom:75+a*15,lock:0}]
 				break
 			}
 			p1.size=2
@@ -3303,6 +3574,35 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Shiru':
+					p1.anim.mouth.y+=0.5
+					p1.anim.legs=[
+						{top:18,bottom:6,length:{top:15.5,bottom:15.5}},
+						{top:27,bottom:-48,length:{top:15.5,bottom:15.5}}
+					]
+					p1.anim.arms=[
+						{top:18,bottom:105,length:{top:15.5,bottom:15.5}},
+						{top:27,bottom:99,length:{top:15.5,bottom:15.5}}
+					]
+					p1.spin.legs=[{top:-30,bottom:-60,lock:0},{top:30,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-99,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'DD-610':
+					p1.anim.legs=[{top:9,bottom:3,length:{top:17,bottom:17}},{top:9,bottom:3,length:{top:17,bottom:17}}]
+                    p1.anim.arms=[{top:12,bottom:6,length:{top:17,bottom:17}},{top:105,bottom:165,length:{top:17,bottom:17}}]
+                	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:120}]
+					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Prehextorica':
+					p1.parts.mouth-=3
+					p1.anim.mouth.x++
+					p1.anim.mouth.y-=2
+					p1.spin.mouth-=180
+					p1.anim.legs=[{top:6,bottom:3,length:{top:17,bottom:17}},{top:24,bottom:15,length:{top:17,bottom:17}}]
+                    p1.anim.arms=[{top:24,bottom:42,length:{top:17,bottom:17}},{top:24,bottom:-9,length:{top:17,bottom:17}}]
+                	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:120}]
+					p1.spin.arms=[{top:-93,bottom:-90,lock:0},{top:93,bottom:75,lock:0}]
 				break
 			}
 			p1.size=1.5

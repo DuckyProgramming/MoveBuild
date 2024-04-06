@@ -16,12 +16,12 @@ function setup(){
         //transition.trigger=true
         //transition.scene='menu'
 
-    /*current.menu.combatant=[12]
+    /*current.menu.combatant=[1]
     current.menu.deck=[0]
     current.startGame()
     game.animRate=4*/
 
-        //current.player=[1,2,3,4,5,6,7,8,9,10]
+        //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
         //current.create()
 
     //transition.trigger=false
