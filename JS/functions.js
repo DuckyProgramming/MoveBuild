@@ -116,6 +116,15 @@ function regStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 function diamond(layer,x,y,width,height,direction){
 	layer.quad(x-width*cos(direction),y-width*sin(direction),x-height*sin(direction),y-height*cos(direction),x+width*cos(direction),y+width*sin(direction),x+height*sin(direction),y+height*cos(direction))
 }
+function pentagon(layer,x1,y1,x2,y2,x3,y3,x4,y4,x5,y5){
+	layer.beginShape()
+	layer.vertex(x1,y1)
+	layer.vertex(x2,y2)
+	layer.vertex(x3,y3)
+	layer.vertex(x4,y4)
+	layer.vertex(x5,y5)
+	layer.endShape(CLOSE)
+}
 function plus(layer,size){
 	layer.line(-size,-size*4,size,-size*4)
 	layer.line(-size,-size*4,-size,-size)

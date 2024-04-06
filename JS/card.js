@@ -371,7 +371,7 @@ class card{
             case 122: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} All`; break
             case 123: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd 1 Slow Bleed\nto Discard`; break
             case 124: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExhaust ${effect[1]} Random Card${effect[1]!=1?`s`:``}`; break
-            case 125: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\n\nNext Attack This Turn\nDeals ${effect[1]} Less Damage`; break
+            case 125: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nNext Attack This Turn\nDeals ${effect[1]} Less Damage`; break
             case 126: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Weak`; break
             case 127: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nApply ${effect[1]} Vulnerable\nAdvance`; break
             case 128: string+=`Gain ${effect[0]} Combo`; break
@@ -2332,7 +2332,7 @@ class card{
             case 2101: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nCosts 1 Less\nWhen Turn Changes`; break
             case 2102: string+=`Add ${this.calculateEffect(effect[0],3)} Block\nWhere X = Turn Number`; break
             case 2103: string+=`Move X${effect[0]>0?`+${effect[0]}`:``} Tiles\nWhere X = Turn Number`; break
-            case 2104: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nAdd ${effect[1]} Random\nCtolorless Card${effect[1]!=1?`s`:``}\nto Your Hand`; break
+            case 2104: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Fatal,\nAdd ${effect[1]} Random\nColorless Card${effect[1]!=1?`s`:``}\nto Your Hand`; break
             case 2105: string+=`Take Another Turn\nGain ${effect[0]} Shock`; break
             case 2106: string+=`Deal ${this.calculateEffect(max(0,effect[0]+(stage.scene=='battle'&&this.player>=0&&this.player<this.battle.players?this.battle.cardManagers[this.player].greenDiff:0)),0)} Damage\nIncreases by 1\nWhen Card Played\nDecreases by 1\nWhen Card Discarded\nThis Combat`; break
             case 2107: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nin Any Direction\nWhen Etherealed, Add\nan Operational L`; break

@@ -1116,6 +1116,46 @@ function generateSprite(layer,type,direction){
 			displayTrianglesFront(layer,data.parts.hair.reverse,direction,0.5,34,0.1,0.1,data.color.hair.back,1)
 			displayTrianglesBack(layer,data.parts.hair.inside,direction,0,33,1,-0.025,data.color.hair.insideBack,1)
 		break
+		case 53:
+			controlSpin(data.parts.hair.inside,direction,0)
+			displayTrianglesFront(layer,data.parts.hair.inside,direction,0,33,1,-0.06,data.color.hair.insideFront,1)
+			controlSpin(data.parts.hair.main,direction,0)
+			displayTrianglesFront(layer,data.parts.hair.main,direction,0,35,1,-0.03,data.color.hair.front,1)
+			layer.arc(0,0,35,34,-180,0)
+			layer.line(-17.5,0,17.5,0)
+		break
+		case 54:
+			displayTrianglesBack(layer,data.parts.hair.main,direction,0,35,1,-0.06,data.color.hair.back,1)
+			displayTrianglesBack(layer,data.parts.hair.inside,direction,0,33,1,-0.03,data.color.hair.insideBack,1)
+		break
+		case 55:
+			for(let g=0,lg=data.parts.tail[0].length;g<lg;g++){
+				controlSpin(data.parts.tail[0][g][0],direction,0)
+				controlSpin(data.parts.tail[0][g][1],direction,0)
+				layer.translate(sin(direction*6+g*135)*0.3,0)
+				displayTrianglesFrontMerge(layer,data.parts.tail[0][g][0],direction,24-g*5,4,1,0.48,
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,g/lg),cos(direction+data.spin.tail[0])*20,[1,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(g+1)/lg),cos(direction+data.spin.tail[0])*20,[1,1,1]),1),
+				displayTrianglesFrontMerge(layer,data.parts.tail[0][g][1],direction,24-g*5,4,1,-0.48,
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,g/lg),cos(direction+data.spin.tail[0])*20,[1,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(g+1)/lg),cos(direction+data.spin.tail[0])*20,[1,1,1]),1)
+				layer.translate(sin(direction*6+g*135)*-0.3,0)
+			}
+		break
+		case 56:
+			for(let g=0,lg=data.parts.tail[0].length;g<lg;g++){
+				controlSpin(data.parts.tail[1][g][0],direction,0)
+				controlSpin(data.parts.tail[1][g][1],direction,0)
+				layer.translate(sin(direction*6+g*135)*0.3,0)
+				displayTrianglesFrontMerge(layer,data.parts.tail[1][g][0],direction,24-g*5,4,1,0.48,
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,g/lg),cos(direction+data.spin.tail[1])*20,[1,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(g+1)/lg),cos(direction+data.spin.tail[1])*20,[1,1,1]),1),
+				displayTrianglesFrontMerge(layer,data.parts.tail[1][g][1],direction,24-g*5,4,1,-0.48,
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,g/lg),cos(direction+data.spin.tail[1])*20,[1,1,1]),
+					upColor(mergeColor(data.color.hair.tail.start,data.color.hair.tail.end,(g+1)/lg),cos(direction+data.spin.tail[1])*20,[1,1,1]),1)
+				layer.translate(sin(direction*6+g*135)*-0.3,0)
+			}
+		break
 		
 	}
 }
@@ -2035,6 +2075,116 @@ function setupCombatantGraphics(type){
 				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
 				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],52,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 				//print('Generated L-HB-'+(g+1))
+			}
+		break
+		case 5:
+			graphics.combatant.push({
+				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[],tail:[[],[]]}},
+				parts:{},
+				color:{
+                    hair:{back:[182,202,209],front:[252,255,254],insideBack:[147,178,197],insideFront:[216,236,241],tail:{start:[211,238,245],end:[158,198,221]},glow:[255,255,255],bow:[88,90,123]},
+                    skin:{head:[255,249,242],body:[251,253,235],legs:[253,251,247],arms:[254,246,240]},
+                    eye:{back:[255,148,157],front:[122,0,9],glow:[255,238,236]},
+					mouth:{in:[254,194,166],out:[0,0,0]},
+                    dress:{main:[254,253,255],shawl:[239,237,238],inside:[88,91,129],highlight:[84,147,210],border:[49,100,192],tie:[89,95,97],bow:[[48,125,242],[216,242,255]],sleeve:[233,232,237]},
+				},
+				spin:{tail:[-114,114]}
+			})
+
+			graphics.combatant[graphics.combatant.length-1].parts.hair={main:[
+				{spin:[-9,-3,-6],height:1},
+				{spin:[-3,9,6],height:1},
+
+				{spin:[-18,-12,-14],height:0.5},
+				{spin:[12,18,14],height:0.5},
+				{spin:[-24,-15,-19],height:1},
+				{spin:[15,24,19],height:1},
+				{spin:[-30,-24,-26],height:1.5},
+				{spin:[24,30,26],height:1.5},
+
+				{spin:[-51,-33,-42],height:2},
+				{spin:[33,51,42],height:2},
+				{spin:[-63,-45,-54],height:3},
+				{spin:[45,63,54],height:3},
+				{spin:[-90,-60,-75],height:4},
+				{spin:[60,90,75],height:4},
+
+				{spin:[-108,-84,-96],height:6},
+				{spin:[84,108,96],height:6},
+				{spin:[-81,-72,-78],height:8},
+				{spin:[72,81,78],height:8},
+				{spin:[-81,-72,-75],height:7},
+				{spin:[72,81,75],height:7},
+
+				{spin:[96,150,132],height:14},
+				{spin:[-150,-96,-132],height:14},
+				
+				{spin:[120,180,156],height:17},
+				{spin:[-180,-120,-156],height:17},
+
+				{spin:[120,-120,180],height:18},
+			],inside:[
+				{spin:[-3,3,0],height:1.5},
+				
+				{spin:[-12,-6,-8],height:1},
+				{spin:[6,12,8],height:1},
+				{spin:[-18,-9,-13],height:0.5},
+				{spin:[9,18,13],height:0.5},
+				{spin:[-24,-18,-20],height:2},
+				{spin:[18,24,20],height:2},
+
+				{spin:[-54,-42,-48],height:2.5},
+				{spin:[42,54,48],height:2.5},
+				{spin:[-72,-60,-66],height:3.5},
+				{spin:[60,72,66],height:3.5},
+
+				{spin:[-93,-75,-84],height:7},
+				{spin:[75,93,84],height:7},
+				{spin:[-150,-90,-120],height:11},
+				{spin:[90,150,120],height:11},
+				{spin:[105,-165,165],height:12.5},
+				{spin:[165,-105,-165],height:12.5},
+			]}
+
+			graphics.combatant[graphics.combatant.length-1].parts.tail=[[],[]]
+
+			for(let g=0;g<2;g++){
+				for(let h=0;h<4;h++){
+					graphics.combatant[graphics.combatant.length-1].parts.tail[g].push([[],[]])
+					for(let i=0;i<12;i++){
+						graphics.combatant[graphics.combatant.length-1].parts.tail[g][h][0].push({spin:[h*15+i*30-15,h*15+i*30+15,h*15+i*30],y:[0,0,-4]})
+						graphics.combatant[graphics.combatant.length-1].parts.tail[g][h][1].push({spin:[h*15+i*30-15,h*15+i*30+15,h*15+i*30],y:[0,0,4]})
+					}
+				}
+			}
+		
+			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+
+			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
+			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],53,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				//print('Generated HF-'+(g+1))
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],54,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				//print('Generated HB-'+(g+1))
+			}
+			graphics.combatant[graphics.combatant.length-1].sprites.hair.tail=[[],[]]
+			for(let g=0;g<2;g++){
+				for(let h=0;h<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;h++){
+					graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g].push(createGraphics(120,360))
+					setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h])
+					graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h].translate(60,0)
+					graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h].scale(5)
+					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h],55+g,h*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+					//print('Generated HT-'+(g*graphics.combatant[graphics.combatant.length-1].sprites.genAmount+h+1))
+				}
 			}
 		break
 		case 10:

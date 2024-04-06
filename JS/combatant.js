@@ -836,6 +836,65 @@ class combatant{
                 this.animSet={loop:0,flip:0,hand:1,foot:0}
                 this.goal={anim:{direction:this.anim.direction}}
             break
+            case 'Shiru':
+                this.anim={direction:direction,mouth:{x:8,y:3.5,open:0},
+                    eye:[0,0],eyeStyle:[0,0],
+                    legs:[
+                        {top:9,bottom:0,length:{top:15.5,bottom:15.5}},
+                        {top:9,bottom:0,length:{top:15.5,bottom:15.5}}
+                    ],arms:[
+                        {top:27,bottom:9,length:{top:15.5,bottom:15.5}},
+                        {top:27,bottom:9,length:{top:15.5,bottom:15.5}}
+                    ]}
+
+                this.spin={
+                    legs:[{top:-60,bottom:-120},{top:60,bottom:120}],
+                    arms:[{top:-93,bottom:-75,lock:0},{top:93,bottom:75,lock:0}],
+                    hair:{bow:[-96,96]},
+                    eye:[-18,18],tail:[-114,114],button:0,flower:50,mouth:36}
+
+                this.color=graphics.combatant[5].color
+
+                this.parts={eyeLevel:-68,mouth:-65,minor:15,
+                    legs:[
+                        {top:{x:3,y:-31},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                        {top:{x:3,y:-31},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                    ],arms:[
+                        {top:{x:3.5,y:-53},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                        {top:{x:3.5,y:-53},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                    ]}
+
+                this.graphics={
+                    legs:[
+                        {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}},
+                        {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0}}
+                    ],arms:[
+                        {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}},
+                        {top:{x:0,y:0},middle:{x:0,y:0},bottom:{x:0,y:0},topStack:{x:0,y:0},middleStack:{x:0,y:0},bottomStack:{x:0,y:0}}
+                    ]}
+
+                this.fades={eye:[1,1],mouth:1,
+                    hair:{pin:1},
+                    skin:{legs:1,arms:1,body:1,head:1},
+                    dress:{main:1,bow:1,sleeve:1}
+                }
+
+                this.trigger={display:{mouth:true,
+                    hair:{back:true,front:true,tail:true,glow:true,bow:true},eye:[true,true],
+                    skin:{legs:true,arms:true,body:true,head:true},
+                    dress:{main:true,bow:true,sleeve:true},
+                }}
+
+                this.trigger.display.extra={damage:false}
+
+                this.calc={int:[0,0,0,0]}
+                
+                this.sprites={spin:0,detail:15,spinDetail:0,spinDetailHead:0,temp:0}
+
+                this.animSet={loop:0,flip:0,hand:0,foot:0}
+
+                this.goal={anim:{direction:this.anim.direction}}
+            break
             case 'Ume':
                 this.anim={direction:direction,head:direction,sword:1,mouth:{x:6,y:4,open:0},
                     eye:[0,0],eyeStyle:[0,0],under:{top:{x:1,y:1},bottom:{x:1,y:1},bow:{
@@ -3397,7 +3456,7 @@ class combatant{
                 this.sprites.spinDetail=constrain(round((((this.anim.direction%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
                 this.sprites.spinDetailHead=constrain(round((((this.anim.head%360)+360)%360)/this.sprites.detail),0,360/this.sprites.detail-1)
             break
-            case 'Certes': case 'Airi':
+            case 'Certes': case 'Airi': case 'Shiru':
                 for(let g=0;g<2;g++){
                     this.parts.legs[g].middle.x=this.parts.legs[g].top.x+lsin(this.anim.legs[g].top)*this.anim.legs[g].length.top
                     this.parts.legs[g].middle.y=this.parts.legs[g].top.y+lcos(this.anim.legs[g].top)*this.anim.legs[g].length.top
@@ -5855,7 +5914,7 @@ class combatant{
     }
     startAnimation(type){
         switch(this.name){
-            case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Ume':
+            case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Shiru': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop=0
@@ -5962,7 +6021,7 @@ class combatant{
     }
     runAnimation(rate,type){
         switch(this.name){
-            case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Ume':
+            case 'Joe': case 'George': case 'Lira': case 'Sakura': case 'Certes': case 'Azis': case 'Setsuna': case 'Airi': case 'Edgar': case 'Chip': case 'Shiru': case 'Ume':
                 switch(type){
                     case 0:
                         this.animSet.loop+=rate
@@ -7046,6 +7105,69 @@ class combatant{
                     break
                 }
             break
+            break
+            case 'Shiru':
+                switch(type){
+                    case 0:
+                        let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                        this.layer.noStroke()
+                        this.layer.fill(this.color.dress.sleeve[0],this.color.dress.sleeve[1],this.color.dress.sleeve[2],this.fade*this.fades.dress.sleeve)
+                        this.layer.beginShape()
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x+2.1*sin(dir+90),
+                            this.graphics.arms[key].middle.y+2.1*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.45+this.graphics.arms[key].bottom.x*0.55+3.6*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.45+this.graphics.arms[key].bottom.y*0.55+3.6*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7+2.4*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7+2.4*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85+2.7*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85+2.7*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75+0.9*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75+0.9*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85,
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85)
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.25+this.graphics.arms[key].bottom.x*0.75-0.9*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.25+this.graphics.arms[key].bottom.y*0.75-0.9*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.15+this.graphics.arms[key].bottom.x*0.85-2.7*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.15+this.graphics.arms[key].bottom.y*0.85-2.7*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7-2.4*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7-2.4*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x*0.45+this.graphics.arms[key].bottom.x*0.55-3.6*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.45+this.graphics.arms[key].bottom.y*0.55-3.6*cos(dir+90))
+                        this.layer.vertex(
+                            this.graphics.arms[key].middle.x-2.1*sin(dir+90),
+                            this.graphics.arms[key].middle.y-2.1*cos(dir+90))
+                        this.layer.endShape()
+                        this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.5)
+                        this.layer.quad(
+                            this.graphics.arms[key].middle.x-2.1*sin(dir+90),
+                            this.graphics.arms[key].middle.y-2.1*cos(dir+90),
+                            this.graphics.arms[key].middle.x+2.1*sin(dir+90),
+                            this.graphics.arms[key].middle.y+2.1*cos(dir+90),
+                            this.graphics.arms[key].top.x+2.1*sin(dir+90),
+                            this.graphics.arms[key].top.y+2.1*cos(dir+90),
+                            this.graphics.arms[key].top.x-2.1*sin(dir+90),
+                            this.graphics.arms[key].top.y-2.1*cos(dir+90)
+                        )
+                        this.layer.stroke(this.color.dress.tie[0],this.color.dress.tie[1],this.color.dress.tie[2],this.fade*this.fades.dress.sleeve)
+                        this.layer.strokeWeight(0.5)
+                        this.layer.line(
+                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7+2.4*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7+2.4*cos(dir+90),
+                            this.graphics.arms[key].middle.x*0.3+this.graphics.arms[key].bottom.x*0.7-2.4*sin(dir+90),
+                            this.graphics.arms[key].middle.y*0.3+this.graphics.arms[key].bottom.y*0.7-2.4*cos(dir+90))
+                    break
+                }
+            break
             case 'Ume':
                 switch(type){
                     case -1:
@@ -7061,10 +7183,9 @@ class combatant{
                         this.layer.pop()
                     break
                     default:
-                        minorGraphicDisplay(this.layer,type)
+                        //minorGraphicDisplay(this.layer,type)
                     break
                 }
-            break
             case 'Goon':
                 switch(type){
                     case 0:
