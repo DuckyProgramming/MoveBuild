@@ -182,7 +182,8 @@ class attack{
             case 2124: case 2125: case 2126: case 2127: case 2128: case 2129: case 2130: case 2134: case 2135: case 2136:
             case 2136: case 2137: case 2139: case 2142: case 2143: case 2144: case 2146: case 2148: case 2149: case 2150:
             case 2151: case 2155: case 2156: case 2158: case 2161: case 2163: case 2170: case 2171: case 2172: case 2181:
-            case 2184: case 2185: case 2186: case 2187:
+            case 2184: case 2185: case 2186: case 2187: case 2188: case 2189: case 2190: case 2191: case 2192: case 2193:
+            case 2195: case 2197: case 2198:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -2506,6 +2507,13 @@ class attack{
                     case 2184:
                         if(this.targetCombatant.getStatus('Weak')==0){
                             this.userCombatant.statusEffect('Weak',this.effect[1])
+                        }
+                    break
+                    case 2195:
+                        if(this.targetCombatant.life<=0){
+                            for(let a=0,la=this.effect[1];a<la;a++){
+                                this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                            }
                         }
                     break
 
@@ -5528,6 +5536,9 @@ class attack{
                     case 2171:
                         this.targetCombatant.takeDamage(this.effect[0]*this.userManager.discard.costNumber(0),this.user)
                     break
+                    case 2196:
+                        this.userCombatant.statusEffect('Discard Block',this.effect[0])
+                    break
 
                 }
             break
@@ -8208,6 +8219,12 @@ class attack{
                         this.targetCombatant.life=0
                         this.userManager.draw(this.effect[0])
                     break
+                    case 2194:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                        }
+                        this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
+                    break
 
                 }
             break
@@ -8959,6 +8976,34 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userCombatant.holdOrb(4)
+                        }
+                    break
+                    case 2188:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.faith+=this.effect[1]
+                    break
+                    case 2189:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                        }
+                    break
+                    case 2190:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userManager.hand.transform(this.effect[1])
+                    break
+                    case 2191:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userCombatant.enterStance(0)
+                    break
+                    case 2192:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.targetCombatant.randomStatusInstant(this.effect[1],[1])
+                    break
+                    case 2193:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetCombatant.life<=0){
+                            this.battle.energy.main[this.player]+=this.effect[1]
                         }
                     break
 

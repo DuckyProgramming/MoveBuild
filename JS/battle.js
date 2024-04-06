@@ -995,7 +995,7 @@ class battle{
                 for(let a=0,la=game.playerNumber;a<la;a++){
                     if(this.menu.anim.prismrule[a+7]>0){
                         this.layer.fill(255,this.menu.anim.prismrule[a+7])
-                        this.layer.ellipse(this.layer.width/2+242.5,this.layer.height/2-190+a*45,10)
+                        this.layer.ellipse(this.layer.width/2+242.5,this.layer.height/2-270+a*45,10)
                     }
                 }
             break
@@ -1860,7 +1860,7 @@ class battle{
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+242.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+242.5,y:this.layer.height/2-270+a*45},width:27.5,height:27.5})){
                         if(variants.prismrule.includes(a+1)){
                             variants.prismrule.splice(variants.prismrule.indexOf(a+1),1)
                         }else{
@@ -2198,7 +2198,7 @@ class battle{
             case 'custom':
                 let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-2,-1]
                 for(let a=0,la=prismrules.length;a<la;a++){
-                    if(key=='abcdefg'[a]||key=='ABCDEFG'[a]){
+                    if(key=='!@#$%^&'[a]){
                         if(variants.prismrule.includes(prismrules[a])){
                             variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
                         }else{
@@ -2207,7 +2207,7 @@ class battle{
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    if((a+1)%10==int(key)){
+                    if(key=='1234567890abc'[a]||key=='1234567890ABC'[a]){
                         if(variants.prismrule.includes(a+1)){
                             variants.prismrule.splice(variants.prismrule.indexOf(a+1),1)
                         }else{

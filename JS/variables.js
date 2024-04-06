@@ -5761,7 +5761,7 @@ Grants more rewards, including a relic.`,
 `Combo increases by 1 when an enemy is hit, and you are directly responsible.
 Some cards cost combo, or spend it in their effects. Others may generate it.`,
         },{name:'Speed Up/Slow',desc:
-`Reduces the amount of movement turns an enemy gets on their turn.
+`Changes the amount of movement turns an enemy gets on their turn.
 Most enemies have 1 by default, some have more or less.`,
         },{name:'Status',desc:
 `Negative card that expends draw. Removed at the end of combat.`,
@@ -5936,8 +5936,7 @@ Vary greatly in effect.`,
 `Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
 Is removed when damage taken.`,
         },{name:'Freeze',desc:
-`Frozen enemies will have one of their attacks' damage reduced to 4.
-Decrements afterward.`,
+`Being hit by a frozen character gives 2*Freeze Single Damage.`,
         },{name:'Shock',desc:
 `Take damage after each movement step.`,
         },{name:'Jinx',desc:

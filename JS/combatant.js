@@ -132,7 +132,7 @@ class combatant{
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
-            'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block',
+            'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -162,7 +162,7 @@ class combatant{
                 1,0,1,1,2,2,2,0,2,0,//25
                 0,0,0,0,0,0,0,0,0,2,//26
                 1,1,2,1,0,2,0,0,2,2,//27
-                2,0,2,0,
+                2,0,2,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -192,7 +192,7 @@ class combatant{
                 1,0,0,0,3,3,3,3,1,2,//25
                 1,2,2,2,2,2,2,2,2,1,//26
                 2,2,2,2,1,1,2,0,0,0,//27
-                1,1,0,1,
+                1,1,0,1,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad

@@ -2842,6 +2842,9 @@ class group{
             case 4:
                 this.cards[a].deSize=true
                 this.cards[a].callSpecDiscardEffect()
+                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
+                }
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     this.cards[b].otherDiscard()
                 }
@@ -2937,6 +2940,9 @@ class group{
             case 15:
                 this.cards[a].deSize=true
                 this.cards[a].callSpecDiscardEffect()
+                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
+                }
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     this.cards[b].otherDiscard()
                 }

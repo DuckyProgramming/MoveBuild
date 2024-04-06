@@ -520,6 +520,9 @@ class combatantManager{
                     case 29:
                         this.combatants[a].statusEffect('Double Damage Turn',args[0])
                     break
+                    case 30:
+                        this.combatants[a].statusEffect('Weak',args[0])
+                    break
                 }
             }
         }
