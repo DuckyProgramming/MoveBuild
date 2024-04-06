@@ -6805,13 +6805,6 @@ types.card=[
             {effect:[6,1],attack:1246,cost:2,target:[2,2,2],spec:[0,15],limit:1,class:1},
         ],
     },{
-        name:'Silver\nPot',rarity:1,list:7,
-        levels:[
-            {effect:[1,1,1,1],attack:1258,cost:0,target:[2,1,6],spec:[],class:1},
-            {effect:[2,1,1,1],attack:1258,cost:0,target:[2,1,6],spec:[],class:1},
-            {effect:[3,1,1,1],attack:1258,cost:0,target:[2,1,6],spec:[],class:1},
-        ],
-    },{
         name:'Bronze\nPot',rarity:1,list:7,
         levels:[
             {effect:[2,1,1,1],attack:1259,cost:0,target:[2,1,6],spec:[],class:1},
@@ -6838,20 +6831,6 @@ types.card=[
             {effect:[6,1],attack:1354,cost:0,target:[2,1,2],spec:[],class:1},
             {effect:[10,1],attack:1354,cost:0,target:[2,1,2],spec:[],class:1},
             {effect:[12,1],attack:1354,cost:0,target:[2,1,2],spec:[],class:1},
-        ],
-    },{
-        name:'Silver\nDagger',rarity:0,list:7,
-        levels:[
-            {effect:[5,1],attack:1374,cost:0,target:[2,1,1],spec:[0],class:1},
-            {effect:[8,1],attack:1374,cost:0,target:[2,1,1],spec:[0],class:1},
-            {effect:[10,1],attack:1374,cost:0,target:[2,1,1],spec:[0],class:1},
-        ],
-    },{
-        name:'Silverswitch',rarity:1,list:7,
-        levels:[
-            {effect:[7,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
-            {effect:[11,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
-            {effect:[14,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
         ],
     },{
         name:'Exile',rarity:0,list:7,
@@ -7132,13 +7111,6 @@ types.card=[
             {effect:[2,2,2,2],attack:2076,cost:1,target:[2,1,3],spec:[],class:4},
             {effect:[3,3,3,3],attack:2076,cost:1,target:[2,1,3],spec:[],class:4},
             {effect:[4,4,4,4],attack:2076,cost:1,target:[2,1,3],spec:[],class:4},
-        ],
-    },{
-        name:'Silverstorm',rarity:2,list:7,
-        levels:[
-            {effect:[14,1],attack:2087,cost:2,target:[5],spec:[0,1],class:1},
-            {effect:[21,1],attack:2087,cost:2,target:[5],spec:[0,1],class:1},
-            {effect:[26,1],attack:2087,cost:2,target:[5],spec:[0,1],class:1},
         ],
     },
 
@@ -10753,6 +10725,34 @@ types.card=[
             {effect:[1,1],attack:1303,cost:1,target:[0],spec:[1],class:4},
             {effect:[2,1],attack:1303,cost:1,target:[0],spec:[1],class:4},
             {effect:[2,2],attack:1303,cost:1,target:[0],spec:[1],class:4},
+        ],
+    },{
+        name:'Silver\nPot',rarity:1,list:11,
+        levels:[
+            {effect:[1,1,1,1],attack:1258,cost:0,target:[2,1,6],spec:[],class:1},
+            {effect:[2,1,1,1],attack:1258,cost:0,target:[2,1,6],spec:[],class:1},
+            {effect:[3,1,1,1],attack:1258,cost:0,target:[2,1,6],spec:[],class:1},
+        ],
+    },{
+        name:'Silverstorm',rarity:2,list:11,
+        levels:[
+            {effect:[14,1],attack:2087,cost:2,target:[5],spec:[0,1],class:1},
+            {effect:[21,1],attack:2087,cost:2,target:[5],spec:[0,1],class:1},
+            {effect:[26,1],attack:2087,cost:2,target:[5],spec:[0,1],class:1},
+        ],
+    },{
+        name:'Silver\nDagger',rarity:0,list:11,
+        levels:[
+            {effect:[5,1],attack:1374,cost:0,target:[2,1,1],spec:[0],class:1},
+            {effect:[8,1],attack:1374,cost:0,target:[2,1,1],spec:[0],class:1},
+            {effect:[10,1],attack:1374,cost:0,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Silverswitch',rarity:1,list:11,
+        levels:[
+            {effect:[7,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[11,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
+            {effect:[14,1],attack:1921,cost:2,target:[2,1,1],spec:[0,2,35],class:1},
         ],
     },
 

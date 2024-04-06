@@ -75,7 +75,7 @@ combatant.prototype.display=function(){
             this.layer.fill(255,200,255,this.fade*0.5)
             for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
                 if(this.infoAnim.faith[a]>0){
-                    this.layer.ellipse(lsin(a*36+18)*60,cos(a*36+18)*-60,12)
+                    this.layer.ellipse(lsin(a*36+18)*60,lcos(a*36+18)*-60,12)
                 }
             }
             this.layer.translate(0,48)
@@ -3760,6 +3760,337 @@ combatant.prototype.display=function(){
                             this.layer.scale(1/(lcos(this.anim.direction+this.spin.hair.bow[g])*0.6+0.4),1)
                             this.layer.translate(lsin(this.anim.direction+this.spin.hair.bow[g])*-16,80)
                         }
+                    }
+                }
+            break
+            case 'DD-610':
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.minorDisplay(0,g)
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.minorDisplay(0,g)
+                    }
+                    for(let h=0;h<2;h++){
+                        if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                            if(this.trigger.display.skin.legs){
+                                this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
+                                this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
+                                this.minorDisplay(1,h)
+                                if(lcos(this.anim.direction)>0){
+                                    this.minorDisplay(2,h)
+                                }
+                            }
+                        }
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.noStroke()
+                    for(let a=0,la=15;a<la;a++){
+                        for(let b=0,lb=4;b<lb;b++){
+                            if(lcos(this.anim.direction+b*90)>0){
+                                let base=this.flashColor(mergeColor(this.color.skin.bodyUpper.out,this.color.skin.bodyLower.out,a/la))
+                                this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.body)
+                                this.layer.rect(8*lsin(this.anim.direction+b*90),-59+a*2,16*lcos(this.anim.direction+b*90),2.5)
+                                base=this.flashColor(mergeColor(this.color.skin.bodyUpper.in,this.color.skin.bodyLower.in,a/la))
+                                this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.body)
+                                this.layer.rect(8*lsin(this.anim.direction+b*90),-59+a*2,max(0,16*lcos(this.anim.direction+b*90)-3),2.5)
+                            }
+                        }
+                    }
+                    this.layer.strokeWeight(3)
+                    this.layer.stroke(this.flashColor(this.color.skin.bodyUpper.out)[0],this.flashColor(this.color.skin.bodyUpper.out)[1],this.flashColor(this.color.skin.bodyUpper.out)[2],this.fade*this.fades.skin.body)
+                    for(let a=0,la=4;a<la;a++){
+                        if(lcos(this.anim.direction+a*90)>0){
+                            this.layer.line(6.5*lsin(this.anim.direction+a*90)-6.5*lcos(this.anim.direction+a*90),-60,6.5*lsin(this.anim.direction+a*90)+6.5*lcos(this.anim.direction+a*90),-60)
+                        }
+                    }
+                    this.layer.stroke(this.flashColor(this.color.skin.bodyLower.out)[0],this.flashColor(this.color.skin.bodyLower.out)[1],this.flashColor(this.color.skin.bodyLower.out)[2],this.fade*this.fades.skin.body)
+                    for(let a=0,la=4;a<la;a++){
+                        if(lcos(this.anim.direction+a*90)>0){
+                            this.layer.line(6.5*lsin(this.anim.direction+a*90)-6.5*lcos(this.anim.direction+a*90),-30,6.5*lsin(this.anim.direction+a*90)+6.5*lcos(this.anim.direction+a*90),-30)
+                        }
+                    }
+                    this.layer.stroke(this.flashColor(this.color.wire)[0],this.flashColor(this.color.wire)[1],this.flashColor(this.color.wire)[2],this.fade*this.fades.skin.body)
+                    this.layer.strokeWeight(0.5)
+                    for(let a=0,la=4;a<la;a++){
+                        if(lcos(this.anim.direction+a*90)>0.1){
+                            this.layer.line(8*lsin(this.anim.direction+a*90)-3*lcos(this.anim.direction+a*90),-65,8*lsin(this.anim.direction+a*90)-3*lcos(this.anim.direction+a*90),-57+a%2*3)
+                            this.layer.line(8*lsin(this.anim.direction+a*90)+3*lcos(this.anim.direction+a*90),-65,8*lsin(this.anim.direction+a*90)+3*lcos(this.anim.direction+a*90),-54-a%2*3)
+                        }
+                    }
+                }
+                if(this.trigger.display.seal&&lcos(this.anim.direction)>0){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.seal)[0],this.flashColor(this.color.seal)[1],this.flashColor(this.color.seal)[2],this.fade*this.fades.seal)
+                    this.layer.quad(8*lsin(this.anim.direction),-48,8*lsin(this.anim.direction)-2*lcos(this.anim.direction),-50,8*lsin(this.anim.direction),-52,8*lsin(this.anim.direction)+2*lcos(this.anim.direction),-50)
+                }
+                if(this.trigger.display.belt){
+                    this.layer.noStroke()
+                    for(let a=0,la=15;a<la;a++){
+                        for(let b=0,lb=4;b<lb;b++){
+                            if(lcos(this.anim.direction+b*90)>0){
+                                let base=this.flashColor(this.color.belt)
+                                this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.belt)
+                                this.layer.rect(8*lsin(this.anim.direction+b*90),-42,8*lcos(this.anim.direction+b*90),1)
+                            }
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                        this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                        this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        this.minorDisplay(0,g)
+                    }
+                }
+                if(this.trigger.display.antenna){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.antenna)[0],this.flashColor(this.color.antenna)[1],this.flashColor(this.color.antenna)[2],this.fade*this.fades.antenna)
+                    this.layer.quad(0,-87,-6*abs(lcos(this.anim.direction)),-91,-10*abs(lcos(this.anim.direction)),-97,-4*abs(lcos(this.anim.direction)),-93)
+                    this.layer.quad(0,-87,6*abs(lcos(this.anim.direction)),-91,10*abs(lcos(this.anim.direction)),-97,4*abs(lcos(this.anim.direction)),-93)
+                }
+                if(this.trigger.display.skin.head){
+                    this.layer.stroke(this.flashColor(this.color.skin.head.out)[0],this.flashColor(this.color.skin.head.out)[1],this.flashColor(this.color.skin.head.out)[2],this.fade*this.fades.skin.head)
+                    this.layer.strokeWeight(3)
+                    this.layer.fill(this.flashColor(this.color.skin.head.in)[0],this.flashColor(this.color.skin.head.in)[1],this.flashColor(this.color.skin.head.in)[2],this.fade*this.fades.skin.head)
+                    for(let a=0,la=4;a<la;a++){
+                        if(lcos(this.anim.direction+a*90)>0){
+                            this.layer.rect(13.5*lsin(this.anim.direction+a*90),-75,27*lcos(this.anim.direction+a*90),27,1)
+                        }
+                    }
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.dots[0])[0],this.flashColor(this.color.dots[0])[1],this.flashColor(this.color.dots[0])[2],this.fade*this.fades.skin.head)
+                    for(let a=0,la=4;a<la;a++){
+                        if(lcos(this.anim.direction+a*90)>0){
+                            this.layer.ellipse(13.5*lsin(this.anim.direction+a*90)-9*lcos(this.anim.direction+a*90),-84,3*lcos(this.anim.direction+a*90),3)
+                            this.layer.ellipse(13.5*lsin(this.anim.direction+a*90)+9*lcos(this.anim.direction+a*90),-84,3*lcos(this.anim.direction+a*90),3)
+                            this.layer.ellipse(13.5*lsin(this.anim.direction+a*90)-9*lcos(this.anim.direction+a*90),-66,3*lcos(this.anim.direction+a*90),3)
+                            this.layer.ellipse(13.5*lsin(this.anim.direction+a*90)+9*lcos(this.anim.direction+a*90),-66,3*lcos(this.anim.direction+a*90),3)
+                        }
+                    }
+                    this.layer.fill(this.flashColor(this.color.dots[1])[0],this.flashColor(this.color.dots[1])[1],this.flashColor(this.color.dots[1])[2],this.fade*this.fades.skin.head)
+                    for(let a=0,la=4;a<la;a++){
+                        if(lcos(this.anim.direction+a*90)>0){
+                            this.layer.ellipse(13.5*lsin(this.anim.direction+a*90)-9*lcos(this.anim.direction+a*90),-80,2*lcos(this.anim.direction+a*90),2)
+                            this.layer.ellipse(13.5*lsin(this.anim.direction+a*90)+5*lcos(this.anim.direction+a*90),-84,2*lcos(this.anim.direction+a*90),2)
+                            this.layer.ellipse(13.5*lsin(this.anim.direction+a*90)-5*lcos(this.anim.direction+a*90),-66,2*lcos(this.anim.direction+a*90),2)
+                            this.layer.ellipse(13.5*lsin(this.anim.direction+a*90)+9*lcos(this.anim.direction+a*90),-70,2*lcos(this.anim.direction+a*90),2)
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                        this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                        this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        this.minorDisplay(0,g)
+                    }
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.minorDisplay(0,g)
+                    }
+                    if(this.trigger.display.eye[g]){
+                        this.minorDisplayGeneral(0,g)
+                    }
+                }
+            break
+            case 'Prehextorica':
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                        let base=this.flashColor(this.color.skin.arms)
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        base=this.flashColor(upColor(this.color.skin.arms,20,[1,1,1]))
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(2)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.layer.noStroke()
+                        base=this.flashColor(this.color.skin.node)
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,2.5,2.5,0)
+                        regPoly(this.layer,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y,16,2.5,2.5,0)
+                        base=this.flashColor(upColor(this.color.skin.node,20,[1,1,1]))
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,1.5,1.5,0)
+                        regPoly(this.layer,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y,16,1.5,1.5,0)
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.noStroke()
+                    let base=this.flashColor(this.color.skin.body)
+                    this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                    regPoly(this.layer,0,-48,16,6.5,19.5,0)
+                    base=this.flashColor(upColor(this.color.skin.body,20,[1,1,1]))
+                    this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                    regPoly(this.layer,0,-48,16,4.5,17.5,0)
+                    base=this.flashColor(this.color.skin.body)
+                    this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                    this.layer.quad(-5,-54,-5,-52,5,-42,5,-44)
+                    this.layer.quad(0,-59,0,-57,5,-52,5,-54)
+                    this.layer.quad(-5,-44,-5,-42,0,-37,0,-39)
+                    base=this.flashColor(this.color.skin.rock)
+                    this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                    for(let a=0,la=9;a<la;a++){
+                        if(lcos(this.anim.direction+360*a/la)>=0){
+                            regPoly(this.layer,6.5*lsin(this.anim.direction+360*a/la),-49+a%2*2+9*lsin(360*a/la),16,(2+a%3*0.5)*lcos(this.anim.direction+360*a/la),2+a%3*0.5,0)
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                        let base=this.flashColor(this.color.skin.arms)
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        base=this.flashColor(upColor(this.color.skin.arms,20,[1,1,1]))
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(2)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.layer.noStroke()
+                        base=this.flashColor(this.color.skin.node)
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,2.5,2.5,0)
+                        regPoly(this.layer,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y,16,2.5,2.5,0)
+                        base=this.flashColor(upColor(this.color.skin.node,20,[1,1,1]))
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,1.5,1.5,0)
+                        regPoly(this.layer,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y,16,1.5,1.5,0)
+                    }
+                    for(let h=0;h<2;h++){
+                        if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                            if(this.trigger.display.skin.legs){
+                                let base=this.flashColor(this.color.skin.legs)
+                                this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.legs)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(this.graphics.legs[g].top.x,this.graphics.legs[g].top.y,this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y)
+                                this.layer.line(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,this.graphics.legs[g].bottom.x,this.graphics.legs[g].bottom.y)
+                                base=this.flashColor(upColor(this.color.skin.legs,20,[1,1,1]))
+                                this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.legs)
+                                this.layer.strokeWeight(2)
+                                this.layer.line(this.graphics.legs[g].top.x,this.graphics.legs[g].top.y,this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y)
+                                this.layer.line(this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,this.graphics.legs[g].bottom.x,this.graphics.legs[g].bottom.y)
+                                this.layer.noStroke()
+                                base=this.flashColor(this.color.skin.node)
+                                this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.legs)
+                                regPoly(this.layer,this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,16,2.5,2.5,0)
+                                regPoly(this.layer,this.graphics.legs[g].bottom.x,this.graphics.legs[g].bottom.y,16,2.5,2.5,0)
+                                base=this.flashColor(upColor(this.color.skin.node,20,[1,1,1]))
+                                this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.legs)
+                                regPoly(this.layer,this.graphics.legs[g].middle.x,this.graphics.legs[g].middle.y,16,1.5,1.5,0)
+                                regPoly(this.layer,this.graphics.legs[g].bottom.x,this.graphics.legs[g].bottom.y,16,1.5,1.5,0)
+                            }
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
+                        let base=this.flashColor(this.color.skin.arms)
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        base=this.flashColor(upColor(this.color.skin.arms,20,[1,1,1]))
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(2)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.layer.noStroke()
+                        base=this.flashColor(this.color.skin.node)
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,2.5,2.5,0)
+                        regPoly(this.layer,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y,16,2.5,2.5,0)
+                        base=this.flashColor(upColor(this.color.skin.node,20,[1,1,1]))
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,1.5,1.5,0)
+                        regPoly(this.layer,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y,16,1.5,1.5,0)
+                    }
+                }
+                if(this.trigger.display.skin.head){
+                    this.layer.noStroke()
+                    let base=this.flashColor(this.color.skin.head)
+                    this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                    regPoly(this.layer,0,-81,16,15,15,0)
+                    base=this.flashColor(upColor(this.color.skin.head,20,[1,1,1]))
+                    this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                    regPoly(this.layer,0,-81,16,13,13,0)
+                    base=this.flashColor(this.color.skin.head)
+                    this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                    this.layer.quad(-10,-92,-11,-91,10,-70,11,-71)
+                    this.layer.quad(0,-92,0,-90,14,-76,14,-78)
+                    this.layer.quad(-14,-86,-14,-84,0,-70,0,-72)
+                    if(lcos(this.anim.direction+70)>0){
+                        base=this.flashColor(this.color.skin.crack)
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                        regStar(this.layer,7*lsin(this.anim.direction+70),-84,7,7*lcos(this.anim.direction+70),7,2*lcos(this.anim.direction+70),2,9)
+                    }
+                }
+                if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
+                    this.minorDisplayGeneral(1,0)
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
+                        let base=this.flashColor(this.color.skin.arms)
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        base=this.flashColor(upColor(this.color.skin.arms,20,[1,1,1]))
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(2)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        this.layer.noStroke()
+                        base=this.flashColor(this.color.skin.node)
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,2.5,2.5,0)
+                        regPoly(this.layer,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y,16,2.5,2.5,0)
+                        base=this.flashColor(upColor(this.color.skin.node,20,[1,1,1]))
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,1.5,1.5,0)
+                        regPoly(this.layer,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y,16,1.5,1.5,0)
+                    }
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
+                        let base=this.flashColor(this.color.skin.arms)
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        base=this.flashColor(upColor(this.color.skin.arms,20,[1,1,1]))
+                        this.layer.stroke(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(2)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.noStroke()
+                        base=this.flashColor(this.color.skin.node)
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,2.5,2.5,0)
+                        base=this.flashColor(upColor(this.color.skin.node,20,[1,1,1]))
+                        this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.arms)
+                        regPoly(this.layer,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,16,1.5,1.5,0)
+                    }
+                    if(this.trigger.display.eye[g]){
+                        this.minorDisplayGeneral(0,g)
                     }
                 }
             break
