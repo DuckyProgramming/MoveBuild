@@ -2474,7 +2474,7 @@ class attack{
                         this.userManager.hand.discard(this.effect[1]*this.energy)
                     break
                     case 2123:
-                        this.targetCombatant.statusEffect('Miss',this.effect[1])
+                        this.targetCombatant.statusEffect('Jinx',this.effect[1])
                         this.userManager.hand.upgrade(this.effect[2])
                     break
                     case 2137:

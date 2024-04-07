@@ -141,7 +141,7 @@ class battle{
         }
     }
     resetAnim(){
-        this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],defeat:0,deck:[],dictionaryMulti:[],exit:1,sell:[],food:[],afford:[],upAfford:false,reroll:[],rerollActive:[]}
+        this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],defeat:0,deck:[],dictionaryMulti:[],exit:1,sell:[],food:[],afford:1,upAfford:false,reroll:[],rerollActive:[]}
         for(let a=0,la=this.players;a<la;a++){
             this.anim.extra.push(0)
             this.anim.turn.push(0)
@@ -150,7 +150,6 @@ class battle{
             this.anim.dictionaryMulti.push(1)
             this.anim.sell.push(1)
             this.anim.food.push(1)
-            this.anim.afford.push(1)
             this.anim.reroll.push(1)
             this.anim.rerollActive.push(1)
         }
@@ -189,6 +188,11 @@ class battle{
         transition.scene='replay'
         transition.convert=true
         this.replayManager.reset()
+    }
+    sceneChange(){
+        if(this.initialized){
+            this.cardManagers.forEach(cardManager=>cardManager.sceneChange())
+        }
     }
     convert(scene){
         switch(scene){
@@ -1613,7 +1617,7 @@ class battle{
                     this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.food[a]=smoothAnim(this.anim.food[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:578},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.reroll[a]=smoothAnim(this.anim.reroll[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:438},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                    this.anim.rerollActive[a]=smoothAnim(this.anim.rerollActive[a],!this.purchaseManager.rerollActive[a]&&!this.overlayManager.anyActive,0,1,5)
+                    this.anim.rerollActive[a]=smoothAnim(this.anim.rerollActive[a],!this.purchaseManager.rerollActive[a],0,1,5)
                 }
                 this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:466},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
             break

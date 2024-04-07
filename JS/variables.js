@@ -13,7 +13,7 @@ types={
         {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:72,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
         {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Pursuing a Rewriter for some time now,\ntracking the supposed ghost\nacross several Managerial worlds,\nfinally arriving at its location.`},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:66,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
-        {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A memver of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
+        {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
 
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -145,7 +145,7 @@ types={
         {name:'Intruder',life:21,behavior:1,spec:[],move:{type:0,speed:2},attack:[{type:270,effect:[7,1]},{type:271,effect:[5,1]}],description:`Didn't ask to be let in`},
         {name:'Lead Brick',life:35,behavior:1,spec:[],move:{type:0,speed:0},attack:[{type:272,effect:[8]},{type:273,effect:[4]}],description:`Somehow floats`},
         {name:'Regen Balloon',life:29,behavior:0,spec:[],move:{type:2,speed:1},attack:[{type:290,effect:[8,3]}],description:`Honestly I can't explain this one`},
-        {name:'Precision',life:16,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:274,effect:[5,1]},{type:38,effect:[8]}],description:`It works the first time at least`},
+        {name:'Precision',life:12,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:274,effect:[4,1]},{type:38,effect:[6]}],description:`It works the first time at least`},
         {name:'Relic',life:108,behavior:0,spec:[0,18],move:{type:0,speed:1},attack:[{type:275,effect:[18]},{type:276,effect:[16]},{type:277,effect:[20]}],description:`Why do enemies award you now?`},
         {name:'Legacy',life:113,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:278,effect:[14,2]},{type:279,effect:[17,2]},{type:280,effect:[30,2]}],description:`Just you wait...`},
         {name:'Anomaly',life:124,behavior:1,spec:[0],move:{type:0,speed:1},attack:[{type:281,effect:[7,1]},{type:2,effect:[8]},{type:282,effect:[6,8]}],description:`Actually kinda fragile`},
@@ -4228,7 +4228,7 @@ Entering, you're offered a chance to glimpse your future...`,
         },{
             level:['Cuffed 3'],class:1,world:2,
             name:'Recollection',
-            player:{position:[[{x:2,y:2}],[{x:2,y:3},{x:3,y:2}]]},
+            player:{position:[[{x:2,y:2}],[{x:2,y:1},{x:1,y:2}]]},
             enemy:[
                 {position:{x:0,y:0},name:'Recollection'},
             ],reinforce:[

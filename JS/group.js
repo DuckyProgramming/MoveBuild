@@ -196,7 +196,7 @@ class group{
             if(this.battle.initialized&&types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
                 this.battle.relicManager.active[66][this.player+1]--
                 if(this.battle.relicManager.active[66][this.player+1]<=0){
-                    this.battle.relicManager.deactivate(66)
+                    this.battle.relicManager.deactivate(66,this.player)
                 }
                 return false
             }else{
@@ -242,7 +242,7 @@ class group{
         if(types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
             this.battle.relicManager.active[66][this.player]--
             if(this.battle.relicManager.active[66][this.player]<=0){
-                this.battle.relicManager.deactivate(66)
+                this.battle.relicManager.deactivate(66,this.player)
             }
             return false
         }else{
@@ -350,7 +350,7 @@ class group{
             if(this.battle.initialized&&types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
                 this.battle.relicManager.active[66][this.player]--
                 if(this.battle.relicManager.active[66][this.player]<=0){
-                    this.battle.relicManager.deactivate(66)
+                    this.battle.relicManager.deactivate(66,this.player)
                 }
                 return {type:-1}
             }else{
@@ -672,7 +672,7 @@ class group{
     costNumber(cost){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].cost==cost){
+            if(this.cards[a].cost==cost&&!this.cards[a].spec.includes(5)){
                 total++
             }
         }

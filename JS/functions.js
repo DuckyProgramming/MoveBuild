@@ -24,6 +24,7 @@ function displayTransition(layer,transition){
 		if(transition.anim>=1.1){
 			transition.trigger = false
 			stage.scene=transition.scene
+			current.sceneChange()
 			if(transition.convert){
 				transition.convert=false
 				current.convert(stage.scene)
@@ -714,6 +715,7 @@ function intentDescription(attack,user,info){
 			case 287: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Intangible\nRange 1-6`
 			case 288: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nApply ${info?attack.effect[1]:`?`} Miss\nRange 1-2`
 			case 289: return `Gain ${info?attack.effect[0]:`?`} Buffer`
+			case 290: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Regeneration\nRange 1-6`
 			case 291: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin 4 Directions\nRange 1-1`
 			case 292: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nin 4 Directions\nRange 1-1`
 			case 293: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter ${info?calculateIntent(attack.effect[0],user,0):`?`} Twice`

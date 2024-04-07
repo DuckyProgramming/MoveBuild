@@ -638,13 +638,6 @@ class relicManager{
                             if(this.active[86][a+1]>0){
                                 this.getPlayer(a).statusEffect('Free Attack',this.active[86][a+1])
                             }
-                            if(this.active[87][a+1]>0){
-                                if(options.oldDuplicate){
-                                    this.getPlayer(a).statusEffect('Double Play',this.active[87][a+1])
-                                }else{
-                                    this.battle.cardManagers[a].hand.duplicate(this.active[87][a+1])
-                                }
-                            }
                             if(this.active[89][a+1]>0){
                                 this.getPlayer(a).statusEffect('Take Half Damage',2*this.active[89][a+1])
                             }
@@ -877,6 +870,13 @@ class relicManager{
                             this.battle.cardManagers[args[1]].hand.add(findName('Shiv',types.card),0,0)
                         }
                     }
+                    if(this.active[87][args[1]+1]>0){
+                        if(options.oldDuplicate){
+                            this.getPlayer(args[1]).statusEffect('Double Play',this.active[87][args[1]+1])
+                        }else{
+                            this.battle.cardManagers[args[1]].hand.duplicate(this.active[87][args[1]+1])
+                        }
+                    }
                     if(this.active[126][args[1]+1]>0){
                         this.battle.overlayManager.overlays[10][args[1]].active=true
                         this.battle.overlayManager.overlays[10][args[1]].activate([0,3,1])
@@ -915,7 +915,11 @@ class relicManager{
                         }
                     }else if(args[0]==4){
                         if(this.active[207][args[1]+1]>0){
-                            this.battle.cardManagers[args[1]].hand.duplicate(3*this.active[207][args[1]+1])
+                            if(options.oldDuplicate){
+                                this.getPlayer(args[1]).statusEffect('Double Play',this.active[207][a+1])
+                            }else{
+                                this.battle.cardManagers[args[1]].hand.duplicate(3*this.active[207][args[1]+1])
+                            }
                         }
                     }
                     if(this.active[82][args[1]+1]>0&&args[2][0]<3){

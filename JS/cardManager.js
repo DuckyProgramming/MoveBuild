@@ -906,6 +906,8 @@ class cardManager{
         this.discard.cards=[]
         this.drop.cards=[]
         this.exhaust.cards=[]
+    }
+    sceneChange(){
         this.greenDiff=0
     }
     reset(){

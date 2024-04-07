@@ -1,5 +1,7 @@
 cards:
 
+block card duplicates itself
+waterfall but it draws a card instead of energy
 
 
 
@@ -10,7 +12,4 @@ lower shiny chances too
 
 
 
-
 new tutorials
-
-fix the custom ultraprism
