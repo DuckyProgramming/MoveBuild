@@ -406,7 +406,6 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[273]>0){
 				block=0
 			}
-			//SCAFFOLD: 14 is unaffected by flat adds
 			block=tennify(block)
 			switch(type){
 				case 1: return block==effect&&bonusB==0?tennify(effect):tennify(effect)+`(${tennify(block+bonusB)})`

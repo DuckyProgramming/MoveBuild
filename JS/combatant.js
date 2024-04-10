@@ -132,7 +132,8 @@ class combatant{
             'Fail','Double Curse','20 or More Double Damage Turn','Take 2/5 Damage','Damage Cycle 3 1','Damage Cycle 3 2','Damage Cycle 3 3','Sting','No Damage Next Turn','Freeze Draw Up',
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
-            'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block',
+            'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
+            'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -162,7 +163,8 @@ class combatant{
                 1,0,1,1,2,2,2,0,2,0,//25
                 0,0,0,0,0,0,0,0,0,2,//26
                 1,1,2,1,0,2,0,0,2,2,//27
-                2,0,2,0,0,
+                2,0,2,0,0,0,1,2,1,0,//28
+                0,2,2,2,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -192,7 +194,8 @@ class combatant{
                 1,0,0,0,3,3,3,3,1,2,//25
                 1,2,2,2,2,2,2,2,2,1,//26
                 2,2,2,2,1,1,2,0,0,0,//27
-                1,1,0,1,2,
+                1,1,0,1,2,2,0,0,1,2,//28
+                2,2,0,0,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4746,6 +4749,9 @@ class combatant{
             if(this.status.main[177]>0){
                 this.ammo+=this.status.main[177]
             }
+            if(this.status.main[284]>0){
+                this.statusEffect('Regeneration',this.status.main[284])
+            }
             if(spec!=3){
                 if(this.status.main[63]>0){
                     damage+=this.status.main[63]
@@ -4904,12 +4910,29 @@ class combatant{
                             this.statusEffect('Vulnerable',2)
                         }
                     }
+                    if(this.status.main[276]>0){
+                        this.heal(damage)
+                    }
+                    if(this.block<=0&&this.status.main[277]>0){
+                        this.battle.combatantManager.damageArea(this.status.main[277],this.id,this.team,this.tilePosition)
+                    }
                 }else if(this.block>0&&spec!=2){
                     let damageLeft=damage-this.block
                     this.taken=damageLeft
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][1]+=this.block
                         this.battle.stats.taken[this.id][2]+=damageLeft
+                    }
+                    if(0<=user&&user<this.battle.players){
+                        if(this.battle.relicManager.hasRelic(124,user)){
+                            this.statusEffect('Vulnerable',2)
+                        }
+                    }
+                    if(this.status.main[276]>0){
+                        this.heal(this.block)
+                    }
+                    if(this.status.main[277]>0){
+                        this.battle.combatantManager.damageArea(this.status.main[277],this.id,this.team,this.tilePosition)
                     }
                     this.block=0
                     this.life-=damageLeft
@@ -4944,6 +4967,9 @@ class combatant{
                 }
                 if(this.battle.modded(9)&&this.team>0&&this.team<=this.battle.players&&damage>10){
                     this.battle.drop(this.id,findName('Concussion',types.card),0,game.playerNumber+1)
+                }
+                if(this.status.main[285]>0&&this.block<=0){
+                    this.status.main[285]=0
                 }
                 if(user>=0&&user<this.battle.combatantManager.combatants.length){
                     let userCombatant=this.battle.combatantManager.combatants[user]
@@ -5267,6 +5293,11 @@ class combatant{
             }
             if(block>=0){
                 this.lastBlock=block
+                if(block>=8&&this.status.main[275]>0){
+                    for(let a=0,la=this.status.main[275];a<la;a++){
+                        this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)
+                    }
+                }
                 if(this.battle.modded(74)&&this.team==0){
                     this.heal(block)
                 }else{
@@ -5279,6 +5310,9 @@ class combatant{
         }
     }
     endBlock(){
+        if(this.status.main[281]>0){
+            this.statusEffect('Single Damage Up',ceil(this.block))
+        }
         if(this.status.main[11]>0){
             this.status.main[11]--
         }else if(!(this.team==0&&this.battle.modded(26))){
@@ -5419,6 +5453,9 @@ class combatant{
             case 11:
                 this.battle.combatantManager.combatants[target].statusEffect('Poison',round(4*multi))
             break
+            case 12:
+                this.battle.combatantManager.combatants[target].orbTake(round(4*multi*playerMulti),-1)
+            break
         }
     }
     subMinorEvoke(type,detail,target){
@@ -5464,6 +5501,9 @@ class combatant{
             break
             case 11:
                 this.battle.combatantManager.combatants[target].statusEffect('Poison',round(2*multi))
+            break
+            case 12:
+                this.battle.combatantManager.combatants[target].orbTake(round(2*multi),-1)
             break
         }
     }
@@ -5721,6 +5761,29 @@ class combatant{
             this.status.main[status]=max(0,this.status.main[status])
         }
     }
+    totalUniqueStatus(buff){
+        let total=0
+        for(let a=0,la=this.status.main.length;a<la;a++){
+            switch(buff){
+                case 0:
+                    if(this.status.main[a]>0&&(this.status.class[a]==0||this.status.class[a]==2)||this.status.main[a]<0&&(this.status.class[a]==1||this.status.class[a]==3)){
+                        total++
+                    }
+                break
+                case 1:
+                    if(this.status.main[a]<0&&(this.status.class[a]==0||this.status.class[a]==2)||this.status.main[a]>0&&(this.status.class[a]==1||this.status.class[a]==3)){
+                        total++
+                    }
+                break
+                case 2:
+                    if(this.status.main[a]!=0){
+                        total++
+                    }
+                break
+            }
+        }
+        return total
+    }
     getStatus(name){
         return this.status.main[findList(name,this.status.name)]
     }
@@ -5773,6 +5836,9 @@ class combatant{
             if(this.status.main[109]>0){
                 this.gainMaxHP(this.status.main[109])
             }
+            if(this.status.main[280]>0){
+                this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[280]])
+            }
             this.life=min(this.life+ceil(gain),this.base.life)
         }
     }
@@ -5819,7 +5885,7 @@ class combatant{
                     case 33: case 209: this.heal(this.status.main[a]); break
                     case 34: case 146: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Gain Block',this.status.name)]+=this.status.main[a]; break
-                    case 41: case 84: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]}; break
+                    case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]}; break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
@@ -5872,6 +5938,9 @@ class combatant{
                     case 268: this.addBlock(this.status.main[a]);this.status.next[findList('Block Cycle 2 2',this.status.name)]+=this.status.main[a]; break
                     case 269: this.status.main[findList('Block Cycle 2 1',this.status.name)]+=this.status.main[a]; break
                     case 270: this.status.main[findList('Temporary Damage Up',this.status.name)]+=this.status.main[a]; break
+                    case 278: this.life-=1; break
+                    case 282: this.status.main[findList('Strength Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 283: this.status.main[findList('Dexterity Next Turn',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0){

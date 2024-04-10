@@ -6173,7 +6173,7 @@ Is removed when damage taken.`,
     ],
 }
 stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:13,orbNumber:12,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:13,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
     mod:false,junk:false,

@@ -678,6 +678,15 @@ class group{
         }
         return total
     }
+    costNumberAbove(cost){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].cost>=cost&&!this.cards[a].spec.includes(5)){
+                total++
+            }
+        }
+        return total
+    }
     specNumber(spec){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -759,6 +768,15 @@ class group{
             }
         }
     }
+    classLimit(cardClass,limit){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].class==cardClass){
+                total++
+            }
+        }
+        return total<=limit
+    }
     falsedSwap(){
         let list=[]
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -831,9 +849,11 @@ class group{
                     this.cards[a].callDiscardEffect()
                     if(this.cards[a].retain2){
                         this.cards[a].retained()
+                        this.cards.forEach(card=>card.anotherRetained())
                         total++
                     }else if(this.cards[a].retain||this.battle.relicManager.hasRelic(192,this.player)&&la==1){
                         this.cards[a].retained()
+                        this.cards.forEach(card=>card.anotherRetained())
                         this.cards[a].retain=false
                         total++
                     }else if(this.cards[a].spec.includes(4)){
@@ -842,6 +862,7 @@ class group{
                         this.cards[a].exhaust=true
                     }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.battle.relicManager.hasRelic(128,this.player)){
                         this.cards[a].retained()
+                        this.cards.forEach(card=>card.anotherRetained())
                         total++
                     }else{
                         this.cards[a].deSize=true
@@ -1209,6 +1230,17 @@ class group{
                         }
                     }
                 break
+                case 69:
+                    if(this.cards[a].cost==2){
+                        this.cards[a].cost=1
+                    }
+                break
+                case 70:
+                    this.cards[a].onItem()
+                break
+                case 71:
+                    this.cards[a].cost=floor(random(0,2))
+                break
 
             }
         }
@@ -1223,7 +1255,7 @@ class group{
         let total=0
         if(effect==9){
             total=args[1]
-        }else if(effect==10){
+        }else if(effect==10||effect==12){
             total=0
         }
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1302,11 +1334,23 @@ class group{
                         this.cards[a].target[2]+=args[0]
                     }
                 break
+                case 12:
+                    if(this.cards[a].usable&&this.cards[a].class==args[0]||this.cards[a].spec.includes(12)&&this.cards[a].class[0]==args[0]){
+                        this.cards[a].deSize=true
+                        this.cards[a].exhaust=true
+                        total++
+                    }
+                break
+                case 13:
+                    if(this.cards[a].name=='Shiv'||this.cards[a].name=='Broken\nShiv'||this.cards[a].name=='Deluxe\nShiv'){
+                        this.cards[a].effect[0]+=args[0]
+                    }
+                break
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10){
+        }else if(effect==10||effect==12){
             return total
         }
     }
@@ -1316,7 +1360,7 @@ class group{
             for(let a=0,la=this.cards.length;a<la;a++){
                 if(this.cards[a].usable
                 &&!((effect==0||effect==25||effect==28)&&this.cards[a].deSize)
-                &&!((effect==1||effect==5)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
+                &&!((effect==1||effect==5||effect==33)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
                 &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
                 &&!(effect==2&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==3&&(this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0))
@@ -1334,6 +1378,8 @@ class group{
                 &&!((effect==18||effect==29)&&(this.cards[a].spec.includes(15)||this.cards[a].spec.includes(30)||this.cards[a].spec.includes(36)||this.cards[a].spec.includes(38)))
                 &&!(effect==30&&this.cards[a].edition!=0)
                 &&!(effect==31&&this.cards[a].edition!=args[0])
+                &&!(effect==32&&!(this.cards[a].name==args[1]&&this.cards[a].cost>0))
+                &&!(effect==34&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)))
                 ){
                     list.push(a)
                 }
@@ -1489,7 +1535,7 @@ class group{
                     case 26:
                         this.cards[index].cost=max(0,this.cards[index].cost-args[0])
                     break
-                    case 27:
+                    case 27: case 32:
                         this.cards[index].cost=args[0]
                     break
                     case 28:
@@ -1507,6 +1553,15 @@ class group{
                     case 31:
                         this.cards[index].edition=0
                     break
+                    case 33:
+                        this.cards[index].cost=0
+                        if(!this.cards[index].spec.includes(1)){
+                            this.cards[index].spec.push(1)
+                        }
+                    break
+                    case 34:
+                        this.cards[index].retain=true
+                    break
 
                 }
             }
@@ -1514,7 +1569,6 @@ class group{
     }
     drawEffect(card){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-
         switch(card.attack){
             case -3:
                 this.drawEffects.push([1,card.effect[0]])
@@ -1534,7 +1588,7 @@ class group{
             case -17:
                 this.drawEffects.push([0,9,[card.effect[0]]])
             break
-            case -18:
+            case -18: case -48:
                 this.battle.energy.main[this.player]-=card.effect[0]
             break
             case -20:
@@ -1588,7 +1642,7 @@ class group{
                     this.drawEffects.push([5,1])
                 }
                 return 'break'
-            case 288: case 374:
+            case 288: case 374: case 2217:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
                 }
@@ -1644,10 +1698,16 @@ class group{
             case 1565:
                 userCombatant.balance+=card.effect[0]
             break
-            case 1745: case 1943: case 2096: case 2128:
+            case 1745: case 1943: case 2096: case 2128: case 2200:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
                 }
+            break
+            case 2244:
+                userCombatant.statusEffect('Temporary Draw',card.effect[0])
+            break
+            case 2313:
+                userCombatant.statusEffect('Dexterity',card.effect[0])
             break
         }
     }
@@ -1753,6 +1813,27 @@ class group{
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].class==cardClass){
+                list.push(copyCard(this.cards[a]))
+                list[list.length-1].size=0
+                list[list.length-1].position.x=1200
+                list[list.length-1].position.y=500
+                if(this.drawEffect(list[list.length-1])){la=0}
+                delete this.cards[a]
+                this.cards.splice(a,1)
+                a--
+                la--
+                total++
+                if(total>=amount){
+                    a=la
+                }
+            }
+        }
+        return total
+    }
+    sendCost(list,cost,amount){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].cost==cost){
                 list.push(copyCard(this.cards[a]))
                 list[list.length-1].size=0
                 list[list.length-1].position.x=1200
@@ -2502,6 +2583,15 @@ class group{
                                 this.battle.cardManagers[this.player].deck.cards[b].effect[0]+=this.cards[a].effect[1]
                             }
                         }
+                    }else if(this.cards[a].attack==2235){
+                        this.cards[a].effect[0]+=this.cards[a].effect[2]
+                        this.cards[a].effect[1]+=this.cards[a].effect[2]
+                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
+                                this.battle.cardManagers[this.player].deck.cards[b].effect[0]+=this.cards[a].effect[2]
+                                this.battle.cardManagers[this.player].deck.cards[b].effect[1]+=this.cards[a].effect[2]
+                            }
+                        }
                     }
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class,this.cards[a].name,this.cards[a].basic))
@@ -2651,6 +2741,15 @@ class group{
                             for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                 if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                     this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[1]
+                                }
+                            }
+                        }else if(this.cards[b].attack==2235){
+                            this.cards[b].effect[0]+=this.cards[b].effect[2]
+                            this.cards[b].effect[1]+=this.cards[b].effect[2]
+                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                    this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[2]
+                                    this.battle.cardManagers[this.player].deck.cards[c].effect[1]+=this.cards[b].effect[2]
                                 }
                             }
                         }
@@ -2804,6 +2903,15 @@ class group{
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                         this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[1]
+                                    }
+                                }
+                            }else if(this.cards[b].attack==2235){
+                                this.cards[b].effect[0]+=this.cards[b].effect[2]
+                                this.cards[b].effect[1]+=this.cards[b].effect[2]
+                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                        this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[2]
+                                        this.battle.cardManagers[this.player].deck.cards[c].effect[1]+=this.cards[b].effect[2]
                                     }
                                 }
                             }
@@ -3103,6 +3211,12 @@ class group{
                                 this.cards[a]=this.battle.cardManagers[this.player].transformCard(this.cards[a])
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(4),1)
+                            }else if(this.cards[a].discardEffect.includes(10)){
+                                let hold=this.cards[a].discardEffect
+                                this.cards[a]=this.battle.cardManagers[this.player].transformCard(this.cards[a])
+                                this.cards[a].cost=0
+                                this.cards[a].discardEffect=hold
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(4),1)
                             }
                             if(this.cards[a].discardEffect.includes(1)){
                                 this.cards[a].cost=0
@@ -3250,7 +3364,7 @@ class group{
         }
     }
     onClick(scene){
-        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32){
+        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
                     (legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[1],this.battle.attackManager.targetInfo[2],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)&&
@@ -3259,7 +3373,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45)&&
                     (legalTargetCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==45)&&
@@ -3318,7 +3432,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==48){
+        if(this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==48||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53){
             for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                 if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
                     (legalTargetDiagonalCombatant(0,this.battle.attackManager.targetInfo[1],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[2],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)&&
@@ -3429,21 +3543,11 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==30){
-            for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
-                    (legalTargetCombatant(0,this.battle.attackManager.targetInfo[3],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[4],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)&&
-                    !(this.battle.attackManager.targetInfo[0]==22&&this.battle.combatantManager.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
-                    dist(inputs.rel.x,inputs.rel.y,this.battle.combatantManager.combatants[a].position.x,this.battle.combatantManager.combatants[a].position.y)<game.targetRadius){
-                    this.callInput(3,a)
-                }
-            }
-        }
-        if(this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==40){
+        if(this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==53){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
                     (legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[3],this.battle.attackManager.targetInfo[4],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)&&
-                    (this.battle.tileManager.tiles[a].type.includes(3)||this.battle.attackManager.targetInfo[0]==40)&&
+                    (this.battle.tileManager.tiles[a].type.includes(3)||this.battle.attackManager.targetInfo[0]!=32)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }
@@ -3622,7 +3726,7 @@ class group{
         }
     }
     onKey(scene,key,code){
-        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32){
+        if(this.battle.attackManager.targetInfo[0]==1||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==4||this.battle.attackManager.targetInfo[0]==6||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==31||this.battle.attackManager.targetInfo[0]==32){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
                 if(this.battle.tileManager.tiles[a].occupied==0&&
@@ -3631,7 +3735,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45){
+        if(this.battle.attackManager.targetInfo[0]==2||this.battle.attackManager.targetInfo[0]==3||this.battle.attackManager.targetInfo[0]==5||this.battle.attackManager.targetInfo[0]==10||this.battle.attackManager.targetInfo[0]==11||this.battle.attackManager.targetInfo[0]==22||this.battle.attackManager.targetInfo[0]==26||this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==45||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(this.battle.combatantManager.combatants[a].life>0&&(this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team||this.battle.attackManager.targetInfo[0]==45)&&
@@ -3693,7 +3797,7 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==48){
+        if(this.battle.attackManager.targetInfo[0]==14||this.battle.attackManager.targetInfo[0]==15||this.battle.attackManager.targetInfo[0]==48||this.battle.attackManager.targetInfo[0]==52||this.battle.attackManager.targetInfo[0]==53){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
@@ -3806,23 +3910,11 @@ class group{
                 }
             }
         }
-        if(this.battle.attackManager.targetInfo[0]==30){
-            if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&key==' '){
-                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
-                    if(this.battle.combatantManager.combatants[a].life>0&&this.battle.combatantManager.combatants[a].team!=this.battle.combatantManager.combatants[this.battle.attackManager.user].team&&
-                        (legalTargetCombatant(0,this.battle.attackManager.targetInfo[3],(this.battle.relicManager.hasRelic(145,this.player)||this.battle.modded(64))?1:this.battle.attackManager.targetInfo[4],this.battle.combatantManager.combatants[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==5)&&
-                        !(this.battle.attackManager.targetInfo[0]==22&&this.battle.combatantManager.combatants[a].tilePosition.y!=this.battle.attackManager.tilePosition.y)&&
-                        this.battle.combatantManager.combatants[a].tilePosition.x==int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x&&this.battle.combatantManager.combatants[a].tilePosition.y==int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y){
-                        this.callInput(3,a)
-                    }
-                }
-            }
-        }
-        if(this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==40){
+        if(this.battle.attackManager.targetInfo[0]==30||this.battle.attackManager.targetInfo[0]==32||this.battle.attackManager.targetInfo[0]==40||this.battle.attackManager.targetInfo[0]==53){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
                 if(this.battle.tileManager.tiles[a].occupied==0&&
-                    (this.battle.tileManager.tiles[a].type.includes(3)||this.battle.attackManager.targetInfo[0]==40)&&
+                    (this.battle.tileManager.tiles[a].type.includes(3)||this.battle.attackManager.targetInfo[0]!=32)&&
                     (legalTargetCombatant(this.battle.relicManager.active[150][this.battle.attackManager.player+1]>0?2:0,this.battle.attackManager.targetInfo[3],this.battle.attackManager.targetInfo[4],this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)||this.battle.attackManager.targetInfo[0]==6)){
                     this.callInput(2,a)
                 }

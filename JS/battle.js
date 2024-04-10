@@ -815,6 +815,9 @@ class battle{
         if(userCombatant.getStatus('Card Play Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('Card Play Block'))
         }
+        if(card.cost==2&&userCombatant.getStatus('2 Cost Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('2 Cost Block'))
+        }
         this.combatantManager.playCardFront()
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name])
     }

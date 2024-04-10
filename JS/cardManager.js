@@ -265,6 +265,18 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
+    addRandomAllCostFree(group,level,cost){
+        let list=[]
+        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
+            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].cost==cost){
+                list.push(this.listing.allPlayerCard[3][a])
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).addFree(type,level,types.card[type].list)
+        }
+    }
     addRandomClassAllPriority(group,level,cardClass){
         let list=[]
         for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){

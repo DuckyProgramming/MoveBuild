@@ -15,7 +15,7 @@ class particle{
                 this.size=1
                 this.scale=1
             break
-            case 1: case 4: case 7: case 32: case 35:  case 49:
+            case 1: case 4: case 7: case 32: case 35:  case 49: case 50:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=8
@@ -25,6 +25,7 @@ class particle{
                 this.scale=1
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
+            case 51: case 52:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -579,6 +580,52 @@ class particle{
                     this.layer.fill(160,this.fade*0.5)
                     regStar(this.layer,0,0,5,16,16,2,2,this.time*12)
                 break
+                case 50:
+                    this.layer.rotate(this.time*15)
+                    this.layer.fill(60,70,80,this.fade*0.5)
+                    this.layer.beginShape()
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.vertex(6*lsin(a*60),6*lcos(a*60))
+                        this.layer.bezierVertex(12*lsin(a*60+20),12*lcos(a*60+20),16*lsin(a*60+40),16*lcos(a*60+40),18*lsin(a*60+60),18*lcos(a*60+60))
+                    }
+                    this.layer.vertex(0,6)
+                    this.layer.endShape()
+                    this.layer.fill(200,205,210,this.fade*0.5)
+                    this.layer.beginShape()
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.vertex(lsin(a*60),lcos(a*60))
+                        this.layer.bezierVertex(7*lsin(a*60+20),7*lcos(a*60+20),12*lsin(a*60+40),12*lcos(a*60+40),16*lsin(a*60+60),16*lcos(a*60+60))
+                    }
+                    this.layer.vertex(0,6)
+                    this.layer.endShape()
+                break
+                case 51:
+                    this.layer.rotate(this.time*10)
+                    for(let a=0,la=3;a<la;a++){
+                        this.layer.fill(50,255,50,this.fade)
+                        this.layer.arc(0,0,12,12,a*120,60+a*120)
+                        this.layer.fill(50,150,255,this.fade)
+                        this.layer.arc(0,0,12,12,-60+a*120,a*120)
+                        this.layer.fill(50,255,125,this.fade)
+                        this.layer.arc(0,0,8,8,a*120,60+a*120)
+                        this.layer.fill(75,200,255,this.fade)
+                        this.layer.arc(0,0,8,8,-60+a*120,a*120)
+                        this.layer.fill(50,255,200,this.fade)
+                        this.layer.arc(0,0,4,4,a*120,60+a*120)
+                        this.layer.fill(100,255,255,this.fade)
+                        this.layer.arc(0,0,4,4,-60+a*120,a*120)
+                    }
+                break
+                case 52:
+                    this.layer.rotate(this.time*18)
+                    this.layer.fill(180,180,240,this.fade)
+                    this.layer.ellipse(0,0,10,10)
+                    this.layer.fill(60,150,255,this.fade)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.quad(0,0,-0.5,2,0,4,0.5,2)
+                        this.layer.rotate(72)
+                    }
+                break
 
             }
             this.layer.pop()
@@ -604,7 +651,7 @@ class particle{
             break
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
-            case 48: case 49:
+            case 48: case 49: case 50:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){
@@ -620,7 +667,7 @@ class particle{
                 }
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 46:
+            case 46: case 51: case 52:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

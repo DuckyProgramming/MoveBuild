@@ -90,6 +90,7 @@ class itemManager{
         this.position[player]-=amount
     }
     activateItem(type,player){
+        this.battle.cardManagers[player].hand.allEffect(70)
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)]
         switch(types.item[type].id){
             case 2:

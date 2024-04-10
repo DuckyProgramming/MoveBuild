@@ -1081,7 +1081,7 @@ class relicManager{
                     break
                     case 4:
                         if(this.active[20][args[1]+1]>0&&args[2]>=1){
-                            this.battle.cardManagers[a].randomEffect(2,1,[this.active[20][args[1]+1]])
+                            this.battle.cardManagers[args[1]].randomEffect(2,1,[this.active[20][args[1]+1]])
                         }
                         if(this.active[27][args[1]+1]>0){
                             this.getPlayer(args[1]).heal(2*this.active[27][args[1]+1])
