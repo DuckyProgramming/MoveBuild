@@ -152,7 +152,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             }
             layer.endShape()
             layer.fill(200,255,255,fade)
-            layer.quad(-4,0,-0.8,-4,2.4,0,-0.8,4)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
         break
         case 23:
             layer.fill(200,fade)
@@ -621,11 +621,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 77:
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1)
-            layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(5-a%2*2),lcos(360*a/la)*(5-a%2*2))
-            }
-            layer.endShape(CLOSE)
+            regStar(layer,0,0,4,5,5,3,3,0,0)
             layer.line(-3/2,-3/2,3/2,3/2)
             layer.line(-3/2,3/2,3/2,-3/2)
             layer.fill(125,fade)
@@ -801,11 +797,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
         case 96:
             layer.stroke(100,0,0,fade)
             layer.strokeWeight(1)
-            layer.beginShape()
-            for(let a=0,la=16;a<la;a++){
-                layer.vertex(lsin(360*a/la)*(5-a%2*2),lcos(360*a/la)*(5-a%2*2))
-            }
-            layer.endShape(CLOSE)
+            regStar(layer,0,0,4,5,5,3,3,0,0)
             layer.line(-3/2,-3/2,3/2,3/2)
             layer.line(-3/2,3/2,3/2,-3/2)
             layer.fill(125,fade)
@@ -2583,6 +2575,83 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.noStroke()
             layer.arc(-5,-0.5,3,3,-180,0)
             layer.arc(-5,0.5,3,3,0,180)
+        break
+        case 286:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,-6,-5,3,-1,3)
+            layer.triangle(3,-6,5,3,1,3)
+            layer.triangle(0,3.5,1,5.5,-1,5.5)
+        break
+        case 287:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-6,-3,3,3,3)
+            layer.triangle(0,3.5,-1,5.5,1,5.5)
+            layer.triangle(0,6,-1,8,1,8)
+            layer.triangle(0,8.5,-1,10.5,1,10.5)
+        break
+        case 288:
+            layer.fill(75,150,75,fade)
+            layer.rect(0,2,4,6)
+            layer.triangle(-4,-1,4,-1,0,-7)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
+        case 289:
+            layer.strokeWeight(1)
+            layer.stroke(50,200,50,fade)
+            layer.line(-5,3,5,-3)
+            layer.stroke(200,50,50,fade)
+            layer.line(-5,0,5,3)
+            layer.stroke(50,50,200,fade)
+            layer.line(-5,-3,5,0)
+        break
+        case 290:
+            layer.fill(255,50,50,fade)
+            layer.quad(0,0,-2,-2,0,-8,2,-2)
+            layer.fill(150,175,200,fade)
+            layer.quad(0,0,-3,3,0,6,3,3)
+        break
+        case 291:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-2,-6,-4,3,0,3)
+            layer.ellipse(3,0,4,4)
+            layer.stroke(200,255,255,fade)
+            layer.strokeWeight(1.5)
+            layer.noFill()
+            layer.ellipse(0,0,8)
+        break
+        case 292:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-2,-6,-4,0,0,0)
+            layer.triangle(2,6,4,0,0,0)
+            layer.fill(150,175,200,fade)
+            layer.triangle(-2,6,-4,0,0,0)
+            layer.triangle(2,-6,4,0,0,0)
+        break
+        case 293:
+            layer.stroke(100,0,0,fade)
+            layer.strokeWeight(1)
+            regStar(layer,0,0,4,5,5,3,3,0,0)
+            layer.endShape(CLOSE)
+            layer.line(-3/2,-3/2,3/2,3/2)
+            layer.line(-3/2,3/2,3/2,-3/2)
+            regStar(layer,0,0,4,5,5,3,3,0,0)
+            layer.noStroke()
+            layer.fill(0,150,255,fade)
+            layer.rect(-3,0,9,3)
+            layer.triangle(1.5,-4.5,1.5,4.5,7.5,0)
+        break
+        case 294:
+            layer.fill(255,100,255,fade)
+            layer.rect(0,0,3,12)
+            layer.rect(0,0,12,3)
+        break
+        case 295:
+            layer.stroke(255,100,255,fade)
+            layer.strokeWeight(2)
+            layer.arc(0,0,10,10,-90,240)
+            layer.line(0,-5,0,-3)
         break
 
     }
@@ -5443,15 +5512,15 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 94: case 96: case 98: case 100: case 102: case 105: case 106: case 109: case 111: case 113:
             case 115: case 116: case 117: case 120: case 121: case 122: case 123: case 125: case 126: case 127:
             case 128: case 130: case 131: case 132: case 134: case 135: case 136: case 137: case 138: case 139:
-            case 143: case 144: case 145: case 146: case 152: case 153: case 155: case 157: case 159: case 160:
-            case 161: case 162: case 164: case 165: case 166: case 167: case 169: case 170: case 174: case 175:
-            case 176: case 177: case 178: case 180: case 181: case 182: case 183: case 185: case 189: case 192:
-            case 193: case 195: case 196: case 197: case 200: case 202: case 203: case 204: case 205: case 208:
-            case 209: case 210: case 211: case 213: case 214: case 216: case 218: case 219: case 220: case 221:
-            case 222: case 223: case 224: case 228: case 229: case 230: case 231: case 232: case 233: case 234:
-            case 235: case 237: case 238: case 239: case 240: case 242: case 243: case 245: case 246: case 247:
-            case 249: case 252: case 259: case 272: case 275: case 276: case 277: case 283: case 286: case 289:
-            case 291: case 296: case 300:
+            case 143: case 144: case 145: case 146: case 152: case 153: case 154: case 155: case 157: case 159:
+            case 160: case 161: case 162: case 164: case 165: case 166: case 167: case 169: case 170: case 174:
+            case 175: case 176: case 177: case 178: case 180: case 181: case 182: case 183: case 185: case 189:
+            case 192: case 193: case 195: case 196: case 197: case 200: case 202: case 203: case 204: case 205:
+            case 208: case 209: case 210: case 211: case 213: case 214: case 216: case 218: case 219: case 220:
+            case 221: case 222: case 223: case 224: case 228: case 229: case 230: case 231: case 232: case 233:
+            case 234: case 235: case 237: case 238: case 239: case 240: case 242: case 243: case 245: case 246:
+            case 247: case 249: case 252: case 259: case 272: case 275: case 276: case 277: case 283: case 286:
+            case 289: case 291: case 296: case 300:
                 layer.text(effect[0],0,0)
             break
             case 20: case 31: case 47: case 59: case 66: case 69: case 97: case 99: case 103: case 133:
@@ -5472,11 +5541,11 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             break
             case 15: case 17: case 24: case 27: case 30: case 44: case 50: case 67: case 72: case 84:
             case 108: case 110: case 112: case 114: case 119: case 124: case 140: case 141: case 142: case 148:
-            case 150: case 151: case 154: case 158: case 163: case 187: case 198: case 199: case 201: case 215:
-            case 217: case 241: case 250: case 253: case 254: case 255: case 256: case 257: case 260: case 261:
-            case 262: case 263: case 264: case 265: case 266: case 267: case 268: case 270: case 271: case 274:
-            case 278: case 279: case 280: case 281: case 282: case 284: case 285: case 287: case 288: case 290:
-            case 294: case 297: case 298: case 299:
+            case 150: case 151: case 158: case 163: case 187: case 198: case 199: case 201: case 215: case 217:
+            case 241: case 250: case 253: case 254: case 255: case 256: case 257: case 260: case 261: case 262:
+            case 263: case 264: case 265: case 266: case 267: case 268: case 270: case 271: case 274: case 278:
+            case 279: case 280: case 281: case 282: case 284: case 285: case 287: case 288: case 290: case 294:
+            case 297: case 298: case 299:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:

@@ -133,7 +133,8 @@ class combatant{
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
-            'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw',
+            'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
+            'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -164,7 +165,8 @@ class combatant{
                 0,0,0,0,0,0,0,0,0,2,//26
                 1,1,2,1,0,2,0,0,2,2,//27
                 2,0,2,0,0,0,1,2,1,0,//28
-                0,2,2,2,0,2,
+                0,2,2,2,0,2,0,2,0,1,//29
+                0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -195,7 +197,8 @@ class combatant{
                 1,2,2,2,2,2,2,2,2,1,//26
                 2,2,2,2,1,1,2,0,0,0,//27
                 1,1,0,1,2,2,0,0,1,2,//28
-                2,2,0,0,0,2,
+                2,2,0,0,0,2,0,0,2,2,//29
+                2,2,2,1,0,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4107,12 +4110,15 @@ class combatant{
             this.battle.turnManager.loadEnemyAttackRepeat(this.id)
         }
     }
-    playCardFront(){
+    playCardFront(cardClass){
         if(this.status.main[77]>0){
             this.takeDamage(this.status.main[77],-1)
         }
         if(this.status.main[96]>0){
             this.takeDamage(this.status.main[96],-1)
+        }
+        if(this.status.main[293]>0&&cardClass==4){
+            this.takeDamage(this.status.main[293],-1)
         }
     }
     autoAim(){
@@ -4991,7 +4997,7 @@ class combatant{
                         userCombatant.status.main[139]--
                     }
                     if(userCombatant.status.main[170]>0&&userCombatant.id<this.battle.players){
-                        this.battle.currency.money[userCombatant.id]+=round(damage)
+                        this.battle.addCurrency(round(damage),userCombatant.id)
                     }
                     if(userCombatant.status.main[234]>0){
                         userCombatant.statusEffect('No Damage Next Turn',1)
@@ -5619,6 +5625,10 @@ class combatant{
             return false
         }
     }
+    cable(target,key){
+        return targetDirection(0,target.tilePosition.x-this.tilePosition.x,target.tilePosition.y-this.tilePosition.y)==key||
+            targetDirection(0,target.tilePosition.x-this.tilePosition.x,target.tilePosition.y-this.tilePosition.y)%3==key%3&&this.status.main[289]>0
+    }
     checkTile(){
         if(this.status.main[219]>0){
             this.status.main[219]--
@@ -5626,6 +5636,9 @@ class combatant{
         }else{
             return false
         }
+    }
+    energyParity(energy){
+        return this.status.main[295]>0?1:energy%2
     }
     enterStance(stance){
         this.leaveStance(this.stance)
@@ -5704,6 +5717,10 @@ class combatant{
                     mult*=2
                 }
                 if((this.status.class[status]==0||this.status.class[status]==2)&&this.team==0&&this.battle.modded(36)){
+                    mult*=2
+                }
+                if(this.status.main[292]>0){
+                    this.status.main[292]--
                     mult*=2
                 }
                 if(this.status.main[15]>0&&((this.status.class[status]==1||this.status.class[status]==3)&&value>0||(this.status.class[status]==0||this.status.class[status]==2)&&value<0)){
@@ -5941,6 +5958,8 @@ class combatant{
                     case 278: this.life-=1; break
                     case 282: this.status.main[findList('Strength Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 283: this.status.main[findList('Dexterity Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 287: this.status.main[findList('Strength Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 294: if(floor(random(0,3))==0){this.heal(this.status.main[a]); this.status.main[a]=0} break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0){

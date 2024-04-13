@@ -150,6 +150,18 @@ class particle{
                 this.scale=0
                 this.direction=[random(0,360),random(0,360),random(0,360),random(0,360)]
             break
+            case 53:
+                this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
+                this.fade=1
+                this.size=1
+                this.scale=1
+                this.ticks=ceil(dist(0,0,this.position2.x,this.position2.y)/12)
+                this.direction=atan2(this.position2.x,this.position2.y)
+                this.sets=[]
+                for(let a=0,la=this.ticks;a<la;a++){
+                    this.sets.push([random(-10,10),random(-10,10)])
+                }
+            break
         }
     }
     display(){
@@ -626,6 +638,17 @@ class particle{
                         this.layer.rotate(72)
                     }
                 break
+                case 53:
+                    this.layer.stroke(200,100,255,this.fade)
+                    this.layer.strokeWeight(5)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.line(
+                            map(a/la,0,1,0,this.position2.x)+(a==0?0:this.sets[a-1][0]),
+                            map(a/la,0,1,0,this.position2.y)+(a==0?0:this.sets[a-1][1]),
+                            map((a+1)/la,0,1,0,this.position2.x)+this.sets[a][0],
+                            map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
+                    }
+                break
 
             }
             this.layer.pop()
@@ -725,6 +748,16 @@ class particle{
                 this.scale+=0.2
                 if(this.fade<=0){
                     this.remove=true
+                }
+            break
+            case 53:
+                this.fade-=1/45
+                if(this.fade<=0){
+                    this.remove=true
+                }
+                for(let a=0,la=this.ticks;a<la;a++){
+                    this.sets[a][0]+=random(-2,2)
+                    this.sets[a][1]+=random(-2,2)
                 }
             break
         }

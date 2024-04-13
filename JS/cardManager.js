@@ -222,9 +222,9 @@ class cardManager{
             return this.getList(group).addReturn(list[floor(random(0,list.length))],level,this.battle.player[this.player])
         }
     }
-    addRandomAll(group,level,rarity){
+    addRandomAll(group,level,rarity,edition=0){
         let type=this.listing.allPlayerCard[rarity][floor(random(0,this.listing.allPlayerCard[rarity].length))]
-        this.getList(group).add(type,level,types.card[type].list)
+        this.getList(group).add(type,level,types.card[type].list,edition)
     }
     addRandomAllClass(group,level,cardClass){
         let list=[]
@@ -340,6 +340,20 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
+    addRandomCompleteAllContainClass(group,level,contain,cardClass){
+        let list=[]
+        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
+            for(let b=0,lb=contain.length;b<lb;b++){
+                if(types.card[this.listing.allListableCard[3][a]].name.includes(contain[b])&&types.card[this.listing.allListableCard[3][a]].levels[level].class==cardClass){
+                    list.push(this.listing.allListableCard[3][a])
+                }
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).add(type,level,types.card[type].list)
+        }
+    }
     addRandomCompleteAllClassFree(group,level,cardClass,variant){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
@@ -366,13 +380,27 @@ class cardManager{
     }
     addRandomSpec(group,level,spec){
         let list=[]
-        for(let a=0,la=types.card.length;a<la;a++){
-            if(types.card[a].levels[level].spec.includes(spec)){
-                list.push(a)
+        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
+            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].spec.includes(spec)){
+                list.push(this.listing.allPlayerCard[3][a])
             }
         }
         if(list.length>0){
-            this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).add(type,level,types.card[type].list)
+        }
+    }
+    addRandomSpecCostDown(group,level,spec){
+        let list=[]
+        for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
+            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].spec.includes(spec)){
+                list.push(this.listing.allPlayerCard[3][a])
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            let card=this.getList(group).addReturn(type,level,types.card[type].list)
+            card.cost=max(min(card.cost,0),card.cost-1)
         }
     }
     addRandomSub(group,level){
@@ -520,7 +548,7 @@ class cardManager{
             }
         }
     }
-    drawClass(amount,cardClass){
+    drawClass(amount,cardClass,spec=0){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('No Draw')<=0){
             this.battle.stats.drawn[this.player]+=amount
@@ -531,13 +559,13 @@ class cardManager{
             }else{
                 let amountLeft=amount
                 if(this.reserve.cards.length>0){
-                    amountLeft-=this.reserve.sendClass(this.hand.cards,cardClass,amount)
+                    amountLeft-=this.reserve.sendClass(this.hand.cards,cardClass,amount,spec)
                 }
                 if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
                     this.discard.send(this.reserve.cards,0,-1,2)
                     this.reserve.shuffle()
                     if(this.reserve.cards.length>0){
-                        amountLeft-=this.reserve.sendClass(this.hand.cards,cardClass,amount)
+                        amountLeft-=this.reserve.sendClass(this.hand.cards,cardClass,amount,spec)
                     }
                 }
                 this.reserve.parseDrawEffects(this.hand)

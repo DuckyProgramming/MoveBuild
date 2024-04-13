@@ -818,7 +818,13 @@ class battle{
         if(card.cost==2&&userCombatant.getStatus('2 Cost Block')>0){
             userCombatant.addBlock(userCombatant.getStatus('2 Cost Block'))
         }
-        this.combatantManager.playCardFront()
+        if((card.name=='Strike'||card.name=='Strike-')&&userCombatant.getStatus('Strike Block')>0){
+            userCombatant.addBlock(userCombatant.getStatus('Strike Block'))
+        }
+        if(card.cost==0&&userCombatant.getStatus('0 Cost Single Damage Up')>0){
+            userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('0 Cost Single Damage Up'))
+        }
+        this.combatantManager.playCardFront(cardClass)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name])
     }
     displayCurrency(){

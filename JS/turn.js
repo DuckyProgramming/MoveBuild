@@ -2928,9 +2928,6 @@ class turn{
                                             this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
                                         }
                                     break
-                                    case 154:
-                                        this.targetCombatant.statusEffect('Poison',this.effect[1])
-                                    break
                                 }
                                 this.targetCombatant.moveTilePosition(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)
                                 this.battle.activateTile(1,this.targetCombatant.id)

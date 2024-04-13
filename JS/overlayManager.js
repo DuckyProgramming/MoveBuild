@@ -54,13 +54,15 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[29])],//random edition, no return
                     [new overlay(this.layer,this.battle,0,12,[])],//select boss
                     [new overlay(this.layer,this.battle,0,2,[30])],//exhaust draw card, no return
+                    [new overlay(this.layer,this.battle,0,2,[31])],//exhaust discard card, no return
+                    [new overlay(this.layer,this.battle,0,2,[32])],//silver edition, no return
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[41,42,38,24,17,3,26,28,10,35,6,44,12,0,25,1,13,36,2,16,4,15,5,32,7,18,30,33,8,46,34,37,19,20,21,22,23,29,31,40,9,14,11,27,39,43,45]
+                this.priority=[41,42,38,24,17,3,26,28,10,35,6,44,48,12,0,25,1,13,36,2,16,4,15,5,32,7,18,30,33,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,11,27,39,43,45]
             break
             case 1:
                 this.overlays.push(

@@ -671,6 +671,9 @@ class relicManager{
                                 this.getPlayer(a).statusEffect('Single Damage Up',this.detail[201][a])
                                 this.detail[201][a]--
                             }
+                            if(this.active[209][a+1]>0){
+                                this.getPlayer(a).statusEffect('Strength',2*this.active[209][a+1]*floor(this.battle.currency.money[a]/500))
+                            }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                         }
@@ -685,9 +688,6 @@ class relicManager{
                         }
                         if(this.active[147][0]>0){
                             this.battle.combatantManager.allEffect(5,[1+this.active[147][0]*0.2])
-                        }
-                        if(this.active[209][a+1]>0){
-                            this.getPlayer(a).statusEffect('Strength',2*this.active[209][a+1]*floor(this.battle.currency.money[a]/500))
                         }
                         if(this.battle.modded(11)){
                             this.battle.combatantManager.fullAllEffect(3,[3])
