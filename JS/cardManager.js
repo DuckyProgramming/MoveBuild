@@ -378,6 +378,19 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
+    addRandomCompleteAllCostCostDown(group,level,cost){
+        let list=[]
+        for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
+            if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost){
+                list.push(this.listing.allListableCard[3][a])
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            let card=this.getList(group).addReturn(type,level,types.card[type].list)
+            card.cost=max(min(card.cost,0),card.cost-1)
+        }
+    }
     addRandomSpec(group,level,spec){
         let list=[]
         for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){

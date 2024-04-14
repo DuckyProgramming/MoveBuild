@@ -22,7 +22,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[8])],//duplicate card, no return
                     [new overlay(this.layer,this.battle,0,2,[9])],//view reserve (ordered)
                     [new overlay(this.layer,this.battle,0,2,[10])],//make card innate
-                    [new overlay(this.layer,this.battle,0,2,[4,3,0])],//remove 3 cards, no return
+                    [new overlay(this.layer,this.battle,0,2,[4,6,0])],//remove 6 cards, no return
                     [new overlay(this.layer,this.battle,0,5,[0])],//sell relic, no return
                     [new overlay(this.layer,this.battle,0,2,[4,1,1])],//remove card, return through event (bonfire spirits)
                     [new overlay(this.layer,this.battle,0,2,[11])],//bring in discard card as free, no return
@@ -56,13 +56,15 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[30])],//exhaust draw card, no return
                     [new overlay(this.layer,this.battle,0,2,[31])],//exhaust discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[32])],//silver edition, no return
+                    [new overlay(this.layer,this.battle,0,2,[33])],//polychrome edition, no return
+                    [new overlay(this.layer,this.battle,0,2,[34])],//bring in discard card as confused, no return, 50
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[41,42,38,24,17,3,26,28,10,35,6,44,48,12,0,25,1,13,36,2,16,4,15,5,32,7,18,30,33,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,11,27,39,43,45]
+                this.priority=[41,42,38,24,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,16,4,15,5,32,7,18,50,30,33,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,11,27,39,43,45]
             break
             case 1:
                 this.overlays.push(

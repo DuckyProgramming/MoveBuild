@@ -35,7 +35,7 @@ class relicManager{
             switch(types.relic[a].id){
                 case 4: case 17: case 18: case 37: case 38: case 39: case 42: case 43: case 44: case 59:
                 case 60: case 63: case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111:
-                case 118: case 201: case 204: case 205:
+                case 118: case 139: case 201: case 204: case 205:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -325,7 +325,7 @@ class relicManager{
             break
             case 159:
                 this.battle.itemManager.addRandomItem(player)
-                this.battle.addCurrency(200,player)
+                this.battle.addCurrency(300,player)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
                 this.battle.overlayManager.overlays[3][player].active=true
                 this.battle.overlayManager.overlays[3][player].activate([0,2,0])
@@ -480,9 +480,9 @@ class relicManager{
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].gainMaxHP(10)
             break
             case 151:
-                this.battle.cardManagers[player].deck.unRemove()
-                this.battle.cardManagers[player].deck.unRemove()
-                this.battle.cardManagers[player].deck.unRemove()
+                for(let a=0,la=6;a<la;a++){
+                    this.battle.cardManagers[player].deck.unRemove()
+                }
             break
             case 154:
                 for(let a=0,la=this.battle.cardManagers[player].deck.cards.length;a<la;a++){
@@ -502,7 +502,7 @@ class relicManager{
             break
             case 159:
                 this.battle.itemManager.loseRandom(player)
-                this.battle.currency.money[player]-=200
+                this.battle.loseCurrency(300,player)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].loseMaxHP(10)
                 this.battle.cardManagers[player].deck.removeRarity(2)
                 this.battle.cardManagers[player].randomEffect(0,3,[0])
@@ -946,6 +946,12 @@ class relicManager{
                                 manager.hand.cards[manager.hand.cards.length-1].cost--
                             }
                         }
+                    }
+                }
+                if(this.active[139][args[1]+1]>0){
+                    this.detail[139][args[1]]++
+                    if(this.detail[139]%2==0){
+                        this.battle.cardManagers[args[1]].draw(this.active[139][args[1]+1])
                     }
                 }
                 if(this.active[161][args[1]+1]>0){

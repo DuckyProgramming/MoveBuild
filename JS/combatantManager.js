@@ -534,6 +534,11 @@ class combatantManager{
                             this.combatants[a].takeDamage(args[1],-1)
                         }
                     break
+                    case 32:
+                        if(this.combatants[a].name==args[0]&&this.combatants[a].id!=args[1]){
+                            this.combatants[a].life=0
+                        }
+                    break
                 }
             }
         }

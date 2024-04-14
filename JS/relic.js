@@ -1044,10 +1044,12 @@ class relic{
                 break
                 case 'Energy/Draw':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
-                    displaySymbol(this.layer,8,0,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,8,-4,8,0,0.9,this.fade)
+                    displaySymbol(this.layer,8,10,20,0,0.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('-1',8,0)
+                    this.layer.text('-1',8,-4)
+                    this.layer.text('2',8,10)
                 break
                 case 'Energy/Card Limit':
                     displaySymbol(this.layer,-11,0,9,0,0.8,this.fade)
@@ -1111,12 +1113,12 @@ class relic{
                     displaySymbol(this.layer,-13,0,20,0,0.6,this.fade)
                     displaySymbol(this.layer,12,0,20,0,0.6,this.fade)
                 break
-                case 'Remove 3':
+                case 'Remove 6':
                     displaySymbol(this.layer,0,0,8,0,1,this.fade)
                     displaySymbol(this.layer,0,0,16,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('3',0,0)
+                    this.layer.text('6',0,0)
                 break
                 case 'Difficulty Energy':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)

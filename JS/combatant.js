@@ -134,7 +134,7 @@ class combatant{
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
             'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
-            'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy',
+            'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -166,7 +166,7 @@ class combatant{
                 1,1,2,1,0,2,0,0,2,2,//27
                 2,0,2,0,0,0,1,2,1,0,//28
                 0,2,2,2,0,2,0,2,0,1,//29
-                0,0,0,0,0,0,
+                0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -198,7 +198,7 @@ class combatant{
                 2,2,2,2,1,1,2,0,0,0,//27
                 1,1,0,1,2,2,0,0,1,2,//28
                 2,2,0,0,0,2,0,0,2,2,//29
-                2,2,2,1,0,2,
+                2,2,2,1,0,2,3,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -5625,6 +5625,14 @@ class combatant{
             return false
         }
     }
+    luckCheckFail(){
+        if(this.status.main[296]>0){
+            this.status.main[296]--
+            return true
+        }else{
+            return false
+        }
+    }
     cable(target,key){
         return targetDirection(0,target.tilePosition.x-this.tilePosition.x,target.tilePosition.y-this.tilePosition.y)==key||
             targetDirection(0,target.tilePosition.x-this.tilePosition.x,target.tilePosition.y-this.tilePosition.y)%3==key%3&&this.status.main[289]>0
@@ -5678,13 +5686,17 @@ class combatant{
         let average=0
         let roll=0
         let luckCheck=false
+        let luckCheckFail=false
         if(this.status.main[261]>0){
             luckCheck=true
         }else{
             luckCheck=this.luckCheck()
+            if(!luckCheck){
+                luckCheckFail=this.luckCheckFail()
+            }
         }
         for(let a=0,la=number;a<la;a++){
-            roll=(luckCheck?value:1+floor(random(0,value)))+this.status.main[252]
+            roll=(luckCheck?value:luckCheckFail?1:1+floor(random(0,value)))+this.status.main[252]
             total+=roll
             average+=(1+value)/2+this.status.main[252]
             this.battle.particleManager.createAuxNumber(this.position.x,this.position.y,roll,(a+0.5)/number*360)

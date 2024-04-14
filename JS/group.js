@@ -160,10 +160,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0,unupgrade:0,reserveRetain:0,discardFree:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0,unupgrade:0,reserveRetain:0,discardFree:0,costDown:0,costUp:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0,unupgrade:0,reserveRetain:0,discardFree:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0,unupgrade:0,reserveRetain:0,discardFree:0,costDown:0,costUp:0}
     }
     addInitial(type,level,color){
         game.id++
@@ -450,6 +450,12 @@ class group{
     }
     discardFree(amount){
         this.status.discardFree+=amount
+    }
+    costDown(amount){
+        this.status.costDown+=amount
+    }
+    costUp(amount){
+        this.status.costUp+=amount
     }
     shuffle(){
         let cards=[]
@@ -1247,7 +1253,7 @@ class group{
                 break
                 case 72:
                     if(this.cards[a].name.includes('Cable')&&this.cards[a].class==1){
-                        this.cards[a].target[2]=2
+                        this.cards[a].target[2]=3
                     }
                 break
                 case 73:
@@ -1266,6 +1272,16 @@ class group{
                 case 75:
                     if(this.cards[a].spec.includes(52)){
                         this.cards[a].target[2]=2
+                    }
+                break
+                case 76:
+                    if(this.cards[a].cost>=0){
+                        this.cards[a].cost++
+                    }
+                break
+                case 77:
+                    if(this.cards[a].cost==2){
+                        this.cards[a].cost=3
                     }
                 break
 
@@ -1744,7 +1760,7 @@ class group{
             case 1565:
                 userCombatant.balance+=card.effect[0]
             break
-            case 1745: case 1943: case 2096: case 2128: case 2200:
+            case 1745: case 1943: case 2096: case 2128: case 2200: case 2465:
                 for(let a=0,la=card.effect[2];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
                 }
@@ -1757,6 +1773,12 @@ class group{
             break
             case 2411:
                 userCombatant.statusEffect('Temporary Damage Up',card.effect[2])
+            break
+            case 2479:
+                userCombatant.statusEffect('Jinx',card.effect[0])
+            break
+            case 2480:
+                userCombatant.statusEffect('Shock',card.effect[0])
             break
         }
     }
@@ -1867,8 +1889,13 @@ class group{
                 list[list.length-1].position.x=1200
                 list[list.length-1].position.y=500
                 if(this.drawEffect(list[list.length-1])){la=0}
-                if(spec==1){
-                    list[list.length-1].cost=0
+                switch(spec){
+                    case 1:
+                        list[list.length-1].cost=0
+                    break
+                    case 2:
+                        list[list.length-1].cost=max(min(0,list[list.length-1].cost),list[list.length-1].cost-2)
+                    break
                 }
                 delete this.cards[a]
                 this.cards.splice(a,1)
@@ -1947,7 +1974,7 @@ class group{
                 list[list.length-1].size=0
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
-                    spec==13||spec==14
+                    spec==13||spec==14||spec==16
                 ){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
@@ -2001,6 +2028,9 @@ class group{
                             }
                             if(this.drawEffect(list[list.length-1])){la=0}
                         break
+                        case 16:
+                            list[list.length-1].cost=floor(random(0,4))
+                        break
                     }
                 }else if(spec==7){
                     list[list.length-1].cost=list[list.length-1].base.cost
@@ -2020,54 +2050,63 @@ class group{
                 list[list.length-1].size=0
                 if(
                     spec==1||spec==2||spec==3||spec==4||spec==5||spec==6||spec==8||spec==9||spec==10||spec==12||
-                    spec==13||spec==14
+                    spec==13||spec==14||spec==16
                 ){
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
-                    if(spec==2){
-                        list[list.length-1].cost=list[list.length-1].base.cost
-                    }
-                    if(spec==3){
-                        if(this.drawEffect(list[list.length-1])){la=0}
-                    }
-                    if(spec==4){
-                        list[list.length-1].cost=0
-                    }
-                    if(spec==5){
-                        if(this.drawEffect(list[list.length-1])){la=0}
-                        list[list.length-1].cost=0
-                    }
-                    if(spec==6&&list[list.length-1].cost>0){
-                        list[list.length-1].cost-=1
-                    }
-                    if(spec==8){
-                        if(list[list.length-1].level==0){
-                            list[list.length-1]=upgradeCard(list[list.length-1])
-                        }
-                        if(this.drawEffect(list[list.length-1])){la=0}
-                    }
-                    if(spec==9){
-                        list[list.length-1].retain=true
-                        if(this.drawEffect(list[list.length-1])){la=0}
-                    }
-                    if(spec==10&&list[list.length-1].level<=1){
-                        list[list.length-1]=upgradeCard(list[list.length-1])
-                    }
-                    if(spec==12){
-                        list[list.length-1].retain2=true
-                        if(this.drawEffect(list[list.length-1])){la=0}
-                    }
-                    if(spec==13){
-                        if(!list[list.length-1].spec.includes(39)){
-                            list[list.length-1].spec.push(39)
-                        }
-                        if(this.drawEffect(list[list.length-1])){la=0}
-                    }
-                    if(spec==14){
-                        if(!list[list.length-1].spec.includes(48)){
-                            list[list.length-1].spec.push(48)
-                        }
-                        if(this.drawEffect(list[list.length-1])){la=0}
+                    switch(spec){
+                        case 2:
+                            list[list.length-1].cost=list[list.length-1].base.cost
+                        break
+                        case 3:
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                        break
+                        case 4:
+                            list[list.length-1].cost=0
+                        break
+                        case 5:
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                            list[list.length-1].cost=0
+                        break
+                        case 6:
+                            if(list[list.length-1].cost>0){
+                                list[list.length-1].cost-=1
+                            }
+                        break
+                        case 8:
+                            if(list[list.length-1].level==0){
+                                list[list.length-1]=upgradeCard(list[list.length-1])
+                            }
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                        break
+                        case 9:
+                            list[list.length-1].retain=true
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                        break
+                        case 10:
+                            if(list[list.length-1].level<=1){
+                                list[list.length-1]=upgradeCard(list[list.length-1])
+                            }
+                        break
+                        case 12:
+                            list[list.length-1].retain2=true
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                        break
+                        case 13:
+                            if(!list[list.length-1].spec.includes(39)){
+                                list[list.length-1].spec.push(39)
+                            }
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                        break
+                        case 14:
+                            if(!list[list.length-1].spec.includes(48)){
+                                list[list.length-1].spec.push(48)
+                            }
+                            if(this.drawEffect(list[list.length-1])){la=0}
+                        break
+                        case 16:
+                            list[list.length-1].cost=floor(random(0,4))
+                        break
                     }
                 }else if(spec==7){
                     list[list.length-1].cost=list[list.length-1].base.cost
@@ -2399,6 +2438,7 @@ class group{
                 this.battle.attackManager.relPos=[-1,999]
                 this.battle.attackManager.limit=0
                 this.battle.attackManager.id=-1
+                this.battle.attackManager.edition=-1
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                 this.battle.attackManager.targetDistance=0
@@ -2420,13 +2460,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,max(this.anim.upgrade,this.anim.unupgrade),this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy,this.anim.reserveRetain,this.anim.discardFree])
+                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,max(this.anim.upgrade,this.anim.unupgrade),this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy,this.anim.reserveRetain,this.anim.discardFree,this.anim.costDown,this.anim.costUp])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,max(this.anim.upgrade,this.anim.unupgrade),this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy,this.anim.reserveRetain,this.anim.discardFree])
+                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,max(this.anim.upgrade,this.anim.unupgrade),this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy,this.anim.reserveRetain,this.anim.discardFree,this.anim.costDown,this.anim.costUp])
                     }
                 }
             break
@@ -2524,6 +2564,7 @@ class group{
                 this.battle.attackManager.relPos=[a,this.cards.length-1]
                 this.battle.attackManager.limit=this.cards[a].limit
                 this.battle.attackManager.id=this.cards[a].id
+                this.battle.attackManager.edition=this.cards[a].edition
                 if(this.cards[a].strike&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
@@ -2650,6 +2691,15 @@ class group{
                             if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
                                 this.battle.cardManagers[this.player].deck.cards[b].effect[0]+=this.cards[a].effect[2]
                                 this.battle.cardManagers[this.player].deck.cards[b].effect[1]+=this.cards[a].effect[2]
+                            }
+                        }
+                    }else if(this.cards[a].attack==2484){
+                        this.cards[a].cost+=this.cards[a].effect[1]
+                        this.cards[a].base.cost+=this.cards[a].effect[1]
+                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
+                                this.battle.cardManagers[this.player].deck.cards[b].cost+=this.cards[a].effect[1]
+                                this.battle.cardManagers[this.player].deck.cards[b].base.cost+=this.cards[a].effect[1]
                             }
                         }
                     }
@@ -2812,6 +2862,15 @@ class group{
                                     this.battle.cardManagers[this.player].deck.cards[c].effect[1]+=this.cards[b].effect[2]
                                 }
                             }
+                        }else if(this.cards[b].attack==2484){
+                            this.cards[b].cost+=this.cards[b].effect[1]
+                            this.cards[b].base.cost+=this.cards[b].effect[1]
+                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                    this.battle.cardManagers[this.player].deck.cards[c].cost+=this.cards[b].effect[1]
+                                    this.battle.cardManagers[this.player].deck.cards[c].base.cost+=this.cards[b].effect[1]
+                                }
+                            }
                         }
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
@@ -2972,6 +3031,15 @@ class group{
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                         this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[2]
                                         this.battle.cardManagers[this.player].deck.cards[c].effect[1]+=this.cards[b].effect[2]
+                                    }
+                                }
+                            }else if(this.cards[b].attack==2484){
+                                this.cards[b].cost+=this.cards[b].effect[1]
+                                this.cards[b].base.cost+=this.cards[b].effect[1]
+                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                        this.battle.cardManagers[this.player].deck.card[c].cost+=this.cards[b].effect[1]
+                                        this.battle.cardManagers[this.player].deck.base.card[c].cost+=this.cards[b].effect[1]
                                     }
                                 }
                             }
@@ -3200,8 +3268,24 @@ class group{
                     this.status.discardFree--
                 }
             break
+            case 25:
+                if(this.cards[a].cost>0){
+                    this.cards[a].cost--
+                }
+                if(this.status.costDown>0){
+                    this.status.costDown--
+                }
+            break
+            case 26:
+                if(this.cards[a].cost>=0){
+                    this.cards[a].cost++
+                }
+                if(this.status.costUp>0){
+                    this.status.costUp--
+                }
+            break
         }
-    }w
+    }
     update(scene,args){
         switch(scene){
             case 'battle':
@@ -3225,6 +3309,8 @@ class group{
                 this.anim.unupgrade=smoothAnim(this.anim.unupgrade,this.status.unupgrade!=0,0,1,5)
                 this.anim.reserveRetain=smoothAnim(this.anim.reserveRetain,this.status.reserveRetain!=0,0,1,5)
                 this.anim.discardFree=smoothAnim(this.anim.discardFree,this.status.discardFree!=0,0,1,5)
+                this.anim.costDown=smoothAnim(this.anim.costDown,this.status.costDown!=0,0,1,5)
+                this.anim.costUp=smoothAnim(this.anim.costUp,this.status.costUp!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -3346,7 +3432,7 @@ class group{
                             this.cards[a].attack==1649||this.cards[a].attack==1650||this.cards[a].attack==1654||this.cards[a].attack==1655||this.cards[a].attack==1740||
                             this.cards[a].attack==1753||this.cards[a].attack==1777||this.cards[a].attack==1788||this.cards[a].attack==1806||this.cards[a].attack==1821||
                             this.cards[a].attack==1852||this.cards[a].attack==1856||this.cards[a].attack==1857||this.cards[a].attack==1868||this.cards[a].attack==1909||
-                            this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||
+                            this.cards[a].attack==1813||this.cards[a].attack==1921||this.cards[a].attack==1944||this.cards[a].attack==2470||this.cards[a].attack==2489||
                             (this.cards[a].attack==587||this.cards[a].attack==676)&&this.battle.combatantManager.constructAlive(this.player+1)&&!options.oldUnbuild||
                             this.cards[a].attack==1642&&this.battle.attackManager.energy==4||
                             this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Hook')>0&&this.cards[a].cost>0&&this.battle.turn.main==this.player
@@ -3771,6 +3857,8 @@ class group{
                                 if(this.status.unupgrade!=0){this.callInput(22,a); break}
                                 if(this.status.reserveRetain!=0){this.callInput(23,a); break}
                                 if(this.status.discardFree!=0){this.callInput(24,a); break}
+                                if(this.status.costDown!=0){this.callInput(25,a); break}
+                                if(this.status.costUp!=0){this.callInput(26,a); break}
                                 if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)
@@ -4133,6 +4221,8 @@ class group{
                                 if(this.status.unupgrade!=0){this.callInput(22,a); break}
                                 if(this.status.reserveRetain!=0){this.callInput(23,a); break}
                                 if(this.status.discardFree!=0){this.callInput(24,a); break}
+                                if(this.status.costDown!=0){this.callInput(25,a); break}
+                                if(this.status.costUp!=0){this.callInput(26,a); break}
                                 if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)

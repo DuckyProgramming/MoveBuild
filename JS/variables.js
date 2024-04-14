@@ -690,7 +690,7 @@ types={
         {name:'Red-Tinted Glasses',internal:'Energy/Intent',id:136,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot See Enemy Intent Values'},
         {name:`Philosopher's Stone`,internal:'Energy/Strength',id:137,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies Start Combat With 1 Strength'},
         {name:'Sozu',internal:'Energy/Items',id:138,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Obtain Items'},
-        {name:'Rainbow Flame',internal:'Energy/Draw',id:139,rarity:4,list:0,description:'Gain 1 Base Energy,\nDraw 1 Less Card Every Turn'},
+        {name:'Rainbow Flame',internal:'Energy/Draw',id:139,rarity:4,list:0,description:'Gain 1 Base Energy,\nDraw 1 Less Card Every 2 Turns'},
         {name:'Barrous Armband',internal:'Energy/Card Limit',id:140,rarity:4,list:0,description:'Gain 1 Base Energy,\nCannot Play More Than 5 Cards Every Turn'},
 
         {name:'Rhombic Rock',internal:'Energy/Initiative',id:141,rarity:4,list:0,description:'Gain 1 Base Energy,\nYou No Longer Start With Initiative'},
@@ -704,7 +704,7 @@ types={
         {name:'Rosequartz',internal:'3 Free Cards',id:149,rarity:4,list:0,description:'The First 3 Cards Played\nEvery Combat are Free'},
         {name:'Carnelian',internal:'Avoidance',id:150,rarity:4,list:0,description:'You May Move\nThrough Obstructions\nReplace Step With Swap'},
 
-        {name:'Rejector 300',internal:'Remove 3',id:151,rarity:4,list:0,description:'When Taken, Remove 3 Cards'},
+        {name:'Rejector 300',internal:'Remove 6',id:151,rarity:4,list:0,description:'When Taken, Remove 6 Cards'},
         {name:'Shattered Chains',internal:'Difficulty Energy',id:152,rarity:4,list:0,description:'Gain 2 Energy Every Turn\non Elites and Bosses'},
         {name:'Meal Plan',internal:'Large Quick Heal',id:153,rarity:4,list:0,description:'Heal 10 HP at\nthe End of Combat'},
         {name:'Mystery Box',internal:'Transform Basic',id:154,rarity:4,list:0,description:'When Taken, Transform All Strikes and\nDefends, and Upgrade All Steps'},
@@ -712,7 +712,7 @@ types={
         {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:4,list:0,description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
         {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:4,list:0,description:'Items are 5x\nMore Effective'},
         {name:'Holy Water',internal:'3 Starting Miracles',id:158,rarity:4,list:0,description:'Add 3 Miracles\nat the Start of Combat'},
-        {name:'Pentaxon',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n200 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
+        {name:'Pentaxon',internal:'Random',id:159,rarity:4,list:0,description:'When Taken, Gain 1 Item,\n300 Currency, 10 Max HP, a Rare Card,\nand Upgrade a Random Card'},
         {name:'Watermelon',internal:'30 Max HP',id:160,rarity:4,list:0,description:'When Taken,\nGain 30 Max HP'},
         
         {name:'Bent Pliers',internal:'Upgrade Random Turn',id:161,rarity:-1,list:0,description:'Every Turn, Upgrade a Random\nCard in Your Hand'},
@@ -5950,7 +5950,7 @@ Is removed when damage taken.`,
         },{name:'Mixed',desc:
 `Will face 180 degrees from target.`,
         },{name:'Lock',desc:
-`Cannot respond to players by attacking or moving, can only act via normal turn.`,
+`Cannot turn around. Decrements afterward.`,
         },{name:'Poison',desc:
 `Deals damage every turn. Decreases by 1 afterward.`,
         },

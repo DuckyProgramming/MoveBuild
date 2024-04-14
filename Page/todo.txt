@@ -1,28 +1,5 @@
 cards:
 
-defecits and rarity balances
-
-[certes common]
-[certes common]
-[donakho rare]
-[sakura common]
-[deals more damage if it has an edition]
-[shock drop and roll (get shocked and dodge)]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-
-change polybasite
+plasma shinies
 
 new tutorials
