@@ -50,7 +50,7 @@ class attackManager{
             this.battle.turnManager.loads=0
         }
     }
-    edition(type){
+    editionCard(type){
         switch(type){
             case -6:
                 for(let a=0,la=this.effect.length;a<la;a++){

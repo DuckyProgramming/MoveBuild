@@ -1222,6 +1222,35 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/100				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-100}
 			`)
 }
+function outDupes(){
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card.length;b<lb;b++){
+			if(types.card[a].name==types.card[b].name&&a!=b){
+				print(types.card[a].name)
+			}
+		}
+	}
+}
+function outUniqueCards(){
+	let list=[]
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(!list.includes(types.card[a].levels[0].attack)){
+			list.push(types.card[a].levels[0].attack)
+		}
+	}
+	print(list.length)
+}
+function outUniqueEffects(){
+	let list=[]
+	for(let a=0,la=types.card.length;a<la;a++){
+		for(let b=0,lb=types.card[a].levels.length;b<lb;b++){
+			if(!list.includes(types.card[a].levels[b].attack)){
+				list.push(types.card[a].levels[b].attack)
+			}
+		}
+	}
+	print(list.length)
+}
 function outRelic(){
 	print(`Common: ${current.relicManager.listing.relic[0].length}
 	Uncommon: ${current.relicManager.listing.relic[1].length}

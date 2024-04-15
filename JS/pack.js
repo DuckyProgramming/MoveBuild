@@ -15,12 +15,14 @@ class pack{
         this.create()
     }
     create(){
-        let group=[0,0,0,1]
-        for(let a=0,la=4;a<la;a++){
-            if(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length>0){
-                this.cards.push(new card(this.layer,this.battle,this.player,this.position.x-60+a*40,this.position.y-5+a%2*10,a==0&&this.battle.player[this.player]==1?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length))],variants.cursed?1:0,this.battle.player[this.player],a+this.id*4+this.player*12))
-                let roll=floor(random(0,180))
-                this.cards[a].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+        if(this.battle.player[this.player]>0){
+            let group=[0,0,0,1]
+            for(let a=0,la=4;a<la;a++){
+                if(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length>0){
+                    this.cards.push(new card(this.layer,this.battle,this.player,this.position.x-60+a*40,this.position.y-5+a%2*10,a==0&&this.battle.player[this.player]==1?findName(['Security\nPack','Sapper\nPack','Infantry\nPack'][this.id],types.card):this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]][floor(random(0,this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][group[a]].length))],variants.cursed?1:0,this.battle.player[this.player],a+this.id*4+this.player*12))
+                    let roll=floor(random(0,180))
+                    this.cards[a].edition=roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
+                }
             }
         }
     }

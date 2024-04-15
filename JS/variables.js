@@ -2975,6 +2975,19 @@ Entering, you're offered a chance to glimpse your future...`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
         },{
+            name:'Offset Crushed 7',
+            map:[
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
             name:'Half-Crushed 5',
             map:[
                 [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
@@ -5539,6 +5552,20 @@ Entering, you're offered a chance to glimpse your future...`,
                 {position:{x:1,y:2},name:'Duckforce'},
                 {position:{x:5,y:4},name:'Duckforce'},
                 {position:{x:4,y:5},name:'Duckforce'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Offset Crushed 7'],class:-1,world:-1,
+            name:'TutorialAll',
+            player:{position:[
+                [],[],[],[],[],[],[],[],[],[],[],[],
+                [
+                    {x:4,y:8},{x:3,y:7},{x:2,y:6},{x:2,y:5},
+                    {x:2,y:4},{x:3,y:4},{x:4,y:4},{x:5,y:4},{x:6,y:4},
+                    {x:7,y:5},{x:8,y:6},{x:8,y:7},{x:8,y:8}
+                ],
+            ]},
+            enemy:[
             ],reinforce:[
             ],
         },{

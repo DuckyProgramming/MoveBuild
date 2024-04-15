@@ -1218,7 +1218,7 @@ class group{
                     this.cards[a].callTurnEffect()
                 break
                 case 64:
-                    if(this.cards[a].spec.includes(3)&&this.id!=2){
+                    if((this.cards[a].spec.includes(3)||this.cards[a].spec.includes(47))&&this.id!=2){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,0)
                     }
                 break

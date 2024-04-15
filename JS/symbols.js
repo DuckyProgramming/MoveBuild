@@ -2648,7 +2648,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,0,12,3)
         break
         case 295:
-            layer.stroke(255,100,255,fade)
+            layer.stroke(200,255,255,fade)
             layer.strokeWeight(2)
             layer.arc(0,0,10,10,-90,240)
             layer.line(0,-5,0,-3)

@@ -4647,21 +4647,21 @@ function setupBackground(type,layer){
 			layer.rect(layer.width/2-350,layer.height*0.7,125,125)
 			layer.rect(layer.width/2-350,layer.height*0.7+100,125,55)
 			for(let a=0,la=6;a<la;a++){
-				layer.rect(layer.width/2-350,layer.height/2-380+a*90,350,80)
+				layer.rect(layer.width/2-350,layer.height/2-380+a*90,300,80)
 			}
-			for(let a=0,la=game.playerNumber;a<la;a++){
-				layer.rect(layer.width/2+350,layer.height/2-380+a*90,350,80)
+			for(let a=0,la=game.playerNumber+1;a<la;a++){
+				layer.rect(layer.width/2+187.5+floor(a/7)*325,layer.height/2-380+a%7*90,300,80)
 			}
 			layer.fill(0)
 			layer.rect(layer.width/2-350,layer.height*0.7,100,100)
 			layer.rect(layer.width/2-350,layer.height*0.7+100,100,30)
 			for(let a=0,la=6;a<la;a++){
-				layer.rect(layer.width/2-382.5,layer.height/2-380+a*90,260,55)
-				layer.rect(layer.width/2-215,layer.height/2-380+a*90,55,55)
+				layer.rect(layer.width/2-382.5,layer.height/2-380+a*90,210,55)
+				layer.rect(layer.width/2-240,layer.height/2-380+a*90,55,55)
 			}
-			for(let a=0,la=game.playerNumber;a<la;a++){
-				layer.rect(layer.width/2+317.5,layer.height/2-380+a*90,260,55)
-				layer.rect(layer.width/2+485,layer.height/2-380+a*90,55,55)
+			for(let a=0,la=game.playerNumber+1;a<la;a++){
+				layer.rect(layer.width/2+155+floor(a/7)*325,layer.height/2-380+a%7*90,210,55)
+				layer.rect(layer.width/2+297.5+floor(a/7)*325,layer.height/2-380+a%7*90,55,55)
 			}
 			layer.fill(120)
 			regTriangle(layer,layer.width/2-355,layer.height*0.7,40,40,-30)
@@ -4674,8 +4674,8 @@ function setupBackground(type,layer){
 			layer.text('HOTKEYS',layer.width/2-382.5,layer.height*0.5-110)
 			layer.text('STATUSES',layer.width/2-382.5,layer.height*0.5-20)
 			layer.text('TACTICS',layer.width/2-382.5,layer.height*0.5+70)
-			for(let a=0,la=game.playerNumber;a<la;a++){
-				layer.text(types.combatant[a+1].name.toUpperCase(),layer.width/2+317.5,layer.height*0.5-380+a*90)
+			for(let a=0,la=game.playerNumber+1;a<la;a++){
+				layer.text(a==0?`OVERVIEW`:types.combatant[a].name.toUpperCase(),layer.width/2+155+floor(a/7)*325,layer.height*0.5-380+a%7*90)
 			}
 			layer.textSize(60)
 			for(let a=0,la=10;a<la;a++){

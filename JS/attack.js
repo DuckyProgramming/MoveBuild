@@ -2954,7 +2954,7 @@ class attack{
                     break
                     case 2461:
                         if(this.userCombatant.energyParity(this.energy)==1){
-                            this.userManager.addRandomCompleteAllCostCostDown(2,0,4)
+                            this.userManager.addRandomCompleteAllCostCostDown(2,0,4,2)
                         }
                     break
                     case 2464:
@@ -4188,12 +4188,12 @@ class attack{
                     break
                     case 2326:
                         if(this.battle.turn.total%2==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.userManager.draw(this.effect[1])
                         }
                     break
                     case 2327:
                         if(this.battle.turn.total%2==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.userManager.draw(this.effect[1])
                         }
                     break
                     case 2332:
@@ -4225,7 +4225,7 @@ class attack{
                     break
                     case 2439:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.addRandomCompleteAllContainClass(2,this.level,['Cable','cable'],1)
+                            this.userManager.addRandomCompleteAllContainClass(2,this.level,['Cable','cable'],1,0)
                         }
                     break
                     case 2440:
@@ -5227,7 +5227,7 @@ class attack{
                         this.userManager.allEffect(2,52)
                     break
                     case 2448:
-                        if(this.battle.energy.main%2==1){
+                        if(this.userCombatant.energyParity(this.energy)==1){
                             this.userManager.draw(this.effect[0])
                         }else{
                             this.battle.energy.main[this.player]+=this.effect[1]
@@ -6342,7 +6342,7 @@ class attack{
                         this.userCombatant.statusEffect('Block Heal',1)
                     break
                     case 2263:
-                        this.userManager.draw(this.battle.counter.turnPlayed[this.player]>=this.effect[2]+1?this.effect[0]+this.effect[1]:this.effect[0])
+                        this.userManager.draw(this.battle.counter.turnPlayed[0]>=this.effect[2]+1?this.effect[0]+this.effect[1]:this.effect[0])
                     break
                     case 2267:
                         this.userManager.draw(this.effect[0])
@@ -6435,6 +6435,9 @@ class attack{
                         this.battle.overlayManager.overlays[50][this.player].active=true
                         this.battle.overlayManager.overlays[50][this.player].activate()
                         this.userManager.allEffect(2,5)
+                    break
+                    case 2501:
+                        this.userManager.drawPrice(this.effect[0],1)
                     break
 
                 }
@@ -6927,7 +6930,7 @@ class attack{
                     break
                     case 2354:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.addRandomCompleteAllContainClass(2,this.level,['Cable','cable'],1)
+                            this.userManager.addRandomCompleteAllContainClass(2,this.level,['Cable','cable'],1,0)
                         }
                     break
                     case 2402:
@@ -6947,7 +6950,7 @@ class attack{
                     case 2433:
                         this.userCombatant.statusEffect('Vulnerable',this.effect[0])
                         this.battle.energy.main[this.player]+=this.effect[1]
-                        if(this.battle.energy.main%2==1){
+                        if(this.userCombatant.energyParity(this.energy)==1){
                             this.userManager.draw(this.effect[2])
                         }
                     break
@@ -6959,6 +6962,11 @@ class attack{
                     break
                     case 2452:
                         this.userCombatant.statusEffect('Jinxheal',this.effect[0])
+                    break
+                    case 2502:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomCompleteAllContainClass(2,this.level,['Cable','cable'],1,1)
+                        }
                     break
 
                 }
@@ -8795,7 +8803,7 @@ class attack{
                                 this.targetCombatant.takeDamage(this.userManager.hand.cards[a].effect[0],this.user)
                             }
                         }
-                        this.userManager.hand.discard(this.effect[1])
+                        this.userManager.hand.discard(this.effect[0])
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user,1)
@@ -9107,7 +9115,7 @@ class attack{
                         this.battle.addCurrency(this.limit[1],this.player)
                     break
                     case 1349:
-                        if(this.battle.encounter.class!=2&&this.targetCombatant.team==0){
+                        if(!this.targetCombatant.spec.includes(2)&&this.targetCombatant.team==0){
                             if(this.userManager.deck.add(findName('Container\nBall',types.card),0,0)){
                                 this.userManager.deck.cards[this.userManager.deck.cards.length-1].limit=this.targetCombatant.type
                                 this.targetCombatant.life=0
@@ -9336,7 +9344,7 @@ class attack{
                         this.userCombatant.statusEffect('Cannot Gain Block',this.effect[1])
                     break
                     case 2414:
-                        this.userManager.addRandomSpecCostDown(2,0,25)
+                        this.userManager.addRandomSpecCostDown(2,0,25,1)
                     break
                     case 2438:
                         this.userManager.allGroupEffectArgs(15,[this.effect[0]])
@@ -10191,6 +10199,10 @@ class attack{
                     case 2473:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userCombatant.metal+=this.effect[1]
+                    break
+                    case 2503:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,0,14])
                     break
 
                 }

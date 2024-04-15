@@ -1,5 +1,3 @@
 cards:
 
-plasma shinies
-
-new tutorials
+-7 unique cards

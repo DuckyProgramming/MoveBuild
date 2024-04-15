@@ -100,7 +100,7 @@ Those tiles all involve combat against various levels of enemies.`,
 First, enter the rest site.`,
 `Rest sites give you several options for benefits.
 Typically, you get Heal (HP) and Upgrade (a card) as options.
-You may get more option from relics.`,
+You may get more options from relics.`,
 `At a shop, you can buy cards, remove a card, or buy relics.
 Alternate options at the shop (highlighted) include:
 Selling relics, Heal (10 HP for 60 Currency)`,
@@ -127,7 +127,7 @@ They may be an event, which vary by quality.`,
                 this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Cards will often have attributes attached to them.
-You may have seen some of them already (such is Fatigue).`,
+You may have seen some of them already (such as Fatigue).`,
 `Fatigue cards add a Fatigue card to your discard pile.
 Fatigue costs 1 and has no effect; it only wastes draw.
 Most attack and movement cards have Fatigue.`,
@@ -210,6 +210,7 @@ Try these out in those places.`,
                     [],
                     [{x:this.quickTile(2,1).x,y:this.quickTile(2,1).y-50,size:60},{x:this.quickTile(2,2).x,y:this.quickTile(2,2).y-50,size:60}],
                     [],
+                    [],
                     []
                 ]
                 this.pages=[
@@ -230,12 +231,13 @@ Use strength to deal more damage using the strike.`,
 They also never decay. Use dexterity to get more block from the defend,
 and tank the enemy's attack.`,
 `Buffer is a special status effect that completely eliminates the next hit taken.
-Unlike its counterpart dodge, buffer works on all hits, even ones without a user.
+Unlike its counterpart Dodge, Buffer works on all hits, even ones without a user.
 It only blocks one hit, and is weak against multi-hits. Use buffer to tank a hit.`,
 `Keep in mind that you can read the text of unfamiliar status effects by
 mouseover on a character. The names of most status effects are self-explanatory.`,
 `Some more status effects may be explained in the character tutorials.
 Those characters often have status effects that they use often.`,
+`Additional information may be found in the dictionary.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -272,6 +274,39 @@ enemy to play them in.`,
             break
             case 6:
                 transition.scene='battle'
+                game.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
+                game.deck=[0]
+                this.battle.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialAll',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.popups=[[],[],[],[],[],[]]
+                this.pages=[
+`Movebuild has ${game.playerNumber} playable characters.`,
+`Each one has their own set of cards, colored thematically.
+Typically, you cannot get cards from another character during normal runs,
+though some variants, cards, relics, and items will give these off-color cards.`,
+`Each has distinct gimmicks for their cards but not every card serves a gimmick,
+many are just there to add more content and to provide variety.`,
+`Characters also differ in maximum HP. While this does create a sort of difficulty,
+this is meant more in thematics and the characters are meant to be decently balanced.`,
+`Aside from just gimmicks, some characters are designed to encourage a specific playstyle.
+Despite this, other strategies often remain valid at lower difficulty settings
+and it's suggested to try out a variety of playstyles that may also succeed.`,
+`END OF TUTORIAL`,
+                ]
+                for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                    this.battle.combatantManager.combatants[a].anim.direction=this.battle.combatantManager.combatants[a].position.x<this.layer.width/2?30:-30
+                    this.battle.combatantManager.combatants[a].goal.anim.direction=this.battle.combatantManager.combatants[a].position.x<this.layer.width/2?30:-30
+                }
+            break
+            case 7:
+                transition.scene='battle'
                 game.player=[1]
                 game.deck=[0]
                 this.battle.player=[1]
@@ -287,7 +322,7 @@ enemy to play them in.`,
                 this.popups=[[],[],[],[],[],[],[],[]]
                 this.pages=[
 `George, the Agent, is fairly simple, but can unleash deadly combos.
-His gimmicks include: Combo, Conditioning, Packs`,
+His gimmicks include: Combo, Collision, Packs`,
 `Combo, at its base, is a counter that increases by one each time you hit an enemy.
 There is no limit to combo, and it does not reset after each turn.
 Combo can also be gained through certain cards.`,
@@ -308,7 +343,7 @@ Each one has a different utility, so pick your pack wisely.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 7:
+            case 8:
                 transition.scene='battle'
                 game.player=[2]
                 game.deck=[0]
@@ -350,7 +385,7 @@ end you turn a couple times to let it take damage.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 8:
+            case 9:
                 transition.scene='battle'
                 game.player=[3]
                 game.deck=[0]
@@ -364,10 +399,10 @@ end you turn a couple times to let it take damage.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
-                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Sakura, the Creation, has gimmicks that are harmful and helpful.
-Namely, they are Bleed, Armament, Balance, Confusion, and Freeze.`,
+Namely, they are Bleed, Armament, Balance, and Freeze.`,
 `Bleed is a status effect that can be applied. It does damage each turn.
 After dealing damage, bleed decrements by 1. This means that bleed is not infinite.
 Still, bleed can be maintained by applying more bleed, which can be done in various ways.`,
@@ -386,15 +421,13 @@ Cards marked as X Balance will increase balance by X.
 If balance ever goes above 10, it breaks, causing it to reset to 0 but ending your turn.`,
 `Balance cards are often powerful, but you must keep in mind how much balance they give.
 If you must break balance, do so when you were going to end your turn anyway.`,
-`Confusion is a status effect that causes enemies to face random directions.
-Because they rarely face the player, confused enemies are not really a threat.`,
-`Freeze causes an enemy attack with more than 4 damage to be reduced to 4.
-In this case the enemy dealing 10 will only deal 4. The stack of Freeze decays afterward.
+`Freeze causes an enemy attack to give you a damage buff after it connects.
+It applies double, so an enemy with 4 Freeze increases your damage by 8 temporarily.
 End your turn to allow him to hit you.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 9:
+            case 10:
                 transition.scene='battle'
                 game.player=[4]
                 game.deck=[0]
@@ -409,29 +442,27 @@ End your turn to allow him to hit you.`,
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(35)
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=5
-                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[]]
                 this.pages=[
 `Certes, the Phantasm, is one of the more confined characters,
 but while she may have limited abilities, they can be build in many ways.
-her gimmicks include: Shivs, Choice Discard, Manipulatable Cards.`,
+her gimmicks include: Shivs, and Freeze-Burn Duality.`,
 `Shivs are the central mechanic of her strategy. They are a free, low-damage card.
 The mechanics around shivs relate to getting more of them, and increasing their damage.
 Getting Shivs as Certes is not hard, but getting them economically is a challenge.`,
 `It is important to not get to many Shivs, as they are not Ethereal.
 If a target for a Shiv is not found, it will remain in your deck, wasting draw.`,
-`Choice discard refers to being able to choose a certain number of cards to discard.
-This appears as a red outline over your cards as long as discarding remains active.`,
-`Sometimes, this can be useful just to get rid of cards,
-but some cards benefit from being discarded, or another card being discarded.`,
-`While not exactly a gimmick, many cards relate to the motif of changing values.
-These can either gain or lose cost due to stimuli, or rely on the card context.`,
-`Some of these function best after something else has happened,
-or when the card states are a certain way.`,
-`There's also a minor gimmick with X cost cards and gaining energy.`,
+`Shivs benefit from the ability to create them and add additional attributes to them.
+They also benefit from being counting for a number of cards when played.`,
+`While other characters can make use of Freeze and Burn,
+Certes can use these two status effects in combination, for certain cards.
+There are several ways to apply either of the two statuses or both at the same time.`,
+`In addition, Certes can make use of cards that apply random debuffs to apply these.
+Certes is largely designed with effective simple cards, so consistency can be expected.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 10:
+            case 11:
                 transition.scene='battle'
                 game.player=[5]
                 game.deck=[0]
@@ -448,7 +479,7 @@ or when the card states are a certain way.`,
                 this.popups=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Azis, the Executor, is one of the harder characters to play.
-He has several gimmicks: Orbs, Countdowns, Jinx, and Claws.`,
+He has several gimmicks: Orbs, Countdowns, and Energy manipulation.`,
 `Orbs are held in orb slots. Typically, you have four.
 Holding an orb means putting in the first available slot.`,
 `If no slot is available, the first orb you have will be evoked.
@@ -467,7 +498,7 @@ The dark orb's damage increases every turn, starting at 6 and increasing by 6.
 The lightning orb deals 8 damage, and also deals 4 passive damage per turn.`,
 `The light orb draws 4 cards.
 The fire orb applies 3 burn (burned attacks damage the user).
-The ice orb applies 3 freeze (weakens strong enemies).`,
+The ice orb applies 3 freeze (frozen attacks buff the target).`,
 `The buff orb applies 3 strength.
 The nerf orb applies 3 weak.
 The poison orb applies 4 poison.`,
@@ -479,18 +510,10 @@ Many characters have some countdowns but Azis has the most.`,
 Here, one energy can be put into the countdown.`,
 `Countdowns are very diverse and a wide variety of strategies involve them.
 As a group of cards, there are a lot of interactions.`,
-`Jinx is a statuses that deals damage at some point.
-It has a 1/3 chance to trigger each turn.
-Jinx is removed after dealing damage.`,
-`End you turn until it triggers.
-Jinx is generally unreliable due to its randomness
-and should be used with another strategy.`,
-`Claws are a set of cards that interact with each other.
-Claw Up refers to increasing the effect of other Claws.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 11:
+            case 12:
                 transition.scene='battle'
                 game.player=[6]
                 game.deck=[0]
@@ -507,7 +530,8 @@ Claw Up refers to increasing the effect of other Claws.`,
                 this.popups=[[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Donakho, the Builder is a unique character, as he doesn't do everything himself.
-He can build constructs, which fight on your side. These constructs vary in use.`,
+He can build constructs, which fight on your side. These constructs vary in use.
+In addition, he can make use of card upgrading and transformation.`,
 `First, to build constructs, you need both metal and a blueprint.
 Metal is a basic resource that can be gained in a number of ways.
 Blueprints are a type of card that costs metal and creates a construct.`,
@@ -526,14 +550,13 @@ they will attack anything other than other constructs and yourself.
 They will, however, cost metal, and there is only so much space to build.
 Constructs must also be built on empty tiles, so you cannot build while surrounded.`,
 `The builder also has minor card motif with card modification.
-This covers changing other cards in your hand.`,
-`The other gimmick of Donakho is Shock, a status effect.
-Stacks of Shock deal damage to the target whenever it moves.
-End you turn to let this enemy move.`,
+This covers upgrading cards temporarily or transforming them temporarily.`,
+`It's worth getting familiar with the upgraded forms of your cards to
+know when to select them to be upgraded by another card.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 12:
+            case 13:
                 transition.scene='battle'
                 game.player=[7]
                 game.deck=[0]
@@ -547,11 +570,12 @@ End you turn to let this enemy move.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Setsuna, the Duelist, is a character that can be focused on many things.
-This occurs by changing stances, with each stance having a specific focus.
-Namely, the stances are: Wrath, Calm, Haste, Sturdy, Divinity. No stance also exists.`,
+Her gimmicks are Stances, Faith, and creating cards.`,
+`Namely, the stances are: Wrath, Calm, Haste, Sturdy, Divinity.
+You can also be in no Stance, which is the default.`,
 `Entering a stance causes you to be in that stance. Entering a stance from itself counts.
 Exiting stance means not being in that stance. Exit Stance as a keyword removes stance.
 As in, Exit Stance puts you in no stance, but stances can be exited to other stances`,
@@ -567,14 +591,16 @@ However, you cannot attack at all in Haste. Being able to leave it is very impor
 However, you deal 40% less damage in Sturdy. While it is not required,
 being able to leave Sturdy is always beneficial.`,
 `Divinity is the final stance. There are few ways to instantly enter Divinity.
-Entering divinity requires building up 10 faith, which is gained through cards.
-When 10 faith is gained, you lose 10 faith and enter Divinity.`,
+Entering divinity requires building up 10 Faith, which is gained through cards.
+When 10 Faith is gained, you lose 10 Faith and enter Divinity.`,
 `You deal 3x damage in Divinity, and when you enter Divinity,
 you also gain 3 energy and draw 3 cards. Divinity is very powerful.`,
+`The final ability of Setsuna is to create cards. These cards are added by other cards.
+Appearing during combat, these cards usually have effective abilities.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 13:
+            case 14:
                 transition.scene='battle'
                 game.player=[8]
                 game.deck=[0]
@@ -607,15 +633,15 @@ if it remains in your hand. Burn can often be afflicted by enemies.`,
 `But as Airi, you can use burn to your advantage. Some cards benefit from Burns,
 and other cards create more Burns to use. But be careful, as Burn is still a status
 and still wastes draw, so plan accordingly.`,
-`Charge is just a number, similar to combo, metal, or ammo. It increases by 1 each turn.
+`Charge is just a number, similar to Combo, Metal, or Ammo. It increases by 1 each turn.
 While charge does grow passively, it may also be obtained through cards.
 Various cards use charge, but no card requires charge to be played.`,
-`She also has a small gimmick regarding relics.
-She can capitalize off owning them or even gain more.`,
+`She also has a small gimmick with exhausting cards. While all characters can do so,
+Airi uniquely can beenfit from them.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 14:
+            case 15:
                 transition.scene='battle'
                 game.player=[9]
                 game.deck=[0]
@@ -635,7 +661,7 @@ She can capitalize off owning them or even gain more.`,
                 this.pages=[
 `Edgar, the Disgraced CEO, is a character with a focus on aggression.
 In terms of strategy, he is fairly simple, but he has a few gimmicks.
-They are: Guns+Ammo, Chaining Cards, Positioned Cards, and Burn.`,
+They are: Guns+Ammo, Chaining and Positioned Cards, and Burn.`,
 `Guns are a class of attack. They typically have longer range.
 Guns are powerful in terms of damage and range compared to normal cards.
 The weakness of guns is that each gun use spends 1 ammo.`,
@@ -655,7 +681,7 @@ He will damage himself every time he hits you.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 15:
+            case 16:
                 transition.scene='battle'
                 game.player=[10]
                 game.deck=[0]
@@ -672,7 +698,7 @@ He will damage himself every time he hits you.`,
                 this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Chip, the Gentleman, has cards that fit into distinct and specific groups.
-His gimmicks are: Randomness, Strikes and Defends, Dice, and Currency.`,
+His gimmicks are: Randomness, Strikes and Defends, and Currency.`,
 `Many of his cards rely on having random effects.
 Using them can be difficult due to randomness, so don't take to many chances.`,
 `The best way to deal with these cards is to change their chances.
@@ -689,8 +715,130 @@ They are marked as D6 or D20. These rolls are random but may be modified.`,
 `These are generally more unreliable because of their inconsistency,
 but just like other luck cards, they can be manipulated.`,
 `Currency is a general game mechanic, but Chip has many cards that involve it.
-Try not to only rely on Currency to win, however,
-as you'll often need to spend it at shops.`,
+But keep in mind that if your build relies on currency, the trade-off is
+that making purchases at shops weakens you - plan ahead!`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 17:
+                transition.scene='battle'
+                game.player=[11]
+                game.deck=[0]
+                this.battle.player=[11]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(30)
+                this.popups=[[],[],[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Shiru, the Huntress, is designed with playing cards in order with mind.
+Her gimmicks are: Selectively Discarding Cards, Jinx, and Silver Cards.`,
+`Selective discard refers to being able to choose a certain number of cards to discard.
+This appears as a red outline over your cards as long as discarding remains active.`,
+`Sometimes, this can be useful just to get rid of cards,
+but some cards benefit from being discarded, or another card being discarded.`,
+`Be careful, though, as you'll have to discard the cards before playing others,
+hence the number of cards in your hand is important to keep in mind.`,
+`While many strategies can make use of Selective Discards, finding the right order
+to play cards in can be difficult.`,
+`Jinx is a statuses that deals damage at some point.
+It has a 1/3 chance to trigger each turn. Jinx is removed after dealing damage.
+Jinx can be applied in large numbers but won't do anything until it triggers.`,
+`End you turn until it triggers.
+Jinx is unreliable due to its randomness, but there are ways to mitigate this.
+Those include cards that take advantage of an enemy's Jinx, or just waiting.`,
+`Shiru can also make use of Silver Cards. These have a special effect that
+triggerswhen your energy is an odd number. GIven their simplicity,
+they can fit into many other builds.`,
+`A subset of Silver cards are Mineral Cards, which have their own synergies
+but still adhere to the odd-energy effects of other Silver cards.`,
+`While having odd energy may not seem difficult, it's still important to
+keep track of where your energy is and sometimes sacrifice the bonus effects
+when the energy doesn't work out in your favor.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 18:
+                transition.scene='battle'
+                game.player=[12]
+                game.deck=[0]
+                this.battle.player=[12]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                this.popups=[[],[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`DD-610, the Paradigm, has many valid strategies.
+Its gimmicks are: Claws, Shock, and Cables.`,
+`Claws are a set of cards that interact with each other.
+Clawup refers to increasing the effect of other Claws.`,
+`While the diverse Claw cards can offer different effects, they're not
+versatile enough to be more than the core of a build. Claws are best used
+along with other cards as aggressively scaling claws is risky.`,
+`Shock is a status similar to Poison or Bleed, that does damage every turn.
+Unlike Poison or Bleed, however, it does not decrease every turn`,
+`Instead, Shock's weakness is that it applies when an enemy moves.
+Fast enemies are affected more, but nonmoving enemies are immune to Shock.`,
+`There are a variety of ways to apply Shock to enemies,
+or to take advantage on an already shocked enemy to gain benefits.
+DD-610 may also benefit from shocking itself and accepting the downside.`,
+`Cables are a set of attacks that have additional effects when used in
+one specific direction. While consistent even if the additional effects are not
+used, Cables are much better when their abilities can be taken advantage of.`,
+`Positioning and planning ahead are important to using Cables well,
+but keep in mind that sometimes the locations just won't align.`,
+`A few of DD-610's cards also work with their stats and costs changing
+when they are played or when another card is played.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 19:
+                transition.scene='battle'
+                game.player=[12]
+                game.deck=[0]
+                this.battle.player=[13]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Prehextorica, the Recollection, can make use of several game mechanics.
+His gimmicks include: the turn number, and Weak.`,
+`Prehextorica can benefit from the current turn number, in the bottom left corner.
+It counts up by 1 normally and starts at 1, but Prehextorica's cards can change that.`,
+`The desired turn can range from a late turn or even to turn 0. Keep in mind Initiative
+and Start of Combat effects trigger on turn 1 and may repeat if the turn number rewinds.
+The turn number can go as high as possible but cannot precede turn 0.`,
+`Many cards work with the turn number. Some prefer high or low turn numbers.
+Others work with specific turns or turns of a specific parity.
+With enough manipulation or planning ahead any turn number can be reached.`,
+`Generally, it's a good idea to plan ahead what turns you want to be on.
+You can always fall back on the turn increasing by 1 each turn though,
+so moving backward in time is difficult but rewarding.`,
+`Other cards may work with simply having the turn number change more,
+rather than having it be at a specific place.`,
+`Finally, many cards have different effects based on the parity of the turn,
+so they can be useful most of the time, but planning ahead still helps.`,
+`Prehextorica can also apply Weak to enemies.
+Aside from the base 25% damage reduction,
+enemies with Weak are susceptible to a variety of effects.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -815,11 +963,6 @@ as you'll often need to spend it at shops.`,
             break
             case 5:
                 switch(this.page){
-                    case 1:
-                        for(let a=0,la=11;a<la;a++){
-                            this.battle.cardManagers[0].hand.add(findName('Placeholder\n$colorcharacter Card',types.card),0,a)
-                        }
-                    break
                     case 2:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Initiative',types.card),0,0)
@@ -909,6 +1052,15 @@ as you'll often need to spend it at shops.`,
             case 6:
                 switch(this.page){
                     case 1:
+                        for(let a=0,la=game.playerNumber;a<la;a++){
+                            this.battle.cardManagers[0].hand.add(findName('Placeholder\n$colorcharacter Card',types.card),0,a+1)
+                        }
+                    break
+                }
+            break
+            case 7:
+                switch(this.page){
+                    case 1:
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,1)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,1)
                         this.battle.cardManagers[0].hand.add(findName('Jolt',types.card),0,1)
@@ -940,7 +1092,7 @@ as you'll often need to spend it at shops.`,
                     break
                 }
             break
-            case 7:
+            case 8:
                 switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].hand.add(findName('Increment',types.card),0,2)
@@ -975,7 +1127,7 @@ as you'll often need to spend it at shops.`,
                     break
                 }
             break
-            case 8:
+            case 9:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Quick\nStab',types.card),0,3)
@@ -997,10 +1149,6 @@ as you'll often need to spend it at shops.`,
                         this.battle.cardManagers[0].hand.add(findName('Windslash',types.card),0,3)
                     break
                     case 8:
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Petal\nCloud',types.card),0,3)
-                    break
-                    case 9:
                         this.battle.setupBattle(types.encounter[findName('TutorialBlank',types.encounter)])
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
@@ -1012,10 +1160,11 @@ as you'll often need to spend it at shops.`,
                         this.battle.cardManagers[0].hand.add(findName('Lament',types.card),0,3)
                         this.battle.cardManagers[0].hand.add(findName('Quill',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Quill',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,3)
                     break
                 }
             break
-            case 9:
+            case 10:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Shiv',types.card),0,0)
@@ -1023,40 +1172,25 @@ as you'll often need to spend it at shops.`,
                         this.battle.cardManagers[0].hand.add(findName('Knifing',types.card),0,4)
                         this.battle.cardManagers[0].hand.add(findName('Borrowed\nBlade',types.card),0,4)
                     break
-                    case 3:
+                    case 4:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Survivor',types.card),0,4)
-                        this.battle.cardManagers[0].hand.add(findName('Prepared',types.card),0,4)
-                    break
-                    case 4:
-                        this.battle.cardManagers[0].hand.add(findName('Eviscerate',types.card),0,4)
-                        this.battle.cardManagers[0].hand.add(findName('Tactician',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Dualcone',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Dual\nShatter',types.card),0,4)
                     break
                     case 5:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Masterful\nStab',types.card),0,4)
-                        this.battle.cardManagers[0].hand.add(findName('Trade',types.card),0,4)
-                        this.battle.cardManagers[0].hand.add(findName('Finale',types.card),0,4)
-                    break
-                    case 7:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(1000)
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Malaise',types.card),0,4)
-                        this.battle.cardManagers[0].hand.add(findName('Square\nStrike',types.card),0,4)
-                        this.battle.cardManagers[0].hand.add(findName('Incision',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Mystery\nCannon',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Mystery\nPulse',types.card),0,4)
                     break
                 }
             break
-            case 10:
+            case 11:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Charge',types.card),0,5)
@@ -1118,26 +1252,9 @@ as you'll often need to spend it at shops.`,
                         this.battle.cardManagers[0].hand.add(findName('Magic\nSwitch',types.card),0,5)
                         this.battle.energy.main[0]=3
                     break
-                    case 13:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Jinx',types.card),0,5)
-                        this.battle.energy.main[0]=99
-                    break
-                    case 15:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('NumberDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Clawup',types.card),0,5)
-                        this.battle.cardManagers[0].hand.add(findName('Advance\nClaw',types.card),0,5)
-                        this.battle.cardManagers[0].hand.add(findName('Claw',types.card),0,5)
-                    break
                 }
             break
-            case 11:
+            case 12:
                 switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].hand.add(findName('Scavenge',types.card),0,6)
@@ -1149,7 +1266,6 @@ as you'll often need to spend it at shops.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
                         this.battle.combatantManager.summonConstruct({x:1,y:1},findName('Wall',types.combatant),1,30,0)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Unbuild',types.card),0,0)
                         this.battle.cardManagers[0].hand.add(findName('Breaking\nShot',types.card),0,6)
                     break
                     case 4:
@@ -1178,20 +1294,25 @@ as you'll often need to spend it at shops.`,
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
-                        this.battle.cardManagers[0].hand.add(findName('Pehase\nShift',types.card),0,6)
-                        this.battle.cardManagers[0].hand.add(findName('Clear\nUp',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Phase\nShift',types.card),0,6)
                         this.battle.cardManagers[0].hand.add(findName('Extend',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Materials',types.card),0,6)
                     break
                     case 8:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('MoveDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Breadboard',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),1,6)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),2,6)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),1,6)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),2,6)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,6)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),1,6)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),2,6)
                     break
                 }
             break
-            case 12:
+            case 13:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Crescendo',types.card),0,7)
@@ -1236,9 +1357,17 @@ as you'll often need to spend it at shops.`,
                         this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
                         this.battle.cardManagers[0].hand.add(findName('Conviction',types.card),0,7)
                     break
+                    case 9:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(15)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Secure\nBlade',types.card),0,7)
+                        this.battle.cardManagers[0].hand.add(findName('Avoidance',types.card),0,7)
+                    break
                 }
             break
-            case 13:
+            case 14:
                 switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].hand.add(findName('Highball',types.card),0,8)
@@ -1277,13 +1406,13 @@ as you'll often need to spend it at shops.`,
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
                         this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Collector',types.card),0,8)
-                        this.battle.cardManagers[0].hand.add(findName('Propbag',types.card),0,8)
-                        this.battle.cardManagers[0].hand.add(findName('Treasure\nHunt',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Fatigue',types.card),0,game.playerNumber+1)
+                        this.battle.cardManagers[0].hand.add(findName('Comet',types.card),0,8)
+                        this.battle.cardManagers[0].hand.add(findName('Clear\nUp',types.card),0,8)
                     break
                 }
             break
-            case 14:
+            case 15:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Pistol',types.card),0,9)
@@ -1325,7 +1454,7 @@ as you'll often need to spend it at shops.`,
                     break
                 }
             break
-            case 15:
+            case 16:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Lucky\nStrike',types.card),0,10)
@@ -1337,7 +1466,6 @@ as you'll often need to spend it at shops.`,
                         this.battle.cardManagers[0].hand.add(findName('Victory\nSpin',types.card),0,10)
                         this.battle.cardManagers[0].hand.add(findName('Premium\nHeart',types.card),0,10)
                         this.battle.cardManagers[0].hand.add(findName('Safe\nBet',types.card),0,10)
-
                     break
                     case 3:
                         this.battle.combatantManager.resetCombatants()
@@ -1374,6 +1502,110 @@ as you'll often need to spend it at shops.`,
                         this.battle.cardManagers[0].hand.add(findName('Time\nCard',types.card),0,10)
                         this.battle.cardManagers[0].hand.add(findName('Shock\nTherapy',types.card),0,10)
                         this.battle.cardManagers[0].hand.add(findName('Underthrow',types.card),0,10)
+                    break
+                }
+            break
+            case 17:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Habit',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Survivor',types.card),0,11)
+                        this.battle.cardManagers[0].hand.add(findName('Prepared',types.card),0,11)
+                    break
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Dump',types.card),0,11)
+                        this.battle.cardManagers[0].hand.add(findName('Eviscerate',types.card),0,11)
+                        this.battle.cardManagers[0].hand.add(findName('Tactician',types.card),0,11)
+                    break
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Jinx',types.card),0,11)
+                        this.battle.energy.main[0]=99
+                    break
+                    case 7:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Silver\nDagger',types.card),0,11)
+                        this.battle.cardManagers[0].hand.add(findName('Silver\nShield',types.card),0,11)
+                        this.battle.energy.main[0]=99
+                    break
+                    case 8:
+                        this.battle.cardManagers[0].hand.add(findName('Acanthite',types.card),0,11)
+                        this.battle.cardManagers[0].hand.add(findName('Pyrargyrite',types.card),0,11)
+                    break
+                }
+            break
+            case 18:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Clawup',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('Advance\nClaw',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('Claw',types.card),0,12)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('MoveDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Buzzer',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('Tesla',types.card),0,12)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].hand.add(findName('Ion\nShatter',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('System\nScan',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
+                    break
+                    case 6:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:0,y:0},findName('MoveDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('USB\nCable',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('PCIE\nCable',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
+                        this.battle.energy.main[0]=99
+                    break
+                }
+            break
+            case 19:
+                switch(this.page){
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Supremum',types.card),0,13)
+                        this.battle.cardManagers[0].hand.add(findName('Infimum',types.card),0,13)
+                    break
+                    case 3:
+                        this.battle.cardManagers[0].hand.add(findName('Restraint',types.card),0,13)
+                        this.battle.cardManagers[0].hand.add(findName('Supremum',types.card),0,13)
+                        this.battle.cardManagers[0].hand.add(findName('Time\nFlies',types.card),0,13)
+                        this.battle.energy.main[0]=99
+                    break
+                    case 4:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('MoveDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(60)
+                        this.battle.cardManagers[0].hand.add(findName('Polar\nStar',types.card),0,13)
+                        this.battle.cardManagers[0].hand.add(findName('High\nNoon',types.card),0,13)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].hand.add(findName('Clock\nHand',types.card),0,13)
+                    break
+                    case 7:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('MoveDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].addBlock(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Trowel',types.card),0,13)
+                        this.battle.cardManagers[0].hand.add(findName('Unearth',types.card),0,13)
                     break
                 }
             break

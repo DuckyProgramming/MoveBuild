@@ -763,7 +763,7 @@ class battle{
                     this.cardManagers[player].hand.randomEffect(0,[])
                 break
                 case 6:
-                    this.attackManager.edition(-6)
+                    this.attackManager.editionCard(-6)
                 break
                 case 7:
                     this.cardManagers[player].draw(1)
@@ -787,7 +787,7 @@ class battle{
                     this.cardManagers[player].draw(2)
                 break
                 case 6:
-                    this.attackManager.edition(6)
+                    this.attackManager.editionCard(6)
                 break
                 case 7:
                     this.cardManagers[player].hand.randomEffect(0,[])
@@ -1888,12 +1888,12 @@ class battle{
             break
             case 'tutorial':
                 for(let a=0,la=6;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-120,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
                         this.tutorialManager.setupTutorial(a)
                     }
                 }
-                for(let a=0,la=game.playerNumber;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+242.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
+                for(let a=0,la=game.playerNumber+1;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+148.75+floor(a/7)*162.5,y:this.layer.height/2-190+a%7*45},width:27.5,height:27.5})){
                         this.tutorialManager.setupTutorial(a+6)
                     }
                 }
@@ -2211,7 +2211,7 @@ class battle{
             case 'custom':
                 let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-2,-1]
                 for(let a=0,la=prismrules.length;a<la;a++){
-                    if(key=='!@#$%^&'[a]){
+                    if(key==inputs.above[a]){
                         if(variants.prismrule.includes(prismrules[a])){
                             variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
                         }else{
@@ -2220,7 +2220,7 @@ class battle{
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    if(key=='1234567890abc'[a]||key=='1234567890ABC'[a]){
+                    if(key==inputs.hexadec[a]||key==inputs.hexadec[a]){
                         if(variants.prismrule.includes(a+1)){
                             variants.prismrule.splice(variants.prismrule.indexOf(a+1),1)
                         }else{
@@ -2235,12 +2235,12 @@ class battle{
             break
             case 'tutorial':
                 for(let a=0,la=6;a<la;a++){
-                    if(key=='abcdefg'[a]||key=='ABCDEFG'[a]){
+                    if(key==inputs.above[a]){
                         this.tutorialManager.setupTutorial(a)
                     }
                 }
-                for(let a=0,la=game.playerNumber;a<la;a++){
-                    if((a+1)%10==int(key)){
+                for(let a=0,la=game.playerNumber+1;a<la;a++){
+                    if(key==inputs.hexadec[a]){
                         this.tutorialManager.setupTutorial(a+6)
                     }
                 }

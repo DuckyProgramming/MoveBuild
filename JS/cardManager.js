@@ -340,7 +340,7 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
-    addRandomCompleteAllContainClass(group,level,contain,cardClass){
+    addRandomCompleteAllContainClass(group,level,contain,cardClass,spec){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
             for(let b=0,lb=contain.length;b<lb;b++){
@@ -351,7 +351,11 @@ class cardManager{
         }
         if(list.length>0){
             let type=list[floor(random(0,list.length))]
-            this.getList(group).add(type,level,types.card[type].list)
+            if(spec==1){
+                this.getList(group).addFree(type,level,types.card[type].list)
+            }else{
+                this.getList(group).add(type,level,types.card[type].list)
+            }
         }
     }
     addRandomCompleteAllClassFree(group,level,cardClass,variant){
@@ -378,7 +382,7 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
-    addRandomCompleteAllCostCostDown(group,level,cost){
+    addRandomCompleteAllCostCostDown(group,level,cost,down){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
             if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost){
@@ -388,7 +392,7 @@ class cardManager{
         if(list.length>0){
             let type=list[floor(random(0,list.length))]
             let card=this.getList(group).addReturn(type,level,types.card[type].list)
-            card.cost=max(min(card.cost,0),card.cost-1)
+            card.cost=max(min(card.cost,0),card.cost-down)
         }
     }
     addRandomSpec(group,level,spec){
@@ -403,7 +407,7 @@ class cardManager{
             this.getList(group).add(type,level,types.card[type].list)
         }
     }
-    addRandomSpecCostDown(group,level,spec){
+    addRandomSpecCostDown(group,level,spec,down){
         let list=[]
         for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
             if(types.card[this.listing.allPlayerCard[3][a]].levels[level].spec.includes(spec)){
@@ -413,7 +417,7 @@ class cardManager{
         if(list.length>0){
             let type=list[floor(random(0,list.length))]
             let card=this.getList(group).addReturn(type,level,types.card[type].list)
-            card.cost=max(min(card.cost,0),card.cost-1)
+            card.cost=max(min(card.cost,0),card.cost-down)
         }
     }
     addRandomSub(group,level){

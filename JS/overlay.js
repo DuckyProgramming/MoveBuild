@@ -246,6 +246,19 @@ class overlay{
                     case 12:
                         this.world=[args[0]]
                     break
+                    case 14:
+                        list=[]
+                        for(let a=0,la=11;a<la;a++){
+                            list.push(a)
+                        }
+                        for(let a=0,la=this.options;a<la;a++){
+                            let index=floor(random(0,list.length))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,findName('Timestamp',types.card),args[0],0,-1))
+                            this.cards[a].upSize=true
+                            this.cards[a].effect[0]=list[index]
+                            list.splice(index,1)
+                        }
+                    break
                 }
                 this.setupArgs=args
                 for(let a=0,la=this.cards.length;a<la;a++){
@@ -627,7 +640,7 @@ class overlay{
                 if(this.battle.relicManager.hasRelic(173,this.player)){
                     this.layer.rect(this.layer.width/2,this.layer.height/2+170,120,40,10)
                 }
-                if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
+                if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)&&this.cards.length>=4){
                     this.layer.rect(this.layer.width/2+120+this.options*60,this.layer.height/2,160,200,10)
                 }
                 this.layer.fill(0,this.fade*0.8)
