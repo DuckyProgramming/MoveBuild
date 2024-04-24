@@ -1432,8 +1432,8 @@ types.card=[
         name:'Spear',rarity:0,list:2,
         levels:[
             {effect:[20],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
-            {effect:[28],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
-            {effect:[34],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
+            {effect:[29],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
+            {effect:[36],attack:25,cost:1,target:[2,2,2],spec:[0],class:1},
         ],
     },{
         name:'Stand\nFast',rarity:0,list:2,
@@ -1529,9 +1529,9 @@ types.card=[
     },{
         name:'Shatter',rarity:1,list:2,
         levels:[
-            {effect:[12],attack:89,cost:2,target:[2,1,1],spec:[0],class:1},
             {effect:[16],attack:89,cost:2,target:[2,1,1],spec:[0],class:1},
-            {effect:[19],attack:89,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[23],attack:89,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[28],attack:89,cost:2,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Snap\nStrike',rarity:0,list:2,
@@ -2346,7 +2346,7 @@ types.card=[
             {effect:[],attack:2254,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
-        name:'Rotton\nTomatoes',rarity:1,list:2,
+        name:'Rotten\nTomatoes',rarity:1,list:2,
         levels:[
             {effect:[2,2],attack:2470,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
             {effect:[3,3],attack:2470,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
@@ -5994,13 +5994,6 @@ types.card=[
             {effect:[16],attack:2,cost:1,target:[0],spec:[33],class:2},
             {effect:[24],attack:2,cost:1,target:[0],spec:[33],class:2},
             {effect:[30],attack:2,cost:1,target:[0],spec:[33],class:2},
-        ],
-    },{
-        name:'Short\nCircuit',rarity:1,list:6,
-        levels:[
-            {effect:[4,14,1,4],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[4,20,2,4],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
-            {effect:[2,20,3,2],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },{
         name:'Scissors',rarity:2,list:6,
@@ -11643,6 +11636,20 @@ types.card=[
             {effect:[3],attack:2489,cost:0,target:[0],spec:[2,5],class:8},
             {effect:[4],attack:2489,cost:0,target:[0],spec:[2,5],class:8},
         ],
+    },{
+        name:'Silver\nSnap',rarity:1,list:11,
+        levels:[
+            {effect:[6,6],attack:2504,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8,10],attack:2504,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8,16],attack:2504,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Silver\nSpear',rarity:0,list:11,
+        levels:[
+            {effect:[17,1],attack:2505,cost:1,target:[2,2,2],spec:[0],class:1},
+            {effect:[25,1],attack:2505,cost:1,target:[2,2,2],spec:[0],class:1},
+            {effect:[31,1],attack:2505,cost:1,target:[2,2,2],spec:[0],class:1},
+        ],
     },
 
     //mark 11
@@ -12647,6 +12654,13 @@ types.card=[
             {effect:[14],attack:2494,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[21],attack:2494,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[26],attack:2494,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Short\nCircuit',rarity:1,list:12,
+        levels:[
+            {effect:[4,14,1,4],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[4,20,2,4],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
+            {effect:[2,20,3,2],attack:1285,cost:1,target:[2,1,2],spec:[0],class:1},
         ],
     },
 
@@ -14727,30 +14741,30 @@ types.card=[
     },{
         name:'III - The\nEmpress',rarity:2,list:17,
         levels:[
-            {effect:[3],attack:1099,cost:0,target:[0],spec:[1],class:4},
-            {effect:[4],attack:1099,cost:0,target:[0],spec:[1],class:4},
-            {effect:[5],attack:1099,cost:0,target:[0],spec:[1],class:4},
+            {effect:[2],attack:2508,cost:1,target:[0],spec:[1],class:4},
+            {effect:[3],attack:2508,cost:1,target:[0],spec:[1],class:4},
+            {effect:[4],attack:2508,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
         name:'IV - The\nEmperor',rarity:2,list:17,
         levels:[
-            {effect:[],attack:1101,cost:1,target:[0],spec:[1],class:4},
-            {effect:[],attack:1101,cost:0,target:[0],spec:[1],class:4},
-            {effect:[],attack:1101,cost:0,target:[0],spec:[1,22],class:4},
+            {effect:[2],attack:2507,cost:1,target:[0],spec:[1],class:4},
+            {effect:[3],attack:2507,cost:1,target:[0],spec:[1],class:4},
+            {effect:[4],attack:2507,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
         name:'V - The\nHierophant',rarity:2,list:17,
         levels:[
-            {effect:[12,1],attack:1102,cost:0,target:[0],spec:[1],class:4},
-            {effect:[18,1],attack:1102,cost:0,target:[0],spec:[1],class:4},
-            {effect:[22,1],attack:1102,cost:0,target:[0],spec:[1],class:4},
+            {effect:[],attack:2515,cost:3,target:[0],spec:[1],class:4},
+            {effect:[],attack:2515,cost:2,target:[0],spec:[1],class:4},
+            {effect:[],attack:2515,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
         name:'VI - The\nLovers',rarity:2,list:17,
         levels:[
-            {effect:[8],attack:1103,cost:0,target:[0],spec:[1],class:4},
-            {effect:[12],attack:1103,cost:0,target:[0],spec:[1],class:4},
-            {effect:[15],attack:1103,cost:0,target:[0],spec:[1],class:4},
+            {effect:[3],attack:2509,cost:1,target:[0],spec:[],class:4},
+            {effect:[4],attack:2509,cost:1,target:[0],spec:[],class:4},
+            {effect:[5],attack:2509,cost:1,target:[0],spec:[],class:4},
         ],
     },{
         name:'VII - The\nChariot',rarity:2,list:17,
@@ -14776,14 +14790,14 @@ types.card=[
     },{
         name:'X - Wheel\nof Fortune',rarity:2,list:17,
         levels:[
-            {effect:[1],attack:1107,cost:0,target:[0],spec:[1],class:4},
-            {effect:[2],attack:1107,cost:0,target:[0],spec:[1],class:4},
-            {effect:[3],attack:1107,cost:0,target:[0],spec:[1],class:4},
+            {effect:[],attack:2512,cost:1,target:[0],spec:[1],class:4},
+            {effect:[],attack:2513,cost:1,target:[0],spec:[1],class:4},
+            {effect:[],attack:2514,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
         name:'XI - Strength',rarity:2,list:17,
         levels:[
-            {effect:[5,2],attack:1108,cost:0,target:[0],spec:[1],class:4},
+            {effect:[6,2],attack:1108,cost:0,target:[0],spec:[1],class:4},
             {effect:[8,2],attack:1108,cost:0,target:[0],spec:[1],class:4},
             {effect:[10,2],attack:1108,cost:0,target:[0],spec:[1],class:4},
         ],
@@ -14797,9 +14811,9 @@ types.card=[
     },{
         name:'XIII - Death',rarity:2,list:17,
         levels:[
+            {effect:[],attack:1110,cost:5,target:[0],spec:[1],class:4},
+            {effect:[],attack:1110,cost:4,target:[0],spec:[1],class:4},
             {effect:[],attack:1110,cost:3,target:[0],spec:[1],class:4},
-            {effect:[],attack:1110,cost:2,target:[0],spec:[1],class:4},
-            {effect:[],attack:1110,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
         name:'XIV -\nTemperance',rarity:2,list:17,
@@ -14811,9 +14825,9 @@ types.card=[
     },{
         name:'XV - The\nDevil',rarity:2,list:17,
         levels:[
-            {effect:[10],attack:1112,cost:0,target:[0],spec:[1],class:4},
             {effect:[8],attack:1112,cost:0,target:[0],spec:[1],class:4},
             {effect:[6],attack:1112,cost:0,target:[0],spec:[1],class:4},
+            {effect:[4],attack:1112,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
         name:'XVI - The\nTower',rarity:2,list:17,
@@ -14825,9 +14839,9 @@ types.card=[
     },{
         name:'XVII - The\nStar',rarity:2,list:17,
         levels:[
-            {effect:[17,5],attack:1115,cost:0,target:[0],spec:[4,5],class:4},
-            {effect:[17,4],attack:1115,cost:0,target:[0],spec:[4,5],class:4},
-            {effect:[17,3],attack:1115,cost:0,target:[0],spec:[4,5],class:4},
+            {effect:[17,1],attack:1115,cost:0,target:[0],spec:[4,5],class:4},
+            {effect:[17],attack:2510,cost:0,target:[0],spec:[4,5],class:4},
+            {effect:[17,1],attack:2511,cost:0,target:[0],spec:[4,5],class:4},
         ],
     },{
         name:'XVIII - The\nMoon',rarity:2,list:17,
@@ -14839,12 +14853,12 @@ types.card=[
     },{
         name:'XIX - The\nSun',rarity:2,list:17,
         levels:[
-            {effect:[27,1],attack:1117,cost:1,target:[0],spec:[1],class:4},
-            {effect:[39,1],attack:1117,cost:1,target:[0],spec:[1],class:4},
-            {effect:[48,1],attack:1117,cost:1,target:[0],spec:[1],class:4},
+            {effect:[36,1],attack:1117,cost:1,target:[0],spec:[1],class:4},
+            {effect:[54,1],attack:1117,cost:1,target:[0],spec:[1],class:4},
+            {effect:[70,1],attack:1117,cost:1,target:[0],spec:[1],class:4},
         ],
     },{
-        name:'XX -\nf',rarity:2,list:17,
+        name:'XX -\nJudgement',rarity:2,list:17,
         levels:[
             {effect:[],attack:1118,cost:1,target:[0],spec:[1],class:4},
             {effect:[],attack:1118,cost:0,target:[0],spec:[1],class:4},
@@ -16168,9 +16182,9 @@ types.card=[
     },{
         name:'Magic\nTrick Card',rarity:-6,list:0,
         levels:[
-            {effect:[10,2,7,7],attack:1097,cost:1,target:[2,1,1],spec:[],class:1},
-            {effect:[13,3,9,9],attack:1097,cost:1,target:[2,1,1],spec:[],class:1},
-            {effect:[15,4,10,10],attack:1097,cost:1,target:[2,1,1],spec:[],class:1},
+            {effect:[1,10,2,7,7],attack:2506,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[1,13,3,9,9],attack:2506,cost:0,target:[2,1,1],spec:[],class:1},
+            {effect:[1,15,4,10,10],attack:2506,cost:0,target:[2,1,1],spec:[],class:1},
         ],
     },{
         name:'Queen of\nHearts',rarity:-6,list:0,

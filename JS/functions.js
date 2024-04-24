@@ -222,6 +222,88 @@ function upColor(color,value,key){
 function flipColor(color){
 	return [255-color[0],255-color[1],255-color[2]]
 }
+function RGBtoHSV(r,g,b){
+	let minV=min(r,g,b)
+	let maxV=max(r,g,b)
+    let h,s=0
+    let v=maxV
+	let delta=maxV-minV
+	if(maxV!=0&&delta!=0){
+		s=delta/maxV
+		if(r==maxV){
+			h=(g-b)/delta
+		}else if(g==maxV){
+			h=2+(b-r)/delta
+		}else{
+			h=4+(r-g)/delta
+		}
+        h*=60
+        if(h<0){
+            h+=360
+        }
+    }else{
+		s=0
+		h=-1
+	}
+    return [h,s,v]
+}
+function HSVtoRGB(h,s,v){
+	let i,f,p,q,t,r,g,b=0
+	if(s==0){
+		r,g,b=v
+	}else{
+		h/=60
+		i=floor(h)
+		f=h-i
+		p=v*(1-s)
+		q=v*(1-s*f)
+		t=v*(1-s*(1-f))
+		switch(i){
+			case 0:
+				r=v
+				g=t
+				b=p
+			break
+			case 1:
+				r=q
+				g=v
+				b=p
+			break
+			case 2:
+				r=p
+				g=v
+				b=t
+			break
+			case 3:
+				r=p
+				g=q
+				b=v
+			break
+			case 4:
+				r=t
+				g=p
+				b=v
+			break
+			default:
+				r=v
+				g=p
+				b=q
+			break
+		}
+	}
+    return [r,g,b]
+}
+function mergeColorHSV(color1,color2,value){
+	let color1f=RGBtoHSV(color1[0],color1[1],color1[2])
+	let color2f=RGBtoHSV(color2[0],color2[1],color2[2])
+    if(abs(color1f[0]-color2f[0])<90){
+        return HSVtoRGB(color1f[0]*(1-value)+color2f[0]*value,color1f[1]*(1-value)+color2f[1]*value,color1f[2]*(1-value)+color2f[2]*value)
+    }else if(color2f[0]>color1f[0]){
+        return HSVtoRGB((color1f[0]*(1-value)+(color2f[0]-360)*value+360)%360,color1f[1]*(1-value)+color2f[1]*value,color1f[2]*(1-value)+color2f[2]*value)
+    }else if(color2f[0]<color1f[0]){
+        return HSVtoRGB((color1f[0]*(1-value)+(color2f[0]+360)*value)%360,color1f[1]*(1-value)+color2f[1]*value,color1f[2]*(1-value)+color2f[2]*value)
+    }
+}
 function toggle(bool){
 	return bool?false:true
 }

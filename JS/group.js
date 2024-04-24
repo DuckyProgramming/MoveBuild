@@ -1439,6 +1439,7 @@ class group{
                 &&!(effect==32&&!(this.cards[a].name==args[1]&&this.cards[a].cost>0))
                 &&!(effect==34&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)))
                 &&!(effect==35&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].class!=1))
+                &&!(effect==36&&(this.cards[a].level>=2||this.cards[a].class!=args[0]&&args[0]!=0))
                 ){
                     list.push(a)
                 }
@@ -1452,7 +1453,7 @@ class group{
                     case 1: case 35:
                         this.cards[index].cost=max(this.cards[index].cost-args[0],0)
                     break
-                    case 2:
+                    case 2: case 36:
                         this.cards[index]=upgradeCard(this.cards[index])
                     break
                     case 3:
@@ -1779,6 +1780,13 @@ class group{
             break
             case 2480:
                 userCombatant.statusEffect('Shock',card.effect[0])
+            break
+            case 2510:
+                userCombatant.heal(card.effect[0])
+            break
+            case 2511:
+                userCombatant.heal(card.effect[0])
+                this.battle.cardManagers[this.player].draw(card.effect[1])
             break
         }
     }
@@ -3481,12 +3489,14 @@ class group{
                         }else{
                             if(this.cards[a].discardEffectBuffered.includes(0)||this.battle.relicManager.hasRelic(195,this.player)&&!this.cards[a].usable&&floor(random(0,4))==0){
                                 this.cards[a]=upgradeCard(this.cards[a])
+                                this.cards[a].usable=false
                                 if(this.cards[a].discardEffectBuffered.includes(0)){
                                     this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(0))
                                 }
                             }
                             if(this.battle.modded(160)&&!this.cards[a].usable){
                                 this.cards[a]=unupgradeCard(this.cards[a])
+                                this.cards[a].usable=false
                             }
                             if(this.cards[a].spec.includes(23)){
                                 this.battle.cardManagers[this.player].draw(1)

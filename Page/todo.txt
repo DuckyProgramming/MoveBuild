@@ -1,3 +1,22 @@
 cards:
 
--7 unique cards
+[
+    cable synergy
+    junkyard
+    junkyard
+    s-y
+    nemophilia
+]
+
+
+
+sky diamond - every future turn a random card costs 1 less, exhaust
+
+
+
+cartomancer?
+new relics?
+
+polychrome background
+
+

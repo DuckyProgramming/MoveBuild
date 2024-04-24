@@ -1614,7 +1614,7 @@ class card{
             case 1371: string+=`Add ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Hand\nGain ${effect[1]} Miss`; break
             case 1372: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nMove 1 Tile Away\nAdvance`; break
             case 1373: string+=`Requires 1 Energy Exactly\nDeal ${this.calculateEffect(effect[0],0)} Damage and ${effect[1]} Weak\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
-            case 1374: case 2308:
+            case 1374: case 2308: case 2505:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nOdd Energy:\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1375: string+=`Next Luck-Based Card\nis Guaranteed`; break
             case 1376: string+=`Exhaust ${effect[0]} Defense${effect[0]!=1?`s`:``}\nIf ${effect[0]} ${effect[0]!=1?`Are`:`is`} Exhausted,\nDeal ${this.calculateEffect(effect[1],0)} Damage`; break
@@ -1883,8 +1883,8 @@ class card{
             case 1642: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nExactly 4 Energy:\nDiscard to Hand`; break
             case 1643: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nHeal ${effect[1]} to Self\nand in All Directions`; break
             case 1644: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose ${effect[1]} Strength`; break
-            case 1645: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\n25%: Swap Back\nor\nMove ${effect[0]} Tiles`; break
-            case 1646: string+=`Swap With an\nAdjacent Target\n25% Swap Back\nor\nMove ${effect[0]} Tiles`; break
+            case 1645: string+=`Swap With an\nAdjacent Target\nTarget Will Face User\n25%: Swap Back\nor\nMove ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
+            case 1646: string+=`Swap With an\nAdjacent Target\n25% Swap Back\nor\nMove ${effect[0]} Tile${effect[0]!=1?`s`:``}`; break
             case 1647: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nUnupgrade Cards in Hand`; break
             case 1648: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\n10%: Lose ${effect[1]} Energy`; break
             case 1649: string+=`Requires ${['Even','Odd'][this.limit%2]} Energy\nDeal ${this.calculateEffect(effect[0],0)} Damage\nDiscards to Hand`; break
@@ -2732,7 +2732,20 @@ class card{
             case 2501: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nIncreases by ${effect[1]}`; break
             case 2502: string+=`Add ${effect[0]} Random\nCable${effect[0]!=1?`s`:``} to Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 0`; break
             case 2503: string+=`Choose a Timestamp\nto Add to Hand`; break
-            
+            case 2504: string+=`Odd Energy:\nDeal ${this.calculateEffect(effect[0],0)} Damage\nNext Attack Deals\n${effect[1]} More Damage`; break
+            case 2506: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\n50%: Deal ${this.calculateEffect(effect[1],0)} Damage\nHeal ${this.calculateEffect(effect[2],4)} Health\n50%: Deal ${this.calculateEffect(effect[3],0)} Damage\nAdd ${this.calculateEffect(effect[4],1)} Block`; break
+            case 2507: string+=`Damage Dealt Next ${effect[0]}\nTurn${effect[0]!=1?`s`:``} Converts to\nCurrency`; break
+            case 2508: string+=`Damage Taken Next ${effect[0]}\nTurn${effect[0]!=1?`s`:``} Converts to\nCurrency`; break
+            case 2509: string+=`Heal ${this.calculateEffect(effect[0],9)} Health\nWhere X = Number of\nCards in Hand\nDiscard Your Hand`; break
+            case 2510: string+=`When Drawn,\nHeal ${this.calculateEffect(effect[0],4)} Health`; break
+            case 2511: string+=`When Drawn,\nHeal ${this.calculateEffect(effect[0],4)} Health\nand Draw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
+            case 2512: string+=`25%:\nEdition a Card`; break
+            case 2513: string+=`40%:\nEdition a Card`; break
+            case 2514: string+=`50%:\nEdition a Card`; break
+            case 2515: string+=`Upgrade a Random Card\nPermanently\nMay Double Upgrade`; break
+
+
+
             //mark p
 
             /*

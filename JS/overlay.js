@@ -160,7 +160,7 @@ class overlay{
                             list[args[1]].splice(index,1)
                         }
                     break
-                    case 2: case 13:
+                    case 2: case 12:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                         for(let a=0,la=this.options;a<la;a++){
                             let index=floor(random(0,list[args[1]].length))
@@ -243,10 +243,7 @@ class overlay{
                             this.cards[a].upSize=true
                         }
                     break
-                    case 12:
-                        this.world=[args[0]]
-                    break
-                    case 14:
+                    case 13:
                         list=[]
                         for(let a=0,la=11;a<la;a++){
                             list.push(a)
@@ -316,6 +313,9 @@ class overlay{
                     this.choices.push(this.battle.modManager.listing.mod[index])
                     this.battle.modManager.listing.mod.splice(index,1)
                 }
+            break
+            case 12:
+                this.world=args[0]
             break
             
         }
