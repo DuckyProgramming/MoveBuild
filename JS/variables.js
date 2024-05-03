@@ -14,6 +14,8 @@ types={
         {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Pursuing a Rewriter for some time now,\ntracking the supposed ghost\nacross several Managerial worlds,\nfinally arriving at its location.`},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:66,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
         {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
+        {name:'',moniker:'',identifier:['',''],life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'',identifier:['',''],life:0,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
 
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -774,6 +776,23 @@ types={
         {name:'Faceless Face',internal:'Movement Remove Currency',id:212,rarity:3,list:0,description:'Gain 400 Currency When\na Movement Card is Removed'},
         {name:'Shiny Button',internal:'Energy/Shinies',id:213,rarity:4,list:0,description:'Gain 1 Base Energy,\nFind No Shinies and\nLose Existing Shinies'},
         {name:'Auto Arm',internal:'Energy/Unupgrade',id:214,rarity:4,list:0,description:'Gain 1 Base Energy,\nUnupgrade 5 Random Cards When Taken'},
+
+        /*{name:'Cartomancer',internal:'Random Arcana',id:215,rarity:3,list:0,description:'When Taken, Add a Random\nArcana to Deck'},
+        {name:'Astronomy Book',internal:'Free Commons',id:216,rarity:2,list:0,description:'Common Cards in the\nShop are Free'},
+        {name:'Invisible Duck',internal:'Copy Random Relic',id:217,rarity:3,list:0,description:'When Sold, Copy a\nRandom Owned Relic'},
+        {name:'Aerogel',internal:'Anti-Innate Card',id:218,rarity:3,list:0,description:'When Taken, Make\na Card Anti-Innate'},
+        {name:'Aluminum Foil',internal:'Double Upgraded Card Rewards',id:219,rarity:1,list:0,description:'Card Rewards Have a Chance\nto be Double Upgraded'},
+
+        {name:'Boiler Plate',internal:'Item Card Draw',id:220,rarity:1,list:0,description:'Draw a Card at the Start of Combat\nFor Every Item You Have'},
+        {name:'Treasure Map',internal:'World 3 Currency',id:221,rarity:2,list:0,description:'Gain 1000 Currency if or When\nit is World 3 or Later'},
+        {name:'Expired Coupon',internal:'Energy/Enemy Buffer',id:222,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies That Hit You\nGain 1 Buffer'},
+        {name:'Paper Snowflake',internal:'Last Card Free',id:223,rarity:3,list:0,description:'When Taken, Make the\nLast Card in Deck Free'},
+        {name:'SSh36',internal:'Starting Conditioning',id:224,rarity:0,list:0,description:'Gain 1 Conditioning\nat the Start of Combat'},
+        {name:'Purple Leaf',internal:'Uncommon Attack Heal',id:225,rarity:1,list:0,description:'When You Play an Uncommon\nPower, Heal 2 HP'},
+        {name:'Red Paperclip',internal:'Energy/Relic',id:226,rarity:4,list:0,description:'Gain 1 Base Energy/Lose a Random Relic'},
+        {name:'Twin Pearls',internal:'Odd Turn Single Damage Up',id:227,rarity:1,list:0,description:'Gain 4 Single Damage Up\non Odd Turns'},
+        {name:'Writ of Mandamus',internal:'Energy/Block',id:228,rarity:4,list:0,description:'Gain 1 Base Energy,\nLose 5 Block When You\nEnd Your Turn'},
+        {name:'Dragon Fish',internal:'Defensive Armor',id:229,rarity:0,list:0,description:'When You Fully Block Damage,\nGain 1 Armor'},*/
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},
@@ -2888,6 +2907,16 @@ Entering, you're offered a chance to glimpse your future...`,
                 text:[40,40,20],
                 active:[255,240,175],
             },{
+                fill:[],
+                stroke:[],
+                text:[],
+                active:[],
+            },{
+                fill:[],
+                stroke:[],
+                text:[],
+                active:[],
+            },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
                 text:[40,40,40],
@@ -2907,6 +2936,11 @@ Entering, you're offered a chance to glimpse your future...`,
                 stroke:[120,120,100],
                 text:[40,40,30],
                 active:[200,200,180],
+            },{
+                fill:[125,145,180],
+                stroke:[95,115,150],
+                text:[20,30,40],
+                active:[160,200,255],
             },
 
         ],
@@ -6199,8 +6233,8 @@ Is removed when damage taken.`,
         {name:'Colorless Deck'},
     ],
 }
-stage={scale:0,scene:'title'}
-game={player:[],deck:[],playerNumber:13,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+stage={scale:0,scene:'title',internal:{version:1}}
+game={player:[],deck:[],playerNumber:15,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
     mod:false,junk:false,

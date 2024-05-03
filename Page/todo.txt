@@ -1,22 +1,81 @@
+characters:
+
+the dual?
+
+
+
+
 cards:
 
-[
-    cable synergy
-    junkyard
-    junkyard
-    s-y
-    nemophilia
-]
+
+withdraws:
+
+a third crescent and arbelos
+
+scrap shiv
+
+bend - gain 6 block, then do it again
+keep watch - ethereal, gain 8 block, apply 1 weak in splash zone
+airhorn - 0 cost 14 damage, if not fatal get dazed twice
+phony - add 2 copies of a card to discard pile
+miracle form - deal double damage, expires when you take unblocked damage
+faithful guide - draw 3 cards, remove a debuff from self, exhaust
+warrior wing - morbing egg but you only get 1 card but you can choose which one
+sun oracle - if you have 20+ block, deal double damage this turn
+divine havoc - all damage up by 3, dealt and taken
+dragonnewt - damage, if target below 25% health, gain 3 energy
+vania - 2 cost, damage, if you're below half health apply 99 vulnerable
+spare bottle - rare card, vanishing, gain an item slot
+energy basket - gain 2 temporary energy items
+colorful garden - spirit shield but it only works with unique cards, costs 1
+examination - discard hand, draw 3 cards
+classical - bozo but gives you normality
+growth strike - deal damage, does double if target has less health than you
+flaming bottle - damage, get a temporary damage item
+scroll of purity - unplayable, when drawn get a random item
+grow book - gain block, choose a lira card to add to deck
+frying pan - damage, discards instead when exhausted
+nemophilia - gain 1 control, when discarded gain multiple random buffs
+presidium - 2 cost 14 damage, gain 1 strength if your deck has 30 or more cards
+edict - damage, when played 3 times double triple
+rebuke - damage, if target won't attack gain control
+superior skill - damage, if target has less health it gains weak
+lifeforce net - get the item that heals you when you die, costs 2
+schism - deal damage equal to half your block, hold half you block next trun, lose all block
+secretariat - move, gain 1 strength if your deck has 30 or more cards
+touch of cinnabar - gain 2 armor, gain 2 frail, gain 1 control
+cloister - gain block, gain 1 item
+
+wall jump punch variant
 
 
 
-sky diamond - every future turn a random card costs 1 less, exhaust
+spite the skies
 
 
 
-cartomancer?
-new relics?
+
+cooking pot redesign (split)
+
+
+
+deal damage, deals more when you use an item
+
+
+maybe a set of cards that can be upgraded infinite times
+
+
+
+
+
+
+
+
+
+
+
 
 polychrome background
 
+syuua moment
 

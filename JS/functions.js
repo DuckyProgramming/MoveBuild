@@ -114,6 +114,13 @@ function regStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 	}
 	layer.endShape(CLOSE)
 }
+function halfRegStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
+	layer.beginShape()
+	for(k=0;k<sides*2;k++){
+		layer.vertex(x+sin(direction+k*90/sides)*(k%2==0?radiusX:radius2X),y+cos(direction+k*90/sides)*(k%2==0?radiusY:radius2Y))
+	}
+	layer.endShape(CLOSE)
+}
 function diamond(layer,x,y,width,height,direction){
 	layer.quad(x-width*cos(direction),y-width*sin(direction),x-height*sin(direction),y-height*cos(direction),x+width*cos(direction),y+width*sin(direction),x+height*sin(direction),y+height*cos(direction))
 }

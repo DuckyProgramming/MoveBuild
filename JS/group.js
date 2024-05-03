@@ -498,6 +498,16 @@ class group{
     out(){
         this.cards.forEach(card=>print(card.name))
     }
+    outCSV(){
+        let collect=''
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(a>0){
+                collect+=' '
+            }
+            collect+=this.cards[a].name.replace('\n',' ')+multiplyString('+',this.cards[a].level)
+        }
+        return collect
+    }
     killDupes(){
         for(let a=0,la=this.cards.length;a<la;a++){
             for(let b=0,lb=this.cards.length;b<lb;b++){
@@ -1284,6 +1294,38 @@ class group{
                         this.cards[a].cost=3
                     }
                 break
+                case 78:
+                    if(this.cards[a].cost>0){
+                        this.cards[a].cost--
+                    }
+                    this.cards[a].spec.push(4)
+                break
+                case 79:
+                    if(this.cards[a].name.includes('Cable')&&this.cards[a].class==1){
+                        this.cards[a].cost=0
+                    }
+                break
+                case 80:
+                    if(this.cards[a].cost==2&&this.cards[a].class==1){
+                        this.cards[a].cost=0
+                    }
+                break
+                case 81:
+                    if(this.cards[a].cost==2&&this.cards[a].class==2){
+                        this.cards[a].cost=0
+                    }
+                break
+                case 82:
+                    this.cards[a].cost=1
+                    for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                        if(this.cards[a].id==this.battle.cardManagers[this.player].deck.cards[b].id){
+                            this.battle.cardManagers[this.player].deck.cards[b].cost=1
+                        }
+                    }
+                break
+                case 83:
+                    this.cards[a].callBossEffect()
+                break
 
             }
         }
@@ -1404,6 +1446,16 @@ class group{
                         this.cards[a].effect[0]+=args[0]
                     }
                 break
+                case 17:
+                    this.cards[a].color=args[0]
+                    this.cards[a].colorDetail=types.color.card[args[0]]
+                    for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                        if(this.cards[a].id==this.battle.cardManagers[this.player].deck.cards[b].id){
+                            this.battle.cardManagers[this.player].deck.cards[b].color=args[0]
+                            this.battle.cardManagers[this.player].deck.cards[b].colorDetail=types.color.card[args[0]]
+                        }
+                    }
+                break
             }
         }
         if(effect==9){
@@ -1440,6 +1492,8 @@ class group{
                 &&!(effect==34&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)))
                 &&!(effect==35&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].class!=1))
                 &&!(effect==36&&(this.cards[a].level>=2||this.cards[a].class!=args[0]&&args[0]!=0))
+                &&!(effect==38&&(this.cards[a].level!=1||this.cards[a].class!=args[0]&&args[0]!=0))
+                &&!(effect==39&&this.cards[a].spec.includes(7))
                 ){
                     list.push(a)
                 }
@@ -1453,7 +1507,7 @@ class group{
                     case 1: case 35:
                         this.cards[index].cost=max(this.cards[index].cost-args[0],0)
                     break
-                    case 2: case 36:
+                    case 2: case 36: case 38:
                         this.cards[index]=upgradeCard(this.cards[index])
                     break
                     case 3:
@@ -1622,8 +1676,11 @@ class group{
                     case 34:
                         this.cards[index].retain=true
                     break
-                    case 35:
+                    case 37:
                         this.send(args[0],index,index+1,6)
+                    break
+                    case 39:
+                        this.remove(index)
                     break
 
                 }
@@ -1799,6 +1856,9 @@ class group{
                 break
                 case 1275:
                     this.battle.addCurrency(this.cards[a].effect[0],this.player)
+                break
+                case 2547:
+                    this.cards[a].effect[0]=this.cards[a].effect[1]
                 break
             }
         }

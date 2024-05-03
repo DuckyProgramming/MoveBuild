@@ -113,6 +113,10 @@ class purchase{
                         this.battle.cardManagers[purchaser].deck.add(this.card.type,this.card.level,this.card.color,this.card.edition)
                     }
                 break
+                case 5:
+                    this.battle.overlayManager.overlays[3][purchaser].active=true
+                    this.battle.overlayManager.overlays[3][purchaser].activate([0,3,14+this.args[0]])
+                break
             }
         }
     }
@@ -155,6 +159,91 @@ class purchase{
                     this.layer.noStroke()
                     regPoly(this.layer,-5,0,3,20,20,-30)
                 break
+                case 5:
+                    if(this.args[0]==0&&this.player==-1){
+                        this.layer.strokeWeight(3)
+                        this.layer.fill(types.color.card[this.battle.player[0]].fill)
+                        this.layer.stroke(types.color.card[this.battle.player[0]].stroke)
+                        this.layer.rect(0,0,54,72,3)
+                        this.layer.fill(types.color.card[this.battle.player[1]].fill)
+                        this.layer.stroke(types.color.card[this.battle.player[1]].stroke)
+                        this.layer.rect(12,0,30,72,3)
+                        this.layer.noStroke()
+                        this.layer.fill(types.color.card[this.battle.player[0]].stroke)
+                        this.layer.rect(-6,0,12,75)
+                        this.layer.fill(types.color.card[this.battle.player[1]].stroke)
+                        this.layer.rect(6,0,12,75)
+                        this.layer.fill(types.color.card[this.battle.player[0]].fill)
+                        this.layer.rect(-6,0,12,69)
+                        this.layer.fill(types.color.card[this.battle.player[1]].fill)
+                        this.layer.rect(6,0,12,69)
+                        this.layer.fill(types.color.card[this.battle.player[0]].active)
+                        halfRegStar(this.layer,0,0,6,8,8,20,20,-180)
+                        this.layer.fill(types.color.card[this.battle.player[1]].active)
+                        halfRegStar(this.layer,0,0,6,8,8,20,20,0)
+                        this.layer.fill(upColor(types.color.card[this.battle.player[0]].stroke,-20,[1,1,1]))
+                        this.layer.rect(-0.45,0,0.9,75)
+                        this.layer.fill(upColor(types.color.card[this.battle.player[1]].stroke,-20,[1,1,1]))
+                        this.layer.rect(0.45,0,0.9,75)
+                    }else{
+                        switch(this.args[0]){
+                            case 0:
+                                this.layer.fill(types.color.card[this.battle.player[this.player]].fill)
+                                this.layer.stroke(types.color.card[this.battle.player[this.player]].stroke)
+                            break
+                            case 1:
+                                this.layer.fill(types.color.card[0].fill)
+                                this.layer.stroke(types.color.card[0].stroke)
+                            break
+                            case 2:
+                                this.layer.fill(types.color.card[game.playerNumber+5].fill)
+                                this.layer.stroke(types.color.card[game.playerNumber+5].stroke)
+                            break
+                        }
+                        this.layer.strokeWeight(3)
+                        this.layer.rect(0,0,54,72,3)
+                        this.layer.noStroke()
+                        switch(this.args[0]){
+                            case 0:
+                                this.layer.fill(types.color.card[this.battle.player[this.player]].active)
+                            break
+                            case 1:
+                                this.layer.fill(types.color.card[0].active)
+                            break
+                            case 2:
+                                this.layer.fill(types.color.card[game.playerNumber+5].active)
+                            break
+                        }
+                        regStar(this.layer,0,0,12,8,8,20,20,0)
+                        if(this.player==-1){
+                            switch(this.args[0]){
+                                case 0:
+                                    this.layer.fill(upColor(types.color.card[this.battle.player[this.player]].stroke,-20,[1,1,1]))
+                                break
+                                case 1:
+                                    this.layer.fill(upColor(types.color.card[0].stroke,-20,[1,1,1]))
+                                break
+                                case 2:
+                                    this.layer.fill(upColor(types.color.card[game.playerNumber+5].stroke,-20,[1,1,1]))
+                                break
+                            }
+                        }
+                        this.layer.rect(0,0,1.8,75)
+                    }
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(6)
+                    switch(this.args[0]){
+                        case 0:
+                            this.layer.text('Standard Pack',0,0)
+                        break
+                        case 1:
+                            this.layer.text('Colorless Pack',0,0)
+                        break
+                        case 2:
+                            this.layer.text('Spectral Pack',0,0)
+                        break
+                    }
+                break
             }
             this.layer.scale(1/min(this.size,1))
         }
@@ -184,6 +273,16 @@ class purchase{
                     this.layer.textSize(16)
                     this.layer.text('Sold Out',0,40)
                 break
+                case 5:
+                    this.layer.textSize(9.6)
+                    for(let a=0,la=this.battle.players;a<la;a++){
+                        this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[0],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[1],mergeColor([255,0,0],[230,230,210],this.anim.afford[a])[2],this.anim.usable)
+                        this.layer.text(this.cost[a],12-la*12+a*24,43.5)
+                    }
+                    this.layer.fill(255,0,0,1-this.anim.usable)
+                    this.layer.textSize(9.6)
+                    this.layer.text('Sold Out',0,43.5)
+                break
             }
         }else{
             switch(this.type){
@@ -207,6 +306,14 @@ class purchase{
                     this.layer.textSize(16)
                     this.layer.text('Sold Out',0,40)
                 break
+                case 5:
+                    this.layer.fill(mergeColor([255,0,0],[230,230,210],this.anim.afford)[0],mergeColor([255,0,0],[230,230,210],this.anim.afford)[1],mergeColor([255,0,0],[230,230,210],this.anim.afford)[2],this.anim.usable)
+                    this.layer.textSize(9.6)
+                    this.layer.text(this.cost[this.player],0,43.5)
+                    this.layer.fill(255,0,0,1-this.anim.usable)
+                    this.layer.textSize(9.6)
+                    this.layer.text('Sold Out',0,43.5)
+                break
             }
         }
         this.layer.pop()
@@ -222,7 +329,7 @@ class purchase{
         }else if(!this.deSize&&(this.size<1||this.upSize&&this.size<1.5)){
             this.size=min(round(this.size*5+1)/5,1.5)
         }
-        this.midSize=1-((this.type==1||this.type==2)&&this.battle.players==2?0.1:0)
+        this.midSize=1-(this.type==1||this.type==2&&this.battle.players==1?0.1:0)-(this.type==2&&this.battle.players==2?0.4:0)
         this.anim.usable=smoothAnim(this.anim.usable,this.usable,0,1,5)
         if(this.player==-1){
             for(let a=0,la=this.battle.players;a<la;a++){
@@ -240,9 +347,12 @@ class purchase{
                 this.card.anim.afford=1
             break
         }
-        this.upSize=(this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width*this.midSize,height:this.card.height*this.midSize})||
-        this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90*this.midSize,height:120*this.midSize})||
-        this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size)&&!this.battle.overlayManager.anyActive
+        this.upSize=!this.battle.overlayManager.anyActive&&
+            (this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width*this.midSize,height:this.card.height*this.midSize})||
+            this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90*this.midSize,height:120*this.midSize})||
+            this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size||
+            this.type==5&&pointInsideBox({position:inputs.rel},{position:this.position,width:54*this.midSize,height:72*this.midSize})
+            )
         switch(this.type){
             case 3:
                 this.relic.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}})
@@ -254,7 +364,8 @@ class purchase{
             this.type==1&&pointInsideBox({position:inputs.rel},{position:this.position,width:this.card.width*this.midSize,height:this.card.height*this.midSize})||
             this.type==2&&pointInsideBox({position:inputs.rel},{position:this.position,width:90*this.midSize,height:120*this.midSize})||
             this.type==3&&dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<20*this.relic.size||
-            this.type==4&&pointInsideBox({position:inputs.rel},{position:{x:this.position.x,y:this.position.y-25},width:300,height:200})
+            this.type==4&&pointInsideBox({position:inputs.rel},{position:{x:this.position.x,y:this.position.y-25},width:300,height:200})||
+            this.type==5&&pointInsideBox({position:inputs.rel},{position:this.position,width:54*this.midSize,height:72*this.midSize})
         )&&!this.battle.overlayManager.anyActive){
             this.buy()
         }

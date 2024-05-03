@@ -32,14 +32,14 @@ class cardManager{
         this.initialListing()
     }
     initialListing(){
-        for(let a=0;a<game.playerNumber+5;a++){
+        for(let a=0;a<game.playerNumber+6;a++){
             this.listing.card.push([[],[],[],[]])
         }
         this.listing.allPlayerCard=[[],[],[],[]]
         this.listing.allListableCard=[[],[],[],[]]
         this.listing.coc=[[],[],[],[]]
         this.listing.all=[[],[],[],[]]
-        this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+        this.listing.junk=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
         this.listing.sub=[]
         for(let a=0,la=types.card.length;a<la;a++){
             if(types.card[a].rarity==-10){
@@ -177,6 +177,9 @@ class cardManager{
     }
     addRandomColor(group,level,color,rarity){
         this.getList(group).add(this.listing.card[color][rarity][floor(random(0,this.listing.card[color][rarity].length))],level,color)
+    }
+    addRandomEdition(group,level,rarity,edition){
+        this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],edition)
     }
     addRandomClass(group,level,cardClass){
         let list=[]
@@ -381,6 +384,11 @@ class cardManager{
             let type=list[floor(random(0,list.length))]
             this.getList(group).add(type,level,types.card[type].list)
         }
+    }
+    addRandomCompleteAllCostDown(group,level,down){
+        let type=this.listing.allListableCard[rarity][floor(random(0,this.listing.allListableCard[rarity].length))]
+        let card=this.getList(group).addReturn(type,level,types.card[type].list)
+        card.cost=max(min(card.cost,0),card.cost-down)
     }
     addRandomCompleteAllCostCostDown(group,level,cost,down){
         let list=[]
@@ -804,6 +812,10 @@ class cardManager{
         this.tempDraw=0
         this.tempDrawFreeze=0
         this.tempDrawBurn=0
+        let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+        if(userCombatant.getStatus('Random Card Cost Less Per Turn')>0){
+            this.randomEffect(2,1,[userCombatant.getStatus('Random Card Cost Less Per Turn')])
+        }
         if(turn%4==0&&game.ascend>=24){
             this.reserve.addShuffle(findName('Dazed',types.card),0,game.playerNumber+1)
         }

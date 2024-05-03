@@ -201,6 +201,7 @@ class attack{
             case 2443: case 2444: case 2445: case 2458: case 2460: case 2461: case 2464: case 2465: case 2466: case 2467:
             case 2468: case 2470: case 2471: case 2473: case 2474: case 2476: case 2477: case 2481: case 2482: case 2485:
             case 2487: case 2492: case 2493: case 2494: case 2496: case 2497: case 2498: case 2504: case 2505: case 2506:
+            case 2520: case 2521: case 2522: case 2524: case 2525: case 2526: case 2546: case 2550:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -231,7 +232,7 @@ class attack{
             case 2141: case 2159: case 2160: case 2166: case 2167: case 2168: case 2169: case 2173: case 2174: case 2175:
             case 2176: case 2177: case 2178: case 2179: case 2180: case 2202: case 2203: case 2293: case 2323: case 2324:
             case 2326: case 2327: case 2332: case 2370: case 2371: case 2382: case 2383: case 2418: case 2431: case 2436:
-            case 2439: case 2440: case 2456: case 2459: case 2475:
+            case 2439: case 2440: case 2456: case 2459: case 2475: case 2545:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1589,6 +1590,28 @@ class attack{
                                 }
                                 a=la
                             }
+                        }
+                    break
+                    case 2521:
+                        if(this.userCombatant.luckCheck()){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            this.userCombatant.addBlock(this.effect[1])
+                        }else if(!this.userCombatant.luckCheckFail()){
+                            if(floor(random(0,4))==0){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                            }else if(floor(random(0,3))==0){
+                                this.userCombatant.addBlock(this.effect[1])
+                            }
+                        }
+                    break
+                    case 2522:
+                        let works2522=false
+                        if(this.targetCombatant.life>this.userCombatant.life){
+                            works2522=true
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(works2522){
+                            this.userCombatant.statusEffect('Weak',this.effect[1])
                         }
                     break
                     default:
@@ -2992,6 +3015,11 @@ class attack{
                             this.userCombatant.statusEffect('Single Damage Up',this.effect[1])
                         }
                     break
+                    case 2520:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.addRandomCompleteAllContainClass(2,this.level,['Cable','cable'],1,0)
+                        }
+                    break
 
                 }
                 //mark 1
@@ -3700,6 +3728,10 @@ class attack{
                     case 2495:
                         this.userCombatant.heal(this.effect[1])
                         this.userManager.drawClass(this.effect[2],1,2)
+                    break
+                    case 2523:
+                        this.userCombatant.statusEffect('Armor',this.effect[1])
+                        this.userManager.hand.allEffect(80)
                     break
                     //mark 2
 
@@ -5200,7 +5232,7 @@ class attack{
                         this.userCombatant.statusEffect('Shock',this.effect[1])
                     break
                     case 2394:
-                        this.userManager.discard.randomEffect(35,[this.userManager.hand.cards])
+                        this.userManager.discard.randomEffect(37,[this.userManager.hand.cards])
                     break
                     case 2407:
                         this.userCombatant.statusEffect('Luck Guarantee',1)
@@ -5248,6 +5280,12 @@ class attack{
                     break
                     case 2486:
                         this.userCombatant.statusEffect('Luck Guarantee Fail',1)
+                    break
+                    case 2518:
+                        this.userCombatant.statusEffect('Random Card Cost Less Per Turn',this.effect[0])
+                    break
+                    case 2549:
+                        this.userCombatant.statusEffect('Luck Guarantee Turn',999)
                     break
 
                 }
@@ -6471,6 +6509,11 @@ class attack{
                             this.userCombatant.lowRoll()
                         }
                     break
+                    case 2517:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.allEffect(2,78)
+                        }
+                    break
 
                 }
             break
@@ -7010,6 +7053,12 @@ class attack{
                         this.userCombatant.heal(this.effect[0]*this.userManager.hand.cards.length)
                         this.userManager.allEffect(2,1)
                     break
+                    case 2519:
+                        this.userManager.allGroupEffect(79)
+                    break
+                    case 2548:
+                        this.battle.itemManager.dupeRandom(this.player)
+                    break
 
                 }
             break
@@ -7547,6 +7596,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0]+this.effect[1]*this.userManager.exhaust.cards.length,this.user)
                     break
                     case 857: case 1248: case 1697: case 1698: case 1736: case 1753: case 1777: case 1788: case 1868: case 1913:
+                    case 2546:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     case 865:
@@ -10265,6 +10315,25 @@ class attack{
                     case 2515:
                         this.userManager.randomEffect(36,0)
                     break
+                    case 2516:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomCompleteAllCostDown(2,this.level,1)
+                        }
+                    break
+                    case 2524:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userManager.hand.exhaust(this.effect[1])
+                        this.userManager.hand.allEffect(81)
+                    break
+                    case 2543:
+                        this.battle.combatantManager.allEffect(33,[])
+                    break
+                    case 2544:
+                        this.battle.purchaseManager.free[this.player]++
+                    break
+                    case 2547:
+                        this.battle.combatantManager.allEffect(34,[this.effect[0]])
+                    break
 
                 }
             break
@@ -10394,6 +10463,83 @@ class attack{
                     case 2465:
                         this.targetCombatant.statusEffect('Jinx',this.effect[0])
                         this.userCombatant.statusEffect('Counter All',this.effect[1])
+                    break
+                }
+            break
+            case 16:
+                switch(this.type){
+                    case 2527:
+                        this.userManager.deck.randomEffect(39)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomEdition(0,0,0,floor(random(1,7)))
+                        }
+                    break
+                    case 2528:
+                        this.userManager.deck.randomEffect(39)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomEdition(0,0,1,floor(random(1,7)))
+                        }
+                    break
+                    case 2529:
+                        this.userManager.deck.randomEffect(39)
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.addRandomEdition(0,0,2,floor(random(1,7)))
+                        }
+                    break
+                    case 2530:
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,1])
+                    break
+                    case 2531:
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,2])
+                    break
+                    case 2532:
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,3])
+                    break
+                    case 2533:
+                        this.battle.overlayManager.overlays[3][this.player].active=true
+                        this.battle.overlayManager.overlays[3][this.player].activate([0,3,17,5,4])
+                    break
+                    case 2534:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.deck.randomEffect(30,[floor(random(1,7))])
+                        }
+                    break
+                    case 2535:
+                        this.userManager.deck.add(findName(['Fierna','Seiun','Elysia','Ennealis','Cirno','Miratei','Syuua','Aria'][floor(random(0,8))],types.card),this.level,game.playerNumber+5)
+                    break
+                    case 2536:
+                        this.userManager.allEffect(2,82)
+                    break
+                    case 2537:
+                        this.userManager.hand.allEffectArgs(17,[floor(random(1,game.playerNumber+1))])
+                    break
+                    case 2538:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.deck.randomEffect(39)
+                        }
+                        this.battle.addCurrency(this.effect[1],this.player)
+                    break
+                    case 2539:
+                        this.userManager.deck.randomEffect(39)
+                        this.battle.overlayManager.overlays[12][this.player].active=true
+                        this.battle.overlayManager.overlays[12][this.player].activate([])
+                    break
+                    case 2540:
+                        this.userManager.deck.randomEffect(39)
+                        this.battle.overlayManager.overlays[49][this.player].active=true
+                        this.battle.overlayManager.overlays[49][this.player].activate([])
+                    break
+                    case 2541:
+                        this.userManager.deck.randomEffect(39)
+                        this.battle.overlayManager.overlays[52][this.player].active=true
+                        this.battle.overlayManager.overlays[52][this.player].activate([])
+                    break
+                    case 2542:
+                        this.battle.overlayManager.overlays[53][this.player].active=true
+                        this.battle.overlayManager.overlays[53][this.player].activate([])
                     break
                 }
             break

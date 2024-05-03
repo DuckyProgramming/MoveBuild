@@ -25,7 +25,7 @@ class particle{
                 this.scale=1
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 51: case 52:
+            case 51: case 52: case 54:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -150,7 +150,7 @@ class particle{
                 this.scale=0
                 this.direction=[random(0,360),random(0,360),random(0,360),random(0,360)]
             break
-            case 53:
+            case 53: case 55:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -649,6 +649,23 @@ class particle{
                             map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
                     }
                 break
+                case 54:
+                    this.layer.fill(40,70,90,this.fade)
+                    regStar(this.layer,0,0,9,3,3,1,1,0)
+                    this.layer.fill(80,140,180,this.fade)
+                    regStar(this.layer,0,0,9,2.4,2.4,0.8,0.8,20)
+                break
+                case 55:
+                    this.layer.stroke(230,125,160,this.fade)
+                    this.layer.strokeWeight(5)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.line(
+                            map(a/la,0,1,0,this.position2.x)+(a==0?0:this.sets[a-1][0]),
+                            map(a/la,0,1,0,this.position2.y)+(a==0?0:this.sets[a-1][1]),
+                            map((a+1)/la,0,1,0,this.position2.x)+this.sets[a][0],
+                            map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
+                    }
+                break
 
             }
             this.layer.pop()
@@ -690,7 +707,7 @@ class particle{
                 }
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 46: case 51: case 52:
+            case 46: case 51: case 52: case 54:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -758,6 +775,16 @@ class particle{
                 for(let a=0,la=this.ticks;a<la;a++){
                     this.sets[a][0]+=random(-2,2)
                     this.sets[a][1]+=random(-2,2)
+                }
+            break
+            case 55:
+                this.fade-=1/60
+                if(this.fade<=0){
+                    this.remove=true
+                }
+                for(let a=0,la=this.ticks;a<la;a++){
+                    this.sets[a][0]+=random(-1,1)
+                    this.sets[a][1]+=random(-1,1)
                 }
             break
         }

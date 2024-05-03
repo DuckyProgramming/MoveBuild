@@ -77,7 +77,7 @@ class tileManager{
     getTileRelativeDirection(tile1X,tile1Y,tile2X,tile2Y){
         return vectorAtan(this.getTileRelativePosition(tile1X,tile1Y),this.getTileRelativePosition(tile2X,tile2Y))
     }
-    getRandomTilePosition(){
+    getRandomTile(){
         this.activate()
         let list=[]
         for(let a=0,la=this.tiles.length;a<la;a++){
@@ -86,9 +86,12 @@ class tileManager{
             }
         }
         if(list.length>0){
-            return this.tiles[list[floor(random(0,list.length))]].tilePosition
+            return this.tiles[list[floor(random(0,list.length))]]
         }
         return -1
+    }
+    getRandomTilePosition(){
+        return this.getRandomTile().tilePosition
     }
     getEmptyTiles(){
         let list=[]

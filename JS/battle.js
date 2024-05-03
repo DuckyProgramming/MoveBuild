@@ -2300,7 +2300,7 @@ class battle{
                                 this.endTurn()
                             break
                             case 'X':
-                                massacre(1)
+                                massacre(this.players)
                             break
                             case 'C':
                                 this.cardManagers[this.turn.main].hand.allEffect(2)

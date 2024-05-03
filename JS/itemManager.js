@@ -56,7 +56,7 @@ class itemManager{
     loseRandom(player){
         let possible=[]
         for(let a=0,la=this.items[player].length;a<la;a++){
-            if(this.items[player].type>1){
+            if(this.items[player][a].type>1){
                 possible.push(a)
             }
         }
@@ -69,6 +69,17 @@ class itemManager{
         let rarity=possible[floor(random(0,possible.length))]
         let index=floor(random(0,this.listing.item[rarity].length))
         return this.listing.item[rarity][index]
+    }
+    dupeRandom(player){
+        let possible=[]
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type>1){
+                possible.push(a)
+            }
+        }
+        if(possible.length>0){
+            this.addItem(this.items[player][possible[floor(random(0,possible.length))]].type,player)
+        }
     }
     addSetItem(rarity,player){
         let index=floor(random(0,this.listing.item[rarity].length))

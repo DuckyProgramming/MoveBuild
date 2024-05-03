@@ -539,6 +539,12 @@ class combatantManager{
                             this.combatants[a].life=0
                         }
                     break
+                    case 33:
+                        this.combatants[a].removeAllStatuses([0,2])
+                    break
+                    case 34:
+                        this.combatants[a].statusEffect('Freeze',args[0])
+                    break
                 }
             }
         }
