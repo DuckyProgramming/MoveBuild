@@ -85,7 +85,7 @@ attack.prototype.update=function(){
         case 2395: case 2400: case 2401: case 2405: case 2411: case 2420: case 2427: case 2428: case 2430: case 2437:
         case 2442: case 2460: case 2461: case 2464: case 2466: case 2467: case 2468: case 2471: case 2474: case 2477:
         case 2481: case 2485: case 2487: case 2492: case 2493: case 2494: case 2498: case 2497: case 2504: case 2520:
-        case 2521: case 2522: case 2525: case 2526:
+        case 2521: case 2522: case 2525: case 2526: case 2554:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -877,7 +877,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 16: case 436: case 1001: case 1017: case 2443:
+        case 16: case 436: case 1001: case 1017: case 2443: case 2552:
             if(this.timer==1){
                 let index=this.battle.tileManager.getTileIndex(this.targetCombatant.tilePosition.x*2-this.userCombatant.tilePosition.x,this.targetCombatant.tilePosition.y*2-this.userCombatant.tilePosition.y)
                 this.procedure[0]=this.targetCombatant.getStatus('Cannot Be Pushed')>0?2:index>=0&&this.battle.tileManager.tiles[index].occupied==0?0:1
@@ -901,6 +901,10 @@ attack.prototype.update=function(){
                         if(this.battle.turn.total>=2){
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }
+                    break
+                    case 2552:
+                        let index=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x*2-this.targetCombatant.tilePosition.x,this.userCombatant.tilePosition.y*2-this.targetCombatant.tilePosition.y)
+                        this.targetCombatant.takeDamage(index<0||this.battle.tileManager.tiles[index].occupied!=0?this.effect[0]+this.effect[1]:this.effect[0],this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -6202,6 +6206,23 @@ attack.prototype.update=function(){
                 }
             }else if(this.timer>=20){
                 this.remove=true
+            }
+        break
+        case 2553:
+            if(variants.nobasicanim){
+                this.selfCall(1)
+                this.selfCall(1)
+                this.remove=true
+            }else{
+                if(this.timer==1){
+                    this.userCombatant.startAnimation(1)
+                }
+                this.userCombatant.runAnimation(1/20,1)
+                if(this.timer==10||this.timer==30){
+                    this.selfCall(1)
+                }else if(this.timer>=40){
+                    this.remove=true
+                }
             }
         break
 

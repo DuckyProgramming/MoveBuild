@@ -201,7 +201,7 @@ class attack{
             case 2443: case 2444: case 2445: case 2458: case 2460: case 2461: case 2464: case 2465: case 2466: case 2467:
             case 2468: case 2470: case 2471: case 2473: case 2474: case 2476: case 2477: case 2481: case 2482: case 2485:
             case 2487: case 2492: case 2493: case 2494: case 2496: case 2497: case 2498: case 2504: case 2505: case 2506:
-            case 2520: case 2521: case 2522: case 2524: case 2525: case 2526: case 2546: case 2550:
+            case 2520: case 2521: case 2522: case 2524: case 2525: case 2526: case 2546: case 2550: case 2552: case 2554:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -10508,7 +10508,7 @@ class attack{
                         }
                     break
                     case 2535:
-                        this.userManager.deck.add(findName(['Fierna','Seiun','Elysia','Ennealis','Cirno','Miratei','Syuua','Aria'][floor(random(0,8))],types.card),this.level,game.playerNumber+5)
+                        this.userManager.deck.add(findName(['Layla','Seiun','Elysia','Ennealis','Cirno','Miratei','Syuua','Aria'][floor(random(0,8))],types.card),this.level,game.playerNumber+5)
                     break
                     case 2536:
                         this.userManager.allEffect(2,82)

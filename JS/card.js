@@ -2778,6 +2778,10 @@ class card{
             case 2548: string+=`Copy a Random\nItem You Have`; break
             case 2549: string+=`Have Perfect\nLuck This Combat`; break
             case 2550: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Your Deck Has\n50+ Cards`; break
+            case 2551: string+=`When Drawn,\nAdd ${effect[0]} Shiv${effect[0]!=1?`s`:``}\nto Hand\nWhen Vanished,\nChoose a Rare Card\nto Add Permanently`; break
+            case 2552: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nWhen Up to Wall\nPush 1 Tile`; break
+            case 2553: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n2 Times`; break
+            case 2554: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${effect[1]} More When\nYou Use an Item`; break
 
 
 
@@ -3079,7 +3083,7 @@ class card{
                 this.battle.cardManagers[this.player].deck.add(findName('Fury\nSpell',types.card),0,0)
             break
             case 1239: case 1240: case 1241: case 1242: case 1243: case 1246: case 1373: case 1433: case 1565: case 1903:
-            case 2469: case 2479: case 2480:
+            case 2469: case 2479: case 2480: case 2551:
                 this.battle.overlayManager.overlays[3][this.player].active=true
                 this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break
@@ -3205,6 +3209,9 @@ class card{
         switch(this.attack){
             case 2261:
                 this.cost=0
+            break
+            case 2554:
+                this.effect[0]+=this.effect[1]
             break
         }
     }

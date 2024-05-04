@@ -4,17 +4,16 @@ the dual?
 
 
 
+ouija brings back a destroyed card
+sigil makes a random card cost 1 less
+
+
 
 cards:
 
 
-withdraws:
-
 a third crescent and arbelos
 
-scrap shiv
-
-bend - gain 6 block, then do it again
 keep watch - ethereal, gain 8 block, apply 1 weak in splash zone
 airhorn - 0 cost 14 damage, if not fatal get dazed twice
 phony - add 2 copies of a card to discard pile
@@ -46,20 +45,13 @@ secretariat - move, gain 1 strength if your deck has 30 or more cards
 touch of cinnabar - gain 2 armor, gain 2 frail, gain 1 control
 cloister - gain block, gain 1 item
 
-wall jump punch variant
-
-
 
 spite the skies
 
 
 
+salad items become temporary
 
-cooking pot redesign (split)
-
-
-
-deal damage, deals more when you use an item
 
 
 maybe a set of cards that can be upgraded infinite times
@@ -75,7 +67,4 @@ maybe a set of cards that can be upgraded infinite times
 
 
 
-polychrome background
-
-syuua moment
 

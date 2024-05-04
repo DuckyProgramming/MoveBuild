@@ -2693,6 +2693,16 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(6,-6,4,3,8,3)
             layer.triangle(8.5,2,8.5,-2,12,0)
         break
+        case 300:
+            layer.fill(255,125,0,fade)
+            layer.rect(-1.5,-1.5,7,7)
+            layer.triangle(-5.5,0,-5.5,-3,-8,-1.5)
+            layer.fill(255,255,0,fade)
+            layer.rect(0,0,7,7)
+            layer.fill(125,255,0,fade)
+            layer.rect(1.5,1.5,7,7)
+            layer.triangle(5.5,0,5.5,3,8,1.5)
+        break
 
     }
     layer.pop()
@@ -6317,6 +6327,78 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.point(0,0)
             layer.point(0,5)
         break
+        case 93:
+            layer.noFill()
+            layer.stroke(200,180,120,fade)
+            layer.strokeWeight(2)
+            layer.ellipse(0,0,10,10)
+            layer.noStroke()
+            layer.fill(200,180,120,fade)
+            layer.rect(0,-3,2,2)
+            layer.rect(0,3,2,2)
+            layer.rect(-3,0,2,2)
+            layer.rect(3,0,2,2)
+        break
+        case 94:
+            layer.fill(150,175,200,fade)
+			layer.triangle(-7.5,-4.5,7.5,-4.5,0,-9)
+			layer.arc(0,-4.5,15,24,0,180)
+            layer.fill(100,125,150,fade)
+			layer.triangle(-5,-3,5,-3,0,-6)
+			layer.arc(0,-3,10,16,0,180)
+        break
+        case 95:
+            layer.fill(120,fade)
+            layer.rect(-6,0,2,14)
+            layer.rect(-3,0,2,14)
+            layer.rect(6,0,2,14)
+            layer.rect(0,6,14,2)
+        break
+        case 96:
+            layer.fill(150,175,200,fade)
+            layer.rect(0,0,3,9)
+            layer.rect(-3,0,2,6)
+            layer.rect(3,0,2,6)
+            layer.triangle(-1,-5,1,-5,0,-6)
+            layer.triangle(-1,5,1,5,0,6)
+        break
+        case 97:
+            layer.fill(100,255,100,fade)
+            layer.arc(0,0,10,10,30,210)
+            layer.fill(100,255,255,fade)
+            layer.arc(0,0,10,10,-150,30)
+            layer.fill(50,225,50,fade)
+            layer.arc(0,0,8,8,15,195)
+            layer.fill(50,225,225,fade)
+            layer.arc(0,0,8,8,-165,15)
+        break
+        case 98:
+            layer.fill(0,150,255,fade)
+            layer.rotate(45)
+            layer.triangle(0,-1,2,5,-2,5)
+            layer.triangle(-1,0,5,2,5,-2)
+            layer.triangle(0,1,-2,-5,2,-5)
+            layer.triangle(1,0,-5,-2,-5,2)
+        break
+        case 99:
+            layer.fill(200,150,25,fade)
+            layer.ellipse(0,0,4)
+            for(let a=0,la=8;a<la;a++){
+                layer.rotate(45)
+                layer.ellipse(0,3.5,2)
+            }
+            layer.stroke(200,150,25,fade)
+            layer.noFill()
+            layer.strokeWeight(1)
+            layer.ellipse(0,0,11)
+        break
+        case 100:
+            layer.fill(120,fade)
+            layer.rect(-5,0,2,16)
+            layer.rect(-2,0,2,16)
+            layer.rect(0,-7,11,2)
+            layer.rect(0,7,11,2)
+        break
     }
     layer.pop()
 }
@@ -6346,7 +6428,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 26-Vulnerable
 27-Block
 28-Currency
-29-Single Damage
+29-Single Damage Up
 30-Item
 31-Empty
 32-Rest
@@ -6410,4 +6492,12 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 90-Card 1
 91-Card 2
 92-Card 3
+93-Anti-Control
+94-Holding Block
+95-Uncommon
+96-Conditioning
+97-World
+98-Anti-Innate
+99-Arcana
+100-Common
 */

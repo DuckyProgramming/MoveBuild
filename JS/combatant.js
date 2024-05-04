@@ -135,6 +135,7 @@ class combatant{
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
             'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
             'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
+            'Return Buffer',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -167,6 +168,7 @@ class combatant{
                 2,0,2,0,0,0,1,2,1,0,//28
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
+                0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -199,6 +201,7 @@ class combatant{
                 0,1,0,1,2,2,0,0,1,2,//28
                 2,2,0,0,0,2,0,0,2,2,//29
                 2,2,2,1,0,2,3,2,2,2,//30
+                1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4609,15 +4612,15 @@ class combatant{
             if(userCombatant.status.main[49]>0&&userCombatant.status.main[204]<=0){
                 userCombatant.takeDamage(userCombatant.status.main[49]*2,-1)
             }
+            if(userCombatant.status.main[95]>0){
+                userCombatant.heal(userCombatant.status.main[95])
+            }
             if(userCombatant.status.main[119]>0){
                 if(this.battle.turn.main<this.battle.players){
                     this.statusEffect('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1))
                 }else{
                     this.statusEffectNext('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1))
                 }
-            }
-            if(userCombatant.status.main[95]>0){
-                userCombatant.heal(userCombatant.status.main[95])
             }
         }
         damage=round(damage*10)/10
@@ -4922,6 +4925,9 @@ class combatant{
                     if(this.block<=0&&this.status.main[277]>0){
                         this.battle.combatantManager.damageArea(this.status.main[277],this.id,this.team,this.tilePosition)
                     }
+                    if(this.battle.relicManager.hasRelic(229,this.id)){
+                        this.statusEffect('Metallicize',this.battle.relicManager.active[229][this.id+1])
+                    }
                 }else if(this.block>0&&spec!=2){
                     let damageLeft=damage-this.block
                     this.taken=damageLeft
@@ -4994,6 +5000,9 @@ class combatant{
                     let distance=distTargetCombatant(0,this,userCombatant)
                     if(this.status.main[134]>0){
                         userCombatant.addBlock(this.status.main[134])
+                    }
+                    if(this.status.main[300]>0){
+                        userCombatant.statusEffect('Buffer',this.status.main[300])
                     }
                     if(userCombatant.status.main[139]>0){
                         userCombatant.addBlock(damage)

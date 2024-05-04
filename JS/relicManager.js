@@ -278,7 +278,7 @@ class relicManager{
                 manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
             break
             case 135: case 136: case 137: case 138: case 140: case 141: case 142:  case 144: case 145: case 146:
-            case 147: case 148: case 170:
+            case 147: case 148: case 170: case 222: case 228:
                 this.battle.energy.base[player]++
             break
             case 139:
@@ -374,6 +374,20 @@ class relicManager{
                     this.battle.cardManagers[player].randomEffect(0,3,[0])
                 }
             break
+            case 215:
+                this.battle.cardManagers[player].addRandomCharacter(0,game.playerNumber+4,0,3)
+            break
+            case 218:
+                this.battle.overlayManager.overlays[54][player].active=true
+                this.battle.overlayManager.overlays[54][player].activate([])
+            break
+            case 223:
+                this.battle.cardManagers[player].deck.cards[this.battle.cardManagers[player].deck.cards.length-1].cost=0
+            break
+            case 226:
+                this.battle.energy.base[player]++
+                this.loseRandomRelic(player)
+            break
 
         }
         this.reactivate(type,player)
@@ -468,7 +482,8 @@ class relicManager{
                 manager.deck.removeCurse()
                 manager.deck.removeCurse()
             break
-            case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 144: case 145: case 146: case 147: case 148:
+            case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 144: case 145: case 146:
+            case 147: case 148: case 222: case 228:
                 this.battle.energy.base[player]--
             break
             case 139:
@@ -556,6 +571,22 @@ class relicManager{
                 for(let a=0,la=5;a<la;a++){
                     this.battle.cardManagers[player].randomEffect(0,2,[0])
                 }
+            break
+            case 217:
+                let list=[]
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    if(this.relics[a].player==player&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].type!=0){
+                        list.push(a)
+                    }
+                }
+                if(list.length>0){
+                    let type=this.relics[list[floor(random(0,list.length))]].type
+                    this.active[type][player+1]++
+                }
+            break
+            case 226:
+                this.battle.energy.base[player]--
+                this.addRandomRelic(player)
             break
         }
         this.deactivate(type,player)
@@ -673,6 +704,18 @@ class relicManager{
                             }
                             if(this.active[209][a+1]>0){
                                 this.getPlayer(a).statusEffect('Strength',2*this.active[209][a+1]*floor(this.battle.currency.money[a]/500))
+                            }
+                            if(this.active[220][a+1]>0&&this.battle.itemManager.total[a]>0){
+                                this.battle.cardManagers[a].draw(this.battle.itemManager.total[a]*this.active[220][a+1])
+                            }
+                            if(this.active[222][a+1]>0){
+                                this.getPlayer(a).statusEffect('Return Buffer',this.active[222][a+1])
+                            }
+                            if(this.active[224][a+1]>0){
+                                this.getPlayer(a).statusEffect('Conditioning',this.active[224][a+1])
+                            }
+                            if(this.active[228][a+1]>0){
+                                this.getPlayer(a).statusEffect('Anti-Control',this.active[228][a+1])
                             }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
@@ -803,6 +846,9 @@ class relicManager{
                             this.getPlayer(a).statusEffect('Double Damage',this.active[204][a+1])
                         }
                         this.detail[204][a]=0
+                    }
+                    if(this.active[227][a+1]>0&&args[0]%2==0){
+                        this.getPlayer(a).statusEffect('Single Damage Up',4*this.active[227][a+1])
                     }
                 }
                 if(args[0]%3==0&&this.battle.modded(23)){
@@ -1070,6 +1116,9 @@ class relicManager{
                         if(this.active[204][args[1]+1]>0&&this.detail[204][args[1]]==0){
                             this.detail[204][args[1]]=1
                         }
+                        if(this.active[225][args[1]+1]>0&&args[3]==1){
+                            this.getPlayer(args[1]).heal(this.active[225][args[1]+1])
+                        }
                     break
                     case 2:
                         if(this.active[73][args[1]+1]>0){
@@ -1112,7 +1161,7 @@ class relicManager{
                     this.getPlayer(args[0]).statusEffect('Block Next Turn',3)
                 }
             break
-            case 7://entering room [room]
+            case 7://entering node [node]
                 for(let a=0,la=this.battle.players;a<la;a++){
                     if(this.active[91][a+1]>0&&args[0]!=4){
                         this.battle.addCurrency(20*this.active[91][a+1],a)
@@ -1122,6 +1171,12 @@ class relicManager{
                     }
                     if(this.active[210][a+1]>0&&this.battle.currency.money[a]>=1000){
                         this.battle.addCurrency(40*this.active[210][a+1],a)
+                    }
+                    if(this.active[221][a+1]>0&&this.battle.nodeManager.world>=2){
+                        this.battle.addCurrency(1000*this.active[221][a+1],a)
+                        for(let b=0,lb=this.active[221][a+1];b<lb;b++){
+                            this.loseRelic(221,a)
+                        }
                     }
                     switch(args[0]){
                         case 3://rest

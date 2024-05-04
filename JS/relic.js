@@ -1566,6 +1566,7 @@ class relic{
                     displaySymbol(this.layer,-8,-4,16,0,0.6,this.fade)
                     displaySymbol(this.layer,-8,-4,1,0,0.4,this.fade)
                     displaySymbol(this.layer,8,-4,1,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,-4,5,0,0.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('2x',0,10)
@@ -1587,6 +1588,104 @@ class relic{
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
                     displaySymbol(this.layer,9,0,8,0,0.8,this.fade)
                     displaySymbol(this.layer,9,0,6,0,0.6,this.fade)
+                break
+                case 'Random Arcana':
+                    displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,99,0,1,this.fade)
+                break
+                case 'Free Commons':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,100,0,0.7,this.fade)
+                    displaySymbol(this.layer,8,0,28,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',8,1)
+                break
+                case 'Copy Random Relic':
+                    displaySymbol(this.layer,-8,-4,16,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,-4,1,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,-4,1,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,-4,53,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2x',0,10)
+                break
+                case 'Anti-Innate Card':
+                    displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,98,1.2,this.fade)
+                break
+                case 'Double Upgraded Card Rewards':
+                    displaySymbol(this.layer,-12,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-14.5,0,7,0,0.4,this.fade)
+                    displaySymbol(this.layer,-9.5,0,7,0,0.4,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,12,0,8,0,0.8,this.fade)
+                break
+                case 'Item Card Draw':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,30,0,0.4,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'World 3 Currency':
+                    displaySymbol(this.layer,-8,0,28,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,0,97,0,1.2,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(8)
+                    this.layer.text('1000',-8,0)
+                break
+                case 'Energy/Enemy Buffer':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,44,0,1.2,this.fade)
+                break
+                case 'Last Card Free':
+                    displaySymbol(this.layer,0,0,4,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('0',0,0)
+                break
+                case 'Starting Conditioning':
+                    displaySymbol(this.layer,-8,0,96,0,2,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Uncommon Attack Heal':
+                    displaySymbol(this.layer,-8,-4,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,-4,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,-4,95,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,10,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,2,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',8,0)
+                break
+                case 'Energy/Relic':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,1,0,0.6,this.fade)
+                break
+                case 'Odd Turn Single Damage Up':
+                    displaySymbol(this.layer,-8,0,29,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-4,86,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',-8,0)
+                break
+                case 'Energy/Anti-Control':
+                    displaySymbol(this.layer,-8,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,93,0,1.2,this.fade)
+                break
+                case 'Defensive Metallicize':
+                    displaySymbol(this.layer,0,0,94,0,1.8,this.fade)
+                    displaySymbol(this.layer,0,0,43,0,1,this.fade)
                 break
 
             }

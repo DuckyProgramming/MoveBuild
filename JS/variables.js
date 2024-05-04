@@ -675,7 +675,7 @@ types={
         
         {name:'Power Shell',internal:'X 2 Increase',id:121,rarity:3,list:0,description:'X Cost Cards\nGet +2 to X'},
         {name:'Rusty Gear',internal:'Starting Control',id:122,rarity:3,list:0,description:'Gain 1 Control at\nthe Start of Combat'},
-        {name:'Pocket Mirror',internal:'Duplicate Card',id:123,rarity:3,list:0,description:'When Taken,\nDuplicate a Card'},
+        {name:'Shattered Mirror',internal:'Duplicate Card',id:123,rarity:3,list:0,description:'When Taken,\nDuplicate a Card'},
         {name:'Tweezers',internal:'Block Break Vulnerable',id:124,rarity:0,list:0,description:`When You Break an Enemy's\nBlock, Apply 2 Vulnerable`},
         {name:'Waffle',internal:'10 Max HP Full Heal',id:125,rarity:3,list:0,description:'When Taken, Gain 10 Max\nHP and Heal All HP'},
         {name:'Napkin Ring',internal:'Starting Colorless',id:126,rarity:3,list:0,description:'Add 1 Colorless Card\nat the Start of Combat'},
@@ -776,8 +776,7 @@ types={
         {name:'Faceless Face',internal:'Movement Remove Currency',id:212,rarity:3,list:0,description:'Gain 400 Currency When\na Movement Card is Removed'},
         {name:'Shiny Button',internal:'Energy/Shinies',id:213,rarity:4,list:0,description:'Gain 1 Base Energy,\nFind No Shinies and\nLose Existing Shinies'},
         {name:'Auto Arm',internal:'Energy/Unupgrade',id:214,rarity:4,list:0,description:'Gain 1 Base Energy,\nUnupgrade 5 Random Cards When Taken'},
-
-        /*{name:'Cartomancer',internal:'Random Arcana',id:215,rarity:3,list:0,description:'When Taken, Add a Random\nArcana to Deck'},
+        {name:'Cartomancer',internal:'Random Arcana',id:215,rarity:3,list:0,description:'When Taken, Add a Random\nArcana to Deck'},
         {name:'Astronomy Book',internal:'Free Commons',id:216,rarity:2,list:0,description:'Common Cards in the\nShop are Free'},
         {name:'Invisible Duck',internal:'Copy Random Relic',id:217,rarity:3,list:0,description:'When Sold, Copy a\nRandom Owned Relic'},
         {name:'Aerogel',internal:'Anti-Innate Card',id:218,rarity:3,list:0,description:'When Taken, Make\na Card Anti-Innate'},
@@ -788,11 +787,11 @@ types={
         {name:'Expired Coupon',internal:'Energy/Enemy Buffer',id:222,rarity:4,list:0,description:'Gain 1 Base Energy,\nEnemies That Hit You\nGain 1 Buffer'},
         {name:'Paper Snowflake',internal:'Last Card Free',id:223,rarity:3,list:0,description:'When Taken, Make the\nLast Card in Deck Free'},
         {name:'SSh36',internal:'Starting Conditioning',id:224,rarity:0,list:0,description:'Gain 1 Conditioning\nat the Start of Combat'},
-        {name:'Purple Leaf',internal:'Uncommon Attack Heal',id:225,rarity:1,list:0,description:'When You Play an Uncommon\nPower, Heal 2 HP'},
-        {name:'Red Paperclip',internal:'Energy/Relic',id:226,rarity:4,list:0,description:'Gain 1 Base Energy/Lose a Random Relic'},
-        {name:'Twin Pearls',internal:'Odd Turn Single Damage Up',id:227,rarity:1,list:0,description:'Gain 4 Single Damage Up\non Odd Turns'},
-        {name:'Writ of Mandamus',internal:'Energy/Block',id:228,rarity:4,list:0,description:'Gain 1 Base Energy,\nLose 5 Block When You\nEnd Your Turn'},
-        {name:'Dragon Fish',internal:'Defensive Armor',id:229,rarity:0,list:0,description:'When You Fully Block Damage,\nGain 1 Armor'},*/
+        {name:'Purple Leaf',internal:'Uncommon Attack Heal',id:225,rarity:1,list:0,description:'When You Play an Uncommon\nAttack, Heal 1 HP'},
+        {name:'Red Paperclip',internal:'Energy/Relic',id:226,rarity:4,list:0,description:'Gain 1 Base Energy\nLose a Random Relic'},
+        {name:'Twin Pearls',internal:'Odd Turn Single Damage Up',id:227,rarity:1,list:0,description:'Gain 4 Single Damage Up\non Even Turns'},
+        {name:'Writ of Mandamus',internal:'Energy/Anti-Control',id:228,rarity:4,list:0,description:'Gain 1 Base Energy,\nGain 1 Anti-Control\nat the Start of Combat'},
+        {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:1,list:0,description:'When You Fully Block Damage,\nGain 1 Metallicize'},
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,description:''},

@@ -227,8 +227,8 @@ class purchase{
                                     this.layer.fill(upColor(types.color.card[game.playerNumber+5].stroke,-20,[1,1,1]))
                                 break
                             }
+                            this.layer.rect(0,0,1.8,75)
                         }
-                        this.layer.rect(0,0,1.8,75)
                     }
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(6)

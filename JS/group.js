@@ -1317,9 +1317,11 @@ class group{
                 break
                 case 82:
                     this.cards[a].cost=1
+                    this.cards[a].base.cost=1
                     for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
                         if(this.cards[a].id==this.battle.cardManagers[this.player].deck.cards[b].id){
                             this.battle.cardManagers[this.player].deck.cards[b].cost=1
+                            this.battle.cardManagers[this.player].deck.cards[b].base.cost=1
                         }
                     }
                 break
@@ -1844,6 +1846,11 @@ class group{
             case 2511:
                 userCombatant.heal(card.effect[0])
                 this.battle.cardManagers[this.player].draw(card.effect[1])
+            break
+            case 2551:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
+                }
             break
         }
     }
