@@ -9,6 +9,7 @@ class item{
 
         this.name=types.item[this.type].name
         this.menu=types.item[this.type].menu
+        this.temp=types.item[this.type].temp
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
 
@@ -19,6 +20,7 @@ class item{
     refresh(){
         this.name=types.item[this.type].name
         this.menu=types.item[this.type].menu
+        this.temp=types.item[this.type].temp
         this.description=types.item[this.type].description
         this.rarity=types.item[this.type].rarity
     }
@@ -29,7 +31,13 @@ class item{
             this.layer.scale(this.size)
             this.layer.fill(200,this.fade)
             this.layer.noStroke()
-            this.layer.ellipse(0,0,40,40)
+            this.layer.ellipse(0,0,40)
+            if(this.temp){
+                this.layer.fill(150,this.fade)
+                this.layer.ellipse(0,0,36)
+                this.layer.fill(200,this.fade)
+                this.layer.ellipse(0,0,33)
+            }
             switch(this.name){
                 case '':
                     displaySymbol(this.layer,0,0,30,0,1,this.fade)
@@ -358,6 +366,12 @@ class item{
                     this.layer.fill(0)
                     this.layer.textSize(10)
                     this.layer.text('3',0,0)
+                break
+                case 'Energy Drink':
+                    displaySymbol(this.layer,0,0,9,0,1.2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,0)
                 break
             }
             this.layer.pop()

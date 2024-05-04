@@ -202,6 +202,7 @@ class attack{
             case 2468: case 2470: case 2471: case 2473: case 2474: case 2476: case 2477: case 2481: case 2482: case 2485:
             case 2487: case 2492: case 2493: case 2494: case 2496: case 2497: case 2498: case 2504: case 2505: case 2506:
             case 2520: case 2521: case 2522: case 2524: case 2525: case 2526: case 2546: case 2550: case 2552: case 2554:
+            case 2562:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -3733,6 +3734,9 @@ class attack{
                         this.userCombatant.statusEffect('Armor',this.effect[1])
                         this.userManager.hand.allEffect(80)
                     break
+                    case 2560:
+                        this.battle.combatantManager.statusAreaID('Weak',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
+                    break
                     //mark 2
 
                 }
@@ -5286,6 +5290,24 @@ class attack{
                     break
                     case 2549:
                         this.userCombatant.statusEffect('Luck Guarantee Turn',999)
+                    break
+                    case 2555:
+                        this.battle.overlayManager.overlays[55][this.player].active=true
+                        this.battle.overlayManager.overlays[55][this.player].activate()
+                    break
+                    case 2558:
+                        if(this.userCombatant.energyParity(this.energy)==0){
+                            this.userCombatant.statusEffect('Double Damage',this.effect[0]*this.energy)
+                        }else{
+                            this.userCombatant.statusEffect('Conditioning',this.effect[1]*this.energy)
+                        }
+                    break
+                    case 2559:
+                        if(this.battle.turn.total%2==0){
+                            this.userCombatant.statusEffect('Double Damage',this.effect[0]*this.energy)
+                        }else{
+                            this.userCombatant.statusEffect('Conditioning',this.effect[1]*this.energy)
+                        }
                     break
 
                 }
@@ -8749,6 +8771,13 @@ class attack{
                             }
                         }
                     break
+                    case 2561:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetCombatant.life<=0){
+                            this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                        }
+                    break
 
                 }
             break
@@ -10540,6 +10569,12 @@ class attack{
                     case 2542:
                         this.battle.overlayManager.overlays[53][this.player].active=true
                         this.battle.overlayManager.overlays[53][this.player].activate([])
+                    break
+                    case 2556:
+                        this.userManager.deck.unRemove()
+                    break
+                    case 2557:
+                        this.userManager.deck.randomEffect(40,[1])
                     break
                 }
             break

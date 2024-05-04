@@ -1,21 +1,13 @@
 characters:
 
-the dual?
+the [some sort of scientist]
+the dual fairies
 
-
-
-ouija brings back a destroyed card
-sigil makes a random card cost 1 less
 
 
 
 cards:
 
-
-a third crescent and arbelos
-
-keep watch - ethereal, gain 8 block, apply 1 weak in splash zone
-airhorn - 0 cost 14 damage, if not fatal get dazed twice
 phony - add 2 copies of a card to discard pile
 miracle form - deal double damage, expires when you take unblocked damage
 faithful guide - draw 3 cards, remove a debuff from self, exhaust
@@ -45,12 +37,13 @@ secretariat - move, gain 1 strength if your deck has 30 or more cards
 touch of cinnabar - gain 2 armor, gain 2 frail, gain 1 control
 cloister - gain block, gain 1 item
 
+certes NOT moving based cards
+
+a new series of bleed and armament cards
+is balance still useful?
 
 spite the skies
 
-
-
-salad items become temporary
 
 
 

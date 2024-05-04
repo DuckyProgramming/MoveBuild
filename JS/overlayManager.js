@@ -62,13 +62,14 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[35])],//negative edition, no return
                     [new overlay(this.layer,this.battle,0,2,[36])],//duplicate common card 2 times, no return
                     [new overlay(this.layer,this.battle,0,2,[37])],//make card innate
+                    [new overlay(this.layer,this.battle,0,2,[38])],//foil edition and double duplicate, no return
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[51,41,42,38,24,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,16,4,15,5,32,7,18,50,30,33,52,53,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,54,11,27,39,43,45]
+                this.priority=[51,41,42,38,24,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,16,4,15,5,32,7,18,50,30,33,52,53,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,54,11,27,39,43,55,45]
             break
             case 1:
                 this.overlays.push(

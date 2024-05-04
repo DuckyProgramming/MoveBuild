@@ -1472,7 +1472,7 @@ class group{
             for(let a=0,la=this.cards.length;a<la;a++){
                 if(this.cards[a].usable
                 &&!((effect==0||effect==25||effect==28)&&this.cards[a].deSize)
-                &&!((effect==1||effect==5||effect==33)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
+                &&!((effect==1||effect==5||effect==33||effect==40)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
                 &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
                 &&!(effect==2&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==3&&(this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0))
@@ -1683,6 +1683,10 @@ class group{
                     break
                     case 39:
                         this.remove(index)
+                    break
+                    case 40:
+                        this.cards[index].cost=max(this.cards[index].cost-args[0],0)
+                        this.cards[index].base.cost=max(this.cards[index].base.cost-args[0],0)
                     break
 
                 }

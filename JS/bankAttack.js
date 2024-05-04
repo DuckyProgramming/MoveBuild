@@ -204,7 +204,7 @@ attack.prototype.update=function(){
         case 2231: case 2234: case 2249: case 2256: case 2257: case 2266: case 2274: case 2280: case 2286: case 2289:
         case 2302: case 2303: case 2304: case 2305: case 2307: case 2309: case 2320: case 2329: case 2334: case 2346:
         case 2359: case 2360: case 2368: case 2396: case 2416: case 2423: case 2425: case 2469: case 2483: case 2484:
-        case 2491: case 2495: case 2523:
+        case 2491: case 2495: case 2523: case 2560:
             if(
                 this.type==809&&this.userCombatant.stance!=4||
                 this.type==1713&&this.battle.turn.total%2==0||
@@ -514,6 +514,7 @@ attack.prototype.update=function(){
         case 2269: case 2278: case 2292: case 2294: case 2306: case 2312: case 2321: case 2322: case 2333: case 2335:
         case 2336: case 2372: case 2373: case 2376: case 2377: case 2385: case 2394: case 2407: case 2408: case 2409:
         case 2415: case 2417: case 2419: case 2429: case 2448: case 2472: case 2478: case 2486: case 2518: case 2549:
+        case 2555: case 2558: case 2559:
             if(
                 this.type==799&&this.battle.turn.total<4||
                 this.type==807&&this.userCombatant.stance!=2||
@@ -1448,7 +1449,7 @@ attack.prototype.update=function(){
         case 2010: case 2011: case 2016: case 2022: case 2023: case 2024: case 2030: case 2045: case 2050: case 2076:
         case 2091: case 2094: case 2096: case 2097: case 2124: case 2151: case 2158: case 2214: case 2253: case 2272:
         case 2273: case 2345: case 2369: case 2393: case 2404: case 2434: case 2435: case 2458: case 2470: case 2476:
-        case 2482: case 2506: case 2546:
+        case 2482: case 2506: case 2546: case 2561:
             if(
                 this.type==1247&&this.userCombatant.energyParity(this.energy)!=0||
                 this.type==1259&&this.userCombatant.energyParity(this.energy)!=0||
@@ -6140,7 +6141,7 @@ attack.prototype.update=function(){
             }
         break
         case 2527: case 2528: case 2529: case 2530: case 2531: case 2532: case 2533: case 2534: case 2535:
-        case 2536: case 2537: case 2538: case 2539: case 2540: case 2541: case 2542:
+        case 2536: case 2537: case 2538: case 2539: case 2540: case 2541: case 2542: case 2556: case 2557:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{

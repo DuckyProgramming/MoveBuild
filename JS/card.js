@@ -2782,6 +2782,15 @@ class card{
             case 2552: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${this.calculateEffect(effect[1],10)} More Damage\nWhen Up to Wall\nPush 1 Tile`; break
             case 2553: string+=`Add ${this.calculateEffect(effect[0],1)} Block\n2 Times`; break
             case 2554: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals ${effect[1]} More When\nYou Use an Item`; break
+            case 2555: string+=`Make a Card Foil\nand Duplicate it\n2 Times Permanently`; break
+            case 2556: string+=`Return Last Removed\nCard to Deck`; break
+            case 2557: string+=`A Random Card in\nDeck Costs 1 Less\nPermanently`; break
+            case 2558: string+=`Even X:\nNext ${effect[0]!=1?`${effect[0]}`:``}X Attacks\nDeal Double Damage\nOdd X:\nGain ${effect[1]!=1?`${effect[1]}`:``}X Conditioning`; break
+            case 2559: string+=`Even Turn:\nNext ${effect[0]!=1?`${effect[0]}`:``}X Attacks\nDeal Double Damage\nOdd Turn:\nGain ${effect[1]!=1?`${effect[1]}`:``}X Conditioning`; break
+            case 2560: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nApply ${effect[1]} Weak\nin All Directions`; break
+            case 2561: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Not Fatal,\nAdd 2 Dazed\nto Draw`; break
+
+
 
 
 

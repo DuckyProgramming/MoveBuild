@@ -296,9 +296,20 @@ class itemManager{
             case 103:
                 userCombatant.heal(3*this.effectiveness[player])
             break
+            case 104:
+                this.battle.energy.main[player]+=2*this.effectiveness[player]
+            break
         }
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])){
             this.addRandomItem(player)
+        }
+    }
+    activateEndBattle(player){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].temp){
+                this.items[player][a].type=1
+                this.items[player][a].refresh()
+            }
         }
     }
     activateDeath(player){

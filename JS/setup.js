@@ -16,24 +16,24 @@ function setup(){
         //transition.trigger=true
         //transition.scene='menu'
 
-    current.menu.combatant=[11]
-    current.menu.deck=[0]
+    /*current.menu.combatant=[11]
+    current.menu.deck=[-1]
     current.startGame()
-    game.animRate=4
+    game.animRate=4*/
 
         //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
         //current.create()
 
-    transition.trigger=false
+    //transition.trigger=false
     
         /*stage.scene='graphic'
         graphics.test=0
         graphics.staticBackground.clear()
         setupBackground(graphics.test,graphics.staticBackground)*/
     
-    game.dev=true
+    /*game.dev=true
     stage.scene='battle'
-    current.setupBattle(types.encounter[1])
+    current.setupBattle(types.encounter[1])*/
 
         /*variants.mod=true
         for(let a=0,la=4;a<la;a++){

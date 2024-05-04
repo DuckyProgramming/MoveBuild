@@ -1472,6 +1472,9 @@ class battle{
                     }
                     if(allClosed&&!this.result.defeat){
                         transition.trigger=true
+                        for(let a=0,la=this.players;a<la;a++){
+                            this.itemManager.activateEndBattle(a)
+                        }
                         if(this.encounter.class==2){
                             if(this.nodeManager.world==3){
                                 transition.scene='victory'
