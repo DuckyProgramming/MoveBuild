@@ -132,6 +132,12 @@ class overlay{
                 }else{
                     this.options=3
                 }
+                if(this.battle.relicManager.active[46][this.player+1]>0){
+                    this.options+=this.battle.relicManager.active[46][this.player+1]
+                }
+                if(this.battle.relicManager.active[131][this.player+1]>0){
+                    this.options-=this.battle.relicManager.active[131][this.player+1]
+                }
                 if(variants.cursed){
                     args[0]=min(args[0]+1,2)
                 }

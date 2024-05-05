@@ -6226,6 +6226,19 @@ attack.prototype.update=function(){
                 }
             }
         break
+        case 2562:
+            if(this.timer==1){
+                for(let a=0,la=this.effect[0];a<la;a++){
+                    let index=floor(random(0,types.card.length))
+                    this.userManager.hand.add(index,0,types.card[index].list<0?0:types.card[index].list>=types.color.card.list?0:types.card[index].list)
+                }
+            }else if(this.timer==20){
+                this.remove=true
+            }
+            if(this.timer==5||this.timer==10||this.timer==15||this.timer==20){
+                current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+random(-30,30),this.userCombatant.position.y-random(20,80),56,[10]))
+            }
+        break
 
         default:
             this.remove=true

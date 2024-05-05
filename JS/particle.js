@@ -162,6 +162,12 @@ class particle{
                     this.sets.push([random(-10,10),random(-10,10)])
                 }
             break
+            case 56:
+                this.size=args[0]
+                this.color=[[255,0,0],[255,125,0],[255,255,0],[0,255,0],[0,255,255],[0,0,255],[255,0,255]][floor(random(0,7))]
+                this.fade=1
+                this.scale=0
+            break
         }
     }
     display(){
@@ -666,6 +672,10 @@ class particle{
                             map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
                     }
                 break
+                case 56:
+                    this.layer.fill(this.color[0],this.color[1],this.color[2],this.fade)
+                    this.layer.ellipse(0,0,12,12)
+                break
 
             }
             this.layer.pop()
@@ -707,7 +717,7 @@ class particle{
                 }
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 46: case 51: case 52: case 54:
+            case 46: case 51: case 52: case 54: case 56:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

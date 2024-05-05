@@ -213,9 +213,6 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,2,[4])
                 this.battle.cardManagers[player].randomEffect(0,2,[4])
             break
-            case 46:
-                this.battle.overlayManager.overlays[3][player].options++
-            break
             case 47:
                 this.battle.optionManagers[player].addOption(3)
             break
@@ -259,10 +256,6 @@ class relicManager{
                 this.battle.overlayManager.overlays[14][player].active=true
                 this.battle.overlayManager.overlays[14][player].activate([])
             break
-            case 131:
-                this.battle.energy.base[player]++
-                this.battle.overlayManager.overlays[3][player].options--
-            break
             case 132:
                 this.battle.energy.base[player]++
                 this.battle.optionManagers[player].removeOption(1)
@@ -277,8 +270,8 @@ class relicManager{
                 manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
                 manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
             break
-            case 135: case 136: case 137: case 138: case 140: case 141: case 142:  case 144: case 145: case 146:
-            case 147: case 148: case 170: case 222: case 228:
+            case 131: case 135: case 136: case 137: case 138: case 140: case 141: case 142:  case 144: case 145:
+            case 146: case 147: case 148: case 170: case 222: case 228:
                 this.battle.energy.base[player]++
             break
             case 139:
@@ -422,9 +415,6 @@ class relicManager{
                 this.battle.cardManagers[player].randomEffect(0,3,[4])
                 this.battle.cardManagers[player].randomEffect(0,3,[4])
             break
-            case 46:
-                this.battle.overlayManager.overlays[3][player].options--
-            break
             case 47:
                 this.battle.optionManagers[player].removeOption(3)
             break
@@ -464,10 +454,6 @@ class relicManager{
             case 130:
                 this.battle.cardManagers[player].deck.unInnate()
             break
-            case 131:
-                this.battle.energy.base[player]--
-                this.battle.overlayManager.overlays[3][player].options++
-            break
             case 132:
                 this.battle.energy.base[player]--
                 this.battle.optionManagers[player].addOption(1)
@@ -482,8 +468,8 @@ class relicManager{
                 manager.deck.removeCurse()
                 manager.deck.removeCurse()
             break
-            case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 144: case 145: case 146:
-            case 147: case 148: case 222: case 228:
+            case 131: case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 144: case 145:
+            case 146: case 147: case 148: case 222: case 228:
                 this.battle.energy.base[player]--
             break
             case 139:
@@ -572,6 +558,9 @@ class relicManager{
                     this.battle.cardManagers[player].randomEffect(0,2,[0])
                 }
             break
+            case 215:
+                this.battle.cardManagers[player].deck.removeList(game.playerNumber+4)
+            break
             case 217:
                 let list=[]
                 for(let a=0,la=this.relics.length;a<la;a++){
@@ -583,6 +572,9 @@ class relicManager{
                     let type=this.relics[list[floor(random(0,list.length))]].type
                     this.active[type][player+1]++
                 }
+            break
+            case 223:
+                this.battle.cardManagers[player].deck.cards[this.battle.cardManagers[player].deck.cards.length-1].cost=69
             break
             case 226:
                 this.battle.energy.base[player]--
@@ -1040,7 +1032,7 @@ class relicManager{
                 if(this.active[18][args[1]+1]>0){
                     this.detail[18][args[1]]++
                     if(this.detail[18][args[1]]%10==0){
-                        this.battle.cardManagers[a].draw(this.active[18][args[1]+1])
+                        this.battle.cardManagers[args[1]].draw(this.active[18][args[1]+1])
                     }
                 }
                 if(this.active[140][args[1]+1]>0){

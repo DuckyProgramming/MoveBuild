@@ -2089,9 +2089,9 @@ types.card=[
     },{
         name:'Healing\nKnife',rarity:0,list:2,
         levels:[
-            {effect:[8,4],attack:1732,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[12,6],attack:1732,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[16,7],attack:1732,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[6,4],attack:1732,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[10,6],attack:1732,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14,7],attack:1732,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
         name:'Glob\nCannon',rarity:1,list:2,
@@ -11711,7 +11711,7 @@ types.card=[
             {effect:[3,2],attack:2267,cost:1,target:[0],spec:[],class:4},
         ],
     },{
-        name:'Sunreader',rarity:0,list:2,
+        name:'Sunreader',rarity:0,list:12,
         levels:[
             {effect:[1,2],attack:2269,cost:2,target:[0],spec:[],class:4},
             {effect:[1,3],attack:2269,cost:2,target:[0],spec:[],class:4},
@@ -15485,9 +15485,9 @@ types.card=[
     },{
         name:'Bird of\nParadise',rarity:1,list:0,
         levels:[
-            {effect:[1],attack:1293,cost:0,target:[0],spec:[],class:4},
-            {effect:[1],attack:1293,cost:0,target:[0],spec:[],class:4},
-            {effect:[1],attack:1293,cost:0,target:[0],spec:[],class:4},
+            {effect:[1],attack:2562,cost:0,target:[0],spec:[],class:4},
+            {effect:[1],attack:2562,cost:0,target:[0],spec:[],class:4},
+            {effect:[1],attack:2562,cost:0,target:[0],spec:[],class:4},
         ],
     },{
         name:'Consume',rarity:1,list:0,
@@ -16821,9 +16821,9 @@ types.card=[
     },{
         name:'Ennealis',rarity:-7,list:0,
         levels:[
-            {effect:[10,10],attack:2546,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[16,16],attack:2546,cost:1,target:[2,1,3],spec:[0],class:1},
-            {effect:[20,20],attack:2546,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[15,15],attack:2546,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[24,24],attack:2546,cost:1,target:[2,1,3],spec:[0],class:1},
+            {effect:[30,30],attack:2546,cost:1,target:[2,1,3],spec:[0],class:1},
         ],
     },{
         name:'Cirno',rarity:-7,list:0,

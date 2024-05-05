@@ -2404,6 +2404,14 @@ class group{
             }
         }
     }
+    removeList(list){
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].list==list){
+                this.cards.splice(a,1)
+                break
+            }
+        }
+    }
     removeAllCurse(){
         for(let a=0,la=this.cards.length;a<la;a++){
             if(this.cards[a].class==6){
@@ -3462,7 +3470,7 @@ class group{
                             if(this.cards[a].discardEffect.includes(1)){
                                 this.cards[a].cost=0
                                 this.cards[a].discardEffect=[]
-                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1)
+                                this.send(this.battle.cardManagers[this.player].reserve.cards,a,a+1,11)
                                 a--
                                 la--
                             }else if(this.cards[a].discardEffect.includes(3)){

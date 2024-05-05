@@ -9372,7 +9372,7 @@ class attack{
                     break
                     case 1771:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.userManager.reserve.addShuffle(findName('Shank',types.card),0,0)
+                            this.battle.dropDrawShuffle(this.player,findName('Shank',types.card),0,0)
                         }
                     break
                     case 1789:
@@ -10342,7 +10342,7 @@ class attack{
                         this.battle.overlayManager.overlays[10][this.player].activate([0,0,13])
                     break
                     case 2515:
-                        this.userManager.randomEffect(36,0)
+                        this.userManager.randomEffect(0,36,[0])
                     break
                     case 2516:
                         for(let a=0,la=this.effect[0];a<la;a++){
