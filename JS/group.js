@@ -14,6 +14,7 @@ class group{
         this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
         this.compact=false
         this.sevens=0
+        this.edicts=0
         this.cardInUse=0
         this.cardShuffledIndex=0
         this.pole=0
@@ -160,10 +161,10 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0,unupgrade:0,reserveRetain:0,discardFree:0,costDown:0,costUp:0}
+        this.anim={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0,unupgrade:0,reserveRetain:0,discardFree:0,costDown:0,costUp:0,discardTriple:0}
     }
     cancel(){
-        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0,unupgrade:0,reserveRetain:0,discardFree:0,costDown:0,costUp:0}
+        this.status={discard:0,exhaust:0,reserve:0,duplicate:0,nightmare:0,rebound:0,upgrade:0,transform:0,badreserve:0,retain2:0,discardBlock:0,free2:0,exhaustBlock:0,exhaustSlot:0,retain:0,exhaustDamage:0,exhaustEnergy:0,unupgrade:0,reserveRetain:0,discardFree:0,costDown:0,costUp:0,discardTriple:0}
     }
     addInitial(type,level,color){
         game.id++
@@ -456,6 +457,9 @@ class group{
     }
     costUp(amount){
         this.status.costUp+=amount
+    }
+    discardTriple(amount){
+        this.status.discardTriple+=amount
     }
     shuffle(){
         let cards=[]
@@ -750,6 +754,15 @@ class group{
             }
         }
         return total
+    }
+    uniqueNumber(){
+        let types=[]
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(!types.includes(this.cards[a].type)){
+                types.push(this.cards[a].type)
+            }
+        }
+        return types.length
     }
     basicClassNumber(cardClass){
         let total=0
@@ -1342,7 +1355,7 @@ class group{
         let total=0
         if(effect==9){
             total=args[1]
-        }else if(effect==10||effect==12){
+        }else if(effect==10||effect==12||effect==18){
             total=0
         }
         for(let a=0,la=this.cards.length;a<la;a++){
@@ -1458,11 +1471,17 @@ class group{
                         }
                     }
                 break
+                case 18:
+                    if(this.cards[a].usable&&this.cards[a].class==args[0]&&!this.cards[a].spec.includes(12)){
+                        this.cards[a].deSize=true
+                        total++
+                    }
+                break
             }
         }
         if(effect==9){
             return args[1]-total
-        }else if(effect==10||effect==12){
+        }else if(effect==10||effect==12||effect==18){
             return total
         }
     }
@@ -1855,6 +1874,9 @@ class group{
                 for(let a=0,la=card.effect[0];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(findName('Shiv',types.card),0,0)
                 }
+            break
+            case 2578:
+                this.battle.itemManager.addRandomItem(this.player)
             break
         }
     }
@@ -2547,13 +2569,13 @@ class group{
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,max(this.anim.upgrade,this.anim.unupgrade),this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy,this.anim.reserveRetain,this.anim.discardFree,this.anim.costDown,this.anim.costUp])
+                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,max(this.anim.upgrade,this.anim.unupgrade),this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy,this.anim.reserveRetain,this.anim.discardFree,this.anim.costDown,this.anim.costUp,this.anim.discardTriple])
                     }
                 }
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size>1){
                         this.cards[a].display()
-                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,max(this.anim.upgrade,this.anim.unupgrade),this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy,this.anim.reserveRetain,this.anim.discardFree,this.anim.costDown,this.anim.costUp])
+                        this.cards[a].displayStatus([this.anim.discard,max(this.anim.exhaust,this.anim.exhaustSlot),this.anim.reserve,this.anim.duplicate,this.anim.nightmare,this.anim.rebound,max(this.anim.upgrade,this.anim.unupgrade),this.anim.transform,this.anim.badreserve,this.anim.retain2,this.anim.discardBlock,this.anim.free2,this.anim.exhaustBlock,this.anim.retain,this.anim.exhaustDamage,this.anim.exhaustEnergy,this.anim.reserveRetain,this.anim.discardFree,this.anim.costDown,this.anim.costUp,this.anim.discardTriple])
                     }
                 }
             break
@@ -3371,6 +3393,20 @@ class group{
                     this.status.costUp--
                 }
             break
+            case 27:
+                this.cards[a].deSize=true
+                this.cards[a].callSpecDiscardEffect()
+                if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block')>0){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Discard Block'))
+                }
+                for(let b=0,lb=this.cards.length;b<lb;b++){
+                    this.cards[b].otherDiscard()
+                }
+                this.cards[a].discardEffectBuffered.push(1)
+                if(this.status.discardTriple>0){
+                    this.status.discardTriple--
+                }
+            break
         }
     }
     update(scene,args){
@@ -3398,6 +3434,7 @@ class group{
                 this.anim.discardFree=smoothAnim(this.anim.discardFree,this.status.discardFree!=0,0,1,5)
                 this.anim.costDown=smoothAnim(this.anim.costDown,this.status.costDown!=0,0,1,5)
                 this.anim.costUp=smoothAnim(this.anim.costUp,this.status.costUp!=0,0,1,5)
+                this.anim.discardTriple=smoothAnim(this.anim.discardTriple,this.status.discardTriple!=0,0,1,5)
                 let selected=false
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].select){
@@ -3583,7 +3620,16 @@ class group{
                             if(this.cards[a].usable){
                                 this.battle.cardManagers[this.player].greenDiff--
                             }
+                            let triplet=false
+                            if(this.cards[a].discardEffectBuffered.includes(1)){
+                                triplet=true
+                                this.cards[a].discardEffectBuffered.splice(this.cards[a].discardEffectBuffered.indexOf(1))
+                            }
                             this.send(this.battle.cardManagers[this.player].discard.cards,a,a+1,7)
+                            if(triplet){
+                                this.battle.cardManagers[this.player].discard.copySelf(this.battle.cardManagers[this.player].discard.cards.length-1)
+                                this.battle.cardManagers[this.player].discard.copySelf(this.battle.cardManagers[this.player].discard.cards.length-1)
+                            }
                             a--
                             la--
                         }
@@ -3948,6 +3994,7 @@ class group{
                                 if(this.status.discardFree!=0){this.callInput(24,a); break}
                                 if(this.status.costDown!=0){this.callInput(25,a); break}
                                 if(this.status.costUp!=0){this.callInput(26,a); break}
+                                if(this.status.discardTriple!=0){this.callInput(27,a); break}
                                 if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)
@@ -4312,6 +4359,7 @@ class group{
                                 if(this.status.discardFree!=0){this.callInput(24,a); break}
                                 if(this.status.costDown!=0){this.callInput(25,a); break}
                                 if(this.status.costUp!=0){this.callInput(26,a); break}
+                                if(this.status.discardTriple!=0){this.callInput(27,a); break}
                                 if(this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)

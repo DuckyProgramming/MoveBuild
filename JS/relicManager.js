@@ -136,6 +136,9 @@ class relicManager{
         this.active[types.relic[type].id][0]-=1
         this.active[types.relic[type].id][player+1]-=1
         this.lose(types.relic[type].id,player)
+        if(type>0){
+            this.battle.stats.relic[player]--
+        }
     }
     loseRandomRelic(player){
         let list=[]

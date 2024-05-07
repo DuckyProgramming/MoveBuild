@@ -299,6 +299,26 @@ class itemManager{
             case 104:
                 this.battle.energy.main[player]+=2*this.effectiveness[player]
             break
+            case 105:
+                this.battle.cardManagers[player].hand.callInput(6,[57,[5*this.effectiveness[player]],1,[2,1,3]])
+            break
+            case 106:
+                userCombatant.addBlock(10*this.effectiveness[player])
+            break
+            case 107:
+                this.battle.cardManagers[player].draw(2*this.effectiveness[player])
+            break
+            case 108:
+                userCombatant.statusEffect('Strength',this.effectiveness[player])
+            break
+            case 109:
+                userCombatant.statusEffect('Dexterity',this.effectiveness[player])
+            break
+            case 110:
+                for(let a=0,la=this.effectiveness[player];a<la;a++){
+                    this.battle.cardManagers[player].addRandomFree(2,0)
+                }
+            break
         }
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])){
             this.addRandomItem(player)

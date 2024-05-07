@@ -315,6 +315,22 @@ class overlay{
                             list[args[1]].splice(index,1)
                         }
                     break
+                    case 18:
+                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        for(let a=0,la=list[args[1]].length;a<la;a++){
+                            if(types.card[list[args[1]][a]].levels[args[0]].cost!=args[3]){
+                                list[args[1]].splice(a,1)
+                                a--
+                                la--
+                            }
+                        }
+                        for(let a=0,la=this.options;a<la;a++){
+                            let index=floor(random(0,list[args[1]].length))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],types.card[list[args[1]][index]].list,-1))
+                            this.cards[this.cards.length-1].upSize=true
+                            list[args[1]].splice(index,1)
+                        }
+                    break
                 }
                 this.setupArgs=args
                 for(let a=0,la=this.cards.length;a<la;a++){
@@ -1189,8 +1205,8 @@ class overlay{
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].deck.cards[a])&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
                                 !this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37)&&
-                                !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)&&
-                                !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2)){
+                                !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
+                                !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))){
                                     this.battle.cardManagers[this.player].deck.cards[a].select=false
                                     let size=this.battle.cardManagers[this.player].deck.cards[a].size
                                     let complete=true
@@ -1702,8 +1718,8 @@ class overlay{
                             for(let a=0,la=this.battle.cardManagers[this.player].deck.cards.length;a<la;a++){
                                 if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].deck.cards[a].size>0.5&&this.battle.cardManagers[this.player].deck.cards[a].select&&
                                 !this.battle.cardManagers[this.player].deck.cards[a].spec.includes(37)&&
-                                !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)&&
-                                !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2)){
+                                !(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))&&
+                                !(this.args[0]==17&&this.battle.cardManagers[this.player].deck.cards[a].level>=2&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))){
                                     this.battle.cardManagers[this.player].deck.cards[a].select=false
                                     let size=this.battle.cardManagers[this.player].deck.cards[a].size
                                     let complete=true

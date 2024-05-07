@@ -373,6 +373,44 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('2',0,0)
                 break
+                case 'Flaming Match':
+                    displaySymbol(this.layer,0,0,18,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,0)
+                break
+                case 'Molten Metal':
+                    displaySymbol(this.layer,0,0,27,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('10',0,0)
+                break
+                case 'Tea Leaf':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('2',0,0)
+                break
+                case 'Attack Dust':
+                    displaySymbol(this.layer,0,0,11,0,1.2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Defense Dust':
+                    displaySymbol(this.layer,0,0,12,0,1.2,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,0)
+                break
+                case 'Mystery Box':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,0,9,0,1,this.fade)
+                    this.layer.fill(0)
+                    this.layer.textSize(10)
+                    this.layer.text('64',8,0)
+                break
             }
             this.layer.pop()
         }

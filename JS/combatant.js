@@ -135,7 +135,7 @@ class combatant{
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
             'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
             'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
-            'Return Buffer',
+            'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -168,7 +168,7 @@ class combatant{
                 2,0,2,0,0,0,1,2,1,0,//28
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
-                0,
+                0,0,2,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -201,7 +201,7 @@ class combatant{
                 0,1,0,1,2,2,0,0,1,2,//28
                 2,2,0,0,0,2,0,0,2,2,//29
                 2,2,2,1,0,2,3,2,2,2,//30
-                1,
+                1,0,1,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4672,6 +4672,9 @@ class combatant{
                         damage*=0.75
                         userCombatant.status.main[271]--
                     }
+                    if(userCombatant.status.main[301]>0){
+                        damage*=2
+                    }
                     if(userCombatant.status.main[215]>0){
                         damage=0
                     }
@@ -4876,6 +4879,9 @@ class combatant{
             }
             if(this.status.main[267]>0){
                 this.status.main[267]=0
+            }
+            if(this.status.main[301]>0){
+                this.status.main[301]--
             }
             if(this.status.main[14]>0){
                 this.status.main[14]--
@@ -5991,6 +5997,8 @@ class combatant{
                     case 283: this.status.main[findList('Dexterity Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 287: this.status.main[findList('Strength Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 294: if(floor(random(0,3))==0){this.heal(this.status.main[a]); this.status.main[a]=0} break
+                    case 302: if(this.block<=0){this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]} break
+                    case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0){

@@ -195,11 +195,18 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,255,255,fade)
             layer.quad(-3.2,0,0,-4,3.2,0,0,4)
         break
-        case 28: case 29:
+        case 28:
             layer.fill(225,fade)
             layer.ellipse(0,2,5,5)
             layer.ellipse(sin(120)*2,cos(120)*2,5,5)
             layer.ellipse(-sin(120)*2,cos(120)*2,5,5)
+        break
+        case 29:
+            layer.fill(225,fade)
+            layer.ellipse(0,2,5,5)
+            layer.ellipse(sin(120)*2,cos(120)*2,5,5)
+            layer.ellipse(-sin(120)*2,cos(120)*2,5,5)
+            layer.triangle(0,5.5,-1,7.5,1,7.5)
         break
         case 30:
             layer.fill(255,50,50,fade)
@@ -2702,6 +2709,25 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(125,255,0,fade)
             layer.rect(1.5,1.5,7,7)
             layer.triangle(5.5,0,5.5,3,8,1.5)
+        break
+        case 301:
+            layer.fill(255,50,50,fade)
+            layer.quad(-2.5,-5,-3.5,-5,-5,3,-1,3)
+            layer.quad(2.5,-5,3.5,-5,5,3,1,3)
+            layer.ellipse(0,-4,2.5)
+        break
+        case 302:
+            layer.fill(200,0,0,fade)
+            layer.arc(0,0,8,8,-45,225)
+            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.triangle(0,5,-1,7,1,7)
+        break
+        case 303:
+            layer.fill(200,0,0,fade)
+            layer.arc(0,0,8,8,-45,225)
+            layer.quad(0,0,sqrt(2)*2,-sqrt(2)*2,0,-sqrt(2)*4,-sqrt(2)*2,-sqrt(2)*2)
+            layer.triangle(0,5,-1,7,1,7)
+            layer.triangle(0,7.5,-1,9.5,1,9.5)
         break
 
     }
@@ -6452,7 +6478,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 50-Luck
 51-Status
 52-Stash
-53-Random
+53-Assort
 54-Exhaust
 55-Movement (Card Symbol) (Reverse)
 56-Control
