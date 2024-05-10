@@ -1687,6 +1687,11 @@ class relic{
                     displaySymbol(this.layer,0,0,94,0,1.8,this.fade)
                     displaySymbol(this.layer,0,0,43,0,1,this.fade)
                 break
+                case 'Compact/Lose First Relic':
+                    displaySymbol(this.layer,-5,-2,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,5,2,8,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,1,0,0.8,this.fade)
+                break
 
             }
             if(value){

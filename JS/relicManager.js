@@ -384,6 +384,14 @@ class relicManager{
                 this.battle.energy.base[player]++
                 this.loseRandomRelic(player)
             break
+            case 230:
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    if(this.relics[a].player==player&&this.relics[a].type!=230&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].type!=0){
+                        this.loseRelic(this.relics[a].type,player)
+                        a=la
+                    }
+                }
+            break
 
         }
         this.reactivate(type,player)
@@ -547,7 +555,7 @@ class relicManager{
             case 211:
                 for(let a=0,la=this.relics.length;a<la;a++){
                     if(this.relics[a].player==player&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].type!=0){
-                        this.active[this.relics[a].type][player+1]++
+                        this.addRelic(this.relics[a].type,player)
                         a=la
                     }
                 }
@@ -573,7 +581,7 @@ class relicManager{
                 }
                 if(list.length>0){
                     let type=this.relics[list[floor(random(0,list.length))]].type
-                    this.active[type][player+1]++
+                    this.addRelic(type,player)
                 }
             break
             case 223:
@@ -582,6 +590,14 @@ class relicManager{
             case 226:
                 this.battle.energy.base[player]--
                 this.addRandomRelic(player)
+            break
+            case 230:
+                for(let a=0,la=this.relics.length;a<la;a++){
+                    if(this.relics[a].player==player&&this.relics[a].type!=230&&this.active[this.relics[a].type][player+1]==0&&this.relics[a].type!=0){
+                        this.addRelic(this.relics[a].type,player)
+                        a=la
+                    }
+                }
             break
         }
         this.deactivate(type,player)

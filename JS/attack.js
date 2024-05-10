@@ -190,22 +190,22 @@ class attack{
             case 2195: case 2197: case 2198: case 2201: case 2204: case 2207: case 2208: case 2210: case 2211: case 2212:
             case 2213: case 2214: case 2215: case 2219: case 2220: case 2221: case 2222: case 2223: case 2224: case 2225:
             case 2226: case 2227: case 2228: case 2229: case 2230: case 2233: case 2235: case 2236: case 2237: case 2241:
-            case 2249: case 2250: case 2251: case 2253: case 2255: case 2259: case 2260: case 2261: case 2262: case 2270:
-            case 2271: case 2272: case 2273: case 2277: case 2282: case 2284: case 2288: case 2290: case 2291: case 2295:
-            case 2298: case 2299: case 2300: case 2301: case 2308: case 2315: case 2316: case 2317: case 2328: case 2330:
-            case 2331: case 2337: case 2339: case 2340: case 2342: case 2343: case 2344: case 2345: case 2347: case 2349:
-            case 2350: case 2351: case 2355: case 2356: case 2357: case 2358: case 2361: case 2362: case 2363: case 2364:
-            case 2365: case 2366: case 2367: case 2369: case 2374: case 2375: case 2378: case 2379: case 2381: case 2388:
-            case 2389: case 2390: case 2391: case 2393: case 2395: case 2398: case 2400: case 2401: case 2404: case 2405:
-            case 2410: case 2411: case 2420: case 2427: case 2428: case 2430: case 2434: case 2435: case 2437: case 2442:
-            case 2443: case 2444: case 2445: case 2458: case 2460: case 2461: case 2464: case 2465: case 2466: case 2467:
-            case 2468: case 2470: case 2471: case 2473: case 2474: case 2476: case 2477: case 2481: case 2482: case 2485:
-            case 2487: case 2492: case 2493: case 2494: case 2496: case 2497: case 2498: case 2504: case 2505: case 2506:
-            case 2520: case 2521: case 2522: case 2524: case 2525: case 2526: case 2546: case 2550: case 2552: case 2554:
-            case 2562: case 2569: case 2570: case 2575: case 2576: case 2577: case 2580: case 2582: case 2583: case 2584:
-            case 2585: case 2586: case 2588: case 2593: case 2595: case 2596: case 2597: case 2606: case 2609: case 2610:
-            case 2611: case 2612: case 2613: case 2620: case 2621: case 2622: case 2623: case 2624: case 2627: case 2628:
-            case 2630:
+            case 2249: case 2250: case 2251: case 2253: case 2255: case 2259: case 2260: case 2261: case 2262: case 2265:
+            case 2270: case 2271: case 2272: case 2273: case 2277: case 2282: case 2284: case 2288: case 2290: case 2291:
+            case 2295: case 2298: case 2299: case 2300: case 2301: case 2308: case 2315: case 2316: case 2317: case 2328:
+            case 2330: case 2331: case 2337: case 2339: case 2340: case 2342: case 2343: case 2344: case 2345: case 2347:
+            case 2349: case 2350: case 2351: case 2355: case 2356: case 2357: case 2358: case 2361: case 2362: case 2363:
+            case 2364: case 2365: case 2366: case 2367: case 2369: case 2374: case 2375: case 2378: case 2379: case 2381:
+            case 2388: case 2389: case 2390: case 2391: case 2393: case 2395: case 2398: case 2400: case 2401: case 2404:
+            case 2405: case 2410: case 2411: case 2420: case 2427: case 2428: case 2430: case 2434: case 2435: case 2437:
+            case 2442: case 2443: case 2444: case 2445: case 2458: case 2460: case 2461: case 2464: case 2465: case 2466:
+            case 2467: case 2468: case 2470: case 2471: case 2473: case 2474: case 2476: case 2477: case 2481: case 2482:
+            case 2485: case 2487: case 2492: case 2493: case 2494: case 2496: case 2497: case 2498: case 2504: case 2505:
+            case 2506: case 2520: case 2521: case 2522: case 2524: case 2525: case 2526: case 2546: case 2550: case 2552:
+            case 2554: case 2562: case 2569: case 2570: case 2575: case 2576: case 2577: case 2580: case 2582: case 2583:
+            case 2584: case 2585: case 2586: case 2588: case 2593: case 2595: case 2596: case 2597: case 2606: case 2609:
+            case 2610: case 2611: case 2612: case 2613: case 2620: case 2621: case 2622: case 2623: case 2624: case 2627:
+            case 2628: case 2630: case 2636: case 2641: case 2646: case 2647: case 2648:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -237,7 +237,7 @@ class attack{
             case 2176: case 2177: case 2178: case 2179: case 2180: case 2202: case 2203: case 2293: case 2323: case 2324:
             case 2326: case 2327: case 2332: case 2370: case 2371: case 2382: case 2383: case 2418: case 2431: case 2436:
             case 2439: case 2440: case 2456: case 2459: case 2475: case 2545: case 2589: case 2600: case 2602: case 2603:
-            case 2604: case 2608:
+            case 2604: case 2608: case 2637:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1317,7 +1317,7 @@ class attack{
                         }
                     break
                     case 1791:
-                        if(this.targetCombatant.life==this.targetCombatant.base.life){
+                        if(this.targetCombatant.life!=this.targetCombatant.base.life){
                             this.targetCombatant.statusEffect('Burn',this.effect[1])
                         }
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1637,6 +1637,14 @@ class attack{
                     break
                     case 2613:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.targetCombatant.getStatus('Cannot Move')>0?2:1),this.user)
+                    break
+                    case 2636:
+                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                            if(this.userManager.hand.cards[a].spec.includes(53)){
+                                this.targetCombatant.takeDamage(this.effect[0],this.user)
+                                a=la
+                            }
+                        }
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -3075,6 +3083,18 @@ class attack{
                     case 2623:
                         this.userCombatant.balance=9
                     break
+                    case 2646:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Shiv',types.card),0,0)
+                        }
+                    break
+                    case 2647:
+                        if(this.energy==2){
+                            this.targetCombatant.statusEffect('Strength',this.effect[1])
+                        }else if(this.energy==3){
+                            this.targetCombatant.statusEffect('Freeze',this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 1
@@ -3819,6 +3839,10 @@ class attack{
                         this.battle.overlayManager.overlays[46][this.player].active=true
                         this.battle.overlayManager.overlays[46][this.player].activate()
                     break
+                    case 2634:
+                        this.battle.overlayManager.overlays[10][this.player].active=true
+                        this.battle.overlayManager.overlays[10][this.player].activate([0,3,19,53])
+                    break
                 }
                 //mark 2
             break
@@ -4396,6 +4420,9 @@ class attack{
                     break
                     case 2608:
                         this.userCombatant.statusEffect('Cannot Move Next Turn',this.effect[1])
+                    break
+                    case 2637:
+                        this.userManager.addRandomSpec(2,0,53)
                     break
                 }
                 //mark 3
@@ -5422,6 +5449,28 @@ class attack{
                     case 2568:
                         this.userCombatant.statusEffect('Damage Up',this.effect[0])
                         this.userCombatant.statusEffect('Damage Taken Up',this.effect[1])
+                    break
+                    case 2638:
+                        let total2638=0
+                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                            if(this.userManager.hand.cards[a].spec.includes(53)){
+                                total2638++
+                            }
+                        }
+                        this.userManager.hand.retain(this.effect[0]+total2638)
+                    break
+                    case 2639:
+                        let total2639=0
+                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                            if(this.userManager.hand.cards[a].spec.includes(53)){
+                                total2639++
+                            }
+                        }
+                        this.userManager.hand.upgrade(this.effect[0]+total2639)
+                    break
+                    case 2643:
+                        this.userCombatant.statusEffect('Strength',this.effect[0])
+                        this.userCombatant.statusEffect('Cannot Move Next Turn',this.effect[1])
                     break
 
                 }
@@ -6810,14 +6859,16 @@ class attack{
                         }
                     break
                     case 456:
+                        let total456=0
                         for(let a=0,la=this.battle.itemManager.items[this.player].length;a<la;a++){
                             if(this.battle.itemManager.items[this.player][a].type>1){
-                                this.userCombatant.gainMaxHP(this.effect[0])
                                 this.battle.itemManager.total[this.player]--
                                 this.battle.itemManager.items[this.player][a].type=1
                                 this.battle.itemManager.items[this.player][a].refresh()
+                                total456++
                             }
                         }
+                        this.userCombatant.gainMaxHP(this.effect[0]*total456)
                     break
                     case 470:
                         this.userCombatant.gainMaxHP(this.effect[0]*this.energy)
@@ -7213,6 +7264,18 @@ class attack{
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                         this.userCombatant.statusEffect('Frail',this.effect[1])
                         this.userCombatant.statusEffect('Control',this.effect[2])
+                    break
+                    case 2642:
+                        let total2642=0
+                        for(let a=0,la=this.battle.itemManager.items[this.player].length;a<la;a++){
+                            if(this.battle.itemManager.items[this.player][a].type>1){
+                                this.battle.itemManager.total[this.player]--
+                                this.battle.itemManager.items[this.player][a].type=1
+                                this.battle.itemManager.items[this.player][a].refresh()
+                                total2642++
+                            }
+                        }
+                        this.userCombatant.statusEffect('Strength',this.effect[0]*total2642)
                     break
 
                 }
@@ -8939,6 +9002,15 @@ class attack{
                             this.battle.itemManager.addItem(findName('Flaming Match',types.item),this.player)
                         }
                     break
+                    case 2648:
+                        let total2648=0
+                        for(let a=0,la=this.userManager.hand.cards.length;a<la;a++){
+                            if(this.userManager.hand.cards[a].name=='Shiv'||this.userManager.hand.cards[a].name=='Broken\nShiv'||this.userManager.hand.cards[a].name=='Deluxe\nShiv'){
+                                total2648++
+                            }
+                        }
+                        this.targetCombatant.takeDamage(this.effect[0]*(1+total2648),this.user)
+                    break
 
                 }
             break
@@ -9696,6 +9768,9 @@ class attack{
                             this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Teal Leaf','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                     break
+                    case 2645:
+                        this.userCombatant.statusEffect('Cannot Move Shiv',this.effect[0])
+                    break
 
                 }
             break
@@ -9752,7 +9827,7 @@ class attack{
             break
             case 12:
                 switch(this.type){
-                    case 342: case 1403: case 2265:
+                    case 342: case 1403:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     case 350:
@@ -10572,6 +10647,9 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userCombatant.balance+=this.effect[1]
                     break
+                    case 2644:
+                        this.battle.combatantManager.fullAllEffect(9,[this.effect[0]])
+                    break
 
                 }
             break
@@ -10791,6 +10869,28 @@ class attack{
                     break
                     case 2557:
                         this.userManager.deck.randomEffect(40,[1])
+                    break
+                }
+            break
+            case 17:
+                switch(this.type){
+                    case 2631:
+                        this.userManager.allEffect(2,84)
+                    break
+                    case 2632:
+                        this.userManager.allEffect(2,85)
+                    break
+                    case 2633:
+                        this.userManager.addRandomSpec(2,this.level,53)
+                        this.userManager.hand.cards[this.userManager.hand.cards.length-1].retain2=true
+                    break
+                    case 2635:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.userManager.hand.randomEffect(41,[])
+                        }
+                    break
+                    case 2640:
+                        this.battle.itemManager.tempEffectiveness[this.player]=2
                     break
                 }
             break

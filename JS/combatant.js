@@ -135,7 +135,7 @@ class combatant{
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
             'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
             'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
-            'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn',
+            'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn','Cannot Move Shiv',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -168,7 +168,7 @@ class combatant{
                 2,0,2,0,0,0,1,2,1,0,//28
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
-                0,0,2,2,
+                0,0,2,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -201,7 +201,7 @@ class combatant{
                 0,1,0,1,2,2,0,0,1,2,//28
                 2,2,0,0,0,2,0,0,2,2,//29
                 2,2,2,1,0,2,3,2,2,2,//30
-                1,0,1,1,
+                1,0,1,1,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -235,6 +235,7 @@ class combatant{
         this.faith=0
         this.charge=0
         this.ammo=3
+        this.shift=0
 
         this.intent=0
         this.activated=false
@@ -3151,6 +3152,8 @@ class combatant{
         this.faith=0
         this.charge=0
         this.ammo=3
+        this.shift=0
+        
         this.resetAnim()
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -4990,7 +4993,7 @@ class combatant{
                     this.status.main[285]=0
                 }
                 if(this.status.main[297]>0){
-                    this.battle.addCurrency(round(damage),userCombatant.id)
+                    this.battle.addCurrency(round(damage),this.id)
                 }
                 if(user>=0&&user<this.battle.combatantManager.combatants.length){
                     let userCombatant=this.battle.combatantManager.combatants[user]
@@ -5340,7 +5343,7 @@ class combatant{
         if(this.status.main[11]>0){
             this.status.main[11]--
         }else if(!(this.team==0&&this.battle.modded(26))){
-            this.block=this.battle.relicManager.hasRelic(26,this.id)?max(0,this.block-10):0
+            this.block=this.battle.relicManager.hasRelic(26,this.id)?max(0,this.block-20):0
         }
     }
     moveTile(direction,speed){
@@ -5736,7 +5739,9 @@ class combatant{
         if(!(
             this.battle.relicManager.hasRelic(23,this.id)&&name=='Weak'||
             this.battle.relicManager.hasRelic(24,this.id)&&name=='Frail'||
-            this.battle.relicManager.hasRelic(25,this.id)&&name=='Vulnerable')){
+            this.battle.relicManager.hasRelic(25,this.id)&&name=='Vulnerable')&&
+            value!=0
+        ){
             let status=findList(name,this.status.name)
             if(status>=0){
                 let mult=1
@@ -5912,7 +5917,7 @@ class combatant{
         }
     }
     gainMaxHP(amount){
-        if(this.life>0){
+        if(this.life>0&&amount>0){
             this.base.life+=amount
             this.life+=amount
         }
@@ -5999,6 +6004,7 @@ class combatant{
                     case 294: if(floor(random(0,3))==0){this.heal(this.status.main[a]); this.status.main[a]=0} break
                     case 302: if(this.block<=0){this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]} break
                     case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 304: if(this.status.main[findList('Cannot Move',this.status.name)]>0){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)}} break
 
                 }
                 if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0){

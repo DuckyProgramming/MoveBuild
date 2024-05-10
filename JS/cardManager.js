@@ -1022,10 +1022,14 @@ class cardManager{
         }
     }
     checkCompact(){
+        this.hand.compact=1
         for(let a=0,la=this.deck.cards.length;a<la;a++){
             if(this.deck.cards[a].attack==1113||this.deck.cards[a].attack==1114){
-                this.hand.compact=true
+                this.hand.compact*=0.7
             }
+        }
+        if(this.battle.relicManager.active[230][this.player+1]>0){
+            this.hand.compact*=0.8**this.battle.relicManager.active[230][this.player+1]
         }
     }
     display(scene,args){

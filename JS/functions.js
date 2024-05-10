@@ -448,6 +448,14 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage*=2
 				bonus*=2
 			}
+			if(user.stance==1){
+				damage*=2
+				bonus*=2
+			}
+			if(user.stance==4){
+				damage*=0.5
+				bonus*=0.5
+			}
 			switch(type){
 				case 0: return damage==effect&&bonus==0?tennify(effect):tennify(effect)+`(${tennify(damage+bonus)})`
 				case 2: return (damage==effect?(effect==1?``:tennify(effect))+'X':tennify(effect)+`(${tennify(damage)})X`)+(bonus>0?`(+${tennify(bonus)})`:``)
@@ -460,7 +468,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 13: return effect==1?(damage==effect?'':`1(${tennify(damage)})*`):(damage==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(damage)})*`)
 
 			}
-		case 1: case 3: case 6: case 14:
+		case 1: case 3: case 6: case 14: case 15:
 			let block=effect
 			let bonusB=0
 			let totalDex=0
@@ -505,6 +513,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 3: return (block==effect?(effect==1?``:tennify(effect))+'X':(effect==1?``:tennify(effect))+`(${tennify(block)})X`)+(bonusB>0?`(+${tennify(bonusB)})`:``)
 				case 6: return effect==1?(block==effect?'1*Combo':`1(${tennify(block)})*Combo`):(block==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(block)})*Combo`)
 				case 14: return block==effect?tennify(effect):tennify(effect)+`(${tennify(block)})`
+				case 15: return effect==1?(block==effect?'1*':`1(${tennify(block)})*`):(block==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(block)})*C`)
 
 			}
 		case 4: case 9:
@@ -1247,6 +1256,9 @@ function event(name){
 function status(name){
 	return findList(name,current.combatantManager.combatants[0].status.name)
 }
+function quickRelic(type){
+	current.relicManager.addRelic(type,0)
+}
 function outEncounter(){
 	print(`
 Total:${current.nodeManager.listing.encounter[0][0].length+current.nodeManager.listing.encounter[0][1].length+current.nodeManager.listing.encounter[0][2].length+current.nodeManager.listing.encounter[0][3].length+current.nodeManager.listing.encounter[1][0].length+current.nodeManager.listing.encounter[1][1].length+current.nodeManager.listing.encounter[1][2].length+current.nodeManager.listing.encounter[2][0].length+current.nodeManager.listing.encounter[2][1].length+current.nodeManager.listing.encounter[2][2].length+current.nodeManager.listing.encounter[3][1].length+current.nodeManager.listing.encounter[3][2].length}/130
@@ -1352,14 +1364,14 @@ function outRelic(){
 	Boss: ${current.relicManager.listing.relic[4].length}
 	`)
 }
-function shut(){
-	print('s')
-}
-function panic(text){
-	print(`
-!!!!!!!!!!-
-${text}
-!!!!!!!!!!-`)
+function colorTest(){
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards=[]
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName('Charm\nQuark',types.card),0,0)
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
+	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.compact=0.6
+	for(let a=0,la=game.playerNumber+6;a<la;a++){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(1,0,a,0)
+	}
 }
 function cursed(){
 	for(let a=0,la=current.combatantManager.combatants.length;a<la;a++){

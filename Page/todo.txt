@@ -1,42 +1,14 @@
 cards:
 
-12 sakura
-6 certes
+drawn attribute of cards
+vision ticks up every card played
+[elemental form - tied to 1+ awakening, applies by turn, 25% more damage flat]
+[history - when you draw or rewind a card, deal damage equal to your history to the weakest enemy, decrements by 20%]
+[knowledge - for every 3 knowledge draw 1 more card per turn, capped at 2]
+[wisdom - raises the cap on knowledge, capped at 3]
 
-upgrade all concotions
-add a concotion and retain it
-add block, choose a concotion
-
-
-
-[ form - tied to 1+ full moon, applies by turn, 25% more damage flat]
-
-
-droplet of vapor - 0 cost damage, gain 1 shift if you have no full moon
-reading scroll - gain 8 block, rewind 1 (shuffle cards into draw pile), gain 4 more block in hakutaku form
-composure - 1 cost, gain 1 energy draw 1 card, exhaust, triggers on rewind
-
-shift ticks up every card played
-
-destroy evidence
-
-high grade - make 1 item 3x more effective
-
-painted deck shop relic - draw 1 more card per turn, cannot own more than 10 relics
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+9 daiyousei movements
+maybe more daiyousei filler
 
 
 

@@ -14,8 +14,8 @@ types={
         {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Pursuing a Rewriter for some time now,\ntracking the supposed ghost\nacross several Managerial worlds,\nfinally arriving at its location.`},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:66,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
         {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
-        {name:'',moniker:'',identifier:['Brother','Mister'],life:58,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
-        {name:'',moniker:'',identifier:['Sister','Miss'],life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
 
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -568,7 +568,7 @@ types={
         {name:'Red Pepper',internal:'No Weak',id:23,rarity:2,list:0,description:'You Cannot\nBecome Weak'},
         {name:'Green Pepper',internal:'No Frail',id:24,rarity:2,list:0,description:'You Cannot\nBecome Frail'},
         {name:'Blue Pepper',internal:'No Vulnerable',id:25,rarity:2,list:0,description:'You Cannot\nBecome Vulnerable'},
-        {name:'Bauxite',internal:'Retain Block',id:26,rarity:2,list:0,description:'Lose Only 10 Block\nat End of Turn'},
+        {name:'Malachite',internal:'Retain Block',id:26,rarity:2,list:0,description:'Lose Only 20 Block\nat End of Turn'},
         {name:'Reforming Peas',internal:'Power Heal',id:27,rarity:2,list:0,description:'When You Play a\nPower, Heal 2 HP'},
         {name:'Glass Sphere',internal:'Retain Energy',id:28,rarity:2,list:0,description:'1 Energy Can be\nConserved Between Turns'},
         {name:'Pomegranite',internal:'14 Max HP',id:29,rarity:2,list:0,description:'When Taken,\nGain 14 Max HP'},
@@ -680,7 +680,7 @@ types={
         {name:'Waffle',internal:'10 Max HP Full Heal',id:125,rarity:3,list:0,description:'When Taken, Gain 10 Max\nHP and Heal All HP'},
         {name:'Napkin Ring',internal:'Starting Colorless',id:126,rarity:3,list:0,description:'Add 1 Colorless Card\nat the Start of Combat'},
         {name:'Rock of Duckontonlek',internal:'Relic Pack',id:127,rarity:3,list:0,description:'When Taken, Gain 3 Relics\nand a Special Curse'},
-        {name:'Card Rack',internal:'Card Hold',id:128,rarity:3,list:0,description:'All Cards\nHave Retain'},
+        {name:'Card Rack',internal:'Card Hold',id:128,rarity:-1,list:0,description:'All Cards\nHave Retain'},
         {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:3,list:0,description:'Draw Pile Cards Are\nViewed in Order'},
         {name:'Paperclip',internal:'Innate Card',id:130,rarity:3,list:0,description:'When Taken, Make a Card Innate'},
         
@@ -793,6 +793,7 @@ types={
         {name:'Writ of Mandamus',internal:'Energy/Anti-Control',id:228,rarity:4,list:0,description:'Gain 1 Base Energy,\nGain 1 Anti-Control\nat the Start of Combat'},
         {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:1,list:0,description:'When You Fully Block Damage,\nGain 1 Metallicize'},
 
+        {name:'Painted Deck',internal:'Compact/Lose First Relic',id:230,rarity:3,list:0,description:'Compact Cards in Your Hand\nWhen Taken, Lose Your First Relic'},
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
         {name:'Empty',id:1,rarity:-1,list:-1,menu:false,temp:false,description:'None'},
@@ -2914,8 +2915,8 @@ Entering, you're offered a chance to glimpse your future...`,
                 text:[40,40,20],
                 active:[255,240,175],
             },{
-                fill:[200,50,200],
-                stroke:[175,0,200],
+                fill:[150,75,150],
+                stroke:[125,50,150],
                 text:[35,20,40],
                 active:[225,210,255],
             },{

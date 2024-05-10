@@ -25,7 +25,7 @@ class particle{
                 this.scale=1
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 51: case 52: case 54:
+            case 51: case 52: case 54: case 57:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -527,7 +527,7 @@ class particle{
                     this.layer.fill(255,100,0,this.fade*0.5)
                     this.layer.beginShape()
                     for(let a=0,la=24;a<la;a++){
-                        this.layer.vertex(sin(a/la*360)*(6+a%2*12),cos(a/la*360)*(6+a%2*12))
+                        this.layer.vertex(lsin(a/la*360)*(6+a%2*12),lcos(a/la*360)*(6+a%2*12))
                     }
                     this.layer.endShape()
                 break
@@ -537,7 +537,7 @@ class particle{
                     this.layer.fill(0,100,255,this.fade*0.5)
                     this.layer.beginShape()
                     for(let a=0,la=24;a<la;a++){
-                        this.layer.vertex(sin(a/la*360)*(6+a%2*12),cos(a/la*360)*(6+a%2*12))
+                        this.layer.vertex(lsin(a/la*360)*(6+a%2*12),lcos(a/la*360)*(6+a%2*12))
                     }
                     this.layer.endShape()
                 break
@@ -547,7 +547,7 @@ class particle{
                     this.layer.fill(50,255,50,this.fade*0.5)
                     this.layer.beginShape()
                     for(let a=0,la=24;a<la;a++){
-                        this.layer.vertex(sin(a/la*360)*(6+a%2*12),cos(a/la*360)*(6+a%2*12))
+                        this.layer.vertex(lsin(a/la*360)*(6+a%2*12),lcos(a/la*360)*(6+a%2*12))
                     }
                     this.layer.endShape()
                 break
@@ -676,6 +676,16 @@ class particle{
                     this.layer.fill(this.color[0],this.color[1],this.color[2],this.fade)
                     this.layer.ellipse(0,0,12,12)
                 break
+                case 57:
+                    this.layer.rotate(this.time*3)
+                    this.layer.fill(150,50,150,this.fade)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,5)
+                    for(let a=0,la=8;a<la;a++){
+                        this.layer.bezierVertex(lsin(a*45+15)*6.5,lcos(a*45+15)*6.5,lsin(a*45+30)*6.5,lcos(a*45+30)*6.5,lsin(a*45+45)*5,lcos(a*45+45)*5)
+                    }
+                    this.layer.endShape()
+                break
 
             }
             this.layer.pop()
@@ -717,7 +727,7 @@ class particle{
                 }
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 46: case 51: case 52: case 54: case 56:
+            case 46: case 51: case 52: case 54: case 56: case 57:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

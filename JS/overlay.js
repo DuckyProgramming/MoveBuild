@@ -331,6 +331,22 @@ class overlay{
                             list[args[1]].splice(index,1)
                         }
                     break
+                    case 19:
+                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                        for(let a=0,la=list[args[1]].length;a<la;a++){
+                            if(!types.card[list[args[1]][a]].levels[args[0]].spec.includes(args[3])){
+                                list[args[1]].splice(a,1)
+                                a--
+                                la--
+                            }
+                        }
+                        for(let a=0,la=this.options;a<la;a++){
+                            let index=floor(random(0,list[args[1]].length))
+                            this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],types.card[list[args[1]][index]].list,-1))
+                            this.cards[this.cards.length-1].upSize=true
+                            list[args[1]].splice(index,1)
+                        }
+                    break
                 }
                 this.setupArgs=args
                 for(let a=0,la=this.cards.length;a<la;a++){
@@ -1321,7 +1337,7 @@ class overlay{
                                     this.battle.cardManagers[this.player].deck.cards[a].select=true
                                     switch(this.args[0]){
                                         case 3: case 17:
-                                            if(!(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)){
+                                            if(!(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))){
                                                 this.card=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
                                                 this.card.nonCalc=true
                                                 this.card.page=this.page
@@ -1834,7 +1850,7 @@ class overlay{
                                     this.battle.cardManagers[this.player].deck.cards[a].select=true
                                     switch(this.args[0]){
                                         case 3: case 17:
-                                            if(!(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1)){
+                                            if(!(this.args[0]==3&&this.battle.cardManagers[this.player].deck.cards[a].level>=1&&!this.battle.cardManagers[this.player].deck.cards[a].spec.includes(53))){
                                                 this.card=upgradeCard(this.battle.cardManagers[this.player].deck.cards[a])
                                                 this.card.nonCalc=true
                                                 this.card.page=this.page

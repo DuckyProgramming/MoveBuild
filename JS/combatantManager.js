@@ -578,6 +578,9 @@ class combatantManager{
                 case 8:
                     this.combatants[a].statusEffect('Freeze',args[0])
                 break
+                case 9:
+                    this.combatants[a].statusEffect('Cannot Move',args[0])
+                break
                 
             }
         }

@@ -101,6 +101,7 @@ class nodeManager{
             this.battle.relicManager.activate(7,[type])
         }
         this.battle.relicManager.activate(12,[type])
+        this.battle.itemManager.activateNode()
         if(!chain){
             this.battle.stats.node[0]++
             this.battle.stats.node[1+type]++

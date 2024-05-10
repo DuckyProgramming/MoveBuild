@@ -12,7 +12,7 @@ class group{
         this.target=[]
         this.lastDuplicate=''
         this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
-        this.compact=false
+        this.compact=1
         this.sevens=0
         this.edicts=0
         this.cardInUse=0
@@ -1341,6 +1341,19 @@ class group{
                 case 83:
                     this.cards[a].callBossEffect()
                 break
+                case 84:
+                    if(this.cards[a].spec.includes(53)){
+                        this.cards[a].deSize=true
+                        if(this.cards[a].usable){
+                            this.cards[a].discardEffect.push(0)
+                        }
+                    }
+                break
+                case 85:
+                    if(this.cards[a].spec.includes(53)){
+                        this.cards[a].retain2=true
+                    }
+                break
 
             }
         }
@@ -1515,6 +1528,7 @@ class group{
                 &&!(effect==36&&(this.cards[a].level>=2||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==38&&(this.cards[a].level!=1||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==39&&this.cards[a].spec.includes(7))
+                &&!(effect==41&&!this.cards[a].spec.includes(53))
                 ){
                     list.push(a)
                 }
@@ -1706,6 +1720,12 @@ class group{
                     case 40:
                         this.cards[index].cost=max(this.cards[index].cost-args[0],0)
                         this.cards[index].base.cost=max(this.cards[index].base.cost-args[0],0)
+                    break
+                    case 41:
+                        this.cards[index].deSize=true
+                        if(this.cards[index].usable){
+                            this.cards[index].discardEffect.push(0)
+                        }
                     break
 
                 }
@@ -3456,19 +3476,19 @@ class group{
                             (this.battle.relicManager.hasRelic(170,this.player)?50:0)+
                             (this.cards[a].spec.includes(34)?-20:0)+
                             (a>0&&this.cards[a-1].spec.includes(34)?-20:0)
-                            )*(this.compact?0.7:1)
+                            )*this.compact
                     )
                     cap+=length
                     for(let b=0,lb=variants.speedmove?2:1;b<lb;b++){
                         this.cards[a].update(1,'hand',this.battle.relicManager.hasRelic(170,this.player))
                         this.cards[a].upSize=pointInsideBox({position:inputs.rel},this.cards[a])&&!this.battle.overlayManager.anyActive&&!selected
                         if(this.cards[a].position.x>cap&&(this.cards[a].position.x>this.cards[max(0,a-1)].position.x+length||a==0||this.cards.swapped)){
-                            this.cards[a].position.x=max(this.cards[a].position.x-25*(this.compact?0.7:1),cap)
+                            this.cards[a].position.x=max(this.cards[a].position.x-25*this.compact,cap)
                             if(this.cards[a].position.x==cap&&this.cards[a].swapped){
                                 this.cards[a].swapped=false
                             }
                         }else if(this.cards[a].position.x<cap){
-                            this.cards[a].position.x=min(this.cards[a].position.x+25*(this.compact?0.7:1),cap)
+                            this.cards[a].position.x=min(this.cards[a].position.x+25*this.compact,cap)
                         }
                         if(this.cards.length>0&&abs((this.cards.length-1)/2-a)<=0.5&&(this.cards[a].attack==1034||this.cards[a].attack==1037)){
                             this.cards[a].cost=0
@@ -3482,6 +3502,12 @@ class group{
                                 this.cards[a]=upgradeCard(this.cards[a])
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
+                                while(this.cards[a].discardEffect.includes(0)){
+                                    let hold=this.cards[a].discardEffect
+                                    this.cards[a]=upgradeCard(this.cards[a])
+                                    this.cards[a].discardEffect=hold
+                                    this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
+                                }
                             }else if(this.cards[a].discardEffect.includes(9)){
                                 this.cards[a].edition=5
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(9),1)
