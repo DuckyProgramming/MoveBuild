@@ -7,6 +7,8 @@ vision ticks up every card played
 [knowledge - for every 3 knowledge draw 1 more card per turn, capped at 2]
 [wisdom - raises the cap on knowledge, capped at 3]
 
+fall damage but bleed self
+
 9 daiyousei movements
 maybe more daiyousei filler
 
