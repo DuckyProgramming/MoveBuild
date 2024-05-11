@@ -3515,7 +3515,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.6){
-                        this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
@@ -3531,7 +3531,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6){
-                        this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
@@ -3544,7 +3544,7 @@ combatant.prototype.display=function(){
                     for(let h=0;h<2;h++){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(this.color.skin.legs[0],this.color.skin.legs[1],this.color.skin.legs[2],this.fade*this.fades.skin.legs)
+                                this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -3554,7 +3554,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4){
-                        this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
@@ -3621,7 +3621,7 @@ combatant.prototype.display=function(){
                 }
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.4){
-                        this.layer.stroke(this.color.skin.arms[0],this.color.skin.arms[1],this.color.skin.arms[2],this.fade*this.fades.skin.arms)
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
                         this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
                         this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
@@ -4094,6 +4094,333 @@ combatant.prototype.display=function(){
                     if(this.trigger.display.eye[g]){
                         this.minorDisplayGeneral(0,g)
                     }
+                }
+            break
+            case 'Vincent':
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.3){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
+                    this.layer.ellipse(0,-48.75,11.5,40)
+                    this.layer.fill(this.flashColor(this.color.skin.upperBody)[0],this.flashColor(this.color.skin.upperBody)[1],this.flashColor(this.color.skin.upperBody)[2],this.fade*this.fades.skin.body)
+                    this.layer.arc(0,-48.75,12,40,-180,0)
+                }
+                if(this.trigger.display.pocket){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.pocket[0])[0],this.flashColor(this.color.pocket[0])[1],this.flashColor(this.color.pocket[0])[2],this.fade*this.fades.pocket)
+                    if(lcos(this.anim.direction-40)>0){
+                        this.layer.rect(lsin(this.anim.direction-40)*5.5,-54,3*lcos(this.anim.direction-40),3)
+                    }
+                    if(lcos(this.anim.direction+40)>0){
+                        this.layer.rect(lsin(this.anim.direction+40)*5.5,-54,3*lcos(this.anim.direction+40),3)
+                    }
+                    this.layer.fill(this.flashColor(this.color.pocket[1])[0],this.flashColor(this.color.pocket[1])[1],this.flashColor(this.color.pocket[1])[2],this.fade*this.fades.pocket)
+                    if(lcos(this.anim.direction-40)>0){
+                        this.layer.rect(lsin(this.anim.direction-40)*5.5,-56,4*lcos(this.anim.direction-40),1)
+                    }
+                    if(lcos(this.anim.direction+40)>0){
+                        this.layer.rect(lsin(this.anim.direction+40)*5.5,-56,4*lcos(this.anim.direction+40),1)
+                    }
+                }
+                if(this.trigger.display.belt){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.belt)[0],this.flashColor(this.color.belt)[1],this.flashColor(this.color.belt)[2],this.fade*this.fades.belt)
+                    for(let a=0,la=8;a<la;a++){
+                        if(lcos(this.anim.direction+a*45)>0){
+                            this.layer.quad(
+                                sin(this.anim.direction+a*45)*6,-49.5,
+                                sin(this.anim.direction+a*45)*6-cos(this.anim.direction+a*45)*1.5,-48.75,
+                                sin(this.anim.direction+a*45)*6,-48,
+                                sin(this.anim.direction+a*45)*6+cos(this.anim.direction+a*45)*1.5,-48.75
+                            )
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.3){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                    }
+                    for(let h=0;h<2;h++){
+                        if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                            if(this.trigger.display.skin.legs){
+                                this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
+                                this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
+                            }
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                        this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                        this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                    }
+                }
+                if(this.trigger.display.skin.head){
+                    this.layer.fill(this.flashColor(this.color.skin.head)[0],this.flashColor(this.color.skin.head)[1],this.flashColor(this.color.skin.head)[2],this.fade*this.fades.skin.head)
+                    this.layer.noStroke()
+                    this.layer.ellipse(0,-82.5,30,30)
+                }
+                if(this.trigger.display.mouth&&lcos(this.anim.direction)>0.1){
+                    this.layer.noStroke()
+                    this.layer.fill(this.flashColor(this.color.mouth.teeth[0])[0],this.flashColor(this.color.mouth.teeth[0])[1],this.flashColor(this.color.mouth.teeth[0])[2],this.fade)
+                    this.layer.rect(lsin(this.anim.direction)*(this.parts.minor-2),this.parts.mouth-this.anim.mouth.y*(0.5+lcos(this.anim.direction)*0.5)*0.5+1,lcos(this.anim.direction)*2.5,2.5)
+                    this.layer.fill(this.flashColor(this.color.mouth.teeth[1])[0],this.flashColor(this.color.mouth.teeth[1])[1],this.flashColor(this.color.mouth.teeth[1])[2],this.fade)
+                    this.layer.rect(lsin(this.anim.direction)*(this.parts.minor-2),this.parts.mouth-this.anim.mouth.y*(0.5+lcos(this.anim.direction)*0.5)*0.5+1,lcos(this.anim.direction)*2,2)
+                    this.minorDisplayGeneral(1,0)
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                        this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                        this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                    }
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                    }
+                    if(this.trigger.display.eye[g]){
+                        this.minorDisplayGeneral(0,g)
+                    }
+                }
+                if(this.trigger.display.glasses&&lcos(this.anim.direction)>0){
+                    this.layer.fill(this.color.glasses[1][0],this.color.glasses[1][1],this.color.glasses[1][2],this.fade*this.fades.glasses/5)
+                    this.layer.stroke(this.color.glasses[0][0],this.color.glasses[0][1],this.color.glasses[0][2],this.fade*this.fades.glasses)
+                    this.layer.strokeWeight(1)
+                    this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*-5,-78.5,6*lcos(this.anim.direction),3)
+                    this.layer.ellipse(lsin(this.anim.direction)*15+lcos(this.anim.direction)*5,-78.5,6*lcos(this.anim.direction),3)
+                    this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-78.5,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-78.5)
+                }
+            break
+            case 'Daiyousei':
+                this.layer.translate(0,-15)
+                this.layer.scale(0.8)
+                if(this.trigger.display.wing&&lcos(this.anim.direction)>0.1){
+                    this.layer.push()
+                    this.layer.translate(-6*lsin(this.anim.direction),0)
+                    for(let a=0,la=2;a<la;a++){
+                        let mult=lcos(this.anim.direction)*(lcos(this.time*2)*0.15+0.7+lcos(this.anim.direction-60+a*120)*0.3)
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.wing.back)[0],this.flashColor(this.color.wing.back)[1],this.flashColor(this.color.wing.back)[2],this.fade*this.fades.wing)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,-37)
+                        this.layer.vertex(-10*mult,-37)
+                        this.layer.bezierVertex(-15*mult,-42,-12*mult,-54,-28*mult,-54)
+                        this.layer.vertex(-30*mult,-54)
+                        this.layer.bezierVertex(-25*mult,-50,-25*mult,-34,-15*mult,-34)
+                        this.layer.vertex(0,-34)
+                        this.layer.endShape()
+                        this.layer.noFill()
+                        this.layer.stroke(this.flashColor(this.color.wing.front)[0],this.flashColor(this.color.wing.front)[1],this.flashColor(this.color.wing.front)[2],this.fade*this.fades.wing)
+                        this.layer.strokeWeight(1)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,-37)
+                        this.layer.vertex(-10*mult,-37)
+                        this.layer.bezierVertex(-15*mult,-42,-12*mult,-54,-28*mult,-54)
+                        this.layer.vertex(-29.5*mult,-54)
+                        this.layer.endShape()
+                        this.layer.strokeWeight(0.75)
+                        this.layer.beginShape()
+                        this.layer.vertex(0*mult,-37)
+                        this.layer.vertex(-10*mult,-37)
+                        this.layer.bezierVertex(-16*mult,-40,-15*mult,-48,-19*mult,-48)
+                        this.layer.endShape()
+                        this.layer.scale(-1,1)
+                    }
+                    this.layer.pop()
+                }
+                if(this.trigger.display.flower[0]&&this.fades.flower[0]>0&&lcos(this.spin.flower[0]+this.anim.head)<0){
+                    this.layer.image(graphics.minor[36],lsin(this.spin.flower[0]+this.anim.head)*18-15*this.fade*this.fades.flower[0]*lcos(this.spin.flower[0]+this.anim.head),this.parts.flowerLevel[0]-15*this.fade*this.fades.flower[0],30*this.fade*this.fades.flower[0]*lcos(this.spin.flower[0]+this.anim.head),30*this.fade*this.fades.flower[0])
+                }
+                if(this.trigger.display.hair.back){
+                    this.layer.image(graphics.combatant[6].sprites.hair.back[this.sprites.spinDetail],-20*this.fade,-72-20*this.fade,40*this.fade,60*this.fade)
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<=-0.6){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        if(this.trigger.display.dress.sleeve){
+                            this.minorDisplay(0,g)
+                        }
+                    }
+                }
+                if(this.trigger.display.skin.body){
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.skin.body[0],this.color.skin.body[1],this.color.skin.body[2],this.fade*this.fades.skin.body)
+                    this.layer.ellipse(0,-44,9,28)
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.6){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(4)
+                        this.layer.line(this.graphics.arms[g].top.x,this.graphics.arms[g].top.y,this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y)
+                        this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
+                        if(this.trigger.display.dress.sleeve){
+                            this.minorDisplay(0,g)
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    for(let h=0;h<2;h++){
+                        if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
+                            if(this.trigger.display.skin.legs){
+                                this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                this.layer.strokeWeight(4)
+                                this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
+                                this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
+                            }
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>-0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.4){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                        this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                        this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        if(this.trigger.display.dress.sleeve){
+                            this.minorDisplay(0,g)
+                        }
+                    }
+                }
+                if(this.trigger.display.dress.main){
+                    this.layer.noStroke()
+                    this.layer.fill(this.color.dress.under[0],this.color.dress.under[1],this.color.dress.under[2],this.fade*this.fades.dress.main)
+                    this.layer.arc(0,-49,9.5+2.5*abs(lcos(this.anim.direction)),11,-180,0)
+                    this.layer.fill(this.color.dress.over[0],this.color.dress.over[1],this.color.dress.over[2],this.fade*this.fades.dress.main)
+                    this.layer.quad(-5,-49,5,-49,6,-35,-6,-35)
+                    this.layer.quad(-6,-36,6,-36,10,-24,-10,-24)
+                    for(let a=0,la=4;a<la;a++){
+                        let dir=[-153,-27,27,153][a]
+                        if(lcos(this.anim.direction+dir)>0){
+                            this.layer.quad(
+                                lsin(this.anim.direction+dir)*5-(lcos(this.anim.direction+dir)*0.8+0.2)*0.9,-48.5,
+                                lsin(this.anim.direction+dir)*5+(lcos(this.anim.direction+dir)*0.8+0.2)*0.9,-48.5,
+                                lsin(this.anim.direction+dir)*3+(lcos(this.anim.direction+dir)*0.8+0.2)*0.6,-54.5,
+                                lsin(this.anim.direction+dir)*3-(lcos(this.anim.direction+dir)*0.8+0.2)*0.6,-54.5)
+                        }
+                    }
+                    for(let a=0,la=10;a<la;a++){
+                        if(lcos(a/la*360+this.anim.direction)>0){
+                            this.layer.arc(9.7*lsin(a/la*360+this.anim.direction),-24.25,6*lcos(a/la*360+this.anim.direction),2,0,180)
+                        }
+                    }
+                    if(lcos(this.anim.direction)>0.1){
+                        this.layer.fill(this.color.dress.tie[0],this.color.dress.tie[1],this.color.dress.tie[2],this.fade*this.fades.dress.main)
+                        regPoly(this.layer,lsin(this.anim.direction)*4,-53,6,2*lcos(this.anim.direction),1.5,0)
+                        pentagon(this.layer,
+                            lsin(this.anim.direction)*4-lcos(this.anim.direction)*0.5,-53,
+                            lsin(this.anim.direction)*4+lcos(this.anim.direction)*0.5,-53,
+                            lsin(this.anim.direction)*5.2+lcos(this.anim.direction)*1.2,-47,
+                            lsin(this.anim.direction)*5.4,-46,
+                            lsin(this.anim.direction)*5.2-lcos(this.anim.direction)*1.2,-47
+                        )
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.4){
+                        this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
+                        this.layer.strokeWeight(min(4,lcos(this.spin.arms[g].top+this.anim.direction)*5+2))
+                        this.layer.line(this.graphics.arms[g].topStack.x,this.graphics.arms[g].topStack.y,this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y)
+                        this.layer.line(this.graphics.arms[g].middleStack.x,this.graphics.arms[g].middleStack.y,this.graphics.arms[g].bottomStack.x,this.graphics.arms[g].bottomStack.y)
+                        if(this.trigger.display.dress.sleeve){
+                            this.minorDisplay(0,g)
+                        }
+                    }
+                }
+                if(this.trigger.display.skin.head){
+                    let base=this.flashColor(this.color.skin.head)
+                    this.layer.fill(base[0],base[1],base[2],this.fade*this.fades.skin.head)
+                    this.layer.noStroke()
+                    this.layer.ellipse(0,-72,30,30)
+                }
+                if(this.trigger.display.skin.blush){
+                    this.layer.fill(this.flashColor(this.color.skin.blush)[0],this.flashColor(this.color.skin.blush)[1],this.flashColor(this.color.skin.blush)[2],this.fade*this.fades.skin.blush*0.2)
+                    for(let g=0;g<2;g++){
+                        if(lcos(this.spin.blush[g]+this.anim.direction)>0){
+                            this.layer.push()
+                            this.layer.translate(13.5*lsin(this.spin.blush[g]+this.anim.direction),this.parts.blush)
+                            this.layer.rotate(30*lsin(this.spin.blush[g]+this.anim.direction))
+                            this.layer.ellipse(0,0,5*lcos(this.spin.blush[g]+this.anim.direction),4)
+                            this.layer.ellipse(0,0,3.75*lcos(this.spin.blush[g]+this.anim.direction),3)
+                            this.layer.ellipse(0,0,2.5*lcos(this.spin.blush[g]+this.anim.direction),2)
+                            this.layer.ellipse(0,0,1.25*lcos(this.spin.blush[g]+this.anim.direction),1)
+                            this.layer.pop()
+                        }
+                    }
+                }
+                for(let g=0;g<2;g++){
+                    if(this.trigger.display.eye[g]){
+                        this.minorDisplayGeneral(0,g)
+                    }
+                }
+                if(this.trigger.display.mouth&&lcos(this.anim.direction)>0){
+                    this.minorDisplayGeneral(1,0)
+                }
+                if(this.trigger.display.hair.front){
+                    this.layer.image(graphics.combatant[6].sprites.hair.front[this.sprites.spinDetail],-20*this.fade,-72-20*this.fade,40*this.fade,60*this.fade)
+                }
+                if(this.trigger.display.hair.glow){
+                    this.layer.noFill()
+                    this.layer.stroke(this.color.hair.glow[0],this.color.hair.glow[1],this.color.hair.glow[2],this.fade/4)
+                    for(let g=0;g<6;g++){
+                        this.layer.strokeWeight((3-g/2)*this.fade)
+                        this.layer.arc(0,-72,30+g,30+g,-72+g*6,-12-g*6)
+                    }
+                }
+                if(this.trigger.display.flower[0]&&this.fades.flower[0]>0&&lcos(this.spin.flower[0]+this.anim.head)>0){
+                    this.layer.image(graphics.minor[36],lsin(this.spin.flower[0]+this.anim.head)*18-15*this.fade*this.fades.flower[0]*lcos(this.spin.flower[0]+this.anim.head),this.parts.flowerLevel[0]-15*this.fade*this.fades.flower[0],30*this.fade*this.fades.flower[0]*lcos(this.spin.flower[0]+this.anim.head),30*this.fade*this.fades.flower[0])
+                }
+                if(this.trigger.display.wing&&lcos(this.anim.direction)<0.1){
+                    this.layer.push()
+                    this.layer.translate(-6*lsin(this.anim.direction),0)
+                    for(let a=0,la=2;a<la;a++){
+                        let mult=lcos(this.anim.direction)*(lcos(this.time*2)*0.15+0.7+lcos(this.anim.direction-60+a*120)*0.3)
+                        this.layer.noStroke()
+                        this.layer.fill(this.flashColor(this.color.wing.back)[0],this.flashColor(this.color.wing.back)[1],this.flashColor(this.color.wing.back)[2],this.fade*this.fades.wing)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,-37)
+                        this.layer.vertex(-10*mult,-37)
+                        this.layer.bezierVertex(-15*mult,-42,-12*mult,-54,-28*mult,-54)
+                        this.layer.vertex(-30*mult,-54)
+                        this.layer.bezierVertex(-25*mult,-50,-25*mult,-34,-15*mult,-34)
+                        this.layer.vertex(0,-34)
+                        this.layer.endShape()
+                        this.layer.noFill()
+                        this.layer.stroke(this.flashColor(this.color.wing.front)[0],this.flashColor(this.color.wing.front)[1],this.flashColor(this.color.wing.front)[2],this.fade*this.fades.wing)
+                        this.layer.strokeWeight(1)
+                        this.layer.beginShape()
+                        this.layer.vertex(0,-37)
+                        this.layer.vertex(-10*mult,-37)
+                        this.layer.bezierVertex(-15*mult,-42,-12*mult,-54,-28*mult,-54)
+                        this.layer.vertex(-29.5*mult,-54)
+                        this.layer.endShape()
+                        this.layer.strokeWeight(0.75)
+                        this.layer.beginShape()
+                        this.layer.vertex(0*mult,-37)
+                        this.layer.vertex(-10*mult,-37)
+                        this.layer.bezierVertex(-16*mult,-40,-15*mult,-48,-19*mult,-48)
+                        this.layer.endShape()
+                        this.layer.scale(-1,1)
+                    }
+                    this.layer.pop()
                 }
             break
             case 'Ume':

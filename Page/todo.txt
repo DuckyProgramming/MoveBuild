@@ -1,5 +1,7 @@
 cards:
 
+character symbols
+
 drawn attribute of cards
 vision ticks up every card played
 [elemental form - tied to 1+ awakening, applies by turn, 25% more damage flat]
@@ -10,7 +12,9 @@ vision ticks up every card played
 fall damage but bleed self
 
 9 daiyousei movements
-maybe more daiyousei filler
+6 more daiyousei filler
+
+gemini
 
 
 

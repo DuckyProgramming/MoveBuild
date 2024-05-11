@@ -2265,7 +2265,7 @@ class attack{
                         this.battle.overlayManager.overlays[36][this.player].activate()
                     break
                     case 1187:
-                        if(this.targetCombatant.size<1){
+                        if(this.targetCombatant.size<1||this.targetCombatant.name=='Daiyousei'){
                             this.targetCombatant.life=0
                         }
                     break

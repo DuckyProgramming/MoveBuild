@@ -14313,7 +14313,7 @@ types.card=[
 
     //mark p
 
-    {
+    /*{
         name:'Droplet\nof Vapor',rarity:0,list:15,
         levels:[
             {effect:[3,1],attack:2667,cost:0,target:[2,1,3],spec:[],class:1},
@@ -14883,37 +14883,7 @@ types.card=[
             {effect:[4,1],attack:2740,cost:1,target:[0],spec:[],class:1},
             {effect:[5,1],attack:2740,cost:1,target:[0],spec:[],class:1},
         ],
-    },
-
-    {
-        name:'Strike',rarity:0,list:15,
-        levels:[
-            {effect:[6],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[9],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[11],attack:1,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],
-    },{
-        name:'Defend',rarity:0,list:15,
-        levels:[
-            {effect:[8],attack:2,cost:1,target:[0],spec:[],class:2},
-            {effect:[12],attack:2,cost:1,target:[0],spec:[],class:2},
-            {effect:[15],attack:2,cost:1,target:[0],spec:[],class:2},
-        ],
-    },{
-        name:'Step',rarity:0,list:15,
-        levels:[
-            {effect:[1],attack:3,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[0],class:3},
-            {effect:[1],attack:3,cost:0,target:[1,1,1],spec:[],class:3},
-        ],
-    },{
-        name:'',rarity:0,list:15,
-        levels:[
-            {effect:[],attack:0,cost:0,target:[0],spec:[],class:4},
-            {effect:[],attack:0,cost:0,target:[0],spec:[],class:4},
-            {effect:[],attack:0,cost:0,target:[0],spec:[],class:4},
-        ],
-    },
+    },*/
 
     //mark b
 

@@ -1156,6 +1156,18 @@ function generateSprite(layer,type,direction){
 				layer.translate(sin(direction*6+g*135)*-0.3,0)
 			}
 		break
+		case 57:
+			controlSpin(data.parts.hair.inside,direction,0)
+			displayTrianglesFront(layer,data.parts.hair.inside,direction,0,32,1,-0.25,data.color.hair.insideFront,1)
+			controlSpin(data.parts.hair.main,direction,0)
+			displayTrianglesFront(layer,data.parts.hair.main,direction,0,34,1,-0.125,data.color.hair.front,1)
+			layer.arc(0,0,34,33,-180,0)
+			layer.line(-17,0,17,0)
+		break
+		case 58:
+			displayTrianglesBack(layer,data.parts.hair.main,direction,0,34,1,-0.25,data.color.hair.back,1)
+			displayTrianglesBack(layer,data.parts.hair.inside,direction,0,32,1,-0.125,data.color.hair.insideBack,1)
+		break
 		
 	}
 }
@@ -2185,6 +2197,84 @@ function setupCombatantGraphics(type){
 					generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.tail[g][h],55+g,h*graphics.combatant[graphics.combatant.length-1].sprites.detail)
 					//print('Generated HT-'+(g*graphics.combatant[graphics.combatant.length-1].sprites.genAmount+h+1))
 				}
+			}
+		break
+		case 6:
+			graphics.combatant.push({
+				sprites:{detail:15,genAmount:0,animDirection:0,hair:{back:[],front:[],tail:[[],[]]}},
+				parts:{},
+				color:{
+                    hair:{back:[185,191,104],front:[211,216,127],insideBack:[117,123,90],insideFront:[154,155,98],glow:[228,239,181]},
+                    skin:{head:[250,235,193],body:[250,228,186],legs:[247,241,189],arms:[249,236,192],blush:[232,157,122]},
+                    eye:{back:[45,74,118],front:[47,53,77],glow:[176,188,183]},
+					mouth:{in:[235,168,126],out:[0,0,0]},
+                    dress:{under:[254,249,226],over:[78,107,136],tie:[238,233,143]},
+					wing:{back:[250,237,214],front:[86,53,57]},
+				},
+			})
+
+			graphics.combatant[graphics.combatant.length-1].parts.hair={main:[
+				{spin:[-6,6,0],height:4},
+				{spin:[-9,0,-4.5],height:3},
+				{spin:[-0,9,4.5],height:3},
+				{spin:[-15,-3,-10.5],height:1.5},
+				{spin:[3,15,10.5],height:1.5},
+				{spin:[-30,-12,-24],height:2},
+				{spin:[12,30,24],height:2},
+				{spin:[-60,-24,-42],height:6},
+				{spin:[24,60,42],height:6},
+				{spin:[-84,-42,-66],height:9},
+				{spin:[42,84,66],height:9},
+				{spin:[-108,-66,-90],height:11},
+				{spin:[66,108,90],height:11},
+				{spin:[-138,-90,-114],height:12},
+				{spin:[90,138,114],height:12},
+				{spin:[-162,-114,-138],height:12.5},
+				{spin:[114,162,138],height:12.5},
+				{spin:[174,-138,-162],height:13},
+				{spin:[138,-174,162],height:13},
+				{spin:[153,-153,180],height:13.5},
+				{spin:[-93,-69,-84],height:19},
+				{spin:[69,93,84],height:19},
+				{spin:[-123,-99,-114],height:22},
+				{spin:[99,123,114],height:22},
+			],inside:[
+				{spin:[-27,-15,-15],height:1.5},
+				{spin:[15,27,15],height:1.5},
+				{spin:[-42,-18,-30],height:4},
+				{spin:[18,42,30],height:4},
+				{spin:[-66,-42,-54],height:7},
+				{spin:[42,66,54],height:7},
+				{spin:[-90,-66,-78],height:10},
+				{spin:[66,90,78],height:10},
+				{spin:[-114,-90,-102],height:11.25},
+				{spin:[90,114,102],height:11.25},
+				{spin:[-138,-114,-126],height:12.125},
+				{spin:[114,138,126],height:12.125},
+				{spin:[-162,-138,-150],height:12.625},
+				{spin:[138,162,150],height:12.625},
+				{spin:[174,-162,-174],height:13.125},
+				{spin:[162,-174,174],height:13.125},
+				{spin:[-108,-84,-99],height:17},
+				{spin:[84,108,99],height:17},
+			]}
+		
+			graphics.combatant[graphics.combatant.length-1].sprites.genAmount=360/graphics.combatant[graphics.combatant.length-1].sprites.detail
+
+			graphics.combatant[graphics.combatant.length-1].sprites.hair={front:[],back:[]}
+			for(let g=0;g<graphics.combatant[graphics.combatant.length-1].sprites.genAmount;g++){
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front.push(createGraphics(200,300))
+				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g])
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].translate(100,100)
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g].scale(5)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.front[g],57,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				//print('Generated HF-'+(g+1))
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back.push(createGraphics(200,300))
+				setupLayer(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g])
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].translate(100,100)
+				graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g].scale(5)
+				generateSprite(graphics.combatant[graphics.combatant.length-1].sprites.hair.back[g],58,g*graphics.combatant[graphics.combatant.length-1].sprites.detail)
+				//print('Generated HB-'+(g+1))
 			}
 		break
 		case 10:
@@ -3633,8 +3723,9 @@ function setupGeneralGraphics(){
 	30-31 Setsuna Sandal Top
 	32-33 Setsuna Bow
 	34-35 Setsuna Flower
+	36 Daiyousei Bow
 	*/
-	for(let a=0,la=36;a<la;a++){
+	for(let a=0,la=37;a<la;a++){
 		switch(a){
 			case 9: case 11:
 				graphics.minor.push(createGraphics(160,240))
@@ -3905,6 +3996,22 @@ function setupGeneralGraphics(){
 			graphics.minor[34+a].rect(0,-5,1,10)
 			graphics.minor[34+a].ellipse(0,-10,3,3)
 		}
+	}
+	graphics.minor[36].translate(80,80)
+	graphics.minor[36].rotate(-155)
+	for(let a=0,la=16;a<la;a++){
+		let merge=mergeColor([234,200,116],[203,130,68],abs(8-a)/8)
+		graphics.minor[36].fill(merge[0],merge[1],merge[2])
+		graphics.minor[36].rotate(-10)
+		graphics.minor[36].quad(0,0,-48+a/la*24,-24+a/la*24,-39+a/la*12,0,-48+a/la*24,24-a/la*24)
+		graphics.minor[36].rotate(20)
+		graphics.minor[36].quad(0,0,48-a/la*24,-24+a/la*24,39-a/la*12,0,48-a/la*24,24-a/la*24)
+		graphics.minor[36].rotate(50)
+		graphics.minor[36].quad(0,0,-48+a/la*24,-9+a/la*9,-42+a/la*12,0,-48+a/la*24,9-a/la*9)
+		graphics.minor[36].rotate(-120)
+		graphics.minor[36].quad(0,0,48-a/la*24,-9+a/la*9,42-a/la*12,0,48-a/la*24,9-a/la*9)
+		graphics.minor[36].rotate(60)
+
 	}
 }
 function setupBackground(type,layer){
