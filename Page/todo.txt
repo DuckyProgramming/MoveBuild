@@ -19,6 +19,8 @@ frozen fruit - damage, becomes free when you play a power
 small hitbox - gain 2 dodge, gain 1 vulnerable
 ]
 
+scrap cards for both
+
 [
 um actually - select the attack the enemy uses this turn
 ]
@@ -30,6 +32,24 @@ magnet rise - gain block, if you have more energy than normal gain 1 energy
 fairy wakeup - double energy, free, lose 1 energy next turn
 transmigration - 14 block, a random discarded card goes to draw and costs 1 less
 binder - damage, apply 2 vulnerable if you have block
+phalanx - if you have block counter, otherwise get block
+accumulation - 13 damage 2 cost, increases by 1 when you add a card to deck
+potential of life - heal 12, draw 2 cards, lose 1 health per turn for 12 turns
+crafty - 7 damage, becomes free when you draw a card
+souvenir - create 50% a smite and 50% a safety
+mindmaze - get 19x block, get x dazed
+fragmented gem - when drawn, attacks this turn apply 1 shock
+quickfix - 3 block, upgrade a random card
+cursed circle - everybody loses strength equal to number of cards in hand
+slapstick - damage, add entrance or trip to your hand randomly
+vapor - high damage, but disguises self as another one of your cards
+moving ahead - 4 damage 0 cost, doubled if you've played 5 or more cards this turn
+honing strike - 8 damage, a random attack in hand gets +4 damage
+cheapen - a random card in draw pile costs 0
+curtain - retain 1 card, get block next turn
+nail - damage, if exhausted gain temporary strength
+virtuous - reduce all debuffs by 1
+planned defense - innate 12 block, doubles if you have another innate card
 
 pyroclast - 3 damage 5 times, get a burn
 remove a card, lose 30 hp (probably vincent)
