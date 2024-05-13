@@ -163,6 +163,9 @@ class cardManager{
     allEffect(group,effect){
         this.getList(group).allEffect(effect)
     }
+    allEffectArgs(group,effect,args){
+        this.getList(group).allEffectArgs(effec,argst)
+    }
     randomEffect(group,effect,args){
         this.getList(group).randomEffect(effect,args)
     }

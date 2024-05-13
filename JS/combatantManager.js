@@ -283,6 +283,9 @@ class combatantManager{
                 case 5:
                     this.combatants[index].addBlock(args[0])
                 break
+                case 6:
+                    this.combatants[index].statusEffect('Strength',args[0])
+                break
             }
         }
     }

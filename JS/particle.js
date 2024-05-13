@@ -150,7 +150,7 @@ class particle{
                 this.scale=0
                 this.direction=[random(0,360),random(0,360),random(0,360),random(0,360)]
             break
-            case 53: case 55:
+            case 53: case 55: case 58:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -159,7 +159,7 @@ class particle{
                 this.direction=atan2(this.position2.x,this.position2.y)
                 this.sets=[]
                 for(let a=0,la=this.ticks;a<la;a++){
-                    this.sets.push([random(-10,10),random(-10,10)])
+                    this.sets.push(this.type==58?[0,0]:[random(-10,10),random(-10,10)])
                 }
             break
             case 56:
@@ -167,6 +167,18 @@ class particle{
                 this.color=[[255,0,0],[255,125,0],[255,255,0],[0,255,0],[0,255,255],[0,0,255],[255,0,255]][floor(random(0,7))]
                 this.fade=1
                 this.scale=0
+            break
+            case 59:
+                this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
+                this.fade=1
+                this.size=1
+                this.scale=1
+                this.ticks=ceil(dist(0,0,this.position2.x,this.position2.y)/24)
+                this.direction=atan2(this.position2.x,this.position2.y)
+                this.sets=[]
+                for(let a=0,la=this.ticks;a<la;a++){
+                    this.sets.push([0,0])
+                }
             break
         }
     }
@@ -686,6 +698,17 @@ class particle{
                     }
                     this.layer.endShape()
                 break
+                case 58: case 59:
+                    this.layer.stroke(200,255,125,this.fade*0.5)
+                    this.layer.strokeWeight(this.type==59?6:3)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.line(
+                            map(a/la,0,1,0,this.position2.x)+(a==0?0:this.sets[a-1][0]),
+                            map(a/la,0,1,0,this.position2.y)+(a==0?0:this.sets[a-1][1]),
+                            map((a+1)/la,0,1,0,this.position2.x)+this.sets[a][0],
+                            map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
+                    }
+                break
 
             }
             this.layer.pop()
@@ -805,6 +828,26 @@ class particle{
                 for(let a=0,la=this.ticks;a<la;a++){
                     this.sets[a][0]+=random(-1,1)
                     this.sets[a][1]+=random(-1,1)
+                }
+            break
+            case 58:
+                this.fade-=1/36
+                if(this.fade<=0){
+                    this.remove=true
+                }
+                for(let a=0,la=this.ticks;a<la;a++){
+                    this.sets[a][0]+=floor(random(0,2))*2-1
+                    this.sets[a][1]+=floor(random(0,2))*2-1
+                }
+            break
+            case 59:
+                this.fade-=1/36
+                if(this.fade<=0){
+                    this.remove=true
+                }
+                for(let a=0,la=this.ticks;a<la;a++){
+                    this.sets[a][0]+=floor(random(0,2))*4-2
+                    this.sets[a][1]+=floor(random(0,2))*4-2
                 }
             break
         }

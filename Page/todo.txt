@@ -1,21 +1,52 @@
 cards:
 
-character symbols
+daiyousei:
+6 movements
+[
+teleport variant
+free move, lose all vision
+free move, get disappointed
+]
+12 common cards
+[
+elemental buffer
+]
+6 uncommon cards
+[
+extending arm - damage, if your hand has 8 or more cards in it gain 2 energy (base on paint roller)
+air current - damage, becomes free when you play a movement
+frozen fruit - damage, becomes free when you play a power
+small hitbox - gain 2 dodge, gain 1 vulnerable
+]
 
-drawn attribute of cards
-vision ticks up every card played
-[elemental form - tied to 1+ awakening, applies by turn, 25% more damage flat]
-[history - when you draw or rewind a card, deal damage equal to your history to the weakest enemy, decrements by 20%]
-[knowledge - for every 3 knowledge draw 1 more card per turn, capped at 2]
-[wisdom - raises the cap on knowledge, capped at 3]
+[
+um actually - select the attack the enemy uses this turn
+]
 
-fall damage but bleed self
+cardistry - 0 cost, add 2 block, rebound
+smithing hammer - 4 damage 2 times, upgrade a random card in hand
+fair deal - gain 8 damage, both of you get 1 strength
+magnet rise - gain block, if you have more energy than normal gain 1 energy
+fairy wakeup - double energy, free, lose 1 energy next turn
+transmigration - 14 block, a random discarded card goes to draw and costs 1 less
+binder - damage, apply 2 vulnerable if you have block
 
-9 daiyousei movements
-6 more daiyousei filler
+pyroclast - 3 damage 5 times, get a burn
+remove a card, lose 30 hp (probably vincent)
+retribution - 14 damage, if fatal gain 5 armor
+look up - 9 damage, if first card played draw a card
+short break - get miracle, end your turn
 
-gemini
+12 vincent temp item
 
 
 
+
+update the dictionary
+
+update the ultraprism screen
+
+update the tutorials
+
+scene animations
 

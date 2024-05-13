@@ -78,6 +78,42 @@ combatant.prototype.display=function(){
                     this.layer.ellipse(lsin(a*36+18)*60,lcos(a*36+18)*-60,12)
                 }
             }
+            if(this.infoAnim.elemental>0){
+                this.layer.noFill()
+                this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)
+                for(let a=0,la=6;a<la;a++){
+                    if(lcos(this.anim.direction+a/la*360+this.time*0.5)<0){
+                        this.layer.strokeWeight(1)
+                        this.layer.bezier(
+                            -5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12,
+                            -3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,-3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
+                            3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,-3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
+                            5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
+                        this.layer.bezier(
+                            -5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12,
+                            -3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
+                            3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
+                            5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
+                        this.layer.strokeWeight(3)
+                        this.layer.point(lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
+                    }
+                    if(lcos(this.anim.direction+a/la*360-this.time*0.4)<0){
+                        this.layer.strokeWeight(1)
+                        this.layer.bezier(
+                            -5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            -3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,-3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,-3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
+                        this.layer.bezier(
+                            -5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            -3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
+                        this.layer.strokeWeight(3)
+                        this.layer.point(lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
+                    }
+                }
+            }
             this.layer.translate(0,48)
         }
         switch(this.name){
@@ -4421,6 +4457,22 @@ combatant.prototype.display=function(){
                         this.layer.scale(-1,1)
                     }
                     this.layer.pop()
+                }
+                this.layer.scale(1.25)
+                this.layer.translate(0,15)
+                if(!this.graphic){
+                    this.layer.noFill()
+                    this.layer.stroke(150,255,100,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.translate(0,10)
+                    this.layer.bezier(-5,0,-3,-3.5,3,-3.5,5,0)
+                    this.layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
+                    this.layer.translate(0,-10)
+                    this.layer.fill(225,255,200,this.fade)
+                    this.layer.stroke(0,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.textSize(8)
+                    this.layer.text(this.vision,0,10.75)
                 }
             break
             case 'Ume':
@@ -10225,6 +10277,46 @@ combatant.prototype.display=function(){
                     displayOrb(this.layer,lsin(this.time*2+360*a/la)*30,-45+lcos(this.time*2+360*a/la)*10,this.infoAnim.orbSpec[a],this.orbDetail[a],0,1,this.fade*this.infoAnim.orb,a)
                 }
             }
+        }
+        if(this.team>0&!this.construct&&!this.support){
+            this.layer.translate(0,-48)
+            if(this.infoAnim.elemental>0){
+                this.layer.noFill()
+                this.layer.stroke(150,200,255,this.fade*this.infoAnim.elemental*0.5)
+                for(let a=0,la=6;a<la;a++){
+                    if(lcos(this.anim.direction+a/la*360+this.time*0.5)>=0){
+                        this.layer.strokeWeight(1)
+                        this.layer.bezier(
+                            -5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12,
+                            -3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,-3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
+                            3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,-3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
+                            5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
+                        this.layer.bezier(
+                            -5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12,
+                            -3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
+                            3*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,3.5+lsin(this.anim.direction+a/la*360+this.time)*12,
+                            5*lcos(this.anim.direction+a/la*360+this.time*0.5)+lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
+                        this.layer.strokeWeight(3)
+                        this.layer.point(lsin(this.anim.direction+a/la*360+this.time*0.5)*33,lsin(this.anim.direction+a/la*360+this.time)*12)
+                    }
+                    if(lcos(this.anim.direction+a/la*360-this.time*0.4)>=0){
+                        this.layer.strokeWeight(1)
+                        this.layer.bezier(
+                            -5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            -3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,-3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,-3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
+                        this.layer.bezier(
+                            -5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            -3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            3*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,3.5+lsin(this.anim.direction+a/la*360+this.time*0.75)*18,
+                            5*lcos(this.anim.direction+a/la*360-this.time*0.4)+lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
+                        this.layer.strokeWeight(3)
+                        this.layer.point(lsin(this.anim.direction+a/la*360-this.time*0.4)*27,lsin(this.anim.direction+a/la*360+this.time*0.75)*18)
+                    }
+                }
+            }
+            this.layer.translate(0,48)
         }
         this.layer.pop()
     }

@@ -97,9 +97,10 @@ class combatant{
         this.compression=0
         this.lastDeal=0
         this.lastTake=0
+        this.permanentStrength=0
         this.base={position:{x:this.position.x,y:this.position.y},life:this.life,size:0}
         this.collect={life:this.life}
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0],elemental:0}
 
         this.block=0
         this.lastBlock=0
@@ -135,7 +136,8 @@ class combatant{
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
             'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
             'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
-            'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn','Cannot Move Shiv',
+            'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
+            'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -168,7 +170,8 @@ class combatant{
                 2,0,2,0,0,0,1,2,1,0,//28
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
-                0,0,2,2,0,
+                0,0,2,2,0,1,5,0,0,1,//31
+                1,0,0,0,0,0,0,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -201,7 +204,8 @@ class combatant{
                 0,1,0,1,2,2,0,0,1,2,//28
                 2,2,0,0,0,2,0,0,2,2,//29
                 2,2,2,1,0,2,3,2,2,2,//30
-                1,0,1,1,2,
+                1,0,1,1,2,2,2,2,2,2,//31
+                2,2,3,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -235,7 +239,8 @@ class combatant{
         this.faith=0
         this.charge=0
         this.ammo=3
-        this.shift=0
+        this.vision=0
+        this.elemental=false
 
         this.intent=0
         this.activated=false
@@ -3228,8 +3233,9 @@ class combatant{
         this.faith=0
         this.charge=0
         this.ammo=3
-        this.shift=0
-        
+        this.vision=0
+        this.elemental=false
+
         this.resetAnim()
         for(let a=0,la=this.status.main.length;a<la;a++){
             this.status.main[a]=0
@@ -3242,7 +3248,10 @@ class combatant{
             this.statusEffect('Armor',4)
             this.addBlock(4)
         }
-        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0]}
+        if(this.permanentStrength>0){
+            this.statusEffect('Strength',this.permanentStrength)
+        }
+        this.infoAnim={life:1,block:0,size:1,balance:0,orb:0,orbSpec:[],description:0,upSize:false,intent:[],flash:[0,0,0,0],upFlash:[false,false,false,false],stance:[0,0,0,0,0,0],faith:[0,0,0,0,0,0,0,0,0,0],elemental:0}
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
             for(let b=0,lb=game.orbNumber;b<lb;b++){
@@ -4202,6 +4211,9 @@ class combatant{
         if(this.status.main[293]>0&&cardClass==4){
             this.takeDamage(this.status.main[293],-1)
         }
+        if(this.name=='Daiyousei'){
+            this.vision++
+        }
     }
     autoAim(){
         let list=[]
@@ -5089,6 +5101,9 @@ class combatant{
                     if(this.status.main[300]>0){
                         userCombatant.statusEffect('Buffer',this.status.main[300])
                     }
+                    if(this.status.main[134]>0){
+                        userCombatant.vision+=this.status.main[134]
+                    }
                     if(userCombatant.status.main[139]>0){
                         userCombatant.addBlock(damage)
                         userCombatant.status.main[139]--
@@ -5778,6 +5793,24 @@ class combatant{
             this.addBlock(this.status.main[150])
         }
     }
+    activateDraw(){
+        if(this.status.main[306]>0){
+            if(this.status.main[309]>0){
+                this.battle.combatantManager.allEffect(19,[this.status.main[306]])
+            }else{
+                this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[306]])
+            }
+        }
+    }
+    activateRewind(){
+        if(this.status.main[306]>0){
+            if(this.status.main[309]>0){
+                this.battle.combatantManager.allEffect(19,[this.status.main[306]])
+            }else{
+                this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[306]])
+            }
+        }
+    }
     diceRoll(number,value){
         let total=0
         let average=0
@@ -6008,6 +6041,12 @@ class combatant{
     }
     tick(){
         this.charge++
+        if(this.elemental&&this.getStatus('Awakening')<=0){
+            if(this.getStatus('Strength')>0){
+                this.statusEffect('Strength',-1)
+            }
+            this.elemental=false
+        }
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
                 switch(a){
@@ -6081,9 +6120,18 @@ class combatant{
                     case 302: if(this.block<=0){this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]} break
                     case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 304: if(this.status.main[findList('Cannot Move',this.status.name)]>0){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)}} break
+                    case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=constrain(floor(this.status.main[a]/3),0,2+this.getStatus('Wisdom'))}; break
+                    case 311: this.status.main[findList('History',this.status.name)]+=this.status.main[a]; break
+                    case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])}; break
 
                 }
-                if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0){
+                if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
+                    if(this.status.main[a]>0){
+                        this.status.main[a]=floor(this.status.main[a]/2)
+                    }else if(this.status.main[a]<0){
+                        this.status.main[a]=ceil(this.status.main[a]/2)
+                    }
+                }else if(this.status.behavior[a]==1||this.status.behavior[a]==3&&this.team<=0||this.status.behavior[a]==4&&this.team>0){
                     if(this.status.main[a]>0){
                         this.status.main[a]--
                     }else if(this.status.main[a]<0){
@@ -8178,10 +8226,12 @@ class combatant{
         if(this.team==0){
             this.layer.text(this.order,28,0.5)
         }
+        this.layer.fill(255,this.fade*this.infoAnim.life)
+        this.layer.stroke(0,this.fade*this.infoAnim.life)
+        this.layer.strokeWeight(1)
         for(let a=0,la=this.status.display.length;a<la;a++){
             if(this.status.size[this.status.display[a]]>0){
-                this.layer.fill(this.status.display[a]==240?150:0,this.fade*this.infoAnim.life)
-                this.layer.textSize(8*this.status.size[this.status.display[a]])
+                this.layer.textSize((this.status.main[this.status.display[a]]>=100?6:8)*this.status.size[this.status.display[a]])
                 this.layer.text(this.status.main[this.status.display[a]],this.status.position[this.status.display[a]],12)
             }
         }
@@ -8232,11 +8282,11 @@ class combatant{
                     this.layer.textAlign(LEFT,CENTER)
                     if(this.team==0||this.construct||this.support){
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                            this.layer.text(this.status.name[this.status.display[a]],50,305+a*20+this.spec.length*15)
+                            this.layer.text(this.status.name[this.status.display[a]],60,305+a*20+this.spec.length*15)
                         }
                     }else{
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                            this.layer.text(this.status.name[this.status.display[a]],50,305+a*20)
+                            this.layer.text(this.status.name[this.status.display[a]],60,305+a*20)
                         }
                     }
                     if(this.team==0||this.construct||this.support){
@@ -8280,7 +8330,9 @@ class combatant{
                             displayStatusSymbol(this.layer,40,305+a*20,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
                         }
                     }
-                    this.layer.fill(0,this.fade*this.infoAnim.description)
+                    this.layer.fill(255,this.fade*this.infoAnim.description)
+                    this.layer.stroke(0,this.fade*this.infoAnim.description)
+                    this.layer.strokeWeight(1.5)
                     this.layer.textSize(12)
                     if(this.team==0||this.construct||this.support){
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
@@ -8346,9 +8398,18 @@ class combatant{
             for(let a=0,la=this.infoAnim.faith.length;a<la;a++){
                 this.infoAnim.faith[a]=smoothAnim(this.infoAnim.faith[a],this.faith>a,0,1,5)
             }
+            this.infoAnim.elemental=smoothAnim(this.infoAnim.elemental,this.elemental,0,1,5)
             if(this.faith>=10&&this.infoAnim.faith[9]>=1){
                 this.faith-=10
                 this.enterStance(5)
+            }
+            if(this.vision>=12){
+                this.vision-=12
+                this.statusEffect('Awakening',1)
+                if(!this.elemental){
+                    this.statusEffect('Strength',1)
+                }
+                this.elemental=true
             }
             if(this.life<=0){
                 this.battle.itemManager.activateDeath(this.id)

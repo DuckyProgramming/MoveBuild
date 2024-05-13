@@ -468,7 +468,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 13: return effect==1?(damage==effect?'':`1(${tennify(damage)})*`):(damage==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(damage)})*`)
 
 			}
-		case 1: case 3: case 6: case 14: case 15:
+		case 1: case 3: case 6: case 14: case 15: case 16:
 			let block=effect
 			let bonusB=0
 			let totalDex=0
@@ -514,6 +514,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 6: return effect==1?(block==effect?'1*Combo':`1(${tennify(block)})*Combo`):(block==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(block)})*Combo`)
 				case 14: return block==effect?tennify(effect):tennify(effect)+`(${tennify(block)})`
 				case 15: return effect==1?(block==effect?'1*':`1(${tennify(block)})*`):(block==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(block)})*C`)
+				case 16: return (block==effect?tennify(effect)+'X':tennify(effect)+`(${tennify(block)})X`)
 
 			}
 		case 4: case 9:
@@ -881,20 +882,20 @@ function multiplyString(base,multiply){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 }
 function copyCardFree(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 }
 function upgradeCard(base){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 	if(base.attack==1352){
 		result.limit=base.limit
 	}
 	return result
 }
 function unupgradeCard(base){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 	if(base.attack==1352){
 		result.limit=base.limit
 	}
@@ -1241,6 +1242,9 @@ function stance(value){
 }
 function faith(value){
 	current.combatantManager.combatants[0].faith+=value
+}
+function elemental(){
+	player(0).vision+=12
 }
 function fight(name){
 	current.setupBattle(types.encounter[findName(name,types.encounter)])
