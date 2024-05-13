@@ -149,7 +149,7 @@ class attack{
             case 2610: case 2611: case 2612: case 2613: case 2620: case 2621: case 2622: case 2623: case 2624: case 2627: case 2628: case 2630: case 2636: case 2641: case 2646: case 2647: case 2648: case 2649: case 2650: case 2651:
             case 2653: case 2655: case 2656: case 2659: case 2660: case 2662: case 2663: case 2664: case 2665: case 2666: case 2667: case 2670: case 2671: case 2674: case 2678: case 2680: case 2685: case 2693: case 2696: case 2697:
             case 2700: case 2701: case 2702: case 2705: case 2709: case 2711: case 2712: case 2713: case 2716: case 2719: case 2722: case 2723: case 2725: case 2728: case 2729: case 2730: case 2733: case 2734: case 2737: case 2739:
-            case 2746:
+            case 2746: case 2753: case 2754: case 2755: case 2757:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -182,7 +182,7 @@ class attack{
             case 2326: case 2327: case 2332: case 2370: case 2371: case 2382: case 2383: case 2418: case 2431: case 2436:
             case 2439: case 2440: case 2456: case 2459: case 2475: case 2545: case 2589: case 2600: case 2602: case 2603:
             case 2604: case 2608: case 2637: case 2652: case 2658: case 2742: case 2743: case 2744: case 2745: case 2747:
-            case 2748: case 2749: case 2750: case 2751: case 2752:
+            case 2748: case 2749: case 2750: case 2751: case 2752: case 2758: case 2759: case 2760: case 2761: case 2762:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -373,7 +373,7 @@ class attack{
                     this.remove=true
                 }
             break
-            case 674:
+            case 674: case 2673:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -3157,6 +3157,16 @@ class attack{
                             this.userCombatant.addBlock(this.effect[1])
                         }
                     break
+                    case 2753:
+                        if(this.relPos[1]>=7){
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                        }
+                    break
+                    case 2757:
+                        if(this.userCombatant.elemental){
+                            this.userCombatant.statusEffect('Dodge',this.effect[1])
+                        }
+                    break
 
                 }
                 //mark 1
@@ -4548,7 +4558,7 @@ class attack{
                         this.userManager.addRandomSpec(2,0,53)
                     break
                     case 2742:
-                        for(let a=0,la=this.effect[0];a<la;a++){
+                        for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Refreshed',types.card),0,game.playerNumber+1)
                         }
                     break
@@ -4581,6 +4591,22 @@ class attack{
                     case 2752:
                         if(this.userCombatant.elemental){
                             this.userCombatant.addBlock(this.effect[1])
+                        }
+                    break
+                    case 2758:
+                        this.userManager.hand.rebound(1)
+                    break
+                    case 2759:
+                        this.userCombatant.vision=0
+                    break
+                    case 2760:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userManager.hand.add(findName('Disappointed',types.card),0,game.playerNumber+1)
+                        }
+                    break
+                    case 2761:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.userCombatant.activateHistory()
                         }
                     break
                 }
@@ -5641,6 +5667,10 @@ class attack{
                     case 2741:
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
                         this.userCombatant.statusEffect('Bleed',this.effect[1])
+                    break
+                    case 2756:
+                        this.userCombatant.statusEffect('Dodge',this.effect[0])
+                        this.userCombatant.statusEffect('Vulnerable',this.effect[1])
                     break
 
                 }

@@ -1305,9 +1305,9 @@ types.card=[
     },{
         name:'Spin\nStrike',rarity:0,list:2,
         levels:[
-            {effect:[6],attack:18,cost:1,target:[0],spec:[0],class:1},
-            {effect:[9],attack:18,cost:1,target:[0],spec:[0],class:1},
+            {effect:[7],attack:18,cost:1,target:[0],spec:[0],class:1},
             {effect:[11],attack:18,cost:1,target:[0],spec:[0],class:1},
+            {effect:[14],attack:18,cost:1,target:[0],spec:[0],class:1},
         ],
     },{
         name:'Back\nSlam',rarity:1,list:2,
@@ -8892,13 +8892,6 @@ types.card=[
             {effect:[24,4],attack:1267,cost:0,target:[2,1,3],spec:[0],class:1},
         ],
     },{
-        name:'Flame\nSword',rarity:1,list:9,
-        levels:[
-            {effect:[12,2,1],attack:1440,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[16,3,1],attack:1440,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[18,4,1],attack:1440,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],
-    },{
         name:'Whip',rarity:0,list:9,
         levels:[
             {effect:[7,2],attack:1442,cost:1,target:[2,1,1],spec:[0],class:1},
@@ -9067,13 +9060,6 @@ types.card=[
             {effect:[32,3],attack:1799,cost:2,target:[5],spec:[0,1],class:1},
         ],
     },{
-        name:'Wildfire',rarity:1,list:9,
-        levels:[
-            {effect:[2,1,1],attack:1795,cost:1,target:[2,1,3],spec:[],class:1},
-            {effect:[4,1,1],attack:1795,cost:1,target:[2,1,3],spec:[],class:1},
-            {effect:[4,2,1],attack:1795,cost:1,target:[2,1,3],spec:[],class:1},
-        ],
-    },{
         name:'Pockets',rarity:1,list:9,
         levels:[
             {effect:[2],attack:1808,cost:0,target:[0],spec:[1],class:4},
@@ -9121,13 +9107,6 @@ types.card=[
             {effect:[6,1,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2,35],class:1},
             {effect:[9,1,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2,35],class:1},
             {effect:[9,2,1],attack:1943,cost:2,target:[2,1,3],spec:[0,1,2,35],class:1},
-        ],
-    },{
-        name:'Kindle',rarity:1,list:9,
-        levels:[
-            {effect:[1,2],attack:1942,cost:0,target:[0],spec:[],class:4},
-            {effect:[1,3],attack:1942,cost:0,target:[0],spec:[],class:4},
-            {effect:[1,4],attack:1942,cost:0,target:[0],spec:[],class:4},
         ],
     },{
         name:'Gossip',rarity:1,list:9,
@@ -13956,13 +13935,6 @@ types.card=[
             {effect:[32,3],attack:1798,cost:2,target:[5],spec:[0,1],class:1},
         ],
     },{
-        name:'Absolute\nZero',rarity:2,list:15,
-        levels:[
-            {effect:[40],attack:1823,cost:10,target:[5],spec:[0,1,2,35],class:1},
-            {effect:[70],attack:1823,cost:12,target:[5],spec:[0,1,2,35],class:1},
-            {effect:[100],attack:1823,cost:15,target:[5],spec:[0,1,2,35],class:1},
-        ],
-    },{
         name:'Hailstorm',rarity:2,list:15,
         levels:[
             {effect:[13,1],attack:1859,cost:3,target:[0],spec:[0],class:1},
@@ -13998,21 +13970,21 @@ types.card=[
             {effect:[33,1],attack:2524,cost:2,target:[5],spec:[0],class:1},
         ],
     },{
-        name:'Crescent',rarity:1,list:15,
+        name:'Crescent',rarity:0,list:15,
         levels:[
             {effect:[9,9],attack:1725,cost:-1,target:[2,1,1],spec:[0],class:1},
             {effect:[13,13],attack:1725,cost:-1,target:[2,1,1],spec:[0],class:1},
             {effect:[16,16],attack:1725,cost:-1,target:[2,1,1],spec:[0],class:1},
         ],
     },{
-        name:'Crescent\nPendant',rarity:2,list:15,
+        name:'Crescent\nPendant',rarity:1,list:15,
         levels:[
             {effect:[1,1,0,0],attack:1842,cost:-1,target:[0],spec:[],class:4},
             {effect:[1,1,1,1],attack:1842,cost:-1,target:[0],spec:[],class:4},
             {effect:[1,1,2,2],attack:1842,cost:-1,target:[0],spec:[],class:4},
         ],
     },{
-        name:'Crescent\nSequence',rarity:2,list:15,
+        name:'Crescent\nSequence',rarity:1,list:15,
         levels:[
             {effect:[1,1],attack:2558,cost:-1,target:[0],spec:[1],class:4},
             {effect:[1,1],attack:2558,cost:-1,target:[0],spec:[],class:4},
@@ -14348,7 +14320,7 @@ types.card=[
             {effect:[39,2,5],attack:2697,cost:3,target:[2,1,1],spec:[],class:1},
         ],
     },{
-        name:'Timeline\nTerror',rarity:2,list:15,
+        name:'Timeline\nTerror',rarity:1,list:15,
         levels:[
             {effect:[7],attack:2698,cost:0,target:[0],spec:[1],class:4},
             {effect:[10],attack:2698,cost:0,target:[0],spec:[1],class:4},
@@ -14638,8 +14610,8 @@ types.card=[
         name:'Stroll',rarity:1,list:15,
         levels:[
             {effect:[1,1],attack:2742,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,2],attack:2742,cost:1,target:[1,1,1],spec:[0],class:3},
-            {effect:[1,3],attack:2742,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:2742,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[11,],attack:2742,cost:0,target:[1,1,1],spec:[],class:3},
         ],
     },{
         name:'Rewinding\nMove',rarity:0,list:15,
@@ -14703,6 +14675,76 @@ types.card=[
             {effect:[1,15],attack:2752,cost:1,target:[1,1,1],spec:[0],class:3},
             {effect:[2,18],attack:2752,cost:1,target:[1,1,2],spec:[0],class:3},
             {effect:[2,30],attack:2752,cost:1,target:[1,1,2],spec:[0],class:3},
+        ],
+    },{
+        name:'Extending\nArm',rarity:0,list:15,
+        levels:[
+            {effect:[8,1],attack:2753,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[12,1],attack:2753,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[15,1],attack:2753,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Air\nCurrent',rarity:0,list:15,
+        levels:[
+            {effect:[16,4],attack:2754,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[21,6],attack:2754,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[24,8],attack:2754,cost:2,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Frozen\nFruit',rarity:0,list:15,
+        levels:[
+            {effect:[16,4],attack:2755,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[21,6],attack:2755,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[24,8],attack:2755,cost:2,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Small\nHitbox',rarity:1,list:15,
+        levels:[
+            {effect:[2,1],attack:2756,cost:3,target:[0],spec:[1],class:2},
+            {effect:[3,2],attack:2756,cost:3,target:[0],spec:[1],class:2},
+            {effect:[4,3],attack:2756,cost:3,target:[0],spec:[1],class:2},
+        ],
+    },{
+        name:'Bright\nSky',rarity:1,list:15,
+        levels:[
+            {effect:[15,1],attack:2757,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[22,1],attack:2757,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[27,1],attack:2757,cost:2,target:[2,1,3],spec:[0],class:1},
+        ],
+    },{
+        name:'Fairy\nFlip',rarity:0,list:15,
+        levels:[
+            {effect:[1],attack:2758,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1],attack:2758,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1],attack:2758,cost:0,target:[1,1,1],spec:[],class:3},
+        ],
+    },{
+        name:'Disperse',rarity:0,list:15,
+        levels:[
+            {effect:[1],attack:2759,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1],attack:2759,cost:0,target:[1,1,1],spec:[],class:3},
+            {effect:[2],attack:2759,cost:0,target:[1,1,2],spec:[],class:3},
+        ],
+    },{
+        name:'Axial\nTilt',rarity:0,list:15,
+        levels:[
+            {effect:[1,1],attack:2760,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:2760,cost:0,target:[1,1,1],spec:[],class:3},
+            {effect:[2,1],attack:2760,cost:0,target:[1,1,2],spec:[],class:3},
+        ],
+    },{
+        name:'Past\nBounce',rarity:0,list:15,
+        levels:[
+            {effect:[1,2],attack:2761,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,3],attack:2761,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,4],attack:2761,cost:1,target:[1,1,1],spec:[0],class:3},
+        ],
+    },{
+        name:'Purpose\nFulfilled',rarity:1,list:15,
+        levels:[
+            {effect:[],attack:2762,cost:2,target:[6],spec:[1],class:3},
+            {effect:[],attack:2762,cost:1,target:[6],spec:[1],class:3},
+            {effect:[],attack:2763,cost:1,target:[9],spec:[1],class:3},
         ],
     },
 
@@ -19356,6 +19398,34 @@ types.card=[
             {effect:[1,2],attack:1915,cost:0,target:[0],spec:[],class:4},
             {effect:[1,3],attack:1915,cost:0,target:[0],spec:[],class:4},
             {effect:[1,4],attack:1915,cost:0,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Kindle',rarity:0,list:-1,
+        levels:[
+            {effect:[1,2],attack:1942,cost:0,target:[0],spec:[],class:4},
+            {effect:[1,3],attack:1942,cost:0,target:[0],spec:[],class:4},
+            {effect:[1,4],attack:1942,cost:0,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Wildfire',rarity:0,list:-1,
+        levels:[
+            {effect:[2,1,1],attack:1795,cost:1,target:[2,1,3],spec:[],class:1},
+            {effect:[4,1,1],attack:1795,cost:1,target:[2,1,3],spec:[],class:1},
+            {effect:[4,2,1],attack:1795,cost:1,target:[2,1,3],spec:[],class:1},
+        ],
+    },{
+        name:'Flame\nSword',rarity:0,list:-1,
+        levels:[
+            {effect:[12,2,1],attack:1440,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[16,3,1],attack:1440,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[18,4,1],attack:1440,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Absolute\nZero',rarity:0,list:-1,
+        levels:[
+            {effect:[40],attack:1823,cost:10,target:[5],spec:[0,1,2,35],class:1},
+            {effect:[70],attack:1823,cost:12,target:[5],spec:[0,1,2,35],class:1},
+            {effect:[100],attack:1823,cost:15,target:[5],spec:[0,1,2,35],class:1},
         ],
     },
 ]

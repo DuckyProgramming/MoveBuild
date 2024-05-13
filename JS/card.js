@@ -3006,18 +3006,29 @@ class card{
             case 2739: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nAdd ${this.calculateEffect(effect[1],1)} Block\nRemove ${effect[2]} Fatigue${effect[2]!=1?`s`:``}`; break
             case 2740: string+=`View The Fist\n${effect[0]} Card${effect[0]!=1?`s`:``} of Draw Pile\nChoose to Discard Them\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 2741: string+=`Gain ${effect[0]} Dodge\nGain ${effect[1]} Bleed`; break
-            case 2742: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd a Refreshed\nto Hand`; break
+            case 2742: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Refreshed${effect[1]!=1?`s`:``}\nto Hand`; break
             case 2743: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nRewind ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 2744: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Energy\nIf You Have Block`; break
             case 2745: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nElemental Form:\nGain ${effect[1]} Energy`; break
             case 2746: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
-
             case 2747: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Vision`; break
             case 2748: string+=`Move to Any\nEmpty Tile\nElemental Form:\nGain ${effect[0]} Awakening`; break
             case 2749: string+=`Move to Any\nEmpty Tile\nLose ${effect[0]} Health`; break
             case 2750: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nStraight Left:\nGain ${effect[1]} Knowledge`; break
             case 2751: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nStraight Right:\nGain ${effect[1]} History`; break
             case 2752: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nElemental Form:\nAdd ${this.calculateEffect(effect[1],1)} Block`; break
+            case 2753: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nIf You Have At Least\n8 Cards in Hand`; break
+            case 2754: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\nYou Play a Movement`; break
+            case 2755: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]} When\nYou Play a Power`; break
+            case 2756: string+=`Gain ${effect[0]} Dodge\nGain ${effect[1]} Vulnerable`; break
+            case 2757: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nEleemntal Form:\nGain ${effect[1]} Dodge`; break
+            case 2758: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nNext Card Played\nReturns to Draw`; break
+            case 2759: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose All Vision`; break
+            case 2760: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nAdd ${effect[1]} Disappointed${effect[1]!=1?`s`:``}\nto Hand`; break
+            case 2761: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nTrigger Your History\n${effect[1]} Time${effect[1]!=1?`s`:``}`; break
+            case 2762: string+=`Move to Any\nEmpty Tile\nEnd Your Turn`; break
+            case 2763: string+=`Move to Any Tile\nSwap With its\nOccupants\nEnd Your Turn`; break
+
 
 
 
@@ -3713,6 +3724,16 @@ class card{
                     if((name=='Shiv'||name=='Broken\nShiv'||name=='Deluxe\nShiv')&&this.cost>0){
                         this.cost--
                         this.base.cost--
+                    }
+                break
+                case 2754:
+                    if(cardClass==3){
+                        this.effect[0]+=this.effect[1]
+                    }
+                break
+                case 2755:
+                    if(cardClass==4){
+                        this.effect[0]+=this.effect[1]
                     }
                 break
                 

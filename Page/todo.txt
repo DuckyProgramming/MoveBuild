@@ -1,25 +1,13 @@
 cards:
 
 daiyousei:
-6 movements
-[
-teleport variant
-free move, lose all vision
-free move, get disappointed
-]
-12 common cards
-[
-elemental buffer
-]
-6 uncommon cards
-[
-extending arm - damage, if your hand has 8 or more cards in it gain 2 energy (base on paint roller)
-air current - damage, becomes free when you play a movement
-frozen fruit - damage, becomes free when you play a power
-small hitbox - gain 2 dodge, gain 1 vulnerable
-]
+2 movements
+
+6 common cards
+3 uncommon cards
 
 scrap cards for both
+4 cards for the 3 fairies of light?
 
 [
 um actually - select the attack the enemy uses this turn
@@ -50,6 +38,11 @@ curtain - retain 1 card, get block next turn
 nail - damage, if exhausted gain temporary strength
 virtuous - reduce all debuffs by 1
 planned defense - innate 12 block, doubles if you have another innate card
+rattler - deal 9 damage, draw a card if it will attack
+swagger - become confused, draw a card
+tail flail - deal 6 splash damage, confuse a random card in hand
+workers on strike - 8 damage, draw a card, if it is a strike gain 2 energy
+crimson shield - add 14 block, +1 for each stack of strength
 
 pyroclast - 3 damage 5 times, get a burn
 remove a card, lose 30 hp (probably vincent)
@@ -57,8 +50,17 @@ retribution - 14 damage, if fatal gain 5 armor
 look up - 9 damage, if first card played draw a card
 short break - get miracle, end your turn
 
-12 vincent temp item
+in compensation edgar gets 2 new miss-based cards
 
+12 vincent temp item
+[
+the 4 temp items not seen before
+add a random temp item, get a status in hand
+failed experiment - get 24 block, gain an item that has just wastes a slot
+]
+1 ricochet-based card for vincent
+
+pruning shears - next time you skip, the cards you skipped will be removed forever
 
 
 
