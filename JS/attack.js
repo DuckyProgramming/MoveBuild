@@ -3407,8 +3407,8 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]+this.effect[1]*this.userCombatant.getStatus('Knowledge'))
                     break
                     case 2714:
-                        this.userCombatant.addBlock(this.effect[0]*this.battle.counter.enemy)
-                        this.userCombatant.statusEffect('History',this.effect[1]*this.battle.counter.enemy)
+                        this.userCombatant.addBlock(this.effect[0]*(this.battle.counter.enemy-this.battle.counter.killed))
+                        this.userCombatant.statusEffect('History',this.effect[1]*(this.battle.counter.enemy-this.battle.counter.killed))
                     break
                     case 2721:
                         this.userCombatant.addBlock(this.userManager.hand.allEffectArgs(19,[])*this.effect[0]*(this.userCombatant.elemental?2:1))
@@ -3972,6 +3972,9 @@ class attack{
                     break
                     case 2735:
                         this.userCombatant.vision+=this.effect[1]
+                    break
+                    case 2764:
+                        this.userManager.hand.rebound(1)
                     break
                 }
                 //mark 2

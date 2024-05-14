@@ -5999,7 +5999,7 @@ Deprecates after each hit taken.`,
 `Causes the attacker to take damage instead.
 Only works if an attacker is identifiably designated.`,
         },{name:'Arcana',desc:
-`Set of cards, accessible only through the predetermined Fortune Teller event.\n
+`Set of cards, accessible only through the predetermined Fortune Teller event.
 Vary greatly in effect.`,
         },{name:'Distracted',desc:
 `Distracted enemies do not get a turn. Stacks degrade by 1 each turn.
@@ -6022,6 +6022,19 @@ Is removed when damage taken.`,
 `Cannot turn around. Decrements afterward.`,
         },{name:'Poison',desc:
 `Deals damage every turn. Decreases by 1 afterward.`,
+        },{name:'Vision',desc:
+`Counts up by 1 whenever you play a card.
+When you gain 12 Vision, lose 12 and gain 1 Awakening.`,
+        },{name:'Awakening',desc:
+`Gain Awakening by getting 12 vision. When you gain Awakening, enter Elemental Form.
+When you end you turn without Awakening, exit Elemental Form. Degrades by 1 per turn.`,
+        },{name:'Elemental Form',desc:
+`When you gain Awakening, enter Elemental Form.`,
+        },{name:'History',desc:
+`Whenever you draw or Rewind a card, deal damage to a random enemy.
+Stacks degrade by half, rounded up, each turn.`,
+        },{name:'Rewind',desc:
+`Send a card back to your draw pile. By default, shuffles it in.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0
@@ -6245,6 +6258,7 @@ stage={scale:0,scene:'title',internal:{version:1}}
 game={player:[],deck:[],playerNumber:15,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
+    mtg:false,
     mod:false,junk:false,
     lowDraw:false,deckbuild:false,
     altDraw:false,blackjack:false,

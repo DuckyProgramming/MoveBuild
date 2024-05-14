@@ -463,7 +463,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 7: return effect==1?(damage==effect?'1*Combo':`1(${tennify(damage)})*Combo`):(damage==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)
 				case 8: return effect==1?(damage==effect&&bonus==0?tennify(effect)+'1*Combo':tennify(effect)+`1(${tennify(damage)})*Combo`)+(bonus>0?`(+${tennify(bonus)})`:``):(damage==effect&&bonus==0?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)+(bonus>0?`(+${tennify(bonus)})`:``)
 				case 10: return damage==effect?tennify(effect):tennify(effect)+`(${tennify(damage)})`
-				case 11: return (damage==effect?tennify(effect)+'X':tennify(effect)+`(${tennify(damage)})X`)
+				case 11: return (damage==effect?(effect==1?``:`${tennify(effect)}`)+'X':tennify(effect)+`(${tennify(damage)})X`)
 				case 12: return effect==1?(damage==effect?'1*Faith':`1(${tennify(damage)})*Faith`):(damage==effect?tennify(effect)+'*Faith':tennify(effect)+`(${tennify(damage)})*Faith`)
 				case 13: return effect==1?(damage==effect?'':`1(${tennify(damage)})*`):(damage==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(damage)})*`)
 
@@ -488,7 +488,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				totalDex+=user.status.main[18]
 			}
 			if(totalDex>0){
-				block*=1+totalDex*0.2
+				block*=1+totalDex*0.1
 			}else if(totalDex<0){
 				block*=max(0.2,1+totalDex*0.1)
 			}

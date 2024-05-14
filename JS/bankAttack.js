@@ -218,6 +218,7 @@ attack.prototype.update=function(){
         case 2491: case 2495: case 2523: case 2560: case 2579: case 2591: case 2594: case 2607: case 2614: case 2615:
         case 2616: case 2618: case 2619: case 2625: case 2634: case 2661: case 2668: case 2669: case 2672: case 2675:
         case 2676: case 2679: case 2682: case 2689: case 2714: case 2720: case 2721: case 2724: case 2726: case 2735:
+        case 2764:
             //mark 2
             if(this.type==2616&&this.timer==1&&!this.userManager.hand.allClassLeeway(2)){
                 this.remove=true

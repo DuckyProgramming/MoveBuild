@@ -4211,7 +4211,7 @@ class combatant{
         if(this.status.main[293]>0&&cardClass==4){
             this.takeDamage(this.status.main[293],-1)
         }
-        if(this.name=='Daiyousei'){
+        if(this.name=='Daiyousei'&&this.battle.turn.main==this.id){
             this.vision++
         }
     }
@@ -5369,7 +5369,7 @@ class combatant{
                 totalDex+=this.status.main[18]
             }
             if(totalDex>0){
-                block*=1+totalDex*0.2
+                block*=1+totalDex*0.1
             }else if(totalDex<0){
                 block*=max(0.2,1+totalDex*0.1)
             }
@@ -5800,7 +5800,7 @@ class combatant{
         this.activateHistory()
     }
     activateHistory(){
-        if(this.status.main[306]>0){
+        if(this.life>0&&this.status.main[306]>0){
             if(this.status.main[309]>0){
                 this.battle.combatantManager.allEffect(19,[this.status.main[306]])
             }else{

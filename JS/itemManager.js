@@ -412,6 +412,23 @@ class itemManager{
                     }
                 }
             break
+            case 'rewards':
+                for(let a=0,la=this.items.length;a<la;a++){
+                    for(let b=0,lb=this.items[a].length;b<lb;b++){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
+                            let menu=this.items[a][b].menu
+                            let type=this.items[a][b].type
+                            this.total[a]--
+                            this.items[a][b].type=1
+                            this.items[a][b].refresh()
+                            if(menu){
+                                this.activateItem(type,a)
+                            }
+                            this.battle.cardManagers[a].hand.callInput(7,0)
+                        }
+                    }
+                }
+            break
             case 'map':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){

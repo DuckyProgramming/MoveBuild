@@ -1000,16 +1000,16 @@ class battle{
             break
             case 'custom':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
-                for(let a=0,la=7;a<la;a++){
+                for(let a=0,la=8;a<la;a++){
                     if(this.menu.anim.prismrule[a]>0){
                         this.layer.fill(255,this.menu.anim.prismrule[a])
-                        this.layer.ellipse(this.layer.width/2-107.5,this.layer.height/2-190+a*45,10)
+                        this.layer.ellipse(this.layer.width/2-232.5,this.layer.height/2-212.5+a*45,10)
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    if(this.menu.anim.prismrule[a+7]>0){
-                        this.layer.fill(255,this.menu.anim.prismrule[a+7])
-                        this.layer.ellipse(this.layer.width/2+242.5,this.layer.height/2-270+a*45,10)
+                    if(this.menu.anim.prismrule[a+8]>0){
+                        this.layer.fill(255,this.menu.anim.prismrule[a+8])
+                        this.layer.ellipse(this.layer.width/2-12.5+floor(a/5)*190,this.layer.height/2-90+(a%5)*45,10)
                     }
                 }
             break
@@ -1159,6 +1159,7 @@ class battle{
             case 'rest':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[3][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[3][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
 			    this.layer.image(graphics.overlays[0],0,0,this.layer.width,this.layer.height)
@@ -1233,6 +1234,7 @@ class battle{
             case 'victory':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[2][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[2][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
@@ -1256,6 +1258,7 @@ class battle{
             case 'defeat':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[1][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[1][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 for(let a=0,la=this.colorDetail.length;a<la;a++){
@@ -1279,6 +1282,7 @@ class battle{
             case 'stash':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[4][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[4][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.relicManager.display(stage.scene)
@@ -1286,6 +1290,7 @@ class battle{
             case 'bossstash':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[6][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[6][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.relicManager.display(stage.scene)
@@ -1293,6 +1298,7 @@ class battle{
             case 'pack':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[7][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[7][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.packManagers.forEach(packManager=>packManager.display())
@@ -1301,6 +1307,7 @@ class battle{
             case 'perk':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[0][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[0][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.perkManagers.forEach(perkManager=>perkManager.display())
@@ -1309,6 +1316,7 @@ class battle{
             case 'event':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[5][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.displayCurrency()
@@ -1334,6 +1342,7 @@ class battle{
             case 'graphic':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
+                    this.graphics.combatants[graphics.test][0][a].time++
                     this.graphics.combatants[graphics.test][0][a].display()
                 }
             break
@@ -1417,12 +1426,12 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-2,-1]
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-2,-1]
                 for(let a=0,la=prismrules.length;a<la;a++){
                     this.menu.anim.prismrule[a]=smoothAnim(this.menu.anim.prismrule[a],variants.prismrule.includes(prismrules[a]),0,1,5)
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    this.menu.anim.prismrule[a+7]=smoothAnim(this.menu.anim.prismrule[a+7],variants.prismrule.includes(a+1),0,1,5)
+                    this.menu.anim.prismrule[a+8]=smoothAnim(this.menu.anim.prismrule[a+8],variants.prismrule.includes(a+1),0,1,5)
                 }
             break
             case 'battle':
@@ -1744,17 +1753,17 @@ class battle{
                 }
             break
             case 'menu':
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[0]>1){
-                    this.menu.combatant[0]--
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65},width:37.5,height:37.5})){
+                    this.menu.combatant[0]=(this.menu.combatant[0]+game.playerNumber-2)%game.playerNumber+1
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[0]<game.playerNumber){
-                    this.menu.combatant[0]++
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65},width:37.5,height:37.5})){
+                    this.menu.combatant[0]=this.menu.combatant[0]%game.playerNumber+1
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65+80},width:37.5,height:37.5})&&this.menu.deck[0]>0){
-                    this.menu.deck[0]--
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-80,y:this.layer.height*0.65+80},width:37.5,height:37.5})){
+                    this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length-1)%types.deckmode.length
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65+80},width:37.5,height:37.5})&&this.menu.deck[0]<types.deckmode.length-1){
-                    this.menu.deck[0]++
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+80,y:this.layer.height*0.65+80},width:37.5,height:37.5})){
+                    this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length+1)%types.deckmode.length
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.65-240},width:112.5,height:32.5})){
                     this.menu.combatant[0]=floor(random(0,game.playerNumber))+1
@@ -1780,17 +1789,17 @@ class battle{
             break
             case 'menu2':
                 for(let a=0,la=2;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[a]>1){
-                        this.menu.combatant[a]--
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65},width:37.5,height:37.5})){
+                        this.menu.combatant[a]=(this.menu.combatant[a]+game.playerNumber-2)%game.playerNumber+1
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a+80,y:this.layer.height*0.65},width:37.5,height:37.5})&&this.menu.combatant[a]<game.playerNumber){
-                        this.menu.combatant[a]++
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a+80,y:this.layer.height*0.65},width:37.5,height:37.5})){
+                        this.menu.combatant[a]=this.menu.combatant[a]%game.playerNumber+1
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65+80},width:37.5,height:37.5})&&this.menu.deck[a]>0){
-                        this.menu.deck[a]--
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a-80,y:this.layer.height*0.65+80},width:37.5,height:37.5})){
+                        this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length-1)%types.deckmode.length
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a+80,y:this.layer.height*0.65+80},width:37.5,height:37.5})&&this.menu.deck[a]<types.deckmode.length-1){
-                        this.menu.deck[a]++
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a+80,y:this.layer.height*0.65+80},width:37.5,height:37.5})){
+                        this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length+1)%types.deckmode.length
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a,y:this.layer.height*0.65-240},width:112.5,height:32.5})){
                         this.menu.combatant[a]=floor(random(0,game.playerNumber))+1
@@ -1866,9 +1875,9 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-2,-1]
-                for(let a=0,la=7;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-107.5,y:this.layer.height/2-190+a*45},width:27.5,height:27.5})){
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber54,-2,-1]
+                for(let a=0,la=8;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-232.5,y:this.layer.height/2-212.5+a*45},width:27.5,height:27.5})){
                         if(variants.prismrule.includes(prismrules[a])){
                             variants.prismrule.splice(variants.prismrule.indexOf(prismrules[a]),1)
                         }else{
@@ -1877,7 +1886,7 @@ class battle{
                     }
                 }
                 for(let a=0,la=game.playerNumber;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+242.5,y:this.layer.height/2-270+a*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-12.5+floor(a/5)*190,y:this.layer.height/2-90+(a%5)*45},width:27.5,height:27.5})){
                         if(variants.prismrule.includes(a+1)){
                             variants.prismrule.splice(variants.prismrule.indexOf(a+1),1)
                         }else{
@@ -1914,6 +1923,7 @@ class battle{
                     }
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onClick(stage.scene)
+                        this.itemManager.onClick('rewards')
                     }else if(this.turn.main<this.players){
                         this.cardManagers[this.turn.main].onClick(stage.scene)
                         this.relicManager.onClick(stage.scene)
@@ -2091,17 +2101,17 @@ class battle{
                 }
             break
             case 'menu':
-                if(code==LEFT_ARROW&&this.menu.combatant[0]>1){
-                    this.menu.combatant[0]--
+                if(code==LEFT_ARROW){
+                    this.menu.combatant[0]=(this.menu.combatant[0]+game.playerNumber-2)%game.playerNumber+1
                 }
-                if(code==RIGHT_ARROW&&this.menu.combatant[0]<game.playerNumber){
-                    this.menu.combatant[0]++
+                if(code==RIGHT_ARROW){
+                    this.menu.combatant[0]=this.menu.combatant[0]%game.playerNumber+1
                 }
-                if((key=='a'||key=='A')&&this.menu.deck[0]>0){
-                    this.menu.deck[0]--
+                if(key=='a'||key=='A'){
+                    this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length-1)%types.deckmode.length
                 }
-                if((key=='d'||key=='D')&&this.menu.deck[0]<types.deckmode.length-1){
-                    this.menu.deck[0]++
+                if(key=='d'||key=='D'){
+                    this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length+1)%types.deckmode.length
                 }
                 if(key=='r'||key=='R'){
                     this.menu.combatant[0]=floor(random(0,game.playerNumber))+1
@@ -2127,17 +2137,17 @@ class battle{
             break
             case 'menu2':
                 for(let a=0,la=2;a<la;a++){
-                    if((code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1)&&this.menu.combatant[a]>1){
-                        this.menu.combatant[a]--
+                    if(code==LEFT_ARROW&&a==0||(key=='a'||key=='A')&&a==1){
+                        this.menu.combatant[a]=(this.menu.combatant[a]+game.playerNumber-2)%game.playerNumber+1
                     }
-                    if((code==RIGHT_ARROW&&a==0||(key=='d'||key=='D')&&a==1)&&this.menu.combatant[a]<game.playerNumber){
-                        this.menu.combatant[a]++
+                    if(code==RIGHT_ARROW&&a==0||(key=='d'||key=='D')&&a==1){
+                        this.menu.combatant[a]=this.menu.combatant[a]%game.playerNumber+1
                     }
-                    if((key==','&&a==0||(key=='z'||key=='Z')&&a==1)&&this.menu.deck[a]>0){
-                        this.menu.deck[a]--
+                    if(key==','&&a==0||(key=='z'||key=='Z')&&a==1){
+                        this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length-1)%types.deckmode.length
                     }
-                    if((key=='/'&&a==0||(key=='c'||key=='C')&&a==1)&&this.menu.deck[a]<types.deckmode.length-1){
-                        this.menu.deck[a]++
+                    if(key=='/'&&a==0||(key=='c'||key=='C')&&a==1){
+                        this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length+1)%types.deckmode.length
                     }
                     if(key=='r'&&a==0||key=='R'&&a==1){
                         this.menu.combatant[a]=floor(random(0,game.playerNumber))+1
@@ -2213,7 +2223,7 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,-2,-1]
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-2,-1]
                 for(let a=0,la=prismrules.length;a<la;a++){
                     if(key==inputs.above[a]){
                         if(variants.prismrule.includes(prismrules[a])){

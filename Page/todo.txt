@@ -1,74 +1,68 @@
-cards:
-
 daiyousei:
 2 movements
 
 6 common cards
 3 uncommon cards
+(2 cards based off drawn 2+ times)
+another card that triggers on rewind
+
+tap wastes
 
 scrap cards for both
 4 cards for the 3 fairies of light?
-
-[
-um actually - select the attack the enemy uses this turn
-]
-
-cardistry - 0 cost, add 2 block, rebound
-smithing hammer - 4 damage 2 times, upgrade a random card in hand
-fair deal - gain 8 damage, both of you get 1 strength
-magnet rise - gain block, if you have more energy than normal gain 1 energy
-fairy wakeup - double energy, free, lose 1 energy next turn
-transmigration - 14 block, a random discarded card goes to draw and costs 1 less
-binder - damage, apply 2 vulnerable if you have block
-phalanx - if you have block counter, otherwise get block
-accumulation - 13 damage 2 cost, increases by 1 when you add a card to deck
-potential of life - heal 12, draw 2 cards, lose 1 health per turn for 12 turns
-crafty - 7 damage, becomes free when you draw a card
-souvenir - create 50% a smite and 50% a safety
-mindmaze - get 19x block, get x dazed
-fragmented gem - when drawn, attacks this turn apply 1 shock
-quickfix - 3 block, upgrade a random card
-cursed circle - everybody loses strength equal to number of cards in hand
-slapstick - damage, add entrance or trip to your hand randomly
-vapor - high damage, but disguises self as another one of your cards
-moving ahead - 4 damage 0 cost, doubled if you've played 5 or more cards this turn
-honing strike - 8 damage, a random attack in hand gets +4 damage
-cheapen - a random card in draw pile costs 0
-curtain - retain 1 card, get block next turn
-nail - damage, if exhausted gain temporary strength
-virtuous - reduce all debuffs by 1
-planned defense - innate 12 block, doubles if you have another innate card
-rattler - deal 9 damage, draw a card if it will attack
-swagger - become confused, draw a card
-tail flail - deal 6 splash damage, confuse a random card in hand
-workers on strike - 8 damage, draw a card, if it is a strike gain 2 energy
-crimson shield - add 14 block, +1 for each stack of strength
-
-pyroclast - 3 damage 5 times, get a burn
-remove a card, lose 30 hp (probably vincent)
-retribution - 14 damage, if fatal gain 5 armor
-look up - 9 damage, if first card played draw a card
-short break - get miracle, end your turn
-
-in compensation edgar gets 2 new miss-based cards
 
 12 vincent temp item
 [
 the 4 temp items not seen before
 add a random temp item, get a status in hand
-failed experiment - get 24 block, gain an item that has just wastes a slot
 ]
-1 ricochet-based card for vincent
 
-pruning shears - next time you skip, the cards you skipped will be removed forever
+lucky break - gain 5 currency and 1 control
+
+update the dictionary (1)
+
+update the tutorials (1,2)
+
+scene animations (1,2)
 
 
 
-update the dictionary
 
-update the ultraprism screen
 
-update the tutorials
 
-scene animations
 
+
+
+
+
+
+
+
+variants:
+MTG mana mode
+[
+    Green
+George - Combo
+Daiyousei - Elemental Form
+Edgar - Guns
+
+	Blue
+Prehextorica - Turns
+Donakho - Construct
+Airi - Charge
+
+	Black (Purple)
+Sakura - Bleed
+DD610 - Shock
+Azis - Orb
+
+	White (Yellow)
+Lira - HP
+Setsuna - Stance
+Shiru - Discards
+
+	Red
+Chip - RNG
+Certes - Shiv
+Vincent - Items
+]
