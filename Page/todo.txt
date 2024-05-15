@@ -18,6 +18,8 @@ add a random temp item, get a status in hand
 ]
 
 lucky break - gain 5 currency and 1 control
+suwa water - 4 damage twice, increases by 2 for every temporary status you have
+icy rose - damage, if target has freeze you get block
 
 update the dictionary (1)
 
@@ -25,12 +27,15 @@ update the tutorials (1,2)
 
 scene animations (1,2)
 
+these new bosses be looking kinda good tho
 
 
 
 
 
+ugly damage numbers
 
+reclassify disbanded cards
 
 
 

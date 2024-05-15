@@ -411,6 +411,12 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('64',8,0)
                 break
+                case 'Mundane Dust':
+                    this.layer.fill(0)
+                    this.layer.fill(0)
+                    this.layer.textSize(20)
+                    this.layer.text('?',0,0)
+                break
             }
             this.layer.pop()
         }

@@ -2902,6 +2902,24 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(200,255,255,fade)
             layer.quad(-6,0,0,-7.5,6,0,0,7.5)
         break
+        case 318:
+            layer.fill(150,0,0,fade)
+            layer.beginShape()
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6),cos(a/la*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+            layer.fill(255,255,50,fade)
+            layer.beginShape()
+            layer.vertex(0.5,-10)
+            layer.vertex(-4,1.5)
+            layer.vertex(0.5,1.5)
+            layer.vertex(-0.5,10)
+            layer.vertex(4,-1.5)
+            layer.vertex(-0.5,-1.5)
+            layer.endShape()
+            layer.rect(-6,0,3,3)
+        break
 
     }
     layer.pop()
@@ -5244,6 +5262,8 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.triangle(0,0,-6,4,-4,6)
             layer.triangle(0,0,6,-4,4,-6)
             layer.triangle(0,0,6,4,4,6)
+            layer.fill(200,50,50,fade)
+            layer.ellipse(0,0,3)
         break
         case 245:
             layer.fill(255,fade)
@@ -5798,6 +5818,24 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             }
             layer.vertex(0,0)
             layer.endShape(CLOSE)
+        break
+        case 301:
+            layer.fill(150,75,0,fade)
+            layer.triangle(0,0,-6,-4,-4,-6)
+            layer.triangle(0,0,-6,4,-4,6)
+            layer.triangle(0,0,6,-4,4,-6)
+            layer.triangle(0,0,6,4,4,6)
+            layer.fill(100,25,100,fade)
+            layer.ellipse(0,0,3)
+        break
+        case 302:
+            layer.fill(150,75,0,fade)
+            layer.triangle(0,0,-6,-4,-4,-6)
+            layer.triangle(0,0,-6,4,-4,6)
+            layer.triangle(0,0,6,-4,4,-6)
+            layer.triangle(0,0,6,4,4,6)
+            layer.fill(200,200,50,fade)
+            layer.ellipse(0,0,3)
         break
     }
     layer.fill(255,fade)

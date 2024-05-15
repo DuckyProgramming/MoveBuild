@@ -401,7 +401,7 @@ class itemManager{
             case 'battle':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.battle.attackManager.attacks.length<=0&&this.battle.attackManager.targetInfo[0]==0){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].name!='Mundane Dust'&&this.items[a][b].type>=2&&this.up[a]&&this.battle.attackManager.attacks.length<=0&&this.battle.attackManager.targetInfo[0]==0){
                             let type=this.items[a][b].type
                             this.total[a]--
                             this.items[a][b].type=1
@@ -415,7 +415,7 @@ class itemManager{
             case 'rewards':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].name!='Mundane Dust'&&this.items[a][b].type>=2&&this.up[a]){
                             let menu=this.items[a][b].menu
                             let type=this.items[a][b].type
                             this.total[a]--
@@ -432,7 +432,7 @@ class itemManager{
             case 'map':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]&&this.items[a][b].menu){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].position.x,this.items[a][b].position.y)<20*this.items[a][b].size&&this.items[a][b].name!='Mundane Dust'&&this.items[a][b].type>=2&&this.up[a]&&this.items[a][b].menu){
                             let type=this.items[a][b].type
                             this.total[a]--
                             this.items[a][b].type=1
@@ -446,7 +446,7 @@ class itemManager{
             case 'shop':
                 for(let a=0,la=this.items.length;a<la;a++){
                     for(let b=0,lb=this.items[a].length;b<lb;b++){
-                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].altPosition.x,this.items[a][b].altPosition.y)<20*this.items[a][b].size&&this.items[a][b].type>=2&&this.up[a]){
+                        if(dist(inputs.rel.x,inputs.rel.y,this.items[a][b].altPosition.x,this.items[a][b].altPosition.y)<20*this.items[a][b].size&&this.items[a][b].name!='Mundane Dust'&&this.items[a][b].type>=2&&this.up[a]){
                             this.battle.addCurrency(10,a)
                             this.total[a]--
                             this.items[a][b].type=1

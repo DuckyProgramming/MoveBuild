@@ -194,7 +194,7 @@ types={
         {name:'Purge X02',life:500,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
 
-        {name:'Rewriter',life:666,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[18,2,2]},{type:191,effect:[6]},{type:192,effect:[18]},{type:244,effect:[]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:244,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        {name:'Rewriter',life:666,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[18,2,2]},{type:191,effect:[6]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
         {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
@@ -481,7 +481,7 @@ types={
         {name:'Builder Exhaust',class:4},
         {name:'Burn',class:1},
         {name:'Self-Kill',class:5},
-        {name:'Randomap',class:4},
+        {name:'Randomap Mines',class:4},
         {name:'Godbeam',class:1},
         {name:'Freeze',class:1},
         {name:'Status Triplet',class:1},
@@ -538,6 +538,8 @@ types={
         {name:'2 Tile Triple Strike / Freeze',class:1},
         {name:'2 Tile Triple Strike / Shock',class:1},
         {name:'Third Damage Time',class:4},//300
+        {name:'Randomap - Delayed Death',class:4},
+        {name:'Randomap - Glitch',class:4},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -858,6 +860,7 @@ types={
         {name:'Attack Dust',id:108,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 1 Strength\nTemporary'},
         {name:'Defense Dust',id:109,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 1 Dexterity\nTemporary'},
         {name:'Mystery Box',id:110,rarity:-1,list:-1,menu:false,temp:true,description:'Add 1 Free Card\nto Your Hand\nTemporary'},
+        {name:'Mundane Dust',id:111,rarity:-1,list:-1,menu:false,temp:true,description:'Does Nothing'},
 
     ],event:[
         {

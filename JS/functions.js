@@ -514,7 +514,7 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 6: return effect==1?(block==effect?'1*Combo':`1(${tennify(block)})*Combo`):(block==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(block)})*Combo`)
 				case 14: return block==effect?tennify(effect):tennify(effect)+`(${tennify(block)})`
 				case 15: return effect==1?(block==effect?'1*':`1(${tennify(block)})*`):(block==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(block)})*C`)
-				case 16: return (block==effect?tennify(effect)+'X':tennify(effect)+`(${tennify(block)})X`)
+				case 16: return (block==effect?(effect==1?``:tennify(effect))+'X':tennify(effect)+`(${tennify(block)})X`)
 
 			}
 		case 4: case 9:
@@ -773,7 +773,7 @@ function intentDescription(attack,user,info){
 			case 241: return `Builder Exhausts ${info?attack.effect[0]:`?`}\nCard${attack.effect[0]!=1||info?`s`:``}\nBuilder Draws ${info?attack.effect[1]:`?`}\nCard${attack.effect[1]!=1||info?`s`:``}`
 			case 242: return `Apply ${info?attack.effect[0]:`?`} Burn\nRange 1-1`
 			case 243: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage to Self`
-			case 244: return `Randomly Edit the Map`
+			case 244: return `Randomly Edit the Map,\nAdding in Mines`
 			case 246: return `Apply ${info?attack.effect[0]:`?`} Freeze\nRange 1-1`
 			case 247: return `Apply ${info?attack.effect[0]:`?`} Burn, Freeze, or Shock\nRange 1-1`
 			case 248: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,0):`?`} Damage`
@@ -828,6 +828,8 @@ function intentDescription(attack,user,info){
 			case 298: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Freeze\nRange 1-2`
 			case 299: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Shock\nRange 1-2`
 			case 300: return `Take Third Damage\nFor ${info?attack.effect[0]:`?`} Turns`
+			case 301: return `Randomly Edit the Map,\nAdding in Delayed Death Tiles`
+			case 302: return `Randomly Edit the Map,\nAdding in Glitch Tiles`
 
 			default: return `INVALID`
 		}

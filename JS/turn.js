@@ -1513,22 +1513,8 @@ class turn{
                         this.battle.quickReinforceCorner(this.effect[1],this.effect[2],this.effect[0],3)
                     break
                     case 244:
-                        switch(this.battle.turn.total%3){
-                            case 0:
-                                for(let a=0,la=8;a<la;a++){
-                                    this.battle.tileManager.randomClearType(2)
-                                }
-                            break
-                            case 1:
-                                for(let a=0,la=4;a<la;a++){
-                                    this.battle.tileManager.randomClearType(26)
-                                }
-                            break
-                            case 2:
-                                for(let a=0,la=8;a<la;a++){
-                                    this.battle.tileManager.randomClearType(25)
-                                }
-                            break
+                        for(let a=0,la=8;a<la;a++){
+                            this.battle.tileManager.randomClearType(2)
                         }
                     break
                     case 249:
@@ -1536,6 +1522,16 @@ class turn{
                             if(this.battle.combatantManager.combatants[a].id!=this.userCombatant.id){
                                 this.battle.combatantManager.combatants[a].statusEffect('Weak',this.effect[0])
                             }
+                        }
+                    break
+                    case 301:
+                        for(let a=0,la=4;a<la;a++){
+                            this.battle.tileManager.randomClearType(26)
+                        }
+                    break
+                    case 302:
+                        for(let a=0,la=8;a<la;a++){
+                            this.battle.tileManager.randomClearType(25)
                         }
                     break
                 }
@@ -2174,7 +2170,7 @@ class turn{
                     break
                     case 5: case 39: case 40: case 41: case 42: case 51: case 52: case 56: case 57: case 74:
                     case 75: case 78: case 88: case 92: case 93: case 94: case 155: case 186: case 189: case 244:
-                    case 249:
+                    case 249: case 301: case 302:
                         if(variants.nobasicanim){
                             this.selfCall(2)
                             this.remove=true

@@ -711,6 +711,13 @@ class combatantManager{
     getPlayerCombatantIndex(id){
         return this.playerCombatantIndex[id]
     }
+    getCombatant(id){
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].id==id){
+                return this.combatants[a]
+            }
+        }
+    }
     proxyCombatants(){
         try{
             this.bank=[]

@@ -57,7 +57,7 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[31])],//exhaust discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[32])],//silver edition, no return
                     [new overlay(this.layer,this.battle,0,2,[33])],//polychrome edition, no return
-                    [new overlay(this.layer,this.battle,0,2,[34])],//bring in discard card as confused, no return, 50
+                    [new overlay(this.layer,this.battle,0,2,[34])],//bring in discard card as confused, no return,50
                     [new overlay(this.layer,this.battle,0,13,[])],//output stats and write name
                     [new overlay(this.layer,this.battle,0,2,[35])],//negative edition, no return
                     [new overlay(this.layer,this.battle,0,2,[36])],//duplicate common card 2 times, no return
@@ -66,13 +66,15 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[39])],//rewind discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[40])],//rewind discard card, double upgrade, no return
                     [new overlay(this.layer,this.battle,0,2,[41,0,0])],//scry
+                    [new overlay(this.layer,this.battle,0,2,[42])],//rewind discard card, cost down, no return
+                    [new overlay(this.layer,this.battle,0,14,[])],//select intent,60
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[51,41,42,38,24,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,16,4,15,5,32,7,18,50,30,56,57,58,33,52,53,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,54,11,27,39,43,55,45]
+                this.priority=[51,41,42,38,24,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,16,4,15,5,32,7,18,50,30,56,57,58,59,33,52,53,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,54,11,27,39,43,55,45,60]
             break
             case 1:
                 this.overlays.push(

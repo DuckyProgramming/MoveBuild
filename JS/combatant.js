@@ -137,7 +137,7 @@ class combatant{
             'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
             'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
             'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
-            'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down',
+            'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -171,7 +171,7 @@ class combatant{
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
                 0,0,2,2,0,1,5,0,0,1,//31
-                1,0,0,0,0,0,0,1,
+                1,0,0,0,0,0,0,1,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -205,7 +205,7 @@ class combatant{
                 2,2,0,0,0,2,0,0,2,2,//29
                 2,2,2,1,0,2,3,2,2,2,//30
                 1,0,1,1,2,2,2,2,2,2,//31
-                2,2,3,2,2,2,2,2,
+                2,2,3,2,2,2,2,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4809,6 +4809,9 @@ class combatant{
                 if(userCombatant.status.main[224]>0){
                     this.statusEffect('Regeneration',userCombatant.status.main[224])
                     userCombatant.status.main[224]=0
+                }
+                if(userCombatant.status.main[318]>0){
+                    this.statusEffect('Shock',userCombatant.status.main[318])
                 }
                 if(userCombatant.team==this.team&&this.team==0&&this.battle.modded(12)){
                     hit=false
