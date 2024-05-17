@@ -8,12 +8,14 @@ class particle{
         switch(this.type){
             case 0:
                 this.value=args[0]
-                this.direction=random(0,360)
-                this.speed=2.5
+                this.direction=random(120,240)
+                this.speed=random(2.5,5)
+                this.gravity=random(0.25,0.5)
                 this.fade=0
                 this.trigger=false
                 this.size=1
                 this.scale=1
+                this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
             break
             case 1: case 4: case 7: case 32: case 35:  case 49: case 50:
                 this.direction=args[0]
@@ -25,7 +27,7 @@ class particle{
                 this.scale=1
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 51: case 52: case 54: case 57:
+            case 51: case 52: case 54: case 57: case 60:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -180,6 +182,15 @@ class particle{
                     this.sets.push([0,0])
                 }
             break
+            case 61: case 62: case 63:
+                this.direction=args[0]
+                this.timer=args[1]
+                this.speed=20
+                this.fade=0
+                this.trigger=false
+                this.size=1
+                this.scale=1
+            break
         }
     }
     display(){
@@ -190,9 +201,11 @@ class particle{
             this.layer.noStroke()
             switch(this.type){
                 case 0:
-                    this.layer.fill(255,100,100,this.fade)
                     this.layer.textSize(20)
-                    this.layer.text('-'+tennify(this.value),0,0)
+                    this.layer.fill(255,this.fade)
+                    this.layer.stroke(0,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.text(tennify(this.value),0,0)
                 break
                 case 1:
                     this.layer.rotate(this.direction)
@@ -709,6 +722,64 @@ class particle{
                             map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
                     }
                 break
+                case 60:
+                    this.layer.rotate(this.time*-3)
+                    this.layer.fill(0,50,150,this.fade)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,5)
+                    for(let a=0,la=6;a<la;a++){
+                        this.layer.bezierVertex(lsin(a*60+10)*5,lcos(a*60+10)*5,lsin(a*60+20)*7,lcos(a*60+20)*7,lsin(a*60+30)*7,lcos(a*60+30)*7)
+                        this.layer.bezierVertex(lsin(a*60+40)*7,lcos(a*60+40)*7,lsin(a*60+50)*5,lcos(a*60+50)*5,lsin(a*60+60)*5,lcos(a*60+60)*5)
+                    }
+                    this.layer.endShape()
+                break
+                case 61:
+                    this.layer.rotate(this.time*-5)
+                    this.layer.fill(255,this.fade)
+                    this.layer.arc(0,0,20,20,-180,0)
+                    this.layer.fill(225,50,50,this.fade)
+                    this.layer.arc(0,0,20,20,0,180)
+                    this.layer.ellipse(5,0,10)
+                    this.layer.fill(255,this.fade)
+                    this.layer.ellipse(-5,0,10)
+                    this.layer.ellipse(5,0,3)
+                    this.layer.fill(225,50,50,this.fade)
+                    this.layer.ellipse(-5,0,3)
+                break
+                case 62:
+                    this.layer.rotate(this.time*-5)
+                    this.layer.fill(255,this.fade)
+                    this.layer.arc(0,0,20,20,-180,0)
+                    for(let a=0,la=12;a<la;a++){
+                        let merge=mergeColor([55,90,120],[220,230,125],a/(la-1))
+                        this.layer.fill(merge[0],merge[1],merge[2],this.fade)
+                        this.layer.arc(0,0,20,20,165-a*15,180-a*15)
+                    }
+                    this.layer.fill(220,230,125,this.fade)
+                    this.layer.arc(5,0,10,10,-180,0)
+                    this.layer.fill(255,this.fade)
+                    this.layer.ellipse(-5,0,10)
+                    this.layer.ellipse(5,0,3)
+                    this.layer.fill(55,90,120,this.fade)
+                    this.layer.ellipse(-5,0,3)
+                break
+                case 63:
+                    this.layer.rotate(this.time*-5)
+                    this.layer.fill(255,this.fade)
+                    this.layer.arc(0,0,20,20,-180,0)
+                    for(let a=0,la=12;a<la;a++){
+                        let merge=mergeColor([60,110,60],[240,115,200],a/(la-1))
+                        this.layer.fill(merge[0],merge[1],merge[2],this.fade)
+                        this.layer.arc(0,0,20,20,165-a*15,180-a*15)
+                    }
+                    this.layer.fill(240,115,200,this.fade)
+                    this.layer.arc(5,0,10,10,-180,0)
+                    this.layer.fill(255,this.fade)
+                    this.layer.ellipse(-5,0,10)
+                    this.layer.ellipse(5,0,3)
+                    this.layer.fill(60,110,60,this.fade)
+                    this.layer.ellipse(-5,0,3)
+                break
 
             }
             this.layer.pop()
@@ -718,15 +789,16 @@ class particle{
         this.time++
         switch(this.type){
             case 0: case 41:
-                this.position.x+=lsin(this.direction)*this.speed
-                this.position.y-=lcos(this.direction)*this.speed
+                this.position.x+=this.velocity.x/game.animRate
+                this.position.y+=this.velocity.y/game.animRate
+                this.velocity.y+=this.gravity/game.animRate
                 if(!this.trigger){
-                    this.fade+=0.2
-                    if(this.fade>=2){
+                    this.fade+=0.2/game.animRate
+                    if(this.fade>=3){
                         this.trigger=true
                     }
                 }else{
-                    this.fade-=0.2
+                    this.fade-=0.2/game.animRate
                     if(this.fade<=0){
                         this.remove=true
                     }
@@ -750,7 +822,7 @@ class particle{
                 }
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 46: case 51: case 52: case 54: case 56: case 57:
+            case 46: case 51: case 52: case 54: case 56: case 57: case 60:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){
@@ -810,6 +882,21 @@ class particle{
                     this.remove=true
                 }
             break
+            case 41:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=lcos(this.direction)*this.speed
+                if(!this.trigger){
+                    this.fade+=0.2
+                    if(this.fade>=2){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.2
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
+                }
+            break
             case 53:
                 this.fade-=1/45
                 if(this.fade<=0){
@@ -848,6 +935,22 @@ class particle{
                 for(let a=0,la=this.ticks;a<la;a++){
                     this.sets[a][0]+=floor(random(0,2))*4-2
                     this.sets[a][1]+=floor(random(0,2))*4-2
+                }
+            break
+            case 61: case 62: case 63:
+                this.position.x+=lsin(this.direction)*this.speed
+                this.position.y-=(lcos(this.direction)-0.2)*this.speed
+                this.speed-=0.7
+                if(!this.trigger){
+                    this.fade+=0.2
+                    if(this.fade>=6){
+                        this.trigger=true
+                    }
+                }else{
+                    this.fade-=0.2
+                    if(this.fade<=0){
+                        this.remove=true
+                    }
                 }
             break
         }

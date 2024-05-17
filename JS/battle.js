@@ -570,11 +570,11 @@ class battle{
                     }
                 }
                 if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
+                    this.cardManagers[this.turn.main].allEffect(3,47)
                     this.cardManagers[this.turn.main].turnDraw(this.turn.total)
                     if(this.turn.total==1){
                         this.cardManagers[this.turn.main].allEffect(0,48)
                     }
-                    this.cardManagers[this.turn.main].allEffect(3,47)
                 }else if(variants.witch){
                     this.cardManagers[this.turn.main].allEffect(3,42)
                 }
@@ -648,11 +648,11 @@ class battle{
                 }
             }
             if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
+                this.cardManagers[this.turn.main].allEffect(3,47)
                 this.cardManagers[this.turn.main].turnDraw(this.turn.total)
                 if(this.turn.total==1){
                     this.cardManagers[this.turn.main].allEffect(0,48)
                 }
-                this.cardManagers[this.turn.main].allEffect(3,47)
             }else if(variants.witch){
                 this.cardManagers[this.turn.main].allEffect(3,42)
             }
@@ -1258,7 +1258,6 @@ class battle{
             case 'defeat':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.graphics.combatants[1][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].time++
                     this.graphics.combatants[1][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 for(let a=0,la=this.colorDetail.length;a<la;a++){

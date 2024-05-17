@@ -27,7 +27,7 @@ function setup(){
     //transition.trigger=false
     
         /*stage.scene='graphic'
-        graphics.test=0
+        graphics.test=7
         graphics.staticBackground.clear()
         setupBackground(graphics.test,graphics.staticBackground)*/
     

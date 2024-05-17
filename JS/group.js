@@ -1192,7 +1192,7 @@ class group{
                     }
                 break
                 case 47:
-                    if(this.cards[a].attack==1305){
+                    if(this.cards[a].attack==1305||this.cards[a].attack==2827||this.cards[a].attack==2828||this.cards[a].attack==2829||this.cards[a].attack==2830){
                         this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,2)
                         a--
                         la--
@@ -1991,6 +1991,14 @@ class group{
             break
             case 2779:
                 userCombatant.statusEffect('Attack Shock Turn',card.effect[0])
+            break
+            case 2821:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.itemManager.addItem(findName('Mundane Dust',types.item),this.player)
+                }
+            break
+            case 2822:
+                userCombatant.vision+=card.effect[0]
             break
         }
     }
@@ -2925,32 +2933,6 @@ class group{
                             this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,this.cards[a].color)
                         }
                     }
-                    if(this.cards[a].attack==1146){
-                        this.cards[a].effect[0]+=this.cards[a].effect[1]
-                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
-                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
-                                this.battle.cardManagers[this.player].deck.cards[b].effect[0]+=this.cards[a].effect[1]
-                            }
-                        }
-                    }else if(this.cards[a].attack==2235){
-                        this.cards[a].effect[0]+=this.cards[a].effect[2]
-                        this.cards[a].effect[1]+=this.cards[a].effect[2]
-                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
-                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
-                                this.battle.cardManagers[this.player].deck.cards[b].effect[0]+=this.cards[a].effect[2]
-                                this.battle.cardManagers[this.player].deck.cards[b].effect[1]+=this.cards[a].effect[2]
-                            }
-                        }
-                    }else if(this.cards[a].attack==2484){
-                        this.cards[a].cost+=this.cards[a].effect[1]
-                        this.cards[a].base.cost+=this.cards[a].effect[1]
-                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
-                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
-                                this.battle.cardManagers[this.player].deck.cards[b].cost+=this.cards[a].effect[1]
-                                this.battle.cardManagers[this.player].deck.cards[b].base.cost+=this.cards[a].effect[1]
-                            }
-                        }
-                    }
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class,this.cards[a].name,this.cards[a].basic))
                     this.battle.cardManagers[this.player].greenDiff++
@@ -3094,32 +3076,6 @@ class group{
                                 this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
                             }
                         }
-                        if(this.cards[b].attack==1146){
-                            this.cards[b].effect[0]+=this.cards[b].effect[1]
-                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                    this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[1]
-                                }
-                            }
-                        }else if(this.cards[b].attack==2235){
-                            this.cards[b].effect[0]+=this.cards[b].effect[2]
-                            this.cards[b].effect[1]+=this.cards[b].effect[2]
-                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                    this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[2]
-                                    this.battle.cardManagers[this.player].deck.cards[c].effect[1]+=this.cards[b].effect[2]
-                                }
-                            }
-                        }else if(this.cards[b].attack==2484){
-                            this.cards[b].cost+=this.cards[b].effect[1]
-                            this.cards[b].base.cost+=this.cards[b].effect[1]
-                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                    this.battle.cardManagers[this.player].deck.cards[c].cost+=this.cards[b].effect[1]
-                                    this.battle.cardManagers[this.player].deck.cards[c].base.cost+=this.cards[b].effect[1]
-                                }
-                            }
-                        }
                         this.cards[b].played()
                         this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
                         this.battle.cardManagers[this.player].greenDiff++
@@ -3149,7 +3105,9 @@ class group{
                 }
             break
             case 3:
-                this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
+                if(this.battle.combatantManager.combatants[a].id!=this.battle.combatantManager.combatants[this.battle.attackManager.user].id){
+                    this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction=round(atan2(this.battle.combatantManager.combatants[a].relativePosition.x-this.battle.attackManager.relativePosition.x,this.battle.combatantManager.combatants[a].relativePosition.y-this.battle.attackManager.relativePosition.y)/60-1/2)*60+30
+                }
                 if(!((this.battle.combatantManager.combatants[a].spec.includes(9)||this.battle.modded(86)&&this.battle.turn.total<=2)&&(abs(this.battle.combatantManager.combatants[a].goal.anim.direction+180-this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction)<30||abs(this.battle.combatantManager.combatants[a].goal.anim.direction-180-this.battle.combatantManager.combatants[this.battle.attackManager.user].goal.anim.direction)<30))){
                     if(this.battle.attackManager.targetInfo[0]==13||this.battle.attackManager.targetInfo[0]==27||this.battle.attackManager.targetInfo[0]==37||this.battle.attackManager.targetInfo[0]==38||this.battle.attackManager.targetInfo[0]==39||this.battle.attackManager.targetInfo[0]==41||this.battle.attackManager.targetInfo[0]==42||this.battle.attackManager.targetInfo[0]==43){
                         this.battle.attackManager.targetDistance=max(distTargetDiagonalCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager),distTargetCombatant(0,this.battle.combatantManager.combatants[a],this.battle.attackManager))
@@ -3263,32 +3221,6 @@ class group{
                                     this.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
                                     this.battle.cardManagers[this.player].deck.add(findName('Card\nSleeve',types.card),this.cards[b].level,this.cards[b].color)
                                     this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[b].level,this.cards[b].color)
-                                }
-                            }
-                            if(this.cards[b].attack==1146){
-                                this.cards[b].effect[0]+=this.cards[b].effect[1]
-                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                        this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[1]
-                                    }
-                                }
-                            }else if(this.cards[b].attack==2235){
-                                this.cards[b].effect[0]+=this.cards[b].effect[2]
-                                this.cards[b].effect[1]+=this.cards[b].effect[2]
-                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                        this.battle.cardManagers[this.player].deck.cards[c].effect[0]+=this.cards[b].effect[2]
-                                        this.battle.cardManagers[this.player].deck.cards[c].effect[1]+=this.cards[b].effect[2]
-                                    }
-                                }
-                            }else if(this.cards[b].attack==2484){
-                                this.cards[b].cost+=this.cards[b].effect[1]
-                                this.cards[b].base.cost+=this.cards[b].effect[1]
-                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                        this.battle.cardManagers[this.player].deck.card[c].cost+=this.cards[b].effect[1]
-                                        this.battle.cardManagers[this.player].deck.base.card[c].cost+=this.cards[b].effect[1]
-                                    }
                                 }
                             }
                             this.cards[b].played()

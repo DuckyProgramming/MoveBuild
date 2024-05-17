@@ -177,7 +177,7 @@ types={
         {name:'Slow King',life:135,behavior:6,spec:[2],move:{type:0,speed:1},attack:[{type:56,effect:[6]},{type:38,effect:[18]},{type:59,effect:[7]},{type:60,effect:[10,1,'Tired']},{type:57,effect:[]}],description:`King of nothing`},
         {name:'Donu',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:26,effect:[1]},{type:59,effect:[5]}],description:`Not so yummy`},
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
-        {name:'Hexaghost Core',life:128,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
+        {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
@@ -189,7 +189,7 @@ types={
         
         {name:'Capitalist',life:360,behavior:8,spec:[1,2],move:{type:2,speed:1},attack:[{type:76,effect:[5,1,'Concussion']},{type:12,effect:[12]},{type:75,effect:[]}],description:`Buys the boys`},
         {name:'Personnel Carrier',life:450,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:117,effect:[36]},{type:118,effect:[7]},{type:117,effect:[30]},{type:119,effect:[16,1]},{type:117,effect:[24]},{type:39,effect:[2,'Management Robot']}],description:`Drives over you`},
-        {name:'Chief Engineering Officer',life:480,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:144,effect:[10,2]},{type:145,effect:[8,2,'Electrocuted']},{type:146,effect:[16]},{type:147,effect:[6]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
+        {name:'Chief Engineering Officer',life:480,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:144,effect:[19,2]},{type:145,effect:[14,2,'Electrocuted']},{type:146,effect:[24]},{type:147,effect:[9]},{type:39,effect:[1,'Management Drone']}],description:`Getting his hands dirty`},
         {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
         {name:'Purge X02',life:500,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},

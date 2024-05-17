@@ -137,7 +137,8 @@ class combatant{
             'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
             'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
             'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
-            'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn',
+            'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
+            'Double Damage Without Power','Damage Taken Up to Nearest 5',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -171,7 +172,8 @@ class combatant{
                 0,2,2,2,0,2,0,2,0,1,//29
                 0,0,0,0,0,0,0,1,0,1,//30
                 0,0,2,2,0,1,5,0,0,1,//31
-                1,0,0,0,0,0,0,1,2,
+                1,0,0,0,0,0,0,1,2,1,//32
+                0,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -205,7 +207,8 @@ class combatant{
                 2,2,0,0,0,2,0,0,2,2,//29
                 2,2,2,1,0,2,3,2,2,2,//30
                 1,0,1,1,2,2,2,2,2,2,//31
-                2,2,3,2,2,2,2,2,0,
+                2,2,3,2,2,2,2,2,0,0,//32
+                2,1,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -972,11 +975,11 @@ class combatant{
                 this.anim={direction:direction,mouth:{x:8,y:4,open:0},
                     eye:[0,0],eyeStyle:[0,0],
                     legs:[
-                        {top:9,bottom:0,length:{top:15.5,bottom:15.5}},
-                        {top:9,bottom:0,length:{top:15.5,bottom:15.5}}
+                        {top:9,bottom:0,length:{top:15,bottom:15}},
+                        {top:9,bottom:0,length:{top:15,bottom:15}}
                     ],arms:[
-                        {top:27,bottom:9,length:{top:15.5,bottom:15.5}},
-                        {top:27,bottom:9,length:{top:15.5,bottom:15.5}}
+                        {top:27,bottom:9,length:{top:15,bottom:15}},
+                        {top:27,bottom:9,length:{top:15,bottom:15}}
                     ]}
 
                 this.spin={
@@ -4211,8 +4214,13 @@ class combatant{
         if(this.status.main[293]>0&&cardClass==4){
             this.takeDamage(this.status.main[293],-1)
         }
-        if(this.name=='Daiyousei'&&this.battle.turn.main==this.id){
-            this.vision++
+        if(this.battle.turn.main==this.id){
+            if(this.name=='Daiyousei'){
+                this.vision++
+            }
+            if(this.status.main[320]>0&&cardClass==4){
+                this.status.main[320]--
+            }
         }
     }
     autoAim(){
@@ -4766,6 +4774,9 @@ class combatant{
                     if(userCombatant.status.main[301]>0){
                         damage*=2
                     }
+                    if(userCombatant.status.main[320]>0){
+                        damage*=2
+                    }
                     if(userCombatant.status.main[215]>0){
                         damage=0
                     }
@@ -4897,6 +4908,9 @@ class combatant{
                 if(this.status.main[243]>0){
                     damage*=0.4
                 }
+                if(this.status.main[319]>0){
+                    damage*=0.25
+                }
                 if(this.status.main[165]>0){
                     damage+=this.status.main[165]
                     this.status.main[165]--
@@ -4958,6 +4972,9 @@ class combatant{
                             damage*=3
                         }
                     }
+                }
+                if(this.status.main[321]>0){
+                    damage=ceil(damage/5)*5
                 }
             }
             if(this.status.main[48]>0){

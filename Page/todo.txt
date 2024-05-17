@@ -1,41 +1,66 @@
-daiyousei:
-2 movements
-
-6 common cards
-3 uncommon cards
-(2 cards based off drawn 2+ times)
-another card that triggers on rewind
-
-tap wastes
-
-scrap cards for both
-4 cards for the 3 fairies of light?
 
 12 vincent temp item
 [
 the 4 temp items not seen before
-add a random temp item, get a status in hand
+
+rare cards
 ]
 
-lucky break - gain 5 currency and 1 control
-suwa water - 4 damage twice, increases by 2 for every temporary status you have
-icy rose - damage, if target has freeze you get block
+
+
+
+
+
+
+
+
+
 
 update the dictionary (1)
 
 update the tutorials (1,2)
 
-scene animations (1,2)
-
-these new bosses be looking kinda good tho
+scene animations (1)
 
 
 
 
 
-ugly damage numbers
 
-reclassify disbanded cards
+[
+	world 1
+	rainbow meteor
+	creates bullet hell
+]
+[
+	world 2
+	crusader
+	alternates every 4 turns between attack and defense
+	starts offense mode by charging at you and then constantly follows you around
+	starts defense mode by running away as far as possible
+]
+[
+	world 3
+	daughter of heaven
+	heals 3 whenever gets hit
+	buffs every 100 damage taken
+]
+[
+	final boss?
+	reverser of sins
+	adds a new sin every few turns until all of them are active
+	[
+		pride - adds 5 prides to your deck
+		wrath - attacks twice per turn
+		gluttony - lose an energy per turn
+		greed - deletes all your non-boss relics
+		envy - you take 1 damage per card you play
+		sloth - gives you 3 weak, 3 vulnerable, or 3 frail
+		lust - spawning
+	]
+]
+
+
 
 
 
@@ -71,3 +96,19 @@ Chip - RNG
 Certes - Shiv
 Vincent - Items
 ]
+
+Green-
+Blue-
+Black-
+White-
+Red-
+Green+Blue-
+Green+Black-
+Green+White-
+Green+Red-
+Blue+Black-
+Blue+White-
+Blue+Red-
+Black+White-
+Black+Red-
+White+Red-
