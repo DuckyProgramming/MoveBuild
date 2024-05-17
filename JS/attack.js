@@ -151,7 +151,7 @@ class attack{
             case 2700: case 2701: case 2702: case 2705: case 2709: case 2711: case 2712: case 2713: case 2716: case 2719: case 2722: case 2723: case 2725: case 2728: case 2729: case 2730: case 2733: case 2734: case 2737: case 2739:
             case 2746: case 2753: case 2754: case 2755: case 2757: case 2765: case 2766: case 2770: case 2771: case 2773: case 2775: case 2776: case 2783: case 2784: case 2785: case 2786: case 2787: case 2791: case 2794: case 2798:
             case 2800: case 2803: case 2806: case 2808: case 2810: case 2811: case 2813: case 2815: case 2816: case 2819: case 2823: case 2824: case 2825: case 2828: case 2829: case 2830: case 2834: case 2836: case 2838: case 2839:
-            case 2841: case 2842:
+            case 2841: case 2842: case 2847: case 2854: case 2855: case 2856: case 2857: case 2858: case 2859: case 2860: case 2863: case 2864:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -185,7 +185,7 @@ class attack{
             case 2439: case 2440: case 2456: case 2459: case 2475: case 2545: case 2589: case 2600: case 2602: case 2603:
             case 2604: case 2608: case 2637: case 2652: case 2658: case 2742: case 2743: case 2744: case 2745: case 2747:
             case 2748: case 2749: case 2750: case 2751: case 2752: case 2758: case 2759: case 2760: case 2761: case 2762:
-            case 2832:
+            case 2832: case 2850: case 2866:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1671,6 +1671,12 @@ class attack{
                     break
                     case 2839:
                         this.targetCombatant.takeDamage(this.effect[0]*this.energy,this.user,this.energy>=4?2:9)
+                    break
+                    case 2863:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.battle.itemManager.total[this.player]==this.battle.itemManager.items[this.player].length-1?2:1),this.user)
+                    break
+                    case 2864:
+                        this.targetCombatant.takeDamage(this.effect[0]*(this.battle.itemManager.total[this.player]==0?2:1),this.user)
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -3280,6 +3286,11 @@ class attack{
                         this.battle.overlayManager.overlays[56][this.player].active=true
                         this.battle.overlayManager.overlays[56][this.player].activate()
                     break
+                    case 2860:
+                        if(this.targetCombatant.blocked<=1){
+                            this.battle.itemManager.tempEffectiveness[this.player]=max(2,this.battle.itemManager.tempEffectiveness[this.player])
+                        }
+                    break
 
                 }
                 //mark 1
@@ -3542,6 +3553,9 @@ class attack{
                     break
                     case 2835:
                         this.userCombatant.addBlock(this.effect[0]*(this.drawn>=2?2:1))
+                    break
+                    case 2865:
+                        this.userCombatant.addBlock(this.effect[0]+this.effect[1]*this.battle.itemManager.total[this.player])
                     break
                     default:
                         this.userCombatant.addBlock(this.effect[0])
@@ -4744,7 +4758,7 @@ class attack{
                     break
                     case 2600:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Teal Leaf','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2602:
@@ -4820,6 +4834,16 @@ class attack{
                     break
                     case 2832:
                         if(this.drawn>=2){
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                        }
+                    break
+                    case 2850:
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Salad',types.item),this.player)
+                        }
+                    break
+                    case 2866:
+                        if(this.battle.itemManager.total[this.player]>=2){
                             this.battle.energy.main[this.player]+=this.effect[1]
                         }
                     break
@@ -7262,6 +7286,23 @@ class attack{
                         this.battle.overlayManager.overlays[6][this.player].active=true
                         this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
                         this.userCombatant.life-=this.effect[0]
+                    break
+                    case 2845:
+                        this.userManager.draw(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Caffeine Pill',types.item),this.player)
+                        }
+                    break
+                    case 2849:
+                        this.userManager.hand.exhaust(this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Mystery Box',types.item),this.player)
+                        }
+                    break
+                    case 2867:
+                        let marker2867=constrain(this.battle.itemManager.total[this.player],0,this.effect[0])
+                        this.userManager.drawPrice(marker2867,0)
+                        this.userManager.draw(this.effect[0]-marker2867)
                     break
 
                 }
@@ -10390,12 +10431,12 @@ class attack{
                     break
                     case 2599:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Teal Leaf','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2601:
                         for(let a=0,la=this.battle.itemManager.items[this.player].length;a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Teal Leaf','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2645:
@@ -10436,9 +10477,36 @@ class attack{
                     break
                     case 2843:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Teal Leaf','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                         this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                    break
+                    case 2847:
+                        this.battle.addCurrency(this.effect[0],this.player)
+                        this.targetCombatant.statusEffect('Strength',this.effect[1])
+                    break
+                    case 2848:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Attack Dust',types.item),this.player)
+                        }
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName('Defense Dust',types.item),this.player)
+                        }
+                    break
+                    case 2854: case 2855:
+                        this.targetCombatant.statusEffect('Damage Taken Up to 10',999)
+                    break
+                    case 2856: case 2857:
+                        this.targetCombatant.statusEffect('10 Damage Taken Damage Down Convert',999)
+                    break
+                    case 2858: case 2859:
+                        this.targetCombatant.statusEffect('20 Damage Taken Random Debuff',999)
+                    break
+                    case 2861:
+                        this.userCombatant.statusEffect('Double Damage',this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                        }
                     break
 
                 }
@@ -11484,6 +11552,9 @@ class attack{
                     case 2840:
                         this.userCombatant.statusEffect('Double Damage Without Power',1)
                     break
+                    case 2862:
+                        this.userCombatant.statusEffect('Taken Damage Repeat',1)
+                    break
 
                 }
             break
@@ -11739,6 +11810,21 @@ class attack{
                     case 2844:
                         this.battle.itemManager.tempEffectiveness[this.player]=max(2,this.battle.itemManager.tempEffectiveness[this.player])
                         this.userCombatant.life-=this.effect[0]
+                    break
+                    case 2846:
+                        this.userCombatant.statusEffect('Item Use Energy',this.effect[0])
+                    break
+                    case 2851:
+                        this.battle.itemManager.activateItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                    break
+                    case 2852:
+                        this.userCombatant.statusEffect('Item Use Draw',this.effect[0])
+                    break
+                    case 2853:
+                        this.battle.itemManager.combatEffectiveness[this.player]=max(2,this.battle.itemManager.combatEffectiveness[this.player])
+                    break
+                    case 2868:
+                        this.userCombatant.statusEffect('Item Per Turn',this.effect[0])
                     break
                 }
             break

@@ -385,7 +385,7 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('10',0,0)
                 break
-                case 'Tea Leaf':
+                case 'Caffeine Pill':
                     displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
@@ -405,11 +405,11 @@ class item{
                 break
                 case 'Mystery Box':
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
-                    displaySymbol(this.layer,-8,0,18,0,0.6,this.fade)
+                    displaySymbol(this.layer,-8,0,64,0,0.3,this.fade)
                     displaySymbol(this.layer,8,0,9,0,1,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
-                    this.layer.text('64',8,0)
+                    this.layer.text('1',8,0)
                 break
                 case 'Mundane Dust':
                     this.layer.fill(0)

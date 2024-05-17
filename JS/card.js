@@ -3123,11 +3123,35 @@ class card{
             case 2837: string+=`${effect[0]>0?`Deal ${this.calculateEffect(effect[0],0)} Damage\n`:`\n`}Push 1 Tile\nElemental Form:\nIn All Directions`; break
             case 2838: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nGain ${effect[1]} Energy\nEnergy Increases by ${effect[2]}`; break
             case 2839: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nIf X is 4 or More,\nIgnore Block`; break
-            case 2840: string+=`Deal Double Damage\nUntil You\nPlay a Power`; break
+            case 2840: string+=`Deal Double Damage\nUntil You Play a Power`; break
             case 2841: string+=`Damage Dealt to\nTarget is Rounded Up\nto the Nearest 5`; break
             case 2842: string+=`Damage Dealt to\nTarget is Rounded Up\nto the Nearest 5\nTargets Any Enemy`; break
             case 2843: string+=`Gain ${effect[0]} Random\nTemporary Item${effect[0]!=1?`s`:``}\nAdd a Dazed\nto Draw`; break
             case 2844: string+=`Next Item Used\nHas Double Effect\nLose ${effect[0]} Health`; break
+            case 2845: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nGain ${effect[1]} Caffeine\nPill Item${effect[1]!=1?`s`:``}`; break
+            case 2846: string+=`All Items Used\nThis Combat\nGive ${effect[0]} Energy`; break
+            case 2847: string+=`Gain ${effect[0]} Currency\nApply ${effect[1]} Strength`; break
+            case 2848: string+=`Gain ${effect[0]} Attack\nDust Item${effect[0]!=1?`s`:``}\nGain ${effect[1]} Defense\nDust Item${effect[1]!=1?`s`:``}`; break
+            case 2849: string+=`Exhaust ${effect[0]} Card${effect[0]!=1?`s`:``}\nGain ${effect[1]} Mystery\nBox Item${effect[1]!=1?`s`:``}`; break
+            case 2850: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Salad Item${effect[1]!=1?`s`:``}`; break
+            case 2851: string+=`Gain a Random\nTemporary Item\nUse it Immediately`; break
+            case 2852: string+=`All Items Used\nThis Combat\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            case 2853: string+=`Items This Combat\nHave Double Effect`; break
+            case 2854: string+=`Damage Dealt to\nTarget Cannot Be\nBelow 10`; break
+            case 2855: string+=`Damage Dealt to\nTarget Cannot Be\nBelow 10\nTargets Any Enemy`; break
+            case 2856: string+=`Every 10 Damage Dealt\nto Target Converts to\nTemporary Damage Down`; break
+            case 2857: string+=`Every 10 Damage Dealt\nto Target Converts to\nTemporary Damage Down\nTargets Any Enemy`; break
+            case 2858: string+=`Damage Dealt to\nTarget Above 20\nApplies a Random Debuff`; break
+            case 2859: string+=`Damage Dealt to\nTarget Above 20\nApplies a Random Debuff\nTargets Any Enemy`; break
+            case 2860: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf Blocked,\nNext Item Used\nHas Double Effect`; break
+            case 2861: string+=`Next ${effect[0]!=1?effect[0]+` `:``}Attack${effect[0]!=1?`s`:``}\nDeal${effect[0]==1?`s`:``} Double Damage\nGain ${effect[0]} Random\nTemporary Item${effect[0]!=1?`s`:``}`; break
+            case 2862: string+=`All Damage Taken\nis Repeated on\na Random Enemy`; break
+            case 2863: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You Have\nFull Item Slots`; break
+            case 2864: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDeals Double Damage\nIf You Have No Items`; break
+            case 2865: string+=`Add ${this.calculateEffect(effect[0],1)}+${this.calculateEffect(effect[1],16)}\nBlock\nWhere X = Items`; break
+            case 2866: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nGain ${effect[1]} Energy\nIf You Have\n2 or More Items`; break
+            case 2867: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nMake X of Them Free\nWhere X = Items`; break
+            case 2868: string+=`Gain ${effect[0]} Random\nTemporary Item${effect[0]!=1?`s`:``}\nEvery Turn`; break
 
 
 

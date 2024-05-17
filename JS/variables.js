@@ -852,11 +852,12 @@ types={
 
         {name:'Starflame Prototype',id:101,rarity:-1,list:-1,menu:false,temp:false,description:'Gain 5 Strength,\nShuffle in 5 Burn'},
         {name:'Cola',id:102,rarity:-1,list:-1,menu:true,temp:false,description:'Heal 15 HP\nCan No Longer Gain Block'},
+
         {name:'Salad',id:103,rarity:-1,list:-1,menu:true,temp:true,description:'Heal 3 HP\nTemporary'},
         {name:'Energy Drink',id:104,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 2 Energy\nTemporary'},
         {name:'Flaming Match',id:105,rarity:-1,list:-1,menu:false,temp:true,description:'Deal 5 Damage\nRange 1-3'},
         {name:'Molten Metal',id:106,rarity:-1,list:-1,menu:false,temp:true,description:'Add 10 Block\nTemporary'},
-        {name:'Tea Leaf',id:107,rarity:-1,list:-1,menu:false,temp:true,description:'Draw 2 Cards\nTemporary'},
+        {name:'Caffeine Pill',id:107,rarity:-1,list:-1,menu:false,temp:true,description:'Draw 2 Cards\nTemporary'},
         {name:'Attack Dust',id:108,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 1 Strength\nTemporary'},
         {name:'Defense Dust',id:109,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 1 Dexterity\nTemporary'},
         {name:'Mystery Box',id:110,rarity:-1,list:-1,menu:false,temp:true,description:'Add 1 Free Card\nto Your Hand\nTemporary'},
@@ -6038,6 +6039,10 @@ When you end you turn without Awakening, exit Elemental Form. Degrades by 1 per 
 Stacks degrade by half, rounded up, each turn.`,
         },{name:'Rewind',desc:
 `Send a card back to your draw pile. By default, shuffles it in.`,
+        },{name:'Scry',desc:
+`Look at the top X cards of your draw pile. You may choose to discard any number of them.`,
+        },{name:'Temporary Item',desc:
+`Item that is removed at the end of combat.`,
         },
     ],ascend:[
         {name:'Base',desc:'No Changes'},//0

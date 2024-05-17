@@ -2680,6 +2680,24 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 						{top:84,bottom:72,lock:0}
 					]
 				break
+				case 'Vincent':
+					p1.anim.legs=[
+						{top:6,bottom:9,length:{top:17,bottom:17}},
+						{top:12,bottom:18,length:{top:17,bottom:17}}
+					]
+                    p1.anim.arms=[
+						{top:24,bottom:-18,length:{top:17,bottom:17}},
+						{top:12,bottom:36,length:{top:17,bottom:17}}
+					]
+                	p1.spin.legs=[
+						{top:-75,bottom:-105},
+						{top:75,bottom:90}
+					]
+					p1.spin.arms=[
+						{top:-96,bottom:-72,lock:0},
+						{top:84,bottom:48,lock:0}
+					]
+				break
 				case 'Daiyousei':
 					p1.position.y-=60
 					p1.anim.mouth.y++
@@ -2858,6 +2876,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.parts.arms[0].top.y-=5
 					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:120,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-150,lock:0},{top:90,bottom:120,lock:0}]
+				break
+				case 'Vincent':
+					p1.anim.direction+=10
+					p1.position.y+=15
+					p1.anim.legs=[
+						{top:6,bottom:-12,length:{top:17,bottom:17}},
+						{top:15,bottom:9,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:27,bottom:12,length:{top:17,bottom:17}},
+						{top:27-a*6,bottom:12+a*24,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-90,bottom:-90,lock:0},{top:120,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-135,bottom:-135,lock:0},{top:105,bottom:105,lock:0}]
 				break
 				case 'Daiyousei':
 					p1.parts.mouth+=2.5
@@ -3063,6 +3095,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-45,bottom:-60,lock:0},{top:30,bottom:90,lock:0}]
 					p1.spin.arms=[{top:-84-a*3,bottom:-150-a*24,lock:0},{top:84+a*3,bottom:120+a*12,lock:0}]
 				break
+				case 'Vincent':
+					p1.position.y-=35
+					p1.parts.eyeLevel-=0.5
+					p1.anim.legs=[
+						{top:12,bottom:9-a*3,length:{top:17,bottom:17}},
+						{top:12,bottom:9-a*3,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:21,bottom:24,length:{top:17,bottom:17}},
+						{top:21,bottom:24,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-75,bottom:-90,lock:0},{top:75,bottom:90,lock:0}]
+					p1.spin.arms=[{top:-84-a*3,bottom:-150-a*24,lock:0},{top:84+a*3,bottom:120+a*12,lock:0}]
+				break
 				case 'Daiyousei':
 					p1.anim.legs=[
 						{top:9,bottom:72,length:{top:15,bottom:15}},
@@ -3076,7 +3122,7 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.arms=[{top:-96,bottom:-30,lock:0},{top:96,bottom:18,lock:0}]
 				break
 			}
-			if(p1.name!='DD-610'){
+			if(p1.name!='DD-610'&&p1.name!='Vincent'){
 				p1.anim.eye=[1,1]
 				p1.anim.eyeStyle=[2,2]
 			}
@@ -3247,17 +3293,31 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*15,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
 					p1.spin.arms=[{top:-165+a*45,bottom:-180+a*45,lock:0},{top:120+a*45,bottom:150+a*45,lock:0}]
 				break
-				case 'Daiyousei':
+				case 'Vincent':
+					p1.position.y+=10-a*30
 					p1.anim.legs=[
-						{top:27,bottom:21,length:{top:15,bottom:15}},
-						{top:27,bottom:21,length:{top:15,bottom:15}}
+						{top:3,bottom:0,length:{top:15,bottom:15}},
+						{top:3,bottom:0,length:{top:15,bottom:15}}
 					]
 					p1.anim.arms=[
-						{top:33,bottom:45+a*15,length:{top:15,bottom:15}},
-						{top:33,bottom:45-a*9,length:{top:15,bottom:15}}
+						{top:15-a*3,bottom:3-a*3,length:{top:15,bottom:15}},
+						{top:12+a*3,bottom:a*3,length:{top:15,bottom:15}}
 					]
 					p1.spin.legs=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
 					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
+				case 'Daiyousei':
+					p1.position.y-=a*27.5
+					p1.anim.legs=[
+						{top:12+a*6,bottom:9+a*3,length:{top:17,bottom:17-a}},
+						{top:12+a*6,bottom:9+a*3,length:{top:17,bottom:17-a}}
+					]
+					p1.anim.arms=[
+						{top:24+a*15,bottom:12+a*24,length:{top:17,bottom:17}},
+						{top:33-a*9,bottom:60-a*33,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60+a*15,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
+					p1.spin.arms=[{top:-165+a*45,bottom:-180+a*45,lock:0},{top:120+a*45,bottom:150+a*45,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -3424,6 +3484,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-60,bottom:-90,lock:0},{top:60,bottom:90,lock:0}]
 					p1.spin.arms=[{top:-105,bottom:-96,lock:0},{top:105,bottom:96,lock:0}]
+				break
+				case 'Vincent':
+					p1.position.y+=3
+					p1.anim.mouth.y-=0.5
+					p1.anim.legs=[
+						{top:12,bottom:9,length:{top:17,bottom:17}},
+						{top:12,bottom:9,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:24+a*6,bottom:-12+a*9,length:{top:17,bottom:17}},
+						{top:24+a*6,bottom:-12+a*9,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-105,lock:0},{top:60,bottom:105,lock:0}]
+					p1.spin.arms=[{top:-105,bottom:-96,lock:0},{top:105-a*36,bottom:96-a*36,lock:0}]
 				break
 				case 'Daiyousei':
 					p1.parts.mouth+=0.5
@@ -3618,6 +3692,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-90+a*12,bottom:-75+a*6,lock:0},{top:90+a*9,bottom:75+a*15,lock:0}]
 				break
+				case 'Vincent':
+					p1.anim.mouth.x-=0.5
+					p1.anim.mouth.y--
+					p1.parts.mouth-=1.5
+					p1.anim.legs=[
+						{top:6+a*3,bottom:0,length:{top:17,bottom:17}},
+						{top:6+a*3,bottom:0,length:{top:17,bottom:17}}
+					]
+					p1.anim.arms=[
+						{top:15+a*12,bottom:6-a*15,length:{top:17,bottom:17}},
+						{top:27-a*12,bottom:-9+a*15,length:{top:17,bottom:17}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-120,lock:0},{top:60,bottom:120,lock:0}]
+					p1.spin.arms=[{top:-90+a*12,bottom:-75+a*6,lock:0},{top:90+a*9,bottom:75+a*15,lock:0}]
+				break
 				case 'Daiyousei':
 					p1.parts.mouth+=0.5
 					p1.anim.eye=[1,1]
@@ -3773,6 +3862,12 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.mouth-=180
 					p1.anim.legs=[{top:6,bottom:3,length:{top:17,bottom:17}},{top:24,bottom:15,length:{top:17,bottom:17}}]
                     p1.anim.arms=[{top:24,bottom:42,length:{top:17,bottom:17}},{top:24,bottom:-9,length:{top:17,bottom:17}}]
+                	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:120}]
+					p1.spin.arms=[{top:-93,bottom:-90,lock:0},{top:93,bottom:75,lock:0}]
+				break
+				case 'Vincent':
+					p1.anim.legs=[{top:6,bottom:3,length:{top:17,bottom:17}},{top:9,bottom:3,length:{top:17,bottom:17}}]
+                    p1.anim.arms=[{top:12,bottom:6,length:{top:17,bottom:17}},{top:9,bottom:3,length:{top:17,bottom:17}}]
                 	p1.spin.legs=[{top:-60,bottom:-120},{top:60,bottom:120}]
 					p1.spin.arms=[{top:-93,bottom:-90,lock:0},{top:93,bottom:75,lock:0}]
 				break

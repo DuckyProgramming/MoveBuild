@@ -4430,7 +4430,7 @@ types.card=[
             {effect:[],attack:532,cost:0,target:[0],spec:[],class:4},
         ],
     },{
-        name:'Hyper\nBeam',rarity:2,list:5,
+        name:'Hyper\nBeam',rarity:1,list:5,
         levels:[
             {effect:[26,3],attack:533,cost:2,target:[2,1,3],spec:[0],class:1},
             {effect:[34,3],attack:533,cost:2,target:[2,1,3],spec:[0],class:1},
@@ -11613,27 +11613,6 @@ types.card=[
             {effect:[1],attack:1467,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
-        name:'Spiky\nWhack',rarity:0,list:12,
-        levels:[
-            {effect:[4,4],attack:597,cost:1,target:[2,1,1],spec:[0],class:4},
-            {effect:[5,5],attack:597,cost:1,target:[2,1,1],spec:[0],class:4},
-            {effect:[5,6],attack:597,cost:1,target:[2,1,1],spec:[0],class:4},
-        ],
-    },{
-        name:'Sawblade',rarity:1,list:12,
-        levels:[
-            {effect:[2,1],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[3,2],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[3,2],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],
-    },{
-        name:'Spiky\nCut',rarity:0,list:12,
-        levels:[
-            {effect:[6],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[8],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
-            {effect:[9],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
-        ],
-    },{
         name:'Clawstorm',rarity:2,list:12,
         levels:[
             {effect:[18,2],attack:2080,cost:2,target:[5],spec:[0,1,20],class:1},
@@ -14195,6 +14174,153 @@ types.card=[
             {effect:[6],attack:2844,cost:0,target:[0],spec:[1],class:4},
             {effect:[4],attack:2844,cost:0,target:[0],spec:[1],class:4},
             {effect:[2],attack:2844,cost:0,target:[0],spec:[1],class:4},
+        ],
+    },{
+        name:'Caffeine\nSupply',rarity:0,list:14,
+        levels:[
+            {effect:[1,1],attack:2845,cost:1,target:[0],spec:[],class:4},
+            {effect:[2,1],attack:2845,cost:1,target:[0],spec:[],class:4},
+            {effect:[3,1],attack:2845,cost:1,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Cyclic\nProduction',rarity:2,list:14,
+        levels:[
+            {effect:[1],attack:2846,cost:2,target:[0],spec:[1],class:4},
+            {effect:[1],attack:2846,cost:1,target:[0],spec:[1],class:4},
+            {effect:[1],attack:2846,cost:1,target:[0],spec:[1,3],class:4},
+        ],
+    },{
+        name:'Quick\nDeal',rarity:0,list:14,
+        levels:[
+            {effect:[10,2],attack:2847,cost:1,target:[2,1,1],spec:[1],class:4},
+            {effect:[15,3],attack:2847,cost:1,target:[2,1,1],spec:[1],class:4},
+            {effect:[20,4],attack:2847,cost:1,target:[2,1,1],spec:[1],class:4},
+        ],
+    },{
+        name:'Stimulants',rarity:0,list:14,
+        levels:[
+            {effect:[1,1],attack:2848,cost:1,target:[0],spec:[],class:4},
+            {effect:[1,2],attack:2848,cost:1,target:[0],spec:[],class:4},
+            {effect:[2,2],attack:2848,cost:1,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Conversion\nChamber',rarity:1,list:14,
+        levels:[
+            {effect:[1,1],attack:2849,cost:1,target:[0],spec:[],class:4},
+            {effect:[1,2],attack:2849,cost:1,target:[0],spec:[],class:4},
+            {effect:[2,2],attack:2849,cost:1,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Food\nTruck',rarity:0,list:14,
+        levels:[
+            {effect:[1,1],attack:2850,cost:1,target:[1,1,1],spec:[0,1],class:3},
+            {effect:[2,1],attack:2850,cost:1,target:[1,1,2],spec:[0,1],class:3},
+            {effect:[3,1],attack:2850,cost:1,target:[1,1,3],spec:[0,1],class:3},
+        ],
+    },{
+        name:'Surprise\nVial',rarity:0,list:14,
+        levels:[
+            {effect:[],attack:2851,cost:1,target:[0],spec:[],class:4},
+            {effect:[],attack:2851,cost:0,target:[0],spec:[],class:4},
+            {effect:[],attack:2851,cost:0,target:[0],spec:[2],class:4},
+        ],
+    },{
+        name:'Cyclic\nProduction',rarity:2,list:14,
+        levels:[
+            {effect:[1],attack:2852,cost:1,target:[0],spec:[1],class:4},
+            {effect:[1],attack:2852,cost:1,target:[0],spec:[1,3],class:4},
+            {effect:[1],attack:2852,cost:1,target:[0],spec:[1,3],class:4},
+        ],
+    },{
+        name:'Purified\nSubstances',rarity:2,list:14,
+        levels:[
+            {effect:[],attack:2853,cost:5,target:[0],spec:[1],class:4},
+            {effect:[],attack:2853,cost:4,target:[0],spec:[1],class:4},
+            {effect:[],attack:2853,cost:3,target:[0],spec:[1],class:4},
+        ],
+    },{
+        name:'MathFrak',rarity:2,list:14,
+        levels:[
+            {effect:[],attack:2854,cost:2,target:[2,1,3],spec:[],class:4},
+            {effect:[],attack:2854,cost:1,target:[2,1,3],spec:[],class:4},
+            {effect:[],attack:2855,cost:1,target:[5],spec:[],class:4},
+        ],
+    },{
+        name:'MathBB',rarity:2,list:14,
+        levels:[
+            {effect:[],attack:2856,cost:2,target:[2,1,3],spec:[],class:4},
+            {effect:[],attack:2856,cost:1,target:[2,1,3],spec:[],class:4},
+            {effect:[],attack:2857,cost:1,target:[5],spec:[],class:4},
+        ],
+    },{
+        name:'MathBF',rarity:2,list:14,
+        levels:[
+            {effect:[],attack:2858,cost:2,target:[2,1,3],spec:[],class:4},
+            {effect:[],attack:2858,cost:1,target:[2,1,3],spec:[],class:4},
+            {effect:[],attack:2859,cost:1,target:[5],spec:[],class:4},
+        ],
+    },{
+        name:'Wolframite',rarity:1,list:14,
+        levels:[
+            {effect:[7],attack:2860,cost:2,target:[2,1,1],spec:[0],class:1},
+            {effect:[11],attack:2860,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14],attack:2860,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Superior\nStimulant',rarity:1,list:14,
+        levels:[
+            {effect:[1,1],attack:2861,cost:2,target:[0],spec:[1],class:4},
+            {effect:[1,2],attack:2861,cost:2,target:[0],spec:[1],class:4},
+            {effect:[2,2],attack:2861,cost:2,target:[0],spec:[1],class:4},
+        ],
+    },{
+        name:'Society',rarity:2,list:14,
+        levels:[
+            {effect:[],attack:2862,cost:3,target:[0],spec:[],class:4},
+            {effect:[],attack:2862,cost:2,target:[0],spec:[],class:4},
+            {effect:[],attack:2862,cost:2,target:[0],spec:[3],class:4},
+        ],
+    },{
+        name:'Stacked\nBag',rarity:0,list:14,
+        levels:[
+            {effect:[7],attack:2863,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[11],attack:2863,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14],attack:2863,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Empty\nBag',rarity:0,list:14,
+        levels:[
+            {effect:[7],attack:2864,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[11],attack:2864,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14],attack:2864,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Plastic\nDefense',rarity:0,list:14,
+        levels:[
+            {effect:[10,4],attack:2865,cost:1,target:[0],spec:[],class:2},
+            {effect:[14,6],attack:2865,cost:1,target:[0],spec:[],class:2},
+            {effect:[16,8],attack:2865,cost:1,target:[0],spec:[],class:2},
+        ],
+    },{
+        name:'Plastic\nMove',rarity:0,list:14,
+        levels:[
+            {effect:[1,1],attack:2866,cost:1,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:2866,cost:0,target:[1,1,1],spec:[0],class:3},
+            {effect:[1,1],attack:2866,cost:0,target:[1,1,1],spec:[],class:3},
+        ],
+    },{
+        name:'Dream\nCapture',rarity:1,list:14,
+        levels:[
+            {effect:[2],attack:2867,cost:1,target:[0],spec:[1],class:4},
+            {effect:[3],attack:2867,cost:1,target:[0],spec:[1],class:4},
+            {effect:[4],attack:2867,cost:1,target:[0],spec:[1],class:4},
+        ],
+    },{
+        name:'Supply\nChain',rarity:2,list:14,
+        levels:[
+            {effect:[1],attack:2868,cost:4,target:[0],spec:[1],class:4},
+            {effect:[1],attack:2868,cost:3,target:[0],spec:[1],class:4},
+            {effect:[1],attack:2868,cost:3,target:[0],spec:[1,3],class:4},
         ],
     },
 
@@ -19979,6 +20105,27 @@ types.card=[
             {effect:[8,1],attack:1391,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[12,1],attack:1391,cost:1,target:[2,1,1],spec:[0],class:1},
             {effect:[15,1],attack:1391,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Spiky\nWhack',rarity:0,list:-1,
+        levels:[
+            {effect:[4,4],attack:597,cost:1,target:[2,1,1],spec:[0],class:4},
+            {effect:[5,5],attack:597,cost:1,target:[2,1,1],spec:[0],class:4},
+            {effect:[5,6],attack:597,cost:1,target:[2,1,1],spec:[0],class:4},
+        ],
+    },{
+        name:'Sawblade',rarity:1,list:-1,
+        levels:[
+            {effect:[2,1],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[3,2],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[3,2],attack:598,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Spiky\nCut',rarity:0,list:-1,
+        levels:[
+            {effect:[6],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[8],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[9],attack:599,cost:1,target:[2,1,1],spec:[0],class:1},
         ],
     },
 ]

@@ -138,7 +138,7 @@ class combatant{
             'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
             'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
             'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
-            'Double Damage Without Power','Damage Taken Up to Nearest 5',
+            'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -173,7 +173,7 @@ class combatant{
                 0,0,0,0,0,0,0,1,0,1,//30
                 0,0,2,2,0,1,5,0,0,1,//31
                 1,0,0,0,0,0,0,1,2,1,//32
-                0,1,
+                0,1,0,0,0,0,0,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -208,7 +208,7 @@ class combatant{
                 2,2,2,1,0,2,3,2,2,2,//30
                 1,0,1,1,2,2,2,2,2,2,//31
                 2,2,3,2,2,2,2,2,0,0,//32
-                2,1,
+                2,1,2,2,2,2,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4911,6 +4911,9 @@ class combatant{
                 if(this.status.main[319]>0){
                     damage*=0.25
                 }
+                if(this.status.main[324]>0&&damage>0&&damage<10){
+                    damage=10
+                }
                 if(this.status.main[165]>0){
                     damage+=this.status.main[165]
                     this.status.main[165]--
@@ -5000,6 +5003,12 @@ class combatant{
             if(this.status.main[217]>0){
                 this.status.main[217]--
             }
+            if(this.status.main[325]>0&&damage>=10){
+                this.statusEffect('Temporary Damage Down',floor(damage/10))
+            }
+            if(this.status.main[326]>0&&damage>20){
+                this.randomStatusInstant(1,[1])
+            }
             if(this.status.main[87]>0&&this.id<this.battle.players){
                 for(let a=0,la=this.status.main[87];a<la;a++){
                     this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)
@@ -5009,6 +5018,9 @@ class combatant{
                 for(let a=0,la=this.status.main[115];a<la;a++){
                     this.holdOrb(0)
                 }
+            }
+            if(this.status.main[327]>0){
+                this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[327]*damage])
             }
             if(hit){
                 if(this.battle.modded(40)&&this.id<this.battle.players){
@@ -5889,7 +5901,7 @@ class combatant{
                 }else if(this.status.main[46]>0&&((this.status.class[status]==0||this.status.class[status]==2)&&value>0||(this.status.class[status]==1||this.status.class[status]==3)&&value<0)){
                     this.status.main[46]--
                 }else{
-                    this.status.main[status]+=value*mult
+                    this.status.main[status]=constrain(this.status.main[status]+value*mult,0,999)
                 }
             }
             if(status==32){
@@ -5925,7 +5937,7 @@ class combatant{
     }
     multiplyStatus(name,multiplier){
         let status=findList(name,this.status.name)
-        this.status.main[status]*=multiplier
+        this.status.main[status]=constrain(this.status.main[status]*multiplier,0,999)
     }
     reverseStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -6005,10 +6017,10 @@ class combatant{
             }
         }
     }
-    multiplyStatusClass(effect,classes){
+    multiplyStatusClass(multiplier,classes){
         for(let a=0,la=this.status.class.length;a<la;a++){
             if(classes.includes(this.status.class[a])){
-                this.status.main[a]*=effect
+                this.status.main[status]=constrain(this.status.main[status]*multiplier,0,999)
             }
         }
     }
@@ -6140,6 +6152,7 @@ class combatant{
                     case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=constrain(floor(this.status.main[a]/3),0,2+this.getStatus('Wisdom'))}; break
                     case 311: this.status.main[findList('History',this.status.name)]+=this.status.main[a]; break
                     case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])}; break
+                    case 328: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.id)}} break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){

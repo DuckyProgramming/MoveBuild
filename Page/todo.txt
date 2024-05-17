@@ -1,43 +1,21 @@
 
-12 vincent temp item
-[
-the 4 temp items not seen before
-
-rare cards
-]
-
-
-
-
-
-
-
-
-
-
-
-update the dictionary (1)
 
 update the tutorials (1,2)
-
-scene animations (1)
-
-
 
 
 
 
 [
 	world 1
-	rainbow meteor
-	creates bullet hell
-]
-[
-	world 2
 	crusader
 	alternates every 4 turns between attack and defense
 	starts offense mode by charging at you and then constantly follows you around
 	starts defense mode by running away as far as possible
+]
+[
+	world 2
+	crow chief
+	can bribe to make the fight shorter
 ]
 [
 	world 3
@@ -55,7 +33,7 @@ scene animations (1)
 		gluttony - lose an energy per turn
 		greed - deletes all your non-boss relics
 		envy - you take 1 damage per card you play
-		sloth - gives you 3 weak, 3 vulnerable, or 3 frail
+		sloth - gives you 3 weak, 3 vulnerable, or 3 frail every turn
 		lust - spawning
 	]
 ]
@@ -70,45 +48,20 @@ scene animations (1)
 
 variants:
 MTG mana mode
-[
-    Green
-George - Combo
-Daiyousei - Elemental Form
-Edgar - Guns
 
-	Blue
-Prehextorica - Turns
-Donakho - Construct
-Airi - Charge
+Green-George
+Blue-Chip
+Black-DD610
+White-Lira
+Red-Certes
 
-	Black (Purple)
-Sakura - Bleed
-DD610 - Shock
-Azis - Orb
-
-	White (Yellow)
-Lira - HP
-Setsuna - Stance
-Shiru - Discards
-
-	Red
-Chip - RNG
-Certes - Shiv
-Vincent - Items
-]
-
-Green-
-Blue-
-Black-
-White-
-Red-
-Green+Blue-
-Green+Black-
-Green+White-
-Green+Red-
-Blue+Black-
-Blue+White-
-Blue+Red-
-Black+White-
-Black+Red-
-White+Red-
+Green+Blue-Azis
+Green+Black-Vincent
+Green+White-Edgar
+Green+Red-Setsuna
+Blue+Black-Shiru
+Blue+White-Donakho
+Blue+Red-Daiyousei
+Black+White-Prehextorica
+Black+Red-Sakura
+White+Red-Airi

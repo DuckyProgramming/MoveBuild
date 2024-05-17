@@ -17,7 +17,7 @@ function setup(){
         //transition.scene='menu'
 
     /*current.menu.combatant=[14]
-    current.menu.deck=[-1]
+    current.menu.deck=[0]
     current.startGame()
     game.animRate=4*/
 
@@ -27,7 +27,7 @@ function setup(){
     //transition.trigger=false
     
         /*stage.scene='graphic'
-        graphics.test=7
+        graphics.test=0
         graphics.staticBackground.clear()
         setupBackground(graphics.test,graphics.staticBackground)*/
     

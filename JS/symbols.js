@@ -2953,7 +2953,79 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,-1,2,4)
             layer.rect(3,-1,2,4)
             layer.rect(6,-1,2,4)
+            layer.triangle(0,1.5,2,4,-2,4)
+            layer.rect(0,5,4,1)
+        break
+        case 322:
+            layer.stroke(100,fade)
+            layer.strokeWeight(0.5)
+            layer.rect(-2.5,-2.5,4,4)
+            layer.rect(2.5,-2.5,4,4)
+            layer.rect(-2.5,2.5,4,4)
+            layer.rect(2.5,2.5,4,4)
+            layer.rect(0,0,11,11)
+            layer.noStroke()
+            layer.fill(200,255,255,fade)
+            layer.quad(-5,0,0,-6.25,5,0,0,6.25)
+            layer.fill(225,255,255,fade)
+            layer.quad(-4,0,0,-5,4,0,0,5)
+        break
+        case 323:
+            layer.stroke(100,fade)
+            layer.strokeWeight(0.5)
+            layer.rect(-2.5,-2.5,4,4)
+            layer.rect(2.5,-2.5,4,4)
+            layer.rect(-2.5,2.5,4,4)
+            layer.rect(2.5,2.5,4,4)
+            layer.rect(0,0,11,11)
+            layer.fill(125,fade)
+            layer.stroke(100,fade)
+            layer.strokeWeight(1)
+            layer.rect(0,0,4.5,6,1)
+        break
+        case 324:
+            layer.fill(0,150,255,fade)
+            for(let a=0,la=10;a<la;a++){
+                layer.rect(-6.75+a*1.5,-1,1,4)
+            }
             layer.triangle(0,1.5,2,5,-2,5)
+        break
+        case 325:
+            layer.fill(0,150,255,fade)
+            for(let a=0,la=10;a<la;a++){
+                layer.rect(-6.75+a*1.5,-1,1,4)
+            }
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,5,2,1.5,-2,1.5)
+        break
+        case 326:
+            layer.fill(0,150,255,fade)
+            for(let a=0,la=10;a<la;a++){
+                layer.rect(-6.75+a*1.5,-2.5,1,2)
+            }
+            for(let a=0,la=10;a<la;a++){
+                layer.rect(-6.75+a*1.5,0,1,2)
+            }
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,5,0,1.5,-2,1.5)
+            layer.fill(150,175,200,fade)
+            layer.triangle(0,5,0,1.5,2,1.5)
+        break
+        case 327:
+            layer.fill(255,50,50,fade)
+            layer.rect(0,0,1,8)
+            layer.triangle(-1,-3,-1,-1,-2.5,-2)
+            layer.triangle(1,3,1,1,2.5,2)
+            layer.triangle(-4.5,-3,-4.5,-1,-3,-2)
+            layer.triangle(4.5,3,4.5,1,3,2)
+        break
+        case 328:
+            for(let a=0,la=6;a<la;a++){
+                let color=[[255,0,0],[255,140,0],[225,225,25],[0,225,0],[50,255,255],[150,0,255]][a]
+                layer.fill(color[0],color[1],color[2],fade)
+                layer.quad(0,0,-sin(30)*2,cos(30)*2,0,6,sin(30)*2,cos(30)*2)
+                layer.rotate(60)
+            }
         break
 
     }
