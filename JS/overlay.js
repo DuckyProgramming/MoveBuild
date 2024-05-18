@@ -249,7 +249,7 @@ class overlay{
                     case 6:
                         list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[game.playerNumber+4])
                         for(let a=0,la=this.options;a<la;a++){
-                            if(list[args[1]]>0){
+                            if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
                                 this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],args[0],game.playerNumber+4,-1))
                                 this.cards[a].upSize=true

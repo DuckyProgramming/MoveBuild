@@ -5944,6 +5944,13 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             layer.fill(200,200,50,fade)
             layer.ellipse(0,0,3)
         break
+        case 303:
+            layer.fill(255,50,50,fade)
+            layer.rect(-1.5,0,6,6)
+            layer.arc(1.5,0,9,6,-90,90)
+            layer.triangle(0,-3.5,-3,-3.5,-3,-6.5)
+            layer.triangle(0,3.5,-3,3.5,-3,6.5)
+        break
     }
     layer.fill(255,fade)
     layer.stroke(0,fade)
@@ -5993,7 +6000,7 @@ function displayIntentSymbol(layer,x,y,type,effect,direction,size,fade,info){
             case 241: case 250: case 253: case 254: case 255: case 256: case 257: case 260: case 261: case 262:
             case 263: case 264: case 265: case 266: case 267: case 268: case 270: case 271: case 274: case 278:
             case 279: case 280: case 281: case 282: case 284: case 285: case 287: case 288: case 290: case 294:
-            case 297: case 298: case 299:
+            case 297: case 298: case 299: case 303:
                 layer.text(`${effect[0]}|${effect[1]}`,0,0)
             break
             case 21:

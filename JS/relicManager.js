@@ -110,6 +110,11 @@ class relicManager{
                 }
             }
         }
+        if(types.relic[type].id==226){
+            this.loseRandomRelic(player)
+            this.loseRandomRelic(player)
+            this.loseRandomRelic(player)
+        }
         this.active[types.relic[type].id][0]+=1
         this.active[types.relic[type].id][player+1]+=1
         stop=false
@@ -382,7 +387,6 @@ class relicManager{
             break
             case 226:
                 this.battle.energy.base[player]++
-                this.loseRandomRelic(player)
             break
             case 230:
                 for(let a=0,la=this.relics.length;a<la;a++){
@@ -589,6 +593,8 @@ class relicManager{
             break
             case 226:
                 this.battle.energy.base[player]--
+                this.addRandomRelic(player)
+                this.addRandomRelic(player)
                 this.addRandomRelic(player)
             break
             case 230:

@@ -2046,7 +2046,7 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
                 this.color={in:[120,120,120],out:[100,100,100],light:[100,200,255]}
             break
-            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret':
+            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret': case 'Shotgun':
                 this.anim={direction:direction}
                 this.fades={base:1,body:1,dot:1}
                 this.graphics={arms:[{bottom:{x:0,y:-25}},{bottom:{x:0,y:-25}}]}
@@ -2072,6 +2072,9 @@ class combatant{
                     break
                     case 'Armored Turret':
                         this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[150,150,0],out:[180,180,0]},dot:{in:[125,125,125],out:[105,105,105]}}
+                    break
+                    case 'Shotgun':
+                        this.color={base:{in:[120,120,120],out:[100,100,100]},body:{in:[200,100,0],out:[240,120,0]},dot:{in:[125,125,125],out:[105,105,105]}}
                     break
                 }
             break
@@ -3697,7 +3700,7 @@ class combatant{
                     this.graphics.arms[g].middle.y=this.parts.arms[g].middle.y
                 }
             break
-            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Armored Turret':
+            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Armored Turret': case 'Shotgun':
                 this.graphics={arms:[{bottom:{x:lsin(this.anim.direction)*40,y:-25}},{bottom:{x:lsin(this.anim.direction)*40,y:-25}}]}
             break
             case 'Spheron': case 'Flame': case 'Hexaghost Orb': case 'Hexaghost Core': case 'Host': case 'Host Drone': case 'Thornvine':
@@ -3786,7 +3789,7 @@ class combatant{
             case 152: case 154: case 158: case 160: case 161: case 162: case 165: case 173: case 178: case 179:
             case 180: case 184: case 188: case 191: case 193: case 194: case 196: case 199: case 200: case 201:
             case 202: case 206: case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268:
-            case 279: case 283: case 284: case 285: case 287: case 290:
+            case 279: case 283: case 284: case 285: case 287: case 290: case 303:
                 return [
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0],this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]),
                     this.battle.tileManager.getTileIndex(this.tilePosition.x+transformDirection(0,this.goal.anim.direction)[0]*2,this.tilePosition.y+transformDirection(0,this.goal.anim.direction)[1]*2),
@@ -4333,7 +4336,7 @@ class combatant{
                         case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184: case 185:
                         case 188: case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206:
                         case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283:
-                        case 284: case 285: case 287: case 290:
+                        case 284: case 285: case 287: case 290: case 303:
                             for(let b=0,lb=this.targetTile.length;b<lb;b++){
                                 if(
                                     this.battle.combatantManager.combatants[a].tilePosition.x==this.targetTile[b].tilePosition.x&&
@@ -4517,7 +4520,7 @@ class combatant{
                     case 160: case 161: case 162: case 165: case 173: case 178: case 179: case 180: case 184: case 188:
                     case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
                     case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283: case 284:
-                    case 285: case 287: case 290:
+                    case 285: case 287: case 290: case 303:
                         for(let b=0,lb=this.targetTile.length;b<lb;b++){
                             if(
                                 this.targetTile[b].tilePosition.x>=0&&
@@ -5901,7 +5904,7 @@ class combatant{
                 }else if(this.status.main[46]>0&&((this.status.class[status]==0||this.status.class[status]==2)&&value>0||(this.status.class[status]==1||this.status.class[status]==3)&&value<0)){
                     this.status.main[46]--
                 }else{
-                    this.status.main[status]=constrain(this.status.main[status]+value*mult,0,999)
+                    this.status.main[status]=constrain(this.status.main[status]+value*mult,-999,999)
                 }
             }
             if(status==32){
@@ -5937,7 +5940,7 @@ class combatant{
     }
     multiplyStatus(name,multiplier){
         let status=findList(name,this.status.name)
-        this.status.main[status]=constrain(this.status.main[status]*multiplier,0,999)
+        this.status.main[status]=constrain(this.status.main[status]*multiplier,-999,999)
     }
     reverseStatus(){
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -6020,7 +6023,7 @@ class combatant{
     multiplyStatusClass(multiplier,classes){
         for(let a=0,la=this.status.class.length;a<la;a++){
             if(classes.includes(this.status.class[a])){
-                this.status.main[status]=constrain(this.status.main[status]*multiplier,0,999)
+                this.status.main[status]=constrain(this.status.main[status]*multiplier,-999,999)
             }
         }
     }
@@ -6152,7 +6155,7 @@ class combatant{
                     case 307: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=constrain(floor(this.status.main[a]/3),0,2+this.getStatus('Wisdom'))}; break
                     case 311: this.status.main[findList('History',this.status.name)]+=this.status.main[a]; break
                     case 316: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.rewind(this.status.main[a])}; break
-                    case 328: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.id)}} break
+                    case 328: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.id)}} break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -6329,7 +6332,7 @@ class combatant{
                 this.animSet.loop=0
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Barbed Pillar': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': break
             default:
                 switch(type){
                     case 0: case 2: case 4: case 6:
@@ -7059,7 +7062,7 @@ class combatant{
                 this.anim.light=lsin(this.animSet.loop*180)+1
             break
             case 'Bronze Orb C': case 'Bronze Orb A': case 'Sentry': case 'Management Drone': case 'Personnel Carrier':
-            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': break
+            case 'Wall': case 'Spike Pillar': case 'Turret': case 'Readout': case 'Explosive Turret': case 'Multiturret': case 'Barbed Pillar': case 'Repulse Turret': case 'Machine Gun': case 'Miniturret': case 'Teleporter Start': case 'Teleporter End': case 'Antizone': case 'Mirror Shield': case 'Armored Turret': case 'Shotgun': break
             default:
                 switch(type){
                     case 0:

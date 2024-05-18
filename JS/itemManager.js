@@ -66,6 +66,7 @@ class itemManager{
         }
         if(possible.length>0){
             this.items[possible[floor(random(0,possible.length))]].type=1
+            this.total[player]--
         }
     }
     makeRandom(){
@@ -103,6 +104,12 @@ class itemManager{
             }
         }
         this.position[player]-=amount
+        this.total[player]=0
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player].type>1){
+                this.total[player]
+            }
+        }
     }
     activateNode(){
         for(let a=0,la=this.tempEffectiveness.length;a<la;a++){
@@ -337,7 +344,7 @@ class itemManager{
             break
         }
         this.tempEffectiveness[player]=1
-        if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])){
+        if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])&&!types.item[type].temp){
             this.addRandomItem(player)
         }
     }
@@ -346,6 +353,7 @@ class itemManager{
             if(this.items[player][a].temp){
                 this.items[player][a].type=1
                 this.items[player][a].refresh()
+                this.total[player]--
             }
         }
         this.combatEffectiveness[player]=1

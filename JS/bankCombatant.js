@@ -7931,7 +7931,7 @@ combatant.prototype.display=function(){
                     this.layer.quad(-20,0,20,0,16,-16,-16,-16)
                 }
             break
-            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret':
+            case 'Turret': case 'Explosive Turret': case 'Multiturret': case 'Repulse Turret': case 'Machine Gun': case 'Armored Turret': case 'Shotgun':
                 if(this.trigger.display.base){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
@@ -7942,7 +7942,10 @@ combatant.prototype.display=function(){
                         }
                     }
                     if(lcos(this.anim.direction)<=0.05){
-                        if(this.name=='Machine Gun'){
+                        if(this.name=='Shotgun'){
+                            this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                            this.layer.rect(30*lsin(this.anim.direction),-25,20-5*lcos(this.anim.direction),25)
+                        }else if(this.name=='Machine Gun'){
                             this.layer.strokeWeight(1.5)
                             this.layer.rect(35*lsin(this.anim.direction),-35,30-10*lcos(this.anim.direction),3)
                             this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-30,35-15*lcos(this.anim.direction),3)
@@ -7996,7 +7999,10 @@ combatant.prototype.display=function(){
                     this.layer.fill(this.flashColor(this.color.base.in)[0],this.flashColor(this.color.base.in)[1],this.flashColor(this.color.base.in)[2],this.fade*this.fades.base)
                     this.layer.stroke(this.flashColor(this.color.base.out)[0],this.flashColor(this.color.base.out)[1],this.flashColor(this.color.base.out)[2],this.fade*this.fades.base)
                     this.layer.strokeWeight(5)
-                    if(this.name=='Machine Gun'){
+                    if(this.name=='Shotgun'){
+                        this.layer.rect(35*lsin(this.anim.direction),-25,30-15*lcos(this.anim.direction),15)
+                        this.layer.rect(30*lsin(this.anim.direction),-25,20-5*lcos(this.anim.direction),25)
+                    }else if(this.name=='Machine Gun'){
                         this.layer.strokeWeight(1.5)
                         this.layer.rect(35*lsin(this.anim.direction),-35,30-10*lcos(this.anim.direction),3)
                         this.layer.rect(35*lsin(this.anim.direction)+2.5-2.5*lcos(this.anim.direction),-30,35-15*lcos(this.anim.direction),3)

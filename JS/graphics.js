@@ -4950,7 +4950,7 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2-350,layer.height/2-380+a*90,300,80)
 			}
 			for(let a=0,la=game.playerNumber+1;a<la;a++){
-				layer.rect(layer.width/2+187.5+floor(a/7)*325,layer.height/2-380+a%7*90,300,80)
+				layer.rect(layer.width/2+187.5+floor(a/8)*325,layer.height/2-380+a%8*90,300,80)
 			}
 			layer.fill(0)
 			layer.rect(layer.width/2-350,layer.height*0.7,100,100)
@@ -4960,8 +4960,8 @@ function setupBackground(type,layer){
 				layer.rect(layer.width/2-240,layer.height/2-380+a*90,55,55)
 			}
 			for(let a=0,la=game.playerNumber+1;a<la;a++){
-				layer.rect(layer.width/2+155+floor(a/7)*325,layer.height/2-380+a%7*90,210,55)
-				layer.rect(layer.width/2+297.5+floor(a/7)*325,layer.height/2-380+a%7*90,55,55)
+				layer.rect(layer.width/2+155+floor(a/8)*325,layer.height/2-380+a%8*90,210,55)
+				layer.rect(layer.width/2+297.5+floor(a/8)*325,layer.height/2-380+a%8*90,55,55)
 			}
 			layer.fill(120)
 			regTriangle(layer,layer.width/2-355,layer.height*0.7,40,40,-30)
@@ -4975,7 +4975,7 @@ function setupBackground(type,layer){
 			layer.text('STATUSES',layer.width/2-382.5,layer.height*0.5-20)
 			layer.text('TACTICS',layer.width/2-382.5,layer.height*0.5+70)
 			for(let a=0,la=game.playerNumber+1;a<la;a++){
-				layer.text(a==0?`OVERVIEW`:types.combatant[a].name.toUpperCase(),layer.width/2+155+floor(a/7)*325,layer.height*0.5-380+a%7*90)
+				layer.text(a==0?`OVERVIEW`:types.combatant[a].name.toUpperCase(),layer.width/2+155+floor(a/8)*325,layer.height*0.5-380+a%8*90)
 			}
 			layer.textSize(60)
 			for(let a=0,la=10;a<la;a++){

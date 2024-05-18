@@ -1589,7 +1589,7 @@ class group{
                 &&!(effect==36&&(this.cards[a].level>=2||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==38&&(this.cards[a].level!=1||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==39&&this.cards[a].spec.includes(7))
-                &&!(effect==41&&!this.cards[a].spec.includes(53))
+                &&!((effect==41||effect==44)&&!this.cards[a].spec.includes(53))
                 &&!(effect==42&&(this.cards[a].effect.length==0||this.cards[a].class!=1))
                 &&!(effect==43&&(this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
                 ){
@@ -1805,6 +1805,9 @@ class group{
                     case 43:
                         this.cards[index].cost=floor(random(0,4))
                     break
+                    case 44:
+                        this.cards[index].effect[1]*=2
+                    break
 
                 }
             }
@@ -1890,6 +1893,13 @@ class group{
             case -51: case 2720: case 2804:
                 card.cost=max(0,card.cost-1)
                 card.base.cost=max(0,card.base.cost-1)
+            break
+            case -55:
+                this.battle.cardManagers[this.player].randomEffect(2,22,[])
+            break
+            case -56:
+                this.battle.energy.main[this.player]-=card.effect[0]
+                this.battle.cardManagers[this.player].randomEffect(2,1,[1])
             break
             case 288: case 374: case 2217: case 2776:
                 for(let a=0,la=card.effect[1];a<la;a++){
@@ -1999,6 +2009,10 @@ class group{
             break
             case 2822:
                 userCombatant.vision+=card.effect[0]
+            break
+            case 2873:
+                this.battle.combatantManager.randomEnemyEffect(0,[card.effect[0]])
+                this.battle.energy.main[this.player]+=card.effect[1]
             break
         }
     }
@@ -2934,7 +2948,7 @@ class group{
                         }
                     }
                     this.cards[a].played()
-                    this.cards.forEach(card=>card.anotherPlayed(this.cards[a].class,this.cards[a].name,this.cards[a].basic))
+                    this.cards.forEach(card=>card.anotherPlayed(this.cards[a]))
                     this.battle.cardManagers[this.player].greenDiff++
                     this.battle.playCard(this.cards[a],this.player,0)
                     this.cardInUse=this.cards[a]
@@ -3077,7 +3091,7 @@ class group{
                             }
                         }
                         this.cards[b].played()
-                        this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
+                        this.cards.forEach(card=>card.anotherPlayed(this.cards[b]))
                         this.battle.cardManagers[this.player].greenDiff++
                         if(this.spec.includes(12)&&(this.cards[b].target[0]==11||this.cards[b].target[0]==15)){
                             let characteristic=1
@@ -3224,7 +3238,7 @@ class group{
                                 }
                             }
                             this.cards[b].played()
-                            this.cards.forEach(card=>card.anotherPlayed(this.cards[b].class,this.cards[b].name,this.cards[b].basic))
+                            this.cards.forEach(card=>card.anotherPlayed(this.cards[b]))
                             this.battle.cardManagers[this.player].greenDiff++
                             if(this.spec.includes(12)){
                                 let characteristic=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0

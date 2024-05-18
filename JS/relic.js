@@ -1667,9 +1667,11 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('1',8,0)
                 break
-                case 'Energy/Relic':
+                case 'Energy/Relics':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
-                    displaySymbol(this.layer,9,0,1,0,0.6,this.fade)
+                    displaySymbol(this.layer,11,0,1,0,0.4,this.fade)
+                    displaySymbol(this.layer,5,-10,1,0,0.4,this.fade)
+                    displaySymbol(this.layer,5,10,1,0,0.4,this.fade)
                 break
                 case 'Odd Turn Single Damage Up':
                     displaySymbol(this.layer,-8,0,29,0,1,this.fade)

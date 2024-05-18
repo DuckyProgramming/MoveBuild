@@ -373,7 +373,7 @@ class item{
                     this.layer.textSize(10)
                     this.layer.text('2',0,0)
                 break
-                case 'Flaming Match':
+                case 'Glass Shard':
                     displaySymbol(this.layer,0,0,18,0,1.5,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
@@ -409,7 +409,7 @@ class item{
                     displaySymbol(this.layer,8,0,9,0,1,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
-                    this.layer.text('1',8,0)
+                    this.layer.text('0',8,0)
                 break
                 case 'Mundane Dust':
                     this.layer.fill(0)

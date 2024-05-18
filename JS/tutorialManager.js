@@ -399,10 +399,10 @@ end you turn a couple times to let it take damage.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
-                this.popups=[[],[],[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `Sakura, the Creation, has gimmicks that are harmful and helpful.
-Namely, they are Bleed, Armament, Balance, and Freeze.`,
+Namely, they are Bleed, Armament, Balance.`,
 `Bleed is a status effect that can be applied. It does damage each turn.
 After dealing damage, bleed decrements by 1. This means that bleed is not infinite.
 Still, bleed can be maintained by applying more bleed, which can be done in various ways.`,
@@ -421,9 +421,6 @@ Cards marked as X Balance will increase balance by X.
 If balance ever goes above 10, it breaks, causing it to reset to 0 but ending your turn.`,
 `Balance cards are often powerful, but you must keep in mind how much balance they give.
 If you must break balance, do so when you were going to end your turn anyway.`,
-`Freeze causes an enemy attack to give you a damage buff after it connects.
-It applies double, so an enemy with 4 Freeze increases your damage by 8 temporarily.
-End your turn to allow him to hit you.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -446,7 +443,7 @@ End your turn to allow him to hit you.`,
                 this.pages=[
 `Certes, the Phantasm, is one of the more confined characters,
 but while she may have limited abilities, they can be build in many ways.
-her gimmicks include: Shivs, and Freeze-Burn Duality.`,
+her gimmicks include: Shivs, Not Moving, and Freeze-Burn Duality.`,
 `Shivs are the central mechanic of her strategy. They are a free, low-damage card.
 The mechanics around shivs relate to getting more of them, and increasing their damage.
 Getting Shivs as Certes is not hard, but getting them economically is a challenge.`,
@@ -454,6 +451,9 @@ Getting Shivs as Certes is not hard, but getting them economically is a challeng
 If a target for a Shiv is not found, it will remain in your deck, wasting draw.`,
 `Shivs benefit from the ability to create them and add additional attributes to them.
 They also benefit from being counting for a number of cards when played.`,
+`Certes can also use the ability to prevent enemies or herself from moving.
+Planning ahead with this is critical, as being unable to move is a major nerf.
+But there are many benefits from being unable to move.`,
 `While other characters can make use of Freeze and Burn,
 Certes can use these two status effects in combination, for certain cards.
 There are several ways to apply either of the two statuses or both at the same time.`,
@@ -805,7 +805,7 @@ when they are played or when another card is played.`,
             break
             case 19:
                 transition.scene='battle'
-                game.player=[12]
+                game.player=[13]
                 game.deck=[0]
                 this.battle.player=[13]
                 this.battle.deck=[0]
@@ -839,6 +839,83 @@ so they can be useful most of the time, but planning ahead still helps.`,
 `Prehextorica can also apply Weak to enemies.
 Aside from the base 25% damage reduction,
 enemies with Weak are susceptible to a variety of effects.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 20:
+                transition.scene='battle'
+                game.player=[14]
+                game.deck=[0]
+                this.battle.player=[14]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(99)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Vincent, the Manufacturer, works best with things that can be held.
+His gimmicks include: Items, Temporary Items, Concoctions.`,
+`All characters can use items, but Vincent has access to a group of items
+known as temporary items that are removed at the end of combat. There are many
+ways to attain them, but they are used just like any other item.`,
+`Temporary items interact with most standard item interactions, however,
+but are much more expendable than normal items and can be gained easily
+and repeatedly at little cost, so they can be used more often.`,
+`Oftentimes, Item Slots will become valuable to hold onto.
+It's important be aware of how many Item Slots you want to keep open
+and how important the items you already hold are.`,
+`The split between how many temporary items and permanent ones you want to hold
+is also important to consider, as only permanent items can be sold or
+saved for key moments, but temporary items can be cycled repeatedly when needed.`,
+`For that reason and becoems they're often temporary, rapidly using items is necessary.
+It's worth noting that Items can be wasted by using them and pressing Backspace.`,
+`Vincent can also use Concoctions, cards that can be upgraded multiple times.
+They can be upgraded repeatedly at standard rest sites or in battle.`,
+`Deciding how to work with Concoctions is a challenge as you have to consider
+how much weight they have compared to other cards in your deck.
+Sometimes building around ad single Concoction might even work.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 21:
+                transition.scene='battle'
+                game.player=[15]
+                game.deck=[0]
+                this.battle.player=[15]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.energy.main[0]=99
+                this.battle.energy.gen[0]=99
+                this.battle.energy.base[0]=99
+                this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                this.popups=[[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Daiyousei, the Embodiment, permits playstyles that involve aggression or passivity.
+Her gimmicks include: Vision/Elemental Form, History, Knowledge/Wisdom, and Freeze.`,
+`Whenever you play a card, you gain 1 Vision. There are also cards that can grant Vision.
+When you have 12 Vision, lose 12 Vision, gain 1 Awakening, and enter Elemental Form.`,
+`While in Elemental Form, you have 1 additional Strength. You lose 1 Awakening per turn.
+Once you run out of Awakening, you'll leave Elemental form on that turn.
+While the 1 Strength isn't much, many cards work around being in Elemental Form.`,
+`Rewinding a card refers to sending the card back to your draw pile.
+Most of the time, Rewinding a card will shuffle it in.`,
+`History is a status effect that you can apply to yourself.
+Whenever you draw or Rewind a card, History deals damage to a random enemy.
+History decays quickly - you lose half of it, rounded up, every turn.`,
+`Knowledge and Wisdom are two status applied to the self that interact together.
+You draw 1 more card per turn for every 3 Knowledge you have, capped at 2 more per turn.
+Wisdom increases the cap on Knowledge, but more Knowledge is needed first.`,
+`Freeze causes an enemy attack to give you a damage buff after it connects.
+It applies double, so an enemy with 4 Freeze increases your damage by 8 temporarily.
+End your turn to allow him to hit you.`,
 `END OF TUTORIAL`,
                 ]
             break
@@ -1148,20 +1225,6 @@ enemies with Weak are susceptible to a variety of effects.`,
                         this.battle.cardManagers[0].hand.add(findName('Peace',types.card),0,3)
                         this.battle.cardManagers[0].hand.add(findName('Windslash',types.card),0,3)
                     break
-                    case 8:
-                        this.battle.setupBattle(types.encounter[findName('TutorialBlank',types.encounter)])
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
-                        this.battle.updateTargetting()
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Snowflake',types.card),0,3)
-                        this.battle.cardManagers[0].hand.add(findName('Lament',types.card),0,3)
-                        this.battle.cardManagers[0].hand.add(findName('Quill',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Quill',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,3)
-                    break
                 }
             break
             case 10:
@@ -1175,12 +1238,20 @@ enemies with Weak are susceptible to a variety of effects.`,
                     case 4:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Static\nStrike',types.card),0,4)
+                        this.battle.cardManagers[0].hand.add(findName('Static\nDefend',types.card),0,4)
+                    break
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Dualcone',types.card),0,4)
                         this.battle.cardManagers[0].hand.add(findName('Dual\nShatter',types.card),0,4)
                     break
-                    case 5:
+                    case 6:
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),30)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(20)
@@ -1606,6 +1677,61 @@ enemies with Weak are susceptible to a variety of effects.`,
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Trowel',types.card),0,13)
                         this.battle.cardManagers[0].hand.add(findName('Unearth',types.card),0,13)
+                    break
+                }
+            break
+            case 20:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Synthesis',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Supply',types.card),0,14)
+                    break
+                    case 6:
+                        this.battle.cardManagers[0].hand.add(findName('Unstable\nConcoction',types.card),0,14)
+                        this.battle.cardManagers[0].hand.add(findName('Pipette',types.card),0,14)
+                    break
+                }
+            break
+            case 21:
+                switch(this.page){
+                    case 1:
+                        for(let a=0,la=12;a<la;a++){
+                            this.battle.cardManagers[0].hand.add(findName('',types.card),0,15)
+                        }
+                    break
+                    case 2:
+                        this.battle.cardManagers[0].hand.add(findName('Elemental\nPower',types.card),0,15)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
+                        this.battle.cardManagers[0].hand.add(findName('Passage\nof Time',types.card),0,15)
+                    break
+                    case 4:
+                        this.battle.cardManagers[0].hand.add(findName('Flow of\nHistory',types.card),0,15)
+                        this.battle.cardManagers[0].hand.add(findName('Passage\nof Time',types.card),0,15)
+                    break
+                    case 5:
+                        this.battle.cardManagers[0].hand.add(findName('Pyramid',types.card),0,15)
+                        this.battle.cardManagers[0].hand.add(findName('Pyramid',types.card),0,15)
+                    break
+                    case 6:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
+                        this.battle.updateTargetting()
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Snowflake',types.card),0,15)
+                        this.battle.cardManagers[0].hand.add(findName('Lament',types.card),0,15)
+                        this.battle.cardManagers[0].hand.add(findName('Quill',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Quill',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
                     break
                 }
             break

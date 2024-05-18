@@ -724,9 +724,10 @@ class tile{
         }
     }
     displayCoordinate(coordinateAnim){
-        this.layer.fill(0,this.fade*coordinateAnim)
-        this.layer.noStroke()
         this.layer.textSize(12)
+        this.layer.fill(255,this.fade*coordinateAnim)
+        this.layer.stroke(0,this.fade*coordinateAnim)
+        this.layer.strokeWeight(1)
         this.layer.text((this.tilePosition.x+1-this.offset.x)+','+(this.tilePosition.y+1-this.offset.y),this.position.x,this.position.y)
     }
 }

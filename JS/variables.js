@@ -219,6 +219,7 @@ types={
         {name:'Teleporter End',life:5,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Copy pasted man`},
         {name:'Mirror Shield',life:24,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},
         {name:'Armored Turret',life:48,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:12,effect:[6]}],description:`Sentry goin' up`},
+        {name:'Shotgun',life:16,behavior:0,spec:[17],move:{type:0,speed:0},attack:[{type:303,effect:[18,3]}],description:`Shotgun duck game?`},
 
         {name:'Medic',life:20,behavior:0,spec:[13],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Not a combat man`},
         {name:'Smith',life:20,behavior:0,spec:[14],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Walking rest site`},
@@ -540,6 +541,7 @@ types={
         {name:'Third Damage Time',class:4},//300
         {name:'Randomap - Delayed Death',class:4},
         {name:'Randomap - Glitch',class:4},
+        {name:'Shotgun',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -629,7 +631,7 @@ types={
         {name:'Seasoning',internal:'Better Items',id:77,rarity:1,list:0,description:'Items are 2x\nMore Effective'},
         {name:'Pyrite',internal:'10 Skill Buffer',id:78,rarity:1,list:0,description:'Every 10 Skills Played,\nGain 1 Buffer'},
         {name:'Clip-On Tie',internal:'Important Enemies',id:79,rarity:1,list:0,description:'Enemies Can Give\nElite Rewards'},
-        {name:'Rumaging Rum',internal:'Item Reuse',id:80,rarity:1,list:0,description:'When an Item is Used,\n50% Chance to Get Another'},
+        {name:'Rummaging Rum',internal:'Item Reuse',id:80,rarity:1,list:0,description:'When an Item is Used,\n50% Chance to Get Another'},
         
         {name:'Helix Fossil',internal:'Revive',id:81,rarity:2,list:0,description:'Next Time You Die,\nHeal to 50% HP'},
         {name:'Waterwheel',internal:'Low Play Draw',id:82,rarity:2,list:0,description:'When You Play Less Than 3 Cards,\nDraw 3 Cards Next Turn'},
@@ -711,7 +713,7 @@ types={
         {name:'Rejector 300',internal:'Remove 6',id:151,rarity:4,list:0,description:'When Taken, Remove 6 Cards'},
         {name:'Shattered Chains',internal:'Difficulty Energy',id:152,rarity:4,list:0,description:'Gain 2 Energy Every Turn\non Elites and Bosses'},
         {name:'Meal Plan',internal:'Large Quick Heal',id:153,rarity:4,list:0,description:'Heal 10 HP at\nthe End of Combat'},
-        {name:'Mystery Box',internal:'Transform Basic',id:154,rarity:4,list:0,description:'When Taken, Transform All Strikes and\nDefends, and Upgrade All Steps'},
+        {name:'?! Block',internal:'Transform Basic',id:154,rarity:4,list:0,description:'When Taken, Transform All Strikes and\nDefends, and Upgrade All Steps'},
         {name:'Lightbulb',internal:'Basic Draw',id:155,rarity:4,list:0,description:'Draw 2 More\nCards Every Turn'},
         {name:'Golden Eye',internal:'Confused Draw',id:156,rarity:4,list:0,description:'Draw 3 More Cards Every Turn,\nStart Combat Confused'},
         {name:'Platinum Spoon',internal:'Much Better Items',id:157,rarity:4,list:0,description:'Items are 5x\nMore Effective'},
@@ -790,7 +792,7 @@ types={
         {name:'Paper Snowflake',internal:'Last Card Free',id:223,rarity:3,list:0,description:'When Taken, Make the\nLast Card in Deck Free'},
         {name:'SSh36',internal:'Starting Conditioning',id:224,rarity:0,list:0,description:'Gain 1 Conditioning\nat the Start of Combat'},
         {name:'Purple Leaf',internal:'Uncommon Attack Heal',id:225,rarity:1,list:0,description:'When You Play an Uncommon\nAttack, Heal 1 HP'},
-        {name:'Red Paperclip',internal:'Energy/Relic',id:226,rarity:4,list:0,description:'Gain 1 Base Energy\nLose a Random Relic'},
+        {name:'Red Paperclip',internal:'Energy/Relics',id:226,rarity:4,list:0,description:'Gain 1 Base Energy\nLose 3 Random Relics'},
         {name:'Twin Pearls',internal:'Odd Turn Single Damage Up',id:227,rarity:1,list:0,description:'Gain 4 Single Damage Up\non Even Turns'},
         {name:'Writ of Mandamus',internal:'Energy/Anti-Control',id:228,rarity:4,list:0,description:'Gain 1 Base Energy,\nGain 1 Anti-Control\nat the Start of Combat'},
         {name:'Dragon Fish',internal:'Defensive Metallicize',id:229,rarity:1,list:0,description:'When You Fully Block Damage,\nGain 1 Metallicize'},
@@ -855,12 +857,12 @@ types={
 
         {name:'Salad',id:103,rarity:-1,list:-1,menu:true,temp:true,description:'Heal 3 HP\nTemporary'},
         {name:'Energy Drink',id:104,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 2 Energy\nTemporary'},
-        {name:'Flaming Match',id:105,rarity:-1,list:-1,menu:false,temp:true,description:'Deal 5 Damage\nRange 1-3'},
+        {name:'Glass Shard',id:105,rarity:-1,list:-1,menu:false,temp:true,description:'Deal 5 Damage\nRange 1-3'},
         {name:'Molten Metal',id:106,rarity:-1,list:-1,menu:false,temp:true,description:'Add 10 Block\nTemporary'},
         {name:'Caffeine Pill',id:107,rarity:-1,list:-1,menu:false,temp:true,description:'Draw 2 Cards\nTemporary'},
         {name:'Attack Dust',id:108,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 1 Strength\nTemporary'},
         {name:'Defense Dust',id:109,rarity:-1,list:-1,menu:false,temp:true,description:'Gain 1 Dexterity\nTemporary'},
-        {name:'Mystery Box',id:110,rarity:-1,list:-1,menu:false,temp:true,description:'Add 1 Free Card\nto Your Hand\nTemporary'},
+        {name:'Mystery Box',id:110,rarity:-1,list:-1,menu:false,temp:true,description:'Add 1 Random Free Card\nto Your Hand\nTemporary'},
         {name:'Mundane Dust',id:111,rarity:-1,list:-1,menu:false,temp:true,description:'Does Nothing'},
 
     ],event:[

@@ -834,6 +834,7 @@ function intentDescription(attack,user,info){
 			case 300: return `Take Third Damage\nFor ${info?attack.effect[0]:`?`} Turns`
 			case 301: return `Randomly Edit the Map,\nAdding in Delayed Death Tiles`
 			case 302: return `Randomly Edit the Map,\nAdding in Glitch Tiles`
+			case 303: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,14):`?`}*Range Damage\nRange 1-6\nNo Movement`
 
 			default: return `INVALID`
 		}
@@ -894,14 +895,14 @@ function copyCardFree(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 }
 function upgradeCard(base){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 	if(base.attack==1352){
 		result.limit=base.limit
 	}
 	return result
 }
 function unupgradeCard(base){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 	if(base.attack==1352){
 		result.limit=base.limit
 	}

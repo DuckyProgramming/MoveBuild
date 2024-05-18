@@ -15,7 +15,7 @@ class battle{
         for(let a=0,la=types.deckmode.length;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.deck[b].push(-1)
-            }
+            }lo
         }
         for(let a=0,la=types.ascend.length;a<la;a++){
             this.menu.anim.ascend.push(-1)
@@ -1893,7 +1893,7 @@ class battle{
                         }
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-175,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-300,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='variants'
                 }
@@ -1905,7 +1905,7 @@ class battle{
                     }
                 }
                 for(let a=0,la=game.playerNumber+1;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+148.75+floor(a/7)*162.5,y:this.layer.height/2-190+a%7*45},width:27.5,height:27.5})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2+148.75+floor(a/8)*162.5,y:this.layer.height/2-190+a%8*45},width:27.5,height:27.5})){
                         this.tutorialManager.setupTutorial(a+6)
                     }
                 }

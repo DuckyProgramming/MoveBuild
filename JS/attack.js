@@ -145,13 +145,13 @@ class attack{
             case 2388: case 2389: case 2390: case 2391: case 2393: case 2395: case 2398: case 2400: case 2401: case 2404: case 2405: case 2410: case 2411: case 2420: case 2427: case 2428: case 2430: case 2434: case 2435: case 2437:
             case 2442: case 2443: case 2444: case 2445: case 2458: case 2460: case 2461: case 2464: case 2465: case 2466: case 2467: case 2468: case 2470: case 2471: case 2473: case 2474: case 2476: case 2477: case 2481: case 2482:
             case 2485: case 2487: case 2492: case 2493: case 2494: case 2496: case 2497: case 2498: case 2504: case 2505: case 2506: case 2520: case 2521: case 2522: case 2524: case 2525: case 2526: case 2546: case 2550: case 2552:
-            case 2554: case 2562: case 2569: case 2570: case 2575: case 2576: case 2577: case 2580: case 2582: case 2583: case 2584: case 2585: case 2586: case 2588: case 2593: case 2595: case 2596: case 2597: case 2606: case 2609:
-            case 2610: case 2611: case 2612: case 2613: case 2620: case 2621: case 2622: case 2623: case 2624: case 2627: case 2628: case 2630: case 2636: case 2641: case 2646: case 2647: case 2648: case 2649: case 2650: case 2651:
-            case 2653: case 2655: case 2656: case 2659: case 2660: case 2662: case 2663: case 2664: case 2665: case 2666: case 2667: case 2670: case 2671: case 2674: case 2678: case 2680: case 2685: case 2693: case 2696: case 2697:
-            case 2700: case 2701: case 2702: case 2705: case 2709: case 2711: case 2712: case 2713: case 2716: case 2719: case 2722: case 2723: case 2725: case 2728: case 2729: case 2730: case 2733: case 2734: case 2737: case 2739:
-            case 2746: case 2753: case 2754: case 2755: case 2757: case 2765: case 2766: case 2770: case 2771: case 2773: case 2775: case 2776: case 2783: case 2784: case 2785: case 2786: case 2787: case 2791: case 2794: case 2798:
-            case 2800: case 2803: case 2806: case 2808: case 2810: case 2811: case 2813: case 2815: case 2816: case 2819: case 2823: case 2824: case 2825: case 2828: case 2829: case 2830: case 2834: case 2836: case 2838: case 2839:
-            case 2841: case 2842: case 2847: case 2854: case 2855: case 2856: case 2857: case 2858: case 2859: case 2860: case 2863: case 2864:
+            case 2554: case 2561: case 2562: case 2569: case 2570: case 2575: case 2576: case 2577: case 2580: case 2582: case 2583: case 2584: case 2585: case 2586: case 2588: case 2593: case 2595: case 2596: case 2597: case 2606:
+            case 2609: case 2610: case 2611: case 2612: case 2613: case 2620: case 2621: case 2622: case 2623: case 2624: case 2627: case 2628: case 2630: case 2636: case 2641: case 2646: case 2647: case 2648: case 2649: case 2650:
+            case 2651: case 2653: case 2655: case 2656: case 2659: case 2660: case 2662: case 2663: case 2664: case 2665: case 2666: case 2667: case 2670: case 2671: case 2674: case 2678: case 2680: case 2685: case 2693: case 2696:
+            case 2697: case 2700: case 2701: case 2702: case 2705: case 2709: case 2711: case 2712: case 2713: case 2716: case 2719: case 2722: case 2723: case 2725: case 2728: case 2729: case 2730: case 2733: case 2734: case 2737:
+            case 2739: case 2746: case 2753: case 2754: case 2755: case 2757: case 2765: case 2766: case 2770: case 2771: case 2773: case 2775: case 2776: case 2783: case 2784: case 2785: case 2786: case 2787: case 2791: case 2794:
+            case 2798: case 2800: case 2803: case 2806: case 2808: case 2810: case 2811: case 2813: case 2815: case 2816: case 2819: case 2823: case 2824: case 2825: case 2828: case 2829: case 2830: case 2834: case 2836: case 2838:
+            case 2839: case 2841: case 2842: case 2847: case 2854: case 2855: case 2856: case 2857: case 2858: case 2859: case 2860: case 2863: case 2864: case 2872: case 2875: case 2876: case 2878:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -185,7 +185,7 @@ class attack{
             case 2439: case 2440: case 2456: case 2459: case 2475: case 2545: case 2589: case 2600: case 2602: case 2603:
             case 2604: case 2608: case 2637: case 2652: case 2658: case 2742: case 2743: case 2744: case 2745: case 2747:
             case 2748: case 2749: case 2750: case 2751: case 2752: case 2758: case 2759: case 2760: case 2761: case 2762:
-            case 2832: case 2850: case 2866:
+            case 2832: case 2850: case 2866: case 2880:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -2082,7 +2082,7 @@ class attack{
                         this.userCombatant.statusEffect('Energy Next Turn Next Turn',this.effect[1])
                     break
                     case 934:
-                        if(this.targetCombatant.life<=0&&!this.targetCombatant.minion&&this.battle.encounter.class>=1){
+                        if(this.targetCombatant.life<=0&&this.battle.encounter.class>=1){
                             for(let a=0,la=this.effect[1];a<la;a++){
                                 this.battle.relicManager.addRandomRelic(this.player)
                             }
@@ -3291,6 +3291,9 @@ class attack{
                             this.battle.itemManager.tempEffectiveness[this.player]=max(2,this.battle.itemManager.tempEffectiveness[this.player])
                         }
                     break
+                    case 2876:
+                        this.userCombatant.statusEffect('Knowledge',this.effect[1])
+                    break
 
                 }
                 //mark 1
@@ -4195,6 +4198,17 @@ class attack{
                             this.userCombatant.statusEffect('Strength',this.effect[1])
                         }
                     break
+                    case 2877:
+                        this.userCombatant.statusEffect('Knowledge',this.effect[1])
+                    break
+                    case 2881:
+                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                            if(this.battle.combatantManager.combatants[a].construct&&this.battle.combatantManager.combatants[a].life>0){
+                                this.userCombatant.statusEffect('Dexterity',this.effect[1])
+                                a=la
+                            }
+                        }
+                    break
 
                 }
                 //mark 2
@@ -4758,7 +4772,7 @@ class attack{
                     break
                     case 2600:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2602:
@@ -7208,9 +7222,9 @@ class attack{
                         this.userManager.draw(this.effect[1])
                     break
                     case 2691:
-                        this.userManager.statusEffect('Knowledge',this.effect[0])
+                        this.userCombatant.statusEffect('Knowledge',this.effect[0])
                         if(this.userCombatant.elemental){
-                            this.userManager.statusEffect('Wisdom',this.effect[1])
+                            this.userCombatant.statusEffect('Wisdom',this.effect[1])
                         }
                     break
                     case 2698:
@@ -7303,6 +7317,27 @@ class attack{
                         let marker2867=constrain(this.battle.itemManager.total[this.player],0,this.effect[0])
                         this.userManager.drawPrice(marker2867,0)
                         this.userManager.draw(this.effect[0]-marker2867)
+                    break
+                    case 2869:
+                        this.userCombatant.vision+=this.effect[0]
+                        if(this.userCombatant.elemental){
+                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.userManager.draw(this.effect[2])
+                        }
+                    break
+                    case 2870:
+                        this.userManager.hand.rewind(this.effect[0])
+                        if(this.userCombatant.elemental){
+                            this.userManager.draw(this.effect[1],1)
+                        }
+                    break
+                    case 2882:
+                        if(this.relPos[0]>0){
+                            this.userManager.hand.cards[this.relPos[0]-1].cost=0
+                        }
+                        if(this.relPos[0]<this.relPos[1]){
+                            this.userManager.hand.cards[this.relPos[0]].cost=0
+                        }
                     break
 
                 }
@@ -9629,7 +9664,7 @@ class attack{
                     case 2577:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.itemManager.addItem(findName('Flaming Match',types.item),this.player)
+                            this.battle.itemManager.addItem(findName('Glass Shard',types.item),this.player)
                         }
                     break
                     case 2648:
@@ -9663,6 +9698,22 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.life<=this.targetCombatant.base.life*0.5){
                             this.userCombatant.addBlock(this.effect[1])
+                        }
+                    break
+                    case 2872:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userManager.hand.randomEffect(44,[])
+                    break
+                    case 2875:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.targetCombatant.getStatus('Freeze')>0){
+                            this.userManager.hand.upgrade(this.effect[1])
+                        }
+                    break
+                    case 2880:
+                        this.battle.combatantManager.summonConstruct(this.targetTile.tilePosition,findName('Shotgun',types.combatant),this.userCombatant.team,this.direction,this.user)
+                        if(options.oldUnbuild){
+                            this.userManager.hand.add(findName('Unbuild',types.card),0,0)
                         }
                     break
 
@@ -10431,12 +10482,12 @@ class attack{
                     break
                     case 2599:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2601:
                         for(let a=0,la=this.battle.itemManager.items[this.player].length;a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                     break
                     case 2645:
@@ -10477,7 +10528,7 @@ class attack{
                     break
                     case 2843:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
                         this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                     break
@@ -10505,8 +10556,22 @@ class attack{
                     case 2861:
                         this.userCombatant.statusEffect('Double Damage',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                            this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
+                    break
+                    case 2871:
+                        this.battle.addCurrency(this.effect[0]*(this.battle.encounter.class>=1?2:1),this.player)
+                    break
+                    case 2874:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropDraw(this.player,findName('Prismatic\nBomb',types.card),0,0)
+                        }
+                    break
+                    case 2879:
+                        for(let a=0,la=this.effect[0];a<la;a++){
+                            this.battle.dropDraw(this.player,findName('Prismatic\nBomb',types.card),0,0)
+                        }
+                        this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
                     break
 
                 }
@@ -11815,7 +11880,7 @@ class attack{
                         this.userCombatant.statusEffect('Item Use Energy',this.effect[0])
                     break
                     case 2851:
-                        this.battle.itemManager.activateItem(findName(['Salad','Energy Drink','Flaming Match','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
+                        this.battle.itemManager.activateItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                     break
                     case 2852:
                         this.userCombatant.statusEffect('Item Use Draw',this.effect[0])
