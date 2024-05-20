@@ -54,6 +54,16 @@ class nodeManager{
                     }
                 }
             }
+        }else if(variants.singlemap){
+            let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
+            let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
+            for(let a=0,la=length;a<la;a++){
+                this.nodes.push(new node(this.layer,this.battle,this.layer.width/2,this.layer.height/2+a*100-150-min(3,a)*10,0,a,
+                game.allMap>=0?game.allMap:a<2?0:a==la-1?2:a==la-2?3:a==round(la/2)?6:a==round(la/4)&&this.world==1?7:possibilities[floor(random(0,possibilities.length))]))
+                if(a>0){
+                    this.nodes[a-1].connections.push(a)
+                }
+            }
         }else{
             let possibilities=game.ascend>=1?[0,0,0,0,0,1,1,1,3,3,3,4,4,5,5,5,5]:[0,0,0,0,0,0,1,1,3,3,3,4,4,5,5,5,5]
             let length=(this.world>=2?21:22)-(variants.shortmap?9:0)-(variants.shortermap?13:0)
@@ -117,27 +127,45 @@ class nodeManager{
         switch(type){
             case 0:
                 transition.scene='battle'
-                let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
-                let index=floor(random(0,list.length))
-                this.battle.setupBattle(types.encounter[list[index]])
-                if(!(y==0?4:y<3&&this.world==0)){
-                    list.splice(index,1)
+                if(variants.selectCombat){
+                    transition.trigger=false
+                    this.battle.overlayManager.overlays[61][0].active=true
+                    this.battle.overlayManager.overlays[61][0].activate([0,y])
+                }else{
+                    let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
+                    let index=floor(random(0,list.length))
+                    this.battle.setupBattle(types.encounter[list[index]])
+                    if(!(y==0?4:y<3&&this.world==0)){
+                        list.splice(index,1)
+                    }
                 }
             break
             case 1:
                 transition.scene='battle'
                 if(this.battle.modded(69)){
-                    let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
-                    let index=floor(random(0,list.length))
-                    this.battle.setupBattle(types.encounter[list[index]])
-                    list.splice(index,1)
-                    this.battle.combatantManager.allEffect(24,[2])
-                    this.battle.combatantManager.allEffect(3,[5])
+                    if(variants.selectCombat){
+                        transition.trigger=false
+                        this.battle.overlayManager.overlays[61][0].active=true
+                        this.battle.overlayManager.overlays[61][0].activate([1,y])
+                    }else{
+                        let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
+                        let index=floor(random(0,list.length))
+                        this.battle.setupBattle(types.encounter[list[index]])
+                        list.splice(index,1)
+                        this.battle.combatantManager.allEffect(24,[2])
+                        this.battle.combatantManager.allEffect(3,[5])
+                    }
                 }else{
-                    let list=this.listing.encounter[this.world][1]
-                    let index=floor(random(0,list.length))
-                    this.battle.setupBattle(types.encounter[list[index]])
-                    list.splice(index,1)
+                    if(variants.selectCombat){
+                        transition.trigger=false
+                        this.battle.overlayManager.overlays[61][0].active=true
+                        this.battle.overlayManager.overlays[61][0].activate([2,y])
+                    }else{
+                        let list=this.listing.encounter[this.world][1]
+                        let index=floor(random(0,list.length))
+                        this.battle.setupBattle(types.encounter[list[index]])
+                        list.splice(index,1)
+                    }
                 }
             break
             case 2:

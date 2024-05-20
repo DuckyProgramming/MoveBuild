@@ -937,7 +937,7 @@ class group{
                         this.cards[a].etherealed()
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
-                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.battle.relicManager.hasRelic(128,this.player)){
+                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained())
                         total++
@@ -1407,6 +1407,12 @@ class group{
                 break
                 case 87:
                     this.cards[a].callAnotherDrawEffect()
+                break
+                case 88:
+                    if(this.cards[a].cost>=0){
+                        this.cards[a].cost++
+                        this.cards[a].base.cost++
+                    }
                 break
 
             }
@@ -2959,13 +2965,13 @@ class group{
                             this.battle.cardManagers[this.player].deck.add(findName('Worthless\nBaseball Card',types.card),this.cards[a].level,this.cards[a].color)
                         }
                     }
-                    this.cards[a].played()
-                    this.cards.forEach(card=>card.anotherPlayed(this.cards[a]))
                     this.battle.cardManagers[this.player].greenDiff++
                     this.battle.playCard(this.cards[a],this.player,0)
                     this.cardInUse=this.cards[a]
                     this.callInput(5,0)
                     this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target,this.cards[a].mtgManaColor)
+                    this.cards[a].played()
+                    this.cards.forEach(card=>card.anotherPlayed(this.cards[a]))
                     this.cards.forEach(card=>card.anotherPlayedAfter())
                     this.battle.attackManager.execute()
                     this.lastPlayed[0]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]

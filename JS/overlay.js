@@ -78,6 +78,10 @@ class overlay{
                 this.id=0
                 this.combatant=0
             break
+            case 15:
+                this.encounters=[]
+                this.class=0
+            break
         }
     }
     getPosKey(){
@@ -450,6 +454,35 @@ class overlay{
             case 14:
                 this.id=args[0]
                 this.combatant=this.battle.combatantManager.getCombatant(this.id)
+            break
+            case 15:
+                this.encounters=[]
+                let index=0
+                this.class=args[0]
+                for(let a=0,la=args[1]==0?1:2;a<la;a++){
+                    switch(args[0]){
+                        case 0:
+                            list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][args[1]==0?4:args[1]<3&&this.world==0?3:0]
+                            index=floor(random(0,list.length))
+                            this.encounters.push(list[index])
+                            if(!(args[1]==0?4:args[1]<3&&this.world==0)){
+                                list.splice(index,1)
+                            }
+                        break
+                        case 1:
+                            list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][args[1]==0?4:args[1]<3&&this.world==0?3:0]
+                            index=floor(random(0,list.length))
+                            this.encounters.push(list[index])
+                            list.splice(index,1)
+                        break
+                        case 2:
+                            list=this.battle.nodeManager.listing.encounter[this.battle.nodeManager.world][1]
+                            index=floor(random(0,list.length))
+                            this.encounters.push(list[index])
+                            list.splice(index,1)
+                        break
+                    }
+                }
             break
         }
     }
@@ -828,7 +861,7 @@ class overlay{
                 let variantNames=[
                     'mod','junk',
                     'lowDraw','deckbuild',
-                    'altDraw','blackjack',
+                    'cyclicDraw','blackjack',
                     'witch','inventor',
                     'chooselose','compress',
                     'unexpected','balance',
@@ -1072,6 +1105,25 @@ class overlay{
                     this.layer.noStroke()
                     this.layer.textSize(18)
                     this.layer.text(types.attack[this.combatant.attack[a].type].name,this.layer.width/2,this.layer.height/2-105+a*50)
+                }
+            break
+            case 15:
+                this.layer.fill(160,this.fade*0.8)
+                this.layer.rect(this.layer.width/2,this.layer.height/2+100,360,560,10)
+                this.layer.rect(this.layer.width/2,this.layer.height/2-205,120,40,10)
+                this.layer.fill(0,this.fade*0.8)
+                this.layer.textSize(30)
+                this.layer.text('Select Enemy',this.layer.width/2,this.layer.height/2-150)
+                this.layer.textSize(20)
+                this.layer.text('Close',this.layer.width/2,this.layer.height/2-205)
+                for(let a=0,la=this.encounters.length;a<la;a++){
+                    this.layer.noStroke()
+                    this.layer.fill(120,this.fade)
+                    this.layer.rect(this.layer.width/2,this.layer.height/2-105+a*50,340,40,10)
+                    this.layer.fill(0,this.fade)
+                    this.layer.noStroke()
+                    this.layer.textSize(18)
+                    this.layer.text(types.encounter[this.encounters[a]].name,this.layer.width/2,this.layer.height/2-105+a*50)
                 }
             break
             
@@ -1793,6 +1845,25 @@ class overlay{
                         this.active=false
                     }
                 break
+                case 15:
+                    for(let a=0,la=this.encounters.length;a<la;a++){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-105+a*50},width:340,height:40})){
+                            this.active=false
+                            transition.trigger=true
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[this.encounters[a]])
+                            switch(this.class){
+                                case 1:
+                                    this.battle.combatantManager.allEffect(24,[2])
+                                    this.battle.combatantManager.allEffect(3,[5])
+                                break
+                            }
+                        }
+                    }
+                    if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height/2-205},width:120,height:40})){
+                        this.active=false
+                    }
+                break
             
             }
         }
@@ -2405,6 +2476,25 @@ class overlay{
                             this.active=false
                             this.combatant.intent=a
                             this.battle.updateTargetting()
+                        }
+                    }
+                    if(code==ENTER){
+                        this.active=false
+                    }
+                break
+                case 15:
+                    for(let a=0,la=this.encounters.length;a<la;a++){
+                        if(int(key)==a+1){
+                            this.active=false
+                            transition.trigger=true
+                            transition.scene='battle'
+                            this.battle.setupBattle(types.encounter[this.encounters[a]])
+                            switch(this.class){
+                                case 1:
+                                    this.battle.combatantManager.allEffect(24,[2])
+                                    this.battle.combatantManager.allEffect(3,[5])
+                                break
+                            }
                         }
                     }
                     if(code==ENTER){

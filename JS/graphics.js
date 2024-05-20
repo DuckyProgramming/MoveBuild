@@ -4956,130 +4956,98 @@ function setupBackground(type,layer){
 		case 11:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2,layer.height*0.6,125,125)
-			layer.rect(layer.width/2,layer.height*0.6+100,125,55)
-			layer.rect(layer.width/2,layer.height*0.8,275,75)
-			layer.rect(layer.width/2,layer.height*0.8+85,275,75)
-			for(let a=0,la=12;a<la;a++){
-				layer.rect(layer.width/2-350,layer.height/2-la*45+45+a*90,350,80)
-				layer.rect(layer.width/2+350,layer.height/2-la*45+45+a*90,350,80)
+			layer.rect(layer.width/2-600,layer.height*0.4,125,125)
+			layer.rect(layer.width/2-600,layer.height*0.4+100,125,55)
+			layer.rect(layer.width/2-600,layer.height*0.6,275,75)
+			layer.rect(layer.width/2-600,layer.height*0.6+85,275,75)
+			for(let a=0,la=27;a<la;a++){
+				layer.rect(layer.width/2-160+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,350,80)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2,layer.height*0.6,100,100)
-			layer.rect(layer.width/2,layer.height*0.6+100,100,30)
-			layer.rect(layer.width/2,layer.height*0.8,250,50)
-			layer.rect(layer.width/2,layer.height*0.8+85,250,50)
-			for(let a=0,la=12;a<la;a++){
-				layer.rect(layer.width/2-382.5,layer.height/2-la*45+45+a*90,260,55)
-				layer.rect(layer.width/2+317.5,layer.height/2-la*45+45+a*90,260,55)
-				layer.rect(layer.width/2-215,layer.height/2-la*45+45+a*90,55,55)
-				layer.rect(layer.width/2+485,layer.height/2-la*45+45+a*90,55,55)
+			layer.rect(layer.width/2-600,layer.height*0.4,100,100)
+			layer.rect(layer.width/2-600,layer.height*0.4+100,100,30)
+			layer.rect(layer.width/2-600,layer.height*0.6,250,50)
+			layer.rect(layer.width/2-600,layer.height*0.6+85,250,50)
+			for(let a=0,la=27;a<la;a++){
+				layer.rect(layer.width/2-192.5+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,260,55)
+				layer.rect(layer.width/2-25+a%3*380,layer.height/2-la*15+45+floor(a/3)*90,55,55)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-5,layer.height*0.6,40,40,-30)
+			regTriangle(layer,layer.width/2-605,layer.height*0.4,40,40,-30)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2,layer.height*0.6+100)
-			layer.text('CUSTOM ULTRAPRISM',layer.width/2,layer.height*0.8)
-			layer.text('RANDOM SETTINGS',layer.width/2,layer.height*0.8+85)
+			layer.text('BACK',layer.width/2-600,layer.height*0.4+100)
+			layer.text('CUSTOM ULTRAPRISM',layer.width/2-600,layer.height*0.6)
+			layer.text('RANDOM SETTINGS',layer.width/2-600,layer.height*0.6+85)
 			let names=[
-				'BONUS MODS','JUNKYARD',
-				'-1 DRAW','DECKBUILD DEFENDS',
-				'CYCLIC DRAW','BLACKJACK DRAW',
-				'CARD SLOT DRAW','CARD TECHIFY MODE',
-				'CHOOSE OR LOSE DRAW','COMPRESSION DRAW',
-				'EXPECT THE UNEXPECTED','BALANCED DRAW',
-				'20% HP','50% HP',
-				'SHORT MAP','SHORTER MAP',
-				'QUICK MODE','POLAR MODE',
-				'PRISM','ULTRAPRISM',
-				'ALL VANISHING','SILENT CARDS',
-				'CURSED MODE','TERMINAL',
+				'MTG MANA','BONUS MODS','CHOOSE COMBATS',
+				'-1 DRAW','CYCLIC DRAW','BALANCED DRAW',
+				'BLACKJACK DRAW','CARD SLOT DRAW','POLAR MODE',
+				'CHOOSE OR LOSE DRAW','COMPRESSION DRAW','FIVE-CARD HOLD',
+				'CARD TECHIFY MODE','EXPECT THE UNEXPECTED','CURSED MODE',
+				'20% HP','50% HP','TERMINAL',
+				'SHORT MAP','SHORTER MAP','STRAIGHT MAP',
+				'PRISM','ULTRAPRISM','JUNKYARD',
+				'ALL VANISHING','SILENT CARDS','TRANSCEND MODE',
 			]
 			for(let a=0,la=names.length;a<la;a++){
-				layer.text(names[a],layer.width/2-382.5+a%2*700,layer.height*0.5-floor(la/2)*45+45+floor(a/2)*90)
+				layer.text(names[a],layer.width/2-192.5+a%3*380,layer.height*0.5-floor(la/3)*45+45+floor(a/3)*90)
 			}
 		break
 		case 12:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2-600,layer.height*0.7+100,125,125)
-			layer.rect(layer.width/2-600,layer.height*0.7+200,125,55)
-			for(let a=0,la=8;a<la;a++){
-				layer.rect(layer.width/2-600,layer.height/2-425+a*90,350,80)
-			}
-			for(let a=0,la=game.playerNumber;a<la;a++){
-				layer.rect(layer.width/2-160+floor(a/5)*380,layer.height/2-180+(a%5)*90,350,80)
+			layer.rect(layer.width/2,layer.height*0.7+100,125,125)
+			layer.rect(layer.width/2,layer.height*0.7+200,125,55)
+			for(let a=0,la=24;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-270+floor(a/4)*90,350,80)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2-600,layer.height*0.7+100,100,100)
-			layer.rect(layer.width/2-600,layer.height*0.7+200,100,30)
-			for(let a=0,la=8;a<la;a++){
-				layer.rect(layer.width/2-632.5,layer.height/2-425+a*90,260,55)
-				layer.rect(layer.width/2-465,layer.height/2-425+a*90,55,55)
-			}
-			for(let a=0,la=game.playerNumber;a<la;a++){
-				layer.rect(layer.width/2-192.5+floor(a/5)*380,layer.height/2-180+(a%5)*90,260,55)
-				layer.rect(layer.width/2-25+floor(a/5)*380,layer.height/2-180+(a%5)*90,55,55)
+			layer.rect(layer.width/2,layer.height*0.7+100,100,100)
+			layer.rect(layer.width/2,layer.height*0.7+200,100,30)
+			for(let a=0,la=24;a<la;a++){
+				layer.rect(layer.width/2-602.5+a%4*380,layer.height/2-270+floor(a/4)*90,260,55)
+				layer.rect(layer.width/2-435+a%4*380,layer.height/2-270+floor(a/4)*90,55,55)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-605,layer.height*0.7+100,40,40,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.7+100,40,40,-30)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2-600,layer.height*0.7+200)
-			layer.text('COLORLESS',layer.width/2-632.5,layer.height*0.5-425)
-			layer.text('STATUS',layer.width/2-632.5,layer.height*0.5-335)
-			layer.text('CURSE',layer.width/2-632.5,layer.height*0.5-245)
-			layer.text('PARTNER',layer.width/2-632.5,layer.height*0.5-155)
-			layer.text('ARCANA',layer.width/2-632.5,layer.height*0.5-65)
-			layer.text('SPECTRAL',layer.width/2-632.5,layer.height*0.5+25)
-			layer.text('JUNKYARD',layer.width/2-632.5,layer.height*0.5+115)
-			layer.text('UNLISTED',layer.width/2-632.5,layer.height*0.5+205)
-			for(let a=0,la=game.playerNumber;a<la;a++){
-				layer.text(types.combatant[a+1].name.toUpperCase(),layer.width/2-192.5+floor(a/5)*380,layer.height/2-180+(a%5)*90)
+			layer.text('BACK',layer.width/2,layer.height*0.7+200)
+			let names2=['COLORLESS','STATUS','CURSE','PARTNER','ARCANA','SPECTRAL','JUNKYARD','UNLISTED']
+			for(let a=0,la=24;a<la;a++){
+				layer.text(a<8?names2[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-602.5+a%4*380,layer.height/2-270+floor(a/4)*90)
 			}
 		break
 		case 13:
 			menuBackground(layer)
 			layer.fill(120)
-			layer.rect(layer.width/2-350,layer.height*0.7,125,125)
-			layer.rect(layer.width/2-350,layer.height*0.7+100,125,55)
-			for(let a=0,la=6;a<la;a++){
-				layer.rect(layer.width/2-350,layer.height/2-380+a*90,300,80)
-			}
-			for(let a=0,la=game.playerNumber+1;a<la;a++){
-				layer.rect(layer.width/2+187.5+floor(a/8)*325,layer.height/2-380+a%8*90,300,80)
+			layer.rect(layer.width/2,layer.height*0.7+100,125,125)
+			layer.rect(layer.width/2,layer.height*0.7+200,125,55)
+			for(let a=0,la=24;a<la;a++){
+				layer.rect(layer.width/2-570+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90,350,80)
 			}
 			layer.fill(0)
-			layer.rect(layer.width/2-350,layer.height*0.7,100,100)
-			layer.rect(layer.width/2-350,layer.height*0.7+100,100,30)
-			for(let a=0,la=6;a<la;a++){
-				layer.rect(layer.width/2-382.5,layer.height/2-380+a*90,210,55)
-				layer.rect(layer.width/2-240,layer.height/2-380+a*90,55,55)
-			}
-			for(let a=0,la=game.playerNumber+1;a<la;a++){
-				layer.rect(layer.width/2+155+floor(a/8)*325,layer.height/2-380+a%8*90,210,55)
-				layer.rect(layer.width/2+297.5+floor(a/8)*325,layer.height/2-380+a%8*90,55,55)
+			layer.rect(layer.width/2,layer.height*0.7+100,100,100)
+			layer.rect(layer.width/2,layer.height*0.7+200,100,30)
+			for(let a=0,la=24;a<la;a++){
+				layer.rect(layer.width/2-602.5+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90,260,55)
+				layer.rect(layer.width/2-435+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90,55,55)
 			}
 			layer.fill(120)
-			regTriangle(layer,layer.width/2-355,layer.height*0.7,40,40,-30)
+			regTriangle(layer,layer.width/2-5,layer.height*0.7+100,40,40,-30)
 			layer.fill(255)
 			layer.textSize(20)
-			layer.text('BACK',layer.width/2-350,layer.height*0.7+100)
-			layer.text('BASIC',layer.width/2-382.5,layer.height*0.5-380)
-			layer.text('LOCATIONS',layer.width/2-382.5,layer.height*0.5-290)
-			layer.text('KEYWORDS',layer.width/2-382.5,layer.height*0.5-200)
-			layer.text('HOTKEYS',layer.width/2-382.5,layer.height*0.5-110)
-			layer.text('STATUSES',layer.width/2-382.5,layer.height*0.5-20)
-			layer.text('TACTICS',layer.width/2-382.5,layer.height*0.5+70)
-			for(let a=0,la=game.playerNumber+1;a<la;a++){
-				layer.text(a==0?`OVERVIEW`:types.combatant[a].name.toUpperCase(),layer.width/2+155+floor(a/8)*325,layer.height*0.5-380+a%8*90)
+			layer.text('BACK',layer.width/2,layer.height*0.7+200)
+			let names3=['BASIC','LOCATIONS','KEYWORDS','HOTKEYS','STATUSES','TACTICS','TACTICS 2','CHARACTER OVERVIEW']
+			for(let a=0,la=24;a<la;a++){
+				layer.text(a<8?names3[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-602.5+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90)
 			}
-			layer.textSize(60)
+			layer.textSize(50)
 			for(let a=0,la=10;a<la;a++){
 				layer.fill(50-50*a/la,255-105*a/la,100-100*a/la)
-				layer.text('Mechanics',layer.width/2-355+a,layer.height*0.1+a)
-				layer.text('Characters',layer.width/2+345+a,layer.height*0.1+a)
+				layer.text('Mechanics',layer.width/2+a*0.5,layer.height/2-405+a*0.5)
+				layer.text('Characters',layer.width/2+a*0.5,layer.height/2-165+a*0.5)
 			}
 		break
 

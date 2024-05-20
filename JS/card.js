@@ -3714,6 +3714,10 @@ class card{
         }
     }
     played(){
+        if(variants.transcend){
+            this.cost=max(this.cost-1,0)
+            this.base.cost=max(this.base.cost-1,0)
+        }
         switch(this.attack){
             case 107: case 255: case 2617: case 2665:
                 this.effect[0]=max(this.effect[0]-this.effect[1],0)

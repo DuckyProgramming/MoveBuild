@@ -17,12 +17,12 @@ class cardManager{
             this.tech.add(findName('Techless',types.card),0,0)
         }
 
-        this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.altDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0))
+        this.drawAmount=variants.blackjack?0:(variants.lowDraw?5:6-(variants.cyclicDraw?2:0)-(variants.witch?2:0)-(variants.chooselose?1:0)-(variants.compress?1:0)-(variants.unexpected?1:0)+(variants.polar?1:0)-(variants.cardHold?1:0))
         this.drawBoost=0
         this.tempDraw=0
         this.tempDrawFreeze=0
         this.tempDrawBurn=0
-        this.baseDrops=variants.altDraw?3:0
+        this.baseDrops=variants.cyclicDraw?3:0
         this.drops=0
         this.interval=0
         this.greenDiff=0
@@ -84,7 +84,7 @@ class cardManager{
             }
         }
         for(let a=0,la=game.playerNumber;a<la;a++){
-            if(variants.altDraw){
+            if(variants.cyclicDraw){
                 let list=['Buster','Multicard','Dropbox','DeDrop','Eye\nDropper']
                 for(let b=0,lb=list.length;b<lb;b++){
                     this.listing.card[a][types.card[findName(list[b],types.card)].rarity].push(findName(list[b],types.card))
@@ -471,7 +471,7 @@ class cardManager{
                     if(this.reserve.cards.length>0){
                         this.reserve.send(this.hand.cards,0,min(amount,this.reserve.cards.length),[3,8,13,14,18][spec])
                     }
-                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
@@ -505,7 +505,7 @@ class cardManager{
                 if(this.reserve.cards.length>0){
                     this.reserve.send(this.hand.cards,this.reserve.cards.length-min(amount,this.reserve.cards.length),-1,3)
                 }
-                if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                     this.discard.send(this.reserve.cards,0,-1,2)
                     this.reserve.shuffle()
                     if(this.reserve.cards.length>0){
@@ -617,7 +617,7 @@ class cardManager{
                     if(this.reserve.cards.length>0){
                         amountLeft-=this.reserve.sendClass(this.hand.cards,cardClass,amount,spec)
                     }
-                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
@@ -653,7 +653,7 @@ class cardManager{
                     if(this.reserve.cards.length>0){
                         amountLeft-=this.reserve.sendPriority(this.hand.cards,type,amount)
                     }
-                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
@@ -697,7 +697,7 @@ class cardManager{
                             }
                         }
                     }
-                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.altDraw){
+                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
                         this.discard.send(this.reserve.cards,0,-1,2)
                         this.reserve.shuffle()
                         if(this.reserve.cards.length>0){
@@ -821,11 +821,11 @@ class cardManager{
         this.discard.allClaw(effect)
     }
     turnDraw(turn){
-        let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&(variants.altDraw||game.ascend>=21)?1:0)
+        let tempDrawAmount=this.drawAmount+this.tempDraw-(this.battle.turn.total==1&&(variants.cyclicDraw||game.ascend>=21)?1:0)
         if(turn==1){
             tempDrawAmount-=this.drawInnate()
         }
-        if(variants.altDraw){
+        if(variants.cyclicDraw){
             this.discard.send(this.reserve.cards,0,-1,2)
             this.reserve.shuffle()
         }
@@ -833,6 +833,9 @@ class cardManager{
             this.tech.copy(this.hand.cards,0,-1)
             this.hand.cards[this.hand.cards.length-1].position.x=1200
             this.hand.cards[this.hand.cards.length-1].position.y=500
+        }
+        if(variants.cardHold){
+            tempDrawAmount-=this.hand.cards.length
         }
         if(turn%3==0&&this.battle.modded(67)){
             this.hand.add(findName('Onyx',types.card),0,0)
@@ -1029,7 +1032,7 @@ class cardManager{
     }
     regenDrops(){
         this.drawBoost=0
-        if(variants.altDraw){
+        if(variants.cyclicDraw){
             this.drops=min(this.drops+1,this.baseDrops)
         }else if(variants.blackjack){
             this.drops=0
@@ -1041,7 +1044,7 @@ class cardManager{
             this.hand.pole=1
         }
         this.hand.exhausts=0
-        if(variants.altDraw){
+        if(variants.cyclicDraw){
             this.drops=this.baseDrops
         }else if(variants.blackjack){
             this.drops=0
@@ -1093,7 +1096,7 @@ class cardManager{
             case 'battle':
                 this.hand.update('battle',[])
                 this.drop.update('drop',[])
-                if(variants.altDraw&&this.hand.cards.length<this.drawAmount+this.drawBoost&&this.battle.turn.main==this.player){
+                if(variants.cyclicDraw&&this.hand.cards.length<this.drawAmount+this.drawBoost&&this.battle.turn.main==this.player){
                     this.draw(this.drawAmount+this.drawBoost-this.hand.cards.length)
                     if(this.hand.cards.length<this.drawAmount){
                         this.discard.sendAttack(this.hand.cards,945,1)

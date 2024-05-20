@@ -26,6 +26,13 @@ balanced discusses - get 2 discuses and they cost 1 less, exhaust
 youmu's ghostblade - this card is a double reference lol
 wriggle's lantern
 
+heavenly peach
+sword of hisou
+
+
+
+
+
 bad lawyer business card - remove a card whenever a medic dies
 mining light - after a boss, gain 50% more money
 card buffer advanced - double upgrading a card makes it shiny
@@ -51,14 +58,14 @@ loaded disk - when sold, create a pink card and yellow card
 ]
 [
 	world 2
-	crow chief
-	can bribe to make the fight shorter
-]
-[
-	world 3
 	daughter of heaven
 	heals 3 whenever gets hit
 	buffs every 100 damage taken
+]
+[
+	world 3
+	sagacious spirit
+	removes your eenrgy
 ]
 [
 	final boss?

@@ -16,7 +16,7 @@ types={
         {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
-        {name:'',moniker:'',identifier:['',''],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        {name:'',moniker:'The Purifier',identifier:['',''],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -6330,20 +6330,17 @@ stage={scale:0,scene:'title',internal:{version:1}}
 game={player:[],deck:[],playerNumber:16,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
-    mtg:true,
-    mod:false,junk:false,
-    lowDraw:false,deckbuild:false,
-    altDraw:false,blackjack:false,
-    witch:false,inventor:false,
-    chooselose:false,compress:false,
-    unexpected:false,balance:false,
-    lowhealth:false,midhealth:false,
-    shortmap:false,shortermap:false,
-    speedmove:false,polar:false,
-    prism:false,ultraprism:false,prismrule:[],
-    vanish:false,blind:false,
-    cursed:false,terminal:false,
-    speedcard:false,nobasicanim:false,
+    mtg:false,mod:false,selectCombat:false,
+    lowDraw:false,cyclicDraw:false,balance:false,
+    blackjack:false,witch:false,polar:false,
+    chooselose:false,compress:false,cardHold:false,
+    inventor:false,unexpected:false,cursed:false,
+    lowhealth:false,midhealth:false,terminal:false,
+    shortmap:false,shortermap:false,singlemap:false,
+    prism:false,ultraprism:false,junk:false,prismrule:[],
+    vanish:false,blind:false,transcend:false,
+
+    speedmove:false,speedcard:false,nobasicanim:false,deckbuild:false,
 }
 constants={collisionDamage:4,
     cycle:[0,15,40,90,140,165,180,195,220,270,320,345],
@@ -6358,6 +6355,6 @@ constants={collisionDamage:4,
 options={damage:false,alt:false,id:false,preGen:[],oldDuplicate:false,oldUnbuild:false}
 graphics={main:0,backgroundGen:14,backgrounds:[],staticBackground:0,overlayGen:1,overlays:[],minor:[],combatant:[],edition:[],proxyBattle:0,test:0}
 transition={trigger:false,anim:0,scene:stage.scene,convert:false}
-inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmn'}
+inputs={mouse:{x:0,y:0},rel:{x:0,y:0},above:'!@#$%^&*()',lastKey:'',hexadec:'1234567890abcdefghijklmnopqrstuvwxyz'}
 a=0;b=0;c=0;d=0;e=0;f=0;g=0;h=0;i=0;j=0;k=0;l=0;m=0;n=0;o=0;p=0
 la=0;lb=0;lc=0;ld=0;le=0;lf=0;lg=0;lh=0;li=0;lj=0;lk=0;ll=0;lm=0;ln=0;lo=0;lp=0

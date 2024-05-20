@@ -2301,7 +2301,7 @@ class attack{
                         }
                     break
                     case 1222:
-                        if(variants.altDraw){
+                        if(variants.cyclicDraw){
                             this.userManager.drops=0
                         }
                     break
@@ -10154,7 +10154,7 @@ class attack{
                         this.userManager.deck.add(findName('The\nDonald',types.card),0,0)
                     break
                     case 1218:
-                        if(variants.altDraw){
+                        if(variants.cyclicDraw){
                             this.userManager.drops+=this.effect[0]
                         }else{
                             this.userManager.draw(1)
@@ -10162,7 +10162,7 @@ class attack{
                     break
                     case 1223:
                         this.userManager.hand.exhaust(this.effect[0])
-                        if(variants.altDraw){
+                        if(variants.cyclicDraw){
                             this.userManager.drops+=this.effect[1]
                         }
                     break

@@ -273,6 +273,8 @@ enemy to play them in.`,
                 ]
             break
             case 6:
+            break
+            case 7:
                 transition.scene='battle'
                 game.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
                 game.deck=[0]
@@ -305,7 +307,7 @@ and it's suggested to try out a variety of playstyles that may also succeed.`,
                     this.battle.combatantManager.combatants[a].goal.anim.direction=this.battle.combatantManager.combatants[a].position.x<this.layer.width/2?30:-30
                 }
             break
-            case 7:
+            case 8:
                 transition.scene='battle'
                 game.player=[1]
                 game.deck=[0]
@@ -343,7 +345,7 @@ Each one has a different utility, so pick your pack wisely.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 8:
+            case 9:
                 transition.scene='battle'
                 game.player=[2]
                 game.deck=[0]
@@ -385,7 +387,7 @@ end you turn a couple times to let it take damage.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 9:
+            case 10:
                 transition.scene='battle'
                 game.player=[3]
                 game.deck=[0]
@@ -424,7 +426,7 @@ If you must break balance, do so when you were going to end your turn anyway.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 10:
+            case 11:
                 transition.scene='battle'
                 game.player=[4]
                 game.deck=[0]
@@ -462,7 +464,7 @@ Certes is largely designed with effective simple cards, so consistency can be ex
 `END OF TUTORIAL`,
                 ]
             break
-            case 11:
+            case 12:
                 transition.scene='battle'
                 game.player=[5]
                 game.deck=[0]
@@ -513,7 +515,7 @@ As a group of cards, there are a lot of interactions.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 12:
+            case 13:
                 transition.scene='battle'
                 game.player=[6]
                 game.deck=[0]
@@ -556,7 +558,7 @@ know when to select them to be upgraded by another card.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 13:
+            case 14:
                 transition.scene='battle'
                 game.player=[7]
                 game.deck=[0]
@@ -600,7 +602,7 @@ Appearing during combat, these cards usually have effective abilities.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 14:
+            case 15:
                 transition.scene='battle'
                 game.player=[8]
                 game.deck=[0]
@@ -641,7 +643,7 @@ Airi uniquely can beenfit from them.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 15:
+            case 16:
                 transition.scene='battle'
                 game.player=[9]
                 game.deck=[0]
@@ -681,7 +683,7 @@ He will damage himself every time he hits you.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 16:
+            case 17:
                 transition.scene='battle'
                 game.player=[10]
                 game.deck=[0]
@@ -720,7 +722,7 @@ that making purchases at shops weakens you - plan ahead!`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 17:
+            case 18:
                 transition.scene='battle'
                 game.player=[11]
                 game.deck=[0]
@@ -763,7 +765,7 @@ when the energy doesn't work out in your favor.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 18:
+            case 19:
                 transition.scene='battle'
                 game.player=[12]
                 game.deck=[0]
@@ -803,7 +805,7 @@ when they are played or when another card is played.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 19:
+            case 20:
                 transition.scene='battle'
                 game.player=[13]
                 game.deck=[0]
@@ -842,7 +844,7 @@ enemies with Weak are susceptible to a variety of effects.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 20:
+            case 21:
                 transition.scene='battle'
                 game.player=[14]
                 game.deck=[0]
@@ -882,7 +884,7 @@ Sometimes building around ad single Concoction might even work.`,
 `END OF TUTORIAL`,
                 ]
             break
-            case 21:
+            case 22:
                 transition.scene='battle'
                 game.player=[15]
                 game.deck=[0]
@@ -918,6 +920,8 @@ It applies double, so an enemy with 4 Freeze increases your damage by 8 temporar
 End your turn to allow him to hit you.`,
 `END OF TUTORIAL`,
                 ]
+            break
+            case 23:
             break
         }
         this.anim.pages=[]
@@ -1127,6 +1131,8 @@ End your turn to allow him to hit you.`,
                 }
             break
             case 6:
+            break
+            case 7:
                 switch(this.page){
                     case 1:
                         for(let a=0,la=game.playerNumber;a<la;a++){
@@ -1135,7 +1141,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 7:
+            case 8:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,1)
@@ -1169,7 +1175,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 8:
+            case 9:
                 switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].hand.add(findName('Increment',types.card),0,2)
@@ -1204,7 +1210,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 9:
+            case 10:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Quick\nStab',types.card),0,3)
@@ -1227,7 +1233,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 10:
+            case 11:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Shiv',types.card),0,0)
@@ -1261,7 +1267,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 11:
+            case 12:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Charge',types.card),0,5)
@@ -1325,7 +1331,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 12:
+            case 13:
                 switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].hand.add(findName('Scavenge',types.card),0,6)
@@ -1383,7 +1389,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 13:
+            case 14:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Crescendo',types.card),0,7)
@@ -1438,7 +1444,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 14:
+            case 15:
                 switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].hand.add(findName('Highball',types.card),0,8)
@@ -1483,7 +1489,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 15:
+            case 16:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Pistol',types.card),0,9)
@@ -1525,7 +1531,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 16:
+            case 17:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Lucky\nStrike',types.card),0,10)
@@ -1576,7 +1582,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 17:
+            case 18:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -1612,7 +1618,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 18:
+            case 19:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].allEffect(2,2)
@@ -1647,7 +1653,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 19:
+            case 20:
                 switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].hand.add(findName('Supremum',types.card),0,13)
@@ -1680,7 +1686,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 20:
+            case 21:
                 switch(this.page){
                     case 1:
                         this.battle.cardManagers[0].hand.add(findName('Synthesis',types.card),0,14)
@@ -1692,7 +1698,7 @@ End your turn to allow him to hit you.`,
                     break
                 }
             break
-            case 21:
+            case 22:
                 switch(this.page){
                     case 1:
                         for(let a=0,la=12;a<la;a++){
@@ -1734,6 +1740,8 @@ End your turn to allow him to hit you.`,
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
                     break
                 }
+            break
+            case 23:
             break
         }
     }
