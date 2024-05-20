@@ -60,16 +60,16 @@ class group{
                 if(game.dev){
                     if(variants.junk){
                         for(let a=0,la=6;a<la;a++){
-                            this.add(this.battle.cardManagers[this.player].listing.junk[11][this.battle.cardManagers[this.player].listing.junk[11].length-1-a],level,this.battle.player[this.player])
+                            this.add(this.battle.cardManagers[this.player].listing.junk[11][this.battle.cardManagers[this.player].listing.junk[11].length-1-a],level,variants.mtg?0:this.battle.player[this.player])
                         }
                     }else{
                         for(let a=0,la=6;a<la;a++){
-                            this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],level,this.battle.player[this.player])
+                            this.add(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3][this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]][3].length-1-a],level,variants.mtg?0:this.battle.player[this.player])
                         }
                     }
                 }else{
                     for(let a=0,la=types.deck.start[game.ascend>=20?1:0].length;a<la;a++){
-                        this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1]+level,types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?player:types.deck.start[game.ascend>=20?1:0][a][2])
+                        this.add(findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card),types.deck.start[game.ascend>=20?1:0][a][1]+level,types.deck.start[game.ascend>=20?1:0][a][2]==-2?types.card[findName(types.deck.start[game.ascend>=20?1:0][a][0],types.card)].list:types.deck.start[game.ascend>=20?1:0][a][2]==-1?(variants.mtg?0:player):types.deck.start[game.ascend>=20?1:0][a][2])
                     }
                 }
             break
@@ -517,7 +517,7 @@ class group{
     shuffled(){
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.status.main[151]>0){
-            this.battle.energy.main[this.player]+=userCombatant.status.main[151]
+            this.battle.addEnergy(userCombatant.status.main[151],this.player)
         }
         if(userCombatant.status.main[152]>0){
             this.battle.cardManagers[this.player].draw(userCombatant.status.main[152])
@@ -1082,7 +1082,7 @@ class group{
                     if(this.cards[a].class==7){
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
-                        this.battle.energy.main[this.player]++
+                        this.battle.addEnergy(1,this.player)
                     }
                 break
                 case 27:
@@ -1470,7 +1470,7 @@ class group{
                 break
                 case 7:
                     if(this.cards[a].attack==1228&&this.cards[a].usable){
-                        this.battle.energy.main[this.player]+=args[0]
+                        this.battle.addEnergy(args[0],this.player)
                     }
                 break
                 case 8:
@@ -1837,7 +1837,7 @@ class group{
                 this.drawEffects.push([0,9,[card.effect[0]]])
             break
             case -18: case -48:
-                this.battle.energy.main[this.player]-=card.effect[0]
+                this.battle.loseEnergy(card.effect[0],this.player)
             break
             case -20:
                 this.drawEffects.push([2,[card.effect[0]]])
@@ -1864,7 +1864,7 @@ class group{
                 userCombatant.statusEffect('Strength',card.effect[0])
             break
             case -29:
-                this.battle.energy.main[this.player]=0
+                this.battle.setEnergy(0,this.player)
             break
             case -31:
                 this.battle.combatantManager.fullAllEffect(3,[card.effect[0]])
@@ -1898,7 +1898,7 @@ class group{
                 this.battle.cardManagers[this.player].randomEffect(2,22,[])
             break
             case -56:
-                this.battle.energy.main[this.player]-=card.effect[0]
+                this.battle.loseEnergy(card.effect[0],this.player)
                 this.battle.cardManagers[this.player].randomEffect(2,1,[1])
             break
             case 288: case 374: case 2217: case 2776:
@@ -1907,7 +1907,7 @@ class group{
                 }
             break
             case 933:
-                this.battle.energy.main[this.player]+=card.effect[0]
+                this.battle.addEnergy(card.effect[0],this.player)
             break
             case 1064: case 1065: case 1114:
                 this.drawEffects.push([5,1])
@@ -2012,7 +2012,7 @@ class group{
             break
             case 2873:
                 this.battle.combatantManager.randomEnemyEffect(0,[card.effect[0]])
-                this.battle.energy.main[this.player]+=card.effect[1]
+                this.battle.addEnergy(card.effect[1],this.player)
             break
         }
     }
@@ -2626,7 +2626,7 @@ class group{
             }
         }
     }
-    cost(cost,cardClass,spec,target){
+    cost(cost,cardClass,spec,target,mtgManaColor=0){
         this.battle.attackManager.amplify=false
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(spec.includes(25)&&userCombatant.ammo>0&&!(target[0]==46&&this.battle.attackManager.targetDistance<=1)){
@@ -2648,11 +2648,21 @@ class group{
             userCombatant.status.main[findList('Twos',userCombatant.status.name)]-=cost
         }else{
             if(cost==-1){
-                this.battle.energy.main[this.player]=0
-            }else if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
-                this.battle.energy.main[this.player]-=round(cost/2)
+                this.battle.setEnergy(0,this.player)
             }else{
-                this.battle.energy.main[this.player]-=cost
+                if(variants.mtg){
+                    if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
+                        this.battle.loseSpecificEnergy(round(cost/2),this.player,mtgManaColor)
+                    }else{
+                        this.battle.loseSpecificEnergy(cost,this.player,mtgManaColor)
+                    }
+                }else{
+                    if(spec.includes(35)&&userCombatant.getStatus('Double Countdowns')>0){
+                        this.battle.loseEnergy(round(cost/2),this.player)
+                    }else{
+                        this.battle.loseEnergy(cost,this.player)
+                    }
+                }
             }
             if(cost==0&&this.battle.modded(38)){
                 userCombatant.life-=2
@@ -2663,8 +2673,8 @@ class group{
                 }else if(userCombatant.getStatus('Single Free Amplify')>0){
                     userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
                     this.battle.attackManager.amplify=true
-                }else if(this.battle.energy.main[this.player]>0&&spec.includes(27)){
-                    this.battle.energy.main[this.player]--
+                }else if(this.battle.getEnergy(this.player)>=1&&spec.includes(27)){
+                    this.battle.loseSpecificEnergy(1,this.player,0)
                     this.battle.attackManager.amplify=true
                     this.cards.forEach(card=>card.anotherAmplified())
                     if(userCombatant.status.main[144]>0){
@@ -2672,8 +2682,8 @@ class group{
                         this.battle.overlayManager.overlays[7][this.player].activate()
                     }
                 }
-                if(this.battle.energy.main[this.player]>1&&spec.includes(28)){
-                    this.battle.energy.main[this.player]-=2
+                if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
+                    this.battle.loseSpecificEnergy(2,this.player,0)
                     this.battle.attackManager.amplify=true
                     this.cards.forEach(card=>card.anotherAmplified())
                     if(userCombatant.status.main[144]>0){
@@ -2690,10 +2700,11 @@ class group{
                 this.battle.attackManager.type=this.cards[a].attack
                 this.battle.attackManager.effect=copyArray(this.cards[a].effect)
                 this.battle.attackManager.attackClass=this.cards[a].class
+                this.battle.attackManager.mtgManaColor=this.cards[a].mtgManaColor
                 this.battle.attackManager.player=this.player
 
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
-                this.battle.attackManager.energy=this.battle.energy.main[this.player]+(this.battle.relicManager.hasRelic(121,this.player)?2:0)
+                this.battle.attackManager.energy=this.battle.getEnergy(this.player)+(this.battle.relicManager.hasRelic(121,this.player)?2:0)
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
                 this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
                 this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
@@ -2829,6 +2840,7 @@ class group{
                 this.battle.attackManager.type=this.cards[a].attack
                 this.battle.attackManager.effect=copyArray(this.cards[a].effect)
                 this.battle.attackManager.attackClass=this.cards[a].class
+                this.battle.attackManager.mtgManaColor=this.cards[a].mtgManaColor
                 this.battle.attackManager.player=this.player
                 this.battle.attackManager.relPos=[a,this.cards.length-1]
                 this.battle.attackManager.limit=this.cards[a].limit
@@ -2953,7 +2965,7 @@ class group{
                     this.battle.playCard(this.cards[a],this.player,0)
                     this.cardInUse=this.cards[a]
                     this.callInput(5,0)
-                    this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target)
+                    this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target,this.cards[a].mtgManaColor)
                     this.cards.forEach(card=>card.anotherPlayedAfter())
                     this.battle.attackManager.execute()
                     this.lastPlayed[0]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
@@ -3107,7 +3119,7 @@ class group{
                         }
                     }
                 }
-                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target)
+                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor)
                 this.cards.forEach(card=>card.anotherPlayedAfter())
                 this.battle.attackManager.execute()
                 this.battle.updateTargetting()
@@ -3254,7 +3266,7 @@ class group{
                             }
                         }
                     }
-                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target)
+                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor)
                     this.cards.forEach(card=>card.anotherPlayedAfter())
                     this.battle.attackManager.execute()
                     this.battle.updateTargetting()
@@ -3284,7 +3296,7 @@ class group{
             break
             case 5:
                 this.battle.attackManager.user=this.battle.combatantManager.getPlayerCombatantIndex(this.player)
-                this.battle.attackManager.energy=this.battle.energy.main[this.player]+(this.battle.relicManager.hasRelic(121,this.player)?2:0)
+                this.battle.attackManager.energy=this.battle.getEnergy(this.player)+(this.battle.relicManager.hasRelic(121,this.player)?2:0)
                 this.battle.attackManager.position.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.x
                 this.battle.attackManager.position.y=this.battle.combatantManager.combatants[this.battle.attackManager.user].position.y
                 this.battle.attackManager.relativePosition.x=this.battle.combatantManager.combatants[this.battle.attackManager.user].relativePosition.x
@@ -3298,6 +3310,7 @@ class group{
                 this.battle.attackManager.type=a[0]
                 this.battle.attackManager.effect=a[1]
                 this.battle.attackManager.attackClass=a[2]
+                this.battle.attackManager.mtgManaColor=0
                 if(a[3][0]==0){
                     this.callInput(5,0)
                     this.battle.attackManager.execute()
@@ -3426,7 +3439,7 @@ class group{
             break
             case 21:
                 if(this.cards[a].attack!=-3){
-                    this.battle.energy.main[this.player]+=max(0,this.cards[a].cost)
+                    this.battle.addEnergy(max(0,this.cards[a].cost),this.player)
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
                     if(this.status[16]>0){
@@ -3821,7 +3834,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==7){
             for(let a=0,la=this.battle.tileManager.tiles.length;a<la;a++){
                 if(this.battle.tileManager.tiles[a].occupied==0&&
-                    legalTargetCombatant(0,1,this.battle.energy.main[this.battle.attackManager.player]+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&
+                    legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)&&
                     dist(inputs.rel.x,inputs.rel.y,this.battle.tileManager.tiles[a].position.x,this.battle.tileManager.tiles[a].position.y)<game.targetRadius){
                     this.callInput(2,a)
                 }
@@ -4115,14 +4128,14 @@ class group{
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)
                                         break
-                                    }else if(this.cards[a].spec.includes(35)&&this.battle.energy.main[this.player]>0&&this.cards[a].cost>0){
+                                    }else if(this.cards[a].spec.includes(35)&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0&&this.cards[a].cost>0){
                                         let cost=this.cards[a].cost
                                         if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
-                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.energy.main[this.player]*2)
-                                            this.battle.energy.main[this.player]-=min(this.battle.energy.main[this.player],round(cost/2))
+                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)*2)
+                                            this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player,this.cards[a].mtgManaColor)
                                         }else{
-                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.energy.main[this.player])
-                                            this.battle.energy.main[this.player]-=min(this.battle.energy.main[this.player],round(cost))
+                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor))
+                                            this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player,this.cards[a].mtgManaColor)
                                         }
                                         this.cards[a].onIncrementCountdown()
                                     }else if(!this.cards[a].energyAfford){
@@ -4175,7 +4188,7 @@ class group{
         if(this.battle.attackManager.targetInfo[0]==7){
             if(int(inputs.lastKey[0])-1>=0&&int(inputs.lastKey[1])-1+this.battle.tileManager.offset.x>=0&&this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)>=0&&key==' '){
                 let a=this.battle.tileManager.getTileIndex(int(inputs.lastKey[0])-1+this.battle.tileManager.offset.x,int(inputs.lastKey[1])-1+this.battle.tileManager.offset.y)
-                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.energy.main[this.battle.attackManager.player]+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
+                if(this.battle.tileManager.tiles[a].occupied==0&&legalTargetCombatant(0,1,this.battle.getEnergy(this.battle.attackManager.player)+this.battle.attackManager.targetInfo[1]+(this.battle.relicManager.hasRelic(121,this.battle.attackManager.player)?2:0),this.battle.tileManager.tiles[a],this.battle.attackManager,this.battle.tileManager.tiles)){
                     this.callInput(2,a)
                 }
             }
@@ -4465,9 +4478,15 @@ class group{
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)
                                         break
-                                    }else if(this.cards[a].spec.includes(35)&&this.battle.energy.main[this.player]>0){
-                                        this.cards[a].cost-=this.battle.energy.main[this.player]
-                                        this.battle.energy.main[this.player]=0
+                                    }else if(this.cards[a].spec.includes(35)&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0&&this.cards[a].cost>0){
+                                        let cost=this.cards[a].cost
+                                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
+                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)*2)
+                                            this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player,this.cards[a].mtgManaColor)
+                                        }else{
+                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor))
+                                            this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player,this.cards[a].mtgManaColor)
+                                        }
                                         this.cards[a].onIncrementCountdown()
                                     }else{
                                         this.battle.anim.upAfford=true

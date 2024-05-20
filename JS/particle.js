@@ -145,6 +145,7 @@ class particle{
                 this.trigger=false
                 this.size=1
                 this.scale=1
+                this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
             break
             case 46:
                 this.size=args[0]

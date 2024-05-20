@@ -117,9 +117,9 @@ They may be an event, which vary by quality.`,
                 this.battle.player=[0]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -154,9 +154,9 @@ Sometimes, they have passive effects, other times, they are useless.`,
                 this.battle.player=[0]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialHotkey',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -192,9 +192,9 @@ Try these out in those places.`,
                 this.battle.player=[0]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialStatus',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -248,9 +248,9 @@ Those characters often have status effects that they use often.`,
                 this.battle.player=[0]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialTactic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -279,9 +279,9 @@ enemy to play them in.`,
                 this.battle.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialAll',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -312,9 +312,9 @@ and it's suggested to try out a variety of playstyles that may also succeed.`,
                 this.battle.player=[1]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -350,9 +350,9 @@ Each one has a different utility, so pick your pack wisely.`,
                 this.battle.player=[2]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -392,9 +392,9 @@ end you turn a couple times to let it take damage.`,
                 this.battle.player=[3]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -431,9 +431,9 @@ If you must break balance, do so when you were going to end your turn anyway.`,
                 this.battle.player=[4]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialStatus',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -469,9 +469,9 @@ Certes is largely designed with effective simple cards, so consistency can be ex
                 this.battle.player=[5]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -520,9 +520,9 @@ As a group of cards, there are a lot of interactions.`,
                 this.battle.player=[6]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -563,9 +563,9 @@ know when to select them to be upgraded by another card.`,
                 this.battle.player=[7]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -607,9 +607,9 @@ Appearing during combat, these cards usually have effective abilities.`,
                 this.battle.player=[8]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -648,9 +648,9 @@ Airi uniquely can beenfit from them.`,
                 this.battle.player=[9]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialEdgar',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -688,9 +688,9 @@ He will damage himself every time he hits you.`,
                 this.battle.player=[10]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -727,9 +727,9 @@ that making purchases at shops weakens you - plan ahead!`,
                 this.battle.player=[11]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -770,9 +770,9 @@ when the energy doesn't work out in your favor.`,
                 this.battle.player=[12]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -810,9 +810,9 @@ when they are played or when another card is played.`,
                 this.battle.player=[13]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -849,9 +849,9 @@ enemies with Weak are susceptible to a variety of effects.`,
                 this.battle.player=[14]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -889,9 +889,9 @@ Sometimes building around ad single Concoction might even work.`,
                 this.battle.player=[15]
                 this.battle.deck=[0]
                 this.battle.create()
-                this.battle.energy.main[0]=99
-                this.battle.energy.gen[0]=99
-                this.battle.energy.base[0]=99
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialBasic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -1310,10 +1310,10 @@ End your turn to allow him to hit you.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(40)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Tetraphobia',types.card),0,5)
-                        this.battle.energy.main[0]=0
+                        this.battle.setEnergy(0,0)
                     break
                     case 11:
-                        this.battle.energy.main[0]=1
+                        this.battle.setEnergy(1,0)
                     break
                     case 12:
                         this.battle.cardManagers[0].hand.add(findName('Asklepios',types.card),0,5)
@@ -1321,7 +1321,7 @@ End your turn to allow him to hit you.`,
                         this.battle.cardManagers[0].hand.add(findName('Magic\nSwitch',types.card),0,5)
                         this.battle.cardManagers[0].hand.add(findName('Magic\nSwitch',types.card),0,5)
                         this.battle.cardManagers[0].hand.add(findName('Magic\nSwitch',types.card),0,5)
-                        this.battle.energy.main[0]=3
+                        this.battle.setEnergy(3,0)
                     break
                 }
             break
@@ -1595,7 +1595,7 @@ End your turn to allow him to hit you.`,
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Jinx',types.card),0,11)
-                        this.battle.energy.main[0]=99
+                        this.battle.setEnergy(99,0)
                     break
                     case 7:
                         this.battle.combatantManager.resetCombatants()
@@ -1604,7 +1604,7 @@ End your turn to allow him to hit you.`,
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Silver\nDagger',types.card),0,11)
                         this.battle.cardManagers[0].hand.add(findName('Silver\nShield',types.card),0,11)
-                        this.battle.energy.main[0]=99
+                        this.battle.setEnergy(99,0)
                     break
                     case 8:
                         this.battle.cardManagers[0].hand.add(findName('Acanthite',types.card),0,11)
@@ -1643,7 +1643,7 @@ End your turn to allow him to hit you.`,
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
                         this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,12)
-                        this.battle.energy.main[0]=99
+                        this.battle.setEnergy(99,0)
                     break
                 }
             break
@@ -1657,7 +1657,7 @@ End your turn to allow him to hit you.`,
                         this.battle.cardManagers[0].hand.add(findName('Restraint',types.card),0,13)
                         this.battle.cardManagers[0].hand.add(findName('Supremum',types.card),0,13)
                         this.battle.cardManagers[0].hand.add(findName('Time\nFlies',types.card),0,13)
-                        this.battle.energy.main[0]=99
+                        this.battle.setEnergy(99,0)
                     break
                     case 4:
                         this.battle.combatantManager.resetCombatants()

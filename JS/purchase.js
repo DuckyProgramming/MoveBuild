@@ -164,10 +164,11 @@ class purchase{
                         this.layer.strokeWeight(3)
                         this.layer.fill(types.color.card[this.battle.player[0]].fill)
                         this.layer.stroke(types.color.card[this.battle.player[0]].stroke)
-                        this.layer.rect(0,0,54,72,3)
+                        this.layer.rect(-12,0,30,72,3)
                         this.layer.fill(types.color.card[this.battle.player[1]].fill)
                         this.layer.stroke(types.color.card[this.battle.player[1]].stroke)
                         this.layer.rect(12,0,30,72,3)
+
                         this.layer.noStroke()
                         this.layer.fill(types.color.card[this.battle.player[0]].stroke)
                         this.layer.rect(-6,0,12,75)
@@ -177,14 +178,28 @@ class purchase{
                         this.layer.rect(-6,0,12,69)
                         this.layer.fill(types.color.card[this.battle.player[1]].fill)
                         this.layer.rect(6,0,12,69)
+
+                        this.layer.translate(-8,0)
+                        this.layer.noStroke()
+                        this.gradient=[new p5.LinearGradient(15,20),new p5.LinearGradient(15,20)]
+                        this.gradient[0].colors(0.0,
+                            color(types.color.card[this.battle.player[0]].stroke[0],types.color.card[this.battle.player[0]].stroke[1],types.color.card[this.battle.player[0]].stroke[2]),1.0,
+                            color(types.color.card[this.battle.player[1]].stroke[0],types.color.card[this.battle.player[1]].stroke[1],types.color.card[this.battle.player[1]].stroke[2]))
+                        this.gradient[1].colors(0.0,
+                            color(types.color.card[this.battle.player[0]].fill[0],types.color.card[this.battle.player[0]].fill[1],types.color.card[this.battle.player[0]].fill[2]),1.0,
+                            color(types.color.card[this.battle.player[1]].fill[0],types.color.card[this.battle.player[1]].fill[1],types.color.card[this.battle.player[1]].fill[2]))
+                        this.layer.fillGradient(this.gradient[0])
+                        this.layer.rect(8,0,40,75)
+                        this.layer.fillGradient(this.gradient[1])
+                        this.layer.rect(8,0,40,69)
+                        this.layer.translate(8,0)
+
                         this.layer.fill(types.color.card[this.battle.player[0]].active)
                         halfRegStar(this.layer,0,0,6,8,8,20,20,-180)
                         this.layer.fill(types.color.card[this.battle.player[1]].active)
                         halfRegStar(this.layer,0,0,6,8,8,20,20,0)
-                        this.layer.fill(upColor(types.color.card[this.battle.player[0]].stroke,-20,[1,1,1]))
-                        this.layer.rect(-0.45,0,0.9,75)
-                        this.layer.fill(upColor(types.color.card[this.battle.player[1]].stroke,-20,[1,1,1]))
-                        this.layer.rect(0.45,0,0.9,75)
+                        this.layer.fill(180)
+                        this.layer.rect(0,0,1.8,75)
                     }else{
                         switch(this.args[0]){
                             case 0:
@@ -355,7 +370,7 @@ class purchase{
             )
         switch(this.type){
             case 3:
-                this.relic.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}})
+                this.relic.update(true,0,{rel:{x:inputs.rel.x-this.position.x,y:inputs.rel.y-this.position.y}},undefined,!this.battle.overlayManager.anyActive)
             break
         }
     }

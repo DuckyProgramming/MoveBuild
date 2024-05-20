@@ -121,7 +121,7 @@ class itemManager{
         let effectiveness=this.effectiveness[player]*this.combatEffectiveness[player]*this.tempEffectiveness[player]
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)]
         if(userCombatant.getStatus('Item Use Energy')>0){
-            this.battle.energy.main[player]+=userCombatant.getStatus('Item Use Energy')
+            this.battle.addEnergy(userCombatant.getStatus('Item Use Energy'),player)
         }
         if(userCombatant.getStatus('Item Use Draw')>0){
             this.battle.cardManagers[player].draw(userCombatant.getStatus('Item Use Draw'))
@@ -172,7 +172,7 @@ class itemManager{
                 this.battle.cardManagers[player].allEffect(2,4)
             break
             case 14:
-                this.battle.energy.main[player]+=3*effectiveness
+                this.battle.addEnergy(3*effectiveness,player)
             break
             case 15:
                 userCombatant.statusEffect('Strength',2*effectiveness)
@@ -320,7 +320,7 @@ class itemManager{
                 userCombatant.heal(3*effectiveness)
             break
             case 104:
-                this.battle.energy.main[player]+=2*effectiveness
+                this.battle.addEnergy(2*effectiveness,player)
             break
             case 105:
                 this.battle.cardManagers[player].hand.callInput(6,[57,[5*effectiveness],1,[2,1,3]])

@@ -160,7 +160,7 @@ class tile{
                 case 14:
                     if(this.combatant>=0&&this.battle.combatantManager.combatants[this.combatant].id==id&&type==1&&this.battle.combatantManager.combatants[this.combatant].team>0&&!this.battle.combatantManager.combatants[this.combatant].construct&&!this.battle.combatantManager.combatants[this.combatant].support){
                         if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
-                            this.battle.energy.main[this.battle.combatantManager.combatants[this.combatant].id]=0
+                            this.battle.setEnergy(0,this.battle.combatantManager.combatants[this.combatant].id)
                             this.anim.upPart[a]=false
                         }
                     }

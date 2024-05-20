@@ -26,7 +26,7 @@ attack.prototype.update=function(){
             this.remove=true
         break
         case -35:
-            this.battle.energy.main[this.player]=0
+            this.battle.setEnergy(0,this.player)
             this.remove=true
         break
         case -47:
@@ -1138,7 +1138,7 @@ attack.prototype.update=function(){
             }
             this.userCombatant.runAnimation(1/10,11)
             if(this.timer==10){
-                this.battle.energy.main[this.player]+=this.effect[0]
+                this.battle.addEnergy(this.effect[0],this.player)
                 this.userCombatant.takeDamage(this.effect[1],-1,1)
             }else if(this.timer>=20){
                 this.remove=true
@@ -1196,7 +1196,7 @@ attack.prototype.update=function(){
                     }
                     switch(this.type){
                         case 1246:
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         break
                         case 1274:
                             this.targetCombatant.statusEffect('Freeze',this.effect[1])
@@ -1860,7 +1860,7 @@ attack.prototype.update=function(){
                                 if((types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==1||types.attack[this.targetCombatant.attack[this.targetCombatant.intent].type].class==5)){
                                     this.userManager.draw(this.effect[1])
                                 }else{
-                                    this.battle.energy.main[this.player]+=this.effect[2]
+                                    this.battle.addEnergy(this.effect[2],this.player)
                                 }
                             break
                         }
@@ -4279,7 +4279,7 @@ attack.prototype.update=function(){
                 switch(this.type){
                     case 593:
                         if(this.targetCombatant.life<=0){
-                            this.battle.energy.main[this.player]+=this.effect[2]
+                            this.battle.addEnergy(this.effect[2],this.player)
                         }
                     break
                 }

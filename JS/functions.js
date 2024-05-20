@@ -116,7 +116,7 @@ function regStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 }
 function halfRegStar(layer,x,y,sides,radiusX,radiusY,radius2X,radius2Y,direction){
 	layer.beginShape()
-	for(k=0;k<sides*2;k++){
+	for(k=0;k<sides*2+1;k++){
 		layer.vertex(x+sin(direction+k*90/sides)*(k%2==0?radiusX:radius2X),y+cos(direction+k*90/sides)*(k%2==0?radiusY:radius2Y))
 	}
 	layer.endShape(CLOSE)
@@ -736,9 +736,9 @@ function intentDescription(attack,user,info){
 			case 196: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
 			case 197: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Armor`
 			case 198: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nDrain ${info?attack.effect[1]:`?`} Energy\nRange 1-1`
-			case 199: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTransform ${info?attack.effect[1]:`?`} Cards\nRange 1-6`
+			case 199: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTransform ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6`
 			case 200: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHeal ${info?calculateIntent(attack.effect[0],user,4):`?`} Health\nRange 1-6`
-			case 201: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSet Values of ${info?attack.effect[1]:`?`} Cards to 1\nRange 1-6`
+			case 201: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSet Values of ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``} to 1\nRange 1-6`
 			case 202: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nClear Target Statuses\nRange 1-6`
 			case 203: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile in a Random Direction\nRange 1-2`
 			case 204: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n5 Tiles Wide\nRange 1-1`
@@ -895,14 +895,14 @@ function copyCardFree(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 }
 function upgradeCard(base){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn)
 	if(base.attack==1352){
 		result.limit=base.limit
 	}
 	return result
 }
 function unupgradeCard(base){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn)
 	if(base.attack==1352){
 		result.limit=base.limit
 	}
@@ -1388,4 +1388,63 @@ function cursed(){
 	for(let a=0,la=current.combatantManager.combatants.length;a<la;a++){
 		current.combatantManager.combatants[a].goal.anim.direction=0
 	}
+}
+function mtgPlayerColor(player){
+	/*
+	0-colorless
+	1-green
+	2-blue
+	3-black
+	4-white
+	5-red
+	*/
+	switch(player){
+		case 1: return [1]
+		case 2: return [4]
+		case 3: return [3,5]
+		case 4: return [5]
+		case 5: return [1,2]
+		case 6: return [1,3]
+		case 7: return [1,5]
+		case 8: return [4,5]
+		case 9: return [1,4]
+		case 10: return [2]
+		case 11: return [2,3]
+		case 12: return [3]
+		case 13: return [3,4]
+		case 14: return [3,5]
+		case 15: return [2,4]
+		default: return [0]
+	}
+}
+function mtgCardColor(color){
+	if(color>=1&&color<=15){
+		return mtgPlayerColor(color)
+	}else{
+		return [color]
+	}
+}
+function mtgManaBase(energy,player){
+	let playerColor=mtgPlayerColor(player)
+	if(playerColor.length==2&&floor(random(0,2))==0){
+		playerColor=[playerColor[1],playerColor[0]]
+	}
+	let remaining=[1,2,3,4,5]
+	for(let a=0,la=playerColor.length;a<la;a++){
+		remaining.splice(remaining.indexOf(playerColor[a]),1)
+	}
+	for(let a=0,la=remaining.length;a<la;a++){
+		playerColor.push(remaining[floor(random(0,remaining.length))])
+	}
+	switch(energy){
+		case 0: return []
+		case 1: return [playerColor[0]]
+		case 2: return [playerColor[0],playerColor[1]]
+		case 3: return [playerColor[0],playerColor[0],playerColor[1]]
+		case 4: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
+		case 5: return [playerColor[0],playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
+	}
+}
+function total6(list){
+	return list[0]+list[1]+list[2]+list[3]+list[4]+list[5]
 }

@@ -149,11 +149,11 @@ class overlay{
                 }
                 switch(args[2]){
                     case 0: case 7:
-                        list=variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,20))==0?2:args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,20))==0?2:args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
                                 let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
                                 this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                                 this.cards[this.cards.length-1].upSize=true
@@ -161,10 +161,10 @@ class overlay{
                             }
                         }
                         if(this.args[0]==0&&this.battle.relicManager.hasRelic(172,this.player)){
-                            list=variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
+                            list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard)
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+this.options*60+120,this.layer.height/2+20,list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,20))==0?2:args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:types.card[list[args[1]][index]].list,-1))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+this.options*60+120,this.layer.height/2+20,list[args[1]][index],this.battle.relicManager.hasRelic(219,this.player)&&floor(random(0,20))==0?2:args[0],variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:types.card[list[args[1]][index]].list,-1))
                                 let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,60)):floor(random(0,360))
                                 this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                                 this.cards[this.cards.length-1].upSize=true
@@ -291,11 +291,11 @@ class overlay{
                         }
                     break
                     case 14:
-                        list=copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
+                        list=variants.mtg?copyArrayStack(this.battle.cardManagers[this.player].listing.mtg):variants.junk?quadroArray(copyArray(this.battle.cardManagers[this.player].listing.junk[game.playerNumber+1])):variants.ultraprism?copyArrayStack(this.battle.cardManagers[this.player].listing.all):variants.prism?copyArrayStack(this.battle.cardManagers[this.player].listing.allPlayerCard):copyArrayStack(this.battle.cardManagers[this.player].listing.card[this.battle.player[this.player]])
                         for(let a=0,la=this.options;a<la;a++){
                             if(list[args[1]].length>0){
                                 let index=floor(random(0,list[args[1]].length))
-                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0],2.5)),variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
+                                this.cards.push(new card(this.layer,this.battle,this.player,this.layer.width/2+60-la*60+a*120,this.layer.height/2+20,list[args[1]][index],floor(random(args[0],2.5)),variants.junk?types.card[list[args[1]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[args[1]][index]].list<0?0:types.card[list[args[1]][index]].list>=types.color.card.length?0:types.card[list[args[1]][index]].list):variants.prism?types.card[list[args[1]][index]].list:this.battle.player[this.player],-1))
                                 let roll=this.battle.relicManager.hasRelic(180,this.player)?floor(random(0,15)):floor(random(0,90))
                                 this.cards[this.cards.length-1].edition=this.battle.relicManager.hasRelic(213,this.player)?0:roll==0?6:roll==1?5:roll==2?4:roll>=3&&roll<=5?3:roll>=6&&roll<=8?2:roll>=9&&roll<=11?1:0
                                 this.cards[this.cards.length-1].upSize=true

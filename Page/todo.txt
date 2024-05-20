@@ -1,3 +1,47 @@
+
+
+orb of duality - damage and get an orb
+basic orb of fire and water
+
+duplex barrier - damage, 2 times if you have barrier
+binding border - damage, apply 1 vulnerable if you have border
+
+newspaper - status, when etherealed, damage a random enemy by 1
+
+convert crossing the border to give barrier
+battle position - gain block and temporary strength
+cleansing - barrier and exhaust
+purified rod - draw 1 more card for the next 2 turns when drawn, ethereal
+
+dichromatic - damage a random enemy when you get buffer
+
+slice of life - heal and convert block to barrier
+
+balanced discusses - get 2 discuses and they cost 1 less, exhaust
+
+
+
+
+
+youmu's ghostblade - this card is a double reference lol
+wriggle's lantern
+
+bad lawyer business card - remove a card whenever a medic dies
+mining light - after a boss, gain 50% more money
+card buffer advanced - double upgrading a card makes it shiny
+css - gain 1 base energy, text is double font size
+clownfish - playing any shiny card gives 1 temporary strength
+
+philosophy duck - when sold, get a random relic
+ms paint - draw a card and retain it to hand at the start of combat
+jester duck - all enemies start combat with 1 burn, 1 freeze, or 1 shock
+orange stake - booster packs contain 2 more choices
+loaded disk - when sold, create a pink card and yellow card
+
+
+
+
+
 [
 	world 1
 	crusader
@@ -30,27 +74,3 @@
 		lust - spawning
 	]
 ]
-
-
-
-
-
-variants:
-MTG mana mode
-
-Green-George
-Blue-Chip
-Black-DD610
-White-Lira
-Red-Certes
-
-Green+Blue-Azis
-Green+Black-Vincent
-Green+White-Edgar
-Green+Red-Setsuna
-Blue+Black-Shiru
-Blue+White-Donakho
-Blue+Red-Daiyousei
-Black+White-Prehextorica
-Black+Red-Sakura
-White+Red-Airi

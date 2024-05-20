@@ -1742,8 +1742,8 @@ class relic{
             }
         }
     }
-    update(up,total,inputs,position=this.position){
+    update(up,total,inputs,position=this.position,overlayed=true){
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
-        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0,0,1,5)
+        this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0&&overlayed,0,1,5)
     }
 }

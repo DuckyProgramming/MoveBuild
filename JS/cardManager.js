@@ -4,7 +4,7 @@ class cardManager{
         this.battle=battle
         this.player=player
 
-        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[]}
+        this.listing={card:[],allPlayerCard:[],allListableCard:[],coc:[],all:[],junk:[],sub:[],mtg:[]}
 
         this.deck=new group(this.layer,this.battle,this.player,0)
         this.reserve=new group(this.layer,this.battle,this.player,1)
@@ -123,6 +123,20 @@ class cardManager{
                         lc--
                     }
                 }
+            }
+        }
+    }
+    mtgListing(){
+        this.listing.mtg=[[],[],[],[]]
+        let effectiveMana=[0,0,0,0,0,0]
+        for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
+            effectiveMana[this.battle.energy.base[this.player][a]]++
+        }for(let a=0,la=types.card.length;a<la;a++){
+            let cardColor=mtgPlayerColor(types.card[a].list)
+            let manaColor=cardColor.length==1?cardColor[0]:cardColor[a%2]
+            if(types.card[a].rarity>=0&&types.card[a].list>0&&types.card[a].list<=game.playerNumber&&(cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0)&&(manaColor==0||effectiveMana[manaColor]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(35))){
+                this.listing.mtg[types.card[a].rarity].push(a)
+                this.listing.mtg[3].push(a)
             }
         }
     }

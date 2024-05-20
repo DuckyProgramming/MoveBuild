@@ -4627,7 +4627,7 @@ class combatant{
             this.statusEffect('Dexterity',this.status.main[253])
         }
         if(this.status.main[254]>0){
-            this.battle.energy.main[this.id]+=this.status.main[254]
+            this.battle.addEnergy(this.status.main[254],this.id)
         }
     }
     highRoll(){
@@ -4641,7 +4641,7 @@ class combatant{
             this.statusEffect('Dexterity',this.status.main[257])
         }
         if(this.status.main[258]>0){
-            this.battle.energy.main[this.id]+=this.status.main[258]
+            this.battle.addEnergy(this.status.main[258],this.id)
         }
     }
     takeDamage(value,user,spec=0){
@@ -5580,7 +5580,7 @@ class combatant{
                 }
             break
             case 3:
-                this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(3*multi)
+                this.battle.addEnergy(round(3*multi),target>=this.battle.players?this.id:target)
             break
             case 4:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi*playerMulti),-1)
@@ -5629,7 +5629,7 @@ class combatant{
                 this.battle.combatantManager.damageAreaRuleless(round(10*multi),this.battle.combatantManager.combatants[target].tilePosition)
             break
             case 3:
-                this.battle.energy.main[target>=this.battle.players?this.id:target]+=round(2*multi)
+                this.battle.addEnergy(round(2*multi),target>=this.battle.players?this.id:target)
             break
             case 4:
                 this.battle.combatantManager.combatants[target].orbTake(round(detail*multi/2),-1)
@@ -5706,7 +5706,7 @@ class combatant{
             case 2:
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
-                        this.battle.energy.main[this.id]++
+                        this.battle.addEnergy(1,this.id)
                         this.battle.cardManagers[this.id].draw(1)
                         this.orbs[a]=-1
                     }
@@ -5715,7 +5715,7 @@ class combatant{
             case 3:
                 for(let a=0,la=this.orbs.length;a<la;a++){
                     if(this.orbs[a]>=0){
-                        this.battle.energy.main[this.id]++
+                        this.battle.addEnergy(1,this.id)
                         this.battle.cardManagers[this.id].draw(1)
                         this.subEvoke(this.orbs[a],this.orbDetail[a],target)
                         this.orbs[a]=-1
@@ -5805,7 +5805,7 @@ class combatant{
                 this.battle.cardManagers[this.id].hand.add(findName('Speed',types.card),0,0)
             break
             case 5:
-                this.battle.energy.main[this.id]+=3
+                this.battle.addEnergy(3,this.id)
                 this.battle.cardManagers[this.id].draw(3)
             break
         }
@@ -5819,7 +5819,7 @@ class combatant{
     leaveStance(stance){
         switch(stance){
             case 2:
-                this.battle.energy.main[this.id]+=2
+                this.battle.addEnergy(2,this.id)
             break
         }
     }
@@ -6082,7 +6082,7 @@ class combatant{
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
                 switch(a){
-                    case 4: this.battle.energy.main[this.id]+=this.status.main[a]; break
+                    case 4: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a].this.od)} break
                     case 5: case 31: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: case 217: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
@@ -6091,7 +6091,7 @@ class combatant{
                     case 33: case 209: this.heal(this.status.main[a]); break
                     case 34: case 146: this.status.main[findList('Dexterity',this.status.name)]+=this.status.main[a]; break
                     case 37: this.status.main[findList('Cannot Gain Block',this.status.name)]+=this.status.main[a]; break
-                    case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]}; break
+                    case 41: case 84: case 285: if(this.id<this.battle.players){this.battle.cardManagers[this.id].tempDraw+=this.status.main[a]} break
                     case 58: this.status.main[findList('Temporary Strength',this.status.name)]+=this.status.main[a]; break
                     case 66: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Shiv',types.card),0,0)} break
                     case 67: this.combo=0; break
@@ -6114,7 +6114,7 @@ class combatant{
                     case 131: if(this.id<this.battle.players){this.battle.cardManagers[this.id].hand.add(findName('Miracle',types.card),1,0)}; break
                     case 132: this.enterStance(1); break
                     case 133: if(this.id<this.battle.players){this.battle.cardManagers[this.id].reserve.addShuffle(findName('Insight',types.card),0,0)}; break
-                    case 135: this.battle.energy.main[this.id]+=this.status.main[a];this.battle.energy.gen[this.id]+=this.status.main[a]; break
+                    case 135: this.battle.addEnergy(this.status.main[a],this.id);this.battle.addEnergyGen(this.status.main[a],this.id); break
                     case 142: case 155: this.charge+=this.status.main[a]; break
                     case 143: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Burn',types.card),0,game.playerNumber+1)}} break
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
@@ -8562,7 +8562,7 @@ class combatant{
                     }
                 }
                 if(this.battle.modded(55)&&this.battle.turn.main<this.battle.players){
-                    this.battle.energy.main[this.battle.turn.main]--
+                    this.battle.loseEnergy(1,this.battle.turn.main)
                 }
                 if(this.battle.modded(55)){
                     for(let a=0,la=this.battle.players;a<la;a++){
@@ -8860,7 +8860,7 @@ class combatant{
             this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
             if(this.balance>this.balanceCap){
                 if(this.status.main[105]>0){
-                    this.battle.energy.main[this.id]++
+                    this.battle.addEnergy(1,this.id)
                 }else if(this.status.main[104]<=0){
                     this.balance=0
                 }

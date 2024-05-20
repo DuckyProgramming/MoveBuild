@@ -15,7 +15,7 @@ class battle{
         for(let a=0,la=types.deckmode.length;a<=la;a++){
             for(let b=0,lb=2;b<lb;b++){
                 this.menu.anim.deck[b].push(-1)
-            }lo
+            }
         }
         for(let a=0,la=types.ascend.length;a<la;a++){
             this.menu.anim.ascend.push(-1)
@@ -114,6 +114,10 @@ class battle{
         this.combatantManager.clearCombatants()
         this.nodeManager.setupMap()
         this.resetAnim()
+        if(variants.mtg){
+            this.energy.crystal=[]
+            this.energy.crystalTotal=[]
+        }
         for(let a=0,la=this.players;a<la;a++){
             this.addCombatant({x:0,y:0},this.player[a],a+1,0,false)
 
@@ -122,10 +126,14 @@ class battle{
             this.currency.money.push(game.ascend>=22?0:100)
             this.currency.ss.push(0)
 
-            this.energy.main.push(0)
-            this.energy.gen.push(0)
-            this.energy.base.push(game.startEnergy)
+            this.energy.main.push(variants.mtg?[]:0)
+            this.energy.gen.push(variants.mtg?[]:0)
+            this.energy.base.push(variants.mtg?mtgManaBase(game.startEnergy,this.player[a]):game.startEnergy)
             this.energy.temp.push(0)
+            if(variants.mtg){
+                this.energy.crystal.push([])
+                this.energy.crystalTotal.push([0,0,0,0,0,0])
+            }
 
             this.stats.killed.push(0)
             this.stats.earned.push(0)
@@ -138,6 +146,9 @@ class battle{
             this.stats.card.push(0)
             this.stats.relic.push(0)
             this.stats.item.push(0)
+        }
+        if(variants.mtg){
+            this.cardManagers.forEach(cardManager=>cardManager.mtgListing())
         }
     }
     resetAnim(){
@@ -222,7 +233,7 @@ class battle{
         this.lastEncounter=encounter
         this.encounter.class=encounter.class
         for(let a=0,la=this.energy.base.length;a<la;a++){
-            this.energy.gen[a]=this.energy.base[a]
+            this.energy.gen[a]=variants.mtg?copyArray(this.energy.base[a]):this.energy.base[a]
         }
         this.turn={main:0,total:0,time:0,accelerate:0}
         this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
@@ -531,13 +542,14 @@ class battle{
         this.turn.endReady=false
         this.replayManager.list.push(new attack(-1000,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
         this.combatantManager.tickEarly()
-        this.relicManager.activate(14,[this.turn.main,this.energy.main[this.turn.main]])
+        this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
-            this.energy.main[this.turn.main]=max(0,this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.energy.main[this.turn.main]>=1?this.energy.gen[this.turn.main]+1:this.energy.gen[this.turn.main]+this.energy.temp[this.turn.main])-(this.modded(5)?max(3-this.turn.total,0):0)
+            this.baselineEnergy(a,this.energy.gen[a])
+            this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0)+this.energy.temp[this.turn.main])-(this.modded(5)?max(3-this.turn.total,0):0),this.turn.main)
             this.energy.temp[this.turn.main]=0
         }else{
             this.cardManagers[this.turn.main].reset()
@@ -591,6 +603,25 @@ class battle{
             this.endTurn()
         }
     }
+    baselineEnergy(player,gen){
+        if(variants.mtg){
+            this.resetEnergyCrystal(player)
+            this.energy.main[player]=[0,0,0,0,0,0]
+            let cap=484
+            for(let a=0,la=this.energy.crystal[player].length;a<la;a++){
+                let goal=a==0?458:this.energy.crystal[player][a-1][1]-26
+                cap=min(goal,cap)
+            }
+            for(let a=0,la=gen.length;a<la;a++){
+                this.energy.main[player][gen[a]]++
+                this.energy.crystalTotal[player][gen[a]]++
+                cap-=26
+                this.energy.crystal[player].push([gen[a],cap,0,true])
+            }
+        }else{
+            this.energy.main[player]=gen
+        }
+    }
     setTurn(value){
         this.turn.total=value
         for(let a=0,la=this.players;a<la;a++){
@@ -613,7 +644,8 @@ class battle{
         this.setTurn(this.turn.total+1)
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
-            this.energy.main[a]=max(0,this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.energy.main[a]>=1?this.energy.gen[a]+1:this.energy.gen[a]+this.energy.temp[a])-(this.modded(5)?max(3-this.turn.total,0):0)
+            this.baselineEnergy(a,this.energy.gen[a])
+            this.addEnergy(max(0,(this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.getEnergy(a)>=1?1:0)+this.energy.temp[a])-(this.modded(5)?max(3-this.turn.total,0):0),a)
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()
@@ -723,7 +755,7 @@ class battle{
             this.cardManagers[player].heavyFatigue(true)
         }
         if(card.spec.includes(17)||card.spec.includes(12)&&card.reality[mode].includes(17)){
-            for(let a=0,la=this.energy.main[player];a<la;a++){
+            for(let a=0,la=this.getEnergy(player);a<la;a++){
                 this.cardManagers[player].fatigue(true)
             }
         }
@@ -757,7 +789,7 @@ class battle{
                     userCombatant.statusEffect('Strength',-1)
                 break
                 case 4:
-                    this.energy.main[player]--
+                    this.loseEnergy(1,player)
                 break
                 case 5:
                     this.cardManagers[player].hand.randomEffect(0,[])
@@ -782,7 +814,7 @@ class battle{
                     userCombatant.statusEffect('Strength',1)
                 break
                 case 4:
-                    this.energy.main[player]++
+                    this.addEnergy(1,player)
                 break
                 case 5:
                     this.cardManagers[player].draw(2)
@@ -849,6 +881,175 @@ class battle{
             this.layer.text(this.currency.money[1],this.layer.width-30,18)
         }
         this.layer.textAlign(CENTER,CENTER)
+    }
+    addEnergy(amount,player){
+        if(variants.mtg){
+            this.energy.main[player][0]+=amount
+        }else{
+            this.energy.main[player]+=amount
+        }
+    }
+    addEnergyGen(amount,player){
+        if(variants.mtg){
+            for(let a=0,la=amount;a<la;a++){
+                this.energy.gen[player].push(0)
+            }
+        }else{
+            this.energy.gen[player]+=amount
+        }
+    }
+    loseEnergy(amount,player){
+        if(variants.mtg){
+            let available=[]
+            for(let a=0,la=this.energy.main[player].length;a<la;a++){
+                for(let b=0,lb=this.energy.main[player][a];b<lb;b++){
+                    available.push(a)
+                }
+            }
+            for(let a=0,la=amount;a<la;a++){
+                let index=floor(random(0,available.length))
+                this.energy.main[player][available[index]]--
+                available.splice(index,1)
+            }
+        }else{
+            this.energy.main[player]-=amount
+        }
+    }
+    loseEnergyGen(amount,player){
+        if(variants.mtg){
+            for(let a=0,la=amount;a<la;a++){
+                if(this.energy.gen[player].length>0){
+                    this.energy.gen[player].splice(floor(random(0,this.energy.gen[player].length)),1)
+                }
+            }
+        }else{
+            this.energy.gen[player]+=amount
+        }
+    }
+    loseSpecificEnergy(amount,player,type){
+        if(type==0){
+            for(let a=0,la=amount;a<la;a++){
+                for(let b=0,lb=this.energy.crystal[player].length;b<lb;b++){
+                    if(this.energy.crystal[player][lb-b-1][3]){
+                        this.energy.crystal[player][lb-b-1][3]=false
+                        this.energy.crystalTotal[player][this.energy.crystal[player][lb-b-1][0]]--
+                        this.energy.main[player][this.energy.crystal[player][lb-b-1][0]]--
+                        b=lb
+                    }
+                }
+            }
+        }else{
+            let left=amount
+            if(this.energy.main[player][type]>=left){
+                this.energy.main[player][type]-=left
+                left=0
+            }else if(this.energy.main[player][type]>0){
+                left-=this.energy.main[player][type]
+                this.energy.main[player][type]=0
+            }
+            if(left>0){
+                if(this.energy.main[player][0]>=left){
+                    this.energy.main[player][0]-=left
+                    left=0
+                }else if(this.energy.main[player][0]>0){
+                    left-=this.energy.main[player][0]
+                    this.energy.main[player][0]=0
+                }
+            }
+        }
+    }
+    setEnergy(amount,player){
+        if(variants.mtg){
+            if(this.energy.main[player].length>amount){
+                this.loseEnergy(total6(this.energy.main[player])-amount,player)
+            }else if(this.energy.main[player].length<amount){
+                this.addEnergy(amount-total6(this.energy.main[player]),player)
+            }
+        }else{
+            this.energy.main[player]=amount
+        }
+    }
+    multiplyEnergy(amount,player){
+        if(variants.mtg){
+            for(let a=0,la=this.energy.main[player].length;a<la;a++){
+                this.energy.main[player][a]*=amount
+            }
+        }else{
+            this.energy.main[player]*=amount
+        }
+    }
+    getEnergy(player){
+        return variants.mtg?total6(this.energy.main[player]):this.energy.main[player]
+    }
+    getSpecificEnergy(player,type){
+        return this.energy.main[player][type]+(type==0?this.energy.main[player][1]+this.energy.main[player][2]+this.energy.main[player][3]+this.energy.main[player][4]+this.energy.main[player][5]:this.energy.main[player][0])
+    }
+    energyBaseUp(player){
+        if(variants.mtg){
+            this.energy.base[player].push(floor(random(1,6)))
+            this.cardManagers[player].mtgListing()
+        }else{
+            this.energy.base[player]++
+        }
+    }
+    energyBaseDown(player){
+        if(variants.mtg){
+            this.energy.base[player].splice(this.energy.base[player].length-1,1)
+            this.cardManagers[player].mtgListing()
+        }else{
+            this.energy.base[player]--
+        }
+    }
+    setEnergyMainGen(player){
+        if(varaints.mtg){
+            this.energy.main[player]=[0,0,0,0,0,0]
+            for(let a=0,la=this.energy.gen[player].length;a<la;a++){
+                this.energy.main[player][this.energy.gen[player][a]]++
+            }
+        }else{
+            this.energy.main[player]=this.energy.gen[player]
+        }
+    }
+    resetEnergyCrystal(player){
+        this.energy.crystal[player]=[]
+        this.energy.crystalTotal[player]=[0,0,0,0,0,0]
+    }
+    manageEnergyCrystal(){
+        for(let a=0,la=this.players;a<la;a++){
+            let cap=484
+            for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
+                let goal=b==0?458:this.energy.crystal[a][b-1][1]-26
+                cap=min(goal,cap)
+                for(let c=0,lc=2;c<lc;c++){
+                    if(this.energy.crystal[a][b][1]<goal-1){
+                        this.energy.crystal[a][b][1]+=2
+                    }else if(this.energy.crystal[a][b][1]>goal+1){
+                        this.energy.crystal[a][b][1]-=2
+                    }
+                }
+                this.energy.crystal[a][b][2]=smoothAnim(this.energy.crystal[a][b][2],this.energy.crystal[a][b][3],0,1,5)
+                if(this.energy.crystal[a][b][2]<=0&&!this.energy.crystal[a][b][3]){
+                    this.energy.crystal[a].splice(b,1)
+                    b--
+                    lb--
+                }
+            }
+            for(let b=0,lb=this.energy.crystalTotal[a].length;b<lb;b++){
+                while(this.energy.crystalTotal[a][b]<this.energy.main[a][b]){
+                    cap-=26
+                    this.energy.crystal[a].push([b,cap,0,true])
+                    this.energy.crystalTotal[a][b]++
+                }
+                while(this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
+                    for(let c=0,lc=this.energy.crystal[a].length;c<lc;c++){
+                        if(this.energy.crystal[a][c][0]==b&&this.energy.crystal[a][c][3]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
+                            this.energy.crystal[a][c][3]=false
+                            this.energy.crystalTotal[a][b]--
+                        }
+                    }
+                }
+            }
+        }
     }
     addCurrency(amount,player){
         let multi=this.relicManager.hasRelic(135,player)?0.5:1*this.relicManager.hasRelic(165,player)?1.25:1
@@ -1019,10 +1220,88 @@ class battle{
             case 'battle':
                 this.layer.background(110,115,120)
                 for(let a=0,la=this.players;a<la;a++){
-                    this.layer.fill(mergeColor([225,255,255],[255,0,0],this.anim.afford))
-                    this.layer.stroke(mergeColor([200,255,255],[255,0,0],this.anim.afford))
-                    this.layer.strokeWeight(3)
-                    this.layer.quad(-90+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,434,-58+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,474)
+                    if(variants.mtg){
+                        this.layer.stroke(mergeColor([200,255,255],[255,0,0],this.anim.afford))
+                        this.layer.strokeWeight(3)
+                        this.layer.line(-90+this.anim.turn[a]*100,474,-58+this.anim.turn[a]*100,474)
+                        this.layer.line(-90+this.anim.turn[a]*100,474,-90+this.anim.turn[a]*100,374)
+                        this.layer.line(-58+this.anim.turn[a]*100,474,-58+this.anim.turn[a]*100,374)
+                        this.layer.strokeJoin(ROUND)
+                        for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
+                            switch(this.energy.crystal[a][b][0]){
+                                case 0:
+                                    this.layer.fill(180,this.energy.crystal[a][b][2])
+                                    this.layer.stroke(150,this.energy.crystal[a][b][2])
+                                break
+                                case 1:
+                                    this.layer.fill(60,240,60,this.energy.crystal[a][b][2])
+                                    this.layer.stroke(50,200,50,this.energy.crystal[a][b][2])
+                                break
+                                case 2:
+                                    this.layer.fill(60,150,240,this.energy.crystal[a][b][2])
+                                    this.layer.stroke(50,125,200,this.energy.crystal[a][b][2])
+                                break
+                                case 3:
+                                    this.layer.fill(120,30,120,this.energy.crystal[a][b][2])
+                                    this.layer.stroke(100,25,100,this.energy.crystal[a][b][2])
+                                break
+                                case 4:
+                                    this.layer.fill(240,240,120,this.energy.crystal[a][b][2])
+                                    this.layer.stroke(200,200,100,this.energy.crystal[a][b][2])
+                                break
+                                case 5:
+                                    this.layer.fill(240,60,60,this.energy.crystal[a][b][2])
+                                    this.layer.stroke(200,50,50,this.energy.crystal[a][b][2])
+                                break
+                            }
+                            this.layer.strokeWeight(1.5)
+                            this.layer.ellipse(-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1],20)
+                            this.layer.noFill()
+                            this.layer.strokeWeight(2)
+                            switch(this.energy.crystal[a][b][0]){
+                                case 0:
+                                    this.layer.stroke(120,this.energy.crystal[a][b][2])
+                                    this.layer.rect(-74+this.anim.turn[a]*100-1.5,this.energy.crystal[a][b][1]+1.5,7)
+                                    this.layer.line(-74+this.anim.turn[a]*100-5,this.energy.crystal[a][b][1]-2,-74+this.anim.turn[a]*100-2,this.energy.crystal[a][b][1]-5)
+                                    this.layer.line(-74+this.anim.turn[a]*100+2,this.energy.crystal[a][b][1]-2,-74+this.anim.turn[a]*100+5,this.energy.crystal[a][b][1]-5)
+                                    this.layer.line(-74+this.anim.turn[a]*100+2,this.energy.crystal[a][b][1]+5,-74+this.anim.turn[a]*100+5,this.energy.crystal[a][b][1]+2)
+                                    this.layer.line(-74+this.anim.turn[a]*100+5,this.energy.crystal[a][b][1]-5,-74+this.anim.turn[a]*100+5,this.energy.crystal[a][b][1]+2)
+                                    this.layer.line(-74+this.anim.turn[a]*100-2,this.energy.crystal[a][b][1]-5,-74+this.anim.turn[a]*100+5,this.energy.crystal[a][b][1]-5)
+                                break
+                                case 1:
+                                    this.layer.stroke(40,160,40,this.energy.crystal[a][b][2])
+                                    regPoly(this.layer,-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1],6,5,5,30)
+                                break
+                                case 2:
+                                    this.layer.stroke(40,100,160,this.energy.crystal[a][b][2])
+                                    this.layer.arc(-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1],8,8,-45,225)
+                                    this.layer.line(-74+this.anim.turn[a]*100-2*sqrt(2),this.energy.crystal[a][b][1]-2*sqrt(2),-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1]-4*sqrt(2))
+                                    this.layer.line(-74+this.anim.turn[a]*100+2*sqrt(2),this.energy.crystal[a][b][1]-2*sqrt(2),-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1]-4*sqrt(2))
+                                break
+                                case 3:
+                                    this.layer.stroke(80,20,80,this.energy.crystal[a][b][2])
+                                    this.layer.arc(-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1],10,10,-270,45)
+                                    this.layer.line(-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1],-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1]+5)
+                                break
+                                case 4:
+                                    this.layer.stroke(160,160,80,this.energy.crystal[a][b][2])
+                                    this.layer.line(-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1]-6,-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1]+6)
+                                    this.layer.line(-74+this.anim.turn[a]*100-3*sqrt(3),this.energy.crystal[a][b][1]-3,-74+this.anim.turn[a]*100+3*sqrt(3),this.energy.crystal[a][b][1]+3)
+                                    this.layer.line(-74+this.anim.turn[a]*100-3*sqrt(3),this.energy.crystal[a][b][1]+3,-74+this.anim.turn[a]*100+3*sqrt(3),this.energy.crystal[a][b][1]-3)
+                                break
+                                case 5:
+                                    this.layer.stroke(160,40,40,this.energy.crystal[a][b][2])
+                                    this.layer.quad(-74+this.anim.turn[a]*100-3,this.energy.crystal[a][b][1],-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1]-6,-74+this.anim.turn[a]*100+3,this.energy.crystal[a][b][1],-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1]+6)
+                                break
+                            }
+                        }
+                        this.layer.strokeJoin(MITER)
+                    }else{
+                        this.layer.fill(mergeColor([225,255,255],[255,0,0],this.anim.afford))
+                        this.layer.stroke(mergeColor([200,255,255],[255,0,0],this.anim.afford))
+                        this.layer.strokeWeight(3)
+                        this.layer.quad(-90+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,434,-58+this.anim.turn[a]*100,454,-74+this.anim.turn[a]*100,474)
+                    }
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.reserve)
@@ -1083,8 +1362,10 @@ class battle{
                         this.layer.text('Hit',66,680-this.anim.turn[a]*100-4*this.anim.drop[a])
                         this.layer.text(this.cardManagers[a].drops+'/'+this.cardManagers[a].baseDrops,66,680-this.anim.turn[a]*100+4*this.anim.drop[a])
                     }
-                    this.layer.textSize(14-min(floor(max(this.energy.main[a],this.energy.base[a])/10)*2,3))
-                    this.layer.text(this.energy.main[a]+'/'+this.energy.base[a],-74+this.anim.turn[a]*100,454)
+                    if(!variants.mtg){
+                        this.layer.textSize(14-min(floor(max(this.energy.main[a],this.energy.base[a])/10)*2,3))
+                        this.layer.text(this.energy.main[a]+'/'+this.energy.base[a],-74+this.anim.turn[a]*100,454)
+                    }
                 }
                 this.tileManager.display(scene)
                 this.particleManager.display('back')
@@ -1469,6 +1750,9 @@ class battle{
                 if(this.turn.endReady&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
                     this.endTurn()
                 }
+                if(variants.mtg){
+                    this.manageEnergyCrystal()
+                }
                 if(this.result.victory){
                     if(this.attackManager.attacks.length==0&&this.turnManager.turns.length==0&&this.turnManager.turnsBack.length==0){
                         this.result.noAnim=true
@@ -1598,8 +1882,8 @@ class battle{
                 this.nodeManager.update()
                 this.overlayManager.update()
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
-                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20}),1,1.5,5)
+                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20}),1,1.5,5)
                 }
                 this.relicManager.update(stage.scene)
                 this.itemManager.update(stage.scene)
@@ -1609,8 +1893,8 @@ class battle{
                 this.combatantManager.update(scene)
                 this.overlayManager.update()
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
-                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20}),1,1.5,5)
+                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20}),1,1.5,5)
                 }
                 let allOptionsComplete=true
                 for(let a=0,la=this.optionManagers.length;a<la;a++){
@@ -1633,9 +1917,9 @@ class battle{
                 this.overlayManager.update()
                 this.itemManager.update(stage.scene)
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
-                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                    this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20}),1,1.5,5)
+                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20}),1,1.5,5)
+                    this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20}),1,1.5,5)
                     this.anim.food[a]=smoothAnim(this.anim.food[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:578},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.reroll[a]=smoothAnim(this.anim.reroll[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:438},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.rerollActive[a]=smoothAnim(this.anim.rerollActive[a],!this.purchaseManager.rerollActive[a],0,1,5)
@@ -1697,8 +1981,8 @@ class battle{
                 this.combatantManager.update(scene)
                 this.overlayManager.update()
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
-                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20}),1,1.5,5)
+                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20}),1,1.5,5)
                 }
                 if(!this.overlayManager.anyActive){
                     let allEventsComplete=true
@@ -1920,6 +2204,18 @@ class battle{
                         this.overlayManager.overlays[24][this.turn.main].active=true
                         this.overlayManager.overlays[24][this.turn.main].activate()
                     }
+                    if(variants.mtg){
+                        for(let a=0,la=this.players;a<la;a++){
+                            for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
+                                if(dist(inputs.rel.x,inputs.rel.y,-74+this.anim.turn[a]*100,this.energy.crystal[a][b][1])<12){
+                                    let temp=this.energy.crystal[a][b]
+                                    this.energy.crystal[a].splice(b,1)
+                                    this.energy.crystal[a].push(temp)
+                                    b=lb
+                                }
+                            }
+                        }
+                    }
                     if(this.overlayManager.anyActive){
                         this.overlayManager.onClick(stage.scene)
                         this.itemManager.onClick('rewards')
@@ -1959,16 +2255,15 @@ class battle{
                 }else{
                     this.nodeManager.onClick()
                     this.relicManager.onClick(stage.scene)
-                    this.itemManager.onClick(stage.scene)
-                    this.modManager.onClick()
-                    for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
-                            this.overlayManager.overlays[4][a].active=true
-                            this.overlayManager.overlays[4][a].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
-                            this.overlayManager.overlays[24][a].active=true
-                            this.overlayManager.overlays[24][a].activate()
-                        }
+                    this.itemManager.onClick(stage)
+                }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
                     }
                 }
             break
@@ -1977,11 +2272,14 @@ class battle{
                     this.overlayManager.onClick()
                 }else{
                     this.optionManagers.forEach(optionManager=>optionManager.onClick())
-                    for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
-                            this.overlayManager.overlays[4][a].active=true
-                            this.overlayManager.overlays[4][a].activate()
-                        }
+                }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
                     }
                 }
             break
@@ -1992,16 +2290,7 @@ class battle{
                     this.itemManager.onClick(stage.scene)
                     this.purchaseManager.onClick()
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
-                            this.overlayManager.overlays[4][a].active=true
-                            this.overlayManager.overlays[4][a].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
-                            this.overlayManager.overlays[24][a].active=true
-                            this.overlayManager.overlays[24][a].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20})){
-                            this.overlayManager.overlays[16][a].active=true
-                            this.overlayManager.overlays[16][a].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:578},width:32,height:20})){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:578},width:32,height:20})){
                             this.overlayManager.overlays[27][a].active=true
                             this.overlayManager.overlays[27][a].activate()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:438},width:32,height:20})&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
@@ -2013,6 +2302,18 @@ class battle{
                     if(pointInsideBox({position:inputs.rel},{position:{x:26,y:466},width:32,height:20})){
                         transition.trigger=true
                         transition.scene='map'
+                    }
+                }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20})){
+                        this.overlayManager.overlays[16][a].active=true
+                        this.overlayManager.overlays[16][a].activate()
                     }
                 }
             break
@@ -2052,14 +2353,14 @@ class battle{
                     this.overlayManager.onClick()
                 }else{
                     this.eventManagers.forEach(eventManager=>eventManager.onClick())
-                    for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
-                            this.overlayManager.overlays[4][a].active=true
-                            this.overlayManager.overlays[4][a].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
-                            this.overlayManager.overlays[24][a].active=true
-                            this.overlayManager.overlays[24][a].activate()
-                        }
+                }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
                     }
                 }
             break
@@ -2307,7 +2608,7 @@ class battle{
                                 this.cardManagers[0].allEffect(2,1)
                             break
                             case 'A':
-                                this.energy.main[0]=999999
+                                this.setEnergy(999999,0)
                             break
                             case 'Z':
                                 this.endTurn()
@@ -2330,14 +2631,14 @@ class battle{
                     this.relicManager.onKey(stage.scene,key,code)
                     this.itemManager.onKey(stage.scene,key,code)
                     this.modManager.onKey(key,code)
-                    for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[4][a].active=true
-                            this.overlayManager.overlays[4][a].activate()
-                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[24][a].active=true
-                            this.overlayManager.overlays[24][a].activate()
-                        }
+                }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
                     }
                 }
             break
@@ -2351,14 +2652,14 @@ class battle{
                             break
                         }
                     }
-                    for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[4][a].active=true
-                            this.overlayManager.overlays[4][a].activate()
-                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[24][a].active=true
-                            this.overlayManager.overlays[24][a].activate()
-                        }
+                }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
                     }
                 }
             break
@@ -2369,16 +2670,7 @@ class battle{
                     this.itemManager.onKey(stage.scene,key,code)
                     this.purchaseManager.onKey(key,code)
                     for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[4][a].active=true
-                            this.overlayManager.overlays[4][a].activate()
-                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[24][a].active=true
-                            this.overlayManager.overlays[24][a].activate()
-                        }else if((key=='r'||key=='R')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[16][a].active=true
-                            this.overlayManager.overlays[16][a].activate()
-                        }else if((key=='f'||key=='F')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
+                        if((key=='f'||key=='F')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
                             this.overlayManager.overlays[27][a].active=true
                             this.overlayManager.overlays[27][a].activate()
                         }else if(((key=='c'||key=='C')&&this.players==1||key=='c'&&a==0&&this.players==2||key=='C'&&a==1&&this.players==2)&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
@@ -2390,6 +2682,18 @@ class battle{
                     if(code==ENTER){
                         transition.trigger=true
                         transition.scene='map'
+                    }
+                }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
+                    }else if((key=='r'||key=='R')&&this.players==1||key=='r'&&a==0&&this.players==2||key=='R'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[16][a].active=true
+                        this.overlayManager.overlays[16][a].activate()
                     }
                 }
             break
@@ -2444,14 +2748,14 @@ class battle{
                             break
                         }
                     }
-                    for(let a=0,la=this.cardManagers.length;a<la;a++){
-                        if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[4][a].active=true
-                            this.overlayManager.overlays[4][a].activate()
-                        }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                            this.overlayManager.overlays[24][a].active=true
-                            this.overlayManager.overlays[24][a].activate()
-                        }
+                }
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
                     }
                 }
             break

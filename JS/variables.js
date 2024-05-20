@@ -16,7 +16,8 @@ types={
         {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
-
+        {name:'',moniker:'',identifier:['',''],life:50,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:``},
+        
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
         {name:'Bouncer',life:22,behavior:1,spec:[],move:{type:0,speed:1},attack:[{type:4,effect:[6]},{type:3,effect:[4]}],description:`Likes his personal space`},
@@ -2931,6 +2932,11 @@ Entering, you're offered a chance to glimpse your future...`,
                 text:[0,40,30],
                 active:[200,255,240],
             },{
+                fill:[240,240,180],
+                stroke:[200,200,140],
+                text:[80,80,20],
+                active:[255,255,200],
+            },{
                 fill:[125,125,125],
                 stroke:[100,100,100],
                 text:[40,40,40],
@@ -2956,7 +2962,63 @@ Entering, you're offered a chance to glimpse your future...`,
                 text:[20,30,40],
                 active:[160,200,255],
             },
-
+        ],mtg:[
+            {
+                fill:[200,200,200],
+                stroke:[175,175,175],
+                text:[50,50,50],
+                active:[255,255,255],
+            },{
+                fill:[100,200,100],
+                stroke:[75,175,75],
+                text:[0,100,0],
+                active:[200,255,200],
+            },{
+                fill:[100,150,225],
+                stroke:[75,125,200],
+                text:[0,50,100],
+                active:[200,225,225],
+            },{
+                fill:[150,50,200],
+                stroke:[130,30,180],
+                text:[50,25,75],
+                active:[225,200,255],
+            },{
+                fill:[240,240,160],
+                stroke:[200,200,120],
+                text:[80,80,0],
+                active:[255,255,200],
+            },{
+                fill:[255,100,100],
+                stroke:[225,75,75],
+                text:[100,0,0],
+                active:[255,200,200],
+            },{},{},{},{},{},{},{},{},{},{},{},{
+                fill:[125,125,125],
+                stroke:[100,100,100],
+                text:[40,40,40],
+                active:[200,200,200],
+            },{
+                fill:[75,75,75],
+                stroke:[60,60,60],
+                text:[20,20,20],
+                active:[100,100,100],
+            },{
+                fill:[255,150,150],
+                stroke:[225,125,125],
+                text:[100,25,25],
+                active:[255,200,200],
+            },{
+                fill:[160,160,140],
+                stroke:[120,120,100],
+                text:[40,40,30],
+                active:[200,200,180],
+            },{
+                fill:[125,145,180],
+                stroke:[95,115,150],
+                text:[20,30,40],
+                active:[160,200,255],
+            },
         ],
     },deck:{
         start:[
@@ -6265,10 +6327,10 @@ Stacks degrade by half, rounded up, each turn.`,
     ],
 }
 stage={scale:0,scene:'title',internal:{version:1}}
-game={player:[],deck:[],playerNumber:15,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
+game={player:[],deck:[],playerNumber:16,orbNumber:13,ascend:0,id:0,timer:0,animRate:1,targetRadius:30,turnTime:0,scene:0,trig:[[],[]],
     startEnergy:3,collisionDamage:4,dev:false,allMap:-1,theme:0}
 variants={
-    mtg:false,
+    mtg:true,
     mod:false,junk:false,
     lowDraw:false,deckbuild:false,
     altDraw:false,blackjack:false,

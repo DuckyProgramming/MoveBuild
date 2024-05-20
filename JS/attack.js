@@ -728,7 +728,7 @@ class attack{
                     break
                     case 35:
                         if(this.targetCombatant.life==this.targetCombatant.base.life){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
@@ -991,12 +991,12 @@ class attack{
                     break
                     case 1010:
                         if(this.userCombatant.luckCheck()){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
                         }else if(!this.userCombatant.luckCheckFail()){
                             if(floor(random(0,2))==0){
                                 this.userCombatant.lowRoll()
-                                this.battle.energy.main[this.player]+=this.effect[1]
+                                this.battle.addEnergy(this.effect[1],this.player)
                             }else{
                                 this.userCombatant.highRoll()
                                 this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1339,7 +1339,7 @@ class attack{
                         let save=this.targetCombatant.life
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.life==save){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userManager.draw(this.effect[2])
                         }
                     break
@@ -1689,7 +1689,7 @@ class attack{
                     break
                     case 7:
                         if(this.targetCombatant.life<=0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 34: case 2471: case 2665:
@@ -1712,7 +1712,7 @@ class attack{
                     break
                     case 105:
                         if(this.targetCombatant.life<=0){
-                            this.battle.energy.main[this.player]--
+                            this.battle.loseEnergy(1,this.player)
                         }
                     break
                     case 106:
@@ -1747,7 +1747,7 @@ class attack{
                         this.userCombatant.statusEffect('Strength Next Turn',this.effect[1])
                     break
                     case 155:
-                        this.battle.energy.main[this.player]+=this.effect[1]
+                        this.battle.addEnergy(this.effect[1],this.player)
                     break
                     case 156:
                         this.targetCombatant.statusEffect('Temporary Speed Up',-this.effect[1])
@@ -1784,13 +1784,13 @@ class attack{
                     break
                     case 268:
                         if(this.targetCombatant.getStatus('Weak')>0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userManager.draw(this.effect[2])
                         }
                     break
                     case 269:
                         if(this.targetCombatant.getStatus('Vulnerable')>0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userManager.draw(this.effect[2])
                         }
                     break
@@ -1903,7 +1903,7 @@ class attack{
                     break
                     case 507:
                         if(this.targetCombatant.life<=0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                         this.userManager.allGroupClaw(this.effect[2])
                     break
@@ -2064,7 +2064,7 @@ class attack{
                         if(this.userCombatant.charge>=this.effect[1]){
                             this.userCombatant.charge-=this.effect[1]
                             this.userCombatant.chargeConsumed()
-                            this.battle.energy.main[this.player]+=this.effect[2]
+                            this.battle.addEnergy(this.effect[2],this.player)
                             this.userManager.draw(this.effect[3])
                         }
                     break
@@ -2075,7 +2075,7 @@ class attack{
                         this.userManager.hand.add(findName('Spark',types.card),1,0)
                     break
                     case 863:
-                        this.battle.energy.main[this.player]+=floor(this.userManager.deck.cards.length/max(1,this.effect[1]))
+                        this.battle.addEnergu(floor(this.userManager.deck.cards.length/max(1,this.effect[1])),this.player)
                     break
                     case 884:
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[1])
@@ -2092,7 +2092,7 @@ class attack{
                         this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
                     break
                     case 946:
-                        this.battle.energy.main[this.player]=this.effect[1]
+                        this.battle.setEnergy(this.effect[1],this.player)
                     break
                     case 950:
                         for(let a=0,la=this.effect[1];a<la;a++){
@@ -2111,7 +2111,7 @@ class attack{
                     break
                     case 992:
                         if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 993:
@@ -2310,7 +2310,7 @@ class attack{
                     break
                     case 1231:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
@@ -2318,7 +2318,7 @@ class attack{
                     break
                     case 1234:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userManager.draw(this.effect[2])
                             this.userCombatant.highRoll()
                         }else{
@@ -2353,9 +2353,9 @@ class attack{
                         }
                     break
                     case 1291:
-                        if(this.battle.energy.main[this.player]>0){
+                        if(this.battlegetEnergy(this.player)>0){
                             if(!this.userCombatant.luckCheck()){
-                                this.battle.energy.main[this.player]=this.userCombatant.luckCheckFail()?0:floor(random(0,this.battle.energy.main[this.player]+1))
+                                this.battle.setEnergy(this.userCombatant.luckCheckFail()?0:floor(random(0,this.battle.getEnergy(this.player)+1)),this.player)
                             }
                         }
                     break
@@ -2373,7 +2373,7 @@ class attack{
                     break
                     case 1321:
                         if(this.targetCombatant.getStatus('Shock')>0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userManager.draw(this.effect[2])
                         }
                     break
@@ -2469,8 +2469,8 @@ class attack{
                         }
                     break
                     case 1607:
-                        this.userCombatant.statusEffect('Energy Next Turn',this.battle.energy.main[this.player])
-                        this.battle.energy.main[this.player]=0
+                        this.userCombatant.statusEffect('Energy Next Turn',this.battle.getEnergy(this.player))
+                        this.battle.setEnergy(0,this.player)
                     break
                     case 1611:
                         this.targetCombatant.statusEffect('Take Damage',this.effect[0])
@@ -2554,9 +2554,9 @@ class attack{
                         this.userManager.hand.randomEffect(27,[this.effect[1]])
                     break
                     case 1752:
-                        if(this.battle.energy.main[this.player]>0){
-                            this.userManager.hand.allEffectArgs(8,[this.battle.energy.main[this.player]])
-                            this.battle.energy.main[this.player]=0
+                        if(this.battle.getEnergy(this.player)>0){
+                            this.userManager.hand.allEffectArgs(8,[this.battle.getEnergy(this.player)])
+                            this.battle.setEnergy(0,this.player)
                         }
                     break
                     case 1754:
@@ -2576,7 +2576,7 @@ class attack{
                     break
                     case 1790:
                         if(this.energy==4){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1793:
@@ -2617,13 +2617,13 @@ class attack{
                         }
                     break
                     case 1865:
-                        for(let a=0,la=min(min(this.battle.energy.main[this.player],this.effect[1]),100);a<la;a++){
-                            this.battle.energy.main[this.player]--
+                        for(let a=0,la=min(min(this.battle.getEnergy(this.player),this.effect[1]),100);a<la;a++){
+                            this.battle.loseEnergy(1,this.player)
                             this.userManager.hand.add(findName('Miracle',types.card),0,0)
                         }
                     break
                     case 1882:
-                        this.battle.energy.main[this.player]+=floor(random(1,this.effect[1]+1))
+                        this.battle.addEnergy(floor(random(1,this.effect[1]+1)),this.player)
                     break
                     case 1895:
                         this.userCombatant.heal(this.effect[1])
@@ -2639,7 +2639,7 @@ class attack{
                     break
                     case 1921:
                         if(this.userCombatant.energyParity(this.energy)==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1922:
@@ -2717,7 +2717,7 @@ class attack{
                     break
                     case 2110:
                         if(this.battle.turn.total==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2112:
@@ -2933,7 +2933,7 @@ class attack{
                     break
                     case 2357:
                         if(this.userCombatant.getStatus('Weak')>0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2358:
@@ -3108,7 +3108,7 @@ class attack{
                     break
                     case 2586:
                         if(this.targetCombatant.life<this.userCombatant.life){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2606:
@@ -3122,12 +3122,12 @@ class attack{
                     break
                     case 2621:
                         if(this.userCombatant.getStatus('Cannot Move')>0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2622:
                         if(this.userCombatant.balance>=5){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2623:
@@ -3178,7 +3178,7 @@ class attack{
                     case 2697:
                         this.userManager.hand.rewind(this.effect[1])
                         if(this.userCombatant.elemental){
-                            this.battle.energy.main[this.player]+=this.effect[2]
+                            this.battle.addEnergy(this.effect[2],this.player)
                         }
                     break
                     case 2701:
@@ -3194,7 +3194,7 @@ class attack{
                     break
                     case 2712:
                         if(this.targetCombatant.life<=0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                         this.userManager.hand.add(findName('Afterlife\nOdyssey',types.card),this.level,this.color,this.edition)
                     break
@@ -3214,7 +3214,7 @@ class attack{
                     break
                     case 2736:
                         if(this.targetCombatant.life<=0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2737:
@@ -3233,7 +3233,7 @@ class attack{
                     break
                     case 2753:
                         if(this.relPos[1]>=7){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2757:
@@ -3268,7 +3268,7 @@ class attack{
                     case 2798:
                         this.userManager.draw(this.effect[1])
                         if(this.userManager.hand.cards.length>0&&this.userManager.hand.cards[this.userManager.hand.cards.length-1].name.includes('Strike')){
-                            this.battle.energy.main[this.player]+=this.effect[2]
+                            this.battle.addEnergy(this.effect[2],this.player)
                         }
                     break
                     case 2810:
@@ -3319,7 +3319,7 @@ class attack{
                     break
                     case 322:
                         if(this.userCombatant.block==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                         this.userCombatant.addBlock(this.effect[0])
                     break
@@ -3338,7 +3338,8 @@ class attack{
                         this.userCombatant.addBlock(this.effect[0]+this.userManager.discard.cards.length)
                     break
                     case 518:
-                        this.battle.energy.main[this.player]+=floor(this.userManager.reserve.cards.length/max(1,this.effect[1]))*this.effect[0]
+                        this.battle.
+                        this.battle.addEnergy(floor(this.userManager.reserve.cards.length/max(1,this.effect[1]))*this.effect[0],this.player)
                     break
                     case 546:
                         this.userCombatant.addBlock(this.effect[0]*this.userCombatant.totalOrbClass[1])
@@ -3378,7 +3379,7 @@ class attack{
                     case 1061:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                         if(abs(this.relPos[0]-this.relPos[1]/2)<=0.5){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1077:
@@ -3804,7 +3805,7 @@ class attack{
                     break
                     case 990:
                         if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==2){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 995:
@@ -3953,7 +3954,7 @@ class attack{
                     break
                     case 2111:
                         if(this.battle.turn.total==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2133:
@@ -3962,7 +3963,7 @@ class attack{
                     case 2152:
                         this.userManager.hand.discard(this.effect[1])
                         if(this.userManager.discard.cards.length>=12){
-                            this.battle.energy.main[this.player]+=this.effect[2]
+                            this.battle.addEnergy(this.effect[2],this.player)
                         }
                     break
                     case 2162:
@@ -4129,7 +4130,7 @@ class attack{
                     break
                     case 2724:
                         if(this.userManager.hand.deStatus(1)==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2726:
@@ -4146,7 +4147,7 @@ class attack{
                     break
                     case 2767:
                         if(this.energy>this.battle.energy.base[this.player]){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2769:
@@ -4359,7 +4360,7 @@ class attack{
                                     this.battle.combatantManager.combatants[index].statusEffect('Jinx',this.effect[1])
                                 break
                                 case 2180:
-                                    this.battle.energy.main[this.player]+=this.effect[1]
+                                    this.battle.addEnergy(this.effect[1],this.player)
                                 break
                                 case 2436:
                                     this.userCombatant.addBlock(this.effect[1])
@@ -4394,7 +4395,7 @@ class attack{
                     break
                     case 999:
                         if(types.card[this.lastPlayed[0][0]].levels[this.lastPlayed[0][1]].class==3){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1024:
@@ -4431,7 +4432,7 @@ class attack{
                     break
                     case 1137:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
@@ -4457,7 +4458,7 @@ class attack{
                     break
                     case 1573:
                         if(this.battle.turn.total%2==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1574:
@@ -4477,7 +4478,7 @@ class attack{
                     break
                     case 1579:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&this.userCombatant.check10()){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
@@ -4512,12 +4513,12 @@ class attack{
                     break
                     case 1589:
                         if(this.userCombatant.tilePosition.x>this.targetTile.tilePosition.x&&this.userCombatant.tilePosition.y==this.targetTile.tilePosition.y){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1590:
                         if(this.userCombatant.tilePosition.x<this.targetTile.tilePosition.x&&this.userCombatant.tilePosition.y==this.targetTile.tilePosition.y){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1643:
@@ -4531,7 +4532,7 @@ class attack{
                     break
                     case 1648:
                         if(!this.userCombatant.luckCheck()&&this.userCombatant.check10()||this.userCombatant.luckCheckFail()){
-                            this.battle.energy.main[this.player]-=this.effect[1]
+                            this.battle.addCurrency(-this.effect[1],this.player)
                             this.userCombatant.lowRoll()
                         }else{
                             this.userCombatant.highRoll()
@@ -4633,12 +4634,12 @@ class attack{
                     break
                     case 2075:
                         if(this.battle.turn.total>=4){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2113:
                         if(this.battle.turn.total==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2166:
@@ -4657,12 +4658,12 @@ class attack{
                     break
                     case 2175:
                         if(this.targetTile.tilePosition.y>this.userCombatant.tilePosition.y){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2176:
                         if(this.targetTile.tilePosition.y<this.userCombatant.tilePosition.y){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2177:
@@ -4714,7 +4715,7 @@ class attack{
                     break
                     case 2332:
                         if(this.battle.turn.total%4==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userManager.draw(this.effect[2])
                         }
                     break
@@ -4777,7 +4778,7 @@ class attack{
                     break
                     case 2602:
                         if(this.targetTile.type.length>0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2603:
@@ -4785,7 +4786,7 @@ class attack{
                     break
                     case 2604:
                         if(this.userCombatant.life>=this.userCombatant.base.life*3/4){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2608:
@@ -4804,12 +4805,12 @@ class attack{
                     break
                     case 2744:
                         if(this.userCombatant.block>0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2745:
                         if(this.userCombatant.elemental){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2747:
@@ -4848,7 +4849,7 @@ class attack{
                     break
                     case 2832:
                         if(this.drawn>=2){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2850:
@@ -4858,7 +4859,7 @@ class attack{
                     break
                     case 2866:
                         if(this.battle.itemManager.total[this.player]>=2){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                 }
@@ -4883,7 +4884,7 @@ class attack{
                         this.userCombatant.statusEffect('Dodge',this.effect[0])
                     break
                     case 41: case 807: case 820: case 821: case 822: case 2827:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                     break
                     case 71:
                         this.battle.overlayManager.overlays[10][this.player].active=true
@@ -4896,7 +4897,7 @@ class attack{
                         this.userCombatant.statusEffect('Temporary Damage Up',this.effect[0])
                     break
                     case 113:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
                     break
                     case 128:
@@ -4931,7 +4932,7 @@ class attack{
                         this.userCombatant.statusEffect('Conditioning',this.effect[1])
                     break
                     case 212:
-                        this.battle.energy.gen[this.player]+=this.effect[0]
+                        this.battle.addEnergyGen(this.effect[0],this.player)
                     break
                     case 215:
                         this.userCombatant.combo+=this.effect[0]
@@ -4978,7 +4979,7 @@ class attack{
                     break
                     case 307:
                         this.userCombatant.statusEffect('Vulnerable',this.effect[0])
-                        this.battle.energy.gen[this.player]+=this.effect[1]
+                        this.battle.addEnergyGen(this.effect[1],this.player)
                     break
                     case 311:
                         this.userCombatant.multiplyStatusClass(this.effect[0],[0,2])
@@ -5003,7 +5004,7 @@ class attack{
                         this.userCombatant.statusEffect('Heal on Hit',this.effect[0])
                     break
                     case 372:
-                        this.battle.energy.gen[this.player]+=this.effect[0]
+                        this.battle.addEnergyGen(this.effect[0],this.player)
                         this.userCombatant.statusEffect('Take Per Card Played Combat',this.effect[1])
                     break
                     case 381:
@@ -5049,7 +5050,7 @@ class attack{
                         this.userCombatant.statusEffect('Heal Gain Max HP',this.effect[0])
                     break
                     case 457:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
                     break
                     case 488:
@@ -5060,11 +5061,11 @@ class attack{
                         this.userManager.allGroupClaw(this.effect[0])
                     break
                     case 517:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
                     break
                     case 521:
-                        this.battle.energy.main[this.player]*=2
+                        this.battle.multiplyEnergy(2,this.player)
                     break
                     case 586: case 619:
                         this.userCombatant.metal+=this.effect[0]
@@ -5186,7 +5187,7 @@ class attack{
                         this.userCombatant.statusEffect('Energy Per Turn Per Turn',this.effect[0])
                     break
                     case 799:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
                     break
                     case 836:
@@ -5217,7 +5218,7 @@ class attack{
                         this.userManager.hand.rewind(this.effect[1])
                     break
                     case 873:
-                        this.battle.energy.main[this.player]+=this.userCombatant.charge
+                        this.battle.addEnergy(this.userCombatant.charge,this.player)
                         if(this.userCombatant.charge>0){
                             this.userCombatant.chargeConsumed()
                         }
@@ -5255,7 +5256,7 @@ class attack{
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                     break
                     case 937:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userCombatant.charge+=this.effect[1]
                     break
                     case 948:
@@ -5283,7 +5284,7 @@ class attack{
                         this.userManager.hand.allEffect(22)
                     break
                     case 1074:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
                         this.battle.drop(this.player,findName('Out of\nTime',types.card),0,game.playerNumber+1)
                     break
@@ -5294,7 +5295,7 @@ class attack{
                                 this.number++
                             }
                         }
-                        this.battle.energy.main[this.player]+=this.effect[0]*this.number
+                        this.battle.addEnergy(this.effect[0],this.player)*this.number
                     break
                     case 1093:
                         let possible=['Ace of\nSpades','Ace of\nClubs','Ace of\nHearts','Ace of\nDiamonds']
@@ -5352,8 +5353,8 @@ class attack{
                     break
                     case 1229:
                         this.userManager.hand.exhaust(this.effect[0])
-                        if(this.battle.energy.main[this.player]==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                        if(this.battle.getEnergy(this.player)==0){
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1260: case 2031:
@@ -5366,14 +5367,14 @@ class attack{
                         }
                     break
                     case 1264:
-                        this.battle.energy.main[this.player]=this.effect[0]
+                        this.batle.setEnergy(this.effect[0],this.player)
                     break
                     case 1265:
-                        this.battle.energy.main[this.player]=this.effect[0]
+                        this.batle.setEnergy(this.effect[0],this.player)
                         this.userManager.hand.randomEffect(7,[this.effect[1]])
                     break
                     case 1269:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.reserve.falsedSwap()
                     break
                     case 1294:
@@ -5389,7 +5390,7 @@ class attack{
                         }
                     break
                     case 1306:
-                        this.battle.energy.main[this.player]*=this.amplify?3:2
+                        this.battle.multiplyEnergy(this.amplify?3:2,this.player)
                     break
                     case 1323:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))==0){
@@ -5422,11 +5423,11 @@ class attack{
                         this.userCombatant.statusEffect('20 Damage Miss',this.effect[0])
                     break
                     case 1402:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.drawCost(this.effect[1])
                     break
                     case 1407:
-                        this.battle.energy.main[this.player]=this.battle.energy.gen[this.player]
+                        this.battle.setEnergyMainGen(player)
                     break
                     case 1419:
                         this.userCombatant.statusEffect('Extra Turn',1)
@@ -5436,11 +5437,11 @@ class attack{
                         this.userCombatant.statusEffect('Extra Turn',1)
                     break
                     case 1467:
-                        this.battle.energy.main[this.player]=this.battle.energy.gen[this.player]
+                        this.battle.setEnergyMainGen(player)
                         this.userCombatant.statusEffect('Shock',this.effect[0])
                     break
                     case 1468:
-                        this.battle.energy.main[this.player]=this.effect[0]
+                        this.battle.setEnergy(this.effect[0],this.player)
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.randomEffect(2,0)
                         }
@@ -5535,9 +5536,9 @@ class attack{
                     break
                     case 1734:
                         if(this.userCombatant.energyParity(this.energy)==0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }else{
-                            this.battle.energy.main[this.player]-=this.effect[1]
+                            this.battle.loseEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1735:
@@ -5562,7 +5563,7 @@ class attack{
                             }
                         }
                         if(total>=2){
-                            this.battle.energy.main[this.player]+=this.effect[0]
+                            this.battle.addEnergy(this.effect[0],this.player)
                             this.userManager.draw(this.effect[1])
                         }
                     break
@@ -5574,10 +5575,10 @@ class attack{
                     break
                     case 1758:
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
-                            this.battle.energy.main[this.player]+=this.effect[0]
+                            this.battle.addEnergy(this.effect[0],this.player)
                             this.userCombatant.highRoll()
                         }else{
-                            this.battle.energy.main[this.player]-=this.effect[1]
+                            this.battle.loseEnergy(this.effect[1],this.player)
                             this.userCombatant.lowRoll()
                         }
                     break
@@ -5596,7 +5597,7 @@ class attack{
                     break
                     case 1832:
                         if(this.userManager.hand.discardDupes()){
-                            this.battle.energy.main[this.player]+=this.effect[0]
+                            this.battle.addEnergy(this.effect[0],this.player)
                             this.userManager.draw(this.effect[1])
                         }
                     break
@@ -5617,7 +5618,7 @@ class attack{
                         if(this.userCombatant.charge>=this.effect[1]){
                             this.userCombatant.charge-=this.effect[1]
                             this.userCombatant.chargeConsumed()
-                            this.battle.energy.main[this.player]+=this.effect[2]
+                            this.battle.addEnergy(this.effect[2],this.player)
                         }
                     break
                     case 1842:
@@ -5653,7 +5654,7 @@ class attack{
                     break
                     case 1916:
                         if(this.userCombatant.energyParity(this.energy)==1){
-                            this.battle.energy.main[this.player]-=this.effect[0]
+                            this.battle.loseEnergy(this.effect[0],this.player)
                         }
                     break
                     case 1942:
@@ -5695,9 +5696,9 @@ class attack{
                         if(this.userCombatant.charge>=this.effect[0]){
                             this.userCombatant.charge-=this.effect[0]
                             this.userCombatant.chargeConsumed()
-                            this.battle.energy.main[this.player]*=3
+                            this.battle.multiplyEnergy(3,this.player)
                         }else{
-                            this.battle.energy.main[this.player]*=2
+                            this.battle.multiplyEnergy(2,this.player)
                         }
                     break
                     case 2019:
@@ -5749,34 +5750,34 @@ class attack{
                     case 2269:
                         this.userCombatant.statusEffect('Double Damage',this.effect[0])
                         if(this.userCombatant.getStatus('Shock')>0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2278:
                         this.userCombatant.statusEffect('Heal Damage Random',this.effect[0])
                     break
                     case 2292:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.battle.drop(this.player,findName('Nightfall',types.card),this.level,0)
                     break
                     case 2294:
                         this.userCombatant.statusEffect('Triple Damage',this.effect[0])
                     break
                     case 2306:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
                     break
                     case 2312:
-                        this.battle.energy.main[this.player]+=this.effect[0]*this.userManager.hand.classNumber([4])
+                        this.battle.addEnergy(this.effect[0],this.player)*this.userManager.hand.classNumber([4])
                     break
                     case 2321:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.randomEffect(8,[])
                         }
                     break
                     case 2322:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
                         for(let a=0,la=this.effect[2];a<la;a++){
                             this.userManager.hand.randomEffect(8,[])
@@ -5841,11 +5842,11 @@ class attack{
                         if(this.userCombatant.energyParity(this.energy)==1){
                             this.userManager.draw(this.effect[0])
                         }else{
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2472:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userCombatant.statusEffect('Luck Guarantee Fail',1)
                     break
                     case 2478:
@@ -5910,7 +5911,7 @@ class attack{
                         this.userCombatant.statusEffect('Cannot Move Next Turn',this.effect[1])
                     break
                     case 2673:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
                     break
                     case 2704:
@@ -5925,7 +5926,7 @@ class attack{
                         this.userCombatant.statusEffect('Vulnerable',this.effect[1])
                     break
                     case 2768:
-                        this.battle.energy.main[this.player]*=2
+                        this.battle.multiplyEnergy(2,this.player)
                         this.userCombatant.statusEffect('Energy Next Turn',-this.effect[0])
                     break
                     case 2792:
@@ -5941,7 +5942,7 @@ class attack{
                     break
                     case 2826:
                         let number2826=this.userManager.hand.colorNumber()
-                        this.battle.energy.main[this.player]+=this.effect[0]*number2826
+                        this.battle.addEnergy(this.effect[0],this.player)*number2826
                         if(this.effect[1]>0){
                             this.userManager.draw(this.effect[1]*number2826)
                         }
@@ -6090,7 +6091,7 @@ class attack{
                         this.userCombatant.statusEffect('Card Play Block',this.effect[0])
                     break
                     case 259:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.hand.discard(this.effect[1])
                     break
                     case 276:
@@ -6165,7 +6166,7 @@ class attack{
                         this.userCombatant.statusEffect('Exhaust Draw',this.effect[0])
                     break
                     case 334:
-                        this.battle.energy.gen[this.player]+=this.effect[0]
+                        this.battle.addEnergyGen(this.effect[0],this.player)
                         this.userCombatant.statusEffect('Draw Up',-this.effect[1])
                     break
                     case 337:
@@ -6396,16 +6397,16 @@ class attack{
                     break
                     case 772:
                         this.userCombatant.statusEffect('Miracle Time',this.energy)
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                     break
                     case 773:
                         this.userCombatant.statusEffect('Miracle+ Time',this.energy)
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                     break
                     case 774:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                         this.userCombatant.statusEffect('Dexterity',this.effect[1])
-                        this.battle.energy.gen[this.player]-=this.effect[2]
+                        this.battle.loseEnergyGen(this.effect[2],this.player)
                     break
                     case 781:
                         this.userCombatant.statusEffect('Temporary Draw',this.effect[0])
@@ -6443,7 +6444,7 @@ class attack{
                         this.userManager.draw(this.amplify?this.effect[0]+this.effect[1]:this.effect[0])
                     break
                     case 835:
-                        this.battle.energy.main[this.player]+=floor(ceil(this.userManager.discard.cards.length/2)/max(1,this.effect[0]))
+                        this.battle.addEnergy(floor(ceil(this.userManager.discard.cards.length/2)/max(1,this.effect[0])),this.player)
                         this.userManager.discard.halfEffect(0)
                     break
                     case 855:
@@ -6462,7 +6463,7 @@ class attack{
                         this.battle.overlayManager.overlays[29][this.player].activate()
                     break
                     case 869:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.hand.exhaust(this.effect[1])
                     break
                     case 870:
@@ -6557,7 +6558,7 @@ class attack{
                         this.userManager.hand.add(findName('Slidebuffer',types.card),this.level,this.color,this.edition)
                     break
                     case 1026:
-                        this.battle.energy.main[this.user]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.swap(1,3)
                         this.userManager.draw(this.effect[1])
                     break
@@ -6819,8 +6820,8 @@ class attack{
                         this.userCombatant.life-=this.effect[1]
                     break
                     case 1543:
-                        this.userManager.hand.addEffect(findName('Snip',types.card),0,0,0,ceil(this.battle.energy.main[this.player]/2))
-                        this.battle.energy.main[this.player]-=ceil(this.battle.energy.main[this.player]/2)
+                        this.userManager.hand.addEffect(findName('Snip',types.card),0,0,0,ceil(this.battle.getEnergy(this.player)/2))
+                        this.battle.loseEnergy(ceil(this.battle.getEnergy(this.player)/2),this.player)
                     break
                     case 1608:
                         for(let a=0,la=this.effect[0];a<la;a++){
@@ -6898,9 +6899,9 @@ class attack{
                         this.userManager.hand.reserveRetain(this.effect[0])
                     break
                     case 1813:
-                        if(this.battle.energy.main[this.player]%3==0){
-                            this.userManager.hand.addEffect(findName('Snip',types.card),0,0,0,ceil(this.battle.energy.main[this.player]/3))
-                            this.battle.energy.main[this.player]-=ceil(this.battle.energy.main[this.player]/3)
+                        if(this.battle.getEnergy(this.player)%3==0){
+                            this.userManager.hand.addEffect(findName('Snip',types.card),0,0,0,ceil(this.battle.getEnergy(this.player/3)))
+                            this.battle.loseEnergy(ceil(this.battle.getEnergy(this.player/3)),this.player)
                         }
                     break
                     case 1849:
@@ -7002,7 +7003,7 @@ class attack{
                     case 2061:
                         this.userManager.hand.discard(this.effect[0])
                         this.userManager.hand.exhaust(this.effect[1])
-                        this.battle.energy.main[this.player]+=this.effect[2]
+                        this.battle.addEnergy(this.effect[2],this.player)
                     break
                     case 2120:
                         this.battle.overlayManager.overlays[44][this.player].active=true
@@ -7321,7 +7322,7 @@ class attack{
                     case 2869:
                         this.userCombatant.vision+=this.effect[0]
                         if(this.userCombatant.elemental){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userManager.draw(this.effect[2])
                         }
                     break
@@ -7458,7 +7459,7 @@ class attack{
                         this.userCombatant.heal(this.effect[0]*this.energy)
                     break
                     case 283:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userCombatant.life-=this.effect[1]
                     break
                     case 349:
@@ -7698,17 +7699,17 @@ class attack{
                         this.userManager.draw(this.effect[1])
                     break
                     case 1325:
-                        if(this.battle.energy.main[this.player]>=1&&this.battle.energy.main[this.player]<=6){
+                        if(this.battle.getEnergy(this.player)>=1&&this.battle.getEnergy(this.player)<=6){
                             if(this.userCombatant.luckCheck()){
-                                this.battle.energy.main[this.player]=6
+                                this.battle.setEnergy(6,this.player)
                             }else if(this.userCombatant.luckCheckFail()){
-                                this.battle.energy.main[this.player]=1
+                                this.battle.setEnergy(1,this.player)
                             }else{
                                 let list=[1,2,3,4,5,6]
-                                let index=list.indexOf(this.battle.energy.main[this.player])
+                                let index=list.indexOf(this.battle.getEnergy(this.player))
                                 list.splice(index,1)
-                                list.splice(list.indexOf(7-this.battle.energy.main[this.player]),1)
-                                this.battle.energy.main[this.player]=list[floor(random(0,list.length))]
+                                list.splice(list.indexOf(7-this.battle.getEnergy(this.player)),1)
+                                this.battle.setEnergy(list[floor(random(0,list.length))],this.player)
                             }
                         }
                     break
@@ -7780,7 +7781,7 @@ class attack{
                         this.userCombatant.heal(this.effect[1])
                     break
                     case 1712:
-                        this.battle.energy.main[this.player]+=this.effect[0]
+                        this.battle.addEnergy(this.effect[0],this.player)
                         this.userCombatant.loseMaxHP(this.effect[1])
                     break
                     case 1824:
@@ -7851,7 +7852,7 @@ class attack{
                     break
                     case 2433:
                         this.userCombatant.statusEffect('Vulnerable',this.effect[0])
-                        this.battle.energy.main[this.player]+=this.effect[1]
+                        this.battle.addEnergy(this.effect[1],this.player)
                         if(this.userCombatant.energyParity(this.energy)==1){
                             this.userManager.draw(this.effect[2])
                         }
@@ -8661,7 +8662,7 @@ class attack{
                     break
                     case 1182:
                         this.targetCombatant.heal(this.effect[0])
-                        this.battle.energy.main[this.player]+=this.effect[1]
+                        this.battle.addEnergy(this.effect[1],this.player)
                         if(this.targetCombatant.life>=this.targetCombatant.base.life){
                             this.battle.loseCurrency(this.effect[0],this.player)
                         }
@@ -8676,7 +8677,7 @@ class attack{
                     case 1211:
                         let roll=this.userCombatant.luckCheck()?1:this.userCombatant.luckCheckFail?0:floor(random(0,2))
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.energy.main[this.player]+=this.effect[1]*(-1+roll*2)
+                        this.battle.addEnergy(this.effect[1],this.player)*(-1+roll*2)
                         if(roll==0){
                             this.userCombatant.lowRoll()
                         }else{
@@ -8697,7 +8698,7 @@ class attack{
                     case 1247:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.energy==4){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1252:
@@ -8725,12 +8726,12 @@ class attack{
                         }
                         this.userManager.draw(this.effect[1])
                         if(this.userCombatant.energyParity(this.energy)==1){
-                            this.battle.energy.main[this.player]+=this.effect[3]
+                            this.battle.addEnergy(this.effect[3],this.player)
                         }
                     break
                     case 1259:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.energy.main[this.player]+=this.effect[1]
+                        this.battle.addEnergy(this.effect[1],this.player)
                         for(let a=0,la=this.effect[3];a<la;a++){
                             this.userManager.hand.randomEffect(0)
                         }
@@ -8747,7 +8748,7 @@ class attack{
                     case 1262:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userManager.draw(this.effect[1])
-                        this.battle.energy.main[this.player]+=this.effect[2]
+                        this.battle.addEnergy(this.effect[2],this.player)
                     break
                     case 1263:
                         this.targetCombatant.statusEffect('Poison',this.effect[0])
@@ -8815,7 +8816,7 @@ class attack{
                     case 1310:
                         if(this.userCombatant.charge>=this.effect[3]){
                             this.userCombatant.charge-=this.effect[3]
-                            this.battle.energy.main[this.player]+=this.effect[4]
+                            this.battle.addEnergy(this.effect[4],this.player)
                         }
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         for(let a=0,la=this.effect[2];a<la;a++){
@@ -9104,13 +9105,13 @@ class attack{
                     case 1620:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userManager.draw(this.effect[1])
-                        this.battle.energy.main[this.player]+=this.effect[2]
+                        this.battle.addEnergy(this.effect[2],this.player)
                         this.userCombatant.statusEffect('Energy Next Turn',this.effect[3])
                     break
                     case 1626:
                         this.targetCombatant.statusEffect('Poison',this.effect[0])
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,5))>=2){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
@@ -9119,7 +9120,7 @@ class attack{
                     case 1627:
                         this.targetCombatant.statusEffect('Poison',this.effect[0])
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))>=1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
@@ -9128,7 +9129,7 @@ class attack{
                     case 1628:
                         this.targetCombatant.statusEffect('Poison',this.effect[0])
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))>=1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
@@ -9142,7 +9143,7 @@ class attack{
                     case 1633:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.energy==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1683:
@@ -9246,13 +9247,13 @@ class attack{
                     break
                     case 1782:
                         this.targetCombatant.statusEffect('Dodge',this.effect[0])
-                        this.battle.energy.main[this.player]+=this.effect[1]
+                        this.battle.addEnergy(this.effect[1],this.player)
                     break
                     case 1795:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.targetCombatant.statusEffect('Burn',this.effect[1])
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))!=0){
-                            this.battle.energy.main[this.player]+=this.effect[2]
+                            this.battle.addEnergy(this.effect[2],this.player)
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
@@ -9315,7 +9316,7 @@ class attack{
                         this.targetCombatant.statusEffect('Weak',this.effect[0])
                         this.targetCombatant.statusEffect('Strength',-this.effect[1])
                         this.userManager.draw(this.effect[2])
-                        this.battle.energy.main[this.player]+=this.effect[3]
+                        this.battle.addEnergy(this.effect[3],this.player)
                     break
                     case 1879:
                         this.targetCombatant.statusEffect('Silence',this.effect[0])
@@ -9549,7 +9550,7 @@ class attack{
                     case 2158:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.battle.turn.total==7){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userManager.draw(this.effect[2])
                         }
                     break
@@ -9652,7 +9653,7 @@ class attack{
                     case 2569:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.life<=this.targetCombatant.base.life*0.25){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2570:
@@ -9758,7 +9759,7 @@ class attack{
                         this.targetCombatant.goal.anim.direction+=-60+floor(random(0,2))*120
                         this.battle.updateTargetting()
                         if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,4))!=0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             this.userCombatant.highRoll()
                         }else{
                             this.userCombatant.lowRoll()
@@ -9951,7 +9952,7 @@ class attack{
                     break
                     case 1801:
                         if(this.userCombatant.energyParity(this.energy)==0){
-                            this.battle.energy.main[this.player]-=this.effect[1]
+                            this.battle.loseEnergy(this.effect[1],this.player)
                         }
                     break
                     case 1821:
@@ -10116,7 +10117,7 @@ class attack{
                                 this.userCombatant.statusEffect('Dexterity',2)
                                 this.userCombatant.addBlock(5)
                                 this.userCombatant.statusEffect('Buffer',1)
-                                this.battle.energy.main[this.player]+=1
+                                this.battle.addPlayer(1,this.player)
                                 this.userManager.draw(2)
                             }else if(!this.userCombatant.luckCheckFail()){
                                 switch(roll){
@@ -10126,7 +10127,7 @@ class attack{
                                     case 3: this.userCombatant.statusEffect('Dexterity',2); break
                                     case 4: this.userCombatant.addBlock(5); break
                                     case 5: this.userCombatant.statusEffect('Buffer',1); break
-                                    case 6: this.battle.energy.main[this.player]+=1; break
+                                    case 6: this.battle.addPlayer(1,this.player); break
                                     case 7: this.userManager.draw(2); break
                                 }
                             }
@@ -10644,7 +10645,7 @@ class attack{
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                     break
                     case 350:
-                        this.battle.energy.gen[this.player]+=this.effect[0]
+                        this.battle.addEnergyGen(this.effect[0],this.player)
                         this.userCombatant.statusEffect('Strength',this.effect[1])
                         this.userCombatant.statusEffect('Dexterity',this.effect[2])
                     break
@@ -11034,7 +11035,7 @@ class attack{
                     case 1391:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.life<=0){
-                            this.battle.energy.gen[this.player]+=this.effect[1]
+                            this.battle.addEnergyGen(this.effect[1],this.player)
                         }
                     break
                     case 1404:
@@ -11305,7 +11306,7 @@ class attack{
                     case 2087:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.userCombatant.energyParity(this.energy)==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2088:
@@ -11369,7 +11370,7 @@ class attack{
                     case 2193:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.life<=0){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2271:
@@ -11401,7 +11402,7 @@ class attack{
                         this.battle.combatantManager.damageAreaRuleless(this.effect[0],this.targetCombatant.tilePosition)
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,52,[15]))
                         if(this.userCombatant.energyParity(this.energy)==1){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2386:
@@ -11476,7 +11477,7 @@ class attack{
                     break
                     case 2674:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.energy.main[this.player]+=this.userCombatant.getStatus('Awakening')
+                        this.battle.addEnergy(this.userCombatant.getStatus('Awakening'),this.player)
                     break
                     case 2693:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -11581,7 +11582,7 @@ class attack{
                                 }
                             }
                         }else if(this.effect[3]>=3&&this.targetCombatant.id==this.userCombatant.id){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                             for(let a=0,la=list2830.length;a<la;a++){
                                 for(let b=0,lb=list2830[a].length;b<lb;b++){
                                     if(list2830[a][b].id==this.id){
@@ -11604,7 +11605,7 @@ class attack{
                     break
                     case 2838:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.energy.main[this.player]+=this.effect[1]
+                        this.battle.addEnergy(this.effect[1],this.player)
                         let list2838=[this.userManager.deck.cards,this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                         for(let a=0,la=list2838.length;a<la;a++){
                             for(let b=0,lb=list2838[a].length;b<lb;b++){
@@ -11760,7 +11761,7 @@ class attack{
                     case 2445:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.getStatus('Jinx')>=20){
-                            this.battle.energy.main[this.player]+=this.effect[1]
+                            this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
                     case 2465:
