@@ -4241,16 +4241,16 @@ class combatant{
     }
     activate(type,id){
         if(this.life>0&&!this.moved){
-            if(this.spec.includes(0)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100){
+            if(this.spec.includes(0)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
                 this.target=id
                 this.battle.turnManager.loadEnemyRotate(this.id)
             }
-            if(this.spec.includes(1)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100){
+            if(this.spec.includes(1)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&this.battle.turnManager.loads<100&&this.getStatus('Stun')<=0&&this.battle.turnManager.loads<100&&this.getStatus('Cannot Move')<=0){
                 this.target=id
                 this.battle.turnManager.loadEnemyMoveBack(this.id)
                 this.battle.turnManager.loadEnemyRotateBack(this.id)
             }
-            if(this.spec.includes(7)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&!this.aggressor){
+            if(this.spec.includes(7)&&(id==this.target||this.spec.includes(2)&&id<this.battle.players)&&type==1&&this.battle.turn.main<this.battle.players&&!this.aggressor&&this.getStatus('Stun')<=0){
                 this.target=id
                 this.battle.turnManager.loadEnemyAttackRepeat(this.id)
                 this.aggressor=true
@@ -5083,6 +5083,9 @@ class combatant{
                     this.infoAnim.upFlash[0]=true
                     this.battle.relicManager.activate(6,[this.id])
                     this.blocked=1
+                    if(this.battle.relicManager.hasRelic(253,this.id)){
+                        this.battle.addCurrency(damageLeft*5*this.battle.relicManager.active[253][this.id+1],this.id)
+                    }
                 }else{
                     this.life-=damage
                     this.taken=damage
@@ -5091,6 +5094,9 @@ class combatant{
                     this.blocked=2
                     if(this.id<this.battle.players){
                         this.battle.stats.taken[this.id][2]+=damage
+                    }
+                    if(this.battle.relicManager.hasRelic(253,this.id)){
+                        this.battle.addCurrency(damage*5*this.battle.relicManager.active[253][this.id+1],this.id)
                     }
                 }
                 if(this.id<this.battle.players){
@@ -5123,6 +5129,9 @@ class combatant{
                     userCombatant.lastDeal=damage
                     if(userCombatant.status.main[202]>0&&damage>=20){
                         this.statusEffect('Miss',userCombatant.status.main[202])
+                    }
+                    if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
+                        this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
                     }
                 }
             }
@@ -5489,6 +5498,9 @@ class combatant{
             this.battle.stats.move[this.id]+=distance
             if(this.battle.relicManager.hasRelic(100,this.id)){
                 this.addBlock(2*distance*this.battle.relicManager.active[100][this.id+1])
+            }
+            if(this.battle.relicManager.hasRelic(250,this.id)&&distance>=2){
+                this.battle.cardManagers[this.id].draw(this.battle.relicManager.active[250][this.id+1])
             }
         }
         this.tilePosition.x=x
@@ -6082,7 +6094,7 @@ class combatant{
         for(let a=0,la=this.status.main.length;a<la;a++){
             if(this.status.main[a]!=0){
                 switch(a){
-                    case 4: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a].this.od)} break
+                    case 4: if(this.status.main[a]<0){this.battle.loseEnergy(-this.status.main[a],this.id)}else{this.battle.addEnergy(this.status.main[a],this.id)} break
                     case 5: case 31: case 52: case 62: case 110: case 121: case 179: this.takeDamage(this.status.main[a],-1); break
                     case 13: case 14: case 19: case 217: this.addBlock(this.status.main[a]); break
                     case 20: this.status.main[findList('Weak',this.status.name)]+=this.status.main[a]; break
@@ -8761,6 +8773,17 @@ class combatant{
                             break
                             case 'Danger':
                                 this.battle.combatantManager.summonCombatant(this.tilePosition,findName(['Management Robot','Management Soldier','Management Officer','Management Custodian','Management Autoduck','Management Sniper'][floor(random(0,6))],types.combatant),this.goal.anim.direction)
+                            break
+                            case 'Medic':
+                                for(let a=0,la=this.battle.players;a<la;a++){
+                                    if(this.battle.relicManager.hasRelic(231,a)){
+                                        this.battle.overlayManager.overlays[25][a].active=true
+                                        this.battle.overlayManager.overlays[25][a].activate([0,[]])
+                                        for(let b=0,lb=this.battle.relicManager.active[231][a+1];b<lb;b++){
+                                            this.battle.overlayManager.overlays[25][a].activate([1,[{type:8,value:[]}]])
+                                        }
+                                    }
+                                }
                             break
                         }
                     }

@@ -413,9 +413,14 @@ class item{
                 break
                 case 'Mundane Dust':
                     this.layer.fill(0)
-                    this.layer.fill(0)
                     this.layer.textSize(20)
                     this.layer.text('?',0,0)
+                break
+                case 'Cream Paper':
+                    displaySymbol(this.layer,0,0,101,0,2,this.fade)
+                break
+                case 'Pink Paper':
+                    displaySymbol(this.layer,0,0,102,0,2,this.fade)
                 break
             }
             this.layer.pop()

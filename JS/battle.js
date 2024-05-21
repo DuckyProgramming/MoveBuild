@@ -793,6 +793,9 @@ class battle{
                 break
                 case 4:
                     this.loseEnergy(1,player)
+                    if(this.relicManager.hasRelic(249,player)){
+                        this.attackManager.editionCard(-6)
+                    }
                 break
                 case 5:
                     this.cardManagers[player].hand.randomEffect(0,[])
@@ -800,6 +803,9 @@ class battle{
                 break
                 case 6:
                     this.attackManager.editionCard(-6)
+                    if(this.relicManager.hasRelic(249,player)){
+                        this.loseEnergy(1,player)
+                    }
                 break
                 case 7:
                     this.cardManagers[player].draw(1)
@@ -818,12 +824,18 @@ class battle{
                 break
                 case 4:
                     this.addEnergy(1,player)
+                    if(this.relicManager.hasRelic(249,player)){
+                        this.attackManager.editionCard(6)
+                    }
                 break
                 case 5:
                     this.cardManagers[player].draw(2)
                 break
                 case 6:
                     this.attackManager.editionCard(6)
+                    if(this.relicManager.hasRelic(249,player)){
+                        this.addEnergy(1,player)
+                    }
                 break
                 case 7:
                     this.cardManagers[player].hand.randomEffect(0,[])
@@ -861,7 +873,7 @@ class battle{
             userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('0 Cost Single Damage Up'))
         }
         this.combatantManager.playCardFront(cardClass)
-        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name])
+        this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition])
     }
     displayCurrency(){
         this.layer.fill(240,240,220)
@@ -1301,10 +1313,12 @@ class battle{
                     }
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
-                    this.layer.strokeWeight(3*this.anim.reserve)
-                    this.layer.rect(-74+this.anim.turn[a]*100,494,32*this.anim.reserve,20*this.anim.reserve,5*this.anim.reserve)
-                    this.layer.strokeWeight(3*this.anim.discard)
-                    this.layer.rect(-74+this.anim.turn[a]*100,522,32*this.anim.discard,20*this.anim.discard,5*this.anim.discard)
+                    if(!this.relicManager.hasRelic(243,a)){
+                        this.layer.strokeWeight(3*this.anim.reserve)
+                        this.layer.rect(-74+this.anim.turn[a]*100,494,32*this.anim.reserve,20*this.anim.reserve,5*this.anim.reserve)
+                        this.layer.strokeWeight(3*this.anim.discard)
+                        this.layer.rect(-74+this.anim.turn[a]*100,522,32*this.anim.discard,20*this.anim.discard,5*this.anim.discard)
+                    }
                     this.layer.strokeWeight(3*this.anim.dictionary)
                     this.layer.rect(-74+this.anim.turn[a]*100,550,32*this.anim.dictionary,20*this.anim.dictionary,5*this.anim.dictionary)
                     this.layer.strokeWeight(3*this.anim.endTurn)
@@ -1337,12 +1351,14 @@ class battle{
                     }
                     this.layer.fill(0)
                     this.layer.noStroke()
-                    this.layer.textSize(8*this.anim.reserve)
-                    this.layer.text('Draw',-74+this.anim.turn[a]*100,494-4*this.anim.reserve)
-                    this.layer.text('('+this.cardManagers[a].reserve.cards.length+')',-74+this.anim.turn[a]*100,494+4*this.anim.reserve)
-                    this.layer.textSize(8*this.anim.discard)
-                    this.layer.text('Discard',-74+this.anim.turn[a]*100,522-4*this.anim.discard)
-                    this.layer.text('('+this.cardManagers[a].discard.cards.length+')',-74+this.anim.turn[a]*100,522+4*this.anim.discard)
+                    if(!this.relicManager.hasRelic(243,a)){
+                        this.layer.textSize(8*this.anim.reserve)
+                        this.layer.text('Draw',-74+this.anim.turn[a]*100,494-4*this.anim.reserve)
+                        this.layer.text('('+this.cardManagers[a].reserve.cards.length+')',-74+this.anim.turn[a]*100,494+4*this.anim.reserve)
+                        this.layer.textSize(8*this.anim.discard)
+                        this.layer.text('Discard',-74+this.anim.turn[a]*100,522-4*this.anim.discard)
+                        this.layer.text('('+this.cardManagers[a].discard.cards.length+')',-74+this.anim.turn[a]*100,522+4*this.anim.discard)
+                    }
                     this.layer.textSize(7*this.anim.dictionary)
                     this.layer.text('Dictionary',-74+this.anim.turn[a]*100,550)
                     this.layer.textSize(7*this.anim.endTurn)
@@ -1361,7 +1377,7 @@ class battle{
                     }
                     if(!variants.mtg){
                         this.layer.textSize(14-min(floor(max(this.energy.main[a],this.energy.base[a])/10)*2,3))
-                        this.layer.text(this.energy.main[a]+'/'+this.energy.base[a],-74+this.anim.turn[a]*100,454)
+                        this.layer.text((this.relicManager.hasRelic(234,a)?'?':this.energy.main[a])+'/'+this.energy.base[a],-74+this.anim.turn[a]*100,454)
                     }
                 }
                 this.tileManager.display(scene)
@@ -1800,6 +1816,9 @@ class battle{
                                     case 2:
                                         if(this.nodeManager.world!=3){
                                             reward.push({type:1,value:[0,2,0]})
+                                            for(let b=0,lb=this.relicManager.active[232][a+1];b<lb;b++){
+                                                reward.push({type:1,value:[0,2,0]})
+                                            }
                                         }
                                     break
                                 }
@@ -1836,7 +1855,7 @@ class battle{
                             case 2:
                                 if(this.nodeManager.world!=3){
                                     if(game.ascend<13){
-                                        reward.push({type:0,value:[floor(random(240,401)*mult)]})
+                                        reward.push({type:0,value:[round(floor(random(240,401)*mult*(1+this.relicManager.active[232][a+1]*0.5)))]})
                                     }
                                     this.relicManager.activate(15,[a,2,reward,this.turn.total])
                                 }
@@ -2195,10 +2214,10 @@ class battle{
                         this.relicManager.onClick(stage.scene)
                         this.itemManager.onClick(stage.scene)
                         this.modManager.onClick()
-                        if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})){
+                        if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:494},width:32,height:20})&&!this.relicManager.hasRelic(243,a)){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:522},width:32,height:20})){
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:522},width:32,height:20})&&!this.relicManager.hasRelic(243,a)){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
                         }else if(pointInsideBox({position:inputs.rel},{position:{x:-74+this.anim.turn[this.turn.main]*100,y:578},width:32,height:20})&&this.attackManager.attacks.length<=0&&this.turnManager.turns.length<=0&&this.turnManager.turnsBack.length<=0){
@@ -2523,10 +2542,10 @@ class battle{
                         this.cardManagers[this.turn.main].onKey(stage.scene,key,code)
                         this.relicManager.onKey(stage.scene,key,code)
                         this.modManager.onKey(key,code)
-                        if(key=='r'||key=='R'){
+                        if((key=='r'||key=='R')&&!this.relicManager.hasRelic(243,a)){
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].active=true
                             this.overlayManager.overlays[this.relicManager.hasRelic(129,this.turn.main)?13:1][this.turn.main].activate()
-                        }else if(key=='d'||key=='D'){
+                        }else if((key=='d'||key=='D')&&!this.relicManager.hasRelic(243,a)){
                             this.overlayManager.overlays[2][this.turn.main].active=true
                             this.overlayManager.overlays[2][this.turn.main].activate()
                         }else if(key=='s'||key=='S'){

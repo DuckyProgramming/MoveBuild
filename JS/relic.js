@@ -1427,6 +1427,9 @@ class relic{
                     displaySymbol(this.layer,-8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,8,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-8,0,85,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
                 break
                 case 'Upgrade Played Card':
                     displaySymbol(this.layer,-6,-4,8,0,1,this.fade)
@@ -1614,7 +1617,7 @@ class relic{
                     displaySymbol(this.layer,0,0,8,0,1.2,this.fade)
                     displaySymbol(this.layer,0,0,98,1.2,this.fade)
                 break
-                case 'Double Upgraded Card Rewards':
+                case 'Deluxe Upgraded Card Rewards':
                     displaySymbol(this.layer,-12,0,8,0,0.8,this.fade)
                     displaySymbol(this.layer,-14.5,0,7,0,0.4,this.fade)
                     displaySymbol(this.layer,-9.5,0,7,0,0.4,this.fade)
@@ -1693,6 +1696,177 @@ class relic{
                     displaySymbol(this.layer,-5,-2,8,0,1.2,this.fade)
                     displaySymbol(this.layer,5,2,8,0,1.2,this.fade)
                     displaySymbol(this.layer,0,0,1,0,0.8,this.fade)
+                break
+                case 'Medic Death Remove':
+                    displaySymbol(this.layer,-8,7,2,0,0.4,this.fade)
+                    displaySymbol(this.layer,-8,-7,3,0,0.4,this.fade)
+                    displaySymbol(this.layer,9,0,8,0,0.7,this.fade)
+                    displaySymbol(this.layer,9,0,16,0,0.7,this.fade)
+                break
+                case 'More Boss Rewards':
+                    displaySymbol(this.layer,-9,0,35,0,0.25,this.fade)
+                    displaySymbol(this.layer,9,-7,8,0,0.7,this.fade)
+                    displaySymbol(this.layer,9,7,28,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(5)
+                    this.layer.text('+50%',9,7)
+                break
+                case 'Edition Deluxe Upgrades':
+                    displaySymbol(this.layer,0,0,8,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,88,0,1.5,this.fade)
+                    displaySymbol(this.layer,-3,0,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,3,0,7,0,0.6,this.fade)
+                break
+                case 'Energy/Visible Energy':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('?',9,0)
+                break
+                case 'Edition Block':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,88,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,27,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('2',9,0)
+                break
+                case 'Sell Relic':
+                    displaySymbol(this.layer,0,0,1,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('+',0,1)
+                break
+                case 'Starting Draw Retain':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,49,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Booster Pack Choice':
+                    displaySymbol(this.layer,-14,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,14,0,8,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,0,103,0,1.2,this.fade)
+                break
+                case 'Paper Items':
+                    displaySymbol(this.layer,-8,0,104,0,1.5,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Boss Spectral Pack':
+                    displaySymbol(this.layer,-9,0,35,0,0.25,this.fade)
+                    displaySymbol(this.layer,9,0,103,0,1,this.fade)
+                break
+                case 'Random Enemy Statuses':
+                    displaySymbol(this.layer,-8,0,105,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Energy/Miss':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,106,0,1,this.fade)
+                break
+                case 'Energy/View':
+                    displaySymbol(this.layer,-9,0,9,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,107,0,1,this.fade)
+                break
+                case 'Spectral Rest':
+                    displaySymbol(this.layer,0,-6,103,0,1,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                break
+                case '3 Cost Energy Next Turn':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,-4,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.5,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,0)
+                    this.layer.text('1',8,-4)
+                break
+                case '25 Damage Draw':
+                    displaySymbol(this.layer,-8,0,18,0,1,this.fade)
+                    displaySymbol(this.layer,10,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('25',-8,0)
+                    this.layer.text('1',10,0)
+                break
+                case 'Random Polychrome Colorless':
+                    displaySymbol(this.layer,0,0,80,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,57,0,1,this.fade)
+                break
+                case '69':
+                    displaySymbol(this.layer,-7,-7,41,0,0.8,this.fade)
+                    displaySymbol(this.layer,-7,9,27,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,1,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('4',-7,-7)
+                    this.layer.text('20',-7,9)
+                    this.layer.text('6',8,-8)
+                    this.layer.text('9',8,10)
+                break
+                case 'Polychrome Erratics':
+                    displaySymbol(this.layer,-6,-3,80,0,1.2,this.fade)
+                    displaySymbol(this.layer,6,3,83,0,1.2,this.fade)
+                break
+                case '2 Tile Move Draw':
+                    displaySymbol(this.layer,0,-6,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,10,20,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',0,-6)
+                    this.layer.text('2',0,10)
+                break
+                case 'Fatigue Draw':
+                    displaySymbol(this.layer,-8,0,60,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',8,0)
+                break
+                case 'Extra Energy Double Damage':
+                    displaySymbol(this.layer,-10,-3,9,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,-3,39,0,0.8,this.fade)
+                    displaySymbol(this.layer,0,8,4,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-10,-3)
+                break
+                case 'Health Loss Currency':
+                    displaySymbol(this.layer,0,0,18,0,1.5,this.fade)
+                    displaySymbol(this.layer,0,0,28,0,0.75,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',0,0)
+                break
+                case 'Rest Cost Down':
+                    displaySymbol(this.layer,0,-6,8,0,1,this.fade)
+                    displaySymbol(this.layer,0,-6,9,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,-6,6,0,0.4,this.fade)
+                    displaySymbol(this.layer,0,10,32,0,1,this.fade)
+                break
+                case '3 Enemy Stun':
+                    displaySymbol(this.layer,-8,4,3,0,0.45,this.fade)
+                    displaySymbol(this.layer,9,0,69,0,0.9,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('3',-8,-9)
+                    this.layer.text('2',9,0)
                 break
 
             }

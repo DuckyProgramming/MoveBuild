@@ -342,6 +342,14 @@ class itemManager{
                     this.battle.cardManagers[player].addRandomFree(2,0,3,0)
                 }
             break
+            case 112:
+                this.battle.overlayManager.overlays[3][player].active=true
+                this.battle.overlayManager.overlays[3][player].activate([0,3,20,16])
+            break
+            case 113:
+                this.battle.overlayManager.overlays[3][player].active=true
+                this.battle.overlayManager.overlays[3][player].activate([0,3,20,3])
+            break
         }
         this.tempEffectiveness[player]=1
         if(this.battle.relicManager.hasRelic(80,player)&&floor(random(0,100))<(100-100*0.5**this.battle.relicManager.active[80][player+1])&&!types.item[type].temp){

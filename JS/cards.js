@@ -2247,21 +2247,7 @@ types.card=[
             {effect:[3,3],attack:2470,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
             {effect:[4,4],attack:2470,cost:2,target:[2,1,3],spec:[0,2,35],class:1},
         ],
-    },{
-        name:`Yayoi's\nBlossom`,rarity:2,list:2,
-        levels:[
-            {effect:[27,4,1],attack:2495,cost:3,target:[0],spec:[],class:2},
-            {effect:[39,6,1],attack:2495,cost:3,target:[0],spec:[],class:2},
-            {effect:[48,8,1],attack:2495,cost:3,target:[0],spec:[],class:2},
-        ],
-    },{
-        name:`Sanae's\nSerpent`,rarity:2,list:2,
-        levels:[
-            {effect:[44,4,1],attack:2496,cost:3,target:[2,2,2],spec:[0],class:1},
-            {effect:[62,6,1],attack:2496,cost:3,target:[2,2,2],spec:[0],class:1},
-            {effect:[76,8,1],attack:2496,cost:3,target:[2,2,2],spec:[0],class:1},
-        ],
-    },{
+    },  {
         name:'Auramancy',rarity:2,list:2,
         levels:[
             {effect:[1],attack:2517,cost:2,target:[0],spec:[],class:4},
@@ -15104,13 +15090,6 @@ types.card=[
             {effect:[8,2],attack:2776,cost:0,target:[2,1,1],spec:[1,4],class:1},
         ],
     },{
-        name:'Crossing\nThe Border',rarity:1,list:15,
-        levels:[
-            {effect:[9],attack:2782,cost:3,target:[0],spec:[1],class:2},
-            {effect:[17],attack:2782,cost:3,target:[0],spec:[1],class:2},
-            {effect:[24],attack:2782,cost:3,target:[0],spec:[1],class:2},
-        ],
-    },{
         name:'Curtain',rarity:1,list:15,
         levels:[
             {effect:[1,5],attack:2790,cost:0,target:[0],spec:[],class:4},
@@ -15386,6 +15365,41 @@ types.card=[
             {effect:[3],attack:2823,cost:1,target:[2,1,3],spec:[0],class:1},
             {effect:[5],attack:2823,cost:1,target:[2,1,3],spec:[0],class:1},
             {effect:[7],attack:2823,cost:1,target:[2,1,3],spec:[0],class:1},
+        ],
+    },{
+        name:'Crossing\nThe Border',rarity:1,list:16,
+        levels:[
+            {effect:[9],attack:2782,cost:3,target:[0],spec:[1],class:2},
+            {effect:[17],attack:2782,cost:3,target:[0],spec:[1],class:2},
+            {effect:[24],attack:2782,cost:3,target:[0],spec:[1],class:2},
+        ],
+    },{
+        name:'Dragon\nBullet',rarity:0,list:16,
+        levels:[
+            {effect:[7,1,7],attack:2725,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[11,1,11],attack:2725,cost:1,target:[2,1,1],spec:[0],class:1},
+            {effect:[14,1,14],attack:2725,cost:1,target:[2,1,1],spec:[0],class:1},
+        ],
+    },{
+        name:'Salamander\nShield',rarity:0,list:16,
+        levels:[
+            {effect:[9,1,9],attack:2726,cost:1,target:[0],spec:[],class:2},
+            {effect:[14,1,14],attack:2726,cost:1,target:[0],spec:[],class:2},
+            {effect:[18,1,18],attack:2726,cost:1,target:[0],spec:[],class:2},
+        ],
+    },{
+        name:`Pure\nBlossom`,rarity:2,list:16,
+        levels:[
+            {effect:[27,4,1],attack:2495,cost:3,target:[0],spec:[],class:2},
+            {effect:[39,6,1],attack:2495,cost:3,target:[0],spec:[],class:2},
+            {effect:[48,8,1],attack:2495,cost:3,target:[0],spec:[],class:2},
+        ],
+    },{
+        name:`Pure\nSerpent`,rarity:2,list:16,
+        levels:[
+            {effect:[44,4,1],attack:2496,cost:3,target:[2,2,2],spec:[0],class:1},
+            {effect:[62,6,1],attack:2496,cost:3,target:[2,2,2],spec:[0],class:1},
+            {effect:[76,8,1],attack:2496,cost:3,target:[2,2,2],spec:[0],class:1},
         ],
     },
 

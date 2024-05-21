@@ -87,11 +87,20 @@ class optionManager{
             break
             case 7:
                 this.battle.overlayManager.overlays[3][this.player].active=true
-                this.battle.overlayManager.overlays[3][this.player].activate([0,floor(random(1,3)),0])
+                this.battle.overlayManager.overlays[3][this.player].activate([0,2,0])
             break
             case 8:
                 this.battle.overlayManager.overlays[12][this.player].active=true
                 this.battle.overlayManager.overlays[12][this.player].activate()
+            break
+            case 9:
+                this.battle.overlayManager.overlays[3][this.player].active=true
+                this.battle.overlayManager.overlays[3][this.player].activate([0,3,16])
+            break
+            case 10:
+                this.battle.overlayManager.overlays[62][this.player].active=true
+                this.battle.overlayManager.overlays[62][this.player].activate()
+                this.battle.relicManager.detail[254][this.player]++
             break
         }
     }
@@ -114,8 +123,9 @@ class optionManager{
         this.options.forEach(option=>option.update())
         if(this.selected==2&&!this.battle.overlayManager.overlays[5][this.player].active||
             this.selected==5&&!this.battle.overlayManager.overlays[6][this.player].active||
-            this.selected==7&&!this.battle.overlayManager.overlays[3][this.player].active||
-            this.selected==8&&!this.battle.overlayManager.overlays[12][this.player].active){
+            (this.selected==7||this.selected==9)&&!this.battle.overlayManager.overlays[3][this.player].active||
+            this.selected==8&&!this.battle.overlayManager.overlays[12][this.player].active||
+            this.selected==10&&!this.battle.overlayManager.overlays[62][this.player].active){
             this.finishSelection()
         }
         if(this.selections>=(this.battle.relicManager.hasRelic(117,this.player)?2:1)){
@@ -134,6 +144,8 @@ class optionManager{
                 this.triggerOption(this.options[a].type)
                 if(this.options[a].type==6&&this.battle.relicManager.detail[60][this.player]>=3){
                     this.removeOption(6)
+                }else if(this.options[a].type==10&&this.battle.relicManager.detail[254][this.player]>=3){
+                    this.removeOption(10)
                 }
                 if(this.battle.modded(164)){
                     a=hold
@@ -153,6 +165,8 @@ class optionManager{
                 this.triggerOption(this.options[a].type)
                 if(this.options[a].type==6&&this.battle.relicManager.detail[60][this.player]>=3){
                     this.removeOption(6)
+                }else if(this.options[a].type==10&&this.battle.relicManager.detail[254][this.player]>=3){
+                    this.removeOption(10)
                 }
                 if(this.battle.modded(164)){
                     a=hold

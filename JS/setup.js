@@ -41,7 +41,7 @@ function setup(){
         }*/
 
         /*for(let a=0,la=5;a<la;a++){
-            current.relicManager.addRelic(225+a,0)
+            current.relicManager.addRelic(251+a,0)
         }*/
 
         //stage.scene='tier'

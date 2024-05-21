@@ -198,6 +198,9 @@ class cardManager{
     addRandomEdition(group,level,rarity,edition){
         this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],edition)
     }
+    addRandomCharacterEdition(group,character,level,rarity,edition){
+        this.getList(group).add(this.listing.card[character][rarity][floor(random(0,this.listing.card[character].length))],level,character,edition)
+    }
     addRandomClass(group,level,cardClass){
         let list=[]
         for(let a=0,la=this.listing.card[this.battle.player[this.player]][3].length;a<la;a++){

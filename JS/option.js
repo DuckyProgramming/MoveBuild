@@ -147,6 +147,35 @@ class option{
                 this.layer.textSize(24)
                 this.layer.text('Duplicate',0,60-this.player*120)
             break
+            case 9:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,60,80,5)
+                this.layer.strokeWeight(2)
+                regStar(this.layer,0,0,12,8,8,20,20,0)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Spectral',0,60-this.player*120)
+            break
+            case 10:
+                this.layer.stroke(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade)
+                this.layer.strokeWeight(3)
+                this.layer.noFill()
+                this.layer.rect(0,0,60,80,5)
+                this.layer.line(-6,-25,6,-25)
+                this.layer.line(-6,-25,-6,5)
+                this.layer.line(6,-25,6,5)
+                this.layer.line(-6,5,-15,5)
+                this.layer.line(6,5,15,5)
+                this.layer.line(0,25,-15,5)
+                this.layer.line(0,25,15,5)
+                this.layer.noStroke()
+                this.layer.fill(mergeColor([255,125,0],[50,255,50],this.anim.complete)[0],mergeColor([255,125,0],[50,255,50],this.anim.complete)[1],mergeColor([255,125,0],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                this.layer.textSize(24)
+                this.layer.text('Cost Down',0,60-this.player*120)
+            break
         }
         this.layer.pop()
     }

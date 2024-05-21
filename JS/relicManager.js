@@ -35,7 +35,7 @@ class relicManager{
             switch(types.relic[a].id){
                 case 4: case 17: case 18: case 37: case 38: case 39: case 42: case 43: case 44: case 59:
                 case 60: case 63: case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111:
-                case 118: case 139: case 201: case 204: case 205:
+                case 118: case 139: case 201: case 204: case 205: case 254:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -279,7 +279,7 @@ class relicManager{
                 manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
             break
             case 131: case 135: case 136: case 137: case 138: case 140: case 141: case 142:  case 144: case 145:
-            case 146: case 147: case 148: case 170: case 222: case 228:
+            case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243:
                 this.battle.energyBaseUp(player)
             break
             case 139:
@@ -301,6 +301,7 @@ class relicManager{
             case 151:
                 this.battle.overlayManager.overlays[15][player].active=true
                 this.battle.overlayManager.overlays[15][player].activate([])
+                this.battle.overlayManager.overlays[15][player].args[1]=6
             break
             case 154:
                 for(let a=0,la=this.battle.cardManagers[player].deck.cards.length;a<la;a++){
@@ -384,6 +385,7 @@ class relicManager{
             break
             case 223:
                 this.battle.cardManagers[player].deck.cards[this.battle.cardManagers[player].deck.cards.length-1].cost=0
+                this.battle.cardManagers[player].deck.cards[this.battle.cardManagers[player].deck.cards.length-1].additionalSpec.push(-1)
             break
             case 226:
                 this.battle.energyBaseUp(player)
@@ -395,6 +397,15 @@ class relicManager{
                         a=la
                     }
                 }
+            break
+            case 244:
+                this.battle.optionManagers[player].addOption(9)
+            break
+            case 247:
+                this.battle.cardManagers[player].addRandomCharacterEdition(0,0,0,1,4)
+            break
+            case 254:
+                this.battle.optionManagers[player].addOption(10)
             break
 
         }
@@ -484,7 +495,7 @@ class relicManager{
                 manager.deck.removeCurse()
             break
             case 131: case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 144: case 145:
-            case 146: case 147: case 148: case 222: case 228:
+            case 146: case 147: case 148: case 222: case 228: case 234: case 242: case 243:
                 this.battle.energyBaseDown(player)
             break
             case 139:
@@ -604,6 +615,18 @@ class relicManager{
                         a=la
                     }
                 }
+            break
+            case 236:
+                this.addRandomRelic(player)
+            break
+            case 244:
+                this.battle.optionManagers[player].removeOption(9)
+            break
+            case 247:
+                this.battle.cardManagers[player].deck.removeListEdition(0,4)
+            break
+            case 254:
+                this.battle.optionManagers[player].removeOption(10)
             break
         }
         this.deactivate(type,player)
@@ -734,6 +757,17 @@ class relicManager{
                             if(this.active[228][a+1]>0){
                                 this.getPlayer(a).statusEffect('Anti-Control',this.active[228][a+1])
                             }
+                            if(this.active[237][a+1]>0){
+                                this.battle.cardManagers[a].drawRetain(this.active[237][a+1],1)
+                            }
+                            if(this.active[239][a+1]>0){
+                                for(let b=0,lb=this.active[239][a+1];b<lb;b++){
+                                    this.battle.itemManager.addItem(findName(['Cream Paper','Pink Paper'][floor(random(0,2))],types.item),a)
+                                }
+                            }
+                            if(this.active[242][a+1]>0){
+                                this.getPlayer(a).statusEffect('Miss',2*this.active[242][a])
+                            }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                         }
@@ -748,6 +782,12 @@ class relicManager{
                         }
                         if(this.active[147][0]>0){
                             this.battle.combatantManager.allEffect(5,[1+this.active[147][0]*0.2])
+                        }
+                        if(this.active[241][0]>0){
+                            this.battle.combatantManager.allEffect(35,[this.active[241][0]])
+                        }
+                        if(this.active[255][0]>0&&current.counter.enemy>=3){
+                            this.battle.combatantManager.randomEffect(1,[2*this.active[255][0]])
                         }
                         if(this.battle.modded(11)){
                             this.battle.combatantManager.fullAllEffect(3,[3])
@@ -801,6 +841,12 @@ class relicManager{
                     case 5:
                         if(this.battle.modded(58)){
                             this.battle.quickReinforce('Management Soldier')
+                        }
+                    break
+                    case 6: case 9:
+                        if(this.active[248][a+1]>0){
+                            this.getPlayer(a).statusEffect('Temporary Strength',4*this.active[248][a+1])
+                            this.getPlayer(a).addBlock(20*this.active[248][a+1])
                         }
                     break
                     case 7:
@@ -1053,7 +1099,7 @@ class relicManager{
                     }
                 }
             break
-            case 4://playing card [class,player,cost,rarity,name]
+            case 4://playing card [class,player,cost,rarity,name,edition]
                 if(this.active[18][args[1]+1]>0){
                     this.detail[18][args[1]]++
                     if(this.detail[18][args[1]]%10==0){
@@ -1091,6 +1137,15 @@ class relicManager{
                         }
                     }
                     this.detail[206][args[1]][1]=max(args[2],0)
+                }
+                if(this.active[235][args[1]+1]>0&&args[5]!=0){
+                    this.getPlayer(args[1]).addBlock(2)
+                }
+                if(this.active[245][args[1]+1]>0&&args[2]>=0){
+                    this.getPlayer(args[1]).statusEffect('Energy Next Turn',this.active[245][args[1]+1])
+                }
+                if(this.active[251][args[1]+1]>0&&args[4]=='Fatigue'){
+                    this.battle.cardManagers[this.battle.turn.main].draw(this.active[251][args[1]+1])
                 }
                 switch(args[0]){
                     case 1:
@@ -1279,17 +1334,22 @@ class relicManager{
                 }
             break
             case 14://leftover energy [player,energy]
-                if(this.active[179][args[0]+1]>0){
-                    this.getPlayer(args[0]).statusEffectNext('Temporary Strength',this.active[179][args[0]+1]*args[1])
-                }
-                if(this.active[198][args[0]+1]>0){
-                    this.getPlayer(args[0]).addBlock(4*this.active[198][args[0]+1]*args[1])
+                if(args[1]>0){
+                    if(this.active[179][args[0]+1]>0){
+                        this.getPlayer(args[0]).statusEffectNext('Temporary Strength',this.active[179][args[0]+1]*args[1])
+                    }
+                    if(this.active[198][args[0]+1]>0){
+                        this.getPlayer(args[0]).addBlock(4*this.active[198][args[0]+1]*args[1])
+                    }
+                    if(this.active[252][args[0]+1]>0&&args[1]>=3){
+                        this.getPlayer(args[0]).statusEffect('Double Damage',this.active[252][args[0]+1])
+                    }
                 }
             break
             case 15://rewards [player,class,access,turn]
                 switch(args[1]){
                     case -1:
-                        if(this.active[208][args[0]+1]>0&&args[3]<=3){
+                        if(this.active[208][args[0]+1]>0&&args[3]<=5){
                             for(let a=0,la=this.active[208][args[0]+1];a<la;a++){
                                 args[2].push({type:0,value:[50]})
                             }
@@ -1321,6 +1381,11 @@ class relicManager{
                         if(this.active[203][args[0]+1]>0){
                             for(let a=0,la=this.active[203][args[0]+1];a<la;a++){
                                 args[2].push({type:10,value:[1]})
+                            }
+                        }
+                        if(this.active[240][args[0]+1]>0){
+                            for(let a=0,la=this.active[240][args[0]+1];a<la;a++){
+                                args[2].push({type:11,value:[0,3,16]})
                             }
                         }
                     break

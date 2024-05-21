@@ -182,6 +182,13 @@ class card{
                     this.class=9
                 }
             }
+            if(this.additionalSpec.includes(-1)){
+                this.cost=0
+                this.base.cost=0
+            }else if(this.additionalSpec.includes(-2)&&this.cost>0){
+                this.cost=max(0,this.cost-1)
+                this.base.cost=max(0,this.base.cost-1)
+            }
             if(variants.mtg&&this.cost==-1){
                 this.mtgManaColor=0
             }
@@ -2803,7 +2810,7 @@ class card{
             case 2512: string+=`25%:\nEdition a Card`; break
             case 2513: string+=`40%:\nEdition a Card`; break
             case 2514: string+=`50%:\nEdition a Card`; break
-            case 2515: string+=`Upgrade a Random Card\nPermanently\nMay Double Upgrade`; break
+            case 2515: string+=`Upgrade a Random Card\nPermanently\nMay Deluxe Upgrade`; break
             case 2516: string+=`Add ${effect[0]} Random\nCard${effect[0]!=1?`s`:``} of Any Type\nof Equivalent Level\nto Hand\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less`; break
             case 2517: string+=`All Cards in Hand\nCost ${effect[0]} Less\nand are Ethereal`; break
             case 2518: string+=`Every Turn, a Random\nCard Costs ${effect[0]} Less`; break
@@ -2968,7 +2975,7 @@ class card{
             case 2677: string+=`Gain ${effect[0]} History\nElemental Form:\nApply ${effect[1]} Weak\nto All Enemies`; break
             case 2678: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``} If\nYou Have Knowledge\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``} If\nYou Have History`; break
             case 2679: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nGain ${effect[1]} Strength\nRewind a Card\nFrom Discard Pile`; break
-            case 2680: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind a Card\nFrom Discard Pile\nElemental Form:\nDouble Upgrade it\nTemporarily`; break
+            case 2680: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nRewind a Card\nFrom Discard Pile\nElemental Form:\nDeluxe Upgrade it\nTemporarily`; break
             case 2681: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nin All Directions\nElemental Form:\nDeals Triple Damage`; break
             case 2682: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nRewound:\nTrigger Effect`; break
             case 2683: string+=`Gain ${effect[0]} Vision\nElemental Form:\nGain ${effect[1]} Dexterity`; break

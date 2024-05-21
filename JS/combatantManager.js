@@ -548,6 +548,9 @@ class combatantManager{
                     case 34:
                         this.combatants[a].statusEffect('Freeze',args[0])
                     break
+                    case 35:
+                        this.combatants[a].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],args[0])
+                    break
                 }
             }
         }
@@ -601,6 +604,9 @@ class combatantManager{
                 switch(effect){
                     case 0:
                         this.combatants[index].baseDuplicate()
+                    break
+                    case 1:
+                        this.combatants[index].statusEffect('Stun',args[0])
                     break
                 }
             }

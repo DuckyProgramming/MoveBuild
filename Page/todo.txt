@@ -1,7 +1,10 @@
 
 
-orb of duality - damage and get an orb
-basic orb of fire and water
+change discus generation to choose a special discus
+
+discus of duality - damage and get a discus
+basic dual discus
+discus of fire and water
 
 duplex barrier - damage, 2 times if you have barrier
 binding border - damage, apply 1 vulnerable if you have border
@@ -18,6 +21,20 @@ dichromatic - damage a random enemy when you get buffer
 slice of life - heal and convert block to barrier
 
 balanced discusses - get 2 discuses and they cost 1 less, exhaust
+great barrier - convert all block into barrier
+dreamseal - 18 damage, 4 cost, take another turn
+
+move the scry cards
+rabbit's fist - damage and scry
+
+discus origin - get a discus every trun
+secret discus - damage in all directions, costs 1 less for each discus in hand
+
+move over the exhausts?
+
+interdependence - scry 2 each turn
+
+yayoi's []
 
 
 
@@ -29,21 +46,6 @@ wriggle's lantern
 heavenly peach
 sword of hisou
 
-
-
-
-
-bad lawyer business card - remove a card whenever a medic dies
-mining light - after a boss, gain 50% more money
-card buffer advanced - double upgrading a card makes it shiny
-css - gain 1 base energy, text is double font size
-clownfish - playing any shiny card gives 1 temporary strength
-
-philosophy duck - when sold, get a random relic
-ms paint - draw a card and retain it to hand at the start of combat
-jester duck - all enemies start combat with 1 burn, 1 freeze, or 1 shock
-orange stake - booster packs contain 2 more choices
-loaded disk - when sold, create a pink card and yellow card
 
 
 

@@ -6804,6 +6804,70 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.rect(0,-7,11,2)
             layer.rect(0,7,11,2)
         break
+        case 101:
+            layer.fill(0,fade)
+            layer.rect(0,0,9,13)
+            layer.fill(240,fade)
+            layer.rect(0,0,8,12)
+            layer.fill(0,fade)
+            layer.quad(-3.5,-3,-1,-5.5,1.5,-3,-1,-0.5)
+            layer.fill(255,255,100,fade)
+            layer.quad(-3,-3,-1,-5,1,-3,-1,-1)
+        break
+        case 102:
+            layer.fill(0,fade)
+            layer.rect(0,0,9,13)
+            layer.fill(240,fade)
+            layer.rect(0,0,8,12)
+            layer.fill(0,fade)
+            layer.quad(-3.5,-3,-1,-5.5,1.5,-3,-1,-0.5)
+            layer.fill(255,150,200,fade)
+            layer.quad(-3,-3,-1,-5,1,-3,-1,-1)
+        break
+        case 103:
+            layer.stroke(120,fade)
+            layer.strokeWeight(1.5)
+            layer.rect(0,0,12,16,2)
+            layer.strokeWeight(0.5)
+            regStar(layer,0,0,12,2,2,5,5,0)
+        break
+        case 104:
+            layer.fill(0,fade)
+            layer.rect(0,0,9,13)
+            layer.fill(240,fade)
+            layer.rect(0,0,8,12)
+            layer.fill(0,fade)
+            layer.quad(-3.5,-3,-1,-5.5,1.5,-3,-1,-0.5)
+            layer.quad(3.5,3,1,5.5,-1.5,3,1,0.5)
+            layer.fill(255,255,100,fade)
+            layer.quad(-3,-3,-1,-5,1,-3,-1,-1)
+            layer.fill(255,150,200,fade)
+            layer.quad(3,3,1,5,-1,3,1,1)
+        break
+        case 105:
+            layer.fill(125,255,255,fade)
+            layer.arc(0,0,15,15,-120,-60)
+            layer.fill(150,0,0,fade)
+            layer.arc(0,0,15,15,0,60)
+            layer.fill(255,255,50,fade)
+            layer.arc(0,0,15,15,120,180)
+        break
+        case 106:
+            layer.fill(240,fade)
+            layer.triangle(0,-3,-9,3,9,3)
+            layer.triangle(1.5,3,-1.5,3,0,6)
+            layer.triangle(-7.5,3,-4.5,3,-6,-6)
+            layer.triangle(7.5,3,4.5,3,6,-6)
+        break
+        case 107:
+            layer.noFill()
+            layer.stroke(50,fade)
+            layer.strokeWeight(1)
+            layer.bezier(-5,0,-3,-3.5,3,-3.5,5,0)
+            layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
+            layer.strokeWeight(3)
+            layer.point(0,0)
+        break
     }
     layer.pop()
 }
@@ -6905,4 +6969,11 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 98-Anti-Innate
 99-Arcana
 100-Common
+101-Cream Paper
+102-Pink Paper
+103-Booster Pack
+104-Either Paper
+105-Trifecta
+106-Miss
+107-Eye
 */
