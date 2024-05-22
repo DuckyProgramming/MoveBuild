@@ -262,9 +262,14 @@ class group{
     addFree(type,level,color,variant,edition){
         let result=this.add(type,level,color,edition)
         if(result){
-            this.cards[this.cards.length-1].cost=0
-            if(variant==1){
-                this.cards[this.cards.length-1].base.cost=0
+            if(variant==2){
+                this.cards[this.cards.length-1].cost--
+                this.cards[this.cards.length-1].base.cost--
+            }else{
+                this.cards[this.cards.length-1].cost=0
+                if(variant==1){
+                    this.cards[this.cards.length-1].base.cost=0
+                }
             }
         }
         return result
@@ -283,9 +288,14 @@ class group{
                 this.cards[this.cards.length-1].nonCalc=true
                 this.added()
             }
-            this.cards[this.cards.length-1].cost=0
-            if(variant==1){
-                this.cards[this.cards.length-1].base.cost=0
+            if(variant==2){
+                this.cards[this.cards.length-1].cost--
+                this.cards[this.cards.length-1].base.cost--
+            }else{
+                this.cards[this.cards.length-1].cost=0
+                if(variant==1){
+                    this.cards[this.cards.length-1].base.cost=0
+                }
             }
             for(let a=0,la=spec.length;a<la;a++){
                 this.cards[this.cards.length-1].spec.push(spec[a])
@@ -2019,6 +2029,15 @@ class group{
             case 2873:
                 this.battle.combatantManager.randomEnemyEffect(0,[card.effect[0]])
                 this.battle.addEnergy(card.effect[1],this.player)
+            break
+            case 2904:
+                userCombatant.statusEffect('Temporary Draw',card.effect[0])
+                userCombatant.statusEffect('Temporary Draw Next Turn',card.effect[0])
+            break
+            case 2905:
+                userCombatant.statusEffect('Temporary Draw',card.effect[0])
+                userCombatant.statusEffect('Temporary Draw Next Turn',card.effect[0])
+                userCombatant.statusEffect('Temporary Draw Next Turn Next Turn',card.effect[0])
             break
         }
     }

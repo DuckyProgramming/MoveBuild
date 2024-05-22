@@ -278,7 +278,7 @@ class relicManager{
                 manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
                 manager.deck.add(manager.listing.card[game.playerNumber+2][3][floor(random(0,manager.listing.card[game.playerNumber+2][3].length))],0,game.playerNumber+2)
             break
-            case 131: case 135: case 136: case 137: case 138: case 140: case 141: case 142:  case 144: case 145:
+            case 131: case 135: case 136: case 137: case 138: case 140: case 141: case 142: case 144: case 145:
             case 146: case 147: case 148: case 170: case 222: case 228: case 234: case 242: case 243:
                 this.battle.energyBaseUp(player)
             break

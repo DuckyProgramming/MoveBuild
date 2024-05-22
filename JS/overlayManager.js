@@ -70,13 +70,15 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,14,[])],//select intent,60
                     [new overlay(this.layer,this.battle,0,15,[])],//select combat
                     [new overlay(this.layer,this.battle,0,2,[43])],//deck card cost down
+                    [new overlay(this.layer,this.battle,0,2,[44,0,0])],//scry, cost 0
+                    [new overlay(this.layer,this.battle,0,16,[])],//mtg mana choice
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[51,61,41,42,24,4,16,38,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,59,33,52,53,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,62,54,11,27,39,43,55,45,60]
+                this.priority=[51,61,64,41,42,24,4,16,38,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,63,59,33,52,53,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,62,54,11,27,39,43,55,45,60]
             break
             case 1:
                 this.overlays.push(

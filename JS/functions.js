@@ -223,6 +223,9 @@ function crystalFlower(layer,size,direction,color,width,height){
 function mergeColor(color1,color2,value){
 	return [color1[0]*(1-value)+color2[0]*value,color1[1]*(1-value)+color2[1]*value,color1[2]*(1-value)+color2[2]*value]
 }
+function mergeColor3(color1,color2,color3){
+	return [(color1[0]+color2[0]+color3[0])/3,(color1[1]+color2[1]+color3[1])/3,(color1[2]+color2[2]+color3[2])/3]
+}
 function upColor(color,value,key){
 	return [color[0]+value*key[0],color[1]+value*key[1],color[2]+value*key[2]]
 }
@@ -1414,11 +1417,12 @@ function mtgPlayerColor(player){
 		case 13: return [3,4]
 		case 14: return [3,5]
 		case 15: return [2,4]
+		case 16: return [1,2,4]
 		default: return [0]
 	}
 }
 function mtgCardColor(color){
-	if(color>=1&&color<=15){
+	if(color>=1&&color<=16){
 		return mtgPlayerColor(color)
 	}else{
 		return [color]
@@ -1428,21 +1432,42 @@ function mtgManaBase(energy,player){
 	let playerColor=mtgPlayerColor(player)
 	if(playerColor.length==2&&floor(random(0,2))==0){
 		playerColor=[playerColor[1],playerColor[0]]
+	}else if(playerColor.length==3){
+		let left=copyArray(playerColor)
+		playerColor=[]
+		for(let a=0,la=left.length;a<la;a++){
+			let index=floor(random(0,left.length))
+			playerColor.push(left[index])
+			left.splice(index,1)
+		}		
 	}
-	let remaining=[1,2,3,4,5]
-	for(let a=0,la=playerColor.length;a<la;a++){
-		remaining.splice(remaining.indexOf(playerColor[a]),1)
+	if(playerColor.length==1){
+		let remaining=[1,2,3,4,5]
+		for(let a=0,la=playerColor.length;a<la;a++){
+			remaining.splice(remaining.indexOf(playerColor[a]),1)
+		}
+		for(let a=0,la=remaining.length;a<la;a++){
+			playerColor.push(remaining[floor(random(0,remaining.length))])
+		}
 	}
-	for(let a=0,la=remaining.length;a<la;a++){
-		playerColor.push(remaining[floor(random(0,remaining.length))])
-	}
-	switch(energy){
-		case 0: return []
-		case 1: return [playerColor[0]]
-		case 2: return [playerColor[0],playerColor[1]]
-		case 3: return [playerColor[0],playerColor[0],playerColor[1]]
-		case 4: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
-		case 5: return [playerColor[0],playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
+	if(playerColor.length==3){
+		switch(energy){
+			case 0: return []
+			case 1: return [playerColor[0]]
+			case 2: return [playerColor[0],playerColor[1]]
+			case 3: return [playerColor[0],playerColor[1],playerColor[2]]
+			case 4: return [playerColor[0],playerColor[0],playerColor[1],playerColor[2]]
+			case 5: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1],playerColor[2]]
+		}
+	}else{
+		switch(energy){
+			case 0: return []
+			case 1: return [playerColor[0]]
+			case 2: return [playerColor[0],playerColor[1]]
+			case 3: return [playerColor[0],playerColor[0],playerColor[1]]
+			case 4: return [playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
+			case 5: return [playerColor[0],playerColor[0],playerColor[0],playerColor[1],playerColor[1]]
+		}
 	}
 }
 function total6(list){

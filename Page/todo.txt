@@ -1,50 +1,59 @@
+SANAE:
+
+scene animations
 
 
-change discus generation to choose a special discus
 
-discus of duality - damage and get a discus
-basic dual discus
-discus of fire and water
 
-duplex barrier - damage, 2 times if you have barrier
-binding border - damage, apply 1 vulnerable if you have border
 
-newspaper - status, when etherealed, damage a random enemy by 1
 
-convert crossing the border to give barrier
-battle position - gain block and temporary strength
-cleansing - barrier and exhaust
-purified rod - draw 1 more card for the next 2 turns when drawn, ethereal
 
-dichromatic - damage a random enemy when you get buffer
 
-slice of life - heal and convert block to barrier
 
-balanced discusses - get 2 discuses and they cost 1 less, exhaust
-great barrier - convert all block into barrier
-dreamseal - 18 damage, 4 cost, take another turn
 
-move the scry cards
-rabbit's fist - damage and scry
 
-discus origin - get a discus every trun
-secret discus - damage in all directions, costs 1 less for each discus in hand
 
-move over the exhausts?
 
-interdependence - scry 2 each turn
+GIMMICKS:
 
-yayoi's []
+Barrier/Discus
+
+Freeze
+
+Snake Cards/Scry
+
 
 
 
 
+yayoi's []
+
+more salamander cards
+and scry
+
+basic barriers
+
+buffs with discuses
 
 youmu's ghostblade - this card is a double reference lol
 wriggle's lantern
 
 heavenly peach
 sword of hisou
+
+circle, square, and triangle sculptures - have some effect and become each other
+
+dragon bolt - if fatal, gain intangible
+
+barrier slam
+
+two gods - draw a card, if attack gain 1 strength, if defense gain 1 dex
+
+purify the land - exhaust a card from draw pile, exhaust a card from discard pile, exhaust a card from hand
+
+descendence - gain barrier, all defenses cost 1 less
+
+
 
 
 
@@ -74,9 +83,9 @@ sword of hisou
 	reverser of sins
 	adds a new sin every few turns until all of them are active
 	[
-		pride - adds 5 prides to your deck
+		pride - adds a pride every turn
 		wrath - attacks twice per turn
-		gluttony - lose an energy per turn
+		gluttony - gives you random statuses every turn
 		greed - deletes all your non-boss relics
 		envy - you take 1 damage per card you play
 		sloth - gives you 3 weak, 3 vulnerable, or 3 frail every turn

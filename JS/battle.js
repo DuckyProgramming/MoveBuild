@@ -175,7 +175,8 @@ class battle{
                 a==3&&this.player.includes(7)||
                 a==4&&this.player.includes(8)||
                 a==5&&this.player.includes(11)||
-                a==6&&this.player.includes(15)
+                a==6&&this.player.includes(15)||
+                a==7&&this.player.includes(16)
             ){
                 setupCombatantGraphics(a)
             }else{
@@ -1001,8 +1002,8 @@ class battle{
     }
     energyBaseUp(player){
         if(variants.mtg){
-            this.energy.base[player].push(floor(random(1,6)))
-            this.cardManagers[player].mtgListing()
+            this.overlayManager.overlays[64][player].active=true
+            this.overlayManager.overlays[64][player].activate([])
         }else{
             this.energy.base[player]++
         }
@@ -2578,7 +2579,7 @@ class battle{
                                 this.cardManagers[0].allEffect(2,1)
                             break
                             case 'A':
-                                this.setEnergy(999999,0)
+                                this.setEnergy(99,0)
                             break
                             case 'Z':
                                 this.endTurn()

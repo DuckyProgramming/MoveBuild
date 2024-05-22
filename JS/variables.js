@@ -16,7 +16,7 @@ types={
         {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
         {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
         {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
-        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`[]`},
+        {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[],move:{type:0,speed:0},attack:[],description:`A conflicted devotee to the\nManagement's proprietary ARTREL\nprogram. Loyal only to the now-replaced\nearlier directors of the faith.`},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
         {name:'Duck',life:20,behavior:2,spec:[],move:{type:0,speed:1},attack:[{type:2,effect:[2]},{type:5,effect:[1,'Dazed']}],description:`Typical duck`},
@@ -6312,7 +6312,7 @@ Stacks degrade by half, rounded up, each turn.`,
         {name:'Personnel Carrier',desc:'Randomly Get Ambushed by Robots'},
         {name:'Chief Engineering Officer',desc:'25% of Cards are Stapled'},
         {name:'Shadow Trooper',desc:'All Enemies are Invisible First Turn'},
-        {name:'Purge X02',desc:'Enemies Gain Double Block'},//140
+        {name:'Purge X02',desc:'Enemies Add Double Block'},//140
         {name:'Lunaria',desc:'Random Enemies During Elite and Boss Battles Spawn Souls Upon Death'},
         {name:'Rewriter',desc:'Every Combat Spawns Glitched Tiles'},
         {name:'Jester',desc:'Every Turn, Randomly Get Burned, Frozen, or Shocked'},

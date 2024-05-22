@@ -26,7 +26,7 @@ class cardManager{
         this.drops=0
         this.interval=0
         this.greenDiff=0
-        this.switch={miracle:false,teleport:false,redraw:false,smite:false}
+        this.switch={miracle:false,teleport:false,redraw:false,smite:false,dualDiscus:false}
         this.pack=[]
 
         this.initialListing()
@@ -494,6 +494,52 @@ class cardManager{
                 }
             }
         }
+    }
+    drawReturn(amount,spec=0){
+        let sent=[]
+        if(amount>0){
+            this.hand.allEffect(87)
+            let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+            if(userCombatant.getStatus('No Draw')<=0){
+                this.battle.stats.drawn[this.player]+=amount
+                if(variants.witch){
+                    for(let a=0,la=amount;a<la;a++){
+                        this.hand.add(findName('Card\nSlot',types.card),0,0)
+                    }
+                }else{
+                    let amountLeft=amount-this.reserve.cards.length
+                    if(this.reserve.cards.length>0){
+                        let amountSent=min(amount,this.reserve.cards.length)
+                        this.reserve.send(this.hand.cards,0,amountSent,[3,8,13,14,18][spec])
+                        for(let a=0,la=amountSent;a<la;a++){
+                            sent.push(this.hand.cards[this.hand.cards.length-1-a])
+                        }
+                    }
+                    if(amountLeft>0&&this.discard.cards.length>0&&!variants.cyclicDraw){
+                        this.discard.send(this.reserve.cards,0,-1,2)
+                        this.reserve.shuffle()
+                        if(this.reserve.cards.length>0){
+                            let amountSent=min(amountLeft,this.reserve.cards.length)
+                            this.reserve.send(this.hand.cards,0,amountSent,[3,8,13,14,18][spec])
+                            for(let a=0,la=amountSent;a<la;a++){
+                                sent.push(this.hand.cards[this.hand.cards.length-1-a])
+                            }
+                        }
+                    }
+                    this.reserve.parseDrawEffects(this.hand)
+                    if(this.battle.relicManager.hasRelic(106,this.player)){
+                        for(let a=0,la=this.hand.cards.length;a<la;a++){
+                            if(this.hand.cards[a].class==5&&this.hand.cards[a].name!='Fatigue'){
+                                this.hand.send(this.exhaust.cards,a,a+1,0)
+                                a--
+                                la--
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return sent
     }
     drawBottom(amount){
         if(amount>0){
@@ -1070,6 +1116,10 @@ class cardManager{
         if(this.switch.smite){
             this.switch.smite=false
             this.hand.add(findName('Smite',types.card),0,0)
+        }
+        if(this.switch.dualDiscus){
+            this.switch.dualDiscus=false
+            this.hand.add(findName('Dual\nDiscus',types.card),0,0)
         }
     }
     checkCompact(){
