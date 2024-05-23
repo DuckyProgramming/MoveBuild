@@ -134,7 +134,10 @@ class cardManager{
         }for(let a=0,la=types.card.length;a<la;a++){
             let cardColor=mtgPlayerColor(types.card[a].list)
             let manaColor=cardColor.length==1?cardColor[0]:cardColor[a%2]
-            if(types.card[a].rarity>=0&&types.card[a].list>0&&types.card[a].list<=game.playerNumber&&(cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0)&&(manaColor==0||effectiveMana[manaColor]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(35))){
+            if(types.card[a].rarity>=0&&types.card[a].list>0&&types.card[a].list<=game.playerNumber&&
+                (cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0||cardColor.length==3&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0&&effectiveMana[cardColor[2]]>0)&&
+                (manaColor==0||effectiveMana[manaColor]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(35))
+            ){
                 this.listing.mtg[types.card[a].rarity].push(a)
                 this.listing.mtg[3].push(a)
             }

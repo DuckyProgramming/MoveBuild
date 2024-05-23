@@ -552,7 +552,7 @@ class battle{
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
-            this.baselineEnergy(a,this.energy.gen[a])
+            this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0)+this.energy.temp[this.turn.main])-(this.modded(5)?max(3-this.turn.total,0):0),this.turn.main)
             this.energy.temp[this.turn.main]=0
         }else{
@@ -1580,6 +1580,7 @@ class battle{
                     this.graphics.combatants[4][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.relicManager.display(stage.scene)
+                this.overlayManager.display()
             break
             case 'bossstash':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
@@ -1588,6 +1589,7 @@ class battle{
                     this.graphics.combatants[6][this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(a)].trigger.display.extra.damage?1:0][a].display()
                 }
                 this.relicManager.display(stage.scene)
+                this.overlayManager.display()
             break
             case 'pack':
                 this.layer.image(graphics.staticBackground,0,0,this.layer.width,this.layer.height)
@@ -1829,7 +1831,9 @@ class battle{
                         if(this.modded(82)){
                             mult*=0.5
                         }
-                        this.relicManager.activate(15,[a,-1,reward,this.turn.total])
+                        if(!(this.encounter.class==2&&this.nodeManager.world==3)){
+                            this.relicManager.activate(15,[a,-1,reward,this.turn.total])
+                        }
                         switch(this.encounter.class){
                             case 0: case 3: case 4:
                                 reward.push({type:0,value:[floor(random(40,81)*mult)]})
@@ -1956,6 +1960,7 @@ class battle{
             break
             case 'stash':  case 'bossstash':
                 this.relicManager.update(stage.scene)
+                this.overlayManager.update()
             break
             case 'pack':
                 this.packManagers.forEach(packManager=>packManager.update())
@@ -2184,7 +2189,7 @@ class battle{
                         this.tutorialManager.setupTutorial(a)
                     }
                 }
-                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-175,y:this.layer.height*0.7},width:62.5,height:62.5})){
+                if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.7+50},width:62.5,height:62.5})){
                     transition.trigger=true
                     transition.scene='title'
                 }
@@ -2246,7 +2251,8 @@ class battle{
                 }else{
                     this.nodeManager.onClick()
                     this.relicManager.onClick(stage.scene)
-                    this.itemManager.onClick(stage)
+                    this.itemManager.onClick(stage.scene)
+                    this.modManager.onClick()
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
@@ -2323,7 +2329,11 @@ class battle{
                 }
             break
             case 'stash': case 'bossstash':
-                this.relicManager.onClick(stage.scene)
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onClick()
+                }else{
+                    this.relicManager.onClick(stage.scene)
+                }
             break
             case 'pack':
                 if(this.overlayManager.anyActive){
@@ -2683,7 +2693,11 @@ class battle{
                 }
             break
             case 'stash': case 'bossstash':
-                this.relicManager.onKey(stage.scene,key,code)
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onKey(key,code)
+                }else{
+                    this.relicManager.onKey(stage.scene,key,code)
+                }
             break
             case 'pack':
                 if(this.overlayManager.anyActive){

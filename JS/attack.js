@@ -5444,10 +5444,10 @@ class attack{
                         }
                     break
                     case 1264:
-                        this.batle.setEnergy(this.effect[0],this.player)
+                        this.battle.setEnergy(this.effect[0],this.player)
                     break
                     case 1265:
-                        this.batle.setEnergy(this.effect[0],this.player)
+                        this.battle.setEnergy(this.effect[0],this.player)
                         this.userManager.hand.randomEffect(7,[this.effect[1]])
                     break
                     case 1269:
@@ -6019,7 +6019,7 @@ class attack{
                     break
                     case 2826:
                         let number2826=this.userManager.hand.colorNumber()
-                        this.battle.addEnergy(this.effect[0],this.player)*number2826
+                        this.battle.addEnergy(this.effect[0]*number2826,this.player)
                         if(this.effect[1]>0){
                             this.userManager.draw(this.effect[1]*number2826)
                         }

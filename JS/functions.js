@@ -22,7 +22,7 @@ function displayTransition(layer,transition){
 			transition.anim=round(transition.anim*10+1)/10
 		}
 		if(transition.anim>=1.1){
-			transition.trigger = false
+			transition.trigger=false
 			stage.scene=transition.scene
 			current.sceneChange()
 			if(transition.convert){
@@ -897,16 +897,16 @@ function copyCard(base){
 function copyCardFree(base){
 	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
 }
-function upgradeCard(base){
+function upgradeCard(base,nonlimiting=false){
 	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn)
-	if(base.attack==1352){
+	if(base.attack==1352||nonlimiting){
 		result.limit=base.limit
 	}
 	return result
 }
-function unupgradeCard(base){
+function unupgradeCard(base,nonlimiting=false){
 	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn)
-	if(base.attack==1352){
+	if(base.attack==1352||nonlimiting){
 		result.limit=base.limit
 	}
 	return result
@@ -1196,6 +1196,15 @@ function updateMouse(layer){
 function quickAdd(name){
 	if(findName(name,types.card)>=0){
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0)
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
+		return 'Added'
+	}else{
+		return 'Invalid'
+	}
+}
+function quickAddEdition(name,edition){
+	if(findName(name,types.card)>=0){
+		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.add(findName(name,types.card),0,0,edition)
 		current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards[current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards.length-1].colorful=true
 		return 'Added'
 	}else{

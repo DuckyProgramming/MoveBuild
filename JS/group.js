@@ -1703,6 +1703,9 @@ class group{
                         this.cards[index].spec.push(15)
                         this.cards[index].additionalSpec.push(15)
                         this.cards[index].limit=args[0]
+                        if(this.cards[index].limit==undefined){
+                            this.cards[index].limit=1
+                        }
                     break
                     case 19:
                         if(!this.cards[index].spec.includes(1)&&this.cards[index].attack!=-25){
@@ -2247,7 +2250,9 @@ class group{
                     list[list.length-1].position.y=500
                     switch(spec){
                         case 2:
-                            list[list.length-1].cost=list[list.length-1].base.cost
+                            if(!list[list.length-1].additionalSpec.includes(-3)){
+                                list[list.length-1].cost=list[list.length-1].base.cost
+                            }
                         break
                         case 3:
                             if(this.drawEffect(list[list.length-1])){la=0}
@@ -2305,7 +2310,7 @@ class group{
                             if(this.drawEffect(list[list.length-1])){la=0}
                         break
                     }
-                }else if(spec==7){
+                }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-3)){
                     list[list.length-1].cost=list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
@@ -2334,7 +2339,9 @@ class group{
                     list[list.length-1].position.y=500
                     switch(spec){
                         case 2:
-                            list[list.length-1].cost=list[list.length-1].base.cost
+                            if(!list[list.length-1].additionalSpec.includes(-3)){
+                                list[list.length-1].cost=list[list.length-1].base.cost
+                            }
                         break
                         case 3:
                             if(this.drawEffect(list[list.length-1])){la=0}
@@ -2392,7 +2399,7 @@ class group{
                             if(this.drawEffect(list[list.length-1])){la=0}
                         break
                     }
-                }else if(spec==7){
+                }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-3)){
                     list[list.length-1].cost=list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
@@ -2707,7 +2714,11 @@ class group{
                     userCombatant.status.main[findList('Single Free Amplify',userCombatant.status.name)]--
                     this.battle.attackManager.amplify=true
                 }else if(this.battle.getEnergy(this.player)>=1&&spec.includes(27)){
-                    this.battle.loseSpecificEnergy(1,this.player,0)
+                    if(variants.mtg){
+                        this.battle.loseSpecificEnergy(1,this.player,0)
+                    }else{
+                        this.battle.loseEnergy(1,this.player)
+                    }
                     this.battle.attackManager.amplify=true
                     this.cards.forEach(card=>card.anotherAmplified())
                     if(userCombatant.status.main[144]>0){
@@ -2716,7 +2727,11 @@ class group{
                     }
                 }
                 if(this.battle.getEnergy(this.player)>=2&&spec.includes(28)){
-                    this.battle.loseSpecificEnergy(2,this.player,0)
+                    if(variants.mtg){
+                        this.battle.loseSpecificEnergy(2,this.player,0)
+                    }else{
+                        this.battle.loseEnergy(2,this.player)
+                    }
                     this.battle.attackManager.amplify=true
                     this.cards.forEach(card=>card.anotherAmplified())
                     if(userCombatant.status.main[144]>0){
@@ -2930,15 +2945,13 @@ class group{
                         }else if(this.cards[a].spec.includes(38)){
                             this.cards[a].limit[0]=round(this.cards[a].limit[0]-1)
                         }
+                        if(this.cards[a].limit<=0&&this.cards[a].spec.includes(15)||this.cards[a].limit[0]<=0&&this.cards[a].spec.includes(38)){
+                            this.cards[a].vanish=true
+                        }
                         for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
                             if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
                                 this.battle.cardManagers[this.player].deck.cards[b].limit--
-                            }
-                        }
-                        if(this.cards[a].limit<=0&&this.cards[a].spec.includes(15)||this.cards[a].limit[0]<=0&&this.cards[a].spec.includes(38)){
-                            this.cards[a].exhaust=true
-                            for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
-                                if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
+                                if(this.battle.cardManagers[this.player].deck.cards[b].limit<=0&&this.battle.cardManagers[this.player].deck.cards[b].spec.includes(15)||this.battle.cardManagers[this.player].deck.cards[b].limit[0]<=0&&this.battle.cardManagers[this.player].deck.cards[b].spec.includes(38)){
                                     this.battle.cardManagers[this.player].deck.cards[b].callVanishEffect()
                                     this.battle.cardManagers[this.player].deck.cards.splice(b,1)
                                     b--
@@ -3077,15 +3090,18 @@ class group{
                                     this.battle.cardManagers[this.player].deck.cards[c].limit--
                                 }
                             }
-                            if(this.cards[b].limit<=0&&this.cards[b].spec.includes(15)||this.cards[b].limit[0]<=0&&this.cards[ba].spec.includes(38)){
+                            if(this.cards[b].limit<=0&&this.cards[b].spec.includes(15)||this.cards[b].limit[0]<=0&&this.cards[b].spec.includes(38)){
                                 this.cards[b].exhaust=true
-                                for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                    if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                        this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
-                                        this.battle.cardManagers[this.player].deck.cards.splice(c,1)
-                                        c--
-                                        lc--
-                                    }
+                            }
+                            for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
+                                if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
+                                    this.battle.cardManagers[this.player].deck.cards[c].limit--
+                                }
+                                if(this.battle.cardManagers[this.player].deck.cards[c].limit<=0&&this.battle.cardManagers[this.player].deck.cards[c].spec.includes(15)||this.battle.cardManagers[this.player].deck.cards[c].limit[0]<=0&&this.battle.cardManagers[this.player].deck.cards[c].spec.includes(38)){
+                                    this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                    this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
+                                    c--
+                                    lc--
                                 }
                             }
                         }else if(this.cards[b].spec.includes(42)){
@@ -3219,20 +3235,18 @@ class group{
                                 }else if(this.cards[b].spec.includes(38)){
                                     this.cards[b].limit[0]=round(this.cards[b].limit[0]-1)
                                 }
+                                if(this.cards[b].limit<=0&&this.cards[b].spec.includes(15)||this.cards[b].limit[0]<=0&&this.cards[b].spec.includes(38)){
+                                    this.cards[b].exhaust=true
+                                }
                                 for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
                                     if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
                                         this.battle.cardManagers[this.player].deck.cards[c].limit--
                                     }
-                                }
-                                if(this.cards[b].limit<=0&&this.cards[b].spec.includes(15)||this.cards[b].limit[0]<=0&&this.cards[ba].spec.includes(38)){
-                                    this.cards[b].exhaust=true
-                                    for(let c=0,lc=this.battle.cardManagers[this.player].deck.cards.length;c<lc;c++){
-                                        if(this.battle.cardManagers[this.player].deck.cards[c].id==this.cards[b].id){
-                                            this.battle.cardManagers[this.player].deck.cards.splice(c,1)
-                                            this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
-                                            c--
-                                            lc--
-                                        }
+                                    if(this.battle.cardManagers[this.player].deck.cards[c].limit<=0&&this.battle.cardManagers[this.player].deck.cards[c].spec.includes(15)||this.battle.cardManagers[this.player].deck.cards[c].limit[0]<=0&&this.battle.cardManagers[this.player].deck.cards[c].spec.includes(38)){
+                                        this.battle.cardManagers[this.player].deck.cards.splice(c,1)
+                                        this.battle.cardManagers[this.player].deck.cards[c].callVanishEffect()
+                                        c--
+                                        lc--
                                     }
                                 }
                             }else if(this.cards[b].spec.includes(42)){
@@ -3632,16 +3646,21 @@ class group{
                         }
                     }
                     if(this.cards[a].size<=0){
-                        if(this.cards[a].discardEffect.length>0){
+                        if(this.cards[a].vanish){
+                            delete this.cards[a]
+                            this.cards.splice(a,1)
+                            a--
+                            la--
+                        }else if(this.cards[a].discardEffect.length>0){
                             this.cards[a].deSize=false
                             if(this.cards[a].discardEffect.includes(0)){
                                 let hold=this.cards[a].discardEffect
-                                this.cards[a]=upgradeCard(this.cards[a])
+                                this.cards[a]=upgradeCard(this.cards[a],true)
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
                                 while(this.cards[a].discardEffect.includes(0)){
                                     let hold=this.cards[a].discardEffect
-                                    this.cards[a]=upgradeCard(this.cards[a])
+                                    this.cards[a]=upgradeCard(this.cards[a],true)
                                     this.cards[a].discardEffect=hold
                                     this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
                                 }
@@ -3651,7 +3670,7 @@ class group{
                             }
                             if(this.cards[a].discardEffect.includes(2)){
                                 let hold=this.cards[a].discardEffect
-                                this.cards[a]=unupgradeCard(this.cards[a])
+                                this.cards[a]=unupgradeCard(this.cards[a],true)
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(2),1)
                             }
@@ -4155,20 +4174,31 @@ class group{
                                     if(this.status[this.listInput[b][0]]!=0){
                                         this.callInput(this.listInput[b][1],a)
                                         a=la
+                                        b=lb
                                     }
                                 }
                                 if(a!=la&&this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)
                                         break
-                                    }else if(this.cards[a].spec.includes(35)&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0&&this.cards[a].cost>0){
+                                    }else if(this.cards[a].spec.includes(35)&&(variants.mtg&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0||!variants.mtg&&this.battle.getEnergy(this.player)>0)&&this.cards[a].cost>0){
                                         let cost=this.cards[a].cost
-                                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
-                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)*2)
-                                            this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player,this.cards[a].mtgManaColor)
+                                        if(variants.mtg){
+                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
+                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)*2)
+                                                this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player,this.cards[a].mtgManaColor)
+                                            }else{
+                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor))
+                                                this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player,this.cards[a].mtgManaColor)
+                                            }
                                         }else{
-                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor))
-                                            this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player,this.cards[a].mtgManaColor)
+                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
+                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player)*2)
+                                                this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player)
+                                            }else{
+                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player))
+                                                this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player)
+                                            }
                                         }
                                         this.cards[a].onIncrementCountdown()
                                     }else if(!this.cards[a].energyAfford){
@@ -4505,20 +4535,31 @@ class group{
                                     if(this.status[this.listInput[b][0]]!=0){
                                         this.callInput(this.listInput[b][1],a)
                                         a=la
+                                        b=lb
                                     }
                                 }
                                 if(a!=la&&this.cards[a].usable&&this.battle.attackManager.attacks.length<=0&&this.cards[a].playable()){
                                     if(this.cards[a].afford){
                                         this.callInput(0,a)
                                         break
-                                    }else if(this.cards[a].spec.includes(35)&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0&&this.cards[a].cost>0){
+                                    }else if(this.cards[a].spec.includes(35)&&(variants.mtg&&this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)>0||!variants.mtg&&this.battle.getEnergy(this.player)>0)&&this.cards[a].cost>0){
                                         let cost=this.cards[a].cost
-                                        if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
-                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)*2)
-                                            this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player,this.cards[a].mtgManaColor)
+                                        if(variants.mtg){
+                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
+                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor)*2)
+                                                this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player,this.cards[a].mtgManaColor)
+                                            }else{
+                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor))
+                                                this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player,this.cards[a].mtgManaColor)
+                                            }
                                         }else{
-                                            this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getSpecificEnergy(this.player,this.cards[a].mtgManaColor))
-                                            this.battle.loseSpecificEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player,this.cards[a].mtgManaColor)
+                                            if(this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].getStatus('Double Countdowns')>0){
+                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player)*2)
+                                                this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost/2)),this.player)
+                                            }else{
+                                                this.cards[a].cost=max(0,this.cards[a].cost-this.battle.getEnergy(this.player))
+                                                this.battle.loseEnergy(min(this.battle.getEnergy(this.player),round(cost)),this.player)
+                                            }
                                         }
                                         this.cards[a].onIncrementCountdown()
                                     }else{

@@ -454,7 +454,8 @@ combatant.prototype.display=function(){
                                 this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                             }
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                                let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -1339,7 +1340,8 @@ combatant.prototype.display=function(){
                                 this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                             }
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                                let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -2216,7 +2218,8 @@ combatant.prototype.display=function(){
                     for(let h=0;h<2;h++){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                                let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -2649,7 +2652,8 @@ combatant.prototype.display=function(){
                                 this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                             }
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                                let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -3000,12 +3004,14 @@ combatant.prototype.display=function(){
                     for(let h=0;h<2;h++){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
                             if(this.trigger.display.shoe){
-                                this.layer.fill(upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.shoe)
+                                let color=this.flashColor(upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.fill(color[0],color[1],color[2],this.fade*this.fades.shoe)
                                 this.layer.noStroke()
                                 this.layer.ellipse(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1,6,4.5)
                             }
                             if(this.trigger.display.sock&&lcos(this.anim.direction-90+h*180)<=0){
-                                this.layer.fill(upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.sock[1],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.sock)
+                                let color=this.flashColor(upColor(this.color.sock,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.sock)
                                 this.layer.noStroke()
                                 this.layer.push()
                                 this.layer.translate(this.graphics.legs[h].top.x*0.35+this.graphics.legs[h].middle.x*0.65+2*lsin(this.anim.direction-90+h*180),this.graphics.legs[h].top.y*0.35+this.graphics.legs[h].middle.y*0.6)
@@ -3016,13 +3022,15 @@ combatant.prototype.display=function(){
                                 this.layer.pop()
                             }
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                                let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
                             }
                             if(this.trigger.display.sock){
-                                this.layer.stroke(upColor(this.color.sock[0],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.sock[0],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.sock[0],lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.sock)
+                                let color=this.flashColor(upColor(this.color.sock,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.sock)
                                 this.layer.strokeWeight(4)
                                 this.layer.strokeCap(SQUARE)
                                 this.layer.line(this.graphics.legs[h].top.x*0.4+this.graphics.legs[h].middle.x*0.6,this.graphics.legs[h].top.y*0.4+this.graphics.legs[h].middle.y*0.6,this.graphics.legs[h].top.x*0.2+this.graphics.legs[h].middle.x*0.8,this.graphics.legs[h].top.y*0.2+this.graphics.legs[h].middle.y*0.8)
@@ -3042,7 +3050,8 @@ combatant.prototype.display=function(){
                                 }
                             }
                             if(this.trigger.display.shoe){
-                                this.layer.fill(upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.shoe)
+                                let color=this.flashColor(upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.fill(color[0],color[1],color[2],this.fade*this.fades.shoe)
                                 this.layer.noStroke()
                                 this.layer.ellipse(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1.25,6,2)
                             }
@@ -4317,7 +4326,8 @@ combatant.prototype.display=function(){
                     for(let h=0;h<2;h++){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(this.flashColor(this.color.skin.legs)[0],this.flashColor(this.color.skin.legs)[1],this.flashColor(this.color.skin.legs)[2],this.fade*this.fades.skin.legs)
+                                let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
@@ -4524,72 +4534,83 @@ combatant.prototype.display=function(){
                     for(let h=0;h<2;h++){
                         if((g==0&&h==0||g==1&&h==1)&&lcos(this.spin.legs[0].bottom+this.anim.direction)<=lcos(this.spin.legs[1].bottom+this.anim.direction)||(g==0&&h==1||g==1&&h==0)&&lcos(this.spin.legs[0].bottom+this.anim.direction)>lcos(this.spin.legs[1].bottom+this.anim.direction)){
                             if(this.trigger.display.shoe){
-                                this.layer.fill(upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.shoe)
+                                let color=this.flashColor(upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.fill(color[0],color[1],color[2],this.fade*this.fades.shoe)
                                 this.layer.noStroke()
-                                this.layer.ellipse(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1,5,3.5)
+                                this.layer.ellipse(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1,5.5,3.75)
                             }
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                                let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
                             }
                             if(this.trigger.display.sock){
-                                this.layer.stroke(upColor(this.color.sock,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.sock,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.sock,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.sock)
+                                let color=this.flashColor(upColor(this.color.sock,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.sock)
                                 this.layer.strokeWeight(4)
                                 this.layer.strokeCap(SQUARE)
-                                this.layer.line(this.graphics.legs[h].middle.x*0.8+this.graphics.legs[h].bottom.x*0.2,this.graphics.legs[h].middle.y*0.8+this.graphics.legs[h].bottom.y*0.2,this.graphics.legs[h].middle.x*0.2+this.graphics.legs[h].bottom.x*0.8,this.graphics.legs[h].middle.y*0.2+this.graphics.legs[h].bottom.y*0.8)
+                                this.layer.line(this.graphics.legs[h].middle.x*0.9+this.graphics.legs[h].bottom.x*0.1,this.graphics.legs[h].middle.y*0.9+this.graphics.legs[h].bottom.y*0.1,this.graphics.legs[h].middle.x*0.2+this.graphics.legs[h].bottom.x*0.8,this.graphics.legs[h].middle.y*0.2+this.graphics.legs[h].bottom.y*0.8)
                                 this.layer.strokeCap(ROUND)
                                 this.layer.line(this.graphics.legs[h].middle.x*0.2+this.graphics.legs[h].bottom.x*0.8,this.graphics.legs[h].middle.y*0.2+this.graphics.legs[h].bottom.y*0.8,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)
                             }
                             if(this.trigger.display.shoe){
-                                this.layer.fill(upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.shoe)
+                                let color=this.flashColor(upColor(this.color.shoe,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.fill(color[0],color[1],color[2],this.fade*this.fades.shoe)
                                 this.layer.noStroke()
-                                this.layer.ellipse(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1.25,5,2)
+                                this.layer.ellipse(this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y+1.25,5.5,2.25)
                             }
                         }
                     }
                 }
                 if(this.trigger.display.dress.main){
                     this.layer.noStroke()
-                    this.layer.fill(this.color.dress.highlight[0]-20,this.color.dress.highlight[1]-20,this.color.dress.highlight[2]-20,this.fade*this.fades.dress.main)
+                    let color=[this.flashColor(upColor(this.color.dress.highlight,-20,[1,1,1]))]
+                    this.layer.fill(color[0],color[1],color[2],this.fade*this.fades.dress.main)
                     for(let a=0,la=18;a<la;a++){
                         if(lcos(a/la*360+this.anim.direction)>0){
                             this.layer.arc(15.7*lsin((a+0.5)/la*360+this.anim.direction),-23.25+1.5*lcos((a+0.5)/la*360+this.anim.direction),6*lcos((a+0.5)/la*360+this.anim.direction),3,0,180)
                         }
                     }
-                    this.layer.fill(this.color.dress.main[0],this.color.dress.main[1],this.color.dress.main[2],this.fade*this.fades.dress.main)
+                    this.layer.fill(this.flashColor(this.color.dress.main)[0],this.flashColor(this.color.dress.main)[1],this.flashColor(this.color.dress.main)[2],this.fade*this.fades.dress.main)
                     this.layer.quad(-6,-43,6,-43,16,-23,-16,-23)
-                    this.layer.arc(0,-23,32,3,0,180)
+                    this.layer.ellipse(0,-23,32,3)
                     for(let a=0,la=18;a<la;a++){
                         if(lcos(a/la*360+this.anim.direction)>0){
                             this.layer.arc(15.7*lsin(a/la*360+this.anim.direction),-23.25+1.5*lcos(a/la*360+this.anim.direction),6*lcos(a/la*360+this.anim.direction),1,0,180)
                         }
                     }
-                    this.layer.stroke(this.color.dress.dot[0],this.color.dress.dot[1],this.color.dress.dot[2],this.fade*this.fades.dress.main)
-                    this.layer.strokeWeight(0.5)
-                    for(let a=0,la=9;a<la;a++){
+                    this.layer.stroke(this.flashColor(this.color.dress.dot)[0],this.flashColor(this.color.dress.dot)[1],this.flashColor(this.color.dress.dot)[2],this.fade*this.fades.dress.main)
+                    for(let a=0,la=18;a<la;a++){
                         for(let b=0,lb=5;b<lb;b++){
                             let dir=(a+b%2*0.5)/la*360+this.anim.direction
                             if(lcos(dir)>0){
-                                this.layer.line(
-                                    (16-10*(b+0.5)/lb)*lsin(dir),-25-b*4+(1.5-(b+0.5)/lb)*lcos(dir),
-                                    (16-10*(b+0.5)/lb)*lsin(dir)+1.2*(a%2*2-1)*lcos(dir),-25-b*4+(1.5-(b+0.5)/lb)*lcos(dir)+1.2)
-                                this.layer.line(
-                                    (16-10*(b+0.5)/lb)*lsin(dir)-0.6*(a%2*2-1)*lcos(dir),-25-b*4+(1.5-(b+0.5)/lb)*lcos(dir)+0.6,
-                                    (16-10*(b+0.5)/lb)*lsin(dir)-1.8*(a%2*2-1)*lcos(dir),-25-b*4+(1.5-(b+0.5)/lb)*lcos(dir)-0.6)
-                                this.layer.line(
-                                    (16-10*(b+0.5)/lb)*lsin(dir)+0.6*(a%2*2-1)*lcos(dir),-25-b*4+(1.5-(b+0.5)/lb)*lcos(dir)-0.6,
-                                    (16-10*(b+0.5)/lb)*lsin(dir)-0.6*(a%2*2-1)*lcos(dir),-25-b*4+(1.5-(b+0.5)/lb)*lcos(dir)-1.8)
+                                if(a%2==b%2){
+                                    this.layer.strokeWeight(0.2+0.2*lcos(dir))
+                                    this.layer.line(
+                                        (15.5-9*(b+0.5)/lb)*lsin(dir),-25-b*3.6+(1.5-0.9*(b+0.5)/lb)*lcos(dir),
+                                        (15.5-9*(b+0.5)/lb)*lsin(dir)+1*(a%2*2-1)*lcos(dir),-25-b*3.6+(1.5-0.9*(b+0.5)/lb)*lcos(dir)+1)
+                                    this.layer.line(
+                                        (15.5-9*(b+0.5)/lb)*lsin(dir)-0.6*(a%2*2-1)*lcos(dir),-25-b*3.6+(1.5-0.9*(b+0.5)/lb)*lcos(dir)+0.6,
+                                        (15.5-9*(b+0.5)/lb)*lsin(dir)-1.6*(a%2*2-1)*lcos(dir),-25-b*3.6+(1.5-0.9*(b+0.5)/lb)*lcos(dir)-0.4)
+                                    this.layer.line(
+                                        (15.5-9*(b+0.5)/lb)*lsin(dir)+0.6*(a%2*2-1)*lcos(dir),-25-b*3.6+(1.5-0.9*(b+0.5)/lb)*lcos(dir)-0.6,
+                                        (15.5-9*(b+0.5)/lb)*lsin(dir)-0.4*(a%2*2-1)*lcos(dir),-25-b*3.6+(1.5-0.9*(b+0.5)/lb)*lcos(dir)-1.6)
+                                }else{
+                                    this.layer.strokeWeight(0.4)
+                                    this.layer.point((15.5-9*(b+0.5)/lb)*lsin(dir),-25-b*3.6+(1.5-0.9*(b+0.5)/lb)*lcos(dir))
+                                }
                             }
                         }
                     }
                     this.layer.noStroke()
-                    this.layer.fill(this.color.dress.highlight[0],this.color.dress.highlight[1],this.color.dress.highlight[2],this.fade*this.fades.dress.main)
+                    this.layer.fill(this.flashColor(this.color.dress.highlight)[0],this.flashColor(this.color.dress.highlight)[1],this.flashColor(this.color.dress.highlight)[2],this.fade*this.fades.dress.main)
                     this.layer.arc(0,-43,12,43,-180,0)
-                    this.layer.arc(0,-43,12,1,0,180)
+                    this.layer.ellipse(0,-43,12,1)
+                    controlSpin(this.dress.flaps)
                     displayTrianglesFront(this.layer,this.dress.flaps,this.anim.direction,-43,12,0,0.4,this.color.dress.highlight,this.fade*this.fades.dress.main)
-                    this.layer.stroke(this.color.dress.main[0],this.color.dress.main[1],this.color.dress.main[2],this.fade*this.fades.dress.main)
+                    this.layer.stroke(this.flashColor(this.color.dress.main)[0],this.flashColor(this.color.dress.main)[1],this.flashColor(this.color.dress.main)[2],this.fade*this.fades.dress.main)
                     this.layer.strokeWeight(0.6*lcos(this.anim.direction))
                     if(lcos(this.anim.direction-6)>0){
                         this.layer.line(6*lsin(this.anim.direction-6),-42,3*lsin(this.anim.direction-12),-61)
@@ -4597,12 +4618,13 @@ combatant.prototype.display=function(){
                     if(lcos(this.anim.direction+6)>0){
                         this.layer.line(6*lsin(this.anim.direction+6),-42,3*lsin(this.anim.direction+12),-61)
                     }
-                    displayTrianglesFront(this.layer,this.dress.top,this.anim.direction,-61,6,0.5,0.6,this.color.dress.main,this.fade*this.fades.dress.main)
-                    displayTrianglesFront(this.layer,this.dress.top,this.anim.direction,-61.5,6,0,0.6,this.color.dress.highlight,this.fade*this.fades.dress.main)
+                    controlSpin(this.dress.top)
+                    displayTrianglesFront(this.layer,this.dress.top,this.anim.direction,-61,6,0.5,0.6,this.flashColor(this.color.dress.main),this.fade*this.fades.dress.main)
+                    displayTrianglesFront(this.layer,this.dress.top,this.anim.direction,-61.5,6,0,0.6,this.flashColor(this.color.dress.highlight),this.fade*this.fades.dress.main)
                     this.layer.noStroke()
                     this.layer.fill(this.flashColor(this.color.skin.body)[0],this.flashColor(this.color.skin.body)[1],this.flashColor(this.color.skin.body)[2],this.fade*this.fades.skin.body)
                     this.layer.ellipse(0,-63,4,2)
-                }
+                }   
                 for(let g=0;g<2;g++){
                     if(this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.4&&lcos(this.spin.arms[g].top+this.anim.direction)<0.6)&&g==0){
                         this.minorDisplay(0,g)
@@ -4626,7 +4648,7 @@ combatant.prototype.display=function(){
                     this.minorDisplayGeneral(1,0)
                 }
                 for(let g=0;g<2;g++){
-                    if(this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3)&&g==0){
+                    if(this.trigger.display.extra.sword&&(lcos(this.spin.arms[g].top+this.anim.direction)>=0.6||lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.4)&&g==0){
                         this.minorDisplay(0,g)
                     }
                     if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].top+this.anim.direction)>=0.6){
@@ -4637,13 +4659,12 @@ combatant.prototype.display=function(){
                         if(this.trigger.display.dress.sleeve){
                             this.minorDisplay(1,g)
                         }
-                    }
-                    if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3){
+                    }else if(this.trigger.display.skin.arms&&lcos(this.spin.arms[g].bottom+this.anim.direction)>=0.3&&lcos(this.spin.arms[g].top+this.anim.direction)<=0.4){
                         this.layer.stroke(this.flashColor(this.color.skin.arms)[0],this.flashColor(this.color.skin.arms)[1],this.flashColor(this.color.skin.arms)[2],this.fade*this.fades.skin.arms)
                         this.layer.strokeWeight(4)
                         this.layer.line(this.graphics.arms[g].middle.x,this.graphics.arms[g].middle.y,this.graphics.arms[g].bottom.x,this.graphics.arms[g].bottom.y)
                         if(this.trigger.display.dress.sleeve){
-                            this.minorDisplay(1,g)
+                            this.minorDisplay(2,g)
                         }
                     }
                     if(this.trigger.display.eye[g]){
@@ -5002,7 +5023,8 @@ combatant.prototype.display=function(){
                                 this.layer.translate(-this.graphics.legs[h].sandal.front.x,-this.graphics.legs[h].sandal.front.y-1.5)
                             }
                             if(this.trigger.display.skin.legs){
-                                this.layer.stroke(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[0],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[1],upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1])[2],this.fade*this.fades.skin.legs)
+                                let color=this.flashColor(upColor(this.color.skin.legs,lcos(this.anim.direction+this.spin.legs[h].top)*10,[1,1,1]))
+                                this.layer.stroke(color[0],color[1],color[2],this.fade*this.fades.skin.legs)
                                 this.layer.strokeWeight(4)
                                 this.layer.line(this.graphics.legs[h].top.x,this.graphics.legs[h].top.y,this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y)
                                 this.layer.line(this.graphics.legs[h].middle.x,this.graphics.legs[h].middle.y,this.graphics.legs[h].bottom.x,this.graphics.legs[h].bottom.y)

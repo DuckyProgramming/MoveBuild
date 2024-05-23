@@ -155,6 +155,9 @@ function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,col
 		layer.fill(0,fade)
 		layer.stroke(0,fade)
 		layer.erase(fade,fade)
+	}else if(weight==0){
+		layer.fill(color[0],color[1],color[2],fade)
+		layer.noStroke()
 	}else{
 		layer.fill(color[0],color[1],color[2],fade)
 		layer.stroke(color[0],color[1],color[2],fade)
@@ -164,13 +167,21 @@ function displayTrianglesFront(layer,parts,direction,base,width,weight,slant,col
 	for(let part of parts){
 		if(lcos(part.spin[1]+direction)<=0&&lcos(part.spin[0]+direction)>0){
 			if(lcos(part.spin[2]+direction)<=0){
-				layer.triangle(lsin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])))
+				if(90-part.spin[2]-direction>180){
+					layer.triangle(lsin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(-270-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(-270-part.spin[2]-direction)/(part.spin[0]-part.spin[2])))
+				}else{
+					layer.triangle(lsin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])))
+				}
 			}else{
 				layer.quad(lsin(part.spin[0]+direction)*width/2,base,width/2,base,width/2+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])),lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 			}
 		}else if(lcos(part.spin[0]+direction)<=0&&lcos(part.spin[1]+direction)>0){
 			if(lcos(part.spin[2]+direction)<=0){
-				layer.triangle(lsin(part.spin[1]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])))
+				if(-90-part.spin[2]-direction<-180){
+					layer.triangle(lsin(part.spin[1]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(270-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(270-part.spin[2]-direction)/(part.spin[1]-part.spin[2])))
+				}else{
+					layer.triangle(lsin(part.spin[1]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[1]-part.spin[2])))
+				}
 			}else{
 				layer.quad(lsin(part.spin[1]+direction)*width/2,base,-width/2,base,-width/2-part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2]))*slant,base+part.height*(1-(-90-part.spin[2]-direction)/(part.spin[0]-part.spin[2])),lsin(part.spin[2]+direction)*(width/2+part.height*slant),base+part.height)
 			}
@@ -1275,7 +1286,7 @@ function generateSprite(layer,type,direction){
 			layer.arc(0,0,35,34,-180,0)
 			layer.line(-17.5,0,17.5,0)
 			controlSpin(data.parts.hair.reverse,direction,0)
-			displayTrianglesFront(layer,data.parts.hair.reverse,direction,0.5,33,0.1,0.1,-1,1)
+			displayTrianglesFront(layer,data.parts.hair.reverse,direction,0.5,35.25-3*lcos(direction),0.1,0.1,-1,1)
 		break
 		case 60:
 			displayTrianglesBack(layer,data.parts.hair.main,direction,0,34,1,0.02,data.color.hair.back,1)
@@ -1320,7 +1331,7 @@ function generateSprite(layer,type,direction){
 			layer.line(lsin(direction*6+135)*0.6-2.1,18.25,lsin(direction*6+135)*0.6+2.4,15.75)
 			layer.line(lsin(direction*6)*0.6,22,lsin(direction*6)*0.6+1.8,20.75)
 			layer.stroke(213,157,175)
-			layer.strokeWeight(1)
+			layer.strokeWeight(0.8)
 			layer.point(lsin(direction*6)*0.6,22)
 		break
 		
@@ -2442,7 +2453,7 @@ function setupCombatantGraphics(type){
                     skin:{head:[248,228,222],body:[239,220,208],legs:[237,215,203],arms:[237,219,208]},
                     eye:{back:[120,147,138],front:[47,46,53],glow:[164,199,189]},
 					mouth:{in:[235,168,126],out:[0,0,0]},
-					dress:{main:[51,101,134],highlight:[233,238,241],dot:[197,214,224],sleeve:[208,204,219],sleeveHighlight:[73,80,122]},
+					dress:{main:[51,101,134],highlight:[233,238,241],dot:[197,214,224],sleeve:[228,224,239],sleeveHighlight:[73,80,122]},
 					sock:[204,199,202],shoe:[104,74,64],
 				},
 			})
@@ -2979,6 +2990,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:42,lock:0},{top:0,bottom:0,lock:0}]
 					p1.spin.arms=[{top:-93,bottom:-75,lock:0},{top:93,bottom:102,lock:0}]
 				break
+				case 'Sanae':
+					p1.spin.sword=165
+					p1.anim.legs=[
+						{top:15,bottom:3,length:{top:16.5,bottom:16.5}},
+						{top:27,bottom:24,length:{top:16.5,bottom:16.5}}
+					]
+					p1.anim.arms=[
+						{top:75,bottom:156,length:{top:16.5,bottom:16.5}},
+						{top:15,bottom:3,length:{top:16.5,bottom:16.5}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:45,bottom:60,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-81,lock:0},{top:90,bottom:84,lock:0}]
+				break
 
 			}
 			p1.size=2.5
@@ -3169,6 +3193,22 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-90,bottom:135,lock:0},{top:90,bottom:105,lock:0}]
 					p1.spin.arms=[{top:-96,bottom:-165,lock:0},{top:96,bottom:108,lock:0}]
+				break
+				case 'Sanae':
+					p1.parts.mouth+=3.5
+					p1.spin.mouth+=183
+					p1.anim.mouth.y++
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:-12-a*6,bottom:-60-a*24,length:{top:16.5,bottom:16.5}},
+						{top:-30-a*24,bottom:-24-a*42,length:{top:16.5,bottom:16.5}}
+					]
+					p1.anim.arms=[
+						{top:36,bottom:12,length:{top:16.5,bottom:16.5}},
+						{top:51-a*3,bottom:15-a*9,length:{top:16.5,bottom:16.5}}
+					]
+					p1.spin.legs=[{top:-75,bottom:-75,lock:0},{top:-60,bottom:-75,lock:0}]
+					p1.spin.arms=[{top:-120,bottom:-120,lock:0},{top:90,bottom:105,lock:0}]
 				break
 			}
 			p1.anim.eye=[1,1]
@@ -3386,6 +3426,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-90,bottom:-90-a*6,lock:0},{top:90,bottom:150+a*6,lock:0}]
 					p1.spin.arms=[{top:-96,bottom:-30,lock:0},{top:96,bottom:18,lock:0}]
 				break
+				case 'Sanae':
+					p1.anim.mouth.y+=1.5
+					p1.parts.mouth-=0.5
+					p1.spin.sword=30
+					p1.anim.legs=[
+						{top:6,bottom:87,length:{top:16.5,bottom:16.5}},
+						{top:6,bottom:87,length:{top:16.5,bottom:16.5}}
+					]
+					p1.anim.arms=[
+						{top:24,bottom:48-a*24,length:{top:16.5,bottom:16.5}},
+						{top:24,bottom:48-a*24,length:{top:16.5,bottom:16.5}}
+					]
+					p1.spin.legs=[{top:-60-a*30,bottom:-150,lock:0},{top:60+a*30,bottom:165,lock:0}]
+					p1.spin.arms=[{top:-75-a*15,bottom:-30-a*54,lock:0},{top:75+a*15,bottom:6+a*72,lock:0}]
+				break
 			}
 			if(p1.name!='DD-610'&&p1.name!='Vincent'){
 				p1.anim.eye=[1,1]
@@ -3584,6 +3639,23 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60+a*15,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
 					p1.spin.arms=[{top:-165+a*45,bottom:-180+a*45,lock:0},{top:120+a*45,bottom:150+a*45,lock:0}]
 				break
+				case 'Sanae':
+					p1.position.y-=a*33
+					p1.parts.mouth++
+					p1.anim.mouth.y-=1.5
+					p1.spin.mouth-=12
+					p1.trigger.display.extra.sword=false
+					p1.anim.legs=[
+						{top:6+a*3,bottom:12-a*6,length:{top:16.5,bottom:16.5}},
+						{top:6+a*3,bottom:12-a*6,length:{top:16.5,bottom:16.5}}
+					]
+					p1.anim.arms=[
+						{top:18+a*12,bottom:12-a*6,length:{top:16.5,bottom:16.5}},
+						{top:27-a*3,bottom:36-a*21,length:{top:16.5,bottom:16.5}}
+					]
+					p1.spin.legs=[{top:-60+a*45,bottom:-120-a*30,lock:0},{top:60-a*15,bottom:120+a*30,lock:0}]
+					p1.spin.arms=[{top:-90-a*18,bottom:-30-a*15,lock:0},{top:90,bottom:-15+a*60,lock:0}]
+				break
 			}
 			p1.size=2.5
 			p1.fade=1
@@ -3776,6 +3848,19 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-90,bottom:-120,lock:0},{top:90,bottom:120,lock:0}]
 					p1.spin.arms=[{top:-72,bottom:-15,lock:0},{top:72,bottom:15,lock:0}]
+				break
+				case 'Sanae':
+					p1.anim.direction-=a*6
+					p1.anim.legs=[
+						{top:3-a*1.5,bottom:1.5-a*3,length:{top:16.5,bottom:16.5}},
+						{top:3-a*1.5,bottom:1.5-a*3,length:{top:16.5,bottom:16.5}}
+					]
+					p1.anim.arms=[
+						{top:18+a*3,bottom:15+a*6,length:{top:16.5,bottom:16.5}},
+						{top:18+a*3,bottom:18,length:{top:16.5,bottom:16.5}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-60,lock:0},{top:60,bottom:60,lock:0}]
+					p1.spin.arms=[{top:-105+a*15,bottom:-90+a*15,lock:0},{top:90+a*30,bottom:75+a*30,lock:0}]
 				break
 			}
 			p1.size=2.5
@@ -3987,6 +4072,21 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					p1.spin.legs=[{top:-60,bottom:-105,lock:0},{top:60,bottom:105,lock:0}]
 					p1.spin.arms=[{top:-60-a*60,bottom:-60-a*60,lock:0},{top:120-a*60,bottom:120-a*60,lock:0}]
 				break
+				case 'Sanae':
+					p1.position.y+=36
+					p1.anim.mouth.y-=0.5
+					p1.spin.sword-=60-a*12
+					p1.anim.legs=[
+						{top:6,bottom:93,length:{top:16.5,bottom:16.5}},
+						{top:6,bottom:93,length:{top:16.5,bottom:16.5}}
+					]
+					p1.anim.arms=[
+						{top:30-a*9,bottom:45-a*12,length:{top:16.5,bottom:16.5}},
+						{top:18+a*6,bottom:27+a*21,length:{top:16.5,bottom:16.5}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-150,lock:0},{top:60,bottom:150,lock:0}]
+					p1.spin.arms=[{top:-90,bottom:-90,lock:0},{top:90,bottom:90,lock:0}]
+				break
 			}
 			p1.size=2
 			p1.fade=1
@@ -4150,6 +4250,20 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 					]
 					p1.spin.legs=[{top:-75,bottom:-105,lock:0},{top:75,bottom:105,lock:0}]
 					p1.spin.arms=[{top:-120,bottom:-204,lock:0},{top:84,bottom:144,lock:0}]
+				break
+				case 'Sanae':
+					p1.anim.mouth.y++
+					p1.spin.sword=147
+					p1.anim.legs=[
+						{top:3,bottom:3,length:{top:16.5,bottom:16.5}},
+						{top:3,bottom:3,length:{top:16.5,bottom:16.5}}
+					]
+					p1.anim.arms=[
+						{top:33,bottom:123,length:{top:16.5,bottom:16.5}},
+						{top:26,bottom:57,length:{top:16.5,bottom:16.5}}
+					]
+					p1.spin.legs=[{top:-60,bottom:-90,lock:0},{top:60,bottom:90,lock:0}]
+					p1.spin.arms=[{top:-120,bottom:-141,lock:0},{top:93,bottom:75,lock:0}]
 				break
 			}
 			p1.size=1.5

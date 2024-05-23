@@ -1539,7 +1539,7 @@ class relic{
                     displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(15)
-                    this.layer.text('3',8,-3)
+                    this.layer.text('5',8,-3)
                     this.layer.textSize(10)
                     this.layer.text('50',-9,0)
                 break

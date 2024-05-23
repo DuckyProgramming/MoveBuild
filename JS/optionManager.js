@@ -137,7 +137,13 @@ class optionManager{
             if(dist(inputs.rel.x,inputs.rel.y,this.options[a].position.x,this.options[a].position.y)<50&&this.selected==-1&&!this.options[a].complete&&!this.complete){
                 let hold=a
                 if(this.battle.modded(164)){
-                    a=floor(random(0,la))
+                    let possible=[]
+                    for(let b=0,lb=this.options.length;b<lb;b++){
+                        if(!this.options[b].complete){
+                            possible.push(b)
+                        }
+                    }
+                    a=possible[floor(random(0,possible.length))]
                 }
                 this.options[a].complete=true
                 this.selected=this.options[a].type
@@ -158,7 +164,13 @@ class optionManager{
             if((int(key)+9)%10==a&&this.selected==-1&&!this.options[a].complete&&!this.complete){
                 let hold=a
                 if(this.battle.modded(164)){
-                    a=floor(random(0,la))
+                    let possible=[]
+                    for(let b=0,lb=this.options.length;b<lb;b++){
+                        if(!this.options[b].complete){
+                            possible.push(b)
+                        }
+                    }
+                    a=possible[floor(random(0,possible.length))]
                 }
                 this.options[a].complete=true
                 this.selected=this.options[a].type

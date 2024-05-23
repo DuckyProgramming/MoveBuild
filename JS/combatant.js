@@ -1057,11 +1057,6 @@ class combatant{
                     {spin:[-90,0,-30],height:3},
                     {spin:[90,180,150],height:3},
                     {spin:[-180,-90,-150],height:3}
-                ],top:[
-                    {spin:[0,90,30],height:3},
-                    {spin:[-90,0,-30],height:3},
-                    {spin:[90,180,150],height:3},
-                    {spin:[-180,-90,-150],height:3}
                 ]}
 
                 this.spin={
@@ -5128,76 +5123,80 @@ class combatant{
                 }else if(this.status.main[174]>0){
                     this.battle.loseCurrency(damage*this.status.main[174],this.id)
                 }else{
-                    let damagePost=damage
-                    if(this.barrier>=damage){
-                        this.barrier-=damage
-                        this.infoAnim.upFlash[1]=true
-                        this.blocked=0
-                        this.taken=0
-                        damagePost=0
-                    }else if(this.barrier>0){
-                        damagePost-=this.barrier
-                    }
-                    if(damagePost>0){
-                        if(this.block>=damagePost&&spec!=2){
-                            this.block-=damagePost
-                            this.infoAnim.upFlash[1]=true
-                            this.blocked=0
-                            this.taken=0
-                            if(this.id<this.battle.players){
-                                this.battle.stats.taken[this.id][1]+=damagePost
-                            }
-                            if(this.block<=0&&0<=user&&user<this.battle.players){
-                                if(this.battle.relicManager.hasRelic(124,user)){
-                                    this.statusEffect('Vulnerable',2)
+                    if(damage>0){
+                        let damageLeft=damage
+                        let preBlock=this.block
+                        if(damageLeft>0&&this.block>0&&spec!=2){
+                            if(this.block>=damageLeft){
+                                if(this.id<this.battle.players){
+                                    this.battle.stats.taken[this.id][1]+=damageLeft
                                 }
-                            }
-                            if(this.status.main[276]>0){
-                                this.heal(damagePost)
-                            }
-                            if(this.block<=0&&this.status.main[277]>0){
-                                this.battle.combatantManager.damageArea(this.status.main[277],this.id,this.team,this.tilePosition)
-                            }
-                            if(this.battle.relicManager.hasRelic(229,this.id)){
-                                this.statusEffect('Metallicize',this.battle.relicManager.active[229][this.id+1])
-                            }
-                        }else if(this.block>0&&spec!=2){
-                            let damageLeft=damagePost-this.block
-                            this.taken=damageLeft
-                            if(this.id<this.battle.players){
-                                this.battle.stats.taken[this.id][1]+=this.block
-                                this.battle.stats.taken[this.id][2]+=damageLeft
-                            }
-                            if(0<=user&&user<this.battle.players){
-                                if(this.battle.relicManager.hasRelic(124,user)){
-                                    this.statusEffect('Vulnerable',2)
+                                if(this.status.main[276]>0){
+                                    this.heal(damageLeft)
                                 }
+                                this.block-=damageLeft
+                                damageLeft=0
+                                this.taken=0
+                            }else{
+                                if(this.id<this.battle.players){
+                                    this.battle.stats.taken[this.id][1]+=this.block
+                                }
+                                if(this.status.main[276]>0){
+                                    this.heal(this.block)
+                                }
+                                this.taken=damage-this.block
+                                damageLeft-=this.block
+                                this.block=0
+
                             }
-                            if(this.status.main[276]>0){
-                                this.heal(this.block)
+                        }
+                        if(damageLeft>0&&this.barrier>0){
+                            if(this.barrier>=damageLeft){
+                                if(this.id<this.battle.players){
+                                    this.battle.stats.taken[this.id][1]+=damageLeft
+                                }
+                                this.barrier-=damageLeft
+                                damageLeft=0
+                                this.blocked=0
+                                this.taken=0
+                            }else{
+                                if(this.id<this.battle.players){
+                                    this.battle.stats.taken[this.id][1]+=this.block
+                                }
+                                this.taken=damage-this.block
+                                damageLeft-=this.block
+                                this.block=0
                             }
-                            if(this.status.main[277]>0){
-                                this.battle.combatantManager.damageArea(this.status.main[277],this.id,this.team,this.tilePosition)
-                            }
-                            this.block=0
-                            this.life-=damageLeft
+                        }
+                        this.blocked=damageLeft==0?0:damageLeft<damage?1:0
+                        if(this.battle.relicManager.hasRelic(253,this.id)){
+                            this.battle.addCurrency(damageLeft*5*this.battle.relicManager.active[253][this.id+1],this.id)
+                        }
+                        if(damageLeft>0){
                             this.infoAnim.upFlash[0]=true
-                            this.battle.relicManager.activate(6,[this.id])
-                            this.blocked=1
-                            if(this.battle.relicManager.hasRelic(253,this.id)){
-                                this.battle.addCurrency(damageLeft*5*this.battle.relicManager.active[253][this.id+1],this.id)
-                            }
-                        }else{
-                            this.life-=damagePost
-                            this.taken=damagePost
+                            this.life-=damage
+                            this.taken=damage
                             this.infoAnim.upFlash[0]=true
                             this.battle.relicManager.activate(6,[this.id])
                             this.blocked=2
                             if(this.id<this.battle.players){
-                                this.battle.stats.taken[this.id][2]+=damagePost
+                                this.battle.stats.taken[this.id][2]+=damage
                             }
                             if(this.battle.relicManager.hasRelic(253,this.id)){
-                                this.battle.addCurrency(damagePost*5*this.battle.relicManager.active[253][this.id+1],this.id)
+                                this.battle.addCurrency(damage*5*this.battle.relicManager.active[253][this.id+1],this.id)
+                            }
+                        }else{
+                            this.infoAnim.upFlash[1]=true
+                        }
+                        if(preBlock>0&&this.block>0&&this.battle.relicManager.hasRelic(229,this.id)){
+                            this.statusEffect('Metallicize',this.battle.relicManager.active[229][this.id+1])
+                        }
+                        if(preBlock>0&&this.block<=0&&this.status.main[277]>0){
+                            this.battle.combatantManager.damageArea(this.status.main[277],this.id,this.team,this.tilePosition)
+                        }
+                        if(preBlock>0&&this.block<=0&&0<=user&&user<this.battle.players){
+                            if(this.battle.relicManager.hasRelic(124,user)){
+                                this.statusEffect('Vulnerable',2)
                             }
                         }
                     }
@@ -6373,12 +6372,16 @@ class combatant{
         }
     }
     flashColor(color){
-        return mergeColor(mergeColor(mergeColor(mergeColor(
-            color,
-            [0,125,255],this.infoAnim.flash[3]),
-            [125,255,0],this.infoAnim.flash[2]),
-            [150,150,150],this.infoAnim.flash[1]),
-            [200,0,0],this.infoAnim.flash[0])
+        if(this.infoAnim.flash[0]==0&&this.infoAnim.flash[1]==0&&this.infoAnim.flash[2]==0&&this.infoAnim.flash[3]==0){
+            return color
+        }else{
+            return mergeColor(mergeColor(mergeColor(mergeColor(
+                color,
+                [0,125,255],this.infoAnim.flash[3]),
+                [125,255,0],this.infoAnim.flash[2]),
+                [150,150,150],this.infoAnim.flash[1]),
+                [200,0,0],this.infoAnim.flash[0])
+        }
     }
     tickLate(){
         for(let a=0,la=this.status.main.length;a<la;a++){
@@ -7699,7 +7702,7 @@ class combatant{
                     case 0:
                         let dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
                         this.layer.noStroke()
-                        this.layer.fill(this.color.dress.under[0],this.color.dress.under[1],this.color.dress.under[2],this.fade*this.fades.dress.sleeve)
+                        this.layer.fill(this.flashColor(this.color.dress.under)[0],this.flashColor(this.color.dress.under)[1],this.flashColor(this.color.dress.under)[2],this.fade*this.fades.dress.sleeve)
                         dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
                         this.layer.beginShape()
                         this.layer.vertex(
@@ -7732,6 +7735,8 @@ class combatant{
                 }
             break
             case 'Sanae':
+                let colors
+                let dir
                 switch(type){
                     case 0:
                         this.layer.push()
@@ -7740,9 +7745,9 @@ class combatant{
                         this.layer.scale(1,constrain(lsin(this.anim.direction+this.spin.arms[key].bottom+75)*2,-1,1)*this.anim.sword)
                         this.layer.noStroke()
                         this.layer.fill(153,169,185,this.fade)
-                        this.layer.quad(-2,-9,2,-9,3,-25.5,-1,-25.5)
+                        this.layer.quad(-2,-9.25,2,-9,3,-22.25,-1,-22.5)
                         this.layer.fill(196,211,218,this.fade)
-                        this.layer.quad(-2,-9,2,-9,1,-27,-3,-27)
+                        this.layer.quad(-2,-9.25,2,-9.5,1,-24,-3,-23.75)
                         this.layer.fill(131,119,112,this.fade)
                         this.layer.rect(-0.4,0,0.8,20)
                         this.layer.fill(69,67,68,this.fade)
@@ -7752,9 +7757,10 @@ class combatant{
                         this.layer.pop()
                     break
                     case 1:
-                        let dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
+                        colors=[this.flashColor(this.color.dress.sleeveHighlight),this.flashColor(this.color.dress.sleeve),this.flashColor(this.color.dress.dot)]
+                        dir=atan2(this.graphics.arms[key].top.x-this.graphics.arms[key].middle.x,this.graphics.arms[key].top.y-this.graphics.arms[key].middle.y)
                         this.layer.noStroke()
-                        this.layer.fill(this.color.dress.sleeveHighlight[0],this.color.dress.sleeveHighlight[1],this.color.dress.sleeveHighlight[2],this.fade*this.fades.dress.sleeve)
+                        this.layer.fill(colors[0][0],colors[0][1],colors[0][2],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].top.x*0.5+this.graphics.arms[key].middle.x*0.5+3.6*sin(dir+90),
                             this.graphics.arms[key].top.y*0.5+this.graphics.arms[key].middle.y*0.5+3.6*cos(dir+90),
@@ -7765,13 +7771,15 @@ class combatant{
                             this.graphics.arms[key].top.x*0.55+this.graphics.arms[key].middle.x*0.45+3.84*sin(dir+90),
                             this.graphics.arms[key].top.y*0.55+this.graphics.arms[key].middle.y*0.45+3.84*cos(dir+90)
                         )
+
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].top.x*0.55+this.graphics.arms[key].middle.x*0.45,this.graphics.arms[key].top.y*0.55+this.graphics.arms[key].middle.y*0.45)
                         this.layer.rotate(-dir)
-                        this.layer.arc(0,0,7.68,2.56,-180,0)
+                        this.layer.arc(0,0,7.68,2.56,0,180)
                         this.layer.ellipse(0,0,7.68,1)
                         this.layer.pop()
-                        this.layer.fill(this.color.dress.sleeve[0],this.color.dress.sleeve[1],this.color.dress.sleeve[2],this.fade*this.fades.dress.sleeve)
+
+                        this.layer.fill(colors[1][0],colors[1][1],colors[1][2],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].middle.x-2.2*sin(dir+90),
                             this.graphics.arms[key].middle.y-2.2*cos(dir+90),
@@ -7782,15 +7790,28 @@ class combatant{
                             this.graphics.arms[key].top.x*0.5+this.graphics.arms[key].middle.x*0.5-3.6*sin(dir+90),
                             this.graphics.arms[key].top.y*0.5+this.graphics.arms[key].middle.y*0.5-3.6*cos(dir+90)
                         )
+
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].top.x*0.5+this.graphics.arms[key].middle.x*0.5,this.graphics.arms[key].top.y*0.5+this.graphics.arms[key].middle.y*0.5)
                         this.layer.rotate(-dir)
-                        this.layer.arc(0,0,7.2,2.2,-180,0)
+                        this.layer.arc(0,0,7.2,2.2,0,180)
                         this.layer.ellipse(0,0,7.2,1)
                         this.layer.pop()
+
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].top.x*0.525+this.graphics.arms[key].middle.x*0.475,this.graphics.arms[key].top.y*0.525+this.graphics.arms[key].middle.y*0.475)
+                        this.layer.rotate(-dir)
+                        this.layer.stroke(colors[2][0],colors[2][1],colors[2][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.strokeWeight(0.4)
+                        for(let a=0,la=6;a<la;a++){
+                            this.layer.point(3.72*lcos(a*30+15),1.19*lsin(a*30+15))
+                        }
+                        this.layer.noStroke()
+                        this.layer.pop()
+
                         this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.4)
                         dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
-                        this.layer.fill(this.color.dress.sleeveHighlight[0],this.color.dress.sleeveHighlight[1],this.color.dress.sleeveHighlight[2],this.fade*this.fades.dress.sleeve)
+                        this.layer.fill(colors[0][0],colors[0][1],colors[0][2],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25+6*sin(dir+90),
                             this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25+6*cos(dir+90),
@@ -7801,13 +7822,15 @@ class combatant{
                             this.graphics.arms[key].bottom.x*0.8+this.graphics.arms[key].middle.x*0.2+6.24*sin(dir+90),
                             this.graphics.arms[key].bottom.y*0.8+this.graphics.arms[key].middle.y*0.2+6.24*cos(dir+90)
                         )
+
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].bottom.x*0.8+this.graphics.arms[key].middle.x*0.2,this.graphics.arms[key].bottom.y*0.8+this.graphics.arms[key].middle.y*0.2)
                         this.layer.rotate(-dir)
                         this.layer.arc(0,0,12.48,4.16,-180,0)
                         this.layer.ellipse(0,0,12.48,1)
                         this.layer.pop()
-                        this.layer.fill(this.color.dress.sleeve[0],this.color.dress.sleeve[1],this.color.dress.sleeve[2],this.fade*this.fades.dress.sleeve)
+
+                        this.layer.fill(colors[1][0],colors[1][1],colors[1][2],this.fade*this.fades.dress.sleeve)
                         this.layer.quad(
                             this.graphics.arms[key].middle.x-2.2*sin(dir+90),
                             this.graphics.arms[key].middle.y-2.2*cos(dir+90),
@@ -7818,11 +7841,77 @@ class combatant{
                             this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25-6*sin(dir+90),
                             this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25-6*cos(dir+90)
                         )
+
                         this.layer.push()
                         this.layer.translate(this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25,this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25)
                         this.layer.rotate(-dir)
                         this.layer.arc(0,0,12,4,-180,0)
                         this.layer.ellipse(0,0,12,1)
+                        this.layer.pop()
+
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x*0.775+this.graphics.arms[key].middle.x*0.225,this.graphics.arms[key].bottom.y*0.775+this.graphics.arms[key].middle.y*0.225)
+                        this.layer.rotate(-dir)
+                        this.layer.stroke(colors[2][0],colors[2][1],colors[2][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.strokeWeight(0.4)
+                        for(let a=0,la=9;a<la;a++){
+                            this.layer.point(6.12*lcos(a*20+10),-2.04*lsin(a*20+10))
+                        }
+                        this.layer.noStroke()
+                        this.layer.pop()
+                    break
+                    case 2:
+                        colors=[this.flashColor(this.color.dress.sleeveHighlight),this.flashColor(this.color.dress.sleeve),this.flashColor(this.color.dress.dot)]
+                        dir=atan2(this.graphics.arms[key].middle.x-this.graphics.arms[key].bottom.x,this.graphics.arms[key].middle.y-this.graphics.arms[key].bottom.y)
+                        this.layer.noStroke()
+                        this.layer.fill(colors[0][0],colors[0][1],colors[0][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.quad(
+                            this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25+6*sin(dir+90),
+                            this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25+6*cos(dir+90),
+                            this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25-6*sin(dir+90),
+                            this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25-6*cos(dir+90),
+                            this.graphics.arms[key].bottom.x*0.8+this.graphics.arms[key].middle.x*0.2-6.24*sin(dir+90),
+                            this.graphics.arms[key].bottom.y*0.8+this.graphics.arms[key].middle.y*0.2-6.24*cos(dir+90),
+                            this.graphics.arms[key].bottom.x*0.8+this.graphics.arms[key].middle.x*0.2+6.24*sin(dir+90),
+                            this.graphics.arms[key].bottom.y*0.8+this.graphics.arms[key].middle.y*0.2+6.24*cos(dir+90)
+                        )
+
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x*0.8+this.graphics.arms[key].middle.x*0.2,this.graphics.arms[key].bottom.y*0.8+this.graphics.arms[key].middle.y*0.2)
+                        this.layer.rotate(-dir)
+                        this.layer.arc(0,0,12.48,4.16,-180,0)
+                        this.layer.ellipse(0,0,12.48,1)
+                        this.layer.pop()
+
+                        this.layer.fill(colors[1][0],colors[1][1],colors[1][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.ellipse(this.graphics.arms[key].middle.x,this.graphics.arms[key].middle.y,4.4)
+                        this.layer.quad(
+                            this.graphics.arms[key].middle.x-2.2*sin(dir+90),
+                            this.graphics.arms[key].middle.y-2.2*cos(dir+90),
+                            this.graphics.arms[key].middle.x+2.2*sin(dir+90),
+                            this.graphics.arms[key].middle.y+2.2*cos(dir+90),
+                            this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25+6*sin(dir+90),
+                            this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25+6*cos(dir+90),
+                            this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25-6*sin(dir+90),
+                            this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25-6*cos(dir+90)
+                        )
+
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x*0.75+this.graphics.arms[key].middle.x*0.25,this.graphics.arms[key].bottom.y*0.75+this.graphics.arms[key].middle.y*0.25)
+                        this.layer.rotate(-dir)
+                        this.layer.arc(0,0,12,4,-180,0)
+                        this.layer.ellipse(0,0,12,1)
+                        this.layer.pop()
+
+                        this.layer.push()
+                        this.layer.translate(this.graphics.arms[key].bottom.x*0.775+this.graphics.arms[key].middle.x*0.225,this.graphics.arms[key].bottom.y*0.775+this.graphics.arms[key].middle.y*0.225)
+                        this.layer.rotate(-dir)
+                        this.layer.stroke(colors[2][0],colors[2][1],colors[2][2],this.fade*this.fades.dress.sleeve)
+                        this.layer.strokeWeight(0.4)
+                        for(let a=0,la=9;a<la;a++){
+                            this.layer.point(6.12*lcos(a*20+10),-2.04*lsin(a*20+10))
+                        }
+                        this.layer.noStroke()
                         this.layer.pop()
                     break
                 }
@@ -8706,10 +8795,7 @@ class combatant{
                 if(this.life<=0){
                     if(!this.dead){
                         if(this.battle.relicManager.hasRelic(81,this.id)){
-                            this.battle.relicManager.active[81][this.id+1]--
-                            if(this.battle.relicManager.active[81][this.id+1]<=0){
-                                this.battle.relicManager.deactivate(81)
-                            }
+                            this.battle.relicManager.loseRelic(81,this.id)
                             this.healLifable(round(this.base.life*5)/10)
                         }else{
                             this.dead=true

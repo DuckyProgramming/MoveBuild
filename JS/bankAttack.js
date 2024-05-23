@@ -4695,7 +4695,7 @@ attack.prototype.update=function(){
         case 938:
             if(this.timer==1){
                 this.userCombatant.startAnimation(17)
-                this.procedure[0]=this.userCombatant.luckCheck()?1:this.userCombatant.luckCheckFail?2:0
+                this.procedure[0]=this.userCombatant.luckCheck()?1:this.userCombatant.luckCheckFail()?2:0
             }
             if(this.timer<=15||this.timer>10+this.effect[2]*5){
                 this.userCombatant.runAnimation(1/30,17)
@@ -6305,11 +6305,12 @@ attack.prototype.update=function(){
                         this.battle.combatantManager.combatants[a].moveTilePosition(targetTile.tilePosition.x,targetTile.tilePosition.y)
                     }
                 }else if(this.timer>=20){
-                    this.remove=true
+                    this.battle.activate(1,this.battle.combatantManager.combatants[a].id)
                 }
             }
-            if(this.timer==10){
-                this.battle.activate(1,this.battle.combatantManager.combatants[a].id)
+            if(this.timer>=20){
+                this.remove=true
+                this.battle.updateTargetting()
             }
         break
         case 2550:

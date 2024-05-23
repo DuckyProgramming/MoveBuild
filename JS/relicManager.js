@@ -1141,7 +1141,7 @@ class relicManager{
                 if(this.active[235][args[1]+1]>0&&args[5]!=0){
                     this.getPlayer(args[1]).addBlock(2)
                 }
-                if(this.active[245][args[1]+1]>0&&args[2]>=0){
+                if(this.active[245][args[1]+1]>0&&args[2]>=3){
                     this.getPlayer(args[1]).statusEffect('Energy Next Turn',this.active[245][args[1]+1])
                 }
                 if(this.active[251][args[1]+1]>0&&args[4]=='Fatigue'){
