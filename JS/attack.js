@@ -152,7 +152,7 @@ class attack{
             case 2739: case 2746: case 2753: case 2754: case 2755: case 2757: case 2765: case 2766: case 2770: case 2771: case 2773: case 2775: case 2776: case 2783: case 2784: case 2785: case 2786: case 2787: case 2791: case 2794:
             case 2798: case 2800: case 2803: case 2806: case 2808: case 2810: case 2811: case 2813: case 2815: case 2816: case 2819: case 2823: case 2824: case 2825: case 2828: case 2829: case 2830: case 2834: case 2836: case 2838:
             case 2839: case 2841: case 2842: case 2847: case 2854: case 2855: case 2856: case 2857: case 2858: case 2859: case 2860: case 2863: case 2864: case 2872: case 2875: case 2876: case 2883: case 2884: case 2885: case 2886:
-            case 2887: case 2888: case 2889: case 2890: case 2898: case 2900: case 2907: case 2909: case 2913: case 2915: case 2919: case 2920: case 2924:
+            case 2887: case 2888: case 2889: case 2890: case 2898: case 2900: case 2907: case 2909: case 2913: case 2915: case 2919: case 2920: case 2924: case 2937:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -186,7 +186,9 @@ class attack{
             case 2439: case 2440: case 2456: case 2459: case 2475: case 2545: case 2589: case 2600: case 2602: case 2603:
             case 2604: case 2608: case 2637: case 2652: case 2658: case 2742: case 2743: case 2744: case 2745: case 2747:
             case 2748: case 2749: case 2750: case 2751: case 2752: case 2758: case 2759: case 2760: case 2761: case 2762:
-            case 2832: case 2850: case 2866: case 2880:
+            case 2832: case 2850: case 2866: case 2880: case 2925: case 2926: case 2927: case 2928: case 2929: case 2930:
+            case 2931: case 2932: case 2933: case 2934: case 2935: case 2936: case 2938: case 2939: case 2940: case 2941:
+            case 2942:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -3337,6 +3339,14 @@ class attack{
                             this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
+                    case 2937:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.userCombatant.statusEffect('Energy Next Turn',-this.effect[1])
+                            this.userCombatant.lowRoll()
+                        }
+                    break
 
                 }
                 //mark 1
@@ -4939,6 +4949,66 @@ class attack{
                             this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
+                    case 2925:
+                        if(this.battle.itemManager.total[this.player]==this.battle.itemManager.items[this.player].length-1){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 2926:
+                        if(this.battle.itemManager.total[this.player]==0){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 2927:
+                        this.userCombatant.statusEffect('Free Movement',1)
+                    break
+                    case 2928:
+                        this.userManager.draw(this.effect[1]*this.userManager.hand.classNumber([3]))
+                    break
+                    case 2929:
+                        this.userCombatant.addBarrier(this.effect[1])
+                    break
+                    case 2930:
+                        this.battle.overlayManager.overlays[58][this.player].active=true
+                        this.battle.overlayManager.overlays[58][this.player].activate([this.effect[1],0])
+                    break
+                    case 2935:
+                        this.battle.combatantManager.statusAreaID('Take Per Card Played',this.effect[1],this.userCombatant.id,this.targetTile.tilePosition)
+                    break
+                    case 2936:
+                        let result2936=this.userManager.drawReturn(this.effect[1])
+                        if(result2936.length>0&&result2936[0].class==3){
+                            this.battle.addEnergy(this.effect[2],this.player)
+                        }
+                    break
+                    case 2938:
+                        if(this.userCombatant.luckCheck()||!this.userCombatant.luckCheckFail()&&floor(random(0,2))==0){
+                            this.userCombatant.highRoll()
+                        }else{
+                            this.userCombatant.statusEffect('Energy Next Turn',-this.effect[1])
+                            this.userCombatant.lowRoll()
+                        }
+                    break
+                    case 2939:
+                        this.battle.setEnergy(this.effect[1],this.player)
+                    break
+                    case 2940:
+                        if(this.userManager.hand.specNumber(54)>=1){
+                            this.battle.addEnergy(this.effect[1],this.player)
+                        }
+                    break
+                    case 2941:
+                        this.battle.overlayManager.overlays[19][this.player].active=true
+                        this.battle.overlayManager.overlays[19][this.player].activate()
+                    break
+                    case 2942:
+                        if(this.targetTile.tilePosition.y<this.userCombatant.tilePosition.y){
+                            this.userManager.hand.upgrade(this.effect[1])
+                        }else if(this.targetTile.tilePosition.y>this.userCombatant.tilePosition.y){
+                            this.userManager.hand.exhaust(this.effect[1])
+                        }
+                    break
+
                 }
                 //mark 3
             break

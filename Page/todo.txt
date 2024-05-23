@@ -10,11 +10,11 @@ Snake Cards/Scry
 
 
 
+change pure serpent to freeze
 
+sanae teleport
 
-maybe take a few chip cards away
-
-4 vincent movements 
+2 common sanae movements
 
 yayoi's []
 
@@ -43,9 +43,15 @@ purify the land - exhaust a card from draw pile, exhaust a card from discard pil
 
 descendence - gain barrier, all defenses cost 1 less
 
-sanae movements
+spell card references
 
+damage, draw a card, if is a defense it costs 0
+counterpart block/draw/attack
+counterpart movement
 
+alioth
+
+luminescent night - block and get an extra card reward option
 
 
 

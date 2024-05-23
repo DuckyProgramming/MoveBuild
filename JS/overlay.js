@@ -44,6 +44,7 @@ class overlay{
                 this.cards=[]
                 this.takable=1
                 this.options=3
+                this.additionalOptions=0
                 this.prune=false
             break
             case 5:
@@ -154,6 +155,10 @@ class overlay{
                 }
                 if(this.battle.relicManager.active[238][this.player+1]>0&&args[2]>=14&&args[2]<=16){
                     this.options+=2*this.battle.relicManager.active[238][this.player+1]
+                }
+                if(this.additionalOptions!=0){
+                    this.options+=this.additionalOptions
+                    this.additionalOptions=0
                 }
                 if(variants.cursed){
                     args[0]=min(args[0]+1,2)
