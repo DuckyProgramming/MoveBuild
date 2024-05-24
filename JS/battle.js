@@ -873,6 +873,22 @@ class battle{
         if(card.cost==0&&userCombatant.getStatus('0 Cost Single Damage Up')>0){
             userCombatant.statusEffect('Single Damage Up',userCombatant.getStatus('0 Cost Single Damage Up'))
         }
+        if(card.cost>=2&&userCombatant.getStatus('2+ Cost Energy')>0){
+            this.addEnergy(userCombatant.getStatus('2+ Cost Energy'),player)
+        }
+        if(card.cost>=2&&userCombatant.getStatus('2+ Cost Draw')>0){
+            this.cardManagers[player].draw(userCombatant.getStatus('2+ Cost Draw'))
+        }
+        if(card.cost>=3&&userCombatant.getStatus('3+ Cost Free Discus')>0){
+            for(let a=0,la=userCombatant.getStatus('3+ Cost Free Discus');a<la;a++){
+                this.cardManagers[player].hand.addFree(findName('Dual\nDiscus',types.card),0,0,0)
+            }
+        }
+        if(card.cost>=3&&userCombatant.getStatus('3+ Cost Free Upgraded Discus')>0){
+            for(let a=0,la=userCombatant.getStatus('3+ Cost Free Upgraded Discus');a<la;a++){
+                this.cardManagers[player].hand.addFree(findName('Dual\nDiscus',types.card),1,0,0)
+            }
+        }
         this.combatantManager.playCardFront(cardClass)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition])
     }
@@ -901,6 +917,20 @@ class battle{
     addEnergy(amount,player){
         if(variants.mtg){
             this.energy.main[player][0]+=amount
+        }else{
+            this.energy.main[player]+=amount
+        }
+    }
+    addSpecificEnergy(amount,player,type){
+        if(variants.mtg){
+            this.energy.main[player][type]+=amount
+            let cap=484
+            for(let b=0,lb=this.energy.crystal[a].length;b<lb;b++){
+                cap=min(b==0?458:this.energy.crystal[a][b-1][1]-26,cap)
+            }
+            cap-=26
+            this.energy.crystal[player].push([type,cap,0,true])
+            this.energy.crystalTotal[player][type]++
         }else{
             this.energy.main[player]+=amount
         }

@@ -15,14 +15,16 @@ class node{
         this.scroll=0
         this.complete=false
 
-        this.anim={complete:0,description:0}
+        this.anim={complete:0,active:0,description:0}
     }
     display(){
+        let color=mergeColor(mergeColor([110,115,120],[50,255,50],this.anim.complete),[210,195,180],this.anim.active)
+        let cap=max(max(this.anim.complete,this.anim.active),this.anim.description)
         this.layer.push()
         this.layer.translate(this.position.x,this.position.y)
         this.layer.scale(this.size)
         if(this.battle.modded(93)){
-            this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+            this.layer.stroke(color[0],color[1],color[2],this.fade)
             this.layer.strokeWeight(3)
             this.layer.noFill()
             this.layer.arc(0,-6,16,16,-180,90)
@@ -30,15 +32,15 @@ class node{
             this.layer.strokeWeight(5)
             this.layer.point(0,14)
             this.layer.noStroke()
-            this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+            this.layer.fill(70,75,80,this.fade*cap)
             this.layer.rect(0,24,48,14,3)
-            this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+            this.layer.fill(color[0],color[1],color[2],this.fade*cap)
             this.layer.textSize(12)
             this.layer.text('Unknown',0,25)
         }else{
             switch(this.type){
                 case 0:
-                    this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.ellipse(0,0,30,30)
@@ -46,14 +48,14 @@ class node{
                     this.layer.point(-6,0)
                     this.layer.point(6,0)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,42,14,3)
-                    this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Battle',0,25)
                 break
                 case 1:
-                    this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.ellipse(0,0,30,30)
@@ -66,9 +68,9 @@ class node{
                     this.layer.triangle(-13,-7,-7,-13,-16,-16)
                     this.layer.triangle(13,-7,7,-13,16,-16)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,35,14,3)
-                    this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Elite',0,25)
                 break
@@ -76,7 +78,7 @@ class node{
                     this.layer.noStroke()
                     this.layer.fill(70,75,80,this.fade)
                     this.layer.ellipse(0,0,90,90)
-                    this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.ellipse(0,0,70,70)
@@ -94,14 +96,14 @@ class node{
                     this.layer.line(-3,-3,-8,-5)
                     this.layer.line(3,-3,8,-5)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,49,36,16,3)
-                    this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(15)
                     this.layer.text('Boss',0,50)
                 break
                 case 3:
-                    this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.line(-10,7,10,17)
@@ -111,14 +113,14 @@ class node{
                     this.layer.line(-lcos(24)*8,-2-lsin(24)*8,0,lcos(24)/lsin(24)*-8-2)
                     this.layer.line(lcos(24)*8,-2-lsin(24)*8,0,lcos(24)/lsin(24)*-8-2)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,28,14,3)
-                    this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Rest',0,25)
                 break
                 case 4:
-                    this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.rect(0,0,40,24,2)
@@ -129,14 +131,14 @@ class node{
                     this.layer.line(0,-6,3.5,-6)
                     this.layer.line(0,6,-3.5,6)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,28,14,3)
-                    this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Shop',0,25)
                 break
                 case 5:
-                    this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.arc(0,-6,16,16,-180,90)
@@ -144,28 +146,28 @@ class node{
                     this.layer.strokeWeight(5)
                     this.layer.point(0,14)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,48,14,3)
-                    this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Unknown',0,25)
                 break
                 case 6:
-                    this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.rect(0,-7,32,12)
                     this.layer.rect(0,7,28,16)
                     this.layer.rect(0,-4,6,4)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,36,14,3)
-                    this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Stash',0,25)
                 break
                 case 7:
-                    this.layer.stroke(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade)
+                    this.layer.stroke(color[0],color[1],color[2],this.fade)
                     this.layer.strokeWeight(3)
                     this.layer.noFill()
                     this.layer.ellipse(0,0,30,30)
@@ -173,9 +175,9 @@ class node{
                     this.layer.arc(0,0,21,21,-195,-150)
                     this.layer.arc(0,0,21,21,-215,-210)
                     this.layer.noStroke()
-                    this.layer.fill(70,75,80,this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(70,75,80,this.fade*cap)
                     this.layer.rect(0,24,36,14,3)
-                    this.layer.fill(mergeColor([110,115,120],[50,255,50],this.anim.complete)[0],mergeColor([110,115,120],[50,255,50],this.anim.complete)[1],mergeColor([110,115,120],[50,255,50],this.anim.complete)[2],this.fade*max(this.anim.complete,this.anim.description))
+                    this.layer.fill(color[0],color[1],color[2],this.fade*cap)
                     this.layer.textSize(12)
                     this.layer.text('Fortune',0,25)
                 break
@@ -194,10 +196,11 @@ class node{
                 }
         }
     }
-    update(){
+    update(active){
         this.size=smoothAnim(this.size,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<25,1,1.5,5)
-        this.anim.description=smoothAnim(this.anim.description,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<25,0,1,5)
         this.anim.complete=smoothAnim(this.anim.complete,this.complete,0,1,5)
+        this.anim.active=smoothAnim(this.anim.active,active,0,1,5)
+        this.anim.description=smoothAnim(this.anim.description,dist(inputs.rel.x,inputs.rel.y,this.position.x,this.position.y)<25,0,1,5)
         if(this.scroll>0){
             this.scroll-=5
             this.position.y-=5

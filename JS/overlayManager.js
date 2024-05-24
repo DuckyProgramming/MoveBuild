@@ -53,8 +53,8 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[28])],//double or nothing, no return
                     [new overlay(this.layer,this.battle,0,2,[29])],//random edition, no return
                     [new overlay(this.layer,this.battle,0,12,[])],//select boss
-                    [new overlay(this.layer,this.battle,0,2,[30])],//exhaust draw card, no return
-                    [new overlay(this.layer,this.battle,0,2,[31])],//exhaust discard card, no return
+                    [new overlay(this.layer,this.battle,0,2,[30,0])],//exhaust draw card, no return
+                    [new overlay(this.layer,this.battle,0,2,[31,0])],//exhaust discard card, no return
                     [new overlay(this.layer,this.battle,0,2,[32])],//silver edition, no return
                     [new overlay(this.layer,this.battle,0,2,[33])],//polychrome edition, no return
                     [new overlay(this.layer,this.battle,0,2,[34])],//bring in discard card as confused, no return,50
@@ -72,13 +72,15 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[43])],//deck card cost down
                     [new overlay(this.layer,this.battle,0,2,[44,0,0])],//scry, cost 0
                     [new overlay(this.layer,this.battle,0,16,[])],//mtg mana choice
+                    [new overlay(this.layer,this.battle,0,2,[45,0,0,0])],//exhaust draw card, then trigger exhaust discard, no return
+                    [new overlay(this.layer,this.battle,0,2,[46,0,0])],//exhaust discard card, then trigger hand discard, no return
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[51,61,64,41,42,24,4,16,38,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,63,59,33,52,53,8,46,47,34,37,19,20,21,22,23,29,31,40,9,14,62,54,11,27,39,43,55,45,60]
+                this.priority=[51,61,64,41,42,24,4,16,38,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,63,59,33,52,53,8,65,66,46,47,34,37,19,20,21,22,23,29,31,40,9,14,62,54,11,27,39,43,55,45,60]
             break
             case 1:
                 this.overlays.push(

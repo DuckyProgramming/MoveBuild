@@ -1,63 +1,3 @@
-GIMMICKS:
-
-Barrier/Discus
-
-Freeze
-
-Snake Cards/Scry
-
-
-
-
-
-change pure serpent to freeze
-
-sanae teleport
-
-2 common sanae movements
-
-yayoi's []
-
-more salamander cards
-and scry
-
-basic barriers
-
-buffs with discuses
-
-youmu's ghostblade - this card is a double reference lol
-wriggle's lantern
-
-heavenly peach
-sword of hisou
-
-circle, square, and triangle sculptures - have some effect and become each other
-
-dragon bolt - if fatal, gain intangible
-
-barrier slam
-
-two gods - draw a card, if attack gain 1 strength, if defense gain 1 dex
-
-purify the land - exhaust a card from draw pile, exhaust a card from discard pile, exhaust a card from hand
-
-descendence - gain barrier, all defenses cost 1 less
-
-spell card references
-
-damage, draw a card, if is a defense it costs 0
-counterpart block/draw/attack
-counterpart movement
-
-alioth
-
-luminescent night - block and get an extra card reward option
-
-
-
-
-
-
 [
 	world 1
 	crusader
@@ -74,6 +14,7 @@ luminescent night - block and get an extra card reward option
 [
 	world 3
 	sagacious spirit
+	whenever gets hit:
 	removes your energy but makes your cards cheaper
 ]
 [

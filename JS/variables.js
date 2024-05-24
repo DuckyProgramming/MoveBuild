@@ -591,8 +591,8 @@ types={
         {name:'Yellow Card',internal:'Card Add Currency',id:40,rarity:0,list:0,description:'Gain 20 Currency\nWhen a Card is Added'},
 
         {name:'Glitched Projector',internal:'Turn 2 Block',id:41,rarity:1,list:0,description:'Add 16 Block at\nthe Start of Turn 2'},
-        {name:'Hot Hand',internal:'6 Attack Strength',id:42,rarity:1,list:0,description:'Every 6 Attacks Played,\nGain 1 Strength'},
-        {name:'Fluid Pose',internal:'6 Attack Dexterity',id:43,rarity:1,list:0,description:'Every 6 Attacks Played,\nGain 1 Dexterity'},
+        {name:'Hot Hand',internal:'8 Attack Strength',id:42,rarity:1,list:0,description:'Every 8 Attacks Played,\nGain 1 Strength'},
+        {name:'Fluid Pose',internal:'8 Attack Dexterity',id:43,rarity:1,list:0,description:'Every 8 Attacks Played,\nGain 1 Dexterity'},
         {name:'Shield Ram',internal:'3 Attack Block',id:44,rarity:1,list:0,description:'Every 3 Attacks Played,\nGain 4 Block'},
         {name:'Rotisserie',internal:'Boss Heal',id:45,rarity:1,list:0,description:'At the Start of Boss\nCombat, Heal All HP'},
         {name:'Empty Card',internal:'Extra Card Option',id:46,rarity:1,list:0,description:'Card Rewards Have\n1 More Choice'},

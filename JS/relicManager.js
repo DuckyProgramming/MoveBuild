@@ -1154,13 +1154,13 @@ class relicManager{
                         }
                         if(this.active[42][args[1]+1]>0){
                             this.detail[42][args[1]]++
-                            if(this.detail[42][args[1]]%6==0){
+                            if(this.detail[42][args[1]]%8==0){
                                 this.getPlayer(args[1]).statusEffect('Strength',this.active[42][args[1]+1])
                             }
                         }
                         if(this.active[43][args[1]+1]>0){
                             this.detail[43][args[1]]++
-                            if(this.detail[43][args[1]]%6==0){
+                            if(this.detail[43][args[1]]%8==0){
                                 this.getPlayer(args[1]).statusEffect('Dexterity',this.active[43][args[1]+1])
                             }
                         }

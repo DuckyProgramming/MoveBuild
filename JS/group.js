@@ -640,58 +640,15 @@ class group{
         }
         return success
     }
-    deStatus(value){
+    deAbstract(type,value,args){
         let done=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].class==5){
-                if(this.id==2){
-                    this.cards[a].deSize=true
-                    this.cards[a].exhaust=true
-                }else if(this.id==1||this.id==3){
-                    this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
-                    a--
-                    la--
-                }else{
-                    this.remove(a)
-                    a--
-                    la--
-                }
-                done++
-                if(done>=value){
-                    a=la
-                }
-            }
-        }
-        return done
-    }
-    deFatigue(value){
-        let done=0
-        for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'){
-                if(this.id==2){
-                    this.cards[a].deSize=true
-                    this.cards[a].exhaust=true
-                }else if(this.id==1||this.id==3){
-                    this.send(this.battle.cardManagers[this.player].exhaust.cards,a,a+1)
-                    a--
-                    la--
-                }else{
-                    this.remove(a)
-                    a--
-                    la--
-                }
-                done++
-                if(done>=value&&value>=0){
-                    a=la
-                }
-            }
-        }
-        return done
-    }
-    deCard(value,name){
-        let done=0
-        for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].name==name){
+            if(
+                type==0&&this.cards[a].class==5&&!(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue')||
+                type==1&&this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'||
+                type==2&&this.cards[a].name==args[0]||
+                type==3&&this.cards[a].class==5
+            ){
                 if(this.id==2){
                     this.cards[a].deSize=true
                     this.cards[a].exhaust=true
@@ -790,6 +747,15 @@ class group{
             }
         }
         return colors.length
+    }
+    singleColorNumber(color){
+        let total=0
+        for(let a=0,la=this.cards.length;a<la;a++){
+            if(this.cards[a].color==color){
+                total++
+            }
+        }
+        return total
     }
     retainNumber(){
         let total=0
@@ -1424,6 +1390,28 @@ class group{
                         this.cards[a].base.cost++
                     }
                 break
+                case 89:
+                    if(this.cards[a].cost==2&&this.cards[a].class==2){
+                        this.cards[a].cost=1
+                    }
+                break
+                case 90:
+                    if(this.cards[a].spec.includes(54)&&this.cards[a].edition==0){
+                        this.cards[a].edition=2
+                    }
+                break
+                case 91:
+                    if(this.cards[a].attack==2994){
+                        this.send(this.battle.cardManagers[this.player].hand.cards,a,a+1,1)
+                        a--
+                        la--
+                    }
+                break
+                case 92:
+                    if(this.cards[a].attack==3009){
+                        this.cards[a].effect[0]+=this.cards[a].effect[1]
+                    }
+                break
 
             }
         }
@@ -1918,7 +1906,7 @@ class group{
             break
             case -56:
                 this.battle.loseEnergy(card.effect[0],this.player)
-                this.battle.cardManagers[this.player].randomEffect(2,1,[1])
+                this.battle.cardManagers[this.player].randomEffect(2,1,[card.effect[1]])
             break
             case 288: case 374: case 2217: case 2776:
                 for(let a=0,la=card.effect[1];a<la;a++){
@@ -2160,6 +2148,9 @@ class group{
                     break
                     case 2:
                         list[list.length-1].cost=max(min(0,list[list.length-1].cost),list[list.length-1].cost-2)
+                    break
+                    case 3:
+                        list[list.length-1].retain=true
                     break
                 }
                 delete this.cards[a]
@@ -2811,6 +2802,7 @@ class group{
                                 if(this.cards[b].name==this.sorted[a]){
                                     this.cards[b].deSize=!(position>=args[1]*15&&position<args[1]*15+15)
                                     this.cards[b].fade=1
+                                    this.cards[b].relIndex=position
                                     this.cards[b].position.x=this.layer.width/2-200+position%5*100
                                     this.cards[b].position.y=this.layer.height/2-130+floor(position/5)%3*130
                                     this.cards[b].anim.afford=1
@@ -2898,17 +2890,15 @@ class group{
                 if(this.cards[a].strike&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
-                if(this.cards[a].name=='Shiv'||this.cards[a].name=='Broken\nShiv'||this.cards[a].name=='Deluxe\nShiv'){
-                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                    if(userCombatant.status.main[76]>0){
-                        this.battle.attackManager.effect[0]+=userCombatant.status.main[76]
-                    }
+                let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
+                if((this.cards[a].name=='Shiv'||this.cards[a].name=='Broken\nShiv'||this.cards[a].name=='Deluxe\nShiv')&&userCombatant.status.main[76]>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.status.main[76]
                 }
-                if(this.cards[a].spec.includes(25)){
-                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
-                    if(userCombatant.status.main[166]>0){
-                        this.battle.attackManager.effect[0]+=userCombatant.status.main[166]
-                    }
+                if(this.cards[a].spec.includes(25)&&userCombatant.status.main[166]>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.status.main[166]
+                }
+                if(this.cards[a].spec.includes(54)&&userCombatant.status.main[340]>0){
+                    this.battle.attackManager.effect[0]+=userCombatant.status.main[340]
                 }
                 this.cards[a].usable=false
                 if(this.status[3]>0&&this.cards[a].attack!=1491&&options.oldDuplicate){
@@ -2916,7 +2906,6 @@ class group{
                     this.copySelfInput(a)
                 }
                 if(this.cards[a].target[0]==0){
-                    let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     if(this.status[3]>0&&this.cards[a].attack!=1491&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
                         this.status[3]--
                         this.cards[a].usable=true

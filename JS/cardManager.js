@@ -1004,45 +1004,22 @@ class cardManager{
             }
         }
     }
-    deStatus(value){
+    deAbstract(type,value,args){
         let left=value
-        left-=this.reserve.deStatus(left)
+        left-=this.reserve.deAbstract(type,left,args)
         if(left>0){
-            left-=this.discard.deStatus(left)
+            left-=this.discard.deAbstract(type,left,args)
         }
         if(left>0){
-            left-=this.hand.deStatus(left)
+            left-=this.hand.deAbstract(type,left,args)
         }
     }
-    deFatigue(value){
-        let left=value
-        left-=this.reserve.deFatigue(left)
-        if(left>0){
-            left-=this.discard.deFatigue(left)
-        }
-        if(left>0){
-            left-=this.hand.deFatigue(left)
-        }
-    }
-    deFatigueAll(){
+    deAbstractAll(type,args){
         let done=0
-        done+=this.reserve.deFatigue(-1)
-        done+=this.discard.deFatigue(-1)
-        done+=this.hand.deFatigue(-1)
+        done+=this.reserve.deAbstract(type,-1,args)
+        done+=this.discard.deAbstract(type,-1,args)
+        done+=this.hand.deAbstract(type,-1,args)
         return done
-    }
-    deCard(value,name){
-        let left=value
-        left-=this.reserve.deCard(left,name)
-        if(left>0){
-            left-=this.discard.deCard(left,name)
-        }
-        if(left>0){
-            left-=this.hand.deCard(left,name)
-        }
-    }
-    deCardValueless(name){
-        return this.reserve.deCard(-1,name)+this.discard.deCard(-1,name)+this.hand.deCard(-1,name)
     }
     reCard(name,type){
         this.reserve.reCard(name,type)

@@ -234,7 +234,9 @@ class nodeManager{
         this.nodes.forEach(node=>node.display())
     }
     update(){
-        this.nodes.forEach(node=>node.update())
+        for(let a=0,la=this.nodes.length;a<la;a++){
+            this.nodes[a].update(!this.nodes[a].complete&&(this.tilePosition.y==-1&&this.nodes[a].tilePosition.y==0||this.tilePosition.y>=0&&(this.nodes[this.getNodeIndex(this.tilePosition.x,this.tilePosition.y)].connections.includes(a)||this.freeMove>0&&this.nodes[a].tilePosition.y>=this.tilePosition.y&&this.nodes[a].tilePosition.y<=this.tilePosition.y+2)))
+        }
     }
     onClick(){
         for(let a=0,la=this.nodes.length;a<la;a++){

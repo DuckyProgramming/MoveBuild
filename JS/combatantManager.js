@@ -938,19 +938,22 @@ class combatantManager{
         }
     }
     tick(){
-        this.combatants.forEach(combatant=>combatant.tick())
+        this.combatants.forEach(combatant=>combatant.tick(false))
+    }
+    tickSub(){
+        this.combatants.forEach(combatant=>combatant.tick(true))
     }
     tickA(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0){
-                this.combatants[a].tick()
+                this.combatants[a].tick(false)
             }
         }
     }
     tickB(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team>0){
-                this.combatants[a].tick()
+                this.combatants[a].tick(false)
             }
         }
     }

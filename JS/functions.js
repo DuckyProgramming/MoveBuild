@@ -352,6 +352,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(variant&&args[2]&&user.status.main[166]>0){
 				bonus+=user.status.main[166]
 			}
+			if(variant&&args[3]&&user.status.main[340]>0){
+				bonus+=user.status.main[340]
+			}
 			if(user.status.main[12]>0){
 				bonus+=user.status.main[12]
 			}
@@ -533,6 +536,27 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			switch(type){
 				case 4: return health==effect?tennify(effect):tennify(effect)+` (${tennify(health)})`
 				case 9: return health==effect?tennify(effect)+`X`:tennify(effect)+` (${tennify(health)})X`
+			}
+		case 17: case 18:
+			let barrier=effect
+			let bonusBA=0
+			let totalDexBA=0
+			if(user.status.main[7]!=0){
+				totalDexBA+=user.status.main[7]
+			}
+			if(user.status.main[18]!=0){
+				totalDexBA+=user.status.main[18]
+			}
+			if(totalDexBA>0){
+				barrier*=1+totalDexBA*0.1
+			}else if(totalDexBA<0){
+				barrier*=max(0.2,1+totalDexBA*0.1)
+			}
+			barrier=tennify(barrier)
+			switch(type){
+				case 17: return barrier==effect&&bonusBA==0?tennify(effect):tennify(effect)+`(${tennify(barrier+bonusBA)})`
+				case 18: return (barrier==effect?(effect==1?``:tennify(effect))+'X':(effect==1?``:tennify(effect))+`(${tennify(barrier)})X`)+(bonusBA>0?`(+${tennify(bonusBA)})`:``)
+
 			}
 	}
 }
@@ -1321,8 +1345,8 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	let box=``
-	let goal=50+125*game.playerNumber+30+20+15+30+100
-	let arbitrary=2000
+	let goal=50+125*game.playerNumber+30+20+15+30+150
+	let arbitrary=3000
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
 Common:${current.cardManagers[0].listing.card[a+1][0].length}/50				${current.cardManagers[0].listing.card[a+1][0].length-50}
@@ -1347,7 +1371,7 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+4][3].length-30}
 		Junkyard:
-	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/100				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-100}
+	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)
 }
 function outDupes(){
@@ -1386,6 +1410,22 @@ function outRelic(){
 	Shop: ${current.relicManager.listing.relic[3].length}
 	Boss: ${current.relicManager.listing.relic[4].length}
 	`)
+}
+function outClass(){
+	let totals=[]
+	let build=``
+	for(let a=0,la=game.playerNumber+1;a<la;a++){
+		totals.push([0,0,0,0])
+	}
+	for(let a=0,la=types.card.length;a<la;a++){
+		if(types.card[a].list>=0&&types.card[a].list<=game.playerNumber&&types.card[a].rarity>=0&&types.card[a].levels[0].class>=1&&types.card[a].levels[0].class<=4){
+			totals[types.card[a].list][types.card[a].levels[0].class-1]++
+		}
+	}
+	for(let a=0,la=game.playerNumber+1;a<la;a++){
+		build+=(a==0?`Colorless:`:`${types.combatant[a].name}:`)+`\nAttacks: ${totals[a][0]}\nDefenses: ${totals[a][1]}\nMovements: ${totals[a][2]}\nPowers: ${totals[a][3]}\n\n`
+	}
+	print(build)
 }
 function colorTest(){
 	current.cardManagers[constrain(current.turn.main,0,current.players-1)].hand.cards=[]

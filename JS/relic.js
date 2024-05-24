@@ -352,20 +352,20 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('2',8,-3)
                 break
-                case '6 Attack Strength':
+                case '8 Attack Strength':
                     displaySymbol(this.layer,-7,0,18,0,1,this.fade)
                     displaySymbol(this.layer,10,0,11,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('6',-7,0)
+                    this.layer.text('8',-7,0)
                     this.layer.text('1',10,0)
                 break
-                case '6 Attack Dexterity':
+                case '8 Attack Dexterity':
                     displaySymbol(this.layer,-7,0,18,0,1,this.fade)
                     displaySymbol(this.layer,10,0,12,0,1,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('6',-7,0)
+                    this.layer.text('8',-7,0)
                     this.layer.text('1',10,0)
                 break
                 case '3 Attack Block':

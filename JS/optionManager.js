@@ -60,6 +60,7 @@ class optionManager{
             case 0:
                 this.selections+=10
                 this.selected=-1
+                this.battle.cardManagers[this.player].deck.allEffect(92)
             break
             case 1:
                 this.finishSelection()

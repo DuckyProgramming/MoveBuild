@@ -143,7 +143,8 @@ class combatant{
             'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
             'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
             'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
-            'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn'
+            'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
+            'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -164,7 +165,7 @@ class combatant{
                 0,0,0,0,0,2,0,0,0,0,//16
                 0,0,0,1,2,2,0,1,0,1,//17
                 1,0,1,0,2,0,2,2,0,2,//18
-                2,2,2,0,0,2,0,0,0,2,//19
+                2,2,2,0,2,2,0,0,0,2,//19
                 0,0,0,0,0,0,1,0,1,0,//20
                 0,0,0,0,1,2,2,2,1,2,//21
                 1,0,2,0,0,0,0,1,0,0,//22
@@ -179,7 +180,8 @@ class combatant{
                 0,0,2,2,0,1,5,0,0,1,//31
                 1,0,0,0,0,0,0,1,2,1,//32
                 0,1,0,0,0,0,0,0,0,1,//33
-                0,0,0,2,2,
+                0,0,0,2,2,0,0,0,0,2,//34
+                0,0,0,2,2,0,2,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -215,7 +217,8 @@ class combatant{
                 1,0,1,1,2,2,2,2,2,2,//31
                 2,2,3,2,2,2,2,2,0,0,//32
                 2,1,2,2,2,2,2,2,2,2,//33
-                2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,3,//34
+                2,2,2,2,2,2,2,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4803,9 +4806,9 @@ class combatant{
             }
             if(userCombatant.status.main[119]>0){
                 if(this.battle.turn.main<this.battle.players){
-                    this.statusEffect('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1))
+                    this.statusEffect('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1)+this.status.main[336])
                 }else{
-                    this.statusEffectNext('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1))
+                    this.statusEffectNext('Temporary Damage Up',userCombatant.status.main[119]*(userCombatant.status.main[204]>0?2:1)+this.status.main[336])
                 }
             }
         }
@@ -4939,7 +4942,11 @@ class combatant{
                 this.statusEffect('Strength',this.status.main[43])
             }
             if(this.status.main[56]>0){
-                this.statusEffect('Temporary Strength',this.status.main[56])
+                if(this.battle.turn.main<this.battle.players){
+                    this.statusEffect('Temporary Strength',this.status.main[184])
+                }else{
+                    this.statusEffectNext('Temporary Strength',this.status.main[184])
+                }
             }
             if(this.status.main[64]>0){
                 this.statusEffect('Energy Next Turn',this.status.main[64])
@@ -4948,7 +4955,11 @@ class combatant{
                 this.statusEffect('Dexterity',this.status.main[183])
             }
             if(this.status.main[184]>0){
-                this.statusEffect('Temporary Strength',this.status.main[184])
+                if(this.battle.turn.main<this.battle.players){
+                    this.statusEffect('Temporary Dexterity',this.status.main[184])
+                }else{
+                    this.statusEffectNext('Temporary Dexterity',this.status.main[184])
+                }
             }
             if(this.status.main[177]>0){
                 this.ammo+=this.status.main[177]
@@ -5136,7 +5147,6 @@ class combatant{
                                 }
                                 this.block-=damageLeft
                                 damageLeft=0
-                                this.taken=0
                             }else{
                                 if(this.id<this.battle.players){
                                     this.battle.stats.taken[this.id][1]+=this.block
@@ -5144,7 +5154,6 @@ class combatant{
                                 if(this.status.main[276]>0){
                                     this.heal(this.block)
                                 }
-                                this.taken=damage-this.block
                                 damageLeft-=this.block
                                 this.block=0
 
@@ -5157,18 +5166,17 @@ class combatant{
                                 }
                                 this.barrier-=damageLeft
                                 damageLeft=0
-                                this.blocked=0
                                 this.taken=0
                             }else{
                                 if(this.id<this.battle.players){
                                     this.battle.stats.taken[this.id][1]+=this.block
                                 }
-                                this.taken=damage-this.block
-                                damageLeft-=this.block
-                                this.block=0
+                                damageLeft-=this.barrier
+                                this.barrier=0
                             }
                         }
                         this.blocked=damageLeft==0?0:damageLeft<damage?1:0
+                        this.taken=damageLeft
                         if(this.battle.relicManager.hasRelic(253,this.id)){
                             this.battle.addCurrency(damageLeft*5*this.battle.relicManager.active[253][this.id+1],this.id)
                         }
@@ -5247,8 +5255,11 @@ class combatant{
                     if(this.status.main[300]>0){
                         userCombatant.statusEffect('Buffer',this.status.main[300])
                     }
-                    if(this.status.main[134]>0){
-                        userCombatant.vision+=this.status.main[134]
+                    if(this.status.main[312]>0){
+                        userCombatant.vision+=this.status.main[312]
+                    }
+                    if(this.status.main[339]>0){
+                        userCombatant.addBarrier(this.status.main[339])
                     }
                     if(userCombatant.status.main[139]>0){
                         userCombatant.addBlock(damage)
@@ -5938,6 +5949,10 @@ class combatant{
             return false
         }
     }
+    onScry(){
+        this.addBarrier(this.status.main[345])
+        return this.status.main[335]
+    }
     energyParity(energy){
         return this.status.main[295]>0?1:energy%2
     }
@@ -6217,7 +6232,7 @@ class combatant{
         this.base.life=max(1,this.base.life-amount)
         this.life=min(this.life,this.base.life)
     }
-    tick(){
+    tick(sub){
         this.charge++
         if(this.elemental&&this.getStatus('Awakening')<=0){
             if(this.getStatus('Strength')>0){
@@ -6306,6 +6321,11 @@ class combatant{
                     case 332: for(let b=0,lb=this.status.main[a];b<lb;b++){if(this.battle.cardManagers[this.id].hand.cardNumber('Dual\nDiscus')<=0){this.battle.cardManagers[this.id].hand.add(findName('Dual\nDiscus',types.card),0,0)}} break
                     case 333: this.status.main[findList('Temporary Draw',this.status.name)]+=this.status.main[a]; break
                     case 334: this.status.main[findList('Temporary Draw Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 343: if(this.id<this.battle.players){this.battle.addEnergyGen(this.status.main[a],this.id);this.battle.addEnergy(this.status.main[a],this.id)} break
+                    case 344: this.status.main[findList('Base Energy Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 346: this.status.main[findList('Miracle Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 347: if(!sub){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.combatantManager.tickSub()}} break
+                    case 348: this.addBarrier(this.status.main[a]); break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -8835,15 +8855,15 @@ class combatant{
                 }
                 if(this.team<=this.battle.players){
                     if(!this.programmedDeath&&options.oldUnbuild){
-                        this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
+                        this.battle.cardManagers[this.team-1].deAbstract(2,1,['Unbuild'])
                     }
                     if(!options.oldUnbuild&&!this.battle.combatantManager.constructAlive(this.team)){
-                        this.battle.cardManagers[this.team-1].deCard(1,'Unbuild')
+                        this.battle.cardManagers[this.team-1].deAbstract(2,1,['Unbuild'])
                     }
                     if(this.name=='Teleporter Start'){
-                        this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nStart')
+                        this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nStart'])
                     }else if(this.name=='Teleporter End'){
-                        this.battle.cardManagers[this.team-1].deCard(1,'Use Teleporter\nEnd')
+                        this.battle.cardManagers[this.team-1].deAbstract(2,1,['Use Teleporter\nEnd'])
                     }
                 }
             }
