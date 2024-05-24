@@ -4145,6 +4145,13 @@ types.card=[
             {effect:[2],attack:2434,cost:1,target:[2,1,3],spec:[],class:4},
             {effect:[3],attack:2434,cost:1,target:[2,1,3],spec:[],class:4},
         ],
+    },{
+        name:'Apocryphal\nKnife',rarity:1,list:4,
+        levels:[
+            {effect:[2,1,1],attack:3034,cost:1,target:[2,1,3],spec:[],class:4},
+            {effect:[3,1,1],attack:3034,cost:1,target:[2,1,3],spec:[],class:4},
+            {effect:[4,1,1],attack:3034,cost:1,target:[2,1,3],spec:[],class:4},
+        ],
     },
 
     //mark 4

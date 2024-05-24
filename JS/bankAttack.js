@@ -1530,7 +1530,7 @@ attack.prototype.update=function(){
         case 2273: case 2345: case 2369: case 2393: case 2404: case 2434: case 2435: case 2458: case 2470: case 2476:
         case 2482: case 2506: case 2546: case 2561: case 2569: case 2570: case 2577: case 2605: case 2648: case 2713:
         case 2794: case 2803: case 2816: case 2819: case 2872: case 2875: case 2880: case 2898: case 2924: case 2977:
-        case 2978: case 2981: case 2995: case 3006: case 3026: case 3031:
+        case 2978: case 2981: case 2995: case 3006: case 3026: case 3031: case 3034:
             //mark 8
             if(
                 this.type==1247&&this.userCombatant.energyParity(this.energy)!=0||

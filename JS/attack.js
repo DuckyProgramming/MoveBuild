@@ -145,16 +145,16 @@ class attack{
             case 2388: case 2389: case 2390: case 2391: case 2393: case 2395: case 2398: case 2400: case 2401: case 2404: case 2405: case 2410: case 2411: case 2420: case 2427: case 2428: case 2430: case 2434: case 2435: case 2437:
             case 2442: case 2443: case 2444: case 2445: case 2458: case 2460: case 2461: case 2464: case 2465: case 2466: case 2467: case 2468: case 2470: case 2471: case 2473: case 2474: case 2476: case 2477: case 2481: case 2482:
             case 2485: case 2487: case 2492: case 2493: case 2494: case 2496: case 2497: case 2498: case 2504: case 2505: case 2506: case 2520: case 2521: case 2522: case 2524: case 2525: case 2526: case 2546: case 2550: case 2552:
-            case 2554: case 2561: case 2562: case 2569: case 2570: case 2575: case 2576: case 2577: case 2580: case 2582: case 2583: case 2584: case 2585: case 2586: case 2588: case 2593: case 2595: case 2596: case 2597: case 2606:
-            case 2609: case 2610: case 2611: case 2612: case 2613: case 2620: case 2621: case 2622: case 2623: case 2624: case 2627: case 2628: case 2630: case 2636: case 2641: case 2646: case 2647: case 2648: case 2649: case 2650:
-            case 2651: case 2653: case 2655: case 2656: case 2659: case 2660: case 2662: case 2663: case 2664: case 2665: case 2666: case 2667: case 2670: case 2671: case 2674: case 2678: case 2680: case 2685: case 2693: case 2696:
-            case 2697: case 2700: case 2701: case 2702: case 2705: case 2709: case 2711: case 2712: case 2713: case 2716: case 2719: case 2722: case 2723: case 2725: case 2728: case 2729: case 2730: case 2733: case 2734: case 2737:
-            case 2739: case 2746: case 2753: case 2754: case 2755: case 2757: case 2765: case 2766: case 2770: case 2771: case 2773: case 2775: case 2776: case 2783: case 2784: case 2785: case 2786: case 2787: case 2791: case 2794:
-            case 2798: case 2800: case 2803: case 2806: case 2808: case 2810: case 2811: case 2813: case 2815: case 2816: case 2819: case 2823: case 2824: case 2825: case 2828: case 2829: case 2830: case 2834: case 2836: case 2838:
-            case 2839: case 2841: case 2842: case 2847: case 2854: case 2855: case 2856: case 2857: case 2858: case 2859: case 2860: case 2863: case 2864: case 2872: case 2875: case 2876: case 2883: case 2884: case 2885: case 2886:
-            case 2887: case 2888: case 2889: case 2890: case 2898: case 2900: case 2907: case 2909: case 2913: case 2915: case 2919: case 2920: case 2924: case 2937: case 2943: case 2949: case 2951: case 2953: case 2959: case 2969:
-            case 2971: case 2976: case 2977: case 2978: case 2979: case 2981: case 2983: case 2986: case 2987: case 2994: case 2995: case 2997: case 2999: case 3000: case 3001: case 3006: case 3007: case 3009: case 3016: case 3019:
-            case 3026: case 3031:
+            case 2554: case 2561: case 2562: case 2569: case 2570: case 2575: case 2576: case 2577: case 2580: case 2582: case 2583: case 2584: case 2585: case 2586: case 2588: case 2593: case 2595: case 2596: case 2597: case 2605:
+            case 2606: case 2609: case 2610: case 2611: case 2612: case 2613: case 2620: case 2621: case 2622: case 2623: case 2624: case 2627: case 2628: case 2630: case 2636: case 2641: case 2646: case 2647: case 2648: case 2649:
+            case 2650: case 2651: case 2653: case 2655: case 2656: case 2659: case 2660: case 2662: case 2663: case 2664: case 2665: case 2666: case 2667: case 2670: case 2671: case 2674: case 2678: case 2680: case 2685: case 2693:
+            case 2696: case 2697: case 2700: case 2701: case 2702: case 2705: case 2709: case 2711: case 2712: case 2713: case 2716: case 2719: case 2722: case 2723: case 2725: case 2728: case 2729: case 2730: case 2733: case 2734:
+            case 2737: case 2739: case 2746: case 2753: case 2754: case 2755: case 2757: case 2765: case 2766: case 2770: case 2771: case 2773: case 2775: case 2776: case 2783: case 2784: case 2785: case 2786: case 2787: case 2791:
+            case 2794: case 2798: case 2800: case 2803: case 2806: case 2808: case 2810: case 2811: case 2813: case 2815: case 2816: case 2819: case 2823: case 2824: case 2825: case 2828: case 2829: case 2830: case 2834: case 2836:
+            case 2838: case 2839: case 2841: case 2842: case 2847: case 2854: case 2855: case 2856: case 2857: case 2858: case 2859: case 2860: case 2863: case 2864: case 2872: case 2875: case 2876: case 2883: case 2884: case 2885:
+            case 2886: case 2887: case 2888: case 2889: case 2890: case 2898: case 2900: case 2907: case 2909: case 2913: case 2915: case 2919: case 2920: case 2924: case 2937: case 2943: case 2949: case 2951: case 2953: case 2959:
+            case 2969: case 2971: case 2976: case 2977: case 2978: case 2979: case 2981: case 2983: case 2986: case 2987: case 2994: case 2995: case 2997: case 2999: case 3000: case 3001: case 3006: case 3007: case 3009: case 3016:
+            case 3019: case 3026: case 3031: case 3034:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -10164,6 +10164,15 @@ class attack{
                         this.userManager.drawPrice(this.effect[0],1)
                         this.targetCombatant.statusEffect('Take Per Card Played',this.effect[1])
                     break
+                    case 3034:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[0])
+                        for(let a=0,la=this.effect[1];a<la;a++){
+                            this.battle.drop(this.player,findName('Deluxe\nShiv',types.card),0,0)
+                        }
+                        for(let a=0,la=this.effect[2];a<la;a++){
+                            this.battle.dropDraw(this.player,findName('Deluxe\nShiv',types.card),0,0)
+                        }
+                    break
 
                 }
                 //mark 8
@@ -12167,35 +12176,35 @@ class attack{
             case 13:
                 switch(this.type){
                     case 394:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.userCombatant.balance+=this.effect[1]
                     break
                     case 395:
                         this.battle.combatantManager.statusAreaIDBlock('Bleed',this.effect[0],this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 420:
-                        let total=this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        let total=this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.userCombatant.heal(this.effect[0]*total)
                     break
                     case 434:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.battle.combatantManager.intentNerfArea(1,this.effect[1],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
                     break
                     case 698:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.randomEffect(2,0,[])
                         }
                     break
                     case 739:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.battle.attackManager.endAfter=true
                     break
                     case 882:
                         this.battle.combatantManager.statusAreaID('Burn',this.effect[0],this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 981:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.hand.add(findName('Burn',types.card),0,game.playerNumber+1)
                         }
@@ -12204,25 +12213,25 @@ class attack{
                         this.battle.combatantManager.statusAreaID('Bruise',this.effect[0],this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 1447:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.battle.combatantManager.statusAreaID('Freeze',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 1448:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.battle.combatantManager.statusAreaID('Burn',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 2132:
                         this.battle.combatantManager.statusAreaID('Shock',this.effect[0],this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 2314:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.battle.combatantManager.statusAreaID('Weak',this.effect[1],this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                     case 2490:
                         this.battle.combatantManager.damageArea(this.effect[0]*this.userManager.hand.totalCost(),this.user,this.userCombatant.team,this.userCombatant.tilePosition)
                     break
                     case 2629:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         if(this.userCombatant.armed){
                             this.userCombatant.armed=false
                             this.battle.tileManager.tiles[this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)].addType(3)
@@ -12235,33 +12244,33 @@ class attack{
                         this.battle.combatantManager.damageArea(this.effect[0]+this.effect[1]*this.userCombatant.getStatus('Knowledge'),this.user,this.userCombatant.team,this.userCombatant.tilePosition)
                     break
                     case 2797:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.userManager.randomEffect(2,43,[])
                     break
                     case 2903:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.battle.addEnergy(this.effect[1]*this.userManager.hand.specNumber(54),this.player)
                     break
                     case 2923:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         if(this.drawn>=2){
                             this.userCombatant.addBlock(this.effect[1])
                         }
                     break
                     case 3004:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.battle.overlayManager.overlays[58][this.player].active=true
                         this.battle.overlayManager.overlays[58][this.player].activate([this.effect[1],this.effect[2]])
                     break
                     case 3021:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.userCombatant.addBarrier(this.effect[1])
                         for(let a=0,la=this.effect[2];a<la;a++){
                             this.userManager.hand.add(findName('Dual\nDiscus',types.card),this.level,0)
                         }
                     break
                     default:
-                        this.battle.combatantManager.damageArea(this.effect[0],this.user,this.userCombatant.team,this.userCombatant.tilePosition)
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                     break
                 }
                 //mark 7

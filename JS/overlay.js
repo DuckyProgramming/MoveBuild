@@ -171,7 +171,7 @@ class overlay{
                     this.options+=2*this.battle.relicManager.active[238][this.player+1]
                 }
                 if(this.additionalOptions!=0){
-                    this.options+=this.additionalOptions
+                    this.options=min(this.options+this.additionalOptions,6)
                     this.additionalOptions=0
                 }
                 if(variants.cursed){
@@ -1935,6 +1935,21 @@ class overlay{
                         this.active=false
                         if(this.args[0]==0){
                             this.battle.relicManager.activate(8,[this.player])
+                        }
+                        if(this.prune){
+                            for(let a=0,la=this.cards.length;a<la;a++){
+                                for(let b=0,lb=this.battle.cardManagers[this.player].listing.card.length;b<lb;b++){
+                                    for(let c=0,lc=this.battle.cardManagers[this.player].listing.card[b].length;c<lc;c++){
+                                        for(let d=0,ld=this.battle.cardManagers[this.player].listing.card[b][c].length;d<ld;d++){
+                                            if(this.cards[a].type==this.battle.cardManagers[this.player].listing.card[b][c][d]){
+                                                this.battle.cardManagers[this.player].listing.card[b][c].splice(d,1)
+                                                d--
+                                                ld--
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 break

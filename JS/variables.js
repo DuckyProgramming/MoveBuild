@@ -559,8 +559,8 @@ types={
         
         {name:'Bypass Code',internal:'Play Unplayable',id:11,rarity:1,list:0,description:'You Can Play and\nExhaust Unplayable Cards'},
         {name:'Red Ribbon',internal:'Upgrade All Attacks',id:12,rarity:1,list:0,description:'Upgrade All Attacks Added'},
-        {name:'Blue Ribbon',internal:'Upgrade All Defense',id:13,rarity:1,list:0,description:'Upgrade All Defense Added'},
-        {name:'Green Ribbon',internal:'Upgrade All Movement',id:14,rarity:1,list:0,description:'Upgrade All Movement Added'},
+        {name:'Blue Ribbon',internal:'Upgrade All Defense',id:13,rarity:1,list:0,description:'Upgrade All Defenses Added'},
+        {name:'Green Ribbon',internal:'Upgrade All Movement',id:14,rarity:1,list:0,description:'Upgrade All Movements Added'},
         {name:'Purple Ribbon',internal:'Upgrade All Powers',id:15,rarity:1,list:0,description:'Upgrade All Powers Added'},
         {name:'Orange',internal:'10 Max HP',id:16,rarity:1,list:0,description:'When Taken,\nGain 10 Max HP'},
         {name:'Sickle',internal:'Death Boost',id:17,rarity:1,list:0,description:'When an Enemy Dies,\nGain 1 Energy and Draw 1 Card'},

@@ -1141,7 +1141,7 @@ class battle{
                 for(let a=0,la=types.deckmode.length;a<=la;a++){
                     if(this.menu.anim.deck[0][a]>0){
                         this.layer.fill(255,this.menu.anim.deck[0][a])
-                        this.layer.textSize(types.deckmode[a].name.length>20?8:10)
+                        this.layer.textSize(types.deckmode[a].name.length>15?8:10)
                         this.layer.text(types.deckmode[a].name.toUpperCase(),this.layer.width/2,this.layer.height*0.65+80)
                     }
                 }

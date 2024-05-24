@@ -3335,6 +3335,7 @@ class card{
             case 3031: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\n${effect[0]!=1?`They Cost`:`It Costs`} 1 Less\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
             case 3032: string+=`Add ${this.calculateEffect(effect[0],18)} Barrier\nGain ${effect[1]} Energy\nIf X is 1 or More`; break
             case 3033: string+=`Add ${this.calculateEffect(effect[0],18)} Barrier\nGain ${effect[1]} Energy`; break
+            case 3034: string+=`Apply ${effect[0]} Vunerable\nAdd ${effect[1]} Deluxe Shiv${effect[1]!=1?`s`:``}\nto Draw\nAdd ${effect[2]} Deluxe Shiv${effect[2]!=1?`s`:``}\nto Discard`; break
 
             //mark p
 
