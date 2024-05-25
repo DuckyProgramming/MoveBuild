@@ -154,7 +154,7 @@ class attack{
             case 2838: case 2839: case 2841: case 2842: case 2847: case 2854: case 2855: case 2856: case 2857: case 2858: case 2859: case 2860: case 2863: case 2864: case 2872: case 2875: case 2876: case 2883: case 2884: case 2885:
             case 2886: case 2887: case 2888: case 2889: case 2890: case 2898: case 2900: case 2907: case 2909: case 2913: case 2915: case 2919: case 2920: case 2924: case 2937: case 2943: case 2949: case 2951: case 2953: case 2959:
             case 2969: case 2971: case 2976: case 2977: case 2978: case 2979: case 2981: case 2983: case 2986: case 2987: case 2994: case 2995: case 2997: case 2999: case 3000: case 3001: case 3006: case 3007: case 3009: case 3016:
-            case 3019: case 3026: case 3031: case 3034:
+            case 3019: case 3026: case 3031: case 3034: case 3036: case 3037:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -7193,7 +7193,7 @@ class attack{
                     break
                     case 1694:
                         if(game.theme==3){
-                            this.userManager.reCard('Fatigue',findName('Barrier',types.card))
+                            this.userManager.reCard('Fatigue',findName('Sandstone',types.card))
                         }else{
                             this.userManager.reCard('Fatigue',findName('Quicksand',types.card))
                             game.theme=3
@@ -10172,6 +10172,10 @@ class attack{
                         for(let a=0,la=this.effect[2];a<la;a++){
                             this.battle.dropDraw(this.player,findName('Deluxe\nShiv',types.card),0,0)
                         }
+                    break
+                    case 3037:
+                        this.battle.overlayManager.overlays[67][this.player].active=true
+                        this.battle.overlayManager.overlays[67][this.player].activate([this.effect[0],this.effect[1],this.targetCombatant.id])
                     break
 
                 }

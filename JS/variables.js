@@ -196,6 +196,7 @@ types={
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
 
         {name:'Rewriter',life:666,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[18,2,2]},{type:191,effect:[6]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[15,1]},{type:194,effect:[9,1,'Decremented']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
+        
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
         {name:'Wall',life:32,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:21,effect:[]}],description:`Kinda... does nothing`},

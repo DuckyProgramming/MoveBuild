@@ -37,11 +37,13 @@ class purchaseManager{
                         let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,1,2]
                         let cost=[[60,75],[100,125],[160,200]]
                         for(let a=0,la=group.length;a<la;a++){
-                            let index=floor(random(0,list[group[a]].length))
-                            this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,100+floor(a/4)*150,1,
-                                [group[a]==0&&this.battle.relicManager.hasRelic(216,0)?0:round(random(cost[group[a]][0],cost[group[a]][1]))],
-                                [list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0],sale==a]))
-                            list[group[a]].splice(index,1)
+                            if(list[group[a]].length>0){
+                                let index=floor(random(0,list[group[a]].length))
+                                this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,100+floor(a/4)*150,1,
+                                    [group[a]==0&&this.battle.relicManager.hasRelic(216,0)?0:round(random(cost[group[a]][0],cost[group[a]][1]))],
+                                    [list[group[a]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[a]][index]].list<0?0:types.card[list[group[a]][index]].list>=types.color.card.length?0:types.card[list[group[a]][index]].list):variants.prism?types.card[list[group[a]][index]].list:this.battle.player[0],sale==a]))
+                                list[group[a]].splice(index,1)
+                            }
                         }
                         list=copyArrayStack(this.battle.cardManagers[0].listing.card[0])
                         group=[1,1,2]
@@ -79,12 +81,14 @@ class purchaseManager{
                             let group=this.battle.modded(153)?[0,0,0,0,0,0,0,0]:[0,0,0,0,1,1,1,2]
                             let cost=[[80,100],[120,150],[200,250]]
                             for(let b=0,lb=group.length;b<lb;b++){
-                                let index=floor(random(0,list[group[b]].length))
-                                let price=round(random(cost[group[b]][0],cost[group[b]][1]))
-                                this.purchases.push(new purchase(this.layer,this.battle,a,this.layer.width*a+(135+(b%4*90))*(1-a*2),350+floor(b/4)*150,1,
-                                    [group[a]==0&&this.battle.relicManager.hasRelic(216,0)?0:price,group[a]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
-                                    [list[group[b]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[b]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a],sale==b]))
-                                list[group[b]].splice(index,1)
+                                if(list[group[b]].length>0){
+                                    let index=floor(random(0,list[group[b]].length))
+                                    let price=round(random(cost[group[b]][0],cost[group[b]][1]))
+                                    this.purchases.push(new purchase(this.layer,this.battle,a,this.layer.width*a+(135+(b%4*90))*(1-a*2),350+floor(b/4)*150,1,
+                                        [group[a]==0&&this.battle.relicManager.hasRelic(216,0)?0:price,group[a]==0&&this.battle.relicManager.hasRelic(216,1)?0:price],
+                                        [list[group[b]][index],0,variants.junk?types.card[list[group[a]][index]].list:variants.ultraprism||variants.mtg?(types.card[list[group[b]][index]].list<0?0:types.card[list[group[b]][index]].list>=types.color.card.length?0:types.card[list[group[b]][index]].list):variants.prism?types.card[list[group[b]][index]].list:this.battle.player[a],sale==b]))
+                                    list[group[b]].splice(index,1)
+                                }
                             }
                         }
                         let list=copyArrayStack(this.battle.cardManagers[0].listing.card[0])

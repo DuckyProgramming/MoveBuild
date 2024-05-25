@@ -16,7 +16,7 @@ class overlay{
                 this.page=0
                 switch(this.args[0]){
                     case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
-                    case 23: case 25: case 30: case 41: case 44: case 45:
+                    case 23: case 25: case 30: case 41: case 44: case 45: case 47:
                         this.battle.cardManagers[this.player].reserve.cards.forEach(card=>card.size=0)
                     break
                     case 1: case 5: case 11: case 19: case 21: case 31: case 34: case 39: case 40: case 42:
@@ -112,7 +112,7 @@ class overlay{
             case 2:
                 switch(this.args[0]){
                     case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
-                    case 23: case 25: case 30: case 41: case 44: case 45:
+                    case 23: case 25: case 30: case 41: case 44: case 45: case 47:
                         this.battle.cardManagers[this.player].reserve.resetAnim()
                     break
                     case 1: case 5: case 11: case 19: case 21: case 31: case 34: case 39: case 40: case 42:
@@ -141,6 +141,17 @@ class overlay{
                     case 41: case 44:
                         this.args[1]=args[0]+this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].onScry()
                         this.args[2]=args[1]
+                        this.battle.cardManagers[this.player].discard.allEffect(91)
+                        this.battle.cardManagers[this.player].reserve.allEffect(91)
+                        if(this.battle.cardManagers[this.player].reserve.cards.length==0&&this.battle.cardManagers[this.player].discard.cards.length>0){
+                            this.battle.cardManagers[this.player].discard.send(this.battle.cardManagers[this.player].reserve.cards,0,-1,2)
+                            this.battle.cardManagers[this.player].reserve.shuffle()
+                        }
+                    break
+                    case 47:
+                        this.args[1]=args[0]+this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].onScry()
+                        this.args[2]=args[1]
+                        this.args[3]=args[2]
                         this.battle.cardManagers[this.player].discard.allEffect(91)
                         this.battle.cardManagers[this.player].reserve.allEffect(91)
                         if(this.battle.cardManagers[this.player].reserve.cards.length==0&&this.battle.cardManagers[this.player].discard.cards.length>0){
@@ -850,7 +861,7 @@ class overlay{
                     case 15: case 16: case 12: case 17: case 18: case 19: case 20: case 21: case 22: case 25:
                     case 26: case 27: case 28: case 29: case 30: case 31: case 32: case 33: case 34: case 35:
                     case 36: case 37: case 38: case 39: case 40: case 41: case 42: case 43: case 44: case 45:
-                    case 46:
+                    case 46: case 47:
                         this.layer.text('Skip',this.layer.width/2,this.layer.height/2+225); break
                 }
                 switch(this.args[0]){
@@ -868,7 +879,7 @@ class overlay{
                     case 20: this.battle.cardManagers[this.player].reserve.display('overlay',[6,this.page,3]); break
                     case 23: this.battle.cardManagers[this.player].reserve.display('overlay',[7,this.args[1]]); break
                     case 24: this.battle.tierManager.tiers[this.args[1]].display('overlay',[1,this.page]); break
-                    case 41: case 44: this.battle.cardManagers[this.player].reserve.display('overlay',[6,this.page,this.args[1]]); break
+                    case 41: case 44: case 47: this.battle.cardManagers[this.player].reserve.display('overlay',[6,this.page,this.args[1]]); break
 
                 }
                 switch(this.args[0]){
@@ -1342,7 +1353,7 @@ class overlay{
                         case 13: case 14: case 15: case 16:
                             this.page=constrain(this.page,0,ceil(this.battle.cardManagers[this.player].reserve.sorted.length/15)-1)
                         break
-                        case 20: case 23: case 41: case 44:
+                        case 20: case 23: case 41: case 44: case 47:
                             this.page=0
                         break
                         case 24:
@@ -1351,7 +1362,7 @@ class overlay{
                     }
                     switch(this.args[0]){
                         case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
-                        case 23: case 25: case 30: case 41: case 44: case 45:
+                        case 23: case 25: case 30: case 41: case 44: case 45: case 47:
                             this.battle.cardManagers[this.player].reserve.update('overlay',[this.page])
                         break
                         case 1: case 5: case 11: case 19: case 21: case 31: case 34: case 39: case 40: case 42:
@@ -1371,7 +1382,7 @@ class overlay{
                     }
                     switch(this.args[0]){
                         case 0: case 6: case 9: case 13: case 14: case 15: case 16: case 18: case 20: case 22:
-                        case 23: case 25: case 30: case 41: case 44: case 45:
+                        case 23: case 25: case 30: case 41: case 44: case 45: case 47:
                             for(let a=0,la=this.battle.cardManagers[this.player].reserve.cards.length;a<la;a++){
                                 this.battle.cardManagers[this.player].reserve.cards[a].size=constrain(this.battle.cardManagers[this.player].reserve.cards[a].size,0,this.fade)
                             }
@@ -1867,7 +1878,7 @@ class overlay{
                                 }
                             }
                         break
-                        case 41: case 44:
+                        case 41: case 44: case 47:
                             for(let a=0,la=min(this.args[1],this.battle.cardManagers[this.player].reserve.cards.length);a<la;a++){
                                 if(pointInsideBox({position:inputs.rel},this.battle.cardManagers[this.player].reserve.cards[a])&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select){
                                     this.battle.cardManagers[this.player].reserve.cards[a].select=false
@@ -1887,6 +1898,14 @@ class overlay{
                                             this.args[1]--
                                             a--
                                             la--
+                                        break
+                                        case 47:
+                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.args[1]--
+                                            a--
+                                            la--
+                                            this.battle.combatantManager.combatants[this.args[3]].statusEffect('Freeze',this.args[2])
                                         break
                                     }
                                 }
@@ -2555,7 +2574,7 @@ class overlay{
                                 }
                             }
                         break
-                        case 41: case 44:
+                        case 41: case 44: case 47:
                             for(let a=0,la=min(this.args[1],this.battle.cardManagers[this.player].reserve.cards.length);a<la;a++){
                                 if(key==inputs.hexadec[a%15]&&this.battle.cardManagers[this.player].reserve.cards[a].size>0.5&&this.battle.cardManagers[this.player].reserve.cards[a].select&&
                                     !this.battle.cardManagers[this.player].reserve.cards[a].spec.includes(37)){
@@ -2576,6 +2595,14 @@ class overlay{
                                             this.args[1]--
                                             a--
                                             la--
+                                        break
+                                        case 47:
+                                            this.battle.cardManagers[this.player].reserve.cards[a].callScryDiscardEffect()
+                                            this.battle.cardManagers[this.player].reserve.send(this.battle.cardManagers[this.player].discard.cards,a,a+1)
+                                            this.args[1]--
+                                            a--
+                                            la--
+                                            this.battle.combatantManager.combatants[this.args[3]].statusEffect('Freeze',this.args[2])
                                         break
                                     }
                                 }

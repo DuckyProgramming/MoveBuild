@@ -13,9 +13,7 @@
 ]
 [
 	world 3
-	sagacious spirit
-	whenever gets hit:
-	removes your energy but makes your cards cheaper
+	sunny milk
 ]
 [
 	final boss?

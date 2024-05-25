@@ -226,6 +226,7 @@ attack.prototype.update=function(){
         case 2801: case 2804: case 2807: case 2818: case 2833: case 2835: case 2865: case 2877: case 2881: case 2892:
         case 2908: case 2914: case 2916: case 2918: case 2921: case 2947: case 2952: case 2954: case 2961: case 2972:
         case 2980: case 2988: case 2989: case 2996: case 3010: case 3011: case 3024: case 3028: case 3032: case 3033:
+        case 3035:
             //mark 2
             if(this.type==2616&&this.timer==1&&!this.userManager.hand.allClassLeeway(2)){
                 this.remove=true
@@ -350,7 +351,7 @@ attack.prototype.update=function(){
             }
         break
         case 5: case 121: case 764: case 987: case 1257: case 1445: case 1446: case 1796: case 1805: case 2136:
-        case 2163: case 2611: case 2664: case 2776:
+        case 2163: case 2611: case 2664: case 2776: case 3036:
             if(this.type==121&&this.userCombatant.armed){
                 this.remove=true
             }else if(this.targetDistance==1){
@@ -362,6 +363,12 @@ attack.prototype.update=function(){
                     switch(this.type){
                         case 2136:
                             this.targetCombatant.statusEffect('Jinx',this.effect[0])
+                        break
+                        case 3036:
+                            let result3036=this.userManager.drawReturn(this.effect[0])
+                            if(result3036.length>0&&result3036[0].class==3){
+                                this.targetCombatant.statusEffect('Weak',this.effect[1])
+                            }
                         break
                         default:
                             this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -1530,7 +1537,7 @@ attack.prototype.update=function(){
         case 2273: case 2345: case 2369: case 2393: case 2404: case 2434: case 2435: case 2458: case 2470: case 2476:
         case 2482: case 2506: case 2546: case 2561: case 2569: case 2570: case 2577: case 2605: case 2648: case 2713:
         case 2794: case 2803: case 2816: case 2819: case 2872: case 2875: case 2880: case 2898: case 2924: case 2977:
-        case 2978: case 2981: case 2995: case 3006: case 3026: case 3031: case 3034:
+        case 2978: case 2981: case 2995: case 3006: case 3026: case 3031: case 3034: case 3037:
             //mark 8
             if(
                 this.type==1247&&this.userCombatant.energyParity(this.energy)!=0||
@@ -6828,7 +6835,7 @@ attack.prototype.update=function(){
                 if(this.timer%10==5){
                     this.targetCombatant.takeDamage(this.effect[0],this.user)
                     if(this.timer==5){
-                        this.userCombatant.statusEffect('Intangible',this.effect[1])
+                        this.userCombatant.statusEffect('Intangible',this.effect[2])
                     }
                 }else if(this.timer>=10*this.effect[1]){
                     this.remove=true

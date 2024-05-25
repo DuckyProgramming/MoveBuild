@@ -2006,7 +2006,7 @@ class card{
             case 1691: string+=`Exhaust Your Hand\nEnd Your Turn\nRed: Gain ${effect[0]} Max HP Each\nOtherwise: Tone to Red\nand Gain ${effect[1]} Strength Each`; break
             case 1692: string+=`Apply ${effect[0]} Weak\nPurple: Add Last Quarter\nto Discard\nOtherwise: Tone to Purple\nand Add Self`; break
             case 1693: string+=`Remove ${effect[0]} Strength\nReset Theme`; break
-            case 1694: string+=`Remove All Fatigues\nYellow: Replace\nWith Barriers\nOtherwise: Tone to Yellow\nReplace With Quicksands`; break
+            case 1694: string+=`Remove All Fatigues\nYellow: Replace\nWith Sandstone\nOtherwise: Tone to Yellow\nReplace With Quicksands`; break
             case 1695: string+=`50%: Draw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
             case 1696: string+=`50%: Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}`; break
             case 1697: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIncreases by ${effect[1]}`; break
@@ -3336,6 +3336,9 @@ class card{
             case 3032: string+=`Add ${this.calculateEffect(effect[0],18)} Barrier\nGain ${effect[1]} Energy\nIf X is 1 or More`; break
             case 3033: string+=`Add ${this.calculateEffect(effect[0],18)} Barrier\nGain ${effect[1]} Energy`; break
             case 3034: string+=`Apply ${effect[0]} Vunerable\nAdd ${effect[1]} Deluxe Shiv${effect[1]!=1?`s`:``}\nto Draw\nAdd ${effect[2]} Deluxe Shiv${effect[2]!=1?`s`:``}\nto Discard`; break
+            case 3035: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nIncreases by ${effect[1]}\nWhen Miracle Played`; break
+            case 3036: string+=`Push 1 Tile\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}\nIf it is a Movement,\nApply ${effect[1]} Weak`; break
+            case 3037: string+=`Scry ${effect[0]}\nApply ${effect[1]} Freeze\nPer Card Discarded`; break
 
             //mark p
 
@@ -4083,7 +4086,7 @@ class card{
                         this.effect[0]+=this.effect[1]
                     }
                 break
-                case 2803:
+                case 2803: case 3035:
                     if(card.name=='Miracle'){
                         this.effect[0]+=this.effect[1]
                     }
