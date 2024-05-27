@@ -34,6 +34,40 @@ class combatantManager{
     resetCombatants(){
         for(let a=0,la=this.combatants.length;a<la;a++){
             if(this.combatants[a].team==0||this.combatants[a].construct||this.combatants[a].support){
+                switch(this.combatants[a].name){
+                    case 'Lira':
+                        delete graphics.combatant[0]
+                        graphics.combatant.splice(0,1,-1)
+                    break
+                    case 'Sakura':
+                        delete graphics.combatant[1]
+                        graphics.combatant.splice(1,1,-1)
+                    break
+                    case 'Certes':
+                        delete graphics.combatant[2]
+                        graphics.combatant.splice(2,1,-1)
+                    break
+                    case 'Setsuna':
+                        delete graphics.combatant[3]
+                        graphics.combatant.splice(3,1,-1)
+                    break
+                    case 'Airi':
+                        delete graphics.combatant[4]
+                        graphics.combatant.splice(4,1,-1)
+                    break
+                    case 'Shiru':
+                        delete graphics.combatant[5]
+                        graphics.combatant.splice(5,1,-1)
+                    break
+                    case 'Daiyousei':
+                        delete graphics.combatant[6]
+                        graphics.combatant.splice(6,1,-1)
+                    break
+                    case 'Sanae':
+                        delete graphics.combatant[7]
+                        graphics.combatant.splice(7,1,-1)
+                    break
+                }
                 delete this.combatants[a]
                 this.combatants.splice(a,1)
                 a--
@@ -285,6 +319,22 @@ class combatantManager{
                 break
                 case 6:
                     this.combatants[index].statusEffect('Strength',args[0])
+                break
+            }
+        }
+    }
+    randomPlayerEffect(effect,args){
+        let list=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team>0&&this.combatants[a].life>0){
+                list.push(a)
+            }
+        }
+        if(list.length>0){
+            let index=list[floor(random(0,list.length))]
+            switch(effect){
+                case 0:
+                    this.combatants[index].takeDamage(args[0],-1)
                 break
             }
         }
@@ -550,6 +600,9 @@ class combatantManager{
                     break
                     case 35:
                         this.combatants[a].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],args[0])
+                    break
+                    case 36:
+                        this.combatants[a].statusEffect('Dodge',args[0])
                     break
                 }
             }

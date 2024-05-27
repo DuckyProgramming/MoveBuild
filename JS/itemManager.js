@@ -307,7 +307,7 @@ class itemManager{
             case 101:
                 userCombatant.statusEffect('Strength',5*effectiveness)
                 for(let a=0,la=5*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].discard.add(findName('Burn',types.card),0,game.playerNumber+1)
+                    this.battle.drop(player,findName('Burn',types.card),0,game.playerNumber+1)
                 }
             break
             case 102:

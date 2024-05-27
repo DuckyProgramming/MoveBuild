@@ -429,6 +429,7 @@ class battle{
     clearReinforce(){
         this.counter.enemy-=this.reinforce.back.length+this.reinforce.front.length
         this.reinforce={back:[],front:[]}
+        this.tileManager.clearReinforce()
     }
     loadReinforce(){
         for(let a=0,la=this.reinforce.back.length;a<la;a++){
@@ -1837,7 +1838,7 @@ class battle{
                             this.overlayManager.overlays[38][a].activate()
                         }
                         let reward=[]
-                        for(let a=0,la=(variants.vanish||variants.inventor)?2:1;a<la;a++){
+                        for(let b=0,lb=(variants.vanish||variants.inventor)?2:1;b<lb;b++){
                             if(floor(random(0,2))==0||!this.modded(50)){
                                 switch(this.encounter.class){
                                     case 0: case 3: case 4:

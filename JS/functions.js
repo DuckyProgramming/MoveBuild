@@ -583,7 +583,7 @@ function intentDescription(attack,user,info){
 			case 14: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-2`
 			case 15: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-2`
 			case 16: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nRange 1-1`
-			case 17: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nTargets Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${attack.effect[1]!=1?`s`:` `}\nRange 1-1`
+			case 17: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nTargets Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${attack.effect[1]!=1?`s`:``}\nRange 1-1`
 			case 18: return `Gain ${info?attack.effect[0]:`?`} Strength`
 			case 19: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-2`
 			case 20: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-2`
@@ -603,7 +603,7 @@ function intentDescription(attack,user,info){
 			case 34: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nGain 1 Combo Per Hit\nRange 1-1`
 			case 35: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nGain 1 Combo\nRange 1-1`
 			case 36: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain 1 Combo Per Hit\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-1`
-			case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage+${info?calculateIntent(attack.effect[1],user,0):`?`}*Combo\nGain 1 Combo Per Hit\nRange 1-1`
+			case 37: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage+${info?calculateIntent(attack.effect[1],user,0):`?`}*Combo\nRange 1-1`
 			case 38: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-6`
 			case 39: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[0]!=1?`s`:``):`?`}`
 			case 40: return `Create ${info?attack.effect[0]:`?`} Landmine${attack.effect[0]!=1?`s`:``}`;
@@ -654,14 +654,14 @@ function intentDescription(attack,user,info){
 			case 85: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n5 Tiles Wide\nRange 2-2`
 			case 86: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\n5 Tiles Wide\nRange 2-2`
 			case 87: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-1`
-			case 88: return `You Cannot Move\nFor ${info?attack.effect[0]:`?`} Turn${attack.effect[0]!=1?`s`:` `}`
-			case 89: case 145:
+			case 88: return `You Cannot Move\nFor ${info?attack.effect[0]:`?`} Turn${attack.effect[0]!=1?`s`:``}`
+			case 89: case 145: case 338:
 				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
 			case 90: case 235:
 				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-6\nNo Movement`
 			case 91: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
 			case 92: return `Draw ${info?attack.effect[0]:`?`} Less\nCard${attack.effect[0]!=1||info?`s`:``} Next Turn`
-			case 93: return `Lose ${info?attack.effect[0]:`?`} Energy`
+			case 93: return `Target Loses ${info?attack.effect[0]:`?`} Energy`
 			case 94: return `Apply ${info?attack.effect[0]:`?`} Anti-Control`
 			case 95: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 4 Times\n3 Tiles Wide\nRange 1-1`
 			case 96: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPulls at Range 2\nRange 1-2`
@@ -692,7 +692,7 @@ function intentDescription(attack,user,info){
 			case 121: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Right\nRange 1-1`
 			case 122: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Left\nRange 1-1`
 			case 123: return `Apply ${info?attack.effect[0]:`?`} Bleed\nRange 1-6\nNo Movement`
-			case 124: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDrain ${info?attack.effect[1]:`?`} Energy\n3 Tiles Wide\nRange 1-1`
+			case 124: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\n3 Tiles Wide\nRange 1-1`
 			case 125: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSwap With Target\nRange 1-6`
 			case 126: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block to All Enemies\nAll Enemies Retain Block\nFor 2 Turns`
 			case 127: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage\nRange 2-2`
@@ -708,7 +708,7 @@ function intentDescription(attack,user,info){
 			case 137: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2\nTargets Adjacent Diagonals`
 			case 138: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Back Left\nRange 1-2`
 			case 139: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Back Right\nRange 1-2`
-			case 140: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${attack.effect[1]!=1?`s`:` `}\nRange 1-6\nNo Movement`
+			case 140: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Move\nFor ${info?attack.effect[1]:`?`} Turn${attack.effect[1]!=1?`s`:``}\nRange 1-6\nNo Movement`
 			case 141: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\nRange 1-6\nNo Movement`
 			case 142: return `Gain ${info?attack.effect[0]:`?`} Strength\nDeal ${info?calculateIntent(attack.effect[1],user,0):`?`} Damage\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-1`
 			case 143: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 2 Tiles\nRange 1-3`
@@ -725,7 +725,7 @@ function intentDescription(attack,user,info){
 			case 155: return `Spawn ${info?attack.effect[0]:`?`} ${info?attack.effect[1]+(attack.effect[0]!=1?`s`:``):`?`} Nearby`
 			case 156: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nPulls at Range 2\nRange 1-2`
 			case 157: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-1`
-			case 158: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMove ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:` `} From\nDraw to Discard\nRange 1-6\nNo Movement`
+			case 158: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMove ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``} From\nDraw to Discard\nRange 1-6\nNo Movement`
 			case 159: return `Gain ${info?attack.effect[0]:`?`} Stack${attack.effect[0]!=1?`s`:``} of\nRandom Buffs or Nerfs`
 			case 160: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPull to 1 Range\nRange 1-1`
 			case 162: return `Move until Collision,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage`
@@ -762,7 +762,7 @@ function intentDescription(attack,user,info){
 			case 195: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nUsable in 3 Directions`
 			case 196: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
 			case 197: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Armor`
-			case 198: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nDrain ${info?attack.effect[1]:`?`} Energy\nRange 1-1`
+			case 198: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Adjacent Tiles\nTargets Lose ${info?attack.effect[1]:`?`} Energy\nRange 1-1`
 			case 199: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTransform ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6`
 			case 200: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHeal ${info?calculateIntent(attack.effect[0],user,4):`?`} Health\nRange 1-6`
 			case 201: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSet Values of ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``} to 1\nRange 1-6`
@@ -830,7 +830,7 @@ function intentDescription(attack,user,info){
 			case 268: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMove ${info?attack.effect[1]:`?`} More Time${attack.effect[1]>0?`s`:``} Per Turn\nRange 1-6`
 			case 269: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nGain ${info?attack.effect[1]:`?`} Strength\nMove ${info?attack.effect[2]:`?`} More Time${attack.effect[2]>0?`s`:``} Per Turn`
 			case 270: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[1]:`?`} Less\nCard${attack.effect[1]!=1||info?`s`:``} Next Turn\nRange 1-1`
-			case 271: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nLose ${info?attack.effect[1]:`?`} Energy\nRange 1-1`
+			case 271: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\nRange 1-1`
 			case 272: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2`
 			case 273: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-2`
 			case 274: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDiscard ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1||info?`s`:``} Next Turn\nRange 1-1`
@@ -862,6 +862,74 @@ function intentDescription(attack,user,info){
 			case 301: return `Randomly Edit the Map,\nAdding in Delayed Death Tiles`
 			case 302: return `Randomly Edit the Map,\nAdding in Glitch Tiles`
 			case 303: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`}-${info?calculateIntent(attack.effect[1],user,14):`?`}*Range Damage\nRange 1-6\nNo Movement`
+			case 304: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain 1 Combo\nRange 1-1`
+			case 305: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nApply ${info?attack.effect[1]:`?`} Poison\nRange 1-1`
+			case 306: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nFatigues Cost 1 More\nRange 1-6`
+			case 307: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Dodge`
+			case 308: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nDeals Double Damage\nto Targets With Block\nRange 1-1`
+			case 309: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 7 Times\nRange 1-1`
+			case 310: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Random Debuff\nRange 1-2`
+			case 311: return `Hold ${info?attack.effect[0]:`?`} Random Orb${attack.effect[0]!=1?`s`:``}`
+			case 312: return `Inflict:\n${info?attack.effect[0]:`?`} Poison, ${info?attack.effect[1]:`?`} Shock, ${info?attack.effect[2]:`?`} Freeze, \n${info?attack.effect[3]:`?`} Burn, ${info?attack.effect[4]:`?`} Weak, ${info?attack.effect[5]:`?`} Vulnerable, \n${info?attack.effect[6]:`?`} Frail, ${info?attack.effect[7]:`?`} Anti-Control, ${info?attack.effect[8]:`?`} Jinx\nRange 1-3`
+			case 313: return `Evoke All Orbs\non Target or Self\nRange 1-3`
+			case 314: return `Build a Shotgun`; break
+            case 315: return `Build a Repulse Turret`; break
+			case 316: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTransform ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6`
+			case 317: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nEnter Wrath\nRange 1-2`
+			case 318: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 2 Turns\nEnter Sturdy`
+			case 319: return `Move up to 3 Tiles,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nEnter Haste`
+			case 320: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Charge\nRange 1-6\nNo Movement`
+			case 321: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nGain ${info?attack.effect[3]:`?`} Charge\nRange 1-6\nNo Movement`
+			case 322: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nMore than or Equal to 5 Charge:\nDeals Double`; break
+			case 323: return `Apply ${info?attack.effect[0]:`?`} Burn\nAnywhere`
+			case 324: return `Apply ${info?attack.effect[0]:`?`} Miss\nAnywhere`
+			case 325: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n50%: Deals Double\nRange 1-2`
+			case 326: return `Replace ${info?attack.effect[0]:`?`} Cards\nWith${attack.effect[0]!=1?``:` a`} Strikes${attack.effect[0]!=1?`s`:``}\nReplace ${info?attack.effect[1]:`?`} Cards\nWith${attack.effect[1]!=1?``:` a`} Defend${attack.effect[1]!=1?`s`:``}`
+			case 327: return `Apply ${info?attack.effect[0]:`?`} Jinx\nRange 1-6`
+			case 328: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDiscard ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6`
+			case 329: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\nRange 1-2`
+			case 330: return `Apply ${info?attack.effect[0]:`?`} Jinx\n3 Tiles Wide\nRange 1-1`
+			case 331: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage\nTargets Lose ${info?attack.effect[1]:`?`} Energy\nRange 2-2`
+			case 332: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1\nIncreases by ${info?attack.effect[1]:`?`}`
+			case 333: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Strength\nAnd ${info?attack.effect[1]:`?`} Dexterity`
+			case 334: return `All Enemies Deal Double Damage\nFor THeir Next ${info?attack.effect[0]:`?`} Attack${attack.effect[0]!=1?`s`:``}`
+			case 335: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nReplace Target Items\nWith Mundane Dust\nRange 1-6`
+			case 336: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRewind ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6\nNo Movement`
+			case 337: return `Draw ${info?attack.effect[0]:`?`} Less Card${attack.effect[0]!=1?`s`:``} Next Turn`
+			case 339: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Barrier\nRange 1-3`
+			case 340: return `Gain ${info?attack.effect[0]:`?`} Dexterity\nRemove ${info?attack.effect[1]:`?`} Dexterity`
+			case 341: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 9 Times\nGain ${info?attack.effect[1]:`?`} Intangible\nRange 1-1`
+			case 342: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turns\nRange 1-2`
+			case 343: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Anti-Control\nRange 1-2`
+			case 344: return `Move up to 4 Tiles Backward,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nEnter Haste`
+			case 345: return `Remove All Self Debuffs`
+			case 346: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 2 Turns\nGain ${info?attack.effect[1]:`?`} Strength`
+			case 347: return `Move up to 4 Tiles,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nEnter Haste`
+			case 348: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nApply ${info?attack.effect[1]:`?`} Vulnerable\nApply ${info?attack.effect[2]:`?`} Frail\nRange 1-3`
+			case 349: return `Gain ${info?attack.effect[0]:`?`} Intangible\nGain ${info?attack.effect[1]:`?`} Strength`
+			case 350: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nPush 1 Tile Left\nto All Adjacent Tiles\nRange 1-1`
+			case 351: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nPush 1 Tile Right\nto All Adjacent Tiles\nRange 1-1`
+			case 352: return `Spawn a Random\nPlayer Character Form`
+			case 353: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-6`
+			case 354: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-2`
+			case 355: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-1`
+			case 356: return `Create a Random Sin`
+			case 357: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\n3 Tiles Wide\nRange 1-2`
+			case 358: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nIgnore Block\nRange 1-6`
+			case 359: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 3 Turns\nRemove All Self Debuffs`
+
+
+
+
+
+
+			/*
+			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
+			case 2: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`
+			case 3: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nRange 1-1`
+			case 4: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block`
+			case 5: return `Shuffle in ${info?attack.effect[0]:'?'} ${info?attack.effect[1].replace(/(\r\n|\n|\r)/gm,' '):'?'}`
+			*/
 
 			default: return `INVALID`
 		}
@@ -869,12 +937,12 @@ function intentDescription(attack,user,info){
 		return `error-${attack.type}-${attack.effect}`
 	}
 }
-function tennify(value){d
+function tennify(value){
 	if(round(value)==value){
 		return value
 	}else{
 		let mid=round(value*10).toString()
-		return mid.substr(0,mid.length-1)+'.'+mid[mid.length-1]
+		return mid[mid.length-1]=='0'?mid.substr(0,mid.length-1):mid.substr(0,mid.length-1)+'.'+mid[mid.length-1]
 	}
 }
 function vectorAtan(point1,point2){
@@ -1464,7 +1532,7 @@ function mtgPlayerColor(player){
 		case 11: return [2,3]
 		case 12: return [3]
 		case 13: return [3,4]
-		case 14: return [3,5]
+		case 14: return [2,5]
 		case 15: return [2,4]
 		case 16: return [1,2,4]
 		default: return [0]

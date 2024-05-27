@@ -898,10 +898,10 @@ Sometimes building around ad single Concoction might even work.`,
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
                 this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                this.popups=[[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[]]
                 this.pages=[
 `Daiyousei, the Embodiment, permits playstyles that involve aggression or passivity.
-Her gimmicks include: Vision/Elemental Form, History, Knowledge/Wisdom, and Freeze.`,
+Her gimmicks include: Vision/Elemental Form, History, Knowledge/Wisdom`,
 `Whenever you play a card, you gain 1 Vision. There are also cards that can grant Vision.
 When you have 12 Vision, lose 12 Vision, gain 1 Awakening, and enter Elemental Form.`,
 `While in Elemental Form, you have 1 additional Strength. You lose 1 Awakening per turn.
@@ -915,13 +915,51 @@ History decays quickly - you lose half of it, rounded up, every turn.`,
 `Knowledge and Wisdom are two status applied to the self that interact together.
 You draw 1 more card per turn for every 3 Knowledge you have, capped at 2 more per turn.
 Wisdom increases the cap on Knowledge, but more Knowledge is needed first.`,
+`END OF TUTORIAL`,
+                ]
+            break
+            case 23:
+                transition.scene='battle'
+                game.player=[16]
+                game.deck=[0]
+                this.battle.player=[16]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.setupBattle(types.encounter[findName('TutorialStatus',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(40)
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=15
+                this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
+                this.popups=[[],[],[],[],[],[],[],[],[]]
+                this.pages=[
+`Sanae, the purifier, is designed around creating a sort of balance
+between the usage of offensive and defensive cards and playstyles.
+Her gimmicks include: Barrier, Discuses, Scry and Scry-Based Cards, and Freeze.`,
+`Barrier is similar to block in that it prevents damage coming in.
+The difference is that block is removed at the end of your turn, while
+barrier is kept between turns until it is used.`,
+`Block is reduced before barrier when damage is taken so the two can be used
+in conjuncation to reduce damage. However, because of this advantage of
+barrier being retained, it is harder to gain in large amounts.`,
+`Discuses are similar to the Shivs and Sparks that other characters can generate.
+The difference is that they cannot be spammed, as they cost 2 Energy to play.
+They do retain, though, so a Discus can be held until the right time to use it.`,
+`Discuses also give barrier, so decisions regarding when to use them have
+to be made off when damage and barrier are needed and when energy is available.`,
+`Scrying allows you to look at the top X cards of your draw pile.
+If you dislike the cards, you can click on them to discard them.
+Otherwise, skip so you can draw them next turn (or this turn).`,
+`Some Sanae strategies also allow you to gain advantages
+based on the cards in your draw pile that you can Scry.`,
 `Freeze causes an enemy attack to give you a damage buff after it connects.
 It applies double, so an enemy with 4 Freeze increases your damage by 8 temporarily.
 End your turn to allow him to hit you.`,
 `END OF TUTORIAL`,
                 ]
-            break
-            case 23:
             break
         }
         this.anim.pages=[]
@@ -1126,7 +1164,7 @@ End your turn to allow him to hit you.`,
                         this.battle.cardManagers[0].hand.add(findName('Spot\nWeakness',types.card),0,types.card[findName('Spot\nWeakness',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Follow\nUp',types.card),0,types.card[findName('Follow\nUp',types.card)].list)
                         this.battle.cardManagers[0].hand.add(findName('Clear\nUp',types.card),0,types.card[findName('Clear\nUp',types.card)].list)
-                        this.battle.cardManagers[0].reserve.add(findName('Caffeine\nHigh',types.card),0,types.card[findName('Caffeine\nHigh',types.card)].list)
+                        this.battle.dropDraw(0,findName('Caffeine\nHigh',types.card),0,types.card[findName('Caffeine\nHigh',types.card)].list)
                     break
                 }
             break
@@ -1712,6 +1750,7 @@ End your turn to allow him to hit you.`,
                         this.battle.combatantManager.resetCombatants()
                         this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
                         this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
+                        this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
                         this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
@@ -1725,23 +1764,56 @@ End your turn to allow him to hit you.`,
                         this.battle.cardManagers[0].hand.add(findName('Pyramid',types.card),0,15)
                         this.battle.cardManagers[0].hand.add(findName('Pyramid',types.card),0,15)
                     break
-                    case 6:
-                        this.battle.combatantManager.resetCombatants()
-                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(10)
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=10
-                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
-                        this.battle.updateTargetting()
-                        this.battle.cardManagers[0].allEffect(2,2)
-                        this.battle.cardManagers[0].hand.add(findName('Snowflake',types.card),0,15)
-                        this.battle.cardManagers[0].hand.add(findName('Lament',types.card),0,15)
-                        this.battle.cardManagers[0].hand.add(findName('Quill',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Quill',types.card),0,0)
-                        this.battle.cardManagers[0].hand.add(findName('Strike',types.card),0,15)
-                    break
                 }
             break
             case 23:
+                switch(this.page){
+                    case 1:
+                        this.battle.cardManagers[0].hand.add(findName('Quietude',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,16)
+                    break
+                    case 3:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(40)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Discus\nTalisman',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Balanced\nDiscuses',types.card),0,16)
+                    break
+                    case 5:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(5)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Dreamscape',types.card),0,16)
+                        this.battle.dropDraw(0,findName('Defend',types.card),0,16)
+                        this.battle.dropDraw(0,findName('Strike',types.card),0,16)
+                    break
+                    case 6:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('NumberDummy',types.combatant),50)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(25)
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Dreamscape',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Salamander\nSpear',types.card),0,16)
+                        this.battle.dropDraw(0,findName('Defend',types.card),0,16)
+                        this.battle.dropDraw(0,findName('Strike',types.card),0,16)
+                        this.battle.dropDraw(0,findName('Strike',types.card),0,16)
+                    break
+                    case 7:
+                        this.battle.combatantManager.resetCombatants()
+                        this.battle.combatantManager.summonCombatantDefinite({x:1,y:1},findName('AttackDummy',types.combatant),30)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].setMaxHP(15)
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].attack[0].effect[0]=5
+                        this.battle.combatantManager.combatants[this.battle.combatantManager.combatants.length-1].activate(0)
+                        this.battle.updateTargetting()
+                        this.battle.cardManagers[0].allEffect(2,2)
+                        this.battle.cardManagers[0].hand.add(findName('Snowflake',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Lament',types.card),0,16)
+                        this.battle.cardManagers[0].hand.add(findName('Defend',types.card),0,16)
+                        this.battle.cardManagers[0].hand.addRetain(findName('Strike',types.card),0,16,0)
+                    break
+                }
             break
         }
     }

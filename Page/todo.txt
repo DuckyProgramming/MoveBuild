@@ -1,3 +1,14 @@
+3 Sakura Cards
+2 Common
+1 Uncommon
+card with summit
+the day the sea split - rare, return hand and discard to draw pile, shuffle it, draw 7 cards, gain 3 energy
+[]?
+
+tactics tutorial 2
+
+nerf thaumaturgy to 4 turns
+
 [
 	world 1
 	crusader
@@ -13,7 +24,6 @@
 ]
 [
 	world 3
-	sunny milk
 ]
 [
 	final boss?

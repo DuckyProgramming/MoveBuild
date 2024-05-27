@@ -1412,6 +1412,12 @@ class group{
                         this.cards[a].effect[0]+=this.cards[a].effect[1]
                     }
                 break
+                case 93:
+                    if(this.cards[a].name=='Fatigue'||this.cards[a].name=='Heavy\nFatigue'){
+                        this.cards[a].cost++
+                        this.cards[a].base.cost++
+                    }
+                break
 
             }
         }
@@ -3579,9 +3585,7 @@ class group{
             if(userCombatant.getStatus('2 Exhaust Draw')>0&&this.exhausts%2==0){
                 this.battle.cardManagers[this.player].draw(userCombatant.getStatus('2 Exhaust Draw'))
             }
-            if(this.cards[a].class!=5&&!this.cards[a].spec.includes(4)){
-                this.battle.relicManager.activate(10,[this.player])
-            }
+            this.battle.relicManager.activate(10,[this.player])
             if(variants.witch&&this.cards[a].spec.includes(31)){
                 this.battle.cardManagers[this.player].draw(1)
             }

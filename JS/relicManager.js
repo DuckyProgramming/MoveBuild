@@ -754,9 +754,6 @@ class relicManager{
                             if(this.active[224][a+1]>0){
                                 this.getPlayer(a).statusEffect('Conditioning',this.active[224][a+1])
                             }
-                            if(this.active[228][a+1]>0){
-                                this.getPlayer(a).statusEffect('Anti-Control',this.active[228][a+1])
-                            }
                             if(this.active[237][a+1]>0){
                                 this.battle.cardManagers[a].drawRetain(this.active[237][a+1],1)
                             }
@@ -767,6 +764,9 @@ class relicManager{
                             }
                             if(this.active[242][a+1]>0){
                                 this.getPlayer(a).statusEffect('Miss',2*this.active[242][a])
+                            }
+                            if(this.active[228][a+1]>0){
+                                this.getPlayer(a).statusEffect('Anti-Control',this.active[228][a+1])
                             }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
@@ -975,7 +975,7 @@ class relicManager{
                         }
                     }
                     if(this.active[52][args[1]+1]>0){
-                        for(let a=0,la=this.active[52][args[1]+1];a<la;a++){
+                        for(let a=0,la=4*this.active[52][args[1]+1];a<la;a++){
                             this.battle.cardManagers[args[1]].hand.add(findName('Shiv',types.card),0,0)
                         }
                     }

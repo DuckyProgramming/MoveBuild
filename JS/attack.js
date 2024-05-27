@@ -1769,7 +1769,7 @@ class attack{
                         }
                     break
                     case 115:
-                        this.battle.dropDraw(this.player,findName('Anger',types.card),this.level,this.color,this.edition)
+                        this.battle.dropDrawShuffle(this.player,findName('Anger',types.card),this.level,this.color,this.edition)
                     break
                     case 123:
                         this.battle.drop(this.player,findName('Slow\nBleed',types.card),this.level,game.playerNumber+1)
@@ -2211,7 +2211,7 @@ class attack{
                     break
                     case 1038:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Strike',types.card),0,this.color)
+                            this.battle.dropDrawShuffle(this.player,findName('Strike',types.card),0,this.color)
                         }
                     break
                     case 1050:
@@ -2228,7 +2228,7 @@ class attack{
                         this.userCombatant.statusEffect('Take Double Damage Turn',1)
                     break
                     case 1087:
-                        this.battle.dropDraw(this.player,findName('Credit',types.card),this.level,this.color)
+                        this.battle.dropDrawShuffle(this.player,findName('Credit',types.card),this.level,this.color)
                     break
                     case 1089:
                         if(this.targetCombatant.blocked>0){
@@ -3972,7 +3972,7 @@ class attack{
                     break
                     case 1039:
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Defend',types.card),0,this.color)
+                            this.battle.dropDrawShuffle(this.player,findName('Defend',types.card),0,this.color)
                         }
                     break
                     case 1141:
@@ -4296,7 +4296,7 @@ class attack{
                     break
                     case 2778:
                         for(let a=0,la=this.effect[1]*this.energy;a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                         }
                     break
                     case 2780:
@@ -5597,7 +5597,7 @@ class attack{
                     case 1108:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Basicity',types.card),0,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Basicity',types.card),0,game.playerNumber+1)
                         }
                     break
                     case 1124:
@@ -6941,7 +6941,7 @@ class attack{
                     break
                     case 1096:
                         this.battle.drop(this.player,findName('Magic\nTrick Card',types.card),this.level,0)
-                        this.battle.dropDraw(this.player,findName('Magic\nTrick Card',types.card),this.level,0)
+                        this.battle.dropDrawShuffle(this.player,findName('Magic\nTrick Card',types.card),this.level,0)
                     break
                     case 1098:
                         this.battle.overlayManager.overlays[31][this.player].active=true
@@ -7709,6 +7709,12 @@ class attack{
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.userManager.addRandomClassFree(2,0,1,0)
                         }
+                    break
+                    case 3038:
+                        this.userManager.send(3,1)
+                        this.userManager.shuffle(1)
+                        this.battle.overlayManager.overlays[58][this.player].active=true
+                        this.battle.overlayManager.overlays[58][this.player].activate([this.userManager.reserve.cards.length,0])
                     break
 
                 }
@@ -8661,7 +8667,7 @@ class attack{
                     break
                     case 452:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                     break
                     case 472:
                         this.targetTile.addType(19)
@@ -9004,7 +9010,7 @@ class attack{
                     break
                     case 1075:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        this.battle.dropDraw(this.player,findName('Impending\nDoom',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDrawShuffle(this.player,findName('Impending\nDoom',types.card),this.level,game.playerNumber+1)
                     break
                     case 1097:
                         if(this.userCombatant.luckCheck()){
@@ -10026,7 +10032,7 @@ class attack{
                     case 2482:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                         }
                     break
                     case 2506:
@@ -10048,8 +10054,8 @@ class attack{
                     case 2561:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         if(this.targetCombatant.life<=0){
-                            this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
-                            this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                         }
                     break
                     case 2569:
@@ -10170,7 +10176,7 @@ class attack{
                             this.battle.drop(this.player,findName('Deluxe\nShiv',types.card),0,0)
                         }
                         for(let a=0,la=this.effect[2];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Deluxe\nShiv',types.card),0,0)
+                            this.battle.dropDrawShuffle(this.player,findName('Deluxe\nShiv',types.card),0,0)
                         }
                     break
                     case 3037:
@@ -10384,7 +10390,7 @@ class attack{
                     break
                     case 633:
                         this.targetCombatant.statusEffect('Single Take Double Damage',this.effect[1])
-                        this.battle.dropDraw(this.player,findName('1-Shooter',types.card),0,0)
+                        this.battle.dropDrawShuffle(this.player,findName('1-Shooter',types.card),0,0)
                     break
                     case 915:
                         if(this.targetCombatant.life<=0){
@@ -10531,7 +10537,7 @@ class attack{
                     break
                     case 845:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Dark\nMatter',types.card),0,this.color)
+                            this.battle.dropDrawShuffle(this.player,findName('Dark\nMatter',types.card),0,this.color)
                         }
                     break
                     case 888:
@@ -10981,9 +10987,9 @@ class attack{
                         this.userCombatant.statusEffect('Control',this.effect[1])
                     break
                     case 2831:
-                        this.battle.dropDraw(this.player,findName('Sunny\nMilk',types.card),0,0)
-                        this.battle.dropDraw(this.player,findName('Star\nSapphire',types.card),0,0)
-                        this.battle.dropDraw(this.player,findName('Luna\nChild',types.card),0,0)
+                        this.battle.dropDrawShuffle(this.player,findName('Sunny\nMilk',types.card),0,0)
+                        this.battle.dropDrawShuffle(this.player,findName('Star\nSapphire',types.card),0,0)
+                        this.battle.dropDrawShuffle(this.player,findName('Luna\nChild',types.card),0,0)
                     break
                     case 2841: case 2842:
                         this.targetCombatant.statusEffect('Damage Taken Up to Nearest 5',999)
@@ -10992,7 +10998,7 @@ class attack{
                         for(let a=0,la=this.effect[0];a<la;a++){
                             this.battle.itemManager.addItem(findName(['Salad','Energy Drink','Glass Shard','Molten Metal','Caffeine Pill','Attack Dust','Defense Dust','Mystery Box'][floor(random(0,8))],types.item),this.player)
                         }
-                        this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                        this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                     break
                     case 2847:
                         this.battle.addCurrency(this.effect[0],this.player)
@@ -11026,12 +11032,12 @@ class attack{
                     break
                     case 2874:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Prismatic\nBomb',types.card),0,0)
+                            this.battle.dropDrawShuffle(this.player,findName('Prismatic\nBomb',types.card),0,0)
                         }
                     break
                     case 2879:
                         for(let a=0,la=this.effect[0];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Prismatic\nBomb',types.card),0,0)
+                            this.battle.dropDrawShuffle(this.player,findName('Prismatic\nBomb',types.card),0,0)
                         }
                         this.battle.drop(this.player,findName('Void',types.card),0,game.playerNumber+1)
                     break
@@ -11529,6 +11535,8 @@ class attack{
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,46,[50]))
                             this.targetCombatant.life=0
                             this.battle.longReinforce(this.targetCombatant.name,3)
+                        }else{
+                            this.targetCombatant.life=0
                         }
                     break
                     case 1351:
@@ -11896,7 +11904,7 @@ class attack{
                     case 2287:
                         this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y,51,[20]))
-                        this.battle.dropDraw(this.player,findName('Comet',types.card),0,8)
+                        this.battle.dropDrawShuffle(this.player,findName('Comet',types.card),0,8)
                     break
                     case 2317:
                         for(let a=0,la=this.userCombatant.status.main.length;a<la;a++){
@@ -12131,7 +12139,7 @@ class attack{
                     case 2911:
                         this.userCombatant.statusEffect('Intangible',this.effect[0])
                         for(let a=0,la=this.effect[1];a<la;a++){
-                            this.battle.dropDraw(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
+                            this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                         }
                     break
                     case 2912:

@@ -131,9 +131,10 @@ class cardManager{
         let effectiveMana=[0,0,0,0,0,0]
         for(let a=0,la=this.battle.energy.base[this.player].length;a<la;a++){
             effectiveMana[this.battle.energy.base[this.player][a]]++
-        }for(let a=0,la=types.card.length;a<la;a++){
+        }
+        for(let a=0,la=types.card.length;a<la;a++){
             let cardColor=mtgPlayerColor(types.card[a].list)
-            let manaColor=cardColor.length==1?cardColor[0]:cardColor[a%2]
+            let manaColor=cardColor[a%cardColor.length]
             if(types.card[a].rarity>=0&&types.card[a].list>0&&types.card[a].list<=game.playerNumber&&
                 (cardColor.length==1&&effectiveMana[cardColor[0]]>0||cardColor.length==2&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0||cardColor.length==3&&effectiveMana[cardColor[0]]>0&&effectiveMana[cardColor[1]]>0&&effectiveMana[cardColor[2]]>0)&&
                 (manaColor==0||effectiveMana[manaColor]>=types.card[a].levels[0].cost||types.card[a].levels[0].spec.includes(35))

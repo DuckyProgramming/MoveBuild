@@ -12,7 +12,7 @@ combatant.prototype.display=function(){
                 }
             }
         }
-        if(this.team>0&!this.construct&&!this.support){
+        if(this.team>0&!this.construct&&!this.support||this.name=='Setsuna'){
             let randomColor=0
             this.layer.translate(0,-48)
             for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
@@ -2498,7 +2498,7 @@ combatant.prototype.display=function(){
                         }
                     }
                 }
-                if(!this.graphic){
+                if(!this.graphic&&this.team>0){
                     this.layer.fill(140,120,160,this.fade)
                     this.layer.stroke(120,100,140,this.fade)
                     this.layer.strokeWeight(2)
@@ -3307,6 +3307,9 @@ combatant.prototype.display=function(){
                     this.layer.pop()
                 }
                 if(!this.graphic){
+                    if(this.team==0){
+                        this.layer.translate(0,30)
+                    }
                     this.layer.stroke(240,255,250,this.fade)
                     this.layer.strokeWeight(1)
                     this.layer.noFill()

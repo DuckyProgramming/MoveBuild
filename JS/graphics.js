@@ -1317,7 +1317,7 @@ function generateSprite(layer,type,direction){
 			layer.noStroke()
 			layer.fill(221,215,219)
 			layer.rect(lsin(direction*6+225)*0.2,7,4.8,5)
-			layer.fill(93,89,115)
+			layer.fill(83,99,115)
 			layer.rect(lsin(direction*6+225)*0.2,5.3,4.8,0.5)
 			layer.rect(lsin(direction*6+225)*0.2,8.7,4.8,0.5)
 			layer.stroke(174,160,167)

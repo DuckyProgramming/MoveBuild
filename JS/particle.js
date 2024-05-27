@@ -153,7 +153,7 @@ class particle{
                 this.scale=0
                 this.direction=[random(0,360),random(0,360),random(0,360),random(0,360)]
             break
-            case 53: case 55: case 58: case 69:
+            case 53: case 55: case 58: case 69: case 70: case 71:
                 this.position2={x:args[0]-this.position.x,y:args[1]-this.position.y}
                 this.fade=1
                 this.size=1
@@ -563,31 +563,19 @@ class particle{
                     this.layer.fill(255,100,0,this.fade)
                     this.layer.ellipse(0,0,12)
                     this.layer.fill(255,100,0,this.fade*0.5)
-                    this.layer.beginShape()
-                    for(let a=0,la=24;a<la;a++){
-                        this.layer.vertex(lsin(a/la*360)*(6+a%2*12),lcos(a/la*360)*(6+a%2*12))
-                    }
-                    this.layer.endShape()
+                    regStar(this.layer,0,0,24,6,6,18,18,0)
                 break
                 case 43:
                     this.layer.fill(0,100,255,this.fade)
                     this.layer.ellipse(0,0,12)
                     this.layer.fill(0,100,255,this.fade*0.5)
-                    this.layer.beginShape()
-                    for(let a=0,la=24;a<la;a++){
-                        this.layer.vertex(lsin(a/la*360)*(6+a%2*12),lcos(a/la*360)*(6+a%2*12))
-                    }
-                    this.layer.endShape()
+                    regStar(this.layer,0,0,24,6,6,18,18,0)
                 break
                 case 44:
                     this.layer.fill(50,255,50,this.fade)
                     this.layer.ellipse(0,0,12)
                     this.layer.fill(50,255,50,this.fade*0.5)
-                    this.layer.beginShape()
-                    for(let a=0,la=24;a<la;a++){
-                        this.layer.vertex(lsin(a/la*360)*(6+a%2*12),lcos(a/la*360)*(6+a%2*12))
-                    }
-                    this.layer.endShape()
+                    regStar(this.layer,0,0,24,6,6,18,18,0)
                 break
                 case 45:
                     this.layer.fill(180,255,0,this.fade)
@@ -892,6 +880,28 @@ class particle{
                         }
                     }
                 break
+                case 70:
+                    this.layer.stroke(100,255,100,this.fade)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.strokeWeight(4+a%2*2)
+                        this.layer.line(
+                            map(a/la,0,1,0,this.position2.x)+(a==0?0:this.sets[a-1][0]),
+                            map(a/la,0,1,0,this.position2.y)+(a==0?0:this.sets[a-1][1]),
+                            map((a+1)/la,0,1,0,this.position2.x)+this.sets[a][0],
+                            map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
+                    }
+                break
+                case 71:
+                    this.layer.stroke(255,150,100,this.fade)
+                    for(let a=0,la=this.ticks;a<la;a++){
+                        this.layer.strokeWeight(4+a%2*2)
+                        this.layer.line(
+                            map(a/la,0,1,0,this.position2.x)+(a==0?0:this.sets[a-1][0]),
+                            map(a/la,0,1,0,this.position2.y)+(a==0?0:this.sets[a-1][1]),
+                            map((a+1)/la,0,1,0,this.position2.x)+this.sets[a][0],
+                            map((a+1)/la,0,1,0,this.position2.y)+this.sets[a][1])
+                    }
+                break
 
             }
             this.layer.pop()
@@ -1009,7 +1019,7 @@ class particle{
                     }
                 }
             break
-            case 53:
+            case 53: case 70: case 71:
                 this.fade-=1/45
                 if(this.fade<=0){
                     this.remove=true

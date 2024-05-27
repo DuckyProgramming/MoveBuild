@@ -227,6 +227,9 @@ class tileManager{
     customActivate(type,effect){
         this.tiles.forEach(tile=>tile.customActivate(type,effect))
     }
+    clearReinforce(){
+        this.tiles.forEach(tile=>tile.reinforce=false)
+    }
     unTargetTiles(){
         this.tiles.forEach(tile=>tile.unTarget())
     }
