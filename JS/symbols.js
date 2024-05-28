@@ -2935,7 +2935,7 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(0.5)
             layer.beginShape()
             for(let a=0,la=13;a<la;a++){
-                layer.vertex(lsin(90+90*a/(la-1))*(5-a%2*2.5),lcos(90+90*a/(la-1))*(5-a%2*2.5))
+                layer.vertex(lsin(90+270*a/(la-1))*(5-a%2*2.5),lcos(90+270*a/(la-1))*(5-a%2*2.5))
             }
             layer.vertex(0,0)
             layer.endShape(CLOSE)
@@ -3258,6 +3258,44 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.fill(0,150,255,fade)
             layer.rect(-2,0,6,2)
             layer.triangle(1,-3,1,3,5,0)
+        break
+        case 349:
+            layer.stroke(255,100,200,fade)
+            layer.strokeWeight(1)
+            for(let a=0,la=12;a<la;a++){
+                layer.line(lsin(a*30)*3,lcos(a*30)*3,lsin(a*30)*6,lcos(a*30)*6)
+            }
+            layer.fill(255,100,200,fade)
+            layer.noStroke()
+            layer.ellipse(0,8,2)
+            layer.ellipse(0,10.5,2)
+            layer.ellipse(0,13,2)
+        break
+        case 350:
+            layer.stroke(40,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,12,12)
+            layer.line(0,0,0,-3.75)
+            layer.line(0,0,2.25,2.25)
+            layer.fill(40,fade)
+            layer.noStroke()
+            layer.ellipse(0,9,2)
+        break
+        case 351:
+            layer.stroke(40,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,12,12)
+            layer.line(0,0,0,-3.75)
+            layer.line(0,0,2.25,2.25)
+            layer.fill(40,fade)
+            layer.noStroke()
+            layer.ellipse(0,9,2)
+            layer.ellipse(0,11.5,2)
+        break
+        case 352:
+            layer.fill(0,150,255,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.quad(-4.5,0,-3,1.5,-1.5,0,-3,-1.5)
         break
 
     }

@@ -27,6 +27,7 @@ class cardManager{
         this.interval=0
         this.greenDiff=0
         this.switch={miracle:false,teleport:false,redraw:false,smite:false,dualDiscus:false}
+        this.bufferedTurn=0
         this.pack=[]
 
         this.initialListing()
@@ -194,7 +195,7 @@ class cardManager{
         this.getList(group).add(this.listing.card[character][rarity][floor(random(0,this.listing.card[character].length))],level,character)
     }
     addRandomFree(group,level,rarity,variant){
-        this.getList(group).addFree(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],variant)
+        this.getList(group).addCost(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],variant)
     }
     addRandomColor(group,level,color,rarity){
         this.getList(group).add(this.listing.card[color][rarity][floor(random(0,this.listing.card[color][rarity].length))],level,color)
@@ -224,7 +225,7 @@ class cardManager{
             }
         }
         if(list.length>0){
-            this.getList(group).addFree(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant)
+            this.getList(group).addCost(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant)
         }
     }
     addRandomClassFreeSpec(group,level,cardClass,variant,spec){
@@ -235,7 +236,7 @@ class cardManager{
             }
         }
         if(list.length>0){
-            this.getList(group).addFreeSpec(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant,spec)
+            this.getList(group).addCostSpec(list[floor(random(0,list.length))],level,this.battle.player[this.player],variant,spec)
         }
     }
     addRandomClassReturn(group,level,cardClass){
@@ -274,7 +275,7 @@ class cardManager{
         }
         if(list.length>0){
             let type=list[floor(random(0,list.length))]
-            this.getList(group).addFreeShuffle(type,level,types.card[type].list,variant)
+            this.getList(group).addCostShuffle(type,level,types.card[type].list,variant)
         }
     }
     addRandomAllPriority(group,level){
@@ -301,7 +302,7 @@ class cardManager{
         }
         if(list.length>0){
             let type=list[floor(random(0,list.length))]
-            this.getList(group).addFree(type,level,types.card[type].list)
+            this.getList(group).addCost(type,level,types.card[type].list)
         }
     }
     addRandomClassAllPriority(group,level,cardClass){
@@ -350,7 +351,7 @@ class cardManager{
         }
         if(list.length>0){
             let type=list[floor(random(0,list.length))]
-            this.getList(group).addFree(type,level,types.card[type].list)
+            this.getList(group).addCost(type,level,types.card[type].list)
         }
     }
     addRandomCompleteAllEnd(group,level,contain){
@@ -379,7 +380,7 @@ class cardManager{
         if(list.length>0){
             let type=list[floor(random(0,list.length))]
             if(spec==1){
-                this.getList(group).addFree(type,level,types.card[type].list)
+                this.getList(group).addCost(type,level,types.card[type].list)
             }else{
                 this.getList(group).add(type,level,types.card[type].list)
             }
@@ -394,7 +395,7 @@ class cardManager{
         }
         if(list.length>0){
             let type=list[floor(random(0,list.length))]
-            this.getList(group).addFree(type,level,types.card[type].list,variant)
+            this.getList(group).addCost(type,level,types.card[type].list,variant)
         }
     }
     addRandomCompleteAllCost(group,level,cost){
@@ -790,31 +791,35 @@ class cardManager{
                         this.hand.add(findName('Card\nSlot',types.card),0,0)
                     }
                 }else{
-                    while(left>0){
-                        this.battle.stats.drawn[this.player]++
-                        if(this.reserve.cards.length>0){
-                            let success=false
-                            for(let a=0,la=this.reserve.cards.length;a<la;a++){
-                                if(this.reserve.cards[a].cost<=left&&this.reserve.cards[a].cost>=0){
-                                    left-=this.reserve.cards[a].cost
-                                    this.reserve.send(this.hand.cards,a,a+1)
-                                    success=true
-                                    break
+                    for(let a=0,la=10;a<la;a++){
+                        if(left>0){
+                            this.battle.stats.drawn[this.player]++
+                            if(this.reserve.cards.length>0){
+                                let success=false
+                                for(let b=0,lb=this.reserve.cards.length;b<lb;b++){
+                                    if(this.reserve.cards[b].cost<=left&&this.reserve.cards[b].cost>=0){
+                                        left-=this.reserve.cards[b].cost
+                                        this.reserve.send(this.hand.cards,b,b+1)
+                                        success=true
+                                        break
+                                    }
                                 }
-                            }
-                            if(!success){
-                                if(this.discard.cards.length>0){
-                                    this.discard.send(this.reserve.cards,0,-1,4)
-                                    this.reserve.shuffle()
-                                }else{
-                                    left=0
+                                if(!success){
+                                    if(this.discard.cards.length>0){
+                                        this.discard.send(this.reserve.cards,0,-1,4)
+                                        this.reserve.shuffle()
+                                    }else{
+                                        left=0
+                                    }
                                 }
+                            }else if(this.discard.cards.length>0){
+                                this.discard.send(this.reserve.cards,0,-1,4)
+                                this.reserve.shuffle()
+                            }else{
+                                left=0
                             }
-                        }else if(this.discard.cards.length>0){
-                            this.discard.send(this.reserve.cards,0,-1,4)
-                            this.reserve.shuffle()
                         }else{
-                            left=0
+                            a=la
                         }
                     }
                     this.reserve.parseDrawEffects(this.hand)
@@ -1134,6 +1139,12 @@ class cardManager{
                     this.draw(this.drawAmount+this.drawBoost-this.hand.cards.length)
                     if(this.hand.cards.length<this.drawAmount){
                         this.discard.sendAttack(this.hand.cards,945,1)
+                    }
+                }
+                if(this.bufferedTurn>0){
+                    this.bufferedTurn-=game.animRate
+                    if(this.bufferedTurn<=0){
+                        this.battle.newTurn()
                     }
                 }
             break

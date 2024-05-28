@@ -144,7 +144,8 @@ class combatant{
             'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
             'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
             'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
-            'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn',
+            'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn','Miracle Next Turn Next Turn',
+            'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -181,7 +182,8 @@ class combatant{
                 1,0,0,0,0,0,0,1,2,1,//32
                 0,1,0,0,0,0,0,0,0,1,//33
                 0,0,0,2,2,0,0,0,0,2,//34
-                0,0,0,2,2,0,2,0,2,
+                0,0,0,2,2,0,2,0,2,2,//35
+                2,2,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -218,7 +220,8 @@ class combatant{
                 2,2,3,2,2,2,2,2,0,0,//32
                 2,1,2,2,2,2,2,2,2,2,//33
                 2,2,2,2,2,2,2,2,2,3,//34
-                2,2,2,2,2,2,2,2,0,
+                2,2,2,2,2,2,2,2,0,2,//35
+                2,2,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -446,7 +449,7 @@ class combatant{
                 this.kimono.decoration.push({spin:218,rotate:random(0,360),y:24,width:0.2,height:1,type:0})
             break
             case 'Sakura':
-                if(graphics.combatant[0]==-1){
+                if(graphics.combatant[1]==-1){
                     setupCombatantGraphics(1)
                     graphics.combatant.splice(1,1,graphics.combatant[graphics.combatant.length-1])
                     delete graphics.combatant[graphics.combatant.length-1]
@@ -595,7 +598,7 @@ class combatant{
                 }
             break
             case 'Certes':
-                if(graphics.combatant[0]==-1){
+                if(graphics.combatant[2]==-1){
                     setupCombatantGraphics(2)
                     graphics.combatant.splice(2,1,graphics.combatant[graphics.combatant.length-1])
                     delete graphics.combatant[graphics.combatant.length-1]
@@ -692,7 +695,7 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
             break
             case 'Setsuna':
-                if(graphics.combatant[0]==-1){
+                if(graphics.combatant[3]==-1){
                     setupCombatantGraphics(3)
                     graphics.combatant.splice(3,1,graphics.combatant[graphics.combatant.length-1])
                     delete graphics.combatant[graphics.combatant.length-1]
@@ -800,7 +803,7 @@ class combatant{
                 }
             break
             case 'Airi':
-                if(graphics.combatant[0]==-1){
+                if(graphics.combatant[4]==-1){
                     setupCombatantGraphics(4)
                     graphics.combatant.splice(4,1,graphics.combatant[graphics.combatant.length-1])
                     delete graphics.combatant[graphics.combatant.length-1]
@@ -902,7 +905,7 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
             break
             case 'Shiru':
-                if(graphics.combatant[0]==-1){
+                if(graphics.combatant[5]==-1){
                     setupCombatantGraphics(5)
                     graphics.combatant.splice(5,1,graphics.combatant[graphics.combatant.length-1])
                     delete graphics.combatant[graphics.combatant.length-1]
@@ -1025,9 +1028,9 @@ class combatant{
                 this.color={skin:{head:[240,230,160],body:[140,130,120],legs:[120,110,100],arms:[120,160,180],upperBody:[140,180,200]},eye:{back:[0,0,0],front:[0,0,0],glow:[255,255,255]},mouth:{in:[200,100,100],out:[0,0,0],teeth:[[65,65,65],[245,245,245]]},belt:[60,50,35],glasses:[[85,85,85],[230,235,240]],pocket:[[160,200,220],[170,210,230]]}
             break
             case 'Daiyousei':
-                if(graphics.combatant[0]==-1){
-                    setupCombatantGraphics(5)
-                    graphics.combatant.splice(5,1,graphics.combatant[graphics.combatant.length-1])
+                if(graphics.combatant[6]==-1){
+                    setupCombatantGraphics(6)
+                    graphics.combatant.splice(6,1,graphics.combatant[graphics.combatant.length-1])
                     delete graphics.combatant[graphics.combatant.length-1]
                     graphics.combatant.splice(graphics.combatant.length-1,1)
                 }
@@ -1089,7 +1092,7 @@ class combatant{
                 this.goal={anim:{direction:this.anim.direction}}
             break
             case 'Sanae':
-                if(graphics.combatant[0]==-1){
+                if(graphics.combatant[7]==-1){
                     setupCombatantGraphics(7)
                     graphics.combatant.splice(7,1,graphics.combatant[graphics.combatant.length-1])
                     delete graphics.combatant[graphics.combatant.length-1]
@@ -5018,9 +5021,9 @@ class combatant{
             }
             if(this.status.main[56]>0){
                 if(this.battle.turn.main<this.battle.players){
-                    this.statusEffect('Temporary Strength',this.status.main[184])
+                    this.statusEffect('Temporary Strength',this.status.main[56])
                 }else{
-                    this.statusEffectNext('Temporary Strength',this.status.main[184])
+                    this.statusEffectNext('Temporary Strength',this.status.main[56])
                 }
             }
             if(this.status.main[64]>0){
@@ -5045,6 +5048,9 @@ class combatant{
             if(spec!=3){
                 if(this.status.main[63]>0){
                     damage+=this.status.main[63]
+                }
+                if(this.status.main[352]>0){
+                    damage=max(min(1,damage),damage-this.status.main[352])
                 }
                 if(this.status.main[123]>0){
                     damage*=2
@@ -5722,6 +5728,7 @@ class combatant{
             if(this.battle.relicManager.hasRelic(250,this.id)&&distance>=2){
                 this.battle.cardManagers[this.id].draw(this.battle.relicManager.active[250][this.id+1])
             }
+            this.battle.cardManagers[this.id].hand.allEffectArgs(20,[this.tilePosition,{x:x,y:y}])
         }
         this.tilePosition.x=x
         this.tilePosition.y=y
@@ -6424,6 +6431,9 @@ class combatant{
                     case 346: this.status.main[findList('Miracle Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 347: if(!sub){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.combatantManager.tickSub()}} break
                     case 348: this.addBarrier(this.status.main[a]); break
+                    case 349: this.status.main[findList('Miracle Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 350: this.status.main[findList('Extra Turn',this.status.name)]+=this.status.main[a]; break
+                    case 351: this.status.main[findList('Extra Turn Next Turn',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -8980,6 +8990,19 @@ class combatant{
                 if(this.battle.modded(114)){
                     this.battle.combatantManager.summonCombatant(this.tilePosition,findName('Soul',types.combatant),this.goal.anim.direction)
                 }
+                switch(this.name){
+                    case 'Medic':
+                        for(let a=0,la=this.battle.players;a<la;a++){
+                            if(this.battle.relicManager.hasRelic(231,a)){
+                                this.battle.overlayManager.overlays[25][a].active=true
+                                this.battle.overlayManager.overlays[25][a].activate([0,[]])
+                                for(let b=0,lb=this.battle.relicManager.active[231][a+1];b<lb;b++){
+                                    this.battle.overlayManager.overlays[25][a].activate([1,[{type:8,value:[]}]])
+                                }
+                            }
+                        }
+                    break
+                }
             }
         }else{
             this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0,0,1,15)
@@ -9232,17 +9255,6 @@ class combatant{
                             case 'Danger':
                                 this.battle.combatantManager.summonCombatant(this.tilePosition,findName(['Management Robot','Management Soldier','Management Officer','Management Custodian','Management Autoduck','Management Sniper'][floor(random(0,6))],types.combatant),this.goal.anim.direction)
                             break
-                            case 'Medic':
-                                for(let a=0,la=this.battle.players;a<la;a++){
-                                    if(this.battle.relicManager.hasRelic(231,a)){
-                                        this.battle.overlayManager.overlays[25][a].active=true
-                                        this.battle.overlayManager.overlays[25][a].activate([0,[]])
-                                        for(let b=0,lb=this.battle.relicManager.active[231][a+1];b<lb;b++){
-                                            this.battle.overlayManager.overlays[25][a].activate([1,[{type:8,value:[]}]])
-                                        }
-                                    }
-                                }
-                            break
                         }
                     }
                     this.battle.combatantManager.reorder()
@@ -9342,7 +9354,7 @@ class combatant{
                 la--
             }
         }
-        if(this.name=='George'||this.name=='Lira'||this.name=='Sakura'||this.name=='Certes'||this.name=='Ume'){
+        if(this.type>0&&this.type<=game.playerNumber){
             this.trigger.display.extra.damage=this.life<=this.base.life*0.2&&options.damage
             if(this.balance>this.balanceCap){
                 if(this.status.main[105]>0){
@@ -9350,6 +9362,7 @@ class combatant{
                 }else if(this.status.main[104]<=0){
                     this.balance=0
                 }
+                this.battle.cardManagers[this.id].hand.allEffect(94)
                 if(this.battle.turn.main==this.id){
                     this.battle.turn.endReady=true
                 }
@@ -9358,7 +9371,7 @@ class combatant{
             }
         }
         switch(this.name){
-            case 'Lira': case 'Setsuna': case 'Ume':
+            case 'Lira': case 'Setsuna': case 'Sanae': case 'Ume':
                 this.anim.sword=smoothAnim(this.anim.sword,this.goal.anim.sword,0,1,5)
             break
             case 'Sakura':

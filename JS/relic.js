@@ -233,8 +233,8 @@ class relic{
                     displaySymbol(this.layer,0,-4,27,0,1,this.fade)
                     displaySymbol(this.layer,0,8,4,0,0.6,this.fade)
                     this.layer.fill(0,this.fade)
-                    this.layer.textSize(6)
-                    this.layer.text('-10',0,-4)
+                    this.layer.textSize(8)
+                    this.layer.text('-20',0,-4)
                 break
                 case 'Power Heal':
                     displaySymbol(this.layer,-8,-4,8,0,1,this.fade)
@@ -579,7 +579,7 @@ class relic{
                     this.layer.textSize(15)
                     this.layer.text('2',8,-3)
                 break
-                case '3 Skill Metallicize':
+                case '3 Defense Metallicize':
                     displaySymbol(this.layer,-9,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-9,0,19,0,0.8,this.fade)
                     displaySymbol(this.layer,9,0,43,0,1.5,this.fade)
@@ -618,7 +618,7 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('2x',0,10)
                 break
-                case '10 Skill Buffer':
+                case '10 Defense Buffer':
                     displaySymbol(this.layer,-9,0,8,0,1,this.fade)
                     displaySymbol(this.layer,-9,0,19,0,0.8,this.fade)
                     displaySymbol(this.layer,9,0,44,0,1.5,this.fade)
@@ -1057,7 +1057,7 @@ class relic{
                     displaySymbol(this.layer,8,0,16,0,0.8,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(8)
-                    this.layer.text('>5',8,0)
+                    this.layer.text('>7',8,0)
                 break
                 case 'Energy/Initiative':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)

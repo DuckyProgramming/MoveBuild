@@ -23,8 +23,8 @@ function displayTransition(layer,transition){
 		}
 		if(transition.anim>=1.1){
 			transition.trigger=false
+			current.sceneChange(transition.scene,stage.scene)
 			stage.scene=transition.scene
-			current.sceneChange()
 			if(transition.convert){
 				transition.convert=false
 				current.convert(stage.scene)
@@ -470,11 +470,11 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				case 0: return damage==effect&&bonus==0?tennify(effect):tennify(effect)+`(${tennify(damage+bonus)})`
 				case 2: return (damage==effect?(effect==1?``:tennify(effect))+'X':tennify(effect)+`(${tennify(damage)})X`)+(bonus>0?`(+${tennify(bonus)})`:``)
 				case 5: return (damage==effect?(effect==1?``:tennify(effect))+'XX':tennify(effect)+`(${tennify(damage)})XX`)+(bonus>0?`(+${tennify(bonus)})`:``)
-				case 7: return effect==1?(damage==effect?'1*Combo':`1(${tennify(damage)})*Combo`):(damage==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)
+				case 7: return effect==1?(damage==effect?`Combo`:`1(${tennify(damage)})*Combo`):(damage==effect?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)
 				case 8: return effect==1?(damage==effect&&bonus==0?tennify(effect)+'1*Combo':tennify(effect)+`1(${tennify(damage)})*Combo`)+(bonus>0?`(+${tennify(bonus)})`:``):(damage==effect&&bonus==0?tennify(effect)+'*Combo':tennify(effect)+`(${tennify(damage)})*Combo`)+(bonus>0?`(+${tennify(bonus)})`:``)
 				case 10: return damage==effect?tennify(effect):tennify(effect)+`(${tennify(damage)})`
 				case 11: return (damage==effect?(effect==1?``:`${tennify(effect)}`)+'X':tennify(effect)+`(${tennify(damage)})X`)
-				case 12: return effect==1?(damage==effect?'1*Faith':`1(${tennify(damage)})*Faith`):(damage==effect?tennify(effect)+'*Faith':tennify(effect)+`(${tennify(damage)})*Faith`)
+				case 12: return effect==1?(damage==effect?'Faith':`1(${tennify(damage)})*Faith`):(damage==effect?tennify(effect)+'*Faith':tennify(effect)+`(${tennify(damage)})*Faith`)
 				case 13: return effect==1?(damage==effect?'':`1(${tennify(damage)})*`):(damage==effect?tennify(effect)+'*':tennify(effect)+`(${tennify(damage)})*`)
 
 			}
@@ -650,7 +650,7 @@ function intentDescription(attack,user,info){
 			case 81: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6\nNo Movement`
 			case 82: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\n3 Tiles Wide\nRange 1-1`
 			case 83: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
-			case 84: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\n3 Tiles Wide\nRange 1-2`
+			case 84: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\n3 Tiles Wide\nRange 1-1`
 			case 85: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n5 Tiles Wide\nRange 2-2`
 			case 86: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\n5 Tiles Wide\nRange 2-2`
 			case 87: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-1`
@@ -918,11 +918,6 @@ function intentDescription(attack,user,info){
 			case 358: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nIgnore Block\nRange 1-6`
 			case 359: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 3 Turns\nRemove All Self Debuffs`
 
-
-
-
-
-
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
 			case 2: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`
@@ -941,8 +936,9 @@ function tennify(value){
 	if(round(value)==value){
 		return value
 	}else{
-		let mid=round(value*10).toString()
-		return mid[mid.length-1]=='0'?mid.substr(0,mid.length-1):mid.substr(0,mid.length-1)+'.'+mid[mid.length-1]
+		let pre=round(value*10).toString()
+		let mid=pre.substr(0,pre.length-1)+'.'+pre[pre.length-1]
+		return float(mid[mid.length-1]=='0'&&mid.includes('.')?mid.substr(0,mid.indexOf('.')):mid)
 	}
 }
 function vectorAtan(point1,point2){
@@ -984,20 +980,20 @@ function multiplyString(base,multiply){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.editedCost,base.edited.costComplete)
 }
 function copyCardFree(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.editedCost,base.edited.costComplete)
 }
 function upgradeCard(base,nonlimiting=false){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.editedCost,false)
 	if(base.attack==1352||nonlimiting){
 		result.limit=base.limit
 	}
 	return result
 }
 function unupgradeCard(base,nonlimiting=false){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.editedCost,false)
 	if(base.attack==1352||nonlimiting){
 		result.limit=base.limit
 	}

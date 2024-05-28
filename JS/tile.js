@@ -65,6 +65,9 @@ class tile{
                         if(!this.battle.combatantManager.combatants[this.combatant].checkTile()){
                             this.battle.combatantManager.combatants[this.combatant].armed=true
                             this.anim.upPart[a]=false
+                            if(this.battle.combatantManager.combatants[this.combatant].id<this.battle.players){
+                                this.battle.cardManagers[this.battle.combatantManager.combatants[this.combatant].id].hand.allEffect(95)
+                            }
                         }
                     }
                 break

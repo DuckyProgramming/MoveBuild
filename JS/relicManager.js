@@ -242,6 +242,9 @@ class relicManager{
             case 77:
                 this.battle.itemManager.effectiveness[player]*=2
             break
+            case 97:
+                this.battle.purchaseManager.costChange(player,2,-80)
+            break
             case 102:
                 this.battle.overlayManager.overlays[3][player].takable++
             break
@@ -461,6 +464,9 @@ class relicManager{
             break
             case 77:
                 this.battle.itemManager.effectiveness[player]/=2
+            break
+            case 97:
+                this.battle.purchaseManager.costChange(player,2,80)
             break
             case 102:
                 this.battle.overlayManager.overlays[3][player].takable--
@@ -1107,7 +1113,7 @@ class relicManager{
                     }
                 }
                 if(this.active[140][args[1]+1]>0){
-                    if(this.battle.counter.turnPlayed[0]>=5){
+                    if(this.battle.counter.turnPlayed[0]>=7){
                         this.battle.cardManagers[this.battle.turn.main].allEffect(2,2)
                         this.battle.setEnergy(0,this.battle.turn.main)
                     }

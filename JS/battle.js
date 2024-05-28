@@ -202,9 +202,12 @@ class battle{
         transition.convert=true
         this.replayManager.reset()
     }
-    sceneChange(){
+    sceneChange(past,post){
         if(this.initialized){
             this.cardManagers.forEach(cardManager=>cardManager.sceneChange())
+        }
+        if(past=='rest'){
+            this.optionManagers.forEach(optionManager=>optionManager.removeAfter())
         }
     }
     convert(scene){
@@ -543,6 +546,41 @@ class battle{
             this.cardManagers[a].drop.addDrop(type,level,color)
         }
     }
+    newTurn(){
+        if(!this.tutorialManager.active){
+            if(this.turn.total==1){
+                if(!this.relicManager.hasRelic(141,this.turn.main)){
+                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                }
+                if(this.relicManager.hasRelic(107,this.turn.main)){
+                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
+                }
+                if(this.nodeManager.world==3&&this.encounter.class==2){
+                    this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
+                }
+                this.cardManagers[this.turn.main].switchCheck()
+                if(variants.witch){
+                    this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
+                }
+            }
+            if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
+                this.cardManagers[this.turn.main].allEffect(3,47)
+                this.cardManagers[this.turn.main].turnDraw(this.turn.total)
+                if(this.turn.total==1){
+                    this.cardManagers[this.turn.main].allEffect(0,48)
+                }
+            }else if(variants.witch){
+                this.cardManagers[this.turn.main].allEffect(3,42)
+            }
+        }
+        this.cardManagers[this.turn.main].allEffect(3,39)
+        if(variants.cyclicDraw||variants.blackjack){
+            this.cardManagers[this.turn.main].regenDrops()
+        }
+        this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
+        this.turn.time=game.turnTime
+        this.counter.turnPlayed=[0,0,0,0,0]
+    }
     endTurn(){
         this.turn.endReady=false
         this.replayManager.list.push(new attack(-1000,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
@@ -550,12 +588,14 @@ class battle{
         this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
+        let extra=false
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0)+this.energy.temp[this.turn.main])-(this.modded(5)?max(3-this.turn.total,0):0),this.turn.main)
             this.energy.temp[this.turn.main]=0
+            extra=true
         }else{
             this.cardManagers[this.turn.main].reset()
             this.turn.main++
@@ -570,37 +610,11 @@ class battle{
             this.replayManager.list.push(new attack(-1002,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.tickA()
         }else{
-            if(!this.tutorialManager.active){
-                if(this.turn.total==1){
-                    if(!this.relicManager.hasRelic(141,this.turn.main)){
-                        this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
-                    }
-                    if(this.relicManager.hasRelic(107,this.turn.main)){
-                        this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
-                    }
-                    if(this.nodeManager.world==3&&this.encounter.class==2){
-                        this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
-                    }
-                    this.cardManagers[this.turn.main].switchCheck()
-                    if(variants.witch){
-                        this.cardManagers[this.turn.main].hand.add(findName('Slot\nShift',types.card),0,0)
-                    }
-                }
-                if((this.turn.total==1||!variants.witch)&&!variants.blackjack){
-                    this.cardManagers[this.turn.main].allEffect(3,47)
-                    this.cardManagers[this.turn.main].turnDraw(this.turn.total)
-                    if(this.turn.total==1){
-                        this.cardManagers[this.turn.main].allEffect(0,48)
-                    }
-                }else if(variants.witch){
-                    this.cardManagers[this.turn.main].allEffect(3,42)
-                }
+            if(extra){
+                this.cardManagers[this.turn.main].bufferedTurn=30
+            }else{
+                this.newTurn()
             }
-            this.cardManagers[this.turn.main].allEffect(3,39)
-            this.cardManagers[this.turn.main].regenDrops()
-            this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
-            this.turn.time=game.turnTime
-            this.counter.turnPlayed=[0,0,0,0,0]
         }
         this.attackManager.clear()
         this.updateTargetting()
@@ -882,12 +896,12 @@ class battle{
         }
         if(card.cost>=3&&userCombatant.getStatus('3+ Cost Free Discus')>0){
             for(let a=0,la=userCombatant.getStatus('3+ Cost Free Discus');a<la;a++){
-                this.cardManagers[player].hand.addFree(findName('Dual\nDiscus',types.card),0,0,0)
+                this.cardManagers[player].hand.addCost(findName('Dual\nDiscus',types.card),0,0,0)
             }
         }
         if(card.cost>=3&&userCombatant.getStatus('3+ Cost Free Upgraded Discus')>0){
             for(let a=0,la=userCombatant.getStatus('3+ Cost Free Upgraded Discus');a<la;a++){
-                this.cardManagers[player].hand.addFree(findName('Dual\nDiscus',types.card),1,0,0)
+                this.cardManagers[player].hand.addCost(findName('Dual\nDiscus',types.card),1,0,0)
             }
         }
         this.combatantManager.playCardFront(cardClass)
@@ -1088,11 +1102,16 @@ class battle{
                     this.energy.crystalTotal[a][b]++
                 }
                 while(this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
+                    let triggered=false
                     for(let c=0,lc=this.energy.crystal[a].length;c<lc;c++){
                         if(this.energy.crystal[a][c][0]==b&&this.energy.crystal[a][c][3]&&this.energy.crystalTotal[a][b]>this.energy.main[a][b]){
                             this.energy.crystal[a][c][3]=false
                             this.energy.crystalTotal[a][b]--
+                            triggered=true
                         }
+                    }
+                    if(!triggered){
+                        this.energy.crystalTotal[a][b]--
                     }
                 }
             }
@@ -2199,13 +2218,13 @@ class battle{
                 }
             break
             case 'custom':
-                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber54,-2,-1]
+                let prismrules=[0,game.playerNumber+1,game.playerNumber+2,game.playerNumber+3,game.playerNumber+4,game.playerNumber+5,-2,-1]
                 for(let a=0,la=24;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2-217.5+a%4*190,y:this.layer.height/2-135+floor(a/4)*45},width:27.5,height:27.5})){
-                        if(variants.prismrule.includes(a<8?prismRules[a]:a-7)){
-                            variants.prismrule.splice(variants.prismrule.indexOf(a<8?prismRules[a]:a-7),1)
+                        if(variants.prismrule.includes(a<8?prismrules[a]:a-7)){
+                            variants.prismrule.splice(variants.prismrule.indexOf(a<8?prismrules[a]:a-7),1)
                         }else{
-                            variants.prismrule.push(a<8?prismRules[a]:a-7)
+                            variants.prismrule.push(a<8?prismrules[a]:a-7)
                         }
                     }
                 }
@@ -2630,6 +2649,9 @@ class battle{
                             break
                             case 'C':
                                 this.cardManagers[this.turn.main].hand.allEffect(2)
+                            break
+                            case 'V':
+                                this.combatantManager.combatants[this.turn.main].setMaxHP(9999)
                             break
                         }
                     }

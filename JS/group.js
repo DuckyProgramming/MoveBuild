@@ -11,7 +11,7 @@ class group{
         this.spec=[]
         this.target=[]
         this.lastDuplicate=''
-        this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+        this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
         this.compact=1
         this.sevens=0
         this.edicts=0
@@ -259,22 +259,30 @@ class group{
             }
         }
     }
-    addFree(type,level,color,variant,edition){
+    addCost(type,level,color,variant,edition){
         let result=this.add(type,level,color,edition)
         if(result){
-            if(variant==2){
-                this.cards[this.cards.length-1].cost--
-                this.cards[this.cards.length-1].base.cost--
-            }else{
-                this.cards[this.cards.length-1].cost=0
-                if(variant==1){
+            switch(variant){
+                case 0:
+                    this.cards[this.cards.length-1].cost=0
+                break
+                case 1:
+                    this.cards[this.cards.length-1].cost=0
                     this.cards[this.cards.length-1].base.cost=0
-                }
+                break
+                case 2:
+                    this.cards[this.cards.length-1].cost--
+                    this.cards[this.cards.length-1].base.cost--
+                break
+                case 3:
+                    this.cards[this.cards.length-1].cost++
+                    this.cards[this.cards.length-1].base.cost++
+                break
             }
         }
         return result
     }
-    addFreeSpec(type,level,color,variant,spec){
+    addCostSpec(type,level,color,variant,spec){
         game.id++
         if(types.card[type].list==game.playerNumber+2&&this.battle.relicManager.hasRelic(66,this.player)){
             this.battle.relicManager.active[66][this.player]--
@@ -337,8 +345,8 @@ class group{
         }
         return result
     }
-    addFreeShuffle(type,level,color,variant){
-        let result=this.addFree(type,level,color,variant)
+    addCostShuffle(type,level,color,variant){
+        let result=this.addCost(type,level,color,variant)
         if(result){
             this.cardShuffledIndex=floor(random(0,this.cards.length-1))
             this.cards.splice(this.cardShuffledIndex,0,this.cards[this.cards.length-1])
@@ -1418,6 +1426,12 @@ class group{
                         this.cards[a].base.cost++
                     }
                 break
+                case 94:
+                    this.cards[a].callBalanceBreakEffect()
+                break
+                case 95:
+                    this.cards[a].callRearmEffect()
+                break
 
             }
         }
@@ -1560,6 +1574,9 @@ class group{
                         this.cards[a].exhaust=true
                         total++
                     }
+                break
+                case 20:
+                    this.cards[a].callMoveTileEffect(args[0],args[1])
                 break
             }
         }
@@ -1797,6 +1814,7 @@ class group{
                     case 40:
                         this.cards[index].cost=max(this.cards[index].cost-args[0],0)
                         this.cards[index].base.cost=max(this.cards[index].base.cost-args[0],0)
+                        this.cards[index].edited.cost--
                     break
                     case 41:
                         this.cards[index].deSize=true
@@ -2036,6 +2054,10 @@ class group{
                 userCombatant.statusEffect('Temporary Draw Next Turn',card.effect[0])
                 userCombatant.statusEffect('Temporary Draw Next Turn Next Turn',card.effect[0])
             break
+            case 3072:
+                card.cost++
+                card.base.cost++
+            break
         }
     }
     deathEffect(){
@@ -2204,7 +2226,7 @@ class group{
         }
         if(this.sorted.length>0||type!=0&&type!=1){
             for(let a=0,la=this.cards.length;a<la;a++){
-                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1||this.cards[a].cost==1&&type==2||this.cards[a].cost==0&&type==3||this.cards[a].spec.length==this.sorted[this.sorted.length-1]&&type==4||this.cards[a].cost%2==0&&type==5||this.cards[a].cost%2==1&&type==6||this.cards[a].spec.includes(5)&&type==7){
+                if(this.cards[a].cost==this.sorted[0]&&type==0||this.cards[a].cost==this.sorted[this.sorted.length-1]&&type==1||this.cards[a].cost==1&&type==2||this.cards[a].cost==0&&type==3||this.cards[a].spec.length==this.sorted[this.sorted.length-1]&&type==4||this.cards[a].cost%2==0&&type==5||this.cards[a].cost%2==1&&type==6||this.cards[a].spec.includes(5)&&type==7||this.cards[a].cost==2&&type==8){
                     list.push(copyCard(this.cards[a]))
                     list[list.length-1].size=0
                     list[list.length-1].position.x=1200
@@ -3651,11 +3673,15 @@ class group{
                                 this.cards[a]=upgradeCard(this.cards[a],true)
                                 this.cards[a].discardEffect=hold
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
-                                while(this.cards[a].discardEffect.includes(0)){
-                                    let hold=this.cards[a].discardEffect
-                                    this.cards[a]=upgradeCard(this.cards[a],true)
-                                    this.cards[a].discardEffect=hold
-                                    this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
+                                for(let b=0,lb=5;b<lb;b++){
+                                    if(this.cards[a].discardEffect.includes(0)){
+                                        let hold=this.cards[a].discardEffect
+                                        this.cards[a]=upgradeCard(this.cards[a],true)
+                                        this.cards[a].discardEffect=hold
+                                        this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(0),1)
+                                    }else{
+                                        b=lb
+                                    }
                                 }
                             }else if(this.cards[a].discardEffect.includes(9)){
                                 this.cards[a].edition=5

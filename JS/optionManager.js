@@ -8,6 +8,7 @@ class optionManager{
         this.complete=false
         this.selections=0
         this.selected=-1
+        this.removePost=[]
     }
     assemble(){
         this.getPosKey()
@@ -54,6 +55,12 @@ class optionManager{
                 this.options[a].position.x=this.layer.width/2+75-la*75+a*150
             }
         }
+    }
+    removeAfter(){
+        for(let a=0,la=this.removePost.length;a<la;a++){
+            this.removeOption(this.removePost[a])
+        }
+        this.removePost=[]
     }
     triggerOption(type){
         switch(type){
@@ -150,9 +157,9 @@ class optionManager{
                 this.selected=this.options[a].type
                 this.triggerOption(this.options[a].type)
                 if(this.options[a].type==6&&this.battle.relicManager.detail[60][this.player]>=3){
-                    this.removeOption(6)
+                    this.removePost.push(6)
                 }else if(this.options[a].type==10&&this.battle.relicManager.detail[254][this.player]>=3){
-                    this.removeOption(10)
+                    this.removePost.push(10)
                 }
                 if(this.battle.modded(164)){
                     a=hold
@@ -177,9 +184,9 @@ class optionManager{
                 this.selected=this.options[a].type
                 this.triggerOption(this.options[a].type)
                 if(this.options[a].type==6&&this.battle.relicManager.detail[60][this.player]>=3){
-                    this.removeOption(6)
+                    this.removePost.push(6)
                 }else if(this.options[a].type==10&&this.battle.relicManager.detail[254][this.player]>=3){
-                    this.removeOption(10)
+                    this.removePost.push(10)
                 }
                 if(this.battle.modded(164)){
                     a=hold

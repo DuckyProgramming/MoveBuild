@@ -251,6 +251,37 @@ Those characters often have status effects that they use often.`,
                 this.battle.setEnergy(99,0)
                 this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.setupBattle(types.encounter[findName('Little Guy',types.encounter)])
+                this.battle.cardManagers[0].reserve.cards=[]
+                this.battle.cardManagers[0].deck.cards=[]
+                this.popups=[[],[],[],[],[],[],[],[]]
+                this.pages=[
+`There are a variety of enemies in Movebuild. The main types of combats
+are Enemies, Elites, and Bosses, in that order of difficulty. You usually
+have a lot of choice regarding fighting Enemies and Elites.`,
+`The first battle in each world is a set easier starting battle,
+and the next few battles in World 1 also are slightly easier combats.
+World 4 is short and doesn't include any standard battles.`,
+`
+It's worth noting that combats are determined entirely randomly,
+except that the same combat cannot appear twice in the same run.`,
+``,
+``,
+``,
+``,
+``,
+                ]
+            break
+            case 6:
+                transition.scene='battle'
+                game.player=[0]
+                game.deck=[0]
+                this.battle.player=[0]
+                this.battle.deck=[0]
+                this.battle.create()
+                this.battle.setEnergy(99,0)
+                this.battle.energy.gen[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
+                this.battle.energy.base[0]=variants.mtg?[0,0,0,0,0,0,0,0,0,0]:99
                 this.battle.setupBattle(types.encounter[findName('TutorialTactic',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
@@ -271,8 +302,6 @@ enemy to play them in.`,
 `Puzzle 5`,
 `END OF TUTORIAL`,
                 ]
-            break
-            case 6:
             break
             case 7:
                 transition.scene='battle'

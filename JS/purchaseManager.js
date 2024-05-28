@@ -170,6 +170,13 @@ class purchaseManager{
             break
         }
     }
+    costChange(player,type,value){
+        for(let a=0,la=this.purchases.length;a<la;a++){
+            if(this.purchases[a].type==type&&this.purchases[a].player==player){
+                this.purchases[a].costChange(value)
+            }
+        }
+    }
     bogo(player,type){
         let list=[]
         for(let a=0,la=this.purchases.length;a<la;a++){

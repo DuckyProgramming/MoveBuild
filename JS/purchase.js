@@ -71,6 +71,11 @@ class purchase{
             }
         }
     }
+    costChange(value){
+        for(let a=0,la=this.cost.length;a<la;a++){
+            this.cost[a]+=round(value*(game.ascend>=16?1.1:1))
+        }
+    }
     buy(){
         if((this.player==-1&&(this.battle.currency.money[0]>=this.cost[0]-(this.battle.relicManager.hasRelic(187,0)?200:0)&&inputs.rel.x<this.position.x||this.battle.currency.money[1]>=this.cost[1]-(this.battle.relicManager.hasRelic(187,1)?200:0)&&inputs.rel.x>this.position.x)||this.player!=-1&&this.battle.currency.money[this.player]>=this.cost[this.player]-(this.battle.relicManager.hasRelic(187,this.player)?200:0))&&this.usable){
             let purchaser=0

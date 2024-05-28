@@ -320,6 +320,15 @@ class combatantManager{
                 case 6:
                     this.combatants[index].statusEffect('Strength',args[0])
                 break
+                case 7:
+                    for(let a=0,la=args[1];a<la;a++){
+                        this.combatants[index].takeDamage(args[0],-1)
+                    }
+                break
+                case 8:
+                    this.combatants[index].takeDamage(args[0],-1)
+                    this.combatants[index].statusEffect('Vulnerable',args[1])
+                break
             }
         }
     }

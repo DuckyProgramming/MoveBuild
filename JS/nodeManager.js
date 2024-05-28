@@ -28,6 +28,7 @@ class nodeManager{
         this.tilePosition={x:0,y:-1}
         this.scroll=this.layer.height-150
         this.world++
+        this.saveBoss=-1
         this.battle.cardManagers.forEach(cardManager=>cardManager.deck.allEffect(83))
         this.setupMap()
     }

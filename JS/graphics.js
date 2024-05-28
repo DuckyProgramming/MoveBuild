@@ -5320,7 +5320,7 @@ function setupBackground(type,layer){
 			layer.fill(255)
 			layer.textSize(20)
 			layer.text('BACK',layer.width/2,layer.height*0.7+200)
-			let names3=['BASIC','LOCATIONS','KEYWORDS','HOTKEYS','STATUSES','TACTICS','TACTICS 2','CHARACTER OVERVIEW']
+			let names3=['BASIC','LOCATIONS','KEYWORDS','HOTKEYS','STATUSES','ENEMIES','TACTICS','CHARACTER OVERVIEW']
 			for(let a=0,la=24;a<la;a++){
 				layer.text(a<8?names3[a]:types.combatant[a-7].name.toUpperCase(),layer.width/2-602.5+a%4*380,layer.height/2-330+(a>=8?60:0)+floor(a/4)*90)
 			}

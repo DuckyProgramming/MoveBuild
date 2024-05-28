@@ -1,13 +1,5 @@
-3 Sakura Cards
-2 Common
-1 Uncommon
-card with summit
-the day the sea split - rare, return hand and discard to draw pile, shuffle it, draw 7 cards, gain 3 energy
-[]?
-
-tactics tutorial 2
-
-nerf thaumaturgy to 4 turns
+yukari, border of fantasy
+2 junkyard
 
 [
 	world 1
@@ -37,6 +29,13 @@ nerf thaumaturgy to 4 turns
 		envy - you take 1 damage per card you play
 		sloth - gives you 3 weak, 3 vulnerable, or 3 frail every turn
 		lust - spawning
+
+		after those 7, these, in order
+
+		war - gains 2 strength every turn
+		famine - can only play 5 cards per turn
+		pestilence - you lose 5 health per turn
+		death - you die
 	]
 ]
 
