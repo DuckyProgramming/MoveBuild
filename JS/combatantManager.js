@@ -625,6 +625,13 @@ class combatantManager{
                     case 36:
                         this.combatants[a].statusEffect('Dodge',args[0])
                     break
+                    case 37:
+                        this.combatants[a].statusEffect('Strength',args[0])
+                        this.combatants[a].statusEffect('Dexterity',args[1])
+                    break
+                    case 38:
+                        this.combatants[a].statusEffect('Double Damage',args[0])
+                    break
                 }
             }
         }

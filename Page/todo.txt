@@ -1,3 +1,12 @@
+autumn's arrival - add vitality to draw pile
+vitality - when drawn, draw a card, all cards cost 1 less
+instantaneous - take another turn but draw no cards during it
+shivering nightmare - damage, exhaust a card, and get a whitespace
+whitespace - next colorless card played is free
+violin solo - gain whitespace, draw 2 cards, gain void
+
+change the other card that gives you pure energy
+
 [
 	world 1
 	crusader

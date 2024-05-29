@@ -323,6 +323,7 @@ class card{
             case -56: string+=`When Drawn,\nLose ${effect[0]} Energy\nAnd a Random Card\nin Hand Costs ${effect[1]} Less`; break
             case -57: string+=`When Etherealed,\nDeal ${effect[0]} Damage\nto a Random Enemy`; break
             case -58: string+=`When Etherealed,\nUnupgrade ${effect[0]} Random\nCard${effect[0]!=1?`s`:``}`; break
+            case -60: string+=`Lose ${effect[0]} Currency\nGain ${effect[1]} Temporary\nStrength`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590: case 1139: case 1191:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: case 1700:

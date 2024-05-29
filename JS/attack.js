@@ -10546,6 +10546,10 @@ class attack{
                     case -14:
                         this.battle.loseCurrency(this.effect[0],this.player)
                     break
+                    case -60:
+                        this.battle.loseCurrency(this.effect[0],this.player)
+                        this.userCombatant.statusEffect('Temporary Strength',this.effect[1])
+                    break
                     case 102:
                         if(this.userCombatant.armed){
                             let tile=this.battle.tileManager.getTileIndex(this.userCombatant.tilePosition.x,this.userCombatant.tilePosition.y)

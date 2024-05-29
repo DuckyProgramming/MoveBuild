@@ -27,7 +27,8 @@ class particle{
                 this.scale=1
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
-            case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72:
+            case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72: case 73:
+            case 74: case 75:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -914,6 +915,35 @@ class particle{
                     this.layer.rect(0,0,8,12)
                     this.layer.rect(0,0,7,11)
                 break
+                case 73:
+                    this.layer.rotate(this.time)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(0.1)
+                    this.layer.stroke(200,240,240,this.fade*2)
+                    for(let a=0,la=5;a<la;a++){
+                        this.layer.line(lsin(a*144)*6,lcos(a*144)*6,lsin(a*144+144)*6,lcos(a*144+144)*6)
+                    }
+                break
+                case 74:
+                    this.layer.rotate(this.time)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(0.1)
+                    this.layer.stroke(240,240,200,this.fade*2)
+                    this.layer.rect(0,0,10)
+                    this.layer.rect(0,0,9)
+                    this.layer.rect(0,0,2,8)
+                    this.layer.rect(0,0,8,2)
+                    this.layer.line(-3,-3,3,3)
+                    this.layer.line(-3,3,3,-3)
+                break
+                case 75:
+                    this.layer.rotate(this.time)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(0.1)
+                    this.layer.stroke(240,200,200,this.fade*2)
+                    this.layer.rect(0,0,10)
+                    regPoly(this.layer,0,0,8,5,5,22.5)
+                break
 
             }
             this.layer.pop()
@@ -957,6 +987,7 @@ class particle{
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 46: case 51: case 52: case 54: case 56: case 57: case 60: case 65: case 66: case 72:
+            case 73: case 74: case 75:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

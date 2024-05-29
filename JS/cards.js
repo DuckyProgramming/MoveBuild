@@ -16221,25 +16221,11 @@ types.card=[
             {effect:[2,2],attack:3025,cost:1,target:[0],spec:[1,4],class:4},
         ],
     },{
-        name:'Disintegrating\nWind',rarity:1,list:16,
-        levels:[
-            {effect:[15,5],attack:3026,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[20,7],attack:3026,cost:2,target:[2,1,3],spec:[0],class:1},
-            {effect:[20,10],attack:3026,cost:2,target:[2,1,3],spec:[0],class:1},
-        ],
-    },{
         name:'Receive\nGuidance',rarity:1,list:16,
         levels:[
             {effect:[1,1],attack:3027,cost:1,target:[1,1,1],spec:[0,1],class:3},
             {effect:[1,1],attack:3027,cost:0,target:[1,1,1],spec:[0,1],class:3},
             {effect:[1,1],attack:3027,cost:0,target:[1,1,1],spec:[1],class:3},
-        ],
-    },{
-        name:'Sea of\nTranquility',rarity:1,list:16,
-        levels:[
-            {effect:[12],attack:3028,cost:2,target:[0],spec:[],class:2},
-            {effect:[17],attack:3028,cost:2,target:[0],spec:[],class:2},
-            {effect:[21],attack:3028,cost:2,target:[0],spec:[],class:2},
         ],
     },{
         name:'Washi',rarity:1,list:16,
@@ -16395,6 +16381,22 @@ types.card=[
     },
 
     //mark p
+
+    {
+        name:'Disintegrating\nWind',rarity:1,list:16,
+        levels:[
+            {effect:[15,5],attack:3026,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[20,7],attack:3026,cost:2,target:[2,1,3],spec:[0],class:1},
+            {effect:[20,10],attack:3026,cost:2,target:[2,1,3],spec:[0],class:1},
+        ],
+    },{
+        name:'Sea of\nTranquility',rarity:1,list:16,
+        levels:[
+            {effect:[12],attack:3028,cost:2,target:[0],spec:[],class:2},
+            {effect:[17],attack:3028,cost:2,target:[0],spec:[],class:2},
+            {effect:[21],attack:3028,cost:2,target:[0],spec:[],class:2},
+        ],
+    },
 
     //mark b
 
@@ -20122,6 +20124,13 @@ types.card=[
             {effect:[1],attack:-57,cost:0,target:[0],spec:[4,5],class:5},
             {effect:[2],attack:-57,cost:0,target:[0],spec:[4,5],class:5},
             {effect:[3],attack:-57,cost:0,target:[0],spec:[4,5],class:5},
+        ],
+    },{
+        name:'Invoice',rarity:0,list:17,
+        levels:[
+            {effect:[100,1],attack:-60,cost:0,target:[0],spec:[1],class:6},
+            {effect:[100,2],attack:-60,cost:0,target:[0],spec:[1],class:6},
+            {effect:[100,3],attack:-60,cost:0,target:[0],spec:[1,23],class:6},
         ],
     },
 

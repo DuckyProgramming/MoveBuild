@@ -891,15 +891,15 @@ function intentDescription(attack,user,info){
 			case 327: return `Apply ${info?attack.effect[0]:`?`} Jinx\nRange 1-6`
 			case 328: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDiscard ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6`
 			case 329: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Loses ${info?attack.effect[1]:`?`} Energy\nRange 1-2`
-			case 330: return `Apply ${info?attack.effect[0]:`?`} Jinx\n3 Tiles Wide\nRange 1-1`
+			case 330: return `Apply ${info?attack.effect[0]:`?`} Shock\n3 Tiles Wide\nRange 1-1`
 			case 331: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Splash Damage\nTargets Lose ${info?attack.effect[1]:`?`} Energy\nRange 2-2`
 			case 332: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1\nIncreases by ${info?attack.effect[1]:`?`}`
 			case 333: return `All Enemies\nGain ${info?attack.effect[0]:`?`} Strength\nAnd ${info?attack.effect[1]:`?`} Dexterity`
-			case 334: return `All Enemies Deal Double Damage\nFor THeir Next ${info?attack.effect[0]:`?`} Attack${attack.effect[0]!=1?`s`:``}`
+			case 334: return `All Enemies Deal Double Damage\nFor Their Next ${info?attack.effect[0]:`?`} Attack${attack.effect[0]!=1?`s`:``}`
 			case 335: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nReplace Target Items\nWith Mundane Dust\nRange 1-6`
 			case 336: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRewind ${info?attack.effect[1]:`?`} Card${attack.effect[1]!=1?`s`:``}\nRange 1-6\nNo Movement`
-			case 337: return `Draw ${info?attack.effect[0]:`?`} Less Card${attack.effect[0]!=1?`s`:``} Next Turn`
-			case 339: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Barrier\nRange 1-3`
+			case 337: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nDraw ${info?attack.effect[1]:`?`} Less Card${attack.effect[1]!=1?`s`:``} Next Turn\nRange 1-6\nNo Movement`
+			case 339: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Barrier\nRange 1-3`
 			case 340: return `Gain ${info?attack.effect[0]:`?`} Dexterity\nRemove ${info?attack.effect[1]:`?`} Dexterity`
 			case 341: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 9 Times\nGain ${info?attack.effect[1]:`?`} Intangible\nRange 1-1`
 			case 342: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turns\nRange 1-2`

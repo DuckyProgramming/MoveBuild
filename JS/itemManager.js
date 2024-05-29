@@ -65,7 +65,9 @@ class itemManager{
             }
         }
         if(possible.length>0){
-            this.items[possible[floor(random(0,possible.length))]].type=1
+            let index=possible[floor(random(0,possible.length))]
+            this.items[player][index].type=1
+            this.items[player][index].refresh()
             this.total[player]--
         }
     }
@@ -106,9 +108,23 @@ class itemManager{
         this.position[player]-=amount
         this.total[player]=0
         for(let a=0,la=this.items[player].length;a<la;a++){
-            if(this.items[player].type>1){
-                this.total[player]
+            if(this.items[player][a].type>1){
+                this.total[player]++
             }
+        }
+    }
+    removeAll(player){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            if(this.items[player][a].type>1){
+                this.items[player][a].type=1
+                this.items[player][a].refresh()
+                this.total[player]--
+            }
+        }
+    }
+    fillAll(type,player){
+        for(let a=0,la=this.items[player].length;a<la;a++){
+            this.addItem(type,player)
         }
     }
     activateNode(){

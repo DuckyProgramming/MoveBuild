@@ -3428,7 +3428,7 @@ combatant.prototype.display=function(){
                     this.layer.strokeWeight(1)
                     this.layer.ellipse(lsin(this.anim.direction-18)*16,-78,6*lcos(this.anim.direction-16),6)
                 }
-                if(!this.graphic){
+                if(!this.graphic&&this.team>0){
                     this.layer.noStroke()
                     this.layer.fill(60,75,90,this.fade)
                     this.layer.rect(-2,10,12,12)
@@ -4473,7 +4473,7 @@ combatant.prototype.display=function(){
                 }
                 this.layer.scale(1.25)
                 this.layer.translate(0,15)
-                if(!this.graphic){
+                if(!this.graphic&&this.team>0){
                     this.layer.noFill()
                     this.layer.stroke(150,255,100,this.fade)
                     this.layer.strokeWeight(1)

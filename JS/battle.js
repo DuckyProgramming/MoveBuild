@@ -593,7 +593,7 @@ class battle{
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
-            this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0)+this.energy.temp[this.turn.main])-(this.modded(5)?max(3-this.turn.total,0):0),this.turn.main)
+            this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
             extra=true
         }else{
@@ -664,7 +664,7 @@ class battle{
         this.turn.time=game.turnTime
         for(let a=0,la=this.energy.gen.length;a<la;a++){
             this.baselineEnergy(a,this.energy.gen[a])
-            this.addEnergy(max(0,(this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.getEnergy(a)>=1?1:0)+this.energy.temp[a])-(this.modded(5)?max(3-this.turn.total,0):0),a)
+            this.addEnergy(max(0,(this.relicManager.hasRelic(28,a)&&this.turn.total>1&&this.getEnergy(a)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[a],a)
             this.energy.temp[a]=0
         }
         this.combatantManager.setupCombatants()

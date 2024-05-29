@@ -10,12 +10,12 @@ types={
         {name:'Setsuna',moniker:'The Duelist',identifier:['Sister','Miss'],life:68,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:317,effect:[12]},{type:318,effect:[42]},{type:319,effect:[12]}],description:`Once motivated by a desire for revenge.\nNot anymore, they're all dead.\nMakes it's time for her to stop?\nShe doesn't seem to think so.`},
         {name:'Airi',moniker:'The Enchanter',identifier:['Sister','Miss'],life:40,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:320,effect:[15,2]},{type:321,effect:[10,2,'Burn',2]},{type:322,effect:[10]}],description:`A guardian of dreams, in her mind, she\nviews everything else as a nightmare.\nHow she got her powers, well,\nblame the Management as always.`},
         {name:'Edgar',moniker:'The Disgraced CEO',identifier:['Brother','Mister'],life:76,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:303,effect:[25,5]},{type:323,effect:[1]},{type:324,effect:[2]}],description:`Having lost his powerful role after\na mass of insider trading,\nhe now takes his anger out against\nthe Management that wronged him.`},
-        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:72,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:128,effect:[7,1,'Debt']},{type:326,effect:[1,1]}],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
+        {name:'Chip',moniker:'The Gentleman',identifier:['Brother','Mister'],life:72,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:325,effect:[10]},{type:128,effect:[7,1,'Invoice']},{type:326,effect:[1,1]}],description:`A gambler now trapped in debt,\nescaping was his only option.\nBut it seems the Management is also\ntracking him down for his crimes.`},
         {name:'Shiru',moniker:'The Huntress',identifier:['Sister','Miss'],life:48,behavior:0,spec:[0],move:{type:1,speed:1},attack:[{type:327,effect:[24]},{type:328,effect:[17,2]},{type:329,effect:[14,1]}],description:`Pursuing a Rewriter for some time now,\ntracking the supposed ghost\nacross several Managerial worlds,\nfinally arriving at its location.`},
         {name:'DD-610',moniker:'The Paradigm',identifier:['Friend','Robot'],life:66,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:330,effect:[4]},{type:331,effect:[19,1]},{type:332,effect:[16,8]}],description:`One of hundreds of prototypes sent\nto Managerial High Command from\nthe manufcaturing detartments.\nOnly this one escaped destruction.`},
-        {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:4,spec:[0],move:{type:0,speed:1},attack:[{type:21,effect:[]},{type:28,effect:[33]},{type:72,effect:[28,3]}],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
-        {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[9]}],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
-        {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[1]},{type:338,effect:[14,1,'Disappointed']}],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
+        {name:'Prehextorica',moniker:'The Recollection',identifier:['Brother','Mister'],life:64,behavior:14,spec:[0],move:{type:0,speed:1},attack:[{type:28,effect:[33]},{type:72,effect:[28,3]},{type:21,effect:[]}],description:`A member of a race long gone,\nexterminated by the Management,\nrevived through the Supreme Executor's\npet project, for some future use case.`},
+        {name:'Vincent',moniker:'The Manufacturer',identifier:['Brother','Mister'],life:58,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:333,effect:[2,2]},{type:334,effect:[1]},{type:335,effect:[18]}],description:`Overworked professor who barely\nearned enough to slay alive.\nNow ready to take the share of\npay he believes he deserves.`},
+        {name:'Daiyousei',moniker:'The Embodiment',identifier:['Sister','Miss'],life:36,behavior:0,spec:[0],move:{type:7,speed:1},attack:[{type:336,effect:[17,2]},{type:337,effect:[6,3]},{type:338,effect:[14,1,'Disappointed']}],description:`Fairy formed by the planet\nas a natural defense mechanism.\nReckless but seemingly immortal,\nnature's incarnates always return.`},
         {name:'Sanae',moniker:'The Purifier',identifier:['Sister','Miss'],life:56,behavior:0,spec:[0],move:{type:0,speed:1},attack:[{type:339,effect:[8,8]},{type:340,effect:[2,2]},{type:341,effect:[3,1]}],description:`A conflicted devotee to the\nManagement's proprietary ARTREL\nprogram. Loyal only to the now-replaced\nearlier directors of the faith.`},
         
         {name:'Human',life:25,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:1,effect:[5]}],description:`Just a guy`},
@@ -339,7 +339,7 @@ types={
         {name:'Injuring Gun',class:1},
         {name:'Pushing Gun',class:1},//90
         {name:'Pushing Statusing Gun',class:1},
-        {name:'Card Draw Down',class:4},
+        {name:'Draw Down',class:4},
         {name:'Energy Down',class:4},
         {name:'Anti-Control',class:4},
         {name:'3 Spread Quad Strike',class:1},
@@ -570,29 +570,22 @@ types={
         {name:'Charge Beam',class:1},//320
         {name:'Injuring Charge Beam',class:1},
         {name:'Fire Ball',class:1},
-        
         {name:'Targetted Burn',class:5},
         {name:'Targetted Miss',class:5},
-
         {name:'2 Tile Lucky Strike',class:1},
-        {name:'Strikify / Defendify',class:1},
-
+        {name:'Strikify / Defendify',class:4},
         {name:'Jinx Beam',class:1},
         {name:'6 Tile Strike / Discard',class:1},
         {name:'2 Tile Strike / Energy Down',class:1},
-
         {name:'3 Spread Shock',class:1},//330
         {name:'2 Tile Bomb Throw / Energy Down',class:5},
         {name:'Increasing Strike',class:1},
-
         {name:'Strength All / Dexterity All',class:4},
         {name:'Double Damage All',class:4},
-        {name:'6 Tile Double Strike / Replace Items',class:1},
-
+        {name:'6 Tile Strike / Replace Items',class:1},
         {name:'Daiyosuei Beam / Rewind',class:1},
-        {name:'Targetted Draw Down',class:4},
+        {name:'Daiyousei Beam / Draw Down',class:1},
         {name:'Injuring Daiyousei Beam',class:1},
-
         {name:'Dual Discus',class:1},
         {name:'Dexterity Siphon',class:1},//340
         {name:'9 Strikes / Self Intangible',class:1},
@@ -4443,7 +4436,6 @@ Entering, you're offered a chance to glimpse your future...`,
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
-                //{position:{x:2,y:2},name:'Edgar'},
             ],reinforce:[
             ],
         },{

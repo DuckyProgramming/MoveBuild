@@ -17,8 +17,8 @@ function setup(){
             //transition.trigger=true
             //transition.scene='menu'
 
-        current.menu.combatant=[16]
-        current.menu.deck=[0]
+        current.menu.combatant=[1]
+        current.menu.deck=[-1]
         current.startGame()
         game.animRate=4
 
