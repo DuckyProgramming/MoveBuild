@@ -95,7 +95,7 @@ attack.prototype.update=function(){
         case 2839: case 2860: case 2863: case 2864: case 2876: case 2889: case 2890: case 2900: case 2907: case 2909:
         case 2915: case 2919: case 2920: case 2937: case 2949: case 2953: case 2959: case 2971: case 2979: case 2986:
         case 2987: case 2994: case 2997: case 2999: case 3009: case 3019: case 3041: case 3062: case 3063: case 3066:
-        case 3067: case 3068:
+        case 3067: case 3068: case 3079:
             //mark 1
             if(this.type==780||this.type==1354){
                 let failed=false
@@ -281,7 +281,7 @@ attack.prototype.update=function(){
         case 2752: case 2758: case 2759: case 2760: case 2761: case 2832: case 2850: case 2866: case 2925: case 2926:
         case 2927: case 2928: case 2929: case 2930: case 2931: case 2932: case 2933: case 2934: case 2935: case 2936:
         case 2938: case 2939: case 2940: case 2941: case 2942: case 2944: case 2945: case 2948: case 2955: case 2973:
-        case 3013: case 3027: case 3054:
+        case 3013: case 3027: case 3054: case 3081:
             //mark 3
             if(
                 this.type==808&&this.userCombatant.stance!=3||
@@ -3749,16 +3749,18 @@ attack.prototype.update=function(){
         case 2544: case 2547: case 2564: case 2620: case 2624: case 2644: case 2655: case 2674: case 2693: case 2729:
         case 2800: case 2812: case 2828: case 2829: case 2830: case 2838: case 2840: case 2862: case 2911: case 2912:
         case 2913: case 2957: case 2967: case 2969: case 2983: case 2998: case 3012: case 3015: case 3030: case 3039:
-        case 3044: case 3084: case 3085: case 3086:
+        case 3044: case 3074: case 3075: case 3076: case 3077: case 3078:
             if(this.type==2265&&this.userManager.exhaust.cards.length<5){
                 this.remove=true
             }else{
                 if(variants.nobasicanim){
+                    this.selfCall(19)
                     this.selfCall(12)
                     this.remove=true
                 }else{
                     if(this.timer==1){
                         this.userCombatant.startAnimation(32)
+                        this.selfCall(19)
                     }
                     this.userCombatant.runAnimation(1/20,32)
                     if(this.timer==10){
@@ -6831,7 +6833,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case 3087:
+        case 3080:
             this.targetCombatant.takeDamage(this.effect[0],this.user)
             this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
             this.remove=true

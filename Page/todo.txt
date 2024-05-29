@@ -1,6 +1,3 @@
-yukari, border of fantasy
-2 junkyard
-
 [
 	world 1
 	crusader

@@ -587,14 +587,17 @@ class overlay{
                     this.cards[this.cards.length-1].position.x=this.layer.width/2+60-la*60+a*120
                     this.cards[this.cards.length-1].position.y=this.layer.height/2+20
                     switch(this.cards[a].attack){
-                        case 3084:
-                            this.cards[a].attack=[-59,-62][a]
+                        case 3074:
+                            this.cards[a].attack=[-100,-101][a]
                         break
-                        case 3085:
-                            this.cards[a].attack=[-60,-63][a]
+                        case 3075:
+                            this.cards[a].attack=[-102,-103][a]
                         break
-                        case 3086:
-                            this.cards[a].attack=[-61,-64][a]
+                        case 3076:
+                            this.cards[a].attack=[-104,-105][a]
+                        break
+                        case 3078:
+                            this.cards[a].attack=[-106,-107][a]
                         break
                     }
                 }
@@ -2221,25 +2224,41 @@ class overlay{
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].deSize){
-                            print(this.cards[a].attack)
                             switch(this.cards[a].attack){
-                                case -59:
+                                case -100:
+                                    this.card.cost-=3
                                     userCombatant.statusEffect('Take 1/4 Damage',this.cards[a].effect[1])
                                 break
-                                case -60:
-                                    userCombatant.statusEffect('Dodge',this.cards[a].effect[1])
-                                break
-                                case -61:
-                                    this.battle.addEnergy(this.cards[a].effect[1],this.player)
-                                break
-                                case -62:
+                                case -101:
+                                    this.card.cost-=7
                                     userCombatant.statusEffect('Strength',this.cards[a].effect[2])
                                 break
-                                case -63:
-                                    this.battle.cardManagers[this.player].hand.callInput(6,[3087,[this.cards[a].effect[2],this.cards[a].effect[3]],1,[5]])
+                                case -102:
+                                    this.card.cost-=3
+                                    userCombatant.statusEffect('Dodge',this.cards[a].effect[1])
                                 break
-                                case -64:
+                                case -103:
+                                    this.card.cost-=7
+                                    this.battle.cardManagers[this.player].hand.callInput(6,[3080,[this.cards[a].effect[2],this.cards[a].effect[3]],1,[5]])
+                                break
+                                case -104:
+                                    this.card.cost-=3
+                                    this.battle.addEnergy(this.cards[a].effect[1],this.player)
+                                break
+                                case -105:
+                                    this.card.cost-=7
                                     userCombatant.statusEffect('Intangible',this.cards[a].effect[2])
+                                break
+                                case -106:
+                                    this.card.cost-=4
+                                    this.battle.overlayManager.overlays[19][this.player].active=true
+                                    this.battle.overlayManager.overlays[19][this.player].activate()
+                                break
+                                case -107:
+                                    this.card.cost-=9
+                                    for(let a=0,la=this.cards[a].effect[1];a<la;a++){
+                                        this.battle.cardManagers[this.player].addRandomAllFreeSpec(2,0,2,0,[1,4])
+                                    }
                                 break
                             }
                             for(let b=0,lb=this.cards.length;b<lb;b++){
@@ -2985,25 +3004,41 @@ class overlay{
                     let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                     for(let a=0,la=this.cards.length;a<la;a++){
                         if((int(key)+9)%10==a&&!this.cards[a].deSize){
-                            print(this.cards[a].attack)
                             switch(this.cards[a].attack){
-                                case -59:
+                                case -100:
+                                    this.card.cost-=3
                                     userCombatant.statusEffect('Take 1/4 Damage',this.cards[a].effect[1])
                                 break
-                                case -60:
-                                    userCombatant.statusEffect('Dodge',this.cards[a].effect[1])
-                                break
-                                case -61:
-                                    this.battle.addEnergy(this.cards[a].effect[1],this.player)
-                                break
-                                case -62:
+                                case -101:
+                                    this.card.cost-=7
                                     userCombatant.statusEffect('Strength',this.cards[a].effect[2])
                                 break
-                                case -63:
-                                    this.battle.cardManagers[this.player].hand.callInput(6,[3087,[this.cards[a].effect[2],this.cards[a].effect[3]],1,[5]])
+                                case -102:
+                                    this.card.cost-=3
+                                    userCombatant.statusEffect('Dodge',this.cards[a].effect[1])
                                 break
-                                case -64:
+                                case -103:
+                                    this.card.cost-=7
+                                    this.battle.cardManagers[this.player].hand.callInput(6,[3080,[this.cards[a].effect[2],this.cards[a].effect[3]],1,[5]])
+                                break
+                                case -104:
+                                    this.card.cost-=3
+                                    this.battle.addEnergy(this.cards[a].effect[1],this.player)
+                                break
+                                case -105:
+                                    this.card.cost-=7
                                     userCombatant.statusEffect('Intangible',this.cards[a].effect[2])
+                                break
+                                case -106:
+                                    this.card.cost-=4
+                                    this.battle.overlayManager.overlays[19][this.player].active=true
+                                    this.battle.overlayManager.overlays[19][this.player].activate()
+                                break
+                                case -107:
+                                    this.card.cost-=9
+                                    for(let a=0,la=this.cards[a].effect[1];a<la;a++){
+                                        this.battle.cardManagers[this.player].addRandomAllFreeSpec(2,0,2,0,[1,4])
+                                    }
                                 break
                             }
                             for(let b=0,lb=this.cards.length;b<lb;b++){

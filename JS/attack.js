@@ -1,5 +1,5 @@
 class attack{
-    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData,amplify,relPos,limit,id,edition,drawn){
+    constructor(type,battle,player,effect,attackClass,user,level,color,energy,target,targetDistance,targetClass,combo,replayData,amplify,relPos,limit,id,edition,drawn,cost){
         this.type=type
         this.battle=battle
         this.player=player
@@ -20,6 +20,7 @@ class attack{
         this.id=id
         this.edition=edition
         this.drawn=drawn
+        this.cost=cost
 
         this.procedure=[]
 
@@ -154,7 +155,7 @@ class attack{
             case 2838: case 2839: case 2841: case 2842: case 2847: case 2854: case 2855: case 2856: case 2857: case 2858: case 2859: case 2860: case 2863: case 2864: case 2872: case 2875: case 2876: case 2883: case 2884: case 2885:
             case 2886: case 2887: case 2888: case 2889: case 2890: case 2898: case 2900: case 2907: case 2909: case 2913: case 2915: case 2919: case 2920: case 2924: case 2937: case 2943: case 2949: case 2951: case 2953: case 2959:
             case 2969: case 2971: case 2976: case 2977: case 2978: case 2979: case 2981: case 2983: case 2986: case 2987: case 2994: case 2995: case 2997: case 2999: case 3000: case 3001: case 3006: case 3007: case 3009: case 3016:
-            case 3019: case 3026: case 3031: case 3034: case 3036: case 3037: case 3041: case 3051: case 3053: case 3062: case 3063: case 3066: case 3067: case 3068: case 3069: case 3087:
+            case 3019: case 3026: case 3031: case 3034: case 3036: case 3037: case 3041: case 3051: case 3053: case 3062: case 3063: case 3066: case 3067: case 3068: case 3069: case 3079: case 3080:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -191,7 +192,7 @@ class attack{
             case 2832: case 2850: case 2866: case 2880: case 2925: case 2926: case 2927: case 2928: case 2929: case 2930:
             case 2931: case 2932: case 2933: case 2934: case 2935: case 2936: case 2938: case 2939: case 2940: case 2941:
             case 2942: case 2944: case 2945: case 2946: case 2948: case 2955: case 2973: case 2980: case 3013: case 3027:
-            case 3054:
+            case 3054: case 3081:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -1729,6 +1730,11 @@ class attack{
                     break
                     case 3068:
                         this.targetCombatant.takeDamage(this.effect[0]*(this.drawn>=5?2:1),this.user)
+                    break
+                    case 3079:
+                        if(this.userCombatant.block>0||this.userCombatant.barrier>0){
+                            this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        }
                     break
                     default:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -5183,6 +5189,11 @@ class attack{
                     break
                     case 3054:
                         this.userManager.drawClass(this.effect[1],this.targetTile.relativePosition.x>this.userCombatant.relativePosition.x?2:1)
+                    break
+                    case 3081:
+                        if(this.userCombatant.block>0){
+                            this.battle.loseEnergy(this.effect[1],this.player)
+                        }
                     break
 
                 }
@@ -12302,49 +12313,73 @@ class attack{
                         this.userManager.draw(this.effect[0])
                         this.battle.addEnergy(this.effect[1],this.player)
                     break
-                    case 3084:
-                        if(this.effect[3]>=7){
-                            let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
-                            for(let a=0,la=list.length;a<la;a++){
-                                for(let b=0,lb=list[a].length;b<lb;b++){
-                                    if(list[a][b].id==this.id){
-                                        this.battle.overlayManager.overlays[70][this.player].active=true
-                                        this.battle.overlayManager.overlays[70][this.player].activate([list[a][b]])
-                                    }
-                                }
-                            }
-                        }else if(this.effect[3]>=3){
+                    case 3074:
+                        if(this.cost>=7){
+                            this.selfCall(20)
+                        }else if(this.cost>=3){
                             this.userCombatant.statusEffect('Take 1/4 Damage',this.effect[1])
-                        }
-                    break
-                    case 3085:
-                        if(this.effect[4]>=7){
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        this.battle.overlayManager.overlays[70][this.player].active=true
-                                        this.battle.overlayManager.overlays[70][this.player].activate([list[a][b]])
+                                        list[a][b].cost-=3
                                     }
                                 }
                             }
-                        }else if(this.effect[4]>=3){
+                        }
+                    break
+                    case 3075:
+                        if(this.cost>=7){
+                            this.selfCall(20)
+                        }else if(this.cost>=3){
                             this.userCombatant.statusEffect('Dodge',this.effect[1])
-                        }
-                    break
-                    case 3086:
-                        if(this.effect[3]>=7){
                             let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
                             for(let a=0,la=list.length;a<la;a++){
                                 for(let b=0,lb=list[a].length;b<lb;b++){
                                     if(list[a][b].id==this.id){
-                                        this.battle.overlayManager.overlays[70][this.player].active=true
-                                        this.battle.overlayManager.overlays[70][this.player].activate([list[a][b]])
+                                        list[a][b].cost-=3
                                     }
                                 }
                             }
-                        }else if(this.effect[3]>=3){
+                        }
+                    break
+                    case 3076:
+                        if(this.cost>=7){
+                            this.selfCall(20)
+                        }else if(this.cost>=3){
                             this.battle.addEnergy(this.effect[1],this.player)
+                            let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                            for(let a=0,la=list.length;a<la;a++){
+                                for(let b=0,lb=list[a].length;b<lb;b++){
+                                    if(list[a][b].id==this.id){
+                                        list[a][b].cost-=3
+                                    }
+                                }
+                            }
+                        }
+                    break
+                    case 3077:
+                        this.userManager.discard.send(this.userManager.reserve.cards,0,-1,15)
+                        this.userManager.shuffle(1)
+                        this.userManager.draw(this.effect[0])
+                        this.battle.addEnergy(this.effect[1],this.player)
+                        this.battle.overlayManager.overlays[8][this.player].active=true
+                        this.battle.overlayManager.overlays[8][this.player].activate()
+                    break
+                    case 3078:
+                        if(this.cost>=9){
+                            this.selfCall(20)
+                        }else if(this.cost>=4){
+                            this.battle.overlayManager.overlays[19][this.player].active=true
+                            this.battle.overlayManager.overlays[19][this.player].activate()
+                            let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                            for(let a=0,la=list.length;a<la;a++){
+                                for(let b=0,lb=list[a].length;b<lb;b++){
+                                    if(list[a][b].id==this.id){
+                                        list[a][b].cost-=4
+                                    }
+                                }
+                            }
                         }
                     break
 
@@ -12691,6 +12726,24 @@ class attack{
                     case 3051:
                         this.battle.addEnergy(this.effect[1],this.player)
                     break
+                }
+            break
+            case 19:
+                switch(this.type){
+                    case 3044: case 3077:
+                        this.userManager.allEffect(2,1)
+                    break
+                }
+            break
+            case 20:
+                let list=[this.userManager.discard.cards,this.userManager.reserve.cards,this.userManager.hand.cards,this.userManager.exhaust.cards]
+                for(let a=0,la=list.length;a<la;a++){
+                    for(let b=0,lb=list[a].length;b<lb;b++){
+                        if(list[a][b].id==this.id){
+                            this.battle.overlayManager.overlays[70][this.player].active=true
+                            this.battle.overlayManager.overlays[70][this.player].activate([list[a][b]])
+                        }
+                    }
                 }
             break
 

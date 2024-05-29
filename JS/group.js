@@ -11,7 +11,7 @@ class group{
         this.spec=[]
         this.target=[]
         this.lastDuplicate=''
-        this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+        this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
         this.compact=1
         this.sevens=0
         this.edicts=0
@@ -2785,6 +2785,7 @@ class group{
                 this.battle.attackManager.id=-1
                 this.battle.attackManager.edition=-1
                 this.battle.attackManager.drawn=-1
+                this.battle.attackManager.cost=-1
 
                 this.battle.attackManager.targetInfo=copyArray(this.cards[a].target)
                 this.battle.attackManager.targetDistance=0
@@ -2915,6 +2916,7 @@ class group{
                 this.battle.attackManager.id=this.cards[a].id
                 this.battle.attackManager.edition=this.cards[a].edition
                 this.battle.attackManager.drawn=this.cards[a].drawn
+                this.battle.attackManager.cost=this.cards[a].cost
                 if(this.cards[a].strike&&this.battle.relicManager.hasRelic(50,this.player)&&this.battle.attackManager.effect.length>0){
                     this.battle.attackManager.effect[0]+=2
                 }
@@ -3026,11 +3028,15 @@ class group{
                     this.battle.playCard(this.cards[a],this.player,0)
                     this.cardInUse=this.cards[a]
                     this.callInput(5,0)
-                    this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target,this.cards[a].mtgManaColor)
+                    if(!this.cards[a].spec.includes(55)){
+                        this.cost(this.cards[a].cost,this.cards[a].class,this.cards[a].spec,this.cards[a].target,this.cards[a].mtgManaColor)
+                    }
                     this.cards[a].played()
                     this.cards.forEach(card=>card.anotherPlayed(this.cards[a]))
                     this.cards.forEach(card=>card.anotherPlayedAfter())
-                    this.battle.attackManager.execute()
+                    if(!this.cards[a].discardEffect.includes(13)){
+                        this.battle.attackManager.execute()
+                    }
                     this.lastPlayed[0]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
                     this.lastPlayed[this.cards[a].class]=[this.cards[a].type,this.cards[a].level,this.cards[a].color]
                     if(variants.polar){
@@ -3185,9 +3191,13 @@ class group{
                         }
                     }
                 }
-                this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor)
+                if(!this.spec.includes(55)){
+                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor)
+                }
                 this.cards.forEach(card=>card.anotherPlayedAfter())
-                this.battle.attackManager.execute()
+                if(!this.cardInUse.discardEffect.includes(13)){
+                    this.battle.attackManager.execute()
+                }
                 this.battle.updateTargetting()
                 for(let b=0,lb=this.cards.length;b<lb;b++){
                     if(!this.cards[b].usable){
@@ -3330,9 +3340,13 @@ class group{
                             }
                         }
                     }
-                    this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor)
+                    if(!this.spec.includes(55)){
+                        this.cost(this.battle.attackManager.cost,this.battle.attackManager.attackClass,this.spec,this.target,this.battle.attackManager.mtgManaColor)
+                    }
                     this.cards.forEach(card=>card.anotherPlayedAfter())
-                    this.battle.attackManager.execute()
+                    if(!this.cardInUse.discardEffect.includes(13)){
+                        this.battle.attackManager.execute()
+                    }
                     this.battle.updateTargetting()
                     for(let b=0,lb=this.cards.length;b<lb;b++){
                         if(!this.cards[b].usable){
@@ -3686,6 +3700,13 @@ class group{
                             }else if(this.cards[a].discardEffect.includes(9)){
                                 this.cards[a].edition=5
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(9),1)
+                            }else if(this.cards[a].discardEffect.includes(13)){
+                                this.cards[a].spec.push(1)
+                                this.cards[a].spec.push(2)
+                                this.cards[a].spec.push(55)
+                                this.cards[a].usable=true
+                                this.cards[a].cost=0
+                                this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(13),1)
                             }
                             if(this.cards[a].discardEffect.includes(2)){
                                 let hold=this.cards[a].discardEffect

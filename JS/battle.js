@@ -80,7 +80,7 @@ class battle{
         this.lastEncounter=types.encounter[0]
         
         this.turn={main:0,total:0,time:0,accelerate:0,endReady:false}
-        this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
+        this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0,0,0,0,0,0,0,0]}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
         this.first=true

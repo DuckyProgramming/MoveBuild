@@ -254,6 +254,10 @@ class cardManager{
         let type=this.listing.allPlayerCard[rarity][floor(random(0,this.listing.allPlayerCard[rarity].length))]
         this.getList(group).add(type,level,types.card[type].list,edition)
     }
+    addRandomAllFreeSpec(group,level,rarity,variant,spec){
+        let type=this.listing.allPlayerCard[rarity][floor(random(0,this.listing.allPlayerCard[rarity].length))]
+        this.getList(group).addCostSpec(type,level,types.card[type].list,variant,spec)
+    }
     addRandomAllClass(group,level,cardClass){
         let list=[]
         for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
