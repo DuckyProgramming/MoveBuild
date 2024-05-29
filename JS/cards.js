@@ -4152,6 +4152,13 @@ types.card=[
             {effect:[3,1,1],attack:3034,cost:1,target:[2,1,3],spec:[],class:4},
             {effect:[4,1,1],attack:3034,cost:1,target:[2,1,3],spec:[],class:4},
         ],
+    },{
+        name:'Aquarius',rarity:2,list:4,
+        levels:[
+            {effect:[2],attack:2946,cost:3,target:[6],spec:[1],class:3},
+            {effect:[3],attack:2946,cost:3,target:[6],spec:[1],class:3},
+            {effect:[4],attack:2946,cost:3,target:[6],spec:[1],class:3},
+        ],
     },
 
     //mark 4
@@ -15293,25 +15300,32 @@ types.card=[
             {effect:[24],attack:3073,cost:2,target:[0],spec:[0],class:1},
         ],
     },{
-        name:'Sunny\nMilk',rarity:2,list:15,
+        name:'Sunny, Refracted\nSunlight',rarity:2,list:15,
         levels:[
             {effect:[6,1,4],attack:3074,cost:2,target:[0],spec:[],class:9},
             {effect:[9,1,5],attack:3074,cost:2,target:[0],spec:[],class:9},
             {effect:[12,1,6],attack:3074,cost:2,target:[0],spec:[],class:9},
         ],
     },{
-        name:'Star\nSapphire',rarity:2,list:15,
+        name:'Star, Glamorous\nStarlight',rarity:2,list:15,
         levels:[
             {effect:[10,1,20,2],attack:3075,cost:2,target:[0],spec:[],class:9},
             {effect:[15,1,30,3],attack:3075,cost:2,target:[0],spec:[],class:9},
             {effect:[18,1,36,4],attack:3075,cost:2,target:[0],spec:[],class:9},
         ],
     },{
-        name:'Luna\nChild',rarity:2,list:15,
+        name:'Luna, Quiet\nMoonlight',rarity:2,list:15,
         levels:[
             {effect:[6,3,3],attack:3076,cost:2,target:[0],spec:[],class:9},
             {effect:[9,3,4],attack:3076,cost:2,target:[0],spec:[],class:9},
             {effect:[12,3,3],attack:3076,cost:2,target:[0],spec:[],class:9},
+        ],
+    },{
+        name:'Lily White,\nHerald of Spring',rarity:2,list:15,
+        levels:[
+            {effect:[1,1,6],attack:3082,cost:3,target:[0],spec:[],class:9},
+            {effect:[1,1,10],attack:3082,cost:3,target:[0],spec:[],class:9},
+            {effect:[1,2,12],attack:3082,cost:3,target:[0],spec:[],class:9},
         ],
     },
 
@@ -15729,13 +15743,6 @@ types.card=[
             {effect:[1,1],attack:2945,cost:1,target:[1,1,1],spec:[0],class:3},
             {effect:[1,2],attack:2945,cost:0,target:[1,1,1],spec:[0],class:3},
             {effect:[1,3],attack:2945,cost:0,target:[1,1,1],spec:[],class:3},
-        ],
-    },{
-        name:'Aquarius',rarity:2,list:16,
-        levels:[
-            {effect:[2],attack:2946,cost:3,target:[6],spec:[1],class:3},
-            {effect:[3],attack:2946,cost:3,target:[6],spec:[1],class:3},
-            {effect:[4],attack:2946,cost:3,target:[6],spec:[1],class:3},
         ],
     },{
         name:'Ataxic',rarity:1,list:16,
@@ -16366,6 +16373,13 @@ types.card=[
             {effect:[2,3],attack:3059,cost:1,target:[0],spec:[],class:4},
             {effect:[2,3],attack:3060,cost:1,target:[0],spec:[],class:4},
             {effect:[2,3],attack:3060,cost:1,target:[0],spec:[22],class:4},
+        ],
+    },{
+        name:'Curiosity',rarity:1,list:16,
+        levels:[
+            {effect:[0],attack:3083,cost:1,target:[0],spec:[1],class:4},
+            {effect:[1],attack:3083,cost:1,target:[0],spec:[1],class:4},
+            {effect:[2],attack:3083,cost:1,target:[0],spec:[1],class:4},
         ],
     },
 
@@ -19763,11 +19777,11 @@ types.card=[
     //mark s
 
     {
-        name:'Layla',rarity:-7,list:0,
+        name:'Yuyuko',rarity:-7,list:0,
         levels:[
-            {effect:[],attack:2543,cost:1,target:[0],spec:[],class:4},
-            {effect:[],attack:2543,cost:0,target:[0],spec:[],class:4},
-            {effect:[],attack:2543,cost:0,target:[0],spec:[22],class:4},
+            {effect:[1],attack:3084,cost:2,target:[0],spec:[1],class:4},
+            {effect:[1],attack:3084,cost:1,target:[0],spec:[1],class:4},
+            {effect:[1],attack:3084,cost:1,target:[0],spec:[42],limit:2,class:4},
         ],
     },{
         name:'Seiun',rarity:-7,list:0,
@@ -19791,11 +19805,11 @@ types.card=[
             {effect:[30],attack:2605,cost:1,target:[2,1,3],spec:[0],class:1},
         ],
     },{
-        name:'Cirno',rarity:-7,list:0,
+        name:'Sukuna',rarity:-7,list:0,
         levels:[
-            {effect:[5,1],attack:2547,cost:1,target:[0],spec:[],class:4},
-            {effect:[8,1],attack:2547,cost:1,target:[0],spec:[],class:4},
-            {effect:[10,1],attack:2547,cost:1,target:[0],spec:[],class:4},
+            {effect:[1],attack:3085,cost:0,target:[0],spec:[1],class:4},
+            {effect:[2],attack:3085,cost:0,target:[0],spec:[1],class:4},
+            {effect:[3],attack:3085,cost:0,target:[0],spec:[1],class:4},
         ],
     },{
         name:'Miratei',rarity:-7,list:0,

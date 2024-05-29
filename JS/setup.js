@@ -10,45 +10,47 @@ function setup(){
 
     current=new battle(graphics.main,game.player)
 
-        //stage.scene='tier'
-        //current.overlayManager=new overlayManager(current.layer,current,1)
+    if(false){
+            //stage.scene='tier'
+            //current.overlayManager=new overlayManager(current.layer,current,1)
 
-        //transition.trigger=true
-        //transition.scene='menu'
+            //transition.trigger=true
+            //transition.scene='menu'
 
-    /*current.menu.combatant=[16]
-    current.menu.deck=[-1]
-    current.startGame()
-    game.animRate=4*/
+        current.menu.combatant=[16]
+        current.menu.deck=[0]
+        current.startGame()
+        game.animRate=4
 
-        //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
-        //current.create()
+            //current.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
+            //current.create()
 
-    //transition.trigger=false
-    
-        /*stage.scene='graphic'
-        graphics.test=0
-        graphics.staticBackground.clear()
-        setupBackground(graphics.test,graphics.staticBackground)*/
-    
-    /*game.dev=true
-    stage.scene='battle'
-    current.setupBattle(types.encounter[1])*/
+        transition.trigger=false
+        
+            /*stage.scene='graphic'
+            graphics.test=0
+            graphics.staticBackground.clear()
+            setupBackground(graphics.test,graphics.staticBackground)*/
+        
+        game.dev=true
+        stage.scene='battle'
+        current.setupBattle(types.encounter[1])
 
-        /*player(0).size=3
-        player(0).goal.anim.direction=-30
-        player(0).anim.direction=-30*/
+            /*player(0).size=3
+            player(0).goal.anim.direction=-30
+            player(0).anim.direction=-30*/
 
-        /*variants.mod=true
-        for(let a=0,la=4;a<la;a++){
-            current.modManager.addMod(168+a)
-        }*/
+            /*variants.mod=true
+            for(let a=0,la=4;a<la;a++){
+                current.modManager.addMod(168+a)
+            }*/
 
-        /*for(let a=0,la=5;a<la;a++){
-            current.relicManager.addRelic(251+a,0)
-        }*/
+            /*for(let a=0,la=9;a<la;a++){
+                quickRelic(256+a)
+            }*/
 
-        //stage.scene='tier'
+            //stage.scene='tier'
+    }
 }
 function windowResized(){
     resizeCanvas(windowWidth-50,windowHeight-50)

@@ -1432,6 +1432,24 @@ class group{
                 case 95:
                     this.cards[a].callRearmEffect()
                 break
+                case 96:
+                    if(this.cards[a].spec.includes(15)){
+                        this.cards[a].limit++
+                        for(let b=0,lb=this.battle.cardManagers[this.player].deck.cards.length;b<lb;b++){
+                            if(this.battle.cardManagers[this.player].deck.cards[b].id==this.cards[a].id){
+                                this.battle.cardManagers[this.player].deck.cards[b].limit++
+                            }
+                        }
+                    }
+                break
+                case 97:
+                    if(!this.cards[a].spec.includes(3)&&this.cards[a].level==0){
+                        this.cards[a].deSize=true
+                        if(this.cards[a].usable){
+                            this.cards[a].discardEffect.push(0)
+                        }
+                    }
+                break
 
             }
         }
@@ -1592,8 +1610,8 @@ class group{
             for(let a=0,la=this.cards.length;a<la;a++){
                 if(this.cards[a].usable
                 &&!((effect==0||effect==25||effect==28)&&this.cards[a].deSize)
-                &&!((effect==1||effect==5||effect==33||effect==40)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
-                &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
+                &&!((effect==1||effect==5||effect==33||effect==40)&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
+                &&!((effect==7||effect==9)&&(this.cards[a].cost<0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(55)))
                 &&!(effect==2&&(this.cards[a].level>=1||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==3&&(this.cards[a].level==0||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==8&&this.cards[a].spec.includes(8))
@@ -1612,13 +1630,13 @@ class group{
                 &&!(effect==31&&this.cards[a].edition!=args[0])
                 &&!(effect==32&&!(this.cards[a].name==args[1]&&this.cards[a].cost>0))
                 &&!(effect==34&&(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)))
-                &&!(effect==35&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].class!=1))
+                &&!(effect==35&&(this.cards[a].cost<=0||this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(41)||this.cards[a].class!=1))
                 &&!(effect==36&&(this.cards[a].level>=2||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==38&&(this.cards[a].level!=1||this.cards[a].class!=args[0]&&args[0]!=0))
                 &&!(effect==39&&this.cards[a].spec.includes(7))
                 &&!((effect==41||effect==44)&&!this.cards[a].spec.includes(53))
                 &&!(effect==42&&(this.cards[a].effect.length==0||this.cards[a].class!=1))
-                &&!(effect==43&&(this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)))
+                &&!(effect==43&&(this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41)||this.cards[a].spec.includes(41)))
                 ){
                     list.push(a)
                 }
@@ -1848,6 +1866,9 @@ class group{
         card.drawn++
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         userCombatant.activateDraw()
+        if((card.class==1||card.class==2)&&card.basic&&this.battle.relicManager.hasRelic(264,this.player)&&floor(random(0,4))==0&&card.cost>0){
+            card.cost--
+        }
         switch(card.attack){
             case -3:
                 this.drawEffects.push([1,card.effect[0]])
@@ -2269,7 +2290,7 @@ class group{
                     list[list.length-1].position.y=500
                     switch(spec){
                         case 2:
-                            if(!list[list.length-1].additionalSpec.includes(-3)){
+                            if(!list[list.length-1].additionalSpec.includes(-2)){
                                 list[list.length-1].cost=list[list.length-1].base.cost
                             }
                         break
@@ -2329,7 +2350,7 @@ class group{
                             if(this.drawEffect(list[list.length-1])){la=0}
                         break
                     }
-                }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-3)){
+                }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
                     list[list.length-1].cost=list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]
@@ -2358,7 +2379,7 @@ class group{
                     list[list.length-1].position.y=500
                     switch(spec){
                         case 2:
-                            if(!list[list.length-1].additionalSpec.includes(-3)){
+                            if(!list[list.length-1].additionalSpec.includes(-2)){
                                 list[list.length-1].cost=list[list.length-1].base.cost
                             }
                         break
@@ -2418,7 +2439,7 @@ class group{
                             if(this.drawEffect(list[list.length-1])){la=0}
                         break
                     }
-                }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-3)){
+                }else if(spec==7&&!list[list.length-1].additionalSpec.includes(-2)){
                     list[list.length-1].cost=list[list.length-1].base.cost
                 }
                 delete this.cards[firstIndex]

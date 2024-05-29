@@ -807,7 +807,7 @@ class relic{
                 case 'Remove Max HP':
                     displaySymbol(this.layer,-8,0,16,0,0.8,this.fade)
                     displaySymbol(this.layer,-8,0,8,0,0.8,this.fade)
-                    displaySymbol(this.layer,10,0,10,0,0.5,this.fade)
+                    displaySymbol(this.layer,10,0,10,0,0.4,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
                     this.layer.text('7',10,0)
@@ -1867,6 +1867,79 @@ class relic{
                     this.layer.textSize(10)
                     this.layer.text('3',-8,-9)
                     this.layer.text('2',9,0)
+                break
+                case 'Fragile Damage Up':
+                    displaySymbol(this.layer,-8,0,109,0,1.5,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('1',-8,0)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Starting Madness':
+                    displaySymbol(this.layer,-8,0,110,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Elite Max HP':
+                    displaySymbol(this.layer,-8,0,34,0,0.5,this.fade)
+                    displaySymbol(this.layer,9,0,10,0,0.4,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('5',9,0)
+                break
+                case 'Event Immunity':
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(20)
+                    this.layer.text('?',-10,0)
+                    displaySymbol(this.layer,7,0,18,0,0.7,this.fade)
+                    displaySymbol(this.layer,7,0,16,0,0.8,this.fade)
+                break
+                case 'Standard Card Reward':
+                    displaySymbol(this.layer,-10,-2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,6,-2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-8,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,8,0,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,-6,2,8,0,0.8,this.fade)
+                    displaySymbol(this.layer,10,2,8,0,0.8,this.fade)
+                break
+                case 'Starting Upgrade':
+                    displaySymbol(this.layer,-8,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-8,0,7,0,0.6,this.fade)
+                    displaySymbol(this.layer,8,8,4,0,0.6,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('1',8,-3)
+                break
+                case 'Poor Rest Heal':
+                    displaySymbol(this.layer,-8,-4,28,0,0.7,this.fade)
+                    displaySymbol(this.layer,10,-4,2,0,0.6,this.fade)
+                    displaySymbol(this.layer,0,12,32,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('20',10,-4)
+                    this.layer.textSize(6)
+                    this.layer.text('≤500',-8,-4)
+                break
+                case 'Shop Currency':
+                    displaySymbol(this.layer,6,0,28,0,0.8,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(15)
+                    this.layer.text('$',-10,0)
+                    this.layer.textSize(10)
+                    this.layer.text('50',6,0)
+                break
+                case 'Cheap Basics':
+                    displaySymbol(this.layer,-9,0,8,0,1,this.fade)
+                    displaySymbol(this.layer,-9,0,108,0,1,this.fade)
+                    displaySymbol(this.layer,9,0,9,0,1,this.fade)
+                    this.layer.fill(0,this.fade)
+                    this.layer.textSize(10)
+                    this.layer.text('-1',9,0)
                 break
 
             }

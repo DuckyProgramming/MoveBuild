@@ -679,6 +679,7 @@ class battle{
         if(this.turn.total>1){
             this.tileManager.tick()
         }
+        this.combatantManager.setTargets()
         this.combatantManager.activateCombatants(0,0)
         this.updateTargetting()
         this.turnManager.clear()
@@ -1434,11 +1435,11 @@ class battle{
                 this.tileManager.display(scene)
                 this.particleManager.display('back')
                 this.combatantManager.display(scene)
+                this.combatantManager.displayInfo(scene)
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
                     this.cardManagers[a].display(scene,[this.anim.turn[a]])
                 }
                 this.tileManager.displayCoordinate()
-                this.combatantManager.displayInfo(scene)
                 this.particleManager.display('front')
                 this.overlayManager.display()
                 this.relicManager.display(stage.scene)
@@ -1862,6 +1863,9 @@ class battle{
                                 switch(this.encounter.class){
                                     case 0: case 3: case 4:
                                         reward.push({type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]})
+                                        for(let b=0,lb=this.relicManager.active[260][a+1];b<lb;b++){
+                                            reward.push({type:1,value:[random(0,1)<this.nodeManager.world*(game.ascend>=12?0.125:0.25)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0,2.25)):floor(random(0,1.5)),0]})
+                                        }
                                     break
                                     case 1:
                                         reward.push({type:1,value:[random(0,1)<(this.nodeManager.world*(game.ascend>=12?0.125:0.25)+0.5)?1:0,this.relicManager.hasRelic(164,a)?floor(random(0.5,2.5)):floor(random(0,2)),0]})
@@ -1934,7 +1938,7 @@ class battle{
                         }
                         this.overlayManager.overlays[0][a].activate([0,reward])
                     }
-                    this.relicManager.activate(1,[])
+                    this.relicManager.activate(1,[this.encounter.class])
                 }
             break
             case 'replay':

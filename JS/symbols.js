@@ -3297,6 +3297,12 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(2,-6,4,3,0,3)
             layer.quad(-4.5,0,-3,1.5,-1.5,0,-3,-1.5)
         break
+        case 353:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,3,-1.5,1,-1.5)
+            layer.quad(4,3,0,3,0.8,-0.6,3.2,-0.6)
+            layer.quad(-4.5,0,-3,-1.5,-1.5,0,-3,1.5)
+        break
 
     }
     //mark s
@@ -7333,6 +7339,26 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
             layer.strokeWeight(3)
             layer.point(0,0)
         break
+        case 108:
+            layer.fill(60,fade)
+            layer.rect(0,0,6,2)
+            layer.rect(0,-3,10,2)
+            layer.rect(0,3,10,2)
+            layer.rect(0,-6,6,2)
+            layer.rect(0,6,6,2)
+        break
+        case 109:
+            layer.fill(255,50,50,fade)
+            layer.triangle(2,-6,3,-1.5,1,-1.5)
+            layer.quad(4,3,0,3,0.8,-0.6,3.2,-0.6)
+            layer.quad(-4.5,0,-3,-1.5,-1.5,0,-3,1.5)
+        break
+        case 110:
+            layer.fill(100,255,100,fade)
+            layer.quad(0,1,-1,-3,0,-7,1,-3)
+            layer.fill(255,255,100,fade)
+            layer.quad(0,6,-2,4,0,2,2,4)
+        break
     }
     layer.pop()
 }
@@ -7441,4 +7467,7 @@ function displaySymbol(layer,x,y,type,direction,size,fade){
 105-Trifecta
 106-Miss
 107-Eye
+108-Basic Card
+109-Fragile Damage Up
+110-Madness
 */

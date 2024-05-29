@@ -254,7 +254,7 @@ Those characters often have status effects that they use often.`,
                 this.battle.setupBattle(types.encounter[findName('Little Guy',types.encounter)])
                 this.battle.cardManagers[0].reserve.cards=[]
                 this.battle.cardManagers[0].deck.cards=[]
-                this.popups=[[],[],[],[],[],[],[],[]]
+                this.popups=[[],[],[],[],[],[],[],[],[]]
                 this.pages=[
 `There are a variety of enemies in Movebuild. The main types of combats
 are Enemies, Elites, and Bosses, in that order of difficulty. You usually
@@ -262,14 +262,23 @@ have a lot of choice regarding fighting Enemies and Elites.`,
 `The first battle in each world is a set easier starting battle,
 and the next few battles in World 1 also are slightly easier combats.
 World 4 is short and doesn't include any standard battles.`,
-`
-It's worth noting that combats are determined entirely randomly,
+`It's worth noting that combats are determined entirely randomly,
 except that the same combat cannot appear twice in the same run.`,
-``,
-``,
-``,
-``,
-``,
+`Enemies in the late game and most Elites and Bosses have reactionary capabilities.
+This means that they may turn around, move, or even attack when you move.
+Such enemies are harder to avoid and more dangerous to battle.`,
+`Enemy intents are varied and complex, but the symbols used to represent them
+should give a decent idea of what they do. Reading their descriptions should
+be enough to understand them, as they're mostly self-explanatory.`,
+`On multiplayer, or when another sort of ally is present, enemies
+will select a target that they will go after. This can change mid-combat.
+Bosses will always pursue whichever player moved last if possible.`,
+`Attacking enemies will only activate if they have a player or another valid
+(non-enemy) target. Once activated for that turn, they will attack regardless
+of what they hit (as long as some valid target still exists.)`,
+`This makes it possible to get enemies to hit each other by
+manipulating their positions or angles they face.`,
+`END OF TUTORIAL`,
                 ]
             break
             case 6:
@@ -305,9 +314,9 @@ enemy to play them in.`,
             break
             case 7:
                 transition.scene='battle'
-                game.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
+                game.player=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
                 game.deck=[0]
-                this.battle.player=[1,2,3,4,5,6,7,8,9,10,11,12,13]
+                this.battle.player=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
                 this.battle.deck=[0]
                 this.battle.create()
                 this.battle.setEnergy(99,0)
@@ -1111,6 +1120,29 @@ End your turn to allow him to hit you.`,
             break
             case 5:
                 switch(this.page){
+                    case 3:
+                        this.battle.setupBattle(types.encounter[findName('Kugelblitz',types.encounter)])
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                    break
+                    case 6:
+                        this.battle.setupBattle(types.encounter[findName('TutorialTrick',types.encounter)])
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        this.battle.cardManagers[0].hand.add(findName('Step',types.card),0,0)
+                        
+                    break
+                }
+            break
+            case 6:
+                switch(this.page){
                     case 2:
                         this.battle.cardManagers[0].allEffect(2,2)
                         this.battle.cardManagers[0].hand.add(findName('Initiative',types.card),0,0)
@@ -1196,8 +1228,6 @@ End your turn to allow him to hit you.`,
                         this.battle.dropDraw(0,findName('Caffeine\nHigh',types.card),0,types.card[findName('Caffeine\nHigh',types.card)].list)
                     break
                 }
-            break
-            case 6:
             break
             case 7:
                 switch(this.page){

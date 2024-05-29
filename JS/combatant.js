@@ -121,7 +121,7 @@ class combatant{
             'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
-            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic','Basic on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
+            'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
             'Step Next Turn','Jagged Bleed','Counter Bleed Combat','Single Take Double Damage','Dodge Next Turn','Smite Per Turn','Stance Block','Stance Draw','Lose Next Turn','Faith Per Turn',
             'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
@@ -145,7 +145,7 @@ class combatant{
             'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
             'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
             'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn','Miracle Next Turn Next Turn',
-            'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down',
+            'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down','Fragile Damage Up',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -183,7 +183,7 @@ class combatant{
                 0,1,0,0,0,0,0,0,0,1,//33
                 0,0,0,2,2,0,0,0,0,2,//34
                 0,0,0,2,2,0,2,0,2,2,//35
-                2,2,0,
+                2,2,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -221,7 +221,7 @@ class combatant{
                 2,1,2,2,2,2,2,2,2,2,//33
                 2,2,2,2,2,2,2,2,2,3,//34
                 2,2,2,2,2,2,2,2,0,2,//35
-                2,2,0,
+                2,2,0,0,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -4846,6 +4846,9 @@ class combatant{
                 if(userCombatant.status.main[264]>0){
                     damage-=userCombatant.status.main[264]
                 }
+                if(userCombatant.status.main[353]>0){
+                    damage+=userCombatant.status.main[353]
+                }
                 if(userCombatant.status.main[6]!=0){
                     totalStr+=userCombatant.status.main[6]
                 }
@@ -5173,6 +5176,9 @@ class combatant{
             if(this.status.main[267]>0){
                 this.status.main[267]=0
             }
+            if(this.status.main[353]>0){
+                this.status.main[353]=0
+            }
             if(this.status.main[301]>0){
                 this.status.main[301]--
             }
@@ -5256,7 +5262,7 @@ class combatant{
                                 this.barrier=0
                             }
                         }
-                        this.blocked=damageLeft==0?0:damageLeft<damage?1:0
+                        this.blocked=damageLeft==0?0:damageLeft<damage?1:2
                         this.taken=damageLeft
                         if(this.battle.relicManager.hasRelic(253,this.id)){
                             this.battle.addCurrency(damageLeft*5*this.battle.relicManager.active[253][this.id+1],this.id)
@@ -5267,7 +5273,6 @@ class combatant{
                             this.taken=damage
                             this.infoAnim.upFlash[0]=true
                             this.battle.relicManager.activate(6,[this.id])
-                            this.blocked=2
                             if(this.id<this.battle.players){
                                 this.battle.stats.taken[this.id][2]+=damage
                             }
@@ -6236,6 +6241,11 @@ class combatant{
                 break
                 case 2:
                     if(this.status.main[a]!=0){
+                        total++
+                    }
+                break
+                case 3:
+                    if(this.status.main[a]!=0&&this.status.name[a]!='Strength'){
                         total++
                     }
                 break

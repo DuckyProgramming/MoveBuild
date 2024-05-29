@@ -379,6 +379,9 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 			if(user.status.main[264]>0){
 				bonus-=user.status.main[264]
 			}
+			if(user.status.main[353]>0){
+				bonus+=user.status.main[353]
+			}
 			if(user.status.main[6]!=0){
 				totalStr+=user.status.main[6]
 			}
@@ -1338,6 +1341,9 @@ function enemy(index){
 function manager(index){
 	return current.cardManagers[index]
 }
+function money(value){
+	current.addCurrency(value,0)
+}
 function combo(value){
 	current.combatantManager.combatants[0].combo+=value
 }
@@ -1355,6 +1361,10 @@ function elemental(){
 }
 function fight(name){
 	current.setupBattle(types.encounter[findName(name,types.encounter)])
+}
+function quickNode(type){
+	current.nodeManager.enterNode(type)
+	transition.trigger=true
 }
 function event(name){
 	stage.scene='event'

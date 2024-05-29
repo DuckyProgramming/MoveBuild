@@ -35,7 +35,7 @@ class relicManager{
             switch(types.relic[a].id){
                 case 4: case 17: case 18: case 37: case 38: case 39: case 42: case 43: case 44: case 59:
                 case 60: case 63: case 64: case 70: case 73: case 78: case 90: case 93: case 108: case 111:
-                case 118: case 139: case 201: case 204: case 205: case 254:
+                case 118: case 139: case 201: case 204: case 205: case 244: case 254:
                     this.detail.push([])
                     for(let b=0,lb=this.battle.players;b<lb;b++){
                         this.detail[this.detail.length-1].push(0)
@@ -774,6 +774,9 @@ class relicManager{
                             if(this.active[228][a+1]>0){
                                 this.getPlayer(a).statusEffect('Anti-Control',this.active[228][a+1])
                             }
+                            if(this.active[256][a+1]>0){
+                                this.getPlayer(a).statusEffect('Fragile Damage Up',this.active[256][a+1]*2)
+                            }
                             if(this.active[39][a+1]>0){this.detail[39][a]=0}
                             if(this.active[108][a+1]>0){this.detail[108][a]=0}
                         }
@@ -938,7 +941,7 @@ class relicManager{
                     this.battle.quickReinforce('Duck')
                 }
             break
-            case 1://end of combat
+            case 1://end of combat [encounterclass]
                 for(let a=0,la=this.battle.players;a<la;a++){
                     if(this.active[1][a+1]>0){
                         this.getPlayer(a).heal(3*this.active[1][a+1])
@@ -950,6 +953,9 @@ class relicManager{
                     }
                     if(this.active[153][a+1]>0){
                         this.getPlayer(a).heal(10*this.active[153][a+1])
+                    }
+                    if(this.active[258][a+1]>0&&args[0]==1){
+                        this.getPlayer(a).gainMaxHP(5*this.active[258][a+1])
                     }
                 }
             break
@@ -1012,6 +1018,16 @@ class relicManager{
                     if(this.active[206][args[1]+1]>0){
                         this.detail[206][args[1]][0]=0
                         this.detail[206][args[1]][1]=0
+                    }
+                    if(this.active[257][args[1]+1]>0){
+                        for(let a=0,la=this.active[257][args[1]+1];a<la;a++){
+                            this.battle.cardManagers[args[1]].hand.add(findName('Madness',types.card),0,0)
+                        }
+                    }
+                    if(this.active[261][args[1]+1]>0){
+                        for(let a=0,la=this.active[261][args[1]+1];a<la;a++){
+                            this.battle.cardManagers[args[1]].hand.allEffect(97)
+                        }
                     }
                     if(this.battle.modded(62)){
                         for(let a=0,la=3;a<la;a++){
@@ -1261,6 +1277,9 @@ class relicManager{
                             if(this.active[38][a+1]>0&&this.detail[38][a]==0){
                                 this.detail[38][a]=1
                             }
+                            if(this.active[262][a+1]>0&&this.battle.currency.money[a]<=500){
+                                this.getPlayer(a).heal(20*this.active[262][a+1])
+                            }
                         break
                         case 4://shop
                             if(this.active[91][a+1]>0){
@@ -1274,6 +1293,9 @@ class relicManager{
                             }
                             if(this.active[118][a+1]>0&&this.detail[118][a]==1){
                                 this.detail[118][a]=0
+                            }
+                            if(this.active[263][a+1]>0){
+                                this.battle.addCurrency(50*this.active[263][a+1],a)
                             }
                         break
                     }

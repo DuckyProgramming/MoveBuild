@@ -132,7 +132,19 @@ class combatantManager{
         }
         for(let a=0,la=this.combatants.length;a<la;a++){
             if((this.combatants[a].team==0||this.combatants[a].construct)){
-                this.combatants[a].target=list[floor(random(0,list.length))]
+                let minimum=1000
+                for(let b=0,lb=list.length;b<lb;b++){
+                    minimum=min(minimum,dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y))
+                }
+                let available=[]
+                for(let b=0,lb=list.length;b<lb;b++){
+                    if(dist(this.combatants[a].relativePosition.x,this.combatants[a].relativePosition.y,this.combatants[list[b]].relativePosition.x,this.combatants[list[b]].relativePosition.y)<minimum+100){
+                        available.push(list[b])
+                    }
+                }
+                if(available.length>0){
+                    this.combatants[a].target=available[floor(random(0,available.length))]
+                }
             }
         }
     }

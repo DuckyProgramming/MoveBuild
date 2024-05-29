@@ -80,6 +80,16 @@ class eventManager{
             this.layer.noStroke()
         }
     }
+    harm(combatant,amount){
+        if(!this.battle.relicManager.hasRelic(259,this.player)){
+            combatant.safeDamage(amount)
+        }
+    }
+    harmMax(combatant,amount){
+        if(!this.battle.relicManager.hasRelic(259,this.player)){
+            combatant.loseMaxHP(amount)
+        }
+    }
     callInput(type,a){
         switch(type){
             case 0:
@@ -88,7 +98,7 @@ class eventManager{
                 switch(this.id){
                     case 1:
                         if(this.page==0&&a==0){
-                            userCombatant.safeDamage(4)
+                            this.harm(userCombatant,4)
                         }else if(this.page==1&&a==0){
                             this.battle.overlayManager.overlays[3][this.player].active=true
                             this.battle.overlayManager.overlays[3][this.player].activate([0,1,0])
@@ -97,7 +107,7 @@ class eventManager{
                     case 2:
                         if(this.page==1&&a==0){
                             this.battle.addCurrency(300,this.player)
-                            userCombatant.safeDamage(20)
+                            this.harm(userCombatant,20)
                         }else if(this.page==2&&a==0){
                             userCombatant.heal(userCombatant.base.life)
                         }
@@ -111,7 +121,7 @@ class eventManager{
                                 this.battle.cardManagers[this.player].hand.add(this.battle.cardManagers[this.player].listing.card[0][3][index],0,0)
                             }
                         }else if(this.page==3&&a==0){
-                            userCombatant.safeDamage(13)
+                            this.harm(userCombatant,13)
                         }
                     break
                     case 4:
@@ -129,7 +139,7 @@ class eventManager{
                         }else if(this.page==1&&a==0){
                             this.battle.addCurrency(200,this.player)
                         }else if(this.page==2&&a==0){
-                            userCombatant.safeDamage(30)
+                            this.harm(userCombatant,30)
                         }
                     break
                     case 6:
@@ -139,7 +149,7 @@ class eventManager{
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('Bar Fight',types.encounter)])
                         }else if(this.page==3&&a==0){
-                            userCombatant.safeDamage(6)
+                            this.harm(userCombatant,6)
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('Bar Fight',types.encounter)])
                         }
@@ -168,9 +178,9 @@ class eventManager{
                         }else if(this.page==0&&a==2&&floor(random(0,3))==0){
                             tempPage=1
                         }else if(this.page==1&&a==0){
-                            userCombatant.safeDamage(7)
+                            this.harm(userCombatant,7)
                         }else if(this.page==3&&a==0){
-                            userCombatant.safeDamage(5)
+                            this.harm(userCombatant,5)
                             transition.scene='battle'
                             this.battle.setupBattle(types.encounter[findName('Bus Surprise',types.encounter)])
                         }
@@ -189,7 +199,7 @@ class eventManager{
                     break
                     case 12:
                         if(this.page<3&&a==0){
-                            userCombatant.safeDamage(5)
+                            this.harm(userCombatant,5)
                             if(floor(random(0,4))==0){
                                 tempPage=3-this.pages[this.page].link[a]
                             }
@@ -239,7 +249,7 @@ class eventManager{
                     break
                     case 19:
                         if(this.page==0&&a==0){
-                            userCombatant.safeDamage(12)
+                            this.harm(userCombatant,12)
                         }else if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].randomEffect(0,2,[0])
                             this.battle.cardManagers[this.player].randomEffect(0,2,[0])
@@ -274,7 +284,7 @@ class eventManager{
                     break
                     case 23:
                         if(this.page==0&&a==0){
-                            userCombatant.loseMaxHP(userCombatant.base.life/2)
+                            this.harmMax(userCombatant,userCombatant.base.life/2)
                         }else if(this.page==1&&a==0){
                             for(let b=0,lb=5;b<lb;b++){
                                 this.battle.cardManagers[this.player].deck.add(findName('Apparition',types.card),0,0)
@@ -301,7 +311,7 @@ class eventManager{
                     break
                     case 26:
                         if(this.page==0&&a==0){
-                            userCombatant.safeDamage(18)
+                            this.harm(userCombatant,18)
                         }else if(this.page==1&&a==0){
                             userCombatant.gainMaxHP(5)
                         }else if(this.page==2&&a==0){
@@ -310,13 +320,13 @@ class eventManager{
                     break
                     case 27:
                         if(this.page==0&&a==0){
-                            userCombatant.safeDamage(2)
+                            this.harm(userCombatant,2)
                         }else if(this.page==2&&a==0){
-                            userCombatant.safeDamage(4)
+                            this.harm(userCombatant,4)
                         }else if(this.page==3&&a==0){
-                            userCombatant.safeDamage(8)
+                            this.harm(userCombatant,8)
                         }else if(this.page==4&&a==0){
-                            userCombatant.safeDamage(36)
+                            this.harm(userCombatant,36)
                         }else if(this.page==5&&a==0){
                             this.battle.relicManager.addRelic(findInternal('Duplicate Random Turn',types.relic),this.player)
                         }
@@ -375,7 +385,7 @@ class eventManager{
                     break
                     case 32:
                         if(this.page==0&&a==0){
-                            userCombatant.loseMaxHP(userCombatant.base.life/4)
+                            this.harmMax(userCombatant,userCombatant.base.life/4)
                             this.battle.cardManagers[this.player].deck.removeAllName('Strike')
                             this.battle.cardManagers[this.player].deck.removeAllName('Strike-')
                         }else if(this.page==1&&a==0){
@@ -413,18 +423,18 @@ class eventManager{
                         if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Madness',types.card),0,0)
                             this.battle.cardManagers[this.player].deck.add(findName('Madness',types.card),0,0)
-                            userCombatant.loseMaxHP(10)
+                            this.harmMax(userCombatant,10)
                         }else if(this.page==2&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Writhe',types.card),0,game.playerNumber+2)
                         }else if(this.page==3&&a==0){
-                            userCombatant.loseMaxHP(5)
+                            this.harmMax(userCombatant,5)
                         }
                     break
                     case 36:
                         if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].randomEffect(0,6,[])
                         }else if(this.page==2&&a==0){
-                            userCombatant.safeDamage(6)
+                            this.harm(userCombatant,6)
                         }
                     break
                     case 37:
@@ -433,7 +443,7 @@ class eventManager{
                         }else if(this.page==0&&a==1){
                             this.battle.loseCurrency(25,this.player)
                         }else if(this.page==1&&a==0){
-                            userCombatant.safeDamage(11)
+                            this.harm(userCombatant,11)
                         }
                     break
                     case 38:
@@ -481,7 +491,7 @@ class eventManager{
                             this.battle.relicManager.addRandomRelic(this.player)
                             this.battle.addCurrency(45,this.player)
                         }else if(this.page==2&&a==0){
-                            userCombatant.safeDamage(25)
+                            this.harm(userCombatant,25)
                         }
                     break
                     case 43:
@@ -515,7 +525,7 @@ class eventManager{
                             this.battle.overlayManager.overlays[6][this.player].active=true
                             this.battle.overlayManager.overlays[6][this.player].activate()
                         }else if(this.page==3&&a==0){
-                            userCombatant.safeDamage(1)
+                            this.harm(userCombatant,1)
                         }
                     break
                     case 46:
@@ -547,9 +557,9 @@ class eventManager{
                         if(this.page==0&&a==0){
                             this.battle.relicManager.addRelic(findInternal('More Currency',types.relic),this.player)
                         }else if(this.page==3&&a==0){
-                            userCombatant.safeDamage(16)
+                            this.harm(userCombatant,16)
                         }else if(this.page==4&&a==0){
-                            userCombatant.loseMaxHP(4)
+                            this.harmMax(userCombatant,4)
                         }else if(this.page==5&&a==0){
                             this.battle.cardManagers[this.player].deck.add(findName('Injury',types.card),0,game.playerNumber+2)
                         }
@@ -570,14 +580,14 @@ class eventManager{
                         if(this.page==0&&a==0&&floor(random(0,2))==0){
                             tempPage++
                         }else if(this.page==2&&a==0){
-                            userCombatant.safeDamage(6)
+                            this.harm(userCombatant,6)
                         }else if(this.page==3&&a==0){
-                            userCombatant.safeDamage(3)
+                            this.harm(userCombatant,3)
                             if(floor(random(0,4))==0){
                                 tempPage=2
                             }
                         }else if(this.page==4&&a==0){
-                            userCombatant.safeDamage(6)
+                            this.harm(userCombatant,6)
                         }else if(this.page==6&&a==0){
                             this.battle.relicManager.addRandomRelic(this.player)
                         }
@@ -603,9 +613,9 @@ class eventManager{
                         if(this.page==1&&a==0){
                             this.battle.cardManagers[this.player].addRandom(0,0,3)
                         }else if(this.page==2&&a==0){
-                            userCombatant.safeDamage(99)
+                            this.harm(userCombatant,99)
                         }else if(this.page==3&&a==0){
-                            userCombatant.safeDamage(9)
+                            this.harm(userCombatant,9)
                         }
                     break
                     case 56:

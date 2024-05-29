@@ -22,6 +22,7 @@ class cardManager{
         this.tempDraw=0
         this.tempDrawFreeze=0
         this.tempDrawBurn=0
+        this.tempCostDown=0
         this.baseDrops=variants.cyclicDraw?3:0
         this.drops=0
         this.interval=0
@@ -919,9 +920,15 @@ class cardManager{
         if(this.tempDrawBurn>0){
             this.draw(this.tempDrawBurn,2)
         }
+        if(this.tempCostDown>0){
+            for(let a=0,la=this.tempCostDown;a<la;a++){
+                this.randomEffect(2,1,[1])
+            }
+        }
         this.tempDraw=0
         this.tempDrawFreeze=0
         this.tempDrawBurn=0
+        this.tempCostDown=0
         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
         if(userCombatant.getStatus('Random Card Cost Less Per Turn')>0){
             this.randomEffect(2,1,[userCombatant.getStatus('Random Card Cost Less Per Turn')])

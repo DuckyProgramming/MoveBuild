@@ -78,13 +78,14 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[48,0,0])],//scry, shuffle afterward
                     [new overlay(this.layer,this.battle,0,2,[49,0,0,0])],//scry, draw into intangible
                     [new overlay(this.layer,this.battle,0,17,[0])],//dual card choice,70
+                    [new overlay(this.layer,this.battle,0,2,[50])],//random edition basic, no return
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[51,61,64,41,42,24,4,16,38,17,3,26,28,10,35,6,44,48,49,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,70,63,59,33,52,53,8,65,66,46,47,34,37,19,20,21,22,23,29,31,40,9,14,62,54,11,27,39,43,55,45,60]
+                this.priority=[51,61,64,41,42,24,4,16,38,17,3,26,28,10,35,6,44,71,48,49,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,70,63,59,33,52,53,8,65,66,46,47,34,37,19,20,21,22,23,29,31,40,9,14,62,54,11,27,39,43,55,45,60]
             break
             case 1:
                 this.overlays.push(

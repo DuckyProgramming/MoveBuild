@@ -3393,7 +3393,13 @@ class card{
                 case -107: string+=`-9: Add ${effect[1]} Completely Random\nRare Card${effect[1]!=1?`s`:``} to Hand\n${effect[1]!=1?`They Cost`:`It Costs`} 0, Exhaust,\nand are Ethereal`; break
             case 3079: string+=`Deal ${this.calculateEffect(effect[0],0)} Damage\nIf You Have\nBlock or Barrier`; break
             case 3081: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nLose ${effect[1]} Energy\nIf You Have Block`; break
-
+            case 3082: string+=`+1: A Random Card\nCosts ${effect[0]} Less\n-3: All Cards in Hand\nCost ${effect[1]} Less\n-6: Heal ${this.calculateEffect(effect[2],4)} Health`; break
+                case -108: string+=`-3: All Cards in Hand\nCost ${effect[1]} Less`; break
+                case -109: string+=`-6: Heal ${this.calculateEffect(effect[2],4)} Health`; break
+            case 3083: string+=`Gain Strength Equal to\nthe Number of Unique\nStatuses You Have${effect[0]>0?` +${effect[0]}`:``}`; break
+            case 3084: string+=`All Vanishing Cards\nin Hand Gain ${effect[0]} Use${effect[0]!=1?`s`:``}`; break
+            case 3085: string+=`Edition a Basic Card\nDraw ${effect[0]} Card${effect[0]!=1?`s`:``}`; break
+            
             //mark p
 
             /*
@@ -3555,7 +3561,7 @@ class card{
             break
             case 2953: case 2954: case 2955:
                 this.cost=0
-                this.additionalSpec.push(-3)
+                this.additionalSpec.push(-2)
             break
         }
     }
@@ -3981,7 +3987,7 @@ class card{
             this.cost=max(this.cost-1,0)
             this.base.cost=max(this.base.cost-1,0)
         }
-        if(this.additionalSpec.includes(-3)){
+        if(this.additionalSpec.includes(-2)){
             this.additionalSpec.splice(this.additionalSpec.indexOf(-3))
         }
         switch(this.attack){
@@ -4045,7 +4051,7 @@ class card{
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].activateRewind()
                 }
             break
-            case 3074: case 3075: case 3076: case 3078:
+            case 3074: case 3075: case 3076: case 3078: case 3082:
                 if(!this.spec.includes(55)){
                     this.discardEffect.push(13)
                 }
@@ -4345,6 +4351,12 @@ class card{
                 if(this.spec.includes(55)){
                     this.cost++
                     userCombatant.statusEffectNext('Temporary Strength',this.battle.counter.turnPlayed[2]+this.effect[0])
+                }
+            break
+            case 3082:
+                if(this.spec.includes(55)){
+                    this.cost++
+                    this.battle.cardManagers[this.player].tempCostDown+=this.effect[0]
                 }
             break
         }
@@ -5442,7 +5454,7 @@ class card{
                         }
                         this.layer.rotate(-90)
                     }else{
-                        this.layer.textSize(variants.blind?12:10-(name.length>=24&&(name.includes('Discus')||name.includes('Yukari'))&&!name.includes('$colorcharacter')?3:0))
+                        this.layer.textSize(variants.blind?12:10-(name.length>=24&&(name.includes('Discus')||this.class==9)&&!name.includes('$colorcharacter')?3:0))
                         if(spec.includes(37)){
                             this.layer.text(name.replace('$colorcharacter',types.combatant[this.color].name)+":",0,variants.blind?0:-this.height/2+15)
                         }else{
