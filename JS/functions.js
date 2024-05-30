@@ -1419,7 +1419,7 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	let box=``
-	let goal=50+125*game.playerNumber+30+20+15+30+150
+	let goal=60+125*game.playerNumber+30+20+15+30+150
 	let arbitrary=3000
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
@@ -1431,9 +1431,10 @@ Rare:${current.cardManagers[0].listing.card[a+1][2].length}/20					${current.car
 	print(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
 Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length-goal}
 		Colorless:
-Uncommon:${current.cardManagers[0].listing.card[0][1].length}/35				${current.cardManagers[0].listing.card[0][1].length-35}
-Rare:${current.cardManagers[0].listing.card[0][2].length}/15					${current.cardManagers[0].listing.card[0][2].length-15}
-	Total:${current.cardManagers[0].listing.card[0][3].length}/50
+Common:${current.cardManagers[0].listing.card[0][0].length}/30				${current.cardManagers[0].listing.card[0][0].length-30}
+Uncommon:${current.cardManagers[0].listing.card[0][1].length}/20				${current.cardManagers[0].listing.card[0][1].length-20}
+Rare:${current.cardManagers[0].listing.card[0][2].length}/10					${current.cardManagers[0].listing.card[0][2].length-10}
+	Total:${current.cardManagers[0].listing.card[0][3].length}/60
 ${box}		Status:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+1][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+1][3].length-30}
 		Curse:

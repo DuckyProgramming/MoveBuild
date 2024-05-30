@@ -379,6 +379,23 @@ class combatantManager{
             }
         }
     }
+    damageHighest(effect,user){
+        let maximum=0
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0){
+                maximum=max(maximum,this.combatants[a].life)
+            }
+        }
+        let possible=[]
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            if(this.combatants[a].team==0&&this.combatants[a].life==maximum){
+                possible.push(a)
+            }
+        }
+        if(possible.length>0){
+            this.combatants[possible[floor(random(0,possible.length))]].takeDamage(effect,user)
+        }
+    }
     hasDupe(name){
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){

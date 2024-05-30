@@ -145,7 +145,7 @@ class combatant{
             'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
             'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
             'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn','Miracle Next Turn Next Turn',
-            'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down','Fragile Damage Up',
+            'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down','Fragile Damage Up','Temporary Free Common Colorless','Extra Drawless Turn','Damage Highest',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -183,7 +183,7 @@ class combatant{
                 0,1,0,0,0,0,0,0,0,1,//33
                 0,0,0,2,2,0,0,0,0,2,//34
                 0,0,0,2,2,0,2,0,2,2,//35
-                2,2,0,0,
+                2,2,0,0,2,0,2,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -221,7 +221,7 @@ class combatant{
                 2,1,2,2,2,2,2,2,2,2,//33
                 2,2,2,2,2,2,2,2,2,3,//34
                 2,2,2,2,2,2,2,2,0,2,//35
-                2,2,0,0,
+                2,2,0,0,2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -6450,6 +6450,7 @@ class combatant{
                     case 349: this.status.main[findList('Miracle Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 350: this.status.main[findList('Extra Turn',this.status.name)]+=this.status.main[a]; break
                     case 351: this.status.main[findList('Extra Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 356: this.battle.combatantManager.damageHighest(this.status.main[a],this.id); break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){

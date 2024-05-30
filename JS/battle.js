@@ -589,9 +589,19 @@ class battle{
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         let extra=false
-        if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
+        let noDraw=false
+        if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Drawless Turn')>0){
+            let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
+            combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
+            combatant.tick()
+            this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
+            this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
+            this.energy.temp[this.turn.main]=0
+            noDraw=true
+        }else if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
+            combatant.tick()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
@@ -609,7 +619,7 @@ class battle{
             this.combatantManager.enableCombatants()
             this.replayManager.list.push(new attack(-1002,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
             this.combatantManager.tickA()
-        }else{
+        }else if(!noDraw){
             if(extra){
                 this.cardManagers[this.turn.main].bufferedTurn=30
             }else{
@@ -1045,6 +1055,9 @@ class battle{
     }
     getSpecificEnergy(player,type){
         return this.energy.main[player][type]+(type==0?this.energy.main[player][1]+this.energy.main[player][2]+this.energy.main[player][3]+this.energy.main[player][4]+this.energy.main[player][5]:this.energy.main[player][0])
+    }
+    getEnergyBase(player){
+        return variants.mtg?this.energy.base[player].length:this.energy.base[player]
     }
     energyBaseUp(player){
         if(variants.mtg){

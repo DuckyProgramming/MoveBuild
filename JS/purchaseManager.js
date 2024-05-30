@@ -17,7 +17,8 @@ class purchaseManager{
                     for(let a=0,la=group.length;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,100+a%4*150,112.5+floor(a/4)*187.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[findName(['Placeholder\nCommon','Placeholder\nUncommon','Placeholder\nRare'][group[a]],types.card),0,0,sale==a]))
                     }
-                    group=[1,1,2]
+                    let bar=floor(random(0,2))
+                    group=[0,bar,1+bar]
                     cost=[[120,150],[180,225],[300,375]]
                     for(let a=0,la=group.length;a<la;a++){
                         this.purchases.push(new purchase(this.layer,this.battle,0,100+a*150,487.5,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[findName(['','Colorless\nUncommon','Colorless\nRare'][group[a]],types.card),0,0]))
@@ -46,7 +47,8 @@ class purchaseManager{
                             }
                         }
                         list=copyArrayStack(this.battle.cardManagers[0].listing.card[0])
-                        group=[1,1,2]
+                        let bar=floor(random(0,2))
+                        group=[0,bar,1+bar]
                         cost=[[120,150],[180,225],[300,375]]
                         for(let a=0,la=group.length;a<la;a++){
                             let index=floor(random(0,list[group[a]].length))

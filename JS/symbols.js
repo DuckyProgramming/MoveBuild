@@ -3303,6 +3303,31 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.quad(4,3,0,3,0.8,-0.6,3.2,-0.6)
             layer.quad(-4.5,0,-3,-1.5,-1.5,0,-3,1.5)
         break
+        case 354:
+            layer.fill(150,fade)
+            layer.triangle(0,0,-6,0,0,-6)
+            layer.triangle(0,0,6,0,0,6)
+            layer.fill(125,fade)
+            layer.triangle(0,0,-6,0,0,6)
+            layer.triangle(0,0,6,0,0,-6)
+            layer.fill(200,255,255,fade)
+            layer.quad(-3.2,0,0,-4,3.2,0,0,4)
+        break
+        case 355:
+            layer.fill(120,fade)
+            layer.ellipse(0,0,3)
+            layer.stroke(40,fade)
+            layer.strokeWeight(1.5)
+            layer.ellipse(0,0,12,12)
+            layer.line(0,0,0,-3.75)
+            layer.line(0,0,2.25,2.25)
+        break
+        case 356:
+            layer.fill(255,50,50,fade)
+            layer.triangle(0,-4,-3,2,3,2)
+            layer.triangle(-2,-2,-3,0,-6,0)
+            layer.triangle(2,-2,3,0,6,0)
+        break
 
     }
     //mark s
