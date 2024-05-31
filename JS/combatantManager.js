@@ -649,6 +649,11 @@ class combatantManager{
                     case 38:
                         this.combatants[a].statusEffect('Double Damage',args[0])
                     break
+                    case 39:
+                        if(this.combatants[a].id!=args[1]){
+                            this.combatants[a].takeDamage(args[0],-1)
+                        }
+                    break
                 }
             }
         }

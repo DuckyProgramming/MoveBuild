@@ -6,7 +6,7 @@ class particle{
         this.remove=false
         this.time=0
         switch(this.type){
-            case 0:
+            case 0: case 41: case 77:
                 this.value=args[0]
                 this.direction=random(120,240)
                 this.speed=random(2.5,5)
@@ -53,7 +53,7 @@ class particle{
                 this.scale=1
             break
             case 6: case 11: case 14: case 16: case 18: case 19: case 20: case 21: case 39: case 42:
-            case 43: case 44: case 47: case 48:
+            case 43: case 44: case 47: case 48: case 78: case 79:
                 this.direction=args[0]
                 this.timer=args[1]
                 this.speed=15
@@ -137,16 +137,6 @@ class particle{
                 this.size=args[0]
                 this.scale=0.1
                 this.direction=args[1]
-            break
-            case 41:
-                this.value=args[0]
-                this.direction=args[1]
-                this.speed=4
-                this.fade=0
-                this.trigger=false
-                this.size=1
-                this.scale=1
-                this.velocity={x:lsin(this.direction)*this.speed,y:lcos(this.direction)*this.speed}
             break
             case 46:
                 this.size=args[0]
@@ -556,9 +546,11 @@ class particle{
                     this.layer.ellipse(0,0,10,10)
                 break
                 case 41:
-                    this.layer.fill(200,this.fade*2)
-                    this.layer.textSize(25)
-                    this.layer.text(this.value,0,0)
+                    this.layer.textSize(20)
+                    this.layer.fill(200,200,100,this.fade)
+                    this.layer.stroke(0,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.text(tennify(this.value),0,0)
                 break
                 case 42:
                     this.layer.fill(255,100,0,this.fade)
@@ -958,6 +950,34 @@ class particle{
                     this.layer.arc(0,0,10,10,-170,-70)
                     this.layer.arc(0,0,8,8,10,110)
                 break
+                case 77:
+                    this.layer.textSize(20)
+                    this.layer.fill(0,255,0,this.fade)
+                    this.layer.stroke(0,this.fade)
+                    this.layer.strokeWeight(1)
+                    this.layer.text(tennify(this.value),0,0)
+                break
+                case 78:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(75,225,75,this.fade)
+                    this.layer.rect(0,0,8,16)
+                    this.layer.fill(225,this.fade)
+                    this.layer.rect(0,0,7,15)
+                    this.layer.fill(75,225,75,this.fade)
+                    this.layer.rect(-2,0,1,4)
+                    this.layer.rect(2,0,1,4)
+                    this.layer.rect(0,-1.5,5,1)
+                    this.layer.rect(0,1.5,5,1)
+                    this.layer.rect(0,0,1,10)
+                break
+                case 79:
+                    this.layer.rotate(this.direction)
+                    this.layer.fill(255,200,150,this.fade)
+                    this.layer.ellipse(0,0,32)
+                    this.layer.fill(255,225,200,this.fade*0.5)
+                    regStar(this.layer,0,0,9,16,16,24,24,0)
+                    regStar(this.layer,0,0,9,16,16,24,24,20)
+                break
 
             }
             this.layer.pop()
@@ -966,7 +986,7 @@ class particle{
     update(){
         this.time++
         switch(this.type){
-            case 0: case 41:
+            case 0: case 41: case 77:
                 this.position.x+=this.velocity.x/game.animRate
                 this.position.y+=this.velocity.y/game.animRate
                 this.velocity.y+=this.gravity/game.animRate
@@ -984,7 +1004,7 @@ class particle{
             break
             case 1: case 4: case 5: case 6: case 7: case 8: case 11: case 14: case 16: case 18:
             case 19: case 20: case 21: case 32: case 35: case 39: case 42: case 43: case 44: case 47:
-            case 48: case 49: case 50:
+            case 48: case 49: case 50: case 78: case 79:
                 this.position.x+=lsin(this.direction)*this.speed
                 this.position.y-=lcos(this.direction)*this.speed-10/this.timer
                 if(!this.trigger){
@@ -1059,21 +1079,6 @@ class particle{
                 this.scale+=0.2
                 if(this.fade<=0){
                     this.remove=true
-                }
-            break
-            case 41:
-                this.position.x+=lsin(this.direction)*this.speed
-                this.position.y-=lcos(this.direction)*this.speed
-                if(!this.trigger){
-                    this.fade+=0.2
-                    if(this.fade>=2){
-                        this.trigger=true
-                    }
-                }else{
-                    this.fade-=0.2
-                    if(this.fade<=0){
-                        this.remove=true
-                    }
                 }
             break
             case 53: case 70: case 71:

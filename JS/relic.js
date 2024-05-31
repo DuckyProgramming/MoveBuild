@@ -15,6 +15,7 @@ class relic{
         this.infoFade=0
         this.deFade=false
         this.active=true
+        this.anim={active:1}
 
         switch(this.rarity){
             case -1: this.value=20; break
@@ -30,7 +31,7 @@ class relic{
             this.layer.push()
             this.layer.translate(position.x,position.y)
             this.layer.scale(this.size)
-            this.layer.fill(this.active?200:80,this.fade)
+            this.layer.fill(80+this.anim.active*120,this.fade)
             this.layer.noStroke()
             this.layer.ellipse(0,0,40,40)
             if(this.player==-1){
@@ -1992,5 +1993,6 @@ class relic{
     update(up,total,inputs,position=this.position,overlayed=true){
         this.fade=smoothAnim(this.fade,up&&!this.deFade||this.type==0&&total>0,0,1,5)
         this.infoFade=smoothAnim(this.infoFade,up&&dist(inputs.rel.x,inputs.rel.y,position.x,position.y)<20*this.size&&this.type!=0&&overlayed,0,1,5)
+        this.anim.active=smoothAnim(this.anim.active,this.active,0,1,5)
     }
 }

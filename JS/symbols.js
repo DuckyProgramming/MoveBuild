@@ -3328,6 +3328,33 @@ function displayStatusSymbol(layer,x,y,type,direction,size,fade){
             layer.triangle(-2,-2,-3,0,-6,0)
             layer.triangle(2,-2,3,0,6,0)
         break
+        case 357:
+            layer.fill(255,50,50,fade)
+            layer.triangle(-3,0,-5,3,-1,3)
+            layer.triangle(3,0,5,3,1,3)
+            layer.triangle(-3,0,-5,-3,-1,-3)
+            layer.triangle(3,0,5,-3,1,-3)
+            layer.rect(0,-4,10,1)
+            layer.rect(0,4,10,1)
+        break
+        case 358:
+            layer.fill(150,150,0,fade)
+            layer.beginShape()
+            for(let a=0,la=16;a<la;a++){
+                layer.vertex(sin(a/la*360)*(6-a%2*3.6),cos(a/la*360)*(6-a%2*3.6))
+            }
+            layer.endShape()
+            layer.fill(255,100,100,fade)
+            layer.rect(0,0,3,12)
+            layer.rect(0,0,12,3)
+        break
+        case 359:
+            layer.fill(150,175,200,fade)
+            layer.triangle(2,-6,4,3,0,3)
+            layer.rect(-3,0,3,3)
+            layer.fill(80,fade)
+            layer.triangle(0,-1.5,0,1.5,6,0)
+        break
 
     }
     //mark s

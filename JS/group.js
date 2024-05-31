@@ -187,11 +187,11 @@ class group{
     }
     reset(){
         this.cancel()
-        this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        this.anim=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         this.turnRewinds=0
     }
     cancel(){
-        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        this.status=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     }
     added(){
         this.cards[this.cards.length-1].callAddEffect()
@@ -518,6 +518,9 @@ class group{
     }
     rewindTop(amount){
         this.status[24]+=amount
+    }
+    duplicateCommonColorless(amount){
+        this.status[25]+=amount
     }
     shuffle(){
         let cards=[]
@@ -1450,6 +1453,11 @@ class group{
                         }
                     }
                 break
+                case 98:
+                    if(this.cards[a].name=='Prismatic\nBomb'){
+                        this.cards[a].deSize=true
+                    }
+                break
 
             }
         }
@@ -1975,7 +1983,7 @@ class group{
             case 1064:
                 this.drawEffects.push([5,card.effect[2]])
             break
-            case 1065: case 3103:
+            case 1065: case 3103: case 3113: case 3114: case 3119:
                 this.drawEffects.push([5,card.effect[1]])
             break
             case 1076:
@@ -2854,7 +2862,7 @@ class group{
     display(scene,args){
         switch(scene){
             case 'battle':
-                let anim=[this.anim[0],max(this.anim[1],this.anim[13]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23]]
+                let anim=[this.anim[0],max(this.anim[1],this.anim[13]),max(this.anim[2],this.anim[24]),this.anim[3],this.anim[4],this.anim[5],max(this.anim[6],this.anim[17]),this.anim[7],this.anim[8],this.anim[9],this.anim[10],this.anim[11],this.anim[12],this.anim[14],this.anim[15],this.anim[16],this.anim[18],this.anim[19],this.anim[20],this.anim[21],this.anim[22],this.anim[23],this.anim[25]]
                 for(let a=0,la=this.cards.length;a<la;a++){
                     if(this.cards[a].size<=1){
                         this.cards[a].display()
@@ -2981,13 +2989,13 @@ class group{
                     this.battle.attackManager.effect[0]+=userCombatant.status.main[340]
                 }
                 this.cards[a].usable=false
-                if(this.status[3]>0&&this.cards[a].attack!=1491&&options.oldDuplicate){
-                    this.status[3]--
+                if((this.status[3]>0||this.status[25]>0&&this.cards[a].color==0&&this.cards[a].rarity==0)&&this.cards[a].attack!=1491&&options.oldDuplicate){
+                    this.status[this.status[25]>0&&this.cards[a].color==0&&this.cards[a].rarity==0?25:3]--
                     this.copySelfInput(a)
                 }
                 if(this.cards[a].target[0]==0){
-                    if(this.status[3]>0&&this.cards[a].attack!=1491&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
-                        this.status[3]--
+                    if((this.status[3]>0||this.status[25]>0&&this.cards[a].color==0&&this.cards[a].rarity==0)&&this.cards[a].attack!=1491&&!(this.cards[a].limit<=1&&this.cards[a].spec.includes(15))&&!options.oldDuplicate){
+                        this.status[this.status[25]>0&&this.cards[a].color==0&&this.cards[a].rarity==0?25:3]--
                         this.cards[a].usable=true
                     }else if(userCombatant.getStatus('Double Play')>0){
                         userCombatant.status.main[findList('Double Play',userCombatant.status.name)]--
@@ -3125,8 +3133,8 @@ class group{
                         let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                         this.spec=this.cards[b].spec
                         this.target=this.cards[b].target
-                        if(this.status[3]>0&&this.cards[b].attack!=1491&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
-                            this.status[3]--
+                        if((this.status[3]>0||this.status[25]>0&&this.cards[b].color==0&&this.cards[b].rarity==0)&&this.cards[b].attack!=1491&&!(this.cards[b].limit<=1&&this.cards[b].spec.includes(15))&&!options.oldDuplicate){
+                            this.status[this.status[25]>0&&this.cards[b].color==0&&this.cards[b].rarity==0?25:3]--
                             this.cards[b].usable=true
                             this.cards[b].select=false
                         }else if(userCombatant.getStatus('Double Play')>0){
@@ -3278,8 +3286,8 @@ class group{
                             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
                             this.spec=this.cards[b].spec
                             this.target=this.cards[b].target
-                            if(this.status[3]>0&&this.cards[b].attack!=1491&&!options.oldDuplicate){
-                                this.status[3]--
+                            if((this.status[3]>0||this.status[25]>0&&this.cards[b].color==0&&this.cards[b].rarity==0)&&this.cards[b].attack!=1491&&!options.oldDuplicate){
+                                this.status[this.status[25]>0&&this.cards[b].color==0&&this.cards[b].rarity==0?25:3]--
                                 this.cards[b].usable=true
                                 this.cards[b].select=false
                             }else if(userCombatant.getStatus('Double Play')>0){

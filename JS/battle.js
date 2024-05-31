@@ -152,7 +152,7 @@ class battle{
         }
     }
     resetAnim(){
-        this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],defeat:0,deck:[],dictionaryMulti:[],exit:1,sell:[],food:[],afford:1,upAfford:false,reroll:[],rerollActive:[]}
+        this.anim={reserve:1,discard:1,dictionary:1,endTurn:1,cancel:1,extra:[],turn:[],drop:[],defeat:0,deck:[],dictionaryMulti:[],sell:[],food:[],afford:1,upAfford:false,reroll:[],rerollActive:[]}
         for(let a=0,la=this.players;a<la;a++){
             this.anim.extra.push(0)
             this.anim.turn.push(0)
@@ -1547,44 +1547,36 @@ class battle{
                     this.layer.fill(this.colorDetail[a].fill)
                     this.layer.stroke(this.colorDetail[a].stroke)
                     this.layer.strokeWeight(3*this.anim.deck[a])
-                    this.layer.rect(26+a*(this.layer.width-52),494,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
+                    this.layer.rect(152+a*(this.layer.width-304),578,32*this.anim.deck[a],20*this.anim.deck[a],5*this.anim.deck[a])
                     this.layer.strokeWeight(3*this.anim.dictionaryMulti[a])
-                    this.layer.rect(26+a*(this.layer.width-52),522,32*this.anim.dictionaryMulti[a],20*this.anim.dictionaryMulti[a],5*this.anim.dictionaryMulti[a])
+                    this.layer.rect(110+a*(this.layer.width-220),578,32*this.anim.dictionaryMulti[a],20*this.anim.dictionaryMulti[a],5*this.anim.dictionaryMulti[a])
                     this.layer.strokeWeight(3*this.anim.sell[a])
-                    this.layer.rect(26+a*(this.layer.width-52),550,32*this.anim.sell[a],20*this.anim.sell[a],5*this.anim.sell[a])
+                    this.layer.rect(68+a*(this.layer.width-136),578,32*this.anim.sell[a],20*this.anim.sell[a],5*this.anim.sell[a])
                     this.layer.strokeWeight(3*this.anim.food[a])
                     this.layer.rect(26+a*(this.layer.width-52),578,32*this.anim.food[a],20*this.anim.food[a],5*this.anim.food[a])
                     if(this.relicManager.hasRelic(191,a)){
                         this.layer.strokeWeight(3*this.anim.reroll[a])
-                        this.layer.rect(-74+100*this.anim.rerollActive[a]+a*(this.layer.width+148-200*this.anim.rerollActive[a]),438,32*this.anim.reroll[a],20*this.anim.reroll[a],5*this.anim.reroll[a])
+                        this.layer.rect(194+a*(this.layer.width-388),628-50*this.anim.rerollActive[a],32*this.anim.reroll[a],20*this.anim.reroll[a],5*this.anim.reroll[a])
                     }
                     this.layer.fill(0)
                     this.layer.noStroke()
                     this.layer.textSize(8*this.anim.deck[a])
-                    this.layer.text('Deck',26+a*(this.layer.width-52),494-4*this.anim.deck[a])
-                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',26+a*(this.layer.width-52),494+4*this.anim.deck[a])
+                    this.layer.text('Deck',152+a*(this.layer.width-304),578-4*this.anim.deck[a])
+                    this.layer.text('('+this.cardManagers[a].deck.cards.length+')',152+a*(this.layer.width-304),578+4*this.anim.deck[a])
                     this.layer.textSize(7*this.anim.dictionaryMulti[a])
-                    this.layer.text('Dictionary',26+a*(this.layer.width-52),522)
+                    this.layer.text('Dictionary',110+a*(this.layer.width-220),578)
                     this.layer.textSize(8*this.anim.sell[a])
-                    this.layer.text('Sell',26+a*(this.layer.width-52),550-4*this.anim.sell[a])
-                    this.layer.text('Relic',26+a*(this.layer.width-52),550+4*this.anim.sell[a])
+                    this.layer.text('Sell',68+a*(this.layer.width-136),578-4*this.anim.sell[a])
+                    this.layer.text('Relic',68+a*(this.layer.width-136),578+4*this.anim.sell[a])
                     this.layer.textSize(8*this.anim.food[a])
                     this.layer.text('Food',26+a*(this.layer.width-52),578)
                     if(this.relicManager.hasRelic(191,a)){
                         this.layer.textSize(8*this.anim.reroll[a])
-                        this.layer.text('Reroll',-74+100*this.anim.rerollActive[a]+a*(this.layer.width+148-200*this.anim.rerollActive[a]),438-4*this.anim.reroll[a])
+                        this.layer.text('Reroll',194+a*(this.layer.width-388),628-50*this.anim.rerollActive[a]-4*this.anim.reroll[a])
                         this.layer.textSize(6*this.anim.reroll[a])
-                        this.layer.text('50 Currency',-74+100*this.anim.rerollActive[a]+a*(this.layer.width+148-200*this.anim.rerollActive[a]),438+4*this.anim.reroll[a])
+                        this.layer.text('50 Currency',194+a*(this.layer.width-388),628-50*this.anim.rerollActive[a]+4*this.anim.reroll[a])
                     }
                 }
-                this.layer.fill(this.player==1?this.colorDetail[0].fill:types.color.card[0].fill)
-                this.layer.stroke(this.player==1?this.colorDetail[0].stroke:types.color.card[0].stroke)
-                this.layer.strokeWeight(3*this.anim.exit)
-                this.layer.rect(26,466,32*this.anim.exit,20*this.anim.exit,5*this.anim.exit)
-                this.layer.fill(0)
-                this.layer.noStroke()
-                this.layer.textSize(8*this.anim.exit)
-                this.layer.text('Exit',26,466)
                 this.purchaseManager.display()
                 this.overlayManager.display()
                 this.itemManager.display(stage.scene)
@@ -1999,14 +1991,13 @@ class battle{
                 this.overlayManager.update()
                 this.itemManager.update(stage.scene)
                 for(let a=0,la=this.anim.deck.length;a<la;a++){
-                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20}),1,1.5,5)
-                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20}),1,1.5,5)
-                    this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20}),1,1.5,5)
+                    this.anim.deck[a]=smoothAnim(this.anim.deck[a],pointInsideBox({position:inputs.rel},{position:{x:152+a*(this.layer.width-304),y:578},width:32,height:20}),1,1.5,5)
+                    this.anim.dictionaryMulti[a]=smoothAnim(this.anim.dictionaryMulti[a],pointInsideBox({position:inputs.rel},{position:{x:110+a*(this.layer.width-220),y:578},width:32,height:20}),1,1.5,5)
+                    this.anim.sell[a]=smoothAnim(this.anim.sell[a],pointInsideBox({position:inputs.rel},{position:{x:68+a*(this.layer.width-136),y:578},width:32,height:20}),1,1.5,5)
                     this.anim.food[a]=smoothAnim(this.anim.food[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:578},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
-                    this.anim.reroll[a]=smoothAnim(this.anim.reroll[a],pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:438},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
+                    this.anim.reroll[a]=smoothAnim(this.anim.reroll[a],pointInsideBox({position:inputs.rel},{position:{x:194+a*(this.layer.width-388),y:628-this.anim.rerollActive[a]*50},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
                     this.anim.rerollActive[a]=smoothAnim(this.anim.rerollActive[a],!this.purchaseManager.rerollActive[a],0,1,5)
                 }
-                this.anim.exit=smoothAnim(this.anim.exit,pointInsideBox({position:inputs.rel},{position:{x:26,y:466},width:32,height:20})&&!this.overlayManager.anyActive,1,1.5,5)
             break
             case 'victory': case 'defeat':
                 this.overlayManager.update()
@@ -2357,25 +2348,21 @@ class battle{
                         if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:578},width:32,height:20})){
                             this.overlayManager.overlays[27][a].active=true
                             this.overlayManager.overlays[27][a].activate()
-                        }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:438},width:32,height:20})&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
+                        }else if(pointInsideBox({position:inputs.rel},{position:{x:194+a*(this.layer.width-388),y:628-50*this.anim.rerollActive[a]},width:32,height:20})&&this.relicManager.hasRelic(191,a)&&!this.purchaseManager.rerollActive[a]&&this.currency.money[a]>=50-(this.relicManager.hasRelic(187,a)?200:0)){
                             this.purchaseManager.setup(0)
                             this.purchaseManager.rerollActive[a]=true
                             this.currency.money[a]-=50
                         }
                     }
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26,y:466},width:32,height:20})){
-                        transition.trigger=true
-                        transition.scene='map'
-                    }
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:152+a*(this.layer.width-304),y:578},width:32,height:20})){
                         this.overlayManager.overlays[4][a].active=true
                         this.overlayManager.overlays[4][a].activate()
-                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:110+a*(this.layer.width-220),y:578},width:32,height:20})){
                         this.overlayManager.overlays[24][a].active=true
                         this.overlayManager.overlays[24][a].activate()
-                    }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:550},width:32,height:20})){
+                    }else if(pointInsideBox({position:inputs.rel},{position:{x:68+a*(this.layer.width-136),y:578},width:32,height:20})){
                         this.overlayManager.overlays[16][a].active=true
                         this.overlayManager.overlays[16][a].activate()
                     }
@@ -2729,10 +2716,6 @@ class battle{
                             this.purchaseManager.rerollActive[a]=true
                             this.currency.money[a]-=50
                         }
-                    }
-                    if(code==ENTER){
-                        transition.trigger=true
-                        transition.scene='map'
                     }
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){

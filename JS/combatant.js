@@ -145,7 +145,7 @@ class combatant{
             'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
             'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
             'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn','Miracle Next Turn Next Turn',
-            'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down','Fragile Damage Up','Temporary Free Common Colorless','Extra Drawless Turn','Damage Highest',
+            'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down','Fragile Damage Up','Temporary Free Common Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -183,7 +183,7 @@ class combatant{
                 0,1,0,0,0,0,0,0,0,1,//33
                 0,0,0,2,2,0,0,0,0,2,//34
                 0,0,0,2,2,0,2,0,2,2,//35
-                2,2,0,0,2,0,2,
+                2,2,0,0,2,0,2,1,0,0,//36
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -221,7 +221,7 @@ class combatant{
                 2,1,2,2,2,2,2,2,2,2,//33
                 2,2,2,2,2,2,2,2,2,3,//34
                 2,2,2,2,2,2,2,2,0,2,//35
-                2,2,0,0,2,2,2,
+                2,2,0,0,2,2,2,1,0,0,//36
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -3587,6 +3587,9 @@ class combatant{
             case 'Recollection':
                 this.statusEffect('Block Cycle 2 1',10)
             break
+            case 'Daughter of Heaven':
+                this.statusEffect('Heal on Hit Taken',3)
+            break
         }
         if(this.team==0){
             if(game.ascend>=2&&this.battle.encounter.class==0||game.ascend>=3&&this.battle.encounter.class==1||game.ascend>=4&&this.battle.encounter.class==2){
@@ -4957,6 +4960,9 @@ class combatant{
                     if(userCombatant.status.main[215]>0){
                         damage=0
                     }
+                    if(userCombatant.status.main[357]>0){
+                        damage=0
+                    }
                     if(this.status.main[3]>0){
                         this.status.main[3]--
                         hit=false
@@ -5053,6 +5059,9 @@ class combatant{
             }
             if(this.status.main[284]>0){
                 this.statusEffect('Regeneration',this.status.main[284])
+            }
+            if(this.status.main[358]>0){
+                this.heal(this.status.main[358])
             }
             if(spec!=3){
                 if(this.status.main[63]>0){
@@ -5306,7 +5315,7 @@ class combatant{
                 }
                 this.compression+=damage
                 this.lastTake=damage
-                this.battle.particleManager.createDamageNumber(this.position.x,this.position.y,damage)
+                this.battle.particleManager.createNumber(0,this.position.x,this.position.y,damage)
                 if(this.battle.turn.main<this.battle.players){
                     this.battle.stats.damage[this.battle.turn.main]+=damage
                     if(user>=0&&user<this.battle.combatantManager.combatants.length){
@@ -6138,7 +6147,7 @@ class combatant{
             roll=(luckCheck?value:luckCheckFail?1:1+floor(random(0,value)))+this.status.main[252]
             total+=roll
             average+=(1+value)/2+this.status.main[252]
-            this.battle.particleManager.createAuxNumber(this.position.x,this.position.y,roll,(a+0.5)/number*360)
+            this.battle.particleManager.createNumber(41,this.position.x,this.position.y,roll)
         }
         if(total<average*0.8){
             this.lowRoll()
@@ -6321,6 +6330,9 @@ class combatant{
             if(this.status.main[280]>0){
                 this.battle.combatantManager.randomEnemyEffect(0,[this.status.main[280]])
             }
+            if(stage.scene=='battle'&&this.position.x>0&&this.position.y>0&&this.position.x<this.layer.width&&this.position.y<this.layer.height){
+                this.battle.particleManager.createNumber(77,this.position.x,this.position.y,gain)
+            }
             this.life=min(this.life+ceil(gain),this.base.life)
         }
     }
@@ -6335,6 +6347,9 @@ class combatant{
             }
             if(this.life<0){
                 this.life=0
+            }
+            if(stage.scene=='battle'&&this.position.x>0&&this.position.y>0&&this.position.x<this.layer.width&&this.position.y<this.layer.height){
+                this.battle.particleManager.createNumber(77,this.position.x,this.position.y,gain)
             }
             this.life=min(this.life+ceil(gain),this.base.life)
         }
@@ -6451,6 +6466,7 @@ class combatant{
                     case 350: this.status.main[findList('Extra Turn',this.status.name)]+=this.status.main[a]; break
                     case 351: this.status.main[findList('Extra Turn Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 356: this.battle.combatantManager.damageHighest(this.status.main[a],this.id); break
+                    case 359: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){

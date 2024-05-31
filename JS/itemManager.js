@@ -23,13 +23,13 @@ class itemManager{
         }
         for(let a=0,la=this.battle.players;a<la;a++){
             this.items.push(game.ascend>=11?[
-                new item(this.layer,a,25+(this.layer.width-50)*a,50,25+(this.layer.width-50)*a,50,0,1),
-                new item(this.layer,a,75+(this.layer.width-150)*a,50,25+(this.layer.width-50)*a,100,1,1),
-                new item(this.layer,a,125+(this.layer.width-250)*a,50,25+(this.layer.width-50)*a,150,1,1)]:[
-                new item(this.layer,a,25+(this.layer.width-50)*a,50,25+(this.layer.width-50)*a,50,0,1),
-                new item(this.layer,a,75+(this.layer.width-150)*a,50,25+(this.layer.width-50)*a,100,1,1),
-                new item(this.layer,a,125+(this.layer.width-250)*a,50,25+(this.layer.width-50)*a,150,1,1),
-                new item(this.layer,a,175+(this.layer.width-350)*a,50,25+(this.layer.width-50)*a,200,1,1)])
+                new item(this.layer,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1),
+                new item(this.layer,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
+                new item(this.layer,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1)]:[
+                new item(this.layer,a,25+(this.layer.width-50)*a,50,100+(this.layer.width-200)*a,25,0,1),
+                new item(this.layer,a,75+(this.layer.width-150)*a,50,150+(this.layer.width-300)*a,25,1,1),
+                new item(this.layer,a,125+(this.layer.width-250)*a,50,200+(this.layer.width-400)*a,25,1,1),
+                new item(this.layer,a,175+(this.layer.width-350)*a,50,250+(this.layer.width-500)*a,25,1,1)])
             this.position.push(game.ascend>=11?-1:0)
             this.up.push(true)
             this.total.push(0)
@@ -94,7 +94,7 @@ class itemManager{
     }
     addItemSlots(amount,player){
         for(let a=0;a<amount;a++){
-            this.items[player].push(new item(this.layer,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,25+(this.layer.width-50)*player,250+this.position[player]*50,1,1))
+            this.items[player].push(new item(this.layer,player,225+50*this.position[player]+(this.layer.width-450-100*this.position[player])*player,50,300+this.position[player]*50+(this.layer.width-600-this.position[player]*100)*player,25,1,1))
             this.position[player]++
         }
     }
@@ -409,12 +409,12 @@ class itemManager{
                 for(let a=0,la=this.items.length;a<la;a++){
                     this.items[a].forEach(item=>item.displayInfo(1))
                 }
+                this.layer.noStroke()
                 this.layer.fill(230,230,210)
-                this.layer.textSize(16)
-                this.layer.text('10',25,33+this.items[0].length*50)
-                if(this.battle.currency.money.length>1){
-                    this.layer.text('10',this.layer.width-25,33+this.items[1].length*50)
-                }
+                this.layer.textSize(12)
+                this.layer.textAlign(LEFT,CENTER)
+                this.layer.text('Sell For 10:',10,36)
+                this.layer.textAlign(CENTER,CENTER)
             break
         }
     }

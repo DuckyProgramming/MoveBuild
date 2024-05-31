@@ -10,11 +10,8 @@ class particleManager{
         this.particles=[]
         this.particlesBack=[]
     }
-    createDamageNumber(x,y,value){
-        this.particles.push(new particle(this.layer,x,y,0,[value]))
-    }
-    createAuxNumber(x,y,value,direction=random(0,360)){
-        this.particles.push(new particle(this.layer,x,y,41,[value,direction]))
+    createNumber(type,x,y,value){
+        this.particles.push(new particle(this.layer,x,y,type,[value]))
     }
     display(scene){
         switch(scene){

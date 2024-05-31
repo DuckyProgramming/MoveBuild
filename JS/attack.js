@@ -156,7 +156,7 @@ class attack{
             case 2886: case 2887: case 2888: case 2889: case 2890: case 2898: case 2900: case 2907: case 2909: case 2913: case 2915: case 2919: case 2920: case 2924: case 2937: case 2943: case 2949: case 2951: case 2953: case 2959:
             case 2969: case 2971: case 2976: case 2977: case 2978: case 2979: case 2981: case 2983: case 2986: case 2987: case 2994: case 2995: case 2997: case 2999: case 3000: case 3001: case 3006: case 3007: case 3009: case 3016:
             case 3019: case 3026: case 3031: case 3034: case 3036: case 3037: case 3041: case 3051: case 3053: case 3062: case 3063: case 3066: case 3067: case 3068: case 3069: case 3079: case 3080: case 3093: case 3095: case 3096:
-            case 3098: case 3100: case 3103: case 3106: case 3108: case 3110:
+            case 3098: case 3100: case 3103: case 3106: case 3108: case 3110: case 3111: case 3112: case 3118: case 3120: case 3124: case 3125: case 3128: case 3129:
                 //mark 1
                 this.targetCombatant=this.battle.combatantManager.combatants[this.target[0]]
 
@@ -193,7 +193,7 @@ class attack{
             case 2832: case 2850: case 2866: case 2880: case 2925: case 2926: case 2927: case 2928: case 2929: case 2930:
             case 2931: case 2932: case 2933: case 2934: case 2935: case 2936: case 2938: case 2939: case 2940: case 2941:
             case 2942: case 2944: case 2945: case 2946: case 2948: case 2955: case 2973: case 2980: case 3013: case 3027:
-            case 3054: case 3081: case 3102:
+            case 3054: case 3081: case 3102: case 3115: case 3117: case 3119:
                 this.targetTile=this.battle.tileManager.tiles[this.target[0]]
 
                 this.direction=atan2(this.targetTile.position.x-this.position.x,this.targetTile.position.y-this.position.y)
@@ -945,7 +945,7 @@ class attack{
                         }
                         for(let a=0,la=this.effect[0];a<la;a++){
                             let roll=luckCheck?6:luckCheckFail?1:floor(random(1,7))
-                            this.battle.particleManager.createAuxNumber(this.userCombatant.position.x,this.userCombatant.position.y,roll)
+                            this.battle.particleManager.createNumber(41,this.userCombatant.position.x,this.userCombatant.position.y,roll)
                             total+=roll
                         }
                         if(total<this.effect[0]*3.5){
@@ -1027,7 +1027,7 @@ class attack{
                     break
                     case 1083:
                         let roll2=this.userCombatant.luckCheck()?this.effect[0]:this.userCombatant.luckCheckFail()?1:floor(random(1,this.effect[0]+1))
-                        this.battle.particleManager.createAuxNumber(this.userCombatant.position.x,this.userCombatant.position.y,roll2)
+                        this.battle.particleManager.createNumber(41,this.userCombatant.position.x,this.userCombatant.position.y,roll2)
                         if(roll2<this.effect[0]/2+1/2){
                             this.userCombatant.lowRoll()
                         }else{
@@ -2213,7 +2213,7 @@ class attack{
                                 }else{
                                     this.userCombatant.highRoll()
                                 }
-                                this.battle.particleManager.createAuxNumber(tempTargetCombatant.position.x,tempTargetCombatant.position.y,roll)
+                                this.battle.particleManager.createNumber(41,tempTargetCombatant.position.x,tempTargetCombatant.position.y,roll)
                                 total+=roll
                                 tempTargetCombatant.takeDamage(total,this.user)
                                 tempTargetCombatant.takeDamage(this.effect[1],this.user)
@@ -3449,6 +3449,13 @@ class attack{
                     case 3108:
                         this.userManager.randomEffect(2,45,[1])
                     break
+                    case 3111:
+                        this.userCombatant.statusEffect('Temporary Dexterity',this.effect[1])
+                        this.userCombatant.statusEffect('Temporary Dexterity Next Turn',-this.effect[2])
+                    break
+                    case 3118:
+                        this.userCombatant.statusEffect('No Damage Turn',this.effect[1])
+                    break
 
                 }
                 //mark 1
@@ -3616,7 +3623,7 @@ class attack{
                     break
                     case 1738:
                         let roll2=this.userCombatant.luckCheck()?this.effect[0]:this.userCombatant.luckCheckFail()?1:floor(random(1,this.effect[0]+1))
-                        this.battle.particleManager.createAuxNumber(this.userCombatant.position.x,this.userCombatant.position.y,roll2)
+                        this.battle.particleManager.createNumber(41,this.userCombatant.position.x,this.userCombatant.position.y,roll2)
                         if(roll2<this.effect[0]/2+1/2){
                             this.userCombatant.lowRoll()
                         }else{
@@ -4500,6 +4507,11 @@ class attack{
                     case 3109:
                         this.userManager.randomEffect(2,45,[2])
                     break
+                    case 3127:
+                        this.userCombatant.statusEffect('Retain Block',this.effect[1])
+                        this.userCombatant.statusEffect('Strength',this.effect[2])
+                        this.userCombatant.statusEffect('Lose Per Turn',this.effect[3])
+                    break
 
                 }
                 //mark 2
@@ -5239,6 +5251,16 @@ class attack{
                         if(this.userCombatant.block>0){
                             this.battle.loseEnergy(this.effect[1],this.player)
                         }
+                    break
+                    case 3115:
+                        if(this.targetTile.tilePosition.y<this.userCombatant.tilePosition.y){
+                            this.battle.combatantManager.randomEnemyEffect(0,[this.effect[1]])
+                        }else if(this.targetTile.tilePosition.y>this.userCombatant.tilePosition.y){
+                            this.userCombatant.addBlock(this.effect[2])
+                        }
+                    break
+                    case 3117:
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
                     break
 
                 }
@@ -6389,6 +6411,10 @@ class attack{
                     case 3107:
                         this.userCombatant.statusEffect('Damage Highest',this.effect[0])
                     break
+                    case 3122:
+                        this.userCombatant.statusEffect('Double Damage',this.effect[0])
+                        this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                    break
 
                 }
                 //mark 4
@@ -6443,7 +6469,7 @@ class attack{
                     case 70:
                         this.userManager.hand.reserveFree(1)
                     break
-                    case 76:
+                    case 76: case 3113:
                         this.userCombatant.statusEffect('Intangible',this.effect[0])
                     break
                     case 78:
@@ -7872,6 +7898,14 @@ class attack{
                         for(let a=0;a<this.effect[0];a++){
                             this.userManager.addRandomColor(2,0,0,0)
                         }
+                    break
+                    case 3123:
+                        this.userManager.hand.duplicateCommonColorless(this.effect[0])
+                    break
+                    case 3126:
+                        this.userManager.deck.add(this.userManager.listing.card[0][0][floor(random(0,this.userManager.listing.card[0][0].length))],0,0)
+                        this.battle.overlayManager.overlays[6][this.player].active=true
+                        this.battle.overlayManager.overlays[6][this.player].activate([0,3,1])
                     break
 
                 }
@@ -9335,7 +9369,7 @@ class attack{
                         }
                         for(let a=0,la=this.effect[0]+this.userManager.hand.cards.length;a<la;a++){
                             let roll=luckCheck?3:luckCheckFail?1:floor(random(1,4))
-                            this.battle.particleManager.createAuxNumber(this.userCombatant.position.x,this.userCombatant.position.y,roll)
+                            this.battle.particleManager.createNumber(41,this.userCombatant.position.x,this.userCombatant.position.y,roll)
                             total+=roll
                         }
                         if(total<(this.effect[0]+this.userManager.hand.cards.length)*2){
@@ -10346,6 +10380,20 @@ class attack{
                             this.battle.addEnergy(this.effect[1],this.player)
                         }
                     break
+                    case 3124:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        this.userManager.hand.allEffect(98)
+                    break
+                    case 3125:
+                        this.targetCombatant.takeDamage(this.effect[0],this.user)
+                        if(this.userCombatant.charge>=this.effect[1]){
+                            this.userCombatant.charge-=this.effect[1]
+                            this.userCombatant.chargeConsumed()
+                            for(let a=0,la=this.effect[2];a<la;a++){
+                                this.userManager.hand.add(findName('Miracle',types.card),0,0)
+                            }
+                        }
+                    break
 
                 }
                 //mark 8
@@ -11241,7 +11289,7 @@ class attack{
                             }
                         }else{
                             let roll3018=this.userCombatant.luckCheck()?this.effect[0]:this.userCombatant.luckCheckFail()?1:floor(random(1,this.effect[0]+1))
-                            this.battle.particleManager.createAuxNumber(this.userCombatant.position.x,this.userCombatant.position.y,roll3018)
+                            this.battle.particleManager.createNumber(41,this.userCombatant.position.x,this.userCombatant.position.y,roll3018)
                             if(roll3018<this.effect[0]/2+1/2){
                                 this.userCombatant.lowRoll()
                             }else{
@@ -11280,6 +11328,13 @@ class attack{
                     break
                     case 3091:
                         this.battle.dropDraw(this.player,findName('Vitality',types.card),0,0)
+                    break
+                    case 3116:
+                        if(this.energy%2==1){
+                            this.userManager.hand.exhaust(this.effect[0])
+                        }else{
+                            this.userCombatant.statusEffect('Dodge',this.effect[1])
+                        }
                     break
 
                 }
@@ -12569,6 +12624,9 @@ class attack{
                         for(let a=0,la=this.effect[2];a<la;a++){
                             this.userManager.hand.add(findName('Dual\nDiscus',types.card),this.level,0)
                         }
+                    break
+                    case 3130:
+                        this.userCombatant.statusEffect('Temporary Dexterity Per Turn',this.effect[0])
                     break
                     default:
                         this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
