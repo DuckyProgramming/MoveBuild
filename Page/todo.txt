@@ -1,39 +1,77 @@
-[
-	world 1
-	crusader
-	alternates every 4 turns between attack and defense
-	starts offense mode by charging at you and then constantly follows you around
-	starts defense mode by running away as far as possible
-]
-[
-	world 2
-	daughter of heaven
-	heals 3 whenever gets hit
-	buffs every 100 damage taken
-]
-[
-	world 3
-]
-[
-	final boss?
-	reverser of sins
-	adds a new sin every few turns until all of them are active
-	[
-		pride - adds a pride every turn
-		wrath - attacks twice per turn
-		gluttony - gives you random statuses every turn
-		greed - deletes all your non-boss relics
-		envy - you take 1 damage per card you play
-		sloth - gives you 3 weak, 3 vulnerable, or 3 frail every turn
-		lust - spawning
+larva, god of evernight
++1 - poison a random enemy
+-3 - upgrade your hand
+-7 - apply 10 poison to all enemies
 
-		after those 7, these, in order
+frozen dust - damage and freeze, and add a snowflake to hand
 
-		war - gains 2 strength every turn
-		famine - can only play 5 cards per turn
-		pestilence - you lose 5 health per turn
-		death - you die
-	]
-]
+forgotten ritual - damage twice, if fatal add a random power to hand
+
+water blanket - gain block, draw 2 cards, discard them if they don't cost 0
+
+arc sculpture - 3 energy, 24 damage, 2 cards, get 2 energy back if blocked
+
+managerial mastery - all cards cost 1 less
+
+
+
+storm 333 - target any enemy, it can't move, and both of you lose health every turn
+
+M, minimal contributor
++1 - put a blank card into your hand
+-5 - get a 17 of nothings
+-12 - remove a card
+
+silent cyclone - randomly push all adjacent enemies, they become invisible
+
+duckbomb - ordnance pod that creates a duck on an adjacent square
+
+money shower - place money on nearby tiles
+
+shivering nightmare - damage 4 times, exhaust hand, replace it with pristines that retain
+
+rename already existing shivering nightmare
+
+
+
+new moonscape
+
+forward front - deal damage equal to the last damage dealt and gain block equal to the last block gained
+
+ramen - gain 1 temp strength when you play a common card
+
+instant rift - gain 1 strength whenever you gain temporary strength
+
+ready to learn - 4 damage, increases by 4 when drawn
+
+discharge amulet - 3 cost, 16 damage, 8 barrier, deals double damage if you have dexterity
+
+
+
+
+
+
+
+recreate lunar soil to be different
+change moonscape too
+
+
+/*{
+        name:'Manipulated\nFate',rarity:1,list:16,
+        levels:[
+            {effect:[2,1],attack:3047,cost:1,target:[0],spec:[],class:4},
+            {effect:[2,2],attack:3047,cost:1,target:[0],spec:[],class:4},
+            {effect:[3,2],attack:3047,cost:1,target:[0],spec:[],class:4},
+        ],
+    },{
+        name:'Lunar\nSoil',rarity:1,list:16,
+        levels:[
+            {effect:[1,1],attack:2975,cost:0,target:[0],spec:[],class:4},
+            {effect:[2,1],attack:2975,cost:0,target:[0],spec:[],class:4},
+            {effect:[3,1],attack:2975,cost:0,target:[0],spec:[],class:4},
+        ],
+    },*/
+
+
 
 add new bonus mods for new bosses

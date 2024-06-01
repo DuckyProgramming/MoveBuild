@@ -73,7 +73,7 @@ class battle{
         this.initialManagersAfter()
         this.initialized=true
 
-        this.encounter={class:0,custom:[0,0]}
+        this.encounter={class:0,name:'',custom:[0,0]}
         this.currency={money:[],ss:[]}
         this.energy={main:[],gen:[],base:[],temp:[]}
         this.stats={node:[0,0,0,0,0,0,0,0],killed:[],earned:[],damage:[],block:[],move:[],drawn:[],played:[],taken:[],card:[],relic:[],item:[]}
@@ -141,7 +141,7 @@ class battle{
             this.stats.block.push(0)
             this.stats.move.push(0)
             this.stats.drawn.push(0)
-            this.stats.played.push([0,0,0,0,0])
+            this.stats.played.push([0,0,0,0,0,0,0,0,0,0,0,0])
             this.stats.taken.push([0,0,0])
             this.stats.card.push(0)
             this.stats.relic.push(0)
@@ -236,11 +236,12 @@ class battle{
     setupBattle(encounter,first=true){
         this.lastEncounter=encounter
         this.encounter.class=encounter.class
+        this.encounter.name=encounter.name
         for(let a=0,la=this.energy.base.length;a<la;a++){
             this.energy.gen[a]=variants.mtg?copyArray(this.energy.base[a]):this.energy.base[a]
         }
         this.turn={main:0,total:0,time:0,accelerate:0}
-        this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0]}
+        this.counter={enemy:0,killed:0,turnPlayed:[0,0,0,0,0,0,0,0,0,0,0,0]}
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
         this.first=first
@@ -411,6 +412,14 @@ class battle{
             this.counter.enemy++
         }
     }
+    setReinforce(name,tilePosition){
+        let index=this.tileManager.getTileIndex(tilePosition.x,tilePosition.y)
+        if(index>=0){
+            this.reinforce.front.push({position:{x:tilePosition.x,y:tilePosition.y},name:name,minion:true})
+            this.tileManager.tiles[index].reinforce=true
+            this.counter.enemy++
+        }
+    }
     longReinforce(name,time){
         let empty=this.tileManager.getEmptyTiles()
         if(empty.length>0){
@@ -555,7 +564,7 @@ class battle{
                 if(this.relicManager.hasRelic(107,this.turn.main)){
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                 }
-                if(this.nodeManager.world==3&&this.encounter.class==2){
+                if(this.encounter.name=='Rewriter'){
                     this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                 }
                 this.cardManagers[this.turn.main].switchCheck()
@@ -579,7 +588,7 @@ class battle{
         }
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
         this.turn.time=game.turnTime
-        this.counter.turnPlayed=[0,0,0,0,0]
+        this.counter.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
     }
     endTurn(){
         this.turn.endReady=false
@@ -701,7 +710,7 @@ class battle{
                 if(this.relicManager.hasRelic(107,this.turn.main)){
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                 }
-                if(this.nodeManager.world==3&&this.encounter.class==2){
+                if(this.encounter.name=='Rewriter'){
                     this.cardManagers[this.turn.main].hand.add(findName('Rewrite',types.card),0,0)
                 }
                 this.cardManagers[this.turn.main].switchCheck()
@@ -723,7 +732,7 @@ class battle{
         this.cardManagers[0].regenDrops()
         this.relicManager.activate(2,[this.turn.total,this.turn.main,this.counter.turnPlayed])
         this.relicManager.activate(0,[this.turn.total,this.encounter.class])
-        this.counter.turnPlayed=[0,0,0,0,0]
+        this.counter.turnPlayed=[0,0,0,0,0,0,0,0,0,0,0,0]
         this.loadReinforce()
         if(this.combatantManager.combatants[this.turn.main].life<=0&&this.turn.main<this.players){
             this.endTurn()
@@ -2123,7 +2132,13 @@ class battle{
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length+1)%types.deckmode.length
                 }
                 if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/2,y:this.layer.height*0.65-240},width:112.5,height:32.5})){
-                    this.menu.combatant[0]=floor(random(0,game.playerNumber))+1
+                    let remaining=[]
+                    for(let a=0,la=game.playerNumber;a<la;a++){
+                        if(this.menu.combatant[0]!=a+1){
+                            remaining.push(a+1)
+                        }
+                    }
+                    this.menu.combatant[0]=remaining[floor(random(0,remaining.length))]
                 }
                 for(let a=0,la=types.ascend.length;a<la;a++){
                     if(pointInsideBox({position:inputs.rel},{position:{x:12.5+(this.layer.width-25)*(0.5+a)/la,y:102.5},width:(this.layer.width-25)/la-6.25,height:17.5})){
@@ -2159,7 +2174,13 @@ class battle{
                         this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length+1)%types.deckmode.length
                     }
                     if(pointInsideBox({position:inputs.rel},{position:{x:this.layer.width/4+this.layer.width/2*a,y:this.layer.height*0.65-240},width:112.5,height:32.5})){
-                        this.menu.combatant[a]=floor(random(0,game.playerNumber))+1
+                        let remaining=[]
+                        for(let b=0,lb=game.playerNumber;b<lb;b++){
+                            if(this.menu.combatant[a]!=b+1){
+                                remaining.push(b+1)
+                            }
+                        }
+                        this.menu.combatant[a]=remaining[floor(random(0,remaining.length))]
                     }
                 }
                 for(let a=0,la=types.ascend.length;a<la;a++){
@@ -2469,7 +2490,13 @@ class battle{
                     this.menu.deck[0]=(this.menu.deck[0]+types.deckmode.length+1)%types.deckmode.length
                 }
                 if(key=='r'||key=='R'){
-                    this.menu.combatant[0]=floor(random(0,game.playerNumber))+1
+                    let remaining=[]
+                    for(let a=0,la=game.playerNumber;a<la;a++){
+                        if(this.menu.combatant[0]!=a+1){
+                            remaining.push(a+1)
+                        }
+                    }
+                    this.menu.combatant[0]=remaining[floor(random(0,remaining.length))]
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){
                     game.ascend++
@@ -2505,7 +2532,13 @@ class battle{
                         this.menu.deck[a]=(this.menu.deck[a]+types.deckmode.length+1)%types.deckmode.length
                     }
                     if(key=='r'&&a==0||key=='R'&&a==1){
-                        this.menu.combatant[a]=floor(random(0,game.playerNumber))+1
+                        let remaining=[]
+                        for(let b=0,lb=game.playerNumber;b<lb;b++){
+                            if(this.menu.combatant[a]!=b+1){
+                                remaining.push(b+1)
+                            }
+                        }
+                        this.menu.combatant[a]=remaining[floor(random(0,remaining.length))]
                     }
                 }
                 if(code==UP_ARROW&&game.ascend<types.ascend.length-1){

@@ -143,7 +143,7 @@ class turn{
                                 case 191: case 193: case 194: case 196: case 199: case 200: case 201: case 202: case 206: case 208:
                                 case 235: case 236: case 245: case 262: case 263: case 266: case 268: case 279: case 283: case 284:
                                 case 285: case 287: case 290: case 303: case 306: case 313: case 316: case 320: case 321: case 327:
-                                case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358:
+                                case 328: case 335: case 336: case 337: case 338: case 340: case 353: case 358: case 361:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -164,7 +164,7 @@ class turn{
                                         [this.userCombatant.tilePosition.x+transformDirection(0,150)[0],this.userCombatant.tilePosition.y+transformDirection(0,150)[1]]
                                     ]
                                 break
-                                case 28: case 44: case 53: case 105: case 146: case 168: case 171: case 288: case 357:
+                                case 28: case 44: case 53: case 105: case 146: case 168: case 171: case 288: case 357: case 360:
                                     this.target=[
                                         [this.userCombatant.tilePosition.x+transformBase[0],this.userCombatant.tilePosition.y+transformBase[1]],
                                         [this.userCombatant.tilePosition.x+transformBase[0]*2,this.userCombatant.tilePosition.y+transformBase[1]*2],
@@ -497,8 +497,10 @@ class turn{
                                     this.targetTile.push(this.battle.tileManager.getTileIndex(this.target[a][0],this.target[a][1]))
                                 }
                             }
-                            if(this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243||this.type==296||this.type==319||this.type==323||this.type==324||this.type==344||this.type==347){
+                            if(this.type==78||this.type==117||this.type==135||this.type==154||this.type==162||this.type==175||this.type==243||this.type==296||this.type==319||this.type==323||this.type==324||this.type==347){
                                 this.direction=this.userCombatant.goal.anim.direction
+                            }else if(this.type==344){
+                                this.direction=this.userCombatant.goal.anim.direction+180
                             }else if(this.type==127||this.type==150||this.type==181||this.type==209||this.type==331){
                                 if(this.targetIndex[0]==-1){
                                     if(this.mover){
@@ -560,7 +562,7 @@ class turn{
                                 this.type==87||this.type==95||this.type==104||this.type==105||this.type==114||this.type==120||this.type==124||this.type==142||this.type==146||this.type==153||
                                 this.type==157||this.type==166||this.type==168||this.type==171||this.type==176||this.type==192||this.type==204||this.type==213||this.type==222||this.type==223||
                                 this.type==224||this.type==259||this.type==264||this.type==265||this.type==278||this.type==288||this.type==291||this.type==292||this.type==308||this.type==330||
-                                this.type==357
+                                this.type==350||this.type==351||this.type==357||this.type==360
                             ){
                                 this.targetCombatant=[]
                                 this.direction=[]
@@ -656,7 +658,7 @@ class turn{
                                         case 202: case 206: case 208: case 235: case 236: case 245: case 262: case 263: case 266: case 268:
                                         case 279: case 283: case 284: case 285: case 287: case 290: case 303: case 306: case 313: case 316:
                                         case 320: case 321: case 327: case 328: case 335: case 336: case 337: case 338: case 340: case 353:
-                                        case 358:
+                                        case 358: case 361:
                                             if(
                                                 (a>=1&&this.targetTile[0]<0)||
                                                 (a>=2&&this.targetTile[1]<0)||
@@ -727,7 +729,7 @@ class turn{
                             this.type=5
                         }
                         switch(this.type){
-                            case 0: case 4: case 6: case 8:
+                            case 0: case 4: case 6: case 8: case 9:
                                 let works=true
                                 if(this.setTarget!=-1){
                                     this.targetCombatant=this.setTarget
@@ -1233,7 +1235,7 @@ class turn{
                             }
                         }
                     break
-                    case 15:
+                    case 15: case 353:
                         this.targetCombatant.statusEffect('Weak',this.effect[1])
                     break
                     case 22: case 32: case 83:
@@ -1277,7 +1279,7 @@ class turn{
                             this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
                         }
                     break
-                    case 193:
+                    case 193: case 342:
                         this.targetCombatant.statusEffect('Cannot Gain Block Next Turn',this.effect[1])
                     break
                     case 250:
@@ -1352,6 +1354,9 @@ class turn{
                             this.battle.itemManager.removeAll(this.targetCombatant.id)
                             this.battle.itemManager.fillAll(findName('Mundane Dust',types.item),this.targetCombatant.id)
                         }
+                    break
+                    case 343:
+                        this.targetCombatant.statusEffect('Anti-Control',this.effect[1])
                     break
                 }
             break
@@ -1466,6 +1471,14 @@ class turn{
                             case 318:
                                 this.userCombatant.statusEffect('Retain Block',2)
                                 this.userCombatant.stance=4
+                            break
+                            case 346:
+                                this.userCombatant.statusEffect('Retain Block',2)
+                                this.userCombatant.statusEffect('Strength',this.effect[1])
+                            break
+                            case 359:
+                                this.userCombatant.statusEffect('Retain Block',3)
+                                this.userCombatant.removeAllStatuses([1,3])
                             break
                         }
                     break
@@ -1583,6 +1596,20 @@ class turn{
                     case 302:
                         for(let a=0,la=8;a<la;a++){
                             this.battle.tileManager.randomClearType(25)
+                        }
+                    break
+                    case 352:
+                        let remaining352=[]
+                        for(let a=0,la=game.playerNumber;a<la;a++){
+                            remaining352.push(a+1)
+                        }
+                        for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
+                            if(this.battle.combatantManager.combatants[a].type>0&&this.battle.combatantManager.combatants[a].type<=game.playerNumber&&remaining352.includes(this.battle.combatantManager.combatants[a].type)){
+                                remaining352.splice(remaining352.indexOf(this.battle.combatantManager.combatants[a].type),1)
+                            }
+                        }
+                        if(remaining352.length>0){
+                            this.battle.setReinforce(types.combatant[remaining352[floor(random(0,remaining352.length))]].name,{x:2,y:1})
                         }
                     break
                 }
@@ -1787,12 +1814,38 @@ class turn{
                     case 300:
                         this.userCombatant.statusEffect('Take Third Damage',this.effect[0])
                     break
+                    case 345:
+                        this.userCombatant.removeAllStatuses([1,3])
+                    break
+                    case 349:
+                        this.userCombatant.statusEffect('Intangible',this.effect[0])
+                        this.userCombatant.statusEffect('Strength',this.effect[1])
+                    break
+                    case 356:
+                        if(this.userCombatant.sins.length>=7){
+                            this.userCombatant.sins.push(this.userCombatant.sins.length)
+                            this.userCombatant.infoAnim.sins.push(0)
+                        }else{
+                            let remaining=[0,1,2,3,4,5,6]
+                            for(let a=0,la=this.userCombatant.sins.length;a<la;a++){
+                                if(remaining.includes(this.userCombatant.sins[a])){
+                                    remaining.splice(remaining.indexOf(this.userCombatant.sins[a]),1)
+                                }
+                            }
+                            if(remaining.length>0){
+                                let sin=remaining[floor(random(0,remaining.length))]
+                                this.userCombatant.sins.push(sin)
+                                this.userCombatant.infoAnim.sins.push(0)
+                                this.userCombatant.addSin(sin)
+                            }
+                        }
+                    break
 
                 }
             break
             case 6:
                 switch(this.type){
-                    case 66:
+                    case 66: case 358:
                         for(let a=0,la=this.effect[1];a<la;a++){
                             this.battle.drop(this.targetCombatant.id,findName(this.effect[2],types.card),0,game.playerNumber+1)
                         }
@@ -1818,6 +1871,13 @@ class turn{
                     break
                     case 317:
                         this.userCombatant.stance=1
+                    break
+                    case 348:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
+                        this.targetCombatant.statusEffect('Frail',this.effect[2])
+                    break
+                    case 354:
+                        this.targetCombatant.statusEffect('Vulnerable',this.effect[1])
                     break
                 }
             break
@@ -1846,6 +1906,9 @@ class turn{
                     break
                     case 299:
                         this.targetCombatant.statusEffect('Shock',this.effect[1])
+                    break
+                    case 355:
+                        this.targetCombatant.statusEffect('Frail',this.effect[1])
                     break
                 }
             break
@@ -1909,15 +1972,19 @@ class turn{
                     break
                     case 314:
                         let tiles314=this.battle.tileManager.getArea(this.userCombatant.tilePosition,1)
-                        this.targetTile=tiles314[floor(random(0,tiles314.length))]
-                        this.userCombatant.goal.anim.direction=round(atan2(this.targetTile.relativePosition.x-this.userCombatant.relativePosition.x,this.targetTile.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
-                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile.tilePosition,findName('Shotgun',types.combatant),this.userCombatant.goal.anim.direction)
+                        if(tiles314.length>0){
+                            this.targetTile=tiles314[floor(random(0,tiles314.length))]
+                            this.userCombatant.goal.anim.direction=round(atan2(this.targetTile.relativePosition.x-this.userCombatant.relativePosition.x,this.targetTile.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                            this.battle.combatantManager.summonCombatantDefinite(this.targetTile.tilePosition,findName('Shotgun',types.combatant),this.userCombatant.goal.anim.direction)
+                        }
                     break
                     case 315:
                         let tiles315=this.battle.tileManager.getArea(this.userCombatant.tilePosition,1)
-                        this.targetTile=tiles315[floor(random(0,tiles315.length))]
-                        this.userCombatant.goal.anim.direction=round(atan2(this.targetTile.relativePosition.x-this.userCombatant.relativePosition.x,this.targetTile.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
-                        this.battle.combatantManager.summonCombatantDefinite(this.targetTile.tilePosition,findName('Repulse Turret',types.combatant),this.userCombatant.goal.anim.direction)
+                        if(tiles315.length>0){
+                            this.targetTile=tiles315[floor(random(0,tiles315.length))]
+                            this.userCombatant.goal.anim.direction=round(atan2(this.targetTile.relativePosition.x-this.userCombatant.relativePosition.x,this.targetTile.relativePosition.y-this.userCombatant.relativePosition.y)/60-1/2)*60+30
+                            this.battle.combatantManager.summonCombatantDefinite(this.targetTile.tilePosition,findName('Repulse Turret',types.combatant),this.userCombatant.goal.anim.direction)
+                        }
                     break
                 }
             break

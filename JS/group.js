@@ -1970,7 +1970,12 @@ class group{
             break
             case -56:
                 this.battle.loseEnergy(card.effect[0],this.player)
-                this.battle.cardManagers[this.player].randomEffect(2,1,[card.effect[1]])
+                this.drawEffects.push([8,card.effect[1]])
+            break
+            case -61:
+                for(let a=0,la=card.effect[0];a<la;a++){
+                    this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
+                }
             break
             case 288: case 374: case 2217: case 2776:
                 for(let a=0,la=card.effect[1];a<la;a++){
@@ -2187,6 +2192,9 @@ class group{
                     break
                     case 7:
                         parent.allEffectArgs(21,[this.drawEffects[a][1]])
+                    break
+                    case 8:
+                        this.battle.cardManagers[this.player].randomEffect(2,1,[this.drawEffects[a][1]])
                     break
                 }
             }

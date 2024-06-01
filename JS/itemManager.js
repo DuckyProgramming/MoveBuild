@@ -383,6 +383,7 @@ class itemManager{
         this.combatEffectiveness[player]=1
     }
     activateDeath(player){
+        let effectiveness=this.effectiveness[player]*this.combatEffectiveness[player]*this.tempEffectiveness[player]
         for(let a=0,la=this.items[player].length;a<la;a++){
             if(this.items[player][a].name=='Bottled Fairy'){
                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(player)].healLifable(10*effectiveness)

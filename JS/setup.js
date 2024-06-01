@@ -18,7 +18,7 @@ function setup(){
             //transition.scene='menu'
 
         current.menu.combatant=[16]
-        current.menu.deck=[-1]
+        current.menu.deck=[0]
         current.startGame()
         game.animRate=4
 
@@ -45,8 +45,9 @@ function setup(){
                 current.modManager.addMod(168+a)
             }*/
 
-            /*for(let a=0,la=9;a<la;a++){
-                quickRelic(256+a)
+            /*for(let a=0,la=50;a<la;a++){
+                current.relicManager.addRandomRelic(0)
+                //quickRelic(160+a)
             }*/
 
             //stage.scene='tier'

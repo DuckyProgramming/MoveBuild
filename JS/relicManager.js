@@ -405,7 +405,7 @@ class relicManager{
                 this.battle.optionManagers[player].addOption(9)
             break
             case 247:
-                this.battle.cardManagers[player].addRandomCharacterEdition(0,0,0,1,4)
+                this.battle.cardManagers[player].addRandomCharacterEdition(0,0,0,0,4)
             break
             case 254:
                 this.battle.optionManagers[player].addOption(10)
@@ -658,12 +658,23 @@ class relicManager{
     loseRandom(player){
         let possible=[]
         for(let a=0,la=this.relics.length;a<la;a++){
-            if(this.active[this.relics[a].type][player+1]>0&&this.relics[a].active&&this.relics[a].type>0){
+            if(this.relics[a].player==player&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].active&&this.relics[a].type>0){
                 possible.push(this.relics[a].type)
             }
         }
         if(possible.length>0){
-            this.loseRelic(possible[floor(random(0,possible.length))])
+            this.loseRelic(possible[floor(random(0,possible.length))],player)
+        }
+    }
+    clearRelicsSin(player){
+        for(let a=0,la=this.relics.length;a<la;a++){
+            if(this.relics[a].player==player&&this.relics[a].rarity!=4&&this.active[this.relics[a].type][player+1]>0&&this.relics[a].active&&this.relics[a].type>0){
+                for(let b=0,lb=this.active[this.relics[a].type][player+1];b<lb;b++){
+                    this.active[this.relics[a].type][0]-=1
+                    this.active[this.relics[a].type][player+1]-=1
+                    this.deactivate(this.relics[a].type,player)
+                }
+            }
         }
     }
     hasRelic(type,player){

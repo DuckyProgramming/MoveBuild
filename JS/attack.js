@@ -4512,6 +4512,9 @@ class attack{
                         this.userCombatant.statusEffect('Strength',this.effect[2])
                         this.userCombatant.statusEffect('Lose Per Turn',this.effect[3])
                     break
+                    case 3131:
+                        this.userCombatant.statusEffect('Counter Once',this.effect[1])
+                    break
 
                 }
                 //mark 2
@@ -7927,6 +7930,9 @@ class attack{
                     case -41:
                         this.battle.combatantManager.damageAreaRuleless(this.effect[0],this.userCombatant.tilePosition)
                         this.userCombatant.statusEffect('Cannot Move',this.effect[1])
+                    break
+                    case -62:
+                        this.userCombatant.statusEffect('Must Attack or Take Damage',this.effect[0])
                     break
                     case 10: case 1803: case 2598:
                         this.userCombatant.heal(this.effect[0])
@@ -12525,6 +12531,10 @@ class attack{
                     case 3093:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
                         this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                    break
+                    case 3132:
+                        this.battle.combatantManager.damageAreaID(this.effect[0],this.user,this.userCombatant.id,this.userCombatant.tilePosition)
+                        this.userCombatant.heal(this.effect[1])
                     break
 
                 }

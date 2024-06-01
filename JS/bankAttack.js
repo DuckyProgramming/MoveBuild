@@ -229,7 +229,7 @@ attack.prototype.update=function(){
         case 2908: case 2914: case 2916: case 2918: case 2921: case 2947: case 2952: case 2954: case 2961: case 2972:
         case 2980: case 2988: case 2989: case 2996: case 3010: case 3011: case 3024: case 3028: case 3032: case 3033:
         case 3035: case 3042: case 3064: case 3070: case 3072: case 3086: case 3094: case 3097: case 3099: case 3101:
-        case 3109: case 3114: case 3121: case 3127:
+        case 3109: case 3114: case 3121: case 3127: case 3131:
             //mark 2
             if(this.type==2616&&this.timer==1&&!this.userManager.hand.allClassLeeway(2)){
                 this.remove=true
@@ -748,7 +748,7 @@ attack.prototype.update=function(){
                 }
             }
         break
-        case -13: case -21: case -33: case -36: case -41:
+        case -13: case -21: case -33: case -36: case -41: case -62:
         case 10: case 64: case 72: case 73: case 74: case 164: case 166: case 167: case 168: case 169:
         case 170: case 171: case 180: case 195: case 202: case 224: case 283: case 349: case 360: case 369:
         case 380: case 391: case 442: case 456: case 470: case 608: case 641: case 642: case 643: case 659:
@@ -6958,6 +6958,27 @@ attack.prototype.update=function(){
                 this.userCombatant.statusEffect('Strength',-this.effect[1])
             }else if(this.timer>=max(30,5*this.targetDistance+25)){
                 this.remove=true
+            }
+        break
+        case 3132:
+            if(this.type==2265&&this.userManager.exhaust.cards.length<5){
+                this.remove=true
+            }else{
+                if(variants.nobasicanim){
+                    this.selfCall(12)
+                    this.remove=true
+                }else{
+                    if(this.timer==1){
+                        this.userCombatant.startAnimation(32)
+                    }
+                    this.userCombatant.runAnimation(1/20,32)
+                    if(this.timer==10){
+                        this.selfCall(12)
+                        current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,80,[20]))
+                    }else if(this.timer>=20){
+                        this.remove=true
+                    }
+                }
             }
         break
 

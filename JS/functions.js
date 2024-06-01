@@ -784,7 +784,7 @@ function intentDescription(attack,user,info){
 			case 210: return `Move ${info?attack.effect[0]:`?`} More Time${attack.effect[0]>0?`s`:``} Per Turn`
 			case 211: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nSet Range to 3-Range\nRange 1-2`
 			case 212: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nIf Successful, Repeats Once\nRange 1-1`
-			case 213: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Around\nto All Adjacent Tiles\nRange 1-1`
+			case 213: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile Left\nto All Adjacent Tiles\nRange 1-1`
 			case 214: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-2\nTargets 2 Adjacent Tiles`
 			case 215: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Dissipate\nto All Adjacent Tiles\nRange 1-2`
 			case 216: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage to Self\nHeal Health to Boss\nEqual to Damage Dealt`
@@ -920,11 +920,13 @@ function intentDescription(attack,user,info){
 			case 353: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Weak\nRange 1-6`
 			case 354: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-2`
 			case 355: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nApply ${info?attack.effect[1]:`?`} Vulnerable\nRange 1-1`
-			case 356: return `Create a Random Sin`
+			case 356: return `${user.sins.length<7?`Create a Random Sin`:`Create the Next Horseman`}`
 			case 357: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\n3 Tiles Wide\nRange 1-2`
-			case 358: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nIgnore Block\nRange 1-6`
+			case 358: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
 			case 359: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 3 Turns\nRemove All Self Debuffs`
-
+			case 360: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 (10) Times\n3 Tiles Wide\nRange 1-2`
+			case 361: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 (4) Times\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
+			
 			/*
 			case 1: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nRange 1-1`
 			case 2: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 3 Times\nRange 1-1`

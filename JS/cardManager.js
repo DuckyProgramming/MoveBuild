@@ -193,7 +193,7 @@ class cardManager{
         this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player])
     }
     addRandomCharacter(group,character,level,rarity){
-        this.getList(group).add(this.listing.card[character][rarity][floor(random(0,this.listing.card[character].length))],level,character)
+        this.getList(group).add(this.listing.card[character][rarity][floor(random(0,this.listing.card[character][rarity].length))],level,character)
     }
     addRandomFree(group,level,rarity,variant){
         this.getList(group).addCost(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],variant)
@@ -301,7 +301,7 @@ class cardManager{
     addRandomAllCostFree(group,level,cost){
         let list=[]
         for(let a=0,la=this.listing.allPlayerCard[3].length;a<la;a++){
-            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].cost==cost){
+            if(types.card[this.listing.allPlayerCard[3][a]].levels[level].cost==cost&&!types.card[this.listing.allPlayerCard[3][a]].levels[level].spec.includes(21)){
                 list.push(this.listing.allPlayerCard[3][a])
             }
         }
@@ -406,7 +406,7 @@ class cardManager{
     addRandomCompleteAllCost(group,level,cost){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost){
+            if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost&&!types.card[this.listing.allListableCard[3][a]].levels[level].spec.includes(21)){
                 list.push(this.listing.allListableCard[3][a])
             }
         }
@@ -423,7 +423,7 @@ class cardManager{
     addRandomCompleteAllCostCostDown(group,level,cost,down){
         let list=[]
         for(let a=0,la=this.listing.allListableCard[3].length;a<la;a++){
-            if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost){
+            if(types.card[this.listing.allListableCard[3][a]].levels[level].cost==cost&&!types.card[this.listing.allListableCard[3][a]].levels[level].spec.includes(21)){
                 list.push(this.listing.allListableCard[3][a])
             }
         }
@@ -431,6 +431,7 @@ class cardManager{
             let type=list[floor(random(0,list.length))]
             let card=this.getList(group).addReturn(type,level,types.card[type].list)
             card.cost=max(min(card.cost,0),card.cost-down)
+            card.base.cost=max(min(card.base.cost,0),card.base.cost-down)
         }
     }
     addRandomSpec(group,level,spec){
@@ -786,7 +787,7 @@ class cardManager{
         }
     }
     drawCost(cost){
-        if(amount>0){
+        if(cost>0){
             this.hand.allEffect(87)
             let userCombatant=this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)]
             let left=cost

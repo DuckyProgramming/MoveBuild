@@ -28,7 +28,7 @@ class particle{
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 51: case 52: case 54: case 57: case 60: case 65: case 66: case 68: case 72: case 73:
-            case 74: case 75: case 76:
+            case 74: case 75: case 76: case 80: case 80:
                 this.size=args[0]
                 this.fade=1
                 this.scale=0
@@ -978,6 +978,24 @@ class particle{
                     regStar(this.layer,0,0,9,16,16,24,24,0)
                     regStar(this.layer,0,0,9,16,16,24,24,20)
                 break
+                case 80:
+                    this.layer.rotate(-this.time)
+                    this.layer.noFill()
+                    this.layer.strokeWeight(0.25)
+                    this.layer.stroke(120,240,120,this.fade*2)
+                    this.layer.beginShape()
+                    this.layer.vertex(0,5)
+                    for(let a=0,la=8;a<la;a++){
+                        this.layer.bezierVertex(lsin(a*45+15)*6.5,lcos(a*45+15)*6.5,lsin(a*45+30)*6.5,lcos(a*45+30)*6.5,lsin(a*45+45)*5,lcos(a*45+45)*5)
+                    }
+                    this.layer.endShape()
+                    this.layer.beginShape()
+                    this.layer.vertex(0,5)
+                    for(let a=0,la=8;a<la;a++){
+                        this.layer.bezierVertex(lsin(a*45+15)*3.5,lcos(a*45+15)*3.5,lsin(a*45+30)*6.5,lcos(a*45+30)*6.5,lsin(a*45+45)*5,lcos(a*45+45)*5)
+                    }
+                    this.layer.endShape()
+                break
 
             }
             this.layer.pop()
@@ -1021,7 +1039,7 @@ class particle{
             break
             case 2: case 9: case 10: case 17: case 23: case 27: case 36: case 37: case 40: case 45:
             case 46: case 51: case 52: case 54: case 56: case 57: case 60: case 65: case 66: case 72:
-            case 73: case 74: case 75: case 76:
+            case 73: case 74: case 75: case 76: case 80:
                 this.fade-=0.1
                 this.scale+=0.1
                 if(this.fade<=0){

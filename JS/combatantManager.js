@@ -730,6 +730,7 @@ class combatantManager{
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
+        this.combatants[this.combatants.length-1].setIntent()
         this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()
@@ -741,6 +742,7 @@ class combatantManager{
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
+        this.combatants[this.combatants.length-1].setIntent()
         this.id++
         this.sort()
         this.reorder()
@@ -764,6 +766,7 @@ class combatantManager{
         if(this.id<this.battle.players){
             this.playerCombatantIndex[this.id]=this.combatants.length-1
         }
+        this.combatants[this.combatants.length-1].setIntent()
         this.setSpecificTarget(this.combatants.length-1)
         this.id++
         this.sort()

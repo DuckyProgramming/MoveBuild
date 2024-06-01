@@ -183,7 +183,7 @@ types={
         {name:'Deca',life:75,behavior:0,spec:[0,12],move:{type:0,speed:1},attack:[{type:66,effect:[4,2,'Dazed']},{type:65,effect:[8]}],description:`It's just shapes`},
         {name:'Hexaghost Core',life:96,behavior:4,spec:[0,2],move:{type:0,speed:0},attack:[{type:71,effect:[10]},{type:72,effect:[12,2]},{type:39,effect:[3,'Flame']},{type:73,effect:[10,2,'Burn']},{type:74,effect:[2,'Burn']},{type:21,effect:[]}],description:`Controls the boss`},
         {name:'Wiz',life:140,behavior:0,spec:[0,2],move:{type:7,speed:1},attack:[{type:199,effect:[5,1]},{type:200,effect:[8]},{type:201,effect:[6,1]},{type:202,effect:[9]},{type:155,effect:[1,'Buried']}],description:`Learned some sick moves`},
-        {name:'Crusader',life:127,behavior:0,spec:[0,2],move:{type:0,speed:2},attack:[{type:342,effect:[7]},{type:343,effect:[9,1]},{type:344,effect:[16]},{type:345,effect:[]},{type:346,effect:[22,1]},{type:347,effect:[16]}],description:`Two millenia late to the party`},
+        {name:'Crusader',life:127,behavior:15,spec:[0,2],move:{type:0,speed:1},attack:[{type:342,effect:[14,3]},{type:343,effect:[9,1]},{type:344,effect:[16]},{type:345,effect:[]},{type:346,effect:[22,1]},{type:347,effect:[16]}],description:`Two millenia late to the party`},
         
         {name:'Roger Reviv',life:320,behavior:4,spec:[0,2],move:{type:0,speed:1},attack:[{type:43,effect:[20,2]},{type:46,effect:[15,3]},{type:44,effect:[10,5]},{type:45,effect:[5]},{type:39,effect:[1,'Cartel']}],description:`Cartel leader`},
         {name:'Sharpshot',life:330,behavior:0,spec:[0,4,2],move:{type:1,speed:1},attack:[{type:47,effect:[6]},{type:48,effect:[12]},{type:49,effect:[8]},{type:51,effect:[6]},{type:50,effect:[5,3]}],description:`Gunning for a promotion`},
@@ -199,10 +199,10 @@ types={
         {name:'Shadow Trooper',life:475,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:177,effect:[5]},{type:178,effect:[12,1,'Convulsive']},{type:179,effect:[9,1,'Void']},{type:180,effect:[27]},{type:181,effect:[16,1,'Napalm']}],description:`Classic warcriminal`},
         {name:'Purge X02',life:500,behavior:0,spec:[1,2],move:{type:0,speed:1},attack:[{type:182,effect:[150]},{type:21,effect:[]},{type:183,effect:[20,1,'Voidstuck']},{type:21,effect:[]},{type:184,effect:[8]},{type:21,effect:[]},{type:185,effect:[48]},{type:21,effect:[]}],description:`Actually a human`},
         {name:'Lunaria',life:390,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:217,effect:[5,1,'Soul']},{type:218,effect:[24]},{type:219,effect:[12]},{type:39,effect:[3,'Lunar Dust']},{type:220,effect:[3]}],description:`From the sky~`},
-        {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[]},{type:354,effect:[]},{type:355,effect:[]}],description:`Doxxed literally everybody`},
+        {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
 
         {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[36,2,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,1,'Decremented']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
-        {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[7]},{type:358,effect:[18]},{type:359,effect:[50]}],description:`Fine... I'll do it myself`},
+        {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[7]},{type:358,effect:[18,2,'Trial']},{type:359,effect:[50]}],description:`Fine... I'll do it myself`},
         
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -460,7 +460,7 @@ types={
         {name:'Speed Boost',class:4},//210
         {name:'2 Tile Range Swap Strike',class:1},
         {name:'Double Assault Push',class:1},
-        {name:'Vortex Spin Strike',class:1},
+        {name:'Left Spin Strike',class:1},
         {name:'2 Tile Edged Strike',class:1},
         {name:'Spin Strike / Dissipate',class:1},
         {name:'Life Transfer',class:4},
@@ -566,7 +566,7 @@ types={
         {name:'6 Tile Strike / Transform',class:1},
         {name:'2 Tile Double Strike / Enter Wrath',class:1},
         {name:'3 Turn Block / Enter Sturdy',class:2},
-        {name:'3 Tile Drive / Enter Haste',class:1},
+        {name:'3 Tile Drive / Enter Haste',class:5},
         {name:'Charge Beam',class:1},//320
         {name:'Injuring Charge Beam',class:1},
         {name:'Fire Ball',class:1},
@@ -589,29 +589,26 @@ types={
         {name:'Dual Discus',class:1},
         {name:'Dexterity Siphon',class:1},//340
         {name:'9 Strikes / Self Intangible',class:1},
-
-        {name:'Shattering 2 Tile Strike',class:1},
+        {name:'2 Tile Shattering Strike',class:1},
         {name:'2 Tile Strike / Anti-Control',class:1},
-        {name:'4 Tile Backward Drive',class:1},
+        {name:'4 Tile Backward Drive',class:5},
         {name:'Purify',class:4},
         {name:'3 Turn Block / Strengthen',class:2},
-        {name:'4 Tile Drive',class:1},
-
+        {name:'4 Tile Drive',class:5},
         {name:'3 Tile Double Strike / Vulnerable / Frail',class:1},
         {name:'Self Intangible / Strengthen',class:4},
-
-        {name:'Statusing Left Shockwave',class:1},//350
-        {name:'Statusing Right Shockwave',class:1},
-
+        {name:'Statusing Left Spin Strike',class:1},//350
+        {name:'Statusing Right Spin Strike',class:1},
         {name:'Summon Player',class:4},
         {name:'6 Tile Strike / Weak',class:1},
         {name:'2 Tile Double Strike / Vulnerable',class:1},
         {name:'Triple Strike / Frail',class:1},
-
         {name:'Summon Sin',class:4},
         {name:'2 Tile 3 Spread Pentuple Strike',class:1},
-        {name:'Unblockable 6 Tile Double Strike',class:1},
-        {name:'4 Turn Block / Purify',class:1},
+        {name:'6 Tile Double Statusing Strike',class:1},
+        {name:'4 Turn Block / Purify',class:2},
+        {name:'2 Tile 3 Spread Pentuple Strike (Doubled)',class:1},//360
+        {name:'6 Tile Double Statusing Strike (Doubled)',class:1},
 
     ],relic:[
         {name:'',internal:'',id:0,rarity:-1,list:-1,description:''},
@@ -885,7 +882,7 @@ types={
         {name:'Blue Raspberry',internal:'Spectral Rest',id:244,rarity:2,list:0,description:'You Can Open Spectral\nPacks When Resting, 3 Uses'},
         {name:'The Trail',internal:'3 Cost Energy Next Turn',id:245,rarity:2,list:0,description:'Cards Costing 3 or More\nGive 1 Energy Next Turn'},
         {name:'Spearmint',internal:'25 Damage Draw',id:246,rarity:0,list:0,description:'Draw a Card When You\nDeal 25 or More Damage'},
-        {name:'Chameleon',internal:'Random Polychrome Colorless',id:247,rarity:3,list:0,description:'When Taken, Gain a Random\nPolychrome Uncommon Colorless Card'},
+        {name:'Chameleon',internal:'Random Polychrome Colorless',id:247,rarity:3,list:0,description:'When Taken, Gain a Random\nPolychrome Common Colorless Card'},
         {name:'Funny Numbers',internal:'69',id:248,rarity:2,list:0,description:'On Turns 6 and 9, Gain 4 Temporary\nStrength and Add 20 Block'},
         {name:'Legos',internal:'Polychrome Erratics',id:249,rarity:2,list:0,description:'Polychrome and Erratic Cards\nHave Both Edition Effects'},
 
@@ -4421,7 +4418,63 @@ Entering, you're offered a chance to glimpse your future...`,
                 [{type:-1},{type:-1},{type:[]},{type:[]},{type:-1},{type:[]},{type:[]}],
                 [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
             ],
+        },{
+            name:'Broken 7',
+            map:[
+                [{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:-1},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Keystone 6',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Archival 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },{
+            name:'Judge 7',
+            map:[
+                [{type:[]},{type:-1},{type:-1},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
         },
+
+        /*{
+            name:'Basic 7',
+            map:[
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:-1}],
+                [{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]},{type:[]}],
+                [{type:-1},{type:-1},{type:-1},{type:[]},{type:[]},{type:[]},{type:[]}],
+            ],
+        },*/
     ],encounter:[
         {
             level:[],class:0,world:-1,
@@ -4436,6 +4489,39 @@ Entering, you're offered a chance to glimpse your future...`,
             player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
             enemy:[
                 {position:{x:2,y:2},name:'Duck'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Keystone 6'],class:2,world:1,
+            name:'Daughter of Heaven',
+            player:{position:[[{x:4,y:5}],[{x:3,y:5},{x:5,y:5}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Daughter of Heaven'},
+                {position:{x:3,y:3},name:'Keystone'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Judge 7'],class:2,world:3,
+            name:'Eternal Judge',
+            player:{position:[[{x:4,y:5}],[{x:4,y:6},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Eternal Judge'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Archival 7'],class:2,world:2,
+            name:'Archivist',
+            player:{position:[[{x:5,y:5}],[{x:5,y:5},{x:5,y:6}]]},
+            enemy:[
+                {position:{x:2,y:1},name:'Archivist'},
+            ],reinforce:[
+            ],
+        },{
+            level:['Broken 7'],class:2,world:0,
+            name:'Crusader',
+            player:{position:[[{x:3,y:3}],[{x:2,y:3},{x:3,y:2}]]},
+            enemy:[
+                {position:{x:0,y:0},name:'Crusader'},
             ],reinforce:[
             ],
         },{
