@@ -18,7 +18,7 @@ function setup(){
             //transition.scene='menu'
 
         current.menu.combatant=[16]
-        current.menu.deck=[0]
+        current.menu.deck=[-1]
         current.startGame()
         game.animRate=4
 
@@ -41,8 +41,8 @@ function setup(){
             player(0).anim.direction=-30*/
 
             /*variants.mod=true
-            for(let a=0,la=4;a<la;a++){
-                current.modManager.addMod(168+a)
+            for(let a=0,la=5;a<la;a++){
+                current.modManager.addMod(172+a)
             }*/
 
             /*for(let a=0,la=50;a<la;a++){

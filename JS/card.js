@@ -326,6 +326,7 @@ class card{
             case -60: string+=`Lose ${effect[0]} Currency\nGain ${effect[1]} Temporary\nStrength`; break
             case -61: string+=`When Drawn,\nMake ${effect[0]} Cop${effect[0]!=1?`ies`:`y`}`; break
             case -62: string+=`Take ${effect[0]} Damage\nIf You Do Not\nAttack This Turn`; break
+            case -63: string+=`When Drawn,\nAdd a Pristine to Hand`; break
             case 1: case 25: case 32: case 36: case 57: case 327: case 590: case 1139: case 1191:
                 string+=`Deal ${this.calculateEffect(effect[0],0)} Damage`; break
             case 2: case 1700:
@@ -3282,7 +3283,7 @@ class card{
             case 2972: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nIf it is a Defense,\nIt Costs 0 Temporarily`; break
             case 2973: string+=`Move ${effect[0]} Tile${effect[0]!=1?`s`:``}\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nIf it is a Movement,\nIt Costs 0 Temporarily`; break
             case 2974: string+=`Draw ${effect[0]} Card${effect[0]!=1?`s`:``}\nScry ${effect[1]}\nDraw ${effect[2]} Card${effect[2]!=1?`s`:``}`; break
-            case 2975: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd a Moonscape\nto Discard`; break
+            case 2975: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd a Defocus\nto Discard`; break
             case 2976: string+=`Deal ${this.calculateEffect(effect[0],2)} Damage\nWhere X = Your Barrier`; break
             case 2977: string+=`Target Takes ${effect[0]}\nDamage Per Card\nPlayed This Turn\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nIf it is a Power,\nTarget Takes ${effect[2]} More`; break
             case 2978: string+=`Add ${this.calculateEffect(effect[0],17)} Barrier\nTarget Takes ${effect[1]}\nDamage Per Card\nPlayed This Turn`; break
@@ -3449,6 +3450,7 @@ class card{
             case 3130: string+=`Gain ${effect[0]} Temporary\nDexterity Per Turn`; break
             case 3131: string+=`Add ${this.calculateEffect(effect[0],1)} Block\nCounter ${effect[1]} Once`; break
             case 3132: string+=`Deal ${this.calculateEffect(effect[0],0)} Splash Damage\nHeal ${this.calculateEffect(effect[1],4)} Health\nCosts ${effect[2]} Less`; break
+            case 3133: string+=`Gain ${effect[0]} Energy\nDraw ${effect[1]} Card${effect[1]!=1?`s`:``}\nAdd a Moonscape\nto Discard`; break
 
             //mark p
 

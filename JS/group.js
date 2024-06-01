@@ -1977,6 +1977,9 @@ class group{
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)
                 }
             break
+            case -63:
+                this.battle.cardManagers[this.player].hand.add(findName('Pristine',types.card),0,0)
+            break
             case 288: case 374: case 2217: case 2776:
                 for(let a=0,la=card.effect[1];a<la;a++){
                     this.battle.cardManagers[this.player].hand.add(card.type,card.level,card.color,card.edition)

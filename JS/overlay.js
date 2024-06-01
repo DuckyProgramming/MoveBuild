@@ -108,9 +108,9 @@ class overlay{
                 for(let a=0,la=args[1].length;a<la;a++){
                     this.rewards.push({type:args[1][a].type,value:args[1][a].value,fade:1,position:this.rewards.length*50,usable:true})
                     if(this.rewards[this.rewards.length-1].type==2){
-                        this.rewards[this.rewards.length-1].relic=new relic(this.layer,-1,0,0,this.battle.relicManager.makeRelicSelection([[0,0,0,1,1,2][floor(random(0,6))]])[0],0.8)
+                        this.rewards[this.rewards.length-1].relic=new relic(this.layer,0,0,0,this.battle.relicManager.makeRelicSelection([[0,0,0,1,1,2][floor(random(0,6))]])[0],0.8)
                     }else if(this.rewards[this.rewards.length-1].type==3){
-                        this.rewards[this.rewards.length-1].item=new item(this.layer,-1,0,0,0,0,this.battle.itemManager.makeRandom(),0.8)
+                        this.rewards[this.rewards.length-1].item=new item(this.layer,0,0,0,0,0,this.battle.itemManager.makeRandom(),0.8)
                     }
                 }
             break

@@ -572,7 +572,7 @@ attack.prototype.update=function(){
         case 2555: case 2558: case 2559: case 2566: case 2567: case 2568: case 2638: case 2639: case 2643: case 2673:
         case 2704: case 2741: case 2756: case 2768: case 2792: case 2802: case 2817: case 2826: case 2827: case 2922:
         case 2962: case 2966: case 2975: case 2984: case 2992: case 2993: case 3003: case 3029: case 3048: case 3050:
-        case 3071: case 3083: case 3087: case 3092: case 3107: case 3122:
+        case 3071: case 3083: case 3087: case 3092: case 3107: case 3122: case 3133:
             //mark 4
             if(
                 this.type==799&&this.battle.turn.total<4||

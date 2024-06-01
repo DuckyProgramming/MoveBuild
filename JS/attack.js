@@ -6364,7 +6364,7 @@ class attack{
                     case 2975:
                         this.battle.addEnergy(this.effect[0],this.player)
                         this.userManager.draw(this.effect[1])
-                        this.battle.drop(this.player,findName('Moonscape',types.card),0,game.playerNumber+1)
+                        this.battle.drop(this.player,findName('Defocus',types.card),0,game.playerNumber+1)
                     break
                     case 2984:
                         let result2984=this.userManager.drawReturn(this.effect[0])
@@ -6417,6 +6417,11 @@ class attack{
                     case 3122:
                         this.userCombatant.statusEffect('Double Damage',this.effect[0])
                         this.userManager.hand.add(findName('Pristine',types.card),0,0)
+                    break
+                    case 3133:
+                        this.battle.addEnergy(this.effect[0],this.player)
+                        this.userManager.draw(this.effect[1])
+                        this.battle.drop(this.player,findName('Moonscape',types.card),0,game.playerNumber+1)
                     break
 
                 }

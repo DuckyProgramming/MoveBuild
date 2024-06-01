@@ -99,6 +99,16 @@ class modManager{
                     }
                 }
             break
+            case 174:
+                this.battle.combatantManager.combatants=[]
+                this.battle.colorDetail=[]
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    this.battle.player[a]=floor(random(0,game.playerNumber))+1
+                    this.battle.addCombatant({x:0,y:0},this.battle.player[a],a+1,0,false)
+                    this.battle.colorDetail.push(types.color.card[this.battle.player[a]])
+                }
+                this.battle.initialGraphics()
+            break
         }
     }
     display(){

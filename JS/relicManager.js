@@ -862,6 +862,9 @@ class relicManager{
                         if(this.battle.modded(58)){
                             this.battle.quickReinforce('Management Soldier')
                         }
+                        if(this.battle.modded(172)){
+                            this.battle.combatantManager.allEffect(40,[[1,3]])
+                        }
                     break
                     case 6: case 9:
                         if(this.active[248][a+1]>0){
@@ -872,6 +875,13 @@ class relicManager{
                     case 7:
                         if(this.active[174][0]>0){
                             this.battle.combatantManager.allEffect(19,[52*this.active[174][0]])
+                        }
+                    break
+                    case 20:
+                        if(this.battle.modded(175)){
+                            for(let a=0,la=this.battle.players;a<la;a++){
+                                this.getPlayer(a).life=0
+                            }
                         }
                     break
                 }
@@ -1108,6 +1118,9 @@ class relicManager{
                 }
                 if(this.battle.modded(143)){
                     this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(args[1])].statusEffect(['Burn','Freeze','Shock'][floor(random(0,3))],1)
+                }
+                if(this.battle.modded(176)){
+                    this.battle.cardManagers[args[1]].randomEffect(2,43,[])
                 }
             break
             case 3://enemy dies

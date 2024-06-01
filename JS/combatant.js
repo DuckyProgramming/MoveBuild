@@ -3633,6 +3633,9 @@ class combatant{
                 this.offset.position.x=random(-80,80)
                 this.offset.position.y=random(-80,80)
             }
+            if(this.battle.modded(173)){
+                this.statusEffect('Heal on Hit Taken',1)
+            }
         }
         if(this.name.includes('Duck')){
             if(this.battle.modded(22)){

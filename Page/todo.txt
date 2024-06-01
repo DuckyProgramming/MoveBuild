@@ -34,8 +34,6 @@ rename already existing shivering nightmare
 
 
 
-new moonscape
-
 forward front - deal damage equal to the last damage dealt and gain block equal to the last block gained
 
 ramen - gain 1 temp strength when you play a common card
@@ -46,32 +44,5 @@ ready to learn - 4 damage, increases by 4 when drawn
 
 discharge amulet - 3 cost, 16 damage, 8 barrier, deals double damage if you have dexterity
 
+graphene - when played twice get a diamond
 
-
-
-
-
-
-recreate lunar soil to be different
-change moonscape too
-
-
-/*{
-        name:'Manipulated\nFate',rarity:1,list:16,
-        levels:[
-            {effect:[2,1],attack:3047,cost:1,target:[0],spec:[],class:4},
-            {effect:[2,2],attack:3047,cost:1,target:[0],spec:[],class:4},
-            {effect:[3,2],attack:3047,cost:1,target:[0],spec:[],class:4},
-        ],
-    },{
-        name:'Lunar\nSoil',rarity:1,list:16,
-        levels:[
-            {effect:[1,1],attack:2975,cost:0,target:[0],spec:[],class:4},
-            {effect:[2,1],attack:2975,cost:0,target:[0],spec:[],class:4},
-            {effect:[3,1],attack:2975,cost:0,target:[0],spec:[],class:4},
-        ],
-    },*/
-
-
-
-add new bonus mods for new bosses

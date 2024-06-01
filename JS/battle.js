@@ -84,7 +84,6 @@ class battle{
         this.result={defeat:false,victory:false,noAnim:false}
         this.reinforce={back:[],front:[]}
         this.first=true
-
         this.colorDetail=[]
         
         this.initial()
@@ -113,6 +112,7 @@ class battle{
     initial(){
         this.combatantManager.clearCombatants()
         this.nodeManager.setupMap()
+        this.colorDetail=[]
         this.resetAnim()
         if(variants.mtg){
             this.energy.crystal=[]

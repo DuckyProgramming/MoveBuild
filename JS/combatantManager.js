@@ -654,6 +654,9 @@ class combatantManager{
                             this.combatants[a].takeDamage(args[0],-1)
                         }
                     break
+                    case 40:
+                        this.combatants[a].removeAllStatuses(args[0])
+                    break
                 }
             }
         }

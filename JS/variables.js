@@ -170,7 +170,6 @@ types={
         {name:'Glitched Giant',life:125,behavior:5,spec:[],move:{type:4,speed:1},attack:[{type:79,effect:[6]},{type:28,effect:[9]}],description:`Not intended`},
         {name:'Nil',life:91,behavior:5,spec:[0],move:{type:1,speed:1},attack:[{type:196,effect:[8,1,'Empty']},{type:198,effect:[10,1]},{type:197,effect:[3]},{type:146,effect:[5]}],description:`My iq`},
         {name:'Buried',life:34,behavior:0,spec:[],move:{type:0,speed:1},attack:[{type:225,effect:[]},{type:1,effect:[11]},{type:2,effect:[3]},{type:3,effect:[16]},{type:4,effect:[6]}],description:`Stuck in the ground`},
-        
         {name:'Keystone',life:82,behavior:0,spec:[],move:{type:0,speed:0},attack:[{type:350,effect:[12,1,'Dazed']},{type:351,effect:[12,1,'Dazed']}],description:`100% casualty rate`},
         
         {name:'Inconsistent',life:69,behavior:0,spec:[],move:{type:5,speed:1},attack:[{type:245,effect:[6]},{type:245,effect:[9]}],description:`Nice!`},
@@ -6531,6 +6530,11 @@ Costs 2 to use and retains. Range 1-3.`,
         {name:'Concentric',desc:'Cannot See Targetting Guidelines'},
         {name:'Embodimental Destabilization',desc:'All Characters Become Offset'},//170
         {name:'Dimension Wanderer',desc:'Make 5 Random Cards Braided'},
+        {name:'Crusader',desc:'All Enemies Remove Their Debuffs on Turn 5'},
+        {name:'Daughter of Heaven',desc:'All Enemies Heal 1 on Hit'},
+        {name:'Archivist',desc:'Polymorph Yourself'},
+        {name:'Eternal Judge',desc:'If Combat Reaches Turn 20, You Die'},
+        {name:'Keystone',desc:'Confuse a Random Card Each Turn'},
     ],deckmode:[
         {name:'Standard Deck'},
         {name:'Draft Deck'},
