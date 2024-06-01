@@ -12,9 +12,8 @@ class group{
         this.target=[]
         this.lastDuplicate=''
         this.lastPlayed=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+        this.playedSpecific=[0,0,0,0]
         this.compact=1
-        this.sevens=0
-        this.edicts=0
         this.cardInUse=0
         this.cardShuffledIndex=0
         this.pole=0
@@ -47,6 +46,7 @@ class group{
         ]
 
         this.reset()
+        
     }
     initialCards(type,player){
         let level=variants.cursed?1:0
@@ -771,7 +771,7 @@ class group{
     retainNumber(){
         let total=0
         for(let a=0,la=this.cards.length;a<la;a++){
-            if(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.battle.relicManager.hasRelic(128,this.player)){
+            if(this.cards[a].retain||this.cards[a].retain2|this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)||this.cards[a].spec.includes(55)||this.battle.relicManager.hasRelic(128,this.player)){
                 total++
             }
         }
@@ -891,16 +891,18 @@ class group{
         }
     }
     allEffect(effect){
-        if(effect==1){
-            this.cancel()
-            if(this.battle.relicManager.hasRelic(51,this.player)){
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length)
-            }
-            if(this.battle.relicManager.hasRelic(190,this.player)){
-                this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Single Damage Up',this.cards.length)
-            }
-        }
         let total=0
+        switch(effect){
+            case 1:
+                this.cancel()
+                if(this.battle.relicManager.hasRelic(51,this.player)){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length)
+                }
+                if(this.battle.relicManager.hasRelic(190,this.player)){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Single Damage Up',this.cards.length)
+                }
+            break
+        }
         for(let a=0,la=this.cards.length;a<la;a++){
             switch(effect){
                 case 0:
@@ -924,7 +926,7 @@ class group{
                         this.cards[a].etherealed()
                         this.cards[a].deSize=true
                         this.cards[a].exhaust=true
-                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
+                    }else if(this.cards[a].spec.includes(2)||this.cards[a].spec.includes(29)&&floor(random(0,5))!=0||this.cards[a].spec.includes(55)||this.battle.relicManager.hasRelic(128,this.player)||variants.cardHold){
                         this.cards[a].retained()
                         this.cards.forEach(card=>card.anotherRetained())
                         total++
@@ -1461,11 +1463,15 @@ class group{
 
             }
         }
-        if(effect==1&&this.battle.relicManager.hasRelic(53,this.player)){
-            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length)
-        }
-        if(effect==1&&total>0&&this.battle.relicManager.hasRelic(76,this.player)){
-            this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(4*total)
+        switch(effect){
+            case 1:
+                if(this.battle.relicManager.hasRelic(53,this.player)){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(this.cards.length)
+                }
+                if(total>0&&this.battle.relicManager.hasRelic(76,this.player)){
+                    this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].addBlock(4*total)
+                }
+            break
         }
     }
     allEffectArgs(effect,args){
@@ -1607,6 +1613,12 @@ class group{
                 case 21:
                     if(this.cards[a].cost>0){
                         this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[0])
+                    }
+                break
+                case 22:
+                    if(this.cards[a].cost>0){
+                        this.cards[a].cost=max(min(this.cards[a].cost,0),this.cards[a].cost-args[0])
+                        this.cards[a].base.cost=max(min(this.cards[a].base.cost,0),this.cards[a].base.cost-args[0])
                     }
                 break
             }
@@ -2118,6 +2130,9 @@ class group{
             case 3089:
                 this.drawEffects.push([7,card.effect[0]])
                 this.drawEffects.push([5,card.effect[1]])
+            break
+            case 3149:
+                card.effect[0]+=card.effect[1]
             break
         }
     }
@@ -3013,7 +3028,7 @@ class group{
                         this.cards[a].usable=true
                     }else{
                         this.cards[a].deSize=true
-                        if(this.cards[a].spec.includes(1)||(this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41))&&this.battle.relicManager.hasRelic(11,this.player)){
+                        if(this.cards[a].spec.includes(1)||this.cards[a].spec.includes(55)||(this.cards[a].spec.includes(5)||this.cards[a].spec.includes(41))&&this.battle.relicManager.hasRelic(11,this.player)){
                             this.cards[a].exhaust=true
                         }
                     }
@@ -3736,8 +3751,14 @@ class group{
                             if(this.cards[a].position.x==cap&&this.cards[a].swapped){
                                 this.cards[a].swapped=false
                             }
-                        }else if(this.cards[a].position.x<cap){
-                            this.cards[a].position.x=min(this.cards[a].position.x+25*this.compact,cap)
+                        }else{
+                            if(this.cards[a].deSizeDrop){
+                                this.cards[a].deSizeDrop=false
+                                this.cards[a].deSize=true
+                            }
+                            if(this.cards[a].position.x<cap){
+                                this.cards[a].position.x=min(this.cards[a].position.x+25*this.compact,cap)
+                            }
                         }
                         if(this.cards.length>0&&abs((this.cards.length-1)/2-a)<=0.5&&(this.cards[a].attack==1034||this.cards[a].attack==1037)){
                             this.cards[a].cost=0
@@ -3770,8 +3791,6 @@ class group{
                                 this.cards[a].edition=5
                                 this.cards[a].discardEffect.splice(this.cards[a].discardEffect.indexOf(9),1)
                             }else if(this.cards[a].discardEffect.includes(13)){
-                                this.cards[a].spec.push(1)
-                                this.cards[a].spec.push(2)
                                 this.cards[a].spec.push(55)
                                 this.cards[a].usable=true
                                 this.cards[a].cost=0
@@ -4271,7 +4290,7 @@ class group{
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&!(variants.polar&&this.pole!=this.cards[a].pole)){
+                        if(pointInsideBox({position:inputs.rel},this.cards[a])&&!this.cards[a].deSizeDrop&&!(variants.polar&&this.pole!=this.cards[a].pole)){
                             if(this.cards[a].spec.includes(48)){
                                 this.cards[a].spec.splice(this.cards[a].spec.indexOf(48))
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Freeze',1)
@@ -4632,7 +4651,7 @@ class group{
             switch(scene){
                 case 'battle':
                     for(let a=0,la=this.cards.length;a<la;a++){
-                        if((int(key)+9)%10==a&&!(variants.polar&&this.pole!=this.cards[a].pole)){
+                        if((int(key)+9)%10==a&&!this.cards[a].deSizeDrop&&!(variants.polar&&this.pole!=this.cards[a].pole)){
                             if(this.cards[a].spec.includes(48)){
                                 this.cards[a].spec.splice(this.cards[a].spec.indexOf(48))
                                 this.battle.combatantManager.combatants[this.battle.combatantManager.getPlayerCombatantIndex(this.player)].statusEffect('Freeze',1)

@@ -657,6 +657,10 @@ class combatantManager{
                     case 40:
                         this.combatants[a].removeAllStatuses(args[0])
                     break
+                    case 41:
+                        this.combatants[a].statusEffect('Poison',args[0])
+                        this.combatants[a].life-=this.combatants[a].getStatus('Poison')
+                    break
                 }
             }
         }
@@ -714,6 +718,9 @@ class combatantManager{
                     case 1:
                         this.combatants[index].statusEffect('Stun',args[0])
                     break
+                    case 2:
+                        this.combatants[index].statusEffect('Poison',args[0])
+                    break
                 }
             }
         }
@@ -754,10 +761,7 @@ class combatantManager{
         this.combatants.push(new combatant(this.layer,this.battle,x,y,relativeX,relativeY,tileX,tileY,type,team,this.id,round(direction/60-1/2)*60+30,minion))
         this.combatants[this.combatants.length-1].construct=true
         this.combatants[this.combatants.length-1].builder=builder
-        this.combatants[this.combatants.length-1].activated=
-            types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==2||
-            types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==4||
-            types.attack[this.combatants[this.combatants.length-1].attack[this.combatants[this.combatants.length-1].intent].type].class==5
+        this.combatants[this.combatants.length-1].activated=true
         if(this.combatants[this.combatants.length-1].spec.includes(17)){
             this.combatants[this.combatants.length-1].autoAim()
         }
@@ -811,8 +815,8 @@ class combatantManager{
     playCard(){
         this.combatants.forEach(combatant=>combatant.playCard())
     }
-    playCardFront(cardClass){
-        this.combatants.forEach(combatant=>combatant.playCardFront(cardClass))
+    playCardFront(cardClass,card){
+        this.combatants.forEach(combatant=>combatant.playCardFront(cardClass,card))
     }
     getRandomNonplayerCombatantIndex(){
         let list=[]

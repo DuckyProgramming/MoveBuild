@@ -68,7 +68,7 @@ class modManager{
             break
             case 146:
                 for(let a=0,la=5;a<la;a++){
-                    this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName(`${a+1} of Nothings`,types.card),0,0))
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.deck.add(findName(`${a+1} of\nNothings`,types.card),0,0))
                 }
             break
             case 148:

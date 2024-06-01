@@ -146,7 +146,7 @@ class combatant{
             'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
             'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn','Miracle Next Turn Next Turn',
             'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down','Fragile Damage Up','Temporary Free Common Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
-            'Counter Once',
+            'Counter Once','Common Temporary Strength','Temporary Strength Convert',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
@@ -185,7 +185,7 @@ class combatant{
                 0,0,0,2,2,0,0,0,0,2,//34
                 0,0,0,2,2,0,2,0,2,2,//35
                 2,2,0,0,2,0,2,1,0,0,//36
-                2,
+                2,0,0,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -224,7 +224,7 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,3,//34
                 2,2,2,2,2,2,2,2,0,2,//35
                 2,2,0,0,2,2,2,1,0,0,//36
-                2,
+                2,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -263,7 +263,7 @@ class combatant{
         this.elemental=false
 
         this.intent=0
-        this.activated=false
+        this.activated=this.construct
         this.target=0
         for(let a=0,la=this.orbs.length;a<la;a++){
             this.infoAnim.orbSpec.push([])
@@ -4534,7 +4534,7 @@ class combatant{
             this.battle.turnManager.loadEnemyAttackRepeat(this.id)
         }
     }
-    playCardFront(cardClass){
+    playCardFront(cardClass,card){
         if(this.status.main[77]>0){
             this.takeDamage(this.status.main[77],-1)
         }
@@ -4543,6 +4543,9 @@ class combatant{
         }
         if(this.status.main[293]>0&&cardClass==4){
             this.takeDamage(this.status.main[293],-1)
+        }
+        if(this.status.main[361]>0&&card.rarity==0){
+            this.statusEffect('Temporary Strength',this.status.main[361])
         }
         if(this.battle.turn.main==this.id){
             if(this.name=='Daiyousei'){
@@ -6388,6 +6391,9 @@ class combatant{
                     this.status.main[46]--
                 }else{
                     this.status.main[status]=constrain(this.status.main[status]+value*mult,-999,999)
+                }
+                if(this.status.name[status]=='Temporary Strength'&&this.status.main[362]>0){
+                    this.statusEffect('Strength',this.status.main[362])
                 }
             }
             if(status==32){

@@ -3,6 +3,11 @@ larva, god of evernight
 -3 - upgrade your hand
 -7 - apply 10 poison to all enemies
 
+M, minimal contributor
++1 - put a blank card into your hand
+-5 - get a 17 of nothings
+-12 - remove a card
+
 frozen dust - damage and freeze, and add a snowflake to hand
 
 forgotten ritual - damage twice, if fatal add a random power to hand
@@ -11,16 +16,13 @@ water blanket - gain block, draw 2 cards, discard them if they don't cost 0
 
 arc sculpture - 3 energy, 24 damage, 2 cards, get 2 energy back if blocked
 
-managerial mastery - all cards cost 1 less
+
 
 
 
 storm 333 - target any enemy, it can't move, and both of you lose health every turn
 
-M, minimal contributor
-+1 - put a blank card into your hand
--5 - get a 17 of nothings
--12 - remove a card
+managerial mastery - all cards cost 1 less
 
 silent cyclone - randomly push all adjacent enemies, they become invisible
 
@@ -30,7 +32,7 @@ money shower - place money on nearby tiles
 
 shivering nightmare - damage 4 times, exhaust hand, replace it with pristines that retain
 
-rename already existing shivering nightmare
+
 
 
 
@@ -46,3 +48,8 @@ discharge amulet - 3 cost, 16 damage, 8 barrier, deals double damage if you have
 
 graphene - when played twice get a diamond
 
+
+
+
+
+synchronization + synchronicity

@@ -595,6 +595,7 @@ class battle{
         this.replayManager.list.push(new attack(-1000,this,0,[],0,0,0,0,0,0,0,0,0,{replay:1,direction:-999}))
         this.combatantManager.tickEarly()
         this.relicManager.activate(14,[this.turn.main,this.getEnergy(this.turn.main)])
+        this.cardManagers[this.turn.main].reset()
         this.cardManagers[this.turn.main].allEffect(2,1)
         this.relicManager.activate(9,[this.turn.total,this.turn.main])
         let extra=false
@@ -616,7 +617,6 @@ class battle{
             this.energy.temp[this.turn.main]=0
             extra=true
         }else{
-            this.cardManagers[this.turn.main].reset()
             this.turn.main++
         }
         if(this.turn.main>=this.players){
@@ -924,7 +924,7 @@ class battle{
                 this.cardManagers[player].hand.addCost(findName('Dual\nDiscus',types.card),1,0,0)
             }
         }
-        this.combatantManager.playCardFront(cardClass)
+        this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition])
     }
     displayCurrency(){
