@@ -2344,19 +2344,21 @@ class battle{
                 }
             break
             case 'rest':
-                if(this.overlayManager.anyActive){
-                    this.overlayManager.onClick()
-                }else{
-                    this.optionManagers.forEach(optionManager=>optionManager.onClick())
-                }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&
+                        !this.overlayManager.anySpecificActive(5)&&!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(12)&&!this.overlayManager.anySpecificActive(62)
+                    ){
                         this.overlayManager.overlays[4][a].active=true
                         this.overlayManager.overlays[4][a].activate()
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
                         this.overlayManager.overlays[24][a].active=true
                         this.overlayManager.overlays[24][a].activate()
                     }
+                }
+                if(this.overlayManager.anyActive){
+                    this.overlayManager.onClick()
+                }else{
+                    this.optionManagers.forEach(optionManager=>optionManager.onClick())
                 }
             break
             case 'shop':
@@ -2377,7 +2379,9 @@ class battle{
                     }
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:152+a*(this.layer.width-304),y:578},width:32,height:20})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:152+a*(this.layer.width-304),y:578},width:32,height:20})&&
+                        !this.overlayManager.anyNotSpecificActive(3)
+                    ){
                         this.overlayManager.overlays[4][a].active=true
                         this.overlayManager.overlays[4][a].activate()
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:110+a*(this.layer.width-220),y:578},width:32,height:20})){
@@ -2714,6 +2718,17 @@ class battle{
                 }
             break
             case 'rest':
+                for(let a=0,la=this.cardManagers.length;a<la;a++){
+                    if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
+                        !this.overlayManager.anySpecificActive(5)&&!this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(12)&&!this.overlayManager.anySpecificActive(62)
+                    ){
+                        this.overlayManager.overlays[4][a].active=true
+                        this.overlayManager.overlays[4][a].activate()
+                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
+                        this.overlayManager.overlays[24][a].active=true
+                        this.overlayManager.overlays[24][a].activate()
+                    }
+                }
                 if(this.overlayManager.anyActive){
                     this.overlayManager.onKey(key,code)
                 }else{
@@ -2722,15 +2737,6 @@ class battle{
                             this.optionManagers[a].onKey(key,code)
                             break
                         }
-                    }
-                }
-                for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[4][a].active=true
-                        this.overlayManager.overlays[4][a].activate()
-                    }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){
-                        this.overlayManager.overlays[24][a].active=true
-                        this.overlayManager.overlays[24][a].activate()
                     }
                 }
             break
@@ -2752,7 +2758,9 @@ class battle{
                     }
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                    if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
+                        !this.overlayManager.anyNotSpecificActive(3)
+                    ){
                         this.overlayManager.overlays[4][a].active=true
                         this.overlayManager.overlays[4][a].activate()
                     }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){

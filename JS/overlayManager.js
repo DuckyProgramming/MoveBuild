@@ -105,6 +105,26 @@ class overlayManager{
         }
         this.anyActive=false
     }
+    anySpecificActive(index){
+        for(let a=0,la=this.overlays[index].length;a<la;a++){
+            if(this.overlays[index][a].active){
+                return true
+            }
+        }
+        return false
+    }
+    anyNotSpecificActive(index){
+        for(let a=0,la=this.overlays.length;a<la;a++){
+            if(a!=index){
+                for(let b=0,lb=this.overlays[a].length;b<lb;b++){
+                    if(this.overlays[a][b].active){
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
     copyOverlays(){
         for(let a=0,la=this.overlays.length;a<la;a++){
             this.overlays[a].push(new overlay(this.overlays[a][0].layer,this.overlays[a][0].battle,this.overlays[a][0].player+1,this.overlays[a][0].type,this.overlays[a][0].args))
