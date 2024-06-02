@@ -144,7 +144,7 @@ class combatant{
             'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
             'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
             'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
-            'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn','Miracle Next Turn Next Turn',
+            'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn','Miracle Next Turn Next Turn Next Turn',
             'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down','Fragile Damage Up','Temporary Free Common Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
             'Counter Once','Common Temporary Strength','Temporary Strength Convert',
             ],next:[],display:[],active:[],position:[],size:[],
@@ -3742,10 +3742,8 @@ class combatant{
                 this.statusEffect('Heal on Hit Taken',3)
             break
             case 'Eternal Judge':
-                let sin=floor(random(0,7))
-                this.sins=[sin]
-                this.infoAnim.sins=[0]
-                this.addSin(sin)
+                this.sins=[]
+                this.infoAnim.sins=[]
             break
         }
         if(this.team==0){

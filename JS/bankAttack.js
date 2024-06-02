@@ -6519,7 +6519,7 @@ attack.prototype.update=function(){
                         break
                         case 2883:
                             this.battle.overlayManager.overlays[10][this.player].active=true
-                            this.battle.overlayManager.overlays[10][this.player].activate([0,0,21,3])
+                            this.battle.overlayManager.overlays[10][this.player].activate([this.level,0,21,3])
                         break
                         case 2884:
                             this.userManager.hand.add(findName('Dual\nDiscus',types.card),this.level,0)

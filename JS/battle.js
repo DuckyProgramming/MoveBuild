@@ -287,10 +287,10 @@ class battle{
         for(let a=0,la=this.cardManagers.length;a<la;a++){
             this.cardManagers[a].reset()
             this.cardManagers[a].clear()
-            this.cardManagers[a].copyAntiInnate(0,1,0)
+            this.cardManagers[a].copyAntiInnate(0,1,0,0)
             this.cardManagers[a].standardBase()
             this.cardManagers[a].shuffle(1)
-            this.cardManagers[a].copyAntiInnate(0,1,1)
+            this.cardManagers[a].copyAntiInnate(0,1,1,0)
             if(variants.transcend){
                 this.cardManagers[a].allGroupEffect(88)
             }

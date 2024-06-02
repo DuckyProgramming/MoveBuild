@@ -1,0 +1,62 @@
+history-fly card for daiyousei
+replaces snakefly
+
+remove and replace:
+powerup! (buggy)
+the glitch (buggy)
+
+[]
+[]
+[]
+
+
+
+
+
+sigil isn't permanent apparently
+
+overlay 1974 may break
+can't remove smushed cards
+can't double or nothing smushed cards
+
+can't see vision under somebody's head
+
+blueshift kinda sucks
+
+target cannot gain block for "1 turns"
+
+scry hotkey multipress
+
+
+
+
+runaway seasons
+
+broken timeline - take another turn, but lose all energy during it
+
+devour history - remove a card if you have enough history
+
+ageless dream - some variant of weak and vulnerable
+
+sea of trees - x cost, but if x is 5 or more exhume a card
+
+sweet potato - heal 8 at the end of combat
+
+
+
+
+countdown 4 that results in tripling the next attack
+
+omelette - lockbox but it starts low and increases after each battle
+
+shining needle
+
+overturning all
+
+freedom from worldliness
+
+lilies of murder
+
+
+
+

@@ -201,7 +201,7 @@ types={
         {name:'Archivist',life:410,behavior:0,spec:[0,2],move:{type:2,speed:1},attack:[{type:352,effect:[]},{type:353,effect:[17,2]},{type:354,effect:[9,2]},{type:355,effect:[7,2]}],description:`Doxxed literally everybody`},
 
         {name:'Rewriter',life:750,behavior:0,spec:[0,2],move:{type:1,speed:1},attack:[{type:244,effect:[]},{type:190,effect:[36,2,2]},{type:191,effect:[8]},{type:192,effect:[18]},{type:301,effect:[]},{type:193,effect:[32,1]},{type:194,effect:[15,1,'Decremented']},{type:195,effect:[27]},{type:302,effect:[]},{type:39,effect:[1,'Nil']},{type:189,effect:[6,'Glitch','Glitched Giant']}],description:`Well actually... no`},
-        {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[7]},{type:358,effect:[18,2,'Trial']},{type:359,effect:[50]}],description:`Fine... I'll do it myself`},
+        {name:'Eternal Judge',life:666,behavior:0,spec:[0,2],move:{type:0,speed:1},attack:[{type:356,effect:[]},{type:357,effect:[6]},{type:358,effect:[13,2,'Trial']},{type:359,effect:[66]}],description:`Fine... I'll do it myself`},
         
         {name:'Managerial',life:0,behavior:9,spec:[],move:{type:0,speed:0},attack:[],description:`But why?`},
 
@@ -748,7 +748,7 @@ types={
         {name:'Shattered Mirror',internal:'Duplicate Card',id:123,rarity:3,list:0,description:'When Taken,\nDuplicate a Card'},
         {name:'Tweezers',internal:'Block Break Vulnerable',id:124,rarity:0,list:0,description:`When You Break an Enemy's\nBlock, Apply 2 Vulnerable`},
         {name:'Waffle',internal:'10 Max HP Full Heal',id:125,rarity:3,list:0,description:'When Taken, Gain 10 Max\nHP and Heal All HP'},
-        {name:'Napkin Ring',internal:'Starting Colorless',id:126,rarity:3,list:0,description:'Choose 1 Colorless Card to Add\nat the Start of Combat'},
+        {name:'Napkin Ring',internal:'Starting Colorless',id:126,rarity:3,list:0,description:'Choose 1 Common Colorless Card\nto Add at the Start of Combat'},
         {name:'Rock of Duckontonlek',internal:'Relic Pack',id:127,rarity:3,list:0,description:'When Taken, Gain 3 Relics\nand a Hoarding'},
         {name:'Card Rack',internal:'Card Hold',id:128,rarity:-1,list:0,description:'All Cards\nHave Retain'},
         {name:'Mechanical Eye',internal:'View Draw',id:129,rarity:0,list:0,description:'Draw Pile Cards Are\nViewed in Order'},
@@ -866,7 +866,7 @@ types={
         {name:'Painted Deck',internal:'Compact/Lose First Relic',id:230,rarity:3,list:0,description:'Compact Cards in Your Hand\nWhen Taken, Lose Your First Relic'},
         {name:'Bad Legal Defense',internal:'Medic Death Remove',id:231,rarity:2,list:0,description:'Remove a Card When a Medic Dies'},
         {name:'Mining Light',internal:'More Boss Rewards',id:232,rarity:1,list:0,description:'Boss Rewards Give 50% More Currency\nand 1 More Rare Card'},
-        {name:'Card Buffer Advanced',internal:'Edition Deluxe Upgrades',id:233,rarity:2,list:0,description:'(Permanently) Deluxe Upgraded\nCards Gain Editions'},
+        {name:'Card Buffer Advanced',internal:'Edition Deluxe Upgrades',id:233,rarity:2,list:0,description:'Cards You Choose to Deluxe\nUpgrade Gain Editions'},
         {name:'CSS',internal:'Energy/Visible Energy',id:234,rarity:4,list:0,description:'Gain 1 Base Energy,\nYou Cannot See Your Energy'},
         {name:'Clownfish',internal:'Edition Block',id:235,rarity:0,list:0,description:'Add 2 Block When You Play\na Card With an Edition'},        
         {name:'Philosophical Duck',internal:'Sell Relic',id:236,rarity:0,list:0,description:'When Sold, Gain a Relic'},
@@ -900,7 +900,7 @@ types={
         {name:'Abandoned Rose',internal:'Starting Upgrade',id:261,rarity:2,list:0,description:'Temporarily Upgrade All Non-Innate\nUnupgraded Cards in Your Turn 1 Hand'},
         {name:'Tea Set',internal:'Poor Rest Heal',id:262,rarity:0,list:0,description:'Heal 20 HP When Entering a Rest Site\nWith 500 Currency or Less'},
         {name:'Roll of Pennies',internal:'Shop Currency',id:263,rarity:0,list:0,description:'Gain 50 Currency\nWhen You Enter a Shop'},
-        {name:'Shining Needle',internal:'Cheap Basics',id:264,rarity:1,list:0,description:'Strikes and Defends Have a\n25% Chance to Cost 1 Less\nTemporarily When Drawn'},
+        {name:'Rice Bowl',internal:'Cheap Basics',id:264,rarity:1,list:0,description:'Strikes and Defends Have a\n25% Chance to Cost 1 Less\nTemporarily When Drawn'},
 
     ],item:[
         {name:'',id:0,rarity:-1,list:-1,menu:false,temp:false,description:''},
@@ -2250,7 +2250,7 @@ they're much more skilled than you initially believed.
 You could take this to be a learning experience, or more,
 but this is a dangerous game they're playing.`,
                     option:['Leave'],
-                    optionDesc:['Gain 1 Card'],
+                    optionDesc:['Add 1 Card'],
                     link:[-1],
                 },{
                     desc:
@@ -2697,7 +2697,7 @@ you grab the notebook and read through the first few pages.`,
 `Within, you see a discussion of the uniqueness of
 culture and how it remains despite fierce resistance.`,
                     option:['Interesting'],
-                    optionDesc:['Gain 1 Card'],
+                    optionDesc:['Add 1 Card'],
                     link:[-1],
                 },{
                     desc:
@@ -2919,7 +2919,7 @@ Weird that they didn't just build it in space.`,
 You were never involved in naval operations,
 so it's quite a jarring transition.`,
                     option:['Interesting'],
-                    optionDesc:['Gain 1 Card'],
+                    optionDesc:['Add 1 Card'],
                     link:[-1],
                 },{
                     desc:
@@ -2940,7 +2940,7 @@ you spot a strange little tent, nestled among similar other tents.
 It seems the other tents are just shops, but this one is a "Fortune Teller".
 Entering, you're offered a chance to glimpse your future...`,
                     option:['View'],
-                    optionDesc:['Gain 1 Card'],
+                    optionDesc:['Add 1 Card'],
                     link:[-1],
                 },
             ],

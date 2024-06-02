@@ -3633,8 +3633,8 @@ function setupCombatantBackground(type,player,a,la,damage,layer){
 						{top:12+a*6,bottom:9+a*3,length:{top:17,bottom:17-a}}
 					]
 					p1.anim.arms=[
-						{top:24+a*15,bottom:12+a*24,length:{top:17,bottom:17}},
-						{top:33-a*9,bottom:60-a*33,length:{top:17,bottom:17}}
+						{top:33+a*15,bottom:12+a*24,length:{top:17,bottom:17}},
+						{top:39-a*9,bottom:60-a*33,length:{top:17,bottom:17}}
 					]
 					p1.spin.legs=[{top:-60+a*15,bottom:-120-a*15,lock:0},{top:60-a*15,bottom:120+a*15,lock:0}]
 					p1.spin.arms=[{top:-165+a*45,bottom:-180+a*45,lock:0},{top:120+a*45,bottom:150+a*45,lock:0}]

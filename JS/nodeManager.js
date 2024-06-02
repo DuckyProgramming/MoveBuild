@@ -136,7 +136,7 @@ class nodeManager{
                     let list=this.listing.encounter[this.world][y==0?4:y<3&&this.world==0?3:0]
                     let index=floor(random(0,list.length))
                     this.battle.setupBattle(types.encounter[list[index]])
-                    if(!(y==0?4:y<3&&this.world==0)){
+                    if(y>0){
                         list.splice(index,1)
                     }
                 }

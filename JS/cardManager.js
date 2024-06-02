@@ -165,11 +165,11 @@ class cardManager{
     send(group1,group2){
         this.getList(group1).send(this.getList(group2).cards,0,-1)
     }
-    copy(group1,group2){
-        this.getList(group1).copy(this.getList(group2).cards,0,-1)
+    copy(group1,group2,spec){
+        this.getList(group1).copy(this.getList(group2).cards,0,-1,spec)
     }
-    copyAntiInnate(group1,group2,key){
-        this.getList(group1).copyAntiInnate(this.getList(group2).cards,0,-1,key)
+    copyAntiInnate(group1,group2,key,spec){
+        this.getList(group1).copyAntiInnate(this.getList(group2).cards,0,-1,key,spec)
     }
     swap(group1,group2){
         let list=[]

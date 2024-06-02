@@ -683,9 +683,9 @@ function intentDescription(attack,user,info){
 			case 105: return `Shuffle in ${info?attack.effect[0]:`?`} ${info?attack.effect[1].replace(/(\r\n|\n|\r)/gm,' '):'?'}\n3 Tiles Wide\nRange 1-2`
 			case 106: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush to End\nRange 1-6`
 			case 107: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nGain ${info?attack.effect[1]:`?`} Strength\nRange 1-2`
-			case 108: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter ${info?calculateIntent(attack.effect[0],user,0):`?`}`
+			case 108: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter ${info?calculateIntent(attack.effect[1],user,0):`?`}`
 			case 109: return `Heal ${info?calculateIntent(attack.effect[0],user,4):`?`} Health`
-			case 110: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nRetain Block\nFor 1 Turn\nCounter ${info?calculateIntent(attack.effect[0],user,0):`?`}`
+			case 110: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nRetain Block\nFor 1 Turn\nCounter ${info?calculateIntent(attack.effect[1],user,0):`?`}`
 			case 111: return `Gain ${info?attack.effect[0]:`?`} Metallicize`
 			case 112: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Strength\nRange 1-2`
 			case 113: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nHeal ${info?calculateIntent(attack.effect[0],user,4):`?`} Health\nRange 1-1`
@@ -858,7 +858,7 @@ function intentDescription(attack,user,info){
 			case 290: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nGain ${info?attack.effect[1]:`?`} Regeneration\nRange 1-6`
 			case 291: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nin 4 Directions\nRange 1-1`
 			case 292: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nin 4 Directions\nRange 1-1`
-			case 293: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter ${info?calculateIntent(attack.effect[0],user,0):`?`} Twice`
+			case 293: return `Add ${info?calculateIntent(attack.effect[0],user,1):`?`} Block\nCounter ${info?calculateIntent(attack.effect[1],user,0):`?`} Twice`
 			case 294: return `Gain ${info?attack.effect[0]:`?`} Strength\nGain ${info?attack.effect[1]:`?`} Dexterity`
 			case 295: return `Apply ${info?attack.effect[0]:`?`} Burn\nApply ${info?attack.effect[1]:`?`} Freeze\nApply ${info?attack.effect[2]:`?`} Shock\nApply ${info?attack.effect[3]:`?`} Poison\nRange 1-1`
 			case 296: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nAnywhere`
@@ -989,20 +989,20 @@ function multiplyString(base,multiply){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.editedCost,base.edited.costComplete)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.editedCost,base.edited.costComplete,base.nonCalc)
 }
 function copyCardFree(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.editedCost,base.edited.costComplete)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.editedCost,base.edited.costComplete,base.nonCalc)
 }
 function upgradeCard(base,nonlimiting=false){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.editedCost,false)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.editedCost,false,base.nonCalc)
 	if(base.attack==1352||nonlimiting){
 		result.limit=base.limit
 	}
 	return result
 }
 function unupgradeCard(base,nonlimiting=false){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.editedCost,false)
+	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.editedCost,false,base.nonCalc)
 	if(base.attack==1352||nonlimiting){
 		result.limit=base.limit
 	}

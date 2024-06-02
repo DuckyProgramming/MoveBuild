@@ -2527,28 +2527,37 @@ class group{
             }
         }
     }
-    copy(list,firstIndex,lastIndex){
+    copy(list,firstIndex,lastIndex,spec){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex+a]))
                 list[list.length-1].position.x=1200
                 list[list.length-1].position.y=500
+                if(spec==0){
+                    list[list.length-1].nonCalc=false
+                }
             }
         }else{
             for(let a=0,la=lastIndex-firstIndex+1;a<la;a++){
                 list.push(copyCard(this.cards[firstIndex+a]))
                 list[list.length-1].position.x=1200
                 list[list.length-1].position.y=500
+                if(spec==0){
+                    list[list.length-1].nonCalc=false
+                }
             }
         }
     }
-    copyAntiInnate(list,firstIndex,lastIndex,key){
+    copyAntiInnate(list,firstIndex,lastIndex,key,spec){
         if(lastIndex==-1){
             for(let a=0,la=this.cards.length-firstIndex;a<la;a++){
                 if(!this.cards[firstIndex+a].spec.includes(47)&&key==0||this.cards[firstIndex+a].spec.includes(47)&&key==1){
                     list.push(copyCard(this.cards[firstIndex+a]))
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
+                    if(spec==0){
+                        list[list.length-1].nonCalc=false
+                    }
                 }
             }
         }else{
@@ -2557,6 +2566,9 @@ class group{
                     list.push(copyCard(this.cards[firstIndex+a]))
                     list[list.length-1].position.x=1200
                     list[list.length-1].position.y=500
+                    if(spec==0){
+                        list[list.length-1].nonCalc=false
+                    }
                 }
             }
         }

@@ -11256,9 +11256,9 @@ class attack{
                         this.userCombatant.statusEffect('Control',this.effect[1])
                     break
                     case 2831:
-                        this.battle.dropDrawShuffle(this.player,findName('Sunny\nMilk',types.card),0,0)
-                        this.battle.dropDrawShuffle(this.player,findName('Star\nSapphire',types.card),0,0)
-                        this.battle.dropDrawShuffle(this.player,findName('Luna\nChild',types.card),0,0)
+                        this.battle.dropDrawShuffle(this.player,findName('Sunny, Refracted\nSunlight',types.card),0,this.color)
+                        this.battle.dropDrawShuffle(this.player,findName('Star, Showering\nStarlight',types.card),0,this.color)
+                        this.battle.dropDrawShuffle(this.player,findName('Luna, Silent\nMoonlight',types.card),0,this.color)
                     break
                     case 2841: case 2842:
                         this.targetCombatant.statusEffect('Damage Taken Up to Nearest 5',999)
@@ -12471,9 +12471,7 @@ class attack{
                     break
                     case 2969:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        for(let a=0,la=this.effect[1];a<la;a++){
-                            this.userManager.hand.addCost(findName('Dual\nDiscus',types.card),this.level,0,2)
-                        }
+                        this.userManager.hand.add(findName('Dual\nDiscus',types.card),this.level,0)
                     break
                     case 2983:
                         let result2983=this.userManager.drawReturn(this.effect[1])

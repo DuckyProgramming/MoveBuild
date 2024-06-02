@@ -1021,7 +1021,7 @@ class relicManager{
                     }
                     if(this.active[126][args[1]+1]>0){
                         this.battle.overlayManager.overlays[10][args[1]].active=true
-                        this.battle.overlayManager.overlays[10][args[1]].activate([0,3,1])
+                        this.battle.overlayManager.overlays[10][args[1]].activate([0,0,1])
                     }
                     if(this.active[144][args[1]+1]>0){
                         for(let a=0,la=this.active[144][args[1]+1];a<la;a++){

@@ -1045,12 +1045,12 @@ class relic{
                 break
                 case 'Energy/Draw':
                     displaySymbol(this.layer,-8,0,9,0,1,this.fade)
-                    displaySymbol(this.layer,8,-4,8,0,0.9,this.fade)
-                    displaySymbol(this.layer,8,10,20,0,0.5,this.fade)
+                    displaySymbol(this.layer,8,-6,8,0,0.75,this.fade)
+                    displaySymbol(this.layer,8,13,4,0,0.5,this.fade)
                     this.layer.fill(0,this.fade)
                     this.layer.textSize(10)
-                    this.layer.text('-1',8,-4)
-                    this.layer.text('2',8,10)
+                    this.layer.text('-1',8,-6)
+                    this.layer.text('2',8,6)
                 break
                 case 'Energy/Card Limit':
                     displaySymbol(this.layer,-11,0,9,0,0.8,this.fade)
