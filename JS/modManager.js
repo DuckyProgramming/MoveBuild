@@ -46,7 +46,7 @@ class modManager{
             case 124:
                 for(let a=0,la=2;a<la;a++){
                     this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomAll(0,0,2))
-                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomCharacter(0,game.playerNumber+2,0,3))
+                    this.battle.cardManagers.forEach(cardManager=>cardManager.addRandomCharacter(0,0,game.playerNumber+2,3))
                 }
             break
             case 132:

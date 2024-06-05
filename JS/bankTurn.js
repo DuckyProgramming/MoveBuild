@@ -1511,7 +1511,7 @@ turn.prototype.update=function(){
                     if(this.timer==15){
                         this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,7,[atan2(this.targetTile.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetTile.position.y),5*this.targetDistance-2]))
                     }else if(this.timer==10*this.targetDistance+15){
-                        this.battle.combatantManager.damageArea(this.effect[0],this.userCombatant.id,-1,this.targetTile.tilePosition)
+                        this.battle.combatantManager.damageArea(this.effect[0],this.user,-1,this.targetTile.tilePosition)
                         switch(this.type){
                             case 150:
                                 this.battle.combatantManager.randomEffectArea(this.effect[1],11,[],-1,this.targetTile.tilePosition)
@@ -1650,7 +1650,7 @@ turn.prototype.update=function(){
                         if(this.timer==15){
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x+this.userCombatant.graphics.arms[0].bottom.x,this.userCombatant.position.y+this.userCombatant.graphics.arms[0].bottom.y,16,[atan2(this.targetCombatant.position.x-this.userCombatant.position.x,this.userCombatant.position.y-this.targetCombatant.position.y),2.5*this.targetDistance-1]))
                         }else if(this.timer==5*this.targetDistance+15){
-                            this.battle.combatantManager.damageArea(this.effect[0],this.userCombatant.id,-1,this.targetCombatant.tilePosition)
+                            this.battle.combatantManager.damageArea(this.effect[0],this.user,-1,this.targetCombatant.tilePosition)
                             this.battle.particleManager.particles.push(new particle(this.battle.layer,this.targetCombatant.position.x,this.targetCombatant.position.y,17,[10]))
                         }else if(this.timer>=5*this.targetDistance+25){
                             this.remove=true

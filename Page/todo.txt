@@ -1,62 +1,29 @@
-history-fly card for daiyousei
-replaces snakefly
+sanae meme card
 
-remove and replace:
-powerup! (buggy)
-the glitch (buggy)
+[common colorless]
 
-[]
-[]
-[]
+[common colorless]
 
+[junkyard]
 
+drunk - curse, when drawn, discard a card
 
-
-
-sigil isn't permanent apparently
-
-overlay 1974 may break
-can't remove smushed cards
-can't double or nothing smushed cards
-
-can't see vision under somebody's head
-
-blueshift kinda sucks
-
-target cannot gain block for "1 turns"
-
-scry hotkey multipress
+world fragment returns
 
 
 
 
-runaway seasons
+relic get $250 at rest sites
 
-broken timeline - take another turn, but lose all energy during it
-
-devour history - remove a card if you have enough history
-
-ageless dream - some variant of weak and vulnerable
-
-sea of trees - x cost, but if x is 5 or more exhume a card
-
-sweet potato - heal 8 at the end of combat
+4 more replacement relics
 
 
 
 
-countdown 4 that results in tripling the next attack
+3 new events
 
-omelette - lockbox but it starts low and increases after each battle
+[drinking contest]
 
-shining needle
+[remember the first event you saw test]
 
-overturning all
-
-freedom from worldliness
-
-lilies of murder
-
-
-
-
+[choose details about a card to get]

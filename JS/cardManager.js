@@ -192,9 +192,6 @@ class cardManager{
     addRandom(group,level,rarity){
         this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player])
     }
-    addRandomCharacter(group,character,level,rarity){
-        this.getList(group).add(this.listing.card[character][rarity][floor(random(0,this.listing.card[character][rarity].length))],level,character)
-    }
     addRandomFree(group,level,rarity,variant){
         this.getList(group).addCost(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],variant)
     }
@@ -204,8 +201,8 @@ class cardManager{
     addRandomEdition(group,level,rarity,edition){
         this.getList(group).add(this.listing.card[this.battle.player[this.player]][rarity][floor(random(0,this.listing.card[this.battle.player[this.player]][rarity].length))],level,this.battle.player[this.player],edition)
     }
-    addRandomCharacterEdition(group,character,level,rarity,edition){
-        this.getList(group).add(this.listing.card[character][rarity][floor(random(0,this.listing.card[character].length))],level,character,edition)
+    addRandomColorEdition(group,level,color,rarity,edition){
+        this.getList(group).add(this.listing.card[color][rarity][floor(random(0,this.listing.card[character].length))],level,color,edition)
     }
     addRandomClass(group,level,cardClass){
         let list=[]
@@ -216,6 +213,18 @@ class cardManager{
         }
         if(list.length>0){
             this.getList(group).add(list[floor(random(0,list.length))],level,this.battle.player[this.player])
+        }
+    }
+    addRandomColorFree(group,level,color,rarity,cost){
+        let list=[]
+        for(let a=0,la=this.listing.card[color][rarity].length;a<la;a++){
+            if(types.card[this.listing.card[color][rarity][a]].levels[level].cost==cost&&!types.card[this.listing.card[color][rarity][a]].levels[level].spec.includes(5)&&!types.card[this.listing.card[color][rarity][a]].levels[level].spec.includes(21)){
+                list.push(this.listing.card[color][rarity][a])
+            }
+        }
+        if(list.length>0){
+            let type=list[floor(random(0,list.length))]
+            this.getList(group).add(type,level,color)
         }
     }
     addRandomClassFree(group,level,cardClass,variant){

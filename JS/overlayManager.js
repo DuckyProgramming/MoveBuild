@@ -40,11 +40,11 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,2,[19])],//bring in discard card to draw, no return,30
                     [new overlay(this.layer,this.battle,0,2,[20])],//bring in first 3 draw card as free, no return
                     [new overlay(this.layer,this.battle,0,2,[4,1,2])],//remove card, obliterative
-                    [new overlay(this.layer,this.battle,0,2,[21])],//bring in discard card, no return
-                    [new overlay(this.layer,this.battle,0,2,[22])],//bring in draw card, no return
+                    [new overlay(this.layer,this.battle,0,2,[21])],//bring in discard card, get block, no return
+                    [new overlay(this.layer,this.battle,0,2,[22])],//bring in draw card, get block, no return
                     [new overlay(this.layer,this.battle,0,8,[1])],//new card to hand, allcard
                     [new overlay(this.layer,this.battle,0,2,[23,3])],//view draw (ordered, only 3)
-                    [new overlay(this.layer,this.battle,0,2,[25])],//bring in draw card, originated, no return
+                    [new overlay(this.layer,this.battle,0,2,[25])],//bring in draw card, originated (card slot), no return
                     [new overlay(this.layer,this.battle,0,9,[0])],//choose card to techify
                     [new overlay(this.layer,this.battle,0,2,[26])],//smush together
                     [new overlay(this.layer,this.battle,0,2,[27])],//bring in deck card, no return,40
@@ -80,13 +80,14 @@ class overlayManager{
                     [new overlay(this.layer,this.battle,0,17,[0])],//dual card choice,70
                     [new overlay(this.layer,this.battle,0,2,[50])],//random edition basic, no return
                     [new overlay(this.layer,this.battle,0,2,[51])],//become colorless, no return
+                    [new overlay(this.layer,this.battle,0,2,[52,0])],//transform draw card, no return
 
                 )
                 if(this.battle.players==2){
                     this.copyOverlays()
                 }
                 this.positionOverlays()
-                this.priority=[51,61,64,41,42,24,4,16,38,17,3,26,28,10,35,6,44,71,72,48,49,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,70,63,59,33,52,53,8,65,66,46,47,34,37,19,20,21,22,23,29,31,40,9,14,62,54,11,27,39,43,55,45,60]
+                this.priority=[51,61,64,41,42,24,4,16,38,17,3,26,28,10,35,6,44,71,72,48,49,12,0,25,1,13,36,2,15,5,32,7,18,50,30,56,57,58,67,68,69,70,63,59,33,52,53,8,65,66,46,47,73,34,37,19,20,21,22,23,29,31,40,9,14,62,54,11,27,39,43,55,45,60]
             break
             case 1:
                 this.overlays.push(

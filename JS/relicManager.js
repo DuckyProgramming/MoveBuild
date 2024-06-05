@@ -380,7 +380,7 @@ class relicManager{
                 }
             break
             case 215:
-                this.battle.cardManagers[player].addRandomCharacter(0,game.playerNumber+4,0,3)
+                this.battle.cardManagers[player].addRandomColor(0,0,game.playerNumber+4,3)
             break
             case 218:
                 this.battle.overlayManager.overlays[54][player].active=true
@@ -405,7 +405,7 @@ class relicManager{
                 this.battle.optionManagers[player].addOption(9)
             break
             case 247:
-                this.battle.cardManagers[player].addRandomCharacterEdition(0,0,0,0,4)
+                this.battle.cardManagers[player].addRandomColorEdition(0,0,0,0,4)
             break
             case 254:
                 this.battle.optionManagers[player].addOption(10)

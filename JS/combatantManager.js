@@ -661,6 +661,10 @@ class combatantManager{
                         this.combatants[a].statusEffect('Poison',args[0])
                         this.combatants[a].life-=this.combatants[a].getStatus('Poison')
                     break
+                    case 42:
+                        this.combatants[a].heal(args[0])
+                        this.combatants[a].statusEffect('Poison',args[1])
+                    break
                 }
             }
         }
@@ -697,6 +701,9 @@ class combatantManager{
                 case 9:
                     this.combatants[a].statusEffect('Cannot Move',args[0])
                 break
+                case 10:
+                    this.combatants[a].callEndEffect()
+                break
                 
             }
         }
@@ -721,7 +728,24 @@ class combatantManager{
                     case 2:
                         this.combatants[index].statusEffect('Poison',args[0])
                     break
+                    case 3:
+                        this.combatants[index].statusEffect('Protected Invisible',args[0])
+                    break
+                        
                 }
+            }
+        }
+    }
+    getRandom(){
+        if(this.combatants.length>0){
+            let list=[]
+            for(let a=0,la=this.combatants.length;a<la;a++){
+                if(this.combatants[a].team==0&&this.combatants[a].life>0){
+                    list.push(a)
+                }
+            }
+            if(list.length>0){
+                return list[floor(random(0,list.length))]
             }
         }
     }
@@ -900,7 +924,7 @@ class combatantManager{
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].team!=team&&distance>=0&&distance<=1||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(this.combatants[a].team!=team&&distance>=0&&distance<=1||this.battle.modded(121))){
                 this.combatants[a].takeDamage(damage,user,spec)
                 total++
             }
@@ -910,23 +934,37 @@ class combatantManager{
     damageArea2(damage,user,team,tilePosition,spec){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].team!=team&&distance>=0&&distance<=2||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(this.combatants[a].team!=team&&distance>=0&&distance<=2||this.battle.modded(121))){
                 this.combatants[a].takeDamage(damage,user,spec)
             }
         }
     }
     damageAreaID(damage,user,id,tilePosition,spec){
+        let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
                 this.combatants[a].takeDamage(damage,user,spec)
+                total++
             }
         }
+        return total
+    }
+    damageAreaID2(damage,user,id,tilePosition,spec){
+        let total=0
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=2||this.battle.modded(121))){
+                this.combatants[a].takeDamage(damage,user,spec)
+                total++
+            }
+        }
+        return total
     }
     damageAreaRuleless(damage,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(distance>=0&&distance<=1||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(distance>=0&&distance<=1||this.battle.modded(121))){
                 this.combatants[a].takeDamage(damage,-1)
             }
         }
@@ -934,16 +972,29 @@ class combatantManager{
     damageAreaRulelessID(damage,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
                 this.combatants[a].takeDamage(damage,-1)
             }
         }
+    }
+    damageAreaIDReturnFatal(damage,user,id,tilePosition,spec){
+        let total=0
+        for(let a=0,la=this.combatants.length;a<la;a++){
+            let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
+            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
+                this.combatants[a].takeDamage(damage,user,spec)
+                if(this.combatants[a].life<=0){
+                    total++
+                }
+            }
+        }
+        return total
     }
     damageAreaReverse(damage,user,team,tilePosition,spec){
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].team==team&&distance>=0&&distance<=1||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(this.combatants[a].team==team&&distance>=0&&distance<=1||this.battle.modded(121))){
                 this.combatants[a].takeDamage(damage,user,spec)
                 total++
             }
@@ -953,7 +1004,7 @@ class combatantManager{
     healAreaRuleless(effect,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(distance>=0&&distance<=1||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(distance>=0&&distance<=1||this.battle.modded(121))){
                 this.combatants[a].heal(effect)
             }
         }
@@ -961,7 +1012,7 @@ class combatantManager{
     statusAreaIDBlock(name,amount,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].id!=id&&this.combatants[a].block<=0&&distance>=0&&distance<=1||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&this.combatants[a].block<=0&&distance>=0&&distance<=1||this.battle.modded(121))){
                 this.combatants[a].statusEffect(name,amount)
             }
         }
@@ -969,7 +1020,7 @@ class combatantManager{
     statusAreaID(name,amount,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))){
                 this.combatants[a].statusEffect(name,amount)
             }
         }
@@ -977,7 +1028,7 @@ class combatantManager{
     statusAreaID2(name,amount,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if(this.combatants[a].id!=id&&distance>=0&&distance<=2||this.battle.modded(121)){
+            if(this.combatants[a].life>0&&(this.combatants[a].id!=id&&distance>=0&&distance<=2||this.battle.modded(121))){
                 this.combatants[a].statusEffect(name,amount)
             }
         }
@@ -985,7 +1036,7 @@ class combatantManager{
     dropAreaID(variant,type,level,color,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if((this.combatants[a].id!=id&&(variant==0||this.combatants[a].blocked>0)&&distance>=0&&distance<=1||this.battle.modded(121))&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
+            if(this.combatants[a].life>0&&((this.combatants[a].id!=id&&(variant==0||this.combatants[a].blocked>0)&&distance>=0&&distance<=1||this.battle.modded(121))&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support)){
                 this.battle.drop(this.combatants[a].id,type,level,color)
             }
         }
@@ -993,12 +1044,12 @@ class combatantManager{
     energyDownAreaID(effect,id,tilePosition){
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])
-            if((this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support){
+            if(this.combatants[a].life>0&&((this.combatants[a].id!=id&&distance>=0&&distance<=1||this.battle.modded(121))&&this.combatants[a].team>0&&!this.combatants[a].construct&&!this.combatants[a].support)){
                 this.battle.energy.temp[this.combatants[a].id]-=effect
             }
         }
     }
-    intentNerfArea(intent,effect,user,team,tilePosition,spec){
+    intentNerfArea(intent,effect,team,tilePosition){
         let total=0
         for(let a=0,la=this.combatants.length;a<la;a++){
             let distance=distTargetCombatant(0,{tilePosition:tilePosition},this.combatants[a])

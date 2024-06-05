@@ -4473,20 +4473,6 @@ combatant.prototype.display=function(){
                 }
                 this.layer.scale(1.25)
                 this.layer.translate(0,15)
-                if(!this.graphic&&this.team>0){
-                    this.layer.noFill()
-                    this.layer.stroke(150,255,100,this.fade)
-                    this.layer.strokeWeight(1)
-                    this.layer.translate(0,10)
-                    this.layer.bezier(-5,0,-3,-3.5,3,-3.5,5,0)
-                    this.layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
-                    this.layer.translate(0,-10)
-                    this.layer.fill(225,255,200,this.fade)
-                    this.layer.stroke(0,this.fade)
-                    this.layer.strokeWeight(1)
-                    this.layer.textSize(8)
-                    this.layer.text(this.vision,0,10.75)
-                }
             break
             case 'Sanae':
                 if(this.trigger.display.hair.back){
@@ -10815,6 +10801,7 @@ combatant.prototype.display=function(){
                     this.layer.line(lsin(this.anim.direction)*15+lcos(this.anim.direction)*2,-84,lsin(this.anim.direction)*15-lcos(this.anim.direction)*2,-84)
                 }
                 if(this.name=='Jester'&&this.trigger.display.hat){
+                    this.layer.noStroke()
                     this.layer.fill(this.color.hat[2][0],this.color.hat[2][1],this.color.hat[2][2],this.fade*this.fades.hat)
                     this.layer.rect(0,-90,30,6)
                     this.layer.fill(this.color.hat[1][0],this.color.hat[1][1],this.color.hat[1][2],this.fade*this.fades.hat)

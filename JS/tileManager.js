@@ -215,7 +215,7 @@ class tileManager{
             if(this.battle.combatantManager.combatants[a].life>0||this.battle.combatantManager.combatants[a].team>0&&!this.battle.combatantManager.combatants[a].construct&&!this.battle.combatantManager.combatants[a].support){
                 for(let b=0,lb=this.tiles.length;b<lb;b++){
                     if(this.tiles[b].tilePosition.x==this.battle.combatantManager.combatants[a].tilePosition.x&&this.tiles[b].tilePosition.y==this.battle.combatantManager.combatants[a].tilePosition.y){
-                        this.tiles[b].occupied=this.battle.combatantManager.combatants[a].getStatus('Invisible')>0?2:1
+                        this.tiles[b].occupied=this.battle.combatantManager.combatants[a].getStatus('Invisible')>0||this.battle.combatantManager.combatants[a].getStatus('Protected Invisible')>0?2:1
                     }
                 }
             }

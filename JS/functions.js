@@ -465,6 +465,10 @@ function calculateEffect(effect,user,type,player,relicManager,variant,args){
 				damage=0
 				bonus=0
 			}
+			if(user.status.main[363]>0){
+				damage*=2
+				bonus*=2
+			}
 			if(user.stance==1){
 				damage*=2
 				bonus*=2
@@ -624,7 +628,7 @@ function intentDescription(attack,user,info){
 				return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nRange 1-6\nNo Movement`
 			case 48: return `Add ${info?attack.effect[0]:`?`} Block\nRetain Block\nFor 2 Turns`
 			case 49: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\n3 Tiles Wide\nRange 1-6\nNo Movement`
-			case 50: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turns\nRange 1-6\nNo Movement`
+			case 50: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turn${attack.effect[1]!=1?`s`:``}\nRange 1-6\nNo Movement`
 			case 51: return `Create ${info?attack.effect[0]:`?`} Trap${attack.effect[0]!=1?`s`:``}`;
 			case 52: return `Create ${info?attack.effect[0]*2:`?`} Slime Tile${attack.effect[0]!=1?`s`:``}`;
 			case 53: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\n3 Tiles Wide\nRange 1-2`
@@ -764,7 +768,7 @@ function intentDescription(attack,user,info){
 			case 190: return `Add ${info?attack.effect[0]:`?`} Block\nGain ${info?attack.effect[1]:`?`} Armor\nGain ${info?attack.effect[2]:`?`} Strength`
 			case 191: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 5 Times\nRange 1-6\nNo Movement`
 			case 192: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nto All Adjacent Tiles\nRange 1-2`
-			case 193: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turns\nRange 1-6`
+			case 193: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turn${attack.effect[1]!=1?`s`:``}\nRange 1-6`
 			case 194: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nIf Unblocked,\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
 			case 195: return `Move to End of Board,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nUsable in 3 Directions`
 			case 196: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nPush 1 Tile\nShuffle in ${info?attack.effect[1]:'?'} ${info?attack.effect[2].replace(/(\r\n|\n|\r)/gm,' '):'?'}\nRange 1-6`
@@ -906,7 +910,7 @@ function intentDescription(attack,user,info){
 			case 339: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 2 Times\nAdd ${info?calculateIntent(attack.effect[1],user,1):`?`} Barrier\nRange 1-3`
 			case 340: return `Gain ${info?attack.effect[0]:`?`} Dexterity\nRemove ${info?attack.effect[1]:`?`} Dexterity`
 			case 341: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage 9 Times\nGain ${info?attack.effect[1]:`?`} Intangible\nRange 1-1`
-			case 342: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turns\nRange 1-2`
+			case 342: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nTarget Cannot Gain\nBlock for ${info?attack.effect[1]:``} Turn${attack.effect[1]!=1?`s`:``}\nRange 1-2`
 			case 343: return `Deal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nApply ${info?attack.effect[1]:`?`} Anti-Control\nRange 1-2`
 			case 344: return `Move up to 4 Tiles Backward,\nDeal ${info?calculateIntent(attack.effect[0],user,0):`?`} Damage\nto All Targets and Swap\nEnter Haste`
 			case 345: return `Remove All Self Debuffs`
@@ -989,24 +993,32 @@ function multiplyString(base,multiply){
 	}
 }
 function copyCard(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.editedCost,base.edited.costComplete,base.nonCalc)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,base.cost,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc)
 }
 function copyCardFree(base){
-	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.editedCost,base.edited.costComplete,base.nonCalc)
+	return new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.level,base.color,base.id,0,base.additionalSpec,base.name,base.list,base.effect,base.attack,base.target,base.spec,base.cardClass,base.limit,base.falsed,base.retain2,base.colorful,base.edition,base.base.cost,base.drawn,base.edited.cost,base.edited.costComplete,base.nonCalc)
 }
 function upgradeCard(base,nonlimiting=false){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.editedCost,false,base.nonCalc)
-	if(base.attack==1352||nonlimiting){
-		result.limit=base.limit
+	if(base.spec.includes(37)){
+		return copyCard(base)
+	}else{
+		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,base.spec.includes(53)?base.level+1:min(types.card[base.type].levels.length-1,base.level+1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]+base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.edited.cost,false,base.nonCalc)
+		if(base.attack==1352||nonlimiting){
+			result.limit=base.limit
+		}
+		return result
 	}
-	return result
 }
 function unupgradeCard(base,nonlimiting=false){
-	let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.editedCost,false,base.nonCalc)
-	if(base.attack==1352||nonlimiting){
-		result.limit=base.limit
+	if(base.spec.includes(37)){
+		return copyCard(base)
+	}else{
+		let result=new card(base.layer,base.battle,base.player,base.position.x,base.position.y,base.type,max(0,base.level-1),base.color,base.id,null,base.additionalSpec,base.name,base.list,base.spec.includes(53)?[base.effect[0]-base.effect[1],base.effect[1]]:undefined,undefined,undefined,undefined,undefined,undefined,base.falsed,base.retain2,base.colorful,base.edition,undefined,base.drawn,base.edited.cost,false,base.nonCalc)
+		if(base.attack==1352||nonlimiting){
+			result.limit=base.limit
+		}
+		return result
 	}
-	return result
 }
 function quadroArray(base){
 	return [base,base,base,base]
@@ -1425,7 +1437,7 @@ Total:${current.nodeManager.listing.encounter[3][1].length+current.nodeManager.l
 }
 function outListing(){
 	let box=``
-	let goal=60+125*game.playerNumber+30+20+15+30+150
+	let goal=125+125*game.playerNumber+30+20+15+30+15+100+150
 	let arbitrary=3000
 	for(let a=0,la=game.playerNumber;a<la;a++){
 		box+=`		${types.combatant[a+1].name}:
@@ -1435,12 +1447,12 @@ Rare:${current.cardManagers[0].listing.card[a+1][2].length}/20					${current.car
 	Total:${current.cardManagers[0].listing.card[a+1][3].length}/125\n`
 	}
 	print(`Total Cards: ${types.card.length}/${arbitrary}		${types.card.length-arbitrary}
-Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length-goal}
+Listed Cards: ${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.sub.length+current.cardManagers[0].listing.junk[game.playerNumber+1].length}/${goal}		${current.cardManagers[0].listing.allListableCard[3].length+current.cardManagers[0].listing.junk[game.playerNumber+1].length-goal}
 		Colorless:
-Common:${current.cardManagers[0].listing.card[0][0].length}/30				${current.cardManagers[0].listing.card[0][0].length-30}
-Uncommon:${current.cardManagers[0].listing.card[0][1].length}/20				${current.cardManagers[0].listing.card[0][1].length-20}
-Rare:${current.cardManagers[0].listing.card[0][2].length}/10					${current.cardManagers[0].listing.card[0][2].length-10}
-	Total:${current.cardManagers[0].listing.card[0][3].length}/60
+Common:${current.cardManagers[0].listing.card[0][0].length}/50				${current.cardManagers[0].listing.card[0][0].length-50}
+Uncommon:${current.cardManagers[0].listing.card[0][1].length}/55				${current.cardManagers[0].listing.card[0][1].length-55}
+Rare:${current.cardManagers[0].listing.card[0][2].length}/20					${current.cardManagers[0].listing.card[0][2].length-20}
+	Total:${current.cardManagers[0].listing.card[0][3].length}/125
 ${box}		Status:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+1][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+1][3].length-30}
 		Curse:
@@ -1451,6 +1463,10 @@ Uncommon:${current.cardManagers[0].listing.card[game.playerNumber+3][1].length}/
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+3][3].length}/15
 		Tarot:
 	Total:${current.cardManagers[0].listing.card[game.playerNumber+4][3].length}/30				${current.cardManagers[0].listing.card[game.playerNumber+4][3].length-30}
+		Spectral:
+	Total:${current.cardManagers[0].listing.card[game.playerNumber+5][3].length}/15				${current.cardManagers[0].listing.card[game.playerNumber+5][3].length-15}
+		Subcard:
+	Total:${current.cardManagers[0].listing.sub.length}/100				${current.cardManagers[0].listing.sub.length-100}
 		Junkyard:
 	Total:${current.cardManagers[0].listing.junk[game.playerNumber+1].length}/150				${current.cardManagers[0].listing.junk[game.playerNumber+1].length-150}
 			`)

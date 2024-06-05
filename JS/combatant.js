@@ -118,7 +118,7 @@ class combatant{
             'Single Counter Block','Invisible','Dissipating','Take Third Damage','Speed Up','Strength Next Turn','Temporary Strength on Hit','Take 3/4 Damage','Temporary Strength Next Turn','Temporary Speed Up',
             'Untargettable From Front','Cancel Exhaust','Must Attack or Take Damage','Damage Taken Up','Energy on Hit','Conditioning','Shiv Per Turn','Remove Combo','Combo Per Hit Boost','Attack Draw',
             'Combo on Block','Combo Per Turn','Combo Next Turn','2 Range Counter','Card Play Block','Temporary Damage Down','Shiv Boost','Take Per Card Played','Counter All Combat','No Draw',
-            'Explode on Death','Energy Next Turn Next Turn','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block Next Turn Next Turn',
+            'Explode on Death','Energy in 2 Turns','Double Damage Turn','Double Damage Turn Next Turn','Draw Up','Turn Discard','Lose Per Turn','Shiv on Hit','Intangible Next Turn','Block in 2 Turns',
             'Exhaust Draw','Debuff Damage','Counter Push Left','Counter Push Right','Counter Temporary Speed Down','Heal on Hit','Take Per Card Played Combat','Take 3/5 Damage','Attack Bleed Turn','Single Attack Bleed',
             'Attack Bleed Combat','Confusion','Counter Confusion','Heal on Death','Ignore Balance','Balance Energy','Counter 3 Times','Armed Block Per Turn','Counter Block','Heal Gain Max HP',
             'Take Per Turn','Focus','Power Draw','Random Power Per Turn','Power Basic Orb','Basic Orb on Hit','Random Common Per Turn','Lock-On','Focus Per Turn','Freeze',
@@ -126,9 +126,9 @@ class combatant{
             'Miracle Time','Miracle+ Time','Wrath Next Turn','Insight Per Turn','Block Return','Energy Per Turn Per Turn','Retain Cost Reduce','Cannot Die','Triple Block','Single Damage Block Convert',
             'Block Spark','Block Spark+','Charge Per Turn','Burn Per Turn','Amplify Return','Free Amplify','Dexterity Next Turn','Counter Burn','No Amplify','No Amplify Next Turn',
             'Charge Consume Block','Shuffle Energy','Shuffle Draw','Take Credit','Triple Damage','Charge Next Turn','Single Free Amplify','Random Defense Per Turn','Random Upgraded Defense Per Turn','1.5x Damage',
-            '1.5x Block','Upgrade Created','Lowroll Strength','Decrementing Strength','Energy Next Turn Next Turn Next Turn','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
+            '1.5x Block','Upgrade Created','Lowroll Strength','Decrementing Strength','Energy in 3 Turns','Bruise','Gun Boost','Take Double Damage Turn','Block Up','Take Credit Turn',
             'Damage Dealt Currency','Attack Regeneration','Take Credit Block Turn','Reflect','Currency Tank','Damage Down','Counter Damage Down All','Temporary Ammo on Hit','Ichor','Take Damage',
-            'Take Damage Next Turn','Take Damage Next Turn Next Turn','Block Next Turn Next Turn Next Turn','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
+            'Take Damage Next Turn','Take Damage in 2 Turns','Block in 3 Turns','Dexterity on Hit','Temporary Dexterity on Hit','Temporary Block Up','Damage Up','Block Down','End Move','Conviction Next Turn',
             'Rizz','Shock','Shiv Range Up','Double Exhaust','Miss','Single Attack Strength','Rotate Lock','Jinx','Half Damage Turn','Numeric Explode on Death',
             'Luck Guarantee','Double Damage-1','20 Damage Miss','Heal Per Turn','Wet','Counter Weak All','Counter Freeze','Temporary Dexterity Next Turn','Lock','Fragile Heal',
             'Self Damage Immunity','Self-Reflect','Half Damage Turn Next Turn','Survive Fatal','Free 1 Cost Card','No Damage','1.5x Damage+1','Decrementing Armor','Twos','Ignore Tile',
@@ -138,21 +138,22 @@ class combatant{
             'Single Damage Convert','2 Exhaust Draw','Dice Up','Lowroll Dexterity','Lowroll Energy','Highroll Strength','Highroll Draw','Highroll Dexterity','Highroll Energy','Vulnerable Next Turn',
             '10% = 25%','Perfect Dice Rolls','Luck Guarantee Next Turn','Luckier Time','Single Damage Down','Temporary Damage Down Next Turn','Lasting Counter Once','Fragile Speed Up','Block Cycle 2 1','Block Cycle 2 2',
             'Temporary Damage Up Next Turn','Single Weak','Counter 2 Times Combat Turn','No Block','Discard Block','8+ Block Shiv','Block Heal','Block Break Splash','Lose 1 HP','2 Cost Block',
-            'Heal Damage Random','Block Single Damage Up Convert','Strength Next Turn Next Turn','Dexterity Next Turn Next Turn','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength Next Turn Next Turn Next Turn','Free Movement','Cable Swap',
+            'Heal Damage Random','Block Single Damage Up Convert','Strength in 2 Turns','Dexterity in 2 Turns','Damage Taken Regeneration','Block-Fragile Draw','Double Damage Next','Strength in 3 Turns','Free Movement','Cable Swap',
             'Strike Block','0 Cost Single Damage Up','Double Status','Take Per Power Played Combat','Jinxheal','Always Odd Energy','Luck Guarantee Fail','Damage Taken Currency','Random Card Cost Less Per Turn','Luck Guarantee Turn',
-            'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed Next Turn Next Turn','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
+            'Return Buffer','Fragile Double Damage','Bleed Next Turn','Bleed in 2 Turns','Cannot Move Shiv','Awakening','History','Knowledge','Wisdom','History Target All',
             'Retain History','History Per Turn','Vision Return','3 Rewind Draw','2 Rewind Draw','Rewind Block','Turn Rewind','Rewind Cost Down','Attack Shock Turn','Take 1/4 Damage',
             'Double Damage Without Power','Damage Taken Up to Nearest 5','Item Use Energy','Item Use Draw','Damage Taken Up to 10','10 Damage Taken Damage Down Convert','20 Damage Taken Random Debuff','Taken Damage Repeat','Item Per Turn','Block Barrier Convert',
-            'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw Next Turn Next Turn','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
-            'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy Next Turn Next Turn','Scry Barrier','Miracle Next Turn Next Turn','Tick Per Turn','Barrier Next Turn','Miracle Next Turn Next Turn Next Turn',
-            'Extra Turn Next Turn','Extra Turn Next Turn Next Turn','Damage Taken Down','Fragile Damage Up','Temporary Free Common Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
-            'Counter Once','Common Temporary Strength','Temporary Strength Convert',
+            'Barrier Damage Random','Scry Per Turn','Dual Discus Per Turn','Temporary Draw Next Turn','Temporary Draw in 2 Turns','Scry Up','Freeze Temporary Damage Up','2+ Cost Energy','2+ Cost Draw','Temporary Barrier Return',
+            'Discus Boost','3+ Cost Free Discus','3+ Cost Free Upgraded Discus','Base Energy Next Turn','Base Energy in 2 Turns','Scry Barrier','Miracle in 2 Turns','Tick Per Turn','Barrier Next Turn','Miracle in 3 Turns',
+            'Extra Turn Next Turn','Extra Turn in 2 Turns','Damage Taken Down','Fragile Damage Up','Temporary Free Non-Rare Colorless','Extra Drawless Turn','Damage Highest','No Damage Turn','Heal on Hit Taken','Temporary Dexterity Per Turn',
+            'Counter Once','Common Temporary Strength','Temporary Strength Convert','Double Damage Without Movement','No Energy','End of Combat Heal','Pristine Per Turn','Colorless Damage All','Stride Next Turn','Stride in 2 Turns',
+            'Attack Damage Taken Up Turn','Dexterity in 3 Turns','Strength in 4 Turns','Dexterity in 4 Turns','Protected Invisible','Orb Overload Buffer',
             ],next:[],display:[],active:[],position:[],size:[],
             behavior:[
                 0,2,1,0,2,1,0,0,1,1,//1
                 1,0,0,2,0,0,1,2,2,0,//2
                 2,0,0,0,1,1,2,0,4,2,//3
-                0,1,1,1,0,0,0,2,1,2,//4
+                0,1,4,1,0,0,0,2,1,2,//4
                 2,2,0,0,0,0,0,2,0,0,//5
                 0,1,0,1,0,2,2,1,2,2,//6
                 1,0,2,0,2,0,0,1,0,0,//7
@@ -185,7 +186,8 @@ class combatant{
                 0,0,0,2,2,0,0,0,0,2,//34
                 0,0,0,2,2,0,2,0,2,2,//35
                 2,2,0,0,2,0,2,1,0,0,//36
-                2,0,0,
+                2,0,0,0,1,0,0,0,2,2,//37
+                2,2,2,2,1,1,
             ],
             class:[
                 0,2,0,0,2,1,0,0,1,1,//1
@@ -224,7 +226,8 @@ class combatant{
                 2,2,2,2,2,2,2,2,2,3,//34
                 2,2,2,2,2,2,2,2,0,2,//35
                 2,2,0,0,2,2,2,1,0,0,//36
-                2,2,2,
+                2,2,2,0,3,2,2,2,2,2,//37
+                0,0,0,0,2,2,
             ]}
         //0-none, 1-decrement, 2-remove, 3-early decrement, player, 4-early decrement, enemy
         //0-good, 1-bad, 2-nonclassified good, 3-nonclassified bad
@@ -2334,7 +2337,7 @@ class combatant{
             case 'Keystone':
                 this.anim={direction:direction,spin:0}
                 this.fades={body:1,rope:1,paper:1}
-                this.color={body:[95,100,105],rope:[165,105,45],paper:[220,220,220]}
+                this.color={body:[75,70,80],rope:[165,105,45],paper:[220,220,220]}
                 this.trigger={display:{body:true,rope:true,paper:true}}
                 this.animSet={loop:0,flip:0}
                 this.goal={anim:{direction:this.anim.direction}}
@@ -3788,10 +3791,10 @@ class combatant{
                     ['Double Damage',1],['Dodge',1],['Strength',2],['Dexterity',2],['Single Damage Up',6],['Retain Block',10],['Block Next Turn',10],['Armor',4],['Control',1],['Temporary Strength',10],
                     ['Temporary Dexterity',10],['Metallicize',2],['Buffer',1],['Take Half Damage',2],['Intangible',1],['Counter All',3],['Strength Per Turn',1],['Regeneration',5],['Dexterity Per Turn',1],['Counter Combat',2],
                     ['Temporary Damage Up',4],['Strength on Hit',1],['Weak on Kill',2],['Vulnerable on Kill',2],['Counter Combat Turn',4],['Single Counter Block',8],['Invisible',4],['Take Third Damage',2],['Speed Up',1],['Strength Next Turn',3],
-                    ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],['Block Next Turn Next Turn',20],
+                    ['Temporary Strength on Hit',2],['Take 3/4 Damage',4],['Temporary Strength Next Turn',20],['Temporary Speed Up',3],['Conditioning',2],['Counter All Combat',1],['Damage Damage Turn',1],['Damage Damage Turn Next Turn',1],['Intangible Next Turn',1],['Block in 2 Turns',20],
                     ['Heal on Hit',3],['Take 3/5 Damage',2],['Attack Bleed Turn',2],['Single Attack Bleed',4],['Attack Bleed Combat',1],['Counter Block',3],['Dodge Next Turn',1],['Cannot Die',1],['Single Damage Block Convert',2],['Triple Block',1],
                     ['Dexterity Next Turn',3],['Take Credit',1],['Triple Damage',1],['1.5x Damage',2],['1.5x Block',3],['Decrementing Strength',3],['Block Up',2],['Take Credit Turn',1],['Take Credit Block Turn',1],['Damage Up',2],
-                    ['Temporary Block Up',4],['Block Next Turn Next Turn Next Turn',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],['Heal Per Turn',2],['Temporary Dexterity Next Turn',20]
+                    ['Temporary Block Up',4],['Block in 3 Turns',40],['Dexterity on Hit',1],['Temporary Dexterity on Hit',2],['Heal Per Turn',2],['Temporary Dexterity Next Turn',20]
                 ]
                 for(let a=0,la=2;a<la;a++){
                     let index=floor(random(0,randombuffs.length))
@@ -4498,6 +4501,14 @@ class combatant{
             break
         }
     }
+    setIntentClass(intentClass){
+        for(let a=0,la=this.attack.length;a<la;a++){
+            if(types.attack[this.attack[(this.intent+a)%this.attack.length].type].class==intentClass){
+                this.intent=(this.intent+a)%this.attack.length
+                a=la
+            }
+        }
+    }
     randomIntent(){
         this.intent=floor(random(0,this.attack.length))
         this.battle.updateTargetting()
@@ -4541,17 +4552,6 @@ class combatant{
         }
         if(this.status.main[293]>0&&cardClass==4){
             this.takeDamage(this.status.main[293],-1)
-        }
-        if(this.status.main[361]>0&&card.rarity==0){
-            this.statusEffect('Temporary Strength',this.status.main[361])
-        }
-        if(this.battle.turn.main==this.id){
-            if(this.name=='Daiyousei'){
-                this.vision++
-            }
-            if(this.status.main[320]>0&&cardClass==4){
-                this.status.main[320]--
-            }
         }
         if(this.name=='Eternal Judge'&&this.battle.turn.main<this.battle.players){
             if(this.sins.includes(4)){
@@ -4758,7 +4758,7 @@ class combatant{
         }
     }
     markTarget(){
-        if(this.life>0&&!this.moved&&this.status.main[32]<=0&&this.status.main[51]<=0){
+        if(this.life>0&&!this.moved&&this.status.main[32]<=0&&this.status.main[51]<=0&&this.status.main[374]<=0){
             if(this.attack[this.intent].type==78){
                 for(let a=0,la=this.battle.combatantManager.combatants.length;a<la;a++){
                     if(legalTargetCombatant(2,1,6,this,this.battle.combatantManager.combatants[a],this.battle.tileManager.tiles)&&this.battle.combatantManager.combatants[a].name==this.name&&distTargetCombatant(0,this,this.battle.combatantManager.combatants[a])>1&&this.battle.combatantManager.combatants[a].life>0){
@@ -5129,6 +5129,9 @@ class combatant{
                     if(userCombatant.status.main[320]>0){
                         damage*=2
                     }
+                    if(userCombatant.status.main[363]>0){
+                        damage*=2
+                    }
                     if(userCombatant.status.main[215]>0){
                         damage=0
                     }
@@ -5470,7 +5473,7 @@ class combatant{
                             this.statusEffect('Metallicize',this.battle.relicManager.active[229][this.id+1])
                         }
                         if(preBlock>0&&this.block<=0&&this.status.main[277]>0){
-                            this.battle.combatantManager.damageArea(this.status.main[277],this.id,this.team,this.tilePosition)
+                            this.battle.combatantManager.damageAreaID(this.status.main[277],this.id,this.id,this.tilePosition)
                         }
                         if(preBlock>0&&this.block<=0&&0<=user&&user<this.battle.players){
                             if(this.battle.relicManager.hasRelic(124,user)){
@@ -5509,6 +5512,9 @@ class combatant{
                     userCombatant.lastDeal=damage
                     if(userCombatant.status.main[202]>0&&damage>=20){
                         this.statusEffect('Miss',userCombatant.status.main[202])
+                    }
+                    if(userCombatant.status.main[370]>0){
+                        this.statusEffect('Damage Taken Up',userCombatant.status.main[370])
                     }
                     if(this.battle.relicManager.hasRelic(246,user)&&damage>=25){
                         this.battle.cardManagers[user].draw(this.battle.relicManager.active[246][user+1])
@@ -6010,7 +6016,7 @@ class combatant{
                 }
             }
             if(!success){
-                this.evoke(0,this.id,[1])
+                this.evoke(0,this.status.main[375]>0?this.battle.combatantManager.getRandom():this.id,[1])
                 this.holdOrb(type)
             }
             this.checkAnyOrb()
@@ -6519,6 +6525,11 @@ class combatant{
             }
         }
     }
+    callEndEffect(){
+        if(this.status.main[365]>0){
+            this.heal(this.status.main[365])
+        }
+    }
     heal(amount){
         if(!this.battle.relicManager.hasRelic(163,this.id)&&amount>0&&this.life>0){
             let gain=amount
@@ -6533,6 +6544,10 @@ class combatant{
             }
             if(stage.scene=='battle'&&this.position.x>0&&this.position.y>0&&this.position.x<this.layer.width&&this.position.y<this.layer.height){
                 this.battle.particleManager.createNumber(77,this.position.x,this.position.y,gain)
+            }
+            if(this.id<this.battle.players){
+                this.battle.cardManagers[this.id].discard.allEffectArgs(24,[3198])
+                this.battle.cardManagers[this.id].reserve.allEffectArgs(24,[3198])
             }
             this.life=min(this.life+ceil(gain),this.base.life)
         }
@@ -6618,10 +6633,10 @@ class combatant{
                     case 149: this.status.main[findList('No Amplify',this.status.name)]+=this.status.main[a]; break
                     case 157: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,0,2)}} break
                     case 158: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].addRandomAllClass(2,1,2)}} break
-                    case 164: this.status.main[findList('Energy Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 164: this.status.main[findList('Energy in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 180: this.status.main[findList('Take Damage',this.status.name)]+=this.status.main[a]; break
                     case 181: this.status.main[findList('Take Damage Next Turn',this.status.name)]+=this.status.main[a]; break
-                    case 182: this.status.main[findList('Block Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 182: this.status.main[findList('Block in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 189: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Conviction',types.card),0,types.card[findName('Conviction',types.card)].list)}} break
                     case 197: if(floor(random(0,3))==0){this.takeDamage(this.status.main[a],-1); this.status.main[a]=0} break
                     case 203: this.heal(this.status.main[a]); break
@@ -6645,7 +6660,7 @@ class combatant{
                     case 278: this.life-=1; break
                     case 282: this.status.main[findList('Strength Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 283: this.status.main[findList('Dexterity Next Turn',this.status.name)]+=this.status.main[a]; break
-                    case 287: this.status.main[findList('Strength Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 287: this.status.main[findList('Strength in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 294: if(floor(random(0,3))==0){this.heal(this.status.main[a]); this.status.main[a]=0} break
                     case 302: if(this.block<=0){this.status.main[findList('Bleed',this.status.name)]+=this.status.main[a]} break
                     case 303: this.status.main[findList('Bleed Next Turn',this.status.name)]+=this.status.main[a]; break
@@ -6663,11 +6678,18 @@ class combatant{
                     case 346: this.status.main[findList('Miracle Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 347: if(!sub){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.combatantManager.tickSub()}} break
                     case 348: this.addBarrier(this.status.main[a]); break
-                    case 349: this.status.main[findList('Miracle Next Turn Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 349: this.status.main[findList('Miracle in 2 Turns',this.status.name)]+=this.status.main[a]; break
                     case 350: this.status.main[findList('Extra Turn',this.status.name)]+=this.status.main[a]; break
                     case 351: this.status.main[findList('Extra Turn Next Turn',this.status.name)]+=this.status.main[a]; break
                     case 356: this.battle.combatantManager.damageHighest(this.status.main[a],this.id); break
                     case 359: this.status.main[findList('Temporary Dexterity',this.status.name)]+=this.status.main[a]; break
+                    case 364: this.battle.setEnergy(0,this.id); break
+                    case 366: for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Pristine',types.card),0,0)} break
+                    case 368: if(this.id<this.battle.players){for(let b=0,lb=this.status.main[a];b<lb;b++){this.battle.cardManagers[this.id].hand.add(findName('Stride',types.card),0,0)}} break
+                    case 369: this.status.main[findList('Stride Next Turn',this.status.name)]+=this.status.main[a]; break
+                    case 371: this.status.main[findList('Dexterity in 2 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 372: this.status.main[findList('Strength in 3 Turns',this.status.name)]+=this.status.main[a]; break
+                    case 373: this.status.main[findList('Dexterity in 3 Turns',this.status.name)]+=this.status.main[a]; break
 
                 }
                 if(this.status.behavior[a]==5&&!(a==306&&this.getStatus('Retain History')>0)){
@@ -6731,7 +6753,7 @@ class combatant{
             }
             if(this.sins.includes(2)){
                 for(let a=0,la=this.battle.cardManagers.length;a<la;a++){
-                    this.battle.cardManagers[a].addRandomCharacter(1,game.playerNumber+1,0,3)
+                    this.battle.cardManagers[a].addRandomColor(1,0,game.playerNumber+1,3)
                 }
             }
             if(this.sins.includes(3)){
@@ -9106,6 +9128,20 @@ class combatant{
             this.layer.textSize(5)
             this.layer.text(this.balance,0,-8)
         }
+        if(this.name=='Daiyousei'&&!this.graphic&&this.team>0){
+            this.layer.noFill()
+            this.layer.stroke(150,255,100,this.fade)
+            this.layer.strokeWeight(1)
+            this.layer.translate(0,-10-this.infoAnim.balance*6)
+            this.layer.bezier(-5,0,-3,-3.5,3,-3.5,5,0)
+            this.layer.bezier(-5,0,-3,3.5,3,3.5,5,0)
+            this.layer.translate(0,10+this.infoAnim.balance*6)
+            this.layer.fill(225,255,200,this.fade)
+            this.layer.stroke(0,this.fade)
+            this.layer.strokeWeight(1)
+            this.layer.textSize(8)
+            this.layer.text(this.vision,0,-9.25-this.infoAnim.balance*6)
+        }
     }
     displayInfo(scene){
         switch(scene){
@@ -9146,7 +9182,7 @@ class combatant{
                         }
                     }else{
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                            this.layer.text(this.status.name[this.status.display[a]],60,305+a*20)
+                            this.layer.text(this.status.name[this.status.display[a]],60,275+a*20)
                         }
                     }
                     if(this.team==0||this.construct||this.support){
@@ -9206,7 +9242,7 @@ class combatant{
                         }
                     }else{
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                            displayStatusSymbol(this.layer,40,305+a*20,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
+                            displayStatusSymbol(this.layer,40,275+a*20,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
                         }
                     }
                     this.layer.fill(255,this.fade*this.infoAnim.description)
@@ -9219,7 +9255,7 @@ class combatant{
                         }
                     }else{
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                            this.layer.text(this.status.main[this.status.display[a]],40,305+a*20)
+                            this.layer.text(this.status.main[this.status.display[a]],40,275+a*20)
                         }
                     }
                     if(this.team==0||this.construct||this.support){
@@ -9270,7 +9306,7 @@ class combatant{
             this.life=1
         }
         if(this.team>0&&!this.construct&&!this.support){
-            this.fade=1
+            this.fade=smoothAnim(this.fade,this.status.main[51]<=0&&this.status.main[374]<=0,0,1,15)
             for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
                 this.infoAnim.stance[a]=smoothAnim(this.infoAnim.stance[a],a==this.stance,0,1,5)
             }
@@ -9320,7 +9356,7 @@ class combatant{
                 }
             }
         }else if(this.construct){
-            this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0,0,1,15)
+            this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0&&this.status.main[374]<=0,0,1,15)
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
             if(this.life<=0&&!this.dead&&this.team>0){
                 this.dead=true
@@ -9348,7 +9384,7 @@ class combatant{
                 }
             }
         }else if(this.support){
-            this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0,0,1,15)
+            this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0&&this.status.main[374]<=0,0,1,15)
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
             if(this.life<=0&&!this.dead){
                 this.dead=true
@@ -9373,7 +9409,7 @@ class combatant{
                 }
             }
         }else{
-            this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0,0,1,15)
+            this.fade=smoothAnim(this.fade,this.life>0&&this.status.main[51]<=0&&this.status.main[374]<=0,0,1,15)
             this.infoAnim.life=smoothAnim(this.infoAnim.life,this.life>0,0,1,5)
             if(this.name=='Setsuna'){
                 for(let a=0,la=this.infoAnim.stance.length;a<la;a++){
@@ -9411,8 +9447,10 @@ class combatant{
                     this.battle.particleManager.particles.push(new particle(this.layer,this.position.x,this.position.y,10,[30]))
                 }
                 this.battle.combatantManager.dead()
-                if(this.battle.modded(17)){
-                    for(let a=0,la=this.battle.players;a<la;a++){
+                for(let a=0,la=this.battle.players;a<la;a++){
+                    this.battle.cardManagers[a].discard.allEffectArgs(24,[3198])
+                    this.battle.cardManagers[a].reserve.allEffectArgs(24,[3198])
+                    if(this.battle.modded(17)){
                         for(let b=0,lb=3;b<lb;b++){
                             if(this.battle.cardManagers[a].reserve.cards.length>0){
                                 this.battle.cardManagers[a].randomEffect(1,8,[])

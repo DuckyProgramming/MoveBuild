@@ -6336,7 +6336,7 @@ Costs 2 to use and retains. Range 1-3.`,
         {name:'Enemy HP',desc:'Normal Enemies Have More Health and Gain More Block'},
         {name:'Elite HP',desc:'Elites Have More Health and Gain More Block'},
         {name:'Boss HP',desc:'Bosses Have More Health and Gain More Block'},
-        {name:'Start Cursed',desc:'Start With Ascender Bane'},//10
+        {name:'Start Cursed',desc:`Start With Ascender's Bane`},//10
         {name:'Less Items',desc:'Lose 1 Item Slot'},
         {name:'Less Upgrades',desc:'Upgraded Cards are Less Common'},
         {name:'Poor Bosses',desc:'Bosses Do Not Drop Currency'},

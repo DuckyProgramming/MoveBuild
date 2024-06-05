@@ -603,18 +603,18 @@ class battle{
         if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Drawless Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Drawless Turn',combatant.status.name)]--
-            combatant.tick()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
+            combatant.tick()
             noDraw=true
         }else if(this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)].getStatus('Extra Turn')>0){
             let combatant=this.combatantManager.combatants[this.combatantManager.getPlayerCombatantIndex(this.turn.main)]
             combatant.status.main[findList('Extra Turn',combatant.status.name)]--
-            combatant.tick()
             this.baselineEnergy(this.turn.main,this.energy.gen[this.turn.main])
             this.addEnergy(max(0,(this.relicManager.hasRelic(28,this.turn.main)&&this.turn.total>1&&this.getEnergy(this.turn.main)>=1?1:0))-(this.modded(5)?max(3-this.turn.total,0):0)+this.energy.temp[this.turn.main],this.turn.main)
             this.energy.temp[this.turn.main]=0
+            combatant.tick()
             extra=true
         }else{
             this.turn.main++
@@ -878,6 +878,9 @@ class battle{
                 break
             }
         }
+        if(userCombatant.name=='Daiyousei'){
+            userCombatant.vision++
+        }
         switch(cardClass){
             case 1:
                 if(userCombatant.getStatus('Must Attack or Take Damage')>0){
@@ -887,12 +890,22 @@ class battle{
                     this.cardManagers[player].draw(userCombatant.getStatus('Attack Draw'))
                 }
             break
+            case 3:
+                if(userCombatant.getStatus('Double Damage Without Movement')>0){
+                    userCombatant.statusEffect('Double Damage Without Movement',-1)
+                }
+            break
             case 4:
                 if(userCombatant.getStatus('Power Draw')>0){
                     this.cardManagers[player].draw(userCombatant.getStatus('Power Draw'))
                 }
-                if(userCombatant.getStatus('Power Basic')>0){
-                    userCombatant.holdOrb(0)
+                if(userCombatant.getStatus('Power Basic Orb')>0){
+                    for(let a=0,la=userCombatant.getStatus('Power Basic Orb');a<la;a++){
+                        userCombatant.holdOrb(0)
+                    }
+                }
+                if(userCombatant.getStatus('Double Damage Without Power')>0){
+                    userCombatant.statusEffect('Double Damage Without Power',-1)
                 }
             break
         }
@@ -923,6 +936,12 @@ class battle{
             for(let a=0,la=userCombatant.getStatus('3+ Cost Free Upgraded Discus');a<la;a++){
                 this.cardManagers[player].hand.addCost(findName('Dual\nDiscus',types.card),1,0,0)
             }
+        }
+        if(card.color==0&&userCombatant.getStatus('Colorless Damage All')>0){
+            this.combatantManager.allEffect(19,[userCombatant.getStatus('Colorless Damage All')])
+        }
+        if(card.rarity==0&&userCombatant.getStatus('Common Temporary Strength')>0){
+            userCombatant.statusEffect('Temporary Strength',userCombatant.getStatus('Common Temporary Strength')>0)
         }
         this.combatantManager.playCardFront(cardClass,card)
         this.relicManager.activate(4,[cardClass,player,card.cost,card.rarity,card.name,card.edition])
@@ -1862,6 +1881,7 @@ class battle{
                     this.overlayManager.closeAll()
                     let prefered=floor(random(0,this.overlayManager.overlays[0].length))
                     this.cardManagers.forEach(cardManager=>cardManager.allEffect(0,44))
+                    this.combatantManager.fullAllEffect(10)
                     for(let a=0,la=this.overlayManager.overlays[0].length;a<la;a++){
                         this.overlayManager.overlays[0][a].active=true
                         if(this.encounter.class==0&&this.relicManager.hasRelic(79,a)&&floor(random(0,5))==0){
