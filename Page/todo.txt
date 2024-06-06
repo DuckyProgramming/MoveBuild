@@ -1,22 +1,71 @@
+give all card view overlays a title card
+
+replacements if necessary
+
+
+red paperclip returns relics you've lost
+
+
+
+vincent appears above the floor
+check all those pictures
+
+
+
+
 sanae meme card
 
 [common colorless]
 
 [common colorless]
 
-[junkyard]
-
 drunk - curse, when drawn, discard a card
 
 world fragment returns
 
+wind god girl - can't have less than 1 dodge at the start of your turn
+
+timeline image - 3 cost, 16 damage, 16 block, 4 damage to all next turn
+
+replacement sanae card
 
 
 
-relic get $250 at rest sites
+replacement:
 
-4 more replacement relics
+shop:
 
+boss:
+
+shiny die - gain 1 base energy, but lose 1 energy 1/6 of the time
+sparkler - gain 1 base energy, all elites gain 5 strength
+sunglasses - gain 1 base energy, can't see past 3 tiles ahead
+sticky hand - gain 1 base energy, cannot skip card rewards
+tabasco sauce - gain 1 base energy, all healing is 50% less
+setminus - gain 1 base energy, start combat with a trough in draw pile
+gas pipe - gain 1 base energy, fatigues are shuffled into draw instead of discard pile
+duck food - gain 1 base energy, all fights have an additional duck
+[]
+[]
+
+non-energy boss:
+
+solitaire
+unmoving library - choose and add 5 rare cards from any character
+silicon wafer - the first card (non-innately) drawn each turn is free
+octahedron - draw a card when you play 3 cards
+lucky coin - double upgrade 10 random upgraded cards
+ring of sufferring - gain 1 strength per 3 attacks and 1 dexterity per 3 defenses played
+ghost lamp - gain 10 intangible at the start of combat, lose 20 max hp
+stone of aja - gain 1 strength per turn, add a burn to hand every turn
+[]
+[]
+
+
+
+event - the two doors
+[get a bozo and make a card erratic]
+[get a parasite and make a card negative]
 
 
 

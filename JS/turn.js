@@ -1663,7 +1663,7 @@ class turn{
                             this.targetCombatant[a].statusEffect('Frail',this.effect[1])
                         break
                         case 124:
-                            this.targetCombatant.statusEffect('Energy Next Turn',-this.effect[1])
+                            this.targetCombatant[a].statusEffect('Energy Next Turn',-this.effect[1])
                         break
                         case 264:
                             this.targetCombatant[a].statusEffect('Shock',this.effect[1])

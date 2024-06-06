@@ -942,7 +942,7 @@ class particle{
                     this.layer.rotate(this.time)
                     this.layer.noFill()
                     this.layer.strokeWeight(0.1)
-                    this.layer.stroke(240,200,200,this.fade*2)
+                    this.layer.stroke(200,240,240,this.fade*2)
                     this.layer.rect(0,0,10)
                     regPoly(this.layer,0,0,8,5,5,22.5)
                 break

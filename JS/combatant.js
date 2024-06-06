@@ -3819,8 +3819,8 @@ class combatant{
             }
         }else if(this.type<=game.playerNumber){
             if(game.ascend>=6){
-                this.life*=0.8
-                this.collect.life*=0.8
+                this.life*=0.75
+                this.collect.life*=0.75
             }
             if(game.ascend>=14){
                 this.base.life*=0.9
@@ -5953,6 +5953,7 @@ class combatant{
                 this.battle.cardManagers[this.id].draw(this.battle.relicManager.active[250][this.id+1])
             }
             this.battle.cardManagers[this.id].hand.allEffectArgs(20,[this.tilePosition,{x:x,y:y}])
+            this.combo=max(this.combo-distance,0)
         }
         this.tilePosition.x=x
         this.tilePosition.y=y
@@ -9178,7 +9179,7 @@ class combatant{
                     this.layer.textAlign(LEFT,CENTER)
                     if(this.team==0||this.construct||this.support){
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                            this.layer.text(this.status.name[this.status.display[a]],60,305+a*20+this.spec.length*10)
+                            this.layer.text(this.status.name[this.status.display[a]],60,315+a*20+this.spec.length*10)
                         }
                     }else{
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
@@ -9238,7 +9239,7 @@ class combatant{
                     this.layer.textAlign(CENTER,CENTER)
                     if(this.team==0||this.construct||this.support){
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                            displayStatusSymbol(this.layer,40,305+a*20+this.spec.length*10,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
+                            displayStatusSymbol(this.layer,40,315+a*20+this.spec.length*10,this.status.display[a],0,this.status.size[this.status.display[a]]*1.5,this.fade*this.infoAnim.description*this.infoAnim.life)
                         }
                     }else{
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
@@ -9251,7 +9252,7 @@ class combatant{
                     this.layer.textSize(12)
                     if(this.team==0||this.construct||this.support){
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){
-                            this.layer.text(this.status.main[this.status.display[a]],40,305+a*20+this.spec.length*10)
+                            this.layer.text(this.status.main[this.status.display[a]],40,315+a*20+this.spec.length*10)
                         }
                     }else{
                         for(let a=0,la=min(6,this.status.display.length);a<la;a++){

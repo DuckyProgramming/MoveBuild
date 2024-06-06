@@ -3327,7 +3327,6 @@ class group{
                             }
                         }
                         this.cards[b].played()
-                        this.cards.forEach(card=>card.anotherPlayed(this.cards[b]))
                         this.battle.cardManagers[this.player].greenDiff++
                         if(this.spec.includes(12)&&(this.cards[b].target[0]==11||this.cards[b].target[0]==15)){
                             let characteristic=1
@@ -3337,6 +3336,7 @@ class group{
                             this.cards[b].characteristic=characteristic
                         }
                         this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
+                        this.cards.forEach(card=>card.anotherPlayed(this.cards[b]))
                         this.cardInUse=this.cards[b]
                         if(variants.polar){
                             this.pole=1-this.pole
@@ -3476,7 +3476,6 @@ class group{
                                 }
                             }
                             this.cards[b].played()
-                            this.cards.forEach(card=>card.anotherPlayed(this.cards[b]))
                             this.battle.cardManagers[this.player].greenDiff++
                             if(this.spec.includes(12)){
                                 let characteristic=this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0
@@ -3486,6 +3485,7 @@ class group{
                                 this.cards[b].characteristic=characteristic
                             }
                             this.battle.playCard(this.cards[b],this.player,this.battle.combatantManager.combatants[this.battle.attackManager.user].id==a?1:0)
+                            this.cards.forEach(card=>card.anotherPlayed(this.cards[b]))
                             this.cardInUse=this.cards[b]
                             if(variants.polar){
                                 this.pole=1-this.pole

@@ -558,10 +558,7 @@ class battle{
     newTurn(){
         if(!this.tutorialManager.active){
             if(this.turn.total==1){
-                if(!this.relicManager.hasRelic(141,this.turn.main)){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
-                }
-                if(this.relicManager.hasRelic(107,this.turn.main)){
+                for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                 }
                 if(this.encounter.name=='Rewriter'){
@@ -704,10 +701,7 @@ class battle{
         this.turnManager.clear()
         if(!this.tutorialManager.active){
             if(this.turn.total==1){
-                if(!this.relicManager.hasRelic(141,this.turn.main)){
-                    this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
-                }
-                if(this.relicManager.hasRelic(107,this.turn.main)){
+                for(let a=0,la=1+(this.relicManager.hasRelic(141,this.turn.main)?1-1:0)+(this.relicManager.hasRelic(107,this.turn.main)?1:0);a<la;a++){
                     this.cardManagers[this.turn.main].hand.add(findName('Initiative',types.card),0,0)
                 }
                 if(this.encounter.name=='Rewriter'){
@@ -2455,7 +2449,9 @@ class battle{
                     this.eventManagers.forEach(eventManager=>eventManager.onClick())
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})){
+                    if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:494},width:32,height:20})&&
+                        !this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(17)
+                    ){
                         this.overlayManager.overlays[4][a].active=true
                         this.overlayManager.overlays[4][a].activate()
                     }else if(pointInsideBox({position:inputs.rel},{position:{x:26+a*(this.layer.width-52),y:522},width:32,height:20})){
@@ -2849,7 +2845,9 @@ class battle{
                     }
                 }
                 for(let a=0,la=this.cardManagers.length;a<la;a++){
-                    if((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2){
+                    if(((key=='d'||key=='D')&&this.players==1||key=='d'&&a==0&&this.players==2||key=='D'&&a==1&&this.players==2)&&
+                        !this.overlayManager.anySpecificActive(6)&&!this.overlayManager.anySpecificActive(17)
+                    ){
                         this.overlayManager.overlays[4][a].active=true
                         this.overlayManager.overlays[4][a].activate()
                     }else if((key=='s'||key=='S')&&this.players==1||key=='s'&&a==0&&this.players==2||key=='S'&&a==1&&this.players==2){

@@ -148,22 +148,22 @@ class itemManager{
             break
             case 3:
                 for(let a=0,la=3*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomClassFree(2,0,1)
+                    this.battle.cardManagers[player].addRandomClassFree(2,0,1,0)
                 }
             break
             case 4:
                 for(let a=0,la=3*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomClassFree(2,0,2)
+                    this.battle.cardManagers[player].addRandomClassFree(2,0,2,0)
                 }
             break
             case 5:
                 for(let a=0,la=3*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomClassFree(2,0,3)
+                    this.battle.cardManagers[player].addRandomClassFree(2,0,3,0)
                 }
             break
             case 6:
                 for(let a=0,la=3*effectiveness;a<la;a++){
-                    this.battle.cardManagers[player].addRandomClassFree(2,0,4)
+                    this.battle.cardManagers[player].addRandomClassFree(2,0,4,0)
                 }
             break
             case 7:
@@ -323,7 +323,7 @@ class itemManager{
             case 101:
                 userCombatant.statusEffect('Strength',5*effectiveness)
                 for(let a=0,la=5*effectiveness;a<la;a++){
-                    this.battle.drop(player,findName('Burn',types.card),0,game.playerNumber+1)
+                    this.battle.dropDrawShuffle(player,findName('Burn',types.card),0,game.playerNumber+1)
                 }
             break
             case 102:

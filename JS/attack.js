@@ -4725,7 +4725,6 @@ class attack{
                         }
                     break
                     case 973: case 1672: case 2140: case 2141: case 2159: case 2160: case 2180: case 2436: case 2459: case 2652:
-                    case 3013:
                         let offset=transformDirection(0,this.relativeDirection)
                         let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x+offset[0],this.targetTile.tilePosition.y+offset[1])
                         if(index>=0){
@@ -4759,9 +4758,6 @@ class attack{
                                 break
                                 case 2652:
                                     this.battle.combatantManager.combatants[index].statusEffect('Bleed',this.effect[1])
-                                break
-                                case 3013:
-                                    this.battle.turnManager.loadEnemyRandomMove(index)
                                 break
                             }
                         }
@@ -8093,9 +8089,6 @@ class attack{
                     case 10: case 1803: case 2598:
                         this.userCombatant.heal(this.effect[0])
                     break
-                    case 64: case 2581:
-                        this.userCombatant.statusEffect('Control',this.effect[0])
-                    break
                     case 72:
                         this.userCombatant.statusEffect('Strength',this.effect[0])
                         this.userCombatant.life-=this.effect[1]
@@ -8218,7 +8211,7 @@ class attack{
                     case 456:
                         let total456=0
                         for(let a=0,la=this.battle.itemManager.items[this.player].length;a<la;a++){
-                            if(this.battle.itemManager.items[this.player][a].type>1){
+                            if(this.battle.itemManager.items[this.player][a].type>1&&!this.battle.itemManager.items[this.player][a].temp){
                                 this.battle.itemManager.total[this.player]--
                                 this.battle.itemManager.items[this.player][a].type=1
                                 this.battle.itemManager.items[this.player][a].refresh()
@@ -8617,6 +8610,9 @@ class attack{
                     case 2548:
                         this.battle.itemManager.dupeRandom(this.player)
                     break
+                    case 2581:
+                        this.userCombatant.statusEffect('Control',this.effect[0])
+                    break
                     case 2590:
                         this.userCombatant.statusEffect('Armor',this.effect[0])
                         this.userCombatant.statusEffect('Frail',this.effect[1])
@@ -8625,7 +8621,7 @@ class attack{
                     case 2642:
                         let total2642=0
                         for(let a=0,la=this.battle.itemManager.items[this.player].length;a<la;a++){
-                            if(this.battle.itemManager.items[this.player][a].type>1){
+                            if(this.battle.itemManager.items[this.player][a].type>1&&!this.battle.itemManager.items[this.player][a].temp){
                                 this.battle.itemManager.total[this.player]--
                                 this.battle.itemManager.items[this.player][a].type=1
                                 this.battle.itemManager.items[this.player][a].refresh()
@@ -8694,6 +8690,10 @@ class attack{
                     break
                     case 3171:
                         this.userCombatant.statusEffect('End of Combat Heal',this.effect[0])
+                    break
+                    case 3223:
+                        this.userCombatant.statusEffect('Control',this.effect[0])
+                        this.userManager.draw(this.effect[1])
                     break
 
                 }
@@ -10414,7 +10414,7 @@ class attack{
                     break
                     case 2561:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
-                        if(this.targetCombatant.life<=0){
+                        if(this.targetCombatant.life>0){
                             this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                             this.battle.dropDrawShuffle(this.player,findName('Dazed',types.card),this.level,game.playerNumber+1)
                         }
@@ -10539,10 +10539,6 @@ class attack{
                         for(let a=0,la=this.effect[2];a<la;a++){
                             this.battle.dropDrawShuffle(this.player,findName('Deluxe\nShiv',types.card),0,0)
                         }
-                    break
-                    case 3037:
-                        this.battle.overlayManager.overlays[67][this.player].active=true
-                        this.battle.overlayManager.overlays[67][this.player].activate([this.effect[0],this.effect[1],this.targetCombatant.id])
                     break
                     case 3053:
                         this.targetCombatant.takeDamage(this.effect[0],this.user)
@@ -13201,6 +13197,17 @@ class attack{
                             this.battle.overlayManager.overlays[70][this.player].activate([list[a][b]])
                         }
                     }
+                }
+            break
+            case 21:
+                switch(this.type){
+                    case 3013:
+                        let offset=transformDirection(0,this.relativeDirection)
+                        let index=this.battle.combatantManager.getCombatantIndex(this.targetTile.tilePosition.x+offset[0],this.targetTile.tilePosition.y+offset[1])
+                        if(index>=0){
+                            this.battle.turnManager.loadEnemyRandomMove(index)
+                        }
+                    break
                 }
             break
 

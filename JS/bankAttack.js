@@ -311,6 +311,7 @@ attack.prototype.update=function(){
                 }else{
                     this.battle.activate(1,this.userCombatant.id)
                 }
+                this.selfCall(21)
                 this.remove=true
             }else{
                 if(this.timer==1){
@@ -329,6 +330,7 @@ attack.prototype.update=function(){
                     }else{
                         this.battle.activate(1,this.userCombatant.id)
                     }
+                    this.selfCall(21)
                     this.remove=true
                 }
             }
@@ -764,7 +766,7 @@ attack.prototype.update=function(){
         case 2341: case 2352: case 2353: case 2354: case 2402: case 2412: case 2432: case 2433: case 2449: case 2450:
         case 2452: case 2502: case 2507: case 2508: case 2509: case 2519: case 2548: case 2581: case 2590: case 2598:
         case 2642: case 2688: case 2695: case 2727: case 2738: case 2805: case 2820: case 2895: case 2958: case 2965:
-        case 2990: case 3005: case 3008: case 3171:
+        case 2990: case 3005: case 3008: case 3171: case 3223:
             //mark 6
             if(
                 this.type==1322&&this.userCombatant.energyParity(this.energy)==0||
@@ -6863,20 +6865,16 @@ attack.prototype.update=function(){
             }
         break
         case 3037:
-            if(variants.nobasicanim){
-                this.selfCall(4)
+            if(this.timer==1){
+                this.userCombatant.startAnimation(5)
+            }
+            this.userCombatant.runAnimation(1/10,5)
+            if(this.timer==10){
+                current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,75,[20]))
+                this.battle.overlayManager.overlays[67][this.player].active=true
+                this.battle.overlayManager.overlays[67][this.player].activate([this.effect[0],this.effect[1],this.targetCombatant.id])
+            }else if(this.timer>=20){
                 this.remove=true
-            }else{
-                if(this.timer==1){
-                    this.userCombatant.startAnimation(5)
-                }
-                this.userCombatant.runAnimation(1/10,5)
-                if(this.timer==10){
-                    current.particleManager.particles.push(new particle(this.battle.layer,this.userCombatant.position.x,this.userCombatant.position.y-50,75,[20]))
-                    this.selfCall(4)
-                }else if(this.timer>=20){
-                    this.remove=true
-                }
             }
         break
         case 3057:

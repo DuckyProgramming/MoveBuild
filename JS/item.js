@@ -178,13 +178,13 @@ class item{
                     this.layer.text('3',0,0)
                 break
                 case 'Dirt':
-                    displaySymbol(this.layer,0,0,25,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,26,0,1.2,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
                     this.layer.text('3',0,0)
                 break
                 case 'Ash':
-                    displaySymbol(this.layer,0,0,26,0,1.2,this.fade)
+                    displaySymbol(this.layer,0,0,25,0,1.2,this.fade)
                     this.layer.fill(0)
                     this.layer.textSize(10)
                     this.layer.text('3',0,0)

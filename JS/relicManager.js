@@ -243,7 +243,7 @@ class relicManager{
                 this.battle.itemManager.effectiveness[player]*=2
             break
             case 97:
-                this.battle.purchaseManager.costChange(player,2,-80)
+                this.battle.purchaseManager.costChange(player,2,-100)
             break
             case 102:
                 this.battle.overlayManager.overlays[3][player].takable++
@@ -466,7 +466,7 @@ class relicManager{
                 this.battle.itemManager.effectiveness[player]/=2
             break
             case 97:
-                this.battle.purchaseManager.costChange(player,2,80)
+                this.battle.purchaseManager.costChange(player,2,100)
             break
             case 102:
                 this.battle.overlayManager.overlays[3][player].takable--

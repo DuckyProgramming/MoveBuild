@@ -63,7 +63,7 @@ class purchaseManager{
                             this.purchases.push(new purchase(this.layer,this.battle,0,95+a*130,470,1,[round(random(cost[group[a]][0],cost[group[a]][1]))],[list[group[a]][index],0,0]))
                             list[group[a]].splice(index,1)
                         }
-                        this.purchases.push(new purchase(this.layer,this.battle,0,745,470,2,[this.battle.relicManager.hasRelic(97,0)?120:200],[]))
+                        this.purchases.push(new purchase(this.layer,this.battle,0,745,470,2,[this.battle.relicManager.hasRelic(97,0)?100:200],[]))
                         for(let a=0,la=3;a<la;a++){
                             let type=[0,0,1,2][floor(random(0,4))]
                             this.purchases.push(new purchase(this.layer,this.battle,0,1040,160+a*140,5,[[100,150,200][type]],[type]))
@@ -128,8 +128,8 @@ class purchaseManager{
                             let price=round(random(cost[group[a]][0],cost[group[a]][1]))
                             this.purchases.push(new purchase(this.layer,this.battle,-1,305+a%2*290,100+floor(a/2)*100,3,[this.battle.relicManager.hasRelic(85,0)&&a==index?0:price,this.battle.relicManager.hasRelic(85,1)&&a==index?0:price],[list[a]]))
                         }
-                        this.purchases.push(new purchase(this.layer,this.battle,-1,65,470,2,[this.battle.relicManager.hasRelic(97,0)?120:200,this.battle.relicManager.hasRelic(97,1)?120:200],[]))
-                        this.purchases.push(new purchase(this.layer,this.battle,-1,835,470,2,[this.battle.relicManager.hasRelic(97,0)?120:200,this.battle.relicManager.hasRelic(97,1)?120:200],[]))
+                        this.purchases.push(new purchase(this.layer,this.battle,-1,65,470,2,[this.battle.relicManager.hasRelic(97,0)?100:200,this.battle.relicManager.hasRelic(97,1)?100:200],[]))
+                        this.purchases.push(new purchase(this.layer,this.battle,-1,835,470,2,[this.battle.relicManager.hasRelic(97,0)?100:200,this.battle.relicManager.hasRelic(97,1)?100:200],[]))
                         for(let a=0,la=6;a<la;a++){
                             let type=[0,0,1,2][floor(random(0,4))]
                             this.purchases.push(new purchase(this.layer,this.battle,-1,400+a%2*100,160+floor(a/2)*140,5,[[100,150,200][type],[100,150,200][type]],[type]))
